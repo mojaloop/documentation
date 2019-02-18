@@ -5,6 +5,7 @@
   * [Tools and Technologies](contributors-guide/tools-and-technologies.md)
   * [Documentation](contributors-guide/documentation.md)
   * [Standards](contributors-guide/standards.md)
+  * [Mojaloop Deployment](contributors-guide/mojaloop-deployment.md)
   * [Frequently Asked Questions](contributors-guide/frequently-asked-questions.md)
 * [Mojaloop Technical Overview](mojaloop-technical-overview/README.md)
   * [Repositories](mojaloop-technical-overview/repositories.md)
