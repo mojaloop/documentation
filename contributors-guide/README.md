@@ -8,7 +8,11 @@ description: Mojaloop Contributors Guide
 
 ### Review the Deployment and Standards Guide
 
-\[Deployment and Setup Document\]\([https://github.com/mojaloop/docs/blob/master/MojaloopDeployment/MojaloopDeploymentGuide.md](https://github.com/mojaloop/docs/blob/master/MojaloopDeployment/MojaloopDeploymentGuide.md)\)
+Review the \[deployment and setup document\]\([https://mojaloop.gitbook.io/mojaloop/contributors-guide/mojaloop-deployment](https://mojaloop.gitbook.io/mojaloop/contributors-guide/mojaloop-deployment)\)
+
+Review \[Standards\] for participating in the Mojaloop open source project \([https://mojaloop.gitbook.io/mojaloop/contributors-guide/standards](https://mojaloop.gitbook.io/mojaloop/contributors-guide/standards)\)
+
+
 
 ### What work is needed?
 
