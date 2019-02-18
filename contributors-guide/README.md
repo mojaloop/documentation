@@ -6,13 +6,11 @@ description: Mojaloop Contributors Guide
 
 ## How do I contribute?
 
-### Review the Deployment and Standards Guide
+### \* Review the [Mojaloop Deployment](mojaloop-deployment.md#mojaloop-deployment) Guide
 
-Review the \[deployment and setup document\]\([https://mojaloop.gitbook.io/mojaloop/contributors-guide/mojaloop-deployment](https://mojaloop.gitbook.io/mojaloop/contributors-guide/mojaloop-deployment)\)
+### \* Review our [Standards](standards.md) document on contributing to our Open Source Project
 
-Review \[Standards\] for participating in the Mojaloop open source project \([https://mojaloop.gitbook.io/mojaloop/contributors-guide/standards](https://mojaloop.gitbook.io/mojaloop/contributors-guide/standards)\)
-
-
+### \* Review our Roadmap and look Issues requesting for Contributor Help.
 
 ### What work is needed?
 
@@ -58,13 +56,6 @@ UPDATE: For bugs, see [Reporting bugs](https://github.com/mojaloop/mojaloop/blob
 
 It's a good idea to ask about major changes on [Slack](https://mojaloop.slack.com). Submit pull requests which include both the change and the reason for the change. Pull requests will be denied if they violate the [Level One Principles](https://leveloneproject.org/wp-content/uploads/2016/03/L1P_Level-One-Principles-and-Perspective.pdf)
 
-### Style guides and templates  UPDATE
-
-* [Documentation standards](https://github.com/mojaloop/mojaloop/blob/master/contribute/Documentation-and-Template-Standards.md)
-* [Documentation style guide](https://github.com/mojaloop/mojaloop/blob/master/contribute/Documentation-Style-Guide.md)
-* [Code Style](https://github.com/mojaloop/mojaloop/blob/master/contribute/Code-Style.md)
-* [Code Quality Metrics](https://github.com/mojaloop/mojaloop/blob/master/contribute/Code-Quality-Metrics.md)
-
 ### Code of conduct UPDATE
 
 We use a [standard developer code of conduct](https://www.contributor-covenant.org/version/1/4/code-of-conduct.html)
@@ -91,9 +82,9 @@ These individuals are those that want to start contributing to the Mojaloop comm
 
 ### Hub Operators
 
-Typically these or organizations or individuals or goverment agencies that are interested in setting up their own Mojaloop Switch to become part of the ecosystem.
+Typically these or organizations or individuals or government agencies that are interested in setting up their own Mojaloop Switch to become part of the ecosystem.
 
 ### Implementation Teams
 
-Implementation teams can assist banks, goverment offices, mobile operators or credit unions in deploying Mojaloop.
+Implementation teams can assist banks, government offices, mobile operators or credit unions in deploying Mojaloop.
 
