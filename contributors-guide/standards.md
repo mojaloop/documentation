@@ -101,3 +101,17 @@ This document provides guidelines regarding the versioning strategy used for the
 1. A new release for **helm** repo is made whenver a configuration change is needed for any of the core Switch services based on the changes made \(features, bug-fixes\).
 2. However, if there is no release made to helm necessitated by a configuration change, then a release is done every Sprint anyway, to bring it up to date with the latest releases on the core Switch services.
 
+### Pull Request Process
+
+It's a good idea to ask about major changes on [Slack](https://mojaloop.slack.com). Submit pull requests which include both the change and the reason for the change. Pull requests will be denied if they violate the [Level One Principles](https://leveloneproject.org/wp-content/uploads/2016/03/L1P_Level-One-Principles-and-Perspective.pdf)
+
+### Code of conduct 
+
+We use a [standard developer code of conduct](https://www.contributor-covenant.org/version/1/4/code-of-conduct.html)
+
+### Licensing
+
+See [License](https://github.com/mojaloop/mojaloop/blob/master/contribute/License.md) policy
+
+## 
+

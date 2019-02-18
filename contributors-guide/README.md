@@ -10,9 +10,9 @@ description: Mojaloop Contributors Guide
 
 ### \* Review our [Standards](standards.md) document on contributing to our Open Source Project
 
-### \* Review our Roadmap and look Issues requesting for Contributor Help.
+### \* Review our [Roadmap](../mojaloop-roadmap.md) and look for issues in the project repository requesting contributor Help.
 
-### What work is needed?
+## What work is needed?
 
 Work is tracked as issues in GitHub. You'll see issues there that are open and marked as bugs, stories, or epics. An epic is larger work that contains multiple stories. Anything that is in the backlog and not assigned to someone are things we could use help with. Stories that have owners are in someone's backlog already, though you can always ask about them in the issue or on Slack.
 
@@ -51,26 +51,6 @@ We are not trying to replace any mobile wallet or financial providers. We provid
 The [Interledger Protocol Suite](https://interledger.org/) \(ILP\) is an open and secure standard that enables DFSPs to settle payments with minimal _counter-party risk_ \(the risk you incur when someone else is holding your money\). With ILP, you can transact across different systems with no chance that someone in the middle disappears with your money. Mojaloop uses the Interledger Protocol Suite for the clearing layer. For an overview of how it works, see the [Clearing Architecture Documentation](https://github.com/mojaloop/Docs/blob/master/ILP/README.md).Where to I send bugs, questions, and feedback?
 
 UPDATE: For bugs, see [Reporting bugs](https://github.com/mojaloop/mojaloop/blob/master/contribute/Reporting-Bugs.md).
-
-### Pull Request Process
-
-It's a good idea to ask about major changes on [Slack](https://mojaloop.slack.com). Submit pull requests which include both the change and the reason for the change. Pull requests will be denied if they violate the [Level One Principles](https://leveloneproject.org/wp-content/uploads/2016/03/L1P_Level-One-Principles-and-Perspective.pdf)
-
-### Code of conduct UPDATE
-
-We use a [standard developer code of conduct](https://www.contributor-covenant.org/version/1/4/code-of-conduct.html)
-
-### Licensing
-
-See [License](https://github.com/mojaloop/mojaloop/blob/master/contribute/License.md) policy
-
-### What version?
-
-Naturally, we use [semantic versioning](http://semver.org/), and each repo has it's own version. Update the version appropriately when you submit a pull request. Example: git tag v0.4.0 \# update the version.
-
-### Additional Information UPDATE
-
-For additional information please review the [frequently asked questions](https://github.com/mojaloop/documentation/tree/5c7ed2fbb64393b6d224e73d68351bff5b4bed4e/FAQ.md).
 
 ## Types of Contributors
 
