@@ -6,13 +6,10 @@ description: Mojaloop Contributors Guide
 
 ## How do I contribute?
 
-### Review the Deployment Guide
+### Review the Deployment and Standards Guide
 
-Review the Mojaloop deployment guide and follow the instructions for deployment:
-
-* \[Deployment and Setup MD\]
-
-  \([https://github.com/mojaloop/docs/blob/develop/WorkShops/Presentations/Mojaloop\_Phase2\_Wrap-up\_Deployment-Day3\_V2.0-published.pdf](https://github.com/mojaloop/docs/blob/develop/WorkShops/Presentations/Mojaloop_Phase2_Wrap-up_Deployment-Day3_V2.0-published.pdf)\).
+* \[Deployment and Setup\]\([https://github.com/mojaloop/docs/blob/master/MojaloopDeployment/MojaloopDeploymentGuide.md](https://github.com/mojaloop/docs/blob/master/MojaloopDeployment/MojaloopDeploymentGuide.md)\).
+* \[Mojaloop Standards\]\([https://github.com/mojaloop/documentation/blob/master/contributors-guide/standards.md](https://github.com/mojaloop/documentation/blob/master/contributors-guide/standards.md)\)
 
 ### What work is needed?
 
