@@ -7,8 +7,10 @@ description: Mojaloop Contributors Guide
 ## How do I contribute?
 
 ### \* Review the [Mojaloop Deployment](mojaloop-deployment.md#mojaloop-deployment) Guide
-### \* Review our [Standards](standards.md) document on contributing to our Open Source Project
-### \* Review our [Roadmap](../mojaloop-roadmap.md) and look for issues in the project repository requesting contributor Help.
+
+### \* Review [Standards](standards.md) on contributing to our Open Source Project
+
+### \* Review the [Roadmap](../mojaloop-roadmap.md) and look for issues in the project repository requesting contributor Help.
 
 ## What work is needed?
 
