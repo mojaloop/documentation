@@ -2,9 +2,11 @@
 
 * [Mojaloop Overview](README.md)
 * [Contributors Guide](contributors-guide/README.md)
-  * [Standards](contributors-guide/pre-requisites.md)
   * [Tools and Technologies](contributors-guide/tools-and-technologies.md)
-* [Documentation Standards](documentation-and-standards.md)
-* [Repositories](repositories.md)
-* [Mojaloop Technical Overview](mojaloop-technical-overview.md)
+  * [Standards](contributors-guide/pre-requisites.md)
+  * [Documentation](contributors-guide/documentation.md)
+  * [Frequently Asked Questions](contributors-guide/frequently-asked-questions.md)
+* [Mojaloop Technical Overview](mojaloop-technical-overview/README.md)
+  * [Repositories](mojaloop-technical-overview/repositories.md)
+  * [Mojaloop Components](mojaloop-technical-overview/mojaloop-components.md)
 
