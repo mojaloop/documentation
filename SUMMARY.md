@@ -8,6 +8,7 @@
   * [Documentation](contributors-guide/documentation.md)
   * [Frequently Asked Questions](contributors-guide/frequently-asked-questions.md)
 * [Mojaloop Background](mojaloop-background/README.md)
+  * [Core Scenarios](mojaloop-background/core-scenarios.md)
   * [Level One Principles](mojaloop-background/level-one-principles.md)
 * [Mojaloop Technical Overview](mojaloop-technical-overview/README.md)
   * [Repositories](mojaloop-technical-overview/repositories.md)
