@@ -28,7 +28,7 @@ Also checkout the [FAQ](https://github.com/mojaloop/mojaloop/blob/master/FAQ.md)
 
 ### What is the current release?
 
-See the [Mojaloop Slack Announcements](https://mojaloop-slack.announcements) to find out information on the latest release.
+See the [Mojaloop Slack Announcements](https://mojaloop.slack.com/messages/CG3MAJZ5J) to find out information on the latest release.
 
 The basic idea behind Mojaloop is that we need to connect multiple Digital Financial Services Providers \(DFSPs\) together into a competitive and interoperable network in order to maximize opportunities for poor people to get access to financial services with low or no fees. We don't want a single monopoly power in control of all payments in a country, or a system that shuts out new players. It also doesn't help if there are too many isolated subnetworks. Our model addresses these issues in several key ways:
 
