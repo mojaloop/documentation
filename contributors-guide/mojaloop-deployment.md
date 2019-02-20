@@ -1,5 +1,5 @@
 # Mojaloop Deployment
-
+  
 ## Deployment and Setup Introduction
 
 This document will provide guidelines to deploy and configure the Mojaloop applications on a local environment, utilizing Kubernetes within Docker.
@@ -57,7 +57,7 @@ This provides environment resource recommendations with a view of the infrastruc
 
   \*Note that this would also depend on your underlying infrastructure, and it does NOT include requirements for persistent volumes/storage.
 
-![Mojaloop Deployment Recommendations - Infrastructure Architecture](../.gitbook/assets/kubeinfrastructurearch.png)
+![Mojaloop Deployment Recommendations - Infrastructure Architecture](../Diagrams/Deployment/kubeinfrastructurearch.png)
 
 [Mojaloop Deployment Recommendations - Infrastructure Architecture](https://github.com/mojaloop/documentation/blob/master/Diagrams/Deployment/KubeInfrastructureArch.png)
 
@@ -236,7 +236,8 @@ To install Kubernetes with Docker, follow the steps below;
     * Increase the CPU allocation to at least 4
     * Increase the Memory allocation to at least 8.0 GiB
 
-![Kubernetes Install with Docker 1](https://github.com/mojaloop/documentation/blob/master/Diagrams/Deployment/KubernetesInstallWithDocker-1.png)
+
+![Kubernetes Install with Docker 1](../Diagrams/Deployment/KubernetesInstallWithDocker-1.png)
 
 [Kubernetes Install with Docker 1](https://github.com/mojaloop/documentation/blob/master/Diagrams/Deployment/KubernetesInstallWithDocker-1.png)
 
