@@ -57,9 +57,9 @@ This provides environment resource recommendations with a view of the infrastruc
 
   \*Note that this would also depend on your underlying infrastructure, and it does NOT include requirements for persistent volumes/storage.
 
-![Mojaloop Deployment Recommendations - Infrastructure Architecture](../Diagrams/Deployment/kubeinfrastructurearch.png)
+![Mojaloop Deployment Recommendations - Infrastructure Architecture](../Diagrams/Deployment/KubeInfrastructureArch.png)
 
-[Mojaloop Deployment Recommendations - Infrastructure Architecture](https://github.com/mojaloop/documentation/blob/master/Diagrams/Deployment/KubeInfrastructureArch.png)
+[Mojaloop Deployment Recommendations - Infrastructure Architecture](../Diagrams/Deployment/KubeInfrastructureArch.png)
 
 #### 1.2 Local Deployment and Testing Tools
 
@@ -248,9 +248,8 @@ To install Kubernetes with Docker, follow the steps below;
   * Click **Install** on the confirmation tab. 
   * The option is available to wait for completion or run as a background task.
 
-![Kubernetes Install with Docker 2](https://github.com/mojaloop/documentation/blob/master/Diagrams/Deployment/KubernetesInstallWithDocker-2.png)
-
-[Kubernetes Install with Docker 2](https://github.com/mojaloop/documentation/blob/master/Diagrams/Deployment/KubernetesInstallWithDocker-2.png)
+![Kubernetes Install with Docker 2](../Diagrams/Deployment/KubernetesInstallWithDocker-2.png)
+[Kubernetes Install with Docker 2](../Diagrams/Deployment/KubernetesInstallWithDocker-2.png)
 
 #### 2.1.2 Kubernetes environment setup:
 
@@ -318,9 +317,8 @@ or
 
    The **{kubernetes-dashboard-token-btbwf}** is retrieved from the output in the previous step. For more information on generating the token, follow the **Authentication** link in the window.
 
-   ![kubernetes-dashboard](https://github.com/mojaloop/documentation/blob/master/Diagrams/Deployment/kubernetesDashboard.png)
-
-   [kubernetes-dashboard](https://github.com/mojaloop/documentation/blob/master/Diagrams/Deployment/kubernetesDashboard.png)
+  ![kubernetes-dashboard](../Diagrams/Deployment/kubernetesDashboard.png)
+   [kubernetes-dashboard](../Diagrams/Deployment/kubernetesDashboard.png)
 
    **Ubuntu** continue from here
 
