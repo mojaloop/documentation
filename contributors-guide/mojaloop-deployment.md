@@ -134,9 +134,9 @@ To install Kubernetes with Docker, follow the steps below;
      - Increase the CPU allocation to at least 4
      - Increase the Memory allocation to at least 8.0 GiB
 
-![Kubernetes Install with Docker 1](../Wiki/KubernetesInstallWithDocker-1.png)
+![Kubernetes Install with Docker 1](https://github.com/mojaloop/documentation/blob/master/Diagrams/Deployment/KubernetesInstallWithDocker-1.png)
 
-[Kubernetes Install with Docker 1](../Wiki/KubernetesInstallWithDocker-1.png)
+[Kubernetes Install with Docker 1](https://github.com/mojaloop/documentation/blob/master/Diagrams/Deployment/KubernetesInstallWithDocker-1.png)
 
    - Go to **Kubernetes**
      - Select **Enable Kubernetes** tick box
@@ -145,9 +145,9 @@ To install Kubernetes with Docker, follow the steps below;
      - Click **Install** on the confirmation tab. 
  - The option is available to wait for completion or run as a background task.
 
-![Kubernetes Install with Docker 2](../Wiki/KubernetesInstallWithDocker-2.png)
+![Kubernetes Install with Docker 2](https://github.com/mojaloop/documentation/blob/master/Diagrams/Deployment/KubernetesInstallWithDocker-2.png)
 
-[Kubernetes Install with Docker 2](../Wiki/KubernetesInstallWithDocker-2.png)
+[Kubernetes Install with Docker 2](https://github.com/mojaloop/documentation/blob/master/Diagrams/Deployment/KubernetesInstallWithDocker-2.png)
 
 #### 2.1.2 Kubernetes environment setup:
 The following are all command line executables specifically for **Mac**. 
@@ -198,9 +198,9 @@ The following are all command line executables specifically for **Mac**.
    The __{kubernetes-dashboard-token-btbwf}__ is retrieved from the output in the previous step.
    For more information on generating the token, follow the __Authentication__ link in the window.
    
-   ![kubernetes-dashboard](../Wiki/kubernetesDashboard.png)
+   ![kubernetes-dashboard](https://github.com/mojaloop/documentation/blob/master/Diagrams/Deployment/kubernetesDashboard.png)
 
-   [kubernetes-dashboard](../Wiki/kubernetesDashboard.png)
+   [kubernetes-dashboard](https://github.com/mojaloop/documentation/blob/master/Diagrams/Deployment/kubernetesDashboard.png)
 
    **Ubuntu** continue from here
 1. Config Helm CLI and install Helm Tiller on K8s cluster
