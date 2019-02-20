@@ -1,5 +1,5 @@
 # Mojaloop Deployment
-  
+
 ## Deployment and Setup Introduction
 
 This document will provide guidelines to deploy and configure the Mojaloop applications on a local environment, utilizing Kubernetes within Docker.
@@ -30,21 +30,21 @@ This provides environment resource recommendations with a view of the infrastruc
 
 * Control Plane \(i.e. Master Node\)
 
-   \`\`\`http request
+  \`\`\`http request
 
-   [https://kubernetes.io/docs/setup/cluster-large/\#size-of-master-and-master-components](https://kubernetes.io/docs/setup/cluster-large/#size-of-master-and-master-components)
+  [https://kubernetes.io/docs/setup/cluster-large/\#size-of-master-and-master-components](https://kubernetes.io/docs/setup/cluster-large/#size-of-master-and-master-components)
 
-   \`\`\`
+  \`\`\`
 
   * 3x Master Nodes for future node scaling and HA \(High Availability\)
 
 * ETCd Plane:
 
-   \`\`\`http request
+  \`\`\`http request
 
-   [https://coreos.com/etcd/docs/latest/op-guide/hardware.html](https://coreos.com/etcd/docs/latest/op-guide/hardware.html)
+  [https://coreos.com/etcd/docs/latest/op-guide/hardware.html](https://coreos.com/etcd/docs/latest/op-guide/hardware.html)
 
-   \`\`\`
+  \`\`\`
 
   * 3x ETCd nodes for HA \(High Availability\)
 
@@ -57,9 +57,9 @@ This provides environment resource recommendations with a view of the infrastruc
 
   \*Note that this would also depend on your underlying infrastructure, and it does NOT include requirements for persistent volumes/storage.
 
-![Mojaloop Deployment Recommendations - Infrastructure Architecture](../Diagrams/Deployment/KubeInfrastructureArch.png)
+![Mojaloop Deployment Recommendations - Infrastructure Architecture](../.gitbook/assets/kubeinfrastructurearch%20%281%29.png)
 
-[Mojaloop Deployment Recommendations - Infrastructure Architecture](../Diagrams/Deployment/KubeInfrastructureArch.png)
+[Mojaloop Deployment Recommendations - Infrastructure Architecture](https://github.com/mojaloop/documentation/tree/d1718f81b0f12a4ae17be49f59c17f072956dea5/Diagrams/Deployment/KubeInfrastructureArch.png)
 
 #### 1.2 Local Deployment and Testing Tools
 
@@ -67,87 +67,94 @@ This provides environment resource recommendations with a view of the infrastruc
 
 The tool set to be deployed as part of the deployment process.
 
+| Tool | Required/Optional | Description | Install Info |
+| :--- | :--- | :--- | :--- |
+
+
 <table>
   <thead>
     <tr>
-      <th style="text-align:left">Tool</th>
-      <th style="text-align:left">Required/Optional</th>
-      <th style="text-align:left">Description</th>
-      <th style="text-align:left">Install Info</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align:left">Docker</td>
-      <td style="text-align:left">Required</td>
-      <td style="text-align:left">
+      <th style="text-align:left">Docker</th>
+      <th style="text-align:left">Required</th>
+      <th style="text-align:left">
         <p>Docker Engine and CLI Client</p>
         <p>Local Kubernetes single node cluster</p>
-      </td>
-      <td style="text-align:left">[https://docs.docker.com/install](https://docs.docker.com/install)</td>
+      </th>
+      <th style="text-align:left">[https://docs.docker.com/install](https://docs.docker.com/install)</th>
     </tr>
+  </thead>
+  <tbody></tbody>
+</table><table>
+  <thead>
     <tr>
-      <td style="text-align:left">Kubectl</td>
-      <td style="text-align:left">Required</td>
-      <td style="text-align:left">
+      <th style="text-align:left">Kubectl</th>
+      <th style="text-align:left">Required</th>
+      <th style="text-align:left">
         <p>Kubernetes CLI for Kubernetes Management</p>
         <p>Note Docker installs this part of Kubernetes install</p>
-      </td>
-      <td style="text-align:left">
+      </th>
+      <th style="text-align:left">
         <p>[https://kubernetes.io/doc/tasks/tools/install-kuberctl](https://kubernetes.io/docs/tasks/tools/install-kubectl)</p>
         <p>Docker Kubernetes Install (as per this guide)</p>
         <p><b>Mac:</b> `brew install kubernetes-cli`</p>
         <p><b>Ubuntu:</b> `sudo snap install kubectl --classic`</p>
-      </td>
+      </th>
     </tr>
+  </thead>
+  <tbody></tbody>
+</table><table>
+  <thead>
     <tr>
-      <td style="text-align:left">Kubectx</td>
-      <td style="text-align:left">Optional(useful tool)</td>
-      <td style="text-align:left">
+      <th style="text-align:left">Kubectx</th>
+      <th style="text-align:left">Optional(useful tool)</th>
+      <th style="text-align:left">
         <p>Kubernetes CLI for Kubernetes Context Management Helper</p>
         <p>Note Docker installs this as part of Kubernetes install</p>
-      </td>
-      <td style="text-align:left">
+      </th>
+      <th style="text-align:left">
         <p>[https://github.com/ahmetb/kubectx](https://github.com/ahmetb/kubectx)</p>
         <p><b>Mac:</b> `brew install kubectx`</p>
         <p><b>Ubuntu:</b> `sudo apt install kubectx`</p>
-      </td>
+      </th>
     </tr>
+  </thead>
+  <tbody></tbody>
+</table><table>
+  <thead>
     <tr>
-      <td style="text-align:left">Kubetail</td>
-      <td style="text-align:left">Optional(useful tool)</td>
-      <td style="text-align:left">
+      <th style="text-align:left">Kubetail</th>
+      <th style="text-align:left">Optional(useful tool)</th>
+      <th style="text-align:left">
         <p>Bash script that enables you to aggregate (tail/follow) logs from multiple
           pods into one stream. This is the same as running `kubectl logs -f` but
           for multiple pods.</p>
         <p>Example usage `kubetail moja.* -n demo`</p>
-      </td>
-      <td style="text-align:left">https://github.com/johanhaleby/kubetail</td>
+      </th>
+      <th style="text-align:left">https://github.com/johanhaleby/kubetail</th>
     </tr>
+  </thead>
+  <tbody></tbody>
+</table><table>
+  <thead>
     <tr>
-      <td style="text-align:left">Helm</td>
-      <td style="text-align:left">Required</td>
-      <td style="text-align:left">
+      <th style="text-align:left">Helm</th>
+      <th style="text-align:left">Required</th>
+      <th style="text-align:left">
         <p>Helm helps you manage Kubernetes applications</p>
         <p>Helm charts help you define, install and upgrade even the most complex
           Kubernetes application</p>
-      </td>
-      <td style="text-align:left">
+      </th>
+      <th style="text-align:left">
         <p>[https://docs.helm.sh/using_helm/#installing-helm](https://docs.helm.sh/using_helm/#installing-helm)</p>
         <p><b>Mac:</b> `brew install kubernetes-helm`</p>
         <p><b>Ubuntu:</b> `sudo snap install helm --classic`</p>
-      </td>
+      </th>
     </tr>
-    <tr>
-      <td style="text-align:left">Postman</td>
-      <td style="text-align:left">Required</td>
-      <td style="text-align:left">Postman is a Google Chrome application for the interacting with HTTP API's.
-        It presents you with a friendly GUI for the construction requests and reading
-        responces.</td>
-      <td style="text-align:left">[https://www.getpostman.com/apps](https://www.getpostman.com/apps)</td>
-    </tr>
-  </tbody>
-</table>## 2 Deployment
+  </thead>
+  <tbody></tbody>
+</table>| Postman | Required | Postman is a Google Chrome application for the interacting with HTTP API's. It presents you with a friendly GUI for the construction requests and reading responces. | \[https://www.getpostman.com/apps\]\(https://www.getpostman.com/apps\) |
+| :--- | :--- | :--- | :--- |
+
 
 This section will guide the reader through the deployment process to setup Kubernetes within Docker.
 
@@ -236,8 +243,7 @@ To install Kubernetes with Docker, follow the steps below;
     * Increase the CPU allocation to at least 4
     * Increase the Memory allocation to at least 8.0 GiB
 
-
-![Kubernetes Install with Docker 1](../Diagrams/Deployment/KubernetesInstallWithDocker-1.png)
+![Kubernetes Install with Docker 1](../.gitbook/assets/kubernetesinstallwithdocker-1.png)
 
 [Kubernetes Install with Docker 1](https://github.com/mojaloop/documentation/blob/master/Diagrams/Deployment/KubernetesInstallWithDocker-1.png)
 
@@ -248,8 +254,11 @@ To install Kubernetes with Docker, follow the steps below;
   * Click **Install** on the confirmation tab. 
   * The option is available to wait for completion or run as a background task.
 
-![Kubernetes Install with Docker 2](../Diagrams/Deployment/KubernetesInstallWithDocker-2.png)
-[Kubernetes Install with Docker 2](../Diagrams/Deployment/KubernetesInstallWithDocker-2.png)
+ 
+
+![Kubernetes Install with Docker 2](../.gitbook/assets/kubernetesinstallwithdocker-2.png)
+
+[Kubernetes Install with Docker 2](https://github.com/mojaloop/documentation/tree/d1718f81b0f12a4ae17be49f59c17f072956dea5/Diagrams/Deployment/KubernetesInstallWithDocker-2.png)
 
 #### 2.1.2 Kubernetes environment setup:
 
@@ -265,7 +274,7 @@ or
    kubectx
 ```
 
-1. Change your Contexts; 
+1. Change your Contexts;
 
    ```bash
    kubectl config use-contexts
@@ -317,67 +326,70 @@ or
 
    The **{kubernetes-dashboard-token-btbwf}** is retrieved from the output in the previous step. For more information on generating the token, follow the **Authentication** link in the window.
 
-  ![kubernetes-dashboard](../Diagrams/Deployment/kubernetesDashboard.png)
-   [kubernetes-dashboard](../Diagrams/Deployment/kubernetesDashboard.png)
+ 
 
-   **Ubuntu** continue from here
+   ![kubernetes-dashboard](../.gitbook/assets/kubernetesdashboard.png)
 
-6. Config Helm CLI and install Helm Tiller on K8s cluster
+[kubernetes-dashboard](https://github.com/mojaloop/documentation/tree/d1718f81b0f12a4ae17be49f59c17f072956dea5/Diagrams/Deployment/kubernetesDashboard.png)
+
+**Ubuntu** continue from here
+
+1. Config Helm CLI and install Helm Tiller on K8s cluster
 
    ```bash
    helm init
    ```
 
-7. Validate Helm Tiller is up and running
+2. Validate Helm Tiller is up and running
 
    ```bash
    kubectl -n kube-system get po | grep tiller
    ```
 
-8. Add mojaloop repo to your Helm config \(optional\)
+3. Add mojaloop repo to your Helm config \(optional\)
 
    ```bash
    helm repo add mojaloop http://mojaloop.io/helm/repo/
    ```
 
-9. Add the incubator. This is needed to resolve Helm Chart dependencies required by Mojaloop charts
+4. Add the incubator. This is needed to resolve Helm Chart dependencies required by Mojaloop charts
 
    ```bash
    helm repo add incubator http://storage.googleapis.com/kubernetes-charts-incubator
    ```
 
-10. Update helm repositories
+5. Update helm repositories
 
-    ```bash
-    helm repro update
-    ```
+   ```bash
+   helm repro update
+   ```
 
-11. Install nginx-ingress for load balancing & external access
+6. Install nginx-ingress for load balancing & external access
 
-    ```bash
-    helm --namespace kube-public install stable/nginx-ingress
-    ```
+   ```bash
+   helm --namespace kube-public install stable/nginx-ingress
+   ```
 
-12. Add the following to your /ect/hosts
+7. Add the following to your /ect/hosts
 
-    ```text
-    127.0.0.1       interop-switch.local central-kms.local forensic-logging-sidecar.local central-ledger.local central-end-user-registry.local central-directory.local central-hub.local central-settlements.local ml-api-adapter.local
-    ```
+   ```text
+   127.0.0.1       interop-switch.local central-kms.local forensic-logging-sidecar.local central-ledger.local central-end-user-registry.local central-directory.local central-hub.local central-settlements.local ml-api-adapter.local
+   ```
 
-13. Test system health in your browser after installation
+8. Test system health in your browser after installation
 
-    ml-api-adapter health test
+   ml-api-adapter health test
 
-    \`\`\`http request
+   \`\`\`http request
 
-    [http://ml-api-adapter/health](http://ml-api-adapter/health)
+   [http://ml-api-adapter/health](http://ml-api-adapter/health)
 
-    ```text
-    ___
-    central-ledger health test
-    ```http request
-    http://central-ledger/health
-    ```
+   ```text
+   ___
+   central-ledger health test
+   ```http request
+   http://central-ledger/health
+   ```
 
 ### 2.2 Helm
 
@@ -431,13 +443,13 @@ This section will provide guidelines to delete, list, install and upgrade of the
 
 4. To upgrade Mojaloop chart\(s\)
 
-   Note: 'v5.1.1' is an example value. 
+   Note: 'v5.1.1' is an example value.
 
    ```bash
    helm upgrade moja --set central.centralledger.centralledger-services.containers.api.image.tag=v5.1.1-snapshot mojaloop
    ```
 
-5. To upgrade a specific chart eg. Central-ledger         
+5. To upgrade a specific chart eg. Central-ledger
 
    ```bash
    helm upgrade moja --set centralledger-services.containers.api.image.tag=v5.1.1-snapshot mojaloop/centralledger
@@ -475,9 +487,9 @@ sudo ln -s /opt/Postman/Postman /usr/bin/postman
 
 * \`central-ledger’s server IP address could not be found.
 
-   ERR\_NAME\_NOT\_RESOLVED\`
+  ERR\_NAME\_NOT\_RESOLVED\`
 
-   Resolved by:
+  Resolved by:
 
   * Verify that a helm chart\(s\) was installed by executing
 
