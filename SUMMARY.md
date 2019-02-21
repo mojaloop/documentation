@@ -1,8 +1,10 @@
 # Table of contents
 
 * [Mojaloop Overview](README.md)
+* [Untitled](untitled.md)
 * [Contributors Guide](contributors-guide/README.md)
-  * [Mojaloop Deployment](contributors-guide/mojaloop-deployment.md)
+  * [Mojaloop Deployment](contributors-guide/mojaloop-deployment/README.md)
+    * [Mojaloop Helm Chart](contributors-guide/mojaloop-deployment/untitled.md)
   * [Standards](contributors-guide/standards.md)
   * [Tools and Technologies](contributors-guide/tools-and-technologies.md)
   * [Documentation](contributors-guide/documentation.md)
@@ -11,7 +13,8 @@
   * [Core Scenarios](mojaloop-background/core-scenarios.md)
   * [Level One Principles](mojaloop-background/level-one-principles.md)
 * [Mojaloop Technical Overview](mojaloop-technical-overview/README.md)
-  * [Repositories](mojaloop-technical-overview/repositories.md)
+  * [Repositories](mojaloop-technical-overview/repositories/README.md)
+    * [Helm Chart Repo](mojaloop-technical-overview/repositories/helm-chart-repo.md)
   * [Mojaloop Components](mojaloop-technical-overview/mojaloop-components.md)
 * [Mojaloop Roadmap](mojaloop-roadmap.md)
 

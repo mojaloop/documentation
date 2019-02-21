@@ -4,23 +4,23 @@
 
 This document will provide guidelines to deploy and configure the Mojaloop applications on a local environment, utilizing Kubernetes within Docker.
 
-* [Software List](mojaloop-deployment.md#1-software-list)
-  * [Deployment Recommendations](mojaloop-deployment.md#11-deployment-recommendations)
-  * [Local Deployment and Testing Tools](mojaloop-deployment.md#12-local-deployment-and-testing-tools)
-* [Deployment](mojaloop-deployment.md#2-deployment)
-  * [Kubernetes](mojaloop-deployment.md#21-kubernetes)
-    * [Kubernetes Installation with Docker](mojaloop-deployment.md#211-kubernetes-installation-with-docker)
-    * [Kubernetes environment setup](mojaloop-deployment.md#212-kubernetes-environment-setup)
-  * [Helm](mojaloop-deployment.md#22-helm)
-    * [Helm Chart Installation](mojaloop-deployment.md#221-helm-chart-installation)
-  * [Postman](mojaloop-deployment.md#23-postman)
-    * [Installing Postman](mojaloop-deployment.md#231-installing-postman)
-    * [Setup Postman](mojaloop-deployment.md#231-setup-postman)
-* [Errors During Setup](mojaloop-deployment.md#24-errors-on-setup)
+* [Software List](./#1-software-list)
+  * [Deployment Recommendations](./#11-deployment-recommendations)
+  * [Local Deployment and Testing Tools](./#12-local-deployment-and-testing-tools)
+* [Deployment](./#2-deployment)
+  * [Kubernetes](./#21-kubernetes)
+    * [Kubernetes Installation with Docker](./#211-kubernetes-installation-with-docker)
+    * [Kubernetes environment setup](./#212-kubernetes-environment-setup)
+  * [Helm](./#22-helm)
+    * [Helm Chart Installation](./#221-helm-chart-installation)
+  * [Postman](./#23-postman)
+    * [Installing Postman](./#231-installing-postman)
+    * [Setup Postman](./#231-setup-postman)
+* [Errors During Setup](./#24-errors-on-setup)
 
 ## 1 Software List
 
-Before proceeding, please have a look at [Deployment Recommendations](mojaloop-deployment.md#11-deployment-recommendations) to insure the minimum resource requirements are available.
+Before proceeding, please have a look at [Deployment Recommendations](./#11-deployment-recommendations) to insure the minimum resource requirements are available.
 
 ### 1.1 Deployment Recommendations
 
@@ -57,7 +57,7 @@ This provides environment resource recommendations with a view of the infrastruc
 
   \*Note that this would also depend on your underlying infrastructure, and it does NOT include requirements for persistent volumes/storage.
 
-![Mojaloop Deployment Recommendations - Infrastructure Architecture](../.gitbook/assets/kubeinfrastructurearch%20%281%29.png)
+![Mojaloop Deployment Recommendations - Infrastructure Architecture](../../.gitbook/assets/kubeinfrastructurearch%20%281%29.png)
 
 [Mojaloop Deployment Recommendations - Infrastructure Architecture](https://github.com/mojaloop/documentation/tree/d1718f81b0f12a4ae17be49f59c17f072956dea5/Diagrams/Deployment/KubeInfrastructureArch.png)
 
@@ -205,7 +205,7 @@ With reference to [https://kubernetes.io/docs/tasks/tools/install-minikube/](htt
   kubectl version
   ```
 
-  If an error is returned, please refer to [Local Deployment and Testing Tools](mojaloop-deployment.md#12-local-deployment-and-testing-tools).
+  If an error is returned, please refer to [Local Deployment and Testing Tools](./#12-local-deployment-and-testing-tools).
 
 * **minikube** installation
 
@@ -243,7 +243,7 @@ To install Kubernetes with Docker, follow the steps below;
     * Increase the CPU allocation to at least 4
     * Increase the Memory allocation to at least 8.0 GiB
 
-![Kubernetes Install with Docker 1](../.gitbook/assets/kubernetesinstallwithdocker-1.png)
+![Kubernetes Install with Docker 1](../../.gitbook/assets/kubernetesinstallwithdocker-1.png)
 
 [Kubernetes Install with Docker 1](https://github.com/mojaloop/documentation/blob/master/Diagrams/Deployment/KubernetesInstallWithDocker-1.png)
 
@@ -256,7 +256,7 @@ To install Kubernetes with Docker, follow the steps below;
 
  
 
-![Kubernetes Install with Docker 2](../.gitbook/assets/kubernetesinstallwithdocker-2.png)
+![Kubernetes Install with Docker 2](../../.gitbook/assets/kubernetesinstallwithdocker-2.png)
 
 [Kubernetes Install with Docker 2](https://github.com/mojaloop/documentation/tree/d1718f81b0f12a4ae17be49f59c17f072956dea5/Diagrams/Deployment/KubernetesInstallWithDocker-2.png)
 
@@ -328,7 +328,7 @@ or
 
  
 
-   ![kubernetes-dashboard](../.gitbook/assets/kubernetesdashboard.png)
+   ![kubernetes-dashboard](../../.gitbook/assets/kubernetesdashboard.png)
 
 [kubernetes-dashboard](https://github.com/mojaloop/documentation/tree/d1718f81b0f12a4ae17be49f59c17f072956dea5/Diagrams/Deployment/kubernetesDashboard.png)
 
@@ -497,5 +497,5 @@ sudo ln -s /opt/Postman/Postman /usr/bin/postman
     helm list
     ```
 
-    If the helm charts are not listed, see the [Helm Chart Installation](mojaloop-deployment.md#221-helm-chart-installation) section to install a chart.
+    If the helm charts are not listed, see the [Helm Chart Installation](./#221-helm-chart-installation) section to install a chart.
 
