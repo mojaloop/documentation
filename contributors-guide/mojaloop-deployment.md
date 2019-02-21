@@ -64,102 +64,21 @@ This provides environment resource recommendations with a view of the infrastruc
 #### 1.2 Local Deployment and Testing Tools
 
 ### 1.2 Local Deployment and Testing Tools
-
 The tool set to be deployed as part of the deployment process.
 
-| Tool | Required/Optional | Description | Install Info |
-| :--- | :--- | :--- | :--- |
+|Tool|Required/Optional|Description|Install Info|
+|---|---|---|---|
+|Docker|Required|<ul><li>Docker Engine and CLI Client</li><li>Local Kubernetes single node cluster</li></ul>|<ul><li>[https://docs.docker.com/install](https://docs.docker.com/install)</li></ul>|
+|Kubectl|Required|<ul><li>Kubernetes CLI for Kubernetes Management</li><li>Note Docker installs this part of Kubernetes install</li></ul>|<ul><li>[https://kubernetes.io/doc/tasks/tools/install-kuberctl](https://kubernetes.io/docs/tasks/tools/install-kubectl)</li><li>Docker Kubernetes Install (as per this guide)</li><li><b>Mac:</b> `brew install kubernetes-cli`</li><li><b>Ubuntu:</b> `sudo snap install kubectl --classic`</li></ul>|
+|Kubectx|Optional(useful tool)|<ul><li>Kubernetes CLI for Kubernetes Context Management Helper</li><li>Note Docker installs this as part of Kubernetes install</li></ul>|<ul><li>[https://github.com/ahmetb/kubectx](https://github.com/ahmetb/kubectx)</li><li><b>Mac:</b> `brew install kubectx`</li><li><b>Ubuntu:</b> `sudo apt install kubectx`</li></ul>|
+|Kubetail|Optional(useful tool)|<ul><li>Bash script that enables you to aggregate (tail/follow) logs from multiple pods into one stream. This is the same as running `kubectl logs -f` but for multiple pods.</li><li>Example usage `kubetail moja.* -n demo`</li></ul>|<ul><li>https://github.com/johanhaleby/kubetail</li></ul>|
+|Helm|Required|<ul><li>Helm helps you manage Kubernetes applications</li><li>Helm charts help you define, install and upgrade even the most complex Kubernetes application</li></ul>|<ul><li>[https://docs.helm.sh/using_helm/#installing-helm](https://docs.helm.sh/using_helm/#installing-helm)</li><li><b>Mac:</b> `brew install kubernetes-helm`</li><li><b>Ubuntu:</b> `sudo snap install helm --classic`</li></ul>|
+|Postman|Required|<ul><li>Postman is a Google Chrome application for the interacting with HTTP API's. It presents you with a friendly GUI for the construction requests and reading responces.</li></ul>|<ul><li>[https://www.getpostman.com/apps](https://www.getpostman.com/apps)</li></ul>|
 
-
-<table>
-  <thead>
-    <tr>
-      <th style="text-align:left">Docker</th>
-      <th style="text-align:left">Required</th>
-      <th style="text-align:left">
-        <p>Docker Engine and CLI Client</p>
-        <p>Local Kubernetes single node cluster</p>
-      </th>
-      <th style="text-align:left">[https://docs.docker.com/install](https://docs.docker.com/install)</th>
-    </tr>
-  </thead>
-  <tbody></tbody>
-</table><table>
-  <thead>
-    <tr>
-      <th style="text-align:left">Kubectl</th>
-      <th style="text-align:left">Required</th>
-      <th style="text-align:left">
-        <p>Kubernetes CLI for Kubernetes Management</p>
-        <p>Note Docker installs this part of Kubernetes install</p>
-      </th>
-      <th style="text-align:left">
-        <p>[https://kubernetes.io/doc/tasks/tools/install-kuberctl](https://kubernetes.io/docs/tasks/tools/install-kubectl)</p>
-        <p>Docker Kubernetes Install (as per this guide)</p>
-        <p><b>Mac:</b> `brew install kubernetes-cli`</p>
-        <p><b>Ubuntu:</b> `sudo snap install kubectl --classic`</p>
-      </th>
-    </tr>
-  </thead>
-  <tbody></tbody>
-</table><table>
-  <thead>
-    <tr>
-      <th style="text-align:left">Kubectx</th>
-      <th style="text-align:left">Optional(useful tool)</th>
-      <th style="text-align:left">
-        <p>Kubernetes CLI for Kubernetes Context Management Helper</p>
-        <p>Note Docker installs this as part of Kubernetes install</p>
-      </th>
-      <th style="text-align:left">
-        <p>[https://github.com/ahmetb/kubectx](https://github.com/ahmetb/kubectx)</p>
-        <p><b>Mac:</b> `brew install kubectx`</p>
-        <p><b>Ubuntu:</b> `sudo apt install kubectx`</p>
-      </th>
-    </tr>
-  </thead>
-  <tbody></tbody>
-</table><table>
-  <thead>
-    <tr>
-      <th style="text-align:left">Kubetail</th>
-      <th style="text-align:left">Optional(useful tool)</th>
-      <th style="text-align:left">
-        <p>Bash script that enables you to aggregate (tail/follow) logs from multiple
-          pods into one stream. This is the same as running `kubectl logs -f` but
-          for multiple pods.</p>
-        <p>Example usage `kubetail moja.* -n demo`</p>
-      </th>
-      <th style="text-align:left">https://github.com/johanhaleby/kubetail</th>
-    </tr>
-  </thead>
-  <tbody></tbody>
-</table><table>
-  <thead>
-    <tr>
-      <th style="text-align:left">Helm</th>
-      <th style="text-align:left">Required</th>
-      <th style="text-align:left">
-        <p>Helm helps you manage Kubernetes applications</p>
-        <p>Helm charts help you define, install and upgrade even the most complex
-          Kubernetes application</p>
-      </th>
-      <th style="text-align:left">
-        <p>[https://docs.helm.sh/using_helm/#installing-helm](https://docs.helm.sh/using_helm/#installing-helm)</p>
-        <p><b>Mac:</b> `brew install kubernetes-helm`</p>
-        <p><b>Ubuntu:</b> `sudo snap install helm --classic`</p>
-      </th>
-    </tr>
-  </thead>
-  <tbody></tbody>
-</table>| Postman | Required | Postman is a Google Chrome application for the interacting with HTTP API's. It presents you with a friendly GUI for the construction requests and reading responces. | \[https://www.getpostman.com/apps\]\(https://www.getpostman.com/apps\) |
-| :--- | :--- | :--- | :--- |
-
-
+## 2 Deployment
 This section will guide the reader through the deployment process to setup Kubernetes within Docker.
 
 ### 2.1 Kubernetes
-
 If you are new to Kubernetes it is strongly recommended to familiarize yourself with Kubernetes. [Kubernetes Concepts](https://kubernetes.io/docs/concepts/overview/) is a good place to start and will provide an overview.
 
 The following are Kubernetes concepts used within the project. An understanding of these concepts is imperative before attempting the deployment;
@@ -393,7 +312,7 @@ or
 
 ### 2.2 Helm
 
-Please review [Mojaloop Helm Chart](https://github.com/mojaloop/documentation/tree/3511973fa37b3329321cdcbe97c0f27b78b0c8b8/Diagrams/MojaloopHelmChart.md) to understand the relationships between the deployed Mojaloop helm charts.
+Please review [Mojaloop Helm Chart](../helm/Readme.md) to understand the relationships between the deployed Mojaloop helm charts.
 
 **2.2.1 Helm Chart Installation**
 
