@@ -3,8 +3,7 @@
 * [Mojaloop Overview](README.md)
 * [Untitled](untitled.md)
 * [Contributors Guide](contributors-guide/README.md)
-  * [Mojaloop Deployment](contributors-guide/mojaloop-deployment/README.md)
-    * [Mojaloop Helm Chart](contributors-guide/mojaloop-deployment/untitled.md)
+  * [Mojaloop Deployment](contributors-guide/mojaloop-deployment.md)
   * [Standards](contributors-guide/standards.md)
   * [Tools and Technologies](contributors-guide/tools-and-technologies.md)
   * [Documentation](contributors-guide/documentation.md)
@@ -14,7 +13,6 @@
   * [Level One Principles](mojaloop-background/level-one-principles.md)
 * [Mojaloop Technical Overview](mojaloop-technical-overview/README.md)
   * [Mojaloop Components](mojaloop-technical-overview/mojaloop-components.md)
-* [Repositories](repositories/README.md)
-  * [helm](repositories/helm-chart-repo.md)
+* [Repositories](repositories.md)
 * [Mojaloop Roadmap](mojaloop-roadmap.md)
 
