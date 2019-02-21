@@ -1,7 +1,6 @@
 # Table of contents
 
 * [Mojaloop Overview](README.md)
-* [Untitled](untitled.md)
 * [Contributors Guide](contributors-guide/README.md)
   * [Mojaloop Deployment](contributors-guide/mojaloop-deployment.md)
   * [Standards](contributors-guide/standards.md)
