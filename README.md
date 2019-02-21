@@ -8,7 +8,7 @@ The basic idea behind Mojaloop is that we need to connect multiple Digital Finan
 * A standard set of interfaces a DFSP can implement to connect to the system, and example code that shows how to use the system. A DFSP that wants to connect up can adapt our example code or implement the standard interfaces into their own software. The goal is for it to be as straightforward as possible for a DFSP to connect to the interoperable network.
 * Complete working open-source implementations of both sides of the interfaces - an example DFSP that can send and receive payments and the client that an existing DFSP could host to connect to the network.
 
-diagram here.
+![Mojaloop Basic Overview](/Diagrams/ArchitectureDiagrams/Basic%20Overview.png)
 
 The intention for the Mojaloop project is for financial institutions and commercial providers to use the open-source software to help build digital, interoperable payments platforms that drive financial inclusion on a national scale. Specifically, the platforms will enable seamless, low-cost transactions between individual users, merchants, banks, providers, and even government offices - helping connect poor customers with everyone else in the digital economy.
 
