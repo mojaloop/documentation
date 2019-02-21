@@ -13,8 +13,8 @@
   * [Core Scenarios](mojaloop-background/core-scenarios.md)
   * [Level One Principles](mojaloop-background/level-one-principles.md)
 * [Mojaloop Technical Overview](mojaloop-technical-overview/README.md)
-  * [Repositories](mojaloop-technical-overview/repositories/README.md)
-    * [Helm Chart Repo](mojaloop-technical-overview/repositories/helm-chart-repo.md)
   * [Mojaloop Components](mojaloop-technical-overview/mojaloop-components.md)
+* [Repositories](repositories/README.md)
+  * [helm](repositories/helm-chart-repo.md)
 * [Mojaloop Roadmap](mojaloop-roadmap.md)
 
