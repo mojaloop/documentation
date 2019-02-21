@@ -312,7 +312,7 @@ or
 
 ### 2.2 Helm
 
-Please review [Mojaloop Helm Chart](../helm/helm Readme.md) to understand the relationships between the deployed Mojaloop helm charts.
+Please review [Mojaloop Helm Chart](/helm/helm.md) to understand the relationships between the deployed Mojaloop helm charts.
 
 **2.2.1 Helm Chart Installation**
 
