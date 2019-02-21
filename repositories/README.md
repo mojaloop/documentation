@@ -2,7 +2,7 @@
 description: Repository overview
 ---
 
-# Repositories
+# Repo Details
 
 The Mojaloop project is organized on the basis of component microservices. As such, there are over twenty different repositories in GitHub that align to the different services. The following four repositories are pinned to the project:
 
