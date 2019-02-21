@@ -1,4 +1,4 @@
-The purpose of this document is to provide;
+The purpose of this document is to provide the following:
 - an overview of the current helm charts,
 - the hierarchy relationship between the charts,
 - the hierarchy of values.
