@@ -9,9 +9,9 @@ The purpose of this document is to provide;
 Helm chart Repo: http://mojaloop.io/helm/repo <- Helm repo to be added to config
 Helm Github: http://github.com/mojaloop/helm  <- Location for source and values.yaml(configs)
 
-![Mojaloop Helm - Chart Overview](../../Diagrams/helm/HelmChartOverview.png)
+![Mojaloop Helm - Chart Overview](https://github.com/mojaloop/documentation/Diagrams/helm/HelmChartOverview.png)
 
-[Mojaloop Helm - Chart Overview](../../Wiki/HelmChartOverview.svg)
+[Mojaloop Helm - Chart Overview](https://github.com/mojaloop/documentation/Diagrams/helm/HelmChartOverview.png)
 
 #### Helm Hierarchy Relationship
 
