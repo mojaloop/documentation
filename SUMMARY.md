@@ -12,6 +12,7 @@
   * [Level One Principles](mojaloop-background/level-one-principles.md)
 * [Mojaloop Technical Overview](mojaloop-technical-overview/README.md)
   * [Mojaloop Components](mojaloop-technical-overview/mojaloop-components.md)
+  * [Central-Ledger](mojaloop-technical-overview/central-ledger.md)
 * [Repo Details](repositories/README.md)
   * [helm](repositories/helm.md)
 * [Mojaloop Roadmap](mojaloop-roadmap.md)
