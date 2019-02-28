@@ -57,7 +57,7 @@ This provides environment resource recommendations with a view of the infrastruc
 
   \*Note that this would also depend on your underlying infrastructure, and it does NOT include requirements for persistent volumes/storage.
 
-![Mojaloop Deployment Recommendations - Infrastructure Architecture](../.gitbook/assets/kubeinfrastructurearch%20%281%29.png)
+![Mojaloop Deployment Recommendations - Infrastructure Architecture](../.gitbook/assets/kubeinfrastructurearch.png)
 
 [Mojaloop Deployment Recommendations - Infrastructure Architecture](https://github.com/mojaloop/documentation/tree/d1718f81b0f12a4ae17be49f59c17f072956dea5/Diagrams/Deployment/KubeInfrastructureArch.png)
 
@@ -141,7 +141,7 @@ The tool set to be deployed as part of the deployment process.
     <tr>
       <td style="text-align:left">Postman</td>
       <td style="text-align:left">Required</td>
-      <td style="text-align:left">Postman is a Google Chrome application for the interacting with HTTP API's.
+      <td style="text-align:left">Postman is a Google Chrome application for the interacting with HTTP API&apos;s.
         It presents you with a friendly GUI for the construction requests and reading
         responces.</td>
       <td style="text-align:left">[https://www.getpostman.com/apps](https://www.getpostman.com/apps)</td>
