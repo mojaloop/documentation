@@ -1,6 +1,6 @@
-# Mojaloop Components
+# Mojaloop Hub
 
-There are several components that make up the Mojaloop ecosystem.  The Mojaloop Hub is the primary container used to house the core Mojaloop components.  
+There are several components that make up the Mojaloop ecosystem.  The Mojaloop Hub is the primary container and reference we use to describe the core Mojaloop components.  
 
 ![End-to-end Mojaloop System](../.gitbook/assets/arch-flows-end-to-end-mini.png)
 
