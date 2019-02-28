@@ -16,5 +16,6 @@
   * [Central-Settlements Service](mojaloop-technical-overview/central-settlements-service.md)
 * [Repo Details](repositories/README.md)
   * [helm](repositories/helm.md)
+  * [project](repositories/project.md)
 * [Mojaloop Roadmap](mojaloop-roadmap.md)
 
