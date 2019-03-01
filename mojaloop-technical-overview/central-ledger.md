@@ -1,4 +1,4 @@
-# Central-Ledger
+# Central-Ledger Services
 
 The central ledger is a series of services that facilitate clearing and settlement of transfers between DFSPs, including the following functions:
 
