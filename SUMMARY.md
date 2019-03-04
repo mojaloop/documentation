@@ -6,6 +6,7 @@
   * [Standards](contributors-guide/standards.md)
   * [Tools and Technologies](contributors-guide/tools-and-technologies/README.md)
     * [Pragmatic REST](contributors-guide/tools-and-technologies/pragmatic-rest.md)
+    * [Automated Testing)(contributors-guide/tools-and-technologies/automated testing.md)
   * [Documentation](contributors-guide/documentation.md)
   * [Frequently Asked Questions](contributors-guide/frequently-asked-questions.md)
 * [Mojaloop Background](mojaloop-background/README.md)
