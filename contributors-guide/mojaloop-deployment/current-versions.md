@@ -1,4 +1,4 @@
-# Current Version
+# Current Versions
 
 Current versions
 A new release for a repository is made when when a significant change such as a bug-fix is made or a new feature/functionality is added
