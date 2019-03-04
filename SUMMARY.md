@@ -3,7 +3,7 @@
 * [Mojaloop Overview](README.md)
 * [Contributors Guide](contributors-guide/README.md)
   * [Mojaloop Deployment](contributors-guide/mojaloop-deployment/README.md)
-    * [Current Version](contributors-guide/mojaloop-deployment/current-version.md)
+    * [Current Version](contributors-guide/mojaloop-deployment/current-versions.md)
   * [Standards](contributors-guide/standards.md)
   * [Tools and Technologies](contributors-guide/tools-and-technologies/README.md)
     * [Pragmatic REST](contributors-guide/tools-and-technologies/pragmatic-rest.md)
