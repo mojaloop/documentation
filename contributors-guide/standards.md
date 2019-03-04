@@ -85,17 +85,6 @@ This document provides guidelines regarding the versioning strategy used for the
 2. However, this is customized to depict the timelines of the Mojaloop project, based on the Program Increment \(PI\) and Sprint numbers
 3. For example, the release number v5.1.0 implies that this release was the first one made during a Sprint 5.1, where Sprint5.1 is the first Sprint in PI-5. So for a version vX.Y.Z, X.Y is the Sprint number where X is the PI number and Z represents the number of release for this specific repository. Example v4.4.4 implies that the current release is the fourth of four releases made in Sprint 4.4 \(of PI-4\)
 
-### Current versions
-
-1. A new release for a repository is made when when a significant change such as a bug-fix is made or a new feature/functionality is added
-2. At the time of writing this, active releases for core central services are as below
-   1. helm: v5.1.2
-   2. central-ledger: v5.1.1
-   3. ml-api-adapter: v5.1.0
-   4. central-settlement: v5.1.1
-   5. central-event-processor: v5.1.0
-   6. email-notifier: v5.1.0
-
 ### Notes
 
 1. A new release for **helm** repo is made whenver a configuration change is needed for any of the core Switch services based on the changes made \(features, bug-fixes\).

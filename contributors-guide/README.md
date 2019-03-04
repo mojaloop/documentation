@@ -6,7 +6,7 @@ description: Mojaloop Contributors Guide
 
 ## How do I contribute?
 
-### \* Review the [Mojaloop Deployment](mojaloop-deployment.md#mojaloop-deployment) Guide
+### \* Review the [Mojaloop Deployment](mojaloop-deployment/#mojaloop-deployment) Guide
 
 ### \* Get familiar with our [Standards](standards.md) on contributing to this project
 

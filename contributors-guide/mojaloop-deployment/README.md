@@ -57,7 +57,7 @@ This provides environment resource recommendations with a view of the infrastruc
 
   \*Note that this would also depend on your underlying infrastructure, and it does NOT include requirements for persistent volumes/storage.
 
-![Mojaloop Deployment Recommendations - Infrastructure Architecture](../../.gitbook/assets/kubeinfrastructurearch%20%281%29.png)
+![Mojaloop Deployment Recommendations - Infrastructure Architecture](../../.gitbook/assets/kubeinfrastructurearch.png)
 
 [Mojaloop Deployment Recommendations - Infrastructure Architecture](https://github.com/mojaloop/documentation/tree/d1718f81b0f12a4ae17be49f59c17f072956dea5/Diagrams/Deployment/KubeInfrastructureArch.png)
 
@@ -67,94 +67,87 @@ This provides environment resource recommendations with a view of the infrastruc
 
 The tool set to be deployed as part of the deployment process.
 
-| Tool | Required/Optional | Description | Install Info |
-| :--- | :--- | :--- | :--- |
-
-
 <table>
   <thead>
     <tr>
-      <th style="text-align:left">Docker</th>
-      <th style="text-align:left">Required</th>
-      <th style="text-align:left">
-        <p>Docker Engine and CLI Client</p>
-        <p>Local Kubernetes single node cluster</p>
-      </th>
-      <th style="text-align:left">[https://docs.docker.com/install](https://docs.docker.com/install)</th>
+      <th style="text-align:left">Tool</th>
+      <th style="text-align:left">Required/Optional</th>
+      <th style="text-align:left">Description</th>
+      <th style="text-align:left">Install Info</th>
     </tr>
   </thead>
-  <tbody></tbody>
-</table><table>
-  <thead>
+  <tbody>
     <tr>
-      <th style="text-align:left">Kubectl</th>
-      <th style="text-align:left">Required</th>
-      <th style="text-align:left">
+      <td style="text-align:left">Docker</td>
+      <td style="text-align:left">Required</td>
+      <td style="text-align:left">
+        <p>Docker Engine and CLI Client</p>
+        <p>Local Kubernetes single node cluster</p>
+      </td>
+      <td style="text-align:left">[https://docs.docker.com/install](https://docs.docker.com/install)</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">Kubectl</td>
+      <td style="text-align:left">Required</td>
+      <td style="text-align:left">
         <p>Kubernetes CLI for Kubernetes Management</p>
         <p>Note Docker installs this part of Kubernetes install</p>
-      </th>
-      <th style="text-align:left">
+      </td>
+      <td style="text-align:left">
         <p>[https://kubernetes.io/doc/tasks/tools/install-kuberctl](https://kubernetes.io/docs/tasks/tools/install-kubectl)</p>
         <p>Docker Kubernetes Install (as per this guide)</p>
         <p><b>Mac:</b> `brew install kubernetes-cli`</p>
         <p><b>Ubuntu:</b> `sudo snap install kubectl --classic`</p>
-      </th>
+      </td>
     </tr>
-  </thead>
-  <tbody></tbody>
-</table><table>
-  <thead>
     <tr>
-      <th style="text-align:left">Kubectx</th>
-      <th style="text-align:left">Optional(useful tool)</th>
-      <th style="text-align:left">
+      <td style="text-align:left">Kubectx</td>
+      <td style="text-align:left">Optional(useful tool)</td>
+      <td style="text-align:left">
         <p>Kubernetes CLI for Kubernetes Context Management Helper</p>
         <p>Note Docker installs this as part of Kubernetes install</p>
-      </th>
-      <th style="text-align:left">
+      </td>
+      <td style="text-align:left">
         <p>[https://github.com/ahmetb/kubectx](https://github.com/ahmetb/kubectx)</p>
         <p><b>Mac:</b> `brew install kubectx`</p>
         <p><b>Ubuntu:</b> `sudo apt install kubectx`</p>
-      </th>
+      </td>
     </tr>
-  </thead>
-  <tbody></tbody>
-</table><table>
-  <thead>
     <tr>
-      <th style="text-align:left">Kubetail</th>
-      <th style="text-align:left">Optional(useful tool)</th>
-      <th style="text-align:left">
+      <td style="text-align:left">Kubetail</td>
+      <td style="text-align:left">Optional(useful tool)</td>
+      <td style="text-align:left">
         <p>Bash script that enables you to aggregate (tail/follow) logs from multiple
           pods into one stream. This is the same as running `kubectl logs -f` but
           for multiple pods.</p>
         <p>Example usage `kubetail moja.* -n demo`</p>
-      </th>
-      <th style="text-align:left">https://github.com/johanhaleby/kubetail</th>
+      </td>
+      <td style="text-align:left">https://github.com/johanhaleby/kubetail</td>
     </tr>
-  </thead>
-  <tbody></tbody>
-</table><table>
-  <thead>
     <tr>
-      <th style="text-align:left">Helm</th>
-      <th style="text-align:left">Required</th>
-      <th style="text-align:left">
+      <td style="text-align:left">Helm</td>
+      <td style="text-align:left">Required</td>
+      <td style="text-align:left">
         <p>Helm helps you manage Kubernetes applications</p>
         <p>Helm charts help you define, install and upgrade even the most complex
           Kubernetes application</p>
-      </th>
-      <th style="text-align:left">
+      </td>
+      <td style="text-align:left">
         <p>[https://docs.helm.sh/using_helm/#installing-helm](https://docs.helm.sh/using_helm/#installing-helm)</p>
         <p><b>Mac:</b> `brew install kubernetes-helm`</p>
         <p><b>Ubuntu:</b> `sudo snap install helm --classic`</p>
-      </th>
+      </td>
     </tr>
-  </thead>
-  <tbody></tbody>
-</table>| Postman | Required | Postman is a Google Chrome application for the interacting with HTTP API's. It presents you with a friendly GUI for the construction requests and reading responces. | \[https://www.getpostman.com/apps\]\(https://www.getpostman.com/apps\) |
-| :--- | :--- | :--- | :--- |
-
+    <tr>
+      <td style="text-align:left">Postman</td>
+      <td style="text-align:left">Required</td>
+      <td style="text-align:left">Postman is a Google Chrome application for the interacting with HTTP API&apos;s.
+        It presents you with a friendly GUI for the construction requests and reading
+        responces.</td>
+      <td style="text-align:left">[https://www.getpostman.com/apps](https://www.getpostman.com/apps)</td>
+    </tr>
+  </tbody>
+</table>## 2 Deployment
 
 This section will guide the reader through the deployment process to setup Kubernetes within Docker.
 
@@ -254,8 +247,6 @@ To install Kubernetes with Docker, follow the steps below;
   * Click **Install** on the confirmation tab. 
   * The option is available to wait for completion or run as a background task.
 
- 
-
 ![Kubernetes Install with Docker 2](../../.gitbook/assets/kubernetesinstallwithdocker-2.png)
 
 [Kubernetes Install with Docker 2](https://github.com/mojaloop/documentation/tree/d1718f81b0f12a4ae17be49f59c17f072956dea5/Diagrams/Deployment/KubernetesInstallWithDocker-2.png)
@@ -326,9 +317,7 @@ or
 
    The **{kubernetes-dashboard-token-btbwf}** is retrieved from the output in the previous step. For more information on generating the token, follow the **Authentication** link in the window.
 
- 
-
-   ![kubernetes-dashboard](../../.gitbook/assets/kubernetesdashboard.png)
+![kubernetes-dashboard](../../.gitbook/assets/kubernetesdashboard.png)
 
 [kubernetes-dashboard](https://github.com/mojaloop/documentation/tree/d1718f81b0f12a4ae17be49f59c17f072956dea5/Diagrams/Deployment/kubernetesDashboard.png)
 
@@ -393,7 +382,7 @@ or
 
 ### 2.2 Helm
 
-Please review [Mojaloop Helm Chart](https://github.com/mojaloop/documentation/tree/3511973fa37b3329321cdcbe97c0f27b78b0c8b8/Diagrams/MojaloopHelmChart.md) to understand the relationships between the deployed Mojaloop helm charts.
+Please review [Mojaloop Helm Chart](../../repositories/helm.md) to understand the relationships between the deployed Mojaloop helm charts.
 
 **2.2.1 Helm Chart Installation**
 
