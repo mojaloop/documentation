@@ -14,6 +14,7 @@
   * [Core Scenarios](mojaloop-background/core-scenarios.md)
   * [Level One Principles](mojaloop-background/level-one-principles.md)
 * [Mojaloop Technical Overview](mojaloop-technical-overview/README.md)
+  * [Fraud Services](mojaloop-technical-overview/fraud-services.md)
   * [Mojaloop Hub](mojaloop-technical-overview/mojaloop-components.md)
   * [Central-Ledger Services](mojaloop-technical-overview/central-ledger.md)
   * [Central-Settlements Service](mojaloop-technical-overview/central-settlements-service.md)
