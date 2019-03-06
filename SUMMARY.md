@@ -18,8 +18,8 @@
   * [Mojaloop Hub](mojaloop-technical-overview/mojaloop-components.md)
   * [Central-Ledger Services](mojaloop-technical-overview/central-ledger.md)
   * [Central-Settlements Service](mojaloop-technical-overview/central-settlements-service.md)
+  * [Account-Lookup Service](mojaloop-technical-overview/account-lookup-service.md)
 * [Repo Details](repositories/README.md)
   * [helm](repositories/helm.md)
   * [project](repositories/project.md)
 * [Mojaloop Roadmap](mojaloop-roadmap.md)
-
