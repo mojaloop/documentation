@@ -28,9 +28,5 @@ We follow the [Standard style guidelines](https://github.com/feross/standard). A
 
 For Java we follow [Checkstyle](http://checkstyle.sourceforge.net/).Code Quality Metrics
 
-### Code Quality Metrics
-
-We follow the following standards for Code Metrics
-
 ### 
 

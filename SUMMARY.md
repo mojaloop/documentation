@@ -12,6 +12,7 @@
     * [Code Quality Metrics](contributors-guide/tools-and-technologies/code-quality-metrics.md)
     * [Automated Testing](contributors-guide/tools-and-technologies/automated-testing.md)
   * [Documentation](contributors-guide/documentation/README.md)
+    * [API Documentation](contributors-guide/documentation/api-documentation.md)
     * [Documentation Style Guide](contributors-guide/documentation/documentation-style-guide.md)
   * [Frequently Asked Questions](contributors-guide/frequently-asked-questions.md)
 * [Mojaloop Background](mojaloop-background/README.md)
