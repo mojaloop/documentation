@@ -4,9 +4,11 @@ The Account Lookup Service as per the [Mojaloop v1.0 Specification](https://gith
 
 * Participant Look-up
 * Party Look-up
-* Manage Participants
-  * Adding Participant information
-  * Deleting Participant information
+* Manage Participants Registry information
+    * Adding Participant Registry information
+    * Deleting Participant Registry information
+* Admin Operations
+    * Manage Oracle End-point Routing information
   
 ## 1. Design Considerations
 
@@ -14,9 +16,9 @@ The Account Lookup Service as per the [Mojaloop v1.0 Specification](https://gith
 The ALS design provides a generic Central-Service component as part of the core Mojaloop. The purpose of this component is to provide routing and alignment to the Mojaloop API Specification. This component will support multiple Look-up registries (Oracles). This ALS will provide an Admin API to configure routing/config for each of the Oracles similiar to the Central-Service API for the End-point configuration for DFSP routing by the Notification-Handler (ML-API-Adapter Component). The ALS will in all intense purpose be a switch with a persistence store for the storage/management of the routing rules/config.
 
 The routing configuration will be based on the following:
-* PartyIdType - See section 7.5.6 of the Mojaloop Specification
-* PartyIdentifier - See section 7.3.24 of the Mojaloop Specification
-* Currency - See section 7.5.5 of the Mojaloop Specification. Currency code defined in ISO 421736 as three-letter alphabetic string. This will be optional, and must provide a "default" config if no Currency is either provided or provide a default if the Currency is provided, but only the "defualt" End-point config exists.
+* PartyIdType - See section `7.5.6` of the Mojaloop Specification
+* PartyIdentifier - See section `7.3.24` of the Mojaloop Specification
+* Currency - See section `7.5.5` of the Mojaloop Specification. Currency code defined in ISO 421736 as three-letter alphabetic string. This will be optional, and must provide a "default" config if no Currency is either provided or provide a default if the Currency is provided, but only the "defualt" End-point config exists.
 
 ### 1.2 ALS Oracle Service/Adapter
 The ALS Oracle Service or Adapter (semantic dependant on use - Mediation = Adapter, Service = Implementation) will provide a look-up registry component with similar functionality of the `/participants` Mojaloop API resources. It has however loosely based on the ML API specification as it's interface implements a sync pattern which reduces the correlation/persistence requirements of the Async Callback pattern implemented directly by the ML API Spec. This will provide all ALS Oracle Services/Adapters with a standard interface which will be mediated by the ALS based on its routing configuration.  
