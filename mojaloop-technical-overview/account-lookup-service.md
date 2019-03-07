@@ -1,8 +1,8 @@
 # Central-Ledger Services
 
-The Account Lookup Service as per the [Mojaloop v1.0 Specification](https://github.com/mojaloop/mojaloop-specification/blob/master/API%20Definition%20v1.0.pdf) implements the following use-cases:
+The Account Lookup Service _(refer to section `6.2.1.2`)_ as per the [Mojaloop v1.0 Specification](https://github.com/mojaloop/mojaloop-specification/blob/master/API%20Definition%20v1.0.pdf) implements the following use-cases:
 
-* Participant Look-up
+* Participant Look-up 
 * Party Look-up
 * Manage Participants Registry information
     * Adding Participant Registry information
