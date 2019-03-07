@@ -2,10 +2,6 @@
 
 ## Mojaloop Services
 
-The following architecture component diagram shows the Mojaloop services: 
-![Mojaloop Architecture Overview PI5](http://mojaloop.io/doc-assets/Diagrams/ArchitectureDiagrams/Arch-Mojaloop-overview-PI5.svg)
-_Note: Colour-grading indicates the relationship between data-store, and message-streaming / adapter-interconnects. E.g. `Central-Services` utilise `MySQL` as a Data-store, and leverage on `Kafka` for Messaging_
-
 The basic idea behind Mojaloop is that we need to connect multiple Digital Financial Services Providers \(DFSPs\) together into a competitive and interoperable network in order to maximize opportunities for poor people to get access to financial services with low or no fees. We don't want a single monopoly power in control of all payments in a country, or a system that shuts out new players. It also doesn't help if there are too many isolated subnetworks. The following diagrams shows the Mojaloop interconnects between DFSPs and the Mojaloop Hub (schema implementation example) for a Peer-to-Peer (P2P) Transfer:
 
 ![Mojaloop End-to-end Architecture Flow PI5](http://mojaloop.io/doc-assets/Diagrams/ArchitectureDiagrams/Arch-Mojaloop-end-to-end-PI5.svg)
