@@ -7,18 +7,16 @@ The purpose of this document is to provide the following:
 Helm chart Repo: http://mojaloop.io/helm/repo <- Helm repo to be added to config
 Helm Github: http://github.com/mojaloop/helm  <- Location for source and values.yaml(configs)
 
-![Mojaloop Helm - Chart Overview](/Diagrams/helm/HelmChartOverview.png)
-
-[Mojaloop Helm - Chart Overview](/Diagrams/helm/HelmChartOverview.svg)
+![Mojaloop Helm - Architecture Overview PI3](http://mojaloop.io/doc-assets/Diagrams/ArchitectureDiagrams/Arch-Mojaloop-overview-PI3.svg)
 
 #### Helm Hierarchy Relationship
 
-![Mojaloop Helm - Hierarchy Relationship](/Diagrams/helm/HelmHierarchyRelationship.png)
+![Mojaloop Helm - Hierarchy Relationship](..//Diagrams/helm/HelmHierarchyRelationship.png)
 
-[Mojaloop Helm - Hierarchy Relationship](/Diagrams/helm/HelmHierarchyRelationship.svg)
+![Mojaloop Helm - Hierarchy Relationship](..//Diagrams/helm/HelmHierarchyRelationship.svg)
 
 #### Helm Hierarchy of Values
 
-![Mojaloop Helm - Hierarchy of Values](/Diagrams/helm/HelmHierarchyValues.png)
+![Mojaloop Helm - Hierarchy of Values](..//Diagrams/helm/HelmHierarchyValues.png)
 
-[Mojaloop Helm - Hierarchy of Values](/Diagrams/helm/HelmHierarchyValues.png)
+![Mojaloop Helm - Hierarchy of Values](..//Diagrams/helm/HelmHierarchyValues.png)
