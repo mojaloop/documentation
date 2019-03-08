@@ -32,7 +32,8 @@ This component (or back-end systems) will also be responsible for the persistenc
 ![Architecture Flow Account-Lookup for Participants](http://mojaloop.io/doc-assets/Diagrams/ArchitectureDiagrams/Arch-Flow-Account-Lookup-Participants.svg)
 
 ### 2.2 Sequence diagram
-tbd
+
+Work in progress..
 
 ## 3. Party Lookup Design
 
@@ -40,10 +41,16 @@ tbd
 ![Architecture Flow Account-Lookup for Parties](http://mojaloop.io/doc-assets/Diagrams/ArchitectureDiagrams/Arch-Flow-Account-Lookup-Parties.svg)
 
 ### 3.2 Sequence diagram
-tbd
+
+Work in progress..
 
 
 ## 4. Database Design
 
 ### 4.1 ALS Database Schema
-tbd
+
+Work in progress..
+
+### 4.2 Oracle Database Schema
+
+This is optional & is dependant on the Oracle's requirements & design.
