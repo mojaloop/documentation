@@ -1,7 +1,3 @@
----
-description: Mojaloop Contributors Guide
----
-
 # Contributors Guide
 
 ## How do I contribute?
