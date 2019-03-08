@@ -16,7 +16,7 @@ Helm chart Repo: [http://mojaloop.io/helm/repo](http://mojaloop.io/helm/repo) &l
 
 ## Helm Hierarchy Relationship
 
-!\[Mojaloop Helm - Hierarchy Relationship\]../Diagrams/helm/HelmHierarchyRelationship.png\)
+![Mojaloop Helm - Hierarchy Relationship](../Diagrams/helm/HelmHierarchyRelationship.png)
 
 [Mojaloop Helm - Hierarchy Relationship](https://github.com/mojaloop/documentation/tree/840f40c8a94b4c7ded4569f07dea313d164b6980/Diagrams/helm/HelmHierarchyRelationship.svg)
 
