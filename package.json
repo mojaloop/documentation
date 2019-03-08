@@ -14,9 +14,13 @@
   },
   "devDependencies": {},
   "scripts": {
-    "docs:install": "gitbook install",
-    "docs:serve": "gitbook serve --port 8989",
-    "docs:export:pdf": "gitbook pdf ./"
+    "run": "npm run gitbook:serve",
+    "gitbook:install": "gitbook install",
+    "gitbook:serve": "gitbook serve --port 8989",
+    "gitbook:export:pdf": "gitbook pdf ./",
+    "docker:build": "docker build --no-cache -t mojaloop/documentation .",
+    "docker:push": "docker push mojaloop/documentation",
+    "docker:run": "docker run --rm -it --name mojadoc -p 8989:8989 mojaloop/documentation"
   },
   "repository": {
     "type": "git",
