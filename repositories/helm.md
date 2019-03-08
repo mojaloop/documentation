@@ -8,7 +8,8 @@ The purpose of this document is to provide;
 
 ## Helm Chart Overview
 
-Helm chart Repo: [http://mojaloop.io/helm/repo](http://mojaloop.io/helm/repo) &lt;- Helm repo to be added to config Helm Github: [http://github.com/mojaloop/helm](http://github.com/mojaloop/helm) &lt;- Location for source and values.yaml\(configs\)
+* Helm Chart Repo: [http://mojaloop.io/helm/repo](http://mojaloop.io/helm/repo) 
+* Helm Github: [http://github.com/mojaloop/helm](http://github.com/mojaloop/helm)
 
 ![Mojaloop Helm - Chart Overview](../assets/Diagrams/helm/helmchartoverview.png)
 
