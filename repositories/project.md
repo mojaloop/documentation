@@ -10,67 +10,7 @@ The [project repository](https://github.com/mojaloop/project) is the central rep
 * To file a new bug or feature request, follow the templates below.
 * We also use "Zenhub" a GitHub plug-in to visualize the stories and associated swim lanes.
 
-## Bug Template
+## Templates
 
-**Summary**:
-
-**Severity**: \(Low, Medium, High\)
-
-**Priority**: \(Critical, Medium, Low\)
-
-**Expected Behavior**
-
-**Steps to Reproduce** 1. 2. 3.
-
-**Specifications**
-
-* Component \(if known\):
-* Version:
-* Platform:
-* Subsystem:
-* Type of testing:
-* Bug found/raised by:
-
-**Notes**:
-
-* Severity when opened:
-* Priority when opened:
-
-## Feature Template
-
-### **Goal**:
-
-As a  I want to  so that 
-
-**Tasks**:
-
-* [ ] TBD \[ @? \]
-
-**Acceptance Criteria**:
-
-* [ ] Designs are up-to date
-* [ ] Unit Tests pass
-* [ ] Integration Tests pass
-* [ ] Code Style & Coverage meets standards
-* [ ] Changes made to config \(default.json\) are broadcast to team and follow-up tasks added to update helm charts and other deployment config.
-* [ ] TBD
-
-### **Pull Requests**:
-
-* [ ] TBD
-
-### **Follow-up**:
-
-* N/A
-
-**Dependencies**:
-
-* N/A
-
-### **Accountability**:
-
-* Owner: TBC
-* QA/Review: TBC
-
-
-
+* [Feature Request Template](https://github.com/mojaloop/project/blob/master/.github/ISSUE_TEMPLATE/feature_request.md)
+* [Bug Report Template](https://github.com/mojaloop/project/blob/master/.github/ISSUE_TEMPLATE/bug_report.md)
