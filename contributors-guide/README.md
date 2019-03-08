@@ -4,7 +4,7 @@
 
 ### \* Review the [Mojaloop Deployment](mojaloop-deployment/#mojaloop-deployment) Guide
 
-### \* Get familiar with our [Standards](standards.md) on contributing to this project
+### \* Get familiar with our [Standards](standards/) on contributing to this project
 
 ### \* View the project board and work on your [good first issue](https://github.com/mojaloop/project/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22)
 
