@@ -10,7 +10,7 @@ description: Mojaloop Contributors Guide
 
 ### \* Get familiar with our [Standards](standards.md) on contributing to this project
 
-### \* View the project board and work on your first [Issue](https://github.com/mojaloop/project/issues?q=is%3Aissue+is%3Aopen+label%3A"good+first+issue")
+### \* View the project board and work on your first [Issue](https://github.com/mojaloop/project/issues?q=is%3Aissue+is%3Aopen+label%3A\"good+first+issue\")
 
 ### \* Review the [Roadmap](../mojaloop-roadmap.md) and contribute to future opportunities
 
