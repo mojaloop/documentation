@@ -33,7 +33,8 @@ This component (or back-end systems) will also be responsible for the persistenc
 
 ### 2.2 Sequence diagram
 
-Work in progress..
+```puml { src="./assets/Diagrams/SequenceDiagrams/seq-acct-lookup-get-participant-7.1.0.plantuml" }
+```
 
 ## 3. Party Lookup Design
 
