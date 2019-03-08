@@ -7,7 +7,7 @@ RUN apk add --no-cache -t build-dependencies openjdk8-jre git make gcc g++ pytho
 
 WORKDIR /opt/gitbook/repo
 
-RUN npm install
+RUN npm ci
 
 RUN apk del build-dependencies
 
