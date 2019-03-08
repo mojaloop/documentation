@@ -1,3 +1,19 @@
 {
-  "plugins": ["swagger", "uml"]
+  "gitbook": "3.x.x",
+  "plugins": ["swagger", "editlink", "include", "graphviz-and-plant-uml", "insert-logo"],
+  "pluginsConfig": {
+    "editlink": {
+      "base": "https://github.com/mojaloop/documentation/edit/master",
+      "label": "Edit This Page",
+      "multilingual": true
+    },
+    "graphviz-and-plant-uml": {
+      "Render": "PlantUMLServer",
+      "Server": "http://www.plantuml.com/plantuml"
+    },
+    "insert-logo": {
+      "url": "mojaloop-logo.png",
+      "style": "background: none; max-height: 200px; max-width: 200px;"
+    }
+  }
 }

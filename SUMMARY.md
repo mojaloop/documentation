@@ -26,3 +26,4 @@
   * [helm](repositories/helm.md)
   * [project](repositories/project.md)
 * [Mojaloop Roadmap](mojaloop-roadmap.md)
+* [Changelog](changelog.md)
