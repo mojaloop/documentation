@@ -1,0 +1,16 @@
+## INSTRUCTIONS
+# Insert variables to be loaded into Gitbook
+# They can be referenced via {{ book.importedVars.<variable_name> }} the following example
+#
+# ```markdown
+# This is the value of my variable {{ book.importedVars.<variable_name> }}
+#
+#```
+#
+
+mojaloop:
+  spec:
+    version: v1.0
+    uri:
+      doc: https://github.com/mojaloop/mojaloop-specification/blob/master/API%20Definition%20v1.0.pdf
+      api: https://github.com/mojaloop/mojaloop-specification/blob/master/Supporting%20Files/fspiop-rest-v1.0-OpenAPI-implementation.yaml

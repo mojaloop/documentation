@@ -70,7 +70,7 @@ end box
 ' START OF FLOW
 
 group Get Participant's FSP Details
-    PAYER_FSP -> ALS_API: Request to get participant's FSP details \nGET - /participants/{Type}/{ID}?currency={CURRENCY}. \n<color #FF0000><b>Error code:</b> 3200</color>
+    PAYER_FSP --> ALS_API: Request to get participant's FSP details \nGET - /participants/{Type}/{ID}?currency={CURRENCY}. \n<color #FF0000><b>Error code:</b> 3200</color>
     activate ALS_API
     ALS_API -> ALS_PARTICIPANT_HANDLER: Request to get participant's FSP details. \n<color #FF0000><b>Error code:</b> 3200</color>
     deactivate ALS_API
