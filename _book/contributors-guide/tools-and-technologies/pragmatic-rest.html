@@ -1,0 +1,791 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Pragmatic REST · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-swagger/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-insert-logo/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-collapsible-chapters/collapsible-chapters.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-back-to-top-button/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-theme-api/theme-api.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="code-quality-metrics.html" />
+    
+    
+    <link rel="prev" href="./" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    Mojaloop Overview
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Contributors Guide
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../mojaloop-deployment/">
+            
+                <a href="../mojaloop-deployment/">
+            
+                    
+                    Mojaloop Deployment
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1.1" data-path="../mojaloop-deployment/current-versions.html">
+            
+                <a href="../mojaloop-deployment/current-versions.html">
+            
+                    
+                    Current Version
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../standards/">
+            
+                <a href="../standards/">
+            
+                    
+                    Standards
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.2.1" data-path="../standards/versioning.html">
+            
+                <a href="../standards/versioning.html">
+            
+                    
+                    Versioning
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2.2" data-path="../standards/creating-new-features.html">
+            
+                <a href="../standards/creating-new-features.html">
+            
+                    
+                    Creating new Features
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Tools and Technologies
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="1.2.3.1" data-path="pragmatic-rest.html">
+            
+                <a href="pragmatic-rest.html">
+            
+                    
+                    Pragmatic REST
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3.2" data-path="code-quality-metrics.html">
+            
+                <a href="code-quality-metrics.html">
+            
+                    
+                    Code Quality Metrics
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3.3" data-path="automated-testing.html">
+            
+                <a href="automated-testing.html">
+            
+                    
+                    Automated Testing
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="../documentation/">
+            
+                <a href="../documentation/">
+            
+                    
+                    Documentation
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.4.1" data-path="../documentation/api-documentation.html">
+            
+                <a href="../documentation/api-documentation.html">
+            
+                    
+                    API Documentation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4.2" data-path="../documentation/documentation-style-guide.html">
+            
+                <a href="../documentation/documentation-style-guide.html">
+            
+                    
+                    Documentation Style Guide
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5" data-path="../frequently-asked-questions.html">
+            
+                <a href="../frequently-asked-questions.html">
+            
+                    
+                    Frequently Asked Questions
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../../mojaloop-background/">
+            
+                <a href="../../mojaloop-background/">
+            
+                    
+                    Mojaloop Background
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../../mojaloop-background/core-scenarios.html">
+            
+                <a href="../../mojaloop-background/core-scenarios.html">
+            
+                    
+                    Core Scenarios
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../../mojaloop-background/level-one-principles.html">
+            
+                <a href="../../mojaloop-background/level-one-principles.html">
+            
+                    
+                    Level One Principles
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../../mojaloop-technical-overview/">
+            
+                <a href="../../mojaloop-technical-overview/">
+            
+                    
+                    Mojaloop Technical Overview
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../../mojaloop-technical-overview/mojaloop-components.html">
+            
+                <a href="../../mojaloop-technical-overview/mojaloop-components.html">
+            
+                    
+                    Mojaloop Hub
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../../mojaloop-technical-overview/central-ledger.html">
+            
+                <a href="../../mojaloop-technical-overview/central-ledger.html">
+            
+                    
+                    Central-Ledger Services
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="../../mojaloop-technical-overview/account-lookup-service.html">
+            
+                <a href="../../mojaloop-technical-overview/account-lookup-service.html">
+            
+                    
+                    Account-Lookup Service
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="../../mojaloop-technical-overview/central-settlements-service.html">
+            
+                <a href="../../mojaloop-technical-overview/central-settlements-service.html">
+            
+                    
+                    Central-Settlements Service
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="../../mojaloop-technical-overview/fraud-services.html">
+            
+                <a href="../../mojaloop-technical-overview/fraud-services.html">
+            
+                    
+                    Fraud Services
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../../api/">
+            
+                <a href="../../api/">
+            
+                    
+                    APIs
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../../api/mojaloop-api-specification.html">
+            
+                <a href="../../api/mojaloop-api-specification.html">
+            
+                    
+                    Mojaloop
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../../api/als-oracle-api-specification.html">
+            
+                <a href="../../api/als-oracle-api-specification.html">
+            
+                    
+                    ALS Oracle
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../../repositories/">
+            
+                <a href="../../repositories/">
+            
+                    
+                    Repo Details
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../../repositories/helm.html">
+            
+                <a href="../../repositories/helm.html">
+            
+                    
+                    Helm
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="../../repositories/project.html">
+            
+                <a href="../../repositories/project.html">
+            
+                    
+                    Project
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../../mojaloop-roadmap.html">
+            
+                <a href="../../mojaloop-roadmap.html">
+            
+                    
+                    Mojaloop Roadmap
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="../../changelog.html">
+            
+                <a href="../../changelog.html">
+            
+                    
+                    Changelog
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >Pragmatic REST</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="pragmatic-rest">Pragmatic REST</h1>
+<h2 id="pragmatic-rest-for-the-mojaloop-project">Pragmatic REST For the Mojaloop Project</h2>
+<p>With the emergence of API strategy as a scaling tool for Internet service businesses, the focus on interconnect technology has shifted. Building on the principles that enabled the Web to form and scale, REST (Representational State Transfer) has become a design preference for Internet service APIs. But while the REST principles, proposed in Roy Fielding&apos;s dissertation that defined them, have academic value as a basis for research, a pure REST design is not at present practical for most applications. We are advocating a kind of Pragmatic REST-a design pattern that adopts the beneficial components of RESTful design without requiring strict adherence to academic purity.</p>
+<h3 id="the-richardson-maturity-model">The Richardson Maturity Model</h3>
+<p>Martin Fowler has referenced1 a structured model of RESTful adoption developed by Leonard Richardson and <a href="http://www.crummy.com/writing/speaking/2008-QCon/act3.html" target="_blank">explained</a> at a QCon talk. Fowler refers to this as the Richardson Maturity Model of RESTful design.</p>
+<p><img src="../../assets/Diagrams/Rest/glory-of-rest.png" alt=""></p>
+<p>Martin Fowler, referencing <a href="https://www.amazon.com/gp/product/0596805829?ie=UTF8&amp;tag=martinfowlerc-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0596805829" target="_blank">Rest in Practice</a>,2 summarizes the genesis of RESTful design:</p>
+<blockquote>
+<p>use Restful web services to handle many of the integration problems that enterprises face. At its heart . . . is the notion that the web is an existence proof of a massively scalable distributed system that works really well, and we can take ideas from that to build integrated systems more easily.</p>
+</blockquote>
+<p>A pragmatic approach to RESTful design uses the best parts of Fielding&apos;s conceptual framework to allow developers and integrators to understand what they can do with the API as rapidly as possible and without writing extraneous code.</p>
+<p>At its most fundamental, a RESTful design is resource-centric and uses HTTP verbs. At its most advanced, a design that follows pure academic REST utilizes the HATEOAS principle by implementing Hypermedia Controls. We are advocating a Level 2 RESTful design for Mojaloop.</p>
+<h3 id="why-not-hypermedia-controls">Why not Hypermedia Controls?</h3>
+<p>Although HATEOAS is a fascinating principle-it advocates that a server should respond to each client action with a list of all possible actions that can lead the client to its next application state. And further, clients <em>must not</em> rely on out of band information (like a written API spec) for what actions can be performed on which resources or on the format of URIs.</p>
+<p>It is this final proscription that fails the test of Pragmatic REST: While HATEOAS is an interesting theoretical approach to limit coupling, it does not easily apply to Mojaloop (or any other contract API design). When we take into account our audience for the interconnect APIs, we find a group of commercial entities that will be operating under a set of highly specific scheme rules. Interactions between the participants, and between participant and central service hub, will be highly specified to assign acceptable commercial risk that can be priced at very low cost to end-users. This requires <em>ex-ante</em> predictability of the API which is anathema to the HATEOAS principle defined by Fielding.</p>
+<h3 id="pragmatic-restful-principles">Pragmatic RESTful Principles</h3>
+<h4 id="uris-define-resources">URIs Define Resources</h4>
+<p>A well-designed URI pattern makes an API easy to consume, discover, and extend, just as a carefully designed API does in a traditional programming language. Pure REST disdains this principle in favor of HATEOAS. But pragmatic REST follows a normal pattern for URI definitions to improve human understanding, even if HATEOAS principles are employed for discovery.</p>
+<p>URI paths that refer to a collection of objects should consist of a plural noun, e.g. /customers, to refer to a set of customers. When a collection can have only one instance, the singular noun should be used to avoid confusion. E.g. GET /transfers/:id/fulfillment is correct, since there is only one fulfillment object per identified transfer.</p>
+<p>URI paths that refer to a single object should consist of a plural noun (representing the collection), followed by a predefined unique identifier. E.g., /customers/123456 to refer to the specific customer with number 123456. The identifier must be unique within the containing collection and persist for the life of the object within that collection. IDs must not be ordinal values-ordinal retrieval of objects from a collection is possible using query parameters on the collection URI.</p>
+<p>URI paths may have a prefix to identify the environment, version, or other context of the resource. Nothing should follow the identifying path but collections and object references.</p>
+<p>URI path and query segment identifiers should be chosen from the Roman character set, [0-9A-Za-z]. Use <em>camelCase</em> to define the elements of the URI path. Do not use snake_case.</p>
+<p>For the avoidance of doubt, &quot;_&quot; (underscore) and &quot;-&quot; (hyphen) should not be used in URI path or query segment identifiers.</p>
+<p>This probably seems a bit parochial. The purpose is to find a well-defined URI format that is consistent with wide-spread practice, easy to define, predictable, and that maps to native environments and conventions. It isn&apos;t going to satisfy everyone. Here is reasoning behind this constraint:</p>
+<p>CapitalCase and camelCase are the defacto standard for NodeJS and JavaScript and are a common constraint in URI definition: URI path segments are often mapped to JS internal resources and so conforming to JS naming conventions makes sense.</p>
+<p>Field names in JSON and SQL should also follow this convention since they are often automatically mapped into variable name space and can be referenced in URIs as path or query segment identifiers.</p>
+<p>We should also avoid the use of &quot;$&quot; unless it is required by a library (e.g. JQuery). IBM JCL has passed away; let it rest in peace. There are better scope control tools to separate name spaces than introducing non-roman symbols.</p>
+<p>We should avoid &quot;-&quot; (hyphen) in path segment and query parameter names as it does not map into variable names, SQL, or JSON field name identifiers.</p>
+<p>Underscore characters must be escaped in markdown source by prefixing each with a &quot;\&quot; character.</p>
+<p>Snake_case has been reported to be slightly easier to read than camelCase in variable names, but it actually does not improve readability of URIs, as it visually interferes with path and query segment delimiters making it difficult to visually parse them. And when URIs are underlined in presentation, the underscores become illegible.</p>
+<h4 id="uri-parameters">URI Parameters</h4>
+<p>Use a standard and predictable set of optional parameters in a consistent way.</p>
+<p>A set of standard query parameters should be used for collections to enable caller control over how much of the collection they see. E.g. &quot;count&quot; to determine how many objects to return, &quot;start&quot; to determine where to start counting in the result set, and &quot;q&quot; as a generic free-form search query. We will define the standard set of parameters as we go and will apply them consistently.</p>
+<h4 id="verbs">Verbs</h4>
+<p>Singular objects should support GET for read, PUT for complete replacement (or creation when the primary key is specified by the client and is persistent, e.g. a payment card PAN), and DELETE for delete.</p>
+<p>Collections should support GET to read back the whole or part of a collection, and POST to add a new object to the collection.</p>
+<p>Singular objects may support POST as a way to change their state in specified ways. Posting a JSON document to a singular object URI may allow selected field values to be updated or trigger a state change or action without replacing the whole object.</p>
+<p>GET must be implemented in a <em>nullipotent</em> manner-that is, GET never causes side effects and never modifies client-visible system state (other than logging events or updating instrumentation, e.g.).</p>
+<p>PUT and DELETE must be implemented in an <em>idempotent</em> manner-that is, changes are applied consistently to the system data in a way that is dependent only on the state of the resource and inputs but on nothing else. The action has no additional effect if it is executed more than once with the same input parameters and does not depend on the order of other operations on a containing collection or other resources held in the collection. For example, removing a resource from a collection can be considered an idempotent operation on the collection. Using PUT to fully replace (or create) a uniquely identified resource when the URI is fully known to the client is also idempotent. This implies that the system may reorder operations to improve efficiency, and the client does not need to know whether a resource exists before attempting to replace it.</p>
+<p>POST and PATCH3 are not idempotent operations. POST is used to create new resources where the resource identifier is assigned by the server or where a single identified internal resource is implied by the target URI (e.g. POST /transfers, but PUT /transfers/:id/fulfillment).</p>
+<h4 id="data-format">Data Format</h4>
+<p>We favor <a href="http://json.org/" target="_blank">JSON</a>4 related data formats over XML. In some cases, data formats will be binary or XML, as defined by pre-existing standards, and these will be precisely specified. Binary formats should have a formal syntax to avoid ambiguous representational translations (e.g. character set translations, big- or little-endian representations of numeric values, etc).</p>
+<p>Date and time values used in APIs should comply to the ISO 8601 standard, and further profiled by the w3c Note on Date and Time Formats.5 This w3c note should lead to the reduction in complexity and error scope of communicating components that must exchange tangible dates and times. There will be cases where we use non-ISO format date or time as required by an external standard, e.g. ISO 7813 expiry dates.</p>
+<p>Existing standard XML formats should have an XSD schema for the acceptable subset profile used within the project. For particularly complex data formats, we may use a common format profile translator to map between our project subset of the standard format and the wire format used by a standardized protocol (e.g.). This will limit coupling to complex formats in a more maintainable way.</p>
+<p>When specifying the PATCH action for a resource, we will use a consistent patch document format (e.g. <a href="http://jsonpatch.com/" target="_blank">JSON Patch</a>6).</p>
+<h4 id="return-codes">Return Codes</h4>
+<p>Use HTTP return codes in a consistent way and according to their standard definitions. The standard codes are defined in RFC 2616.7</p>
+<h4 id="machine-readable-error-format">Machine Readable Error Format</h4>
+<p>The API should provide a machine readable error result in a well-defined JSON format. {TBD whether to use a response envelope and how to format errors, faults, and success envelopes. RESTful design relies on headers to carry protocol-defined errors, debug info can also be carried in headers. We should be clear on why we are using an envelope and how this supports normal production communication between client and server.</p>
+<h4 id="versioning">Versioning</h4>
+<p>API URIs should include a version identifier in the format v<em>M</em> as a leading path element (where <em>&quot;M&quot;</em> is the Major component of the multi-part version number). The API and its version identifier element must conform to the <a href="http://semver.org/" target="_blank">semantic versioning</a>8 2.0 specification for API versioning.</p>
+<p>A client must specify the Major version number in each request. It is not possible for a client to express a requirement for a specific minor version.</p>
+<p>The full API version number is specified in the response header (TBD) for all successful and error responses.</p>
+<p>While an API version contract will be influenced by Major, minor, <em>and</em> patch levels, only the Major version number is a production API binding element-that is, a production client cannot request a particular minor version or patch level and a production server will not accept a URI request that specifies these extra elements.</p>
+<p>However, in pre-production environments, it is anticipated that some combination of minor, patch, pre-release, and metadata suffixes would be supported in client requests (as defined in <em>semver</em> [3]) and <em>may</em> be expressed in <em>pre-production</em> URIs to assist with development and integration scenarios.</p>
+<h3 id="we-may-need-to-give-rest-a-rest">We May Need to Give REST a Rest</h3>
+<p>As we design the interconnection APIs between components and between participating systems, we may find API requirements that don&apos;t precisely match the Pragmatic REST pattern defined here. We will evaluate these case-by-case and make the best choice to support the project goals.</p>
+<h3 id="non-functional-requirements">Non-Functional Requirements</h3>
+<p>As we develop the APIs, we will make consistent choices about non-functional requirements to reinforce the project goals.</p>
+<p>1: <a href="Richardson%20Maturity%20Model">http://martinfowler.com/articles/richardsonMaturityModel.html</a>, retrieved August 18, 2016.</p>
+<p>2: <a href="https://www.amazon.com/gp/product/0596805829?ie=UTF8&amp;tag=martinfowlerc-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0596805829" target="_blank">https://www.amazon.com/gp/product/0596805829</a>, retrieved August 18, 2016.</p>
+<p>3: RFC 5789, <em>PATCH Method for HTTP</em>, <a href="https://tools.ietf.org/html/rfc5789" target="_blank">https://tools.ietf.org/html/rfc5789</a>, retrieved August 18, 2016.</p>
+<p>4: <em>Introducing JSON</em>, <a href="http://json.org/" target="_blank">http://json.org/</a>, retrieved August 18, 2016.</p>
+<p>5: <a href="http://www.w3.org/TR/1998/NOTE-datetime-19980827" target="_blank">http://www.w3.org/TR/1998/NOTE-datetime-19980827</a>, retrieved August 22, 2016.</p>
+<p>6: <em>JSON Patch</em>, <a href="http://jsonpatch.com/" target="_blank">http://jsonpatch.com/</a>, retrieved August 18, 2016.</p>
+<p>7: <a href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html" target="_blank">https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html</a></p>
+<p>8: <em>Semantic Versioning 2.0.0</em>, <a href="http://semver.org/" target="_blank">http://semver.org/</a>, retrieved August 18, 2016.</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Pragmatic REST","level":"1.2.3.1","depth":3,"next":{"title":"Code Quality Metrics","level":"1.2.3.2","depth":3,"path":"contributors-guide/tools-and-technologies/code-quality-metrics.md","ref":"contributors-guide/tools-and-technologies/code-quality-metrics.md","articles":[]},"previous":{"title":"Tools and Technologies","level":"1.2.3","depth":2,"path":"contributors-guide/tools-and-technologies/README.md","ref":"contributors-guide/tools-and-technologies/README.md","articles":[{"title":"Pragmatic REST","level":"1.2.3.1","depth":3,"path":"contributors-guide/tools-and-technologies/pragmatic-rest.md","ref":"contributors-guide/tools-and-technologies/pragmatic-rest.md","articles":[]},{"title":"Code Quality Metrics","level":"1.2.3.2","depth":3,"path":"contributors-guide/tools-and-technologies/code-quality-metrics.md","ref":"contributors-guide/tools-and-technologies/code-quality-metrics.md","articles":[]},{"title":"Automated Testing","level":"1.2.3.3","depth":3,"path":"contributors-guide/tools-and-technologies/automated-testing.md","ref":"contributors-guide/tools-and-technologies/automated-testing.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"3.x.x","theme":"default","variables":{"importedVars":{"mojaloop":{"spec":{"version":"v1.0","uri":{"doc":"https://github.com/mojaloop/mojaloop-specification/blob/master/API%20Definition%20v1.0.pdf","api":"https://github.com/mojaloop/mojaloop-specification/blob/master/Supporting%20Files/fspiop-rest-v1.0-OpenAPI-implementation.yaml"}}}}},"plugins":["swagger","editlink","include","insert-logo","uml","collapsible-chapters","back-to-top-button","theme-api","variables","livereload"],"pluginsConfig":{"editlink":{"label":"Edit This Page","multilingual":true,"base":"https://github.com/mojaloop/documentation/edit/master"},"livereload":{},"theme-gestalt":{"logo":"http://mojaloop.io/images/logo.png","favicon":"http://mojaloop.io/images/logo.png","baseUrl":null,"excludeDefaultStyles":false,"doNotHideChildrenChapters":false},"include":{},"search":{},"graphviz-and-plant-uml":{"Render":"PlantUMLServer","Server":"http://www.plantuml.com/plantuml"},"collapsible-chapters":{},"swagger":{"file":""},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"uml":{"format":"svg"},"theme-api":{"languages":[],"split":true,"theme":"dark"},"back-to-top-button":{},"variables":{"files":{"importedVars":"book_variables.yml"}},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"insert-logo":{"style":"background: none; max-height: 140px; max-width: 140px;","url":"http://mojaloop.io/images/logo.png"}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"contributors-guide/tools-and-technologies/pragmatic-rest.md","mtime":"2019-03-08T16:40:38.994Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-11T17:31:31.950Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-swagger/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-editlink/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-insert-logo/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-collapsible-chapters/collapsible-chapters.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-back-to-top-button/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-theme-api/theme-api.js"></script>
+        
+    
+
+    </body>
+</html>
+
