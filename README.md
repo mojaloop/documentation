@@ -4,7 +4,7 @@ Mojaloop is open source software for creating digital payments platforms that co
 
 The basic idea behind Mojaloop is that we need to connect multiple Digital Financial Services Providers \(DFSPs\) together into a competitive and interoperable network in order to maximize opportunities for poor people to get access to financial services with low or no fees. We don't want a single monopoly power in control of all payments in a country, or a system that shuts out new players. It also doesn't help if there are too many isolated subnetworks.
 
-![Mojaloop Architecture Overview](.gitbook/assets/arch-flows.svg)
+![Mojaloop Solution](./assets/Diagrams/ArchitectureDiagrams/Arch-Mojaloop-end-to-end-simple.svg)
 
 Our model addresses these issues in several key ways:
 
@@ -13,4 +13,3 @@ Our model addresses these issues in several key ways:
 * Complete working open-source implementations of both sides of the interfaces - an example DFSP that can send and receive payments and the client that an existing DFSP could host to connect to the network.
 
 The intention for the Mojaloop project is for financial institutions and commercial providers to use the open-source software to help build digital, interoperable payments platforms that drive financial inclusion on a national scale. Specifically, the platforms will enable seamless, low-cost transactions between individual users, merchants, banks, providers, and even government offices - helping connect poor customers with everyone else in the digital economy.
-
