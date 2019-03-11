@@ -57,9 +57,7 @@ This provides environment resource recommendations with a view of the infrastruc
 
   \*Note that this would also depend on your underlying infrastructure, and it does NOT include requirements for persistent volumes/storage.
 
-![Mojaloop Deployment Recommendations - Infrastructure Architecture](../../.gitbook/assets/kubeinfrastructurearch.png)
-
-[Mojaloop Deployment Recommendations - Infrastructure Architecture](https://github.com/mojaloop/documentation/tree/d1718f81b0f12a4ae17be49f59c17f072956dea5/Diagrams/Deployment/KubeInfrastructureArch.png)
+![Mojaloop Deployment Recommendations - Infrastructure Architecture](../../assets/Diagrams/Kubernetes/KubeInfrastructureArch.svg)
 
 #### 1.2 Local Deployment and Testing Tools
 
