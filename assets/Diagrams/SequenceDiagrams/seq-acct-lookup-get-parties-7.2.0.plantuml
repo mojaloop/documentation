@@ -171,6 +171,7 @@ group Get Participant's FSP Details
         activate ALS_API
         ALS_API -> ALS_API: Validate request against Mojaloop Interface Specification. \n<color #FF0000><b>Error code:</b> 300x, 310x</color>
         ALS_API -> ALS_PARTICIPANT_HANDLER: Process Participant Callback Information for PUT
+        deactivate ALS_API
 
         ALS_PARTICIPANT_HANDLER -> ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO: Retrieve the Source Participant Callback End-point. \n<color #FF0000><b>Error code:</b> 200x</color>
         activate ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO
@@ -186,7 +187,7 @@ group Get Participant's FSP Details
         '********************* Request Parties Information - END ************************
 
         ALS_PARTICIPANT_HANDLER -> ALS_API: Send Participant Information to PayerFSP.
-
+        activate ALS_API
         ALS_API --> PAYER_FSP: Callback with Parties Information: PUT - /parties/{Type}/{ID}?currency={CURRENCY}
         deactivate ALS_API
 
