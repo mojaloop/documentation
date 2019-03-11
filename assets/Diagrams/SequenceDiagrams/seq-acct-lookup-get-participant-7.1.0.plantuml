@@ -70,19 +70,20 @@ end box
 ' START OF FLOW
 
 group Get Participant's FSP Details
-    PAYER_FSP --> ALS_API: Request to get participant's FSP details \nGET - /participants/{Type}/{ID}?currency={CURRENCY}. \n<color #FF0000><b>Error code:</b> 3200</color>
+    PAYER_FSP --> ALS_API: Request to get participant's FSP details \nGET - /participants/{Type}/{ID}?currency={CURRENCY}. \n<color #FF0000><b>Error code:</b> 200x, 300x, 310x, 320x</color>
     activate ALS_API
-    ALS_API -> ALS_PARTICIPANT_HANDLER: Request to get participant's FSP details. \n<color #FF0000><b>Error code:</b> 3200</color>
+    ALS_API -> ALS_API: Validate request against Mojaloop Interface Specification. \n<color #FF0000><b>Error code:</b> 300x, 310x</color>
+
+    ALS_API -> ALS_PARTICIPANT_HANDLER: Request to get participant's FSP details.
     deactivate ALS_API
     activate ALS_PARTICIPANT_HANDLER
 
-    ALS_PARTICIPANT_HANDLER -> ALS_PARTICIPANT_HANDLER: Validate request against Mojaloop Interface Specification
 
-    ALS_PARTICIPANT_HANDLER -> ALS_TYPE_ENDPOINT_CONFIG_DAO: Fetch Oracle Routing information based on {Type}, {ID} and optionally {CURRENCY}. \n<color #FF0000><b>Error code:</b> 3200</color>
+    ALS_PARTICIPANT_HANDLER -> ALS_TYPE_ENDPOINT_CONFIG_DAO: Fetch Oracle Routing information based on {Type}, {ID} and optionally {CURRENCY}. \n<color #FF0000><b>Error code:</b> 200x</color>
     activate ALS_TYPE_ENDPOINT_CONFIG_DAO
 
 
-    ALS_TYPE_ENDPOINT_CONFIG_DAO -> ALS_DB: select * from oracleEndpoint where oracleType='{TYPE}' and isActive=true
+    ALS_TYPE_ENDPOINT_CONFIG_DAO -> ALS_DB: select * from oracleEndpoint where oracleType='{TYPE}' and isActive=true. \n<color #FF0000><b>Error code:</b> 200x</color>
     activate ALS_DB
         hnote over ALS_DB #lightyellow
                 oracleEndpoint
@@ -99,9 +100,9 @@ group Get Participant's FSP Details
             ALS_PARTICIPANT_HANDLER -> ALS_PARTICIPANT_HANDLER: Select default End-point matching {Type} & {ID}
         end alt
 
-        ALS_PARTICIPANT_HANDLER -> ALS_PARTICIPANT_ORACLE_DAO: Request to get participant's FSP details \nGET - /participants/{Type}/{ID}?currency={CURRENCY}. \n<color #FF0000><b>Error code:</b> 3200</color>
+        ALS_PARTICIPANT_HANDLER -> ALS_PARTICIPANT_ORACLE_DAO: Request to get participant's FSP details \nGET - /participants/{Type}/{ID}?currency={CURRENCY}. \n<color #FF0000><b>Error code:</b> 200x, 310x, 320x</color>
         activate ALS_PARTICIPANT_ORACLE_DAO
-        ALS_PARTICIPANT_ORACLE_DAO -> ORACLE_API: Request to get participant's FSP details \nGET - /participants/{Type}/{ID}?currency={CURRENCY}. \n<color #FF0000><b>Error code:</b> 3200</color>
+        ALS_PARTICIPANT_ORACLE_DAO -> ORACLE_API: Request to get participant's FSP details \nGET - /participants/{Type}/{ID}?currency={CURRENCY}. \n<color #FF0000><b>Error code:</b> 200x, 310x, 320x</color>
         activate ORACLE_API
 
         ORACLE_API -> ORACLE_STORE: Resolve participant's FSP details
@@ -109,15 +110,15 @@ group Get Participant's FSP Details
         ORACLE_STORE -> ORACLE_API: Return participant's FSP details
         deactivate ORACLE_STORE
 
-        ORACLE_API -> ALS_PARTICIPANT_ORACLE_DAO: Return list of Participant information. \n<color #FF0000><b>Error code:</b> 3200</color>
+        ORACLE_API -> ALS_PARTICIPANT_ORACLE_DAO: Return list of Participant information.
         deactivate ORACLE_API
 
-        ALS_PARTICIPANT_ORACLE_DAO -> ALS_PARTICIPANT_HANDLER: Return list of Participant information. \n<color #FF0000><b>Error code:</b> 3200</color>
+        ALS_PARTICIPANT_ORACLE_DAO -> ALS_PARTICIPANT_HANDLER: Return list of Participant information.
         deactivate ALS_PARTICIPANT_ORACLE_DAO
 
-        ALS_PARTICIPANT_HANDLER -> ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO: Retrieve the Participant Callback End-point. \n<color #FF0000><b>Error code:</b> 3200</color>
+        ALS_PARTICIPANT_HANDLER -> ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO: Retrieve the Participant Callback End-point. \n<color #FF0000><b>Error code:</b> 200x, 310x, 320x</color>
         activate ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO
-        ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO -> CENTRALSERVICE_API: Retrieve the Participant Callback End-point - GET /participants/{FSPIOP-Source}/endpoints. \n<color #FF0000><b>Error code:</b> 3200</color>
+        ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO -> CENTRALSERVICE_API: Retrieve the Participant Callback End-point - GET /participants/{FSPIOP-Source}/endpoints. \n<color #FF0000><b>Error code:</b> 200x, 310x, 320x</color>
         activate CENTRALSERVICE_API
         CENTRALSERVICE_API -> ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO: List of Participant Callback End-points
         deactivate CENTRALSERVICE_API
@@ -126,17 +127,17 @@ group Get Participant's FSP Details
 
         ALS_PARTICIPANT_HANDLER -> ALS_PARTICIPANT_HANDLER: Match Participant Callback End-points for `FSPIOP_CALLBACK_URL_PARTICIPANT_PUT`
 
-        ALS_PARTICIPANT_HANDLER -> ALS_API: Return list of Participant information. \n<color #FF0000><b>Error code:</b> 3200</color>
+        ALS_PARTICIPANT_HANDLER -> ALS_API: Return list of Participant information.
 
         activate ALS_API
         ALS_API --> PAYER_FSP: Callback: PUT - /participants/{Type}/{ID}?currency={CURRENCY}
         deactivate ALS_API
 
-    else Empty list of End-Points returned or Error occured
+    else Empty list of End-Points returned or Error occurred
 
-            ALS_PARTICIPANT_HANDLER -> ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO: Retrieve the Participant Callback End-point. \n<color #FF0000><b>Error code:</b> 3200</color>
+            ALS_PARTICIPANT_HANDLER -> ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO: Retrieve the Participant Callback End-point. \n<color #FF0000><b>Error code:</b> 200x, 310x, 320x</color>
             activate ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO
-            ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO -> CENTRALSERVICE_API: Retrieve the Participant Callback End-point - GET /participants/{FSPIOP-Source}/endpoints. \n<color #FF0000><b>Error code:</b> 3200</color>
+            ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO -> CENTRALSERVICE_API: Retrieve the Participant Callback End-point - GET /participants/{FSPIOP-Source}/endpoints. \n<color #FF0000><b>Error code:</b> 200x, 310x, 320x</color>
             activate CENTRALSERVICE_API
             CENTRALSERVICE_API -> ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO: List of Participant Callback End-points
             deactivate CENTRALSERVICE_API
@@ -145,7 +146,7 @@ group Get Participant's FSP Details
 
             ALS_PARTICIPANT_HANDLER -> ALS_PARTICIPANT_HANDLER: Match Participant Callback End-points for `FSPIOP_CALLBACK_URL_PARTICIPANT_ERROR`
 
-        ALS_PARTICIPANT_HANDLER -> ALS_API: Return \n<color #FF0000><b>Error code:</b> 3200</color>
+        ALS_PARTICIPANT_HANDLER -> ALS_API: Return \n<color #FF0000><b>Error code:</b> 200x, 310x, 320x</color>
         activate ALS_API
         ALS_API --> PAYER_FSP: Callback: PUT - /participants/{Type}/{ID}/error
         deactivate ALS_API
