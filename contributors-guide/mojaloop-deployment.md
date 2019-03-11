@@ -28,34 +28,22 @@ This provides environment resource recommendations with a view of the infrastruc
 
 **Resources Requirements:**
 
-* Control Plane \(i.e. Master Node\)
+* Control Plane (i.e. Master Node) - [https://kubernetes.io/docs/setup/cluster-large/#size-of-master-and-master-components](https://kubernetes.io/docs/setup/cluster-large/%2F%5C%23size-of-master-and-master-components)
 
-  \`\`\`http request
+  * 3x Master Nodes for future node scaling and HA (High Availability)
 
-  [https://kubernetes.io/docs/setup/cluster-large/\#size-of-master-and-master-components](https://kubernetes.io/docs/setup/cluster-large/#size-of-master-and-master-components)
+* ETCd Plane - [https://coreos.com/etcd/docs/latest/op-guide/hardware.html](https://coreos.com/etcd/docs/latest/op-guide/hardware.html)
 
-  \`\`\`
+  * 3x ETCd nodes for HA (High Availability)
 
-  * 3x Master Nodes for future node scaling and HA \(High Availability\)
+* Compute Plane (i.e. Worker Node):
 
-* ETCd Plane:
-
-  \`\`\`http request
-
-  [https://coreos.com/etcd/docs/latest/op-guide/hardware.html](https://coreos.com/etcd/docs/latest/op-guide/hardware.html)
-
-  \`\`\`
-
-  * 3x ETCd nodes for HA \(High Availability\)
-
-* Compute Plane \(i.e. Worker Node\):
-
-  TBC once load testing has been concluded. However the current general \*recommended size:
+  TBC once load testing has been concluded. However the current general *recommended size:
 
   * 3x Worker nodes, each being:
     * 4x vCPUs, 16GB of RAM, and 40gb storage
 
-  \*Note that this would also depend on your underlying infrastructure, and it does NOT include requirements for persistent volumes/storage.
+  *Note that this would also depend on your underlying infrastructure, and it does NOT include requirements for persistent volumes/storage.
 
 ![Mojaloop Deployment Recommendations - Infrastructure Architecture](../assets/Diagrams/Kubernetes/KubeInfrastructureArch.svg)
 
@@ -271,7 +259,7 @@ or
    kubectx docker-for-desktop
    ```
 
-2. Install Kubernetes Dashboard roles, services & deployment. \(Alternative install for Dashboard using Helm: [kubernetes-dashboard](https://github.com/helm/charts/tree/master/stable/kubernetes-dashboard)\)
+2. Install Kubernetes Dashboard roles, services & deployment. (Alternative install for Dashboard using Helm: [kubernetes-dashboard](https://github.com/helm/charts/tree/master/stable/kubernetes-dashboard))
 
    **IMPORTANT:** Always verify current [kubernetes-dashboard](https://github.com/kubernetes/dashboard) yaml file for the below create command.
 
@@ -293,7 +281,7 @@ or
 
 5. Open URI in default browser
 
-   ```bash
+   ```http request
    http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/#!/
    ```
 
@@ -327,7 +315,7 @@ or
    kubectl -n kube-system get po | grep tiller
    ```
 
-3. Add mojaloop repo to your Helm config \(optional\)
+3. Add mojaloop repo to your Helm config (optional)
 
    ```bash
    helm repo add mojaloop http://mojaloop.io/helm/repo/
@@ -361,16 +349,16 @@ or
 
    ml-api-adapter health test
 
-   \`\`\`http request
+   ```http request
+   http://ml-api-adapter/health
+    ```
 
-   [http://ml-api-adapter/health](http://ml-api-adapter/health)
-
-   ```text
-   ___
    central-ledger health test
+   
    ```http request
    http://central-ledger/health
    ```
+
 
 ### 2.2 Helm
 
@@ -394,7 +382,7 @@ This section will provide guidelines to delete, list, install and upgrade of the
 
    **Note:** for demo purposes we are using **moja** as the chart **name**. Please verify and use the correct chart name from the listing above.
 
-3. To **install** Mojaloop chart\(s\)
+3. To **install** Mojaloop chart(s)
 
    **Ubuntu** - It might be required to execute `helm install` and `helm upgrade` under `sudo`.
 
@@ -422,7 +410,7 @@ This section will provide guidelines to delete, list, install and upgrade of the
    helm install --namespace=demo --name=moja --repo=http://mojaloop.io/helm/repo centralledger
    ```
 
-4. To upgrade Mojaloop chart\(s\)
+4. To upgrade Mojaloop chart(s)
 
    Note: 'v5.1.1' is an example value.
 
@@ -455,24 +443,24 @@ sudo ln -s /opt/Postman/Postman /usr/bin/postman
 
 #### 2.3.1 Setup Postman
 
-* Download this file [https://raw.githubusercontent.com/mojaloop/postman/master/Mojaloop.postman\_collection.json](https://raw.githubusercontent.com/mojaloop/postman/master/Mojaloop.postman_collection.json)
+* Download this file [https://raw.githubusercontent.com/mojaloop/postman/master/Mojaloop.postman_collection.json](https://raw.githubusercontent.com/mojaloop/postman/master/Mojaloop.postman_collection.json)
 * Open **Postman**
 * Click **Import** and then **Import File**
-* Select the _Mojaloop.postman\_collection.json_ file you downloaded
-* You'll now need to import environment variables. For local testing, download this file [https://raw.githubusercontent.com/mojaloop/postman/master/environments/MojaloopLocal.postman\_environment.json](https://raw.githubusercontent.com/mojaloop/postman/master/environments/MojaloopLocal.postman_environment.json)
+* Select the _Mojaloop.postman_collection.json_ file you downloaded
+* You'll now need to import environment variables. For local testing, download this file [https://raw.githubusercontent.com/mojaloop/postman/master/environments/MojaloopLocal.postman_environment.json](https://raw.githubusercontent.com/mojaloop/postman/master/environments/MojaloopLocal.postman_environment.json)
 * Click **Import** and then **Import File**
-* Select the _MojaloopLocal.postman\_environment.json_ file you downloaded
-* In the imported collection, navigate to the _central\_ledger_ directory  
+* Select the _MojaloopLocal.postman_environment.json_ file you downloaded
+* In the imported collection, navigate to the _central_ledger_ directory  
 
 ### 2.4 Errors On Setup
 
-* \`central-ledger’s server IP address could not be found.
+* `central-ledger’s server IP address could not be found.
 
-  ERR\_NAME\_NOT\_RESOLVED\`
+  `ERR_NAME_NOT_RESOLVED`
 
   Resolved by:
 
-  * Verify that a helm chart\(s\) was installed by executing
+  * Verify that a helm chart(s) was installed by executing
 
     ```bash
     helm list
