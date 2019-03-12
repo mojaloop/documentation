@@ -33,7 +33,14 @@ This component (or back-end systems) will also be responsible for the persistenc
 
 ### 2.2 Sequence diagram
 
+#### 2.2.1 GET Participant
+
 ```puml { src="./assets/Diagrams/SequenceDiagrams/seq-acct-lookup-get-participant-7.1.0.plantuml" }
+```
+
+#### 2.2.2 POST Participant
+
+```puml { src="./assets/Diagrams/SequenceDiagrams/seq-acct-lookup-post-participants-7.2.1.plantuml" }
 ```
 
 ## 3. Party Lookup Design
@@ -42,6 +49,8 @@ This component (or back-end systems) will also be responsible for the persistenc
 ![Architecture Flow Account-Lookup for Parties](../assets/Diagrams/ArchitectureDiagrams/Arch-Flow-Account-Lookup-Parties.svg)
 
 ### 3.2 Sequence diagram
+
+#### 3.2.1 GET Parties
 
 ```puml { src="./assets/Diagrams/SequenceDiagrams/seq-acct-lookup-get-parties-7.2.0.plantuml" }
 ```
