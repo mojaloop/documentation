@@ -80,14 +80,15 @@ group Get Participant's FSP Details
 
     '********************* Fetch Oracle Routing Information - START ************************
 
-    ALS_PARTICIPANT_HANDLER -> ALS_TYPE_ENDPOINT_CONFIG_DAO: Fetch Oracle Routing information based on {Type}, {ID} and optionally {CURRENCY}. \n<color #FF0000><b>Error code:</b> 200x</color>
+    ALS_PARTICIPANT_HANDLER -> ALS_TYPE_ENDPOINT_CONFIG_DAO: Fetch Oracle Routing information based on {Type}. \n<color #FF0000><b>Error code:</b> 200x</color>
     activate ALS_TYPE_ENDPOINT_CONFIG_DAO
 
 
-    ALS_TYPE_ENDPOINT_CONFIG_DAO -> ALS_DB: select * from oracleEndpoint where oracleType='{TYPE}' and isActive=true. \n<color #FF0000><b>Error code:</b> 200x</color>
+    ALS_TYPE_ENDPOINT_CONFIG_DAO -> ALS_DB: select * from oracleEndpoint where oracleType='{TYPE}' and isActive=true. \n<color #FF0000><b>Error code:</b> 200x</color> *****TBU*****
     activate ALS_DB
         hnote over ALS_DB #lightyellow
                 oracleEndpoint
+                oracleType
                 endpointType
         end note
     ALS_DB -> ALS_TYPE_ENDPOINT_CONFIG_DAO: return oracleEndpoint result set
@@ -100,7 +101,7 @@ group Get Participant's FSP Details
 
     alt {CURRENCY} not Provided OR no matching currency found in list of End-points
         alt {CURRENCY} not Provided OR no matching currency found in list of End-points
-            ALS_PARTICIPANT_HANDLER -> ALS_PARTICIPANT_HANDLER: Select default End-point matching {Type} & {ID}
+            ALS_PARTICIPANT_HANDLER -> ALS_PARTICIPANT_HANDLER: Select default End-point matching {Type}
         end alt
 
         '********************* Request Participant Information from Oracle - START ************************
@@ -121,18 +122,22 @@ group Get Participant's FSP Details
         ALS_PARTICIPANT_ORACLE_DAO -> ALS_PARTICIPANT_HANDLER: Return list of Participant information.
         deactivate ALS_PARTICIPANT_ORACLE_DAO
 
-        ALS_PARTICIPANT_HANDLER -> ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO: Retrieve the Participant Callback End-point. \n<color #FF0000><b>Error code:</b> 200x, 310x, 320x</color>
+        '********************* Request Participant Information from Oracle - END ************************
+
+        '********************* Get PayerFSP Participant Information - START ************************
+
+        ALS_PARTICIPANT_HANDLER -> ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO: Retrieve the PayerFSP Participant Callback End-point. \n<color #FF0000><b>Error code:</b> 200x, 310x, 320x</color>
         activate ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO
-        ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO -> CENTRALSERVICE_API: Retrieve the Participant Callback End-point - GET /participants/{FSPIOP-Source}/endpoints. \n<color #388724><b>Response code:</b> 200</color> \n<color #FF0000><b>Error code:</b> 200x, 310x, 320x</color>
+        ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO -> CENTRALSERVICE_API: Retrieve the PayerFSP Participant Callback End-point - GET /participants/{FSPIOP-Source}/endpoints. \n<color #388724><b>Response code:</b> 200</color> \n<color #FF0000><b>Error code:</b> 200x, 310x, 320x</color>
         activate CENTRALSERVICE_API
-        CENTRALSERVICE_API -> ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO: List of Participant Callback End-points
+        CENTRALSERVICE_API -> ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO: List of PayerFSP Participant Callback End-points
         deactivate CENTRALSERVICE_API
-        ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO -> ALS_PARTICIPANT_HANDLER: List of Participant Callback End-points
+        ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO -> ALS_PARTICIPANT_HANDLER: List of PayerFSP Participant Callback End-points
         deactivate ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO
 
-        ALS_PARTICIPANT_HANDLER -> ALS_PARTICIPANT_HANDLER: Match Participant Callback End-points for `FSPIOP_CALLBACK_URL_PARTICIPANT_GET_PUT`
+        ALS_PARTICIPANT_HANDLER -> ALS_PARTICIPANT_HANDLER: Match PayerFSP Participant Callback End-points for `FSPIOP_CALLBACK_URL_PARTICIPANT_GET_PUT`
 
-        '********************* Request Participant Information from Oracle - END ************************
+        '********************* Get PayerFSP Participant Information - END ************************
 
         ALS_PARTICIPANT_HANDLER -> ALS_API: Return list of Participant information.
 

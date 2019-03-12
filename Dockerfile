@@ -13,4 +13,4 @@ RUN apk del build-dependencies
 
 EXPOSE 8989
 
-CMD npm run docs:serve
+CMD npm run gitbook:serve
