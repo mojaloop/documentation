@@ -24,12 +24,12 @@ The routing configuration will be based on the following:
 The ALS Oracle Service or Adapter (semantic dependant on use - Mediation = Adapter, Service = Implementation) will provide a look-up registry component with similar functionality of the `/participants` Mojaloop API resources. It has however loosely based on the ML API specification as it's interface implements a sync pattern which reduces the correlation/persistence requirements of the Async Callback pattern implemented directly by the ML API Spec. This will provide all ALS Oracle Services/Adapters with a standard interface which will be mediated by the ALS based on its routing configuration.  
 This component (or back-end systems) will also be responsible for the persistence & defaulting of the Participant details.
 
-* [ALS Oracle Service v1 Interface Contract](../assets//InterfaceContracts/OracleServiceSwaggerv1.yaml)
+* [ALS Oracle Service v1 Interface Contract](../assets/InterfaceContracts/OracleServiceSwaggerv1.yaml)
 
 ## 2. Participant Lookup Design
 
 ### 2.1 Architecture overview
-![Architecture Flow Account-Lookup for Participants](../assets//Diagrams/ArchitectureDiagrams/Arch-Flow-Account-Lookup-Participants.svg)
+![Architecture Flow Account-Lookup for Participants](../assets/Diagrams/ArchitectureDiagrams/Arch-Flow-Account-Lookup-Participants.svg)
 
 ### 2.2 Sequence diagram
 
@@ -43,8 +43,8 @@ This component (or back-end systems) will also be responsible for the persistenc
 
 ### 3.2 Sequence diagram
 
-Work in progress..
-
+```puml { src="./assets/Diagrams/SequenceDiagrams/seq-acct-lookup-get-parties-7.2.0.plantuml" }
+```
 
 ## 4. Database Design
 
