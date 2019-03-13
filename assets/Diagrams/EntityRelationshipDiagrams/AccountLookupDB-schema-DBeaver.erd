@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<diagram version="1" name="AccountLookupDB.erd" time="201903131403">
+	<entities>
+		<data-source id="mysql8-16976e55362-4456f073de152d5f">
+			<entity id="1" name="currency" fq-name="account_lookup.currency" order="0" x="281" y="19">
+				<path name="account_lookup"/>
+			</entity>
+			<entity id="2" name="endpointType" fq-name="account_lookup.endpointType" order="1" x="280" y="161">
+				<path name="account_lookup"/>
+			</entity>
+			<entity id="3" name="migration" fq-name="account_lookup.migration" order="2" x="20" y="360">
+				<path name="account_lookup"/>
+			</entity>
+			<entity id="4" name="migration_lock" fq-name="account_lookup.migration_lock" order="3" x="20" y="500">
+				<path name="account_lookup"/>
+			</entity>
+			<entity id="5" name="oracleEndpoint" fq-name="account_lookup.oracleEndpoint" order="4" x="20" y="120">
+				<path name="account_lookup"/>
+			</entity>
+			<entity id="6" name="partyIdType" fq-name="account_lookup.partyIdType" order="5" x="280" y="316">
+				<path name="account_lookup"/>
+			</entity>
+		</data-source>
+	</entities>
+	<relations>
+		<relation name="oracleendpoint_currencyid_foreign" fq-name="account_lookup.oracleEndpoint.oracleendpoint_currencyid_foreign" type="fk" pk-ref="1" fk-ref="5"/>
+		<relation name="oracleendpoint_endpointtypeid_foreign" fq-name="account_lookup.oracleEndpoint.oracleendpoint_endpointtypeid_foreign" type="fk" pk-ref="2" fk-ref="5"/>
+		<relation name="oracleendpoint_partyidtypeid_foreign" fq-name="account_lookup.oracleEndpoint.oracleendpoint_partyidtypeid_foreign" type="fk" pk-ref="6" fk-ref="5"/>
+	</relations>
+	<notes/>
+</diagram>

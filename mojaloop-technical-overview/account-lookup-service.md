@@ -40,6 +40,11 @@ This component (or back-end systems) will also be responsible for the persistenc
 
 #### 2.2.2 POST Participant
 
+#### Notes
+- Operation only supports requests which contain:
+    - All Participant's FSPs match the FSPIOP-Source
+    - All Participant's TYPEs are the same
+
 ```puml { src="./assets/Diagrams/SequenceDiagrams/seq-acct-lookup-post-participants-7.2.1.plantuml" }
 ```
 
@@ -59,7 +64,16 @@ This component (or back-end systems) will also be responsible for the persistenc
 
 ### 4.1 ALS Database Schema
 
-Work in progress..
+#### Notes
+- `partIdType` - Values are currently seeded as per section _`7.5.6`_ [Mojaloop {{ book.importedVars.mojaloop.spec.version }} Specification]({{ book.importedVars.mojaloop.spec.uri.doc }}).
+- `currency` - See section `7.5.5` of the Mojaloop Specification. Currency code defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic string. This will be optional, and must provide a "default" config if no Currency is either provided or provide a default if the Currency is provided, but only the "default" End-point config exists.
+- `endPointType` - Type identifier for the end-point (e.g. `URL`) which provides flexibility for future transport support.
+- `migration*` - Meta-data tables used by Knex Framework engine.
+
+![Acount Lookup Service ERD](../assets/Diagrams/EntityRelationshipDiagrams/AccountLookupService-schema.png)
+
+* [Acount Lookup Service DBeaver ERD](../assets/Diagrams/EntityRelationshipDiagrams/AccountLookupDB-schema-DBeaver.erd)
+* [Acount Lookup Service MySQL Workbench Export](../assets/Diagrams/EntityRelationshipDiagrams/AccountLookup-ddl-MySQLWorkbench.sql)
 
 ### 4.2 Oracle Database Schema
 

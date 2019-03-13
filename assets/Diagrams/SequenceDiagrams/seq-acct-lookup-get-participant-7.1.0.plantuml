@@ -83,14 +83,37 @@ group Get Participant's FSP Details
     ALS_PARTICIPANT_HANDLER -> ALS_TYPE_ENDPOINT_CONFIG_DAO: Fetch Oracle Routing information based on {Type}. \n<color #FF0000><b>Error code:</b> 200x</color>
     activate ALS_TYPE_ENDPOINT_CONFIG_DAO
 
+    hnote over ALS_TYPE_ENDPOINT_CONFIG_DAO #lightyellow
+    if {CURRENCY} provided:
+        SELECT oe.value FROM account_lookup.oracleEndpoint as oe
+        inner join account_lookup.currency as cu on oe.currencyId =  cu.currencyId
+        inner join account_lookup.endpointType as et on oe.endpointTypeId = et.endpointTypeId
+        inner join account_lookup.partyIdType as pt on oe.partyIdTypeId = pt.partyIdTypeId
+        where cu.currencyId = '{CURRENCY}'
+        and pt.name = '{TYPE}'
+        and pt.isActive = true
+        and oe.isActive = true;
+     else
+        SELECT oe.value FROM account_lookup.oracleEndpoint as oe
+        inner join account_lookup.endpointType as et on oe.endpointTypeId = et.endpointTypeId
+        inner join account_lookup.partyIdType as pt on oe.partyIdTypeId = pt.partyIdTypeId
+        where pt.name = '{TYPE}'
+        and pt.isActive = true
+        and oe.isActive = true
+        and oe.isDefault = true;
+     end if
+    end note
 
-    ALS_TYPE_ENDPOINT_CONFIG_DAO -> ALS_DB: select * from oracleEndpoint where oracleType='{TYPE}' and isActive=true. \n<color #FF0000><b>Error code:</b> 200x</color> *****TBU*****
+    ALS_TYPE_ENDPOINT_CONFIG_DAO -> ALS_DB: SQL Select for Oracle End-point. \n<color #FF0000><b>Error code:</b> 200x</color> *****TBU*****
+
     activate ALS_DB
-        hnote over ALS_DB #lightyellow
-                oracleEndpoint
-                oracleType
-                endpointType
-        end note
+
+    hnote over ALS_DB #lightyellow
+            oracleEndpoint
+            endpointType
+            partyIdType
+            currency
+    end note
     ALS_DB -> ALS_TYPE_ENDPOINT_CONFIG_DAO: return oracleEndpoint result set
     deactivate ALS_DB
 
