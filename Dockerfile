@@ -7,10 +7,14 @@ RUN apk add --no-cache -t build-dependencies openjdk8-jre git make gcc g++ pytho
 
 WORKDIR /opt/gitbook/repo
 
-RUN npm ci
-
-RUN apk del build-dependencies
+RUN npm install
+#
+#RUN apk del build-dependencies
 
 EXPOSE 8989
+
+RUN npm run gitbook:install
+
+RUN npm run gitbook:build
 
 CMD npm run gitbook:serve
