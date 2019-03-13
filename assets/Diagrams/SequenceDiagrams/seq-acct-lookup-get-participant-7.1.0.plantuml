@@ -37,13 +37,12 @@ autonumber
 actor "Payer FSP" as PAYER_FSP
 boundary "Account Lookup Service" as ALS_API
 control "ALS Participant Handler" as ALS_PARTICIPANT_HANDLER
-entity "ALS Type Config DAO" as ALS_TYPE_ENDPOINT_CONFIG_DAO
+entity "ALS Endpoint Type Config DAO" as ALS_TYPE_ENDPOINT_CONFIG_DAO
 entity "ALS CentralService Endpoint DAO" as ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO
 entity "ALS Participant Oracle DAO" as ALS_PARTICIPANT_ORACLE_DAO
 entity "ALS Participant End-Point Oracle DAO" as ALS_PARTICIPANT_ORACLE_DAO
 database "ALS Database" as ALS_DB
 boundary "Oracle Service API" as ORACLE_API
-boundary "Oracle Registry Store" as ORACLE_STORE
 boundary "Central Service API" as CENTRALSERVICE_API
 
 box "Account Lookup Service" #LightYellow
@@ -63,91 +62,122 @@ box "ALS Oracle Service/Adapter" #LightBlue
 participant ORACLE_API
 end box
 
-box "Internal/External Oracle Data Store/Service" #LightGrey
-participant ORACLE_STORE
-end box
-
 ' START OF FLOW
 
 group Get Participant's FSP Details
-    PAYER_FSP --> ALS_API: Request to get participant's FSP details \nGET - /participants/{Type}/{ID}?currency={CURRENCY}.\n<color #388724><b>Response code:</b> 202</color> \n<color #FF0000><b>Error code:</b> 200x, 300x, 310x, 320x</color>
+    PAYER_FSP --> ALS_API: Request to get participant's FSP details \nGET - /participants/{TYPE}/{ID}?currency={CURRENCY}.\n<color #388724><b>Response code:</b> 202</color> \n<color #FF0000><b>Error code:</b> 200x, 300x, 310x, 320x</color>
     activate ALS_API
     ALS_API -> ALS_API: Validate request against Mojaloop Interface Specification. \n<color #FF0000><b>Error code:</b> 300x, 310x</color>
 
     ALS_API -> ALS_PARTICIPANT_HANDLER: Request to get participant's FSP details.
     deactivate ALS_API
-    activate ALS_PARTICIPANT_HANDLER
 
-    '********************* Fetch Oracle Routing Information - START ************************
+    alt oracleEndpoint match found
 
-    ALS_PARTICIPANT_HANDLER -> ALS_TYPE_ENDPOINT_CONFIG_DAO: Fetch Oracle Routing information based on {Type}. \n<color #FF0000><b>Error code:</b> 200x</color>
-    activate ALS_TYPE_ENDPOINT_CONFIG_DAO
+        '********************* Fetch Oracle Routing Config - START ************************
+        group #99cef7 REFERENCE: Get Oracle Routing Config Sequence
 
-    hnote over ALS_TYPE_ENDPOINT_CONFIG_DAO #lightyellow
-    if {CURRENCY} provided:
-        SELECT oe.value FROM account_lookup.oracleEndpoint as oe
-        inner join account_lookup.currency as cu on oe.currencyId =  cu.currencyId
-        inner join account_lookup.endpointType as et on oe.endpointTypeId = et.endpointTypeId
-        inner join account_lookup.partyIdType as pt on oe.partyIdTypeId = pt.partyIdTypeId
-        where cu.currencyId = '{CURRENCY}'
-        and pt.name = '{TYPE}'
-        and pt.isActive = true
-        and oe.isActive = true;
-     else
-        SELECT oe.value FROM account_lookup.oracleEndpoint as oe
-        inner join account_lookup.endpointType as et on oe.endpointTypeId = et.endpointTypeId
-        inner join account_lookup.partyIdType as pt on oe.partyIdTypeId = pt.partyIdTypeId
-        where pt.name = '{TYPE}'
-        and pt.isActive = true
-        and oe.isActive = true
-        and oe.isDefault = true;
-     end if
-    end note
+            activate ALS_PARTICIPANT_HANDLER
 
-    ALS_TYPE_ENDPOINT_CONFIG_DAO -> ALS_DB: SQL Select for Oracle End-point. \n<color #FF0000><b>Error code:</b> 200x</color> *****TBU*****
+            ALS_PARTICIPANT_HANDLER -> ALS_TYPE_ENDPOINT_CONFIG_DAO: Fetch Oracle Routing information based on {TYPE}. \n<color #FF0000><b>Error code:</b> 200x</color>
+            activate ALS_TYPE_ENDPOINT_CONFIG_DAO
 
-    activate ALS_DB
+            hnote over ALS_TYPE_ENDPOINT_CONFIG_DAO #lightyellow
+                <b>if lookup for Oracle based on {CURRENCY} if and only if {CURRENCY} is provided</b>
+                    SELECT oe.value FROM account_lookup.oracleEndpoint as oe
+                    inner join account_lookup.currency as cu on oe.currencyId =  cu.currencyId
+                    inner join account_lookup.endpointType as et on oe.endpointTypeId = et.endpointTypeId
+                    inner join account_lookup.partyIdType as pt on oe.partyIdTypeId = pt.partyIdTypeId
+                    where cu.currencyId = '{CURRENCY}'
+                    and pt.name = '{TYPE}'
+                    and pt.isActive = true
+                    and oe.isActive = true;
+                <b>else lookup default Oracle if no {CURRENCY} is provided:</b>
+                    SELECT oe.value FROM account_lookup.oracleEndpoint as oe
+                    inner join account_lookup.endpointType as et on oe.endpointTypeId = et.endpointTypeId
+                    inner join account_lookup.partyIdType as pt on oe.partyIdTypeId = pt.partyIdTypeId
+                    where pt.name = '{TYPE}'
+                    and pt.isActive = true
+                    and oe.isActive = true
+                    and oe.isDefault = true;
+                <b>end if</b>
+            end note
 
-    hnote over ALS_DB #lightyellow
-            oracleEndpoint
-            endpointType
-            partyIdType
-            currency
-    end note
-    ALS_DB -> ALS_TYPE_ENDPOINT_CONFIG_DAO: return oracleEndpoint result set
-    deactivate ALS_DB
+            ALS_TYPE_ENDPOINT_CONFIG_DAO -> ALS_DB: SQL Select for oracleEndpoint. \n<color #FF0000><b>Error code:</b> 200x</color>
 
-    ALS_TYPE_ENDPOINT_CONFIG_DAO -> ALS_PARTICIPANT_HANDLER: List of End-points for the Participant
-    deactivate ALS_TYPE_ENDPOINT_CONFIG_DAO
+            activate ALS_DB
 
-    '********************* Fetch Oracle Routing Information - END ************************
+            hnote over ALS_DB #lightyellow
+                    oracleEndpoint
+                    endpointType
+                    partyIdType
+                    currency
+            end note
+            ALS_DB -> ALS_TYPE_ENDPOINT_CONFIG_DAO: return oracleEndpoint result set.
 
-    alt {CURRENCY} not Provided OR no matching currency found in list of End-points
-        alt {CURRENCY} not Provided OR no matching currency found in list of End-points
-            ALS_PARTICIPANT_HANDLER -> ALS_PARTICIPANT_HANDLER: Select default End-point matching {Type}
-        end alt
+            deactivate ALS_DB
+
+            ALS_TYPE_ENDPOINT_CONFIG_DAO -> ALS_PARTICIPANT_HANDLER: List of oracleEndpoint for the Participant
+            deactivate ALS_TYPE_ENDPOINT_CONFIG_DAO
+
+            ALS_PARTICIPANT_HANDLER -> ALS_PARTICIPANT_HANDLER: Throw <color #FF0000><b>Error code:</b> 3200</color> if list of oracleEndpoint results is empty.
+
+        end group
+        '********************* Fetch Oracle Routing Information - END ************************
 
         '********************* Request Participant Information from Oracle - START ************************
+        group #599dd1 REFERENCE: Request Participant Information from Oracle Sequence
 
-        ALS_PARTICIPANT_HANDLER -> ALS_PARTICIPANT_ORACLE_DAO: Request to get participant's FSP details \nGET - /participants/{Type}/{ID}?currency={CURRENCY}. \n<color #FF0000><b>Error code:</b> 200x, 310x, 320x</color>
-        activate ALS_PARTICIPANT_ORACLE_DAO
-        ALS_PARTICIPANT_ORACLE_DAO -> ORACLE_API: Request to get participant's FSP details \nGET - /participants/{Type}/{ID}?currency={CURRENCY}. \n<color #388724><b>Response code:</b> 200</color> \n<color #FF0000><b>Error code:</b> 200x, 310x, 320x</color>
-        activate ORACLE_API
+            ALS_PARTICIPANT_HANDLER -> ALS_PARTICIPANT_ORACLE_DAO: Request to get participant's FSP details \nGET - /participants/{TYPE}/{ID}?currency={CURRENCY}. \n<color #FF0000><b>Error code:</b> 200x, 310x, 320x</color>
+            activate ALS_PARTICIPANT_ORACLE_DAO
+            ALS_PARTICIPANT_ORACLE_DAO -> ORACLE_API: Request to get participant's FSP details \nGET - /participants/{TYPE}/{ID}?currency={CURRENCY}. \n<color #388724><b>Response code:</b> 200</color> \n<color #FF0000><b>Error code:</b> 200x, 310x, 320x</color>
+            activate ORACLE_API
 
-        ORACLE_API -> ORACLE_STORE: Resolve participant's FSP details
-        activate ORACLE_STORE
-        ORACLE_STORE -> ORACLE_API: Return participant's FSP details
-        deactivate ORACLE_STORE
+            ORACLE_API -> ALS_PARTICIPANT_ORACLE_DAO: Return list of Participant information.
+            deactivate ORACLE_API
 
-        ORACLE_API -> ALS_PARTICIPANT_ORACLE_DAO: Return list of Participant information.
-        deactivate ORACLE_API
+            ALS_PARTICIPANT_ORACLE_DAO -> ALS_PARTICIPANT_HANDLER: Return list of Participant information.
+            deactivate ALS_PARTICIPANT_ORACLE_DAO
 
-        ALS_PARTICIPANT_ORACLE_DAO -> ALS_PARTICIPANT_HANDLER: Return list of Participant information.
-        deactivate ALS_PARTICIPANT_ORACLE_DAO
+            '********************* Request Participant Information from Oracle - END ************************
 
-        '********************* Request Participant Information from Oracle - END ************************
+        end group
 
-        '********************* Get PayerFSP Participant Information - START ************************
+        '********************* Get Switch Config Information - START ************************
+        group #73a2c6 REFERENCE: Get Switch Routing Config Sequence
+
+            ALS_PARTICIPANT_HANDLER -> ALS_TYPE_ENDPOINT_CONFIG_DAO: Fetch Switch Routing information. \n<color #FF0000><b>Error code:</b> 200x</color>
+
+            hnote over ALS_TYPE_ENDPOINT_CONFIG_DAO #lightyellow
+                <b>if lookup for Switch based on {CURRENCY} if and only if {CURRENCY} is provided</b>
+                   ****** TBC ******
+                <b>else lookup default Switch if no {CURRENCY} is provided:</b>
+                   ****** TBC ******
+                <b>end if</b>
+            end note
+
+            ALS_TYPE_ENDPOINT_CONFIG_DAO -> ALS_DB: SQL Select for switchEndpoint. \n<color #FF0000><b>Error code:</b> 200x</color>
+
+            activate ALS_DB
+
+            hnote over ALS_DB #lightyellow
+                    ****** TBC ******
+                    switchEndpoint
+                    endpointType
+                    currency
+            end note
+            ALS_DB -> ALS_TYPE_ENDPOINT_CONFIG_DAO: return switchEndpoint result set.
+
+            deactivate ALS_DB
+
+            ALS_TYPE_ENDPOINT_CONFIG_DAO -> ALS_PARTICIPANT_HANDLER: Return switchEndpoint results
+
+            ALS_PARTICIPANT_HANDLER -> ALS_PARTICIPANT_HANDLER: Throw <color #FF0000><b>Error code:</b> 2000</color> if list of switchEndpoint results is empty.
+
+        end group
+        '********************* Get Switch Config Information - END ************************
+
+        '********************* Get PayerFSP Callback End-points - START ************************
 
         ALS_PARTICIPANT_HANDLER -> ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO: Retrieve the PayerFSP Participant Callback End-point. \n<color #FF0000><b>Error code:</b> 200x, 310x, 320x</color>
         activate ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO
@@ -158,35 +188,41 @@ group Get Participant's FSP Details
         ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO -> ALS_PARTICIPANT_HANDLER: List of PayerFSP Participant Callback End-points
         deactivate ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO
 
-        ALS_PARTICIPANT_HANDLER -> ALS_PARTICIPANT_HANDLER: Match PayerFSP Participant Callback End-points for `FSPIOP_CALLBACK_URL_PARTICIPANT_GET_PUT`
+        ALS_PARTICIPANT_HANDLER -> ALS_PARTICIPANT_HANDLER: Match PayerFSP Participant Callback End-points for `FSPIOP_CALLBACK_URL_PARTICIPANT_PUT`
 
         '********************* Get PayerFSP Participant Information - END ************************
 
         ALS_PARTICIPANT_HANDLER -> ALS_API: Return list of Participant information.
 
         activate ALS_API
-        ALS_API --> PAYER_FSP: Callback: PUT - /participants/{Type}/{ID}?currency={CURRENCY}
+        ALS_API --> PAYER_FSP: Callback: PUT - /participants/{TYPE}/{ID}?currency={CURRENCY}
         deactivate ALS_API
 
     else Empty list of End-Points returned or Error occurred
 
-            ALS_PARTICIPANT_HANDLER -> ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO: Retrieve the Participant Callback End-point. \n<color #FF0000><b>Error code:</b> 200x, 310x, 320x</color>
-            activate ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO
-            ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO -> CENTRALSERVICE_API: Retrieve the Participant Callback End-point - GET /participants/{FSPIOP-Source}/endpoints. \n<color #388724><b>Response code:</b> 200</color> \n<color #FF0000><b>Error code:</b> 200x, 310x, 320x</color>
-            activate CENTRALSERVICE_API
-            CENTRALSERVICE_API -> ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO: List of Participant Callback End-points
-            deactivate CENTRALSERVICE_API
-            ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO -> ALS_PARTICIPANT_HANDLER: List of Participant Callback End-points
-            deactivate ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO
+        ALS_PARTICIPANT_HANDLER -> ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO: Retrieve the Participant Callback End-point. \n<color #FF0000><b>Error code:</b> 200x, 310x, 320x</color>
+        activate ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO
+        ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO -> CENTRALSERVICE_API: Retrieve the Participant Callback End-point - GET /participants/{FSPIOP-Source}/endpoints. \n<color #388724><b>Response code:</b> 200</color> \n<color #FF0000><b>Error code:</b> 200x, 310x, 320x</color>
+        activate CENTRALSERVICE_API
+        CENTRALSERVICE_API -> ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO: List of Participant Callback End-points
+        deactivate CENTRALSERVICE_API
+        ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO -> ALS_PARTICIPANT_HANDLER: List of Participant Callback End-points
+        deactivate ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO
 
-            ALS_PARTICIPANT_HANDLER -> ALS_PARTICIPANT_HANDLER: Match Participant Callback End-points for `FSPIOP_CALLBACK_URL_PARTICIPANT_GET_PUT_ERROR`
+        ALS_PARTICIPANT_HANDLER -> ALS_PARTICIPANT_HANDLER: Match Participant Callback End-points for `FSPIOP_CALLBACK_URL_PARTICIPANT_PUT_ERROR`
 
         ALS_PARTICIPANT_HANDLER -> ALS_API: Return \n<color #FF0000><b>Error code:</b> 200x, 310x, 320x</color>
         activate ALS_API
-        ALS_API --> PAYER_FSP: Callback: PUT - /participants/{Type}/{ID}/error
+        ALS_API --> PAYER_FSP: Callback: PUT - /participants/{TYPE}/{ID}/error
         deactivate ALS_API
+    else Empty list of switchEndpoint results returned
+        ALS_PARTICIPANT_HANDLER -> ALS_PARTICIPANT_HANDLER: Handle error\n<color #FF0000><b>Error code:</b> 200x</color>
+        hnote right ALS_PARTICIPANT_HANDLER #red
+            Error Handling Framework
+        end note
     end alt
 
     deactivate ALS_PARTICIPANT_HANDLER
+
 end
 @enduml

@@ -37,19 +37,16 @@ autonumber
 actor "Payer FSP" as PAYER_FSP
 boundary "Account Lookup Service" as ALS_API
 control "ALS Participant Handler" as ALS_PARTICIPANT_HANDLER
-entity "ALS Type Config DAO" as ALS_TYPE_ENDPOINT_CONFIG_DAO
 entity "ALS CentralService Endpoint DAO" as ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO
 entity "ALS CentralService Participant DAO" as ALS_CENTRALSERVICE_PARTICIPANT_DAO
 entity "ALS Participant Oracle DAO" as ALS_PARTICIPANT_ORACLE_DAO
 database "ALS Database" as ALS_DB
 boundary "Oracle Service API" as ORACLE_API
-boundary "Oracle Registry Store" as ORACLE_STORE
 boundary "Central Service API" as CENTRALSERVICE_API
 
 box "Account Lookup Service" #LightYellow
 participant ALS_API
 participant ALS_PARTICIPANT_HANDLER
-participant ALS_TYPE_ENDPOINT_CONFIG_DAO
 participant ALS_PARTICIPANT_ORACLE_DAO
 participant ALS_DB
 participant ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO
@@ -64,19 +61,44 @@ box "ALS Oracle Service/Adapter" #LightBlue
 participant ORACLE_API
 end box
 
-box "Internal/External Oracle Data Store/Service" #LightGrey
-participant ORACLE_STORE
-end box
-
 ' START OF FLOW
 
 group Post Participant's FSP Details
-    PAYER_FSP --> ALS_API: Request to add participant's FSP details POST - /participants. \n<color #388724><b>Response code:</b> 202</color> \n<color #FF0000><b>Error code:</b> 200x, 300x, 310x, 320x</color>
-    hnote over ALS_API #lightyellow
-            "POST /participant" operation only supports requests which contain:
-            - All Participant's FSPs match the FSPIOP-Source
-            - All Participant's TYPEs are the same
+    note right of PAYER_FSP #yellow
+        Headers - postParticipantsHeaders: {
+            Content-Length: <Content-Length>,
+            Content-Type: <Content-Type>,
+            Date: <Date>,
+            X-Forwarded-For: <X-Forwarded-For>,
+            FSPIOP-Source: <FSPIOP-Source>,
+            FSPIOP-Destination: <FSPIOP-Destination>,
+            FSPIOP-Encryption: <FSPIOP-Encryption>,
+            FSPIOP-Signature: <FSPIOP-Signature>,
+            FSPIOP-URI: <FSPIOP-URI>,
+            FSPIOP-HTTP-Method: <FSPIOP-HTTP-Method>
+        }
+
+        Payload - postParticipantsMessage:
+        {
+          "requestId": "string",
+          "partyList": [
+            {
+              "partyIdType": "string",
+              "partyIdentifier": "string",
+              "partySubIdOrType": "string",
+              "fspId": "string"
+            }
+          ],
+          "currency": "string"
+        }
     end note
+    PAYER_FSP --> ALS_API: Request to add participant's FSP details POST - /participants. \n<color #388724><b>Response code:</b> 202</color> \n<color #FF0000><b>Error code:</b> 200x, 300x, 310x, 320x</color>
+'    hnote over ALS_API #lightyellow
+'            "POST /participant" operation only supports requests which contain:
+'            - All Participant's FSPs match the FSPIOP-Source
+'            - All Participant's TYPEs are the same
+'            - All Participant's will be of the same Currency
+'    end note
     activate ALS_API
     ALS_API -> ALS_API: Validate request against Mojaloop Interface Specification. \n<color #FF0000><b>Error code:</b> 300x, 310x</color>
 
@@ -119,50 +141,18 @@ group Post Participant's FSP Details
 
         '********************* Fetch Oracle Routing Information - START ************************
 
-        ALS_PARTICIPANT_HANDLER -> ALS_TYPE_ENDPOINT_CONFIG_DAO: Fetch Oracle Routing information based on {TYPE}. \n<color #FF0000><b>Error code:</b> 200x</color>
-        activate ALS_TYPE_ENDPOINT_CONFIG_DAO
+        '********************* Retrieve Switch Routing Information - START ************************
 
-        hnote over ALS_TYPE_ENDPOINT_CONFIG_DAO #lightyellow
-            if {CURRENCY} provided:
-                SELECT oe.value FROM account_lookup.oracleEndpoint as oe
-                inner join account_lookup.currency as cu on oe.currencyId =  cu.currencyId
-                inner join account_lookup.endpointType as et on oe.endpointTypeId = et.endpointTypeId
-                inner join account_lookup.partyIdType as pt on oe.partyIdTypeId = pt.partyIdTypeId
-                where cu.currencyId = '{CURRENCY}'
-                and pt.name = '{TYPE}'
-                and pt.isActive = true
-                and oe.isActive = true;
-             else
-                SELECT oe.value FROM account_lookup.oracleEndpoint as oe
-                inner join account_lookup.endpointType as et on oe.endpointTypeId = et.endpointTypeId
-                inner join account_lookup.partyIdType as pt on oe.partyIdTypeId = pt.partyIdTypeId
-                where pt.name = '{TYPE}'
-                and pt.isActive = true
-                and oe.isActive = true
-                and oe.isDefault = true;
-             end if
-        end note
+        ALS_PARTICIPANT_HANDLER <-> ALS_DB: Get Switch Routing Config
+        ref over ALS_PARTICIPANT_HANDLER
+            GET Participants - <b>Get Switch Routing Config Sequence</b>
+        end ref
 
-        ALS_TYPE_ENDPOINT_CONFIG_DAO -> ALS_DB: SQL Select for Oracle End-point. \n<color #FF0000><b>Error code:</b> 200x</color>
-
-        activate ALS_DB
-            hnote over ALS_DB #lightyellow
-                    oracleEndpoint
-                    oracleType
-                    endpointType
-            end note
-        ALS_DB -> ALS_TYPE_ENDPOINT_CONFIG_DAO: return oracleEndpoint result set
-        deactivate ALS_DB
-
-        ALS_TYPE_ENDPOINT_CONFIG_DAO -> ALS_PARTICIPANT_HANDLER: List of End-points for the Participant
-        deactivate ALS_TYPE_ENDPOINT_CONFIG_DAO
-
+        '********************* Retrieve Switch Routing Information - END ************************
+        |||
         '********************* Fetch Oracle Routing Information - END ************************
 
         alt {CURRENCY} not Provided OR no matching currency found in list of End-points
-            alt {CURRENCY} not Provided OR no matching currency found in list of End-points
-                ALS_PARTICIPANT_HANDLER -> ALS_PARTICIPANT_HANDLER: Select default End-point matching {TYPE}
-            end alt
 
             '********************* Create Participant Information - START ************************
 
@@ -170,11 +160,6 @@ group Post Participant's FSP Details
             activate ALS_PARTICIPANT_ORACLE_DAO
             ALS_PARTICIPANT_ORACLE_DAO -> ORACLE_API: Create participant's FSP details POST - /participants. \n<color #388724><b>Response code:</b> 204</color> \n<color #FF0000><b>Error code:</b> 200x, 310x, 320x</color>
             activate ORACLE_API
-
-            ORACLE_API -> ORACLE_STORE: Resolve participant's FSP details
-            activate ORACLE_STORE
-            ORACLE_STORE -> ORACLE_API: Return participant's FSP details
-            deactivate ORACLE_STORE
 
             ORACLE_API -> ALS_PARTICIPANT_ORACLE_DAO: Return result of Participant Create request.
             deactivate ORACLE_API
