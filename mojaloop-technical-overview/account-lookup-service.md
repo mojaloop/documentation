@@ -65,7 +65,7 @@ This component (or back-end systems) will also be responsible for the persistenc
 ### 4.1 ALS Database Schema
 
 #### Notes
-- `partIdType` - Values are currently seeded as per section _`7.5.6`_ [Mojaloop {{ book.importedVars.mojaloop.spec.version }} Specification]({{ book.importedVars.mojaloop.spec.uri.doc }}).
+- `partyIdType` - Values are currently seeded as per section _`7.5.6`_ [Mojaloop {{ book.importedVars.mojaloop.spec.version }} Specification]({{ book.importedVars.mojaloop.spec.uri.doc }}).
 - `currency` - See section `7.5.5` of the Mojaloop Specification. Currency code defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic string. This will be optional, and must provide a "default" config if no Currency is either provided or provide a default if the Currency is provided, but only the "default" End-point config exists.
 - `endPointType` - Type identifier for the end-point (e.g. `URL`) which provides flexibility for future transport support.
 - `migration*` - Meta-data tables used by Knex Framework engine.
@@ -75,6 +75,10 @@ This component (or back-end systems) will also be responsible for the persistenc
 * [Acount Lookup Service DBeaver ERD](../assets/Diagrams/EntityRelationshipDiagrams/AccountLookupDB-schema-DBeaver.erd)
 * [Acount Lookup Service MySQL Workbench Export](../assets/Diagrams/EntityRelationshipDiagrams/AccountLookup-ddl-MySQLWorkbench.sql)
 
-### 4.2 Oracle Database Schema
+## 5 ALS Oracle Design
 
-This is optional & is dependant on the Oracle's requirements & design.
+Detail design for the Oracle is out of scope for this document. The Oracle design and implementation is specific to each Oracle's requirements.
+
+### 5.1 API Specification
+
+Refer to **ALS Oracle API Specification** in the [API Specifications](../api#als-oracle-api) section.
