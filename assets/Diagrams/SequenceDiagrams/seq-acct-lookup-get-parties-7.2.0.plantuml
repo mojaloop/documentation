@@ -35,15 +35,20 @@ autonumber
 
 ' declare actors
 actor "Payer FSP" as PAYER_FSP
+actor "Payee FSP" as PAYEE_FSP
 boundary "Account Lookup Service" as ALS_API
 control "ALS Participant Handler" as ALS_PARTICIPANT_HANDLER
 entity "ALS CentralService Endpoint DAO" as ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO
 entity "ALS CentralService Participant DAO" as ALS_CENTRALSERVICE_PARTICIPANT_DAO
-entity "ALS Participant Oracle DAO" as ALS_PARTICIPANT_ORACLE_DAO
+'entity "ALS Participant Oracle DAO" as ALS_PARTICIPANT_ORACLE_DAO
 entity "ALS Parties FSP DAO" as ALS_PARTIES_FSP_DAO
 database "ALS Database" as ALS_DB
 boundary "Oracle Service API" as ORACLE_API
 boundary "Central Service API" as CENTRALSERVICE_API
+
+box "Financial Service Provider" #LightGrey
+participant PAYER_FSP
+end box
 
 box "Account Lookup Service" #LightYellow
 participant ALS_API
@@ -62,6 +67,10 @@ box "ALS Oracle Service/Adapter" #LightBlue
 participant ORACLE_API
 end box
 
+box "Financial Service Provider" #LightGrey
+participant PAYEE_FSP
+end box
+
 ' START OF FLOW
 
 group Get Party Details
@@ -74,12 +83,22 @@ group Get Party Details
     alt oracleEndpoint match found & parties information retrieved
         activate ALS_PARTICIPANT_HANDLER
 
+        '********************* Retrieve Oracle Routing Information - START ************************
+
+        ALS_PARTICIPANT_HANDLER <-> ALS_DB: Get Oracle Routing Config. \n<color #FF0000><b>Error code:</b> 200x, 310x, 320x</color>
+        ref over ALS_PARTICIPANT_HANDLER
+            GET Participants - <b>Get Oracle Routing Config Sequence</b>
+        end ref
+
+        '********************* Retrieve Oracle Routing Information - END ************************
+        |||
         '********************* Retrieve Switch Routing Information - START ************************
 
-        ALS_PARTICIPANT_HANDLER <-> ALS_DB: Get Switch Routing Config
+        ALS_PARTICIPANT_HANDLER <-> ALS_DB: Get Switch Routing Config. \n<color #FF0000><b>Error code:</b> 200x, 310x, 320x</color>
         ref over ALS_PARTICIPANT_HANDLER
             GET Participants - <b>Get Switch Routing Config Sequence</b>
         end ref
+
 
         '********************* Retrieve Switch Routing Information - END ************************
         |||
@@ -103,18 +122,10 @@ group Get Party Details
 
         '********************* Validate Participant - END ************************
         |||
-        '********************* Retrieve Oracle Routing Information - START ************************
 
-        ALS_PARTICIPANT_HANDLER <-> ALS_DB: Get Oracle Routing Config
-        ref over ALS_PARTICIPANT_HANDLER
-            GET Participants - <b>Get Oracle Routing Config Sequence</b>
-        end ref
-
-        '********************* Retrieve Oracle Routing Information - END ************************
-        |||
         '********************* Request Oracle Participant Information - START ************************
 
-        ALS_PARTICIPANT_HANDLER <-> ORACLE_API: Get Participant Information from
+        ALS_PARTICIPANT_HANDLER <-> ORACLE_API: Get Participant Information for PayeeFSP.  \n<color #FF0000><b>Error code:</b> 200x, 310x, 320x</color>
         ref over ALS_PARTICIPANT_HANDLER
             GET Participants - <b>Request Participant Information from Oracle Sequence</b>
         end ref

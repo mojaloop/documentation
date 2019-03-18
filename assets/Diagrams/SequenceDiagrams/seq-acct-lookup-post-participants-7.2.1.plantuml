@@ -44,6 +44,10 @@ database "ALS Database" as ALS_DB
 boundary "Oracle Service API" as ORACLE_API
 boundary "Central Service API" as CENTRALSERVICE_API
 
+box "Financial Service Provider" #LightGrey
+participant PAYER_FSP
+end box
+
 box "Account Lookup Service" #LightYellow
 participant ALS_API
 participant ALS_PARTICIPANT_HANDLER
@@ -106,41 +110,6 @@ group Post Participant's FSP Details
     deactivate ALS_API
     activate ALS_PARTICIPANT_HANDLER
 
-    '********************* Retrieve Switch Routing Information - START ************************
-
-    ALS_PARTICIPANT_HANDLER <-> ALS_DB: Get Switch Routing Config
-    ref over ALS_PARTICIPANT_HANDLER
-        GET Participants - <b>Get Switch Routing Config Sequence</b>
-    end ref
-
-    '********************* Retrieve Switch Routing Information - END ************************
-    |||
-
-    '********************* Validate Participant - START ************************
-    group Validate Participant
-        loop for Participant in ParticipantLis
-
-            ALS_PARTICIPANT_HANDLER -> ALS_PARTICIPANT_HANDLER: Validate that Participant == FSPIOP-Source. \n<color #FF0000><b>Error code:</b> 3100</color>
-            ALS_PARTICIPANT_HANDLER -> ALS_PARTICIPANT_HANDLER: Validate all {TYPES} are the same. \n<color #FF0000><b>Error code:</b> 3100</color>
-
-        end loop
-
-        ALS_PARTICIPANT_HANDLER -> ALS_CENTRALSERVICE_PARTICIPANT_DAO: Request participant information for {TYPE}. \n<color #FF0000><b>Error code:</b> 200x</color>
-        activate ALS_CENTRALSERVICE_PARTICIPANT_DAO
-
-        ALS_CENTRALSERVICE_PARTICIPANT_DAO -> CENTRALSERVICE_API: GET - /participants/{PARTICIPANT.fspId}. \n<color #388724><b>Response code:</b> 200</color> \n<color #FF0000><b>Error code:</b> 200x, 310x, 320x</color>
-        activate CENTRALSERVICE_API
-        CENTRALSERVICE_API -> ALS_CENTRALSERVICE_PARTICIPANT_DAO: Return participant information
-        deactivate CENTRALSERVICE_API
-
-        ALS_CENTRALSERVICE_PARTICIPANT_DAO -> ALS_PARTICIPANT_HANDLER: Return participant information
-
-        deactivate ALS_CENTRALSERVICE_PARTICIPANT_DAO
-
-        ALS_PARTICIPANT_HANDLER -> ALS_PARTICIPANT_HANDLER: Validate participant. \n<color #FF0000><b>Error code:</b> 320x</color>
-    end group
-    '********************* Validate Participant - END ************************
-
     '********************* Sort into Participant buckets based on {TYPE} - START ************************
     ALS_PARTICIPANT_HANDLER -> ALS_PARTICIPANT_HANDLER: Group Participant lists into a Map based on {TYPE}.
 
@@ -152,7 +121,7 @@ group Post Participant's FSP Details
 
         '********************* Retrieve Oracle Routing Information - START ************************
 
-        ALS_PARTICIPANT_HANDLER <-> ALS_DB: Get Oracle Routing Config
+        ALS_PARTICIPANT_HANDLER <-> ALS_DB: Get Oracle Routing Config. \n<color #FF0000><b>Error code:</b> 300x, 310x</color>
         ref over ALS_PARTICIPANT_HANDLER
             GET Participants - <b>Get Oracle Routing Config Sequence</b>
         end ref
@@ -162,6 +131,41 @@ group Post Participant's FSP Details
         |||
 
         '********************* Fetch Oracle Routing Information - END ************************
+
+        '********************* Retrieve Switch Routing Information - START ************************
+
+        ALS_PARTICIPANT_HANDLER <-> ALS_DB: Get Switch Routing Config. \n<color #FF0000><b>Error code:</b> 300x, 310x</color>
+        ref over ALS_PARTICIPANT_HANDLER
+            GET Participants - <b>Get Switch Routing Config Sequence</b>
+        end ref
+
+        '********************* Retrieve Switch Routing Information - END ************************
+        |||
+
+        '********************* Validate Participant - START ************************
+        group Validate Participant
+            loop for Participant in ParticipantLis
+
+                ALS_PARTICIPANT_HANDLER -> ALS_PARTICIPANT_HANDLER: Validate that Participant == FSPIOP-Source. \n<color #FF0000><b>Error code:</b> 3100</color>
+                ALS_PARTICIPANT_HANDLER -> ALS_PARTICIPANT_HANDLER: Validate all {TYPES} are the same. \n<color #FF0000><b>Error code:</b> 3100</color>
+
+            end loop
+
+            ALS_PARTICIPANT_HANDLER -> ALS_CENTRALSERVICE_PARTICIPANT_DAO: Request participant information for {TYPE}. \n<color #FF0000><b>Error code:</b> 200x</color>
+            activate ALS_CENTRALSERVICE_PARTICIPANT_DAO
+
+            ALS_CENTRALSERVICE_PARTICIPANT_DAO -> CENTRALSERVICE_API: GET - /participants/{PARTICIPANT.fspId}. \n<color #388724><b>Response code:</b> 200</color> \n<color #FF0000><b>Error code:</b> 200x, 310x, 320x</color>
+            activate CENTRALSERVICE_API
+            CENTRALSERVICE_API -> ALS_CENTRALSERVICE_PARTICIPANT_DAO: Return participant information
+            deactivate CENTRALSERVICE_API
+
+            ALS_CENTRALSERVICE_PARTICIPANT_DAO -> ALS_PARTICIPANT_HANDLER: Return participant information
+
+            deactivate ALS_CENTRALSERVICE_PARTICIPANT_DAO
+
+            ALS_PARTICIPANT_HANDLER -> ALS_PARTICIPANT_HANDLER: Validate participant. \n<color #FF0000><b>Error code:</b> 320x</color>
+        end group
+        '********************* Validate Participant - END ************************
 
         alt {CURRENCY} not Provided OR no matching currency found in list of End-points
 
