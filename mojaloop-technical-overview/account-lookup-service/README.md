@@ -64,6 +64,7 @@ This component (or back-end systems) will also be responsible for the persistenc
 - `currency` - See section `7.5.5` of the Mojaloop Specification. Currency code defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic string. This will be optional, and must provide a "default" config if no Currency is either provided or provide a default if the Currency is provided, but only the "default" End-point config exists.
 - `endPointType` - Type identifier for the end-point (e.g. `URL`) which provides flexibility for future transport support.
 - `migration*` - Meta-data tables used by Knex Framework engine.
+- A `centralSwitchEndpoint` must be associated to the `OracleEndpoint` by the Admin API upon insertion of a new `OracleEndpoint` record. If the `centralSwitchEndpoint` is not provided as part of the API Request, then it must be defaulted. 
 
 ![Acount Lookup Service ERD](../../assets/Diagrams/EntityRelationshipDiagrams/AccountLookupService-schema.png)
 
