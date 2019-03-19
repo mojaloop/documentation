@@ -32,6 +32,8 @@ This component (or back-end systems) will also be responsible for the persistenc
 ### 2.1 Architecture overview
 ![Architecture Flow Account-Lookup for Participants](./assets/diagrams/architecture/arch-flow-account-lookup-participants.svg)
 
+_Note: The Participant Lookup use-case similarly applies to for a Payee Initiated use-case such as transactionRequests. The difference being that the Payee is the initiation in the above diagram._
+
 ### 2.2 Sequence diagram
 
 #### 2.2.1 GET Participant
