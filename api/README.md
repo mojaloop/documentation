@@ -9,7 +9,7 @@ Documentation: [Mojaloop Specification]({{ book.importedVars.mojaloop.spec.uri.d
 
 ## ALS Oracle API
 
-Documentation: [ALS Design](../mojaloop-technical-overview/account-lookup-service.md)
+Documentation: [ALS Design](../mojaloop-technical-overview/account-lookup-service/README.md)
 
 * [ALS Oracle API {{ book.importedVars.als.oracle.spec.version }} Specification](./mojaloop-api-specification.md)
 * [Swagger]( {{ book.importedVars.als.oracle.spec.uri.api }} )
