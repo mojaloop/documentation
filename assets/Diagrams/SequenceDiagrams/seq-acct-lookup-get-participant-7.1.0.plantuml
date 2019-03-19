@@ -88,21 +88,25 @@ group Get Participant's FSP Details
 
             hnote over ALS_TYPE_ENDPOINT_CONFIG_DAO #lightyellow
                 <b>if lookup for Oracle based on {CURRENCY} if and only if {CURRENCY} is provided</b>
-                    SELECT oe.value, oe.centralSwitchEndpointId FROM account_lookup.oracleEndpoint as oe
+                    SELECT oe.value, oe.centralSwitchEndpointId, et.type as endpointType FROM account_lookup.oracleEndpoint as oe
                     inner join account_lookup.currency as cu on oe.currencyId =  cu.currencyId
                     inner join account_lookup.endpointType as et on oe.endpointTypeId = et.endpointTypeId
                     inner join account_lookup.partyIdType as pt on oe.partyIdTypeId = pt.partyIdTypeId
+                    inner join account_lookup.centralSwitchEndpoint as cs on oe.centralSwitchEndpointId = cs.centralSwitchEndpointId
                     where cu.currencyId = '{CURRENCY}'
                     and pt.name = '{TYPE}'
                     and pt.isActive = true
-                    and oe.isActive = true;
+                    and oe.isActive = true
+                    and cs.isActive = true;
                 <b>else lookup default Oracle if no {CURRENCY} is provided:</b>
-                    SELECT oe.value, oe.centralSwitchEndpointId FROM account_lookup.oracleEndpoint as oe
+                    SELECT oe.value, oe.centralSwitchEndpointId, et.type as endpointType FROM account_lookup.oracleEndpoint as oe
                     inner join account_lookup.endpointType as et on oe.endpointTypeId = et.endpointTypeId
                     inner join account_lookup.partyIdType as pt on oe.partyIdTypeId = pt.partyIdTypeId
+                    inner join account_lookup.centralSwitchEndpoint as cs on oe.centralSwitchEndpointId = cs.centralSwitchEndpointId
                     where pt.name = '{TYPE}'
                     and pt.isActive = true
                     and oe.isActive = true
+                    and cs.isActive = true
                     and oe.isDefault = true;
                 <b>end if</b>
             end note
@@ -155,7 +159,8 @@ group Get Participant's FSP Details
                 ALS_PARTICIPANT_HANDLER -> ALS_TYPE_ENDPOINT_CONFIG_DAO: Fetch Switch Routing information. \n<color #FF0000><b>Error code:</b> 200x</color>
 
                 hnote over ALS_TYPE_ENDPOINT_CONFIG_DAO #lightyellow
-                    select cs.value from account_lookup.centralSwitchEndpoint as cs
+                    select cs.value, et.type as endpointType from account_lookup.centralSwitchEndpoint as cs
+                    inner join account_lookup.endpointType as et on cs.endpointTypeId = et.endpointTypeId
                     where centralSwitchEndpointId = {centralSwitchEndpointId from 'REFERENCE: Get Oracle Routing Config Sequence'};
                 end note
 
@@ -164,7 +169,6 @@ group Get Participant's FSP Details
                 activate ALS_DB
 
                 hnote over ALS_DB #lightyellow
-                        ****** TBC ******
                         centralSwitchEndpoint
                         endpointType
                 end note
