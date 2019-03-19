@@ -57,7 +57,7 @@ This provides environment resource recommendations with a view of the infrastruc
 
   \*Note that this would also depend on your underlying infrastructure, and it does NOT include requirements for persistent volumes/storage.
 
-![Mojaloop Deployment Recommendations - Infrastructure Architecture](../../assets/Diagrams/Kubernetes/KubeInfrastructureArch.svg)
+![Mojaloop Deployment Recommendations - Infrastructure Architecture](./assets/diagrams/deployment/KubeInfrastructureArch.svg)
 
 #### 1.2 Local Deployment and Testing Tools
 
@@ -234,7 +234,7 @@ To install Kubernetes with Docker, follow the steps below;
     * Increase the CPU allocation to at least 4
     * Increase the Memory allocation to at least 8.0 GiB
 
-![Kubernetes Install with Docker 1](../../assets/Diagrams/Kubernetes/kubernetesinstallwithdocker-1.png)
+![Kubernetes Install with Docker 1](./assets/diagrams/deployment/KubernetesInstallWithDocker-1.png)
 
 * Go to **Kubernetes**
   * Select **Enable Kubernetes** tick box
@@ -243,7 +243,7 @@ To install Kubernetes with Docker, follow the steps below;
   * Click **Install** on the confirmation tab. 
   * The option is available to wait for completion or run as a background task.
 
-![Kubernetes Install with Docker 2](../../assets/Diagrams/Kubernetes/kubernetesinstallwithdocker-2.png)
+![Kubernetes Install with Docker 2](./assets/diagrams/deployment/KubernetesInstallWithDocker-2.png)
 
 #### 2.1.2 Kubernetes environment setup:
 
@@ -311,7 +311,7 @@ or
 
    The **{kubernetes-dashboard-token-btbwf}** is retrieved from the output in the previous step. For more information on generating the token, follow the **Authentication** link in the window.
 
-![kubernetes-dashboard](../../assets/Diagrams/Kubernetes/kubernetesdashboard.png)
+![kubernetes-dashboard](./assets/diagrams/deployment/kubernetesDashboard.png)
 
 **Ubuntu** continue from here
 

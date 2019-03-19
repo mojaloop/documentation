@@ -11,12 +11,12 @@ The purpose of this document is to provide;
 * Helm Chart Repo: [http://mojaloop.io/helm/repo](http://mojaloop.io/helm/repo) 
 * Helm Github: [http://github.com/mojaloop/helm](http://github.com/mojaloop/helm)
 
-![Mojaloop Helm - Chart Overview](../assets/Diagrams/helm/helmchartoverview.png)
+![Mojaloop Helm - Chart Overview](./assets/diagrams/helm/helmchartoverview.png)
 
 ## Helm Hierarchy Relationship
 
-![Mojaloop Helm - Hierarchy Relationship](../assets/Diagrams/helm/HelmHierarchyRelationship.png)
+![Mojaloop Helm - Hierarchy Relationship](./assets/diagrams/helm/HelmHierarchyRelationship.png)
 
 ## Helm Hierarchy of Values
 
-![Mojaloop Helm - Hierarchy of Values](../assets/Diagrams/helm/helmhierarchyvalues.png)
+![Mojaloop Helm - Hierarchy of Values](./assets/diagrams/helm/helmhierarchyvalues.png)

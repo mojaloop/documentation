@@ -4,7 +4,7 @@ There are several components that make up the Mojaloop ecosystem. The Mojaloop H
 
 The following component diagram shows the break-down of the Mojaloop services and its micro-service architecture: 
 
-![Mojaloop Architecture Overview PI5](../assets/Diagrams/ArchitectureDiagrams/Arch-Mojaloop-overview-PI5.svg)
+![Mojaloop Architecture Overview PI5](./assets/diagrams/architecture/arch-mojaloop-overview-pi5.svg)
 
 _Note: Colour-grading indicates the relationship between data-store, and message-streaming / adapter-interconnects. E.g. `Central-Services` utilise `MySQL` as a Data-store, and leverage on `Kafka` for Messaging_
 
