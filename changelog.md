@@ -1,3 +1,11 @@
+# Changelog
 
-# 2019-03-08
-* Updated to use gitbook-cli
+{% changelog %}
+    {% date %}
+    {% message %}
+    {% files %}
+        {% badge %}
+        {% filename link=true %}
+        {% changes truncate=true %}
+    {% endfiles %}
+{% endchangelog %}
