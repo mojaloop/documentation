@@ -20,6 +20,17 @@ This document will provide guidelines to deploy and configure the Mojaloop appli
 
 ## Local Deployment
 
+The tool set to be deployed as part of the deployment process.
+
+|Tool|Required/Optional|Description|Install Info|Tutorials|
+|---|---|---|---|---|
+|Docker|Required|<p>Docker Engine and CLI Client.</p><p>Local Kubernetes single node cluster.</p>|[https://docs.docker.com/install](https://docs.docker.com/install)|[Getting Started with Docker](https://docs.docker.com/get-started/)|
+|Kubectl|Required|<p>Kubernetes CLI for Kubernetes Management.</p><p>Note Docker installs this part of Kubernetes install.</p>|[https://kubernetes.io/doc/tasks/tools/install-kuberctl](https://kubernetes.io/docs/tasks/tools/install-kubectl) <p>Docker Kubernetes Install (as per this guide)</p><p>`brew install kubernetes-cli`</p>|[kubernetes tutorials](https://kubernetes.io/docs/tutorials/)|
+|Kubectx|Optional(useful tool)|<p>Kubernetes CLI for Kubernetes Context Management Helper.</p><p>Note Docker installs this as part of Kubernetes install.</p>|[https://github.com/ahmetb/kubectx](https://github.com/ahmetb/kubectx)</p><p>`brew install kubectx`</p>|https://github.com/ahmetb/kubectx|
+|Kubetail|Optional(useful tool)|<p>Bash script that enables you to aggregate (tail/follow) logs from multiple pods into one stream. This is the same as running `kubectl logs -f` but for multiple pods.</p><p>Example usage `kubetail moja.* -n demo`</p>|https://github.com/johanhaleby/kubetail</td>||
+|Helm|Required|<p>Helm helps you manage Kubernetes applications.</p><p>Helm charts help you define, install and upgrade even the most complex Kubernetes application<./p>|[https://docs.helm.sh/using_helm/#installing-helm](https://docs.helm.sh/using_helm/#installing-helm)</p><p>`brew install kubernetes-helm`</p>|[Helm Documents](https://helm.sh/docs/)|
+|Postman|Required|Postman is a Google Chrome application for the interacting with HTTP API&apos;s. It presents you with a friendly GUI for the construction requests and reading responces.|[https://www.getpostman.com/apps](https://www.getpostman.com/apps)</td>|[Postman Learning Centre](https://learning.getpostman.com/?_ga=2.190121065.394495230.1553087789-183318539.1552904892)|
+
 This section will guide the reader through the deployment process to setup Kubernetes within Docker.
 
 ### 1 Kubernetes
