@@ -79,7 +79,7 @@ group Get Participant's FSP Details
     alt oracleEndpoint match found
 
         '********************* Fetch Oracle Routing Config - START ************************
-        group #99cef7 REFERENCE: Get Oracle Routing Config Sequence [CACHED]
+        group #99cef7 IMPLEMENTATION: Get Oracle Routing Config Sequence [CACHED]
 
             activate ALS_PARTICIPANT_HANDLER
 
@@ -88,25 +88,25 @@ group Get Participant's FSP Details
 
             hnote over ALS_TYPE_ENDPOINT_CONFIG_DAO #lightyellow
                 <b>if lookup for Oracle based on {CURRENCY} if and only if {CURRENCY} is provided</b>
-                    SELECT oe.value, oe.centralSwitchEndpointId, et.type as endpointType FROM account_lookup.oracleEndpoint as oe
+                    SELECT oe.value, oe.switchEndpointId, et.type as endpointType FROM account_lookup.oracleEndpoint as oe
                     inner join account_lookup.currency as cu on oe.currencyId =  cu.currencyId
                     inner join account_lookup.endpointType as et on oe.endpointTypeId = et.endpointTypeId
                     inner join account_lookup.partyIdType as pt on oe.partyIdTypeId = pt.partyIdTypeId
-                    inner join account_lookup.centralSwitchEndpoint as cs on oe.centralSwitchEndpointId = cs.centralSwitchEndpointId
+                    inner join account_lookup.switchEndpoint as sw on oe.switchEndpointId = sw.switchEndpointId
                     where cu.currencyId = '{CURRENCY}'
                     and pt.name = '{TYPE}'
                     and pt.isActive = true
                     and oe.isActive = true
-                    and cs.isActive = true;
+                    and sw.isActive = true;
                 <b>else lookup default Oracle if no {CURRENCY} is provided:</b>
-                    SELECT oe.value, oe.centralSwitchEndpointId, et.type as endpointType FROM account_lookup.oracleEndpoint as oe
+                    SELECT oe.value, oe.switchEndpointId, et.type as endpointType FROM account_lookup.oracleEndpoint as oe
                     inner join account_lookup.endpointType as et on oe.endpointTypeId = et.endpointTypeId
                     inner join account_lookup.partyIdType as pt on oe.partyIdTypeId = pt.partyIdTypeId
-                    inner join account_lookup.centralSwitchEndpoint as cs on oe.centralSwitchEndpointId = cs.centralSwitchEndpointId
+                    inner join account_lookup.switchEndpoint as sw on oe.switchEndpointId = sw.switchEndpointId
                     where pt.name = '{TYPE}'
                     and pt.isActive = true
                     and oe.isActive = true
-                    and cs.isActive = true
+                    and sw.isActive = true
                     and oe.isDefault = true;
                 <b>end if</b>
             end note
@@ -117,7 +117,7 @@ group Get Participant's FSP Details
 
             hnote over ALS_DB #lightyellow
                     oracleEndpoint
-                    centralSwitchEndpoint
+                    switchEndpoint
                     endpointType
                     partyIdType
                     currency
@@ -135,7 +135,7 @@ group Get Participant's FSP Details
         '********************* Fetch Oracle Routing Information - END ************************
 
         '********************* Request Participant Information from Oracle - START ************************
-        group #599dd1 REFERENCE: Request Participant Information from Oracle Sequence
+        group #599dd1 IMPLEMENTATION: Request Participant Information from Oracle Sequence
 
             ALS_PARTICIPANT_HANDLER -> ALS_PARTICIPANT_ORACLE_DAO: Request to get participant's FSP details \nGET - /participants/{TYPE}/{ID}?currency={CURRENCY}. \n<color #FF0000><b>Error code:</b> 200x, 310x, 320x</color>
             activate ALS_PARTICIPANT_ORACLE_DAO
@@ -153,15 +153,15 @@ group Get Participant's FSP Details
         end group
 
         '********************* Get Switch Config Information - START ************************
-        group #73a2c6 REFERENCE: Get Switch Routing Config Sequence [CACHED]
+        group #73a2c6 IMPLEMENTATION: Get Switch Routing Config Sequence [CACHED]
 
-            alt if {centralSwitchEndpointId} has been attained from 'REFERENCE: Get Oracle Routing Config Sequence' or if list of oracleEndpoint results is NOT empty
+            alt if {switchEndpointId} has been attained from 'REFERENCE: Get Oracle Routing Config Sequence' or if list of oracleEndpoint results is NOT empty
                 ALS_PARTICIPANT_HANDLER -> ALS_TYPE_ENDPOINT_CONFIG_DAO: Fetch Switch Routing information. \n<color #FF0000><b>Error code:</b> 200x</color>
 
                 hnote over ALS_TYPE_ENDPOINT_CONFIG_DAO #lightyellow
-                    select cs.value, et.type as endpointType from account_lookup.centralSwitchEndpoint as cs
-                    inner join account_lookup.endpointType as et on cs.endpointTypeId = et.endpointTypeId
-                    where centralSwitchEndpointId = {centralSwitchEndpointId from 'REFERENCE: Get Oracle Routing Config Sequence'};
+                    select sw.value, et.type as endpointType from account_lookup.switchEndpoint as sw
+                    inner join account_lookup.endpointType as et on sw.endpointTypeId = et.endpointTypeId
+                    where switchEndpointId = {switchEndpointId from 'IMPLEMENTATION: Get Oracle Routing Config Sequence'};
                 end note
 
                 ALS_TYPE_ENDPOINT_CONFIG_DAO -> ALS_DB: SQL Select for switchEndpoint. \n<color #FF0000><b>Error code:</b> 200x</color>
@@ -169,7 +169,7 @@ group Get Participant's FSP Details
                 activate ALS_DB
 
                 hnote over ALS_DB #lightyellow
-                        centralSwitchEndpoint
+                        switchEndpoint
                         endpointType
                 end note
                 ALS_DB -> ALS_TYPE_ENDPOINT_CONFIG_DAO: return switchEndpoint result set.
