@@ -28,4 +28,3 @@ Limited to what the consuming teams need that isn't covered by existing unit, co
 ### End to End
 
 End to end tests cover acceptance tests from scenarios.
-

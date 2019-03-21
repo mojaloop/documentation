@@ -10,4 +10,3 @@ The Level One Project Guide outlines a vision of how an inclusive digital financ
 * Meeting or exceeding the convenience, cost and utility of cash
 
 By utilizing an open, digital approach to transactions, and partnering with organizations across the public and private sectors, the Level One Project Guide aims to provide access to a robust, low-cost shared digital financial services infrastructure, sparking innovation from new and existing participants, reducing risk, and generating substantial value for providers, individuals and economies in developing markets. Additional resources have been created to help governments, NGOs and financial service providers successfully implement these changes.
-

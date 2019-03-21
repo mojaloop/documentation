@@ -89,4 +89,3 @@ After Jahari has entered his pin on his phone he is able to see his account bala
 ```
 
 The merchant gets confirmation that he received payment and he prints a receipt for Jahari. Since Jahari has his phone with him today he also re-checks his account balance again to confirm that appropriate funds were taken from his account. Jahari is happy that this is an easy process and he can see that he has plenty of money left to set aside this month for his family to use on education or health expenses.
-

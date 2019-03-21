@@ -44,4 +44,3 @@ Where `<branchType>` can be one of the following:
 ### Merge into Mojaloop Repo
 
 Once the feature is completed create a PR from your Feature Branch into the `master` branch on the Mojaloop repository \(not your personal repo\) for approval, and check validations \(e.g. unit tests, code coverage, etc executed via CircieCI\).
-

@@ -463,4 +463,3 @@ sudo ln -s /opt/Postman/Postman /usr/bin/postman
     ```
 
     If the helm charts are not listed, see the [Helm Chart Installation](./#221-helm-chart-installation) section to install a chart.
-

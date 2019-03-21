@@ -227,4 +227,3 @@ Examples: _The U.S. State Department is in the United States._ _The foundation's
 #### URL
 
 Reference web addresses without the http:// as follows: _www.gatesfoundation.org_
-

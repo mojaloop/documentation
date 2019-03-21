@@ -127,4 +127,3 @@ As we develop the APIs, we will make consistent choices about non-functional req
 7: [https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html)
 
 8: _Semantic Versioning 2.0.0_, [http://semver.org/](http://semver.org/), retrieved August 18, 2016.
-
