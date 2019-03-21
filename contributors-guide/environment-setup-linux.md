@@ -1,6 +1,8 @@
 # Mojaloop Setup for Ubuntu
 The document is intended for an audience with a stable technical knowledge and would like to setup an environment for development, testing and contributing to the Mojaloop project.
 
+Before proceeding, please insure you have reviewed [mojaloop-deployment](./mojaloop-deployment.md).
+
 ## Setup Introduction
 
 This document will provide guidelines to a technical capable resources to setup, deploy and configure the Mojaloop applications on a local environment, utilizing Docker, Kubernetes and HELM charts.
@@ -23,16 +25,68 @@ This document will provide guidelines to a technical capable resources to setup,
 
 The tool set to be deployed as part of the deployment process. The below table is just a point of reference. 
 
-|Tool|Required/Optional|Description|Install Info|Tutorials|
-|---|---|---|---|---|
-|Docker|Required|<p>Docker Engine and CLI Client.</p><p>Local Kubernetes single node cluster.</p>|[https://docs.docker.com/install](https://docs.docker.com/install)|[Getting Started with Docker](https://docs.docker.com/get-started/)|
-|Kubectl|Required|<p>Kubernetes CLI for Kubernetes Management.</p><p>Note Docker installs this part of Kubernetes install.</p>|[https://kubernetes.io/doc/tasks/tools/install-kuberctl](https://kubernetes.io/docs/tasks/tools/install-kubectl)<p>Docker Kubernetes Install (as per this guide)</p><p>`sudo snap install kubectl --classic`</p>|[kubernetes tutorials](https://kubernetes.io/docs/tutorials/)|
-|MicroK8s|Required|<p>Kubernetes for workstations and appliances.</p><p>A single package of k8s that installs on Linux.</p>|[https://microk8s.io/docs/](https://microk8s.io/docs/)<p>`snap install microk8s --classic`</p>|Apart from the Kubernetes tutorial, https://microk8s.io/ contains a short video clip under the <b>Working with MicroK8s</b> section that is worth looking at.|
-|Kubectx|Optional(useful tool)|<p>Kubernetes CLI for Kubernetes Context Management Helper.</p><p>Note Docker installs this as part of Kubernetes install.</p>|[https://github.com/ahmetb/kubectx](https://github.com/ahmetb/kubectx)</p><p>`sudo apt install kubectx`</p>|https://github.com/ahmetb/kubectx|
-|Kubetail|Optional(useful tool)|<p>Bash script that enables you to aggregate (tail/follow) logs from multiple pods into one stream. This is the same as running `kubectl logs -f` but for multiple pods.</p><p>Example usage `kubetail moja.* -n demo`</p>|https://github.com/johanhaleby/kubetail</td>||
-|Helm|Required|<p>Helm helps you manage Kubernetes applications.</p><p>Helm charts help you define, install and upgrade even the most complex Kubernetes application<./p>|[https://docs.helm.sh/using_helm/#installing-helm](https://docs.helm.sh/using_helm/#installing-helm)</p><p>`sudo snap install helm --classic`</p>|[Helm Documents](https://helm.sh/docs/)|
-|Postman|Required|Postman is a Google Chrome application for the interacting with HTTP API&apos;s. It presents you with a friendly GUI for the construction requests and reading responces.|[https://www.getpostman.com/apps](https://www.getpostman.com/apps)</td>|[Postman Learning Centre](https://learning.getpostman.com/?_ga=2.190121065.394495230.1553087789-183318539.1552904892)|
-
+<table>
+  <thead>
+    <tr>
+      <th style="text-align:left">Tool</th>
+      <th style="text-align:left">Required/Optional</th>
+      <th style="text-align:left">Description</th>
+      <th style="text-align:left">Installation Reference(s)</th>
+      <th style="text-align:left">Tutorial Reference(s)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:left">Docker</td>
+      <td style="text-align:left">Required</td>
+      <td style="text-align:left"><p>Docker Engine and CLI Client.</p><p>Local Kubernetes single node cluster.</p></td>
+      <td style="text-align:left"><a href="https://docs.docker.com/install">https://docs.docker.com/install</a></td>
+      <td style="text-align:left"><a href="https://docs.docker.com/get-started/">Getting started with Docker</a></td>
+    </tr>
+    <tr>
+      <td style="text-align:left">Kubectl</td>
+      <td style="text-align:left">Required</td>
+      <td style="text-align:left"><p>Kubernetes CLI for Kubernetes Management.</p><p>Note Docker installs this part of Kubernetes install.</p></td>
+      <td style="text-align:left"><a href="https://kubernetes.io/docs/tasks/tools/install-kubectl">https://kubernetes.io/docs/tasks/tools/install-kubectl</a><p>Docker Kubernetes Install (as per this guide)</p><p><i><b>$ sudo snap install kubectl --classic</b></i></p></td>
+      <td style="text-align:left"><a href="https://kubernetes.io/docs/tutorials/">Kubernetes Tutorials/</a></td>
+    </tr>
+    <tr>
+      <td style="text-align:left">MicroK8s</td>
+      <td style="text-align:left">Required</td>
+      <td style="text-align:left"><p>Kubernetes for workstations and appliances.</p><p>A single package of k8s that installs on Linux.</p></td>
+      <td style="text-align:left"><p><a href="https://microk8s.io/docs/">https://microk8s.io/docs/</a><p><i><b>$ snap install microk8s --classic</b></i></p></td>
+      <td style="text-align:left">The <a href="https://kubernetes.io/docs/tutorials/">Kubernetes tutorial</a>, the <a href="https://microk8s.io/">MicroK8s</a> website contains a short video clip under the <b>Working with MicroK8s</b> section that is worth looking at.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">Kubectx</td>
+      <td style="text-align:left">Optional<p>(useful tool)</p></td>
+      <td style="text-align:left"><p>Kubernetes CLI for Kubernetes Context Management Helper.</p><p>Note Docker installs this as part of Kubernetes install.</p></td>
+      <td style="text-align:left"><p><a href="https://github.com/ahmetb/kubectx">https://github.com/ahmetb/kubectx</a></p><p><i><b>$ sudo apt install kubectx</b></i></p></td>
+      <td style="text-align:left"><p>Please refer to the github repositary for more information.</p><p><a href="https://github.com/ahmetb/kubectx">https://github.com/ahmetb/kubectx</a></p></td>
+    </tr>
+    <tr>
+      <td style="text-align:left">Kubetail</td>
+      <td style="text-align:left">Optional<p>(useful tool)</p></td>
+      <td style="text-align:left"><p>Bash script that enables you to aggregate (tail/follow) logs from multiple pods into one stream. This is the same as running</p> <p><i><b>$ kubectl logs -f</b></i></p> <p>but for multiple pods.</p><p>Example usage</p><p><b><i>$ kubetail moja.* -n demo</b></i></p></td>
+      <td style="text-align:left"><a href="https://github.com/johanhaleby/kubetail">https://github.com/johanhaleby/kubetail</a></td>
+      <td style="text-align:left"><p>Please refer to the github repositary for more information.</p><p><a href="https://github.com/johanhaleby/kubetail">https://github.com/johanhaleby/kubetail</a></p></td>      
+    </tr>
+    <tr>
+      <td style="text-align:left">Helm</td>
+      <td style="text-align:left">Required</td>
+      <td style="text-align:left"><p>Helm helps you manage Kubernetes applications.</p><p>Helm charts help you define, install and upgrade even the most complex Kubernetes application.</p></td>
+      <td style="text-align:left"><p><a href="https://docs.helm.sh/using_helm/#installing-helm">https://docs.helm.sh/using_helm/#installing-helm</a></p><p><i><b>$ sudo snap install helm --classic</b></i></p></td>
+      <td style="text-align:left"><a href="https://helm.sh/docs/">Helm Documents</a></td>
+    </tr>
+    <tr>
+      <td style="text-align:left">Postman</td>
+      <td style="text-align:left">Required</td>
+      <td style="text-align:left">Postman is a Google Chrome application for the interacting with HTTP API&apos;s. It presents you with a friendly GUI for the construction requests and reading responces.</td>
+      <td style="text-align:left"><a href="https://www.getpostman.com/apps">https://www.getpostman.com/apps</a></td>
+      <td style="text-align:left"><a href="https://learning.getpostman.com/?_ga=2.190121065.394495230.1553087789-183318539.1552904892">Postman Learning Centre</a></td>
+    </tr>
+  </tbody>
+</table>
 
 ## 1 Environment Setup
 

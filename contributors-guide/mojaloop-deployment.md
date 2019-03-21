@@ -51,10 +51,10 @@ This provides environment resource recommendations with a view of the infrastruc
 ### 2 Local Deployment and Testing Tools
 
 ##### 2.1. MAC environment
-  For Mac, please follow the [Environment Setup Mac](environment-setup-mac.md) document.
+  For Mac, please follow the [Environment Setup Mac](./environment-setup-mac.md) document.
 
 ##### 2.1. LINUX environment
-  For Linux, please follow the [Environment Setup Linux](environment-setup-linux.md) document.
+  For Linux, please follow the [Environment Setup Linux](./environment-setup-linux.md) document.
 
 ### 3 Errors On Setup
 
