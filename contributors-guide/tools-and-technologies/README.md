@@ -48,4 +48,3 @@ Here we document the reasoning behind certain tools, technology and process choi
 * **Services** - Microservices are grouped and deployed in a few services such as the DFSP, Central Directory, etc. Each of these will have simple defined interfaces, configuration scripts, tests, and documentation.
 * **Threat Modeling, Resilience Modeling, and Health Modeling** - Since the Mojallop code needs to exchange money in an environment with very flaky infrastructure it must have good security, resilience, and easily report it's health state and automatically attempt to return to it. 
 * **USSD** - Smart phones are only 25% of the target market and not currently supported by most money transfer service, so we need a protocol that will work on simple feature phones. Like M-Pesa, we are using USSD between the phone and the digital financial service provider \(DFSP\).
-

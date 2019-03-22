@@ -27,4 +27,3 @@ Instead of the word "project," use a specific noun such as component, microservi
 * Step 1
 * Step 2
 * Step 2
-

@@ -28,27 +28,20 @@ This provides environment resource recommendations with a view of the infrastruc
 
 **Resources Requirements:**
 
-* Control Plane \(i.e. Master Node\)
+* Control Plane (i.e. Master Node)
 
-  \`\`\`http request
+  [https://kubernetes.io/docs/setup/cluster-large/#size-of-master-and-master-components](https://kubernetes.io/docs/setup/cluster-large/#size-of-master-and-master-components)
 
-  [https://kubernetes.io/docs/setup/cluster-large/\#size-of-master-and-master-components](https://kubernetes.io/docs/setup/cluster-large/#size-of-master-and-master-components)
 
-  \`\`\`
-
-  * 3x Master Nodes for future node scaling and HA \(High Availability\)
+  * 3x Master Nodes for future node scaling and HA (High Availability)
 
 * ETCd Plane:
 
-  \`\`\`http request
-
   [https://coreos.com/etcd/docs/latest/op-guide/hardware.html](https://coreos.com/etcd/docs/latest/op-guide/hardware.html)
 
-  \`\`\`
+  * 3x ETCd nodes for HA (High Availability)
 
-  * 3x ETCd nodes for HA \(High Availability\)
-
-* Compute Plane \(i.e. Worker Node\):
+* Compute Plane (i.e. Worker Node):
 
   TBC once load testing has been concluded. However the current general \*recommended size:
 
@@ -57,7 +50,7 @@ This provides environment resource recommendations with a view of the infrastruc
 
   \*Note that this would also depend on your underlying infrastructure, and it does NOT include requirements for persistent volumes/storage.
 
-![Mojaloop Deployment Recommendations - Infrastructure Architecture](../../assets/Diagrams/Kubernetes/KubeInfrastructureArch.svg)
+![Mojaloop Deployment Recommendations - Infrastructure Architecture](./assets/diagrams/deployment/KubeInfrastructureArch.svg)
 
 #### 1.2 Local Deployment and Testing Tools
 
@@ -234,7 +227,7 @@ To install Kubernetes with Docker, follow the steps below;
     * Increase the CPU allocation to at least 4
     * Increase the Memory allocation to at least 8.0 GiB
 
-![Kubernetes Install with Docker 1](../../assets/Diagrams/Kubernetes/kubernetesinstallwithdocker-1.png)
+![Kubernetes Install with Docker 1](./assets/diagrams/deployment/KubernetesInstallWithDocker-1.png)
 
 * Go to **Kubernetes**
   * Select **Enable Kubernetes** tick box
@@ -243,7 +236,7 @@ To install Kubernetes with Docker, follow the steps below;
   * Click **Install** on the confirmation tab. 
   * The option is available to wait for completion or run as a background task.
 
-![Kubernetes Install with Docker 2](../../assets/Diagrams/Kubernetes/kubernetesinstallwithdocker-2.png)
+![Kubernetes Install with Docker 2](./assets/diagrams/deployment/KubernetesInstallWithDocker-2.png)
 
 #### 2.1.2 Kubernetes environment setup:
 
@@ -311,7 +304,7 @@ or
 
    The **{kubernetes-dashboard-token-btbwf}** is retrieved from the output in the previous step. For more information on generating the token, follow the **Authentication** link in the window.
 
-![kubernetes-dashboard](../../assets/Diagrams/Kubernetes/kubernetesdashboard.png)
+![kubernetes-dashboard](./assets/diagrams/deployment/kubernetesDashboard.png)
 
 **Ubuntu** continue from here
 
@@ -359,18 +352,9 @@ or
 
 8. Test system health in your browser after installation
 
-   ml-api-adapter health test
+  - ml-api-adapter health test - [http://ml-api-adapter.local/health](http://ml-api-adapter.local/health)
+  - central-ledger health test - [http://central-ledger.local/health](http://central-ledger.local/health)
 
-   \`\`\`http request
-
-   [http://ml-api-adapter/health](http://ml-api-adapter/health)
-
-   ```text
-   ___
-   central-ledger health test
-   ```http request
-   http://central-ledger/health
-   ```
 
 ### 2.2 Helm
 
@@ -455,28 +439,27 @@ sudo ln -s /opt/Postman/Postman /usr/bin/postman
 
 #### 2.3.1 Setup Postman
 
-* Download this file [https://raw.githubusercontent.com/mojaloop/postman/master/Mojaloop.postman\_collection.json](https://raw.githubusercontent.com/mojaloop/postman/master/Mojaloop.postman_collection.json)
+* Download this file [Mojaloop.postman_collection.json](https://raw.githubusercontent.com/mojaloop/postman/master/Mojaloop.postman_collection.json)
 * Open **Postman**
 * Click **Import** and then **Import File**
 * Select the _Mojaloop.postman\_collection.json_ file you downloaded
-* You'll now need to import environment variables. For local testing, download this file [https://raw.githubusercontent.com/mojaloop/postman/master/environments/MojaloopLocal.postman\_environment.json](https://raw.githubusercontent.com/mojaloop/postman/master/environments/MojaloopLocal.postman_environment.json)
+* You'll now need to import environment variables. For local testing, download this file [MojaloopLocal.postman_environment.json](https://raw.githubusercontent.com/mojaloop/postman/master/environments/MojaloopLocal.postman_environment.json)
 * Click **Import** and then **Import File**
 * Select the _MojaloopLocal.postman\_environment.json_ file you downloaded
 * In the imported collection, navigate to the _central\_ledger_ directory  
 
 ### 2.4 Errors On Setup
 
-* \`central-ledger’s server IP address could not be found.
+* central-ledger’s server IP address could not be found.
 
-  ERR\_NAME\_NOT\_RESOLVED\`
+  ERR_NAME_NOT_RESOLVED
 
   Resolved by:
 
-  * Verify that a helm chart\(s\) was installed by executing
+  * Verify that a helm chart(s) was installed by executing
 
     ```bash
     helm list
     ```
 
     If the helm charts are not listed, see the [Helm Chart Installation](./#221-helm-chart-installation) section to install a chart.
-

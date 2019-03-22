@@ -9,7 +9,7 @@ Mojaloop addresses these issues in several key ways:
 * A standard set of interfaces a DFSP can implement to connect to the system, and example code that shows how to use the system. A DFSP that wants to connect up can adapt our example code or implement the standard interfaces into their own software. The goal is for it to be as straightforward as possible for a DFSP to connect to the interoperable network.
 * Complete working open-source implementations of both sides of the interfaces - an example DFSP that can send and receive payments and the client that an existing DFSP could host to connect to the network.
 
-![Mojaloop End-to-end Architecture Flow PI5](../assets/Diagrams/ArchitectureDiagrams/Arch-Mojaloop-end-to-end-PI5.svg)
+![Mojaloop End-to-end Architecture Flow PI5](./assets/diagrams/architecture/Arch-Mojaloop-end-to-end-PI5.svg)
 
 The Mojaloop Hub is the primary container and reference we use to describe the Mojaloop echo-system which is split in to the following domains:
 * Mojaloop Open Source Services - Core Mojaloop Open Source Software (OSS) that has been supported by the Bill & Melinda Gates Foundation in partnership with the Open Source Community.

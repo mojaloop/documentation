@@ -1,2 +1,1 @@
-<swagger>http://mojaloop.io/doc-assets/InterfaceContracts/OracleServiceSwaggerv1.yaml</swagger>
- 
+<swagger>./api/assets/interface-contracts/oracleServiceSwaggerv1.yaml</swagger>

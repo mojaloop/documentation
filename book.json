@@ -1,6 +1,6 @@
 {
   "gitbook": "3.x.x",
-  "plugins": ["swagger", "editlink", "include", "insert-logo", "uml", "collapsible-chapters", "back-to-top-button"],
+  "plugins": ["swagger", "editlink", "include", "insert-logo", "uml", "collapsible-chapters", "back-to-top-button", "theme-api", "variables", "changelog" ],
   "pluginsConfig": {
     "theme-gestalt": {
       "logo": "http://mojaloop.io/images/logo.png",
@@ -21,6 +21,14 @@
     "insert-logo": {
       "url": "http://mojaloop.io/images/logo.png",
       "style": "background: none; max-height: 140px; max-width: 140px;"
+    },
+    "theme-api": {
+      "theme": "dark"
+    },
+    "variables": {
+      "files": {
+        "importedVars": "book_variables.yml"
+      }
     }
   }
 }
