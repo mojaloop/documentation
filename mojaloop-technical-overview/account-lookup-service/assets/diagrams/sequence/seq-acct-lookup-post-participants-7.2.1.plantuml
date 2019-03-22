@@ -25,7 +25,7 @@
 
 
 @startuml
-' declate title
+' declare title
 title 7.2.1. Post Participant Details
 
 autonumber
@@ -105,7 +105,11 @@ group Post Participant's FSP Details
 '            - All Participant's will be of the same Currency
 '    end note
     activate ALS_API
-    ALS_API -> ALS_API: Validate request against\nMojaloop Interface Specification\n<color #FF0000><b>Error code:</b> 300x, 310x</color>
+    note left ALS_API #lightgray
+        Validate request against
+        Mojaloop Interface Specification.
+        <color #red><b>Error code:</b> 300x, 310x</color>
+    end note
 
     ALS_API -> ALS_PARTICIPANT_HANDLER: Process create participant's FSP details
     activate ALS_PARTICIPANT_HANDLER

@@ -25,7 +25,7 @@
 
 
 @startuml
-' declate title
+' declare title
 title 7.1.0. Get Participant Details
 
 autonumber
@@ -70,9 +70,15 @@ end box
 ' START OF FLOW
 
 group Get Participant's FSP Details
+
+
     PAYER_FSP ->> ALS_API: Request to get participant's FSP details \nGET - /participants/{TYPE}/{ID}?currency={CURRENCY}\n<color #388724><b>Response code:</b> 202</color> \n<color #red><b>Error code:</b> 200x, 300x, 310x, 320x</color>
     activate ALS_API
-    ALS_API -> ALS_API: Validate request against\nMojaloop Interface Specification\n<color #red><b>Error code:</b> 300x, 310x</color>
+    note left ALS_API #lightgray
+        Validate request against
+        Mojaloop Interface Specification.
+        <color #red><b>Error code:</b> 300x, 310x</color>
+    end note
 
     ALS_API -> ALS_PARTICIPANT_HANDLER: Request to get participant's FSP details
 
