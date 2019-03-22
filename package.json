@@ -21,7 +21,7 @@
     "run": "npm run gitbook:serve",
     "gitbook:install": "gitbook install",
     "gitbook:build": "gitbook build",
-    "gitbook:serve": "gitbook serve --port 8989",
+    "gitbook:serve": "gitbook serve --no-live --port 8989",
     "gitbook:export:pdf": "gitbook pdf ./",
     "docker:build": "docker build --no-cache -t mojaloop/documentation .",
     "docker:push": "docker push mojaloop/documentation",
