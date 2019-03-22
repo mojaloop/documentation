@@ -4,7 +4,6 @@ The document is intended for an audience with a stable technical knowledge and w
 Before proceeding, please insure you have reviewed [mojaloop-deployment](./mojaloop-deployment.md).
 
 ## Setup Introduction
-
 This document will provide guidelines to a technical capable resources to setup, deploy and configure the Mojaloop applications on a local environment, utilizing Docker, Kubernetes and HELM charts.
 
 * [Environment Setup](environment-setup-linux.md#1-environment-setup)
@@ -22,6 +21,7 @@ This document will provide guidelines to a technical capable resources to setup,
     * [Installing Postman](environment-setup-linux.md#41-installing-postman)
     * [Setup Postman](environment-setup-linux.md#42-setup-postman)
 * [Errors During Setup](environment-setup-linux.md#5-errors-on-setup)
+* [Useful Tips](environment-setup-linux.md#6-useful-tips)
 
 The tool set to be deployed as part of the deployment process. The below table is just a point of reference. 
 
@@ -89,17 +89,14 @@ The tool set to be deployed as part of the deployment process. The below table i
 </table>
 
 ## 1 Environment Setup
-
 This environment setup was validated on:
   * 64-bit version of Ubuntu Bionic 18.04(LTS).
   * This guide is based on Ubuntu 18.04.2 (bionic) on a x86_64 desktop with 8 CPU's and 16GB RAM.
 
 ### 1 Docker
-
 Dockerd is deployed as part of the MicroK8s installation. The docker daemon used by MicroK8s is listening on unix:///var/snap/microk8s/current/docker.sock. You can access it with the **microk8s.docker** command. 
 
 ### 2 Kubernetes
-
 This section will guide the reader through the deployment process to setup Kubernetes.
 
 If you are new to Kubernetes it is strongly recommended to familiarize yourself with Kubernetes. [Kubernetes Concepts](https://kubernetes.io/docs/concepts/overview/) is a good place to start and will provide an overview.
@@ -190,7 +187,6 @@ Don't have the snap command? [Install snapd first](https://snapcraft.io/docs/cor
    ```
 
 #### 2.2 Kubernetes Dashboard
-
 1. Deploy the Kubernetes dashboard:
    ```bash
    microk8s.kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v1.10.1/src/deploy/recommended/kubernetes-dashboard.yaml
@@ -233,11 +229,9 @@ Don't have the snap command? [Install snapd first](https://snapcraft.io/docs/cor
 ![kubernetes-dashboard](../assets/Diagrams/Kubernetes/kubernetesdashboard.png)
 
 ### 3 Helm
-
 Please review [Mojaloop Helm Chart](../repositories/helm.md) to understand the relationships between the deployed Mojaloop helm charts.
 
 #### 3.1 Helm CLI and Tiller
-
 1. Config Helm CLI and install Helm Tiller on K8s cluster:
    ```bash
    helm init
@@ -249,21 +243,18 @@ Please review [Mojaloop Helm Chart](../repositories/helm.md) to understand the r
    ```
 
 #### 3.2 Incubator
-
 1. Add the incubator. This is required to resolve Helm Chart dependencies required by Mojaloop charts:
    ```bash
    sudo helm repo add incubator https://kubernetes-charts-incubator.storage.googleapis.com/
    ```
 
 #### 3.3 Nginx-ingress
-
 1. Install nginx-ingress for load balancing & external access
    ```bash
    sudo helm —-namespace kube-public install stable/nginx-ingress
    ```
 
 #### 3.4 Helm Configuration
-
 1. Add mojaloop repo to your Helm config \(optional\):
    ```bash
    sudo helm repo add Mojaloop http://mojaloop.io/helm/repo/
@@ -280,7 +271,6 @@ Please review [Mojaloop Helm Chart](../repositories/helm.md) to understand the r
    ```
 
 #### 3.5 Helm Chart Installation
-
 Please review [Mojaloop Helm Chart](../repositories/helm.md) to understand the relationships between the deployed Mojaloop helm charts.
 
 This section will provide guidelines to delete, list, install and upgrade of the helm charts. For a comprehensive deployment documentation, please see [Helm Chart Deployment](https://github.com/mojaloop/helm/blob/master/README.md)
@@ -346,11 +336,9 @@ This section will provide guidelines to delete, list, install and upgrade of the
    ```
 
 ### 4 Postman
-
 Postman is used to send requests and receive responses.
 
 #### 4.1 Installing Postman
-
 Please, follow these instructions: [Get Postman](https://www.getpostman.com/postman)
 ```bash
 wget https://dl.pstmn.io/download/latest/linux64 -O postman.tar.gz
@@ -360,7 +348,6 @@ sudo ln -s /opt/Postman/Postman /usr/bin/postman
 ```
 
 #### 4.2 Setup Postman
-
 1. Download this file [https://raw.githubusercontent.com/mojaloop/postman/master/Mojaloop.postman\_collection.json](https://raw.githubusercontent.com/mojaloop/postman/master/Mojaloop.postman_collection.json)
 2. Open **Postman**
 3. Click **Import** and then **Import File**
@@ -372,3 +359,11 @@ sudo ln -s /opt/Postman/Postman /usr/bin/postman
 
 ### 5 Errors On Setup
 Errors encountered and the solutions to be documented within this section.
+
+### 6 Useful Tips
+1. Resolve problems with VSCode and kafka on ubuntu 18.04. To make the code work with VSCode debugger, added the following into the launch.json
+    ```json
+    "env": {
+    "LD_LIBRARY_PATH": "${workspaceFolder}/node_modules/node-rdkafka/build/deps",
+    "WITH_SASL": 0
+    ```
