@@ -15,6 +15,6 @@ EXPOSE 8989
 
 RUN npm run gitbook:install
 
-RUN npm run gitbook:build
+#RUN npm run gitbook:build
 
 CMD npm run gitbook:serve
