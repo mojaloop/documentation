@@ -18,6 +18,7 @@
  * Gates Foundation
  - Name Surname <name.surname@gatesfoundation.com>
 
+ * Georgi Georgiev <georgi.georgiev@modusbox.com>
  * Rajiv Mothilal <rajiv.mothilal@modusbox.com>
  --------------
  ******'/
@@ -25,7 +26,7 @@
 
 @startuml
 ' declate title
-title 7.1.0 Get Participant Details
+title 7.1.0. Get Participant Details
 
 autonumber
 ' Actor Keys:
@@ -35,12 +36,12 @@ autonumber
 
 ' declare actors
 actor "Payer FSP" as PAYER_FSP
-boundary "Account Lookup Service" as ALS_API
-control "ALS Participant Handler" as ALS_PARTICIPANT_HANDLER
-entity "ALS Endpoint Type Config DAO" as ALS_TYPE_ENDPOINT_CONFIG_DAO
-entity "ALS CentralService Endpoint DAO" as ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO
-entity "ALS Participant Oracle DAO" as ALS_PARTICIPANT_ORACLE_DAO
-entity "ALS Participant End-Point Oracle DAO" as ALS_PARTICIPANT_ORACLE_DAO
+boundary "Account Lookup\nService (ALS)" as ALS_API
+control "ALS Participant\nHandler" as ALS_PARTICIPANT_HANDLER
+entity "ALS Endpoint Type\nConfig DAO" as ALS_TYPE_ENDPOINT_CONFIG_DAO
+entity "ALS CentralService\nEndpoint DAO" as ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO
+entity "ALS Participant\nOracle DAO" as ALS_PARTICIPANT_ORACLE_DAO
+entity "ALS Participant Endpoint\nOracle DAO" as ALS_PARTICIPANT_ORACLE_DAO
 database "ALS Database" as ALS_DB
 boundary "Oracle Service API" as ORACLE_API
 boundary "Central Service API" as CENTRALSERVICE_API
@@ -69,165 +70,101 @@ end box
 ' START OF FLOW
 
 group Get Participant's FSP Details
-    PAYER_FSP --> ALS_API: Request to get participant's FSP details \nGET - /participants/{TYPE}/{ID}?currency={CURRENCY}.\n<color #388724><b>Response code:</b> 202</color> \n<color #FF0000><b>Error code:</b> 200x, 300x, 310x, 320x</color>
+    PAYER_FSP ->> ALS_API: Request to get participant's FSP details \nGET - /participants/{TYPE}/{ID}?currency={CURRENCY}\n<color #388724><b>Response code:</b> 202</color> \n<color #red><b>Error code:</b> 200x, 300x, 310x, 320x</color>
     activate ALS_API
-    ALS_API -> ALS_API: Validate request against Mojaloop Interface Specification. \n<color #FF0000><b>Error code:</b> 300x, 310x</color>
+    ALS_API -> ALS_API: Validate request against\nMojaloop Interface Specification\n<color #red><b>Error code:</b> 300x, 310x</color>
 
-    ALS_API -> ALS_PARTICIPANT_HANDLER: Request to get participant's FSP details.
-    deactivate ALS_API
+    ALS_API -> ALS_PARTICIPANT_HANDLER: Request to get participant's FSP details
 
     alt oracleEndpoint match found
-
-        '********************* Fetch Oracle Routing Config - START ************************
-        group #99cef7 IMPLEMENTATION: Get Oracle Routing Config Sequence [CACHED]
-
+        group #lightskyblue IMPLEMENTATION: Get Oracle Routing Config Sequence [CACHED]
             activate ALS_PARTICIPANT_HANDLER
-
-            ALS_PARTICIPANT_HANDLER -> ALS_TYPE_ENDPOINT_CONFIG_DAO: Fetch Oracle Routing information based on {TYPE}. \n<color #FF0000><b>Error code:</b> 200x</color>
+            ALS_PARTICIPANT_HANDLER -> ALS_TYPE_ENDPOINT_CONFIG_DAO: Fetch Oracle Routing information based on\n{TYPE} and {CURRENCY} if provided\n<color #red><b>Error code:</b> 200x</color>
             activate ALS_TYPE_ENDPOINT_CONFIG_DAO
-
-            hnote over ALS_TYPE_ENDPOINT_CONFIG_DAO #lightyellow
-                <b>if lookup for Oracle based on {CURRENCY} if and only if {CURRENCY} is provided</b>
-                    SELECT oe.value, oe.switchEndpointId, et.type as endpointType FROM account_lookup.oracleEndpoint as oe
-                    inner join account_lookup.currency as cu on oe.currencyId =  cu.currencyId
-                    inner join account_lookup.endpointType as et on oe.endpointTypeId = et.endpointTypeId
-                    inner join account_lookup.partyIdType as pt on oe.partyIdTypeId = pt.partyIdTypeId
-                    inner join account_lookup.switchEndpoint as sw on oe.switchEndpointId = sw.switchEndpointId
-                    where cu.currencyId = '{CURRENCY}'
-                    and pt.name = '{TYPE}'
-                    and pt.isActive = true
-                    and oe.isActive = true
-                    and sw.isActive = true;
-                <b>else lookup default Oracle if no {CURRENCY} is provided:</b>
-                    SELECT oe.value, oe.switchEndpointId, et.type as endpointType FROM account_lookup.oracleEndpoint as oe
-                    inner join account_lookup.endpointType as et on oe.endpointTypeId = et.endpointTypeId
-                    inner join account_lookup.partyIdType as pt on oe.partyIdTypeId = pt.partyIdTypeId
-                    inner join account_lookup.switchEndpoint as sw on oe.switchEndpointId = sw.switchEndpointId
-                    where pt.name = '{TYPE}'
-                    and pt.isActive = true
-                    and oe.isActive = true
-                    and sw.isActive = true
-                    and oe.isDefault = true;
-                <b>end if</b>
-            end note
-
-            ALS_TYPE_ENDPOINT_CONFIG_DAO -> ALS_DB: SQL Select for oracleEndpoint. \n<color #FF0000><b>Error code:</b> 200x</color>
-
+            ALS_TYPE_ENDPOINT_CONFIG_DAO -> ALS_DB: Retrieve oracleEndpoint\n<color #red><b>Error code:</b> 200x</color>
             activate ALS_DB
-
             hnote over ALS_DB #lightyellow
                     oracleEndpoint
                     switchEndpoint
                     endpointType
                     partyIdType
-                    currency
+                    currency (optional)
             end note
-            ALS_DB -> ALS_TYPE_ENDPOINT_CONFIG_DAO: return oracleEndpoint result set.
-
+            ALS_DB --> ALS_TYPE_ENDPOINT_CONFIG_DAO: Return oracleEndpoint result set
             deactivate ALS_DB
-
-            ALS_TYPE_ENDPOINT_CONFIG_DAO -> ALS_PARTICIPANT_HANDLER: List of oracleEndpoint for the Participant
+            ALS_TYPE_ENDPOINT_CONFIG_DAO --> ALS_PARTICIPANT_HANDLER: List of **oracleEndpoint** for the Participant
             deactivate ALS_TYPE_ENDPOINT_CONFIG_DAO
-
-            ALS_PARTICIPANT_HANDLER -> ALS_PARTICIPANT_HANDLER: Throw <color #FF0000><b>Error code:</b> 3200</color> if list of oracleEndpoint results is empty.
-
+            opt #lightskyblue oracleEndpoint IS NULL
+                ALS_PARTICIPANT_HANDLER -> ALS_PARTICIPANT_HANDLER: <color #red><b>Error code:</b> 3200</color>
+            end
         end group
-        '********************* Fetch Oracle Routing Information - END ************************
 
-        '********************* Request Participant Information from Oracle - START ************************
-        group #599dd1 IMPLEMENTATION: Request Participant Information from Oracle Sequence
-
-            ALS_PARTICIPANT_HANDLER -> ALS_PARTICIPANT_ORACLE_DAO: Request to get participant's FSP details \nGET - /participants/{TYPE}/{ID}?currency={CURRENCY}. \n<color #FF0000><b>Error code:</b> 200x, 310x, 320x</color>
+        group #lightskyblue IMPLEMENTATION: Request Participant Information from Oracle Sequence
+            ALS_PARTICIPANT_HANDLER -> ALS_PARTICIPANT_ORACLE_DAO: Request to get participant's FSP details \nGET - /participants/{TYPE}/{ID}?currency={CURRENCY}\n<color #red><b>Error code:</b> 200x, 310x, 320x</color>
             activate ALS_PARTICIPANT_ORACLE_DAO
-            ALS_PARTICIPANT_ORACLE_DAO -> ORACLE_API: Request to get participant's FSP details \nGET - /participants/{TYPE}/{ID}?currency={CURRENCY}. \n<color #388724><b>Response code:</b> 200</color> \n<color #FF0000><b>Error code:</b> 200x, 310x, 320x</color>
+            ALS_PARTICIPANT_ORACLE_DAO -> ORACLE_API: Request to get participant's FSP details \nGET - /participants/{TYPE}/{ID}?currency={CURRENCY}\n<color #388724><b>Response code:</b> 200</color> \n<color #red><b>Error code:</b> 200x, 310x, 320x</color>
             activate ORACLE_API
-
-            ORACLE_API -> ALS_PARTICIPANT_ORACLE_DAO: Return list of Participant information.
+            ORACLE_API --> ALS_PARTICIPANT_ORACLE_DAO: Return list of Participant information
             deactivate ORACLE_API
-
-            ALS_PARTICIPANT_ORACLE_DAO -> ALS_PARTICIPANT_HANDLER: Return list of Participant information.
+            ALS_PARTICIPANT_ORACLE_DAO --> ALS_PARTICIPANT_HANDLER: Return list of Participant information
             deactivate ALS_PARTICIPANT_ORACLE_DAO
-
-            '********************* Request Participant Information from Oracle - END ************************
-
         end group
 
-        '********************* Get Switch Config Information - START ************************
-        group #73a2c6 IMPLEMENTATION: Get Switch Routing Config Sequence [CACHED]
-
-            alt if {switchEndpointId} has been attained from 'REFERENCE: Get Oracle Routing Config Sequence' or if list of oracleEndpoint results is NOT empty
-                ALS_PARTICIPANT_HANDLER -> ALS_TYPE_ENDPOINT_CONFIG_DAO: Fetch Switch Routing information. \n<color #FF0000><b>Error code:</b> 200x</color>
-
-                hnote over ALS_TYPE_ENDPOINT_CONFIG_DAO #lightyellow
-                    select sw.value, et.type as endpointType from account_lookup.switchEndpoint as sw
-                    inner join account_lookup.endpointType as et on sw.endpointTypeId = et.endpointTypeId
-                    where switchEndpointId = {switchEndpointId from 'IMPLEMENTATION: Get Oracle Routing Config Sequence'};
-                end note
-
-                ALS_TYPE_ENDPOINT_CONFIG_DAO -> ALS_DB: SQL Select for switchEndpoint. \n<color #FF0000><b>Error code:</b> 200x</color>
-
+        group #lightskyblue IMPLEMENTATION: Get Switch Routing Config Sequence [CACHED]
+            note right of ALS_PARTICIPANT_HANDLER  #lightgray
+                **REFERENCE**: Get Oracle Routing Config Sequence: oracleEndpoint
+            end note
+            alt #lightskyblue oracleEndpoint IS NOT NULL
+                ALS_PARTICIPANT_HANDLER -> ALS_TYPE_ENDPOINT_CONFIG_DAO: Fetch Switch Routing information\n<color #red><b>Error code:</b> 200x</color>
+                ALS_TYPE_ENDPOINT_CONFIG_DAO -> ALS_DB: Retrieve switchEndpoint\n<color #red><b>Error code:</b> 200x</color>
                 activate ALS_DB
-
                 hnote over ALS_DB #lightyellow
                         switchEndpoint
                         endpointType
                 end note
-                ALS_DB -> ALS_TYPE_ENDPOINT_CONFIG_DAO: return switchEndpoint result set.
-
+                ALS_DB -> ALS_TYPE_ENDPOINT_CONFIG_DAO: Return switchEndpoint result set
                 deactivate ALS_DB
-
-                ALS_TYPE_ENDPOINT_CONFIG_DAO -> ALS_PARTICIPANT_HANDLER: Return switchEndpoint results
+                ALS_TYPE_ENDPOINT_CONFIG_DAO -> ALS_PARTICIPANT_HANDLER: Return **switchEndpoint**
             else
-                ALS_PARTICIPANT_HANDLER -> ALS_PARTICIPANT_HANDLER: Throw <color #FF0000><b>Error code:</b> 2000</color>
+                ALS_PARTICIPANT_HANDLER -> ALS_PARTICIPANT_HANDLER: <color #red><b>Error code:</b> 2000</color>
             end alt
-
         end group
-        '********************* Get Switch Config Information - END ************************
 
-        '********************* Get PayerFSP Callback End-points - START ************************
-
-        ALS_PARTICIPANT_HANDLER -> ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO: Retrieve the PayerFSP Participant Callback End-point. \n<color #FF0000><b>Error code:</b> 200x, 310x, 320x</color>
+        '********************* Get PayerFSP Callback Endpoints - START ************************
+        ALS_PARTICIPANT_HANDLER -> ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO: Retrieve the PayerFSP Participant Callback Endpoint\n<color #red><b>Error code:</b> 200x, 310x, 320x</color>
         activate ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO
-        ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO -> CENTRALSERVICE_API: Retrieve the PayerFSP Participant Callback End-point - GET /participants/{FSPIOP-Source}/endpoints. \n<color #388724><b>Response code:</b> 200</color> \n<color #FF0000><b>Error code:</b> 200x, 310x, 320x</color>
+        ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO -> CENTRALSERVICE_API: Retrieve the PayerFSP Participant Callback Endpoint\nGET - /participants/{FSPIOP-Source}/endpoints\n<color #388724><b>Response code:</b> 200</color> \n<color #red><b>Error code:</b> 200x, 310x, 320x</color>
         activate CENTRALSERVICE_API
-        CENTRALSERVICE_API -> ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO: List of PayerFSP Participant Callback End-points
+        CENTRALSERVICE_API --> ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO: List of PayerFSP Participant Callback Endpoints
         deactivate CENTRALSERVICE_API
-        ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO -> ALS_PARTICIPANT_HANDLER: List of PayerFSP Participant Callback End-points
+        ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO --> ALS_PARTICIPANT_HANDLER: List of PayerFSP Participant Callback Endpoints
         deactivate ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO
-
-        ALS_PARTICIPANT_HANDLER -> ALS_PARTICIPANT_HANDLER: Match PayerFSP Participant Callback End-points for `FSPIOP_CALLBACK_URL_PARTICIPANT_PUT`
-
+        ALS_PARTICIPANT_HANDLER -> ALS_PARTICIPANT_HANDLER: Match PayerFSP Participant Callback Endpoints for\nFSPIOP_CALLBACK_URL_PARTICIPANT_PUT
         '********************* Get PayerFSP Participant Information - END ************************
 
-        ALS_PARTICIPANT_HANDLER -> ALS_API: Return list of Participant information.
-
-        activate ALS_API
-        ALS_API --> PAYER_FSP: Callback: PUT - /participants/{TYPE}/{ID}?currency={CURRENCY}
-        deactivate ALS_API
-
-    else Empty list of End-Points returned or Error occurred
-
-        ALS_PARTICIPANT_HANDLER -> ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO: Retrieve the Participant Callback End-point. \n<color #FF0000><b>Error code:</b> 200x, 310x, 320x</color>
+        ALS_PARTICIPANT_HANDLER --> ALS_API: Return list of Participant information
+        ALS_API ->> PAYER_FSP: Callback: PUT - /participants/{TYPE}/{ID}?currency={CURRENCY}
+    else oracleEndpoint IS NULL OR error occurred
+        ALS_PARTICIPANT_HANDLER -> ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO: Retrieve the Participant Callback Endpoint\n<color #red><b>Error code:</b> 200x, 310x, 320x</color>
         activate ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO
-        ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO -> CENTRALSERVICE_API: Retrieve the Participant Callback End-point - GET /participants/{FSPIOP-Source}/endpoints. \n<color #388724><b>Response code:</b> 200</color> \n<color #FF0000><b>Error code:</b> 200x, 310x, 320x</color>
+        ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO -> CENTRALSERVICE_API: Retrieve the Participant Callback Endpoint\nGET - /participants/{FSPIOP-Source}/endpoints. \n<color #388724><b>Response code: </b>200</color> \n<color #red><b>Error code:</b> 200x, 310x, 320x</color>
         activate CENTRALSERVICE_API
-        CENTRALSERVICE_API -> ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO: List of Participant Callback End-points
+        CENTRALSERVICE_API --> ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO: List of Participant Callback Endpoints
         deactivate CENTRALSERVICE_API
-        ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO -> ALS_PARTICIPANT_HANDLER: List of Participant Callback End-points
+        ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO --> ALS_PARTICIPANT_HANDLER: List of Participant Callback Endpoints
         deactivate ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO
 
-        ALS_PARTICIPANT_HANDLER -> ALS_PARTICIPANT_HANDLER: Match Participant Callback End-points for `FSPIOP_CALLBACK_URL_PARTICIPANT_PUT_ERROR`
+        ALS_PARTICIPANT_HANDLER -> ALS_PARTICIPANT_HANDLER: Match Participant Callback Endpoints for\nFSPIOP_CALLBACK_URL_PARTICIPANT_PUT_ERROR
 
-        ALS_PARTICIPANT_HANDLER -> ALS_API: Return \n<color #FF0000><b>Error code:</b> 200x, 310x, 320x</color>
-        activate ALS_API
-        ALS_API --> PAYER_FSP: Callback: PUT - /participants/{TYPE}/{ID}/error
-        deactivate ALS_API
-    else Empty list of switchEndpoint results returned
-        ALS_PARTICIPANT_HANDLER -> ALS_PARTICIPANT_HANDLER: Handle error\n<color #FF0000><b>Error code:</b> 200x</color>
+        ALS_PARTICIPANT_HANDLER --> ALS_API: Handle error\n<color #red><b>Error code:</b> 200x, 310x, 320x</color>
+        ALS_API ->> PAYER_FSP: Callback: PUT - /participants/{TYPE}/{ID}/error
+    else switchEndpoint IS NULL
+        ALS_PARTICIPANT_HANDLER -> ALS_PARTICIPANT_HANDLER: Handle error\n<color #red><b>Error code:</b> 200x</color>
         hnote right ALS_PARTICIPANT_HANDLER #red
-            Error Handling Framework
+            <color #white>Error Handling Framework</color>
         end note
     end alt
+    deactivate ALS_API
 
     deactivate ALS_PARTICIPANT_HANDLER
 
