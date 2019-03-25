@@ -4,13 +4,13 @@
 
 Mojaloop addresses a number of scenarios in which this software might help the poor to meet their financial and banking needs. There are several different paths for each of these scenarios, including potential timeout issues and reversals \(which are handled as a separate transaction\). The most common paths include:
 
-* #### Send money to anyone
-* #### Buy Goods
-* #### Bulk Payments
-* #### Tiers Risk Level
-* #### Fraud Checks and Blacklists
-* #### Account Management
-* #### Check Account and POS
+* [Send money to anyone](./#Send-money-to-anyone)
+* [Buy goods](./Buy-Goods)
+* [Bulk Payments](./Bulk-Payments)
+* [Tier Risk Levels](./Tier-Risk-Levels)
+* [Fraud Checks and Blacklists](./Fraud-Checks-and-Blacklists)
+* [Account Management](./Account-Management)
+* [Check Account and POS](./Check-Account-and-POS)
 
 ### Scenario Descriptions
 
@@ -44,7 +44,7 @@ Nikisha is the accountant for one of the largest manufacturing companies in Joha
 
 The bulk report for payments comes up by date range and, since Nikisha does this weekly, there are several items she needs to verify each time. Specifically, she looks for any errors or alerts for employees with invalid phone numbers, names not matching or other anomalies. Nikisha has the ability to follow-up with her co-workers or employees directly to fix these errors before sending out the payments. In addition, Nikisha is also notified of any employees who don't have an account setup. For these users, Nikisha is still able to push a payment through and the employee will be prompted by text message to open an account. Nikisha is thankful she has this process that makes it much easier to distribute funds. Once Nikisha has completed her validation, she sends it to her supervisor for final approval. Nikisha is glad to have this system in place because several years ago, Nikisha and her supervisor had to pay employees in cash and use a manual system to verify payments were received which made her feel very uneasy.
 
-#### Tiers Risk Levels
+#### Tier Risk Levels
 
 Salem works as an auditor for a large bank in Kampala, Uganda. His job is to monitor, manage and reduce risk for the company. order to do so each new user ID in the system is assigned a default tier level which means they can only transfer a small number and amount of funds in and out of the system over specific periods of time. As users acquire greater balances in their accounts and hold their accounts for longer periods of time their tier levels improve. Tier levels are handled automatically by the system so Salem does not need to worry about assigning or changing these levels under normal circumstances. Part of Salem's job as an auditor is to review the daily reports to ensure that everyone's funds are safe and secure and he kicks off his daily report to review the accounts.
 
