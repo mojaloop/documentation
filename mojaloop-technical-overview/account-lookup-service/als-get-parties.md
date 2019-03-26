@@ -2,5 +2,5 @@
 
 ## Sequence Diagram
 
-```puml { src="./mojaloop-technical-overview/account-lookup-service/assets/diagrams/sequence/seq-acct-lookup-get-parties-7.2.0.plantuml" }
-```
+{% uml src="./assets/diagrams/sequence/seq-acct-lookup-get-parties-7.2.0.plantuml", relativeTo=file %}
+{% enduml %}

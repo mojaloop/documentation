@@ -9,5 +9,5 @@
 
 ## Sequence Diagram
 
-```puml { src="./mojaloop-technical-overview/account-lookup-service/assets/diagrams/sequence/seq-acct-lookup-post-participants-7.2.1.plantuml" }
-```
+{% uml src="./assets/diagrams/sequence/seq-acct-lookup-post-participants-7.2.1.plantuml", relativeTo=file %}
+{% enduml %}

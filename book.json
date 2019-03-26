@@ -1,6 +1,6 @@
 {
   "gitbook": "3.x.x",
-  "plugins": ["swagger", "editlink", "include", "insert-logo", "uml", "collapsible-chapters", "back-to-top-button", "theme-api", "variables", "changelog" ],
+  "plugins": ["swagger", "editlink", "include", "insert-logo", "plantuml-svg", "collapsible-chapters", "back-to-top-button", "theme-api", "variables", "changelog" ],
   "pluginsConfig": {
     "theme-gestalt": {
       "logo": "http://mojaloop.io/images/logo.png",
@@ -13,10 +13,6 @@
       "base": "https://github.com/mojaloop/documentation/edit/master",
       "label": "Edit This Page",
       "multilingual": true
-    },
-    "graphviz-and-plant-uml": {
-      "Render": "PlantUMLServer",
-      "Server": "http://www.plantuml.com/plantuml"
     },
     "insert-logo": {
       "url": "http://mojaloop.io/images/logo.png",
