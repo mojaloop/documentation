@@ -4,13 +4,13 @@
 
 Mojaloop addresses a number of scenarios in which this software might help the poor to meet their financial and banking needs. There are several different paths for each of these scenarios, including potential timeout issues and reversals \(which are handled as a separate transaction\). The most common paths include:
 
-* [Send money to anyone](./#Send-money-to-anyone)
-* [Buy goods](./#Buy-Goods)
-* [Bulk Payments](./#Bulk-Payments)
-* [Tier Risk Levels](./#Tier-Risk-Levels)
-* [Fraud Checks and Blacklists](./#Fraud-Checks-and-Blacklists)
-* [Account Management](./#Account-Management)
-* [Check Account and POS](./#Check-Account-and-POS)
+* [Send money to anyone](#send-money-to-anyone)
+* [Buy goods](#buy-goods)
+* [Bulk Payments](#bulk-payments)
+* [Tier Risk Levels](#tier-risk-levels)
+* [Fraud Checks and Blacklists](#fraud-checks-and-blacklists)
+* [Account Management](#account-management)
+* [Check Account and POS](#check-account-and-pos)
 
 ### Scenario Descriptions
 
