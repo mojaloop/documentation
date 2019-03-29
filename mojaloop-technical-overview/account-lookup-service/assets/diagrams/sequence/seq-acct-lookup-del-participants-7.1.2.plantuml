@@ -77,7 +77,7 @@ end box
 ' START OF FLOW
 
 group Get Party Details
-    PAYER_FSP ->> ALS_API: Request to delete Participant details\DEL - /participants/{TYPE}/{ID}?currency={CURRENCY}\n<color #388724><b>Response code:</b> 202</color>\n<color #red><b>Error code:</b> 200x, 300x, 310x, 320x</color>
+    PAYER_FSP ->> ALS_API: Request to delete Participant details\nDEL - /participants/{TYPE}/{ID}?currency={CURRENCY}\n<color #388724><b>Response code:</b> 202</color>\n<color #red><b>Error code:</b> 200x, 300x, 310x, 320x</color>
     activate ALS_API
     note left ALS_API #lightgray
         Validate request against

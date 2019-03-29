@@ -1,6 +1,6 @@
 {
   "gitbook": "3.x.x",
-  "plugins": ["swagger", "editlink", "include", "insert-logo", "plantuml-svg", "collapsible-chapters", "back-to-top-button", "theme-api", "variables", "changelog", "page-toc" ],
+  "plugins": ["swagger", "editlink", "include", "insert-logo", "uml", "collapsible-chapters", "back-to-top-button", "theme-api", "variables", "changelog", "page-toc" ],
   "pluginsConfig": {
     "theme-gestalt": {
       "logo": "http://mojaloop.io/images/logo.png",
@@ -30,6 +30,10 @@
       "selector": ".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4",
       "position": "before-first",
       "showByDefault": true
+    },
+    "uml": {
+      "format": "svg",
+      "nailgun": false
     }
   }
 }

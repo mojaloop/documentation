@@ -10,5 +10,5 @@ Design for the creation of a Participant by a DFSP.
 
 ## Sequence Diagram
 
-{% uml src="./assets/diagrams/sequence/seq-acct-lookup-post-participants-7.1.1.plantuml", relativeTo=file %}
+{% uml src="mojaloop-technical-overview/account-lookup-service/assets/diagrams/sequence/seq-acct-lookup-post-participants-7.1.1.plantuml" %}
 {% enduml %}
