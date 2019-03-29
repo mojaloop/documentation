@@ -1,12 +1,8 @@
-ARG PORT=8989
-
 ########################
 #### gitbook-builder ###
 ########################
 
 FROM node:10.15-alpine as gitbook-builder
-
-ENV PORT $PORT
 
 WORKDIR /opt/gitbook
 COPY . /opt/gitbook
@@ -19,19 +15,17 @@ RUN curl -L https://sourceforge.net/projects/plantuml/files/plantuml.${PLANTUML_
 
 RUN npm install
 
-RUN npm run gitbook:build
-
 ########################
 #### gitbook-server ####
 ########################
 
 FROM node:10.15-alpine as gitbook-server
 
-ENV PORT $PORT
-
 WORKDIR /opt/gitbook
 COPY --from=gitbook-builder /opt/gitbook .
 
-EXPOSE $PORT
+RUN apk add --no-cache -t build-dependencies git make gcc g++ python libtool autoconf automake
 
-CMD npm run express:run
+EXPOSE 8989
+
+CMD npm run gitbook:serveNoReload

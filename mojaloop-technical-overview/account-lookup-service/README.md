@@ -46,11 +46,19 @@ _Note: The Participant Lookup use-case similarly applies to for a Payee Initiate
 
 #### 2.2.1 GET Participant
 
-[Sequence Diagram for GET Participants](als-get-participants.md)
+- [Sequence Diagram for GET Participants](als-get-participants.md)
 
 #### 2.2.2 POST Participant
 
-[Sequence Diagram for POST Participants](als-post-participants.md)
+- [Sequence Diagram for POST Participants](als-post-participants.md)
+
+#### 2.2.3 POST Participant (Batch)
+
+- [Sequence Diagram for POST Participants (Batch)](als-post-participants-batch.md)
+
+#### 2.2.4 DEL Participant
+
+- [Sequence Diagram for DEL Participants](als-del-participants.md)
 
 ## 3. Party Lookup Design
 
@@ -61,7 +69,7 @@ _Note: The Participant Lookup use-case similarly applies to for a Payee Initiate
 
 #### 3.2.1 GET Parties
 
-[Sequence Diagram for GET Parties](als-get-parties.md)
+- [Sequence Diagram for GET Parties](als-get-parties.md)
 
 ## 4. Database Design
 

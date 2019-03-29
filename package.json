@@ -3,6 +3,7 @@
   "version": "5.4.5",
   "description": "Mojaloop Documentation GitBook Project",
   "dependencies": {
+    "express": "4.16.4",
     "gitbook-cli": "2.3.2",
     "gitbook-plugin-back-to-top-button": "0.1.4",
     "gitbook-plugin-changelog": "1.0.1",
@@ -28,7 +29,8 @@
     "gitbook:export:pdf": "gitbook pdf ./",
     "docker:build": "docker build --no-cache -t mojaloop/documentation .",
     "docker:push": "docker push mojaloop/documentation",
-    "docker:run": "docker run --rm -it --name mojadoc -p 8989:8989 mojaloop/documentation"
+    "docker:run": "docker run --rm -it --name mojadoc -p 8989:8989 mojaloop/documentation",
+    "express:run": "node index.js"
   },
   "repository": {
     "type": "git",

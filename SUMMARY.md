@@ -24,6 +24,7 @@
   * [Account-Lookup Service](mojaloop-technical-overview/account-lookup-service/README.md)
     * [GET Participants](mojaloop-technical-overview/account-lookup-service/als-get-participants.md)
     * [POST Participants](mojaloop-technical-overview/account-lookup-service/als-post-participants.md)
+    * [POST Participants (batch)](mojaloop-technical-overview/account-lookup-service/als-post-participants-batch.md)
     * [DEL Participants](mojaloop-technical-overview/account-lookup-service/als-del-participants.md)
     * [GET Parties](mojaloop-technical-overview/account-lookup-service/als-get-parties.md)
   * [Central-Settlements Service](mojaloop-technical-overview/central-settlements/README.md)
