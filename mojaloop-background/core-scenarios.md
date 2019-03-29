@@ -4,13 +4,13 @@
 
 Mojaloop addresses a number of scenarios in which this software might help the poor to meet their financial and banking needs. There are several different paths for each of these scenarios, including potential timeout issues and reversals \(which are handled as a separate transaction\). The most common paths include:
 
-* Send money to anyone
-* Buy Goods
-* Bulk Payments
-* Tiers/Risk Level
-* Fraud Checks and Blacklists
-* Account Management
-* Check Account and POS
+* [Send money to anyone](#send-money-to-anyone)
+* [Buy goods](#buy-goods)
+* [Bulk Payments](#bulk-payments)
+* [Tier Risk Levels](#tier-risk-levels)
+* [Fraud Checks and Blacklists](#fraud-checks-and-blacklists)
+* [Account Management](#account-management)
+* [Check Account and POS](#check-account-and-pos)
 
 ### Scenario Descriptions
 
@@ -24,7 +24,7 @@ Hamim is working on his farm in Northern Uganda when he receives an urgent phone
 
 Because Hamim has sent money to Kani before he has his information on his phone. Hamim sees Kani's name come up on his phone and he starts the transaction. He also sees the total fees and any exchange rates he has to pay before he sends the money. He is happy for that validation and that the transaction goes the same way every time. In under 30 seconds, Hamim is able to send the money to his Kani and verifies that he got it. Hamim is happy he was able to help out Kani and his family so quickly so they can buy food.
 
-#### Buy Goods - Pending Transactions
+#### Buy Goods
 
 Venya is waiting in line to buy plantains at her local market. She is corralling her elder child with one hand and has her baby in a sling. She often comes to this seller and she knows he has a good price. She also knows that even though she carries no money and he is not on her financial network, she can buy from him. As she approaches the head of the line she juggles the children and pulls out a simple flip phone. She tells him 1.5 kilograms and he tells her the price, which she agrees to.
 
@@ -44,7 +44,7 @@ Nikisha is the accountant for one of the largest manufacturing companies in Joha
 
 The bulk report for payments comes up by date range and, since Nikisha does this weekly, there are several items she needs to verify each time. Specifically, she looks for any errors or alerts for employees with invalid phone numbers, names not matching or other anomalies. Nikisha has the ability to follow-up with her co-workers or employees directly to fix these errors before sending out the payments. In addition, Nikisha is also notified of any employees who don't have an account setup. For these users, Nikisha is still able to push a payment through and the employee will be prompted by text message to open an account. Nikisha is thankful she has this process that makes it much easier to distribute funds. Once Nikisha has completed her validation, she sends it to her supervisor for final approval. Nikisha is glad to have this system in place because several years ago, Nikisha and her supervisor had to pay employees in cash and use a manual system to verify payments were received which made her feel very uneasy.
 
-#### Tiers/Risk Levels
+#### Tier Risk Levels
 
 Salem works as an auditor for a large bank in Kampala, Uganda. His job is to monitor, manage and reduce risk for the company. order to do so each new user ID in the system is assigned a default tier level which means they can only transfer a small number and amount of funds in and out of the system over specific periods of time. As users acquire greater balances in their accounts and hold their accounts for longer periods of time their tier levels improve. Tier levels are handled automatically by the system so Salem does not need to worry about assigning or changing these levels under normal circumstances. Part of Salem's job as an auditor is to review the daily reports to ensure that everyone's funds are safe and secure and he kicks off his daily report to review the accounts.
 
@@ -89,4 +89,3 @@ After Jahari has entered his pin on his phone he is able to see his account bala
 ```
 
 The merchant gets confirmation that he received payment and he prints a receipt for Jahari. Since Jahari has his phone with him today he also re-checks his account balance again to confirm that appropriate funds were taken from his account. Jahari is happy that this is an easy process and he can see that he has plenty of money left to set aside this month for his family to use on education or health expenses.
-

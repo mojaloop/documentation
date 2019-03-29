@@ -18,6 +18,3 @@ The currrent version information for Mojaloop can be found [here](../mojaloop-de
 
 1. A new release for **helm** repo is made whenver a configuration change is needed for any of the core Switch services based on the changes made \(features, bug-fixes\).
 2. However, if there is no release made to helm necessitated by a configuration change, then a release is done every Sprint anyway, to bring it up to date with the latest releases on the core Switch services.
-
-### 
-

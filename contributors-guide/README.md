@@ -22,7 +22,7 @@ In general, we are looking for example implementations and bug fixes, and projec
 
 Join the [Mojaloop Slack Discussions](https://mojaloop-slack.herokuapp.com/) to connect with other developers.
 
-Also checkout the [FAQ](https://github.com/mojaloop/mojaloop/blob/master/FAQ.md)
+Also checkout the [FAQ](https://github.com/mojaloop/documentation/blob/master/contributors-guide/frequently-asked-questions.md)
 
 ### What is the current release?
 

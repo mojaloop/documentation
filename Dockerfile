@@ -5,12 +5,14 @@ COPY . /opt/gitbook
 
 RUN apk add --no-cache -t build-dependencies openjdk8-jre git make gcc g++ python libtool autoconf automake
 
-WORKDIR /opt/gitbook/repo
-
-RUN npm ci
-
-RUN apk del build-dependencies
+RUN npm install
+#
+#RUN apk del build-dependencies
 
 EXPOSE 8989
 
-CMD npm run docs:serve
+RUN npm run gitbook:install
+
+#RUN npm run gitbook:build
+
+CMD npm run gitbook:serveNoReload

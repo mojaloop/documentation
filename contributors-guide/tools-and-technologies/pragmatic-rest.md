@@ -8,7 +8,7 @@ With the emergence of API strategy as a scaling tool for Internet service busine
 
 Martin Fowler has referenced1 a structured model of RESTful adoption developed by Leonard Richardson and [explained](http://www.crummy.com/writing/speaking/2008-QCon/act3.html) at a QCon talk. Fowler refers to this as the Richardson Maturity Model of RESTful design.
 
-![](../../assets/Diagrams/Rest/glory-of-rest.png)
+![](./assets/diagrams/rest/glory-of-rest.png)
 
 Martin Fowler, referencing [Rest in Practice](https://www.amazon.com/gp/product/0596805829?ie=UTF8&tag=martinfowlerc-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0596805829),2 summarizes the genesis of RESTful design:
 
@@ -127,4 +127,3 @@ As we develop the APIs, we will make consistent choices about non-functional req
 7: [https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html)
 
 8: _Semantic Versioning 2.0.0_, [http://semver.org/](http://semver.org/), retrieved August 18, 2016.
-

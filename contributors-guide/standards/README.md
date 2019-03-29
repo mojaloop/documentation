@@ -41,6 +41,3 @@ We use a [standard developer code of conduct](https://www.contributor-covenant.o
 ### Licensing
 
 See [License](https://github.com/mojaloop/mojaloop/blob/master/contribute/License.md) policy
-
-## 
-
