@@ -1,8 +1,8 @@
 # Mojaloop Releases
 
-A new release for a repository is made when when a significant change such as a bug-fix is made or a new feature/functionality is added
+Below you will find more information on the future, current and historical releases for Mojaloop.
 
-At of March 6th 2019, the active releases for core central services are as below
+Refer to [Versioning Documentation](../contributors-guide/standards/versioning.md) for more information on the release strategy and standards.
 
 ## Current Releases
 * Helm: [![Git Releases](https://img.shields.io/github/release/mojaloop/helm.svg?style=flat)](https://github.com/mojaloop/helm/releases)
@@ -17,8 +17,16 @@ At of March 6th 2019, the active releases for core central services are as below
 
 Refer to [Mojaloop Helm Repository](../repositories/helm.md) documentation to find out more information about Helm.
 
-| Version | Release Date | QA Tested | Link | Notes |
-| --- | :---: | :---: | --- |  --- |
-| 6.0.0 | April 2019 | x |  | To be released at PI5 Convening in April 2019 |
-| [5.5.0](https://github.com/mojaloop/helm/releases/tag/v5.5.0) | 2019/04/01 | x | https://github.com/mojaloop/helm/releases/tag/v5.5.0 |  |
-| [4.4.1](https://github.com/mojaloop/helm/releases/tag/v4.4.1) | 2019/01/31 | x | https://github.com/mojaloop/helm/releases/tag/v4.4.1 |  |
+| Version | Release Date | Tested | Notes |
+| --- | :---: | :---: | --- |
+| 6.0.0 | April 2019 | - | To be released at PI5 Convening in April 2019 |
+| [5.5.0](https://github.com/mojaloop/helm/releases/tag/v5.5.0) | 2019/04/02 | - | Sprint release |
+| [5.4.2](https://github.com/mojaloop/helm/releases/tag/v5.4.2) | 2019/03/29 | &check; | Sprint release |
+| [5.4.1](https://github.com/mojaloop/helm/releases/tag/v5.4.1) | 2019/03/21 | &check; | Sprint release |
+| [5.4.0](https://github.com/mojaloop/helm/releases/tag/v5.4.0) | 2019/03/19 | &check; | Sprint release |
+| [5.2.0](https://github.com/mojaloop/helm/releases/tag/v5.2.0) | 2019/02/20 | &check; | Sprint release |
+| [5.1.3](https://github.com/mojaloop/helm/releases/tag/v5.1.3) | 2019/02/14 | &check; | Sprint release |
+| [5.1.2](https://github.com/mojaloop/helm/releases/tag/v5.1.2) | 2019/02/11 | &check; | Sprint release |
+| [5.1.1](https://github.com/mojaloop/helm/releases/tag/v5.1.1) | 2019/02/08 | &check; | Sprint release |
+| [5.1.0](https://github.com/mojaloop/helm/releases/tag/v5.1.0) | 2019/02/06 | &check; | Sprint release |
+| [4.4.1](https://github.com/mojaloop/helm/releases/tag/v4.4.1) | 2019/01/31 | &check; | Released at PI4 Convening in Jan 2019 |
