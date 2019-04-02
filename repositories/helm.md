@@ -1,10 +1,14 @@
 # Helm
 
-The purpose of this document is to provide;
+For more information on [Helm](https://helm.sh/) refer to the following page: [https://helm.sh/](https://helm.sh/)
+
+The purpose of this document is to provide:
 
 * an overview of the current helm charts,
 * the hierarchy relationship between the charts,
 * the hierarchy of values.
+
+Refer to [Releases](../deployment-guide/releases.md) for available versions.
 
 ## Helm Chart Overview
 

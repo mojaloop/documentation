@@ -1,8 +1,11 @@
 # Table of contents
 
 * [Mojaloop Overview](README.md)
+* [Mojaloop Background](mojaloop-background/README.md)
+  * [Core Scenarios](mojaloop-background/core-scenarios.md)
+  * [Level One Principles](mojaloop-background/level-one-principles.md)
 * [Deployment Guide](deployment-guide/README.md)
-    * [Current Version](deployment-guide/current-versions.md)
+    * [Releases](deployment-guide/releases.md)
     * [Local Setup Linux](deployment-guide/local-setup-linux.md)
     * [Local Setup Mac](deployment-guide/local-setup-mac.md)
     * [Local Setup Windows](deployment-guide/local-setup-windows.md)
@@ -19,9 +22,6 @@
     * [API Documentation](contributors-guide/documentation/api-documentation.md)
     * [Documentation Style Guide](contributors-guide/documentation/documentation-style-guide.md)
   * [Frequently Asked Questions](contributors-guide/frequently-asked-questions.md)
-* [Mojaloop Background](mojaloop-background/README.md)
-  * [Core Scenarios](mojaloop-background/core-scenarios.md)
-  * [Level One Principles](mojaloop-background/level-one-principles.md)
 * [Mojaloop Technical Overview](mojaloop-technical-overview/README.md)
   * [Mojaloop Hub](mojaloop-technical-overview/mojaloop-components.md)
   * [Central-Ledger Services](mojaloop-technical-overview/central-ledger/README.md)
