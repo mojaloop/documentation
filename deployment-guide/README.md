@@ -19,7 +19,7 @@ A list of the pre-requisite tool set required for the deployment of Mojaloop;
 - **Kubernetes** An open-source system for automating deployment, scaling, and management of containerized applications. Find out more about [Kubernetes](https://kubernetes.io),
   - kubectl - Kubernetes CLI for Kubernetes Management is required. Find out more about [kubectl](https://kubernetes.io/docs/reference/kubectl/overview/),
     - [Install-kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/),
-  - microk8s - MicroK8s installs a barebones upstream Kubernetes. We recommend this installation on Linux (ubuntu) OS. Find out more about [microk8s](https://microk8s.io/) and [microk8s documents](https://microk8s.io/docs/),
+  - microk8s - MicroK8s installs a barebones upstream Kubernetes for a single node deployment generally used for local development. We recommend this installation on Linux (ubuntu) OS. Find out more about [microk8s](https://microk8s.io/) and [microk8s documents](https://microk8s.io/docs/),
     - [Install-microk8s](https://microk8s.io/docs/),
   - kubectx - Not required but useful. Find out more about [kubectx](https://github.com/ahmetb/kubectx),
   - kubetail - Not required but useful. Bash script that enables you to aggregate (tail/follow) logs from multiple pods into one stream. Find out more about [kubetail](https://github.com/johanhaleby/kubetail),
@@ -27,7 +27,7 @@ A list of the pre-requisite tool set required for the deployment of Mojaloop;
 - **Helm** A package manager for Kubernetes. Find out more about [Helm](https://helm.sh),
 - **Postman** Postman is a Google Chrome application for the interacting with HTTP API's. It presents you with a friendly GUI for the construction requests and reading responces.	https://www.getpostman.com/apps. Find out more about [Postman](https://postman.com).
 
-For **local guides** on how to setup the pre-requisites on your laptop or desktop, refer to the appropiate link document below;
+For **local guides** on how to setup the pre-requisites on your laptop or desktop, refer to the appropriate link document below;
 - [Local Setup for Mac](local-setup-mac.md)
 - [Local Setup for Linux](local-setup-linux.md)
 - [Local Setup for Windows](local-setup-windows.md)
@@ -86,7 +86,7 @@ Insure **kubectl** is installed. A complete set of installation instruction are 
 
 1. Kubernetes Dashboard roles, services & deployment.
 
-   Install for Dashboard using Helm (not needed if **MicroK8s** is installed): [kubernetes-dashboard](https://github.com/helm/charts/tree/master/stable/kubernetes-dashboard))
+   Install for Dashboard using Helm (not needed if **MicroK8s** is installed): [kubernetes-dashboard](https://github.com/helm/charts/tree/master/stable/kubernetes-dashboard)
 
    **IMPORTANT:** Always verify the current [kubernetes-dashboard](https://github.com/kubernetes/dashboard) yaml file is still correct as used in the below command.
    ```bash
@@ -109,17 +109,20 @@ Insure **kubectl** is installed. A complete set of installation instruction are 
    kubectl proxy ui
    ```
 
-4. Open URI in default browser;
-   ```http request
-   http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/#!/
+4. Open URI in default browser:
+    
+   ```
+   http://localhost.com:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/#!
    ```
 
    Select **Token**. Generate a token to use there by:
+   
    ```bash
    kubectl -n kube-system get secrets | grep dashboard-token
    ```
 
    The token to use is shown on the last line of the output of that command;
+   
    ```bash
    kubectl -n kube-system describe secrets/kubernetes-dashboard-token-btbwf
    ```
@@ -134,38 +137,39 @@ Please review [Mojaloop Helm Chart](../repositories/helm.md) to understand the r
 
 #### 4.1 Helm configuration
 
-1. Config Helm CLI and install Helm Tiller on K8s cluster;
+1. Config Helm CLI and install Helm Tiller on K8s cluster:
    ```bash
    helm init
    ```
 
-2. Validate Helm Tiller is up and running;
+2. Validate Helm Tiller is up and running:
    ```bash
    kubectl -n kube-system get po | grep tiller
    ```
 
-3. Add mojaloop repo to your Helm config (optional). Linux use with sudo;
+3. Add mojaloop repo to your Helm config (optional). Linux use with sudo:
    ```bash
    helm repo add mojaloop http://mojaloop.io/helm/repo/
    ```
    If the repo already exists, substitute 'add' with 'apply' in the above command.
 
-4. Add the incubator. This is needed to resolve Helm Chart dependencies required by Mojaloop charts. Linux use with sudo;
+4. Add the additional dependency Helm repositories. This is needed to resolve Helm Chart dependencies required by Mojaloop charts. Linux use with sudo;
    ```bash
    helm repo add incubator http://storage.googleapis.com/kubernetes-charts-incubator
+   helm repo add kiwigrid https://kiwigrid.github.io
    ```
 
-5. Update helm repositories. Linux use with sudo;
+5. Update helm repositories. Linux use with sudo:
    ```bash
    helm repo update
    ```
 
-6. Install nginx-ingress for load balancing & external access. Linux use with sudo;
+6. Install nginx-ingress for load balancing & external access. Linux use with sudo:
    ```bash
    helm --namespace kube-public install stable/nginx-ingress
    ```
 
-7. Update your /ect/hosts;
+7. Update your /ect/hosts:
    ```bash
    vi /etc/hosts
    ```
@@ -176,13 +180,14 @@ Please review [Mojaloop Helm Chart](../repositories/helm.md) to understand the r
    ```
 
 8. Test system health in your browser after installation. This will only work if you have an active helm chart deployment running.
-   **ml-api-adapter** health test;
-   ```https request
+   
+   **ml-api-adapter** health test:
+   ```
    http://ml-api-adapter.local/health
    ```
 
-   **central-ledger** health test;
-   ```http request
+   **central-ledger** health test:
+   ```
    http://central-ledger.local/health
    ```
 
@@ -196,11 +201,14 @@ Please, follow these instructions: [Get Postman](https://www.getpostman.com/post
 
 #### 5.2 Setup Postman
 
-1. Download this file [https://raw.githubusercontent.com/mojaloop/postman/master/Mojaloop.postman_collection.json](https://raw.githubusercontent.com/mojaloop/postman/master/Mojaloop.postman_collection.json)
-2. Open **Postman**
-3. Click **Import** and then **Import File**
-4. Select the _Mojaloop.postman\_collection.json_ file you downloaded
-5. You'll now need to import environment variables. For local testing, download this file [https://raw.githubusercontent.com/mojaloop/postman/master/environments/MojaloopLocal.postman_environment.json](https://raw.githubusercontent.com/mojaloop/postman/master/environments/MojaloopLocal.postman_environment.json)
-6. Click **Import** and then **Import File**
-7. Select the _MojaloopLocal.postman\_environment.json_ file you downloaded
-8. In the imported collection, navigate to the _central_ledger_ directory  
+##### Import the Collection
+1. Open **Postman**
+2. Click **Import** and then **Import From Link**
+3. Paste the following link [https://raw.githubusercontent.com/mojaloop/postman/master/Mojaloop.postman_collection.json](https://raw.githubusercontent.com/mojaloop/postman/master/Mojaloop.postman_collection.json) in the input box.
+4. Press the **Import** button to continue.
+
+##### Setup the Environment Configurations
+1. You'll now need to import environment variables. For local testing, download this file [https://raw.githubusercontent.com/mojaloop/postman/master/environments/MojaloopLocal.postman_environment.json](https://raw.githubusercontent.com/mojaloop/postman/master/environments/MojaloopLocal.postman_environment.json)
+2. Click **Import** and then **Import File**
+3. Select the _MojaloopLocal.postman_environment.json_ file you downloaded
+4. In the imported collection, navigate to the _central_ledger_ directory  

@@ -1,24 +1,22 @@
 # Deployment Troubleshooting
 
-##Suggested format to follow.
-- What is the issue.
-- How was it produced (what were you doing, where were you doing it i.e. macos, linux, etc).
-- And how do I fix it.
+## 1. Deployment issues
 
-## Deployment issues
+### 1.1 `ERR_NAME_NOT_RESOLVED` Error
 
-### 1.
-
-- What is the issue.
-central-ledger’s server IP address could not be found.
-
-- How was it produced.
-  `ERR_NAME_NOT_RESOLVED`
+#### Description
+The following error is displayed when attempting to access an end-point (e.g. central-ledger.local) via the Kubernetes Service directly in a browser: `ERR_NAME_NOT_RESOLVED`
     
-- How do I fix it.    
-  * Verify that a helm chart(s) was installed by executing. 
+#### Fixes
+    
+  * Verify that that Mojaloop was deployed by checking that the helm chart(s) was installed by executing:
+   
       ```bash
       helm list
       ```
 
     If the helm charts are not listed, see the [Helm Chart Installation](README.md#4-helm) section to install a chart.
+    
+  * Ensure that all the Mojaloop Pods/Containers have started up correctly and are available through the Kubernetes dashboard.
+  
+  * Note that the Mojaloop deployment via Helm can take a few minutes to initially startup depending on the system's available resources and specification. It is recommended that you wait at least 10m for all Pods/Containers to self heal before troubleshooting.
