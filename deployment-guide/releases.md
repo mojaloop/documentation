@@ -15,7 +15,7 @@ At of March 6th 2019, the active releases for core central services are as below
 
 ## Helm Charts Packaged Releases
 
-Refer to [Mojaloop Helm Repository](../repositories/helm.md) documentation.
+Refer to [Mojaloop Helm Repository](../repositories/helm.md) documentation to find out more information about Helm.
 
 | Version | Release Date | QA Tested | Link | Notes |
 | --- | :---: | :---: | --- |  --- |
