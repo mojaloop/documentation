@@ -5,10 +5,10 @@ npm install
 npm run gitbook:build
 
 # checkout to the gh-pages branch
-#git checkout gh-pages
+git checkout gh-pages
 
 # pull the latest updates
-#git pull mojaloop gh-pages --rebase
+git pull mojaloop gh-pages --rebase
 
 # copy the static site files into the current directory.
 cp -R _book/* .
