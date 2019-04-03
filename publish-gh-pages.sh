@@ -18,8 +18,8 @@ git pull mojaloop gh-pages --rebase
 echo "Copying contents of _book to root..."
 cp -R _book/* .
 
-echo "Cleaning up **/*.md files..."
-find . -name "*.md" -type f -delete
+# echo "Cleaning up **/*.md files..."
+# find . -name "*.md" -type f -delete
 
 # echo "Cleaning up node_modules directory..."
 # git clean -fx node_modules
