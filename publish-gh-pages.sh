@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
 # install the plugins and build the static site
-gitbook install && gitbook build
+npm install
+npm run gitbook:build
 
 # checkout to the gh-pages branch
 git checkout gh-pages
