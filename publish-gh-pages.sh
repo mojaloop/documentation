@@ -7,7 +7,7 @@ gitbook install && gitbook build
 git checkout gh-pages
 
 # pull the latest updates
-git pull origin gh-pages --rebase
+git pull mojaloop gh-pages --rebase
 
 # copy the static site files into the current directory.
 cp -R _book/* .
@@ -23,7 +23,7 @@ git add .
 git commit -a -m "Update gh-pages on github"
 
 # push to the origin
-git push origin gh-pages
+git push mojaloop gh-pages
 
 # checkout to the master branch
-git checkout master
+#git checkout master
