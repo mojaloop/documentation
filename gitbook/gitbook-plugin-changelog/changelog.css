@@ -1,0 +1,104 @@
+
+.changelog--commit
+{
+	margin-bottom: 80px;
+}
+
+.changelog--commit:last-of-type { margin-bottom: 0px; }
+
+
+
+.changelog--header
+{
+	margin: 0;
+}
+
+.changelog--date
+{
+	margin: 0;
+}
+
+.changelog--message
+{}
+
+
+
+
+.changelog--file
+{
+	border-bottom: 1px solid #eee;
+}
+
+.changelog--badge
+{
+	display: inline-block;
+	width: 60px;
+
+	background: gray;
+	border-radius: 2px;
+
+	font-size: 10px;
+	text-align: center;
+	text-transform: uppercase;
+	color: white;
+
+}
+
+.-added .changelog--badge 		{ background-color: green; }
+.-updated .changelog--badge 	{ background-color: blue; }
+.-deleted .changelog--badge 	{ background-color: red; }
+
+.changelog--filename
+{
+	display: inline-block;
+	padding: 7px 0px;
+	margin-left: 10px;
+}
+
+.changelog--change
+{
+	position: relative;
+	margin-left: 70px;
+}
+
+.changelog--change.-show-less
+{
+	max-height: 100px;
+    overflow: hidden;
+}
+
+.changelog--change.-show-less:before
+{
+	content: '';
+	position: absolute;
+	bottom: 0px;
+
+	width: 100%;
+	height: 100px;
+
+	background: linear-gradient( 0deg, white, rgba(255,255,255,0.0) );
+}
+
+.changelog--disclosure
+{
+    position: absolute;
+    right: 0;
+
+    cursor: pointer;
+
+    color: #777;
+	font-size: 12px;
+	padding: 2px 4px;
+	border-radius: 0px 0px 0px 3px;
+
+	background: #ddd;
+}
+
+.changelog--change.-show-less .changelog--disclosure .-less { display: none; }
+.changelog--change:not(.-show-less) .changelog--disclosure .-more { display: none; }
+
+.changelog--change pre
+{}
+
+.changelog--change code
+{}
