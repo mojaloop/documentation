@@ -11,13 +11,13 @@ git checkout gh-pages
 git pull mojaloop gh-pages --rebase
 
 # copy the static site files into the current directory.
-cp -R _book/* .
+find . -name "*.md" -type f -delete
 
 rm **/*.md
 
-# remove 'node_modules' and '_book' directory
-git clean -fx node_modules
-git clean -fx _book
+## remove 'node_modules' and '_book' directory
+#git clean -fx node_modules
+#git clean -fx _book
 
 # add all files
 git add .
