@@ -1,32 +1,39 @@
 #!/usr/bin/env bash
 
-# install the plugins and build the static site
+export GIT_BRANCH=$(git branch | grep \* | cut -d ' ' -f2)
+echo "Publishing current branch: $GIT_BRANCH..."
+
+echo "Install npm dependencies..."
 npm install
+
+echo "Build gitbook"
 npm run gitbook:build
 
-# checkout to the gh-pages branch
+echo "Checking out gh-pages"
 git checkout gh-pages
 
-# pull the latest updates
+echo "Copying..."
 git pull mojaloop gh-pages --rebase
 
-# copy the static site files into the current directory.
+echo "Copying contents of _book to root..."
+cp -R _book/* .
+
+echo "Cleaning up **/*.md files..."
 find . -name "*.md" -type f -delete
 
-rm **/*.md
+# echo "Cleaning up node_modules directory..."
+# git clean -fx node_modules
+# echo "Cleaning up _book directory..."
+# git clean -fx _book
 
-## remove 'node_modules' and '_book' directory
-#git clean -fx node_modules
-#git clean -fx _book
-
-# add all files
+echo "Staging changes..."
 git add .
 
 # commit
-git commit -a -m "Update gh-pages on github"
+git commit -a -m "Update gh-pages on github..."
 
 # push to the origin
 git push mojaloop gh-pages
 
 # checkout to the master branch
-#git checkout master
+git checkout $GIT_BRANCH
