@@ -26,8 +26,11 @@ cp -R _book/* .
 # echo "Cleaning up _book directory..."
 # git clean -fx _book
 
-echo "Staging changes..."
+echo "Staging general changes..."
 git add .
+
+echo "Staging generated UML..."
+git add -f assets/images/uml/*.*
 
 # commit
 git commit -a -m "Update gh-pages on github..."
