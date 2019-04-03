@@ -41,4 +41,4 @@
   * [Project](repositories/project.md)
 * [Mojaloop Roadmap](mojaloop-roadmap.md)
 * [Glossary of Terms](glossary.md)
-* [Changelog](changelog.md)
+<!--* [Changelog](changelog.md)-->
