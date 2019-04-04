@@ -65,8 +65,7 @@ defaults_publish_to_gh_pages: &defaults_publish_to_gh_pages
     git commit -a -m "Updating release to $GITHUB_TAG"
 
     echo "Publishing $GITHUB_TAG release to $GITBOOK_TARGET_BRANCH on github..."
-    echo "git push https://${GITHUB_TOKEN}@github.com/${GITHUB_PROJECT_USERNAME}/${GITHUB_PROJECT_REPONAME}.git $GITBOOK_TARGET_BRANCH"
-#    git push https://${GITHUB_TOKEN}@github.com/${GITHUB_PROJECT_USERNAME}/${GITHUB_PROJECT_REPONAME}.git $GITBOOK_TARGET_BRANCH
+    git push https://${GITHUB_TOKEN}@github.com/${GITHUB_PROJECT_USERNAME}/${GITHUB_PROJECT_REPONAME}.git $GITBOOK_TARGET_BRANCH
 
 jobs:
   setup:
