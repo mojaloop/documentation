@@ -9,7 +9,7 @@ defaults_docker_node: &defaults_docker_node
     - image: node:10.15-alpine
 
 defaults_Dependencies: &defaults_Dependencies
-  name: Set default environment
+  name: Install default dependencies
   command: |
     apk --no-cache add git
     apk --no-cache add ca-certificates
@@ -23,24 +23,6 @@ defaults_Environment: &defaults_environment
   command: |
     echo "Nothing to do here right now...move along!"
 
-defaults_deploy_configure_helm: &defaults_deploy_configure_helm
-  name: Configure Helm
-  command: |
-    helm init --client-only
-
-defaults_deploy_install_or_upgrade_helm_chart: &defaults_deploy_install_or_upgrade_helm_chart
-  name: Install or Upgrade Helm Chart
-  command: |
-    echo "Install or Upgrade Chart ${K8_RELEASE_NAME} for Docker Image ${DOCKER_ORG}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_TAG}"
-    if [ -z "$(helm list -q | grep -E "^${K8_RELEASE_NAME}$")"  ] && [ "$(helm list -q | grep -E "^${K8_RELEASE_NAME}$")" != "Error: Unauthorized" ];
-    then
-        echo "Installing ${K8_RELEASE_NAME} new release"
-        helm install --namespace=$K8_NAMESPACE --name=$K8_RELEASE_NAME --repo=$K8_HELM_REPO --version $K8_HELM_CHART_VERSION $HELM_VALUE_SET_VALUES -f $CIRCLE_WORKING_DIRECTORY/$AWS_S3_DIR_DEVOPS_DEPLOYMENT_CONFIG_HELM/$HELM_VALUE_FILENAME $K8_HELM_CHART_NAME
-    else
-        echo "Upgrading ${K8_RELEASE_NAME} release"
-        helm upgrade $K8_RELEASE_NAME --repo=$K8_HELM_REPO --version $K8_HELM_CHART_VERSION --reuse-values $HELM_VALUE_SET_VALUES -f $CIRCLE_WORKING_DIRECTORY/$AWS_S3_DIR_DEVOPS_DEPLOYMENT_CONFIG_HELM/$HELM_VALUE_FILENAME $K8_HELM_CHART_NAME
-    fi
-
 defaults_slack_announcement: &defaults_slack_announcement
   name: Slack announcement for tag releases
   command: |
@@ -51,6 +33,12 @@ defaults_slack_announcement: &defaults_slack_announcement
       -d "{
       \"text\": \"*${CIRCLE_PROJECT_REPONAME}* - Release \`${CIRCLE_TAG}\`: https://github.com/mojaloop/${CIRCLE_PROJECT_REPONAME}/releases/tag/${CIRCLE_TAG}\"
     }"
+
+defaults_git_identity_setup: &defaults_git_identity_setup
+  name: Setup Git Identity
+  ecommand: |
+    git config --global user.email "$GIT_CI_USER"
+    git config --global user.name "$GIT_CI_EMAIL"
 
 defaults_publish_to_gh_pages: &defaults_publish_to_gh_pages
   name: Publish documentation
@@ -150,6 +138,8 @@ jobs:
           keys:
           - build-cache-$CIRCLE_WORKFLOW_ID
       - run:
+          <<: *defaults_git_identity_setup
+      - run:
           name: setup environment vars for SNAPSHOT release
           command: |
             echo 'export GITBOOK_TARGET_BRANCH=$GITBOOK_TARGET_BRANCH' >> $BASH_ENV
@@ -157,6 +147,8 @@ jobs:
             echo 'export GITHUB_PROJECT_USERNAME=$CIRCLE_PROJECT_USERNAME' >> $BASH_ENV
             echo 'export GITHUB_PROJECT_REPONAME=$CIRCLE_PROJECT_REPONAME' >> $BASH_ENV
             echo 'export GITHUB_TAG=$CIRCLE_TAG' >> $BASH_ENV
+            echo 'export GIT_CI_USER=GIT_CI_USER' >> $BASH_ENV
+            echo 'export GIT_CI_EMAIL=GIT_CI_EMAIL' >> $BASH_ENV
       - run:
           <<: *defaults_publish_to_gh_pages
       - run:
