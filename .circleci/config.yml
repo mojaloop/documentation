@@ -52,7 +52,7 @@ defaults_publish_to_gh_pages: &defaults_publish_to_gh_pages
     source $BASH_ENV
 
     echo "Checking out $GITBOOK_TARGET_BRANCH"
-    git checkout $GITBOOK_TARGET_BRANCH
+    git checkout -b $GITBOOK_TARGET_BRANCH $GITHUB_PROJECT_USERNAME/$GITBOOK_TARGET_BRANCH
 
     echo "Pulling latest code from $GITBOOK_TARGET_BRANCH branch..."
     git pull -q $GITHUB_PROJECT_USERNAME $GITBOOK_TARGET_BRANCH --rebase
