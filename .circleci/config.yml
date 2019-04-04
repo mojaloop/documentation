@@ -156,6 +156,8 @@ jobs:
             echo 'export GITHUB_TAG=$CIRCLE_TAG' >> $BASH_ENV
       - run:
           <<: *defaults_publish_to_gh_pages
+      - run:
+          <<: *defaults_slack_announcement
 
 workflows:
   version: 2
