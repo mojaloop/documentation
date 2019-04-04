@@ -96,7 +96,7 @@ jobs:
           name: Delete build dependencies
           command: apk del build-dependencies
       - save_cache:
-          key: dependency-cache-$CIRCLE_WORKFLOW_ID
+          key: dependency-cache-{{ .Environment.$CIRCLE_WORKFLOW_ID }}
           paths:
             - node_modules
 
@@ -123,13 +123,13 @@ jobs:
             curl -L https://sourceforge.net/projects/plantuml/files/plantuml.${PLANTUML_VERSION}.jar/download -o plantuml.jar
       - restore_cache:
           keys:
-          - dependency-cache-$CIRCLE_WORKFLOW_ID
+          - dependency-cache-{{ .Environment.$CIRCLE_WORKFLOW_ID }}
       - run:
           name: Build Gitbooks
           command: |
             npm run gitbook:build
       - save_cache:
-          key: build-cache-$CIRCLE_WORKFLOW_ID
+          key: build-cache-{{ .Environment.$CIRCLE_WORKFLOW_ID }}
           paths:
             - _book
 
@@ -154,7 +154,7 @@ jobs:
             echo 'export GIT_CI_EMAIL=$GIT_CI_EMAIL' >> $BASH_ENV
       - restore_cache:
           keys:
-          - build-cache-$CIRCLE_WORKFLOW_ID
+          - build-cache-{{ .Environment.$CIRCLE_WORKFLOW_ID }}
       - run:
           <<: *defaults_git_identity_setup
       - run:
