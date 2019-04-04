@@ -43,7 +43,7 @@ defaults_git_identity_setup: &defaults_git_identity_setup
     git config --global user.email "$GIT_CI_USER"
     git config --global user.password "$GIT_CI_PASSWORD"
     git config --global user.name "$GIT_CI_EMAIL"
-    git remote add $GITHUB_PROJECT_USERNAME https://$GITHUB_TOKEN@github.com/$GITHUB_PROJECT_USERNAME/$GITHUB_PROJECT_REPONAME.git
+    git remote add $GITHUB_PROJECT_USERNAME https://$GIT_CI_USER:$GITHUB_TOKEN@github.com/$GITHUB_PROJECT_USERNAME/$GITHUB_PROJECT_REPONAME.git
 
 defaults_publish_to_gh_pages: &defaults_publish_to_gh_pages
   name: Publish documentation
@@ -52,13 +52,13 @@ defaults_publish_to_gh_pages: &defaults_publish_to_gh_pages
     source $BASH_ENV
 
     echo "Fetching info from remote $GITHUB_PROJECT_USERNAME"
-    git fetch $GITHUB_PROJECT_USERNAME
+    git fetch $GITHUB_PROJECT_USERNAME > git.log
 
     echo "Checking out $GITBOOK_TARGET_BRANCH"
-    git checkout -b $GITBOOK_TARGET_BRANCH $GITHUB_PROJECT_USERNAME/$GITBOOK_TARGET_BRANCH
+    git checkout -b $GITBOOK_TARGET_BRANCH $GITHUB_PROJECT_USERNAME/$GITBOOK_TARGET_BRANCH  > git.log
 
     echo "Pulling latest code from $GITBOOK_TARGET_BRANCH branch..."
-    git pull -q $GITHUB_PROJECT_USERNAME $GITBOOK_TARGET_BRANCH --rebase
+    git pull -q $GITHUB_PROJECT_USERNAME $GITBOOK_TARGET_BRANCH --rebase > git.log
 
     echo "Copying contents of _book to root..."
     cp -R _book/* .
@@ -73,7 +73,7 @@ defaults_publish_to_gh_pages: &defaults_publish_to_gh_pages
     git commit -a -m "Updating release to $GITHUB_TAG"
 
     echo "Publishing $GITHUB_TAG release to $GITBOOK_TARGET_BRANCH on github..."
-    git push -q $GITHUB_PROJECT_USERNAME $GITBOOK_TARGET_BRANCH
+    git push -q $GITHUB_PROJECT_USERNAME $GITBOOK_TARGET_BRANCH > git.log
 
 jobs:
   setup:
