@@ -182,10 +182,12 @@ workflows:
             - setup
           filters:
             tags:
-              only: /v[0-9]+(\.[0-9]+)*/
+              only: /.*/
             branches:
               ignore:
-                - /.*/
+                - /feature.*/
+                - /bugfix.*/
+                - gh-pages
       - deploy:
           context: org-global
           requires:
