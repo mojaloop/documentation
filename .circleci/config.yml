@@ -1,0 +1,198 @@
+# CircleCI v2 Config
+version: 2
+
+defaults_working_directory: &defaults_working_directory
+  working_directory: /home/circleci/project
+
+defaults_docker_node: &defaults_docker_node
+  docker:
+    - image: node:10.15-alpine
+
+defaults_Dependencies: &defaults_Dependencies
+  name: Install default dependencies
+  command: |
+    apk --no-cache add git
+    apk --no-cache add ca-certificates
+    apk --no-cache add curl
+    apk --no-cache add openssh-client
+    apk add --no-cache -t build-dependencies make gcc g++ python libtool autoconf automake
+    npm config set unsafe-perm true
+    npm install -g gitbook-cli
+
+defaults_Environment: &defaults_environment
+  name: Set default environment
+  command: |
+    echo "Nothing to do here right now...move along!"
+
+defaults_slack_announcement: &defaults_slack_announcement
+  name: Slack announcement for tag releases
+  command: |
+    curl -X POST \
+      $SLACK_WEBHOOK_ANNOUNCEMENT \
+      -H 'Content-type: application/json' \
+      -H 'cache-control: no-cache' \
+      -d "{
+      \"text\": \"*${CIRCLE_PROJECT_REPONAME}* - Release \`${CIRCLE_TAG}\`: https://github.com/mojaloop/${CIRCLE_PROJECT_REPONAME}/releases/tag/${CIRCLE_TAG}\"
+    }"
+
+defaults_git_identity_setup: &defaults_git_identity_setup
+  name: Setup Git Identity
+  command: |
+    echo "Setting BASH_ENV..."
+    source $BASH_ENV
+
+    git config --global user.email "$GIT_CI_USER"
+    git config --global user.password "$GIT_CI_PASSWORD"
+    git config --global user.name "$GIT_CI_EMAIL"
+    git remote add $GITHUB_PROJECT_USERNAME https://$GIT_CI_USER:$GITHUB_TOKEN@github.com/$GITHUB_PROJECT_USERNAME/$GITHUB_PROJECT_REPONAME.git
+
+defaults_publish_to_gh_pages: &defaults_publish_to_gh_pages
+  name: Publish documentation
+  command: |
+    echo "Setting BASH_ENV..."
+    source $BASH_ENV
+
+    echo "Fetching info from remote $GITHUB_PROJECT_USERNAME"
+    git fetch $GITHUB_PROJECT_USERNAME > git.log
+
+    echo "Checking out $GITBOOK_TARGET_BRANCH"
+    git checkout -b $GITBOOK_TARGET_BRANCH $GITHUB_PROJECT_USERNAME/$GITBOOK_TARGET_BRANCH  > git.log
+
+    echo "Pulling latest code from $GITBOOK_TARGET_BRANCH branch..."
+    git pull -q $GITHUB_PROJECT_USERNAME $GITBOOK_TARGET_BRANCH --rebase > git.log
+
+    echo "Copying contents of _book to root..."
+    cp -R _book/* .
+
+    echo "Staging general changes..."
+    git add .
+
+    echo "Staging generated UML..."
+    git add -f assets/images/uml/*.*
+
+    echo "Commiting changes..."
+    git commit -a -m "Updating release to $GITHUB_TAG"
+
+    echo "Publishing $GITHUB_TAG release to $GITBOOK_TARGET_BRANCH on github..."
+    git push -q $GITHUB_PROJECT_USERNAME $GITBOOK_TARGET_BRANCH > git.log
+
+jobs:
+  setup:
+    <<: *defaults_working_directory
+    <<: *defaults_docker_node
+    steps:
+      - checkout
+      - run:
+          <<: *defaults_Dependencies
+      - run:
+          <<: *defaults_environment
+      - run:
+          name: Access npm folder as root
+          command: cd $(npm root -g)/npm
+      - run:
+          name: Update NPM install
+          command: npm install
+      - run:
+          name: Delete build dependencies
+          command: apk del build-dependencies
+      - save_cache:
+          key: dependency-cache-{{ .Environment.CIRCLE_WORKFLOW_ID }}
+          paths:
+            - node_modules
+
+  build:
+    <<: *defaults_working_directory
+    <<: *defaults_docker_node
+    steps:
+      - checkout
+      - run:
+          <<: *defaults_Dependencies
+      - run:
+          <<: *defaults_environment
+      - run:
+          name: Installing build dependencies
+          command: |
+            echo 'Installing build dependencies via APK'
+            apk add --no-cache -t openjdk8-jre graphviz ttf-droid ttf-droid-nonlatin
+
+            echo 'Setting env vars'
+            echo 'export PLANTUML_VERSION=$PLANTUML_VERSION' >> $BASH_ENV
+            echo 'export LANG=$PLANTUML_LANG' >> $BASH_ENV
+
+            echo 'Downloading plantuml jar'
+            curl -L https://sourceforge.net/projects/plantuml/files/plantuml.${PLANTUML_VERSION}.jar/download -o plantuml.jar
+      - restore_cache:
+          keys:
+          - dependency-cache-{{ .Environment.CIRCLE_WORKFLOW_ID }}
+      - run:
+          name: Build Gitbooks
+          command: |
+            npm run gitbook:build
+      - save_cache:
+          key: build-cache-{{ .Environment.CIRCLE_WORKFLOW_ID }}
+          paths:
+            - _book
+
+  deploy:
+    <<: *defaults_working_directory
+    <<: *defaults_docker_node
+    steps:
+      - checkout
+      - run:
+          <<: *defaults_Dependencies
+      - run:
+          <<: *defaults_environment
+      - run:
+          name: setup environment vars for SNAPSHOT release
+          command: |
+            echo 'export GITBOOK_TARGET_BRANCH=$GITBOOK_TARGET_BRANCH' >> $BASH_ENV
+            echo 'export GITHUB_TOKEN=$GITHUB_TOKEN' >> $BASH_ENV
+            echo 'export GITHUB_PROJECT_USERNAME=$CIRCLE_PROJECT_USERNAME' >> $BASH_ENV
+            echo 'export GITHUB_PROJECT_REPONAME=$CIRCLE_PROJECT_REPONAME' >> $BASH_ENV
+            echo 'export GITHUB_TAG=$CIRCLE_TAG' >> $BASH_ENV
+            echo 'export GIT_CI_USER=$GIT_CI_USER' >> $BASH_ENV
+            echo 'export GIT_CI_EMAIL=$GIT_CI_EMAIL' >> $BASH_ENV
+      - restore_cache:
+          keys:
+          - build-cache-{{ .Environment.CIRCLE_WORKFLOW_ID }}
+      - run:
+          <<: *defaults_git_identity_setup
+      - run:
+          <<: *defaults_publish_to_gh_pages
+      - run:
+          <<: *defaults_slack_announcement
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - setup:
+          context: org-global
+          filters:
+            tags:
+              only: /.*/
+            branches:
+              ignore:
+                - /feature.*/
+                - /bugfix.*/
+                - gh-pages
+      - build:
+          context: org-global
+          requires:
+            - setup
+          filters:
+            tags:
+              only: /v[0-9]+(\.[0-9]+)*/
+            branches:
+              ignore:
+                - /.*/
+      - deploy:
+          context: org-global
+          requires:
+            - build
+          filters:
+            tags:
+              only: /v[0-9]+(\.[0-9]+)*/
+            branches:
+              ignore:
+                - /.*/
