@@ -37,9 +37,13 @@ defaults_slack_announcement: &defaults_slack_announcement
 defaults_git_identity_setup: &defaults_git_identity_setup
   name: Setup Git Identity
   command: |
+    echo "Setting BASH_ENV..."
+    source $BASH_ENV
+
     git config --global user.email "$GIT_CI_USER"
     git config --global user.password "$GIT_CI_PASSWORD"
     git config --global user.name "$GIT_CI_EMAIL"
+    git remote add $GITHUB_PROJECT_USERNAME https://$GIT_CI_USER:$GIT_CI_PASSWORD@github.com/$GITHUB_PROJECT_USERNAME/project.git
 
 defaults_publish_to_gh_pages: &defaults_publish_to_gh_pages
   name: Publish documentation
@@ -51,7 +55,7 @@ defaults_publish_to_gh_pages: &defaults_publish_to_gh_pages
     git checkout $GITBOOK_TARGET_BRANCH
 
     echo "Pulling latest code from $GITBOOK_TARGET_BRANCH branch..."
-    git pull https://github.com/${GITHUB_PROJECT_USERNAME}/${GITHUB_PROJECT_REPONAME}.git $GITBOOK_TARGET_BRANCH --rebase
+    git pull $GITHUB_PROJECT_USERNAME $GITBOOK_TARGET_BRANCH --rebase
 
     echo "Copying contents of _book to root..."
     cp -R _book/* .
@@ -66,7 +70,7 @@ defaults_publish_to_gh_pages: &defaults_publish_to_gh_pages
     git commit -a -m "Updating release to $GITHUB_TAG"
 
     echo "Publishing $GITHUB_TAG release to $GITBOOK_TARGET_BRANCH on github..."
-    git push https://github.com/${GITHUB_PROJECT_USERNAME}/${GITHUB_PROJECT_REPONAME}.git $GITBOOK_TARGET_BRANCH
+    git push $GITHUB_PROJECT_USERNAME $GITBOOK_TARGET_BRANCH
 
 jobs:
   setup:
@@ -134,11 +138,6 @@ jobs:
           <<: *defaults_Dependencies
       - run:
           <<: *defaults_environment
-      - restore_cache:
-          keys:
-          - build-cache-$CIRCLE_WORKFLOW_ID
-      - run:
-          <<: *defaults_git_identity_setup
       - run:
           name: setup environment vars for SNAPSHOT release
           command: |
@@ -149,6 +148,11 @@ jobs:
             echo 'export GITHUB_TAG=$CIRCLE_TAG' >> $BASH_ENV
             echo 'export GIT_CI_USER=GIT_CI_USER' >> $BASH_ENV
             echo 'export GIT_CI_EMAIL=GIT_CI_EMAIL' >> $BASH_ENV
+      - restore_cache:
+          keys:
+          - build-cache-$CIRCLE_WORKFLOW_ID
+      - run:
+          <<: *defaults_git_identity_setup
       - run:
           <<: *defaults_publish_to_gh_pages
       - run:
