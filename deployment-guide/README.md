@@ -34,9 +34,11 @@ For **local guides** on how to setup the pre-requisites on your laptop or deskto
 
 ### 2. Deployment Recommendations
 
-This provides environment resource recommendations with a view of the infrastructure architecture.
+This provides environment resource recommendations with a view of the production infrastructure architecture.
 
 **Resources Requirements:**
+
+Your local installation would typically be done on a single node. We recommend a minimum available resources of 4x vCPUs, 16GB of RAM, and 40gb storage for your local setup.
 
 * Control Plane (i.e. Master Node)
   
@@ -153,15 +155,31 @@ Please review [Mojaloop Helm Chart](../repositories/helm.md) to understand the r
    ```
    If the repo already exists, substitute 'add' with 'apply' in the above command.
 
-4. Add the additional dependency Helm repositories. This is needed to resolve Helm Chart dependencies required by Mojaloop charts. Linux use with sudo;
+4. Install mojaloop Helm chart. Linux use with sudo:
+   
+   - The full mojaloop project:
+     ```bash
+     helm install --namespace=demo --name=moja mojaloop/mojaloop
+     ```
+     Alternative: straight from the github repository:
+     ```bash
+     helm install --namespace=demo --name=moja --repo=http://mojaloop.io/helm/repo mojaloop
+     ```
+     **or**
+   
+   - A specific mojaloop repository eg. **central-ledger**
+     ```bash
+     helm install --namespace=demo --name=moja mojaloop/centralledger
+     ```
+     Alternative: straight from the github repository:
+     ```bash
+     Alternative: helm install --namespace=demo --name=moja --repo=http://mojaloop.io/helm/repo centralledger
+     ```
+
+5. Add the additional dependency Helm repositories. This is needed to resolve Helm Chart dependencies required by Mojaloop charts. Linux use with sudo;
    ```bash
    helm repo add incubator http://storage.googleapis.com/kubernetes-charts-incubator
    helm repo add kiwigrid https://kiwigrid.github.io
-   ```
-
-5. Update helm repositories. Linux use with sudo:
-   ```bash
-   helm repo update
    ```
 
 6. Install nginx-ingress for load balancing & external access. Linux use with sudo:
@@ -169,7 +187,12 @@ Please review [Mojaloop Helm Chart](../repositories/helm.md) to understand the r
    helm --namespace kube-public install stable/nginx-ingress
    ```
 
-7. Update your /ect/hosts:
+7. Update helm repositories. Linux use with sudo:
+   ```bash
+   helm repo update
+   ```
+
+8. Update your /ect/hosts:
    ```bash
    vi /etc/hosts
    ```
@@ -179,7 +202,7 @@ Please review [Mojaloop Helm Chart](../repositories/helm.md) to understand the r
    127.0.0.1       interop-switch.local central-kms.local forensic-logging-sidecar.local central-ledger.local central-end-user-registry.local central-directory.local central-hub.local central-settlements.local ml-api-adapter.local
    ```
 
-8. Test system health in your browser after installation. This will only work if you have an active helm chart deployment running.
+9. Test system health in your browser after installation. This will only work if you have an active helm chart deployment running.
    
    **ml-api-adapter** health test:
    ```
