@@ -130,7 +130,7 @@ jobs:
           command: |
             npm run gitbook:build
       - save_cache:
-          key: build-cache-{{ checksum "package.json" }}
+          key: build-cache-$CIRCLE_WORKFLOW_ID
           paths:
             - _book
 
@@ -138,13 +138,14 @@ jobs:
     <<: *defaults_working_directory
     <<: *defaults_docker_node
     steps:
+      - checkout
       - run:
           <<: *defaults_Dependencies
       - run:
           <<: *defaults_environment
       - restore_cache:
           keys:
-          - build-cache-{{ checksum "package.json" }}
+          - build-cache-$CIRCLE_WORKFLOW_ID
       - run:
           name: setup environment vars for SNAPSHOT release
           command: |
