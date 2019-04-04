@@ -167,6 +167,7 @@ workflows:
               ignore:
                 - /feature*/
                 - /bugfix*/
+                - /gh-pages*/
       - build:
           context: org-global
           requires:
