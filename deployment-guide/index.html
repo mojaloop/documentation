@@ -907,6 +907,10 @@ helm repo add kiwigrid https://kiwigrid.github.io
 <pre><code class="lang-bash">helm --namespace kube-public install stable/nginx-ingress
 </code></pre>
 </li>
+</ol>
+<h3 id="5-mojaloop">5. Mojaloop</h3>
+<h4 id="51-mojaloop-helm-deployment">5.1 Mojaloop Helm Deployment</h4>
+<ol>
 <li><p>Install Mojaloop. Linux use with sudo:</p>
 <p>Default installation:</p>
 <pre><code class="lang-bash">helm --namespace demo --name moja install mojaloop/mojaloop
@@ -920,10 +924,13 @@ helm repo add kiwigrid https://kiwigrid.github.io
 <p>Custom configured installation:</p>
 <pre><code class="lang-bash">helm --namespace demo --name moja install mojaloop/mojaloop -file {custom-values.yaml}
 </code></pre>
-<p><em>Note: Download and customize the <a href="https://github.com/mojaloop/helm/blob/master/mojaloop/values.yaml" target="_blank">https://github.com/mojaloop/helm/blob/master/mojaloop/values.yaml</a>. Note that you should use the value file from the specific version that you will be installing.</em></p>
+<p><em>Note: Download and customize the <a href="https://github.com/mojaloop/helm/blob/master/mojaloop/values.yaml" target="_blank">values.yaml</a>. Note that you should use the value file from the specific version that you will be installing.</em></p>
 </li>
+</ol>
+<h4 id="52-verifying-mojaloop-deployment">5.2 Verifying Mojaloop Deployment</h4>
+<ol>
 <li><p>Update your /ect/hosts for local deployment:</p>
-<p><em>Note: This is only applicable for local deployments</em></p>
+<p><em>Note: This is only applicable for local deployments, and is not needed if you are configured a custom DNS or ingress rules via the <a href="https://github.com/mojaloop/helm/blob/master/mojaloop/values.yaml" target="_blank">values.yaml</a></em></p>
 <pre><code class="lang-bash">vi /etc/hosts
 </code></pre>
 <p>Include the following line to the config;</p>
@@ -931,18 +938,18 @@ helm repo add kiwigrid https://kiwigrid.github.io
 </code></pre>
 </li>
 <li><p>Test system health in your browser after installation. This will only work if you have an active helm chart deployment running.</p>
-<p><em>Note: This is only applicable for local deployments</em></p>
+<p><em>Note: The examples below are only applicable to a local deployment. The entries should match the DNS values or ingress rules as configured in the <a href="https://github.com/mojaloop/helm/blob/master/mojaloop/values.yaml" target="_blank">values.yaml</a> or otherwise matching any custom ingress rules configured</em></p>
 <p><strong>ml-api-adapter</strong> health test:</p>
 <pre><code>http://ml-api-adapter.local/health
 </code></pre><p><strong>central-ledger</strong> health test:</p>
 <pre><code>http://central-ledger.local/health
 </code></pre></li>
 </ol>
-<h3 id="5-postman">5. Postman</h3>
+<h3 id="6-postman">6. Postman</h3>
 <p>Postman is used to send requests and receive responses.</p>
-<h4 id="51-installing-postman">5.1 Installing Postman</h4>
+<h4 id="61-installing-postman">6.1 Installing Postman</h4>
 <p>Please, follow these instructions: <a href="https://www.getpostman.com/postman" target="_blank">Get Postman</a></p>
-<h4 id="52-setup-postman">5.2 Setup Postman</h4>
+<h4 id="62-setup-postman">6.2 Setup Postman</h4>
 <h5 id="import-the-collection">Import the Collection</h5>
 <ol>
 <li>Open <strong>Postman</strong></li>
@@ -990,7 +997,7 @@ helm repo add kiwigrid https://kiwigrid.github.io
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Deployment Guide","level":"1.3","depth":1,"next":{"title":"Releases","level":"1.3.1","depth":2,"path":"deployment-guide/releases.md","ref":"deployment-guide/releases.md","articles":[]},"previous":{"title":"Level One Principles","level":"1.2.2","depth":2,"path":"mojaloop-background/level-one-principles.md","ref":"mojaloop-background/level-one-principles.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"3.x.x","theme":"default","variables":{"importedVars":{"mojaloop":{"spec":{"version":"v1.0","uri":{"doc":"https://github.com/mojaloop/mojaloop-specification/blob/master/API%20Definition%20v1.0.pdf","api":"https://github.com/mojaloop/mojaloop-specification/blob/master/Supporting%20Files/fspiop-rest-v1.0-OpenAPI-implementation.yaml"}}},"als":{"oracle":{"spec":{"version":"v1.0","uri":{"doc":"/mojaloop-technical-overview/account-lookup-service/README.md","api":"https://github.com/mojaloop/documentation/blob/master/api/assets/interface-contracts/oracleServiceSwaggerv1.yaml"}}}}}},"plugins":["swagger","editlink","include","insert-logo","uml","collapsible-chapters","back-to-top-button","theme-api","variables","changelog","page-toc"],"pluginsConfig":{"editlink":{"label":"Edit This Page","multilingual":true,"base":"https://github.com/mojaloop/documentation/edit/master"},"theme-gestalt":{"logo":"http://mojaloop.io/images/logo.png","favicon":"http://mojaloop.io/images/logo.png","baseUrl":null,"excludeDefaultStyles":false,"doNotHideChildrenChapters":false},"include":{},"search":{},"collapsible-chapters":{},"page-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","position":"before-first","showByDefault":true},"swagger":{"file":""},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"uml":{"format":"svg","nailgun":false},"changelog":{},"theme-api":{"languages":[],"split":true,"theme":"dark"},"back-to-top-button":{},"variables":{"files":{"importedVars":"book_variables.yml"}},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"insert-logo":{"url":"http://mojaloop.io/images/logo.png","style":"background: none; max-height: 140px; max-width: 140px;"}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"deployment-guide/README.md","mtime":"2019-04-04T18:52:04.778Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-04-04T18:52:39.433Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Deployment Guide","level":"1.3","depth":1,"next":{"title":"Releases","level":"1.3.1","depth":2,"path":"deployment-guide/releases.md","ref":"deployment-guide/releases.md","articles":[]},"previous":{"title":"Level One Principles","level":"1.2.2","depth":2,"path":"mojaloop-background/level-one-principles.md","ref":"mojaloop-background/level-one-principles.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"3.x.x","theme":"default","variables":{"importedVars":{"mojaloop":{"spec":{"version":"v1.0","uri":{"doc":"https://github.com/mojaloop/mojaloop-specification/blob/master/API%20Definition%20v1.0.pdf","api":"https://github.com/mojaloop/mojaloop-specification/blob/master/Supporting%20Files/fspiop-rest-v1.0-OpenAPI-implementation.yaml"}}},"als":{"oracle":{"spec":{"version":"v1.0","uri":{"doc":"/mojaloop-technical-overview/account-lookup-service/README.md","api":"https://github.com/mojaloop/documentation/blob/master/api/assets/interface-contracts/oracleServiceSwaggerv1.yaml"}}}}}},"plugins":["swagger","editlink","include","insert-logo","uml","collapsible-chapters","back-to-top-button","theme-api","variables","changelog","page-toc"],"pluginsConfig":{"editlink":{"label":"Edit This Page","multilingual":true,"base":"https://github.com/mojaloop/documentation/edit/master"},"theme-gestalt":{"logo":"http://mojaloop.io/images/logo.png","favicon":"http://mojaloop.io/images/logo.png","baseUrl":null,"excludeDefaultStyles":false,"doNotHideChildrenChapters":false},"include":{},"search":{},"collapsible-chapters":{},"page-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","position":"before-first","showByDefault":true},"swagger":{"file":""},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"uml":{"format":"svg","nailgun":false},"changelog":{},"theme-api":{"languages":[],"split":true,"theme":"dark"},"back-to-top-button":{},"variables":{"files":{"importedVars":"book_variables.yml"}},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"insert-logo":{"url":"http://mojaloop.io/images/logo.png","style":"background: none; max-height: 140px; max-width: 140px;"}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"deployment-guide/README.md","mtime":"2019-04-04T19:11:55.811Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-04-04T19:12:40.343Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
