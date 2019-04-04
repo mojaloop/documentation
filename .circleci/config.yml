@@ -43,13 +43,16 @@ defaults_git_identity_setup: &defaults_git_identity_setup
     git config --global user.email "$GIT_CI_USER"
     git config --global user.password "$GIT_CI_PASSWORD"
     git config --global user.name "$GIT_CI_EMAIL"
-    git remote add $GITHUB_PROJECT_USERNAME https://$GITHUB_TOKEN@github.com/$GITHUB_PROJECT_USERNAME/project.git
+    git remote add $GITHUB_PROJECT_USERNAME https://$GITHUB_TOKEN@github.com/$GITHUB_PROJECT_USERNAME/$GITHUB_PROJECT_REPONAME.git
 
 defaults_publish_to_gh_pages: &defaults_publish_to_gh_pages
   name: Publish documentation
   command: |
     echo "Setting BASH_ENV..."
     source $BASH_ENV
+
+    echo "Fetching info from remote $GITHUB_PROJECT_USERNAME"
+    git fetch $GITHUB_PROJECT_USERNAME
 
     echo "Checking out $GITBOOK_TARGET_BRANCH"
     git checkout -b $GITBOOK_TARGET_BRANCH $GITHUB_PROJECT_USERNAME/$GITBOOK_TARGET_BRANCH
