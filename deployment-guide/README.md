@@ -168,8 +168,33 @@ Please review [Mojaloop Helm Chart](../repositories/helm.md) to understand the r
    ```bash
    helm --namespace kube-public install stable/nginx-ingress
    ```
+   
+7. Install Mojaloop. Linux use with sudo:
 
-7. Update your /ect/hosts:
+   Default installation:
+   ```bash
+   helm --namespace demo --name moja install mojaloop/mojaloop
+   ```
+   
+   Version specific installation:
+   ```bash
+   helm --namespace demo --name moja install mojaloop/mojaloop -version {version}
+   ```
+   
+   List of available versions:
+   ```bash
+   helm search -l mojaloop/mojaloop
+   ```
+   
+   Custom configured installation:
+   ```bash
+   helm --namespace demo --name moja install mojaloop/mojaloop -file {custom-values.yaml}
+   ```
+   _Note: Download and customize the [https://github.com/mojaloop/helm/blob/master/mojaloop/values.yaml](https://github.com/mojaloop/helm/blob/master/mojaloop/values.yaml). Note that you should use the value file from the specific version that you will be installing._
+
+7. Update your /ect/hosts for local deployment:
+
+   _Note: This is only applicable for local deployments_
    ```bash
    vi /etc/hosts
    ```
@@ -180,6 +205,8 @@ Please review [Mojaloop Helm Chart](../repositories/helm.md) to understand the r
    ```
 
 8. Test system health in your browser after installation. This will only work if you have an active helm chart deployment running.
+   
+   _Note: This is only applicable for local deployments_
    
    **ml-api-adapter** health test:
    ```
