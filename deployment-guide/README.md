@@ -200,7 +200,7 @@ Please review [Mojaloop Helm Chart](../repositories/helm.md) to understand the r
 
 1. Update your /ect/hosts for local deployment:
 
-   _Note: This is only applicable for local deployments, and is not needed if you are configured a custom DNS or ingress rules via the [values.yaml](https://github.com/mojaloop/helm/blob/master/mojaloop/values.yaml)_
+   _Note: This is only applicable for local deployments, and is not needed if custom DNS or ingress rules are configured in a customized [values.yaml](https://github.com/mojaloop/helm/blob/master/mojaloop/values.yaml)_
    
    ```bash
    vi /etc/hosts
