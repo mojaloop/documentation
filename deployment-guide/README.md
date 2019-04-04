@@ -168,8 +168,12 @@ Please review [Mojaloop Helm Chart](../repositories/helm.md) to understand the r
    ```bash
    helm --namespace kube-public install stable/nginx-ingress
    ```
-   
-7. Install Mojaloop. Linux use with sudo:
+
+### 5. Mojaloop
+
+#### 5.1 Mojaloop Helm Deployment
+
+1. Install Mojaloop. Linux use with sudo:
 
    Default installation:
    ```bash
@@ -190,11 +194,14 @@ Please review [Mojaloop Helm Chart](../repositories/helm.md) to understand the r
    ```bash
    helm --namespace demo --name moja install mojaloop/mojaloop -file {custom-values.yaml}
    ```
-   _Note: Download and customize the [https://github.com/mojaloop/helm/blob/master/mojaloop/values.yaml](https://github.com/mojaloop/helm/blob/master/mojaloop/values.yaml). Note that you should use the value file from the specific version that you will be installing._
+   _Note: Download and customize the [values.yaml](https://github.com/mojaloop/helm/blob/master/mojaloop/values.yaml). Note that you should use the value file from the specific version that you will be installing._
 
-7. Update your /ect/hosts for local deployment:
+#### 5.2 Verifying Mojaloop Deployment
 
-   _Note: This is only applicable for local deployments_
+1. Update your /ect/hosts for local deployment:
+
+   _Note: This is only applicable for local deployments, and is not needed if you are configured a custom DNS or ingress rules via the [values.yaml](https://github.com/mojaloop/helm/blob/master/mojaloop/values.yaml)_
+   
    ```bash
    vi /etc/hosts
    ```
@@ -204,9 +211,9 @@ Please review [Mojaloop Helm Chart](../repositories/helm.md) to understand the r
    127.0.0.1       interop-switch.local central-kms.local forensic-logging-sidecar.local central-ledger.local central-end-user-registry.local central-directory.local central-hub.local central-settlements.local ml-api-adapter.local
    ```
 
-8. Test system health in your browser after installation. This will only work if you have an active helm chart deployment running.
+2. Test system health in your browser after installation. This will only work if you have an active helm chart deployment running.
    
-   _Note: This is only applicable for local deployments_
+   _Note: The examples below are only applicable to a local deployment. The entries should match the DNS values or ingress rules as configured in the [values.yaml](https://github.com/mojaloop/helm/blob/master/mojaloop/values.yaml) or otherwise matching any custom ingress rules configured_
    
    **ml-api-adapter** health test:
    ```
@@ -216,17 +223,17 @@ Please review [Mojaloop Helm Chart](../repositories/helm.md) to understand the r
    **central-ledger** health test:
    ```
    http://central-ledger.local/health
-   ```
+   ``` 
 
-### 5. Postman
+### 6. Postman
 
 Postman is used to send requests and receive responses.
 
-#### 5.1 Installing Postman
+#### 6.1 Installing Postman
 
 Please, follow these instructions: [Get Postman](https://www.getpostman.com/postman)
 
-#### 5.2 Setup Postman
+#### 6.2 Setup Postman
 
 ##### Import the Collection
 1. Open **Postman**
