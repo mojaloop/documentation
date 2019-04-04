@@ -36,7 +36,7 @@ defaults_slack_announcement: &defaults_slack_announcement
 
 defaults_git_identity_setup: &defaults_git_identity_setup
   name: Setup Git Identity
-  ecommand: |
+  command: |
     git config --global user.email "$GIT_CI_USER"
     git config --global user.name "$GIT_CI_EMAIL"
 
