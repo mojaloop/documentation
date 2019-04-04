@@ -96,7 +96,7 @@ jobs:
           name: Delete build dependencies
           command: apk del build-dependencies
       - save_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
+          key: dependency-cache-$CIRCLE_WORKFLOW_ID
           paths:
             - _book
 
@@ -123,7 +123,7 @@ jobs:
             curl -L https://sourceforge.net/projects/plantuml/files/plantuml.${PLANTUML_VERSION}.jar/download -o plantuml.jar
       - restore_cache:
           keys:
-          - dependency-cache-{{ checksum "package.json" }}
+          - dependency-cache-$CIRCLE_WORKFLOW_ID
       - run:
           name: Build Gitbooks
           command: |
