@@ -17,6 +17,7 @@ defaults_Dependencies: &defaults_Dependencies
     apk --no-cache add openssh-client
     apk add --no-cache -t build-dependencies make gcc g++ python libtool autoconf automake
     npm config set unsafe-perm true
+    npm install -g gitbook-cli
 
 defaults_Environment: &defaults_environment
   name: Set default environment
