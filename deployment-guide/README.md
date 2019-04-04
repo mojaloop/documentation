@@ -194,7 +194,7 @@ Please review [Mojaloop Helm Chart](../repositories/helm.md) to understand the r
    ```bash
    helm --namespace demo --name moja install mojaloop/mojaloop -file {custom-values.yaml}
    ```
-   _Note: Download and customize the [values.yaml](https://github.com/mojaloop/helm/blob/master/mojaloop/values.yaml). Note that you should use the value file from the specific version that you will be installing._
+   _Note: Download and customize the [values.yaml](https://github.com/mojaloop/helm/blob/master/mojaloop/values.yaml). Also ensure that you are using the value.yaml from the correct version which can be found via [Helm Releases](https://github.com/mojaloop/helm/releases)._
 
 #### 5.2 Verifying Mojaloop Deployment
 
