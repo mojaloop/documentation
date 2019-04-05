@@ -36,8 +36,6 @@ For **local guides** on how to setup the pre-requisites on your laptop or deskto
 
 This provides environment resource recommendations for your local installation.
 
-Your local installation would typically be done on a single node. For local environment it is recommend to have at least 4x vCPUs, 16GB of RAM, and 40gb storage.
-
 **Resources Requirements:**
 
 Your local installation would typically be done on a single node. For local environment it is recommend to have at least 4x vCPUs, 16GB of RAM, and 40gb storage.
