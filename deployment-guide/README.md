@@ -34,34 +34,13 @@ For **local guides** on how to setup the pre-requisites on your laptop or deskto
 
 ### 2. Deployment Recommendations
 
-This provides environment resource recommendations with a view of the production infrastructure architecture.
+This provides environment resource recommendations for your local installation.
+
+Your local installation would typically be done on a single node. For local environment it is recommend to have at least 4x vCPUs, 16GB of RAM, and 40gb storage.
 
 **Resources Requirements:**
 
-Your local installation would typically be done on a single node. We recommend a minimum available resources of 4x vCPUs, 16GB of RAM, and 40gb storage for your local setup.
-
-* Control Plane (i.e. Master Node)
-  
-  [https://kubernetes.io/docs/setup/cluster-large/#size-of-master-and-master-components](https://kubernetes.io/docs/setup/cluster-large/#size-of-master-and-master-components)
-
-  * 3x Master Nodes for future node scaling and HA (High Availability)
-
-* ETCd Plane:
-
-  [https://coreos.com/etcd/docs/latest/op-guide/hardware.html](https://coreos.com/etcd/docs/latest/op-guide/hardware.html)
-
-  * 3x ETCd nodes for HA (High Availability)
-
-* Compute Plane (i.e. Worker Node):
-
-  TBC once load testing has been concluded. However the current general recommended size:
-
-  * 3x Worker nodes, each being:
-    * 4x vCPUs, 16GB of RAM, and 40gb storage
-
-  **Note** that this would also depend on your underlying infrastructure, and it does NOT include requirements for persistent volumes/storage.
-
-![Mojaloop Deployment Recommendations - Infrastructure Architecture](./assets/diagrams/deployment/KubeInfrastructureArch.svg)
+Your local installation would typically be done on a single node. For local environment it is recommend to have at least 4x vCPUs, 16GB of RAM, and 40gb storage.
 
 ### 3. Kubernetes
 
