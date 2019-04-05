@@ -113,7 +113,7 @@ jobs:
           name: Installing build dependencies
           command: |
             echo 'Installing build dependencies via APK'
-            apk add --no-cache -t openjdk8-jre graphviz ttf-droid ttf-droid-nonlatin
+            apk add --no-cache -t gitbook-build-dependencies openjdk8-jre graphviz ttf-droid ttf-droid-nonlatin
 
             echo 'Setting env vars'
             echo 'export PLANTUML_VERSION=$PLANTUML_VERSION' >> $BASH_ENV
