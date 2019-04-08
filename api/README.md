@@ -32,5 +32,5 @@ Notes:
 
 | Version | Info | Release Date |
 | --- | --- | --- |
-| 1.1 | `PUT /participants/{Type}/{ID}` returns a `HTTP 204 - No Content on success`. This was previously returned `HTTP 200 - Success` <br>`POST /participants` now returns a list a `partyList` either containing a `PartyIdInfo` or `ErrorInformation`. This is alignment to the Mojaloop Specification. | 2019-03-28 |
+| 1.1 | `PUT /participants/{Type}/{ID}` returns a `HTTP 204 - No Content on success`. This was previously returned `HTTP 200 - Success` <br>`POST /participants` now returns a list a `partyList` either containing a `PartyIdInfo` or `ErrorInformation`. This provides a closer alignment to the Mojaloop Specification. | 2019-03-28 |
 | 1.0 | Initial release | 2019-03-08 |
