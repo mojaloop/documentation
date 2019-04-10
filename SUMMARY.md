@@ -22,6 +22,7 @@
     * [API Documentation](contributors-guide/documentation/api-documentation.md)
     * [Documentation Style Guide](contributors-guide/documentation/documentation-style-guide.md)
   * [Frequently Asked Questions](contributors-guide/frequently-asked-questions.md)
+  * [Community Questions and Feedback](contributors-guide/community-questions-and-feedback.md)
 * [Mojaloop Technical Overview](mojaloop-technical-overview/README.md)
   * [Mojaloop Hub](mojaloop-technical-overview/mojaloop-components.md)
   * [Central-Ledger Services](mojaloop-technical-overview/central-ledger/README.md)
