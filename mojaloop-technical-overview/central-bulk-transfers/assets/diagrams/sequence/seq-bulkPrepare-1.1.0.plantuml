@@ -1,0 +1,199 @@
+/'*****
+ License
+ --------------
+ Copyright © 2017 Bill & Melinda Gates Foundation
+ The Mojaloop files are made available by the Bill & Melinda Gates Foundation under the Apache License, Version 2.0 (the "License") and you may not use these files except in compliance with the License. You may obtain a copy of the License at
+ http://www.apache.org/licenses/LICENSE-2.0
+ Unless required by applicable law or agreed to in writing, the Mojaloop files are distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+ Contributors
+ --------------
+ This is the official list of the Mojaloop project contributors for this file.
+ Names of the original copyright holders (individuals or organizations)
+ should be listed with a '*' in the first column. People who have
+ contributed from an organization can be listed under the organization
+ that actually holds the copyright for their contributions (see the
+ Gates Foundation organization for an example). Those individuals should have
+ their names indented and be marked with a '-'. Email address can be added
+ optionally within square brackets <email>.
+ * Gates Foundation
+ - Name Surname <name.surname@gatesfoundation.com>
+
+ * Samuel Kummary <sam@modusbox.com>
+ --------------
+ ******'/
+
+@startuml
+' declare title
+title 1.1.0. DFSP1 sends a Bulk Prepare Transfer request to DFSP2
+
+autonumber
+
+' Actor Keys:
+'   boundary - APIs/Interfaces, etc
+'   collections - Kafka Topics
+'   control - Kafka Consumers
+'   entity - Database Access Objects
+'   database - Database Persistance Store
+
+' declare actors
+actor "DFSP1\nPayer" as DFSP1
+actor "DFSP2\nPayee" as DFSP2
+boundary "ML API Adapter" as MLAPI
+control "ML API Notification Event Handler" as NOTIFY_HANDLER
+boundary "Central Service API" as CSAPI
+collections "topic-bulk-prepare" as TOPIC_BULK_PREPARE
+control "Bulk Prepare Handler" as BULK_PREP_HANDLER
+collections "topic-transfer-prepare" as TOPIC_TRANSFER_PREPARE
+control "Prepare Handler" as PREP_HANDLER
+collections "topic-transfer-position" as TOPIC_TRANSFER_POSITION
+control "Position Handler" as POS_HANDLER
+collections "topic-bulk-processing" as TOPIC_BULK_PROCESSING
+control "Bulk Processing Handler" as BULK_PROC_HANDLER
+collections "Notifications-topic" as TOPIC_NOTIFICATIONS
+
+box "Financial Service Providers" #lightGray
+	participant DFSP1
+	participant DFSP2
+end box
+
+box "ML API Adapter Service" #LightBlue
+	participant MLAPI
+	participant NOTIFY_HANDLER
+end box
+
+box "Central Service" #LightYellow
+    participant CSAPI
+	participant TOPIC_BULK_PREPARE
+    participant BULK_PREP_HANDLER
+    participant TOPIC_TRANSFER_PREPARE
+    participant PREP_HANDLER
+    participant TOPIC_TRANSFER_POSITION
+    participant POS_HANDLER
+    participant TOPIC_BULK_PROCESSING
+    participant BULK_PROC_HANDLER
+    participant TOPIC_NOTIFICATIONS
+end box
+
+' start flow
+activate NOTIFY_HANDLER
+activate BULK_PREP_HANDLER
+activate PREP_HANDLER
+activate POS_HANDLER
+activate BULK_PROC_HANDLER
+group DFSP1 sends a Bulk Prepare Transfer request to DFSP2
+    note right of DFSP1 #yellow
+        Headers - bulkTransferHeaders: {
+            Content-Length: <Content-Length>,
+            Content-Type: <Content-Type>,
+            Date: <Date>,
+            X-Forwarded-For: <X-Forwarded-For>,
+            FSPIOP-Source: <FSPIOP-Source>,
+            FSPIOP-Destination: <FSPIOP-Destination>,
+            FSPIOP-Encryption: <FSPIOP-Encryption>,
+            FSPIOP-Signature: <FSPIOP-Signature>,
+            FSPIOP-URI: <FSPIOP-URI>,
+            FSPIOP-HTTP-Method: <FSPIOP-HTTP-Method>
+        }
+
+        Payload - bulkTransferMessage:
+        {
+            "bulkTransferId": <uuid>,
+            "bulkQuoteId": <uuid>, 
+            "payeeFsp": <fspID>,
+            "payerFsp": <fspID>,
+            "individualTransfers": 
+            [
+                {
+                    "transferId": <uuid>, 
+                    "transferAmount": 
+                    { 
+                        "currency": <currency>, 
+                        "amount": <amount> 
+                    }, 
+                    "ilpPacket": <ilpPacket>,
+                    "condition": <ilpCondition>,
+                    "extensionList":
+                    {
+                        "extension":
+                        [ 
+                            { 
+                                “key”: <key>, 
+                                “value”: <value> 
+                            }
+                        ]
+                    }
+                }
+            ],
+            "extensionList": {
+                "extension": [
+                    {
+                        “key”: <key>, 
+                        “value”: <value> 
+                    }
+                ]
+            }
+        }
+    end note
+    DFSP1 ->> MLAPI: POST - /bulkTransfers
+    activate MLAPI
+    MLAPI -> MLAPI: Validate incoming message and originator matching Payer\n<color #FF0000><b>Error codes:</b> 3000-3002, 3100-3107</color>
+    note right of MLAPI #yellow
+        Message:
+        {
+            id: <bulkTransferMessage.transferId>
+            from: <bulkTransferMessage.payerFsp>,
+            to: <bulkTransferMessage.payeeFsp>,
+            type: application/json
+            content: {
+                headers: <bulkTransferHeaders>,
+                payload: <bulkTransferMessage>
+            },
+            metadata: {
+                event: {
+                    id: <uuid>,
+                    type: bulkPrepare,
+                    action: bulkPrepare,
+                    createdAt: <timestamp>,
+                    state: {
+                        status: "success",
+                        code: 0
+                    }
+                }
+            }
+        }
+    end note
+    MLAPI -> TOPIC_BULK_PREPARE: Route & Publish Bulk Prepare event for Payer\n<color #FF0000><b>Error code:</b> 2003</color>
+    activate TOPIC_BULK_PREPARE
+    TOPIC_BULK_PREPARE <-> TOPIC_BULK_PREPARE: Ensure event is replicated as configured (ACKS=all)\n<color #FF0000><b>Error code:</b> 2003</color>
+    TOPIC_BULK_PREPARE --> MLAPI: Respond replication acknowledgements have been received
+    deactivate TOPIC_BULK_PREPARE
+    MLAPI -->> DFSP1: Respond HTTP - 202 (Accepted)
+    deactivate MLAPI
+    |||
+    TOPIC_BULK_PREPARE <- BULK_PREP_HANDLER: Consume message
+    ref over TOPIC_BULK_PREPARE, BULK_PREP_HANDLER, TOPIC_TRANSFER_PREPARE :  Bulk Prepare Handler Consume \n
+    BULK_PREP_HANDLER -> TOPIC_TRANSFER_PREPARE: Produce message
+    |||
+    TOPIC_TRANSFER_PREPARE <- PREP_HANDLER: Consume message
+    ref over TOPIC_TRANSFER_PREPARE, PREP_HANDLER, TOPIC_TRANSFER_POSITION :  Prepare Handler Consume {[[https://github.com/mojaloop/docs/blob/master/CentralServices/seq_diagrams/seq-prepare-1.1.1.a.svg 1.1.1.a]], [[https://github.com/mojaloop/docs/blob/master/CentralServices/seq_diagrams/seq-prepare-1.1.1.b.svg 1.1.1.b]]} \n
+    PREP_HANDLER -> TOPIC_TRANSFER_POSITION: Produce message
+    |||
+    TOPIC_TRANSFER_POSITION <- POS_HANDLER: Consume message
+    ref over TOPIC_TRANSFER_POSITION, POS_HANDLER, TOPIC_BULK_PROCESSING : Position Handler Consume {[[https://github.com/mojaloop/docs/blob/master/CentralServices/seq_diagrams/seq-prepare-1.1.2.a.svg 1.1.2.a]], [[https://github.com/mojaloop/docs/blob/master/CentralServices/seq_diagrams/seq-prepare-1.1.2.b.svg 1.1.2.b]]} \n
+    POS_HANDLER -> TOPIC_BULK_PROCESSING: Produce message
+    |||
+    TOPIC_BULK_PROCESSING <- BULK_PROC_HANDLER: Consume message
+    ref over TOPIC_BULK_PROCESSING, BULK_PROC_HANDLER, TOPIC_NOTIFICATIONS : Bulk Processing Handler Consume \n
+    BULK_PROC_HANDLER --> TOPIC_NOTIFICATIONS: Send Bulk Prepare notification
+    |||
+    TOPIC_NOTIFICATIONS <- NOTIFY_HANDLER: Consume message
+    ref over DFSP2, TOPIC_NOTIFICATIONS : Send notification to Participant (Payee) {[[https://github.com/mojaloop/docs/blob/master/CentralServices/seq_diagrams/seq-prepare-1.1.4.a.svg 1.1.4.a]], [[https://github.com/mojaloop/docs/blob/master/CentralServices/seq_diagrams/seq-prepare-1.1.4.b.svg 1.1.4.b]]} \n
+    NOTIFY_HANDLER -> DFSP2: Send Bulk Prepare notification to Payee
+    |||
+end
+deactivate POS_HANDLER
+deactivate BULK_PREP_HANDLER
+deactivate PREP_HANDLER
+deactivate BULK_PROC_HANDLER
+deactivate NOTIFY_HANDLER
+@enduml
