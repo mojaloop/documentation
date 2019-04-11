@@ -12,7 +12,7 @@ The Bulk Transfers scenario is described in the API Definition document regardin
   
 ## 1. Introduction
 
-The Bulk Transfers process is discussed in section 6.10 of the API Definiton 1.0 document, depicted in Figure 60. The key items implied in the specification in its current version 1.0 are that
+The Bulk Transfers process is discussed in section 6.10 of the API Definiton 1.0 document, depicted in [Figure 60](./Figure60-Example-Bulk-Transfer-Process-Spec1.0.png). The key items implied in the specification in its current version 1.0 are that
 
 - Reservation of funds is done for each individual transfer from the Payer FSP to the Payee FSP
 - Even if a single individual transfer fails during the prepare process, the whole bulk is to be rejected.
@@ -89,9 +89,9 @@ Below are the proposed tables as part of designinig the Bulk transfers
 
 Below are the states of a Bulk transfer as per the Mojaloop API Specification
 
-- RECEIVED  
-- PENDING  
-- ACCEPTED  
-- PROCESSING  
-- COMPLETED  
-- REJECTED  
+1. RECEIVED  
+2. PENDING  
+3. ACCEPTED  
+4. PROCESSING  
+5. COMPLETED  
+6. REJECTED  
