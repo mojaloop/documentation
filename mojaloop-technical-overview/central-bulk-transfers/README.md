@@ -1,6 +1,6 @@
 # Bulk Transfers Design
 
-The Bulk Transfers _(refer to section `6.10`)_ as per the [Mojaloop {{ book.importedVars.mojaloop.spec.version }} Specification]({{ book.importedVars.mojaloop.spec.uri.doc }}) implements the following use-cases:
+The Bulk Transfers scenario is described in the API Definition document regarding the resource /bulkTransfers. For details _(refer to section `6.10`)_ as per the [Mojaloop Specification](https://github.com/mojaloop/mojaloop-specification/blob/master/API%20Definition%20v1.0.pdf)
 
 1. [Introduction](introduction)
 2. [Design Considerations](design-considerations)
@@ -12,12 +12,27 @@ The Bulk Transfers _(refer to section `6.10`)_ as per the [Mojaloop {{ book.impo
   
 ## 1. Introduction
 
-The Bulk Transfers process is discussed in section 6.10 of the API Definiton 1.0 document, depicted in Figure 60.
+The Bulk Transfers process is discussed in section 6.10 of the API Definiton 1.0 document, depicted in Figure 60. The key items implied in the specification in its current version 1.0 are that
+
+- Reservation of funds is done for each individual transfer from the Payer FSP to the Payee FSP
+- Even if a single individual transfer fails during the prepare process, the whole bulk is to be rejected.
 
 ## 2. Design Considerations
 
+Accoring to the Figure-60 of the specification, below are a few key implications from the Specification.
+
+1. The Payer DFSP performs user look-ups for the individual parties involved in the bulk payment separately
+2. The Payer DFSP performs bulk quoting per Payee DFSP
+3. The onus is on the Payer DFSP to prepare bulk transfers based on Payee FSPs and send out a bulk transfer request to a single Payee FSP
+4. This seems to be an all-or-nothing process where even if a single individual transfer fails to be reserved, then the whole bulk needs to be rejected because it cannot be sent to the Payee as it is if it has an individual transfer for which funds couldn't be reserved.
+5. In light of the above, the proposal being made right now is to empower the Switch (needs updating the Specification) to send out the POST /bulkTransfers request with the list of individual transfers for which funds were able to be reserved on the Switch.
+6. The implication is that the Switch aggregaets commits/failures from the Payee FSP for the bulk and sends out a single PUT /bulkTransfers/{ID} call to the Payer FSP that includes the entire list of transfers that includes individual transfers that failed both at the Switch and the Payee FSP
+7. For example: If there are 1000 individual transfers in a Bulk Transfer and if the Switch is able to reserve funds for 900 of the individual transfers, then a prepare bulk transfer reqeust to the Payee DFSP is sent with the list of those 900 individual transfers. Once the Payee FSP sends the Bulk Fulfil request for those 900 transfers of which lets say, 800 can be committed and 100 are aborted, then the Switch processes those individual transfers accordingly and sends out the PUT callback (PUT /bulkTransfers/{ID}) notification to the Payer FSP with all the 1000 individual transfers, 800 of which are committed and 200 of which are aborted.
+8. The implications to aspects such as Signature, Encryption, PKI and other security aspects.
+
 ## 3. Steps involved in the high-level Architecture
 
+Below are the steps involved at the high level in the architecture diagram for bulk transfers with some description.
     1. [1.0, 1.1, 1.2] An Incoming bulk Transfer request (POST /bulkTransfers) on the ml-api-adapter is placed on kafka topic bulk prepare and a 202 is sent to the Payer FSP
     2. [1.3] Bulk Prepare handler consumes the request, records the status as Received 
         a. Bulk Prepare handler then validates the Bulk and changes state to Pending if the validation is successful
@@ -42,34 +57,34 @@ The Bulk Transfers process is discussed in section 6.10 of the API Definiton 1.0
 
 ## 4. Notes
 
-### a. Discussion items
+### 4.a. Discussion items
 
-Here are some of the interesting aspects of the proposal
-    1. NFR: The Switch needs to record the changes and the original request for validation and for auditing purposes
-    2. Payload size for a bulk transfer - to be considered for Kafka messaging
+Here are some of the interesting aspects of the proposal  
+    1. NFR: The Switch needs to record the changes and the original request for validation and for auditing purposes  
+    2. Payload size for a bulk transfer - to be considered for Kafka messaging  
         a. Is there a need to rethink the moving of larger messages? Possibly using persistent messages?
         b. Possible size of a bulk transfer - 300,000 messages
         c. Discuss requirements for the size
 
-### b. Proposed New tables
+### 4.b. Proposed New tables
 
 Below are the proposed tables as part of designinig the Bulk transfers
-    - bulkTransfer
-    - bulkTransferStateChange
-    - bulkTransferError
-    - bulkTransferDuplicateCheck
-    - bulkTransferAssociation
-    - bulkTransferExtension
-    - bulkTransferFulfilment
-    - bulkTransferState
-    - bulkProcessingState
+    - bulkTransfer  
+    - bulkTransferStateChange  
+    - bulkTransferError  
+    - bulkTransferDuplicateCheck  
+    - bulkTransferAssociation  
+    - bulkTransferExtension  
+    - bulkTransferFulfilment  
+    - bulkTransferState  
+    - bulkProcessingState  
 
-### c. Bulk Transfer States
+### 4.c. Bulk Transfer States
 
-Below are the states of a Bulk transfer as per the Mojaloop API Specification
-    - RECEIVED
-    - PENDING
-    - ACCEPTED
-    - PROCESSING
-    - COMPLETED
-    - REJECTED
+Below are the states of a Bulk transfer as per the Mojaloop API Specification  
+    - RECEIVED  
+    - PENDING  
+    - ACCEPTED  
+    - PROCESSING  
+    - COMPLETED  
+    - REJECTED  
