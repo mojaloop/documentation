@@ -12,7 +12,7 @@ The Central Settlements service is part of the Mojaloop project and deployment.
 
 ## 2. Funds In/Out
 
-- TODO: Describe the purpose of the reconciliation transfer
+Record Funds In and Record Funds Out operations are used respectively to deposit and withdraw funds into participant SETTLEMENT ledgers. The balance of the SETTLEMENT account relates to the NET_DEBIT_CAP set by the switch for every participant of the scheme. NET_DEBIT_CAP value is always lower or equal to the SETTLEMENT value. On the other side, the balance of the participant's POSITION account is limited to the value of the NET_DEBIT_CAP.
 
 ## 3. API Specification
 
