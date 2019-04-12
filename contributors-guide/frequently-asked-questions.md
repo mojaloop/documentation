@@ -2,7 +2,7 @@
 
 This document contains some of the most frequently asked questions from the community.
 
-### Glossier
+### Table of Content
 
 * [What is Mojaloop](#1-what-is-mojaloop)
 * [How does it work](#2-how-does-it-work)
