@@ -1,0 +1,207 @@
+/'*****
+ License
+ --------------
+ Copyright © 2017 Bill & Melinda Gates Foundation
+ The Mojaloop files are made available by the Bill & Melinda Gates Foundation under the Apache License, Version 2.0 (the "License") and you may not use these files except in compliance with the License. You may obtain a copy of the License at
+ http://www.apache.org/licenses/LICENSE-2.0
+ Unless required by applicable law or agreed to in writing, the Mojaloop files are distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+ Contributors
+ --------------
+ This is the official list of the Mojaloop project contributors for this file.
+ Names of the original copyright holders (individuals or organizations)
+ should be listed with a '*' in the first column. People who have
+ contributed from an organization can be listed under the organization
+ that actually holds the copyright for their contributions (see the
+ Gates Foundation organization for an example). Those individuals should have
+ their names indented and be marked with a '-'. Email address can be added
+ optionally within square brackets <email>.
+ * Gates Foundation
+ - Name Surname <name.surname@gatesfoundation.com>
+
+ * Georgi Georgiev <georgi.georgiev@modusbox.com>
+ --------------
+ ******'/
+
+@startuml
+' declate title
+title 6.2.2. Query Settlements by Parameters
+
+autonumber
+
+' declare actors
+actor "Hub Employee" as OPERATOR
+boundary "Settlement Service API" as SSAPI
+entity "Settlement DAO" as SETTLE_DAO
+database "Central Store" as DB
+
+box "Central HUB" #LightPink
+    participant OPERATOR
+end box
+
+box "Settlement Service" #LightGreen
+    participant SSAPI
+    participant SETTLE_DAO
+end box
+
+box "Central Services" #LightYellow
+    participant DB
+end box
+
+' start flow
+group Query Settlements by Parameters
+    activate OPERATOR
+    note right of OPERATOR #Yellow
+        **Params:**
+        ?[state={settlementStateId}]
+        [&fromDateTime={fromDateTime}]
+        [&toDateTime={toDateTime}]
+        [&currency={currencyId}]
+        [&settlementWindowId={settlementWindowId}]
+        [&fromSettlementWindowDateTime={fromSettlementWindowDateTime}]
+        [&toSettlementWindowDateTime={toSettlementWindowDateTime}]
+        [&participantId={participantId}]
+        [&accountId={participantCurrencyId}]
+    end note
+
+    OPERATOR -> SSAPI: GET - /settlements
+    activate SSAPI
+    SSAPI -> SETTLE_DAO: Retrieve settlements\n<color #FF0000><b>Error code:</b> 2001</color>
+    activate SETTLE_DAO
+
+    SETTLE_DAO -> DB: Retrieve requested data
+    activate DB
+    hnote over DB #LightYellow
+        SELECT <color 006>**//DISTINCT//**</color> s.settlementId, ssc.settlementStateId,
+               ssw.settlementWindowId, swsc.settlementWindowStateId, swsc.reason 
+               settlementWindowReason, sw.createdDate, swsc.createdDate changedDate, 
+               pc.participantId, spc.participantCurrencyId, spcsc.reason
+               accountReason, spcsc.settlementStateId accountState, spc.netAmount
+               accountAmount, pc.currencyId accountCurrency
+        FROM **settlement** s
+        JOIN **settlementStateChange** ssc
+        ON ssc.settlementStateChangeId = s.currentStateChangeId
+        JOIN **settlementSettlementWindow** ssw
+        ON ssw.settlementId = s.settlementId
+        JOIN **settlementWindow** sw
+        ON sw.settlementWindowId = ssw.settlementWindowId
+        JOIN **settlementWindowStateChange** swsc
+        ON swsc.settlementWindowStateChangeId = sw.currentStateChangeId
+        JOIN <color 006>**//settlementTransferParticipant//**</color> stp
+        ON stp.settlementWindowId = s.settlementId
+        AND stp.settlementWindowId = sw.settlementWindowId
+        JOIN **settlementParticipantCurrency** spc
+        ON spc.settlementId = stp.settlementId
+        AND spc.participantCurrencyId = stp.participantCurrencyId
+        JOIN **settlementParticipantCurrencyStateChange** spcsc
+        ON spcsc.settlementParticipantCurrencyStateChangeId = spc.currentStateChangeId
+        JOIN **participantCurrency** pc
+        ON pc.participantCurrencyId = spc.participantCurrencyId
+        WHERE [ssc.settlementStateId = {settlementStateId}]
+        [AND s.createdDate >= {fromDateTime}]
+        [AND s.createdDate <= {toDateTime}]
+        [AND pc.currencyId = {currencyId}]
+        [AND ssw.settlementWindowId = {settlementWindowId}]
+        [AND sw.createdDate >= {fromSettlementWindowDateTime}]
+        [AND sw.createdDate <= {toSettlementWindowDateTime}]
+        [AND pc.participantId = {participantId}]
+        [AND spc.participantCurrencyId = {participantCurrencyId}]
+    end hnote
+    SETTLE_DAO <-- DB: Return data
+    deactivate DB
+    SSAPI <-- SETTLE_DAO: Return **settlementsData**
+    deactivate SETTLE_DAO
+    alt Settlement(s) found
+        note right of SSAPI #lightgray
+            let settlements = {}
+            let settlement
+            let participant
+        end note
+        loop settlementsData
+            note right of SSAPI #lightgray
+                if (!settlements[settlementsData.settlementId]) {
+                    settlements[settlementsData.settlementId] = {
+                        "id: settlementsData.settlementId,
+                        "state": settlementsData.settlementStateId
+                    }
+                }
+                settlement = settlements[settlementsData.settlementId]
+                if (!settlement.settlementWindows[settlementsData.settlementWindowId]) {
+                    settlement.settlementWindows[settlementsData.settlementWindowId] = {
+                        "id": settlementsData.settlementWindowId,
+                        "state": settlementsData.settlementWindowStateId,
+                        "reason": settlementsData.settlementWindowReason,
+                        "createdDate": settlementsData.createdDate,
+                        "changedDate": settlementsData.changedDate
+                    }
+                }
+                if (!settlement.participants[settlementsData.participantId]) {
+                    settlement.participants[settlementsData.participantId] = {
+                        "id": settlementsData.participantId
+                    }
+                }
+                participant = settlement.participants[settlementsData.participantId]
+                participant.accounts[settlementsData.accountId] = {
+                    "id": settlementsData.participantCurrencyId,
+                    "state": settlementsData.accountState,
+                    "reason": settlementsData.accountReason,
+                    "netSettlementAmount": {
+                        "amount": settlementsData.accountAmount,
+                        "currency": settlementsData.accountCurrency
+                    }
+                }
+            end note
+        end
+        SSAPI -> SSAPI: Transform **settlements** map to array
+        deactivate SETTLE_DAO
+        note left of SSAPI #yellow
+            [
+                {
+                    "id": settlementId,
+                    "state": settlementStateId,
+                    "settlementWindows": [
+                        {
+                            "id": settlementWindowId,
+                            "state": settlementWindowStateId,
+                            "reason": settlementWindowReason,
+                            "createdDate": createdDate,
+                            "changedDate": changedDate
+                        }
+                    ],
+                    "participants": [
+                        {
+                            "id": participantId,
+                            "accounts": [
+                                {
+                                    "id": participantCurrencyId,
+                                    "state": accountState,
+                                    "reason": accountReason,
+                                    "netSettlementAmount": {
+                                        "amount": accountAmount,
+                                        "currency": accountCurrency
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        end note
+        OPERATOR <-- SSAPI: Respond HTTP - 200 (OK)
+    else
+        note right of SSAPI #lightgray
+            Log ERROR event
+        end note
+        note left of SSAPI #yellow
+            {
+                errorInformation: {
+                    "errorCode": <integer>,
+                    "errorDescription": "Client error description"
+                }
+            }
+        end note
+        OPERATOR <-- SSAPI: Respond HTTP - 4xx (Client error)
+        deactivate SSAPI
+        deactivate OPERATOR
+    end
+end
+@enduml
