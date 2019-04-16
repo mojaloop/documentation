@@ -63,13 +63,13 @@ Below are the steps involved at the high level in the architecture diagram for b
 
 ### 4.a. Discussion items
 
-Here are some of the interesting aspects of the proposal
+Here are some of the aspects of the proposal that need further analysis
 
 1. NFR: The Switch needs to record the changes and the original request for validation and for auditing purposes  
 2. Payload size for a bulk transfer - to be considered for Kafka messaging  
-        a. Is there a need to rethink the moving of larger messages? Possibly using persistent messages?
-        b. Possible size of a bulk transfer - 300,000 messages
-        c. Discuss requirements for the size
+        a. Is there a need to rethink the moving of larger messages? Possibly using persistent messages?  
+        b. Possible size of a bulk transfer - 300,000 messages  
+        c. Discuss requirements for the size  
 
 ### 4.b. Proposed New tables
 
