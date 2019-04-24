@@ -24,7 +24,7 @@ This environment setup was validated on:
 
 Kubernetes installation for a local environment.
 
-#### 2.1 MicroK8S
+#### 2.1. MicroK8S
 
 We recommend install directly from the snap store.
 
@@ -79,7 +79,7 @@ Don't have the snap command? [Install snapd first](https://snapcraft.io/docs/cor
    microk8s.kubectl config use-context microk8s
    ```
 
-### 1.2 Docker
+### 1.2. Docker
 
 Docker is deployed as part of the MicroK8s installation. The docker daemon used by MicroK8s is listening on unix:///var/snap/microk8s/current/docker.sock. You can access it with the **microk8s.docker** command.
 

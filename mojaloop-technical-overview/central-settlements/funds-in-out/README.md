@@ -1,6 +1,6 @@
 # Funds In / Out
 
-## 1 Sequence diagrams
+## 1. Sequence diagrams
 
 ### 1.1. Reconciliation Transfer Prepare
 

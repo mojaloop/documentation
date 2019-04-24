@@ -33,7 +33,7 @@ The following are Kubernetes concepts used within the project. An understanding 
 * ConfigMap
 * Secret
 
-### 1.1 Kubernetes Installation with Docker
+### 1.1. Kubernetes Installation with Docker
 
 * **kubectl** Complete set of installation instruction are available [here](https://kubernetes.io/docs/tasks/tools/install-kubectl/) 
 
@@ -65,7 +65,7 @@ To install Kubernetes with Docker, follow the steps below;
 
 ![Kubernetes Install with Docker 2](./assets/diagrams/deployment/KubernetesInstallWithDocker-2.png)
 
-### 1.2 Kubernetes environment setup:
+### 1.2. Kubernetes environment setup:
 
 1. List the current Kubernetes context;
    ```bash
