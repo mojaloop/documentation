@@ -1,4 +1,4 @@
 ---
 showToc: false
 ---
-<swagger>./api/assets/interface-contracts/oracleServiceSwaggerv1.yaml</swagger>
+<swagger>./api/assets/interface-contracts/oracle-service-swagger-v1.yaml</swagger>

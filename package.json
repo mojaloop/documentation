@@ -22,6 +22,7 @@
   "devDependencies": {},
   "scripts": {
     "run": "npm run gitbook:serve",
+    "start": "npm run gitbook:serveNoReload",
     "gitbook:install": "gitbook install",
     "gitbook:build": "gitbook build",
     "gitbook:serve": "gitbook serve --port 8989",

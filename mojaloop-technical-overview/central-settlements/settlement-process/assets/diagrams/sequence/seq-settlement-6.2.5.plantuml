@@ -1,0 +1,735 @@
+/'*****
+ License
+ --------------
+ Copyright © 2017 Bill & Melinda Gates Foundation
+ The Mojaloop files are made available by the Bill & Melinda Gates Foundation under the Apache License, Version 2.0 (the "License") and you may not use these files except in compliance with the License. You may obtain a copy of the License at
+ http://www.apache.org/licenses/LICENSE-2.0
+ Unless required by applicable law or agreed to in writing, the Mojaloop files are distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+ Contributors
+ --------------
+ This is the official list of the Mojaloop project contributors for this file.
+ Names of the original copyright holders (individuals or organizations)
+ should be listed with a '*' in the first column. People who have
+ contributed from an organization can be listed under the organization
+ that actually holds the copyright for their contributions (see the
+ Gates Foundation organization for an example). Those individuals should have
+ their names indented and be marked with a '-'. Email address can be added
+ optionally within square brackets <email>.
+ * Gates Foundation
+ - Name Surname <name.surname@gatesfoundation.com>
+
+ * Georgi Georgiev <georgi.georgiev@modusbox.com>
+ --------------
+ ******'/
+
+@startuml
+' declate title
+title 6.2.5. Acknowledgement of Settlement Transfer (updateSettlementById)
+autonumber
+
+' declare actors
+actor "Hub Employee" as OPERATOR
+boundary "Settlement Service API" as SSAPI
+entity "Settlement DAO" as SETTLE_DAO
+database "Central Store" as DB
+
+box "Central HUB" #lightpink
+    participant OPERATOR
+end box
+
+box "Settlement Service" #lightgreen
+    participant SSAPI
+    participant SETTLE_DAO
+end box
+
+box "Central Services" #lightyellow
+    participant DB
+end box
+
+' start flow
+group Acknowledgement of Settlement Transfer
+    activate OPERATOR
+    note right of OPERATOR #yellow
+        {
+            "participants": [
+                {
+                    "id": 1
+                    "accounts" : [
+                        { "id": 1, "state": "PENDING_SETTLEMENT", "reason": <string> },
+                        { "id": 2, "state": "PS_TRANSFERS_RECORDED", "reason": <string>, "externalReference": <string> },
+                        { "id": 3, "state": "PS_TRANSFERS_RESERVED", "reason": <string> },
+                        { "id": 4, "state": "PS_TRANSFERS_COMMITTED", "reason": <string>, "externalReference": <string> },
+                        { "id": 5, "state": "SETTLED", "reason": <string> }
+                    ]
+                },
+                {
+                    "id": 2
+                    "accounts" : [
+                        { "id": 6, "state": "SETTLED", "reason": <string> }
+                    ]
+                }
+            ]
+        }
+    end note
+
+    OPERATOR -> SSAPI: PUT - /settlement/{id}
+    activate SSAPI
+    SSAPI -> SETTLE_DAO: updateSettlementById routine\n<color #FF0000><b>Error code:</b> 2001</color>
+    activate SETTLE_DAO
+    group <color #blue>DB TRANSACTION</color>
+        SETTLE_DAO -> DB: Retrieve settlement information
+        activate DB
+        hnote over DB #lightyellow
+            SELECT s.settlementId, ssc.settlementStateId,
+                ssc.reason, ssc.createdDate
+            FROM **settlement** s
+            JOIN **settlementStateChange** ssc
+            ON ssc.settlementStateChangeId = s.currentStateChangeId
+            WHERE s.settlementId = {id}
+            FOR UPDATE
+        end hnote
+        SETTLE_DAO <-- DB: Return **settlementData**
+        deactivate DB
+
+        SETTLE_DAO -> DB: Retrive settlement accounts information
+        activate DB
+        hnote over DB #lightyellow
+            SELECT pc.participantId, spc.participantCurrencyId,
+                spcsc.settlementStateId, spcsc.reason,
+                spcsc.createdDate, spc.netAmount, pc.currencyId,
+                spc.settlementParticipantCurrencyId AS <color #0000FF>key</color>
+            FROM **settlementParticipantCurrency** spc
+            JOIN **settlementParticipantCurrencyStateChange** spcsc
+            ON spcsc.settlementParticipantCurrencyStateChangeId =
+            spc.currentStateChangeId
+            JOIN **participantCurrency** pc
+            ON pc.participantCurrencyId = spc.participantCurrencyId
+            WHERE spc.settlementId = {id}
+            FOR UPDATE
+        end hnote
+        SETTLE_DAO <-- DB: Return **settlementAccountsList**
+        deactivate DB
+
+        SETTLE_DAO -> DB: Retrive settlement windows information
+        activate DB
+        hnote over DB #lightyellow
+            SELECT ssw.settlementWindowId, swsc.settlementWindowStateId,
+                swsc.reason, swsc.createdDate
+            FROM **settlementSettlementWindow** ssw
+            JOIN **settlementWindow** sw
+            ON sw.settlementWindow = ssw.settlementWindowId
+            JOIN **settlementWindowStateChange** swsc
+            ON swsc.settlementWindowStateChangeId = sw.currentStateChangeId
+            WHERE ssw.settlementId = {id}
+            FOR UPDATE
+        end hnote
+        SETTLE_DAO <-- DB: Return **windowsList**
+        deactivate DB
+
+        SETTLE_DAO -> DB: Retrieve settlement windows accounts information
+        activate DB
+        hnote over DB #lightyellow
+            SELECT DISTINCT settlementWindowId, participantCurrencyId
+            FROM **settlementTransferParticipant**
+            WHERE settlementId = {id}
+            FOR UPDATE
+        end hnote
+        SETTLE_DAO <-- DB: Return **windowsAccountsList**
+        deactivate DB
+
+        note right of SETTLE_DAO #lightblue
+            All objects below are done for the purposes of the syncronous request.
+            If at same point Node process memory limit is reached we may decide to:
+            A. Limit the amount of transfers per window and windows per settlement or
+            B. Move to asyncronous processing where we don't need these objects
+        end note
+        note right of SETTLE_DAO #lightgray
+            Available raw datasets from DB:
+            **settlementData** contains information about settlement and its current state/reason
+            **settlementAccountsList** holds information about all accounts and their current state/reason
+            **windowsList** has information about all windows and their current state/reason
+            **windowsAccountsList** has information about all accounts and windows
+
+            Local variables and objects:
+            **settlementAccounts**: { // (derived from <color 0000FF>settlementAccountsList</color>)
+                pendingSettlementCount: <integer>, // count of accounts in PENDING_SETTLEMENT state
+                psTransfersRecordedCount: <integer>, // count of accounts in PS_TRANSFERS_RECORDED state
+                psTransfersReservedCount: <integer>, // count of accounts in PS_TRANSFERS_RESERVED state
+                psTransfersCommittedCount: <integer>, // count of accounts in PS_TRANSFERS_COMMITTED state
+                settledCount: <integer>, // count of accounts in SETTLED state
+                abortedCount: <integer> // count of accounts in ABORTED state
+            }
+            **settlementAccountsInit** copy of previous object to be preserved for comparission at the end
+            **allAccounts**: { // same as previous but accessed by account id (derived from <color 0000FF>settlementAccountsList</color>)
+                participantCurrencyId_key: { // number used to access the object in map-like style
+                    id: participantCurrencyId,
+                    state: settlementStateId,
+                    reason: reason,
+                    createdDate: createdDate,
+                    netSettlementAmount: {
+                        amount: netAmount,
+                        currency: currencyId
+                    },
+                    participantId: participantId, // could be used to reconstruct allParticipants
+                    key: <color 0000FF>key</color> // will be used to insert new state for settlementParticipantCurrency
+                }
+            }
+            **allWindows**: { // same as settlementWindows response object with initial data (derived from <color 0000FF>windowsList</color>)
+                settlementWindowId_key: { // number used to access the object in map-like style
+                    id: settlementWindowId, // same as key value
+                    state: settlementWindowStateId,
+                    reason: reason,
+                    createdDate: createdDate
+                }
+            }
+            **windowsAccounts**: {
+                settlementWindowId_key: { // number used to access the object in map-like style
+                    id: settlementWindowId // same as key value
+                    pendingSettlementCount: <integer>, // count of accounts in PENDING_SETTLEMENT state
+                    psTransfersRecordedCount: <integer>, // count of accounts in PS_TRANSFERS_RECORDED state
+                    psTransfersReservedCount: <integer>, // count of accounts in PS_TRANSFERS_RESERVED state
+                    psTransfersCommittedCount: <integer>, // count of accounts in PS_TRANSFERS_COMMITTED state
+                    settledCount: <integer>, // count of accounts in SETTLED state
+                    abortedCount: <integer> // count of accounts in ABORTED state
+                }
+            }
+            **windowsAccountsInit** copy of previous object to be preserved for comparission at the end
+            **accountsWindows**: {
+                participantCurrencyId_key: { // number used to access the object in map-like style
+                    id: participantCurrencyId, // same as key value
+                    windows: [] // array of windows to which the account settlement spans
+                }
+            }
+            let **transactionTimestamp** = now()
+        end note
+        |||
+        SETTLE_DAO -> SETTLE_DAO: Declare and initialize variables
+        note right of SETTLE_DAO #lightgray
+            let settlementAccounts = {
+                pendingSettlementCount: 0,
+                psTransfersRecordedCount: 0,
+                psTransfersReservedCount: 0,
+                psTransfersCommittedCount: 0,
+                settledCount: 0,
+                abortedCount: 0,
+                unknownCount: 0
+            }
+            ' let allParticipants = {} // declare map
+            let allAccounts = {} // declare map
+            let pid // participantId
+            let aid // accountId (participantCurrencyId)
+            let state
+        end note
+
+        loop settlementAccountsList as account
+            SETTLE_DAO -> SETTLE_DAO: Populate **allAccounts**
+            ' and **allParticipants**
+            note right of SETTLE_DAO #lightgray
+                pid = account.participantId
+                aid = account.participantCurrencyId
+                state = account.settlementStateId
+
+                allAccounts[aid] = {
+                    id: aid,
+                    state,
+                    reason: account.reason,
+                    createDate: account.createdDate,
+                    netSettlementAmount: {
+                        amount: account.netAmount,
+                        currency: account.currencyId
+                    },
+                    participantId: pid,
+                    key: account.key
+                }
+                ' allParticipants[pid] = allParticipants[pid] ? allParticipants[pid] : {id: pid, accounts: {}}
+                ' allParticipants[pid].accounts[aid] = allAccounts[aid]
+            end note
+
+            SETTLE_DAO -> SETTLE_DAO: Populate **settlementAccounts**
+            alt state == 'PENDING_SETTLEMENT'
+                note right of SETTLE_DAO #lightgray
+                    settlementAccounts.pendingSettlementCount++
+                end note
+            else state == 'PS_TRANSFERS_RECORDED'
+                note right of SETTLE_DAO #lightgray
+                    settlementAccounts.psTransfersRecordedCount++
+                end note
+            else state == 'PS_TRANSFERS_RESERVED'
+                note right of SETTLE_DAO #lightgray
+                    settlementAccounts.psTransfersReservedCount++
+                end note
+            else state == 'PS_TRANSFERS_COMMITTED'
+                note right of SETTLE_DAO #lightgray
+                    settlementAccounts.psTransfersCommittedCount++
+                end note
+            else state == 'SETTLED'
+                note right of SETTLE_DAO #lightgray
+                    settlementAccounts.settledCount++
+                end note
+            else state == 'ABORTED'
+                note right of SETTLE_DAO #lightgray
+                    settlementAccounts.abortedCount++
+                end note
+            else default
+                note right of SETTLE_DAO #lightgray
+                    settlementAccounts.unknownCount++
+                end note
+            end
+        end
+        SETTLE_DAO -> SETTLE_DAO: Make a copy of settlementAccounts into **settlementAccountsInit**
+        note right of SETTLE_DAO #lightgray
+            settlementAccountsInit = Object.assign({}, settlementAccounts)
+        end note
+        |||
+        SETTLE_DAO -> SETTLE_DAO: Declare and populate **allWindows**
+        note right of SETTLE_DAO #lightgray
+            let allWindows = {} // declare map
+        end note
+        loop windowsList as window
+            note right of SETTLE_DAO #lightgray
+                allWindows[window.settlementWindowId] = {
+                    id: window.settlementWindowId,
+                    state: window.settlementWindowStateId,
+                    reason: window.reason,
+                    createDate: window.createdDate
+                }
+            end note
+        end
+        |||
+        SETTLE_DAO -> SETTLE_DAO: Declare and populate **accountsWindows** and **windowsAccounts**
+        note right of SETTLE_DAO #lightgray
+            let accountsWindows = {} // declare map
+            let windowsAccounts = {} // declare map
+        end note
+        loop windowsAccountsList as record
+            note right of SETTLE_DAO #lightgray
+                wid = record.settlementWindowId
+                aid = record.participantCurrencyId
+                state = allAccounts[aid]
+
+                accountsWindows[aid] = accountsWindows[aid] ? accountsWindows[aid] : {
+                    id: aid,
+                    windows: []
+                }
+                accountsWindows[aid].windows.push(wid)
+
+                windowsAccounts[wid] = windowsAccounts[wid] ? windowsAccounts[wid] : {
+                    id: wid,
+                    pendingSettlementCount: 0,
+                    settledCount: 0,
+                    abortedCount: 0
+                }
+            end note
+            alt state == 'PENDING_SETTLEMENT'
+                note right of SETTLE_DAO #lightgray
+                    windowsAccounts[wid].pendingSettlementCount++
+                end note
+            else state == 'PS_TRANSFERS_RECORDED'
+                note right of SETTLE_DAO #lightgray
+                    windowsAccounts[wid].psTransfersRecordedCount++
+                end note
+            else state == 'PS_TRANSFERS_RESERVED'
+                note right of SETTLE_DAO #lightgray
+                    windowsAccounts[wid].psTransfersReservedCount++
+                end note
+            else state == 'PS_TRANSFERS_COMMITTED'
+                note right of SETTLE_DAO #lightgray
+                    windowsAccounts[wid].psTransfersCommittedCount++
+                end note
+            else state == 'SETTLED'
+                note right of SETTLE_DAO #lightgray
+                    windowsAccounts[wid].settledCount++
+                end note
+            else state == 'ABORTED'
+                note right of SETTLE_DAO #lightgray
+                    windowsAccounts[wid].abortedCount++
+                end note
+            end
+        end
+        SETTLE_DAO -> SETTLE_DAO: Make a copy of windowsAccounts into **windowsAccountsInit**
+        note right of SETTLE_DAO #lightgray
+            windowsAccountsInit = Object.assign({}, windowsAccounts)
+        end note
+        |||
+        note right of SETTLE_DAO #lightgray
+            Available objects after the setup:
+            **settlementAccounts** is used for tracing settlement state and state transition allowance
+            **allAccounts** is helper object, same as previous, providing direct access to account by id
+            **allWindows** has window information for all windows in the settlement
+            **windowsAccounts** is used for tracing settlement window state and state transition allowance
+            **accountsWindows** is helper object to show the list of windows to which settlement account spans
+
+            Now we are ready to process the **payload**:
+            **participants** = [] // part of the response object that lists the affected participants and respective accounts
+            **affectedWindows** = [] // array of the affected windows
+            **settlementParticipantCurrencyStateChange** = [] // array to collect inserts to the table
+            **processedAccounts** = [] // array to log processed accounts and restrict subsequent processing
+        end note
+        |||
+        loop let participant IN payload.participants
+            SETTLE_DAO -> SETTLE_DAO: Loop payload for each **participantPayload**
+            note right of SETTLE_DAO #lightgray
+                let participantPayload = payload.participants[participant]
+                participants.push({id: participantPayload.id, accounts: []})
+                let pi = participants.length - 1
+                participant = participants[pi]
+            end note
+
+            loop let account IN participantPayload.accounts
+                SETTLE_DAO -> SETTLE_DAO: Loop payload for each **accountPayload**
+                note right of SETTLE_DAO #lightgray
+                    let accountPayload = participantPayload.accounts[account]
+                end note
+                alt allAccounts[accountPayload.id] == undefined
+                    SETTLE_DAO -> SETTLE_DAO: If the account doesn't match the settlement
+                    note right of SETTLE_DAO #lightgray
+                        participant.accounts.push({
+                            id: accountPayload.id,
+                            errorInformation: {
+                                errorCode: 3000,
+                                errorDescription: 'Account not found'
+                            }
+                        })
+                    end note
+                else participantPayload.id != allAccounts[accountPayload.id].participantId
+                    SETTLE_DAO -> SETTLE_DAO: If the account doesn't match the participant
+                    note right of SETTLE_DAO #lightgray
+                        participant.accounts.push({
+                            id: accountPayload.id,
+                            errorInformation: {
+                                errorCode: 3000,
+                                errorDescription: 'Participant and account mismatch'
+                            }
+                        })
+                    end note
+                else processedAccounts.indexOf(accountPayload.id) > -1
+                    SETTLE_DAO -> SETTLE_DAO: If the account has been previosly processed (duplicated in the payload)
+                    note right of SETTLE_DAO #lightgray
+                        participant.accounts.push({
+                            id: accountPayload.id,
+                            state: allAccounts[accountPayload.id].state,
+                            reason: allAccounts[accountPayload.id].reason,
+                            createdDate: allAccounts[accountPayload.id].createdDate,
+                            netSettlementAmount: allAccounts[accountPayload.id].netSettlementAmount
+                            errorInformation: {
+                                errorCode: 3000,
+                                errorDescription: 'Account already processed once'
+                            }
+                        })
+                    end note
+                else allAccounts[account.id].state == accountPayload.state // allowed
+                    SETTLE_DAO -> SETTLE_DAO: Same-state reason amendment is always allowed
+                    note right of SETTLE_DAO #lightgray
+                        processedAccounts.push(accountPayload.id)
+                        participant.accounts.push({
+                            id: accountPayload.id,
+                            state: accountPayload.state,
+                            reason: accountPayload.reason,
+                            externalReference: accountPayload.externalReference,
+                            createdDate: transactionTimestamp,
+                            netSettlementAmount: allAccounts[accountPayload.id].netSettlementAmount
+                        })
+                        settlementParticipantCurrencyStateChange.push({
+                            settlementParticipantCurrencyId: allAccounts[accountPayload.id].key,
+                            settlementStateId: accountPayload.state,
+                            reason: accountPayload.reason,
+                            externalReference: accountPayload.externalReference
+                        })
+                        allAccounts[accountPayload.id].reason = accountPayload.reason
+                        allAccounts[accountPayload.id].createdDate = currentTimestamp
+                    end note
+                else settlementData.state == 'PENDING_SETTLEMENT' && accountPayload.state == 'PS_TRANSFERS_RECORDED'
+                else settlementData.state == 'PS_TRANSFERS_RECORDED' && accountPayload.state == 'PS_TRANSFERS_RESERVED'
+                else settlementData.state == 'PS_TRANSFERS_RESERVED' && accountPayload.state == 'PS_TRANSFERS_COMMITTED'
+                else settlementData.state == 'PS_TRANSFERS_COMMITTED' || settlementData.state == 'SETTLING' && accountPayload.state == 'SETTLED'
+                    note right of SETTLE_DAO #lightgray
+                        **Note**: Since we previously checked same-state, here we don't need to match
+                        allAccounts[account.id].state == settlementData.state. We can safely assume it.
+                    end note
+
+                    SETTLE_DAO -> SETTLE_DAO: Settlement acknowledgement
+                    note right of SETTLE_DAO #lightgray
+                        processedAccounts.push(accountPayload.id)
+                        participant.accounts.push({
+                            id: accountPayload.id,
+                            state: accountPayload.state,
+                            reason: accountPayload.reason,
+                            externalReference: accountPayload.externalReference,
+                            createdDate: transactionTimestamp,
+                            netSettlementAmount: allAccounts[accountPayload.id].netSettlementAmount
+                        })
+                        settlementParticipantCurrencyStateChange.push({
+                            settlementParticipantCurrencyId: allAccounts[accountPayload.id].key,
+                            settlementStateId: accountPayload.state,
+                            reason: accountPayload.reason,
+                            externalReference: accountPayload.externalReference,
+                            <color #blue>settlementTransferId: Uuid() -- only for PS_TRANSFERS_RECORDED</color>
+                        })
+                        if (accountPayload.state == 'PS_TRANSFERS_RECORDED') {
+                            settlementAccounts.pendingSettlementCount--
+                            settlementAccounts.psTransfersRecordedCount++
+                        } else if (accountPayload.state == 'PS_TRANSFERS_RESERVED') {
+                            settlementAccounts.psTransfersRecordedCount--
+                            settlementAccounts.psTransfersReservedCount++
+                        } else if (accountPayload.state == 'PS_TRANSFERS_COMMITTED') {
+                            settlementAccounts.psTransfersReservedCount--
+                            settlementAccounts.psTransfersCommittedCount++
+                        } else if (accountPayload.state == 'SETTLED') {
+                            settlementAccounts.psTransfersCommittedCount--
+                            settlementAccounts.settledCount++
+                        }
+                        allAccounts[accountPayload.id].state = accountPayload.state
+                        allAccounts[accountPayload.id].reason = accountPayload.reason
+                        allAccounts[accountPayload.id].externalReference = accountPayload.externalReference
+                        allAccounts[accountPayload.id].createdDate = currentTimestamp
+                        let settlementWindowId
+                    end note
+                    loop let aw IN accountsWindows[accountPayload.id].windows
+                        note right of SETTLE_DAO #lightgray
+                            settlementWindowId = accountsWindows[accountPayload.id].windows[aw]
+
+                            if (accountPayload.state == 'PS_TRANSFERS_RECORDED') {
+                                windowsAccounts[settlementWindowId].pendingSettlementCount--
+                                windowsAccounts[settlementWindowId].psTransfersRecordedCount++
+                            } else if (accountPayload.state == 'PS_TRANSFERS_RESERVED') {
+                                windowsAccounts[settlementWindowId].psTransfersRecordedCount--
+                                windowsAccounts[settlementWindowId].psTransfersReservedCount++
+                            } else if (accountPayload.state == 'PS_TRANSFERS_COMMITTED') {
+                                windowsAccounts[settlementWindowId].psTransfersReservedCount--
+                                windowsAccounts[settlementWindowId].psTransfersCommittedCount++
+                            } else if (accountPayload.state == 'SETTLED') {
+                                windowsAccounts[settlementWindowId].psTransfersCommittedCount--
+                                windowsAccounts[settlementWindowId].settledCount++
+                            }
+                            if (affectedWindows.indexOf(settlementWindowId) < 0) {
+                                affectedWindows.push(settlementWindowId)
+                            }
+                        end note
+                    end
+                else
+                    SETTLE_DAO -> SETTLE_DAO: All other state transitions are not permitted
+                    note right of SETTLE_DAO #lightgray
+                        participant.accounts.push({
+                            id: accountPayload.id,
+                            state: allAccounts[accountPayload.id].state,
+                            reason: allAccounts[accountPayload.id].reason,
+                            createdDate: allAccounts[accountPayload.id].createdDate,
+                            netSettlementAmount: allAccounts[accountPayload.id].netSettlementAmount
+                            errorInformation: {
+                                errorCode: <integer>,
+                                errorDescription: 'State change not allowed'
+                            }
+                        })
+                    end note
+                end
+            end
+        end
+        group Bulk insert settlementParticipantCurrencyStateChange
+            SETTLE_DAO -> DB: Insert settlementParticipantCurrencyStateChange
+            activate DB
+            hnote over DB #lightyellow
+                settlementParticipantCurrencyStateChange
+            end hnote
+            SETTLE_DAO <-- DB: Return **settlementParticipantCurrencyStateChangeIdList**
+            deactivate DB
+
+            SETTLE_DAO -> SETTLE_DAO: Merge settlementParticipantCurrencyStateChangeIdList\nto settlementParticipantCurrencyIdList in order to\nissue the following update in one knex command
+
+            SETTLE_DAO -> DB: Update pointers to current state change ids
+            activate DB
+            hnote over DB #lightyellow
+                UPDATE **settlementParticipantCurrency**
+                SET currentStateChangeId =
+                    {settlementParticipantCurrencyStateChangeIdList},
+                    <color 00F>settlementTransferId =</color>
+                    <color 00F>settlementParticipantCurrencyStateChange.settlementTransferId</color>
+                    <color 00F>-- only for PENDING_SETTLEMENT to PS_TRANSFERS_RECORDED</color>
+                WHERE settlementParticipantCurrencyId =
+                        {settlementParticipantCurrencyStateChange
+                        .settlementParticipantCurrencyIdList}
+            end hnote
+            deactivate DB
+        end
+
+        alt settlementData.state == 'PENDING_SETTLEMENT'
+            |||
+            ref over SETTLE_DAO, DB: Settlement Transfer Prepare {[[https://github.com/mojaloop/docs/blob/master/Diagrams/SequenceDiagrams/seq-settransfer-6.3.1-prepare.svg 6.3.1]]}\n\n**Inputs**: settlementId, transactionTimestamp, enums, trx\n
+            |||
+        else settlementData.state == 'PS_TRANSFERS_RECORDED'
+            |||
+            ref over SETTLE_DAO, DB: Settlement Transfer Reserve {[[https://github.com/mojaloop/docs/blob/master/Diagrams/SequenceDiagrams/seq-settransfer-6.3.2-reserve.svg 6.3.2]]}\n\n**Inputs**: settlementId, transactionTimestamp, enums, trx\n
+            |||
+        else settlementData.state == 'PS_TRANSFERS_RESERVED'
+            |||
+            ref over SETTLE_DAO, DB: Settlement Transfer Commit {[[https://github.com/mojaloop/docs/blob/master/Diagrams/SequenceDiagrams/seq-settransfer-6.3.3-commit.svg 6.3.3]]}\n\n**Inputs**: settlementId, transactionTimestamp, enums, trx\n
+            |||
+        end
+
+        group Prepare and insert settlementWindowStateChange
+            note right of SETTLE_DAO #lightgray
+                let settlementWindowStateChange = []
+                let settlementWindows = [] // response object
+                let windowAccountsInit
+                let windowAccounts
+                let windowState
+            end note
+
+            loop let aw IN affectedWindows
+                note right of SETTLE_DAO #lightgray
+                    windowAccountsInit = windowAccountsInit[affectedWindows[aw]]
+                    windowAccounts = windowsAccounts[affectedWindows[aw]]
+                end note
+                opt windowAccounts.pendingSettlementCount != windowAccountsInit.pendingSettlementCount\n|| windowAccounts.psTransfersRecordedCount != windowAccountsInit.psTransfersRecordedCount\n|| windowAccounts.psTransfersReservedCount != windowAccountsInit.psTransfersReservedCount\n|| windowAccounts.psTransfersCommittedCount != windowAccountsInit.psTransfersCommittedCount\n|| windowAccounts.settledCount != windowAccountsInit.settledCount
+                    note right of SETTLE_DAO #lightgray
+                        settlementWindows.push(allWindows[affectedWindows[aw]])
+                    end note
+
+                    opt windowAccounts.psTransfersCommittedCount == 0\n&& windowAccounts.abortedCount == 0\n&& windowAccounts.settledCound > 0
+                        note right of SETTLE_DAO #lightgray
+                            allWindows[affectedWindows[aw]].state = 'SETTLED'
+                            allWindows[affectedWindows[aw]].reason = 'All window settlement accounts are settled'
+                            allWindows[affectedWindows[aw]].createdDate = currentTimestamp
+                            settlementWindowStateChange.push(allWindows[affectedWindows[aw]])
+                        end note
+                    end
+                end
+            end
+
+            SETTLE_DAO -> DB: Insert settlementWindowStateChange
+            activate DB
+            hnote over DB #lightyellow
+                settlementWindowStateChange
+            end hnote
+            SETTLE_DAO <-- DB: Return **settlementWindowStateChangeIdList**
+            deactivate DB
+
+            SETTLE_DAO -> SETTLE_DAO: Merge ids to prepare for single update command
+
+            SETTLE_DAO -> DB: Update pointers to current state change ids
+            activate DB
+            hnote over DB #lightyellow
+                UPDATE **settlementWindow**.currentStateChangeIds
+            end hnote
+            deactivate DB
+        end
+
+        group Prepare and insert settlementStateChange
+            note right of SETTLE_DAO #lightgray
+                let settlementStateChanged = true
+            end note
+            alt settlementData.state == 'PENDING_SETTLEMENT'\n&& settlementAccounts.pendingSettlementCount == 0
+                note right of SETTLE_DAO #lightgray
+                    settlementData.state = 'PS_TRANSFERS_RECORDED'
+                    settlementData.reason = 'All settlement accounts are PS_TRANSFERS_RECORDED'
+                end note
+            else settlementData.state == 'PS_TRANSFERS_RECORDED'\n&& settlementAccounts.psTransfersRecordedCount == 0
+                note right of SETTLE_DAO #lightgray
+                    settlementData.state = 'PS_TRANSFERS_RESERVED'
+                    settlementData.reason = 'All settlement accounts are PS_TRANSFERS_RESERVED'
+                end note
+            else settlementData.state == 'PS_TRANSFERS_RESERVED'\n&& settlementAccounts.psTransfersReservedCount == 0
+                note right of SETTLE_DAO #lightgray
+                    settlementData.state = 'PS_TRANSFERS_COMMITTED'
+                    settlementData.reason = 'All settlement accounts are PS_TRANSFERS_COMMITTED'
+                end note
+            else settlementData.state == 'PS_TRANSFERS_COMMITTED'\n&& settlementAccounts.psTransfersCommittedCount > 0\n&& settlementAccounts.settledCount > 0
+                note right of SETTLE_DAO #lightgray
+                    settlementData.state = 'SETTLING'
+                    settlementData.reason = 'Some settlement accounts are SETTLED'
+                end note
+            else (settlementData.state == 'PS_TRANSFERS_COMMITTED' || settlementData.state == 'SETTLING')\n&& settlementAccounts.psTransfersCommittedCount == 0
+                note right of SETTLE_DAO #lightgray
+                    settlementData.state = 'SETTLED'
+                    settlementData.reason = 'All settlement accounts are SETTLED'
+                end note
+            else
+                note right of SETTLE_DAO #lightgray
+                    settlementStateChanged = false
+                end note
+            end
+            opt settlementStateChanged == true
+                note right of SETTLE_DAO #lightgray
+                    settlementData.createdDate = currentTimestamp
+                    settlementStateChange.push(settlementData)
+                end note
+
+                SETTLE_DAO -> DB: Insert settlementStateChange
+                activate DB
+                hnote over DB #lightyellow
+                    settlementStateChange
+                end hnote
+                SETTLE_DAO <-- DB: Return **settlementStateChangeId**
+                deactivate DB
+
+                SETTLE_DAO -> DB: Update pointer to current state change id
+                activate DB
+                hnote over DB #lightyellow
+                    UPDATE **settlement**.currentStateChangeId
+                end hnote
+                deactivate DB
+            end
+        end
+    end
+    SSAPI <-- SETTLE_DAO: Return transaction result
+    deactivate SETTLE_DAO
+
+    note left of SSAPI #lightgray
+        Samples:
+        "**settlementWindows**": [
+            {
+                "id": <integer>,
+                "state": <enum>,
+                "reason": <string>,
+                "createdDate": <date>
+            }
+        ]
+        "**participants**": [
+            {
+                "id": <integer>,
+                "accounts": [
+                    {
+                        "id": <integer>,
+                        "state": "SETTLED",
+                        "reason": <string>,
+                        "externalReference": <string>,
+                        "createdDate": <date>,
+                        "netSettlementAmount": {
+                            "amount": <decimal>,
+                            "currency": <enum>
+                        }
+                    },
+                    {
+                        "id": <integer>,
+                        "state": "PENDING_SETTLEMENT",
+                        "reason": <string>,
+                        "createdDate": <date>,
+                        "netSettlementAmount": {
+                            "amount": <decimal>,
+                            "currency": <enum>
+                        },
+                        "errorInformation": {
+                            "errorCode": <integer>,
+                            "errorDescription": <string>
+                        }
+                    }
+                ]
+            }
+        ]
+    end note
+
+    note left of SSAPI #lightyellow
+        [
+          {
+            "id": {id},
+            "state": settlementData.state,
+            "createdDate": settlementData.createdDate,
+            "settlementWindows": settlementWindows,
+            "participants": participants
+          }
+        ]
+    end note
+
+    SSAPI -> OPERATOR: Return response
+    deactivate SSAPI
+end
+@enduml
