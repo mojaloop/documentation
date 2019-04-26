@@ -1,0 +1,344 @@
+/'*****
+ License
+ --------------
+ Copyright © 2017 Bill & Melinda Gates Foundation
+ The Mojaloop files are made available by the Bill & Melinda Gates Foundation under the Apache License, Version 2.0 (the "License") and you may not use these files except in compliance with the License. You may obtain a copy of the License at
+ http://www.apache.org/licenses/LICENSE-2.0
+ Unless required by applicable law or agreed to in writing, the Mojaloop files are distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+ Contributors
+ --------------
+ This is the official list of the Mojaloop project contributors for this file.
+ Names of the original copyright holders (individuals or organizations)
+ should be listed with a '*' in the first column. People who have
+ contributed from an organization can be listed under the organization
+ that actually holds the copyright for their contributions (see the
+ Gates Foundation organization for an example). Those individuals should have
+ their names indented and be marked with a '-'. Email address can be added
+ optionally within square brackets <email>.
+ * Gates Foundation
+ - Name Surname <name.surname@gatesfoundation.com>
+
+ * Rajiv Mothilal <rajiv.mothilal@modusbox.com>
+ * Georgi Georgiev <georgi.georgiev@modusbox.com>
+ --------------
+ ******'/
+
+@startuml
+' declare title
+title 2.3.1. Timeout Handler Consume 
+
+autonumber
+
+' Actor Keys:
+'   boundary - APIs/Interfaces, etc
+'   collections - Kafka Topics
+'   control - Kafka Consumers
+'   entity - Database Access Objects
+'   database - Database Persistance Store
+
+' declare actors
+control "Transfer Timeout Handler" as TIMEOUT_HANDLER
+collections "topic-transfer-position" as TOPIC_TRANSFER_POSITION
+collections "Notification-Topic" as NOTIFICATIONS_TOPIC
+collections "Event-Topic" as EVENT_TOPIC
+entity "Segment DAO" as SEGMENT_DAO
+entity "Position DAO" as POS_DAO
+database "Central Store" as DB
+
+box "Central Service" #LightYellow
+    participant TIMEOUT_HANDLER
+    participant TOPIC_TRANSFER_POSITION
+    participant NOTIFICATIONS_TOPIC
+    participant EVENT_TOPIC
+    participant POS_DAO
+    participant SEGMENT_DAO
+    participant DB
+end box
+
+' start flow
+
+group Timeout Handler Consume
+    activate TIMEOUT_HANDLER
+    group Persist Event Information
+        TIMEOUT_HANDLER -> EVENT_TOPIC: Publish event information
+        ref over TIMEOUT_HANDLER, EVENT_TOPIC :  Event Handler Consume {[[https://github.com/mojaloop/docs/blob/master/Diagrams/SequenceDiagrams/seq-event-9.1.0.svg 9.1.0]]}
+    end
+
+    group Get previous checkpoint of last record processed (Lower limit for inclusion)
+        TIMEOUT_HANDLER -> SEGMENT_DAO: Get last segment as @intervalMin
+        activate SEGMENT_DAO
+        SEGMENT_DAO -> DB: Get last segment as @intervalMin
+        hnote over DB #lightyellow
+            SELECT value INTO @intervalMin
+            FROM **segment**
+            WHERE segmentType = 'timeout'
+            AND enumeration = 0
+            AND tableName = 'transferStateChange'
+        end note
+        activate DB
+        DB --> SEGMENT_DAO: Return @intervalMin
+        deactivate DB
+        SEGMENT_DAO --> TIMEOUT_HANDLER: Return @intervalMin
+        deactivate SEGMENT_DAO
+        opt @intervalMin IS NULL => segment record NOT FOUND
+            TIMEOUT_HANDLER->TIMEOUT_HANDLER: Set @intervalMin = 0
+        end
+    end
+
+    group Do Cleanup
+        TIMEOUT_HANDLER -> POS_DAO: Clean up transferTimeout from finalised transfers
+        activate POS_DAO
+        POS_DAO -> DB: Clean up transferTimeout from finalised transfers
+        hnote over DB #lightyellow
+            DELETE tt
+            FROM **transferTimeout** AS tt
+            JOIN (SELECT tsc.transferId, MAX(tsc.transferStateChangeId) maxTransferStateChangeId
+                  FROM **transferTimeout** tt1
+                  JOIN **transferStateChange** tsc
+                  ON tsc.transferId = tt1.transferId
+                  GROUP BY transferId) ts
+            ON ts.transferId = tt.transferId
+            JOIN **transferStateChange** tsc
+            ON tsc.transferStateChangeId = ts.maxTransferStateChangeId
+            WHERE tsc.transferStateId IN ('RECEIVED_FULFIL', 'COMMITTED', 'FAILED'
+                , 'EXPIRED', 'REJECTED', 'EXPIRED_PREPARED', 'EXPIRED_RESERVED', 'ABORTED')
+        end note
+        activate DB
+        deactivate DB
+        POS_DAO --> TIMEOUT_HANDLER: Return success
+        deactivate POS_DAO
+    end
+
+    group Determine IntervalMax (Upper limit for inclusion)
+        TIMEOUT_HANDLER -> POS_DAO: Get last transferStateChangeId as @intervalMax
+        activate POS_DAO
+        POS_DAO -> DB: Get last transferStateChangeId as @intervalMax
+        hnote over DB #lightyellow
+            SELECT MAX(transferStateChangeId) INTO @intervalMax
+            FROM **transferStateChange**
+        end note
+        activate DB
+        DB --> POS_DAO: Return @intervalMax
+        deactivate DB
+        POS_DAO --> TIMEOUT_HANDLER: Return @intervalMax
+        deactivate POS_DAO
+    end
+
+    
+    group Prepare data and return the list for expiration
+        TIMEOUT_HANDLER -> POS_DAO: Prepare data and get transfers to be expired
+        activate POS_DAO
+        group <color #blue>DB TRANSACTION</color>
+            POS_DAO <-> POS_DAO: **transactionTimestamp** = now()
+            POS_DAO -> DB: Insert all new transfers still in processing state
+            hnote over DB #lightyellow
+                INSERT INTO **transferTimeout**(transferId, expirationDate)
+                SELECT t.transferId, t.expirationDate
+                FROM **transfer** t
+                JOIN (SELECT transferId, MAX(transferStateChangeId) maxTransferStateChangeId
+                      FROM **transferStateChange**
+                      WHERE transferStateChangeId > @intervalMin
+                      AND transferStateChangeId <= @intervalMax
+                      GROUP BY transferId) ts
+                ON ts.transferId = t.transferId
+                JOIN **transferStateChange** tsc
+                ON tsc.transferStateChangeId = ts.maxTransferStateChangeId
+                WHERE tsc.transferStateId IN ('RECEIVED_PREPARE', 'RESERVED')
+            end note
+            activate DB
+            deactivate DB
+
+            POS_DAO -> DB: Insert transfer state ABORTED for\nexpired RECEIVED_PREPARE transfers
+            hnote over DB #lightyellow
+                INSERT INTO **transferStateChange**
+                SELECT tt.transferId, 'EXPIRED_PREPARED' AS transferStateId, 'Aborted by Timeout Handler' AS reason
+                FROM **transferTimeout** tt
+                JOIN ( <color #FF0000>-- Following subquery is reused 3 times and may be optimized if needed</color>
+                      SELECT tsc1.transferId, MAX(tsc1.transferStateChangeId) maxTransferStateChangeId
+                      FROM **transferStateChange** tsc1
+                      JOIN **transferTimeout** tt1
+                      ON tt1.transferId = tsc1.transferId
+                      GROUP BY tsc1.transferId) ts
+                ON ts.transferId = tt.transferId
+                JOIN **transferStateChange** tsc
+                ON tsc.transferStateChangeId = ts.maxTransferStateChangeId
+                WHERE tt.expirationDate < {transactionTimestamp}
+                AND tsc.transferStateId = 'RECEIVED_PREPARE'
+            end note
+            activate DB
+            deactivate DB
+
+            POS_DAO -> DB: Insert transfer state EXPIRED for\nexpired RESERVED transfers
+            hnote over DB #lightyellow
+                INSERT INTO **transferStateChange**
+                SELECT tt.transferId, 'RESERVED_TIMEOUT' AS transferStateId, 'Expired by Timeout Handler' AS reason
+                FROM **transferTimeout** tt
+                JOIN (SELECT tsc1.transferId, MAX(tsc1.transferStateChangeId) maxTransferStateChangeId
+                      FROM **transferStateChange** tsc1
+                      JOIN **transferTimeout** tt1
+                      ON tt1.transferId = tsc1.transferId
+                      GROUP BY tsc1.transferId) ts
+                ON ts.transferId = tt.transferId
+                JOIN **transferStateChange** tsc
+                ON tsc.transferStateChangeId = ts.maxTransferStateChangeId
+                WHERE tt.expirationDate < {transactionTimestamp}
+                AND tsc.transferStateId = 'RESERVED'
+            end note
+            activate DB
+            deactivate DB
+
+            POS_DAO -> DB: Update segment table to be used for the next run
+            hnote over DB #lightyellow
+                IF @intervalMin = 0
+                    INSERT
+                    INTO **segment**(segmentType, enumeration, tableName, value)
+                    VALUES ('timeout', 0, 'transferStateChange', @intervalMax)
+                ELSE
+                    UPDATE **segment**
+                    SET value = @intervalMax
+                    WHERE segmentType = 'timeout'
+                    AND enumeration = 0
+                    AND tableName = 'transferStateChange'
+            end note
+            activate DB
+            deactivate DB
+        end
+
+        POS_DAO -> DB: Get list of transfers to be expired with current state
+        hnote over DB #lightyellow
+            SELECT tt.*, tsc.transferStateId, tp1.participantCurrencyId payerParticipantId, 
+                    tp2.participantCurrencyId payeeParticipantId
+            FROM **transferTimeout** tt
+            JOIN (SELECT tsc1.transferId, MAX(tsc1.transferStateChangeId) maxTransferStateChangeId
+                    FROM **transferStateChange** tsc1
+                    JOIN **transferTimeout** tt1
+                    ON tt1.transferId = tsc1.transferId
+                    GROUP BY tsc1.transferId) ts
+            ON ts.transferId = tt.transferId
+            JOIN **transferStateChange** tsc
+            ON tsc.transferStateChangeId = ts.maxTransferStateChangeId
+            JOIN **transferParticipant** tp1
+            ON tp1.transferId = tt.transferId
+            AND tp1.transferParticipantRoleTypeId = {PAYER_DFSP}
+            AND tp1.ledgerEntryTypeId = {PRINCIPLE_VALUE}
+            JOIN **transferParticipant** tp2
+            ON tp2.transferId = tt.transferId
+            AND tp2.transferParticipantRoleTypeId = {PAYEE_DFSP}
+            AND tp2.ledgerEntryTypeId = {PRINCIPLE_VALUE}
+            WHERE tt.expirationDate < {transactionTimestamp}
+        end note
+        activate DB
+        POS_DAO <-- DB: Return list
+        deactivate DB
+        POS_DAO --> TIMEOUT_HANDLER: Return list
+        deactivate POS_DAO
+    end
+
+    loop for each transfer in the list
+        |||
+        note right of TIMEOUT_HANDLER #lightgray
+            **TODO**: <color #FF0000>Red</color> in the bellow messages is to be discussed with the DA 
+            during review because at this point the referred data is not available.
+        end note
+
+        alt transferStateId == 'RECEIVED_PREPARE'
+            note right of TIMEOUT_HANDLER #yellow
+                Message:
+                {
+                    id: <transferId>,
+                    from: <payerParticipantId>,
+                    to: <payeeParticipantId>,
+                    type: application/json,
+                    content: {
+                        <color #FF0000>headers:</color> {
+                            Content-Length: <Content-Length>,
+                            Content-Type: <Content-Type>,
+                            Date: <Date>,
+                            X-Forwarded-For: <X-Forwarded-For>,
+                            FSPIOP-Source: <FSPIOP-Source>,
+                            FSPIOP-Destination: <FSPIOP-Destination>,
+                            FSPIOP-Encryption: <FSPIOP-Encryption>,
+                            FSPIOP-Signature: <FSPIOP-Signature>,
+                            FSPIOP-URI: <FSPIOP-URI>,
+                            FSPIOP-HTTP-Method: <FSPIOP-HTTP-Method>
+                        },
+                        payload: {
+                             "errorInformation": {
+                                 "errorCode": 3303,
+                                 "errorDescription": "Transfer expired",
+                                 "extensionList": <transferMessage.extensionList>
+                             }
+                        }
+                    },
+                    metadata: {
+                        event: {
+                            id: <uuid>,
+                            type: notification,
+                            action: timeout-received,
+                            createdAt: <timestamp>,
+                            state: {
+                                status: 'error',
+                                code: <errorInformation.errorCode>
+                                description: <errorInformation.errorDescription>
+                            }
+                        }
+                    }
+                }
+            end note
+            TIMEOUT_HANDLER -> EVENT_TOPIC: Publish Notification event
+            activate EVENT_TOPIC
+            deactivate EVENT_TOPIC
+        else transferStateId == 'RESERVED'
+            note right of TIMEOUT_HANDLER #yellow
+                Message:
+                {
+                    id: <transferId>,
+                    from: <payerParticipantId>,
+                    to: <payeeParticipantId>,
+                    type: application/json,
+                    content: {
+                        <color #FF0000>headers:</color> {
+                            Content-Length: <Content-Length>,
+                            Content-Type: <Content-Type>,
+                            Date: <Date>,
+                            X-Forwarded-For: <X-Forwarded-For>,
+                            FSPIOP-Source: <FSPIOP-Source>,
+                            FSPIOP-Destination: <FSPIOP-Destination>,
+                            FSPIOP-Encryption: <FSPIOP-Encryption>,
+                            FSPIOP-Signature: <FSPIOP-Signature>,
+                            FSPIOP-URI: <FSPIOP-URI>,
+                            FSPIOP-HTTP-Method: <FSPIOP-HTTP-Method>
+                        },
+                        payload: {
+                            "errorInformation": {
+                                "errorCode": 3303,
+                                "errorDescription": "Transfer expired",
+                                "extensionList": <transferMessage.extensionList>
+                            }
+                        }
+                    },
+                    metadata: {
+                        event: {
+                            id: <uuid>,
+                            type: position,
+                            action: timeout-reserved,
+                            createdAt: <timestamp>,
+                            state: {
+                                status: 'error',
+                                code: <errorInformation.errorCode>
+                                description: <errorInformation.errorDescription>
+                            }
+                        }
+                    }
+                }
+            end note
+            TIMEOUT_HANDLER -> TOPIC_TRANSFER_POSITION: Route & Publish Position event
+            activate TOPIC_TRANSFER_POSITION
+            deactivate TOPIC_TRANSFER_POSITION
+        end
+
+    end
+
+    deactivate TIMEOUT_HANDLER
+end
+@enduml
