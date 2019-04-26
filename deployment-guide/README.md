@@ -99,7 +99,7 @@ Insure **kubectl** is installed. A complete set of installation instruction are 
    ```
    **Remember** to prefix all **kubectl** commands with **microk8s** if you opted not to create an alias.
 
-2. Verify Kubernetes Dashboard;
+2. Verify Kubernetes Dashboard. _Windows replace `grep` with `findstr`_;
    ```bash
    kubectl get pod --namespace=kube-system |grep dashboard
    ```
@@ -115,7 +115,7 @@ Insure **kubectl** is installed. A complete set of installation instruction are 
    http://localhost.com:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/#!
    ```
 
-   Select **Token**. Generate a token to use there by:
+   Select **Token**. Generate a token to use there by: _Windows replace `grep` with `findstr`_
    
    ```bash
    kubectl -n kube-system get secrets | grep dashboard-token
@@ -142,12 +142,12 @@ Please review [Mojaloop Helm Chart](../repositories/helm.md) to understand the r
    helm init
    ```
 
-2. Validate Helm Tiller is up and running:
+2. Validate Helm Tiller is up and running. _Windows replace `grep` with `findstr`_:
    ```bash
    kubectl -n kube-system get po | grep tiller
    ```
 
-3. Add mojaloop repo to your Helm config (optional). Linux use with sudo:
+3. Add mojaloop repo to your Helm config (optional). _Linux use with sudo_:
    ```bash
    helm repo add mojaloop http://mojaloop.io/helm/repo/
    ```
@@ -159,12 +159,12 @@ Please review [Mojaloop Helm Chart](../repositories/helm.md) to understand the r
    helm repo add kiwigrid https://kiwigrid.github.io
    ```
 
-5. Update helm repositories. Linux use with sudo:
+5. Update helm repositories. _Linux use with sudo_:
    ```bash
    helm repo update
    ```
 
-6. Install nginx-ingress for load balancing & external access. Linux use with sudo:
+6. Install nginx-ingress for load balancing & external access. _Linux use with sudo_:
    ```bash
    helm --namespace kube-public install stable/nginx-ingress
    ```
@@ -173,7 +173,7 @@ Please review [Mojaloop Helm Chart](../repositories/helm.md) to understand the r
 
 #### 5.1 Mojaloop Helm Deployment
 
-1. Install Mojaloop. Linux use with sudo:
+1. Install Mojaloop. _Linux use with sudo_:
 
    Default installation:
    ```bash
@@ -205,6 +205,7 @@ Please review [Mojaloop Helm Chart](../repositories/helm.md) to understand the r
    ```bash
    vi /etc/hosts
    ```
+   _Windows the file can be updated in notepad - need to open with Administrative privileges. File location `C:\Windows\System32\drivers\etc\hosts`_.
    
    Include the following line to the config;
    ```text
