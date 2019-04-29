@@ -1,3 +1,7 @@
+---
+showToc: false
+---
+
 # Frequently Asked Questions
 
 This document contains some of the most frequently asked questions from the community.

@@ -80,7 +80,7 @@ The following are Kubernetes concepts used within the project. An understanding 
 * ConfigMap
 * Secret
 
-Insure **kubectl** is installed. A complete set of installation instruction are available [here](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
+Insure **kubectl** is installed. A complete set of installation instruction are available [here](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
 
 #### 3.1 Kubernetes Dashboard:
 
@@ -200,7 +200,7 @@ Please review [Mojaloop Helm Chart](../repositories/helm.md) to understand the r
 
 1. Update your /ect/hosts for local deployment:
 
-   _Note: This is only applicable for local deployments, and is not needed if custom DNS or ingress rules are configured in a customized [values.yaml](https://github.com/mojaloop/helm/blob/master/mojaloop/values.yaml)_
+   _Note: This is only applicable for local deployments, and is not needed if custom DNS or ingress rules are configured in a customized [values.yaml](https://github.com/mojaloop/helm/blob/master/mojaloop/values.yaml)_.
    
    ```bash
    vi /etc/hosts
@@ -214,7 +214,7 @@ Please review [Mojaloop Helm Chart](../repositories/helm.md) to understand the r
 
 2. Test system health in your browser after installation. This will only work if you have an active helm chart deployment running.
    
-   _Note: The examples below are only applicable to a local deployment. The entries should match the DNS values or ingress rules as configured in the [values.yaml](https://github.com/mojaloop/helm/blob/master/mojaloop/values.yaml) or otherwise matching any custom ingress rules configured_
+   _Note: The examples below are only applicable to a local deployment. The entries should match the DNS values or ingress rules as configured in the [values.yaml](https://github.com/mojaloop/helm/blob/master/mojaloop/values.yaml) or otherwise matching any custom ingress rules configured_.
    
    **ml-api-adapter** health test:
    ```
@@ -232,18 +232,18 @@ Postman is used to send requests and receive responses.
 
 #### 6.1 Installing Postman
 
-Please, follow these instructions: [Get Postman](https://www.getpostman.com/postman)
+Please, follow these instructions: [Get Postman](https://www.getpostman.com/postman) and install the Postman application.
 
 #### 6.2 Setup Postman
 
 ##### Import the Collection
-1. Open **Postman**
-2. Click **Import** and then **Import From Link**
+1. Open **Postman**.
+2. Click **Import** and then **Import From Link**.
 3. Paste the following link [https://raw.githubusercontent.com/mojaloop/postman/master/Mojaloop.postman_collection.json](https://raw.githubusercontent.com/mojaloop/postman/master/Mojaloop.postman_collection.json) in the input box.
 4. Press the **Import** button to continue.
 
 ##### Setup the Environment Configurations
-1. You'll now need to import environment variables. For local testing, download this file [https://raw.githubusercontent.com/mojaloop/postman/master/environments/MojaloopLocal.postman_environment.json](https://raw.githubusercontent.com/mojaloop/postman/master/environments/MojaloopLocal.postman_environment.json)
-2. Click **Import** and then **Import File**
-3. Select the _MojaloopLocal.postman_environment.json_ file you downloaded
-4. In the imported collection, navigate to the _central_ledger_ directory  
+1. You'll now need to import environment variables. For local testing, download this file [https://raw.githubusercontent.com/mojaloop/postman/master/environments/MojaloopLocal.postman_environment.json](https://raw.githubusercontent.com/mojaloop/postman/master/environments/MojaloopLocal.postman_environment.json).
+2. Click **Import** and then **Import File**.
+3. Select the _MojaloopLocal.postman_environment.json_ file you downloaded.
+4. In the imported collection, navigate to the _central_ledger_ directory.

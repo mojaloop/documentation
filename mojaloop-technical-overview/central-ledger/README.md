@@ -6,4 +6,4 @@ The central ledger is a series of services that facilitate clearing and settleme
 * Maintaining net positions for a deferred net settlement
 * Propagating scheme-level and off-transfer fees
 
-![](./assets/diagrams/architecture/central_ledger_block_diagram.png)
+![](./assets/diagrams/architecture/Arch-mojaloop-central-ledger.svg)
