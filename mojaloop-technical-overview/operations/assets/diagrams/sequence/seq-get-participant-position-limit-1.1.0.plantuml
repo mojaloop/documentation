@@ -1,0 +1,206 @@
+/'*****
+ License
+ --------------
+ Copyright © 2017 Bill & Melinda Gates Foundation
+ The Mojaloop files are made available by the Bill & Melinda Gates Foundation under the Apache License, Version 2.0 (the "License") and you may not use these files except in compliance with the License. You may obtain a copy of the License at
+ http://www.apache.org/licenses/LICENSE-2.0
+ Unless required by applicable law or agreed to in writing, the Mojaloop files are distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+ Contributors
+ --------------
+ This is the official list of the Mojaloop project contributors for this file.
+ Names of the original copyright holders (individuals or organizations)
+ should be listed with a '*' in the first column. People who have
+ contributed from an organization can be listed under the organization
+ that actually holds the copyright for their contributions (see the
+ Gates Foundation organization for an example). Those individuals should have
+ their names indented and be marked with a '-'. Email address can be added
+ optionally within square brackets <email>.
+ * Gates Foundation
+ - Name Surname <name.surname@gatesfoundation.com>
+
+ * Shashikant Hirugade <shashikant.hirugade@modusbox.com>
+ --------------
+ ******'/
+
+@startuml
+' declate title
+title 1.1.0 Request Participant Position and Limit Details
+
+autonumber
+
+
+' Actor Keys:
+' boundary - APIs/Interfaces, etc
+' collections - Kafka Topics
+' control - Kafka Consumers
+' entity - Database Access Objects
+' database - Database Persistance Store
+
+' declare actors
+entity "HUB OPERATOR" as OPERATOR
+boundary "Central Service API" as CSAPI
+control "Participant Handler" as PARTICIPANT_HANDLER
+entity "Central Service API" as CSAPI
+entity "Participant Facade" as PARTICIPANT_DAO
+database "Central Store" as DB
+
+box "Central Services" #LightYellow
+participant CSAPI
+participant PARTICIPANT_HANDLER
+participant PARTICIPANT_DAO
+participant DB
+end box
+
+' start flow
+
+activate OPERATOR
+group Get Callback Details
+    OPERATOR -> CSAPI: Request to get Limits - GET - /participants/{name}/limits?type={typeValue}&currency={currencyValue}
+    activate CSAPI
+    CSAPI -> PARTICIPANT_HANDLER: Fetch Limits for Participant
+    activate PARTICIPANT_HANDLER
+    PARTICIPANT_HANDLER -> PARTICIPANT_HANDLER: check if "currency" parameter is sent
+    alt Check if "currency" parameter is sent (Sent)
+        PARTICIPANT_HANDLER ->PARTICIPANT_DAO: Fetch Participant/currency id \n<color #FF0000><b>Error code:</b> 3200</color>
+
+        activate PARTICIPANT_DAO
+        PARTICIPANT_DAO ->DB: Fetch Participant/currency id
+        activate DB
+        hnote over DB #lightyellow
+            participant
+            participantCurrency
+        end note
+        DB --> PARTICIPANT_DAO: Retrieved Participant
+        deactivate DB
+        PARTICIPANT_DAO -->PARTICIPANT_HANDLER: Return Participant/currency id
+        deactivate PARTICIPANT_DAO
+        PARTICIPANT_HANDLER ->PARTICIPANT_HANDLER: Validate DFSP
+        alt Validate participant (success)
+            PARTICIPANT_HANDLER ->PARTICIPANT_DAO: Fetch Participant Limits for currency and type \n<color #FF0000><b>Error code:</b> 3000</color>
+            activate PARTICIPANT_DAO
+            PARTICIPANT_DAO ->DB: Fetch Participant Limit  for currencyId and type(if passed)
+            note right of PARTICIPANT_DAO #lightgrey
+            Condition:
+                participantLimit.isActive = 1
+                participantLimit.participantCurrencyId = <currencyId>
+                [   participantLimit.participantLimitTypeId = participantLimitType.participantLimitTypeId
+                    participantLimitType.name = <type>
+                ]
+            end note
+
+            activate DB
+            hnote over DB #lightyellow
+                participantLimit
+                participantLimitType
+            end note
+            DB --> PARTICIPANT_DAO: Retrieved Participant Limits for currencyId and type
+            deactivate DB
+            PARTICIPANT_DAO -->PARTICIPANT_HANDLER: Return Participant Limits for currencyId and type
+            deactivate PARTICIPANT_DAO
+            note right of PARTICIPANT_HANDLER #yellow
+                Message:
+                [   
+                    {   currency: <currencyId>,
+                        limit: {type: <type>, value: <value>}
+                    }
+                ]
+            end note
+            PARTICIPANT_HANDLER -->CSAPI: Return Participant Limits
+            deactivate PARTICIPANT_HANDLER
+            CSAPI -->OPERATOR: Return Participant Limits
+
+
+        else Validate participant (failure)/ Error
+                activate PARTICIPANT_HANDLER
+                note right of PARTICIPANT_HANDLER #red: Validation failure/ Error!
+                activate PARTICIPANT_HANDLER
+                note right of PARTICIPANT_HANDLER #yellow
+                    Message:
+                    {
+                        "errorInformation": {
+                            "errorCode": <errorCode>,
+                            "errorDescription": <ErrorMessage>,
+                        }
+                    }
+                end note
+                PARTICIPANT_HANDLER -->CSAPI: Return <color #FF0000><b>Error code:</b> 3000, 3200</color>
+                deactivate PARTICIPANT_HANDLER
+                CSAPI -->OPERATOR: Return <color #FF0000><b>Error code:</b> 3000, 3200</color>
+        end
+
+    else Check if "currency" parameter is sent (Not Sent)
+        PARTICIPANT_HANDLER ->PARTICIPANT_DAO: Fetch Participant \n<color #FF0000><b>Error code:</b> 3200</color>
+
+        activate PARTICIPANT_DAO
+        PARTICIPANT_DAO ->DB: Fetch Participant
+        activate DB
+        hnote over DB #lightyellow
+            participant
+        end note
+        DB --> PARTICIPANT_DAO: Retrieved Participant
+        deactivate DB
+        PARTICIPANT_DAO -->PARTICIPANT_HANDLER: Return Participant
+        deactivate PARTICIPANT_DAO
+        PARTICIPANT_HANDLER ->PARTICIPANT_HANDLER: Validate DFSP
+        alt Validate participant (success)
+            PARTICIPANT_HANDLER ->PARTICIPANT_DAO: Fetch Participant Limits for all currencies and type \n<color #FF0000><b>Error code:</b> 3000</color>
+            activate PARTICIPANT_DAO
+            PARTICIPANT_DAO ->DB: Fetch Participant Limit  for all currencies and type(if passed)
+            note right of PARTICIPANT_DAO #lightgrey
+            Condition:
+                participantCurrency.participantId = <participantId>
+                participantLimit.participantCurrencyId = participantCurrency.participantCurrencyId
+                participantLimit.isActive = 1
+                [   participantLimit.participantLimitTypeId = participantLimitType.participantLimitTypeId
+                    participantLimitType.name = <type>
+                ]
+            end note
+
+            activate DB
+            hnote over DB #lightyellow
+                participantCurrency
+                participantLimit
+                participantLimitType
+            end note
+            DB --> PARTICIPANT_DAO: Retrieved Participant Limits for all currencies and type
+            deactivate DB
+            PARTICIPANT_DAO -->PARTICIPANT_HANDLER: Return Participant Limits for all currencies and type
+            deactivate PARTICIPANT_DAO
+            note right of PARTICIPANT_HANDLER #yellow
+                Message:
+                [   
+                    {   currency: <currencyId>,
+                        limit: {type: <type>, value: <value>}
+                    }
+                ]
+            end note
+            PARTICIPANT_HANDLER -->CSAPI: Return Participant Limits
+            deactivate PARTICIPANT_HANDLER
+            CSAPI -->OPERATOR: Return Participant Limits
+
+
+        else Validate participant (failure)/ Error
+                activate PARTICIPANT_HANDLER
+                note right of PARTICIPANT_HANDLER #red: Validation failure/ Error!
+                activate PARTICIPANT_HANDLER
+                note right of PARTICIPANT_HANDLER #yellow
+                    Message:
+                    {
+                        "errorInformation": {
+                            "errorCode": <errorCode>,
+                            "errorDescription": <ErrorMessage>,
+                        }
+                    }
+                end note
+                PARTICIPANT_HANDLER -->CSAPI: Return <color #FF0000><b>Error code:</b> 3000, 3200</color>
+                deactivate PARTICIPANT_HANDLER
+                CSAPI -->OPERATOR: Return <color #FF0000><b>Error code:</b> 3000, 3200</color>
+        end
+    end
+
+
+    deactivate CSAPI
+    deactivate OPERATOR
+end
+
+@enduml
