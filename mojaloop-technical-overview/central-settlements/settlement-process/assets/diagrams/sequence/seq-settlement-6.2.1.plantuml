@@ -1,0 +1,288 @@
+/'*****
+ License
+ --------------
+ Copyright © 2017 Bill & Melinda Gates Foundation
+ The Mojaloop files are made available by the Bill & Melinda Gates Foundation under the Apache License, Version 2.0 (the "License") and you may not use these files except in compliance with the License. You may obtain a copy of the License at
+ http://www.apache.org/licenses/LICENSE-2.0
+ Unless required by applicable law or agreed to in writing, the Mojaloop files are distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+ Contributors
+ --------------
+ This is the official list of the Mojaloop project contributors for this file.
+ Names of the original copyright holders (individuals or organizations)
+ should be listed with a '*' in the first column. People who have
+ contributed from an organization can be listed under the organization
+ that actually holds the copyright for their contributions (see the
+ Gates Foundation organization for an example). Those individuals should have
+ their names indented and be marked with a '-'. Email address can be added
+ optionally within square brackets <email>.
+ * Gates Foundation
+ - Name Surname <name.surname@gatesfoundation.com>
+
+ * Georgi Georgiev <georgi.georgiev@modusbox.com>
+ --------------
+ ******'/
+
+@startuml
+' declate title
+title 6.2.1. Trigger Settlement Event (createSettlement)
+autonumber
+
+' declare actors
+actor "Hub Employee" as OPERATOR
+boundary "Settlement Service API" as SSAPI
+entity "Settlement DAO" as SETTLE_DAO
+database "Central Store" as DB
+
+box "Central HUB" #lightpink
+    participant OPERATOR
+end box
+
+box "Settlement Service" #lightgreen
+    participant SSAPI
+    participant SETTLE_DAO
+end box
+
+box "Central Services" #lightyellow
+    participant DB
+end box
+
+' start flow
+group Trigger Settlement Event
+activate OPERATOR
+    note right of OPERATOR #yellow
+        {
+            "reason": "string",
+            "settlementWindows": [
+                {
+                    "id": 1,
+                },
+                {
+                    "id": 2,
+                }
+            ]
+        }
+    end note
+    OPERATOR -> SSAPI: POST - /settlements
+    activate SSAPI
+
+    SSAPI-> SETTLE_DAO: Request settlementWindow(s)\n<color #FF0000><b>Error code:</b> 2001</color>
+    activate SETTLE_DAO
+    SETTLE_DAO -> DB: Retrieve settlementWindow(s)
+    activate DB
+    hnote over DB #lightyellow
+        SELECT sw.settlementWindowId, swsc.settlementWindowStateId, sw.createdDate
+        FROM **settlementWindow** sw
+        JOIN **settlementWindowStateChange** swsc
+        ON swsc.settlementWindowStateChangeId = sw.currentStateChangeId
+        WHERE sw.settlementWindowId IN {payload.settlementWindows.idList}
+    end hnote
+    SETTLE_DAO <-- DB: Return data
+    deactivate DB
+    SSAPI <-- SETTLE_DAO: Return **windowsData**
+    deactivate SETTLE_DAO
+
+    group Validate all requested windows are found and applicable
+        note right of SSAPI #lightgray
+            let allSettlementWindowsFound = payload.settlementWindows.length == windowsData.length
+            let allSettlementWindowsApplicable = true
+            let settlementWindow
+        end note
+        loop w IN windowsData
+            note right of SSAPI #lightgray
+                settlementWindow = windowsData[w]
+                if (settlementWindow.state != 'CLOSED' && settlementWindow.state != 'ABORTED') {
+                    allSettlementWindowsApplicable = false
+                }
+            end note
+        end loop
+    end
+
+    alt allSettlementWindowsFound && allSettlementWindowsApplicable
+        SSAPI ->SETTLE_DAO: Create settlement\n<color #FF0000><b>Error code:</b> 2001</color>
+        activate SETTLE_DAO
+        group <color #blue>DB TRANSACTION</color>
+            note right of SETTLE_DAO #lightgray
+                let **transactionTimestamp** = now()
+            end note
+
+            SETTLE_DAO -> DB: Insert new settlement
+            activate DB
+            hnote over DB #lightyellow
+                INSERT INTO **settlement** (reason, createdDate)
+                VALUES ({payload.reason}, {transactionTimestamp})
+            end hnote
+            SETTLE_DAO <-- DB: Return **settlementId**
+            deactivate DB
+
+            SETTLE_DAO -> DB: Associate settlement windows with the settlement
+            activate DB
+            hnote over DB #lightyellow
+                INSERT INTO **settlementSettlementWindow** (settlementId, settlementWindowId, createdDate)
+                VALUES ({settlementId}, {payload.settlementWindows.idList}, {transactionTimestamp})
+            end hnote
+            deactivate DB
+
+            SETTLE_DAO -> DB: Populate settlementTransferParticipant with aggregated data
+            activate DB
+            hnote over DB #lightyellow
+                INSERT INTO **settlementTransferParticipant**
+                       (settlementId, settlementWindowId, participantCurrencyId,
+                        transferParticipantRoleTypeId, ledgerEntryTypeId, amount, createdDate)
+                SELECT ssw.settlementId, ssw.settlementWindowId, tp.participantCurrencyId, 
+                       tp.transferParticipantRoleTypeId, tp.ledgerEntryTypeId, SUM(tp.amount),
+                       {transactionTimestamp}
+                FROM **settlementSettlementWindow** ssw
+                JOIN **transferFulfilment** AS tf
+                ON tf.settlementWindowId = ssw.settlementWindowId
+                JOIN **transferStateChange** AS tsc
+                ON tsc.transferId = tf.transferId 
+                AND tsc.transferStateId = ‘COMMITTED’
+                JOIN **transferParticipant** AS tp
+                ON tp.transferId = tf.transferId
+                WHERE ssw.settlementId = {settlementId}
+                GROUP BY ssw.settlementWindowId, tp.participantCurrencyId, 
+                         tp.transferParticipantRoleTypeId, tp.ledgerEntryTypeId
+            end hnote
+            deactivate DB
+
+            SETTLE_DAO -> DB: Populate settlementParticipantCurrency with aggregated data
+            activate DB
+            hnote over DB #lightyellow
+                INSERT INTO **settlementParticipantCurrency**
+                       (settlementId, participantCurrencyId, createdDate, netAmount)
+                SELECT settlementId, participantCurrencyId, {transactionTimestamp}, SUM(amount)
+                FROM settlementTransferParticipant
+                WHERE settlementId = {settlementId}
+                GROUP BY settlementId, participantCurrencyId
+            end hnote
+            SETTLE_DAO <-- DB: Return inserted **settlementParticipantCurrencyIdList**
+            deactivate DB
+
+            SETTLE_DAO -> DB: Insert initial settlement accounts state 'PENDING_SETTLEMENT'
+            activate DB
+            hnote over DB #lightyellow
+                INSERT INTO **settlementParticipantCurrencyStateChange**
+                       (settlementParticipantCurrencyId, settlementStateId, reason, createdDate)
+                VALUES ({settlementParticipantCurrencyIdList}, 'PENDING_SETTLEMENT',
+                       {payload.reason}, {transactionTimestamp})
+            end hnote
+            SETTLE_DAO <-- DB: Return inserted **settlementParticipantCurrencyStateChangeIdList**
+            deactivate DB
+            SETTLE_DAO -> SETTLE_DAO: Merge settlementParticipantCurrencyStateChangeIdList\nto settlementParticipantCurrencyIdList in order to\nissue the following update in one knex command
+
+            SETTLE_DAO -> DB: Update pointers to current state change ids
+            activate DB
+            hnote over DB #lightyellow
+                UPDATE **settlementParticipantCurrency**
+                SET currentStateChangeId = {settlementParticipantCurrencyStateChangeIdList}
+                WHERE settlementParticipantCurrencyId = {settlementParticipantCurrencyIdList}
+            end hnote
+            deactivate DB
+
+            SETTLE_DAO -> DB: Insert new state for settlementWindow 'PENDING_SETTLEMENT'
+            activate DB
+            hnote over DB #lightyellow
+                INSERT INTO **settlementWindowStateChange**
+                       (settlementWindowId, settlementWindowStateId, reason, createdDate)
+                VALUES ({payload.settlementWindows.idList}, 'PENDING_SETTLEMENT',
+                       {payload.reason}, {transactionTimestamp})
+            end hnote
+            SETTLE_DAO <-- DB: Return inserted **settlementWindowStateChangeIdList**
+            deactivate DB
+
+            SETTLE_DAO -> SETTLE_DAO: Merge settlementWindowStateChangeIdList\nto payload.settlementWindows.idList
+
+            SETTLE_DAO -> DB: Update pointers to current state change ids
+            activate DB
+            hnote over DB #lightyellow
+                UPDATE **settlementWindow**
+                SET currentStateChangeId = {settlementWindowStateChangeIdList}
+                WHERE settlementParticipantCurrencyId = {payload.settlementWindows.idList}
+            end hnote
+            deactivate DB
+
+            SETTLE_DAO -> DB: Insert initial state for settlement 'PENDING_SETTLEMENT'
+            activate DB
+            hnote over DB #lightyellow
+                INSERT INTO **settlementStateChange**
+                       (settlementId, settlementStateId, reason, createdDate)
+                VALUES ({settlementId}, ‘PENDING_SETTLEMENT’,
+                       {payload.reason}, {transactionTimestamp})
+            end hnote
+            SETTLE_DAO <-- DB: Return **settlementStateChangeId**
+            deactivate DB
+
+            SETTLE_DAO -> DB: Update pointer to current state change id
+            activate DB
+            hnote over DB #lightyellow
+                UPDATE **settlement**
+                SET currentStateChangeId = {settlementStateChangeId}
+                WHERE settlementId = {settlementId}
+            end hnote
+            deactivate DB
+        end
+
+        SETTLE_DAO -> DB: Select account data for response
+        activate DB
+        hnote over DB #lightyellow
+            SELECT pc.participantId, spc.participantCurrencyId, spc.netAmount, pc.currencyId
+            FROM **settlementParticipantCurrency** spc
+            JOIN **participantCurrency** pc
+            ON pc.participantCurrencyId = spc.participantCurrencyId
+            WHERE spc.settlementId = {settlementId}
+        end hnote
+        SETTLE_DAO <-- DB: Return **accountData**
+        deactivate DB
+
+        SSAPI <-- SETTLE_DAO: Construct and return result
+        deactivate SETTLE_DAO
+        note left of SSAPI #yellow
+            {
+                "id": settlementId,
+                "state": "PENDING_SETTLEMENT",
+                "settlementWindows": [
+                    {
+                        "id": windowsData.settlementWindowIdList,
+                        "state": "PENDING_SETTLEMENT",
+                        "reason": payload.reason,
+                        "createdDate": windowsData.createdDateList,
+                        "changedDate": transactionTimestamp
+                    }
+                ],
+                "participants": [
+                    {
+                        "id": accountData.participantId,
+                        "accounts": [
+                            {
+                                "id": accountData.participantCurrencyId,
+                                "state": "PENDING_SETTLEMENT",
+                                "reason": payload.reason,
+                                "netSettlementAmount": {
+                                    "amount": accountData.netAmount,
+                                    "currency": accountData.currencyId
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        end note
+        OPERATOR <-- SSAPI: Respond HTTP - 201 (Created)
+    else
+        note right of SSAPI #lightgray
+            Log ERROR event
+        end note
+        note left of SSAPI #yellow
+            {
+                errorInformation: {
+                    "errorCode": <integer>,
+                    "errorDescription": "Client error description"
+                }
+            }
+        end note
+        OPERATOR <-- SSAPI: Respond HTTP - 4xx (Client error)
+        deactivate SSAPI
+        deactivate OPERATOR
+    end
+end
+@enduml

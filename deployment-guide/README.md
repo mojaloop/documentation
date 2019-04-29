@@ -82,7 +82,7 @@ The following are Kubernetes concepts used within the project. An understanding 
 
 Insure **kubectl** is installed. A complete set of installation instruction are available [here](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
 
-#### 3.1 Kubernetes Dashboard:
+#### 3.1. Kubernetes Dashboard:
 
 1. Kubernetes Dashboard roles, services & deployment.
 
@@ -135,7 +135,7 @@ Insure **kubectl** is installed. A complete set of installation instruction are 
 
 Please review [Mojaloop Helm Chart](../repositories/helm.md) to understand the relationships between the deployed Mojaloop helm charts.
 
-#### 4.1 Helm configuration
+#### 4.1. Helm configuration
 
 1. Config Helm CLI and install Helm Tiller on K8s cluster:
    ```bash
@@ -171,7 +171,7 @@ Please review [Mojaloop Helm Chart](../repositories/helm.md) to understand the r
 
 ### 5. Mojaloop
 
-#### 5.1 Mojaloop Helm Deployment
+#### 5.1. Mojaloop Helm Deployment
 
 1. Install Mojaloop. _Linux use with sudo_:
 
@@ -196,7 +196,7 @@ Please review [Mojaloop Helm Chart](../repositories/helm.md) to understand the r
    ```
    _Note: Download and customize the [values.yaml](https://github.com/mojaloop/helm/blob/master/mojaloop/values.yaml). Also ensure that you are using the value.yaml from the correct version which can be found via [Helm Releases](https://github.com/mojaloop/helm/releases)._
 
-#### 5.2 Verifying Mojaloop Deployment
+#### 5.2. Verifying Mojaloop Deployment
 
 1. Update your /ect/hosts for local deployment:
 
@@ -230,11 +230,11 @@ Please review [Mojaloop Helm Chart](../repositories/helm.md) to understand the r
 
 Postman is used to send requests and receive responses.
 
-#### 6.1 Installing Postman
+#### 6.1. Installing Postman
 
 Please, follow these instructions: [Get Postman](https://www.getpostman.com/postman) and install the Postman application.
 
-#### 6.2 Setup Postman
+#### 6.2. Setup Postman
 
 ##### Import the Collection
 1. Open **Postman**.

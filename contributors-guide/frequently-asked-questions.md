@@ -125,7 +125,7 @@ You should be able to setup on different VM's or physical machines. The distribu
 
 #### 16. Can we expect for tall the endpoints defined in the API document are implemented in Mojaloop?
 
-The Mojaloop Specification API for transfers and the Mojaloop Open Source Switch implementation are independent streams, though obviously the implementation is based on the Specification. Based on the use-cases prioritized for a time-frame and based on the end-points needed to support those use-cases, implementation will be done. If a few end-points are not prioritized then implementation for them may not be available.. However, I think the goal is to eventually support all the end-points specified though it may take time. Thanks for the collection. We do have some of these on the ‘postman’ repo in the mojaloop GitHub org.
+The Mojaloop Specification API for transfers and the Mojaloop Open Source Switch implementation are independent streams, though obviously the implementation is based on the Specification. Based on the use-cases prioritized for a time-frame and based on the end-points needed to support those use-cases, implementation will be done. If a few end-points are not prioritized then implementation for them may not be available. However, I think the goal is to eventually support all the end-points specified though it may take time. Thanks for the collection. We do have some of these on the ‘postman’ repo in the mojaloop GitHub org.
 
 #### 17. Does Mojaloop store the payment initiator FSP’s quote/status info?
 
@@ -216,7 +216,7 @@ Yes, forensic logging is a security measure as well for auditing purposes which 
 
 #### 31. Is forensic logging/audit in mojaloop , is it related with securing the inter-operability platform?
 
-This also ensures all the services always run the code they’re meant to run and anything wrong/bad is stopped from even starting up.. Also, for reporting and auditors, reports can have a forensic-log to follow.
+This also ensures all the services always run the code they’re meant to run and anything wrong/bad is stopped from even starting up. Also, for reporting and auditors, reports can have a forensic-log to follow.
 
 #### 32. How do the financial service providers connect with mojaloop?
 
