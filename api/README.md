@@ -13,6 +13,21 @@ Documentation: [Mojaloop Specification]({{ book.importedVars.mojaloop.spec.uri.d
 | --- | --- | --- |
 | 1.0 | Initial release | 2018-11-01 |
 
+## Central Ledger API
+
+Documentation: [Central-Ledger Service](../mojaloop-technical-overview/central-ledger/README.md)
+
+* [Central Ledger API {{ book.importedVars.ledger.spec.version }} Specification](./central-ledger-api-specification.md)
+* [Swagger]({{ book.importedVars.ledger.spec.uri.api }})
+
+### Versions
+
+| Version | Info | Release Date |
+| --- | --- | --- |
+| 2.0 | Feature/#308 Calculate Positions implementation for Fulfil and Reject | 2018-07-30 |
+| 1.1 | Feature/#154 Implement prepare handler | 2018-05-30 |
+| 1.0 | Initial release | 2017-30-30 |
+
 ## Central Settlements API
 
 Documentation: [Central-Settlements Service](../mojaloop-technical-overview/central-settlements/README.md)

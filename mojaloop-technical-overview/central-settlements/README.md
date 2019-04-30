@@ -8,6 +8,7 @@ The Central Settlements service is part of the Mojaloop project and deployment.
 ## 1. Settlement Process Design
 
 ### 1.1. Architecture overview
+
 ![Settlements Architecture](./assets/diagrams/architecture/arch-mojaloop-settlements-pi4.svg)
 
 ## 2. Funds In/Out
@@ -17,3 +18,4 @@ Record Funds In and Record Funds Out operations are used respectively to deposit
 ## 3. API Specification
 
 Refer to **Central Settlements API** in the [API Specifications](../../api/README.md#central-settlements-api) section.
+

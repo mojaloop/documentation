@@ -85,6 +85,7 @@
   * [Fraud Services](mojaloop-technical-overview/fraud-services/README.md)
 * [API Specifications](api/README.md)
   * [Mojaloop](api/mojaloop-api-specification.md)
+  * [Central Ledger](api/central-ledger-api-specification.md)
   * [Central Settlements](api/central-settlements-api-specification.md)
   * [ALS Oracle](api/als-oracle-api-specification.md)
 * [Repo Details](repositories/README.md)
