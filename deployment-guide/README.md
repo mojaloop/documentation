@@ -80,9 +80,9 @@ The following are Kubernetes concepts used within the project. An understanding 
 * ConfigMap
 * Secret
 
-Insure **kubectl** is installed. A complete set of installation instruction are available [here](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
+Insure **kubectl** is installed. A complete set of installation instruction are available [here](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
 
-#### 3.1 Kubernetes Dashboard:
+#### 3.1. Kubernetes Dashboard:
 
 1. Kubernetes Dashboard roles, services & deployment.
 
@@ -99,7 +99,7 @@ Insure **kubectl** is installed. A complete set of installation instruction are 
    ```
    **Remember** to prefix all **kubectl** commands with **microk8s** if you opted not to create an alias.
 
-2. Verify Kubernetes Dashboard;
+2. Verify Kubernetes Dashboard. _Windows replace `grep` with `findstr`_;
    ```bash
    kubectl get pod --namespace=kube-system |grep dashboard
    ```
@@ -115,7 +115,7 @@ Insure **kubectl** is installed. A complete set of installation instruction are 
    http://localhost.com:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/#!
    ```
 
-   Select **Token**. Generate a token to use there by:
+   Select **Token**. Generate a token to use there by: _Windows replace `grep` with `findstr`_
    
    ```bash
    kubectl -n kube-system get secrets | grep dashboard-token
@@ -135,19 +135,19 @@ Insure **kubectl** is installed. A complete set of installation instruction are 
 
 Please review [Mojaloop Helm Chart](../repositories/helm.md) to understand the relationships between the deployed Mojaloop helm charts.
 
-#### 4.1 Helm configuration
+#### 4.1. Helm configuration
 
 1. Config Helm CLI and install Helm Tiller on K8s cluster:
    ```bash
    helm init
    ```
 
-2. Validate Helm Tiller is up and running:
+2. Validate Helm Tiller is up and running. _Windows replace `grep` with `findstr`_:
    ```bash
    kubectl -n kube-system get po | grep tiller
    ```
 
-3. Add mojaloop repo to your Helm config (optional). Linux use with sudo:
+3. Add mojaloop repo to your Helm config (optional). _Linux use with sudo_:
    ```bash
    helm repo add mojaloop http://mojaloop.io/helm/repo/
    ```
@@ -159,21 +159,21 @@ Please review [Mojaloop Helm Chart](../repositories/helm.md) to understand the r
    helm repo add kiwigrid https://kiwigrid.github.io
    ```
 
-5. Update helm repositories. Linux use with sudo:
+5. Update helm repositories. _Linux use with sudo_:
    ```bash
    helm repo update
    ```
 
-6. Install nginx-ingress for load balancing & external access. Linux use with sudo:
+6. Install nginx-ingress for load balancing & external access. _Linux use with sudo_:
    ```bash
    helm --namespace kube-public install stable/nginx-ingress
    ```
 
 ### 5. Mojaloop
 
-#### 5.1 Mojaloop Helm Deployment
+#### 5.1. Mojaloop Helm Deployment
 
-1. Install Mojaloop. Linux use with sudo:
+1. Install Mojaloop. _Linux use with sudo_:
 
    Default installation:
    ```bash
@@ -196,15 +196,16 @@ Please review [Mojaloop Helm Chart](../repositories/helm.md) to understand the r
    ```
    _Note: Download and customize the [values.yaml](https://github.com/mojaloop/helm/blob/master/mojaloop/values.yaml). Also ensure that you are using the value.yaml from the correct version which can be found via [Helm Releases](https://github.com/mojaloop/helm/releases)._
 
-#### 5.2 Verifying Mojaloop Deployment
+#### 5.2. Verifying Mojaloop Deployment
 
 1. Update your /ect/hosts for local deployment:
 
-   _Note: This is only applicable for local deployments, and is not needed if custom DNS or ingress rules are configured in a customized [values.yaml](https://github.com/mojaloop/helm/blob/master/mojaloop/values.yaml)_
+   _Note: This is only applicable for local deployments, and is not needed if custom DNS or ingress rules are configured in a customized [values.yaml](https://github.com/mojaloop/helm/blob/master/mojaloop/values.yaml)_.
    
    ```bash
    vi /etc/hosts
    ```
+   _Windows the file can be updated in notepad - need to open with Administrative privileges. File location `C:\Windows\System32\drivers\etc\hosts`_.
    
    Include the following line to the config;
    ```text
@@ -213,7 +214,7 @@ Please review [Mojaloop Helm Chart](../repositories/helm.md) to understand the r
 
 2. Test system health in your browser after installation. This will only work if you have an active helm chart deployment running.
    
-   _Note: The examples below are only applicable to a local deployment. The entries should match the DNS values or ingress rules as configured in the [values.yaml](https://github.com/mojaloop/helm/blob/master/mojaloop/values.yaml) or otherwise matching any custom ingress rules configured_
+   _Note: The examples below are only applicable to a local deployment. The entries should match the DNS values or ingress rules as configured in the [values.yaml](https://github.com/mojaloop/helm/blob/master/mojaloop/values.yaml) or otherwise matching any custom ingress rules configured_.
    
    **ml-api-adapter** health test:
    ```
@@ -229,20 +230,20 @@ Please review [Mojaloop Helm Chart](../repositories/helm.md) to understand the r
 
 Postman is used to send requests and receive responses.
 
-#### 6.1 Installing Postman
+#### 6.1. Installing Postman
 
-Please, follow these instructions: [Get Postman](https://www.getpostman.com/postman)
+Please, follow these instructions: [Get Postman](https://www.getpostman.com/postman) and install the Postman application.
 
-#### 6.2 Setup Postman
+#### 6.2. Setup Postman
 
 ##### Import the Collection
-1. Open **Postman**
-2. Click **Import** and then **Import From Link**
+1. Open **Postman**.
+2. Click **Import** and then **Import From Link**.
 3. Paste the following link [https://raw.githubusercontent.com/mojaloop/postman/master/Mojaloop.postman_collection.json](https://raw.githubusercontent.com/mojaloop/postman/master/Mojaloop.postman_collection.json) in the input box.
 4. Press the **Import** button to continue.
 
 ##### Setup the Environment Configurations
-1. You'll now need to import environment variables. For local testing, download this file [https://raw.githubusercontent.com/mojaloop/postman/master/environments/MojaloopLocal.postman_environment.json](https://raw.githubusercontent.com/mojaloop/postman/master/environments/MojaloopLocal.postman_environment.json)
-2. Click **Import** and then **Import File**
-3. Select the _MojaloopLocal.postman_environment.json_ file you downloaded
-4. In the imported collection, navigate to the _central_ledger_ directory  
+1. You'll now need to import environment variables. For local testing, download this file [https://raw.githubusercontent.com/mojaloop/postman/master/environments/MojaloopLocal.postman_environment.json](https://raw.githubusercontent.com/mojaloop/postman/master/environments/MojaloopLocal.postman_environment.json).
+2. Click **Import** and then **Import File**.
+3. Select the _MojaloopLocal.postman_environment.json_ file you downloaded.
+4. In the imported collection, navigate to the _central_ledger_ directory.
