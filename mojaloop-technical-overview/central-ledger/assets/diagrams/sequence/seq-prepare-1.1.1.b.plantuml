@@ -1,0 +1,182 @@
+/'*****
+ License
+ --------------
+ Copyright © 2017 Bill & Melinda Gates Foundation
+ The Mojaloop files are made available by the Bill & Melinda Gates Foundation under the Apache License, Version 2.0 (the "License") and you may not use these files except in compliance with the License. You may obtain a copy of the License at
+ http://www.apache.org/licenses/LICENSE-2.0
+ Unless required by applicable law or agreed to in writing, the Mojaloop files are distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+ Contributors
+ --------------
+ This is the official list of the Mojaloop project contributors for this file.
+ Names of the original copyright holders (individuals or organizations)
+ should be listed with a '*' in the first column. People who have
+ contributed from an organization can be listed under the organization
+ that actually holds the copyright for their contributions (see the
+ Gates Foundation organization for an example). Those individuals should have
+ their names indented and be marked with a '-'. Email address can be added
+ optionally within square brackets <email>.
+ * Gates Foundation
+ - Name Surname <name.surname@gatesfoundation.com>
+
+ * Georgi Georgiev <georgi.georgiev@modusbox.com>
+ * Miguel de Barros <miguel.debarros@modusbox.com>
+ --------------
+ ******'/
+
+@startuml
+' declate title
+title 1.1.1.b. Prepare Handler Consume (batch messages)
+
+autonumber
+
+' Actor Keys:
+'   boundary - APIs/Interfaces, etc
+'   collections - Kafka Topics
+'   control - Kafka Consumers
+'   entity - Database Access Objects
+'   database - Database Persistance Store
+
+' declare actors
+collections "topic-transfer-prepare" as TOPIC_TRANSFER_PREPARE
+control "Prepare Event Handler" as PREP_HANDLER
+collections "topic-transfer-position" as TOPIC_TRANSFER_POSITION
+collections "Event-Topic" as TOPIC_EVENTS
+collections "Notification-Topic" as TOPIC_NOTIFICATIONS
+entity "Position DAO" as POS_DAO
+entity "Participant DAO" as PARTICIPANT_DAO
+database "Central Store" as DB
+
+box "Central Service" #LightYellow
+    participant TOPIC_TRANSFER_PREPARE
+    participant PREP_HANDLER
+    participant TOPIC_TRANSFER_POSITION
+    participant TOPIC_EVENTS
+    participant TOPIC_NOTIFICATIONS
+    participant POS_DAO
+    participant PARTICIPANT_DAO
+    participant DB
+end box
+
+' start flow
+activate PREP_HANDLER
+group Prepare Handler Consume
+    TOPIC_TRANSFER_PREPARE <- PREP_HANDLER: Consume Prepare event batch of messages for Payer
+    activate TOPIC_TRANSFER_PREPARE
+    deactivate TOPIC_TRANSFER_PREPARE
+    group Persist Event Information
+        |||
+        PREP_HANDLER -> TOPIC_EVENTS: Publish event information
+        ref over PREP_HANDLER, TOPIC_EVENTS :  Event Handler Consume {[[https://github.com/mojaloop/docs/blob/master/Diagrams/SequenceDiagrams/seq-event-9.1.0.svg 9.1.0]]} \n
+        |||
+    end
+
+    group Fetch batch Payer information
+        PREP_HANDLER -> PARTICIPANT_DAO: Request to retrieve batch of Payer Participant details (if it exists)
+        activate PARTICIPANT_DAO
+        PARTICIPANT_DAO -> DB: Request Participant details
+        hnote over DB #lightyellow
+            participant
+        end note
+        activate DB
+        PARTICIPANT_DAO <-- DB: Return Participant details if it exists
+        deactivate DB
+        PARTICIPANT_DAO --> PREP_HANDLER: Return Participant details if it exists
+        deactivate PARTICIPANT_DAO
+        PREP_HANDLER <-> PREP_HANDLER: Validate Payer
+        PREP_HANDLER -> PREP_HANDLER: store result set in var: $LIST_PARTICIPANTS_DETAILS_PAYER
+    end
+
+    group Fetch batch Payee information
+        PREP_HANDLER -> PARTICIPANT_DAO: Request to retrieve batch of Payee Participant details (if it exists)
+        activate PARTICIPANT_DAO
+        PARTICIPANT_DAO -> DB: Request Participant details
+        hnote over DB #lightyellow
+            participant
+        end note
+        activate DB
+        PARTICIPANT_DAO <-- DB: Return Participant details if it exists
+        deactivate DB
+        PARTICIPANT_DAO --> PREP_HANDLER: Return Participant details if it exists
+        deactivate PARTICIPANT_DAO
+        PREP_HANDLER <-> PREP_HANDLER: Validate Payee
+        PREP_HANDLER -> PREP_HANDLER: store result set in var: $LIST_PARTICIPANTS_DETAILS_PAYEE
+    end
+
+    group Fetch batch of transfers
+        PREP_HANDLER -> POS_DAO: Request to retrieve batch of Transfers (if it exists)
+        activate POS_DAO
+        POS_DAO -> DB: Request batch of Transfers
+        hnote over DB #lightyellow
+            transfer
+        end note
+        activate DB
+        POS_DAO <-- DB: Return batch of Transfers (if it exists)
+        deactivate DB
+        POS_DAO --> PREP_HANDLER: Return batch of Transfer (if it exists)
+        deactivate POS_DAO
+        PREP_HANDLER -> PREP_HANDLER: store result set in var: $LIST_TRANSFERS
+    end
+
+    loop for each message in batch
+
+        group Validate Prepare Transfer
+            group Validate Payer
+                PREP_HANDLER <-> PREP_HANDLER: Validate Payer against in-memory var $LIST_PARTICIPANTS_DETAILS_PAYER
+            end
+            group Validate Payee
+                PREP_HANDLER <-> PREP_HANDLER: Validate Payee against in-memory var $LIST_PARTICIPANTS_DETAILS_PAYEE
+            end
+            group Duplicate check
+                PREP_HANDLER <-> PREP_HANDLER: Validate duplicate Check against in-memory var $LIST_TRANSFERS
+            end
+            PREP_HANDLER <-> PREP_HANDLER: Validate amount
+            PREP_HANDLER <-> PREP_HANDLER: Validate crypto-condition
+            PREP_HANDLER <-> PREP_HANDLER: Validate message signature (to be confirmed in future requirement)
+        end
+
+        group Persist Transfer State (with transferState='RECEIVED' on validation pass)
+            PREP_HANDLER -> POS_DAO: Request to persist transfer
+            activate POS_DAO
+            POS_DAO -> DB: Persist transfer
+            hnote over DB #lightyellow
+                transferStateChange
+            end note
+            activate DB
+            deactivate DB
+            POS_DAO --> PREP_HANDLER: Return success
+            deactivate POS_DAO
+        end
+
+        note right of PREP_HANDLER #yellow
+            Message:
+            {
+                id: <transferMessage.transferId>
+                from: <transferMessage.payerFsp>,
+                to: <transferMessage.payeeFsp>,
+                type: application/json
+                content: {
+                    headers: <transferHeaders>,
+                    payload: <transferMessage>
+                },
+                metadata: {
+                    event: {
+                        id: <uuid>,
+                        responseTo: <previous.uuid>,
+                        type: position,
+                        action: prepare,
+                        createdAt: <timestamp>,
+                        state: {
+                            status: "success",
+                            code: 0
+                        }
+                    }
+                }
+            }
+        end note
+        PREP_HANDLER -> TOPIC_TRANSFER_POSITION: Route & Publish Position event for Payer
+        activate TOPIC_TRANSFER_POSITION
+        deactivate TOPIC_TRANSFER_POSITION
+    end
+end
+deactivate PREP_HANDLER
+@enduml

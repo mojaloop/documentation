@@ -1,0 +1,164 @@
+/'*****
+ License
+ --------------
+ Copyright © 2017 Bill & Melinda Gates Foundation
+ The Mojaloop files are made available by the Bill & Melinda Gates Foundation under the Apache License, Version 2.0 (the "License") and you may not use these files except in compliance with the License. You may obtain a copy of the License at
+ http://www.apache.org/licenses/LICENSE-2.0
+ Unless required by applicable law or agreed to in writing, the Mojaloop files are distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+ Contributors
+ --------------
+ This is the official list of the Mojaloop project contributors for this file.
+ Names of the original copyright holders (individuals or organizations)
+ should be listed with a '*' in the first column. People who have
+ contributed from an organization can be listed under the organization
+ that actually holds the copyright for their contributions (see the
+ Gates Foundation organization for an example). Those individuals should have
+ their names indented and be marked with a '-'. Email address can be added
+ optionally within square brackets <email>.
+ * Gates Foundation
+ - Name Surname <name.surname@gatesfoundation.com>
+
+ * Shashikant Hirugade <shashikant.hirugade@modusbox.com>
+ * Samuel Kummary <sam@modusbox.com>
+ --------------
+ ******'/
+
+@startuml
+' declate title
+title 4.1.0 Get Participant Position Details
+
+autonumber
+
+' Actor Keys:
+'   boundary - APIs/Interfaces, etc
+'   collections - Kafka Topics
+'   control - Kafka Consumers
+'   entity - Database Access Objects
+'   database - Database Persistance Store
+
+' declare actors
+entity "HUB OPERATOR" as OPERATOR
+boundary "Central Service API" as CSAPI
+control "Participant Handler" as PARTICIPANT_HANDLER
+entity "Central Service API" as CSAPI
+entity "Participant DAO" as PARTICIPANT_DAO
+entity "Position Facade" as POSITION_DAO
+database "Central Store" as DB
+box "HUB Operator" #LightBlue
+participant OPERATOR
+end box
+
+box "Central Service" #LightYellow
+participant CSAPI
+participant PARTICIPANT_HANDLER
+participant PARTICIPANT_DAO
+participant POSITION_DAO
+participant DB
+end box
+
+' start flow
+
+activate OPERATOR
+group Get Position Details
+    OPERATOR -> CSAPI: Request to get positions - GET - /participants/{name}/positions?currency={currencyId}
+    activate CSAPI
+    CSAPI -> PARTICIPANT_HANDLER: Fetch Positions for Participant
+    activate PARTICIPANT_HANDLER
+    PARTICIPANT_HANDLER ->PARTICIPANT_DAO: Fetch Participant \n<color #FF0000><b>Error code:</b> 2003,3201 </color>
+
+    activate PARTICIPANT_DAO
+    PARTICIPANT_DAO ->DB: Fetch Participant
+    activate DB
+    hnote over DB #lightyellow
+        participant
+    end note
+    DB --> PARTICIPANT_DAO: Retrieved Participant
+    deactivate DB
+    PARTICIPANT_DAO -->PARTICIPANT_HANDLER: Return Participant
+    deactivate PARTICIPANT_DAO
+    PARTICIPANT_HANDLER ->PARTICIPANT_HANDLER: Validate DFSP \n<color #FF0000><b>Error code:</b> 3201</color>
+    alt Validate participant (success)
+        PARTICIPANT_HANDLER ->PARTICIPANT_HANDLER: currency parameter passed ?
+
+        alt currency parameter passed
+
+            PARTICIPANT_HANDLER ->POSITION_DAO: Fetch Participant position for a currency id\n<color #FF0000><b>Error code:</b> 2003 </color>
+            activate POSITION_DAO
+            POSITION_DAO ->DB: Fetch Participant position for a currency id
+            activate DB
+            hnote over DB #lightyellow
+                participantCurrency
+                participantPosition
+            end note
+            DB --> POSITION_DAO: Retrieved Participant position for a currency id
+            deactivate DB
+            POSITION_DAO -->PARTICIPANT_HANDLER: Return Positions for Participant
+            deactivate POSITION_DAO
+            note right of PARTICIPANT_HANDLER #yellow
+                Message:
+                {
+                    {
+                        currency: <currencyId>,
+                        value: <positionValue>,
+                        updatedTime: <timeStamp1>
+                    }
+                }
+            end note
+            PARTICIPANT_HANDLER -->CSAPI: Return Participant position for a currency id
+            CSAPI -->OPERATOR: Return Participant position for a currency id
+        else currency parameter not passed
+            PARTICIPANT_HANDLER ->POSITION_DAO: Fetch Participant Positions for all currencies\n<color #FF0000><b>Error code:</b> 2003 </color>
+            activate POSITION_DAO
+            POSITION_DAO ->DB: Fetch Participant Positions for all currencies
+            activate DB
+            hnote over DB #lightyellow
+                participantCurrency
+                participantPosition
+            end note
+            DB --> POSITION_DAO: Retrieved Participant Positions for all currencies
+            deactivate DB
+            POSITION_DAO -->PARTICIPANT_HANDLER: Return Participant Positions for all currencies
+            deactivate POSITION_DAO
+            note right of PARTICIPANT_HANDLER #yellow
+                Message:
+                {
+                    [
+                        {
+                            currency: <currencyId1>,
+                            value: <positionValue1>,
+                            updatedTime: <timeStamp1>
+                        },
+                        {
+                            currency: <currencyId2>,
+                            value: <positionValue2>,
+                            updatedTime: <timeStamp2>
+                        }
+                    ]
+                }
+            end note
+            PARTICIPANT_HANDLER -->CSAPI: Return Participant Positions for all currencies
+            CSAPI -->OPERATOR: Return Participant Positions for all currencies
+        end
+    else Validate participant (failure)
+        note right of PARTICIPANT_HANDLER #red: Validation failure!
+        activate PARTICIPANT_HANDLER
+        note right of PARTICIPANT_HANDLER #yellow
+            Message:
+            {
+                "errorInformation": {
+                "errorCode": 3201,
+                "errorDescription": "FSP id does not exist or not found",
+                }
+            }
+        end note
+        PARTICIPANT_HANDLER -->CSAPI: Return <color #FF0000><b>Error code:</b> 3201</color>
+        deactivate PARTICIPANT_HANDLER
+        CSAPI -->OPERATOR: Return <color #FF0000><b>Error code:</b> 3201</color>
+    end
+
+end
+
+deactivate CSAPI
+deactivate OPERATOR
+
+@enduml

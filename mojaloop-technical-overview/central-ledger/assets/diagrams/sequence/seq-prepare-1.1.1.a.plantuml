@@ -1,0 +1,336 @@
+/'*****
+ License
+ --------------
+ Copyright © 2017 Bill & Melinda Gates Foundation
+ The Mojaloop files are made available by the Bill & Melinda Gates Foundation under the Apache License, Version 2.0 (the "License") and you may not use these files except in compliance with the License. You may obtain a copy of the License at
+ http://www.apache.org/licenses/LICENSE-2.0
+ Unless required by applicable law or agreed to in writing, the Mojaloop files are distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+ Contributors
+ --------------
+ This is the official list of the Mojaloop project contributors for this file.
+ Names of the original copyright holders (individuals or organizations)
+ should be listed with a '*' in the first column. People who have
+ contributed from an organization can be listed under the organization
+ that actually holds the copyright for their contributions (see the
+ Gates Foundation organization for an example). Those individuals should have
+ their names indented and be marked with a '-'. Email address can be added
+ optionally within square brackets <email>.
+ * Gates Foundation
+ - Name Surname <name.surname@gatesfoundation.com>
+
+ * Shashikant Hirugade <shashikant.hirugade@modusbox.com>
+ * Georgi Georgiev <georgi.georgiev@modusbox.com>
+ * Rajiv Mothilal <rajiv.mothilal@modusbox.com>
+ * Samuel Kummary <sam@modusbox.com>
+ * Miguel de Barros <miguel.debarros@modusbox.com>
+ --------------
+ ******'/
+
+@startuml
+' declate title
+title 1.1.1.a. Prepare Handler Consume (single message)
+
+autonumber
+
+' Actor Keys:
+'   boundary - APIs/Interfaces, etc
+'   collections - Kafka Topics
+'   control - Kafka Consumers
+'   entity - Database Access Objects
+'   database - Database Persistance Store
+
+' declare actors
+collections "topic-transfer-prepare" as TOPIC_TRANSFER_PREPARE
+control "Prepare Event Handler" as PREP_HANDLER
+collections "topic-transfer-position" as TOPIC_TRANSFER_POSITION
+collections "Event-Topic" as TOPIC_EVENTS
+collections "Notification-Topic" as TOPIC_NOTIFICATIONS
+entity "Position DAO" as POS_DAO
+entity "Participant DAO" as PARTICIPANT_DAO
+database "Central Store" as DB
+
+box "Central Service" #LightYellow
+    participant TOPIC_TRANSFER_PREPARE
+    participant PREP_HANDLER
+    participant TOPIC_TRANSFER_POSITION
+    participant TOPIC_EVENTS
+    participant TOPIC_NOTIFICATIONS
+    participant POS_DAO
+    participant PARTICIPANT_DAO
+    participant DB
+end box
+
+' start flow
+activate PREP_HANDLER
+group Prepare Handler Consume
+    TOPIC_TRANSFER_PREPARE <- PREP_HANDLER: Consume Prepare event message
+    activate TOPIC_TRANSFER_PREPARE
+    deactivate TOPIC_TRANSFER_PREPARE
+
+    break
+        group Validate Event
+            PREP_HANDLER <-> PREP_HANDLER: Validate event - Rule: type == 'prepare' && action == 'prepare'\n<color #FF0000><b>Error codes:</b> 2001</color>
+        end
+    end
+
+    group Persist Event Information
+        |||
+        PREP_HANDLER -> TOPIC_EVENTS: Publish event information
+        ref over PREP_HANDLER, TOPIC_EVENTS :  Event Handler Consume {[[https://github.com/mojaloop/docs/blob/master/Diagrams/SequenceDiagrams/seq-event-9.1.0.svg 9.1.0]]} \n
+        |||
+    end
+
+    group Validate Prepare Transfer 
+        PREP_HANDLER <-> PREP_HANDLER: <color #AAA>Schema validation of the incoming message</color>
+        PREP_HANDLER <-> PREP_HANDLER: <color #AAA>Verify the message's signature (to be confirmed in future requirement)</color>
+        note right of PREP_HANDLER #lightgrey
+            The above validation steps are already handled by
+            the ML-Adapter for the open source implementation.
+            It may need to be added in future for custom adapters.
+        end note
+        group Validate Duplicate check
+            PREP_HANDLER -> POS_DAO: Request to retrieve Transfer Hash for a transferId
+            activate POS_DAO
+            POS_DAO -> DB: Request Transfer Hash for a transferId
+            activate DB
+            hnote over DB #lightyellow
+                transferDuplicateCheck
+            end note
+            POS_DAO <-- DB: Return hash if it exists
+            deactivate DB
+            PREP_HANDLER <-- POS_DAO: Return hash if it exists
+            deactivate POS_DAO
+
+            alt If transferId exists
+                group Persist Event Information
+                    |||
+                    PREP_HANDLER -> TOPIC_EVENTS: Publish event information
+                    ref over PREP_HANDLER, TOPIC_EVENTS :  Event Handler Consume {[[https://github.com/mojaloop/docs/blob/master/Diagrams/SequenceDiagrams/seq-event-9.1.0.svg 9.1.0]]} \n
+                    |||
+                end
+                PREP_HANDLER -> PREP_HANDLER: Generate Hash for the incoming message and compare hashes
+
+                alt Transfer exists, hash matches    
+                    PREP_HANDLER -> POS_DAO: Request to retrieve Transfer state \n<color #FF0000><b>Error code:</b> 2003</color>
+                    activate POS_DAO
+                    POS_DAO -> DB: Request Transfer state
+                    hnote over DB #lightyellow
+                        transfer
+                        transferStateChange
+                    end note
+                    activate DB
+                    POS_DAO <-- DB: Return Transfer state
+                    deactivate DB
+                    POS_DAO --> PREP_HANDLER: Return Transfer state
+                    deactivate POS_DAO
+                    break
+                        alt If transferState IN ['COMMITTED', 'ABORTED']
+                            PREP_HANDLER -> POS_DAO: Request to retrieve fulfilment, completedTimestamp for the transferId
+                            activate POS_DAO
+                            POS_DAO -> DB: Request fulfilment, completedTimestamp for the transferId
+                            activate DB
+                            hnote over DB #lightyellow
+                                transferFulfilment
+                            end note
+                            POS_DAO <-- DB: Return fulfilment, completedTimestamp (if they exist)
+                            deactivate DB
+                            PREP_HANDLER <-- POS_DAO: Return fulfilment, completedTimestamp (if they exist)
+                            deactivate POS_DAO
+                            note right of PREP_HANDLER #yellow
+                            Message:
+                            {
+                                id: <transferMessage.transferId>
+                                from: <transferMessage.payerFsp>,
+                                to: <transferMessage.payeeFsp>,
+                                type: application/json
+                                content: {
+                                    headers: <transferHeaders>,
+                                    payload: {
+                                        transferState: "COMMITTED",
+                                        fulfilment: "WLctttbu2HvTsa1XWvUoGRcQozHsqeu9Ahl2JW9Bsu8",
+                                        completedTimestamp: "2018-10-24T08:38:08.699-04:00"
+                                    }
+                                },
+                                metadata: {
+                                    event: {
+                                        id: <uuid>,
+                                        responseTo: <previous.uuid>,
+                                        type: notification,
+                                        action: prepare-duplicate,
+                                        createdAt: <timestamp>,
+                                        state: {
+                                            status: "success",
+                                            code: 0
+                                        }
+                                    }
+                                }
+                            }
+                        end note
+                            PREP_HANDLER -> TOPIC_NOTIFICATIONS: Publish Notification event for Payer with the completed transfer \nFor the Data Model, refer to the Swagger (transferState - mandatory, fulfilment, completedTimestamp - sample values above).
+                        else If transferState IN ['RECEIVED', 'RESERVED']
+                            PREP_HANDLER <-> PREP_HANDLER: This request can be ignored, because a callback is about to be sent to the client.
+                        else If transferState does not exist
+                            PREP_HANDLER -> TOPIC_NOTIFICATIONS: Send /error callback with appropriate error message\n(Invalid duplicate request)\n<color #FF0000><b>Error code:</b> 3100</color>
+                        end
+                    end
+                else Transfer exists, hash does not match
+                    break
+                        PREP_HANDLER -> TOPIC_NOTIFICATIONS: Publish Notification (failure) event for Payer\n<color #FF0000><b>Error codes:</b> 3106</color> \nFor the Data Model, refer to the final step in this diagram (has the same text).
+                    end
+                end
+
+            else If transferId does NOT exist
+                PREP_HANDLER -> POS_DAO: Request to persist Transfer Hash \n<color #FF0000><b>Error code:</b> 2003</color>
+                activate POS_DAO
+                POS_DAO -> DB: Persist Transfer message hash
+                hnote over DB #lightyellow
+                    transferDuplicateCheck
+                end note
+                POS_DAO --> PREP_HANDLER: Return success
+                deactivate POS_DAO
+            end
+            deactivate POS_DAO
+            
+        end
+
+        group Validate Payer
+            PREP_HANDLER -> PARTICIPANT_DAO: Request to retrieve Payer Participant details (if it exists)
+            activate PARTICIPANT_DAO
+            PARTICIPANT_DAO -> DB: Request Participant details
+            hnote over DB #lightyellow
+                participant
+                participantCurrency
+            end note
+            activate DB
+            PARTICIPANT_DAO <-- DB: Return Participant details if it exists
+            deactivate DB
+            PARTICIPANT_DAO --> PREP_HANDLER: Return Participant details if it exists
+            deactivate PARTICIPANT_DAO
+            PREP_HANDLER <-> PREP_HANDLER: Validate Payer\n<color #FF0000><b>Error codes:</b> 3202</color>
+        end
+        group Validate Payee
+            PREP_HANDLER -> PARTICIPANT_DAO: Request to retrieve Payee Participant details (if it exists)
+            activate PARTICIPANT_DAO
+            PARTICIPANT_DAO -> DB: Request Participant details
+            hnote over DB #lightyellow
+                participant
+                participantCurrency
+            end note
+            activate DB
+            PARTICIPANT_DAO <-- DB: Return Participant details if it exists
+            deactivate DB
+            PARTICIPANT_DAO --> PREP_HANDLER: Return Participant details if it exists
+            deactivate PARTICIPANT_DAO
+            PREP_HANDLER <-> PREP_HANDLER: Validate Payee\n<color #FF0000><b>Error codes:</b> 3203</color>
+        end
+        PREP_HANDLER <-> PREP_HANDLER: Validate crypto-condition\n<color #FF0000><b>Error codes:</b> 3100</color>
+        
+        alt Validate Prepare Transfer (success)
+            group Persist Transfer State (with transferState='RECEIVED-PREPARE')
+                PREP_HANDLER -> POS_DAO: Request to persist transfer\n<color #FF0000><b>Error codes:</b> 2003</color>
+                activate POS_DAO
+                POS_DAO -> DB: Persist transfer
+                hnote over DB #lightyellow
+                    transfer
+                    transferParticipant
+                    transferStateChange
+                    transferExtension
+                    ilpPacket
+                end note
+                activate DB
+                deactivate DB
+                POS_DAO --> PREP_HANDLER: Return success
+                deactivate POS_DAO
+            end
+        else Validate Prepare Transfer (failure)
+            group Persist Transfer State (with transferState='INVALID') (Introducing a new status INVALID to mark these entries)
+                PREP_HANDLER -> POS_DAO: Request to persist transfer\n(when Payee/Payer/crypto-condition validation fails)\n<color #FF0000><b>Error codes:</b> 2003</color>
+                activate POS_DAO
+                POS_DAO -> DB: Persist transfer
+                hnote over DB #lightyellow
+                    transfer
+                    transferParticipant
+                    transferStateChange
+                    transferExtension
+                    transferError
+                    ilpPacket
+                end note
+                activate DB
+                deactivate DB
+                POS_DAO --> PREP_HANDLER: Return success
+                deactivate POS_DAO
+            end
+        end
+
+    end
+    alt Validate Prepare Transfer (success)
+        note right of PREP_HANDLER #yellow
+            Message:
+            {
+                id: <transferMessage.transferId>
+                from: <transferMessage.payerFsp>,
+                to: <transferMessage.payeeFsp>,
+                type: application/json
+                content: {
+                    headers: <transferHeaders>,
+                    payload: <transferMessage>
+                },
+                metadata: {
+                    event: {
+                        id: <uuid>,
+                        responseTo: <previous.uuid>,
+                        type: position,
+                        action: prepare,
+                        createdAt: <timestamp>,
+                        state: {
+                            status: "success",
+                            code: 0
+                        }
+                    }
+                }
+            }
+        end note
+        PREP_HANDLER -> TOPIC_TRANSFER_POSITION: Route & Publish Position event for Payer\n<color #FF0000><b>Error codes:</b> 2003</color>
+        activate TOPIC_TRANSFER_POSITION
+        deactivate TOPIC_TRANSFER_POSITION
+    else Validate Prepare Transfer (failure)
+        note right of PREP_HANDLER #yellow
+            Message:
+            {
+                id: <transferMessage.transferId>
+                from: <ledgerName>,
+                to: <transferMessage.payerFsp>,
+                type: application/json
+                content: {
+                    headers: <transferHeaders>,
+                    payload: {
+                        "errorInformation": {
+                            "errorCode": <possible codes: [2003, 3100, 3105, 3106, 3202, 3203, 3300, 3301]>
+                            "errorDescription": "<refer to section 35.1.3 for description>",
+                            "extensionList": <transferMessage.extensionList>
+                    }
+                },
+                metadata: {
+                    event: {
+                        id: <uuid>,
+                        responseTo: <previous.uuid>,
+                        type: notification,
+                        action: prepare,
+                        createdAt: <timestamp>,
+                        state: {
+                            status: 'error',
+                            code: <errorInformation.errorCode>
+                            description: <errorInformation.errorDescription>
+                        }
+                    }
+                }
+            }
+        end note
+        PREP_HANDLER -> TOPIC_NOTIFICATIONS: Publish Notification (failure) event for Payer\n<color #FF0000><b>Error codes:</b> 2003</color>
+        activate TOPIC_NOTIFICATIONS
+        deactivate TOPIC_NOTIFICATIONS
+    end
+end
+deactivate PREP_HANDLER
+@enduml
+
