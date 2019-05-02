@@ -113,16 +113,16 @@ group Request transfer status
         alt Yes AND transferState is COMMITTED \nThis implies that a succesful transfer with the given ID is recorded in the system
             note left of NOTIFY_HANDLER #yellow
                 {
-                    “fulfilment”: “WLctttbu2HvTsa1XWvUoGRcQozHsqeu9Ahl2JW9Bsu8",
-                    “completedTimestamp”: “2018-09-24T08:38:08.699-04:00",
-                    “transferState”: “COMMITTED”,
+                    "fulfilment": "WLctttbu2HvTsa1XWvUoGRcQozHsqeu9Ahl2JW9Bsu8",
+                    "completedTimestamp": "2018-09-24T08:38:08.699-04:00",
+                    "transferState": "COMMITTED",
                     extensionList:
                         {
                         extension:
                         [
                             {
-                            “key”: “Description”,
-                            “value”: “This is a more detailed description”
+                            "key": "Description",
+                            "value": "This is a more detailed description"
                             }
                         ]
                     }
@@ -132,14 +132,14 @@ group Request transfer status
         else transferState in [RECEIVED, RESERVED, ABORTED]
             note left of NOTIFY_HANDLER #yellow
                 {
-                    “transferState”: “RECEIVED”,
+                    "transferState": "RECEIVED",
                     extensionList:
                         {
                         extension:
                         [
                             {
-                            “key”: “Description”,
-                            “value”: “This is a more detailed description”
+                            "key": "Description",
+                            "value": "This is a more detailed description"
                             }
                         ]
                     }
