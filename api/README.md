@@ -17,8 +17,8 @@ Documentation: [Mojaloop Specification]({{ book.importedVars.mojaloop.spec.uri.d
 
 Documentation: [Central-Ledger Service](../mojaloop-technical-overview/central-ledger/README.md)
 
-* [Central Ledger API {{ book.importedVars.ledger.spec.version }} Specification](./central-ledger-api-specification.md)
-* [Swagger]({{ book.importedVars.ledger.spec.uri.api }})
+* [Central Ledger API {{ book.importedVars.central_ledger.spec.version }} Specification](./central-ledger-api-specification.md)
+* [Swagger]({{ book.importedVars.central_ledger.spec.uri.api }})
 
 ### Versions
 
