@@ -14,6 +14,12 @@ mojaloop:
     uri:
       doc: https://github.com/mojaloop/mojaloop-specification/blob/master/API%20Definition%20v1.0.pdf
       api: https://github.com/mojaloop/mojaloop-specification/blob/master/Supporting%20Files/fspiop-rest-v1.0-OpenAPI-implementation.yaml
+central_ledger:
+  spec:
+    version: v2.0
+    uri:
+      doc: /mojaloop-technical-overview/central-ledger/README.md
+      api: https://github.com/mojaloop/central-ledger/blob/master/src/api/interface/swagger.json
 settlement:
   spec:
     version: v1.1
