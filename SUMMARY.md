@@ -24,7 +24,6 @@
   * [Frequently Asked Questions](contributors-guide/frequently-asked-questions.md)
 * [Mojaloop Technical Overview](mojaloop-technical-overview/README.md)
   * [Mojaloop Hub](mojaloop-technical-overview/mojaloop-components.md)
-  * [Central-Ledger Services](mojaloop-technical-overview/central-ledger/README.md)
   * [Account-Lookup Service](mojaloop-technical-overview/account-lookup-service/README.md)
     * [GET Participants](mojaloop-technical-overview/account-lookup-service/als-get-participants.md)
     * [POST Participants](mojaloop-technical-overview/account-lookup-service/als-post-participants.md)
