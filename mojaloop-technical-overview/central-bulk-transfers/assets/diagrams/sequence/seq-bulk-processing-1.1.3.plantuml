@@ -70,7 +70,7 @@ group Bulk Processing Handler Consume
     group Persist Event Information
         |||
         BULK_PROC_HANDLER -> TOPIC_EVENTS: Publish event information
-        ref over BULK_PROC_HANDLER, TOPIC_EVENTS:  Event Handler Consume {[[https://github.com/mojaloop/docs/blob/master/CentralServices/seq_diagrams/seq-event-9.1.0.svg 9.1.0]]} \n
+        ref over BULK_PROC_HANDLER, TOPIC_EVENTS:  Event Handler Consume {[[https://TODO-input-path-to/**/seq-event-9.1.0.svg 9.1.0]]} \n
         |||
     end
 

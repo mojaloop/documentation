@@ -20,11 +20,11 @@
 
  * Georgi Georgiev <georgi.georgiev@modusbox.com>
  --------------
- ******'/   
+ ******'/
 
 @startuml
 ' declate title
-title 2.3.0. Transfer Timeout
+title 2.3.0. Transfer Timeout (incl. Bulk Transfer)
 
 autonumber
 
@@ -38,13 +38,15 @@ autonumber
 ' declare actors
 actor "DFSP1\nPayer" as DFSP1
 actor "DFSP2\nPayee" as DFSP2
-boundary "ML API Adapter" as MLAPI
-control "ML API Notification Event Handler" as NOTIFY_HANDLER
-control "Transfer Timeout Handler" as EXP_HANDLER
-collections "topic-transfer-position" as TOPIC_TRANSFER_POSITION
-control "Position Event Handler" as POS_HANDLER
-collections "Notification-Topic" as TOPIC_NOTIFICATIONS
-collections "Event-Topic" as TOPIC_EVENT
+boundary "ML API\nAdapter" as MLAPI
+control "ML API Notification\nEvent Handler" as NOTIFY_HANDLER
+control "Transfer Timeout\nHandler" as EXP_HANDLER
+collections "Transfer-Position-\nTopic" as TOPIC_TRANSFER_POSITION
+control "Position Event\nHandler" as POS_HANDLER
+control "Bulk Processing\nHandler" as BULK_PROCESSING_HANDLER
+collections "Notification-\nTopic" as TOPIC_NOTIFICATIONS
+collections "Event-\nTopic" as TOPIC_EVENT
+collections "Bulk-Processing-\nTopic" as BULK_PROCESSING_TOPIC
 
 box "Financial Service Providers" #lightGray
 	participant DFSP1
@@ -62,37 +64,56 @@ box "Central Service" #LightYellow
     participant TOPIC_EVENT
     participant POS_HANDLER
     participant TOPIC_NOTIFICATIONS
+    participant BULK_PROCESSING_HANDLER
+    participant BULK_PROCESSING_TOPIC
 end box
 
 ' start flow
 activate NOTIFY_HANDLER
 activate EXP_HANDLER
 activate POS_HANDLER
+activate BULK_PROCESSING_HANDLER
 group Transfer Expiry
     |||
-    ref over EXP_HANDLER, TOPIC_EVENT :  Timeout Handler Consume {[[https://github.com/mojaloop/docs/blob/master/Diagrams/SequenceDiagrams/seq-timeout-2.3.1.svg 2.3.1]]} \n
+    ref over EXP_HANDLER, TOPIC_EVENT :  Timeout Handler Consume {[[https://TODO-input-path-to/**/seq-timeout-2.3.1.svg 2.3.1]]} \n
     alt transferStateId == 'RECEIVED_PREPARE'
-        EXP_HANDLER -> TOPIC_NOTIFICATIONS: Produce message
+        alt Regular Transfer
+            EXP_HANDLER -> TOPIC_NOTIFICATIONS: Produce message
+        else Individual Transfer from a Bulk
+            EXP_HANDLER -> BULK_PROCESSING_TOPIC: Produce message
+        end
     else transferStateId == 'RESERVED'
         EXP_HANDLER -> TOPIC_TRANSFER_POSITION: Produce message
         TOPIC_TRANSFER_POSITION <- POS_HANDLER: Consume message
-        ref over TOPIC_TRANSFER_POSITION, TOPIC_NOTIFICATIONS :  Position Hander Consume (Timeout) {[[https://github.com/mojaloop/docs/blob/master/Diagrams/SequenceDiagrams/seq-position-1.3.3-abort.svg 1.3.3]]} \n
-        POS_HANDLER -> TOPIC_NOTIFICATIONS: Produce message
+        ref over TOPIC_TRANSFER_POSITION, TOPIC_NOTIFICATIONS :  Position Hander Consume (Timeout) {[[https://TODO-input-path-to/**/seq-position-1.3.3-abort.svg 1.3.3]]} \n
+        alt Regular Transfer
+            POS_HANDLER -> TOPIC_NOTIFICATIONS: Produce message
+        else Individual Transfer from a Bulk
+            POS_HANDLER -> BULK_PROCESSING_TOPIC: Produce message
+        end
     end
-    opt action IN ['timeout-received', 'timeout-reserved']
+    opt action IN ['bulk-timeout-received', 'bulk-timeout-reserved']
+        |||
+        BULK_PROCESSING_TOPIC <- BULK_PROCESSING_HANDLER: Consume message
+        ref over TOPIC_NOTIFICATIONS, BULK_PROCESSING_TOPIC : Bulk Processing Consume {[[https://TODO-input-path-to/**/seq-bulk-processing-1.1.3.svg 1.1.3]]} \n
+        BULK_PROCESSING_HANDLER -> TOPIC_NOTIFICATIONS: Send callback notification
+    end
+    |||
+    opt action IN ['timeout-received', 'timeout-reserved', 'bulk-timeout-received', 'bulk-timeout-reserved']
         |||
         TOPIC_NOTIFICATIONS <- NOTIFY_HANDLER: Consume message
-        ref over DFSP1, TOPIC_NOTIFICATIONS : Send notification to Participant (Payer) {[[https://github.com/mojaloop/docs/blob/master/Diagrams/SequenceDiagrams/seq-prepare-1.1.4.a.svg 1.1.4.a]]} \n
+        ref over DFSP1, TOPIC_NOTIFICATIONS : Send notification to Participant (Payer) {[[https://TODO-input-path-to/**/seq-prepare-1.1.4.a.svg 1.1.4.a]]} \n
         NOTIFY_HANDLER -> DFSP1: Send callback notification
     end
     |||
-    TOPIC_NOTIFICATIONS <- NOTIFY_HANDLER: Consume message
-    opt action == 'timeout-reserved'
+    opt action IN ['timeout-reserved', 'bulk-timeout-reserved']
         |||
-        ref over DFSP2, TOPIC_NOTIFICATIONS : Send notification to Participant (Payee) {[[https://github.com/mojaloop/docs/blob/master/Diagrams/SequenceDiagrams/seq-prepare-1.1.4.a.svg 1.1.4.a]]} \n
+        TOPIC_NOTIFICATIONS <- NOTIFY_HANDLER: Consume message
+        ref over DFSP2, TOPIC_NOTIFICATIONS : Send notification to Participant (Payee) {[[https://TODO-input-path-to/**/seq-prepare-1.1.4.a.svg 1.1.4.a]]} \n
         NOTIFY_HANDLER -> DFSP2: Send callback notification
     end
 end
+deactivate BULK_PROCESSING_HANDLER
 deactivate POS_HANDLER
 deactivate EXP_HANDLER
 deactivate NOTIFY_HANDLER
