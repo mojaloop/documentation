@@ -2,7 +2,7 @@
 
 ## How do I contribute?
 
-### \* Review the [Mojaloop Deployment](mojaloop-deployment/#mojaloop-deployment) Guide
+### \* Review the [Mojaloop Deployment](../deployment-guide/) Guide
 
 ### \* Get familiar with our [Standards](standards/) on contributing to this project
 
