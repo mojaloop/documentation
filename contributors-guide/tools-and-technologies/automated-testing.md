@@ -66,7 +66,7 @@ Following the requirements and instructions as set out in the detail in  [QA and
 ```
 
 ## Process flow of a typical Scheduled Test
-![Typical_Process_Flow](./assets/diagrams/automated-testing/QaRegressionTestingMojaloop-Complete.png)
+![Typical_Process_Flow](./assets/diagrams/automated-testing/QaRegressionTestingMojaloop-Complete.svg)
 
 ## Newman Commands
 The following section is a reference, obtained from the Newman Package site itself, highlighting the different commands that may be used in order to have access to the Postman environment by specifying some commands via the CLI.
