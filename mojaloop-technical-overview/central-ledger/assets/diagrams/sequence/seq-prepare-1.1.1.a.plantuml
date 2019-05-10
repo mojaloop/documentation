@@ -111,6 +111,11 @@ group Prepare Handler Consume
                     |||
                 end
                 PREP_HANDLER -> PREP_HANDLER: Generate Hash for the incoming message and compare hashes
+                note right of PREP_HANDLER #lightgrey
+                    For individual transfers in a bulk, attributes
+                    such as payer, payee, expiry time, etc. need
+                    to be added before the hash is generated (in bulk-prepare).
+                end note
 
                 alt Transfer exists, hash matches    
                     PREP_HANDLER -> POS_DAO: Request to retrieve Transfer state \n<color #FF0000><b>Error code:</b> 2003</color>
@@ -220,6 +225,8 @@ group Prepare Handler Consume
                 PREP_HANDLER -> POS_DAO: Request to persist Transfer Hash \n<color #FF0000><b>Error code:</b> 2003</color>
                 activate POS_DAO
                 POS_DAO -> DB: Persist Transfer message hash
+                activate DB
+                deactivate DB
                 hnote over DB #lightyellow
                     transferDuplicateCheck
                 end note
