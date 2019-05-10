@@ -96,7 +96,7 @@ group Transfer Expiry
         |||
         BULK_PROCESSING_TOPIC <- BULK_PROCESSING_HANDLER: Consume message
         ref over TOPIC_NOTIFICATIONS, BULK_PROCESSING_TOPIC : Bulk Processing Consume {[[https://TODO-input-path-to/**/seq-bulk-processing-1.1.3.svg 1.1.3]]} \n
-        BULK_PROCESSING_HANDLER -> TOPIC_NOTIFICATIONS: Send callback notification
+        BULK_PROCESSING_HANDLER -> TOPIC_NOTIFICATIONS: Produce message
     end
     |||
     opt action IN ['timeout-received', 'timeout-reserved', 'bulk-timeout-received', 'bulk-timeout-reserved']
