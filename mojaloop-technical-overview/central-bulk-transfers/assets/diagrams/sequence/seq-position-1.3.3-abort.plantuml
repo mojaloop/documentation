@@ -26,7 +26,7 @@
 
 @startuml
 ' declate title
-title 1.3.3. Abort Position Handler Consume
+title 1.3.3. Abort Position Handler Consume (single message, includes individual transfers from Bulk)
 
 autonumber
 
@@ -41,11 +41,13 @@ autonumber
 control "Position Handler" as POS_HANDLER
 entity "Position DAO" as POS_DAO
 collections "Notification-Topic" as TOPIC_NOTIFICATIONS
+collections "Bulk-Processing-Topic" as TOPIC_BULK_PROCESSING
 database "Central Store" as DB
 
 box "Central Service" #LightYellow
     participant POS_HANDLER
     participant TOPIC_NOTIFICATIONS
+    participant TOPIC_BULK_PROCESSING
     participant POS_DAO
     participant DB
 end box
@@ -53,7 +55,7 @@ end box
 ' start flow
 activate POS_HANDLER
 group Abort Position Handler Consume
-    opt type == 'position' && action == 'timeout-reserved'
+    opt type IN ['position','bulk-position'] && action == 'timeout-reserved'
         POS_HANDLER -> POS_DAO: Request current state of transfer from DB\n<color #FF0000><b>Error code:</b> 2003</color>
         activate POS_DAO
         POS_DAO -> DB: Retrieve current state of transfer from DB
@@ -106,7 +108,8 @@ group Abort Position Handler Consume
             POS_DAO --> POS_HANDLER: Return success
             deactivate POS_DAO
         end
-        note right of POS_HANDLER #yellow
+        alt If type == 'bulk-position'
+            note right of POS_HANDLER #yellow
             Message: {
                 id: <transferMessage.transferId>
                 from: <transferMessage.payerFsp>,
@@ -115,18 +118,18 @@ group Abort Position Handler Consume
                 content: {
                     headers: <transferHeaders>,
                     payload: {
-                         "errorInformation": {
-                             "errorCode": 3300,
-                             "errorDescription": "Transfer expired",
-                             "extensionList": <transferMessage.extensionList>
-                         }
+                        "errorInformation": {
+                            "errorCode": 3300,
+                            "errorDescription": "Transfer expired",
+                            "extensionList": <transferMessage.extensionList>
+                        }
                     }
                 },
                 metadata: {
                     event: {
                         id: <uuid>,
                         responseTo: <previous.uuid>,
-                        type: notification,
+                        type: bulk-processing,
                         action: abort,
                         createdAt: <timestamp>,
                         state: {
@@ -137,12 +140,49 @@ group Abort Position Handler Consume
                     }
                 }
             }
-        end note
-        POS_HANDLER -> TOPIC_NOTIFICATIONS: Publish Notification event\n<color #FF0000><b>Error code:</b> 2003</color>
-        activate TOPIC_NOTIFICATIONS
-        deactivate TOPIC_NOTIFICATIONS
+            end note
+            POS_HANDLER -> TOPIC_BULK_PROCESSING: Publish Transfer event (in Position) to Bulk Processing Topic (for Payer) \n<color #FF0000><b>Error codes:</b> 2003</color>
+            activate TOPIC_BULK_PROCESSING
+            deactivate TOPIC_BULK_PROCESSING
+        else If type == 'prepare'
+            note right of POS_HANDLER #yellow
+                Message: {
+                    id: <transferMessage.transferId>
+                    from: <transferMessage.payerFsp>,
+                    to: <transferMessage.payeeFsp>,
+                    type: application/json
+                    content: {
+                        headers: <transferHeaders>,
+                        payload: {
+                            "errorInformation": {
+                                "errorCode": 3300,
+                                "errorDescription": "Transfer expired",
+                                "extensionList": <transferMessage.extensionList>
+                            }
+                        }
+                    },
+                    metadata: {
+                        event: {
+                            id: <uuid>,
+                            responseTo: <previous.uuid>,
+                            type: notification,
+                            action: abort,
+                            createdAt: <timestamp>,
+                            state: {
+                                status: 'error',
+                                code: <errorInformation.errorCode>
+                                description: <errorInformation.errorDescription>
+                            }
+                        }
+                    }
+                }
+            end note
+            POS_HANDLER -> TOPIC_NOTIFICATIONS: Publish Notification event\n<color #FF0000><b>Error code:</b> 2003</color>
+            activate TOPIC_NOTIFICATIONS
+            deactivate TOPIC_NOTIFICATIONS
+        end
     end
-    opt type == 'position' && (action IN ['reject', 'abort'])
+    opt type IN ['position','bulk-position'] && (action IN ['reject', 'abort'])
         POS_HANDLER -> POS_DAO: Request current state of transfer from DB\n<color #FF0000><b>Error code:</b> 2003</color>
         activate POS_DAO
         POS_DAO -> DB: Retrieve current state of transfer from DB
@@ -234,7 +274,7 @@ group Abort Position Handler Consume
     end
 
     ' TODO: We do not see how this scenario will be triggered
-    opt type == 'position' && action == 'fail' (Unable to currently trigger this scenario)
+    opt type IN ['position','bulk-position'] && action == 'fail' (Unable to currently trigger this scenario)
         POS_HANDLER -> POS_DAO: Request current state of transfer from DB\n<color #FF0000><b>Error code:</b> 2003</color>
         activate POS_DAO
         POS_DAO -> DB: Retrieve current state of transfer from DB
