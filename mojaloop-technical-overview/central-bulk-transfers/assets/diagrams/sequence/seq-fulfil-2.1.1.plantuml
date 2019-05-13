@@ -18,14 +18,15 @@
  * Gates Foundation
  - Name Surname <name.surname@gatesfoundation.com>
 
- * Rajiv Mothilal <rajiv.mothilal@modusbox.com>
  * Georgi Georgiev <georgi.georgiev@modusbox.com>
+ * Rajiv Mothilal <rajiv.mothilal@modusbox.com>
+ * Sam Kummary <sam@modusbox.com>
  --------------
  ******'/
 
 @startuml
 ' declate title
-title 2.1.1. Fulfil Handler Consume (Success)
+title 2.1.1. Fulfil Handler Consume (Success) (single message, includes individual transfers from Bulk)
 autonumber
 ' Actor Keys:
 '   boundary - APIs/Interfaces, etc
@@ -39,6 +40,7 @@ control "Fulfil Event Handler" as FULF_HANDLER
 collections "Event-Topic" as TOPIC_EVENT
 collections "topic-transfer-position" as TOPIC_TRANSFER_POSITION
 collections "Notification-Topic" as TOPIC_NOTIFICATIONS
+collections "topic-bulk-processing" as TOPIC_BULK_PROCESSING
 'entity "Transfer Duplicate Facade" as DUP_FACADE
 entity "Position DAO" as POS_DAO
 database "Central Store" as DB
@@ -47,6 +49,7 @@ box "Central Service" #LightYellow
     participant FULF_HANDLER
     participant TOPIC_TRANSFER_POSITION
     participant TOPIC_EVENT
+    participant TOPIC_BULK_PROCESSING
     participant TOPIC_NOTIFICATIONS
     participant POS_DAO
     participant DB
@@ -60,7 +63,7 @@ group Fulfil Handler Consume (Success)
         deactivate TOPIC_FULFIL
         break
             group Validate Event
-                FULF_HANDLER <-> FULF_HANDLER: Validate event - Rule: type == 'fulfil' && action == 'commit'\n<color #FF0000><b>Error codes:</b> 2001</color>
+                FULF_HANDLER <-> FULF_HANDLER: Validate event - Rule: type IN ['fulfil','bulk-fulfil'] && action == 'commit'\n<color #FF0000><b>Error codes:</b> 2001</color>
             end
         end
         group Persist Event Information
@@ -104,19 +107,143 @@ group Fulfil Handler Consume (Success)
                 deactivate POS_DAO
                 alt transferFulfilment.isValid == 0
                     break
-                        FULF_HANDLER <-> FULF_HANDLER: <color #FF0000><b>Error handling:</b> 3106</color>
+                        alt If type == 'fulfil'
+                            note right of FULF_HANDLER #yellow
+                            Message:
+                            {
+                                id: <ID>,
+                                from: <transferHeaders.FSPIOP-Source>,
+                                to: <transferHeaders.FSPIOP-Destination>,
+                                type: application/json,
+                                content: {
+                                    headers: <transferHeaders>,
+                                    payload: <transferMessage>
+                                },
+                                metadata: {
+                                    event: {
+                                        id: <uuid>,
+                                        responseTo: <previous.uuid>,
+                                        type: notification,
+                                        action: fulfil-duplicate,
+                                        createdAt: <timestamp>,
+                                        state: {
+                                            status: "fail",
+                                            code: 1
+                                        }
+                                    }
+                                }
+                            }
+                            end note
+                            FULF_HANDLER -> TOPIC_NOTIFICATIONS: Publish Notification event for Payee - Modified Request\n<color #FF0000><b>Error codes:</b> 3106</color>
+                            activate TOPIC_NOTIFICATIONS
+                            deactivate TOPIC_NOTIFICATIONS
+                        else If type == 'bulk-fulfil'
+                            note right of FULF_HANDLER #yellow
+                            Message:
+                            {
+                                id: <ID>,
+                                from: <transferHeaders.FSPIOP-Source>,
+                                to: <transferHeaders.FSPIOP-Destination>,
+                                type: application/json,
+                                content: {
+                                    headers: <transferHeaders>,
+                                    payload: <transferMessage>
+                                },
+                                metadata: {
+                                    event: {
+                                        id: <uuid>,
+                                        responseTo: <previous.uuid>,
+                                        type: bulk-notification,
+                                        action: fulfil-duplicate,
+                                        createdAt: <timestamp>,
+                                        state: {
+                                            status: "fail",
+                                            code: 1
+                                        }
+                                    }
+                                }
+                            }
+                            end note
+                            FULF_HANDLER -> TOPIC_BULK_PROCESSING: Publish Notification event for Payee - Modified Request 3106 to Bulk Processing Topic\n<color #FF0000><b>Error codes:</b> 3106</color>
+                            activate TOPIC_BULK_PROCESSING
+                            deactivate TOPIC_BULK_PROCESSING
+                        end
                     end
                 else transferState IN ['COMMITTED', 'ABORTED']
                     break
-                        ref over FULF_HANDLER, TOPIC_NOTIFICATIONS: Send notification to Participant (Payee) {[[https://github.com/mojaloop/docs/blob/master/Diagrams/SequenceDiagrams/seq-prepare-1.1.4.a.svg 1.1.4.a]]} \n
+                        alt If type == 'fulfil'
+                            ref over FULF_HANDLER, TOPIC_NOTIFICATIONS: Send notification to Participant (Payee) {[[https://github.com/mojaloop/docs/blob/master/Diagrams/SequenceDiagrams/seq-prepare-1.1.4.a.svg 1.1.4.a]]} \n
+                        else If type == 'bulk-fulfil'
+                            note right of FULF_HANDLER #yellow
+                            Message:
+                            {
+                                id: <ID>,
+                                from: <transferHeaders.FSPIOP-Source>,
+                                to: <transferHeaders.FSPIOP-Destination>,
+                                type: application/json,
+                                content: {
+                                    headers: <transferHeaders>,
+                                    payload: <transferMessage>
+                                },
+                                metadata: {
+                                    event: {
+                                        id: <uuid>,
+                                        responseTo: <previous.uuid>,
+                                        type: bulk-notification,
+                                        action: fulfil-duplicate,
+                                        createdAt: <timestamp>,
+                                        state: {
+                                            status: "success",
+                                            code: 1
+                                        }
+                                    }
+                                }
+                            }
+                            end note
+                            FULF_HANDLER -> TOPIC_BULK_PROCESSING: Publish Notification event for Payee to Bulk Processing Topic\n<color #FF0000><b>Error codes:</b> 2003</color>
+                            activate TOPIC_BULK_PROCESSING
+                            deactivate TOPIC_BULK_PROCESSING
+                        end
                     end
                 else transferState NOT 'RESERVED'
                     break
-                        FULF_HANDLER <-> FULF_HANDLER: <color #FF0000><b>Error code:</b> 2001</color>
+                        FULF_HANDLER <-> FULF_HANDLER: <color Magenta><b>Reference: Failure in validation</b></color>\n<color #FF0000><b>Error code:</b> 2001</color>
                     end
                 else
                     break
-                        FULF_HANDLER <-> FULF_HANDLER: Allow previous request to complete
+                        alt If type == 'fulfil'
+                            FULF_HANDLER <-> FULF_HANDLER: Allow previous request to complete
+                        else If type == 'bulk-fulfil'
+                            note right of FULF_HANDLER #yellow
+                            Message:
+                            {
+                                id: <ID>,
+                                from: <transferHeaders.FSPIOP-Source>,
+                                to: <transferHeaders.FSPIOP-Destination>,
+                                type: application/json,
+                                content: {
+                                    headers: <transferHeaders>,
+                                    payload: <transferMessage>
+                                },
+                                metadata: {
+                                    event: {
+                                        id: <uuid>,
+                                        responseTo: <previous.uuid>,
+                                        type: bulk-notification,
+                                        action: fulfil-duplicate,
+                                        createdAt: <timestamp>,
+                                        state: {
+                                            status: "success",
+                                            code: 1
+                                        }
+                                    }
+                                }
+                            }
+                            end note
+                            FULF_HANDLER -> TOPIC_BULK_PROCESSING: Publish Notification event for Payee to Bulk Processing Topic\n<color #FF0000><b>Error codes:</b> 2003</color>
+                            activate TOPIC_BULK_PROCESSING
+                            deactivate TOPIC_BULK_PROCESSING
+                        end
                     end
                 end
             else Hash not matched
@@ -191,40 +318,70 @@ group Fulfil Handler Consume (Success)
                     deactivate POS_DAO
                 end
 
-                note right of FULF_HANDLER #yellow
-                    Message:
-                    {
-                        id: <ID>,
-                        from: <transferHeaders.FSPIOP-Source>,
-                        to: <transferHeaders.FSPIOP-Destination>,
-                        type: application/json,
-                        content: {
-                            headers: <transferHeaders>,
-                            payload: <transferMessage>
-                        },
-                        metadata: {
-                            event: {
-                                id: <uuid>,
-                                responseTo: <previous.uuid>,
-                                type: position,
-                                action: commit,
-                                createdAt: <timestamp>,
-                                state: {
-                                    status: "success",
-                                    code: 0
+                alt If type == 'fulfil'
+                    note right of FULF_HANDLER #yellow
+                        Message:
+                        {
+                            id: <ID>,
+                            from: <transferHeaders.FSPIOP-Source>,
+                            to: <transferHeaders.FSPIOP-Destination>,
+                            type: application/json,
+                            content: {
+                                headers: <transferHeaders>,
+                                payload: <transferMessage>
+                            },
+                            metadata: {
+                                event: {
+                                    id: <uuid>,
+                                    responseTo: <previous.uuid>,
+                                    type: position,
+                                    action: commit,
+                                    createdAt: <timestamp>,
+                                    state: {
+                                        status: "success",
+                                        code: 0
+                                    }
                                 }
                             }
                         }
-                    }
-                end note
-                FULF_HANDLER -> TOPIC_TRANSFER_POSITION: Route & Publish Position event for Payee
-                activate TOPIC_TRANSFER_POSITION
-                deactivate TOPIC_TRANSFER_POSITION
+                    end note
+                    FULF_HANDLER -> TOPIC_TRANSFER_POSITION: Route & Publish Position event for Payee
+                    activate TOPIC_TRANSFER_POSITION
+                    deactivate TOPIC_TRANSFER_POSITION
+                else If type == 'bulk-fulfil'
+                    note right of FULF_HANDLER #yellow
+                        Message:
+                        {
+                            id: <ID>,
+                            from: <transferHeaders.FSPIOP-Source>,
+                            to: <transferHeaders.FSPIOP-Destination>,
+                            type: application/json,
+                            content: {
+                                headers: <transferHeaders>,
+                                payload: <transferMessage>
+                            },
+                            metadata: {
+                                event: {
+                                    id: <uuid>,
+                                    responseTo: <previous.uuid>,
+                                    type: bulk-position,
+                                    action: commit,
+                                    createdAt: <timestamp>,
+                                    state: {
+                                        status: "success",
+                                        code: 0
+                                    }
+                                }
+                            }
+                        }
+                    end note
+                    FULF_HANDLER -> TOPIC_TRANSFER_POSITION: Route & Publish Position event for Payee
+                    activate TOPIC_TRANSFER_POSITION
+                    deactivate TOPIC_TRANSFER_POSITION
+                end
             else Validate Fulfil Transfer not successful
                 break
-                    FULF_HANDLER -> TOPIC_NOTIFICATIONS: Route & Publish Notification event for Payee
-                    activate TOPIC_NOTIFICATIONS
-                    deactivate TOPIC_NOTIFICATIONS
+                    FULF_HANDLER -> FULF_HANDLER: Route & Publish Notification event for Payee\n<color Magenta><b>Reference: Failure in validation</b></color>
                 end
             end
         end
@@ -234,5 +391,70 @@ group Fulfil Handler Consume (Success)
         end note
     end
 end
+
+group Reference: Failure in validation
+    alt If type == 'bulk-fulfil'
+        note right of FULF_HANDLER #yellow
+        Message:
+        {
+            id: <ID>,
+            from: <transferHeaders.FSPIOP-Source>,
+            to: <transferHeaders.FSPIOP-Destination>,
+            type: application/json,
+            content: {
+                headers: <transferHeaders>,
+                payload: <transferMessage>
+            },
+            metadata: {
+                event: {
+                    id: <uuid>,
+                    responseTo: <previous.uuid>,
+                    type: bulk-fulfil,
+                    action: commit,
+                    createdAt: <timestamp>,
+                    state: {
+                        status: "fail",
+                        code: 1
+                    }
+                }
+            }
+        }
+        end note
+        FULF_HANDLER -> TOPIC_BULK_PROCESSING: Publish Notification event for Payee to Bulk Processing Topic\n<color #FF0000><b>Error codes:</b> 2003</color>
+        activate TOPIC_BULK_PROCESSING
+        deactivate TOPIC_BULK_PROCESSING
+    else If type == 'fulfil'
+        note right of FULF_HANDLER #yellow
+        Message:
+        {
+            id: <ID>,
+            from: <transferHeaders.FSPIOP-Source>,
+            to: <transferHeaders.FSPIOP-Destination>,
+            type: application/json,
+            content: {
+                headers: <transferHeaders>,
+                payload: <transferMessage>
+            },
+            metadata: {
+                event: {
+                    id: <uuid>,
+                    responseTo: <previous.uuid>,
+                    type: fulfil,
+                    action: commit,
+                    createdAt: <timestamp>,
+                    state: {
+                        status: "fail",
+                        code: 1
+                    }
+                }
+            }
+        }
+        end note
+        FULF_HANDLER -> TOPIC_NOTIFICATIONS: Route & Publish Notification event for Payee
+        activate TOPIC_NOTIFICATIONS
+        deactivate TOPIC_NOTIFICATIONS
+    end
+end
+
 deactivate FULF_HANDLER
 @enduml
