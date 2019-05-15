@@ -35,12 +35,12 @@ autonumber
 '   entity - Database Access Objects
 '   database - Database Persistance Store
 ' declare actors
-collections "Fulfil-Topic" as TOPIC_FULFIL
-control "Fulfil Event Handler" as FULF_HANDLER
-collections "Event-Topic" as TOPIC_EVENT
-collections "topic-transfer-position" as TOPIC_TRANSFER_POSITION
-collections "Notification-Topic" as TOPIC_NOTIFICATIONS
-collections "topic-bulk-processing" as TOPIC_BULK_PROCESSING
+collections "topic-\nfulfil" as TOPIC_FULFIL
+control "Fulfil Handler" as FULF_HANDLER
+collections "topic-\nevent" as TOPIC_EVENT
+collections "topic-\ntransfer-position" as TOPIC_TRANSFER_POSITION
+collections "topic-\nnotification" as TOPIC_NOTIFICATIONS
+collections "topic-\nbulk-processing" as TOPIC_BULK_PROCESSING
 'entity "Transfer Duplicate Facade" as DUP_FACADE
 entity "Transfer DAO" as TRANS_DAO
 database "Central Store" as DB
@@ -78,7 +78,7 @@ group Fulfil Handler Consume (Failure)
             FULF_HANDLER -> FULF_HANDLER: Generate transferFulfilmentId uuid
             FULF_HANDLER -> TRANS_DAO: Request to retrieve transfer fulfilment hashes by transferId\n<color #FF0000><b>Error code:</b> 2003</color>
             activate TRANS_DAO
-            TRANS_DAO -> DB: Request Transfer fulfilment duplicate message hashes
+            TRANS_DAO -> DB: Request Transfer fulfilment \nduplicate message hashes
             hnote over DB #lightyellow
                 SELET transferId, hash
                 FROM **transferFulfilmentDuplicateCheck**
@@ -89,20 +89,20 @@ group Fulfil Handler Consume (Failure)
             deactivate DB
             TRANS_DAO --> FULF_HANDLER: Return (list of) transfer fulfil messages hash(es)
             deactivate TRANS_DAO
-            FULF_HANDLER -> FULF_HANDLER: Loop the list of returned hashes and compare each entry with the calculated message hash
+            FULF_HANDLER -> FULF_HANDLER: Loop the list of returned hashes & compare \neach entry with the calculated message hash
             alt Hash matched
                 ' Need to check what respond with same results if finalised then resend, else ignore and wait for response
-                FULF_HANDLER -> TRANS_DAO: Request to retrieve Transfer Fulfilment and Transfer state\n<color #FF0000><b>Error code:</b> 2003</color>
+                FULF_HANDLER -> TRANS_DAO: Request to retrieve Transfer Fulfilment & Transfer state\n<color #FF0000><b>Error code:</b> 2003</color>
                 activate TRANS_DAO
-                TRANS_DAO -> DB: Request to retrieve Transfer Fulfilment and Transfer state
+                TRANS_DAO -> DB: Request to retrieve \ntransferFulfilment & transferState
                 hnote over DB #lightyellow
                     transferFulfilment
                     transferStateChange
                 end note
                 activate DB
-                TRANS_DAO <-- DB: Return Transfer Fulfilment and Transfer state
+                TRANS_DAO <-- DB: Return transferFulfilment & \ntransferState
                 deactivate DB
-                TRANS_DAO --> FULF_HANDLER: Return Transfer Fulfilment and Transfer state
+                TRANS_DAO --> FULF_HANDLER: Return Transfer Fulfilment & Transfer state
                 deactivate TRANS_DAO
                 alt transferFulfilment.isValid == 0
                     break
@@ -152,7 +152,7 @@ group Fulfil Handler Consume (Failure)
                                     event: {
                                         id: <uuid>,
                                         responseTo: <previous.uuid>,
-                                        type: bulk-notification,
+                                        type: bulk-processing,
                                         action: fulfil-duplicate,
                                         createdAt: <timestamp>,
                                         state: {
@@ -163,7 +163,7 @@ group Fulfil Handler Consume (Failure)
                                 }
                             }
                             end note
-                            FULF_HANDLER -> TOPIC_BULK_PROCESSING: Publish Notification event for Payee - Modified Request 3106 to Bulk Processing Topic\n<color #FF0000><b>Error codes:</b> 3106</color>
+                            FULF_HANDLER -> TOPIC_BULK_PROCESSING: Publish Notification event for Payee - Modified Request \n3106 to Bulk Processing Topic\n<color #FF0000><b>Error codes:</b> 3106</color>
                             activate TOPIC_BULK_PROCESSING
                             deactivate TOPIC_BULK_PROCESSING
                         end
@@ -188,7 +188,7 @@ group Fulfil Handler Consume (Failure)
                                     event: {
                                         id: <uuid>,
                                         responseTo: <previous.uuid>,
-                                        type: bulk-notification,
+                                        type: bulk-processing,
                                         action: fulfil-duplicate,
                                         createdAt: <timestamp>,
                                         state: {
@@ -228,7 +228,7 @@ group Fulfil Handler Consume (Failure)
                                     event: {
                                         id: <uuid>,
                                         responseTo: <previous.uuid>,
-                                        type: bulk-notification,
+                                        type: bulk-processing,
                                         action: fulfil-duplicate,
                                         createdAt: <timestamp>,
                                         state: {
@@ -326,9 +326,9 @@ group Fulfil Handler Consume (Failure)
         else action=='abort' Error callback
             alt Validation successful
                 group Persist Transfer State (with transferState='RECEIVED_ERROR')
-                    FULF_HANDLER -> TRANS_DAO: Request to persist transfer state and Error\n<color #FF0000><b>Error code:</b> 2003</color>
+                    FULF_HANDLER -> TRANS_DAO: Request to persist transfer state & Error\n<color #FF0000><b>Error code:</b> 2003</color>
                     activate TRANS_DAO
-                    TRANS_DAO -> DB: Persist transfer state and error information
+                    TRANS_DAO -> DB: Persist transfer state & Error
                     activate DB
                     hnote over DB #lightyellow
                         transferStateChange
@@ -339,7 +339,7 @@ group Fulfil Handler Consume (Failure)
                     TRANS_DAO --> FULF_HANDLER: Return success
                 end
 
-                FULF_HANDLER -> FULF_HANDLER: Successful fulfil message\n<color Magenta><b>Reference: Produce message for successful fulfil event</b></color>
+                FULF_HANDLER -> FULF_HANDLER: Error callback validated\n<color Magenta><b>Reference: Produce message for validated error callback</b></color>
 
             else Validate Transfer Error Message not successful
                 break
@@ -371,7 +371,7 @@ group Reference: Validate Transfer Error Message not successful
                 event: {
                     id: <uuid>,
                     responseTo: <previous.uuid>,
-                    type: bulk-fulfil,
+                    type: bulk-processing,
                     action: abort,
                     createdAt: <timestamp>,
                     state: {
@@ -382,7 +382,7 @@ group Reference: Validate Transfer Error Message not successful
             }
         }
         end note
-        FULF_HANDLER -> TOPIC_BULK_PROCESSING: Publish Notification event for Payee to Bulk Processing Topic\n<color #FF0000><b>Error codes:</b> 2003</color>
+        FULF_HANDLER -> TOPIC_BULK_PROCESSING: Publish Processing event for Payee to Bulk Processing Topic\n<color #FF0000><b>Error codes:</b> 2003</color>
         activate TOPIC_BULK_PROCESSING
         deactivate TOPIC_BULK_PROCESSING
     else If type == 'fulfil'
@@ -418,7 +418,7 @@ group Reference: Validate Transfer Error Message not successful
     end
 end
 
-group Reference: Produce message for successful fulfil event
+group Reference: Produce message for validated error callback
     alt If type == 'bulk-fulfil'
         note right of FULF_HANDLER #yellow
         Message:
@@ -499,7 +499,7 @@ group Reference: Failure in validation
                 event: {
                     id: <uuid>,
                     responseTo: <previous.uuid>,
-                    type: bulk-fulfil,
+                    type: bulk-processing,
                     action: reject,
                     createdAt: <timestamp>,
                     state: {
@@ -510,7 +510,7 @@ group Reference: Failure in validation
             }
         }
         end note
-        FULF_HANDLER -> TOPIC_BULK_PROCESSING: Publish Notification event for Payee to Bulk Processing Topic\n<color #FF0000><b>Error codes:</b> 2003</color>
+        FULF_HANDLER -> TOPIC_BULK_PROCESSING: Publish processing event to the Bulk Processing Topic\n<color #FF0000><b>Error codes:</b> 2003</color>
         activate TOPIC_BULK_PROCESSING
         deactivate TOPIC_BULK_PROCESSING
     else If type == 'fulfil'

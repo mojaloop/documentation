@@ -36,12 +36,11 @@ autonumber
 '   database - Database Persistance Store
 ' declare actors
 collections "Fulfil-Topic" as TOPIC_FULFIL
-control "Fulfil Event Handler" as FULF_HANDLER
-collections "Event-Topic" as TOPIC_EVENT
-collections "topic-transfer-position" as TOPIC_TRANSFER_POSITION
-collections "Notification-Topic" as TOPIC_NOTIFICATIONS
-collections "topic-bulk-processing" as TOPIC_BULK_PROCESSING
-'entity "Transfer Duplicate Facade" as DUP_FACADE
+control "Fulfil Handler" as FULF_HANDLER
+collections "topic-\nevent" as TOPIC_EVENT
+collections "topic-\ntransfer-position" as TOPIC_TRANSFER_POSITION
+collections "topic-\nnotification" as TOPIC_NOTIFICATIONS
+collections "topic-\nbulk-processing" as TOPIC_BULK_PROCESSING
 entity "Position DAO" as POS_DAO
 database "Central Store" as DB
 box "Central Service" #LightYellow
@@ -89,10 +88,10 @@ group Fulfil Handler Consume (Success)
             deactivate DB
             POS_DAO --> FULF_HANDLER: Return (list of) transfer fulfil messages hash(es)
             deactivate POS_DAO
-            FULF_HANDLER -> FULF_HANDLER: Loop the list of returned hashes and compare each entry with the calculated message hash
+            FULF_HANDLER -> FULF_HANDLER: Loop the list of returned hashes and compare \neach entry with the calculated message hash
             alt Hash matched
                 ' Need to check what respond with same results if finalised then resend, else ignore and wait for response
-                FULF_HANDLER -> TOPIC_EVENT: Publish event information (for duplicate) ( Event Handler Consume {[[https://github.com/mojaloop/docs/blob/master/Diagrams/SequenceDiagrams/seq-event-9.1.0.svg 9.1.0]]} )
+                FULF_HANDLER -> TOPIC_EVENT: Publish event information (for duplicate) \n(Event Handler Consume {[[https://github.com/mojaloop/docs/blob/master/Diagrams/SequenceDiagrams/seq-event-9.1.0.svg 9.1.0]]} )
                 FULF_HANDLER -> POS_DAO: Request to retrieve Transfer Fulfilment and Transfer state\n<color #FF0000><b>Error code:</b> 2003</color>
                 activate POS_DAO
                 POS_DAO -> DB: Request to retrieve Transfer Fulfilment and Transfer state
@@ -153,7 +152,7 @@ group Fulfil Handler Consume (Success)
                                     event: {
                                         id: <uuid>,
                                         responseTo: <previous.uuid>,
-                                        type: bulk-notification,
+                                        type: bulk-processing,
                                         action: fulfil-duplicate,
                                         createdAt: <timestamp>,
                                         state: {
@@ -164,7 +163,7 @@ group Fulfil Handler Consume (Success)
                                 }
                             }
                             end note
-                            FULF_HANDLER -> TOPIC_BULK_PROCESSING: Publish Notification event for Payee - Modified Request 3106 to Bulk Processing Topic\n<color #FF0000><b>Error codes:</b> 3106</color>
+                            FULF_HANDLER -> TOPIC_BULK_PROCESSING: Publish Notification event for Payee - Modified Request \n3106 to Bulk Processing Topic\n<color #FF0000><b>Error codes:</b> 3106</color>
                             activate TOPIC_BULK_PROCESSING
                             deactivate TOPIC_BULK_PROCESSING
                         end
@@ -189,7 +188,7 @@ group Fulfil Handler Consume (Success)
                                     event: {
                                         id: <uuid>,
                                         responseTo: <previous.uuid>,
-                                        type: bulk-notification,
+                                        type: bulk-processing,
                                         action: fulfil-duplicate,
                                         createdAt: <timestamp>,
                                         state: {
@@ -229,7 +228,7 @@ group Fulfil Handler Consume (Success)
                                     event: {
                                         id: <uuid>,
                                         responseTo: <previous.uuid>,
-                                        type: bulk-notification,
+                                        type: bulk-processing,
                                         action: fulfil-duplicate,
                                         createdAt: <timestamp>,
                                         state: {
@@ -409,7 +408,7 @@ group Reference: Failure in validation
                 event: {
                     id: <uuid>,
                     responseTo: <previous.uuid>,
-                    type: bulk-fulfil,
+                    type: bulk-processing,
                     action: commit,
                     createdAt: <timestamp>,
                     state: {
