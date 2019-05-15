@@ -39,17 +39,17 @@ autonumber
 actor "DFSP1\nPayer" as DFSP1
 actor "DFSP2\nPayee" as DFSP2
 boundary "ML API Adapter" as MLAPI
-control "ML API Notification Event Handler" as NOTIFY_HANDLER
+control "ML API Notification \nEvent Handler" as NOTIFY_HANDLER
 boundary "Central Service API" as CSAPI
-collections "topic-bulk-prepare" as TOPIC_BULK_PREPARE
+collections "topic-\nbulk-prepare" as TOPIC_BULK_PREPARE
 control "Bulk Prepare Handler" as BULK_PREP_HANDLER
-collections "topic-transfer-prepare" as TOPIC_TRANSFER_PREPARE
+collections "topic-\ntransfer-prepare" as TOPIC_TRANSFER_PREPARE
 control "Prepare Handler" as PREP_HANDLER
-collections "topic-transfer-position" as TOPIC_TRANSFER_POSITION
+collections "topic-\ntransfer-position" as TOPIC_TRANSFER_POSITION
 control "Position Handler" as POS_HANDLER
-collections "topic-bulk-processing" as TOPIC_BULK_PROCESSING
+collections "topic-\nbulk-processing" as TOPIC_BULK_PROCESSING
 control "Bulk Processing Handler" as BULK_PROC_HANDLER
-collections "Notifications-topic" as TOPIC_NOTIFICATIONS
+collections "topic-\nnotifications" as TOPIC_NOTIFICATIONS
 
 box "Financial Service Providers" #lightGray
 	participant DFSP1
@@ -136,7 +136,7 @@ group DFSP1 sends a Bulk Prepare Transfer request to DFSP2
     end note
     DFSP1 ->> MLAPI: POST - /bulkTransfers
     activate MLAPI
-    MLAPI -> MLAPI: Validate incoming message and originator matching Payer\n<color #FF0000><b>Error codes:</b> 3000-3002, 3100-3107</color>
+    MLAPI -> MLAPI: Validate incoming message and \noriginator matching Payer\n<color #FF0000><b>Error codes:</b> 3000-3002, 3100-3107</color>
     note right of MLAPI #yellow
         Message:
         {
@@ -151,8 +151,8 @@ group DFSP1 sends a Bulk Prepare Transfer request to DFSP2
             metadata: {
                 event: {
                     id: <uuid>,
-                    type: bulkPrepare,
-                    action: bulkPrepare,
+                    type: bulk-prepare,
+                    action: bulk-prepare,
                     createdAt: <timestamp>,
                     state: {
                         status: "success",
@@ -162,21 +162,29 @@ group DFSP1 sends a Bulk Prepare Transfer request to DFSP2
             }
         }
     end note
-    MLAPI -> TOPIC_BULK_PREPARE: Route & Publish Bulk Prepare event for Payer\n<color #FF0000><b>Error code:</b> 2003</color>
+    MLAPI -> TOPIC_BULK_PREPARE: Route & Publish Bulk Prepare event \nfor Payer\n<color #FF0000><b>Error code:</b> 2003</color>
     activate TOPIC_BULK_PREPARE
-    TOPIC_BULK_PREPARE <-> TOPIC_BULK_PREPARE: Ensure event is replicated as configured (ACKS=all)\n<color #FF0000><b>Error code:</b> 2003</color>
-    TOPIC_BULK_PREPARE --> MLAPI: Respond replication acknowledgements have been received
+    TOPIC_BULK_PREPARE <-> TOPIC_BULK_PREPARE: Ensure event is replicated \nas configured (ACKS=all)\n<color #FF0000><b>Error code:</b> 2003</color>
+    TOPIC_BULK_PREPARE --> MLAPI: Respond replication acknowledgements \nhave been received
     deactivate TOPIC_BULK_PREPARE
     MLAPI -->> DFSP1: Respond HTTP - 202 (Accepted)
     deactivate MLAPI
     |||
     TOPIC_BULK_PREPARE <- BULK_PREP_HANDLER: Consume message
     ref over TOPIC_BULK_PREPARE, BULK_PREP_HANDLER, TOPIC_TRANSFER_PREPARE :  Bulk Prepare Handler Consume \n
-    BULK_PREP_HANDLER -> TOPIC_TRANSFER_PREPARE: Produce message
+    alt Success
+        BULK_PREP_HANDLER -> TOPIC_TRANSFER_PREPARE: Produce message
+    else Failure
+        BULK_PREP_HANDLER --> TOPIC_BULK_PROCESSING: Produce message
+    end
     |||
     TOPIC_TRANSFER_PREPARE <- PREP_HANDLER: Consume message
     ref over TOPIC_TRANSFER_PREPARE, PREP_HANDLER, TOPIC_TRANSFER_POSITION :  Prepare Handler Consume {[[https://github.com/mojaloop/docs/blob/master/CentralServices/seq_diagrams/seq-prepare-1.1.1.a.svg 1.1.1.a]], [[https://github.com/mojaloop/docs/blob/master/CentralServices/seq_diagrams/seq-prepare-1.1.1.b.svg 1.1.1.b]]} \n
-    PREP_HANDLER -> TOPIC_TRANSFER_POSITION: Produce message
+    alt Success
+        PREP_HANDLER -> TOPIC_TRANSFER_POSITION: Produce message
+    else Failure
+        PREP_HANDLER --> TOPIC_BULK_PROCESSING: Produce message
+    end
     |||
     TOPIC_TRANSFER_POSITION <- POS_HANDLER: Consume message
     ref over TOPIC_TRANSFER_POSITION, POS_HANDLER, TOPIC_BULK_PROCESSING : Position Handler Consume {[[https://github.com/mojaloop/docs/blob/master/CentralServices/seq_diagrams/seq-prepare-1.1.2.a.svg 1.1.2.a]], [[https://github.com/mojaloop/docs/blob/master/CentralServices/seq_diagrams/seq-prepare-1.1.2.b.svg 1.1.2.b]]} \n
