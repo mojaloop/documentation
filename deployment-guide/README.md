@@ -9,9 +9,9 @@ The document is intended for an audience with a stable technical knowledge that 
   - [Kubernetes Dashboard](#31-kubernetes-dashboard)
 - [Helm](#4-helm)
   - [Helm configuration](#41-helm-configuration)
-- [Postman](#5-postman)
-  - [Installing Postman](#51-installing-postman)
-  - [Setup Postman](#52-setup-postman)
+- [Postman](#6-postman)
+  - [Installing Postman](#61-installing-postman)
+  - [Setup Postman](#62-setup-postman)
   
 ### 1. Pre-requisites
 
