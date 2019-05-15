@@ -40,12 +40,12 @@ autonumber
 '   database - Database Persistance Store
 
 ' declare actors
-collections "topic-transfer-prepare" as TOPIC_TRANSFER_PREPARE
-control "Prepare Event Handler" as PREP_HANDLER
-collections "topic-transfer-position" as TOPIC_TRANSFER_POSITION
-collections "topic-bulk-processing" as TOPIC_BULK_PROCESSING
-collections "Event-Topic" as TOPIC_EVENTS
-collections "Notification-Topic" as TOPIC_NOTIFICATIONS
+collections "topic-\ntransfer-prepare" as TOPIC_TRANSFER_PREPARE
+control "Prepare Handler" as PREP_HANDLER
+collections "topic-\ntransfer-position" as TOPIC_TRANSFER_POSITION
+collections "topic-\nbulk-processing" as TOPIC_BULK_PROCESSING
+collections "topic-event" as TOPIC_EVENTS
+collections "topic-\nnotification" as TOPIC_NOTIFICATIONS
 entity "Position DAO" as POS_DAO
 entity "Participant DAO" as PARTICIPANT_DAO
 database "Central Store" as DB
@@ -191,17 +191,16 @@ group Prepare Handler Consume
                                     content: {
                                         headers: <transferHeaders>,
                                         payload: {
-                                            "errorInformation": {
-                                                "errorCode": <possible codes: [2003, 3100, 3105, 3106, 3202, 3203, 3300, 3301]>
-                                                "errorDescription": "<refer to section 35.1.3 for description>",
-                                                "extensionList": <transferMessage.extensionList>
-                                        }
+                                                transferState: "RECEIVED",
+                                                fulfilment: "WLctttbu2HvTsa1XWvUoGRcQozHsqeu9Ahl2JW9Bsu8",
+                                                completedTimestamp: "2018-10-24T08:38:08.699-04:00"
+                                            }
                                     },
                                     metadata: {
                                         event: {
                                             id: <uuid>,
                                             responseTo: <previous.uuid>,
-                                            type: bulk-notification,
+                                            type: bulk-processing,
                                             action: prepare-duplicate,
                                             createdAt: <timestamp>,
                                             state: {
@@ -212,7 +211,7 @@ group Prepare Handler Consume
                                     }
                                 }
                             end note
-                            PREP_HANDLER -> TOPIC_BULK_PROCESSING: Publish Prepare failure event to Bulk Processing Topic\n(for the individual transfer to the Payer) \n[Duplicate request]\n<color #FF0000><b>Error codes:</b> 2003</color>
+                            PREP_HANDLER -> TOPIC_BULK_PROCESSING: Publish Prepare failure event to Bulk Processing Topic\n(for the individual transfer) with the current transferState\n<color #FF0000><b>Error codes:</b> 2003</color>\n[Duplicate request]
                         end
                     end
                 else Transfer exists, hash does not match
@@ -402,7 +401,7 @@ group Reference: Failure in Prepare Transfer Validation
                     event: {
                         id: <uuid>,
                         responseTo: <previous.uuid>,
-                        type: bulk-notification,
+                        type: bulk-processing,
                         action: prepare,
                         createdAt: <timestamp>,
                         state: {
@@ -436,7 +435,7 @@ group Reference: Failure in Prepare Transfer Validation
                     event: {
                         id: <uuid>,
                         responseTo: <previous.uuid>,
-                        type: bulk-notification,
+                        type: notification,
                         action: prepare,
                         createdAt: <timestamp>,
                         state: {

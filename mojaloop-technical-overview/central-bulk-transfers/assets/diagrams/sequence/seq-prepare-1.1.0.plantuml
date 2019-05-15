@@ -40,13 +40,13 @@ autonumber
 actor "DFSP1\nPayer" as DFSP1
 actor "DFSP2\nPayee" as DFSP2
 boundary "ML API Adapter" as MLAPI
-control "ML API Notification Event Handler" as NOTIFY_HANDLER
+control "ML API Notification \nHandler" as NOTIFY_HANDLER
 boundary "Central Service API" as CSAPI
-collections "topic-transfer-prepare" as TOPIC_TRANSFER_PREPARE
-control "Prepare Event Handler" as PREP_HANDLER
-collections "topic-transfer-position" as TOPIC_TRANSFER_POSITION
-control "Position Event Handler" as POS_HANDLER
-collections "Notification-Topic" as TOPIC_NOTIFICATIONS
+collections "topic-\ntransfer-prepare" as TOPIC_TRANSFER_PREPARE
+control "Prepare Handler" as PREP_HANDLER
+collections "topic-\ntransfer-position" as TOPIC_TRANSFER_POSITION
+control "Position Handler" as POS_HANDLER
+collections "topic-\nnotification" as TOPIC_NOTIFICATIONS
 
 box "Financial Service Providers" #lightGray
 	participant DFSP1
@@ -110,7 +110,7 @@ group DFSP1 sends a Prepare Transfer request to DFSP2
     end note
     DFSP1 ->> MLAPI: POST - /transfers
     activate MLAPI
-    MLAPI -> MLAPI: Validate incoming token and originator matching Payer\n<color #FF0000><b>Error codes:</b> 3000-3002, 3100-3107</color>
+    MLAPI -> MLAPI: Validate incoming token & \noriginator matching Payer\n<color #FF0000><b>Error codes:</b> 3000-3002, 3100-3107</color>
     note right of MLAPI #yellow
         Message:
         {
@@ -138,8 +138,8 @@ group DFSP1 sends a Prepare Transfer request to DFSP2
     end note
     MLAPI -> TOPIC_TRANSFER_PREPARE: Route & Publish Prepare event for Payer\n<color #FF0000><b>Error code:</b> 2003</color>
     activate TOPIC_TRANSFER_PREPARE
-    TOPIC_TRANSFER_PREPARE <-> TOPIC_TRANSFER_PREPARE: Ensure event is replicated as configured (ACKS=all)\n<color #FF0000><b>Error code:</b> 2003</color>
-    TOPIC_TRANSFER_PREPARE --> MLAPI: Respond replication acknowledgements have been received
+    TOPIC_TRANSFER_PREPARE <-> TOPIC_TRANSFER_PREPARE: Ensure event is replicated as configured \n(ACKS=all)\n<color #FF0000><b>Error code:</b> 2003</color>
+    TOPIC_TRANSFER_PREPARE --> MLAPI: Respond replication acknowledgements \nhave been received
     deactivate TOPIC_TRANSFER_PREPARE
     MLAPI -->> DFSP1: Respond HTTP - 202 (Accepted)
     deactivate MLAPI
