@@ -40,8 +40,8 @@ autonumber
 
 ' declare actors
 control "Position Handler" as POS_HANDLER
-collections "Notifications-Topic" as TOPIC_NOTIFICATIONS
-collections "Bulk-Processing-Topic" as TOPIC_BULK_PROCESSING
+collections "topic-\notifications" as TOPIC_NOTIFICATIONS
+collections "topic-\nbulk-processing" as TOPIC_BULK_PROCESSING
 entity "Position Facade" as POS_FACADE
 entity "Position DAO" as POS_DAO
 database "Central Store" as DB
@@ -136,7 +136,7 @@ group Fulfil Position Handler Consume
             }
         }
         end note
-        POS_HANDLER -> TOPIC_BULK_PROCESSING: Publish Transfer event (in Position) to Bulk Processing Topic (for Payer) \n<color #FF0000><b>Error codes:</b> 2003</color>
+        POS_HANDLER -> TOPIC_BULK_PROCESSING: Publish Transfer event to Bulk Processing Topic\n<color #FF0000><b>Error codes:</b> 2003</color>
         activate TOPIC_BULK_PROCESSING
         deactivate TOPIC_BULK_PROCESSING
     else If type == 'position'

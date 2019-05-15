@@ -242,7 +242,7 @@ group Reference: Failure in Postion Validation (Prepare)
                     event: {
                         id: <uuid>,
                         responseTo: <previous.uuid>,
-                        type: bulk-notification,
+                        type: bulk-processing,
                         action: prepare,
                         createdAt: <timestamp>,
                         state: {
@@ -255,6 +255,8 @@ group Reference: Failure in Postion Validation (Prepare)
             }
         end note
         POS_HANDLER -> TOPIC_BULK_PROCESSING: Publish Position failure event (in Prepare) to Bulk Processing Topic (for Payer) \n<color #FF0000><b>Error codes:</b> 2003</color>
+        activate TOPIC_BULK_PROCESSING
+        deactivate TOPIC_BULK_PROCESSING
     else If type == 'prepare'
         note right of POS_HANDLER #yellow
         Message:
@@ -289,6 +291,8 @@ group Reference: Failure in Postion Validation (Prepare)
             }
         end note
         POS_HANDLER -> TOPIC_NOTIFICATIONS: Publish Notification (failure) event for Payer\n<color #FF0000><b>Error code:</b> 2003</color>
+        activate TOPIC_NOTIFICATIONS
+        deactivate TOPIC_NOTIFICATIONS
     end
     
 end
@@ -321,7 +325,9 @@ group Reference: Postion Validation Success case (Prepare)
                 }
             }
         end note
-        POS_HANDLER -> TOPIC_BULK_PROCESSING: Publish Position Success event (in Prepare) to Bulk Processing Topic\n<color #FF0000><b>Error codes:</b> 2003</color>
+        POS_HANDLER -> TOPIC_NOTIFICATIONS: Publish Position Success event (in Prepare) to Bulk Processing Topic\n<color #FF0000><b>Error codes:</b> 2003</color>
+        activate TOPIC_NOTIFICATIONS
+        deactivate TOPIC_NOTIFICATIONS
     else If type == 'prepare'
         note right of POS_HANDLER #yellow
         Message:
@@ -350,6 +356,8 @@ group Reference: Postion Validation Success case (Prepare)
             }
         end note
         POS_HANDLER -> TOPIC_NOTIFICATIONS: Publish Notification event\n<color #FF0000><b>Error code:</b> 2003</color>
+        activate TOPIC_NOTIFICATIONS
+        deactivate TOPIC_NOTIFICATIONS
     end
 end
 

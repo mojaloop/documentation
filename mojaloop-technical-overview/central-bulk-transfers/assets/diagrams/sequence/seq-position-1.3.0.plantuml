@@ -97,7 +97,7 @@ group Position Handler Consume
         deactivate TOPIC_TRANSFER_POSITION
         break
             group Validate Event
-                POS_HANDLER <-> POS_HANDLER: Validate event - Rule: type IN ['position','bulk-position'] &&\naction IN ['timeout-reserved', 'reject', 'fail']\n<color #FF0000><b>Error codes:</b> 2001</color>
+                POS_HANDLER <-> POS_HANDLER: Validate event - Rule: type IN ['position','bulk-position'] &&\naction IN ['timeout-reserved', 'reject', 'abort']\n<color #FF0000><b>Error codes:</b> 2001</color>
             end
         end
         group Persist Event Information

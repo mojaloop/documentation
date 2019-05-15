@@ -40,8 +40,8 @@ autonumber
 ' declare actors
 control "Position Handler" as POS_HANDLER
 entity "Position DAO" as POS_DAO
-collections "Notification-Topic" as TOPIC_NOTIFICATIONS
-collections "Bulk-Processing-Topic" as TOPIC_BULK_PROCESSING
+collections "topic-\nnotification" as TOPIC_NOTIFICATIONS
+collections "topic-\nbulk-processing" as TOPIC_BULK_PROCESSING
 database "Central Store" as DB
 
 box "Central Service" #LightYellow
@@ -68,7 +68,7 @@ group Abort Position Handler Consume
         deactivate DB
         POS_DAO --> POS_HANDLER: Return current state of transfer from DB
         deactivate POS_DAO
-        POS_HANDLER <-> POS_HANDLER: Validate current state (transferStateChange.transferStateId == 'RESERVED_TIMEOUT')\n<color #FF0000><b>Error code:</b> 2001</color>
+        POS_HANDLER <-> POS_HANDLER: Validate current state \n(transferStateChange.transferStateId == 'RESERVED_TIMEOUT')\n<color #FF0000><b>Error code:</b> 2001</color>
 
         group Persist Position change and Transfer state
             POS_HANDLER -> POS_HANDLER: **transferStateId** = 'EXPIRED_RESERVED'
@@ -141,10 +141,10 @@ group Abort Position Handler Consume
                 }
             }
             end note
-            POS_HANDLER -> TOPIC_BULK_PROCESSING: Publish Transfer event (in Position) to Bulk Processing Topic (for Payer) \n<color #FF0000><b>Error codes:</b> 2003</color>
+            POS_HANDLER -> TOPIC_BULK_PROCESSING: Publish Transfer event to Bulk Processing Topic (for Payer) \n<color #FF0000><b>Error codes:</b> 2003</color>
             activate TOPIC_BULK_PROCESSING
             deactivate TOPIC_BULK_PROCESSING
-        else If type == 'prepare'
+        else If type == 'position'
             note right of POS_HANDLER #yellow
                 Message: {
                     id: <transferMessage.transferId>
@@ -194,7 +194,7 @@ group Abort Position Handler Consume
         deactivate DB
         POS_DAO --> POS_HANDLER: Return current state of transfer from DB
         deactivate POS_DAO
-        POS_HANDLER <-> POS_HANDLER: Validate current state (transferStateChange.transferStateId IN ['RECEIVED_REJECT', 'RECEIVED_ERROR'])\n<color #FF0000><b>Error code:</b> 2001</color>
+        POS_HANDLER <-> POS_HANDLER: Validate current state \n(transferStateChange.transferStateId IN ['RECEIVED_REJECT', 'RECEIVED_ERROR'])\n<color #FF0000><b>Error code:</b> 2001</color>
 
         group Persist Position change and Transfer state
             POS_HANDLER -> POS_HANDLER: **transferStateId** = (action == 'reject' ? 'ABORTED_REJECTED' : 'ABORTED_ERROR' )
@@ -213,33 +213,68 @@ group Abort Position Handler Consume
             POS_DAO --> POS_HANDLER: Return success
             deactivate POS_DAO
         end
-        alt action == 'reject'
-            note right of POS_HANDLER #yellow
-                Message: {
-                    id: <transferMessage.transferId>
-                    from: <transferMessage.payerFsp>,
-                    to: <transferMessage.payeeFsp>,
-                    type: application/json
-                    content: {
-                        headers: <transferHeaders>,
-                        payload: <transferMessage>
-                    },
-                    metadata: {
-                        event: {
-                            id: <uuid>,
-                            responseTo: <previous.uuid>,
-                            type: notification,
-                            action: reject,
-                            createdAt: <timestamp>,
-                            state: {
-                                status: "success",
-                                code: 0,
-                                description: "action successful"
+        alt If action == 'reject'
+            alt If type == 'position'
+                note right of POS_HANDLER #yellow
+                    Message: {
+                        id: <transferMessage.transferId>
+                        from: <transferMessage.payerFsp>,
+                        to: <transferMessage.payeeFsp>,
+                        type: application/json
+                        content: {
+                            headers: <transferHeaders>,
+                            payload: <transferMessage>
+                        },
+                        metadata: {
+                            event: {
+                                id: <uuid>,
+                                responseTo: <previous.uuid>,
+                                type: notification,
+                                action: reject,
+                                createdAt: <timestamp>,
+                                state: {
+                                    status: "success",
+                                    code: 0,
+                                    description: "action successful"
+                                }
                             }
                         }
                     }
-                }
-            end note
+                end note
+                POS_HANDLER -> TOPIC_NOTIFICATIONS: Publish Notification event\n<color #FF0000><b>Error code:</b> 2003</color>
+                activate TOPIC_NOTIFICATIONS
+                deactivate TOPIC_NOTIFICATIONS
+            else If type == 'bulk-position'
+                note right of POS_HANDLER #yellow
+                    Message: {
+                        id: <transferMessage.transferId>
+                        from: <transferMessage.payerFsp>,
+                        to: <transferMessage.payeeFsp>,
+                        type: application/json
+                        content: {
+                            headers: <transferHeaders>,
+                            payload: <transferMessage>
+                        },
+                        metadata: {
+                            event: {
+                                id: <uuid>,
+                                responseTo: <previous.uuid>,
+                                type: bulk-processing,
+                                action: reject,
+                                createdAt: <timestamp>,
+                                state: {
+                                    status: "success",
+                                    code: 0,
+                                    description: "action successful"
+                                }
+                            }
+                        }
+                    }
+                end note
+                POS_HANDLER -> TOPIC_BULK_PROCESSING: Publish Notification event\n<color #FF0000><b>Error code:</b> 2003</color>
+                activate TOPIC_BULK_PROCESSING
+                deactivate TOPIC_BULK_PROCESSING
+            end
         else action == 'abort'
             note right of POS_HANDLER #yellow
                 Message: {
@@ -267,10 +302,10 @@ group Abort Position Handler Consume
                     }
                 }
             end note
+            POS_HANDLER -> TOPIC_NOTIFICATIONS: Publish Notification event\n<color #FF0000><b>Error code:</b> 2003</color>
+            activate TOPIC_NOTIFICATIONS
+            deactivate TOPIC_NOTIFICATIONS
         end
-        POS_HANDLER -> TOPIC_NOTIFICATIONS: Publish Notification event\n<color #FF0000><b>Error code:</b> 2003</color>
-        activate TOPIC_NOTIFICATIONS
-        deactivate TOPIC_NOTIFICATIONS
     end
 
     ' TODO: We do not see how this scenario will be triggered
@@ -305,41 +340,79 @@ group Abort Position Handler Consume
             POS_DAO --> POS_HANDLER: Return success
             deactivate POS_DAO
         end
-        note right of POS_HANDLER #yellow
-            Message: {
-                id: <transferMessage.transferId>
-                from: <transferMessage.payerFsp>,
-                to: <transferMessage.payeeFsp>,
-                type: application/json
-                content: {
-                    headers: <transferHeaders>,
-                    payload: {
-                         "errorInformation": {
-                             "errorCode": 3100,
-                             "errorDescription": "Transfer failed",
-                             "extensionList": <transferMessage.extensionList>
-                         }
-                     }
-                },
-                metadata: {
-                    event: {
-                        id: <uuid>,
-                        responseTo: <previous.uuid>,
-                        type: notification,
-                        action: abort,
-                        createdAt: <timestamp>,
-                        state: {
-                            status: 'error',
-                            code: <errorInformation.errorCode>
-                            description: <errorInformation.errorDescription>
+        alt If type =='position'
+            note right of POS_HANDLER #yellow
+                Message: {
+                    id: <transferMessage.transferId>
+                    from: <transferMessage.payerFsp>,
+                    to: <transferMessage.payeeFsp>,
+                    type: application/json
+                    content: {
+                        headers: <transferHeaders>,
+                        payload: {
+                            "errorInformation": {
+                                "errorCode": 3100,
+                                "errorDescription": "Transfer failed",
+                                "extensionList": <transferMessage.extensionList>
+                            }
+                        }
+                    },
+                    metadata: {
+                        event: {
+                            id: <uuid>,
+                            responseTo: <previous.uuid>,
+                            type: notification,
+                            action: abort,
+                            createdAt: <timestamp>,
+                            state: {
+                                status: 'error',
+                                code: <errorInformation.errorCode>
+                                description: <errorInformation.errorDescription>
+                            }
                         }
                     }
                 }
-            }
-        end note
-        POS_HANDLER -> TOPIC_NOTIFICATIONS: Publish Notification event\n<color #FF0000><b>Error code:</b> 2003</color>
-        activate TOPIC_NOTIFICATIONS
-        deactivate TOPIC_NOTIFICATIONS
+            end note
+            POS_HANDLER -> TOPIC_NOTIFICATIONS: Publish Notification event\n<color #FF0000><b>Error code:</b> 2003</color>
+            activate TOPIC_NOTIFICATIONS
+            deactivate TOPIC_NOTIFICATIONS
+        else If type =='bulk-position'
+            note right of POS_HANDLER #yellow
+                Message: {
+                    id: <transferMessage.transferId>
+                    from: <transferMessage.payerFsp>,
+                    to: <transferMessage.payeeFsp>,
+                    type: application/json
+                    content: {
+                        headers: <transferHeaders>,
+                        payload: {
+                            "errorInformation": {
+                                "errorCode": 3100,
+                                "errorDescription": "Transfer failed",
+                                "extensionList": <transferMessage.extensionList>
+                            }
+                        }
+                    },
+                    metadata: {
+                        event: {
+                            id: <uuid>,
+                            responseTo: <previous.uuid>,
+                            type: bulk-processing,
+                            action: abort,
+                            createdAt: <timestamp>,
+                            state: {
+                                status: 'error',
+                                code: <errorInformation.errorCode>
+                                description: <errorInformation.errorDescription>
+                            }
+                        }
+                    }
+                }
+            end note
+            POS_HANDLER -> TOPIC_BULK_PROCESSING: Publish Notification event\n<color #FF0000><b>Error code:</b> 2003</color>
+            activate TOPIC_BULK_PROCESSING
+            deactivate TOPIC_BULK_PROCESSING
+        end
     end
 end
 deactivate POS_HANDLER
