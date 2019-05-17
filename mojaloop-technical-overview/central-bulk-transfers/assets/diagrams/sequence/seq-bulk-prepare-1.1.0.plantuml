@@ -39,16 +39,16 @@ autonumber
 actor "DFSP1\nPayer" as DFSP1
 actor "DFSP2\nPayee" as DFSP2
 boundary "ML API Adapter" as MLAPI
-control "ML API Notification \nEvent Handler" as NOTIFY_HANDLER
+control "ML API Notification \nHandler" as NOTIFY_HANDLER
 boundary "Central Service API" as CSAPI
 collections "topic-\nbulk-prepare" as TOPIC_BULK_PREPARE
-control "Bulk Prepare Handler" as BULK_PREP_HANDLER
+control "Bulk Prepare\nHandler" as BULK_PREP_HANDLER
 collections "topic-\ntransfer-prepare" as TOPIC_TRANSFER_PREPARE
 control "Prepare Handler" as PREP_HANDLER
 collections "topic-\ntransfer-position" as TOPIC_TRANSFER_POSITION
 control "Position Handler" as POS_HANDLER
 collections "topic-\nbulk-processing" as TOPIC_BULK_PROCESSING
-control "Bulk Processing Handler" as BULK_PROC_HANDLER
+control "Bulk Processing\nHandler" as BULK_PROC_HANDLER
 collections "topic-\nnotifications" as TOPIC_NOTIFICATIONS
 
 box "Financial Service Providers" #lightGray
