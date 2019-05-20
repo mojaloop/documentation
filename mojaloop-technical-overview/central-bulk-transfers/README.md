@@ -1,4 +1,4 @@
-# Bulk Transfers Design
+# Bulk Transfers Design [This is a work in progress]
 
 The Bulk Transfers scenario is described in the API Definition document regarding the resource /bulkTransfers. For details _(refer to section `6.10`)_ as per the [Mojaloop Specification](https://github.com/mojaloop/mojaloop-specification/blob/master/API%20Definition%20v1.0.pdf)
 
