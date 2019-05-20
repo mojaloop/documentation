@@ -1,6 +1,6 @@
 {
   "name": "documentation",
-  "version": "5.5.3",
+  "version": "6.1.1",
   "description": "Mojaloop Documentation GitBook Project",
   "dependencies": {
     "express": "4.16.4",
@@ -22,6 +22,7 @@
   "devDependencies": {},
   "scripts": {
     "run": "npm run gitbook:serve",
+    "start": "npm run gitbook:serveNoReload",
     "gitbook:install": "gitbook install",
     "gitbook:build": "gitbook build",
     "gitbook:serve": "gitbook serve --port 8989",

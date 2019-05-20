@@ -2,7 +2,7 @@
 
 ## 1. Deployment issues
 
-### 1.1 `ERR_NAME_NOT_RESOLVED` Error
+### 1.1. `ERR_NAME_NOT_RESOLVED` Error
 
 #### Description
 The following error is displayed when attempting to access an end-point (e.g. central-ledger.local) via the Kubernetes Service directly in a browser: `ERR_NAME_NOT_RESOLVED`

@@ -13,11 +13,39 @@ Documentation: [Mojaloop Specification]({{ book.importedVars.mojaloop.spec.uri.d
 | --- | --- | --- |
 | 1.0 | Initial release | 2018-11-01 |
 
+## Central Ledger API
+
+Documentation: [Central-Ledger Service](../mojaloop-technical-overview/central-ledger/README.md)
+
+* [Central Ledger API {{ book.importedVars.central_ledger.spec.version }} Specification](./central-ledger-api-specification.md)
+* [Swagger]({{ book.importedVars.central_ledger.spec.uri.api }})
+
+### Versions
+
+| Version | Info | Release Date |
+| --- | --- | --- |
+| 3.8.3.1 | Feature/#538 FundsIn/Out Position Changes | 2018-12-11 |
+| 3.8.3 | Initial release | 2018-11-02 |
+
+## Central Settlements API
+
+Documentation: [Central-Settlements Service](../mojaloop-technical-overview/central-settlements/README.md)
+
+* [Central Settlements API {{ book.importedVars.settlement.spec.version }} Specification](./central-settlements-api-specification.md)
+* [Swagger]({{ book.importedVars.settlement.spec.uri.api }})
+
+### Versions
+
+| Version | Info | Release Date |
+| --- | --- | --- |
+| 1.1 | Implementation driven corrections | 2019-04-03 |
+| 1.0 | Initial release | 2018-08-31 |
+
 ## ALS Oracle API
 
-Documentation: [ALS Design](../mojaloop-technical-overview/account-lookup-service/README.md)
+Documentation: [Account-Lookup Service](../mojaloop-technical-overview/account-lookup-service/README.md)
 
-* [ALS Oracle API {{ book.importedVars.als.oracle.spec.version }} Specification](./mojaloop-api-specification.md)
+* [ALS Oracle API {{ book.importedVars.als.oracle.spec.version }} Specification](./mojaloop-api-specification.md#tag-parties)
 * [Swagger]( {{ book.importedVars.als.oracle.spec.uri.api }} )
 
 Notes:
