@@ -18,14 +18,14 @@
  * Gates Foundation
  - Name Surname <name.surname@gatesfoundation.com>
 
- * Rajiv Mothilal <rajiv.mothilal@modusbox.com>
  * Georgi Georgiev <georgi.georgiev@modusbox.com>
+ * Rajiv Mothilal <rajiv.mothilal@modusbox.com>
  --------------
  ******'/
 
 @startuml
 ' declare title
-title 2.3.1. Timeout Handler Consume 
+title 2.3.1. Timeout Handler Consume (incl. Bulk Transfer)
 
 autonumber
 
@@ -37,10 +37,11 @@ autonumber
 '   database - Database Persistance Store
 
 ' declare actors
-control "Transfer Timeout Handler" as TIMEOUT_HANDLER
-collections "topic-transfer-position" as TOPIC_TRANSFER_POSITION
-collections "Notification-Topic" as NOTIFICATIONS_TOPIC
-collections "Event-Topic" as EVENT_TOPIC
+control "Transfer Timeout\nHandler" as TIMEOUT_HANDLER
+collections "Transfer-Position-\nTopic" as TOPIC_TRANSFER_POSITION
+collections "Notification-\nTopic" as NOTIFICATIONS_TOPIC
+collections "Event-\nTopic" as EVENT_TOPIC
+collections "Bulk-Processing-\nTopic" as BULK_PROCESSING_TOPIC
 entity "Segment DAO" as SEGMENT_DAO
 entity "Position DAO" as POS_DAO
 database "Central Store" as DB
@@ -50,6 +51,7 @@ box "Central Service" #LightYellow
     participant TOPIC_TRANSFER_POSITION
     participant NOTIFICATIONS_TOPIC
     participant EVENT_TOPIC
+    participant BULK_PROCESSING_TOPIC
     participant POS_DAO
     participant SEGMENT_DAO
     participant DB
@@ -61,7 +63,7 @@ group Timeout Handler Consume
     activate TIMEOUT_HANDLER
     group Persist Event Information
         TIMEOUT_HANDLER -> EVENT_TOPIC: Publish event information
-        ref over TIMEOUT_HANDLER, EVENT_TOPIC :  Event Handler Consume {[[https://github.com/mojaloop/docs/blob/master/Diagrams/SequenceDiagrams/seq-event-9.1.0.svg 9.1.0]]}
+        ref over TIMEOUT_HANDLER, EVENT_TOPIC :  Event Handler Consume {[[https://TODO-input-path-to/**/seq-event-9.1.0.svg 9.1.0]]}
     end
 
     group Get previous checkpoint of last record processed (Lower limit for inclusion)
@@ -207,7 +209,7 @@ group Timeout Handler Consume
         POS_DAO -> DB: Get list of transfers to be expired with current state
         hnote over DB #lightyellow
             SELECT tt.*, tsc.transferStateId, tp1.participantCurrencyId payerParticipantId, 
-                    tp2.participantCurrencyId payeeParticipantId
+                    tp2.participantCurrencyId payeeParticipantId, bta.bulkTransferId
             FROM **transferTimeout** tt
             JOIN (SELECT tsc1.transferId, MAX(tsc1.transferStateChangeId) maxTransferStateChangeId
                     FROM **transferStateChange** tsc1
@@ -225,118 +227,192 @@ group Timeout Handler Consume
             ON tp2.transferId = tt.transferId
             AND tp2.transferParticipantRoleTypeId = {PAYEE_DFSP}
             AND tp2.ledgerEntryTypeId = {PRINCIPLE_VALUE}
+            LEFT JOIN **bulkTransferAssociation** bta
+            ON bta.transferId = tt.transferId
             WHERE tt.expirationDate < {transactionTimestamp}
         end note
         activate DB
-        POS_DAO <-- DB: Return list
+        POS_DAO <-- DB: Return **transferTimeoutList**
         deactivate DB
-        POS_DAO --> TIMEOUT_HANDLER: Return list
+        POS_DAO --> TIMEOUT_HANDLER: Return **transferTimeoutList**
         deactivate POS_DAO
     end
 
     loop for each transfer in the list
         |||
-        note right of TIMEOUT_HANDLER #lightgray
-            **TODO**: <color #FF0000>Red</color> in the bellow messages is to be discussed with the DA 
-            during review because at this point the referred data is not available.
-        end note
-
-        alt transferStateId == 'RECEIVED_PREPARE'
-            note right of TIMEOUT_HANDLER #yellow
-                Message:
-                {
-                    id: <transferId>,
-                    from: <payerParticipantId>,
-                    to: <payeeParticipantId>,
-                    type: application/json,
-                    content: {
-                        <color #FF0000>headers:</color> {
-                            Content-Length: <Content-Length>,
-                            Content-Type: <Content-Type>,
-                            Date: <Date>,
-                            X-Forwarded-For: <X-Forwarded-For>,
-                            FSPIOP-Source: <FSPIOP-Source>,
-                            FSPIOP-Destination: <FSPIOP-Destination>,
-                            FSPIOP-Encryption: <FSPIOP-Encryption>,
-                            FSPIOP-Signature: <FSPIOP-Signature>,
-                            FSPIOP-URI: <FSPIOP-URI>,
-                            FSPIOP-HTTP-Method: <FSPIOP-HTTP-Method>
+        alt transferTimeoutList.bulkTransferId == NULL (Regular Transfer)
+            alt transferStateId == 'RECEIVED_PREPARE'
+                note right of TIMEOUT_HANDLER #yellow
+                    Message:
+                    {
+                        id: <transferId>,
+                        from: <payerParticipantId>,
+                        to: <payeeParticipantId>,
+                        type: application/json,
+                        content: {
+                            headers: {
+                                Content-Length: <Content-Length>,
+                                Content-Type: <Content-Type>,
+                                Date: <Date>,
+                                X-Forwarded-For: <X-Forwarded-For>,
+                                FSPIOP-Source: <FSPIOP-Source>,
+                                FSPIOP-Destination: <FSPIOP-Destination>,
+                                FSPIOP-Encryption: <FSPIOP-Encryption>,
+                                FSPIOP-Signature: <FSPIOP-Signature>,
+                                FSPIOP-URI: <FSPIOP-URI>,
+                                FSPIOP-HTTP-Method: <FSPIOP-HTTP-Method>
+                            },
+                            payload: {
+                                "errorInformation": {
+                                    "errorCode": 3303,
+                                    "errorDescription": "Transfer expired",
+                                    "extensionList": <transferMessage.extensionList>
+                                }
+                            }
                         },
-                        payload: {
-                             "errorInformation": {
-                                 "errorCode": 3303,
-                                 "errorDescription": "Transfer expired",
-                                 "extensionList": <transferMessage.extensionList>
-                             }
-                        }
-                    },
-                    metadata: {
-                        event: {
-                            id: <uuid>,
-                            type: notification,
-                            action: timeout-received,
-                            createdAt: <timestamp>,
-                            state: {
-                                status: 'error',
-                                code: <errorInformation.errorCode>
-                                description: <errorInformation.errorDescription>
+                        metadata: {
+                            event: {
+                                id: <uuid>,
+                                type: notification,
+                                action: timeout-received,
+                                createdAt: <timestamp>,
+                                state: {
+                                    status: 'error',
+                                    code: <errorInformation.errorCode>
+                                    description: <errorInformation.errorDescription>
+                                }
                             }
                         }
                     }
-                }
-            end note
-            TIMEOUT_HANDLER -> EVENT_TOPIC: Publish Notification event
-            activate EVENT_TOPIC
-            deactivate EVENT_TOPIC
-        else transferStateId == 'RESERVED'
-            note right of TIMEOUT_HANDLER #yellow
-                Message:
-                {
-                    id: <transferId>,
-                    from: <payerParticipantId>,
-                    to: <payeeParticipantId>,
-                    type: application/json,
-                    content: {
-                        <color #FF0000>headers:</color> {
-                            Content-Length: <Content-Length>,
-                            Content-Type: <Content-Type>,
-                            Date: <Date>,
-                            X-Forwarded-For: <X-Forwarded-For>,
-                            FSPIOP-Source: <FSPIOP-Source>,
-                            FSPIOP-Destination: <FSPIOP-Destination>,
-                            FSPIOP-Encryption: <FSPIOP-Encryption>,
-                            FSPIOP-Signature: <FSPIOP-Signature>,
-                            FSPIOP-URI: <FSPIOP-URI>,
-                            FSPIOP-HTTP-Method: <FSPIOP-HTTP-Method>
-                        },
-                        payload: {
-                            "errorInformation": {
-                                "errorCode": 3303,
-                                "errorDescription": "Transfer expired",
-                                "extensionList": <transferMessage.extensionList>
+                end note
+                TIMEOUT_HANDLER -> NOTIFICATIONS_TOPIC: Publish Notification event
+                activate NOTIFICATIONS_TOPIC
+                deactivate NOTIFICATIONS_TOPIC
+            else transferStateId == 'RESERVED'
+                note right of TIMEOUT_HANDLER #yellow
+                    Message:
+                    {
+                        id: <transferId>,
+                        from: <payerParticipantId>,
+                        to: <payeeParticipantId>,
+                        type: application/json,
+                        content: {
+                            headers: {
+                                Content-Length: <Content-Length>,
+                                Content-Type: <Content-Type>,
+                                Date: <Date>,
+                                X-Forwarded-For: <X-Forwarded-For>,
+                                FSPIOP-Source: <FSPIOP-Source>,
+                                FSPIOP-Destination: <FSPIOP-Destination>,
+                                FSPIOP-Encryption: <FSPIOP-Encryption>,
+                                FSPIOP-Signature: <FSPIOP-Signature>,
+                                FSPIOP-URI: <FSPIOP-URI>,
+                                FSPIOP-HTTP-Method: <FSPIOP-HTTP-Method>
+                            },
+                            payload: {
+                                "errorInformation": {
+                                    "errorCode": 3303,
+                                    "errorDescription": "Transfer expired",
+                                    "extensionList": <transferMessage.extensionList>
+                                }
                             }
-                        }
-                    },
-                    metadata: {
-                        event: {
-                            id: <uuid>,
-                            type: position,
-                            action: timeout-reserved,
-                            createdAt: <timestamp>,
-                            state: {
-                                status: 'error',
-                                code: <errorInformation.errorCode>
-                                description: <errorInformation.errorDescription>
+                        },
+                        metadata: {
+                            event: {
+                                id: <uuid>,
+                                type: position,
+                                action: timeout-reserved,
+                                createdAt: <timestamp>,
+                                state: {
+                                    status: 'error',
+                                    code: <errorInformation.errorCode>
+                                    description: <errorInformation.errorDescription>
+                                }
                             }
                         }
                     }
-                }
-            end note
-            TIMEOUT_HANDLER -> TOPIC_TRANSFER_POSITION: Route & Publish Position event
-            activate TOPIC_TRANSFER_POSITION
-            deactivate TOPIC_TRANSFER_POSITION
+                end note
+                TIMEOUT_HANDLER -> TOPIC_TRANSFER_POSITION: Route & Publish Position event
+                activate TOPIC_TRANSFER_POSITION
+                deactivate TOPIC_TRANSFER_POSITION
+            end
+        else Individual Transfer from a Bulk
+            alt transferStateId == 'RECEIVED_PREPARE'
+                note right of TIMEOUT_HANDLER #yellow
+                    Message:
+                    {
+                        <color #red>id</color>: <transferTimeoutList.bulkTransferId>,
+                        <color #red>transferId</color>: <transferTimeoutList.transferId>,
+                        from: <payerParticipantId>,
+                        to: <payeeParticipantId>,
+                        type: application/json,
+                        content: {
+                            headers: <bulkTransferHeaders>,
+                            payload: {
+                                "errorInformation": {
+                                    "errorCode": 3303,
+                                    "errorDescription": "Transfer expired",
+                                    "extensionList": <transferMessage.extensionList>
+                                }
+                            }
+                        },
+                        metadata: {
+                            event: {
+                                id: <uuid>,
+                                type: bulk-notification,
+                                action: bulk-timeout-received,
+                                createdAt: <timestamp>,
+                                state: {
+                                    status: 'error',
+                                    code: <errorInformation.errorCode>
+                                    description: <errorInformation.errorDescription>
+                                }
+                            }
+                        }
+                    }
+                end note
+                TIMEOUT_HANDLER -> BULK_PROCESSING_TOPIC: Publish Bulk Notification event for processing
+                activate BULK_PROCESSING_TOPIC
+                deactivate BULK_PROCESSING_TOPIC
+            else transferStateId == 'RESERVED'
+                note right of TIMEOUT_HANDLER #yellow
+                    Message:
+                    {
+                        <color #red>id</color>: <transferTimeoutList.bulkTransferId>,
+                        <color #red>transferId</color>: <transferTimeoutList.transferId>,
+                        from: <payerParticipantId>,
+                        to: <payeeParticipantId>,
+                        type: application/json,
+                        content: {
+                            headers: <bulkTransferHeaders>,,
+                            payload: {
+                                "errorInformation": {
+                                    "errorCode": 3303,
+                                    "errorDescription": "Transfer expired",
+                                    "extensionList": <transferMessage.extensionList>
+                                }
+                            }
+                        },
+                        metadata: {
+                            event: {
+                                id: <uuid>,
+                                type: position,
+                                action: bulk-timeout-reserved,
+                                createdAt: <timestamp>,
+                                state: {
+                                    status: 'error',
+                                    code: <errorInformation.errorCode>
+                                    description: <errorInformation.errorDescription>
+                                }
+                            }
+                        }
+                    }
+                end note
+                TIMEOUT_HANDLER -> TOPIC_TRANSFER_POSITION: Route & Publish Position event
+                activate TOPIC_TRANSFER_POSITION
+                deactivate TOPIC_TRANSFER_POSITION
+            end
         end
-
     end
 
     deactivate TIMEOUT_HANDLER
