@@ -360,6 +360,7 @@ group Bulk Prepare Handler Consume
                     bulkTransferParticipant
                     bulkTransferStateChange
                     bulkTransferExtension
+                    bulkTransferAssociation
                 end note
                 activate DB
                 deactivate DB
@@ -377,6 +378,7 @@ group Bulk Prepare Handler Consume
                     bulkTransferStateChange
                     bulkTransferExtension
                     bulkTransferError
+                    bulkTransferAssociation
                 end note
                 activate DB
                 deactivate DB
