@@ -83,8 +83,8 @@ group Prepare Handler Consume
     end
 
     group Validate Prepare Transfer 
-        PREP_HANDLER <-> PREP_HANDLER: <color #AAA>Schema validation of the incoming message</color>
-        PREP_HANDLER <-> PREP_HANDLER: <color #AAA>Verify the message's signature (to be confirmed in future requirement)</color>
+        PREP_HANDLER <-> PREP_HANDLER: <color #gray>Schema validation of the incoming message</color>
+        PREP_HANDLER <-> PREP_HANDLER: <color #gray>Verify the message's signature (to be confirmed in future requirement)</color>
         note right of PREP_HANDLER #lightgrey
             The above validation steps are already handled by
             the ML-Adapter for the open source implementation.

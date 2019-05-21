@@ -64,16 +64,16 @@ group Fulfil Handler Consume (Success)
         deactivate TOPIC_FULFIL
         break
             group Validate Event
-                FULF_HANDLER <-> FULF_HANDLER: Validate event - Rule: type IN ['fulfil','bulk-fulfil'] && action == 'commit'\n<color #FF0000><b>Error codes:</b> 2001</color>
+                FULF_HANDLER <-> FULF_HANDLER: Validate event - Rule: type IN ['fulfil', 'bulk-fulfil'] &&\naction == 'commit'\n<color #FF0000><b>Error codes:</b> 2001</color>
             end
         end
         group Persist Event Information
             FULF_HANDLER -> TOPIC_EVENT: Publish event information
-            ref over FULF_HANDLER, TOPIC_EVENT:  Event Handler Consume {[[https://github.com/mojaloop/docs/blob/master/Diagrams/SequenceDiagrams/seq-event-9.1.0.svg 9.1.0]]}
+            ref over FULF_HANDLER, TOPIC_EVENT: Event Handler Consume\n
         end
         group Validate FSPIOP-Signature
             |||
-            ref over FULF_HANDLER, TOPIC_NOTIFICATIONS: Validate message.content.headers.**FSPIOP-Signature** {[[https://github.com/mojaloop/docs/blob/master/Diagrams/SequenceDiagrams/seq-signature-validation.svg seq-signature-validation]]} \n<color #FF0000><b>Error codes:</b> 3105/3106</color>
+            ref over FULF_HANDLER, TOPIC_NOTIFICATIONS: Validate message.content.headers.**FSPIOP-Signature**\n<color #FF0000><b>Error codes:</b> 3105/3106</color>
         end
         group Validate Transfer Fulfilment Duplicate Check
             FULF_HANDLER -> FULF_HANDLER: Generate transferFulfilmentId uuid
@@ -93,7 +93,7 @@ group Fulfil Handler Consume (Success)
             FULF_HANDLER -> FULF_HANDLER: Loop the list of returned hashes and compare \neach entry with the calculated message hash
             alt Hash matched
                 ' Need to check what respond with same results if finalised then resend, else ignore and wait for response
-                FULF_HANDLER -> TOPIC_EVENT: Publish event information (for duplicate) \n(Event Handler Consume {[[https://github.com/mojaloop/docs/blob/master/Diagrams/SequenceDiagrams/seq-event-9.1.0.svg 9.1.0]]} )
+                FULF_HANDLER -> TOPIC_EVENT: Publish event information (for duplicate) \n(Event Handler Consume)
                 FULF_HANDLER -> POS_DAO: Request to retrieve Transfer Fulfilment and Transfer state\n<color #FF0000><b>Error code:</b> 2003</color>
                 activate POS_DAO
                 POS_DAO -> DB: Request to retrieve Transfer Fulfilment and Transfer state
@@ -173,7 +173,7 @@ group Fulfil Handler Consume (Success)
                 else transferState IN ['COMMITTED', 'ABORTED']
                     break
                         alt If type == 'fulfil'
-                            ref over FULF_HANDLER, TOPIC_NOTIFICATIONS: Send notification to Participant (Payee) {[[https://github.com/mojaloop/docs/blob/master/Diagrams/SequenceDiagrams/seq-prepare-1.1.4.a.svg 1.1.4.a]]} \n
+                            ref over FULF_HANDLER, TOPIC_NOTIFICATIONS: Send notification to Participant (Payee)\n
                         else If type == 'bulk-fulfil'
                             note right of FULF_HANDLER #yellow
                             Message:
@@ -195,7 +195,7 @@ group Fulfil Handler Consume (Success)
                                         createdAt: <timestamp>,
                                         state: {
                                             status: "success",
-                                            code: 1
+                                            code: 0
                                         }
                                     }
                                 }
@@ -235,7 +235,7 @@ group Fulfil Handler Consume (Success)
                                         createdAt: <timestamp>,
                                         state: {
                                             status: "success",
-                                            code: 1
+                                            code: 0
                                         }
                                     }
                                 }

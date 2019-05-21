@@ -70,11 +70,11 @@ group Fulfil Handler Consume (Failure)
         end
         group Persist Event Information
             FULF_HANDLER -> TOPIC_EVENT: Publish event information
-            ref over FULF_HANDLER, TOPIC_EVENT:  Event Handler Consume {[[https://github.com/mojaloop/docs/blob/master/Diagrams/SequenceDiagrams/seq-event-9.1.0.svg 9.1.0]]}
+            ref over FULF_HANDLER, TOPIC_EVENT:  Event Handler Consume\n
         end
         group Validate FSPIOP-Signature
             |||
-            ref over FULF_HANDLER, TOPIC_NOTIFICATIONS: Validate message.content.headers.**FSPIOP-Signature** {[[https://github.com/mojaloop/docs/blob/master/Diagrams/SequenceDiagrams/seq-signature-validation.svg seq-signature-validation]]} \n<color #FF0000><b>Error codes:</b> 2001</color>
+            ref over FULF_HANDLER, TOPIC_NOTIFICATIONS: Validate message.content.headers.**FSPIOP-Signature**\n<color #FF0000><b>Error codes:</b> 2001</color>
         end
         group Validate Transfer Fulfil Duplicate Check
             FULF_HANDLER -> FULF_HANDLER: Generate transferFulfilmentId uuid
@@ -128,7 +128,7 @@ group Fulfil Handler Consume (Failure)
                                         action: fulfil-duplicate,
                                         createdAt: <timestamp>,
                                         state: {
-                                            status: "fail",
+                                            status: "error",
                                             code: 1
                                         }
                                     }
@@ -158,7 +158,7 @@ group Fulfil Handler Consume (Failure)
                                         action: fulfil-duplicate,
                                         createdAt: <timestamp>,
                                         state: {
-                                            status: "fail",
+                                            status: "error",
                                             code: 1
                                         }
                                     }
@@ -173,7 +173,7 @@ group Fulfil Handler Consume (Failure)
                 else transferState IN ['COMMITTED', 'ABORTED']
                     break
                         alt If type == 'fulfil'
-                            ref over FULF_HANDLER, TOPIC_NOTIFICATIONS: Send notification to Participant (Payee) {[[https://github.com/mojaloop/docs/blob/master/Diagrams/SequenceDiagrams/seq-prepare-1.1.4.a.svg 1.1.4.a]]} \n
+                            ref over FULF_HANDLER, TOPIC_NOTIFICATIONS: Send notification to Participant (Payee)\n
                         else If type == 'bulk-fulfil'
                             note right of FULF_HANDLER #yellow
                             Message:
@@ -195,7 +195,7 @@ group Fulfil Handler Consume (Failure)
                                         createdAt: <timestamp>,
                                         state: {
                                             status: "success",
-                                            code: 1
+                                            code: 0
                                         }
                                     }
                                 }
@@ -235,7 +235,7 @@ group Fulfil Handler Consume (Failure)
                                         createdAt: <timestamp>,
                                         state: {
                                             status: "success",
-                                            code: 1
+                                            code: 0
                                         }
                                     }
                                 }
@@ -377,7 +377,7 @@ group Reference: Validate Transfer Error Message not successful
                     action: abort,
                     createdAt: <timestamp>,
                     state: {
-                        status: "fail",
+                        status: "error",
                         code: 1
                     }
                 }
@@ -407,7 +407,7 @@ group Reference: Validate Transfer Error Message not successful
                     action: abort,
                     createdAt: <timestamp>,
                     state: {
-                        status: "fail",
+                        status: "error",
                         code: 1
                     }
                 }
@@ -505,7 +505,7 @@ group Reference: Failure in validation
                     action: reject,
                     createdAt: <timestamp>,
                     state: {
-                        status: "fail",
+                        status: "error",
                         code: 1
                     }
                 }
@@ -535,7 +535,7 @@ group Reference: Failure in validation
                     action: reject,
                     createdAt: <timestamp>,
                     state: {
-                        status: "fail",
+                        status: "error",
                         code: 1
                     }
                 }
