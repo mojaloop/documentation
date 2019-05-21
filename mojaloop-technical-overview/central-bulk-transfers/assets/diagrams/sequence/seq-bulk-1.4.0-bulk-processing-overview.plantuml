@@ -63,14 +63,14 @@ group Bulk Processing Handler Consume
 
     break
         group Validate Event
-            BULK_PROC_HANDLER <-> BULK_PROC_HANDLER: Validate event - Rule:\ntype == 'bulk-processing' && \naction IN ['prepare-duplicate','prepare','position',\n'fulfil-duplicate','reject','commit']\n<color #FF0000><b>Error codes:</b> 2001</color>
+            BULK_PROC_HANDLER <-> BULK_PROC_HANDLER: Validate event - Rule:\ntype == 'bulk-processing' && action IN\n['prepare-duplicate', 'prepare', 'position',\n'fulfil-duplicate', 'reject', 'commit']\n<color #FF0000><b>Error codes:</b> 2001</color>
         end
     end
 
     group Persist Event Information
         |||
         BULK_PROC_HANDLER -> TOPIC_EVENTS: Publish event information
-        ref over BULK_PROC_HANDLER, TOPIC_EVENTS:  Event Handler Consume {[[https://TODO-input-path-to/**/seq-event-9.1.0.svg 9.1.0]]} \n
+        ref over BULK_PROC_HANDLER, TOPIC_EVENTS:  Event Handler Consume\n
         |||
     end
 

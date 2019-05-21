@@ -175,11 +175,11 @@ group DFSP1 sends a Bulk Prepare Transfer request to DFSP2
     alt Success
         BULK_PREP_HANDLER -> TOPIC_TRANSFER_PREPARE: Produce message
     else Failure
-        BULK_PREP_HANDLER --> TOPIC_BULK_PROCESSING: Produce message
+        BULK_PREP_HANDLER --> TOPIC_NOTIFICATIONS: Produce message
     end
     |||
     TOPIC_TRANSFER_PREPARE <- PREP_HANDLER: Consume message
-    ref over TOPIC_TRANSFER_PREPARE, PREP_HANDLER, TOPIC_TRANSFER_POSITION :  Prepare Handler Consume {[[https://github.com/mojaloop/docs/blob/master/CentralServices/seq_diagrams/seq-prepare-1.1.1.a.svg 1.1.1.a]], [[https://github.com/mojaloop/docs/blob/master/CentralServices/seq_diagrams/seq-prepare-1.1.1.b.svg 1.1.1.b]]} \n
+    ref over TOPIC_TRANSFER_PREPARE, PREP_HANDLER, TOPIC_TRANSFER_POSITION :  Prepare Handler Consume\n
     alt Success
         PREP_HANDLER -> TOPIC_TRANSFER_POSITION: Produce message
     else Failure
@@ -187,7 +187,7 @@ group DFSP1 sends a Bulk Prepare Transfer request to DFSP2
     end
     |||
     TOPIC_TRANSFER_POSITION <- POS_HANDLER: Consume message
-    ref over TOPIC_TRANSFER_POSITION, POS_HANDLER, TOPIC_BULK_PROCESSING : Position Handler Consume {[[https://github.com/mojaloop/docs/blob/master/CentralServices/seq_diagrams/seq-prepare-1.1.2.a.svg 1.1.2.a]], [[https://github.com/mojaloop/docs/blob/master/CentralServices/seq_diagrams/seq-prepare-1.1.2.b.svg 1.1.2.b]]} \n
+    ref over TOPIC_TRANSFER_POSITION, POS_HANDLER, TOPIC_BULK_PROCESSING : Position Handler Consume\n
     POS_HANDLER -> TOPIC_BULK_PROCESSING: Produce message
     |||
     TOPIC_BULK_PROCESSING <- BULK_PROC_HANDLER: Consume message
@@ -195,7 +195,7 @@ group DFSP1 sends a Bulk Prepare Transfer request to DFSP2
     BULK_PROC_HANDLER --> TOPIC_NOTIFICATIONS: Send Bulk Prepare notification
     |||
     TOPIC_NOTIFICATIONS <- NOTIFY_HANDLER: Consume message
-    ref over DFSP2, TOPIC_NOTIFICATIONS : Send notification to Participant (Payee) {[[https://github.com/mojaloop/docs/blob/master/CentralServices/seq_diagrams/seq-prepare-1.1.4.a.svg 1.1.4.a]], [[https://github.com/mojaloop/docs/blob/master/CentralServices/seq_diagrams/seq-prepare-1.1.4.b.svg 1.1.4.b]]} \n
+    ref over DFSP2, TOPIC_NOTIFICATIONS : Send notification to Participant (Payee)\n
     NOTIFY_HANDLER -> DFSP2: Send Bulk Prepare notification to Payee
     |||
 end
