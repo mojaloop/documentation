@@ -310,7 +310,7 @@ group Reference: Postion Validation Success case (Prepare)
                     event: {
                         id: <uuid>,
                         responseTo: <previous.uuid>,
-                        type: bulk-transfer,
+                        type: bulk-processing,
                         action: prepare,
                         createdAt: <timestamp>,
                         state: {
@@ -338,7 +338,7 @@ group Reference: Postion Validation Success case (Prepare)
                     event: {
                         id: <uuid>,
                         responseTo: <previous.uuid>,
-                        type: transfer,
+                        type: notification,
                         action: prepare,
                         createdAt: <timestamp>,
                         state: {
