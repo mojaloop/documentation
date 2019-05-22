@@ -78,13 +78,13 @@ group Bulk Prepare Handler Consume
 
     group Validate Bulk Prepare Transfer 
         BULK_PREP_HANDLER <-> BULK_PREP_HANDLER: <color #gray>Schema validation of the incoming message</color>
-        BULK_PREP_HANDLER <-> BULK_PREP_HANDLER: Validate that there are no duplicate \nindividualTransfers (transfer IDs) \nfrom the same bulk
         BULK_PREP_HANDLER <-> BULK_PREP_HANDLER: <color #gray>Verify the message's signature (to be confirmed in future requirement)</color>
         note right of BULK_PREP_HANDLER #lightgrey
             The above validation steps are already handled by
             the ML-Adapter for the open source implementation.
             It may need to be added in future for custom adapters.
         end note
+        BULK_PREP_HANDLER <-> BULK_PREP_HANDLER: Validate that there are no duplicate individualTransfers \n(transfer IDs) from the same bulk. \nOn failure, send bulk error message to Payer. \nNo further processing on individual transfers is done
         group Validate Duplicate check
             note right of BULK_PREP_HANDLER #Cyan
                 The Specification doesn't touch on the duplicate handling
