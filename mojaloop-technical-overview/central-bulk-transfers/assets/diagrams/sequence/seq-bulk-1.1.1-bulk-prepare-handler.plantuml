@@ -78,6 +78,7 @@ group Bulk Prepare Handler Consume
 
     group Validate Bulk Prepare Transfer 
         BULK_PREP_HANDLER <-> BULK_PREP_HANDLER: <color #gray>Schema validation of the incoming message</color>
+        BULK_PREP_HANDLER <-> BULK_PREP_HANDLER: Validate that there are no duplicate \nindividualTransfers (transfer IDs) \nfrom the same bulk
         BULK_PREP_HANDLER <-> BULK_PREP_HANDLER: <color #gray>Verify the message's signature (to be confirmed in future requirement)</color>
         note right of BULK_PREP_HANDLER #lightgrey
             The above validation steps are already handled by
