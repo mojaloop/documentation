@@ -40,6 +40,9 @@ autonumber
   from: timeout-handler , action: timeout-received/error   , result: unchanged/COMPLETED      & EXPIRED
   --------------
   ACCEPTED/ACCEPTED
+  from: position-handler, action: timeout-reserved/error   , result: unchanged/COMPLETED      & EXPIRED
+  --------------
+  PROCESSING/ACCEPTED
   from: fulfil-handler  , action: fulfil-duplicate/success , result: PENDING_FULFIL/COMPLETED & FULFIL_DUPLICATE
   from: fulfil-handler  , action: fulfil-duplicate/error   , result: PENDING_FULFIL/COMPLETED & FULFIL_DUPLICATE
   from: position-handler, action: commit/success           , result: PENDING_FULFIL/COMPLETED & COMPLETED
@@ -140,7 +143,7 @@ group Bulk Processing Handler Consume
                     note right of BULK_PROC_HANDLER #lightgrey
                         processingState = 'ACCEPTED'
                     end note
-                else action == 'timeout-received'
+                else action IN ['timeout-received', 'timeout-reserved']
                     note right of BULK_PROC_HANDLER #lightgrey
                         incompleteBulkState = null
                         completedBulkState = 'COMPLETED'
@@ -168,7 +171,7 @@ group Bulk Processing Handler Consume
                 end
             else bulkTransferInfo.bulkTransferState IN ['PROCESSING', 'PENDING_FULFIL']
                 note right of BULK_PROC_HANDLER #lightgrey
-                    criteriaState = 'PROCESSING'
+                    criteriaState = 'ACCEPTED'
                     incompleteBulkState = 'PENDING_FULFIL'
                     completedBulkState = 'COMPLETED'
                 end note
@@ -290,6 +293,10 @@ group Bulk Processing Handler Consume
                         }
                     }
                 end note
+                note right of BULK_PROC_HANDLER #lightgrey
+                    Depending on the action decide where to
+                    send notification: payer, payee OR both
+                end note
                 BULK_PROC_HANDLER -> TOPIC_NOTIFICATION: Publish Notification event for Payer/Payee\n<color #FF0000><b>Error codes:</b> 2003</color>
                 activate TOPIC_NOTIFICATION
                 deactivate TOPIC_NOTIFICATION
@@ -335,6 +342,10 @@ group Bulk Processing Handler Consume
                             }
                         }
                     }
+                end note
+                note right of BULK_PROC_HANDLER #lightgrey
+                    Depending on the action decide where to
+                    send notification: payer, payee OR both
                 end note
                 BULK_PROC_HANDLER -> TOPIC_NOTIFICATION: Publish Notification event for Payer/Payee\n<color #FF0000><b>Error codes:</b> 2003</color>
                 activate TOPIC_NOTIFICATION
