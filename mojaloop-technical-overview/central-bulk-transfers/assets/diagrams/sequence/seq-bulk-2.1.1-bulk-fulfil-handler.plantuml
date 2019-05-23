@@ -190,7 +190,7 @@ group Bulk Fulfil Handler Consume
         BULK_FULF_HANDLER -> BULK_FULF_HANDLER: Break down the bulk into indidivual transfers\n<color #FF0000><b>Error codes:</b> 2003</color>
         loop for every individual transfer in the bulk fulfil list
 
-            group Update Bulk Transfer Association (with bulkProcessingState='PROCESSING')
+            /' group Update Bulk Transfer Association (with bulkProcessingState='PROCESSING')
                 BULK_FULF_HANDLER -> BULK_DAO: Request to persist bulk transfer association\n<color #FF0000><b>Error codes:</b> 2003</color>
                 activate BULK_DAO
                 BULK_DAO -> DB: Update bulkTransferAssociation
@@ -201,7 +201,7 @@ group Bulk Fulfil Handler Consume
                 deactivate DB
                 BULK_DAO --> BULK_FULF_HANDLER: Return success
                 deactivate BULK_DAO
-            end
+            end '/
 
             note right of BULK_FULF_HANDLER #yellow
                 Message:
