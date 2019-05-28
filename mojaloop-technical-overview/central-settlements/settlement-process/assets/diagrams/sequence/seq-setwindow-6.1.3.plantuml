@@ -1,0 +1,120 @@
+/'*****
+ License
+ --------------
+ Copyright © 2017 Bill & Melinda Gates Foundation
+ The Mojaloop files are made available by the Bill & Melinda Gates Foundation under the Apache License, Version 2.0 (the "License") and you may not use these files except in compliance with the License. You may obtain a copy of the License at
+ http://www.apache.org/licenses/LICENSE-2.0
+ Unless required by applicable law or agreed to in writing, the Mojaloop files are distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+ Contributors
+ --------------
+ This is the official list of the Mojaloop project contributors for this file.
+ Names of the original copyright holders (individuals or organizations)
+ should be listed with a '*' in the first column. People who have
+ contributed from an organization can be listed under the organization
+ that actually holds the copyright for their contributions (see the
+ Gates Foundation organization for an example). Those individuals should have
+ their names indented and be marked with a '-'. Email address can be added
+ optionally within square brackets <email>.
+ * Gates Foundation
+ - Name Surname <name.surname@gatesfoundation.com>
+
+ * Georgi Georgiev <georgi.georgiev@modusbox.com>
+ --------------
+ ******'/
+
+@startuml
+' declate title
+title 6.1.3. Get Settlement Windows By Parameters (getSettlementWindowsByParams)
+
+autonumber
+
+' declare actors
+
+actor "Hub Employee" as OPERATOR
+boundary "Settlement Service API" as SSAPI
+entity "Settlement DAO" as SETTLE_DAO
+database "Central Store" as DB
+
+box "Central HUB" #lightpink
+    participant OPERATOR
+end box
+
+box "Settlement Service" #lightgreen
+    participant SSAPI
+    participant SETTLE_DAO
+end box
+
+box "Central Services" #lightyellow
+    participant DB
+end box
+
+' start flow
+
+group Get Settlement Windows By Parameters
+    activate OPERATOR
+    note right of OPERATOR #yellow
+        **Params:**
+        ?participantId={participantId}
+        &state={state}
+        &fromDateTime={fromDateTime}
+        &toDateTime={toDateTime}
+    end note
+    OPERATOR -> SSAPI: GET - /settlementWindows/{params}
+    activate SSAPI
+    SSAPI -> SETTLE_DAO: Request settlementWindow\n<color #FF0000><b>Error code:</b> 2001</color>
+    activate SETTLE_DAO
+    SETTLE_DAO -> DB: Request settlementWindows
+    activate DB
+    hnote over DB #lightyellow
+        SELECT DISTINCT sw.settlementId, swsc.settlementWindowStateId,
+               swsc.reason, sw.createdDate, swsc.createdDate changedDate
+        FROM **settlementWindow** sw
+        JOIN **settlementWindowStateChange** swsc
+        ON swsc.settlementWindowStateChangeId = sw.currentStateChangeId
+        JOIN **transferFulfilment** tf
+        ON tf.settlementWindowId = sw.settlementWindowId
+        JOIN **transferParticipant** tp
+        ON tp.transferId = tf.transferId
+        JOIN **participantCurrency** pc
+        ON pc.participantCurrencyId = tp.participantCurrencyId
+        [WHERE pc.participantId = {participantId}]
+        [AND swsc.settlementWindowStateId = {state}]
+        [AND sw.createdDate >= {fromDateTime}]
+        [AND sw.createdDate <= {toDateTime}]
+
+    end hnote
+    SETTLE_DAO <-- DB: Return data
+    deactivate DB
+    SSAPI <-- SETTLE_DAO: Return **settlementWindows**
+    deactivate SETTLE_DAO
+    alt One or more records found
+        note left of SSAPI #yellow
+            [
+                {
+                    "id": settlementWindow.settlementId,
+                    "state": settlementWindow.settlementWindowStateId,
+                    "reason": settlementWindow.reason,
+                    "createdDate": settlementWindow.createdDate,
+                    "changedDate": settlementWindow.changedDate
+                }
+            ]
+        end note
+        OPERATOR <-- SSAPI: Respond HTTP - 200 (OK)
+    else 
+        note right of SSAPI #lightgray
+            Log ERROR event
+        end note
+        note left of SSAPI #yellow
+            {
+                "errorInformation": {
+                    "errorCode": <integer>,
+                    "errorDescription": "Client error description"
+                }
+            }
+        end note
+        OPERATOR <-- SSAPI: Respond HTTP - 4xx (Client error)
+        deactivate SSAPI
+    deactivate OPERATOR
+    end
+end
+@enduml

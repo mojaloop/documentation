@@ -1,0 +1,278 @@
+/'*****
+ License
+ --------------
+ Copyright © 2017 Bill & Melinda Gates Foundation
+ The Mojaloop files are made available by the Bill & Melinda Gates Foundation under the Apache License, Version 2.0 (the "License") and you may not use these files except in compliance with the License. You may obtain a copy of the License at
+ http://www.apache.org/licenses/LICENSE-2.0
+ Unless required by applicable law or agreed to in writing, the Mojaloop files are distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+ Contributors
+ --------------
+ This is the official list of the Mojaloop project contributors for this file.
+ Names of the original copyright holders (individuals or organizations)
+ should be listed with a '*' in the first column. People who have
+ contributed from an organization can be listed under the organization
+ that actually holds the copyright for their contributions (see the
+ Gates Foundation organization for an example). Those individuals should have
+ their names indented and be marked with a '-'. Email address can be added
+ optionally within square brackets <email>.
+ * Gates Foundation
+ - Name Surname <name.surname@gatesfoundation.com>
+
+ * Georgi Georgiev <georgi.georgiev@modusbox.com>
+ --------------
+ ******'/
+
+@startuml
+' declate title
+title 6.2.3. Get Settlement By Settlement, Participant and Account (getSettlementBySettlementParticipantAccount)
+autonumber
+
+' declare actors
+actor "Hub Employee" as OPERATOR
+boundary "Settlement Service API" as SSAPI
+entity "Settlement DAO" as SETTLE_DAO
+database "Central Store" as DB
+
+box "Central HUB" #lightpink
+    participant OPERATOR
+end box
+
+box "Settlement Service" #lightgreen
+    participant SSAPI
+    participant SETTLE_DAO
+end box
+
+box "Central Services" #lightyellow
+    participant DB
+end box
+
+' start flow
+group Get Settlement By Settlement, Participant and Account
+activate OPERATOR
+    alt
+        OPERATOR -> SSAPI: GET - /settlements/{settlementId}/\nparticipants/{participantId}
+    else
+        OPERATOR -> SSAPI: GET - /settlements/{settlementId}/\nparticipants/{participantId}/\naccounts/{accountId}
+    end
+
+    activate SSAPI
+
+    note right of SSAPI #lightgray
+        let settlementFound = false
+        let participantFoundInSettlement = false
+        let accountProvided = accountId > 0
+        let participantAndAccountMatched = !accountProvided
+        let accountFoundInSettlement = !accountProvided
+    end note
+    SSAPI-> SETTLE_DAO: Request settlement state\n<color #FF0000><b>Error code:</b> 2001</color>
+    activate SETTLE_DAO
+    SETTLE_DAO -> DB: Retrieve settlement
+    activate DB
+    hnote over DB #lightyellow
+        SELECT s.settlementId, ssc.settlementStateId, s.reason, s.createdDate
+        FROM **settlement** s
+        JOIN **settlementStateChange** ssc
+        ON ssc.settlementStateChangeId = s.currentStateChangeId
+        WHERE s.settlementId = {id}
+    end hnote
+    deactivate DB
+    SSAPI <-- SETTLE_DAO: Return **settlement**
+    deactivate SETTLE_DAO
+    note right of SSAPI #lightgray
+        if (settlement.settlementId) {
+            **settlementFound** = true
+        }
+    end note
+
+    opt settlementFound
+        SSAPI-> SETTLE_DAO: Check participant\n<color #FF0000><b>Error code:</b> 2001</color>
+        activate SETTLE_DAO
+        SETTLE_DAO -> DB: Check exists
+        activate DB
+        hnote over DB #lightyellow
+            SELECT settlementParticipantCurrencyId
+            FROM **settlementParticipantCurrency** spc
+            JOIN **participantCurrency** pc
+            ON pc.participantCurrencyId = spc.participantCurrencyId
+            WHERE spc.settlementId = {id}
+            AND pc.participantId = {participantId}
+        end hnote
+        deactivate DB
+        SSAPI <-- SETTLE_DAO: Return **settlementParticipantCurrencyIdList**
+        deactivate SETTLE_DAO
+        note right of SSAPI #lightgray
+            if (settlementParticipantCurrencyIdList.length > 0) {
+                **participantFoundInSettlement** = true
+            }
+        end note
+
+        opt participantFoundInSettlement && accountProvided
+            SSAPI-> SETTLE_DAO: Check participant\n<color #FF0000><b>Error code:</b> 2001</color>
+            activate SETTLE_DAO
+            SETTLE_DAO -> DB: Check exists
+            activate DB
+            hnote over DB #lightyellow
+                SELECT participantCurrencyId
+                JOIN **participantCurrency**
+                WHERE participantCurrencyId = {accountId}
+                AND participantId = {participantId}
+            end hnote
+            deactivate DB
+            SSAPI <-- SETTLE_DAO: Return **account**
+            deactivate SETTLE_DAO
+            note right of SSAPI #lightgray
+                if (account) {
+                    **participantAndAccountMatched** = true
+                }
+            end note
+
+            opt participantAndAccountMatched
+                SSAPI-> SETTLE_DAO: Check account in settlement\n<color #FF0000><b>Error code:</b> 2001</color>
+                activate SETTLE_DAO
+                SETTLE_DAO -> DB: Check exists
+                activate DB
+                hnote over DB #lightyellow
+                    SELECT settlementParticipantCurrencyId
+                    FROM **settlementParticipantCurrency**
+                    WHERE spc.settlementId = {id}
+                    AND pc.participantCurrencyId = {accountId}
+                end hnote
+                deactivate DB
+                SSAPI <-- SETTLE_DAO: Return **settlementParticipantCurrencyId**
+                deactivate SETTLE_DAO
+
+                note right of SSAPI #lightgray
+                    if (settlementParticipantCurrencyId) {
+                        **accountFoundInSettlement** = true
+                    }
+                end note
+            end
+        end
+    end
+
+    alt settlementFound && participantFoundInSettlement && participantAndAccountMatched && accountFoundInSettlement
+        SSAPI-> SETTLE_DAO: Request settlement windows\n<color #FF0000><b>Error code:</b> 2001</color>
+        activate SETTLE_DAO
+        SETTLE_DAO -> DB: Retrieve windows
+        activate DB
+        alt accountProvided
+            hnote over DB #lightyellow
+                SELECT DISTINCT sw.settlementWindowId, swsc.settlementWindowStateId,
+                    swsc.reason, sw.createdDate, swsc.createdDate changedDate
+                FROM **settlementSettlementWindow** ssw
+                JOIN **settlementWindow** sw
+                ON sw.settlementWindowId = ssw.settlementWindowId
+                JOIN **settlementWindowStateChange** swsc
+                ON swsc.settlementWindowStateChangeId = sw.currentStateChangeId
+                JOIN **settlementTransferParticipant** stp
+                ON stp.settlementWindowId = sw.settlementWindowId
+                AND stp.participantCurrencyId = {accountId}
+                WHERE ssw.settlementId = {id}
+            end hnote
+        else
+            hnote over DB #lightyellow
+                SELECT DISTINCT sw.settlementWindowId, swsc.settlementWindowStateId,
+                    swsc.reason, sw.createdDate, swsc.createdDate changedDate
+                FROM **settlementSettlementWindow** ssw
+                JOIN **settlementWindow** sw
+                ON sw.settlementWindowId = ssw.settlementWindowId
+                JOIN **settlementWindowStateChange** swsc
+                ON swsc.settlementWindowStateChangeId = sw.currentStateChangeId
+                JOIN **settlementTransferParticipant** stp
+                ON stp.settlementWindowId = sw.settlementWindowId
+                AND stp.participantCurrencyId IN(
+                    SELECT participantCurrencyId
+                    FROM participantCurrency
+                    WHERE participantId = {participantId}
+                )
+                WHERE ssw.settlementId = {id}
+            end hnote
+        end
+        deactivate DB
+        SSAPI <-- SETTLE_DAO: Return **windows**
+        deactivate SETTLE_DAO
+
+        SSAPI-> SETTLE_DAO: Request settlement accounts\n<color #FF0000><b>Error code:</b> 2001</color>
+        activate SETTLE_DAO
+        SETTLE_DAO -> DB: Retrieve accounts
+        activate DB
+        alt accountProvided
+            hnote over DB #lightyellow
+                SELECT pc.participantId, spc.participantCurrencyId, spcsc.settlementStateId, 
+                    spcsc.reason, spc.netAmount, pc.currencyId
+                FROM **settlementParticipantCurrency** spc
+                JOIN **settlementParticipantCurrencyStateChange** spcsc
+                ON spcsc.settlementParticipantCurrencyStateChangeId = spc.currentStateChangeId
+                JOIN **participantCurrency** pc
+                ON pc.participantCurrencyId = spc.participantCurrencyId
+                WHERE spc.settlementParticipantCurrencyId = {settlementParticipantCurrencyId}
+            end hnote
+        else
+            hnote over DB #lightyellow
+                SELECT pc.participantId, spc.participantCurrencyId, spcsc.settlementStateId, 
+                    spcsc.reason, spc.netAmount, pc.currencyId
+                FROM **settlementParticipantCurrency** spc
+                JOIN **settlementParticipantCurrencyStateChange** spcsc
+                ON spcsc.settlementParticipantCurrencyStateChangeId = spc.currentStateChangeId
+                JOIN **participantCurrency** pc
+                ON pc.participantCurrencyId = spc.participantCurrencyId
+                WHERE spc.settlementParticipantCurrencyId IN {settlementParticipantCurrencyIdList}
+            end hnote
+        end
+        deactivate DB
+        SSAPI <-- SETTLE_DAO: Return **accounts**
+        deactivate SETTLE_DAO
+
+        deactivate SETTLE_DAO
+        note left of SSAPI #yellow
+            {
+                "id": settlement.settlementId,
+                "state": settlement.settlementStateId,
+                "settlementWindows": [
+                    [
+                        {
+                            "id": window.settlementWindowId,
+                            "reason": window.reason,
+                            "state": window.settlementWindowStateId,
+                            "createdDate": window.createdDate,
+                            "changedDate": window.changedDate
+                        }
+                    ]
+                ],
+                "participants": [
+                    {
+                        "id": account.participantId,
+                        "accounts": [
+                            {
+                                "id": account.participantCurrencyId,
+                                "reason": account.reason,
+                                "state": account.settlementStateId,
+                                "netSettlementAmount": {
+                                    "amount": account.netAmount,
+                                    "currency": account.currencyId
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        end note
+        OPERATOR <-- SSAPI: Respond HTTP - 200 (OK)
+    else !settlementFound || !participantFoundInSettlement || !participantAndAccountMatched || !accountFoundInSettlement
+        note right of SSAPI #lightgray
+            Log ERROR event (based on the failure)
+        end note
+        note left of SSAPI #yellow
+            {
+                errorInformation: {
+                    "errorCode": <integer>,
+                    "errorDescription": "Client error description"
+                }
+            }
+        end note
+        OPERATOR <-- SSAPI: Respond HTTP - 4xx (Client error)
+        deactivate SSAPI
+        deactivate OPERATOR
+    end
+end
+@enduml

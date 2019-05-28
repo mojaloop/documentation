@@ -14,10 +14,22 @@ mojaloop:
     uri:
       doc: https://github.com/mojaloop/mojaloop-specification/blob/master/API%20Definition%20v1.0.pdf
       api: https://github.com/mojaloop/mojaloop-specification/blob/master/Supporting%20Files/fspiop-rest-v1.0-OpenAPI-implementation.yaml
+central_ledger:
+  spec:
+    version: v2.0
+    uri:
+      doc: /mojaloop-technical-overview/central-ledger/README.md
+      api: https://github.com/mojaloop/central-ledger/blob/master/src/api/interface/swagger.json
+settlement:
+  spec:
+    version: v1.1
+    uri:
+      doc: /mojaloop-technical-overview/central-settlements/README.md
+      api: https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json
 als:
   oracle:
     spec:
-      version: v1.0
+      version: v1.2
       uri:
         doc: /mojaloop-technical-overview/account-lookup-service/README.md
-        api: https://github.com/mojaloop/documentation/blob/master/api/assets/interface-contracts/oracleServiceSwaggerv1.yaml
+        api: https://github.com/mojaloop/documentation/blob/master/api/assets/interface-contracts/oracle-service-swagger-v1.yaml
