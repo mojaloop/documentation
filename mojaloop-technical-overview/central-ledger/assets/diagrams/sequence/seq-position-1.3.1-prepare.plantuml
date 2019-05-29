@@ -21,12 +21,13 @@
  * Georgi Georgiev <georgi.georgiev@modusbox.com>
  * Rajiv Mothilal <rajiv.mothilal@modusbox.com>
  * Miguel de Barros <miguel.debarros@modusbox.com>
+ * Samuel Kummary <sam@modusbox.com>
  --------------
  ******'/
 
 @startuml
 ' declate title
-title 1.3.1. Prepare Position Handler Consume
+title 1.3.1. Prepare Position Handler Consume (single message, includes individual transfers from Bulk)
 
 autonumber
 
@@ -42,12 +43,14 @@ control "Position Handler" as POS_HANDLER
 
 entity "Position\nManagement\nFacade" as POS_MGMT
 collections "Notification-Topic" as TOPIC_NOTIFICATIONS
+collections "topic-bulk-processing" as TOPIC_BULK_PROCESSING
 entity "Position DAO" as POS_DAO
 database "Central Store" as DB
 
 box "Central Service" #LightYellow
     participant POS_HANDLER
     participant TOPIC_NOTIFICATIONS
+    participant TOPIC_BULK_PROCESSING
     participant POS_MGMT
     participant POS_DAO
     participant DB
@@ -192,35 +195,7 @@ group Prepare Position Handler Consume
     POS_MGMT --> POS_HANDLER: Return a map of transferIds and their transferStateChanges
     deactivate POS_MGMT
     alt Calculate & Validate Latest Position Prepare (success)
-        note right of POS_HANDLER #yellow
-            Message:
-            {
-                id: <transferMessage.transferId>
-                from: <transferMessage.payerFsp>,
-                to: <transferMessage.payeeFsp>,
-                type: application/json
-                content: {
-                    headers: <transferHeaders>,
-                    payload: <transferMessage>
-                },
-                metadata: {
-                    event: {
-                        id: <uuid>,
-                        responseTo: <previous.uuid>,
-                        type: transfer,
-                        action: prepare,
-                        createdAt: <timestamp>,
-                        state: {
-                            status: "success",
-                            code: 0
-                        }
-                    }
-                }
-            }
-        end note
-        POS_HANDLER -> TOPIC_NOTIFICATIONS: Publish Notification event\n<color #FF0000><b>Error code:</b> 2003</color>
-        activate TOPIC_NOTIFICATIONS
-        deactivate TOPIC_NOTIFICATIONS
+        POS_HANDLER -> POS_HANDLER: Notifications for Position Validation Success \n<color Magenta><b>Reference: Postion Validation Success case (Prepare)</b></color>
    else Calculate & Validate Latest Position Prepare (failure)
         note right of POS_HANDLER #red: Validation failure!
 
@@ -240,9 +215,49 @@ group Prepare Position Handler Consume
             POS_DAO --> POS_HANDLER: Return success
             deactivate POS_DAO
         end
+        POS_HANDLER -> POS_HANDLER: Notifications for failures\n<color Magenta><b>Reference: Failure in Postion Validation (Prepare) </b></color>
+   end
+end
 
+
+group Reference: Failure in Postion Validation (Prepare)
+    alt If type == 'bulk-prepare'
         note right of POS_HANDLER #yellow
-            Message:
+        Message:
+            {
+                id: <transferMessage.transferId>
+                from: <ledgerName>,
+                to: <transferMessage.payerFsp>,
+                type: application/json
+                content: {
+                    headers: <transferHeaders>,
+                    payload: {
+                        "errorInformation": {
+                            "errorCode": 4001,
+                            "errorDescription": "Payer FSP insufficient liquidity",
+                            "extensionList": <transferMessage.extensionList>
+                    }
+                },
+                metadata: {
+                    event: {
+                        id: <uuid>,
+                        responseTo: <previous.uuid>,
+                        type: bulk-notification,
+                        action: prepare,
+                        createdAt: <timestamp>,
+                        state: {
+                            status: 'error',
+                            code: <errorInformation.errorCode>
+                            description: <errorInformation.errorDescription>
+                        }
+                    }
+                }
+            }
+        end note
+        POS_HANDLER -> TOPIC_BULK_PROCESSING: Publish Position failure event (in Prepare) to Bulk Processing Topic (for Payer) \n<color #FF0000><b>Error codes:</b> 2003</color>
+    else If type == 'prepare'
+        note right of POS_HANDLER #yellow
+        Message:
             {
                 id: <transferMessage.transferId>
                 from: <ledgerName>,
@@ -274,10 +289,70 @@ group Prepare Position Handler Consume
             }
         end note
         POS_HANDLER -> TOPIC_NOTIFICATIONS: Publish Notification (failure) event for Payer\n<color #FF0000><b>Error code:</b> 2003</color>
-        activate TOPIC_NOTIFICATIONS
-        deactivate TOPIC_NOTIFICATIONS
-        deactivate POS_HANDLER
-   end
+    end
+    
 end
+
+group Reference: Postion Validation Success case (Prepare)
+    alt If type == 'bulk-prepare'
+        note right of POS_HANDLER #yellow
+        Message:
+            {
+                id: <transferMessage.transferId>
+                from: <transferMessage.payerFsp>,
+                to: <transferMessage.payeeFsp>,
+                type: application/json
+                content: {
+                    headers: <transferHeaders>,
+                    payload: <transferMessage>
+                },
+                metadata: {
+                    event: {
+                        id: <uuid>,
+                        responseTo: <previous.uuid>,
+                        type: bulk-transfer,
+                        action: prepare,
+                        createdAt: <timestamp>,
+                        state: {
+                            status: "success",
+                            code: 0
+                        }
+                    }
+                }
+            }
+        end note
+        POS_HANDLER -> TOPIC_BULK_PROCESSING: Publish Position Success event (in Prepare) to Bulk Processing Topic\n<color #FF0000><b>Error codes:</b> 2003</color>
+    else If type == 'prepare'
+        note right of POS_HANDLER #yellow
+        Message:
+            {
+                id: <transferMessage.transferId>
+                from: <transferMessage.payerFsp>,
+                to: <transferMessage.payeeFsp>,
+                type: application/json
+                content: {
+                    headers: <transferHeaders>,
+                    payload: <transferMessage>
+                },
+                metadata: {
+                    event: {
+                        id: <uuid>,
+                        responseTo: <previous.uuid>,
+                        type: transfer,
+                        action: prepare,
+                        createdAt: <timestamp>,
+                        state: {
+                            status: "success",
+                            code: 0
+                        }
+                    }
+                }
+            }
+        end note
+        POS_HANDLER -> TOPIC_NOTIFICATIONS: Publish Notification event\n<color #FF0000><b>Error code:</b> 2003</color>
+    end
+    
+end
+
 deactivate POS_HANDLER
 @enduml

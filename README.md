@@ -1,4 +1,7 @@
 # Mojaloop Overview
+[![Git Commit](https://img.shields.io/github/last-commit/mojaloop/documentation.svg?style=flat)](https://github.com/mojaloop/documentation/commits/master)
+[![Git Releases](https://img.shields.io/github/release/mojaloop/documentation.svg?style=flat)](https://github.com/mojaloop/documentation/releases)
+[![CircleCI](https://circleci.com/gh/mojaloop/documentation.svg?style=svg)](https://circleci.com/gh/mojaloop/documentation)
 
 Mojaloop is open source software for creating digital payments platforms that connect all customers, merchants, banks, and other financial providers in a country's economy. Rather than a financial product or application in itself, Mojaloop establishes a blueprint for technology that bridges all the financial products and applications in any given market.
 

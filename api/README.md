@@ -13,6 +13,20 @@ Documentation: [Mojaloop Specification]({{ book.importedVars.mojaloop.spec.uri.d
 | --- | --- | --- |
 | 1.0 | Initial release | 2018-11-01 |
 
+## Central Ledger API
+
+Documentation: [Central-Ledger Service](../mojaloop-technical-overview/central-ledger/README.md)
+
+* [Central Ledger API {{ book.importedVars.central_ledger.spec.version }} Specification](./central-ledger-api-specification.md)
+* [Swagger]({{ book.importedVars.central_ledger.spec.uri.api }})
+
+### Versions
+
+| Version | Info | Release Date |
+| --- | --- | --- |
+| 3.8.3.1 | Feature/#538 FundsIn/Out Position Changes | 2018-12-11 |
+| 3.8.3 | Initial release | 2018-11-02 |
+
 ## Central Settlements API
 
 Documentation: [Central-Settlements Service](../mojaloop-technical-overview/central-settlements/README.md)
@@ -46,5 +60,6 @@ Notes:
 
 | Version | Info | Release Date |
 | --- | --- | --- |
+| 1.2 | Removal of duplicated currency from `POST /participants` payload. | 2019-05-20 
 | 1.1 | `PUT /participants/{Type}/{ID}` returns a `HTTP 204 - No Content on success`. This was previously returned `HTTP 200 - Success` <br>`POST /participants` now returns a list a `partyList` either containing a `PartyIdInfo` or `ErrorInformation`. This provides a closer alignment to the Mojaloop Specification. | 2019-03-28 |
 | 1.0 | Initial release | 2019-03-08 |
