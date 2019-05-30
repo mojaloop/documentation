@@ -1,6 +1,6 @@
 # Account Lookup Service
 
-The Account Lookup Service **(ALS)** _(refer to section `6.2.1.2`)_ as per the [Mojaloop {{ book.importedVars.mojaloop.spec.version }} Specification]({{ book.importedVars.mojaloop.spec.uri.doc }}) implements the following use-cases:
+The **Account Lookup Service** (**ALS**) _(refer to section `6.2.1.2`)_ as per the [Mojaloop {{ book.importedVars.mojaloop.spec.version }} Specification]({{ book.importedVars.mojaloop.spec.uri.doc }}) implements the following use-cases:
 
 * Participant Look-up 
 * Party Look-up
