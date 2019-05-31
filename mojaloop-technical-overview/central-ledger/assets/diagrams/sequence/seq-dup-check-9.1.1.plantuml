@@ -24,7 +24,7 @@
 
 @startuml
 ' declate title
-title 9.1.1. Request Duplicate Check (incl. Transfers, Quotes, Bulk Transfers, Transactions)
+title 9.1.1. Request Duplicate Check (incl. Transfers, Quotes, Bulk Transfers, Bulk Quotes)
 
 autonumber
 
@@ -67,238 +67,140 @@ group Schema Validation (joi)
     |||
 end
 
-note right of HANDLER #lightgrey
-    Onwards, each unique (by source)
-    request would leave its footprint
-end note
-
 activate HANDLER
 group Request Duplicate Check
     TOPIC_SOURCE <- HANDLER: Consume message
     activate TOPIC_SOURCE
     deactivate TOPIC_SOURCE
 
-    group Idempotency Check
-        note right of HANDLER #lightgrey
-            Source qualified, each (unique) POST/PUT message is
-            processed //exactly once//, except when requestStatus is GET
-        end note
-
-        HANDLER -> DAO: Save request with status RECEIVED\n<color #red><b>Error code:</b> 2003</color>
-        activate DAO
-        DAO -> DB: Insert utilising unique index\non source, uuid, hash
-        hnote over DB #lightyellow
-            request
-        end note
-        activate DB
-        deactivate DB
-        DAO --> HANDLER: Return requestId or insert failure
-        deactivate DAO
-
-        break Insert failed
-            HANDLER -> DAO: Retrieve duplicate request\n<color #red><b>Error code:</b> 2003</color>
+    group UUID Check
+        alt request.method == 'POST'
+            HANDLER -> DAO: Query hash by id\n<color #red><b>Error code:</b> 2003</color>
             activate DAO
-            DAO -> DB: Use same index:\n source, uuid, hash
+            DAO -> DB: getHashById
             hnote over DB #lightyellow
-                request
+                requestDuplicateCheck
             end note
             activate DB
-            DB --> DAO: Return **requestInfo**
+            DB --> DAO: Return **hashRecord**
             deactivate DB
-            DAO --> HANDLER: Return **requestInfo**
+            DAO --> HANDLER: Return **hashRecord**
             deactivate DAO
-
-            alt requestStatus IN ['RECEIVED', 'ACCEPTED']
-                note right of HANDLER #lightgrey
-                    Ignore request
-                end note
-            else requestStatus IN ['UUID_COLLISION', 'MODIFIED', 'INVALID', 'ERROR', 'COMPLETED']
-                HANDLER -> TOPIC_NOTIFICATION: Produce previous response\nusing stored **requestInfo**
-                activate TOPIC_NOTIFICATION
-                deactivate TOPIC_NOTIFICATION
-            else requestStatus IN ['GET']
-                ref over HANDLER, TOPIC_NOTIFICATION: \t\tUse specific **getMethod** to reply with current state\t\n
-                HANDLER -> TOPIC_NOTIFICATION: Produce message
-            end
+        else request.method == 'PUT'
+            HANDLER -> DAO: Query hash by id and source\n<color #red><b>Error code:</b> 2003</color>
+            activate DAO
+            DAO -> DB: getHashByIdSource
+            hnote over DB #lightyellow
+                responseDuplicateCheck
+            end note
+            activate DB
+            DB --> DAO: Return **hashRecord**
+            deactivate DB
+            DAO --> HANDLER: Return **hashRecord**
+            deactivate DAO
         end
     end
     |||
+    alt hashRecord EXISTS
+        group Hash Mismatch
+            HANDLER -> HANDLER: Generate **currentMessageHash**
+            opt currentMessageHash != hashRecord.hash
+                HANDLER -> TOPIC_EVENTS: Produce message
+                ref over HANDLER, TOPIC_EVENTS: Event Handler Consume\n
+                HANDLER -> TOPIC_NOTIFICATION: Produce message\n<color #red><b>Error code:</b> 3106 - Modified Request</color>
+            end
+        end
+        |||
 
-    group UUID Check
-        note right of HANDLER #lightgrey
-            Request is currently RECEIVED, but we need to verify
-            by querying db for other records with same UUID.
-            **Note**: uuid uniqueness is not guaranteed across
-            different request types.
-        end note
+        opt currentMessageHash == hashRecord.hash
+            note right of HANDLER #lightgrey
+                Resend Handling
+            end note
 
-        HANDLER -> DAO: Find matching UUIDs (excl. current)\n<color #red><b>Error code:</b> 2003</color>
-        activate DAO
-        DAO -> DB: Use index: uuid,\nrequestType, isFulfil
-        hnote over DB #lightyellow
-            request
-        end note
-        activate DB
-        DB --> DAO: Return **requestsInfo**
-        deactivate DB
-        DAO --> HANDLER: Return **requestsInfo**
-        deactivate DAO
+            group Error Check
+                HANDLER -> DAO: Query completed requests by uuid, requestType [and source]\n<color #red><b>Error code:</b> 2003</color>
+                activate DAO
+                DAO -> DB: getCompletedRequest
+                hnote over DB #lightyellow
+                    completedRequest
+                end note
+                activate DB
+                DB --> DAO: Return **crRecord**
+                deactivate DB
+                DAO --> HANDLER: Return **crRecord**
+                deactivate DAO
 
-        note right of HANDLER #lightgrey
-            **isUniqueUuid** = requestsInfo.length == 0
-        end note
+                opt crRecord && crRecord.errorCode IS NOT NULL
+                    note right of HANDLER #lightgrey
+                        An error occured during previous processing
+                    end note
+                    HANDLER -> TOPIC_NOTIFICATION: Produce message\n<color #red><b>Error code:</b> 3xxx / 4xxx / 5xxx</color>\n<color #red>Client / Payer / Payee Error</color>
+                end
+            end
+            |||
 
-        opt isUniqueUuid == true
-            HANDLER -> DAO: Change request status to ACCEPTED\n<color #red><b>Error code:</b> 2003</color>
+            group Completed Check
+                alt crRecord && crRecord.errorCode IS NULL
+                    note right of HANDLER #lightgrey
+                        Previous message processing has completed successfully
+                    end note
+                    ref over HANDLER, TOPIC_NOTIFICATION: \tUse specific **getMethod** to reply with current state\t\t\n
+                    HANDLER -> TOPIC_NOTIFICATION: Produce message
+                else crRecord NOT EXISTS
+                    note right of HANDLER #lightgrey
+                        Ignore resend and leave the initial request
+                        to complete with a callback
+                    end note
+                end
+            end
+        end
+        |||
+    else hashRecord NOT EXISTS
+        group Process Request
+            |||
+            ref over HANDLER, TOPIC_NOTIFICATION: Execute **specific processing**:\t\t\t\t\t\nTransfer/Quote/Bulk Prepare/Fulfil\n
+
+            note right of HANDLER #lightgrey
+                let errorCode = null
+                let errorDescription = null
+            end note
+
+            opt errorOccured
+                note right of HANDLER #lightgrey
+                    let errorCode = <3xxx/4xxx/5xxx>
+                    let errorDescription = <text>
+                end note
+                HANDLER -> TOPIC_EVENTS: Produce message
+                ref over HANDLER, TOPIC_EVENTS: Event Handler Consume\n
+            end
+
+            HANDLER -> DAO: Store processing result\n<color #red><b>Error code:</b> 2003</color>
             activate DAO
-            DAO -> DB: Update status
+            DAO -> DB: Insert completedRequest
             hnote over DB #lightyellow
-                request
+                completedRequest
             end note
             activate DB
             deactivate DB
             DAO --> HANDLER: Return success
             deactivate DAO
-        end
-    end
-    |||
-
-    group Modified Request Check
-        note right of HANDLER #lightgrey
-            Request is still RECEIVED and **UUID Check** failed
-        end note
-        opt isUniqueUuid == false
-            break
-                note right of HANDLER #lightgrey
-                    **sourceMatched** = false 
-                end note
-
-                loop foreach request in requestsInfo
-                    opt currentRequest.source == request.source
-                        note right of HANDLER #lightgrey
-                            **sourceMatched** = true
-                        end note
-                    end
-                end
-
-                alt sourceMatched == true
-                    note right of HANDLER #lightgrey
-                        **requestStatus** = 'MODIFIED'
-                    end note
-                else sourceMatched == false
-                    note right of HANDLER #lightgrey
-                        **requestStatus** = 'UUID_COLLISION'
-                    end note
-                end
-
-                HANDLER -> DAO: Store response and **requestStatus**\n<color #red><b>Error code:</b> 2003</color>
-                activate DAO
-                DAO -> DB: Update responsePayload,\nresponseHeaders and\nrequestStatus
-                hnote over DB #lightyellow
-                    request
-                end note
-                activate DB
-                deactivate DB
-                DAO --> HANDLER: Return success
-                deactivate DAO
-
-                HANDLER -> TOPIC_NOTIFICATION: Produce message
-                activate TOPIC_NOTIFICATION
-                deactivate TOPIC_NOTIFICATION
-            end
-        end
-    end
-    |||
-
-    group Invalid Request Check
-        note right of HANDLER #lightgrey
-            Request is ACCEPTED
-        end note
-
-        ref over HANDLER, TOPIC_NOTIFICATION: \tUse specific **requestValidationMethod**\t\t\n\tor **fulfilValidationMethod** to validate\n
-
-        opt validationFailed == true
-            break
-                HANDLER -> DAO: Store response and requestStatus = 'INVALID'\n<color #red><b>Error code:</b> 2003</color>
-                activate DAO
-                DAO -> DB: Update responsePayload,\nresponseHeaders and\nrequestStatus
-                hnote over DB #lightyellow
-                    request
-                end note
-                activate DB
-                deactivate DB
-                DAO --> HANDLER: Return success
-                deactivate DAO
-
-                HANDLER -> TOPIC_NOTIFICATION: Produce message
-                activate TOPIC_NOTIFICATION
-                deactivate TOPIC_NOTIFICATION
-            end
-        end
-    end
-    |||
-
-    group Complete Request
-        note right of HANDLER #lightgrey
-            Request remained in ACCEPTED state
-        end note
-
-        ref over HANDLER, TOPIC_NOTIFICATION: Execute specific processing:\t\t\t\t\nTransfer/Quote/Bulk Prepare/Fulfil\n
-
-        note right of HANDLER #lightgrey
-            **requestStatus** = null
-            **responseHeaders** = null
-            **responsePayload** = null
-        end note
-
-
-        alt static response
-            alt success
-                note right of HANDLER #lightgrey
-                    **requestStatus** = 'COMPLETED'
-                    **responseHeaders** = <content.headers>
-                    **responsePayload** = <content.payload>
-                end note
-            else error
-                note right of HANDLER #lightgrey
-                    **requestStatus** = 'ERROR'
-                    **responseHeaders** = <content.headers>
-                    **responsePayload** = <content.payload.errorInformation>
-                end note
-            end
 
             HANDLER -> TOPIC_NOTIFICATION: Produce message
             activate TOPIC_NOTIFICATION
             deactivate TOPIC_NOTIFICATION
-        else non-static response
-            note right of HANDLER #lightgrey
-                **requestStatus** = 'GET'
-            end note
-            ref over HANDLER, TOPIC_NOTIFICATION: \t\tUse specific **getMethod** to reply with current state\t\n
-            HANDLER -> TOPIC_NOTIFICATION: Produce message
         end
-
-        HANDLER -> DAO: <color #red>Store requestStatus and response (not set when GET)</color>\n<color #red><b>Error code:</b> 2003</color>
-        activate DAO
-        DAO -> DB: Update responsePayload,\nresponseHeaders and\nrequestStatus
-        hnote over DB #lightyellow
-            request
-        end note
-        activate DB
-        deactivate DB
-        DAO --> HANDLER: Return success
-        deactivate DAO
     end
     |||
-    
+
     note right of HANDLER #lightgrey
-        √ Order is performance optimised
-        √ request.isFulfil replaces additional lookup or doubling the count of requestTypes
-        √ request.destination provides for fulfil request validation (destination should match when isFulfil == true)
-        — <color #red>(TBD)</color> Unique and regular indexes are used for performance during check, BUT may delay operations
-        — <color #red>(TBD)</color> Status update and store response may cost resources, BUT no await or following notification?
-        — <color #red>(TBD)</color> Saved response provides processing exactly once, but storage and security may be affected
-        — <color #red>(TBD)</color> requestType.methods provide easy configuration for custom processing according to request type
+        √ Performance wise for success scenarios, just one extra step has been added (the insert to completedRequest).
+           The addition of source for responses/fulfils comes at no extra cost;
+        √ Hash check remains unchanged for POSTs and improved for PUTs;
+        √ For the resend scenarios there is not only performance gain, but also improved handling
+           to fix current inconsistencies;
+        — <color #red>(TBD)</color> completedRequest may be replaced by completedTransferRequest,
+           completedQuoteRequest, completedBulkTransferRequest, completedBulkQuoteRequest
+           if necessary, also avoiding the need for requestType lookup table.
     end note
     |||
 end
