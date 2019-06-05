@@ -11,19 +11,67 @@ The purpose of the Event Framework is to provide a standard unified architecture
 - Each Mojaloop component will have its own tightly coupled Sidecar.
 
 
-## 2. Architecture overview
+## 2. Architecture
+
+### 2.1 Overview
 
 ![Event Framework Architecture](./assets/diagrams/architecture/architecture-event-framework.svg)
 
 
-## 3. Pod Architecture
+### 2.2 Micro Service Pods
 
 ![Pod Architecture](./assets/diagrams/architecture/architecture-event-sidecar.svg) 
 
+### 2.3 Tracing 
 
-### 4. Event Envelope Model
+![Tracing Architecture](./assets/diagrams/architecture/architecture-event-trace.svg)
 
-### 4.1 Object Definition: MessageType 
+## 3. Event Envelope Model
+
+## 3.1 JSON Example
+```JSON
+{
+    "from": "noresponsepayeefsp",
+    "to": "payerfsp",
+    "id": "aa398930-f210-4dcd-8af0-7c769cea1660",
+    "content": {
+        "headers": {
+            "content-type": "application/vnd.interoperability.transfers+json;version=1.0",
+            "date": "2019-05-28T16:34:41.000Z",
+            "fspiop-source": "noresponsepayeefsp",
+            "fspiop-destination": "payerfsp"
+        },
+        "payload": "data:application/vnd.interoperability.transfers+json;version=1.0;base64,ewogICJmdWxmaWxtZW50IjogIlVObEo5OGhaVFlfZHN3MGNBcXc0aV9VTjN2NHV0dDdDWkZCNHlmTGJWRkEiLAogICJjb21wbGV0ZWRUaW1lc3RhbXAiOiAiMjAxOS0wNS0yOVQyMzoxODozMi44NTZaIiwKICAidHJhbnNmZXJTdGF0ZSI6ICJDT01NSVRURUQiCn0"
+    },
+    "type": "application/json",
+    "metadata": {
+        "event": {
+            "id": "3920382d-f78c-4023-adf9-0d7a4a2a3a2f",
+            "type": "position",
+            "action": "commit",
+            "createdAt": "2019-05-29T23:18:32.935Z",
+            "state": {
+                "status": "success",
+                "code": 0,
+                "description": "action successful"
+            },
+            "responseTo": "1a396c07-47ab-4d68-a7a0-7a1ea36f0012"
+        },
+        "trace": {
+            "traceId": "bbd7b2c7-3978-408e-ae2e-a13012c47739",
+            "parentId": "4e3ce424-d611-417b-a7b3-44ba9bbc5840",
+            "spanId": "efeb5c22-689b-4d04-ac5a-2aa9cd0a7e87",
+        }
+    }
+}
+```
+
+## 3.2 JSON Schema Definition
+```JSON
+TBD
+```
+
+### 3.2.1 Object Definition: MessageType 
 
 | Name | Type | Description | Example |
 | --- | --- | --- | --- |
@@ -36,41 +84,52 @@ The purpose of the Event Framework is to provide a standard unified architecture
 | content | object \<any\> | The representation of the content. | |
 
 
-#### 4.1.1 Object Definition: MetadataType 
+##### 3.2.1.1 Object Definition: ObMetadataType 
 
 | Name | Type | Description | Example |
 | --- | --- | --- | --- |
-| event | object \<eventType\> | Mandatory. Event information. |  |
+| event | object \<ObEventType\> | Mandatory. Event information. |  |
+| trace | object \<ObTraceType\> | Mandatory. Trace information. |  |
 
-#### 4.1.2 Object Definition: EventType 
-
-| Name | Type | Description | Example |
-| --- | --- | --- | --- |
-| id | string | Mandatory. The id references the related message. |  |
-| type | string | Mandatory. The id references the related message. |  |
-| action | string | Mandatory. The id references the related message. |  |
-| state | object \<stateType\> | Mandatory. The id references the related message. |  |\| createdAt | string | Mandatory. The id references the related message. |  |
-
-#### 4.1.3 Object Definition: StateType 
+##### 3.2.1.2 Object Definition: ObEventType 
 
 | Name | Type | Description | Example |
 | --- | --- | --- | --- |
-| status | string | Mandatory. The id references the related message. |  |
-| code | string | Mandatory. The id references the related message. |  |
-| description | string | Optional. The id references the related message. |  |
+| id | string | Mandatory. UUIDv4 for event. | 3920382d-f78c-4023-adf9-0d7a4a2a3a2f |
+| type | enum \<EnEventType\> | Mandatory. Type of event. | [`log`, `audit`, `error` `trace`] |
+| action | enum \<EnEventTypeAction\> | Mandatory. Type of action. | [ `start`, `end` ] |
+| state | string \<ObStateType\> | Mandatory. Object describing the state. |  |
+| createdAt | timestamp | Mandatory. ISO Timestamp. | 2019-05-29T23:18:32.935Z |
 
+##### 3.2.1.3 Object Definition: ObStateType 
 
-#### 4.1.4 Enum: eventType
+| Name | Type | Description | Example |
+| --- | --- | --- | --- |
+| status | enum \<EneventStatus\> | Mandatory. The id references the related message. | success |
+| code | string | Optional. The error code as per Mojaloop specification. | 2000 |
+| description | string | Optional. Description for the status. Normally used to include an description for an error. | Generic server error to be used in order not to disclose information that may be considered private. |
 
-| Type | Description | Actions |
+##### 3.2.1.4 Object Definition: ObTraceType 
+
+| Name | Type | Description |
+| --- | --- | --- |
+| traceId | string | Mandatory. The end-to-end transaction identifier. |
+| spanId | string | Mandatory. Id for a processing leg identifier for a component or function. |
+| parentId | string | Optional. The id references the related message. |
+
+##### 3.2.1.5 Enum: EnEventType
+
+| Enum | Description | EnEventTypeAction |
 | --- | --- | --- |
 | log | Event representing a general log entry. | [ `info`, `debug`, `verbose`, `perf` ] |
 | audit | Event to be signed and persisted into the audit store. | [ --- ] |
 | trace | Event containing trace context information to be persisted into the tracing store. | [ `start`, `end` ] |
 | error | Event representing an error. | [ `internal`, `external` ] |
 
+##### 3.2.1.6 Enum: EnEventStatus
 
-## 4. Impact to the Mojaloop Message Stream
-
-The Mojaloop message stream 
+| Enum | Description | 
+| --- | --- |
+| success | Event was processed successfully |
+| failed | Event was processed with a failure or error |
 
