@@ -82,7 +82,9 @@ Below are the proposed tables as part of designing the Bulk transfers
 - bulkTransfer  
 - bulkTransferStateChange  
 - bulkTransferError  
-- bulkTransferDuplicateCheck  
+- bulkTransferDuplicateCheck
+- bulkTransferFulfilment
+- bulkTransferFulfilmentDuplicateCheck
 - bulkTransferAssociation  
 - bulkTransferExtension  
 - bulkTransferParticipant
