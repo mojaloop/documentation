@@ -95,11 +95,12 @@ TBD
 
 | Name | Type | Description | Example |
 | --- | --- | --- | --- |
-| id | string | Mandatory. UUIDv4 for event. | 3920382d-f78c-4023-adf9-0d7a4a2a3a2f |
+| id | string | Mandatory. Generated UUIDv4 representing the event. | 3920382d-f78c-4023-adf9-0d7a4a2a3a2f |
 | type | enum \<EnEventType\> | Mandatory. Type of event. | [`log`, `audit`, `error` `trace`] |
 | action | enum \<EnEventTypeAction\> | Mandatory. Type of action. | [ `start`, `end` ] |
-| state | string \<ObStateType\> | Mandatory. Object describing the state. |  |
 | createdAt | timestamp | Mandatory. ISO Timestamp. | 2019-05-29T23:18:32.935Z |
+| responseTo | string | Optional. UUIDv4 id link to the previous parent event. | 2019-05-29T23:18:32.935Z |
+| state | string \<ObStateType\> | Mandatory. Object describing the state. |  |
 
 ##### 3.2.1.3 Object Definition: ObStateType 
 
