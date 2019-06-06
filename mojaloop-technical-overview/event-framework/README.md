@@ -109,13 +109,15 @@ TBD
 | code | string | Optional. The error code as per Mojaloop specification. | 2000 |
 | description | string | Optional. Description for the status. Normally used to include an description for an error. | Generic server error to be used in order not to disclose information that may be considered private. |
 
-##### 3.2.1.4 Object Definition: ObTraceType 
+##### 3.2.1.4 Object Definition: ObTraceType
 
-| Name | Type | Description |
-| --- | --- | --- |
-| traceId | string | Mandatory. The end-to-end transaction identifier. |
-| spanId | string | Mandatory. Id for a processing leg identifier for a component or function. |
-| parentId | string | Optional. The id references the related message. |
+| Name | Type | Description | Example |
+| --- | --- | --- | --- |
+| traceId | string | Mandatory. The end-to-end transaction identifier. | 80f198ee56343ba864fe8b2a57d3eff7 |
+| spanId | string | Mandatory. Id for a processing leg identifier for a component or function. | 05e3ac9a4f6e3b90 |
+| parentSpanId | string | Optional. The id references the related message. | e457b5a2e4d86bd1 |
+| sampled | number | Optional. Indicator if event message should be included in the trace `1`. If excluded it will be left the consumer to decide on sampling. | 1 |
+| flags | number | Optional. Indicator if event message should be included in the trace flow. ( Debug `1` - this will override the sampled value ) | 0 |
 
 ##### 3.2.1.5 Enum: EnEventType
 
@@ -133,3 +135,37 @@ TBD
 | success | Event was processed successfully |
 | failed | Event was processed with a failure or error |
 
+
+## 4. Tracing Design
+
+### 4.1 HTTP Transports
+
+Current standard HTTP Transport headers for tracing. Mojaloop has yet to standardise on either standard, or if it will possible support both.
+
+#### 4.1.1 WC3 Http Headers
+
+Refer to the following publication for more information: https://w3c.github.io/trace-context/ 
+
+| Header | Description | Example |
+| --- | --- | --- |
+| traceparent | Dash delimited string of tracing information: \<version\>-\<trace-id\>-\<parent\/span-id\>-\<trace-flags\> | 00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7-00 |
+| tracestate | Comma delimited vendor specific format captured as follows: \<vendor\>=\<base64-encoded-state\>| congo=t61rcWkgMzE,rojo=00f067aa0ba902b7 |
+
+Note: Before this specification was written, some tracers propagated X-B3-Sampled as true or false as opposed to 1 or 0. While you shouldn't encode X-B3-Sampled as true or false, a lenient implementation may accept them.
+
+#### 4.1.2 B3 HTTP Headers
+
+Refer to the following publication for more information: https://github.com/apache/incubator-zipkin-b3-propagation
+
+| Header | Description | Example |
+| --- | --- | --- |
+| X-B3-TraceId | Encoded as 32 or 16 lower-hex characters. | a 128-bit TraceId header might look like: X-B3-TraceId: 463ac35c9f6413ad48485a3953bb6124. Unless propagating only the Sampling State, the X-B3-TraceId header is required. |
+| X-B3-SpanId | Encoded as 16 lower-hex characters. | a SpanId header might look like: X-B3-SpanId: a2fb4a1d1a96d312. Unless propagating only the Sampling State, the X-B3-SpanId header is required. |
+| X-B3-ParentSpanId | header may be present on a child span and must be absent on the root span. It is encoded as 16 lower-hex characters. | A ParentSpanId header might look like: X-B3-ParentSpanId: 0020000000000001 |
+| X-B3-Sampled | An accept sampling decision is encoded as `1` and a deny as `0`. Absent means defer the decision to the receiver of this header. | A Sampled header might look like: X-B3-Sampled: 1. |
+| X-B3-Flags | Debug is encoded as `1`. Debug implies an accept decision, so don't also send the X-B3-Sampled header. | |
+
+
+### 4.2 Known limitations
+
+- Transfer tracing would be limited to each of the transfer legs (i.e. Prepare and Fulfil) as a result of the Mojaloop API specification not catering for tracing information. The trace information will be send as part of the callbacks by the Switch, but the FSPs will not be required to respond appropriately with a reciprocal trace headers.
