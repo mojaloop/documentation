@@ -140,7 +140,9 @@ TBD
 
 ### 4.1 HTTP Transports
 
-Current standard HTTP Transport headers for tracing. Mojaloop has yet to standardise on either standard, or if it will possible support both.
+Below find the current proposed standard HTTP Transport headers for tracing. 
+
+Mojaloop has yet to standardise on either standard, or if it will possible support both.
 
 #### 4.1.1 WC3 Http Headers
 
@@ -165,7 +167,12 @@ Refer to the following publication for more information: https://github.com/apac
 | X-B3-Sampled | An accept sampling decision is encoded as `1` and a deny as `0`. Absent means defer the decision to the receiver of this header. | A Sampled header might look like: X-B3-Sampled: 1. |
 | X-B3-Flags | Debug is encoded as `1`. Debug implies an accept decision, so don't also send the X-B3-Sampled header. | |
 
+### 4.2 Kafka Transports
 
-### 4.2 Known limitations
+Refer to `Event Envelope Model` section. This defines the message that will be sent through the Kafka transport.
+
+Alternatively the tracing context could be stored in Kafka headers which are only supports v0.11 or later. Note that this would break support for older versions of Kafka.
+
+### 4.3 Known limitations
 
 - Transfer tracing would be limited to each of the transfer legs (i.e. Prepare and Fulfil) as a result of the Mojaloop API specification not catering for tracing information. The trace information will be send as part of the callbacks by the Switch, but the FSPs will not be required to respond appropriately with a reciprocal trace headers.
