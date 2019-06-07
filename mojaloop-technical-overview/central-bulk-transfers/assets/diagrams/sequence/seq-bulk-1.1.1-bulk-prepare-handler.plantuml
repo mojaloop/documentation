@@ -37,6 +37,7 @@ autonumber
 
 ' declare actors
 collections "topic-\nbulk-prepare" as TOPIC_BULK_PREPARE
+collections "mongo-\nobject-store" as OBJECT_STORE
 control "Bulk Prepare \nHandler" as BULK_PREP_HANDLER
 collections "topic-\ntransfer-prepare" as TOPIC_TRANSFER_PREPARE
 collections "topic-event" as TOPIC_EVENTS
@@ -46,6 +47,7 @@ entity "Participant DAO" as PARTICIPANT_DAO
 database "Central Store" as DB
 
 box "Central Service" #LightYellow
+    participant OBJECT_STORE
     participant TOPIC_BULK_PREPARE
     participant BULK_PREP_HANDLER
     participant TOPIC_TRANSFER_PREPARE
@@ -62,6 +64,11 @@ group Bulk Prepare Handler Consume
     TOPIC_BULK_PREPARE <- BULK_PREP_HANDLER: Consume Bulk Prepare message
     activate TOPIC_BULK_PREPARE
     deactivate TOPIC_BULK_PREPARE
+
+    BULK_PREP_HANDLER --> OBJECT_STORE: Retrieve bulk payload\nusing reference
+    activate OBJECT_STORE
+    OBJECT_STORE --> BULK_PREP_HANDLER: Return payload
+    deactivate OBJECT_STORE
 
     break
         group Validate Event

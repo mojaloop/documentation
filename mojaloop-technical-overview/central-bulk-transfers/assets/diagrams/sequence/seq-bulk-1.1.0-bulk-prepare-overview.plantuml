@@ -206,7 +206,7 @@ group DFSP1 sends a Bulk Prepare Transfer request to DFSP2
     activate OBJECT_STORE
     OBJECT_STORE --> BULK_PROC_HANDLER: Return reference to the stored object
     deactivate OBJECT_STORE
-    BULK_PROC_HANDLER --> TOPIC_NOTIFICATIONS: Send Bulk Prepare notification
+    BULK_PROC_HANDLER -> TOPIC_NOTIFICATIONS: Send Bulk Prepare notification
     |||
     TOPIC_NOTIFICATIONS <- NOTIFY_HANDLER: Consume message
     NOTIFY_HANDLER --> OBJECT_STORE: Retrieve bulk payload\nusing reference
