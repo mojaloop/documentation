@@ -139,7 +139,7 @@ group DFSP1 sends a Bulk Prepare Transfer request to DFSP2
     DFSP1 ->> MLAPI: POST - /bulkTransfers
     activate MLAPI
     MLAPI -> MLAPI: Validate incoming message\n<color #FF0000><b>Error codes:</b> 3000-3002, 3100-3107</color>
-    MLAPI --> OBJECT_STORE: Persist incoming bulk message\nto object store
+    MLAPI -> OBJECT_STORE: Persist incoming bulk message\nto object store
     activate OBJECT_STORE
     OBJECT_STORE --> MLAPI: Return reference to the stored object
     deactivate OBJECT_STORE
@@ -177,7 +177,7 @@ group DFSP1 sends a Bulk Prepare Transfer request to DFSP2
     deactivate MLAPI
     |||
     TOPIC_BULK_PREPARE <- BULK_PREP_HANDLER: Consume message
-    BULK_PREP_HANDLER --> OBJECT_STORE: Retrieve bulk payload\nusing reference
+    BULK_PREP_HANDLER -> OBJECT_STORE: Retrieve bulk payload\nusing reference
     activate OBJECT_STORE
     OBJECT_STORE --> BULK_PREP_HANDLER: Return payload
     deactivate OBJECT_STORE
@@ -202,14 +202,14 @@ group DFSP1 sends a Bulk Prepare Transfer request to DFSP2
     |||
     TOPIC_BULK_PROCESSING <- BULK_PROC_HANDLER: Consume message
     ref over TOPIC_BULK_PROCESSING, BULK_PROC_HANDLER, TOPIC_NOTIFICATIONS : Bulk Processing Handler Consume \n
-    BULK_PROC_HANDLER --> OBJECT_STORE: Persist bulk message to object store
+    BULK_PROC_HANDLER -> OBJECT_STORE: Persist bulk message to object store
     activate OBJECT_STORE
     OBJECT_STORE --> BULK_PROC_HANDLER: Return reference to the stored object
     deactivate OBJECT_STORE
     BULK_PROC_HANDLER -> TOPIC_NOTIFICATIONS: Send Bulk Prepare notification
     |||
     TOPIC_NOTIFICATIONS <- NOTIFY_HANDLER: Consume message
-    NOTIFY_HANDLER --> OBJECT_STORE: Retrieve bulk payload\nusing reference
+    NOTIFY_HANDLER -> OBJECT_STORE: Retrieve bulk payload\nusing reference
     activate OBJECT_STORE
     OBJECT_STORE --> NOTIFY_HANDLER: Return payload
     deactivate OBJECT_STORE

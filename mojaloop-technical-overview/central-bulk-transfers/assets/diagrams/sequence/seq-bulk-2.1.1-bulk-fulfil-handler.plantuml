@@ -36,6 +36,7 @@ autonumber
 '   database - Database Persistance Store
 
 ' declare actors
+collections "mongo-\nobject-store" as OBJECT_STORE
 collections "topic-bulk-\nfulfil" as TOPIC_BULK_FULFIL
 collections "topic-bulk-\nprocessing" as TOPIC_BULK_PROCESSING
 control "Bulk Fulfil\nHandler" as BULK_FULF_HANDLER
@@ -46,6 +47,7 @@ entity "Bulk DAO" as BULK_DAO
 database "Central Store" as DB
 
 box "Central Service" #LightYellow
+    participant OBJECT_STORE
     participant TOPIC_BULK_FULFIL
     participant BULK_FULF_HANDLER
     participant TOPIC_TRANSFER_FULFIL
@@ -62,6 +64,11 @@ group Bulk Fulfil Handler Consume
     TOPIC_BULK_FULFIL <- BULK_FULF_HANDLER: Consume message
     activate TOPIC_BULK_FULFIL
     deactivate TOPIC_BULK_FULFIL
+
+    BULK_FULF_HANDLER -> OBJECT_STORE: Retrieve bulk payload\nusing reference
+    activate OBJECT_STORE
+    OBJECT_STORE --> BULK_FULF_HANDLER: Return payload
+    deactivate OBJECT_STORE
 
     break
         group Validate Event

@@ -66,6 +66,7 @@ autonumber
 collections "topic-bulk-\nprocessing" as TOPIC_BULK_PROCESSING
 control "Bulk Processing\nHandler" as BULK_PROC_HANDLER
 collections "topic-event" as TOPIC_EVENTS
+collections "mongo-\nobject-store" as OBJECT_STORE
 collections "topic-notification" as TOPIC_NOTIFICATION
 entity "Bulk DAO" as BULK_DAO
 database "Central Store" as DB
@@ -74,6 +75,7 @@ box "Central Service" #LightYellow
     participant TOPIC_BULK_PROCESSING
     participant BULK_PROC_HANDLER
     participant TOPIC_EVENTS
+    participant OBJECT_STORE
     participant TOPIC_NOTIFICATION
     participant BULK_DAO
     participant DB
@@ -317,6 +319,10 @@ group Bulk Processing Handler Consume
             deactivate BULK_DAO
 
             group Send Bulk Notification
+                BULK_PROC_HANDLER -> OBJECT_STORE: Generate & Persist bulk message\nto object store
+                activate OBJECT_STORE
+                OBJECT_STORE --> BULK_PROC_HANDLER: Return reference to the stored object
+                deactivate OBJECT_STORE
                 note right of BULK_PROC_HANDLER #yellow
                     Message:
                     {
@@ -326,7 +332,7 @@ group Bulk Processing Handler Consume
                         type: application/json
                         content: {
                             headers: <bulkTransferHeaders>,
-                            payload: <bulkTransferResult>
+                            payload: <bulkTransferResult_Reference>
                         },
                         metadata: {
                             event: {

@@ -24,7 +24,7 @@
 
 @startuml
 ' declate title
-title 2.1.0. DFSP2 sends a Fulfil Success Transfer request
+title 2.1.0. DFSP2 sends a Bulk Fulfil Success Transfer request
 
 autonumber
 
@@ -40,6 +40,7 @@ actor "DFSP1\nPayer" as DFSP1
 actor "DFSP2\nPayee" as DFSP2
 boundary "ML API Adapter" as MLAPI
 control "ML API \nNotification Handler" as NOTIFY_HANDLER
+collections "mongo-\nobject-store" as OBJECT_STORE
 boundary "Central Service API" as CSAPI
 collections "topic-\nbulk-fulfil" as TOPIC_BULK_FULFIL
 control "Bulk Fulfil\nHandler" as BULK_FULFIL_HANDLER
@@ -62,6 +63,7 @@ box "ML API Adapter Service" #LightBlue
 end box
 
 box "Central Service" #LightYellow
+    participant OBJECT_STORE
     participant CSAPI
     participant TOPIC_BULK_FULFIL
     participant BULK_FULFIL_HANDLER
@@ -128,7 +130,11 @@ group DFSP2 sends a Bulk Fulfil Success Transfer request to DFSP1
     end note
     DFSP2 ->> MLAPI: PUT - /bulkTransfers/<ID>
     activate MLAPI
-    MLAPI -> MLAPI: Validate incoming message &\noriginator matching Payee\n<color #FF0000><b>Error codes:</b> 3000-3002, 3100-3107</color>
+    MLAPI -> MLAPI: Validate incoming message\n<color #FF0000><b>Error codes:</b> 3000-3002, 3100-3107</color>
+    MLAPI -> OBJECT_STORE: Persist incoming bulk message\nto object store
+    activate OBJECT_STORE
+    OBJECT_STORE --> MLAPI: Return reference to the stored object
+    deactivate OBJECT_STORE
     note right of MLAPI #yellow
         Message:
         {
@@ -137,8 +143,8 @@ group DFSP2 sends a Bulk Fulfil Success Transfer request to DFSP1
             to: <transferHeaders.FSPIOP-Destination>,
             type: application/json,
             content: {
-                headers: <transferHeaders>,
-                payload: <transferMessage>
+                headers: <bulkTransferHeaders>,
+                payload: <bulkTransferMessage_Reference>
             },
             metadata: {
                 event: {
@@ -162,6 +168,10 @@ group DFSP2 sends a Bulk Fulfil Success Transfer request to DFSP1
     MLAPI -->> DFSP2: Respond HTTP - 200 (OK)
     deactivate MLAPI
     TOPIC_BULK_FULFIL <- BULK_FULFIL_HANDLER: Consume message
+    BULK_FULFIL_HANDLER -> OBJECT_STORE: Retrieve bulk payload\nusing reference
+    activate OBJECT_STORE
+    OBJECT_STORE --> BULK_FULFIL_HANDLER: Return payload
+    deactivate OBJECT_STORE
     ref over TOPIC_BULK_FULFIL, TOPIC_FULFIL: Bulk Fulfil Handler Consume\n
     alt Success
         BULK_FULFIL_HANDLER -> TOPIC_FULFIL: Produce message
@@ -182,10 +192,18 @@ group DFSP2 sends a Bulk Fulfil Success Transfer request to DFSP1
     POS_HANDLER -> TOPIC_BULK_PROCESSING: Produce message
     |||
     TOPIC_BULK_PROCESSING <- BULK_PROC_HANDLER: Consume message
-    ref over TOPIC_BULK_PROCESSING, TOPIC_NOTIFICATIONS: Position Handler Consume (Success)\n
+    ref over TOPIC_BULK_PROCESSING, TOPIC_NOTIFICATIONS: Bulk Processing Handler Consume (Success)\n
+    BULK_PROC_HANDLER -> OBJECT_STORE: Persist bulk message to object store
+    activate OBJECT_STORE
+    OBJECT_STORE --> BULK_PROC_HANDLER: Return reference to the stored object
+    deactivate OBJECT_STORE
     BULK_PROC_HANDLER -> TOPIC_NOTIFICATIONS: Produce message
     |||
     TOPIC_NOTIFICATIONS <- NOTIFY_HANDLER: Consume message
+    NOTIFY_HANDLER -> OBJECT_STORE: Retrieve bulk payload\nusing reference
+    activate OBJECT_STORE
+    OBJECT_STORE --> NOTIFY_HANDLER: Return payload
+    deactivate OBJECT_STORE
     opt action == 'commit'
         |||
         ref over DFSP1, TOPIC_NOTIFICATIONS: Send notification to Participant (Payer)\n
@@ -193,6 +211,10 @@ group DFSP2 sends a Bulk Fulfil Success Transfer request to DFSP1
     end
     |||
     TOPIC_NOTIFICATIONS <- NOTIFY_HANDLER: Consume message
+    NOTIFY_HANDLER -> OBJECT_STORE: Retrieve bulk payload\nusing reference
+    activate OBJECT_STORE
+    OBJECT_STORE --> NOTIFY_HANDLER: Return payload
+    deactivate OBJECT_STORE
     opt action == 'commit'
         |||
         ref over DFSP2, TOPIC_NOTIFICATIONS: Send notification to Participant (Payee)\n
