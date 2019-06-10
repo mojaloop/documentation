@@ -332,7 +332,12 @@ group Bulk Processing Handler Consume
                         type: application/json
                         content: {
                             headers: <bulkTransferHeaders>,
-                            payload: <bulkTransferResult_Reference>
+                            payload: {
+                                objstore: {
+                                        transactionid: <bulkTransferId>
+                                        referenceid: <bulkTransferMessage_ObjectStoreReference_ID>
+                                }
+                            }
                         },
                         metadata: {
                             event: {

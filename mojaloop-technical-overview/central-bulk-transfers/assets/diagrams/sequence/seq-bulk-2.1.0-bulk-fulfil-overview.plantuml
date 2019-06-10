@@ -144,7 +144,12 @@ group DFSP2 sends a Bulk Fulfil Success Transfer request to DFSP1
             type: application/json,
             content: {
                 headers: <bulkTransferHeaders>,
-                payload: <bulkTransferMessage_Reference>
+                payload: {
+                    objstore: {
+                            transactionid: <bulkTransferId>
+                            referenceid: <bulkTransferMessage_ObjectStoreReference_ID>
+                    }
+                }
             },
             metadata: {
                 event: {

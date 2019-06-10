@@ -152,7 +152,12 @@ group DFSP1 sends a Bulk Prepare Transfer request to DFSP2
             type: application/json
             content: {
                 headers: <bulkTransferHeaders>,
-                payload: <bulkTransferMessage_Reference>
+                payload: {
+                    objstore: {
+                            transactionid: <bulkTransferId>
+                            referenceid: <bulkTransferMessage_ObjectStoreReference_ID>
+                    }
+                }
             },
             metadata: {
                 event: {
