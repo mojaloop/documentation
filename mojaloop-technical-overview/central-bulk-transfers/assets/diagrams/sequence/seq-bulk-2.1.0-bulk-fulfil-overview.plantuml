@@ -173,15 +173,15 @@ group DFSP2 sends a Bulk Fulfil Success Transfer request to DFSP1
     MLAPI -->> DFSP2: Respond HTTP - 200 (OK)
     deactivate MLAPI
     TOPIC_BULK_FULFIL <- BULK_FULFIL_HANDLER: Consume message
-    BULK_FULFIL_HANDLER -> OBJECT_STORE: Retrieve bulk payload\nusing reference
+    BULK_FULFIL_HANDLER -> OBJECT_STORE: Retrieve bulk payload using reference\nby streaming individual transfers
     activate OBJECT_STORE
-    OBJECT_STORE --> BULK_FULFIL_HANDLER: Return payload
+    OBJECT_STORE --> BULK_FULFIL_HANDLER: Return individual transfers\npart of the payload
     deactivate OBJECT_STORE
     ref over TOPIC_BULK_FULFIL, TOPIC_FULFIL: Bulk Fulfil Handler Consume\n
     alt Success
-        BULK_FULFIL_HANDLER -> TOPIC_FULFIL: Produce message
+        BULK_FULFIL_HANDLER -> TOPIC_FULFIL: Produce single transfer message\nfor each individual transfer [loop]
     else Failure
-        BULK_FULFIL_HANDLER --> TOPIC_NOTIFICATIONS: Produce message
+        BULK_FULFIL_HANDLER --> TOPIC_NOTIFICATIONS: Produce message for the bulk transfer
     end
     |||
     TOPIC_FULFIL <- FULF_HANDLER: Consume message
@@ -202,7 +202,7 @@ group DFSP2 sends a Bulk Fulfil Success Transfer request to DFSP1
     activate OBJECT_STORE
     OBJECT_STORE --> BULK_PROC_HANDLER: Return reference to the stored object
     deactivate OBJECT_STORE
-    BULK_PROC_HANDLER -> TOPIC_NOTIFICATIONS: Produce message
+    BULK_PROC_HANDLER -> TOPIC_NOTIFICATIONS: Produce bulk notification
     |||
     TOPIC_NOTIFICATIONS <- NOTIFY_HANDLER: Consume message
     NOTIFY_HANDLER -> OBJECT_STORE: Retrieve bulk payload\nusing reference
