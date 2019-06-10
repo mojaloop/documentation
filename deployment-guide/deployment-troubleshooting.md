@@ -22,7 +22,10 @@ The following error is displayed when attempting to access an end-point (e.g. ce
   
   * Note that the Mojaloop deployment via Helm can take a few minutes to initially startup depending on the system's available resources and specification. It is recommended that you wait at least 10m for all Pods/Containers to self heal before troubleshooting.
 
-### 1.2. Ingress rules are not resolving for Nginx Ingress v0.22 or later
+
+## 2. Ingress issues
+
+### 2.1. Ingress rules are not resolving for Nginx Ingress v0.22 or later
 
 #### Description
 
@@ -37,7 +40,7 @@ This is due to the changes introduced in Nginx Ingress controllers that are v0.2
     `nginx.ingress.kubernetes.io/rewrite-target: '/'` --> `nginx.ingress.kubernetes.io/rewrite-target: '/$1'`
    
 
-### 1.3. Ingress rules are not resolving for Nginx Ingress earlier than v0.22
+### 2.2. Ingress rules are not resolving for Nginx Ingress earlier than v0.22
 
 #### Description
 
