@@ -22,7 +22,7 @@ In case you want to build your own mock FSP instead of using the simulator, thes
 - **API Specification document:** This [document](https://github.com/mojaloop/mojaloop-specification/blob/master/API%20Definition%20v1.0.pdf) introduces and describes the API specification that any FSP should implement to interact with Mojaloop. Also find the complete set of specification documents in the [Mojaloop specification repository](https://github.com/mojaloop/mojaloop-specification).
 - **ILP utility library:**  Mojaloop uses [Interledger](https://interledger.org/) (ILP) as a secure transport protocol for funds. This [Java project](https://github.com/mojaloop/interop-ilp-conditions) provides a library to generate ILP packets, conditions, fulfilments and their respective validations.
 
-## Secondary assets
+## Complementary assets
 
 These are other valuable resources available for testing once you have setup your environment. Please note that some of these may still be at a development stage.
 
