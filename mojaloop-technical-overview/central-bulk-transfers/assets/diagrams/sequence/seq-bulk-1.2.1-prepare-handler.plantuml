@@ -28,7 +28,7 @@
 
 @startuml
 ' declate title
-title 1.1.1.a. Prepare Handler Consume (single message, includes individual transfers from Bulk)
+title 1.2.1. Prepare Handler Consume (single message, includes individual transfers from Bulk)
 
 autonumber
 
@@ -78,13 +78,13 @@ group Prepare Handler Consume
     group Persist Event Information
         |||
         PREP_HANDLER -> TOPIC_EVENTS: Publish event information
-        ref over PREP_HANDLER, TOPIC_EVENTS :  Event Handler Consume {[[https://github.com/mojaloop/docs/blob/master/Diagrams/SequenceDiagrams/seq-event-9.1.0.svg 9.1.0]]} \n
+        ref over PREP_HANDLER, TOPIC_EVENTS :  Event Handler Consume\n
         |||
     end
 
     group Validate Prepare Transfer 
-        PREP_HANDLER <-> PREP_HANDLER: <color #AAA>Schema validation of the incoming message</color>
-        PREP_HANDLER <-> PREP_HANDLER: <color #AAA>Verify the message's signature (to be confirmed in future requirement)</color>
+        PREP_HANDLER <-> PREP_HANDLER: <color #gray>Schema validation of the incoming message</color>
+        PREP_HANDLER <-> PREP_HANDLER: <color #gray>Verify the message's signature (to be confirmed in future requirement)</color>
         note right of PREP_HANDLER #lightgrey
             The above validation steps are already handled by
             the ML-Adapter for the open source implementation.
@@ -107,7 +107,7 @@ group Prepare Handler Consume
                 group Persist Event Information
                     |||
                     PREP_HANDLER -> TOPIC_EVENTS: Publish event information
-                    ref over PREP_HANDLER, TOPIC_EVENTS :  Event Handler Consume {[[https://github.com/mojaloop/docs/blob/master/Diagrams/SequenceDiagrams/seq-event-9.1.0.svg 9.1.0]]} \n
+                    ref over PREP_HANDLER, TOPIC_EVENTS :  Event Handler Consume\n
                     |||
                 end
                 PREP_HANDLER -> PREP_HANDLER: Generate Hash for the incoming message and compare hashes
@@ -181,37 +181,71 @@ group Prepare Handler Consume
                                 PREP_HANDLER -> TOPIC_NOTIFICATIONS: Send /error callback with appropriate error message\n(Invalid duplicate request)\n<color #FF0000><b>Error code:</b> 3100</color>
                             end
                         else If type == 'bulk-prepare'
-                            note right of PREP_HANDLER #yellow
-                                Message:
-                                {
-                                    id: <transferMessage.transferId>
-                                    from: <transferMessage.payerFsp>,
-                                    to: <transferMessage.payeeFsp>,
-                                    type: application/json
-                                    content: {
-                                        headers: <transferHeaders>,
-                                        payload: {
-                                                transferState: "RECEIVED",
-                                                fulfilment: "WLctttbu2HvTsa1XWvUoGRcQozHsqeu9Ahl2JW9Bsu8",
-                                                completedTimestamp: "2018-10-24T08:38:08.699-04:00"
-                                            }
-                                    },
-                                    metadata: {
-                                        event: {
-                                            id: <uuid>,
-                                            responseTo: <previous.uuid>,
-                                            type: bulk-processing,
-                                            action: prepare-duplicate,
-                                            createdAt: <timestamp>,
-                                            state: {
-                                                status: "success",
-                                                code: 0
+                            alt If transferState IN ['COMMITTED', 'ABORTED','RECEIVED', 'RESERVED']
+                                note right of PREP_HANDLER #yellow
+                                    Message:
+                                    {
+                                        id: <transferMessage.transferId>
+                                        from: <transferMessage.payerFsp>,
+                                        to: <transferMessage.payeeFsp>,
+                                        type: application/json
+                                        content: {
+                                            headers: <transferHeaders>,
+                                            payload: {
+                                                    transferState: "RECEIVED",
+                                                    fulfilment: "WLctttbu2HvTsa1XWvUoGRcQozHsqeu9Ahl2JW9Bsu8",
+                                                    completedTimestamp: "2018-10-24T08:38:08.699-04:00"
+                                                }
+                                        },
+                                        metadata: {
+                                            event: {
+                                                id: <uuid>,
+                                                responseTo: <previous.uuid>,
+                                                type: bulk-processing,
+                                                action: prepare-duplicate,
+                                                createdAt: <timestamp>,
+                                                state: {
+                                                    status: "success",
+                                                    code: 0
+                                                }
                                             }
                                         }
                                     }
-                                }
-                            end note
-                            PREP_HANDLER -> TOPIC_BULK_PROCESSING: Publish Prepare failure event to Bulk Processing Topic\n(for the individual transfer) with the current transferState\n<color #FF0000><b>Error codes:</b> 2003</color>\n[Duplicate request]
+                                end note
+                                PREP_HANDLER -> TOPIC_BULK_PROCESSING: Publish Prepare Duplicate event to Bulk Processing Topic\n(for the individual transfer) with the current transferState\n<color #FF0000><b>Error codes:</b> 2003</color>\n[Duplicate request]
+                            else If transferState does not exist
+                                note right of PREP_HANDLER #yellow
+                                    Message:
+                                    {
+                                        id: <transferMessage.transferId>
+                                        from: <transferMessage.payerFsp>,
+                                        to: <transferMessage.payeeFsp>,
+                                        type: application/json
+                                        content: {
+                                            headers: <transferHeaders>,
+                                            payload: {
+                                                    transferState: "RECEIVED",
+                                                    fulfilment: "WLctttbu2HvTsa1XWvUoGRcQozHsqeu9Ahl2JW9Bsu8",
+                                                    completedTimestamp: "2018-10-24T08:38:08.699-04:00"
+                                                }
+                                        },
+                                        metadata: {
+                                            event: {
+                                                id: <uuid>,
+                                                responseTo: <previous.uuid>,
+                                                type: bulk-processing,
+                                                action: prepare-duplicate,
+                                                createdAt: <timestamp>,
+                                                state: {
+                                                    status: "error",
+                                                    code: 0
+                                                }
+                                            }
+                                        }
+                                    }
+                                end note
+                                PREP_HANDLER -> TOPIC_BULK_PROCESSING: Publish Prepare failure event to Bulk Processing Topic\n(for the individual transfer) with the current transferState\n<color #FF0000><b>Error codes:</b> 2003</color>\n[Duplicate invalid request]
+                            end
                         end
                     end
                 else Transfer exists, hash does not match

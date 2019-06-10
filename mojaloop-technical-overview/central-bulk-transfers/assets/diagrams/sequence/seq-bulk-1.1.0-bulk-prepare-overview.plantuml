@@ -40,6 +40,7 @@ actor "DFSP1\nPayer" as DFSP1
 actor "DFSP2\nPayee" as DFSP2
 boundary "ML API Adapter" as MLAPI
 control "ML API Notification \nHandler" as NOTIFY_HANDLER
+collections "mongo-\nobject-store" as OBJECT_STORE
 boundary "Central Service API" as CSAPI
 collections "topic-\nbulk-prepare" as TOPIC_BULK_PREPARE
 control "Bulk Prepare\nHandler" as BULK_PREP_HANDLER
@@ -62,6 +63,7 @@ box "ML API Adapter Service" #LightBlue
 end box
 
 box "Central Service" #LightYellow
+    participant OBJECT_STORE
     participant CSAPI
 	participant TOPIC_BULK_PREPARE
     participant BULK_PREP_HANDLER
@@ -136,7 +138,11 @@ group DFSP1 sends a Bulk Prepare Transfer request to DFSP2
     end note
     DFSP1 ->> MLAPI: POST - /bulkTransfers
     activate MLAPI
-    MLAPI -> MLAPI: Validate incoming message and \noriginator matching Payer\n<color #FF0000><b>Error codes:</b> 3000-3002, 3100-3107</color>
+    MLAPI -> MLAPI: Validate incoming message\n<color #FF0000><b>Error codes:</b> 3000-3002, 3100-3107</color>
+    MLAPI -> OBJECT_STORE: Persist incoming bulk message\nto object store
+    activate OBJECT_STORE
+    OBJECT_STORE --> MLAPI: Return reference to the stored object
+    deactivate OBJECT_STORE
     note right of MLAPI #yellow
         Message:
         {
@@ -146,7 +152,7 @@ group DFSP1 sends a Bulk Prepare Transfer request to DFSP2
             type: application/json
             content: {
                 headers: <bulkTransferHeaders>,
-                payload: <bulkTransferMessage>
+                payload: <bulkTransferMessage_Reference>
             },
             metadata: {
                 event: {
@@ -171,15 +177,19 @@ group DFSP1 sends a Bulk Prepare Transfer request to DFSP2
     deactivate MLAPI
     |||
     TOPIC_BULK_PREPARE <- BULK_PREP_HANDLER: Consume message
+    BULK_PREP_HANDLER -> OBJECT_STORE: Retrieve bulk payload\nusing reference
+    activate OBJECT_STORE
+    OBJECT_STORE --> BULK_PREP_HANDLER: Return payload
+    deactivate OBJECT_STORE
     ref over TOPIC_BULK_PREPARE, BULK_PREP_HANDLER, TOPIC_TRANSFER_PREPARE :  Bulk Prepare Handler Consume \n
     alt Success
         BULK_PREP_HANDLER -> TOPIC_TRANSFER_PREPARE: Produce message
     else Failure
-        BULK_PREP_HANDLER --> TOPIC_BULK_PROCESSING: Produce message
+        BULK_PREP_HANDLER --> TOPIC_NOTIFICATIONS: Produce message
     end
     |||
     TOPIC_TRANSFER_PREPARE <- PREP_HANDLER: Consume message
-    ref over TOPIC_TRANSFER_PREPARE, PREP_HANDLER, TOPIC_TRANSFER_POSITION :  Prepare Handler Consume {[[https://github.com/mojaloop/docs/blob/master/CentralServices/seq_diagrams/seq-prepare-1.1.1.a.svg 1.1.1.a]], [[https://github.com/mojaloop/docs/blob/master/CentralServices/seq_diagrams/seq-prepare-1.1.1.b.svg 1.1.1.b]]} \n
+    ref over TOPIC_TRANSFER_PREPARE, PREP_HANDLER, TOPIC_TRANSFER_POSITION :  Prepare Handler Consume\n
     alt Success
         PREP_HANDLER -> TOPIC_TRANSFER_POSITION: Produce message
     else Failure
@@ -187,15 +197,23 @@ group DFSP1 sends a Bulk Prepare Transfer request to DFSP2
     end
     |||
     TOPIC_TRANSFER_POSITION <- POS_HANDLER: Consume message
-    ref over TOPIC_TRANSFER_POSITION, POS_HANDLER, TOPIC_BULK_PROCESSING : Position Handler Consume {[[https://github.com/mojaloop/docs/blob/master/CentralServices/seq_diagrams/seq-prepare-1.1.2.a.svg 1.1.2.a]], [[https://github.com/mojaloop/docs/blob/master/CentralServices/seq_diagrams/seq-prepare-1.1.2.b.svg 1.1.2.b]]} \n
+    ref over TOPIC_TRANSFER_POSITION, POS_HANDLER, TOPIC_BULK_PROCESSING : Position Handler Consume\n
     POS_HANDLER -> TOPIC_BULK_PROCESSING: Produce message
     |||
     TOPIC_BULK_PROCESSING <- BULK_PROC_HANDLER: Consume message
     ref over TOPIC_BULK_PROCESSING, BULK_PROC_HANDLER, TOPIC_NOTIFICATIONS : Bulk Processing Handler Consume \n
-    BULK_PROC_HANDLER --> TOPIC_NOTIFICATIONS: Send Bulk Prepare notification
+    BULK_PROC_HANDLER -> OBJECT_STORE: Persist bulk message to object store
+    activate OBJECT_STORE
+    OBJECT_STORE --> BULK_PROC_HANDLER: Return reference to the stored object
+    deactivate OBJECT_STORE
+    BULK_PROC_HANDLER -> TOPIC_NOTIFICATIONS: Send Bulk Prepare notification
     |||
     TOPIC_NOTIFICATIONS <- NOTIFY_HANDLER: Consume message
-    ref over DFSP2, TOPIC_NOTIFICATIONS : Send notification to Participant (Payee) {[[https://github.com/mojaloop/docs/blob/master/CentralServices/seq_diagrams/seq-prepare-1.1.4.a.svg 1.1.4.a]], [[https://github.com/mojaloop/docs/blob/master/CentralServices/seq_diagrams/seq-prepare-1.1.4.b.svg 1.1.4.b]]} \n
+    NOTIFY_HANDLER -> OBJECT_STORE: Retrieve bulk payload\nusing reference
+    activate OBJECT_STORE
+    OBJECT_STORE --> NOTIFY_HANDLER: Return payload
+    deactivate OBJECT_STORE
+    ref over DFSP2, TOPIC_NOTIFICATIONS : Send notification to Participant (Payee)\n
     NOTIFY_HANDLER -> DFSP2: Send Bulk Prepare notification to Payee
     |||
 end

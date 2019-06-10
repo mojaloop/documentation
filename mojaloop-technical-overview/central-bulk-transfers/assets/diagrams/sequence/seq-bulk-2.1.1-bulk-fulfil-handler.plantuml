@@ -24,7 +24,7 @@
 
 @startuml
 ' declare title
-title 1.1.4. Bulk Fulfil Handler Consume
+title 2.1.1. Bulk Fulfil Handler Consume
 
 autonumber
 
@@ -36,6 +36,7 @@ autonumber
 '   database - Database Persistance Store
 
 ' declare actors
+collections "mongo-\nobject-store" as OBJECT_STORE
 collections "topic-bulk-\nfulfil" as TOPIC_BULK_FULFIL
 collections "topic-bulk-\nprocessing" as TOPIC_BULK_PROCESSING
 control "Bulk Fulfil\nHandler" as BULK_FULF_HANDLER
@@ -46,6 +47,7 @@ entity "Bulk DAO" as BULK_DAO
 database "Central Store" as DB
 
 box "Central Service" #LightYellow
+    participant OBJECT_STORE
     participant TOPIC_BULK_FULFIL
     participant BULK_FULF_HANDLER
     participant TOPIC_TRANSFER_FULFIL
@@ -63,27 +65,32 @@ group Bulk Fulfil Handler Consume
     activate TOPIC_BULK_FULFIL
     deactivate TOPIC_BULK_FULFIL
 
+    BULK_FULF_HANDLER -> OBJECT_STORE: Retrieve bulk payload\nusing reference
+    activate OBJECT_STORE
+    OBJECT_STORE --> BULK_FULF_HANDLER: Return payload
+    deactivate OBJECT_STORE
+
     break
         group Validate Event
-            BULK_FULF_HANDLER <-> BULK_FULF_HANDLER: Validate event - Rule:\ntype == 'bulk-fulfil' && action == 'bulk-fulfil'\n<color #FF0000><b>Error codes:</b> 2001</color>
+            BULK_FULF_HANDLER <-> BULK_FULF_HANDLER: Validate event - Rule:\ntype == 'bulk-fulfil' && action == 'bulk-commit'\n<color #FF0000><b>Error codes:</b> 2001</color>
         end
     end
 
     group Persist Event Information
         |||
         BULK_FULF_HANDLER -> TOPIC_EVENTS: Publish event information
-        ref over BULK_FULF_HANDLER, TOPIC_EVENTS:  Event Handler Consume {[[https://TODO-input-path-to/seq-event-9.1.0.svg 9.1.0]]} \n
+        ref over BULK_FULF_HANDLER, TOPIC_EVENTS:  Event Handler Consume \n
         |||
     end
 
     group Validate FSPIOP-Signature
         |||
-        ref over BULK_FULF_HANDLER, TOPIC_NOTIFICATION: Validate message.content.headers.**FSPIOP-Signature** {[[https://TODO-input-path-to/seq-signature-validation.svg seq-signature-validation]]} \n<color #FF0000><b>Error codes:</b> 3105/3106</color>
+        ref over BULK_FULF_HANDLER, TOPIC_NOTIFICATION: Validate message.content.headers.**FSPIOP-Signature**\n<color #FF0000><b>Error codes:</b> 3105/3106</color>
     end
 
     group Validate Bulk Fulfil Transfer
-        BULK_FULF_HANDLER <-> BULK_FULF_HANDLER: <color #AAA>Schema validation of the incoming message</color>
-        BULK_FULF_HANDLER <-> BULK_FULF_HANDLER: <color #AAA>Verify the message's signature\n(to be confirmed in future requirement)</color>
+        BULK_FULF_HANDLER <-> BULK_FULF_HANDLER: <color #gray>Schema validation of the incoming message</color>
+        BULK_FULF_HANDLER <-> BULK_FULF_HANDLER: <color #gray>Verify the message's signature</color>\n<color #gray>(to be confirmed in future requirement)</color>
         note right of BULK_FULF_HANDLER #lightgrey
             The above validation steps are already handled by
             the ML-Adapter for the open source implementation.
@@ -110,7 +117,7 @@ group Bulk Fulfil Handler Consume
                 group Persist Event Information
                     |||
                     BULK_FULF_HANDLER -> TOPIC_EVENTS: Publish event information
-                    ref over BULK_FULF_HANDLER, TOPIC_EVENTS:  Event Handler Consume {[[https://TODO-input-path-to/seq-event-9.1.0.svg 9.1.0]]} \n
+                    ref over BULK_FULF_HANDLER, TOPIC_EVENTS:  Event Handler Consume\n
                     |||
                 end
                 BULK_FULF_HANDLER -> BULK_DAO: Request to retrieve Bulk transfer state\n<color #FF0000><b>Error code:</b> 2003</color>
@@ -126,7 +133,7 @@ group Bulk Fulfil Handler Consume
                 deactivate BULK_DAO
                 alt bulkTransferState IN ['COMPLETED', 'REJECTED']
                     break
-                        ref over BULK_FULF_HANDLER, TOPIC_NOTIFICATION: Send notification to Participant (Payee) {[[https://TODO-input-path-to/seq-prepare-1.1.4.a.svg 1.1.4.a]]} \n
+                        ref over BULK_FULF_HANDLER, TOPIC_NOTIFICATION: Send notification to Participant (Payee)\n
                     end
                 else transferState NOT 'ACCEPTED'
                     break
@@ -188,7 +195,21 @@ group Bulk Fulfil Handler Consume
     end
     alt Validate Bulk Transfer Fulfil (success)
         BULK_FULF_HANDLER -> BULK_FULF_HANDLER: Break down the bulk into indidivual transfers\n<color #FF0000><b>Error codes:</b> 2003</color>
-        loop for every individual transfer in the bulk
+        loop for every individual transfer in the bulk fulfil list
+
+            /' group Update Bulk Transfer Association (with bulkProcessingState='PROCESSING')
+                BULK_FULF_HANDLER -> BULK_DAO: Request to persist bulk transfer association\n<color #FF0000><b>Error codes:</b> 2003</color>
+                activate BULK_DAO
+                BULK_DAO -> DB: Update bulkTransferAssociation
+                hnote over DB #lightyellow
+                    bulkTransferAssociation
+                end note
+                activate DB
+                deactivate DB
+                BULK_DAO --> BULK_FULF_HANDLER: Return success
+                deactivate BULK_DAO
+            end '/
+
             note right of BULK_FULF_HANDLER #yellow
                 Message:
                 {
@@ -219,7 +240,7 @@ group Bulk Fulfil Handler Consume
             activate TOPIC_TRANSFER_FULFIL
             deactivate TOPIC_TRANSFER_FULFIL
         end
-    else Validate Bulk Prepare Transfer (failure)
+    else Validate Bulk Transfer Fulfil (failure)
         note right of BULK_FULF_HANDLER #yellow
             Message:
             {
@@ -240,7 +261,7 @@ group Bulk Fulfil Handler Consume
                     event: {
                         id: <uuid>,
                         responseTo: <previous.uuid>,
-                        type: bulk-notification,
+                        type: bulk-processing,
                         action: bulk-abort,
                         createdAt: <timestamp>,
                         state: {
@@ -252,9 +273,9 @@ group Bulk Fulfil Handler Consume
                 }
             }
         end note
-        BULK_FULF_HANDLER -> TOPIC_BULK_PROCESSING: Publish Notification (failure) event for Payer\n<color #FF0000><b>Error codes:</b> 2003</color>
-        activate TOPIC_BULK_PROCESSING
-        deactivate TOPIC_BULK_PROCESSING
+        BULK_FULF_HANDLER -> TOPIC_NOTIFICATION: Publish Notification (failure) event for Payer\n<color #FF0000><b>Error codes:</b> 2003</color>
+        activate TOPIC_NOTIFICATION
+        deactivate TOPIC_NOTIFICATION
     end
 end
 deactivate BULK_FULF_HANDLER
