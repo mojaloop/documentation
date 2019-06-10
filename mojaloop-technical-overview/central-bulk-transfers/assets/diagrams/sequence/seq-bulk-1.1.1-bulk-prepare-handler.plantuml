@@ -65,11 +65,6 @@ group Bulk Prepare Handler Consume
     activate TOPIC_BULK_PREPARE
     deactivate TOPIC_BULK_PREPARE
 
-    BULK_PREP_HANDLER -> OBJECT_STORE: Retrieve bulk payload\nusing reference
-    activate OBJECT_STORE
-    OBJECT_STORE --> BULK_PREP_HANDLER: Return payload
-    deactivate OBJECT_STORE
-
     break
         group Validate Event
             BULK_PREP_HANDLER <-> BULK_PREP_HANDLER: Validate event - Rule: type == 'bulk-prepare' && action == 'bulk-prepare'\n<color #FF0000><b>Error codes:</b> 2001</color>
@@ -91,7 +86,15 @@ group Bulk Prepare Handler Consume
             the ML-Adapter for the open source implementation.
             It may need to be added in future for custom adapters.
         end note
+        
         BULK_PREP_HANDLER <-> BULK_PREP_HANDLER: Validate that there are no duplicate individualTransfers \n(transfer IDs) from the same bulk. \nOn failure, send bulk error message to Payer. \nNo further processing on individual transfers is done
+        loop for every individual transfer in the bulk
+            BULK_PREP_HANDLER -> OBJECT_STORE: Retrieve each individual transfer\nin the bulk using the reference
+            activate OBJECT_STORE
+            OBJECT_STORE --> BULK_PREP_HANDLER: Return individual transfers as queried
+            deactivate OBJECT_STORE
+        end
+
         group Validate Duplicate check
             note right of BULK_PREP_HANDLER #Cyan
                 The Specification doesn't touch on the duplicate handling
@@ -401,6 +404,10 @@ group Bulk Prepare Handler Consume
             transfer to make their format similar to a single transfer
         end note
         loop for every individual transfer in the bulk
+            BULK_PREP_HANDLER -> OBJECT_STORE: Retrieve each individual transfer\nin the bulk using the reference
+            activate OBJECT_STORE
+            OBJECT_STORE --> BULK_PREP_HANDLER: Return individual transfers as queried
+            deactivate OBJECT_STORE
             group Insert Bulk Transfer Association (with bulkProcessingState='RECEIVED')
                 BULK_PREP_HANDLER -> POS_DAO: Request to persist bulk transfer association\n<color #FF0000><b>Error codes:</b> 2003</color>
                 activate POS_DAO

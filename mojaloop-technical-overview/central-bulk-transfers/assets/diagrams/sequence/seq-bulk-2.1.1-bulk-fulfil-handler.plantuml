@@ -196,7 +196,10 @@ group Bulk Fulfil Handler Consume
     alt Validate Bulk Transfer Fulfil (success)
         BULK_FULF_HANDLER -> BULK_FULF_HANDLER: Break down the bulk into indidivual transfers\n<color #FF0000><b>Error codes:</b> 2003</color>
         loop for every individual transfer in the bulk fulfil list
-
+            BULK_PREP_HANDLER -> OBJECT_STORE: Retrieve each individual transfer\nin the bulk using the reference
+            activate OBJECT_STORE
+            OBJECT_STORE --> BULK_PREP_HANDLER: Return individual transfers as queried
+            deactivate OBJECT_STORE
             /' group Update Bulk Transfer Association (with bulkProcessingState='PROCESSING')
                 BULK_FULF_HANDLER -> BULK_DAO: Request to persist bulk transfer association\n<color #FF0000><b>Error codes:</b> 2003</color>
                 activate BULK_DAO
