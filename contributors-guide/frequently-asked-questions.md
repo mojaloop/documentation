@@ -10,18 +10,18 @@ This document contains some of the most frequently asked questions from the comm
 
 * [What is Mojaloop](#1-what-is-mojaloop)
 * [How does it work](#2-how-does-it-work)
-* [Who is it fo](#3-who-is-it-for)
+* [Who is it for](#3-who-is-it-for)
 * [Why does it exist](#4-why-does-it-exist)
 * [Who's behind it](#5-whos-behind-it)
 * [What platforms does Mojaloop run on](#6-what-platforms-does-mojaloop-run-on)
-* [Is it really open-sourc](#7-is-it-really-open-source)
+* [Is it really open-source](#7-is-it-really-open-source)
 * [How can I contribute to Mojaloop](#8-how-can-i-contribute-to-mojaloop)
 * [What is supported](#9-what-is-supported)
 * [Can we connect directly to Pathfinder in a development environment](#10-can-we-connect-directly-to-pathfinder-in-a-development-environment)
 * [Should i register DFSP via url or update configuration in default.json](#11-should-i-register-dfsp-via-urlhttpcentral-directorycommandsregisteror-i-need-to-update-configuration-in-defaultjson)
 * [Status of the pod pi3-kafka-0 is still on CrashLoopBackOff](#12-status-of-the-pod-pi3-kafka-0-is-still-on-crashloopbackoff)
 * [Why am I getting an error when we try to create new DFSP using Admin](#13-why-am-i-getting-an-error-when-we-try-to-create-new-dfsp-using-admin)
-* [Using Majaloop to do payment using crypto-currency](#14-using-majaloop-to-do-payment-using-crypto-currency)
+* [Using Mojaloop to do payment using crypto-currency](#14-using-mojaloop-to-do-payment-using-crypto-currency)
 * [Can I spread Mojaloop components over different physical machines and VM's](#15--can-i-spread-mojaloop-components-over-different-physical-machines-and-vms)
 * [Can we expect for tall the endpoints defined in the API document are implemented in Mojaloop](#16-can-we-expect-for-tall-the-endpoints-defined-in-the-api-document-are-implemented-in-mojaloop)
 * [Does Mojaloop store the payment initiator FSP’s quote/status info](#17-does-mojaloop-store-the-payment-initiator-fsps-quotestatus-info)
@@ -29,7 +29,7 @@ This document contains some of the most frequently asked questions from the comm
 * [How is the Mojaloop source accessible](#19-how-is-the-mojaloop-source-accessible)
 * [How to register a new party in Mojaloop](#20-how-to-register-a-new-party-in-mojaloop)
 * [Does the participant represent an account of a customer in a bank](#21-does-the-participant-represent-an-account-of-a-customer-in-a-bank)
-* [How to register _trusted_ payee to a payer, to skip OTP](#22-how-to-register-_trusted_-payee-to-a-payer-to-skip-otp)
+* [How to register _trusted_ payee to a payer, to skip OTP](#22-how-to-register-trusted-payee-to-a-payer-to-skip-otp)
 * [Receiving a 404 error when attempting to access or load kubernetes-dashboard.yaml file](#23-receiving-a-404-error-when-attempting-to-access-or-load-kubernetes-dashboardyaml-file)
 * [When installing nginx-ingress for load balancing & external access - Error: no available release name found](#24-when-installing-nginx-ingress-for-load-balancing--external-access---error-no-available-release-name-found)
 * [Received "ImportError: librdkafka.so.1: cannot open shared object file: No such file or directory" when running `npm start' command](#25-received-importerror-librdkafkaso1-cannot-open-shared-object-file-no-such-file-or-directory-when-running-npm-start-command)
@@ -44,6 +44,7 @@ This document contains some of the most frequently asked questions from the comm
 * [How do I know the end points to setup postman for testing the deployment](#34-how-do-i-know-the-end-points-to-setup-postman-for-testing-the-deployment)
 * [Why are there no reversals allowed on a Mojaloop](#35-why-are-there-no-reversals-allowed-on-a-mojaloop)
 * [ffg. error with microk8s installation "MountVolume.SetUp failed"](#36-ffg-error-with-microk8s-installation-mountvolumesetup-failed)
+* [Why am I getting this error when trying to create a participant: "Hub reconciliation account for the specified currency does not exist"?](#37-why-am-i-getting-this-error-when-trying-to-create-a-participant-hub-reconciliation-account-for-the-specified-currency-does-not-exist)
 
 #### 1. What is Mojaloop?
  
@@ -115,7 +116,7 @@ Increased RAM to 24 MB and CPU to 4 resolved the issues. Appears to be a timeout
 
 Please insure you are using the most current Postman scripts available on https://github.com/mojaloop/mock-pathfinder repository.
     
-#### 14. Using Majaloop to do payment using crypto-currency?
+#### 14. Using Mojaloop to do payment using crypto-currency?
 
 Not with the current Specification and with this platform. Currently this is limited to currencies listed in the ISO 4217. Since the specification and platform is all about digital transfers, it should be possible to investigate a use-case for this possible requirement. Alternatively, I guess an FSP can provide that conversion (like many do already from crypto to one of the listed currencies).
 
@@ -173,7 +174,7 @@ From the official kubernetes github repository in the README.md, the latest link
 
 #### 24. When installing nginx-ingress for load balancing & external access - Error: no available release name found?
 
-Please have a look at the following addressing a similar issue. To summarise - it is most likely an RBAC issue. Have a look at the documentation to set up Tiller with RBAC. https://docs.helm.sh/using_helm/#role-based-access-control goes into detail about this. The issue logged: helm/helm#3839.
+Please have a look at the following addressing a similar issue. To summarise - it is most likely an RBAC issue. Have a look at the documentation to set up Tiller with RBAC. https://docs.helm.sh/using_helm/#role-based-access-control goes into detail about this. The issue logged: helm/helm#3839.
 
 #### 25. Received "ImportError: librdkafka.so.1: cannot open shared object file: No such file or directory" when running `npm start' command.
 
@@ -244,3 +245,10 @@ However, *Refunds* is a use case supported by the API.
 
 Would appear if it is a space issue, but more the 100GiB of EBS storage was allocated.
 The issue resolved itself after 45 minutes. Initial implementation of the mojaloop project can take a while to stabilize.
+
+#### 37. Why am I getting this error when trying to create a participant: "Hub reconciliation account for the specified currency does not exist"?
+
+You need to create the corresponding Hub accounts (HUB_MULTILATERAL_SETTLEMENT and HUB_RECONCILIATION) for the specified currency before setting up the participants. 
+In this Postman collection you can find the requests to perform the operation in the "Hub Account" folder: https://github.com/mojaloop/postman/blob/master/OSS-New-Deployment-FSP-Setup.postman_collection.json
+
+Find also the related environments in the Postman repo: https://github.com/mojaloop/postman
