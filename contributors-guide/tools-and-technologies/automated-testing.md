@@ -52,7 +52,7 @@ For the Mojaloop QA and Regression Testing Framework specifically, Postman regre
 Following the requirements and instructions as set out in the detail in  [QA and Regression Testing Framework](https://github.com/mojaloop/ml-qa-regression-testing.git "QA and Regression Testing Framework"), everyone will be able to create their own Framework and gain access to their instance to execute tests against any Postman Collection targeting any Environment they have control over.
 
 ##### Steps to execute the bash script to run the newman / postman test
-+ To run a test via this method, you will have to be in posession of the PEM-file of the server on which the Mojaloop QA and Regression Framework was deployed on an EC2 instance on Amazon Cloud.
++ To run a test via this method, you will have to be in possession of the PEM-file of the server on which the Mojaloop QA and Regression Framework was deployed on an EC2 instance on Amazon Cloud.
 
 + SSH into the specific EC2 instance and when running the script, it will in turn run the commands via an instantiated Docker container.
 

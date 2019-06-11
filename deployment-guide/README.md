@@ -238,4 +238,4 @@ Please, follow these instructions: [Get Postman](https://www.getpostman.com/post
 
 Grab the latest collections & environment files from [Mojaloop Postman Github repo](https://github.com/mojaloop/postman): [https://github.com/mojaloop/postman](https://github.com/mojaloop/postman)
 
-Refer to the [Mojaloop Postman README.md](https://github.com/mojaloop/postman/blob/master/README.md) for more information. 
+Refer to the [QA and Regression Testing in Mojaloop](../contributors-guide/tools-and-technologies/automated-testing.md) documentation for more information. 
