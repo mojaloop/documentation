@@ -366,7 +366,6 @@ group Bulk Prepare Handler Consume
                 POS_DAO -> DB: Persist bulkTransfer
                 hnote over DB #lightyellow
                     bulkTransfer
-                    bulkTransferParticipant
                     bulkTransferStateChange
                     bulkTransferExtension
                     bulkTransferAssociation
@@ -383,7 +382,6 @@ group Bulk Prepare Handler Consume
                 POS_DAO -> DB: Persist transfer
                 hnote over DB #lightyellow
                     bulkTransfer
-                    bulkTransferParticipant
                     bulkTransferStateChange
                     bulkTransferExtension
                     bulkTransferError
