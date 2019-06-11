@@ -58,9 +58,10 @@ The purpose of the Event Framework is to provide a standard unified architecture
             "responseTo": "1a396c07-47ab-4d68-a7a0-7a1ea36f0012"
         },
         "trace": {
+            "service": "central-ledger-prepare-handler",
             "traceId": "bbd7b2c7-3978-408e-ae2e-a13012c47739",
             "parentId": "4e3ce424-d611-417b-a7b3-44ba9bbc5840",
-            "spanId": "efeb5c22-689b-4d04-ac5a-2aa9cd0a7e87",
+            "spanId": "efeb5c22-689b-4d04-ac5a-2aa9cd0a7e87"
         }
     }
 }
@@ -114,6 +115,7 @@ TBD
 
 | Name | Type | Description | Example |
 | --- | --- | --- | --- |
+| service | string | Mandatory. Name of service producing trace | central-ledger-prepare-handler |
 | traceId | string | Mandatory. The end-to-end transaction identifier. | 80f198ee56343ba864fe8b2a57d3eff7 |
 | spanId | string | Mandatory. Id for a processing leg identifier for a component or function. | 05e3ac9a4f6e3b90 |
 | parentSpanId | string | Optional. The id references the related message. | e457b5a2e4d86bd1 |
