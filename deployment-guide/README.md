@@ -236,14 +236,6 @@ Please, follow these instructions: [Get Postman](https://www.getpostman.com/post
 
 #### 6.2. Setup Postman
 
-##### Import the Collection
-1. Open **Postman**.
-2. Click **Import** and then **Import From Link**.
-3. Paste the following link [https://raw.githubusercontent.com/mojaloop/postman/master/Mojaloop.postman_collection.json](https://raw.githubusercontent.com/mojaloop/postman/master/Mojaloop.postman_collection.json) in the input box.
-4. Press the **Import** button to continue.
+Grab the latest collections & environment files from [Mojaloop Postman Github repo](https://github.com/mojaloop/postman): [https://github.com/mojaloop/postman](https://github.com/mojaloop/postman)
 
-##### Setup the Environment Configurations
-1. You'll now need to import environment variables. For local testing, download this file [https://raw.githubusercontent.com/mojaloop/postman/master/environments/MojaloopLocal.postman_environment.json](https://raw.githubusercontent.com/mojaloop/postman/master/environments/MojaloopLocal.postman_environment.json).
-2. Click **Import** and then **Import File**.
-3. Select the _MojaloopLocal.postman_environment.json_ file you downloaded.
-4. In the imported collection, navigate to the _central_ledger_ directory.
+Refer to the [Mojaloop Postman README.md](https://github.com/mojaloop/postman/blob/master/README.md) for more information. 
