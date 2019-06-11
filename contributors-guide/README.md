@@ -2,13 +2,10 @@
 
 ## How do I contribute?
 
-### \* Review the [Mojaloop Deployment](../deployment-guide/) Guide
-
-### \* Get familiar with our [Standards](standards/) on contributing to this project
-
-### \* View the project board and work on your [good first issue](https://github.com/mojaloop/project/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22)
-
-### \* Review the [Roadmap](../mojaloop-roadmap.md) and contribute to future opportunities
+* Review the [Mojaloop Deployment](../deployment-guide/) Guide and the [Onboarding Guide](https://github.com/mojaloop/mojaloop/blob/master/onboarding.md)
+* Get familiar with our [Standards](standards/) on contributing to this project
+* View the project board and work on your [good first issue](https://github.com/mojaloop/project/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22)
+* Review the [Roadmap](../mojaloop-roadmap.md) and contribute to future opportunities
 
 ## What work is needed?
 
