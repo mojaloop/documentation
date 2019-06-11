@@ -47,7 +47,7 @@ The purpose of the Event Framework is to provide a standard unified architecture
     "metadata": {
         "event": {
             "id": "3920382d-f78c-4023-adf9-0d7a4a2a3a2f",
-            "type": "log",
+            "type": "trace",
             "action": "start",
             "createdAt": "2019-05-29T23:18:32.935Z",
             "state": {
