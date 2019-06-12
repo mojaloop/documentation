@@ -4,6 +4,7 @@
 * [Mojaloop Background](mojaloop-background/README.md)
   * [Core Scenarios](mojaloop-background/core-scenarios.md)
   * [Level One Principles](mojaloop-background/level-one-principles.md)
+* [Onboarding](onboarding.md)
 * [Deployment Guide](deployment-guide/README.md)
     * [Releases](deployment-guide/releases.md)
     * [Local Setup Linux](deployment-guide/local-setup-linux.md)
