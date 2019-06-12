@@ -42,8 +42,8 @@ autonumber
 control "Position Handler" as POS_HANDLER
 
 entity "Position\nManagement\nFacade" as POS_MGMT
-collections "Notification-Topic" as TOPIC_NOTIFICATIONS
-collections "topic-bulk-processing" as TOPIC_BULK_PROCESSING
+collections "topic-\nnotification" as TOPIC_NOTIFICATIONS
+collections "topic-\nbulk-processing" as TOPIC_BULK_PROCESSING
 entity "Position DAO" as POS_DAO
 database "Central Store" as DB
 
@@ -195,7 +195,7 @@ group Prepare Position Handler Consume
     POS_MGMT --> POS_HANDLER: Return a map of transferIds and their transferStateChanges
     deactivate POS_MGMT
     alt Calculate & Validate Latest Position Prepare (success)
-        POS_HANDLER -> POS_HANDLER: Notifications for Position Validation Success \n<color Magenta><b>Reference: Postion Validation Success case (Prepare)</b></color>
+        POS_HANDLER -> POS_HANDLER: Notifications for Position Validation Success \n<color Magenta><b>Reference: Position Validation Success case (Prepare)</b></color>
    else Calculate & Validate Latest Position Prepare (failure)
         note right of POS_HANDLER #red: Validation failure!
 
@@ -215,12 +215,12 @@ group Prepare Position Handler Consume
             POS_DAO --> POS_HANDLER: Return success
             deactivate POS_DAO
         end
-        POS_HANDLER -> POS_HANDLER: Notifications for failures\n<color Magenta><b>Reference: Failure in Postion Validation (Prepare) </b></color>
+        POS_HANDLER -> POS_HANDLER: Notifications for failures\n<color Magenta><b>Reference: Failure in Position Validation (Prepare) </b></color>
    end
 end
 
 
-group Reference: Failure in Postion Validation (Prepare)
+group Reference: Failure in Position Validation (Prepare)
     alt If type == 'bulk-prepare'
         note right of POS_HANDLER #yellow
         Message:
@@ -297,7 +297,7 @@ group Reference: Failure in Postion Validation (Prepare)
     
 end
 
-group Reference: Postion Validation Success case (Prepare)
+group Reference: Position Validation Success case (Prepare)
     alt If type == 'bulk-prepare'
         note right of POS_HANDLER #yellow
         Message:
@@ -314,7 +314,7 @@ group Reference: Postion Validation Success case (Prepare)
                     event: {
                         id: <uuid>,
                         responseTo: <previous.uuid>,
-                        type: bulk-transfer,
+                        type: bulk-processing,
                         action: prepare,
                         createdAt: <timestamp>,
                         state: {
@@ -325,9 +325,9 @@ group Reference: Postion Validation Success case (Prepare)
                 }
             }
         end note
-        POS_HANDLER -> TOPIC_NOTIFICATIONS: Publish Position Success event (in Prepare) to Bulk Processing Topic\n<color #FF0000><b>Error codes:</b> 2003</color>
-        activate TOPIC_NOTIFICATIONS
-        deactivate TOPIC_NOTIFICATIONS
+        POS_HANDLER -> TOPIC_BULK_PROCESSING: Publish Position Success event (in Prepare) to Bulk Processing Topic\n<color #FF0000><b>Error codes:</b> 2003</color>
+        activate TOPIC_BULK_PROCESSING
+        deactivate TOPIC_BULK_PROCESSING
     else If type == 'prepare'
         note right of POS_HANDLER #yellow
         Message:
