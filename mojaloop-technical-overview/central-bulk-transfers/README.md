@@ -100,146 +100,169 @@ Below are the proposed tables as part of designing the Bulk transfers
 
 ### 4.3 Internal Type-Action-Status combinations
 
-1. Bulk transfer that passes schema validation [ml-api-adapter -> bulk-prepare-handler]
-   - type: bulk-prepare
-   - action: bulk-prepare
-   - Status: success
-   - Result: bulkTransferState=RECEIVED, bulkProcessingState=RECEIVED
+#### 1. Bulk transfer that passes schema validation [ml-api-adapter -> bulk-prepare-handler]
 
-2. Duplicate [bulk-prepare-handler -> notification handler]
-   - type: bulk-notification
-   - action: bulk-prepare-duplicate
-   - Status: success
-   - Result: bulkTransferState=N/A, bulkProcessingState=N/A
+  1. type: bulk-prepare
+  2. action: bulk-prepare
+  3. Status: success
+  4. Result: bulkTransferState=RECEIVED, bulkProcessingState=RECEIVED
 
-3. Duplicate (bulktransfer state does not exist) [bulk-prepare-handler -> notification-handler]
-   - type: bulk-notification
-   - action: bulk-prepare-duplicate
-   - Status: error
+#### 2. Duplicate [bulk-prepare-handler -> notification handler]
 
-4. Validate Bulk Prepare transfer failure [bulk-prepare-handler -> notification-handler]
-   - type: bulk-notification
-   - action: bulk-abort
-   - Status: error
+  1. type: bulk-notification
+  2. action: bulk-prepare-duplicate
+  3. Status: success
+  4. Result: bulkTransferState=N/A, bulkProcessingState=N/A
 
-5. For a Valid Bulk Prepare transfer (broken down and sent as individual transfers) [bulk-prepare-handler -> prepare-handler]
-   - type: bulk-prepare
-   - action: prepare
-   - Status: success
+#### 3. Duplicate (bulktransfer state does not exist) [bulk-prepare-handler -> notification-handler]
 
-6. Duplicate of individual transfer that is part of a bulk-transfer [prepare-handler -> bulk-processing-handler]:
-   - type: bulk-processing
-   - action: prepare-duplicate
-   - Status: success
-   - Expected action: Add error message indicating it’s a duplicate
-   - Result: bulkTransferState=PENDING_PREPARE/ACCEPTED (depending on whether it’s the last one), bulkProcessingState=RECEIVED_DUPLICATE
+  1. type: bulk-notification
+  2. action: bulk-prepare-duplicate
+  3. Status: error
 
-7. For individual Prepare transfer that’s a valid duplicate in prepare handler [prepare-handler -> bulk-processing-handler]
-   - type: bulk-processing
-   - action: prepare-duplicate
-   - Status: error
-   - Result: bulkTransferState=PENDING_PREPARE/ACCEPTED (depending on whether it’s the last one), bulkProcessingState=RECEIVED_DUPLICATE
+#### 4. Validate Bulk Prepare transfer failure [bulk-prepare-handler -> notification-handler]
 
-8. For a Valid individual Prepare transfer that’s part of a bulk [prepare-handler -> position-handler]
-   - type: bulk-position
-   - action: prepare
-   - Status: success
+    1. type: bulk-notification
+    2. action: bulk-abort
+    3. Status: error
 
-9. For individual Prepare transfer that’s part of a bulk that failed validation in prepare handler [prepare-handler -> bulk-processing-handler]
-   - type: bulk-processing
-   - action: prepare
-   - Status: error
-   - Result: bulkTransferState=PENDING_PREPARE/ACCEPTED (depending on whether it’s the last one), bulkProcessingState=RECEIVED_INVALID
+#### 5. For a Valid Bulk Prepare transfer (broken down and sent as individual transfers) [bulk-prepare-handler -> prepare-handler]
 
-10. For a Valid individual Prepare transfer that’s part of a bulk [position-handler ->  bulk-processing-handler]
-    - type: bulk-processing
-    - action: prepare
-    - Status: success
-    - Result: bulkTransferState=PENDING_PREPARE/ACCEPTED (depending on whether it’s the last one), bulkProcessingState=ACCEPTED
+  1. type: bulk-prepare
+  2. action: prepare
+  3. Status: success
 
-11. For individual Prepare transfer that’s part of a bulk that failed validation in position handler [position-handler -> bulk-processing-handler]
-    - type: bulk-processing
-    - action: prepare
-    - Status: error
-    - Result: bulkTransferState=PENDING_PREPARE/ACCEPTED (depending on whether it’s the last one), bulkProcessingState=RECEIVED_INVALID
+#### 6. Duplicate of individual transfer that is part of a bulk-transfer [prepare-handler -> bulk-processing-handler]
 
-12. For a Valid individual Fulfil transfer (for commit) that’s part of a bulk [position-handler -> bulk-processing-handler]
-    - type: bulk-processing
-    - action: commit
-    - Status: success
-    - Result: bulkTransferState=PENDING_FULFIL/COMPLETED (depending on whether it’s the last one), bulkProcessingState=COMPLETED
+  1. type: bulk-processing
+  2. action: prepare-duplicate
+  3. Status: success
+  4. Expected action: Add error message indicating it’s a duplicate
+  5. Result: bulkTransferState=PENDING_PREPARE/ACCEPTED (depending on whether it’s the last one), bulkProcessingState=RECEIVED_DUPLICATE  
 
-13. For Bulk transfer Fulfil message that passes validation [ml-api-adapter -> bulk-fulfil-handler]
-    - type: bulk-fulfil
-    - action: bulk-fulfil
-    - Status: success
+#### 7. For individual Prepare transfer that’s a valid duplicate in prepare handler [prepare-handler -> bulk-processing-handler]
 
-14. For a valid individual transfer part of a bulk that timed-out in position handler [position-handler -> bulk-processing-handler]
-    - type: bulk-processing
-    - action: abort
-    - Status: error
-    - Result: bulkTransferState=PENDING_FULFIL/COMPLETED (depending on whether it’s the last one), bulkProcessingState=FULFIL_INVALID
+  1. type: bulk-processing
+  2. action: prepare-duplicate
+  3. Status: error
+  4. Result: bulkTransferState=PENDING_PREPARE/ACCEPTED (depending on whether it’s the last one), bulkProcessingState=RECEIVED_DUPLICATE   
 
-15. For a Valid individual Fulfil transfer (for reject) that’s part of a bulk [position-handler -> bulk-processing-handler]
-    - type: bulk-processing
-    - action: reject
-    - Status: success
-    - Result: bulkTransferState=PENDING_FULFIL/COMPLETED (depending on whether it’s the last one), bulkProcessingState=REJECTED
+#### 8. For a Valid individual Prepare transfer that’s part of a bulk [prepare-handler -> position-handler]
+  1. type: bulk-position
+  2. action: prepare
+  3. Status: success
 
-16. Invalid Fulfil duplicate of an individual transfer in a bulk [fulfil-handler -> bulk-processing-handler]
-    - type: bulk-processing
-    - action: fulfil-duplicate
-    - Status: error
-    - Result: bulkTransferState=PENDING_FULFIL/COMPLETED (depending on whether it’s the last one), bulkProcessingState=FULFIL_DUPLICATE
+#### 9. For individual Prepare transfer that’s part of a bulk that failed validation in prepare handler [prepare-handler -> bulk-processing-handler]
 
-17. Valid Fulfil duplicate of an individual transfer in a bulk [fulfil-handler -> bulk-processing-handler]
-    - type: bulk-processing
-    - action: fulfil-duplicate
-    - Status: success
-    - Result: bulkTransferState=PENDING_FULFIL/COMPLETED (depending on whether it’s the last one), bulkProcessingState=FULFIL_DUPLICATE
+  1. type: bulk-processing
+  2. action: prepare
+  3. Status: error
+  4. Result: bulkTransferState=PENDING_PREPARE/ACCEPTED (depending on whether it’s the last one), bulkProcessingState=RECEIVED_INVALID
 
-18. Valid Fulfil message of an individual transfer in a bulk [fulfil-handler -> position-handler]
-    - type: bulk-position
-    - action: commit
-    - Status: success
+#### 10. For a Valid individual Prepare transfer that’s part of a bulk [position-handler ->  bulk-processing-handler]
 
-19. For individual Fulfil transfer that’s part of a bulk that failed validation in fulfil handler [fulfil-handler -> bulk-processing-handler]
-    - type: bulk-processing
-    - action: commit
-    - Status: error
-    - Result: bulkTransferState=PENDING_FULFIL/COMPLETED (depending on whether it’s the last one), bulkProcessingState=FULFIL_INVALID
+  1. type: bulk-processing
+  2. action: prepare
+  3. Status: success
+  4. Result: bulkTransferState=PENDING_PREPARE/ACCEPTED (depending on whether it’s the last one), bulkProcessingState=ACCEPTED
 
-20. Fulfil transfer request that’s part of a bulk that passes validation [bulk-fulfil-handler -> fulfil-handler]
-    - type: bulk-fulfil
-    - action: bulk-commit
-    - Status: success
+#### 11. For individual Prepare transfer that’s part of a bulk that failed validation in position handler [position-handler -> bulk-processing-handler]
+  1. type: bulk-processing
+  2. action: prepare
+  3. Status: error
+  4. Result: bulkTransferState=PENDING_PREPARE/ACCEPTED (depending on whether it’s the last one), bulkProcessingState=RECEIVED_INVALID
 
-21. For Bulk transfers failing validation at bulk-fulfil-handler level [bulk-fulfil-handler -> notification-handler]
-    - type: bulk-notification
-    - action: bulk-abort
-    - Status: error
+#### 12. For a Valid individual Fulfil transfer (for commit) that’s part of a bulk [position-handler -> bulk-processing-handler]
 
-22. For Bulk transfer notifications to FSPs [bulk-processing-handler -> notification-handler]
-    - type: bulk-notification
-    - action: bulk-notification
-    - Status: success
+  1. type: bulk-processing
+  2. action: commit
+  3. Status: success
+  4. Result: bulkTransferState=PENDING_FULFIL/COMPLETED (depending on whether it’s the last one), bulkProcessingState=COMPLETED
 
-23. For timeout notification [timeout-handler -> bulk-processing-handler]
-    - type: bulk-processing
-    - action: timeout-received
-    - Status: error
-    - Result: bulkTransferState=COMPLETED (for the last one), bulkProcessingState=EXPIRED
+#### 13. For Bulk transfer Fulfil message that passes validation [ml-api-adapter -> bulk-fulfil-handler]
 
-24. For timeout notification [timeout-handler -> position-handler]
-    - type: bulk-position
-    - action: timeout-reserved
-    - Status: error
+  1. type: bulk-fulfil
+  2. action: bulk-fulfil
+  3. Status: success
 
-25. For timeout notification after position adjust [position-handler -> bulk-processing-handler]
-    - type: bulk-processing
-    - action: timeout-reserved
-    - Status: error
-    - Result: bulkTransferState=COMPLETED (for the last one), bulkProcessingState=EXPIRED
+#### 14. For a valid individual transfer part of a bulk that timed-out in position handler [position-handler -> bulk-processing-handler]
+
+  1. type: bulk-processing
+  2. action: abort
+  3. Status: error
+  4. Result: bulkTransferState=PENDING_FULFIL/COMPLETED (depending on whether it’s the last one), bulkProcessingState=FULFIL_INVALID
+
+#### 15. For a Valid individual Fulfil transfer (for reject) that’s part of a bulk [position-handler -> bulk-processing-handler]
+
+  1. type: bulk-processing
+  2. action: reject
+  3. Status: success
+  4. Result: bulkTransferState=PENDING_FULFIL/COMPLETED (depending on whether it’s the last one), bulkProcessingState=REJECTED
+
+#### 16. Invalid Fulfil duplicate of an individual transfer in a bulk [fulfil-handler -> bulk-processing-handler]
+
+  1. type: bulk-processing
+  2. action: fulfil-duplicate
+  3. Status: error
+  4. Result: bulkTransferState=PENDING_FULFIL/COMPLETED (depending on whether it’s the last one), bulkProcessingState=FULFIL_DUPLICATE
+
+#### 17. Valid Fulfil duplicate of an individual transfer in a bulk [fulfil-handler -> bulk-processing-handler]
+
+  1. type: bulk-processing
+  2. action: fulfil-duplicate
+  3. Status: success
+  4. Result: bulkTransferState=PENDING_FULFIL/COMPLETED (depending on whether it’s the last one), bulkProcessingState=FULFIL_DUPLICATE
+
+#### 18. Valid Fulfil message of an individual transfer in a bulk [fulfil-handler -> position-handler]
+
+  1. type: bulk-position
+  2. action: commit
+  3. Status: success
+
+#### 19. For individual Fulfil transfer that’s part of a bulk that failed validation in fulfil handler [fulfil-handler -> bulk-processing-handler]
+
+  1. type: bulk-processing
+  2. action: commit
+  3. Status: error
+  4. Result: bulkTransferState=PENDING_FULFIL/COMPLETED (depending on whether it’s the last one), bulkProcessingState=FULFIL_INVALID
+
+#### 20. Fulfil transfer request that’s part of a bulk that passes validation [bulk-fulfil-handler -> fulfil-handler]
+
+  1. type: bulk-fulfil
+  2. action: bulk-commit
+  3. Status: success
+
+#### 21. For Bulk transfers failing validation at bulk-fulfil-handler level [bulk-fulfil-handler -> notification-handler]
+
+  1. type: bulk-notification
+  2. action: bulk-abort
+  3. Status: error
+
+#### 22. For Bulk transfer notifications to FSPs [bulk-processing-handler -> notification-handler]
+
+  1. type: bulk-notification
+  2. action: bulk-notification
+  3. Status: success
+
+#### 23. For timeout notification [timeout-handler -> bulk-processing-handler]
+
+  1. type: bulk-processing
+  2. action: timeout-received
+  3. Status: error
+  4. Result: bulkTransferState=COMPLETED (for the last one), bulkProcessingState=EXPIRED
+
+#### 24. For timeout notification [timeout-handler -> position-handler]
+
+  1. type: bulk-position
+  2. action: timeout-reserved
+  3. Status: error
+
+#### 25. For timeout notification after position adjust [position-handler -> bulk-processing-handler]
+
+  1. type: bulk-processing
+  2. action: timeout-reserved
+  3. Status: error
+  4. Result: bulkTransferState=COMPLETED (for the last one), bulkProcessingState=EXPIRED
 
 ### 4.4 Additional Notes
 
