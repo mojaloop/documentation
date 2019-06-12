@@ -9,6 +9,7 @@ The purpose of the Event Framework is to provide a standard unified architecture
 - Sidecar module will publish events to a singular Kafka topic that will allow for multiple handlers to consume and process the events as required.
 - Kafka partitions will be determined by the event-type (e.g. log, audit, trace, errors etc).
 - Each Mojaloop component will have its own tightly coupled Sidecar.
+- Event messages will be produced to Kafka using the Trace-Id as the message key. This will ensure that all the messages part of the same trace (transaction) are stored in the same partition in order. 
 
 
 ## 2. Architecture
@@ -17,7 +18,6 @@ The purpose of the Event Framework is to provide a standard unified architecture
 
 ![Event Framework Architecture](./assets/diagrams/architecture/architecture-event-framework.svg)
 
-
 ### 2.2 Micro Service Pods
 
 ![Pod Architecture](./assets/diagrams/architecture/architecture-event-sidecar.svg) 
@@ -25,6 +25,7 @@ The purpose of the Event Framework is to provide a standard unified architecture
 ### 2.3 Tracing 
 
 ![Tracing Architecture](./assets/diagrams/architecture/architecture-event-trace.svg)
+
 
 ## 3. Event Envelope Model
 
@@ -67,10 +68,7 @@ The purpose of the Event Framework is to provide a standard unified architecture
 }
 ```
 
-## 3.2 JSON Schema Definition
-```JSON
-TBD
-```
+## 3.2 Schema Definition
 
 ### 3.2.1 Object Definition: MessageType 
 
