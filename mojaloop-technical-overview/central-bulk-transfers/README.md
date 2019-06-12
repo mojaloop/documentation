@@ -6,13 +6,18 @@ The Bulk Transfers scenario is described in the API Definition document regardin
 2. [Design Considerations](design-considerations)
 3. [Steps involved in the high-level Architecture](steps-involved-in-the-high-level-architecture)
 4. [Notes](notes)
-    a. [Discussion items](discussion-items)
-    b. [Proposed new tables](proposed-new-tables)
-    c. [Bulk Transfers States](bulk-transfers-states)
+    1. [Discussion items](discussion-items)
+    2. [Proposed new tables](proposed-new-tables)
+    3. [Bulk Transfers States](bulk-transfers-states)
+    4. [Additional Notes](additional-notes)
+5. [Roadmap Topics](roadmap-topics)
   
 ## 1. Introduction
 
-The Bulk Transfers process is discussed in section 6.10 of the API Definition 1.0 document, depicted in [Figure 60](./assets/diagrams/architecture/Figure60-Example-Bulk-Transfer-Process-Spec1.0.png). The key items implied in the specification in its current version 1.0 are that
+The Bulk Transfers process is discussed in section 6.10 of the API Definition 1.0 document, depicted in Figure 60, of which a snapshot is posted below.
+![Figure 60](./assets/diagrams/architecture/Figure60-Example-Bulk-Transfer-Process-Spec1.0.png)
+
+The key items implied in the specification in its current version 1.0 are that
 
 - Reservation of funds is done for each individual transfer from the Payer FSP to the Payee FSP
 - Even if a single individual transfer fails during the prepare process, the whole bulk is to be rejected.
@@ -35,7 +40,8 @@ According to the Figure-60 of the specification, below are a few key implication
 
 ## 3. Steps involved in the high-level Architecture
 
-Below are the steps involved at a high level in the ![architecture diagram](./assets/diagrams/architecture/bulk-transfer-arch-flows.svg) for bulk transfers.  
+Below are the steps involved at a high level for bulk transfers.
+![architecture diagram](./assets/diagrams/architecture/bulk-transfer-arch-flows.svg)  
 
 1. [1.0, 1.1, 1.2] An Incoming bulk Transfer request (POST /bulkTransfers) on the ml-api-adapter is placed in an object store and a notification with a reference to the actual message is sent via a kafka topic “bulk prepare” and a 202 is sent to the Payer FSP  
 2. [1.3] Bulk Prepare handler consumes the request, records the status as RECEIVED  
@@ -62,7 +68,7 @@ Below are the steps involved at a high level in the ![architecture diagram](./as
 
 ## 4. Implementation Details
 
-### 4.a Bulk Transfer States
+### 4.1 Bulk Transfer States
 
 Below are the states of a Bulk transfer as per the Mojaloop API Specification
 
@@ -75,7 +81,7 @@ Below are the states of a Bulk transfer as per the Mojaloop API Specification
 7. Internal state - INVALID (mapped to REJECTED)
 8. Micro-states to be added for internal use on the Switch
 
-### 4.b Proposed New tables
+### 4.2 Proposed New tables
 
 Below are the proposed tables as part of designing the Bulk transfers
 
@@ -92,7 +98,7 @@ Below are the proposed tables as part of designing the Bulk transfers
 - bulkProcessingState  
 - Link to the ERD from the PR: https://github.com/elnyry/documentation/blob/feature/738-bulk-transfers-design-changes/mojaloop-technical-overview/central-bulk-transfers/assets/database/central-ledger-schema.png
 
-### 4.c Internal Type-Action-Status combinations
+### 4.3 Internal Type-Action-Status combinations
 
 1. Bulk transfer that passes schema validation [ml-api-adapter -> bulk-prepare-handler]
    - type: bulk-prepare
@@ -235,7 +241,7 @@ Below are the proposed tables as part of designing the Bulk transfers
     - Status: error
     - Result: bulkTransferState=COMPLETED (for the last one), bulkProcessingState=EXPIRED
 
-### 4.d Additional Notes
+### 4.4 Additional Notes
 
 1. Document GET /bulkTransfers to indicate the difference in responses the Payer-FSP & Payee-FSP receive for Bulk Transfers
 2. Use a separate mode for ml-api-adapter to support bulk transfers end-points (that includes persistence as discussed above)
