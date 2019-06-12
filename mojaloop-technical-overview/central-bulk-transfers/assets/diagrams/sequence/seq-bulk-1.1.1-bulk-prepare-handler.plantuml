@@ -87,13 +87,14 @@ group Bulk Prepare Handler Consume
             It may need to be added in future for custom adapters.
         end note
         
-        BULK_PREP_HANDLER <-> BULK_PREP_HANDLER: Validate that there are no duplicate individualTransfers \n(transfer IDs) from the same bulk. \nOn failure, send bulk error message to Payer. \nNo further processing on individual transfers is done
-        loop for every individual transfer in the bulk
-            BULK_PREP_HANDLER -> OBJECT_STORE: Retrieve each individual transfer\nin the bulk using the reference
+        Group Individual transfers in the bulk
+            BULK_PREP_HANDLER -> OBJECT_STORE: Retrieve all individual transfer IDs\nin the bulk using its reference
             activate OBJECT_STORE
             OBJECT_STORE --> BULK_PREP_HANDLER: Return individual transfers as queried
             deactivate OBJECT_STORE
         end
+        BULK_PREP_HANDLER <-> BULK_PREP_HANDLER: Validate that there are no duplicate individualTransfers \n(transfer IDs) from the same bulk. \nOn failure, send bulk error message to Payer. \nNo further processing on individual transfers is done
+        
 
         group Validate Duplicate check
             note right of BULK_PREP_HANDLER #Cyan
