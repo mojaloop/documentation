@@ -80,7 +80,7 @@
         * [Fulfil Handler - Commit](mojaloop-technical-overview/central-bulk-transfers/transfers/2.2.1-fulfil-commit-for-bulk.md)
         * [Fulfil Handler - Reject/Abort](mojaloop-technical-overview/central-bulk-transfers/transfers/2.2.2-fulfil-abort-for-bulk.md)
       * [Bulk Processing Handler](mojaloop-technical-overview/central-bulk-transfers/transfers/1.4.1-bulk-processing-handler.md)
-      * [Notifications]
+      * [Notifications]()
         * [Notification to Participant (a)](mojaloop-technical-overview/central-ledger/transfers/1.1.4.a-send-notification-to-participant.md)
         * [Notification to Participant (b)](mojaloop-technical-overview/central-ledger/transfers/1.1.4.b-send-notification-to-participant.md)
       * [Timeout Overview](mojaloop-technical-overview/central-bulk-transfers/transfers/3.1.0-transfer-timeout-overview-for-bulk.md)
