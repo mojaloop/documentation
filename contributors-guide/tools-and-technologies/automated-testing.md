@@ -74,7 +74,7 @@ Following the requirements and instructions as set out in the detail in [QA and 
   + FSP onboarding
   + Add any test data to Simulator (if applicable)
   + Oracle onboarding
-
++ The `p2p_money_transfer` test cases from the [Golden_Path](https://github.com/mojaloop/postman/blob/master/Golden_Path.postman_collection.json) collection are a good place to start.
 
 ##### Steps to execute the bash script to run the Newman / Postman test via CLI
 + To run a test via this method, you will have to be in posession of the PEM-file of the server on which the Mojaloop QA and Regression Framework was deployed on an EC2 instance on Amazon Cloud.
