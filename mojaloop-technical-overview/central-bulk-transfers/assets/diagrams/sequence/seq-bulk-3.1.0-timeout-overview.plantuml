@@ -1,0 +1,120 @@
+/'*****
+ License
+ --------------
+ Copyright © 2017 Bill & Melinda Gates Foundation
+ The Mojaloop files are made available by the Bill & Melinda Gates Foundation under the Apache License, Version 2.0 (the "License") and you may not use these files except in compliance with the License. You may obtain a copy of the License at
+ http://www.apache.org/licenses/LICENSE-2.0
+ Unless required by applicable law or agreed to in writing, the Mojaloop files are distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+ Contributors
+ --------------
+ This is the official list of the Mojaloop project contributors for this file.
+ Names of the original copyright holders (individuals or organizations)
+ should be listed with a '*' in the first column. People who have
+ contributed from an organization can be listed under the organization
+ that actually holds the copyright for their contributions (see the
+ Gates Foundation organization for an example). Those individuals should have
+ their names indented and be marked with a '-'. Email address can be added
+ optionally within square brackets <email>.
+ * Gates Foundation
+ - Name Surname <name.surname@gatesfoundation.com>
+
+ * Georgi Georgiev <georgi.georgiev@modusbox.com>
+ --------------
+ ******'/
+
+@startuml
+' declate title
+title 3.1.0. Transfer Timeout (incl. Bulk Transfer)
+
+autonumber
+
+' Actor Keys:
+'   boundary - APIs/Interfaces, etc
+'   collections - Kafka Topics
+'   control - Kafka Consumers
+'   entity - Database Access Objects
+'   database - Database Persistance Store
+
+' declare actors
+actor "DFSP1\nPayer" as DFSP1
+actor "DFSP2\nPayee" as DFSP2
+boundary "ML API\nAdapter" as MLAPI
+control "ML API Notification\nEvent Handler" as NOTIFY_HANDLER
+control "Transfer Timeout\nHandler" as EXP_HANDLER
+collections "topic-\ntransfer-position" as TOPIC_TRANSFER_POSITION
+control "Position Event\nHandler" as POS_HANDLER
+control "Bulk Processing\nHandler" as BULK_PROCESSING_HANDLER
+collections "topic-\nnotification" as TOPIC_NOTIFICATIONS
+collections "topic-event" as TOPIC_EVENT
+collections "topic-\nbulk-processing" as BULK_PROCESSING_TOPIC
+
+box "Financial Service Providers" #lightGray
+	participant DFSP1
+	participant DFSP2
+end box
+
+box "ML API Adapter Service" #LightBlue
+	participant MLAPI
+	participant NOTIFY_HANDLER
+end box
+
+box "Central Service" #LightYellow
+    participant EXP_HANDLER
+    participant TOPIC_TRANSFER_POSITION
+    participant TOPIC_EVENT
+    participant POS_HANDLER
+    participant TOPIC_NOTIFICATIONS
+    participant BULK_PROCESSING_HANDLER
+    participant BULK_PROCESSING_TOPIC
+end box
+
+' start flow
+activate NOTIFY_HANDLER
+activate EXP_HANDLER
+activate POS_HANDLER
+activate BULK_PROCESSING_HANDLER
+group Transfer Expiry
+    |||
+    ref over EXP_HANDLER, TOPIC_EVENT :  Timeout Handler Consume\n
+    alt transferStateId == 'RECEIVED_PREPARE'
+        alt Regular Transfer
+            EXP_HANDLER -> TOPIC_NOTIFICATIONS: Produce message
+        else Individual Transfer from a Bulk
+            EXP_HANDLER -> BULK_PROCESSING_TOPIC: Produce message
+        end
+    else transferStateId == 'RESERVED'
+        EXP_HANDLER -> TOPIC_TRANSFER_POSITION: Produce message
+        TOPIC_TRANSFER_POSITION <- POS_HANDLER: Consume message
+        ref over TOPIC_TRANSFER_POSITION, TOPIC_NOTIFICATIONS :  Position Hander Consume (Timeout)\n
+        alt Regular Transfer
+            POS_HANDLER -> TOPIC_NOTIFICATIONS: Produce message
+        else Individual Transfer from a Bulk
+            POS_HANDLER -> BULK_PROCESSING_TOPIC: Produce message
+        end
+    end
+    opt action IN ['bulk-timeout-received', 'bulk-timeout-reserved']
+        |||
+        BULK_PROCESSING_TOPIC <- BULK_PROCESSING_HANDLER: Consume message
+        ref over TOPIC_NOTIFICATIONS, BULK_PROCESSING_TOPIC : Bulk Processing Consume\n
+        BULK_PROCESSING_HANDLER -> TOPIC_NOTIFICATIONS: Produce message
+    end
+    |||
+    opt action IN ['timeout-received', 'timeout-reserved', 'bulk-timeout-received', 'bulk-timeout-reserved']
+        |||
+        TOPIC_NOTIFICATIONS <- NOTIFY_HANDLER: Consume message
+        ref over DFSP1, TOPIC_NOTIFICATIONS : Send notification to Participant (Payer)\n
+        NOTIFY_HANDLER -> DFSP1: Send callback notification
+    end
+    |||
+    opt action IN ['timeout-reserved', 'bulk-timeout-reserved']
+        |||
+        TOPIC_NOTIFICATIONS <- NOTIFY_HANDLER: Consume message
+        ref over DFSP2, TOPIC_NOTIFICATIONS : Send notification to Participant (Payee)\n
+        NOTIFY_HANDLER -> DFSP2: Send callback notification
+    end
+end
+deactivate BULK_PROCESSING_HANDLER
+deactivate POS_HANDLER
+deactivate EXP_HANDLER
+deactivate NOTIFY_HANDLER
+@enduml
