@@ -109,6 +109,7 @@
     * [Notification Handler For Rejections](mojaloop-technical-overview/central-event-processor/5.1.1-notification-handler-for-rejections.md)
     * [Signature Validation](mojaloop-technical-overview/central-event-processor/signature-validation.md)
   * [Fraud Services](mojaloop-technical-overview/fraud-services/README.md)
+    * [Ecosystem Fraud Documentation](mojaloop-technical-overview/fraud-services/related-documents/documentation.md)
 * [API Specifications](api/README.md)
   * [Mojaloop](api/mojaloop-api-specification.md)
   * [Central Ledger API](api/central-ledger-api-specification.md)
