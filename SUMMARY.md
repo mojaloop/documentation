@@ -68,7 +68,7 @@
       * [Timeout]()
         * [Transfer Timeout](mojaloop-technical-overview/central-ledger/transfers/2.3.0-transfer-timeout.md)
         * [Timeout Handler Consume](mojaloop-technical-overview/central-ledger/transfers/2.3.1-timeout-handler-consume.md)
-    * [Bulk Transfer Operations - PoC](mojaloop-technical-overview/central-bulk-transfers/README.md)
+    * [Bulk Transfer Operations](mojaloop-technical-overview/central-bulk-transfers/README.md)
       * [Bulk Prepare Overview](mojaloop-technical-overview/central-bulk-transfers/transfers/1.1.0-bulk-prepare-transfer-request-overview.md)
         * [Bulk Prepare Handler](mojaloop-technical-overview/central-bulk-transfers/transfers/1.1.1-bulk-prepare-handler-consume.md)
       * [Prepare Handler](mojaloop-technical-overview/central-bulk-transfers/transfers/1.2.1-prepare-handler-consume-for-bulk.md)
