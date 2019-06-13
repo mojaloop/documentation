@@ -70,7 +70,7 @@ The purpose of the Event Framework is to provide a standard unified architecture
 
 ## 3.2 Schema Definition
 
-### 3.2.1 Object Definition: MessageType 
+### 3.2.1 Object Definition: EventMessage 
 
 | Name | Type | Description | Example |
 | --- | --- | --- | --- |
@@ -83,33 +83,33 @@ The purpose of the Event Framework is to provide a standard unified architecture
 | content | object \<any\> | The representation of the content. | |
 
 
-##### 3.2.1.1 Object Definition: ObMetadataType 
+##### 3.2.1.1 Object Definition: MessageMetadata 
 
 | Name | Type | Description | Example |
 | --- | --- | --- | --- |
-| event | object \<ObEventType\> | Mandatory. Event information. |  |
-| trace | object \<ObTraceType\> | Mandatory. Trace information. |  |
+| event | object \<EventMetadata\> | Mandatory. Event information. |  |
+| trace | object \<EventTraceMetaData\> | Mandatory. Trace information. |  |
 
-##### 3.2.1.2 Object Definition: ObEventType 
+##### 3.2.1.2 Object Definition: EventMetadata 
 
 | Name | Type | Description | Example |
 | --- | --- | --- | --- |
 | id | string | Mandatory. Generated UUIDv4 representing the event. | 3920382d-f78c-4023-adf9-0d7a4a2a3a2f |
-| type | enum \<EnEventType\> | Mandatory. Type of event. | [`log`, `audit`, `error` `trace`] |
-| action | enum \<EnEventTypeAction\> | Mandatory. Type of action. | [ `start`, `end` ] |
+| type | enum \<EventType\> | Mandatory. Type of event. | [`log`, `audit`, `error` `trace`] |
+| action | enum \<LogEventAction, AuditEventAction, TraceEventAction, ErrorEventAction, NullEventAction\> | Mandatory. Type of action. | [ `start`, `end` ] |
 | createdAt | timestamp | Mandatory. ISO Timestamp. | 2019-05-29T23:18:32.935Z |
 | responseTo | string | Optional. UUIDv4 id link to the previous parent event. | 2019-05-29T23:18:32.935Z |
-| state | string \<ObStateType\> | Mandatory. Object describing the state. |  |
+| state | string \<EventStateMetadata\> | Mandatory. Object describing the state. |  |
 
-##### 3.2.1.3 Object Definition: ObStateType 
+##### 3.2.1.3 Object Definition: EventStateMetadata 
 
 | Name | Type | Description | Example |
 | --- | --- | --- | --- |
-| status | enum \<EneventStatus\> | Mandatory. The id references the related message. | success |
+| status | enum \<EventStatusType\> | Mandatory. The id references the related message. | success |
 | code | number | Optional. The error code as per Mojaloop specification. | 2000 |
 | description | string | Optional. Description for the status. Normally used to include an description for an error. | Generic server error to be used in order not to disclose information that may be considered private. |
 
-##### 3.2.1.4 Object Definition: ObTraceType
+##### 3.2.1.4 Object Definition: EventTraceMetaData
 
 | Name | Type | Description | Example |
 | --- | --- | --- | --- |
@@ -120,21 +120,50 @@ The purpose of the Event Framework is to provide a standard unified architecture
 | sampled | number | Optional. Indicator if event message should be included in the trace `1`. If excluded it will be left the consumer to decide on sampling. | 1 |
 | flags | number | Optional. Indicator if event message should be included in the trace flow. ( Debug `1` - this will override the sampled value ) | 0 |
 
-##### 3.2.1.5 Enum: EnEventType
-
-| Enum | Description | EnEventTypeAction |
-| --- | --- | --- |
-| log | Event representing a general log entry. | [ `info`, `debug`, `verbose`, `perf` ] |
-| audit | Event to be signed and persisted into the audit store. | [ --- ] |
-| trace | Event containing trace context information to be persisted into the tracing store. | [ `start`, `end` ] |
-| error | Event representing an error. | [ `internal`, `external` ] |
-
-##### 3.2.1.6 Enum: EnEventStatus
+##### 3.2.1.5 Enum: EventStatusType
 
 | Enum | Description | 
 | --- | --- |
 | success | Event was processed successfully |
 | failed | Event was processed with a failure or error |
+
+##### 3.2.1.6 Enum: EventType
+
+| Enum | Description |
+| --- | --- | --- |
+| log | Event representing a general log entry. |
+| audit | Event to be signed and persisted into the audit store. |
+| trace | Event containing trace context information to be persisted into the tracing store. |
+| error | Event representing an error. |
+
+##### 3.2.1.7 Enum: LogEventAction
+
+| Enum | Description |
+| --- | --- |
+| info | Event representing an `info` level log entry. | 
+| debug | Event representing a `debug` level log entry. |
+| error | Event representing an `error` level log entry. |
+| verbose | Event representing a `verbose` level log entry. | 
+
+##### 3.2.1.8 Enum: AuditEventAction
+
+| Enum | Description |
+| --- | --- |
+| audit | Event action for audits. |
+
+##### 3.2.1.9 Enum: TraceEventAction
+
+| Enum | Description | 
+| --- | --- |
+| start | Event action for the start of span trace. |
+| end | Event action for the end of span trace. |
+
+##### 3.2.1.10 Enum: ErrorEventAction
+
+| Enum | Description | 
+| --- | --- |
+| internal | Event action for the internal-only errors. |
+| external | Event action for the external errors. |
 
 
 ## 4. Tracing Design
