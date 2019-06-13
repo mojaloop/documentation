@@ -26,8 +26,10 @@
 
 @startuml
 ' declate title
-title 2.2.1. Fulfil Handler Consume (Reject/Abort) (single message, includes individual transfers from Bulk)
+title 2.2.1. Fulfil Handler Consume (Success) (single message, includes individual transfers from Bulk)
+
 autonumber
+
 ' Actor Keys:
 '   boundary - APIs/Interfaces, etc
 '   collections - Kafka Topics
@@ -35,14 +37,13 @@ autonumber
 '   entity - Database Access Objects
 '   database - Database Persistance Store
 ' declare actors
-collections "topic-\nfulfil" as TOPIC_FULFIL
+collections "Fulfil-Topic" as TOPIC_FULFIL
 control "Fulfil Handler" as FULF_HANDLER
 collections "topic-\nevent" as TOPIC_EVENT
 collections "topic-\ntransfer-position" as TOPIC_TRANSFER_POSITION
 collections "topic-\nnotification" as TOPIC_NOTIFICATIONS
 collections "topic-\nbulk-processing" as TOPIC_BULK_PROCESSING
-'entity "Transfer Duplicate Facade" as DUP_FACADE
-entity "Transfer DAO" as TRANS_DAO
+entity "Position DAO" as POS_DAO
 database "Central Store" as DB
 box "Central Service" #LightYellow
     participant TOPIC_FULFIL
@@ -51,59 +52,60 @@ box "Central Service" #LightYellow
     participant TOPIC_EVENT
     participant TOPIC_BULK_PROCESSING
     participant TOPIC_NOTIFICATIONS
-    participant TRANS_DAO
+    participant POS_DAO
     participant DB
 end box
 ' start flow
 activate FULF_HANDLER
-group Fulfil Handler Consume (Failure)
+group Fulfil Handler Consume (Success)
     alt Consume Single Message
         TOPIC_FULFIL <- FULF_HANDLER: Consume Fulfil event message for Payer
         activate TOPIC_FULFIL
         deactivate TOPIC_FULFIL
         break
             group Validate Event
-                FULF_HANDLER <-> FULF_HANDLER: Validate event - Rule: type IN ['fulfil','bulk-fulfil'] && ( action IN ['reject','abort'] )\n<color #FF0000><b>Error codes:</b> 2001</color>
+                FULF_HANDLER <-> FULF_HANDLER: Validate event - Rule: type IN ['fulfil', 'bulk-fulfil'] &&\naction == 'commit'\n<color #FF0000><b>Error codes:</b> 2001</color>
             end
         end
         group Persist Event Information
             FULF_HANDLER -> TOPIC_EVENT: Publish event information
-            ref over FULF_HANDLER, TOPIC_EVENT:  Event Handler Consume {[[https://github.com/mojaloop/docs/blob/master/Diagrams/SequenceDiagrams/seq-event-9.1.0.svg 9.1.0]]}
+            ref over FULF_HANDLER, TOPIC_EVENT: Event Handler Consume\n
         end
         group Validate FSPIOP-Signature
             |||
-            ref over FULF_HANDLER, TOPIC_NOTIFICATIONS: Validate message.content.headers.**FSPIOP-Signature** {[[https://github.com/mojaloop/docs/blob/master/Diagrams/SequenceDiagrams/seq-signature-validation.svg seq-signature-validation]]} \n<color #FF0000><b>Error codes:</b> 2001</color>
+            ref over FULF_HANDLER, TOPIC_NOTIFICATIONS: Validate message.content.headers.**FSPIOP-Signature**\n<color #FF0000><b>Error codes:</b> 3105/3106</color>
         end
-        group Validate Transfer Fulfil Duplicate Check
+        group Validate Transfer Fulfilment Duplicate Check
             FULF_HANDLER -> FULF_HANDLER: Generate transferFulfilmentId uuid
-            FULF_HANDLER -> TRANS_DAO: Request to retrieve transfer fulfilment hashes by transferId\n<color #FF0000><b>Error code:</b> 2003</color>
-            activate TRANS_DAO
-            TRANS_DAO -> DB: Request Transfer fulfilment \nduplicate message hashes
+            FULF_HANDLER -> POS_DAO: Request to retrieve transfer fulfilment hashes by transferId\n<color #FF0000><b>Error code:</b> 2003</color>
+            activate POS_DAO
+            POS_DAO -> DB: Request Transfer fulfilment duplicate message hashes
             hnote over DB #lightyellow
                 SELET transferId, hash
                 FROM **transferFulfilmentDuplicateCheck**
                 WHERE transferId = request.params.id
             end note
             activate DB
-            TRANS_DAO <-- DB: Return existing hashes
+            POS_DAO <-- DB: Return existing hashes
             deactivate DB
-            TRANS_DAO --> FULF_HANDLER: Return (list of) transfer fulfil messages hash(es)
-            deactivate TRANS_DAO
-            FULF_HANDLER -> FULF_HANDLER: Loop the list of returned hashes & compare \neach entry with the calculated message hash
+            POS_DAO --> FULF_HANDLER: Return (list of) transfer fulfil messages hash(es)
+            deactivate POS_DAO
+            FULF_HANDLER -> FULF_HANDLER: Loop the list of returned hashes and compare \neach entry with the calculated message hash
             alt Hash matched
                 ' Need to check what respond with same results if finalised then resend, else ignore and wait for response
-                FULF_HANDLER -> TRANS_DAO: Request to retrieve Transfer Fulfilment & Transfer state\n<color #FF0000><b>Error code:</b> 2003</color>
-                activate TRANS_DAO
-                TRANS_DAO -> DB: Request to retrieve \ntransferFulfilment & transferState
+                FULF_HANDLER -> TOPIC_EVENT: Publish event information (for duplicate) \n(Event Handler Consume)
+                FULF_HANDLER -> POS_DAO: Request to retrieve Transfer Fulfilment and Transfer state\n<color #FF0000><b>Error code:</b> 2003</color>
+                activate POS_DAO
+                POS_DAO -> DB: Request to retrieve Transfer Fulfilment and Transfer state
                 hnote over DB #lightyellow
                     transferFulfilment
                     transferStateChange
                 end note
                 activate DB
-                TRANS_DAO <-- DB: Return transferFulfilment & \ntransferState
+                POS_DAO <-- DB: Return Transfer Fulfilment and Transfer state
                 deactivate DB
-                TRANS_DAO --> FULF_HANDLER: Return Transfer Fulfilment & Transfer state
-                deactivate TRANS_DAO
+                POS_DAO --> FULF_HANDLER: Return Transfer Fulfilment and Transfer state
+                deactivate POS_DAO
                 alt transferFulfilment.isValid == 0
                     break
                         alt If type == 'fulfil'
@@ -126,7 +128,7 @@ group Fulfil Handler Consume (Failure)
                                         action: fulfil-duplicate,
                                         createdAt: <timestamp>,
                                         state: {
-                                            status: "fail",
+                                            status: "error",
                                             code: 1
                                         }
                                     }
@@ -156,7 +158,7 @@ group Fulfil Handler Consume (Failure)
                                         action: fulfil-duplicate,
                                         createdAt: <timestamp>,
                                         state: {
-                                            status: "fail",
+                                            status: "error",
                                             code: 1
                                         }
                                     }
@@ -171,7 +173,7 @@ group Fulfil Handler Consume (Failure)
                 else transferState IN ['COMMITTED', 'ABORTED']
                     break
                         alt If type == 'fulfil'
-                            ref over FULF_HANDLER, TOPIC_NOTIFICATIONS: Send notification to Participant (Payee) {[[https://github.com/mojaloop/docs/blob/master/Diagrams/SequenceDiagrams/seq-prepare-1.1.4.a.svg 1.1.4.a]]} \n
+                            ref over FULF_HANDLER, TOPIC_NOTIFICATIONS: Send notification to Participant (Payee)\n
                         else If type == 'bulk-fulfil'
                             note right of FULF_HANDLER #yellow
                             Message:
@@ -193,7 +195,7 @@ group Fulfil Handler Consume (Failure)
                                         createdAt: <timestamp>,
                                         state: {
                                             status: "success",
-                                            code: 1
+                                            code: 0
                                         }
                                     }
                                 }
@@ -233,7 +235,7 @@ group Fulfil Handler Consume (Failure)
                                         createdAt: <timestamp>,
                                         state: {
                                             status: "success",
-                                            code: 1
+                                            code: 0
                                         }
                                     }
                                 }
@@ -246,104 +248,141 @@ group Fulfil Handler Consume (Failure)
                     end
                 end
             else Hash not matched
-                FULF_HANDLER -> TRANS_DAO: Request to persist transfer hash\n<color #FF0000><b>Error codes:</b> 2003</color>
-                activate TRANS_DAO
-                TRANS_DAO -> DB: Persist hash
+                FULF_HANDLER -> POS_DAO: Request to persist transfer hash\n<color #FF0000><b>Error codes:</b> 2003</color>
+                activate POS_DAO
+                POS_DAO -> DB: Persist hash
                 hnote over DB #lightyellow
                     transferFulfilmentDuplicateCheck
                 end note
                 activate DB
                 deactivate DB
-                TRANS_DAO --> FULF_HANDLER: Return success
-                deactivate TRANS_DAO
+                POS_DAO --> FULF_HANDLER: Return success
+                deactivate POS_DAO
             end
         end
-        alt action=='reject' call made on PUT /transfers/{ID}
-            FULF_HANDLER -> TRANS_DAO: Request information for the validate checks\n<color #FF0000><b>Error code:</b> 2003</color>
-            activate TRANS_DAO
-            TRANS_DAO -> DB: Fetch from database
+        group Validate and persist Transfer Fulfilment
+            FULF_HANDLER -> POS_DAO: Request information for the validate checks\n<color #FF0000><b>Error code:</b> 2003</color>
+            activate POS_DAO
+            POS_DAO -> DB: Fetch from database
             activate DB
             hnote over DB #lightyellow
                 transfer
             end note
-            DB --> TRANS_DAO
+            DB --> POS_DAO
             deactivate DB
-            FULF_HANDLER <-- TRANS_DAO: Return transfer
-            deactivate TRANS_DAO
+            FULF_HANDLER <-- POS_DAO: Return transfer
+            deactivate POS_DAO
+            FULF_HANDLER ->FULF_HANDLER: Validate that Transfer.ilpCondition = SHA-256 (content.payload.fulfilment)\n<color #FF0000><b>Error code:</b> 2001</color>
+            FULF_HANDLER -> FULF_HANDLER: Validate expirationDate\n<color #FF0000><b>Error code:</b> 3303</color>
 
-            alt Fulfilment present in the PUT /transfers/{ID} message
-                FULF_HANDLER ->FULF_HANDLER: Validate that Transfer.ilpCondition = SHA-256 (content.payload.fulfilment)\n<color #FF0000><b>Error code:</b> 2001</color>
-
-                group Persist fulfilment
-                    FULF_HANDLER -> TRANS_DAO: Persist fulfilment with the result of the above check (transferFulfilment.isValid)\n<color #FF0000><b>Error code:</b> 2003</color>
-                    activate TRANS_DAO
-                    TRANS_DAO -> DB: Persist to database
+            opt Transfer.ilpCondition validate successful
+                group Request current Settlement Window
+                    FULF_HANDLER -> POS_DAO: Request to retrieve current/latest transfer settlement window\n<color #FF0000><b>Error code:</b> 2003</color>
+                    activate POS_DAO
+                    POS_DAO -> DB: Fetch settlementWindowId
                     activate DB
-                    deactivate DB
                     hnote over DB #lightyellow
-                        transferFulfilment
-                        transferExtension
+                        settlementWindow
                     end note
-                    FULF_HANDLER <-- TRANS_DAO: Return success
-                    deactivate TRANS_DAO
-                end
-            else Fulfilment NOT present in the PUT /transfers/{ID} message
-                FULF_HANDLER ->FULF_HANDLER: Validate that transfer fulfilment message to Abort is valid\n<color #FF0000><b>Error code:</b> 2001</color>
-                group Persist extensions
-                    FULF_HANDLER -> TRANS_DAO: Persist extensionList elements\n<color #FF0000><b>Error code:</b> 2003</color>
-                    activate TRANS_DAO
-                    TRANS_DAO -> DB: Persist to database
-                    activate DB
+                    DB --> POS_DAO
                     deactivate DB
-                    hnote over DB #lightyellow
-                        transferExtension
-                    end note
-                    FULF_HANDLER <-- TRANS_DAO: Return success
-                    deactivate TRANS_DAO
+                    FULF_HANDLER <-- POS_DAO: Return settlementWindowId to be appended during transferFulfilment insert\n**TODO**: During settlement design make sure transfers in 'RECEIVED-FULFIL'\nstate are updated to the next settlement window
+                    deactivate POS_DAO
                 end
             end
 
-            alt Transfer.ilpCondition validate successful OR generic validation successful
-                group Persist Transfer State (with transferState='RECEIVED_REJECT')
-                    FULF_HANDLER -> TRANS_DAO: Request to persist transfer state\n<color #FF0000><b>Error code:</b> 2003</color>
-                    activate TRANS_DAO
-                    TRANS_DAO -> DB: Persist transfer state
+            group Persist fulfilment
+                FULF_HANDLER -> POS_DAO: Persist fulfilment with the result of the above check (transferFulfilment.isValid)\n<color #FF0000><b>Error code:</b> 2003</color>
+                activate POS_DAO
+                POS_DAO -> DB: Persist to database
+                activate DB
+                deactivate DB
+                hnote over DB #lightyellow
+                    transferFulfilment
+                    transferExtension
+                end note
+                FULF_HANDLER <-- POS_DAO: Return success
+                deactivate POS_DAO
+            end
+
+            alt Transfer.ilpCondition validate successful
+                group Persist Transfer State (with transferState='RECEIVED-FULFIL')
+                    FULF_HANDLER -> POS_DAO: Request to persist transfer state\n<color #FF0000><b>Error code:</b> 2003</color>
+                    activate POS_DAO
+                    POS_DAO -> DB: Persist transfer state
                     activate DB
                     hnote over DB #lightyellow
                         transferStateChange
                     end note
                     deactivate DB
-                    TRANS_DAO --> FULF_HANDLER: Return success
+                    POS_DAO --> FULF_HANDLER: Return success
+                    deactivate POS_DAO
                 end
 
-                FULF_HANDLER -> FULF_HANDLER: Route & Publish Position event for Payer\n<color Magenta><b>Reference: Publish Position Reject event for Payer</b></color>
-
-            else Validate Fulfil Transfer not successful or Generic validation failed
-                break
-                    FULF_HANDLER -> FULF_HANDLER: Publish event for Payee\n<color Magenta><b>Reference: Failure in validation</b></color>
-                end
-            end
-        else action=='abort' Error callback
-            alt Validation successful
-                group Persist Transfer State (with transferState='RECEIVED_ERROR')
-                    FULF_HANDLER -> TRANS_DAO: Request to persist transfer state & Error\n<color #FF0000><b>Error code:</b> 2003</color>
-                    activate TRANS_DAO
-                    TRANS_DAO -> DB: Persist transfer state & Error
-                    activate DB
-                    hnote over DB #lightyellow
-                        transferStateChange
-                        transferError
-                        transferExtension
+                alt If type == 'fulfil'
+                    note right of FULF_HANDLER #yellow
+                        Message:
+                        {
+                            id: <ID>,
+                            from: <transferHeaders.FSPIOP-Source>,
+                            to: <transferHeaders.FSPIOP-Destination>,
+                            type: application/json,
+                            content: {
+                                headers: <transferHeaders>,
+                                payload: <transferMessage>
+                            },
+                            metadata: {
+                                event: {
+                                    id: <uuid>,
+                                    responseTo: <previous.uuid>,
+                                    type: position,
+                                    action: commit,
+                                    createdAt: <timestamp>,
+                                    state: {
+                                        status: "success",
+                                        code: 0
+                                    }
+                                }
+                            }
+                        }
                     end note
-                    deactivate DB
-                    TRANS_DAO --> FULF_HANDLER: Return success
+                    FULF_HANDLER -> TOPIC_TRANSFER_POSITION: Route & Publish Position event for Payee
+                    activate TOPIC_TRANSFER_POSITION
+                    deactivate TOPIC_TRANSFER_POSITION
+                else If type == 'bulk-fulfil'
+                    note right of FULF_HANDLER #yellow
+                        Message:
+                        {
+                            id: <ID>,
+                            from: <transferHeaders.FSPIOP-Source>,
+                            to: <transferHeaders.FSPIOP-Destination>,
+                            type: application/json,
+                            content: {
+                                headers: <transferHeaders>,
+                                payload: <transferMessage>
+                            },
+                            metadata: {
+                                event: {
+                                    id: <uuid>,
+                                    responseTo: <previous.uuid>,
+                                    type: bulk-position,
+                                    action: commit,
+                                    createdAt: <timestamp>,
+                                    state: {
+                                        status: "success",
+                                        code: 0
+                                    }
+                                }
+                            }
+                        }
+                    end note
+                    FULF_HANDLER -> TOPIC_TRANSFER_POSITION: Route & Publish Position event for Payee
+                    activate TOPIC_TRANSFER_POSITION
+                    deactivate TOPIC_TRANSFER_POSITION
                 end
-
-                FULF_HANDLER -> FULF_HANDLER: Error callback validated\n<color Magenta><b>Reference: Produce message for validated error callback</b></color>
-
-            else Validate Transfer Error Message not successful
+            else Validate Fulfil Transfer not successful
                 break
-                    FULF_HANDLER -> FULF_HANDLER: Notifications for failures\n<color Magenta><b>Reference: Validate Transfer Error Message not successful</b></color>
+                    FULF_HANDLER -> FULF_HANDLER: Route & Publish Notification event for Payee\n<color Magenta><b>Reference: Failure in validation</b></color>
                 end
             end
         end
@@ -351,134 +390,6 @@ group Fulfil Handler Consume (Failure)
         note left of FULF_HANDLER #lightblue
             To be delivered by future story
         end note
-    end
-end
-
-group Reference: Validate Transfer Error Message not successful
-    alt If type == 'bulk-fulfil'
-        note right of FULF_HANDLER #yellow
-        Message:
-        {
-            id: <ID>,
-            from: <transferHeaders.FSPIOP-Source>,
-            to: <transferHeaders.FSPIOP-Destination>,
-            type: application/json,
-            content: {
-                headers: <transferHeaders>,
-                payload: <transferMessage>
-            },
-            metadata: {
-                event: {
-                    id: <uuid>,
-                    responseTo: <previous.uuid>,
-                    type: bulk-processing,
-                    action: abort,
-                    createdAt: <timestamp>,
-                    state: {
-                        status: "fail",
-                        code: 1
-                    }
-                }
-            }
-        }
-        end note
-        FULF_HANDLER -> TOPIC_BULK_PROCESSING: Publish Processing event for Payee to Bulk Processing Topic\n<color #FF0000><b>Error codes:</b> 2003</color>
-        activate TOPIC_BULK_PROCESSING
-        deactivate TOPIC_BULK_PROCESSING
-    else If type == 'fulfil'
-        note right of FULF_HANDLER #yellow
-        Message:
-        {
-            id: <ID>,
-            from: <transferHeaders.FSPIOP-Source>,
-            to: <transferHeaders.FSPIOP-Destination>,
-            type: application/json,
-            content: {
-                headers: <transferHeaders>,
-                payload: <transferMessage>
-            },
-            metadata: {
-                event: {
-                    id: <uuid>,
-                    responseTo: <previous.uuid>,
-                    type: fulfil,
-                    action: abort,
-                    createdAt: <timestamp>,
-                    state: {
-                        status: "fail",
-                        code: 1
-                    }
-                }
-            }
-        }
-        end note
-        FULF_HANDLER -> TOPIC_NOTIFICATIONS: Route & Publish Notification event for Payee
-        activate TOPIC_NOTIFICATIONS
-        deactivate TOPIC_NOTIFICATIONS
-    end
-end
-
-group Reference: Produce message for validated error callback
-    alt If type == 'bulk-fulfil'
-        note right of FULF_HANDLER #yellow
-        Message:
-        {
-            id: <ID>,
-            from: <transferHeaders.FSPIOP-Source>,
-            to: <transferHeaders.FSPIOP-Destination>,
-            type: application/json,
-            content: {
-                headers: <transferHeaders>,
-                payload: <transferMessage>
-            },
-            metadata: {
-                event: {
-                    id: <uuid>,
-                    responseTo: <previous.uuid>,
-                    type: bulk-position,
-                    action: abort,
-                    createdAt: <timestamp>,
-                    state: {
-                        status: "success",
-                        code: 0
-                    }
-                }
-            }
-        }
-        end note
-        FULF_HANDLER -> TOPIC_TRANSFER_POSITION: Route & Publish Position event for Payer
-        activate TOPIC_TRANSFER_POSITION
-        deactivate TOPIC_TRANSFER_POSITION
-    else If type == 'fulfil'
-        note right of FULF_HANDLER #yellow
-        Message:
-        {
-            id: <ID>,
-            from: <transferHeaders.FSPIOP-Source>,
-            to: <transferHeaders.FSPIOP-Destination>,
-            type: application/json,
-            content: {
-                headers: <transferHeaders>,
-                payload: <transferMessage>
-            },
-            metadata: {
-                event: {
-                    id: <uuid>,
-                    responseTo: <previous.uuid>,
-                    type: position,
-                    action: abort,
-                    createdAt: <timestamp>,
-                    state: {
-                        status: "success",
-                        code: 0
-                    }
-                }
-            }
-        }
-        end note
-        FULF_HANDLER -> TOPIC_TRANSFER_POSITION: Route & Publish Position event for Payer
-        activate TOPIC_TRANSFER_POSITION
-        deactivate TOPIC_TRANSFER_POSITION
     end
 end
 
@@ -500,17 +411,17 @@ group Reference: Failure in validation
                     id: <uuid>,
                     responseTo: <previous.uuid>,
                     type: bulk-processing,
-                    action: reject,
+                    action: commit,
                     createdAt: <timestamp>,
                     state: {
-                        status: "fail",
+                        status: "error",
                         code: 1
                     }
                 }
             }
         }
         end note
-        FULF_HANDLER -> TOPIC_BULK_PROCESSING: Publish processing event to the Bulk Processing Topic\n<color #FF0000><b>Error codes:</b> 2003</color>
+        FULF_HANDLER -> TOPIC_BULK_PROCESSING: Publish Notification event for Payee to Bulk Processing Topic\n<color #FF0000><b>Error codes:</b> 2003</color>
         activate TOPIC_BULK_PROCESSING
         deactivate TOPIC_BULK_PROCESSING
     else If type == 'fulfil'
@@ -529,11 +440,11 @@ group Reference: Failure in validation
                 event: {
                     id: <uuid>,
                     responseTo: <previous.uuid>,
-                    type: fulfil,
-                    action: reject,
+                    type: notification,
+                    action: commit,
                     createdAt: <timestamp>,
                     state: {
-                        status: "fail",
+                        status: "error",
                         code: 1
                     }
                 }
@@ -543,70 +454,6 @@ group Reference: Failure in validation
         FULF_HANDLER -> TOPIC_NOTIFICATIONS: Route & Publish Notification event for Payee
         activate TOPIC_NOTIFICATIONS
         deactivate TOPIC_NOTIFICATIONS
-    end
-end
-
-group Reference: Publish Position Reject event for Payer
-    alt If type == 'bulk-fulfil'
-        note right of FULF_HANDLER #yellow
-        Message:
-        {
-            id: <ID>,
-            from: <transferHeaders.FSPIOP-Source>,
-            to: <transferHeaders.FSPIOP-Destination>,
-            type: application/json,
-            content: {
-                headers: <transferHeaders>,
-                payload: <transferMessage>
-            },
-            metadata: {
-                event: {
-                    id: <uuid>,
-                    responseTo: <previous.uuid>,
-                    type: bulk-position,
-                    action: reject,
-                    createdAt: <timestamp>,
-                    state: {
-                        status: "success",
-                        code: 0
-                    }
-                }
-            }
-        }
-        end note
-        FULF_HANDLER -> TOPIC_TRANSFER_POSITION: Route & Publish Position event for Payer
-        activate TOPIC_TRANSFER_POSITION
-        deactivate TOPIC_TRANSFER_POSITION
-    else If type == 'fulfil'
-        note right of FULF_HANDLER #yellow
-        Message:
-        {
-            id: <ID>,
-            from: <transferHeaders.FSPIOP-Source>,
-            to: <transferHeaders.FSPIOP-Destination>,
-            type: application/json,
-            content: {
-                headers: <transferHeaders>,
-                payload: <transferMessage>
-            },
-            metadata: {
-                event: {
-                    id: <uuid>,
-                    responseTo: <previous.uuid>,
-                    type: position,
-                    action: reject,
-                    createdAt: <timestamp>,
-                    state: {
-                        status: "success",
-                        code: 0
-                    }
-                }
-            }
-        }
-        end note
-        FULF_HANDLER -> TOPIC_TRANSFER_POSITION: Route & Publish Position event for Payer
-        activate TOPIC_TRANSFER_POSITION
-        deactivate TOPIC_TRANSFER_POSITION
     end
 end
 

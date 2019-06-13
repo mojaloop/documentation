@@ -32,26 +32,51 @@ Contents:
  When the code has passed all of the above and is deployed as part of the CI/CD processes implemented by our workflow, the new component(s) are accepted onto the various hosts, cloud-based or on-premise implementations. These hosts ranges from development platforms through to production environments.
 
 ### Postman and Newman Testing
- Parallel to the deployment process is the upkeep and maintenance of the Postman Collection testing Framework. When a new release is done, as part of the workflow, Release Notes are published listing all of the new and/or enhanced functionality implemented as part of the release. These notes are used by the QA team to extend and enhance the existing Postman Collections where tests are written behind the request/response scripts to test both positive as well as negative scenarios agains the intended behaviour. These tests are then run in the following manner:
+ Parallel to the deployment process is the upkeep and maintenance of the [Postman](https://github.com/mojaloop/postman.git "Postman") Collection testing Framework. When a new release is done, as part of the workflow, Release Notes are published listing all of the new and/or enhanced functionality implemented as part of the release. These notes are used by the QA team to extend and enhance the existing Postman Collections where tests are written behind the request/response scripts to test both positive as well as negative scenarios agains the intended behaviour. These tests are then run in the following manner:
  + Manually to determine if the tests cover all aspects and angles of the functionality, positive to assert intended behaviour and negative tests to determine if the correct alternate flows work as intended when something unexpected goes wrong
  + Scheduled - as part of the Regression regime, to do exactly the same as the manual intent, but fully automated (with the *Newman Package*) with reports and logs produced to highlight any unintended behaviour and to also warn where known behaviour changed from a previous run.
 
 In order to facilitate the automated and scheduled testing of a Postman Collection, there are various methods one can follow and the one implemented for Mojaloop use is explained further down in this document.
 
-Firstly, there are a number of Postman collections in use throughout the different processes:
-+ OSS-New-Deployment-FSP-Setup : This collection needs to be executed once after a new deployment, normally by the Release Manager, to seed the Database with the required enumerations and static data, as well as test FSPs with their accounts and position data in order to be able to execute any manual or automation tests by other collections.
-+ OSS-API-Tests : This suite of tests will issue a request/response against each and every exposed API, testing APIs such as the Mojaloop core APIs, bulk quotes, admin-APIs, Settlement APIs, Metrics APIs, Fund-in and out APIs etc. These tests are done to test the message headers, body, responses received and not to test the end-to-end flow of a transfer for example
-+ OSS-Feature-Tests : Scenario based testing are performed with this collection, such as Settlements processes, Block Transfers, Negative testing scenarios and so on
-+ Golden_Path : This test collection is the one used by the scheduled regression testing framework to test end-to-end scenarios, resembling real-world use-cases where the response from one API call is used to populate the request of a subsequent call. We make use of an intelligent simulator playing the role of an FSP on the recipient side of the scenario, responding to various request from a Payer FSP as an example
+There is a complete repository containing all of the scripts, setup procedures and anything required in order to set up an automated [QA and Regression Testing Framework](https://github.com/mojaloop/ml-qa-regression-testing.git "QA and Regression Testing Framework"). This framework allows one to target any Postman Collection, specifying your intended Environment to execute against, as well as a comma-separated list of intended email recipients to receive the generated report. This framework is in daily use by Mojaloop and exists on an EC2 instance on AWS, hosting the required components like Node, Docker, Email Server and Newman, as well as various Bash Scripts and Templates for use by the framework to automatically run the intended collections every day. Using this guide will allow anyone to set up their own Framework.
 
-There is a complete repository containing all of the scripts, setup procedures and anything required in order to set up an automated [QA and Regression Testing Framework](https://github.com/mojaloop/ml-qa-regression-testing.git "QA and Regression Testing Framework"). This framework allows one to target any Postman Collection, specifying your intended Environment to execute against, as well as a comma-separated list of intended email recipients to receive the generated report. This framework is in daily use by Mojaloop and exists on an EC2 instance on AWS, hosting the required components like Node, Docker, Email Server and Newman, as well as various Bash Scripts and Templates for use by the framework to automatically run the intended collections every day. Using this guide will allow anyone to set up their ownn Framework.
+#### Postman Collections
+
+There are a number of Postman collections in use throughout the different processes:
++ [OSS-New-Deployment-FSP-Setup](https://github.com/mojaloop/postman/blob/master/OSS-New-Deployment-FSP-Setup.postman_collection.json) : This collection needs to be executed once after a new deployment, normally by the Release Manager, to seed the Database with the required enumerations and static data, as well as test FSPs with their accounts and position data in order to be able to execute any manual or automation tests by other collections.
+    + Notes: Ensure that there is a delay of `200ms` if executed through Postman UI Test Runner. This will ensure that tests have enough time to validate requests against the simulator. 
++ [OSS-API-Tests](https://github.com/mojaloop/postman/blob/master/OSS-API-Tests.postman_collection.json) : This suite of tests will issue a request/response against each and every exposed API, testing APIs such as the Mojaloop core APIs, bulk quotes, admin-APIs, Settlement APIs, Metrics APIs, Fund-in and out APIs etc. These tests are done to test the message headers, body, responses received and not to test the end-to-end flow of a transfer for example
+    + Notes: Ensure that there is a delay of `1500ms` if executed through Postman UI Test Runner. This will ensure that tests have enough time to validate requests against the simulator.
++ [OSS-Feature-Tests](https://github.com/mojaloop/postman/blob/master/OSS-Feature-Tests.postman_collection.json) : Scenario based testing are performed with this collection, such as Settlements processes, Block Transfers, Negative testing scenarios and so on
+    + Notes: Ensure that there is a delay of `1500ms` if executed through Postman UI Test Runner. This will ensure that tests have enough time to validate requests against the simulator.
++ [Golden_Path](https://github.com/mojaloop/postman/blob/master/Golden_Path.postman_collection.json) : This test collection is the one used by the scheduled regression testing framework to test end-to-end scenarios, resembling real-world use-cases where the response from one API call is used to populate the request of a subsequent call. We make use of an intelligent simulator playing the role of an FSP on the recipient side of the scenario, responding to various request from a Payer FSP as an example
+    + Notes: Ensure that there is a delay of `1500ms` if executed through Postman UI Test Runner. This will ensure that tests have enough time to validate requests against the simulator.
+    
+#### Environment Configuration
+
+You will need to customize the following environment config file to match your deployment environment:
++ [Local Environment Config](https://github.com/mojaloop/postman/blob/master/environments/Mojaloop-Local.postman_environment.json)
+
+_Tips:_ 
+- _The host configurations will be the most likely changes required to match your environment. e.g. `HOST_CENTRAL_LEDGER: http://central-ledger.local`_
+- _Refer to the ingress hosts that have been configured in your `values.yaml` as part of your Helm deployment._
 
 ### Executing regression test
 For the Mojaloop QA and Regression Testing Framework specifically, Postman regression test can be executed by going into the EC2 instance via SSH, for which you need the PEM file, and then by running a script(s).
 
-Following the requirements and instructions as set out in the detail in  [QA and Regression Testing Framework](https://github.com/mojaloop/ml-qa-regression-testing.git "QA and Regression Testing Framework"), everyone will be able to create their own Framework and gain access to their instance to execute tests against any Postman Collection targeting any Environment they have control over.
+Following the requirements and instructions as set out in the detail in [QA and Regression Testing Framework](https://github.com/mojaloop/ml-qa-regression-testing.git "QA and Regression Testing Framework"), everyone will be able to create their own Framework and gain access to their instance to execute tests against any Postman Collection targeting any Environment they have control over.
 
-##### Steps to execute the bash script to run the newman / postman test
+##### Steps to execute the script via Postman UI
++ Import the desired collection into your Postman UI. You can either download the collection from the repo or alternatively use the `RAW` link and import it directly via the **import link** option.
++ Import the environment config into your Postman UI via the Environmental Config setup. Note that you will need to download the environmental config to your machine and customize it to your environment.
++ Ensure that you have pre-loaded all prerequisite test data before executing transactions (party, quotes, transfers) as per the example collection [OSS-New-Deployment-FSP-Setup](https://github.com/mojaloop/postman/blob/master/OSS-New-Deployment-FSP-Setup.postman_collection.json):
+  + Hub Accounts
+  + FSP onboarding
+  + Add any test data to Simulator (if applicable)
+  + Oracle onboarding
++ The `p2p_money_transfer` test cases from the [Golden_Path](https://github.com/mojaloop/postman/blob/master/Golden_Path.postman_collection.json) collection are a good place to start.
+
+##### Steps to execute the bash script to run the Newman / Postman test via CLI
 + To run a test via this method, you will have to be in posession of the PEM-file of the server on which the Mojaloop QA and Regression Framework was deployed on an EC2 instance on Amazon Cloud.
 
 + SSH into the specific EC2 instance and when running the script, it will in turn run the commands via an instantiated Docker container.
@@ -61,6 +86,7 @@ Following the requirements and instructions as set out in the detail in  [QA and
 + Also, by having an Environment File, the specific Mojaloop services targeted can be on any server. This means you can execute any Postman test against any Mojaloop installation on any server of your choice.
 
 + The EC2 instance we execute these tests from are merely containing all the tools and processes in order to execute your required test and does not host any Mojaloop Services as such.
+
 ```
 ./testMojaloop.sh <postman-collection-URL> <environment-URL> <comma-separated-email-recipient-list>
 ```

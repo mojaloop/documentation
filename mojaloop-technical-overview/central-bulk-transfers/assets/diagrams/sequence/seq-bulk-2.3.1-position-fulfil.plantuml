@@ -27,7 +27,7 @@
 
 @startuml
 ' declate title
-title 1.3.2. Fulfil Position Handler Consume (single message, includes individual transfers from Bulk)
+title 2.3.1. Fulfil Position Handler Consume (single message, includes individual transfers from Bulk)
 
 autonumber
 
@@ -40,7 +40,7 @@ autonumber
 
 ' declare actors
 control "Position Handler" as POS_HANDLER
-collections "topic-\notifications" as TOPIC_NOTIFICATIONS
+collections "topic-\nnotifications" as TOPIC_NOTIFICATIONS
 collections "topic-\nbulk-processing" as TOPIC_BULK_PROCESSING
 entity "Position Facade" as POS_FACADE
 entity "Position DAO" as POS_DAO
@@ -125,7 +125,7 @@ group Fulfil Position Handler Consume
                 event: {
                     id: <uuid>,
                     responseTo: <previous.uuid>,
-                    type: bulk-transfer,
+                    type: bulk-processing,
                     action: commit,
                     createdAt: <timestamp>,
                     state: {
@@ -155,7 +155,7 @@ group Fulfil Position Handler Consume
                 event: {
                     id: <uuid>,
                     responseTo: <previous.uuid>,
-                    type: transfer,
+                    type: notification,
                     action: commit,
                     createdAt: <timestamp>,
                     state: {

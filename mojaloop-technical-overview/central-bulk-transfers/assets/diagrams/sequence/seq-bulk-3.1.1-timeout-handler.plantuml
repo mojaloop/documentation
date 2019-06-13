@@ -25,7 +25,7 @@
 
 @startuml
 ' declare title
-title 2.3.1. Timeout Handler Consume (incl. Bulk Transfer)
+title 3.1.1. Timeout Handler Consume (incl. Bulk Transfer)
 
 autonumber
 
@@ -38,10 +38,10 @@ autonumber
 
 ' declare actors
 control "Transfer Timeout\nHandler" as TIMEOUT_HANDLER
-collections "Transfer-Position-\nTopic" as TOPIC_TRANSFER_POSITION
-collections "Notification-\nTopic" as NOTIFICATIONS_TOPIC
-collections "Event-\nTopic" as EVENT_TOPIC
-collections "Bulk-Processing-\nTopic" as BULK_PROCESSING_TOPIC
+collections "topic-\ntransfer-position" as TOPIC_TRANSFER_POSITION
+collections "topic-\nnotification" as NOTIFICATIONS_TOPIC
+collections "topic-event" as EVENT_TOPIC
+collections "topic-\nbulk-processing" as BULK_PROCESSING_TOPIC
 entity "Segment DAO" as SEGMENT_DAO
 entity "Position DAO" as POS_DAO
 database "Central Store" as DB
@@ -63,7 +63,7 @@ group Timeout Handler Consume
     activate TIMEOUT_HANDLER
     group Persist Event Information
         TIMEOUT_HANDLER -> EVENT_TOPIC: Publish event information
-        ref over TIMEOUT_HANDLER, EVENT_TOPIC :  Event Handler Consume {[[https://TODO-input-path-to/**/seq-event-9.1.0.svg 9.1.0]]}
+        ref over TIMEOUT_HANDLER, EVENT_TOPIC :  Event Handler Consume\n
     end
 
     group Get previous checkpoint of last record processed (Lower limit for inclusion)
@@ -359,8 +359,8 @@ group Timeout Handler Consume
                         metadata: {
                             event: {
                                 id: <uuid>,
-                                type: bulk-notification,
-                                action: bulk-timeout-received,
+                                type: bulk-processing,
+                                action: timeout-received,
                                 createdAt: <timestamp>,
                                 state: {
                                     status: 'error',
@@ -371,7 +371,7 @@ group Timeout Handler Consume
                         }
                     }
                 end note
-                TIMEOUT_HANDLER -> BULK_PROCESSING_TOPIC: Publish Bulk Notification event for processing
+                TIMEOUT_HANDLER -> BULK_PROCESSING_TOPIC: Publish to Bulk Processing topic
                 activate BULK_PROCESSING_TOPIC
                 deactivate BULK_PROCESSING_TOPIC
             else transferStateId == 'RESERVED'
@@ -396,8 +396,8 @@ group Timeout Handler Consume
                         metadata: {
                             event: {
                                 id: <uuid>,
-                                type: position,
-                                action: bulk-timeout-reserved,
+                                type: bulk-position,
+                                action: timeout-reserved,
                                 createdAt: <timestamp>,
                                 state: {
                                     status: 'error',
