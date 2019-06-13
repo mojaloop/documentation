@@ -2,6 +2,8 @@
 
 The purpose of the Event Framework is to provide a standard unified architecture to capture all Mojaloop events.
 
+_Disclaimer: This is experimental and is being implemented as a PoC. As such the design may change based on the evolution of the PoC's implementation, and any lessons learned._
+
 
 ## 1. Requirements
 
