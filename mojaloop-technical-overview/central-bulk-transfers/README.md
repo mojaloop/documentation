@@ -41,7 +41,9 @@ According to the Figure-60 of the specification, below are a few key implication
 ## 3. Steps involved in the high-level Architecture
 
 Below are the steps involved at a high level for bulk transfers.
+
 ![architecture diagram](./assets/diagrams/architecture/bulk-transfer-arch-flows.svg)  
+
 
 1. [1.0, 1.1, 1.2] An Incoming bulk Transfer request (POST /bulkTransfers) on the ml-api-adapter is placed in an object store and a notification with a reference to the actual message is sent via a kafka topic “bulk prepare” and a 202 is sent to the Payer FSP  
 2. [1.3] Bulk Prepare handler consumes the request, records the status as RECEIVED  
