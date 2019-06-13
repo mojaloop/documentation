@@ -10,11 +10,17 @@ The central ledger is a series of services that facilitate clearing and settleme
 
 ### 1.1 Architecture overview
 
-![Central-Ledger Architecture](assets/diagrams/architecture/Arch-mojaloop-central-ledger.svg)
-
 * [Central-Ledger Architecture](assets/diagrams/architecture/Arch-mojaloop-central-ledger.svg)
 
-## 2 Database Design
+![Central-Ledger Architecture](assets/diagrams/architecture/Arch-mojaloop-central-ledger.svg)
+
+## 2. Transfers End-to-End Architecture
+
+* [Transfers Architecture ](assets/diagrams/architecture/Transfers-Arch-End-to-End.svg)
+
+![Transfers Architecture](assets/diagrams/architecture/Transfers-Arch-End-to-End.svg)
+
+## 3. Database Design
 
 ### Note
 
@@ -38,10 +44,9 @@ The remaining tables in the below ERD are either lookup (blue) or settlement-spe
 
 The **Central Ledger** database schema definition [Central-Ledger Database Schema Definition](assets/database/central-ledger-ddl-MySQLWorkbench.sql).
 
+* [Central-Ledger Database Diagram](central-ledger-schema-DBeaver.erd)
 ![Central-Ledger Database Diagram](assets/database/central-ledger-schema.png)
 
-* [Central-Ledger Database Diagram](central-ledger-schema-DBeaver.erd)
-
-## 3. API Specification
+## 4. API Specification
 
 Refer to **Central Ledger API** in the [API Specifications](../../api/README.md#central-ledger-api) section.
