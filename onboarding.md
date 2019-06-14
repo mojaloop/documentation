@@ -7,7 +7,7 @@ This document provides an overview of assets available for those interested in o
 The following are the minimum requirements to run an end-to-end test of an environment:
 
 - **Mojaloop Hub**: The Hub is the container of all the core central services of Mojaloop. The following are the options available to work with the Hub:
-  - **Deployment guide:** If you wish to deploy Mojaloop on your own environment, please find the [Deployment Guide](../deployment-guide/). 
+  - **Deployment guide:** If you wish to deploy Mojaloop on your own environment, please find the [Deployment Guide](./deployment-guide/). 
 - **FSP Simulator:** This acts as a mock FSP to simulate the Payer and Payee roles in a transaction. Building and configurations details can be found in the [Github simulator repository](https://github.com/mojaloop/simulator).
 - **Postman:** Postman is an application to send requests and receive responses. In the [Postman repository](https://github.com/mojaloop/postman) you can find some collections and environments that can be imported into a Postman client to interact with the Hub.
 
