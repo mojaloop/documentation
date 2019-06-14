@@ -81,8 +81,8 @@ _Disclaimer: This is experimental and is being implemented as a PoC. As such the
 | to | string | Mandatory for the sender and optional in the destination. The sender can ommit the value of the domain. | |
 | pp | string | Optional for the sender, when is considered the identity of the session. Is mandatory in the destination if the identity of the originator is different of the identity of the from property. | |
 | metadata | object \<ObMetadataType\> | Optional. The sender should avoid to use this property to transport any kind of content-related information, but merely data relevant to the context of the communication. Consider to define a new content type if there's a need to include more content information into the message. | |
-| type | string | `MIME` declaration of the content type of the message. | |
-| content | object \<any\> | The representation of the content. | |
+| type | string | Mandatory. `MIME` declaration of the content type of the message. | |
+| content | object \<any\> | Mandatory. The representation of the content. | |
 
 
 ##### 3.2.1.1 Object Definition: MessageMetadata 
