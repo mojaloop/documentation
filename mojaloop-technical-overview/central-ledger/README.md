@@ -40,7 +40,6 @@ The remaining tables in the below ERD are either lookup (blue) or settlement-spe
 
 The **Central Ledger** database schema definition [Central-Ledger Database Schema Definition](assets/database/central-ledger-ddl-MySQLWorkbench.sql).
 
-* [Central-Ledger Database Diagram](central-ledger-schema-DBeaver.erd)
 ![Central-Ledger Database Diagram](assets/database/central-ledger-schema.png)
 
 ## 4. API Specification
