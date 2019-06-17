@@ -48,14 +48,18 @@ As a part of this an ISO-Open API Adapter would be implemented which would proce
 
 The proposed solution will consist of an interface or adapter/plugin that could process transactions between ISO networks and Mojaloop systems. 
 
+### Connections
+
 The ISO payments platform makes use of an ISO interface which uses standard TCP/IP connection to send and respond to ISO messages to and from the various channels. In order to accept and process connections from the interface, our solution would have a TCP/IP listener, which would receive and process transactions from ISO network and then map it to Open API , after which the transactions will be sent over to a Mojaloop system like Mowali on a URL.
 
-In this case the payment networks are largely dependent on their respective (i.e. Visa/ MasterCard/Verve/etc) card or account number, which is used to define the BIN look up table for routing purposes . One of the options would be to predefine a Bin range (eg: 757575) that would identify a Mojaloop transaction and then let the payment network implement a routing logic that would send all Moja transactions through to the Open API network.
+### Routing
 
-The ISO-Open API adapter would process the ISO message received from the ISO switch and send it through to the Mojaloop system in Open API format.
+The ISO Payment Networks are largely dependent on their respective (i.e. Visa/ MasterCard/Verve/etc) card or account number, which is used to define the BIN look up table for routing purposes . One of the options would be to predefine a Bin range (eg: 757575) that would identify a Mojaloop transaction and then let the payment network implement a routing logic that would send all Moja transactions through to the Open API network.
 
 However, such changes would imply configurational changes to download applications on ATM and other terminal devices, but this could be handled as a standard operational change similar to the existing configurational changes performed as per the business requirements.
 
+### Mapping
 
+The ISO-Open API adapter would process the ISO message received from the ISO switch and perform a mapping between the two protocols and send it through to the Mojaloop system in Open API format.
 
-
+A detailed mapping of the ISO and Open API messages has been provided in Appendix A and examples in Appendix B.
