@@ -117,12 +117,14 @@ _Disclaimer: This is experimental and is being implemented as a PoC. As such the
 | Name | Type | Description | Example |
 | --- | --- | --- | --- |
 | service | string | Mandatory. Name of service producing trace | central-ledger-prepare-handler |
-| traceId | string | Mandatory. The end-to-end transaction identifier. | 80f198ee56343ba864fe8b2a57d3eff7 |
-| spanId | string | Mandatory. Id for a processing leg identifier for a component or function. | 05e3ac9a4f6e3b90 |
-| parentSpanId | string | Optional. The id references the related message. | e457b5a2e4d86bd1 |
+| traceId | 32HEXDIGLC | Mandatory. The end-to-end transaction identifier. | 664314d5b207d3ba722c6c0fdcd44c61 |
+| spanId | 16HEXDIGLC | Mandatory. Id for a processing leg identifier for a component or function. | 81fa25e8d66d2e88 |
+| parentSpanId | 16HEXDIGLC | Optional. The id references the related message. | e457b5a2e4d86bd1 |
 | sampled | number | Optional. Indicator if event message should be included in the trace `1`. If excluded it will be left the consumer to decide on sampling. | 1 |
 | flags | number | Optional. Indicator if event message should be included in the trace flow. ( Debug `1` - this will override the sampled value ) | 0 |
 | timestamp | datetime | Optional. ISO 8601 with the following format `yyyy-MM-dd'T'HH:mm:ss.SSSSSSz`. If not included the current timestamp will be taken. | 2015-08-29T11:22:09.815479Z |
+
+_Note: HEXDIGLC = DIGIT / "a" / "b" / "c" / "d" / "e" / "f" ; lower case hex character. Ref: [WC3 standard for trace-context](https://www.w3.org/TR/trace-context/#field-value)._
 
 ##### 3.2.1.5 Enum: EventStatusType
 
