@@ -51,7 +51,7 @@ _Disclaimer: This is experimental and is being implemented as a PoC. As such the
         "event": {
             "id": "3920382d-f78c-4023-adf9-0d7a4a2a3a2f",
             "type": "trace",
-            "action": "start",
+            "action": "span",
             "createdAt": "2019-05-29T23:18:32.935Z",
             "state": {
                 "status": "success",
@@ -65,7 +65,8 @@ _Disclaimer: This is experimental and is being implemented as a PoC. As such the
             "traceId": "bbd7b2c7-3978-408e-ae2e-a13012c47739",
             "parentSpanId": "4e3ce424-d611-417b-a7b3-44ba9bbc5840",
             "spanId": "efeb5c22-689b-4d04-ac5a-2aa9cd0a7e87",
-            "timestamp": "2015-08-29T11:22:09.815479Z"
+            "startTimestamp": "2015-08-29T11:22:09.815479Z",
+            "finishTimestamp": "2015-08-29T11:22:09.815479Z"
         }
     }
 }
@@ -122,7 +123,8 @@ _Disclaimer: This is experimental and is being implemented as a PoC. As such the
 | parentSpanId | 16HEXDIGLC | Optional. The id references the related message. | e457b5a2e4d86bd1 |
 | sampled | number | Optional. Indicator if event message should be included in the trace `1`. If excluded it will be left the consumer to decide on sampling. | 1 |
 | flags | number | Optional. Indicator if event message should be included in the trace flow. ( Debug `1` - this will override the sampled value ) | 0 |
-| timestamp | datetime | Optional. ISO 8601 with the following format `yyyy-MM-dd'T'HH:mm:ss.SSSSSSz`. If not included the current timestamp will be taken. | 2015-08-29T11:22:09.815479Z |
+| startTimestamp | datetime | Optional. ISO 8601 with the following format `yyyy-MM-dd'T'HH:mm:ss.SSSSSSz`. If not included the current timestamp will be taken. Represents the start timestamp of a span.| 2015-08-29T11:22:09.815479Z |
+| finishTimestamp | datetime | Optional. ISO 8601 with the following format `yyyy-MM-dd'T'HH:mm:ss.SSSSSSz`. If not included the current timestamp will be taken. Represents the finish timestamp of a span | 2015-08-29T11:22:09.815479Z |
 
 _Note: HEXDIGLC = DIGIT / "a" / "b" / "c" / "d" / "e" / "f" ; lower case hex character. Ref: [WC3 standard for trace-context](https://www.w3.org/TR/trace-context/#field-value)._
 
@@ -161,8 +163,7 @@ _Note: HEXDIGLC = DIGIT / "a" / "b" / "c" / "d" / "e" / "f" ; lower case hex cha
 
 | Enum | Description | 
 | --- | --- |
-| start | Event action for the start of span trace. |
-| end | Event action for the end of span trace. |
+| span | Event action representing a span of a trace. | 
 
 ##### 3.2.1.10 Enum: ErrorEventAction
 
