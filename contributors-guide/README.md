@@ -25,7 +25,7 @@ Also checkout the [FAQ](https://github.com/mojaloop/documentation/blob/master/co
 
 See the [Mojaloop Slack Announcements](https://mojaloop.slack.com/messages/CG3MAJZ5J) to find out information on the latest release.
 
-### What's here and what's not
+### What's here and what's not?
 
 This is free code provided under an [Apache 2.0 license](https://github.com/mojaloop/mojaloop/blob/master/LICENSE.md).
 
@@ -35,11 +35,13 @@ We don't provide production servers to run it on. That's up to you. You are free
 
 We are not trying to replace any mobile wallet or financial providers. We provide code to link together new and existing financial providers using a common scheme. There are central services for identifying a customer's provider, quoting, fulfillment, deferred net settlement, and shared fraud management. Each provider can take advantage of these services to send and receive money with others on the system and there's no cost to them to onboard new providers. We provide code for a simple example mobile money provider to show how integration can be done, but our example DFSP is not meant to be a production mobile money provider.
 
+## Where do I send bugs, questions, and feedback?
+
+For bugs, see [Reporting bugs](https://github.com/mojaloop/mojaloop/blob/master/contribute/Reporting-Bugs.md).
+
 ### Related Projects
 
-The [Interledger Protocol Suite](https://interledger.org/) \(ILP\) is an open and secure standard that enables DFSPs to settle payments with minimal _counter-party risk_ \(the risk you incur when someone else is holding your money\). With ILP, you can transact across different systems with no chance that someone in the middle disappears with your money. Mojaloop uses the Interledger Protocol Suite for the clearing layer. For an overview of how it works, see the [Clearing Architecture Documentation](https://github.com/mojaloop/Docs/blob/master/ILP/README.md).Where to I send bugs, questions, and feedback?
-
-UPDATE: For bugs, see [Reporting bugs](https://github.com/mojaloop/mojaloop/blob/master/contribute/Reporting-Bugs.md).
+The [Interledger Protocol Suite](https://interledger.org/) \(ILP\) is an open and secure standard that enables DFSPs to settle payments with minimal _counter-party risk_ \(the risk you incur when someone else is holding your money\). With ILP, you can transact across different systems with no chance that someone in the middle disappears with your money. Mojaloop uses the Interledger Protocol Suite for the clearing layer.
 
 ## Types of Contributors
 
