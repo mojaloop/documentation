@@ -24,7 +24,7 @@ _Disclaimer: This is experimental and is being implemented as a PoC. As such the
 
 ![Pod Architecture](./assets/diagrams/architecture/architecture-event-sidecar.svg) 
 
-### 2.3 Tracing 
+### 2.3 Event Flow 
 
 ![Tracing Architecture](./assets/diagrams/architecture/architecture-event-trace.svg)
 
