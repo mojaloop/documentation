@@ -133,7 +133,7 @@ _Note: HEXDIGLC = DIGIT / "a" / "b" / "c" / "d" / "e" / "f" ; lower case hex cha
 | Enum | Description | 
 | --- | --- |
 | success | Event was processed successfully |
-| failed | Event was processed with a failure or error |
+| fail | Event was processed with a failure or error |
 
 ##### 3.2.1.6 Enum: EventType
 
