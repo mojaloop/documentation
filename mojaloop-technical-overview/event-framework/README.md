@@ -138,7 +138,7 @@ _Note: HEXDIGLC = DIGIT / "a" / "b" / "c" / "d" / "e" / "f" ; lower case hex cha
 ##### 3.2.1.6 Enum: EventType
 
 | Enum | Description |
-| --- | --- | --- |
+| --- | --- |
 | log | Event representing a general log entry. |
 | audit | Event to be signed and persisted into the audit store. |
 | trace | Event containing trace context information to be persisted into the tracing store. |
