@@ -192,7 +192,7 @@ Please review [Mojaloop Helm Chart](../repositories/helm.md) to understand the r
    
    Custom configured installation:
    ```bash
-   helm --namespace demo --name moja install mojaloop/mojaloop -file {custom-values.yaml}
+   helm --namespace demo --name moja install mojaloop/mojaloop -f {custom-values.yaml}
    ```
    _Note: Download and customize the [values.yaml](https://github.com/mojaloop/helm/blob/master/mojaloop/values.yaml). Also ensure that you are using the value.yaml from the correct version which can be found via [Helm Releases](https://github.com/mojaloop/helm/releases)._
 
