@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Account-Lookup Service · GitBook</title>
+        <title>Event Framework · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -85,10 +85,10 @@
     <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="als-get-participants.html" />
+    <link rel="next" href="../fraud-services/" />
     
     
-    <link rel="prev" href="../overview/components-PI3.html" />
+    <link rel="prev" href="../central-event-processor/signature-validation.html" />
     
 
     </head>
@@ -511,9 +511,9 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.6.2" data-path="./">
+        <li class="chapter " data-level="1.6.2" data-path="../account-lookup-service/">
             
-                <a href="./">
+                <a href="../account-lookup-service/">
             
                     
                     Account-Lookup Service
@@ -525,9 +525,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.6.2.1" data-path="als-get-participants.html">
+        <li class="chapter " data-level="1.6.2.1" data-path="../account-lookup-service/als-get-participants.html">
             
-                <a href="als-get-participants.html">
+                <a href="../account-lookup-service/als-get-participants.html">
             
                     
                     GET Participants
@@ -538,9 +538,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.2.2" data-path="als-post-participants.html">
+        <li class="chapter " data-level="1.6.2.2" data-path="../account-lookup-service/als-post-participants.html">
             
-                <a href="als-post-participants.html">
+                <a href="../account-lookup-service/als-post-participants.html">
             
                     
                     POST Participants
@@ -551,9 +551,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.2.3" data-path="als-post-participants-batch.html">
+        <li class="chapter " data-level="1.6.2.3" data-path="../account-lookup-service/als-post-participants-batch.html">
             
-                <a href="als-post-participants-batch.html">
+                <a href="../account-lookup-service/als-post-participants-batch.html">
             
                     
                     POST Participants (batch)
@@ -564,9 +564,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.2.4" data-path="als-del-participants.html">
+        <li class="chapter " data-level="1.6.2.4" data-path="../account-lookup-service/als-del-participants.html">
             
-                <a href="als-del-participants.html">
+                <a href="../account-lookup-service/als-del-participants.html">
             
                     
                     DEL Participants
@@ -577,9 +577,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.2.5" data-path="als-get-parties.html">
+        <li class="chapter " data-level="1.6.2.5" data-path="../account-lookup-service/als-get-parties.html">
             
-                <a href="als-get-parties.html">
+                <a href="../account-lookup-service/als-get-parties.html">
             
                     
                     GET Parties
@@ -1696,9 +1696,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.7" data-path="../event-framework/">
+        <li class="chapter active" data-level="1.6.7" data-path="./">
             
-                <a href="../event-framework/">
+                <a href="./">
             
                     
                     Event Framework
@@ -1931,7 +1931,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../.." >Account-Lookup Service</a>
+        <a href="../.." >Event Framework</a>
     </h1>
 </div>
 
@@ -1946,90 +1946,509 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="account-lookup-service">Account Lookup Service</h1>
-<p>The <strong>Account Lookup Service</strong> (<strong>ALS</strong>) <em>(refer to section <code>6.2.1.2</code>)</em> as per the <a href="https://github.com/mojaloop/mojaloop-specification/blob/master/API%20Definition%20v1.0.pdf" target="_blank">Mojaloop v1.0 Specification</a> implements the following use-cases:</p>
+                                <h1 id="event-framework">Event Framework</h1>
+<p>The purpose of the Event Framework is to provide a standard unified architecture to capture all Mojaloop events.</p>
+<p><em>Disclaimer: This is experimental and is being implemented as a PoC. As such the design may change based on the evolution of the PoC&apos;s implementation, and any lessons learned.</em></p>
+<h2 id="1-requirements">1. Requirements</h2>
 <ul>
-<li>Participant Look-up </li>
-<li>Party Look-up</li>
-<li>Manage Participants Registry information<ul>
-<li>Adding Participant Registry information</li>
-<li>Deleting Participant Registry information</li>
+<li>Events will be produced by utilising a standard common library that will publish events to a sidecar component utilising a light-weight highly performant protocol (e.g. gRPC).</li>
+<li>Sidecar module will publish events to a singular Kafka topic that will allow for multiple handlers to consume and process the events as required.</li>
+<li>Kafka partitions will be determined by the event-type (e.g. log, audit, trace, errors etc).</li>
+<li>Each Mojaloop component will have its own tightly coupled Sidecar.</li>
+<li>Event messages will be produced to Kafka using the Trace-Id as the message key. This will ensure that all the messages part of the same trace (transaction) are stored in the same partition in order. </li>
 </ul>
-</li>
-</ul>
-<p>Use-cases that have been implemented over and above for Hub Operational use: </p>
+<h2 id="2-architecture">2. Architecture</h2>
+<h3 id="21-overview">2.1 Overview</h3>
+<p><img src="assets/diagrams/architecture/architecture-event-framework.svg" alt="Event Framework Architecture"></p>
+<h3 id="22-micro-service-pods">2.2 Micro Service Pods</h3>
+<p><img src="assets/diagrams/architecture/architecture-event-sidecar.svg" alt="Pod Architecture"> </p>
+<h3 id="23-event-flow">2.3 Event Flow</h3>
+<p><img src="assets/diagrams/architecture/architecture-event-trace.svg" alt="Tracing Architecture"></p>
+<h2 id="3-event-envelope-model">3. Event Envelope Model</h2>
+<h2 id="31-json-example">3.1 JSON Example</h2>
+<pre><code class="lang-JSON">{
+    <span class="hljs-string">&quot;from&quot;</span>: <span class="hljs-string">&quot;noresponsepayeefsp&quot;</span>,
+    <span class="hljs-string">&quot;to&quot;</span>: <span class="hljs-string">&quot;payerfsp&quot;</span>,
+    <span class="hljs-string">&quot;id&quot;</span>: <span class="hljs-string">&quot;aa398930-f210-4dcd-8af0-7c769cea1660&quot;</span>,
+    <span class="hljs-string">&quot;content&quot;</span>: {
+        <span class="hljs-string">&quot;headers&quot;</span>: {
+            <span class="hljs-string">&quot;content-type&quot;</span>: <span class="hljs-string">&quot;application/vnd.interoperability.transfers+json;version=1.0&quot;</span>,
+            <span class="hljs-string">&quot;date&quot;</span>: <span class="hljs-string">&quot;2019-05-28T16:34:41.000Z&quot;</span>,
+            <span class="hljs-string">&quot;fspiop-source&quot;</span>: <span class="hljs-string">&quot;noresponsepayeefsp&quot;</span>,
+            <span class="hljs-string">&quot;fspiop-destination&quot;</span>: <span class="hljs-string">&quot;payerfsp&quot;</span>
+        },
+        <span class="hljs-string">&quot;payload&quot;</span>: <span class="hljs-string">&quot;data:application/vnd.interoperability.transfers+json;version=1.0;base64,ewogICJmdWxmaWxtZW50IjogIlVObEo5OGhaVFlfZHN3MGNBcXc0aV9VTjN2NHV0dDdDWkZCNHlmTGJWRkEiLAogICJjb21wbGV0ZWRUaW1lc3RhbXAiOiAiMjAxOS0wNS0yOVQyMzoxODozMi44NTZaIiwKICAidHJhbnNmZXJTdGF0ZSI6ICJDT01NSVRURUQiCn0&quot;</span>
+    },
+    <span class="hljs-string">&quot;type&quot;</span>: <span class="hljs-string">&quot;application/json&quot;</span>,
+    <span class="hljs-string">&quot;metadata&quot;</span>: {
+        <span class="hljs-string">&quot;event&quot;</span>: {
+            <span class="hljs-string">&quot;id&quot;</span>: <span class="hljs-string">&quot;3920382d-f78c-4023-adf9-0d7a4a2a3a2f&quot;</span>,
+            <span class="hljs-string">&quot;type&quot;</span>: <span class="hljs-string">&quot;trace&quot;</span>,
+            <span class="hljs-string">&quot;action&quot;</span>: <span class="hljs-string">&quot;span&quot;</span>,
+            <span class="hljs-string">&quot;createdAt&quot;</span>: <span class="hljs-string">&quot;2019-05-29T23:18:32.935Z&quot;</span>,
+            <span class="hljs-string">&quot;state&quot;</span>: {
+                <span class="hljs-string">&quot;status&quot;</span>: <span class="hljs-string">&quot;success&quot;</span>,
+                <span class="hljs-string">&quot;code&quot;</span>: <span class="hljs-number">0</span>,
+                <span class="hljs-string">&quot;description&quot;</span>: <span class="hljs-string">&quot;action successful&quot;</span>
+            },
+            <span class="hljs-string">&quot;responseTo&quot;</span>: <span class="hljs-string">&quot;1a396c07-47ab-4d68-a7a0-7a1ea36f0012&quot;</span>
+        },
+        <span class="hljs-string">&quot;trace&quot;</span>: {
+            <span class="hljs-string">&quot;service&quot;</span>: <span class="hljs-string">&quot;central-ledger-prepare-handler&quot;</span>,
+            <span class="hljs-string">&quot;traceId&quot;</span>: <span class="hljs-string">&quot;bbd7b2c7-3978-408e-ae2e-a13012c47739&quot;</span>,
+            <span class="hljs-string">&quot;parentSpanId&quot;</span>: <span class="hljs-string">&quot;4e3ce424-d611-417b-a7b3-44ba9bbc5840&quot;</span>,
+            <span class="hljs-string">&quot;spanId&quot;</span>: <span class="hljs-string">&quot;efeb5c22-689b-4d04-ac5a-2aa9cd0a7e87&quot;</span>,
+            <span class="hljs-string">&quot;startTimestamp&quot;</span>: <span class="hljs-string">&quot;2015-08-29T11:22:09.815479Z&quot;</span>,
+            <span class="hljs-string">&quot;finishTimestamp&quot;</span>: <span class="hljs-string">&quot;2015-08-29T11:22:09.815479Z&quot;</span>
+        }
+    }
+}
+</code></pre>
+<h2 id="32-schema-definition">3.2 Schema Definition</h2>
+<h3 id="321-object-definition-eventmessage">3.2.1 Object Definition: EventMessage</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Mandatory<br>(Y/N)</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>string</td>
+<td>Y</td>
+<td>The id references the related message.</td>
+<td></td>
+</tr>
+<tr>
+<td>from</td>
+<td>string</td>
+<td>N</td>
+<td>If the value is not present in the destination, it means that the notification was generated by the connected node (server).</td>
+<td></td>
+</tr>
+<tr>
+<td>to</td>
+<td>string</td>
+<td>Y</td>
+<td>Mandatory for the sender and optional in the destination. The sender can ommit the value of the domain.</td>
+<td></td>
+</tr>
+<tr>
+<td>pp</td>
+<td>string</td>
+<td>N</td>
+<td>Optional for the sender, when is considered the identity of the session. Is mandatory in the destination if the identity of the originator is different of the identity of the from property.</td>
+<td></td>
+</tr>
+<tr>
+<td>metadata</td>
+<td>object \<obmetadatatype\></obmetadatatype\></td>
+<td>N</td>
+<td>The sender should avoid to use this property to transport any kind of content-related information, but merely data relevant to the context of the communication. Consider to define a new content type if there&apos;s a need to include more content information into the message.</td>
+<td></td>
+</tr>
+<tr>
+<td>type</td>
+<td>string</td>
+<td>Y</td>
+<td><code>MIME</code> declaration of the content type of the message.</td>
+<td></td>
+</tr>
+<tr>
+<td>content</td>
+<td>object \<any\></any\></td>
+<td>Y</td>
+<td>The representation of the content.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="3211-object-definition-messagemetadata">3.2.1.1 Object Definition: MessageMetadata</h5>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Mandatory<br>(Y/N)</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>event</td>
+<td>object \<eventmetadata\></eventmetadata\></td>
+<td>Y</td>
+<td>Event information.</td>
+<td></td>
+</tr>
+<tr>
+<td>trace</td>
+<td>object \<eventtracemetadata\></eventtracemetadata\></td>
+<td>Y</td>
+<td>Trace information.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="3212-object-definition-eventmetadata">3.2.1.2 Object Definition: EventMetadata</h5>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Mandatory<br>(Y/N)</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>string</td>
+<td>Y</td>
+<td>Generated UUIDv4 representing the event.</td>
+<td>3920382d-f78c-4023-adf9-0d7a4a2a3a2f</td>
+</tr>
+<tr>
+<td>type</td>
+<td>enum \<eventtype\></eventtype\></td>
+<td>Y</td>
+<td>Type of event.</td>
+<td>[<code>log</code>, <code>audit</code>, <code>error</code> <code>trace</code>]</td>
+</tr>
+<tr>
+<td>action</td>
+<td>enum \<logeventaction, auditeventaction,="" traceeventaction,="" erroreventaction,="" nulleventaction\=""></logeventaction,></td>
+<td>Y</td>
+<td>Type of action.</td>
+<td>[ <code>start</code>, <code>end</code> ]</td>
+</tr>
+<tr>
+<td>createdAt</td>
+<td>timestamp</td>
+<td>Y</td>
+<td>ISO Timestamp.</td>
+<td>2019-05-29T23:18:32.935Z</td>
+</tr>
+<tr>
+<td>responseTo</td>
+<td>string</td>
+<td>N</td>
+<td>UUIDv4 id link to the previous parent event.</td>
+<td>2019-05-29T23:18:32.935Z</td>
+</tr>
+<tr>
+<td>state</td>
+<td>string \<eventstatemetadata\></eventstatemetadata\></td>
+<td>Y</td>
+<td>Object describing the state.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="3213-object-definition-eventstatemetadata">3.2.1.3 Object Definition: EventStateMetadata</h5>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Mandatory<br>(Y/N)</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>status</td>
+<td>enum \<eventstatustype\></eventstatustype\></td>
+<td>Y</td>
+<td>The id references the related message.</td>
+<td>success</td>
+</tr>
+<tr>
+<td>code</td>
+<td>number</td>
+<td>N</td>
+<td>The error code as per Mojaloop specification.</td>
+<td>2000</td>
+</tr>
+<tr>
+<td>description</td>
+<td>string</td>
+<td>N</td>
+<td>Description for the status. Normally used to include an description for an error.</td>
+<td>Generic server error to be used in order not to disclose information that may be considered private.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="3214-object-definition-eventtracemetadata">3.2.1.4 Object Definition: EventTraceMetaData</h5>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Mandatory<br>(Y/N)</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>service</td>
+<td>string</td>
+<td>Y</td>
+<td>Name of service producing trace</td>
+<td>central-ledger-prepare-handler</td>
+</tr>
+<tr>
+<td>traceId</td>
+<td>32HEXDIGLC</td>
+<td>Y</td>
+<td>The end-to-end transaction identifier.</td>
+<td>664314d5b207d3ba722c6c0fdcd44c61</td>
+</tr>
+<tr>
+<td>spanId</td>
+<td>16HEXDIGLC</td>
+<td>Y</td>
+<td>Id for a processing leg identifier for a component or function.</td>
+<td>81fa25e8d66d2e88</td>
+</tr>
+<tr>
+<td>parentSpanId</td>
+<td>16HEXDIGLC</td>
+<td>N</td>
+<td>The id references the related message.</td>
+<td>e457b5a2e4d86bd1</td>
+</tr>
+<tr>
+<td>sampled</td>
+<td>number</td>
+<td>N</td>
+<td>Indicator if event message should be included in the trace <code>1</code>. If excluded it will be left the consumer to decide on sampling.</td>
+<td>1</td>
+</tr>
+<tr>
+<td>flags</td>
+<td>number</td>
+<td>N</td>
+<td>Indicator if event message should be included in the trace flow. ( Debug <code>1</code> - this will override the sampled value )</td>
+<td>0</td>
+</tr>
+<tr>
+<td>startTimestamp</td>
+<td>datetime</td>
+<td>N</td>
+<td>ISO 8601 with the following format <code>yyyy-MM-dd&apos;T&apos;HH:mm:ss.SSSSSSz</code>. If not included the current timestamp will be taken. Represents the start timestamp of a span.</td>
+<td>2015-08-29T11:22:09.815479Z</td>
+</tr>
+<tr>
+<td>finishTimestamp</td>
+<td>datetime</td>
+<td>N</td>
+<td>ISO 8601 with the following format <code>yyyy-MM-dd&apos;T&apos;HH:mm:ss.SSSSSSz</code>. If not included the current timestamp will be taken. Represents the finish timestamp of a span</td>
+<td>2015-08-29T11:22:09.815479Z</td>
+</tr>
+</tbody>
+</table>
+<p><em>Note: HEXDIGLC = DIGIT / &quot;a&quot; / &quot;b&quot; / &quot;c&quot; / &quot;d&quot; / &quot;e&quot; / &quot;f&quot; ; lower case hex character. Ref: <a href="https://www.w3.org/TR/trace-context/#field-value" target="_blank">WC3 standard for trace-context</a>.</em></p>
+<h5 id="3215-enum-eventstatustype">3.2.1.5 Enum: EventStatusType</h5>
+<table>
+<thead>
+<tr>
+<th>Enum</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>success</td>
+<td>Event was processed successfully</td>
+</tr>
+<tr>
+<td>fail</td>
+<td>Event was processed with a failure or error</td>
+</tr>
+</tbody>
+</table>
+<h5 id="3216-enum-eventtype">3.2.1.6 Enum: EventType</h5>
+<table>
+<thead>
+<tr>
+<th>Enum</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>log</td>
+<td>Event representing a general log entry.</td>
+</tr>
+<tr>
+<td>audit</td>
+<td>Event to be signed and persisted into the audit store.</td>
+</tr>
+<tr>
+<td>trace</td>
+<td>Event containing trace context information to be persisted into the tracing store.</td>
+</tr>
+<tr>
+<td>error</td>
+<td>Event representing an error.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="3217-enum-logeventaction">3.2.1.7 Enum: LogEventAction</h5>
+<table>
+<thead>
+<tr>
+<th>Enum</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>info</td>
+<td>Event representing an <code>info</code> level log entry.</td>
+</tr>
+<tr>
+<td>debug</td>
+<td>Event representing a <code>debug</code> level log entry.</td>
+</tr>
+<tr>
+<td>error</td>
+<td>Event representing an <code>error</code> level log entry.</td>
+</tr>
+<tr>
+<td>verbose</td>
+<td>Event representing a <code>verbose</code> level log entry.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="3218-enum-auditeventaction">3.2.1.8 Enum: AuditEventAction</h5>
+<table>
+<thead>
+<tr>
+<th>Enum</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>audit</td>
+<td>Event action for audits.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="3219-enum-traceeventaction">3.2.1.9 Enum: TraceEventAction</h5>
+<table>
+<thead>
+<tr>
+<th>Enum</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>span</td>
+<td>Event action representing a span of a trace.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="32110-enum-erroreventaction">3.2.1.10 Enum: ErrorEventAction</h5>
+<table>
+<thead>
+<tr>
+<th>Enum</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>internal</td>
+<td>Event action for the internal-only errors.</td>
+</tr>
+<tr>
+<td>external</td>
+<td>Event action for the external errors.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-tracing-design">4. Tracing Design</h2>
+<h3 id="41-http-transports">4.1 HTTP Transports</h3>
+<p>Below find the current proposed standard HTTP Transport headers for tracing. </p>
+<p>Mojaloop has yet to standardise on either standard, or if it will possible support both.</p>
+<h4 id="411-wc3-http-headers">4.1.1 WC3 Http Headers</h4>
+<p>Refer to the following publication for more information: <a href="https://w3c.github.io/trace-context/" target="_blank">https://w3c.github.io/trace-context/</a> </p>
+<table>
+<thead>
+<tr>
+<th>Header</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>traceparent</td>
+<td>Dash delimited string of tracing information: \<version\>-\<trace-id\>-\<parent\ span-id\="">-\<trace-flags\></trace-flags\></parent\></trace-id\></version\></td>
+<td>00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7-00</td>
+</tr>
+<tr>
+<td>tracestate</td>
+<td>Comma delimited vendor specific format captured as follows: \<vendor\>=\<base64-encoded-state\></base64-encoded-state\></vendor\></td>
+<td>congo=t61rcWkgMzE,rojo=00f067aa0ba902b7</td>
+</tr>
+</tbody>
+</table>
+<p>Note: Before this specification was written, some tracers propagated X-B3-Sampled as true or false as opposed to 1 or 0. While you shouldn&apos;t encode X-B3-Sampled as true or false, a lenient implementation may accept them.</p>
+<h4 id="412-b3-http-headers">4.1.2 B3 HTTP Headers</h4>
+<p>Refer to the following publication for more information: <a href="https://github.com/apache/incubator-zipkin-b3-propagation" target="_blank">https://github.com/apache/incubator-zipkin-b3-propagation</a></p>
+<table>
+<thead>
+<tr>
+<th>Header</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>X-B3-TraceId</td>
+<td>Encoded as 32 or 16 lower-hex characters.</td>
+<td>a 128-bit TraceId header might look like: X-B3-TraceId: 463ac35c9f6413ad48485a3953bb6124. Unless propagating only the Sampling State, the X-B3-TraceId header is required.</td>
+</tr>
+<tr>
+<td>X-B3-SpanId</td>
+<td>Encoded as 16 lower-hex characters.</td>
+<td>a SpanId header might look like: X-B3-SpanId: a2fb4a1d1a96d312. Unless propagating only the Sampling State, the X-B3-SpanId header is required.</td>
+</tr>
+<tr>
+<td>X-B3-ParentSpanId</td>
+<td>header may be present on a child span and must be absent on the root span. It is encoded as 16 lower-hex characters.</td>
+<td>A ParentSpanId header might look like: X-B3-ParentSpanId: 0020000000000001</td>
+</tr>
+<tr>
+<td>X-B3-Sampled</td>
+<td>An accept sampling decision is encoded as <code>1</code> and a deny as <code>0</code>. Absent means defer the decision to the receiver of this header.</td>
+<td>A Sampled header might look like: X-B3-Sampled: 1.</td>
+</tr>
+<tr>
+<td>X-B3-Flags</td>
+<td>Debug is encoded as <code>1</code>. Debug implies an accept decision, so don&apos;t also send the X-B3-Sampled header.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="42-kafka-transports">4.2 Kafka Transports</h3>
+<p>Refer to <code>Event Envelope Model</code> section. This defines the message that will be sent through the Kafka transport.</p>
+<p>Alternatively the tracing context could be stored in Kafka headers which are only supports v0.11 or later. Note that this would break support for older versions of Kafka.</p>
+<h3 id="43-known-limitations">4.3 Known limitations</h3>
 <ul>
-<li>Admin Operations<ul>
-<li>Manage Oracle End-point Routing information</li>
-<li>Manage Switch End-point Routing information</li>
+<li>Transfer tracing would be limited to each of the transfer legs (i.e. Prepare and Fulfil) as a result of the Mojaloop API specification not catering for tracing information. The trace information will be send as part of the callbacks by the Switch, but the FSPs will not be required to respond appropriately with a reciprocal trace headers.</li>
 </ul>
-</li>
-</ul>
-<h2 id="1-design-considerations">1. Design Considerations</h2>
-<h3 id="11-account-lookup-service-als">1.1. Account Lookup Service (ALS)</h3>
-<p>The ALS design provides a generic Central-Service component as part of the core Mojaloop. The purpose of this component is to provide routing and alignment to the Mojaloop API Specification. This component will support multiple Look-up registries (Oracles). This ALS will provide an Admin API to configure routing/config for each of the Oracles similiar to the Central-Service API for the End-point configuration for DFSP routing by the Notification-Handler (ML-API-Adapter Component). The ALS will in all intense purpose be a switch with a persistence store for the storage/management of the routing rules/config.</p>
-<h4 id="111-assumptions">1.1.1. Assumptions</h4>
-<ul>
-<li>The ALS design will only cater for a single switch for the time being.</li>
-<li>Support for multiple switches will utilise the same DNS resolution mechanism that is being developed for the Cross Border/Network design.</li>
-</ul>
-<h4 id="112-routing">1.1.2. Routing</h4>
-<p>The routing configuration will be based on the following:</p>
-<ul>
-<li>PartyIdType - See section <code>7.5.6</code> of the Mojaloop Specification</li>
-<li>Currency - See section <code>7.5.5</code> of the Mojaloop Specification. Currency code defined in <a href="https://www.iso.org/iso-4217-currency-codes.html" target="_blank">ISO 4217</a> as three-letter alphabetic string. This will be optional, however <code>isDefault</code> indicator must be set to <code>true</code> if the <code>Currency</code> is not provided.</li>
-<li>isDefault - Indicator that a specific Oracle is the default provider for a specific PartyIdType. Note that there can be many default Oracles, but there can only be a single Oracle default for a specific PartyIdType. The default Oracle for a specific PartyIdType will only be selected if the originating request does not include a Currency filter.</li>
-</ul>
-<h3 id="12-als-oracle">1.2. ALS Oracle</h3>
-<p>The ALS Oracle be implemented as either a <strong>Service</strong> or <strong>Adapter</strong> (semantic dependant on use - Mediation = Adapter, Service = Implementation) will provide a look-up registry component with similar functionality of the <code>/participants</code> Mojaloop API resources. It has however loosely based on the ML API specification as it&apos;s interface implements a sync pattern which reduces the correlation/persistence requirements of the Async Callback pattern implemented directly by the ML API Spec. This will provide all ALS Oracle Services/Adapters with a standard interface which will be mediated by the ALS based on its routing configuration.<br>This component (or back-end systems) will also be responsible for the persistence &amp; defaulting of the Participant details.</p>
-<h2 id="2-participant-lookup-design">2. Participant Lookup Design</h2>
-<h3 id="21-architecture-overview">2.1. Architecture overview</h3>
-<p><img src="assets/diagrams/architecture/arch-flow-account-lookup-participants.svg" alt="Architecture Flow Account-Lookup for Participants"></p>
-<p><em>Note: The Participant Lookup use-case similarly applies to for a Payee Initiated use-case such as transactionRequests. The difference being that the Payee is the initiation in the above diagram.</em></p>
-<h3 id="22-sequence-diagrams">2.2. Sequence diagrams</h3>
-<h4 id="221-get-participants">2.2.1. GET Participants</h4>
-<ul>
-<li><a href="als-get-participants.html">Sequence Diagram for GET Participants</a></li>
-</ul>
-<h4 id="222-post-participants">2.2.2. POST Participants</h4>
-<ul>
-<li><a href="als-post-participants.html">Sequence Diagram for POST Participants</a></li>
-</ul>
-<h4 id="223-post-participants-batch">2.2.3. POST Participants (Batch)</h4>
-<ul>
-<li><a href="als-post-participants-batch.html">Sequence Diagram for POST Participants (Batch)</a></li>
-</ul>
-<h4 id="224-del-participants">2.2.4. DEL Participants</h4>
-<ul>
-<li><a href="als-del-participants.html">Sequence Diagram for DEL Participants</a></li>
-</ul>
-<h2 id="3-party-lookup-design">3. Party Lookup Design</h2>
-<h3 id="31-architecture-overview">3.1. Architecture overview</h3>
-<p><img src="assets/diagrams/architecture/arch-flow-account-lookup-parties.svg" alt="Architecture Flow Account-Lookup for Parties"></p>
-<h3 id="32-sequence-diagram">3.2. Sequence diagram</h3>
-<h4 id="321-get-parties">3.2.1. GET Parties</h4>
-<ul>
-<li><a href="als-get-parties.html">Sequence Diagram for GET Parties</a></li>
-</ul>
-<h2 id="4-database-design">4. Database Design</h2>
-<h3 id="41-als-database-schema">4.1. ALS Database Schema</h3>
-<h4 id="notes">Notes</h4>
-<ul>
-<li><code>partyIdType</code> - Values are currently seeded as per section <em><code>7.5.6</code></em> <a href="https://github.com/mojaloop/mojaloop-specification/blob/master/API%20Definition%20v1.0.pdf" target="_blank">Mojaloop v1.0 Specification</a>.</li>
-<li><code>currency</code> - See section <code>7.5.5</code> of the Mojaloop Specification. Currency code defined in <a href="https://www.iso.org/iso-4217-currency-codes.html" target="_blank">ISO 4217</a> as three-letter alphabetic string. This will be optional, and must provide a &quot;default&quot; config if no Currency is either provided or provide a default if the Currency is provided, but only the &quot;default&quot; End-point config exists.</li>
-<li><code>endPointType</code> - Type identifier for the end-point (e.g. <code>URL</code>) which provides flexibility for future transport support.</li>
-<li><code>migration*</code> - Meta-data tables used by Knex Framework engine.</li>
-<li>A <code>centralSwitchEndpoint</code> must be associated to the <code>OracleEndpoint</code> by the Admin API upon insertion of a new <code>OracleEndpoint</code> record. If the <code>centralSwitchEndpoint</code> is not provided as part of the API Request, then it must be defaulted. </li>
-</ul>
-<p><img src="assets/entities/AccountLookupService-schema.png" alt="Acount Lookup Service ERD"></p>
-<ul>
-<li><a href="assets/entities/AccountLookupDB-schema-DBeaver.erd">Acount Lookup Service DBeaver ERD</a></li>
-<li><a href="assets/entities/AccountLookup-ddl-MySQLWorkbench.sql">Acount Lookup Service MySQL Workbench Export</a></li>
-</ul>
-<h2 id="5-als-oracle-design">5. ALS Oracle Design</h2>
-<p>Detail design for the Oracle is out of scope for this document. The Oracle design and implementation is specific to each Oracle&apos;s requirements.</p>
-<h3 id="51-api-specification">5.1. API Specification</h3>
-<p>Refer to <strong>ALS Oracle API</strong> in the <a href="../../api/#als-oracle-api">API Specifications</a> section.</p>
 
                                 
                                 </section>
@@ -2063,7 +2482,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Account-Lookup Service","level":"1.6.2","depth":2,"next":{"title":"GET Participants","level":"1.6.2.1","depth":3,"path":"mojaloop-technical-overview/account-lookup-service/als-get-participants.md","ref":"mojaloop-technical-overview/account-lookup-service/als-get-participants.md","articles":[]},"previous":{"title":"Legacy Architecture - PI3","level":"1.6.1.2","depth":3,"path":"mojaloop-technical-overview/overview/components-PI3.md","ref":"mojaloop-technical-overview/overview/components-PI3.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"3.x.x","theme":"default","variables":{"importedVars":{"mojaloop":{"spec":{"version":"v1.0","uri":{"doc":"https://github.com/mojaloop/mojaloop-specification/blob/master/API%20Definition%20v1.0.pdf","api":"https://github.com/mojaloop/mojaloop-specification/blob/master/Supporting%20Files/fspiop-rest-v1.0-OpenAPI-implementation.yaml"}}},"central_ledger":{"spec":{"version":"v2.0","uri":{"doc":"/mojaloop-technical-overview/central-ledger/README.md","api":"https://github.com/mojaloop/central-ledger/blob/master/src/api/interface/swagger.json"}}},"settlement":{"spec":{"version":"v1.1","uri":{"doc":"/mojaloop-technical-overview/central-settlements/README.md","api":"https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json"}}},"als":{"oracle":{"spec":{"version":"v1.2","uri":{"doc":"/mojaloop-technical-overview/account-lookup-service/README.md","api":"https://github.com/mojaloop/documentation/blob/master/api/assets/interface-contracts/oracle-service-swagger-v1.yaml"}}}}}},"plugins":["swagger","editlink","include","insert-logo","plantuml-svg","collapsible-chapters","back-to-top-button","theme-api","variables","changelog","page-toc"],"pluginsConfig":{"plantuml-svg":{},"editlink":{"label":"Edit This Page","multilingual":true,"base":"https://github.com/mojaloop/documentation/edit/master"},"theme-gestalt":{"logo":"https://mojaloop.io/images/logo.png","favicon":"https://mojaloop.io/images/logo.png","baseUrl":null,"excludeDefaultStyles":false,"doNotHideChildrenChapters":false},"include":{},"search":{},"collapsible-chapters":{},"page-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","position":"before-first","showByDefault":true},"swagger":{"file":""},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"uml":{"format":"png","nailgun":false},"changelog":{},"theme-api":{"languages":[],"split":true,"theme":"dark"},"back-to-top-button":{},"variables":{"files":{"importedVars":"book_variables.yml"}},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"insert-logo":{"url":"https://mojaloop.io/images/logo.png","style":"background: none; max-height: 140px; max-width: 140px;"}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"mojaloop-technical-overview/account-lookup-service/README.md","mtime":"2019-07-01T09:00:00.824Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-07-01T09:00:49.906Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Event Framework","level":"1.6.7","depth":2,"next":{"title":"Fraud Services","level":"1.6.8","depth":2,"path":"mojaloop-technical-overview/fraud-services/README.md","ref":"mojaloop-technical-overview/fraud-services/README.md","articles":[{"title":"Ecosystem Fraud Documentation","level":"1.6.8.1","depth":3,"path":"mojaloop-technical-overview/fraud-services/related-documents/documentation.md","ref":"mojaloop-technical-overview/fraud-services/related-documents/documentation.md","articles":[]}]},"previous":{"title":"Signature Validation","level":"1.6.6.3","depth":3,"path":"mojaloop-technical-overview/central-event-processor/signature-validation.md","ref":"mojaloop-technical-overview/central-event-processor/signature-validation.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"3.x.x","theme":"default","variables":{"importedVars":{"mojaloop":{"spec":{"version":"v1.0","uri":{"doc":"https://github.com/mojaloop/mojaloop-specification/blob/master/API%20Definition%20v1.0.pdf","api":"https://github.com/mojaloop/mojaloop-specification/blob/master/Supporting%20Files/fspiop-rest-v1.0-OpenAPI-implementation.yaml"}}},"central_ledger":{"spec":{"version":"v2.0","uri":{"doc":"/mojaloop-technical-overview/central-ledger/README.md","api":"https://github.com/mojaloop/central-ledger/blob/master/src/api/interface/swagger.json"}}},"settlement":{"spec":{"version":"v1.1","uri":{"doc":"/mojaloop-technical-overview/central-settlements/README.md","api":"https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json"}}},"als":{"oracle":{"spec":{"version":"v1.2","uri":{"doc":"/mojaloop-technical-overview/account-lookup-service/README.md","api":"https://github.com/mojaloop/documentation/blob/master/api/assets/interface-contracts/oracle-service-swagger-v1.yaml"}}}}}},"plugins":["swagger","editlink","include","insert-logo","plantuml-svg","collapsible-chapters","back-to-top-button","theme-api","variables","changelog","page-toc"],"pluginsConfig":{"plantuml-svg":{},"editlink":{"label":"Edit This Page","multilingual":true,"base":"https://github.com/mojaloop/documentation/edit/master"},"theme-gestalt":{"logo":"https://mojaloop.io/images/logo.png","favicon":"https://mojaloop.io/images/logo.png","baseUrl":null,"excludeDefaultStyles":false,"doNotHideChildrenChapters":false},"include":{},"search":{},"collapsible-chapters":{},"page-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","position":"before-first","showByDefault":true},"swagger":{"file":""},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"uml":{"format":"png","nailgun":false},"changelog":{},"theme-api":{"languages":[],"split":true,"theme":"dark"},"back-to-top-button":{},"variables":{"files":{"importedVars":"book_variables.yml"}},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"insert-logo":{"url":"https://mojaloop.io/images/logo.png","style":"background: none; max-height: 140px; max-width: 140px;"}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"mojaloop-technical-overview/event-framework/README.md","mtime":"2019-07-01T09:00:01.032Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-07-01T09:00:49.906Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
