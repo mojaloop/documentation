@@ -27,7 +27,7 @@ Refer to the following documentation for more information: [https://help.github.
 
 ### Creating a Branch
 
-Create a new branch from the `master` branch with the following format: `<branchType>/<issue#><issueDescription>` where `issue#` can be attained from the Github issue, and the `issueDescription` is the formatted in CamelCase.
+Create a new branch from the `master` branch with the following format: `<branchType>/<issue#><issueDescription>` where `issue#` can be attained from the Github issue, and the `issueDescription` is the issue description formatted in CamelCase.
 
 1. Create and checkout the branch: `git checkout -b <branchType>/<issue#><issueDescription>` 
 2. Push the branch to your remote: `git push origin <branchType>/<issue#><issueDescription>`
