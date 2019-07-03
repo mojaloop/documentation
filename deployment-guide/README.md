@@ -112,7 +112,7 @@ Insure **kubectl** is installed. A complete set of installation instruction are 
 4. Open URI in default browser:
     
    ```
-   http://localhost.com:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/#!
+   http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/
    ```
 
    Select **Token**. Generate a token to use there by: _Windows replace `grep` with `findstr`_
