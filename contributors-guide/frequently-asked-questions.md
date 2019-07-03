@@ -45,6 +45,7 @@ This document contains some of the most frequently asked questions from the comm
 * [Why are there no reversals allowed on a Mojaloop](#35-why-are-there-no-reversals-allowed-on-a-mojaloop)
 * [ffg. error with microk8s installation "MountVolume.SetUp failed"](#36-ffg-error-with-microk8s-installation-mountvolumesetup-failed)
 * [Why am I getting this error when trying to create a participant: "Hub reconciliation account for the specified currency does not exist"?](#37-why-am-i-getting-this-error-when-trying-to-create-a-participant-hub-reconciliation-account-for-the-specified-currency-does-not-exist)
+* [My requests are being rejected because of a "self signed certificate" error?](#38-my-requests-are-being-rejected-because-of-a-self-signed-certificate-error)
 
 #### 1. What is Mojaloop?
  
@@ -252,3 +253,31 @@ You need to create the corresponding Hub accounts (HUB_MULTILATERAL_SETTLEMENT a
 In this Postman collection you can find the requests to perform the operation in the "Hub Account" folder: https://github.com/mojaloop/postman/blob/master/OSS-New-Deployment-FSP-Setup.postman_collection.json
 
 Find also the related environments in the Postman repo: https://github.com/mojaloop/postman
+
+#### 38. My requests are being rejected because of a "self signed certificate" error?
+
+In case you are in a development environment and using a self signed certificate for your API, you can update the configurations in the Kubernetes dashboard to ignore the rejections.
+
+- If the issue is happening with the ML API Adapter, in your Kubernetes dashboard:
+1. Make sure you are working over the "*mojaloop*" namespace (on the left bar).
+2. Config Maps (also on the left bar).
+3. Find "*dev-ml-api-adapter-handler-notification*" on the list and open it.
+4. Edit (on the top bar).
+5. Find this parameter, that you should set to false: `"ENDPOINT_SECURITY":{
+        "TLS": {
+            "rejectUnauthorized": false
+        }
+    }`
+
+- If the issue is happening with the ALS, in your Kubernetes dashboard:
+1. Make sure you are working over the "*mojaloop*" namespace (on the left bar).
+2. Deployments (also on the left bar).
+3. Find "*dev-account-lookup-service*" on the list and open it.
+4. Edit (on the top bar).
+5. In the JSON file, find the following structure: "*spec*" -> "*containers*" -> "*env*" (The variable LOG_LEVEL is inside the object).
+6. Add a new JSON Object inside "env", with the following value:
+`{
+	"name": "NODE_TLS_REJECT_UNAUTHORIZED",
+	value": "0"
+}`
+
