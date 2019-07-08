@@ -46,7 +46,7 @@ This provides environment resource recommendations with a view of the infrastruc
 
 * ETCd Plane:
 
-  [https://coreos.com/etcd/docs/latest/op-guide/hardware.html](https://coreos.com/etcd/docs/latest/op-guide/hardware.html)
+  [https://etcd.io/docs/v3.3.12/op-guide/hardware](https://etcd.io/docs/v3.3.12/op-guide/hardware)
 
   * 3x ETCd nodes for HA (High Availability)
 
