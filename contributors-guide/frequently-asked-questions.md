@@ -281,3 +281,10 @@ In case you are in a development environment and using a self signed certificate
 	value": "0"
 }`
 
+- Please note that this can alternatively be configured by the Helm values.yaml for the ML API ADAPTER component sections: *ml-api-adapter-service* and *ml-api-adapter-handler-notification* by changing the config section as follows:
+
+`config:
+  security:
+    callback:
+      rejectUnauthorized: true`
+
