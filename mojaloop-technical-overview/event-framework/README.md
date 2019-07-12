@@ -168,6 +168,8 @@ _Note: HEXDIGLC = DIGIT / "a" / "b" / "c" / "d" / "e" / "f" ; lower case hex cha
 | debug | Event representing a `debug` level log entry. |
 | error | Event representing an `error` level log entry. |
 | verbose | Event representing a `verbose` level log entry. |
+| warning | Event representing a `warning` level log entry. |
+| performance | Event representing a `performance` level log entry. |
 
 ##### 3.2.1.9 Enum: AuditEventAction
 
