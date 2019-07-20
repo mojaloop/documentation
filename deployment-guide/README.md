@@ -118,7 +118,7 @@ Insure **kubectl** is installed. A complete set of installation instruction are 
    Select **Token**. Generate a token to use there by: _Windows replace `grep` with `findstr`_
    
    ```bash
-   kubectl -n kube-system get secrets | grep dashboard-token
+   kubectl describe secret kubernetes-dashboard --namespace=kube-system
    ```
 
    The token to use is shown on the last line of the output of that command;
