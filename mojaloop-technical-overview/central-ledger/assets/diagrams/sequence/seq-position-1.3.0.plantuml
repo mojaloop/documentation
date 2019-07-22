@@ -21,13 +21,12 @@
  * Georgi Georgiev <georgi.georgiev@modusbox.com>
  * Rajiv Mothilal <rajiv.mothilal@modusbox.com>
  * Miguel de Barros <miguel.debarros@modusbox.com>
- * Samuel Kummary <sam@modusbox.com>
  --------------
  ******'/
 
 @startuml
 ' declate title
-title 1.3.0. Position Handler Consume (single message, includes individual transfers from Bulk)
+title 1.3.0. Position Handler Consume (single message)
 
 autonumber
 
@@ -61,7 +60,7 @@ group Position Handler Consume
         deactivate TOPIC_TRANSFER_POSITION
         break
             group Validate Event
-                POS_HANDLER <-> POS_HANDLER: Validate event - Rule: type IN ['position','bulk-position'] && action == 'prepare'\n<color #FF0000><b>Error codes:</b> 2001</color>
+                POS_HANDLER <-> POS_HANDLER: Validate event - Rule: type == 'position' && action == 'prepare'\n<color #FF0000><b>Error codes:</b> 2001</color>
             end
         end
         group Persist Event Information
@@ -79,7 +78,7 @@ group Position Handler Consume
         deactivate TOPIC_TRANSFER_POSITION
         break
             group Validate Event
-                POS_HANDLER <-> POS_HANDLER: Validate event - Rule: type IN ['position','bulk-position'] && action == 'commit'\n<color #FF0000><b>Error codes:</b> 2001</color>
+                POS_HANDLER <-> POS_HANDLER: Validate event - Rule: type == 'position' && action == 'commit'\n<color #FF0000><b>Error codes:</b> 2001</color>
             end
         end
         group Persist Event Information
@@ -97,7 +96,7 @@ group Position Handler Consume
         deactivate TOPIC_TRANSFER_POSITION
         break
             group Validate Event
-                POS_HANDLER <-> POS_HANDLER: Validate event - Rule: type IN ['position','bulk-position'] &&\naction IN ['timeout-reserved', 'reject', 'fail']\n<color #FF0000><b>Error codes:</b> 2001</color>
+                POS_HANDLER <-> POS_HANDLER: Validate event - Rule: type == 'position' &&\naction IN ['timeout-reserved', 'reject', 'fail']\n<color #FF0000><b>Error codes:</b> 2001</color>
             end
         end
         group Persist Event Information
