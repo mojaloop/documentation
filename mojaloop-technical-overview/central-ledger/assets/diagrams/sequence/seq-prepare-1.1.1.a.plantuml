@@ -28,7 +28,7 @@
 
 @startuml
 ' declate title
-title 1.1.1.a. Prepare Handler Consume (single message, includes individual transfers from Bulk)
+title 1.1.1.a. Prepare Handler Consume (single message)
 
 autonumber
 
@@ -43,7 +43,6 @@ autonumber
 collections "topic-transfer-prepare" as TOPIC_TRANSFER_PREPARE
 control "Prepare Event Handler" as PREP_HANDLER
 collections "topic-transfer-position" as TOPIC_TRANSFER_POSITION
-collections "topic-bulk-processing" as TOPIC_BULK_PROCESSING
 collections "Event-Topic" as TOPIC_EVENTS
 collections "Notification-Topic" as TOPIC_NOTIFICATIONS
 entity "Position DAO" as POS_DAO
@@ -56,7 +55,6 @@ box "Central Service" #LightYellow
     participant TOPIC_TRANSFER_POSITION
     participant TOPIC_EVENTS
     participant TOPIC_NOTIFICATIONS
-    participant TOPIC_BULK_PROCESSING
     participant POS_DAO
     participant PARTICIPANT_DAO
     participant DB
@@ -71,7 +69,7 @@ group Prepare Handler Consume
 
     break
         group Validate Event
-            PREP_HANDLER <-> PREP_HANDLER: Validate event - Rule: type IN ['prepare', 'bulk-prepare'] && action == 'prepare'\n<color #FF0000><b>Error codes:</b> 2001</color>
+            PREP_HANDLER <-> PREP_HANDLER: Validate event - Rule: type == 'prepare' && action == 'prepare'\n<color #FF0000><b>Error codes:</b> 2001</color>
         end
     end
 
@@ -111,11 +109,6 @@ group Prepare Handler Consume
                     |||
                 end
                 PREP_HANDLER -> PREP_HANDLER: Generate Hash for the incoming message and compare hashes
-                note right of PREP_HANDLER #lightgrey
-                    For individual transfers in a bulk, attributes
-                    such as payer, payee, expiry time, etc. need
-                    to be added before the hash is generated (in bulk-prepare).
-                end note
 
                 alt Transfer exists, hash matches    
                     PREP_HANDLER -> POS_DAO: Request to retrieve Transfer state \n<color #FF0000><b>Error code:</b> 2003</color>
@@ -131,93 +124,58 @@ group Prepare Handler Consume
                     POS_DAO --> PREP_HANDLER: Return Transfer state
                     deactivate POS_DAO
                     break
-                        alt If type == 'prepare'
-                            alt If transferState IN ['COMMITTED', 'ABORTED']
-                                PREP_HANDLER -> POS_DAO: Request to retrieve fulfilment, completedTimestamp for the transferId
-                                activate POS_DAO
-                                POS_DAO -> DB: Request fulfilment, completedTimestamp for the transferId
-                                activate DB
-                                hnote over DB #lightyellow
-                                    transferFulfilment
-                                end note
-                                POS_DAO <-- DB: Return fulfilment, completedTimestamp (if they exist)
-                                deactivate DB
-                                PREP_HANDLER <-- POS_DAO: Return fulfilment, completedTimestamp (if they exist)
-                                deactivate POS_DAO
-                                note right of PREP_HANDLER #yellow
-                                    Message:
-                                    {
-                                        id: <transferMessage.transferId>
-                                        from: <transferMessage.payerFsp>,
-                                        to: <transferMessage.payeeFsp>,
-                                        type: application/json
-                                        content: {
-                                            headers: <transferHeaders>,
-                                            payload: {
-                                                transferState: "COMMITTED",
-                                                fulfilment: "WLctttbu2HvTsa1XWvUoGRcQozHsqeu9Ahl2JW9Bsu8",
-                                                completedTimestamp: "2018-10-24T08:38:08.699-04:00"
-                                            }
-                                        },
-                                        metadata: {
-                                            event: {
-                                                id: <uuid>,
-                                                responseTo: <previous.uuid>,
-                                                type: notification,
-                                                action: prepare-duplicate,
-                                                createdAt: <timestamp>,
-                                                state: {
-                                                    status: "success",
-                                                    code: 0
-                                                }
-                                            }
-                                        }
-                                    }
-                                end note                            
-                                PREP_HANDLER -> TOPIC_NOTIFICATIONS: Publish Notification (failure) event for the Payer\n<color #FF0000><b>Error codes:</b> 3106</color> \nFor the Data Model, refer to the final step in this diagram (has the same text).
-                            else If transferState IN ['RECEIVED', 'RESERVED']
-                                PREP_HANDLER <-> PREP_HANDLER: This request can be ignored, because a callback is about to be sent to the client.
-                            else If transferState does not exist
-                                PREP_HANDLER -> TOPIC_NOTIFICATIONS: Send /error callback with appropriate error message\n(Invalid duplicate request)\n<color #FF0000><b>Error code:</b> 3100</color>
-                            end
-                        else If type == 'bulk-prepare'
+                        alt If transferState IN ['COMMITTED', 'ABORTED']
+                            PREP_HANDLER -> POS_DAO: Request to retrieve fulfilment, completedTimestamp for the transferId
+                            activate POS_DAO
+                            POS_DAO -> DB: Request fulfilment, completedTimestamp for the transferId
+                            activate DB
+                            hnote over DB #lightyellow
+                                transferFulfilment
+                            end note
+                            POS_DAO <-- DB: Return fulfilment, completedTimestamp (if they exist)
+                            deactivate DB
+                            PREP_HANDLER <-- POS_DAO: Return fulfilment, completedTimestamp (if they exist)
+                            deactivate POS_DAO
                             note right of PREP_HANDLER #yellow
-                                Message:
-                                {
-                                    id: <transferMessage.transferId>
-                                    from: <transferMessage.payerFsp>,
-                                    to: <transferMessage.payeeFsp>,
-                                    type: application/json
-                                    content: {
-                                        headers: <transferHeaders>,
-                                        payload: {
-                                            "errorInformation": {
-                                                "errorCode": <possible codes: [2003, 3100, 3105, 3106, 3202, 3203, 3300, 3301]>
-                                                "errorDescription": "<refer to section 35.1.3 for description>",
-                                                "extensionList": <transferMessage.extensionList>
-                                        }
-                                    },
-                                    metadata: {
-                                        event: {
-                                            id: <uuid>,
-                                            responseTo: <previous.uuid>,
-                                            type: bulk-notification,
-                                            action: prepare-duplicate,
-                                            createdAt: <timestamp>,
-                                            state: {
-                                                status: "success",
-                                                code: 0
-                                            }
+                            Message:
+                            {
+                                id: <transferMessage.transferId>
+                                from: <transferMessage.payerFsp>,
+                                to: <transferMessage.payeeFsp>,
+                                type: application/json
+                                content: {
+                                    headers: <transferHeaders>,
+                                    payload: {
+                                        transferState: "COMMITTED",
+                                        fulfilment: "WLctttbu2HvTsa1XWvUoGRcQozHsqeu9Ahl2JW9Bsu8",
+                                        completedTimestamp: "2018-10-24T08:38:08.699-04:00"
+                                    }
+                                },
+                                metadata: {
+                                    event: {
+                                        id: <uuid>,
+                                        responseTo: <previous.uuid>,
+                                        type: notification,
+                                        action: prepare-duplicate,
+                                        createdAt: <timestamp>,
+                                        state: {
+                                            status: "success",
+                                            code: 0
                                         }
                                     }
                                 }
-                            end note
-                            PREP_HANDLER -> TOPIC_BULK_PROCESSING: Publish Prepare failure event to Bulk Processing Topic\n(for the individual transfer to the Payer) \n[Duplicate request]\n<color #FF0000><b>Error codes:</b> 2003</color>
+                            }
+                        end note
+                            PREP_HANDLER -> TOPIC_NOTIFICATIONS: Publish Notification event for Payer with the completed transfer \nFor the Data Model, refer to the Swagger (transferState - mandatory, fulfilment, completedTimestamp - sample values above).
+                        else If transferState IN ['RECEIVED', 'RESERVED']
+                            PREP_HANDLER <-> PREP_HANDLER: This request can be ignored, because a callback is about to be sent to the client.
+                        else If transferState does not exist
+                            PREP_HANDLER -> TOPIC_NOTIFICATIONS: Send /error callback with appropriate error message\n(Invalid duplicate request)\n<color #FF0000><b>Error code:</b> 3100</color>
                         end
                     end
                 else Transfer exists, hash does not match
                     break
-                        PREP_HANDLER -> PREP_HANDLER: Publish Notification (failure) event for Payer\n<color #FF0000><b>Error codes:</b> 3106</color>\n<color Magenta><b>Reference: Failure in Prepare Transfer Validation </b></color>
+                        PREP_HANDLER -> TOPIC_NOTIFICATIONS: Publish Notification (failure) event for Payer\n<color #FF0000><b>Error codes:</b> 3106</color> \nFor the Data Model, refer to the final step in this diagram (has the same text).
                     end
                 end
 
@@ -225,8 +183,6 @@ group Prepare Handler Consume
                 PREP_HANDLER -> POS_DAO: Request to persist Transfer Hash \n<color #FF0000><b>Error code:</b> 2003</color>
                 activate POS_DAO
                 POS_DAO -> DB: Persist Transfer message hash
-                activate DB
-                deactivate DB
                 hnote over DB #lightyellow
                     transferDuplicateCheck
                 end note
@@ -236,12 +192,7 @@ group Prepare Handler Consume
             deactivate POS_DAO
             
         end
-        note right of PREP_HANDLER #lightgrey
-            The validation of Payer, Payee can be skipped for individual transfers in Bulk
-            as they should've/would've been validated already in the bulk prepare part.
-            However, leaving it here for now, as in the future, this can be leveraged
-            when bulk transfers to multiple Payees are supported by the Specification.
-        end note
+
         group Validate Payer
             PREP_HANDLER -> PARTICIPANT_DAO: Request to retrieve Payer Participant details (if it exists)
             activate PARTICIPANT_DAO
@@ -313,44 +264,8 @@ group Prepare Handler Consume
 
     end
     alt Validate Prepare Transfer (success)
-        PREP_HANDLER -> PREP_HANDLER: <color Magenta><b> Reference: Prepare -> Position Produce message </b></color>
-    else Validate Prepare Transfer (failure)
-        PREP_HANDLER -> PREP_HANDLER: <color Magenta><b> Reference: Failure in Prepare Transfer Validation </b></color>
-    end
-end
-
-group Reference: Prepare -> Position Produce message
-    alt If type == 'bulk-prepare'
         note right of PREP_HANDLER #yellow
-        Message:
-            {
-                id: <transferMessage.transferId>
-                from: <transferMessage.payerFsp>,
-                to: <transferMessage.payeeFsp>,
-                type: application/json
-                content: {
-                    headers: <transferHeaders>,
-                    payload: <transferMessage>
-                },
-                metadata: {
-                    event: {
-                        id: <uuid>,
-                        responseTo: <previous.uuid>,
-                        type: bulk-position,
-                        action: prepare,
-                        createdAt: <timestamp>,
-                        state: {
-                            status: "success",
-                            code: 0
-                        }
-                    }
-                }
-            }
-        end note
-        PREP_HANDLER -> TOPIC_TRANSFER_POSITION: Route & Publish Position event for Payer\n<color #FF0000><b>Error codes:</b> 2003</color>
-    else If type == 'prepare'
-        note right of PREP_HANDLER #yellow
-        Message:
+            Message:
             {
                 id: <transferMessage.transferId>
                 from: <transferMessage.payerFsp>,
@@ -376,14 +291,11 @@ group Reference: Prepare -> Position Produce message
             }
         end note
         PREP_HANDLER -> TOPIC_TRANSFER_POSITION: Route & Publish Position event for Payer\n<color #FF0000><b>Error codes:</b> 2003</color>
-    end
-    
-end
-
-group Reference: Failure in Prepare Transfer Validation
-    alt If type == 'bulk-prepare'
+        activate TOPIC_TRANSFER_POSITION
+        deactivate TOPIC_TRANSFER_POSITION
+    else Validate Prepare Transfer (failure)
         note right of PREP_HANDLER #yellow
-        Message:
+            Message:
             {
                 id: <transferMessage.transferId>
                 from: <ledgerName>,
@@ -402,41 +314,7 @@ group Reference: Failure in Prepare Transfer Validation
                     event: {
                         id: <uuid>,
                         responseTo: <previous.uuid>,
-                        type: bulk-notification,
-                        action: prepare,
-                        createdAt: <timestamp>,
-                        state: {
-                            status: 'error',
-                            code: <errorInformation.errorCode>
-                            description: <errorInformation.errorDescription>
-                        }
-                    }
-                }
-            }
-        end note
-        PREP_HANDLER -> TOPIC_BULK_PROCESSING: Publish Prepare failure event to Bulk Processing Topic (for Payer) \n<color #FF0000><b>Error codes:</b> 2003</color>
-    else If type == 'prepare'
-        note right of PREP_HANDLER #yellow
-        Message:
-            {
-                id: <transferMessage.transferId>
-                from: <ledgerName>,
-                to: <transferMessage.payerFsp>,
-                type: application/json
-                content: {
-                    headers: <transferHeaders>,
-                    payload: {
-                        "errorInformation": {
-                            "errorCode": <possible codes: [2003, 3100, 3105, 3106, 3202, 3203, 3300, 3301]>
-                            "errorDescription": "<refer to section 35.1.3 for description>",
-                            "extensionList": <transferMessage.extensionList>
-                    }
-                },
-                metadata: {
-                    event: {
-                        id: <uuid>,
-                        responseTo: <previous.uuid>,
-                        type: bulk-notification,
+                        type: notification,
                         action: prepare,
                         createdAt: <timestamp>,
                         state: {
@@ -449,10 +327,10 @@ group Reference: Failure in Prepare Transfer Validation
             }
         end note
         PREP_HANDLER -> TOPIC_NOTIFICATIONS: Publish Notification (failure) event for Payer\n<color #FF0000><b>Error codes:</b> 2003</color>
+        activate TOPIC_NOTIFICATIONS
+        deactivate TOPIC_NOTIFICATIONS
     end
-    
 end
-
 deactivate PREP_HANDLER
 @enduml
 
