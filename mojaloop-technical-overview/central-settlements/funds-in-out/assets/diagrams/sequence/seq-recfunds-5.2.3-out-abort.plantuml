@@ -115,7 +115,7 @@ group Record Funds Out Abort
                     1, NULL, {transactionTimestamp})
             end hnote
             |||
-            ref over TRANSFER_DAO, DB:**transferStateAndPositionUpdate**, trx)\n
+            ref over TRANSFER_DAO, DB: **transferStateAndPositionUpdate**\n({\n    transferId: {payload.transferId},\n    transferStateId: "ABORTED",\n    reason: {payload.reason},\n    createdDate: {transactionTimestamp},\n    drUpdated: true,\n    crUpdated: false\n}, trx)\n
         end
     end
     ADMIN_HANDLER <-- TRANSFER_DAO: Finished await
