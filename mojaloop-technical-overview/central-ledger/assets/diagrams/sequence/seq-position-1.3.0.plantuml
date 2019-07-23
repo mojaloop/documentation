@@ -66,11 +66,11 @@ group Position Handler Consume
         group Persist Event Information
             |||
             POS_HANDLER -> TOPIC_EVENTS: Publish event information
-            ref over POS_HANDLER, TOPIC_EVENTS :  Event Handler Consume {[[https://github.com/mojaloop/docs/blob/master/Diagrams/SequenceDiagrams/seq-event-9.1.0.svg 9.1.0]]} \n
+            ref over POS_HANDLER, TOPIC_EVENTS :  Event Handler Consume\n
             |||
         end
         |||
-        ref over POS_HANDLER: Prepare Position Handler Consume {[[https://github.com/mojaloop/docs/blob/master/Diagrams/SequenceDiagrams/seq-position-1.3.1-prepare.svg 1.3.1]]} \n
+        ref over POS_HANDLER: Prepare Position Handler Consume\n
         POS_HANDLER -> TOPIC_NOTIFICATIONS: Produce message
     else Consume Fulfil message for Payee
         TOPIC_TRANSFER_POSITION <- POS_HANDLER: Consume Position event message for Payee
@@ -84,11 +84,11 @@ group Position Handler Consume
         group Persist Event Information
             |||
             POS_HANDLER -> TOPIC_EVENTS: Publish event information
-            ref over POS_HANDLER, TOPIC_EVENTS :  Event Handler Consume {[[https://github.com/mojaloop/docs/blob/master/Diagrams/SequenceDiagrams/seq-event-9.1.0.svg 9.1.0]]} \n
+            ref over POS_HANDLER, TOPIC_EVENTS :  Event Handler Consume\n
             |||
         end
         |||
-        ref over POS_HANDLER: Fulfil Position Handler Consume {[[https://github.com/mojaloop/docs/blob/master/Diagrams/SequenceDiagrams/seq-position-1.3.2-fulfil.svg 1.3.2]]} \n
+        ref over POS_HANDLER: Fulfil Position Handler Consume\n
         POS_HANDLER -> TOPIC_NOTIFICATIONS: Produce message
     else Consume Abort message
         TOPIC_TRANSFER_POSITION <- POS_HANDLER: Consume Position event message
@@ -102,11 +102,11 @@ group Position Handler Consume
         group Persist Event Information
             |||
             POS_HANDLER -> TOPIC_EVENTS: Publish event information
-            ref over POS_HANDLER, TOPIC_EVENTS :  Event Handler Consume {[[https://github.com/mojaloop/docs/blob/master/Diagrams/SequenceDiagrams/seq-event-9.1.0.svg 9.1.0]]} \n
+            ref over POS_HANDLER, TOPIC_EVENTS :  Event Handler Consume\n
             |||
         end
         |||
-        ref over POS_HANDLER: Abort Position Handler Consume {[[https://github.com/mojaloop/docs/blob/master/Diagrams/SequenceDiagrams/seq-position-1.3.3-abort.svg 1.3.3]]} \n
+        ref over POS_HANDLER: Abort Position Handler Consume\n
         POS_HANDLER -> TOPIC_NOTIFICATIONS: Produce message
     end
 

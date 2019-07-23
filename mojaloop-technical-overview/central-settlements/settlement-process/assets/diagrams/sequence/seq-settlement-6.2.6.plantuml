@@ -185,7 +185,7 @@ group Settlement Abort
             deactivate DB
         end
 
-        ref over SETTLE_DAO, DB: Settlement Transfer Abort {[[https://github.com/mojaloop/docs/blob/master/Diagrams/SequenceDiagrams/seq-settransfer-6.3.4-abort.svg 6.3.4]]}\n\n**Inputs**: settlementId, transactionTimestamp, enums, trx\n
+        ref over SETTLE_DAO, DB: Settlement Transfer Abort\n\n**Inputs**: settlementId, transactionTimestamp, enums, trx\n
 
         group Bulk insert settlementWindowStateChange
             SETTLE_DAO -> DB: Insert settlementWindowStateChange
