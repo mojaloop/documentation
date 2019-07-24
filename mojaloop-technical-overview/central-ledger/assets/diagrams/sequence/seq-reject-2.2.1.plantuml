@@ -241,7 +241,7 @@ group Fulfil Handler Consume (Failure)
                                     action: reject,
                                     createdAt: <timestamp>,
                                     state: {
-                                        status: "fail",
+                                        status: "error",
                                         code: 1
                                     }
                                 }
@@ -320,7 +320,7 @@ group Fulfil Handler Consume (Failure)
                                     action: abort,
                                     createdAt: <timestamp>,
                                     state: {
-                                        status: "fail",
+                                        status: "error",
                                         code: 1
                                     }
                                 }

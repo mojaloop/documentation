@@ -24,7 +24,7 @@
 
 @startuml
 ' declate title
-title 9.1.1. Prepare Request Duplicate Check (incl. Transfers, Quotes, Bulk Transfers, Bulk Quotes)
+title 9.1.1. Request Duplicate Check (incl. Transfers, Quotes, Bulk Transfers, Bulk Quotes)
 
 autonumber
 
@@ -77,7 +77,7 @@ end
 note right of HANDLER #lightgrey
     Processing Handler onwards refers to the corresponding
     Handler where duplicate checking is executed (e.g. 
-    PrepareHandler, BulkPrepareHandler, etc.)
+    PrepareHandler, FulfilHandler, BulkPrepareHandler, etc.)
 end note
 
 group Request Duplicate Check
@@ -85,64 +85,36 @@ group Request Duplicate Check
     activate TOPIC_SOURCE
     deactivate TOPIC_SOURCE
 
-    group UUID Check
-        HANDLER -> DAO: Query hash by id\n<color #red><b>Error code:</b> 2003</color>
+    HANDLER -> HANDLER: Generate hash: **generatedHash**
+    group UUID Check (compareById)
+        HANDLER -> DAO: Query hash using getDuplicateDataFuncOverride(id)\n<color #red><b>Error code:</b> 2003</color>
         activate DAO
         note right of DAO #lightgrey
             //request// keyword to be replaced by
-            **transfer**, **bulkTransfer** or other
-            depending on the referencing 
-            sequence diagram
+            **transfer**, **transferFulfilment**, 
+            **bulkTransfer** or other depending 
+            on the override
         end note
-        DAO -> DB: getHashById
+        DAO -> DB: getDuplicateDataFuncOverride
         hnote over DB #lightyellow
             //request//DuplicateCheck
         end note
         activate DB
-        DB --> DAO: Return **hashRecord**
+        DB --> DAO: Return **duplicateHashRecord**
         deactivate DB
-        DAO --> HANDLER: Return **hashRecord**
+        DAO --> HANDLER: Return **hasDuplicateId**
         deactivate DAO
     end
     
-    HANDLER -> HANDLER: Generate **currentMessageHash**
-    |||
-    
-    alt hashRecord EXISTS
-        group Hash Mismatch
-            opt currentMessageHash != hashRecord.hash
-                HANDLER -> TOPIC_EVENTS: Produce message
-                ref over HANDLER, TOPIC_EVENTS: Event Handler Consume\n
-                HANDLER -> TOPIC_NOTIFICATION: Produce message\n<color #red><b>Error code:</b> 3106 - Modified Request</color>
-                activate TOPIC_NOTIFICATION
-                deactivate TOPIC_NOTIFICATION
-            end
+    alt hasDuplicateId == TRUE
+        group Hash Check (compareByHash)
+            HANDLER -> HANDLER: Return **hasDuplicateHash**
         end
-        |||
-
-        group Resend Handling
-            opt currentMessageHash == hashRecord.hash
-                |||
-                ref over HANDLER, TOPIC_NOTIFICATION: \tApply specific **getMethod** to report **currentState**\t\t\n
-                alt currentState === //inProgress//
-                    note right of HANDLER #lightgrey
-                        Ignore this request and allow the ongoing 
-                        request to complete with a callback
-                    end note
-                else Previous reqest has completed
-                    HANDLER -> TOPIC_NOTIFICATION: Produce GET callback notification
-                    activate TOPIC_NOTIFICATION
-                    deactivate TOPIC_NOTIFICATION
-                end
-            end
-        end
-        |||
-
-    else hashRecord NOT FOUND
-        group Process Request
-            HANDLER -> DAO: Persist request hash \n<color #FF0000><b>Error code:</b> 2003</color>
+    else hasDuplicateId == FALSE
+        group Store Message Hash
+            HANDLER -> DAO: Persist hash using saveHashFuncOverride(id, generatedHash)\n<color #FF0000><b>Error code:</b> 2003</color>
             activate DAO
-            DAO -> DB: Persist **currentMessageHash**
+            DAO -> DB: Persist **generatedHash**
             activate DB
             deactivate DB
             hnote over DB #lightyellow
@@ -150,10 +122,15 @@ group Request Duplicate Check
             end note
             DAO --> HANDLER: Return success
             deactivate DAO
-            |||
-            ref over HANDLER, TOPIC_NOTIFICATION: Execute **specific processing** (Quote, Bulk or Transfer Prepare)\noutside of a DB transaction (insert all records which pass DB\nintegrity constraints and ignore non-successful inserts)\n
         end
     end
+
+    note right of HANDLER #yellow
+        return {
+            hasDuplicateId: Boolean,
+            hasDuplicateHash: Boolean
+        }
+    end note
 end
 
 @enduml
