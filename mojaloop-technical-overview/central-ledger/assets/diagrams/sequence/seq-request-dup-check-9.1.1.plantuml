@@ -83,6 +83,9 @@ group Request Duplicate Check
     
     alt hasDuplicateId == TRUE
         group Hash Check (compareByHash)
+            note right of HANDLER #lightgrey
+                generatedHash == duplicateHashRecord.hash
+            end note
             HANDLER -> HANDLER: Return **hasDuplicateHash**
         end
     else hasDuplicateId == FALSE

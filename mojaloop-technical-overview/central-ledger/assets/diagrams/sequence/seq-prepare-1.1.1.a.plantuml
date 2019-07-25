@@ -76,7 +76,7 @@ group Prepare Handler Consume
     group Persist Event Information
         |||
         PREP_HANDLER -> TOPIC_EVENTS: Publish event information
-        ref over PREP_HANDLER, TOPIC_EVENTS :  Event Handler Consume\n
+        ref over PREP_HANDLER, TOPIC_EVENTS:  Event Handler Consume\n
         |||
     end
 
@@ -89,16 +89,20 @@ group Prepare Handler Consume
             It may need to be added in future for custom adapters.
         end note
 
-        ref over PREP_HANDLER, DB:  Request Duplicate Check\n\nreturns {\n\thasDuplicateId: Boolean,\n\thasDuplicateHash: Boolean\n}\n
+        group Validate Duplicate Check
+            |||
+            PREP_HANDLER -> DB: Request Duplicate Check
+            ref over PREP_HANDLER, DB:  Request Duplicate Check\n
+            DB --> PREP_HANDLER: Return { hasDuplicateId: Boolean, hasDuplicateHash: Boolean }
+        end
 
         alt hasDuplicateId == TRUE && hasDuplicateHash == TRUE
             break
-                note right of PREP_HANDLER #lightgrey
-                    stateRecord = await getTransferState(transferId)
-                end note
+                PREP_HANDLER -> PREP_HANDLER: stateRecord = await getTransferState(transferId)
                 alt endStateList.includes(stateRecord.transferStateId)
                     |||
                     ref over PREP_HANDLER, TOPIC_NOTIFICATIONS: getTransfer callback\n
+                    PREP_HANDLER -> TOPIC_NOTIFICATIONS: Produce message
                 else
                     note right of PREP_HANDLER #lightgrey
                         Ignore - resend in progress
@@ -141,7 +145,6 @@ group Prepare Handler Consume
                 deactivate PARTICIPANT_DAO
                 PREP_HANDLER <-> PREP_HANDLER: Validate Payee\n<color #FF0000><b>Error codes:</b> 3203</color>
             end
-            PREP_HANDLER <-> PREP_HANDLER: Validate crypto-condition\n<color #FF0000><b>Error codes:</b> 3100</color>
             
             alt Validate Prepare Transfer (success)
                 group Persist Transfer State (with transferState='RECEIVED-PREPARE')

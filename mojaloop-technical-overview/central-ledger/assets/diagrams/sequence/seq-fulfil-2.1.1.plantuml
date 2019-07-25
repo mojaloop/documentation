@@ -64,23 +64,26 @@ group Fulfil Handler Consume (Success)
             end
         end
         group Persist Event Information
-            FULF_HANDLER -> TOPIC_EVENT: Publish event information
-            ref over FULF_HANDLER, TOPIC_EVENT:  Event Handler Consume
-        end
-        group Validate FSPIOP-Signature
             |||
-            ref over FULF_HANDLER, TOPIC_NOTIFICATIONS: Validate message.content.headers.**FSPIOP-Signature**\n<color #FF0000><b>Error codes:</b> 3105/3106</color>
+            FULF_HANDLER -> TOPIC_EVENT: Publish event information
+            ref over FULF_HANDLER, TOPIC_EVENT:  Event Handler Consume\n
+            |||
         end
-        ref over FULF_HANDLER, DB:  Request Duplicate Check\n\nreturns {\n\thasDuplicateId: Boolean,\n\thasDuplicateHash: Boolean\n}\n
+
+        group Validate Duplicate Check
+            |||
+            FULF_HANDLER -> DB: Request Duplicate Check
+            ref over FULF_HANDLER, DB:  Request Duplicate Check\n
+            DB --> FULF_HANDLER: Return { hasDuplicateId: Boolean, hasDuplicateHash: Boolean }
+        end
 
         alt hasDuplicateId == TRUE && hasDuplicateHash == TRUE
             break
-                note right of FULF_HANDLER #lightgrey
-                    stateRecord = await getTransferState(transferId)
-                end note
+                FULF_HANDLER -> FULF_HANDLER: stateRecord = await getTransferState(transferId)
                 alt endStateList.includes(stateRecord.transferStateId)
                     |||
                     ref over FULF_HANDLER, TOPIC_NOTIFICATIONS: getTransfer callback\n
+                    FULF_HANDLER -> TOPIC_NOTIFICATIONS: Produce message
                 else
                     note right of FULF_HANDLER #lightgrey
                         Ignore - resend in progress
