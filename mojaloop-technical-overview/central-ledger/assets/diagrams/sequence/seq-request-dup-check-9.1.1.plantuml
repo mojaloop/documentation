@@ -55,31 +55,6 @@ end box
 ' start flow
 activate HANDLER
 
-note right of HANDLER #lightgrey
-    Processing Handler here refers to the
-    entry point where the request is received
-end note
-
-group Security Check
-    |||
-    HANDLER -> TOPIC_EVENTS: Produce message
-    ref over HANDLER, TOPIC_EVENTS: Event Handler Consume\n
-    |||
-end
-
-group Schema Validation (joi)
-    |||
-    HANDLER -> TOPIC_EVENTS: Produce message
-    ref over HANDLER, TOPIC_EVENTS: Event Handler Consume\n
-    |||
-end
-
-note right of HANDLER #lightgrey
-    Processing Handler onwards refers to the corresponding
-    Handler where duplicate checking is executed (e.g. 
-    PrepareHandler, FulfilHandler, BulkPrepareHandler, etc.)
-end note
-
 group Request Duplicate Check
     TOPIC_SOURCE <- HANDLER: Consume message
     activate TOPIC_SOURCE
