@@ -61,7 +61,7 @@ group Timeout Handler Consume
     activate TIMEOUT_HANDLER
     group Persist Event Information
         TIMEOUT_HANDLER -> EVENT_TOPIC: Publish event information
-        ref over TIMEOUT_HANDLER, EVENT_TOPIC :  Event Handler Consume {[[https://github.com/mojaloop/docs/blob/master/Diagrams/SequenceDiagrams/seq-event-9.1.0.svg 9.1.0]]}
+        ref over TIMEOUT_HANDLER, EVENT_TOPIC :  Event Handler Consume
     end
 
     group Get previous checkpoint of last record processed (Lower limit for inclusion)
