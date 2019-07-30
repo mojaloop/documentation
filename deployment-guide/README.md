@@ -209,7 +209,7 @@ Please review [Mojaloop Helm Chart](../repositories/helm.md) to understand the r
    
    Include the following line to the config;
    ```text
-   127.0.0.1       interop-switch.local central-kms.local forensic-logging-sidecar.local central-ledger.local central-end-user-registry.local central-directory.local central-hub.local central-settlements.local ml-api-adapter.local
+   127.0.0.1       interop-switch.local central-end-user-registry.local central-directory.local central-hub.local central-ledger forensic-logging-sidecar central-kms.local central-settlement.local central-event-processor.local ml-api-adapter.local email-notifier.local account-lookup-service.local quoting-service.local moja-simulator.local
    ```
 
 2. Test system health in your browser after installation. This will only work if you have an active helm chart deployment running.
