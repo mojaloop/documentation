@@ -63,7 +63,7 @@ group DFSP Notified of Rejection
             group Persist Event Information
                 NOTIFY_HANDLER -> TOPIC_EVENT: Publish event information \n <color #FF0000><b>Error code:</b> 3201 </color>
                 activate TOPIC_EVENT
-	            ref over TOPIC_EVENT :  Event Handler {[[https://github.com/mojaloop/docs/blob/master/Diagrams/SequenceDiagrams/seq-event-9.1.0.svg 9.1.0]]}
+	            ref over TOPIC_EVENT :  Event Handler
                 deactivate TOPIC_EVENT
             end
 
@@ -72,7 +72,7 @@ group DFSP Notified of Rejection
             NOTIFY_HANDLER <-> NOTIFY_HANDLER: Validate event - Rule: type == 'notification' && [action IN ['reject', 'timeout-received', 'timeout-reserved']]
         end
         NOTIFY_HANDLER -> CSAPI: Request Participant Callback details \n <color #FF0000><b>Error code:</b> 3201 </color>
-        ref over NOTIFY_HANDLER, CSAPI: Get Participant Callback Details {[[https://github.com/mojaloop/docs/blob/master/Diagrams/SequenceDiagrams/participant/seq-callback-add-3.1.0.svg 3.1.0]]}
+        ref over NOTIFY_HANDLER, CSAPI: Get Participant Callback Details
         NOTIFY_HANDLER <-- CSAPI: Return Participant Callback details
         note left of NOTIFY_HANDLER #yellow
             Message:
@@ -100,7 +100,7 @@ group DFSP Notified of Rejection
         NOTIFY_HANDLER -> TOPIC_EVENT: Invalid messages retrieved from the Notification Topic \n <color #FF0000><b>Error code:</b> 3201 </color>
         activate TOPIC_EVENT
         deactivate TOPIC_EVENT
-        ref over TOPIC_EVENT: Event Handler {[[https://github.com/mojaloop/docs/blob/master/Diagrams/SequenceDiagrams/seq-event-9.1.0.svg 9.1.0]]}
+        ref over TOPIC_EVENT: Event Handler
         note right of NOTIFY_HANDLER #lightblue
             Log ERROR Messages
             Update Event log upon ERROR notification
