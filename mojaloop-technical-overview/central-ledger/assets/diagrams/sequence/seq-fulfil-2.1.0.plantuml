@@ -141,20 +141,20 @@ group DFSP2 sends a Fulfil Success Transfer request
     FULF_HANDLER -> TOPIC_TRANSFER_POSITION: Produce message
     |||
     TOPIC_TRANSFER_POSITION <- POS_HANDLER: Consume message
-    ref over TOPIC_TRANSFER_POSITION, TOPIC_NOTIFICATIONS:  Position Handler Consume (Success) {[[https://github.com/mojaloop/docs/blob/master/Diagrams/SequenceDiagrams/seq-position-1.3.2-fulfil.svg 1.3.2]]} \n
+    ref over TOPIC_TRANSFER_POSITION, TOPIC_NOTIFICATIONS:  Position Handler Consume (Success)\n
     POS_HANDLER -> TOPIC_NOTIFICATIONS: Produce message
     |||
     TOPIC_NOTIFICATIONS <- NOTIFY_HANDLER: Consume message
     opt action == 'commit'
         |||
-        ref over DFSP1, TOPIC_NOTIFICATIONS: Send notification to Participant (Payer) {[[https://github.com/mojaloop/docs/blob/master/Diagrams/SequenceDiagrams/seq-prepare-1.1.4.a.svg 1.1.4.a]]} \n
+        ref over DFSP1, TOPIC_NOTIFICATIONS: Send notification to Participant (Payer)\n
         NOTIFY_HANDLER -> DFSP1: Send callback notification
     end
     |||
     TOPIC_NOTIFICATIONS <- NOTIFY_HANDLER: Consume message
     opt action == 'commit'
         |||
-        ref over DFSP2, TOPIC_NOTIFICATIONS: Send notification to Participant (Payee) {[[https://github.com/mojaloop/docs/blob/master/Diagrams/SequenceDiagrams/seq-prepare-1.1.4.a.svg 1.1.4.a]]} \n
+        ref over DFSP2, TOPIC_NOTIFICATIONS: Send notification to Participant (Payee)\n
         NOTIFY_HANDLER -> DFSP2: Send callback notification
     end
     |||

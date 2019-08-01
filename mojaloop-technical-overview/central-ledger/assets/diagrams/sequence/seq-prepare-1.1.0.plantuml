@@ -25,7 +25,7 @@
 
 @startuml
 ' declate title
-title 1.1.0. DFSP1 sends a Prepare Transfer request to DFSP2 (single message, includes individual transfers from Bulk)
+title 1.1.0. DFSP1 sends a Prepare Transfer request to DFSP2
 
 autonumber
 
@@ -145,15 +145,15 @@ group DFSP1 sends a Prepare Transfer request to DFSP2
     deactivate MLAPI
     |||
     TOPIC_TRANSFER_PREPARE <- PREP_HANDLER: Consume message
-    ref over TOPIC_TRANSFER_PREPARE, PREP_HANDLER, TOPIC_TRANSFER_POSITION :  Prepare Handler Consume {[[https://github.com/mojaloop/docs/blob/master/Diagrams/SequenceDiagrams/seq-prepare-1.1.1.a.svg 1.1.1.a]], [[https://github.com/mojaloop/docs/blob/master/Diagrams/SequenceDiagrams/seq-prepare-1.1.1.b.svg 1.1.1.b]]} \n
+    ref over TOPIC_TRANSFER_PREPARE, PREP_HANDLER, TOPIC_TRANSFER_POSITION :  Prepare Handler Consume\n
     PREP_HANDLER -> TOPIC_TRANSFER_POSITION: Produce message
     |||
     TOPIC_TRANSFER_POSITION <- POS_HANDLER: Consume message
-    ref over TOPIC_TRANSFER_POSITION, POS_HANDLER : Position Handler Consume {[[https://github.com/mojaloop/docs/blob/master/Diagrams/SequenceDiagrams/seq-prepare-1.1.2.a.svg 1.1.2.a]], [[https://github.com/mojaloop/docs/blob/master/Diagrams/SequenceDiagrams/seq-prepare-1.1.2.b.svg 1.1.2.b]]} \n
+    ref over TOPIC_TRANSFER_POSITION, POS_HANDLER : Position Handler Consume\n
     POS_HANDLER -> TOPIC_NOTIFICATIONS: Produce message
     |||
     TOPIC_NOTIFICATIONS <- NOTIFY_HANDLER: Consume message
-    ref over DFSP2, TOPIC_NOTIFICATIONS : Send notification to Participant (Payee) {[[https://github.com/mojaloop/docs/blob/master/Diagrams/SequenceDiagrams/seq-prepare-1.1.4.a.svg 1.1.4.a]], [[https://github.com/mojaloop/docs/blob/master/Diagrams/SequenceDiagrams/seq-prepare-1.1.4.b.svg 1.1.4.b]]} \n
+    ref over DFSP2, TOPIC_NOTIFICATIONS : Send notification to Participant (Payee)\n
     NOTIFY_HANDLER -> DFSP2: Send callback notification
     |||
 end
