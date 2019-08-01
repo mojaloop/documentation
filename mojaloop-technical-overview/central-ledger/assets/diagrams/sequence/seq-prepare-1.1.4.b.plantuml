@@ -75,7 +75,7 @@ group Send notification to Participant
             CSAPI -> TOPIC_EVENTS: Publish event information
             activate TOPIC_EVENTS
             |||
-            ref over TOPIC_EVENTS :  Event Handler Consume {[[https://github.com/mojaloop/docs/blob/master/Diagrams/SequenceDiagrams/seq-event-9.1.0.svg 9.1.0]]} \n
+            ref over TOPIC_EVENTS :  Event Handler Consume\n
             |||
             TOPIC_EVENTS --> CSAPI: Return success
             deactivate TOPIC_EVENTS

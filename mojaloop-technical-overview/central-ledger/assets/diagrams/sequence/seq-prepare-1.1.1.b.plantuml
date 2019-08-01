@@ -66,7 +66,7 @@ group Prepare Handler Consume
     group Persist Event Information
         |||
         PREP_HANDLER -> TOPIC_EVENTS: Publish event information
-        ref over PREP_HANDLER, TOPIC_EVENTS :  Event Handler Consume {[[https://github.com/mojaloop/docs/blob/master/Diagrams/SequenceDiagrams/seq-event-9.1.0.svg 9.1.0]]} \n
+        ref over PREP_HANDLER, TOPIC_EVENTS :  Event Handler Consume\n
         |||
     end
 

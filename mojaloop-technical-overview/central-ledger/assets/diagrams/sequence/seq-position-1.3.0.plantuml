@@ -21,13 +21,12 @@
  * Georgi Georgiev <georgi.georgiev@modusbox.com>
  * Rajiv Mothilal <rajiv.mothilal@modusbox.com>
  * Miguel de Barros <miguel.debarros@modusbox.com>
- * Samuel Kummary <sam@modusbox.com>
  --------------
  ******'/
 
 @startuml
 ' declate title
-title 1.3.0. Position Handler Consume (single message, includes individual transfers from Bulk)
+title 1.3.0. Position Handler Consume (single message)
 
 autonumber
 
@@ -61,17 +60,17 @@ group Position Handler Consume
         deactivate TOPIC_TRANSFER_POSITION
         break
             group Validate Event
-                POS_HANDLER <-> POS_HANDLER: Validate event - Rule: type IN ['position','bulk-position'] && action == 'prepare'\n<color #FF0000><b>Error codes:</b> 2001</color>
+                POS_HANDLER <-> POS_HANDLER: Validate event - Rule: type == 'position' && action == 'prepare'\n<color #FF0000><b>Error codes:</b> 2001</color>
             end
         end
         group Persist Event Information
             |||
             POS_HANDLER -> TOPIC_EVENTS: Publish event information
-            ref over POS_HANDLER, TOPIC_EVENTS :  Event Handler Consume {[[https://github.com/mojaloop/docs/blob/master/Diagrams/SequenceDiagrams/seq-event-9.1.0.svg 9.1.0]]} \n
+            ref over POS_HANDLER, TOPIC_EVENTS :  Event Handler Consume\n
             |||
         end
         |||
-        ref over POS_HANDLER: Prepare Position Handler Consume {[[https://github.com/mojaloop/docs/blob/master/Diagrams/SequenceDiagrams/seq-position-1.3.1-prepare.svg 1.3.1]]} \n
+        ref over POS_HANDLER: Prepare Position Handler Consume\n
         POS_HANDLER -> TOPIC_NOTIFICATIONS: Produce message
     else Consume Fulfil message for Payee
         TOPIC_TRANSFER_POSITION <- POS_HANDLER: Consume Position event message for Payee
@@ -79,17 +78,17 @@ group Position Handler Consume
         deactivate TOPIC_TRANSFER_POSITION
         break
             group Validate Event
-                POS_HANDLER <-> POS_HANDLER: Validate event - Rule: type IN ['position','bulk-position'] && action == 'commit'\n<color #FF0000><b>Error codes:</b> 2001</color>
+                POS_HANDLER <-> POS_HANDLER: Validate event - Rule: type == 'position' && action == 'commit'\n<color #FF0000><b>Error codes:</b> 2001</color>
             end
         end
         group Persist Event Information
             |||
             POS_HANDLER -> TOPIC_EVENTS: Publish event information
-            ref over POS_HANDLER, TOPIC_EVENTS :  Event Handler Consume {[[https://github.com/mojaloop/docs/blob/master/Diagrams/SequenceDiagrams/seq-event-9.1.0.svg 9.1.0]]} \n
+            ref over POS_HANDLER, TOPIC_EVENTS :  Event Handler Consume\n
             |||
         end
         |||
-        ref over POS_HANDLER: Fulfil Position Handler Consume {[[https://github.com/mojaloop/docs/blob/master/Diagrams/SequenceDiagrams/seq-position-1.3.2-fulfil.svg 1.3.2]]} \n
+        ref over POS_HANDLER: Fulfil Position Handler Consume\n
         POS_HANDLER -> TOPIC_NOTIFICATIONS: Produce message
     else Consume Abort message
         TOPIC_TRANSFER_POSITION <- POS_HANDLER: Consume Position event message
@@ -97,17 +96,17 @@ group Position Handler Consume
         deactivate TOPIC_TRANSFER_POSITION
         break
             group Validate Event
-                POS_HANDLER <-> POS_HANDLER: Validate event - Rule: type IN ['position','bulk-position'] &&\naction IN ['timeout-reserved', 'reject', 'fail']\n<color #FF0000><b>Error codes:</b> 2001</color>
+                POS_HANDLER <-> POS_HANDLER: Validate event - Rule: type == 'position' &&\naction IN ['timeout-reserved', 'reject', 'fail']\n<color #FF0000><b>Error codes:</b> 2001</color>
             end
         end
         group Persist Event Information
             |||
             POS_HANDLER -> TOPIC_EVENTS: Publish event information
-            ref over POS_HANDLER, TOPIC_EVENTS :  Event Handler Consume {[[https://github.com/mojaloop/docs/blob/master/Diagrams/SequenceDiagrams/seq-event-9.1.0.svg 9.1.0]]} \n
+            ref over POS_HANDLER, TOPIC_EVENTS :  Event Handler Consume\n
             |||
         end
         |||
-        ref over POS_HANDLER: Abort Position Handler Consume {[[https://github.com/mojaloop/docs/blob/master/Diagrams/SequenceDiagrams/seq-position-1.3.3-abort.svg 1.3.3]]} \n
+        ref over POS_HANDLER: Abort Position Handler Consume\n
         POS_HANDLER -> TOPIC_NOTIFICATIONS: Produce message
     end
 
