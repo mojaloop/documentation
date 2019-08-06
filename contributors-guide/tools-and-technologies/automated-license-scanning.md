@@ -17,13 +17,53 @@ For more information, refer to the [readme](https://github.com/mojaloop/license-
 
 ## Blacklisting and Whitelisting
 
-[copy notes we wrote to kim about blacklisting/whitelisting]
+The license-scanner works by blacklisting unwanted licenses, and whitelisting packages which have been manually audited, and we are comfortable with using. 
 
-## Running Inside CI
+In the [`config.toml`](https://github.com/mojaloop/license-scanner/blob/master/config.toml) file, we configure two arrays of strings.
+
+__Adding a new Licence identifier to the blacklist:__
+
+Edit `config.tml`, and add the licence string into the `failList` array:
+```toml
+failList = [
+  "UNKNOWN",
+  "GPL-1.0",
+  "GPL-2.0",
+  "GPL-3.0",
+  #add your license here
+]
+```
+
+The license-scanner will pick out licenses that it finds in the `node_modules` folder, and if the license string is in the `failList` (using a fuzzy string search), the license-scanner will fail, unless the package is found in the whitelist.
+
+__Adding a new package to the whitelist:__
+
+In addition to maintaining a blacklist of licenses, we whitelist packages that we have manually audited and are happy to include.
+The most common case for this is packages that don't have a license entry in the `package.json` file, which the npm license scan tool lists as `UNKNOWN`.
+
+To add a package to the whitelist, simply add an entry to the `excludeList` in `config.toml`. For example:
+```toml
+excludeList = [
+  "taffydb@2.6.2",
+  "buffercursor@0.0.12", # has no license on github or npm
+  "cycle@1.0.3",
+  "spdx-exceptions@2.2.0",
+  #add your package here
+]
+```
+
+>___FAQ:__ Why keep a whitelist?_
+>
+>The license-scanner is not perfect, and sometimes there are packages that have been incorrectly identified, or contain no license entry in the `package.json` file, but do contain a valid license in the package's git repository.
+>
+>By maintaining a whitelist of packages we have manually audited, we can get around incorrectly labelled packages.
+
+
+## Running Inside CI/CD
 
 ### PR Flow
 
-When a new Pull Request is opened for a mojaloop project, the licence scanner runs as a part of the CI workflow. The CI step is called 'audit-licenses'
+When a new Pull Request is opened for a mojaloop project, the licence scanner runs as a part of the CI/CD workflow. The step in CircleCI is called 'audit-licenses'
 
 <img alt="Example CircleCI Build Overview PR" src="./assets/images/automated-license-scanning/circle-pr-build.png" width=700>
 
@@ -52,9 +92,9 @@ When a new build is initiated (for example, through a new release) the license-s
 
 The build flow differs a little from the PR flow, in that it runs against a prebuilt docker image.
 
->___FAQ:__ Why check the licences after the build process, when we have already ran the license scanner?_  
+>___FAQ:__ Why check the licences after the build process, when we have already run the license scanner in the PR flow?_  
 >
->This step acts a sanity check and a final audit so that we know (for sure) that the resulting docker images don't contain unwanted licenses.
+>This step acts a sanity check and a final audit so that we know _(for sure)_ that the resulting docker images don't contain unwanted licenses.
 >
 >There is a chance, however slim, that the packages that end up in our resulting docker image differ from the packages that we originally ran the license scanner against. This could happen if somebody forgets to copy a `package-lock.json` file in the Dockerfile, or if a dependency hasn't been correctly locked down to a specific version. 
 
