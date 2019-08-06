@@ -1,12 +1,11 @@
 # Automated License Scanning
 
-For Mojaloop to maintain its open source nature, we must ensure that any dependent licenses are compatible with the [Mojaloop Licence](https://github.com/mojaloop/mojaloop/blob/master/contribute/License.md) (Apache 2.0). This means ensuring that the project is free from so called 'viral' or 'copyleft' licenses.
-
+For Mojaloop to maintain its open source nature and compatibility with the [Mojaloop Licence](https://github.com/mojaloop/mojaloop/blob/master/contribute/License.md) (Apache 2.0) it needs to be ensured that the project is free from so called 'viral' or 'copyleft' licenses.
 
 ## Mojaloop License Scanner
 
 We have a suite of tools bundled under the [license-scanner](https://github.com/mojaloop/license-scanner) project on the Mojaloop Github account. The license-scanner allows us to:
-- Perform an a license scan across one to many Mojaloop github repositories 
+- Perform a license scan across one to many Mojaloop github repositories 
 - Integrate with FossaCLI to run mass license audits across the entire codebase
 - Run inside of a CI process
 - Run a license scan against a pre-built docker image
