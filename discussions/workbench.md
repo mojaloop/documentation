@@ -8,7 +8,7 @@
 Nobody really knows yet. We are as yet defining the term as we go along, but roughly without making too many assumptions:
 - An environment for users to get to know Mojaloop
 - A place for implementers to validate and test their assumptions about Mojaloop
-- 
+
 
 ## Users
 
