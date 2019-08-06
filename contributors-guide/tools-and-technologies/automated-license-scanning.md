@@ -1,18 +1,18 @@
 # Automated License Scanning
 
+For Mojaloop to maintain its open source nature, we must ensure that any dependent licenses are compatible with the [Mojaloop Licence](https://github.com/mojaloop/mojaloop/blob/master/contribute/License.md) (Apache 2.0). This means ensuring that the project is free from so called 'viral' or 'copyleft' licenses.
 
-In order to maintain the open source status of the Mojaloop project, we must make sure that any dependencies of mojaloop allow us to licence it thus [fix]. To this end, we must ensure that the project is free from so called 'viral' or 'copyleft' licenses.
 
 ## Mojaloop License Scanner
 
 We have a suite of tools bundled under the [license-scanner](https://github.com/mojaloop/license-scanner) project on the Mojaloop Github account. The license-scanner allows us to:
-- Perform an a license scan across one to many mojaloop github repositories 
+- Perform an a license scan across one to many Mojaloop github repositories 
 - Integrate with FossaCLI to run mass license audits across the entire codebase
 - Run inside of a CI process
 - Run a license scan against a pre-built docker image
 
 
-For more information, refer to the [readme](https://github.com/mojaloop/license-scanner) in the license-scanner repo.
+For more information, refer to the [readme](https://github.com/mojaloop/license-scanner) in the license-scanner repository.
 
 
 ## Blacklisting and Whitelisting
@@ -63,20 +63,20 @@ excludeList = [
 
 ### PR Flow
 
-When a new Pull Request is opened for a mojaloop project, the licence scanner runs as a part of the CI/CD workflow. The step in CircleCI is called 'audit-licenses'
+When a new Pull Request is opened for a Mojaloop project, the licence scanner runs as a part of the CI/CD workflow. The step in CircleCI is called 'audit-licenses'
 
 <img alt="Example CircleCI Build Overview PR" src="./assets/images/automated-license-scanning/circle-pr-build.png" width=700>
 
 The license-scanner does the following:
 1. Sets up the circle ci environment
-  * 1. Clones the git repo of the project
+  * 1. Clones the git repository of the project
   * 2. runs `npm install`
   * 3. caches the `node_modules` folder for later use
 2. Runs the audit-licenses step:
-  * 1. Clones the license scanner repo to `/tmp` and sets up the scanner
+  * 1. Clones the license scanner repository to `/tmp` and sets up the scanner
   * 2. Restores the node_module cache
   * 3. Runs the license scanner
-  * 4. Uploads the results as a .csv artifact
+  * 4. Uploads the results as a `.csv` artifact
 
 
 Should the license scanner pass (i.e. find no licenses that are blacklisted), the build will succeed.
@@ -86,13 +86,13 @@ Should the license scanner pass (i.e. find no licenses that are blacklisted), th
 
 ### Build Flow
 
->Note: This step applies only to mojaloop projects which output docker images on release.
+>Note: This step applies only to Mojaloop projects which output docker images on release.
 
 When a new build is initiated (for example, through a new release) the license-scanner also runs as part of the CI build step, after a docker image has been built.
 
 The build flow differs a little from the PR flow, in that it runs against a prebuilt docker image.
 
->___FAQ:__ Why check the licences after the build process, when we have already run the license scanner in the PR flow?_  
+>___FAQ:__ Why check the licenses after the build process, when we have already run the license scanner in the PR flow?_  
 >
 >This step acts a sanity check and a final audit so that we know _(for sure)_ that the resulting docker images don't contain unwanted licenses.
 >
