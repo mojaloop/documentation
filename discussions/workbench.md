@@ -52,15 +52,15 @@ As suggested by Rob Reeve, we can plot the users and potential use cases in a ma
 
 
 |  __Usecase:__                   | a. Test DFSP Impl | b. Validate Assumptions | c. Reference Impl | d. Learn Internals | e. Learn about Tech | f. Evaluate Business Cases  |
-| ------------------------------- | --- | --- | --- | --- | --- | --- |
-| __User:__                       |     |     |     |     |     |     |    
-| __1. Implementing DFSP__        |  X  |     |  X  |     |     |     |
-| __2. Evalutating DFSP__         |     |  X  |  X  |     |  X  |  X  |
-| __3. Evaluating Hub Operator__  |     |     |  X  |     |  X  |  X  |
-| __4. General Evaluator__        |     |     |     |     |  X  |  X  |
-| __5. Systems Integrator__       |  X  |  X  |  X  |  X  |     |     |
-| __6. Individual Contributor__   |     |  X  |  X  |  X  |     |     |
-| __7. Mojaloop-powered fintech__ |     |  X  |     |     |  X  |  X  |
+| :------------------------------- | :---: | :---: | :---: | :---: | :---: | :---: |
+| __User:__                        |       |       |       |       |       |       |    
+| __1. Implementing DFSP__         |   X   |       |   X   |       |       |       |
+| __2. Evalutating DFSP__          |       |   X   |   X   |       |   X   |   X   |
+| __3. Evaluating Hub Operator__   |       |       |   X   |       |   X   |   X   |
+| __4. General Evaluator__         |       |       |       |       |   X   |   X   |
+| __5. Systems Integrator__        |   X   |   X   |   X   |   X   |       |       |
+| __6. Individual Contributor__    |       |   X   |   X   |   X   |       |       |
+| __7. Mojaloop-powered fintech__  |       |   X   |       |       |   X   |   X   |
 
 
 
