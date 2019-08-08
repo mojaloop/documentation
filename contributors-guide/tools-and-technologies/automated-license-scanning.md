@@ -1,6 +1,6 @@
 # Automated License Scanning
 
-For Mojaloop to maintain its open source nature and compatibility with the [Mojaloop Licence](https://github.com/mojaloop/mojaloop/blob/master/contribute/License.md) (Apache 2.0) it needs to be ensured that the project is free from so called 'viral' or 'copyleft' licenses.
+For Mojaloop to maintain its open source nature and compatibility with the [Mojaloop License](https://github.com/mojaloop/mojaloop/blob/master/contribute/License.md) (Apache 2.0) it needs to be ensured that the project is free from so called 'viral' or 'copyleft' licenses.
 
 ## Mojaloop License Scanner
 
@@ -20,9 +20,9 @@ The license-scanner works by blacklisting unwanted licenses, and whitelisting pa
 
 In the [`config.toml`](https://github.com/mojaloop/license-scanner/blob/master/config.toml) file, we configure two arrays of strings.
 
-__Adding a new Licence identifier to the blacklist:__
+__Adding a new License identifier to the blacklist:__
 
-Edit `config.tml`, and add the licence string into the `failList` array:
+Edit `config.tml`, and add the license string into the `failList` array:
 ```toml
 failList = [
   "UNKNOWN",
@@ -62,7 +62,7 @@ excludeList = [
 
 ### PR Flow
 
-When a new Pull Request is opened for a Mojaloop project, the licence scanner runs as a part of the CI/CD workflow. The step in CircleCI is called 'audit-licenses'
+When a new Pull Request is opened for a Mojaloop project, the license scanner runs as a part of the CI/CD workflow. The step in CircleCI is called 'audit-licenses'
 
 <img alt="Example CircleCI Build Overview PR" src="./assets/images/automated-license-scanning/circle-pr-build.png" width=700>
 
