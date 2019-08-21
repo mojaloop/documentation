@@ -66,11 +66,11 @@ group Fulfil Handler Consume (Failure)
         end
         group Persist Event Information
             FULF_HANDLER -> TOPIC_EVENT: Publish event information
-            ref over FULF_HANDLER, TOPIC_EVENT:  Event Handler Consume {[[https://github.com/mojaloop/docs/blob/master/Diagrams/SequenceDiagrams/seq-event-9.1.0.svg 9.1.0]]}
+            ref over FULF_HANDLER, TOPIC_EVENT:  Event Handler Consume
         end
         group Validate FSPIOP-Signature
             |||
-            ref over FULF_HANDLER, TOPIC_NOTIFICATIONS: Validate message.content.headers.**FSPIOP-Signature** {[[https://github.com/mojaloop/docs/blob/master/Diagrams/SequenceDiagrams/seq-signature-validation.svg seq-signature-validation]]} \n<color #FF0000><b>Error codes:</b> 2001</color>
+            ref over FULF_HANDLER, TOPIC_NOTIFICATIONS: Validate message.content.headers.**FSPIOP-Signature**\n<color #FF0000><b>Error codes:</b> 2001</color>
         end
         group Validate Transfer Fulfil Duplicate Check
             FULF_HANDLER -> FULF_HANDLER: Generate transferFulfilmentId uuid
@@ -108,7 +108,7 @@ group Fulfil Handler Consume (Failure)
                     end
                 else transferState IN ['COMMITTED', 'ABORTED']
                     break
-                        ref over FULF_HANDLER, TOPIC_NOTIFICATIONS: Send notification to Participant (Payee) {[[https://github.com/mojaloop/docs/blob/master/Diagrams/SequenceDiagrams/seq-prepare-1.1.4.a.svg 1.1.4.a]]} \n
+                        ref over FULF_HANDLER, TOPIC_NOTIFICATIONS: Send notification to Participant (Payee)\n
                     end
                 else transferState NOT 'RESERVED'
                     break
@@ -241,7 +241,7 @@ group Fulfil Handler Consume (Failure)
                                     action: reject,
                                     createdAt: <timestamp>,
                                     state: {
-                                        status: "fail",
+                                        status: "error",
                                         code: 1
                                     }
                                 }
@@ -320,7 +320,7 @@ group Fulfil Handler Consume (Failure)
                                     action: abort,
                                     createdAt: <timestamp>,
                                     state: {
-                                        status: "fail",
+                                        status: "error",
                                         code: 1
                                     }
                                 }

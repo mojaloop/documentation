@@ -82,7 +82,7 @@ group Request transfer status
         activate TOPIC_EVENTS
         CSAPI -> TOPIC_EVENTS: Publish event information
         |||
-        ref over TOPIC_EVENTS :  Event Handler Consume {[[https://github.com/mojaloop/docs/blob/master/Diagrams/SequenceDiagrams/seq-event-9.1.0.svg 9.1.0]]} \n
+        ref over TOPIC_EVENTS :  Event Handler Consume\n
         |||
         CSAPI <-- TOPIC_EVENTS: Return success
         deactivate TOPIC_EVENTS

@@ -326,6 +326,19 @@
             
         </li>
     
+        <li class="chapter " data-level="1.5.1.3" data-path="../contributors-guide/standards/triaging-ml-oss-bugs.html">
+            
+                <a href="../contributors-guide/standards/triaging-ml-oss-bugs.html">
+            
+                    
+                    ML OSS Bug Triage
+            
+                </a>
+            
+
+            
+        </li>
+    
 
             </ul>
             
@@ -2002,7 +2015,7 @@
 </ul>
 </li>
 <li><p>ETCd Plane:</p>
-<p><a href="https://coreos.com/etcd/docs/latest/op-guide/hardware.html" target="_blank">https://coreos.com/etcd/docs/latest/op-guide/hardware.html</a></p>
+<p><a href="https://etcd.io/docs/v3.3.12/op-guide/hardware" target="_blank">https://etcd.io/docs/v3.3.12/op-guide/hardware</a></p>
 <ul>
 <li>3x ETCd nodes for HA (High Availability)</li>
 </ul>
@@ -2125,8 +2138,12 @@ helm repo add kiwigrid https://kiwigrid.github.io
 <pre><code class="lang-bash">vi /etc/hosts
 </code></pre>
 <p><em>Windows the file can be updated in notepad - need to open with Administrative privileges. File location <code>C:\Windows\System32\drivers\etc\hosts</code></em>.</p>
-<p>Include the following line to the config;</p>
-<pre><code class="lang-text">127.0.0.1       interop-switch.local central-kms.local forensic-logging-sidecar.local central-ledger.local central-end-user-registry.local central-directory.local central-hub.local central-settlements.local ml-api-adapter.local
+<p>Include the following line to the config.</p>
+<p>The below config is applicable to Helm release &gt;= versions 6.2.2;</p>
+<pre><code class="lang-text">127.0.0.1       central-ledger forensic-logging-sidecar central-kms.local central-settlement.local central-event-processor.local ml-api-adapter.local email-notifier.local account-lookup-service.local quoting-service.local moja-simulator.local
+</code></pre>
+<p>For Helm releases prior to versions 6.2.2, please include the following in the above configuration;</p>
+<pre><code class="lang-text">interop-switch.local central-end-user-registry.local central-directory.local central-hub.local
 </code></pre>
 </li>
 <li><p>Test system health in your browser after installation. This will only work if you have an active helm chart deployment running.</p>
@@ -2178,7 +2195,7 @@ helm repo add kiwigrid https://kiwigrid.github.io
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Deployment Guide","level":"1.4","depth":1,"next":{"title":"Releases","level":"1.4.1","depth":2,"path":"deployment-guide/releases.md","ref":"deployment-guide/releases.md","articles":[]},"previous":{"title":"Onboarding","level":"1.3","depth":1,"path":"onboarding.md","ref":"onboarding.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"3.x.x","theme":"default","variables":{"importedVars":{"mojaloop":{"spec":{"version":"v1.0","uri":{"doc":"https://github.com/mojaloop/mojaloop-specification/blob/master/API%20Definition%20v1.0.pdf","api":"https://github.com/mojaloop/mojaloop-specification/blob/master/Supporting%20Files/fspiop-rest-v1.0-OpenAPI-implementation.yaml"}}},"central_ledger":{"spec":{"version":"v2.0","uri":{"doc":"/mojaloop-technical-overview/central-ledger/README.md","api":"https://github.com/mojaloop/central-ledger/blob/master/src/api/interface/swagger.json"}}},"settlement":{"spec":{"version":"v1.1","uri":{"doc":"/mojaloop-technical-overview/central-settlements/README.md","api":"https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json"}}},"als":{"oracle":{"spec":{"version":"v1.2","uri":{"doc":"/mojaloop-technical-overview/account-lookup-service/README.md","api":"https://github.com/mojaloop/documentation/blob/master/api/assets/interface-contracts/oracle-service-swagger-v1.yaml"}}}}}},"plugins":["swagger","editlink","include","insert-logo","plantuml-svg","collapsible-chapters","back-to-top-button","theme-api","variables","changelog","page-toc"],"pluginsConfig":{"plantuml-svg":{},"editlink":{"label":"Edit This Page","multilingual":true,"base":"https://github.com/mojaloop/documentation/edit/master"},"theme-gestalt":{"logo":"https://mojaloop.io/images/logo.png","favicon":"https://mojaloop.io/images/logo.png","baseUrl":null,"excludeDefaultStyles":false,"doNotHideChildrenChapters":false},"include":{},"search":{},"collapsible-chapters":{},"page-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","position":"before-first","showByDefault":true},"swagger":{"file":""},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"uml":{"format":"png","nailgun":false},"changelog":{},"theme-api":{"languages":[],"split":true,"theme":"dark"},"back-to-top-button":{},"variables":{"files":{"importedVars":"book_variables.yml"}},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"insert-logo":{"url":"https://mojaloop.io/images/logo.png","style":"background: none; max-height: 140px; max-width: 140px;"}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"deployment-guide/README.md","mtime":"2019-07-03T09:33:51.894Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-07-03T09:34:59.408Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Deployment Guide","level":"1.4","depth":1,"next":{"title":"Releases","level":"1.4.1","depth":2,"path":"deployment-guide/releases.md","ref":"deployment-guide/releases.md","articles":[]},"previous":{"title":"Onboarding","level":"1.3","depth":1,"path":"onboarding.md","ref":"onboarding.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"3.x.x","theme":"default","variables":{"importedVars":{"mojaloop":{"spec":{"version":"v1.0","uri":{"doc":"https://github.com/mojaloop/mojaloop-specification/blob/master/API%20Definition%20v1.0.pdf","api":"https://github.com/mojaloop/mojaloop-specification/blob/master/Supporting%20Files/fspiop-rest-v1.0-OpenAPI-implementation.yaml"}}},"central_ledger":{"spec":{"version":"v2.0","uri":{"doc":"/mojaloop-technical-overview/central-ledger/README.md","api":"https://github.com/mojaloop/central-ledger/blob/master/src/api/interface/swagger.json"}}},"settlement":{"spec":{"version":"v1.1","uri":{"doc":"/mojaloop-technical-overview/central-settlements/README.md","api":"https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json"}}},"als":{"oracle":{"spec":{"version":"v1.2","uri":{"doc":"/mojaloop-technical-overview/account-lookup-service/README.md","api":"https://github.com/mojaloop/documentation/blob/master/api/assets/interface-contracts/oracle-service-swagger-v1.yaml"}}}}}},"plugins":["swagger","editlink","include","insert-logo","plantuml-svg","collapsible-chapters","back-to-top-button","theme-api","variables","changelog","page-toc"],"pluginsConfig":{"plantuml-svg":{},"editlink":{"label":"Edit This Page","multilingual":true,"base":"https://github.com/mojaloop/documentation/edit/master"},"theme-gestalt":{"logo":"https://mojaloop.io/images/logo.png","favicon":"https://mojaloop.io/images/logo.png","baseUrl":null,"excludeDefaultStyles":false,"doNotHideChildrenChapters":false},"include":{},"search":{},"collapsible-chapters":{},"page-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","position":"before-first","showByDefault":true},"swagger":{"file":""},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"uml":{"format":"png","nailgun":false},"changelog":{},"theme-api":{"languages":[],"split":true,"theme":"dark"},"back-to-top-button":{},"variables":{"files":{"importedVars":"book_variables.yml"}},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"insert-logo":{"url":"https://mojaloop.io/images/logo.png","style":"background: none; max-height: 140px; max-width: 140px;"}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"deployment-guide/README.md","mtime":"2019-08-21T13:57:18.304Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-08-21T13:58:14.884Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

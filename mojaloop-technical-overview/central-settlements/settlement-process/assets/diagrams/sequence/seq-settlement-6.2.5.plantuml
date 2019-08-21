@@ -553,15 +553,15 @@ group Acknowledgement of Settlement Transfer
 
         alt settlementData.state == 'PENDING_SETTLEMENT'
             |||
-            ref over SETTLE_DAO, DB: Settlement Transfer Prepare {[[https://github.com/mojaloop/docs/blob/master/Diagrams/SequenceDiagrams/seq-settransfer-6.3.1-prepare.svg 6.3.1]]}\n\n**Inputs**: settlementId, transactionTimestamp, enums, trx\n
+            ref over SETTLE_DAO, DB: Settlement Transfer Prepare\n\n**Inputs**: settlementId, transactionTimestamp, enums, trx\n
             |||
         else settlementData.state == 'PS_TRANSFERS_RECORDED'
             |||
-            ref over SETTLE_DAO, DB: Settlement Transfer Reserve {[[https://github.com/mojaloop/docs/blob/master/Diagrams/SequenceDiagrams/seq-settransfer-6.3.2-reserve.svg 6.3.2]]}\n\n**Inputs**: settlementId, transactionTimestamp, enums, trx\n
+            ref over SETTLE_DAO, DB: Settlement Transfer Reserve\n\n**Inputs**: settlementId, transactionTimestamp, enums, trx\n
             |||
         else settlementData.state == 'PS_TRANSFERS_RESERVED'
             |||
-            ref over SETTLE_DAO, DB: Settlement Transfer Commit {[[https://github.com/mojaloop/docs/blob/master/Diagrams/SequenceDiagrams/seq-settransfer-6.3.3-commit.svg 6.3.3]]}\n\n**Inputs**: settlementId, transactionTimestamp, enums, trx\n
+            ref over SETTLE_DAO, DB: Settlement Transfer Commit\n\n**Inputs**: settlementId, transactionTimestamp, enums, trx\n
             |||
         end
 

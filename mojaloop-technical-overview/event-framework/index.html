@@ -326,6 +326,19 @@
             
         </li>
     
+        <li class="chapter " data-level="1.5.1.3" data-path="../../contributors-guide/standards/triaging-ml-oss-bugs.html">
+            
+                <a href="../../contributors-guide/standards/triaging-ml-oss-bugs.html">
+            
+                    
+                    ML OSS Bug Triage
+            
+                </a>
+            
+
+            
+        </li>
+    
 
             </ul>
             
@@ -1955,13 +1968,13 @@
 <li>Sidecar module will publish events to a singular Kafka topic that will allow for multiple handlers to consume and process the events as required.</li>
 <li>Kafka partitions will be determined by the event-type (e.g. log, audit, trace, errors etc).</li>
 <li>Each Mojaloop component will have its own tightly coupled Sidecar.</li>
-<li>Event messages will be produced to Kafka using the Trace-Id as the message key. This will ensure that all the messages part of the same trace (transaction) are stored in the same partition in order. </li>
+<li>Event messages will be produced to Kafka using the Trace-Id as the message key. This will ensure that all the messages part of the same trace (transaction) are stored in the same partition in order.</li>
 </ul>
 <h2 id="2-architecture">2. Architecture</h2>
 <h3 id="21-overview">2.1 Overview</h3>
 <p><img src="assets/diagrams/architecture/architecture-event-framework.svg" alt="Event Framework Architecture"></p>
 <h3 id="22-micro-service-pods">2.2 Micro Service Pods</h3>
-<p><img src="assets/diagrams/architecture/architecture-event-sidecar.svg" alt="Pod Architecture"> </p>
+<p><img src="assets/diagrams/architecture/architecture-event-sidecar.svg" alt="Pod Architecture"></p>
 <h3 id="23-event-flow">2.3 Event Flow</h3>
 <p><img src="assets/diagrams/architecture/architecture-event-trace.svg" alt="Tracing Architecture"></p>
 <h2 id="3-event-envelope-model">3. Event Envelope Model</h2>
@@ -1999,7 +2012,13 @@
             <span class="hljs-string">&quot;parentSpanId&quot;</span>: <span class="hljs-string">&quot;4e3ce424-d611-417b-a7b3-44ba9bbc5840&quot;</span>,
             <span class="hljs-string">&quot;spanId&quot;</span>: <span class="hljs-string">&quot;efeb5c22-689b-4d04-ac5a-2aa9cd0a7e87&quot;</span>,
             <span class="hljs-string">&quot;startTimestamp&quot;</span>: <span class="hljs-string">&quot;2015-08-29T11:22:09.815479Z&quot;</span>,
-            <span class="hljs-string">&quot;finishTimestamp&quot;</span>: <span class="hljs-string">&quot;2015-08-29T11:22:09.815479Z&quot;</span>
+            <span class="hljs-string">&quot;finishTimestamp&quot;</span>: <span class="hljs-string">&quot;2015-08-29T11:22:09.815479Z&quot;</span>,
+            <span class="hljs-string">&quot;tags&quot;</span>: {
+              <span class="hljs-string">&quot;transctionId&quot;</span>: <span class="hljs-string">&quot;659ee338-c8f8-4c06-8aff-944e6c5cd694&quot;</span>,
+              <span class="hljs-string">&quot;transctionType&quot;</span>: <span class="hljs-string">&quot;transfer&quot;</span>,
+              <span class="hljs-string">&quot;parentEventType&quot;</span>: <span class="hljs-string">&quot;bulk-prepare&quot;</span>,
+              <span class="hljs-string">&quot;parentEventAction&quot;</span>: <span class="hljs-string">&quot;prepare&quot;</span>
+            }
         }
     }
 }
@@ -2011,7 +2030,7 @@
 <tr>
 <th>Name</th>
 <th>Type</th>
-<th>Mandatory<br>(Y/N)</th>
+<th>Mandatory  (Y/N)</th>
 <th>Description</th>
 <th>Example</th>
 </tr>
@@ -2047,7 +2066,7 @@
 </tr>
 <tr>
 <td>metadata</td>
-<td>object \<obmetadatatype\></obmetadatatype\></td>
+<td>object <code>&lt;MessageMetadata&gt;</code></td>
 <td>N</td>
 <td>The sender should avoid to use this property to transport any kind of content-related information, but merely data relevant to the context of the communication. Consider to define a new content type if there&apos;s a need to include more content information into the message.</td>
 <td></td>
@@ -2073,7 +2092,7 @@
 <tr>
 <th>Name</th>
 <th>Type</th>
-<th>Mandatory<br>(Y/N)</th>
+<th>Mandatory  (Y/N)</th>
 <th>Description</th>
 <th>Example</th>
 </tr>
@@ -2081,14 +2100,14 @@
 <tbody>
 <tr>
 <td>event</td>
-<td>object \<eventmetadata\></eventmetadata\></td>
+<td>object <code>&lt;EventMetadata&gt;</code></td>
 <td>Y</td>
 <td>Event information.</td>
 <td></td>
 </tr>
 <tr>
 <td>trace</td>
-<td>object \<eventtracemetadata\></eventtracemetadata\></td>
+<td>object <code>&lt;EventTraceMetaData&gt;</code></td>
 <td>Y</td>
 <td>Trace information.</td>
 </tr>
@@ -2100,7 +2119,7 @@
 <tr>
 <th>Name</th>
 <th>Type</th>
-<th>Mandatory<br>(Y/N)</th>
+<th>Mandatory  (Y/N)</th>
 <th>Description</th>
 <th>Example</th>
 </tr>
@@ -2115,14 +2134,14 @@
 </tr>
 <tr>
 <td>type</td>
-<td>enum \<eventtype\></eventtype\></td>
+<td>enum <code>&lt;EventType&gt;</code></td>
 <td>Y</td>
 <td>Type of event.</td>
 <td>[<code>log</code>, <code>audit</code>, <code>error</code> <code>trace</code>]</td>
 </tr>
 <tr>
 <td>action</td>
-<td>enum \<logeventaction, auditeventaction,="" traceeventaction,="" erroreventaction,="" nulleventaction\=""></logeventaction,></td>
+<td>enum <code>&lt;LogEventAction, AuditEventAction, TraceEventAction, NullEventAction&gt;</code></td>
 <td>Y</td>
 <td>Type of action.</td>
 <td>[ <code>start</code>, <code>end</code> ]</td>
@@ -2143,7 +2162,7 @@
 </tr>
 <tr>
 <td>state</td>
-<td>string \<eventstatemetadata\></eventstatemetadata\></td>
+<td>object <code>&lt;EventStateMetadata&gt;</code></td>
 <td>Y</td>
 <td>Object describing the state.</td>
 </tr>
@@ -2155,7 +2174,7 @@
 <tr>
 <th>Name</th>
 <th>Type</th>
-<th>Mandatory<br>(Y/N)</th>
+<th>Mandatory  (Y/N)</th>
 <th>Description</th>
 <th>Example</th>
 </tr>
@@ -2163,7 +2182,7 @@
 <tbody>
 <tr>
 <td>status</td>
-<td>enum \<eventstatustype\></eventstatustype\></td>
+<td>enum <code>&lt;EventStatusType&gt;</code></td>
 <td>Y</td>
 <td>The id references the related message.</td>
 <td>success</td>
@@ -2190,7 +2209,7 @@
 <tr>
 <th>Name</th>
 <th>Type</th>
-<th>Mandatory<br>(Y/N)</th>
+<th>Mandatory  (Y/N)</th>
 <th>Description</th>
 <th>Example</th>
 </tr>
@@ -2252,10 +2271,66 @@
 <td>ISO 8601 with the following format <code>yyyy-MM-dd&apos;T&apos;HH:mm:ss.SSSSSSz</code>. If not included the current timestamp will be taken. Represents the finish timestamp of a span</td>
 <td>2015-08-29T11:22:09.815479Z</td>
 </tr>
+<tr>
+<td>tags</td>
+<td>object <code>&lt;EventTraceMetaDataTags&gt;</code></td>
+<td>Y</td>
+<td>The id references the related message.</td>
+<td>success</td>
+</tr>
 </tbody>
 </table>
 <p><em>Note: HEXDIGLC = DIGIT / &quot;a&quot; / &quot;b&quot; / &quot;c&quot; / &quot;d&quot; / &quot;e&quot; / &quot;f&quot; ; lower case hex character. Ref: <a href="https://www.w3.org/TR/trace-context/#field-value" target="_blank">WC3 standard for trace-context</a>.</em></p>
-<h5 id="3215-enum-eventstatustype">3.2.1.5 Enum: EventStatusType</h5>
+<h5 id="3215-object-definition-eventtracemetadatatags">3.2.1.5 Object Definition: EventTraceMetaDataTags</h5>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Mandatory  (Y/N)</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>transactionId</td>
+<td>string</td>
+<td>N</td>
+<td>Transaction Id representing either a transfer, quote, etc</td>
+<td>659ee338-c8f8-4c06-8aff-944e6c5cd694</td>
+</tr>
+<tr>
+<td>transactionType</td>
+<td>string</td>
+<td>N</td>
+<td>The transaction type represented by the transactionId. E.g. (transfer, quote, etc)</td>
+<td>transfer</td>
+</tr>
+<tr>
+<td>parentEventType</td>
+<td>string</td>
+<td>N</td>
+<td>The event-type of the parent Span.</td>
+<td>bulk-prepare</td>
+</tr>
+<tr>
+<td>parentEventAction</td>
+<td>string</td>
+<td>N</td>
+<td>The event-action of the parent Span.</td>
+<td>prepare</td>
+</tr>
+<tr>
+<td><code>&lt;string&gt;</code></td>
+<td>string</td>
+<td>N</td>
+<td>Arbitary Key-value pair for additional meta-data to be added to the trace information.</td>
+<td>n/a</td>
+</tr>
+</tbody>
+</table>
+<h5 id="3216-enum-eventstatustype">3.2.1.6 Enum: EventStatusType</h5>
 <table>
 <thead>
 <tr>
@@ -2274,7 +2349,7 @@
 </tr>
 </tbody>
 </table>
-<h5 id="3216-enum-eventtype">3.2.1.6 Enum: EventType</h5>
+<h5 id="3217-enum-eventtype">3.2.1.7 Enum: EventType</h5>
 <table>
 <thead>
 <tr>
@@ -2295,13 +2370,9 @@
 <td>trace</td>
 <td>Event containing trace context information to be persisted into the tracing store.</td>
 </tr>
-<tr>
-<td>error</td>
-<td>Event representing an error.</td>
-</tr>
 </tbody>
 </table>
-<h5 id="3217-enum-logeventaction">3.2.1.7 Enum: LogEventAction</h5>
+<h5 id="3218-enum-logeventaction">3.2.1.8 Enum: LogEventAction</h5>
 <table>
 <thead>
 <tr>
@@ -2326,9 +2397,17 @@
 <td>verbose</td>
 <td>Event representing a <code>verbose</code> level log entry.</td>
 </tr>
+<tr>
+<td>warning</td>
+<td>Event representing a <code>warning</code> level log entry.</td>
+</tr>
+<tr>
+<td>performance</td>
+<td>Event representing a <code>performance</code> level log entry.</td>
+</tr>
 </tbody>
 </table>
-<h5 id="3218-enum-auditeventaction">3.2.1.8 Enum: AuditEventAction</h5>
+<h5 id="3219-enum-auditeventaction">3.2.1.9 Enum: AuditEventAction</h5>
 <table>
 <thead>
 <tr>
@@ -2343,7 +2422,7 @@
 </tr>
 </tbody>
 </table>
-<h5 id="3219-enum-traceeventaction">3.2.1.9 Enum: TraceEventAction</h5>
+<h5 id="32110-enum-traceeventaction">3.2.1.10 Enum: TraceEventAction</h5>
 <table>
 <thead>
 <tr>
@@ -2358,31 +2437,12 @@
 </tr>
 </tbody>
 </table>
-<h5 id="32110-enum-erroreventaction">3.2.1.10 Enum: ErrorEventAction</h5>
-<table>
-<thead>
-<tr>
-<th>Enum</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>internal</td>
-<td>Event action for the internal-only errors.</td>
-</tr>
-<tr>
-<td>external</td>
-<td>Event action for the external errors.</td>
-</tr>
-</tbody>
-</table>
 <h2 id="4-tracing-design">4. Tracing Design</h2>
 <h3 id="41-http-transports">4.1 HTTP Transports</h3>
-<p>Below find the current proposed standard HTTP Transport headers for tracing. </p>
+<p>Below find the current proposed standard HTTP Transport headers for tracing.</p>
 <p>Mojaloop has yet to standardise on either standard, or if it will possible support both.</p>
 <h4 id="411-wc3-http-headers">4.1.1 WC3 Http Headers</h4>
-<p>Refer to the following publication for more information: <a href="https://w3c.github.io/trace-context/" target="_blank">https://w3c.github.io/trace-context/</a> </p>
+<p>Refer to the following publication for more information: <a href="https://w3c.github.io/trace-context/" target="_blank">https://w3c.github.io/trace-context/</a></p>
 <table>
 <thead>
 <tr>
@@ -2482,7 +2542,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Event Framework","level":"1.6.7","depth":2,"next":{"title":"Fraud Services","level":"1.6.8","depth":2,"path":"mojaloop-technical-overview/fraud-services/README.md","ref":"mojaloop-technical-overview/fraud-services/README.md","articles":[{"title":"Ecosystem Fraud Documentation","level":"1.6.8.1","depth":3,"path":"mojaloop-technical-overview/fraud-services/related-documents/documentation.md","ref":"mojaloop-technical-overview/fraud-services/related-documents/documentation.md","articles":[]}]},"previous":{"title":"Signature Validation","level":"1.6.6.3","depth":3,"path":"mojaloop-technical-overview/central-event-processor/signature-validation.md","ref":"mojaloop-technical-overview/central-event-processor/signature-validation.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"3.x.x","theme":"default","variables":{"importedVars":{"mojaloop":{"spec":{"version":"v1.0","uri":{"doc":"https://github.com/mojaloop/mojaloop-specification/blob/master/API%20Definition%20v1.0.pdf","api":"https://github.com/mojaloop/mojaloop-specification/blob/master/Supporting%20Files/fspiop-rest-v1.0-OpenAPI-implementation.yaml"}}},"central_ledger":{"spec":{"version":"v2.0","uri":{"doc":"/mojaloop-technical-overview/central-ledger/README.md","api":"https://github.com/mojaloop/central-ledger/blob/master/src/api/interface/swagger.json"}}},"settlement":{"spec":{"version":"v1.1","uri":{"doc":"/mojaloop-technical-overview/central-settlements/README.md","api":"https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json"}}},"als":{"oracle":{"spec":{"version":"v1.2","uri":{"doc":"/mojaloop-technical-overview/account-lookup-service/README.md","api":"https://github.com/mojaloop/documentation/blob/master/api/assets/interface-contracts/oracle-service-swagger-v1.yaml"}}}}}},"plugins":["swagger","editlink","include","insert-logo","plantuml-svg","collapsible-chapters","back-to-top-button","theme-api","variables","changelog","page-toc"],"pluginsConfig":{"plantuml-svg":{},"editlink":{"label":"Edit This Page","multilingual":true,"base":"https://github.com/mojaloop/documentation/edit/master"},"theme-gestalt":{"logo":"https://mojaloop.io/images/logo.png","favicon":"https://mojaloop.io/images/logo.png","baseUrl":null,"excludeDefaultStyles":false,"doNotHideChildrenChapters":false},"include":{},"search":{},"collapsible-chapters":{},"page-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","position":"before-first","showByDefault":true},"swagger":{"file":""},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"uml":{"format":"png","nailgun":false},"changelog":{},"theme-api":{"languages":[],"split":true,"theme":"dark"},"back-to-top-button":{},"variables":{"files":{"importedVars":"book_variables.yml"}},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"insert-logo":{"url":"https://mojaloop.io/images/logo.png","style":"background: none; max-height: 140px; max-width: 140px;"}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"mojaloop-technical-overview/event-framework/README.md","mtime":"2019-07-03T09:33:52.222Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-07-03T09:34:59.408Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Event Framework","level":"1.6.7","depth":2,"next":{"title":"Fraud Services","level":"1.6.8","depth":2,"path":"mojaloop-technical-overview/fraud-services/README.md","ref":"mojaloop-technical-overview/fraud-services/README.md","articles":[{"title":"Ecosystem Fraud Documentation","level":"1.6.8.1","depth":3,"path":"mojaloop-technical-overview/fraud-services/related-documents/documentation.md","ref":"mojaloop-technical-overview/fraud-services/related-documents/documentation.md","articles":[]}]},"previous":{"title":"Signature Validation","level":"1.6.6.3","depth":3,"path":"mojaloop-technical-overview/central-event-processor/signature-validation.md","ref":"mojaloop-technical-overview/central-event-processor/signature-validation.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"3.x.x","theme":"default","variables":{"importedVars":{"mojaloop":{"spec":{"version":"v1.0","uri":{"doc":"https://github.com/mojaloop/mojaloop-specification/blob/master/API%20Definition%20v1.0.pdf","api":"https://github.com/mojaloop/mojaloop-specification/blob/master/Supporting%20Files/fspiop-rest-v1.0-OpenAPI-implementation.yaml"}}},"central_ledger":{"spec":{"version":"v2.0","uri":{"doc":"/mojaloop-technical-overview/central-ledger/README.md","api":"https://github.com/mojaloop/central-ledger/blob/master/src/api/interface/swagger.json"}}},"settlement":{"spec":{"version":"v1.1","uri":{"doc":"/mojaloop-technical-overview/central-settlements/README.md","api":"https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json"}}},"als":{"oracle":{"spec":{"version":"v1.2","uri":{"doc":"/mojaloop-technical-overview/account-lookup-service/README.md","api":"https://github.com/mojaloop/documentation/blob/master/api/assets/interface-contracts/oracle-service-swagger-v1.yaml"}}}}}},"plugins":["swagger","editlink","include","insert-logo","plantuml-svg","collapsible-chapters","back-to-top-button","theme-api","variables","changelog","page-toc"],"pluginsConfig":{"plantuml-svg":{},"editlink":{"label":"Edit This Page","multilingual":true,"base":"https://github.com/mojaloop/documentation/edit/master"},"theme-gestalt":{"logo":"https://mojaloop.io/images/logo.png","favicon":"https://mojaloop.io/images/logo.png","baseUrl":null,"excludeDefaultStyles":false,"doNotHideChildrenChapters":false},"include":{},"search":{},"collapsible-chapters":{},"page-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","position":"before-first","showByDefault":true},"swagger":{"file":""},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"uml":{"format":"png","nailgun":false},"changelog":{},"theme-api":{"languages":[],"split":true,"theme":"dark"},"back-to-top-button":{},"variables":{"files":{"importedVars":"book_variables.yml"}},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"insert-logo":{"url":"https://mojaloop.io/images/logo.png","style":"background: none; max-height: 140px; max-width: 140px;"}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"mojaloop-technical-overview/event-framework/README.md","mtime":"2019-08-21T13:57:18.624Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-08-21T13:58:14.884Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
