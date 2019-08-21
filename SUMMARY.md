@@ -15,6 +15,7 @@
   * [Standards](contributors-guide/standards/README.md)
     * [Versioning](contributors-guide/standards/versioning.md)
     * [Creating new Features](contributors-guide/standards/creating-new-features.md)
+    * [ML OSS Bug Triage](contributors-guide/standards/triaging-ml-oss-bugs.md)
   * [Tools and Technologies](contributors-guide/tools-and-technologies/README.md)
     * [Pragmatic REST](contributors-guide/tools-and-technologies/pragmatic-rest.md)
     * [Code Quality Metrics](contributors-guide/tools-and-technologies/code-quality-metrics.md)
