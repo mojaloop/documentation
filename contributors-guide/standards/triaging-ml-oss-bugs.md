@@ -36,7 +36,3 @@ There is a bug [template](https://github.com/mojaloop/project/issues/new?assigne
     1. Sri Miryala
     1. Warren Carew
 6. The list and the process will be updated as it evolves, this is a proposal to start with do a Pilot on.
-
-### Merge into Mojaloop Repo
-
-Once the feature is completed create a PR from your Feature Branch into the `master` branch on the Mojaloop repository \(not your personal repo\) for approval, and check validations \(e.g. unit tests, code coverage, etc executed via CircieCI\).
