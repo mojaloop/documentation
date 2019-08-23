@@ -23,19 +23,19 @@
 
 [TODO: tidy nomenclature section with notes from Rob]
 
-Tools:
-- workbench contains tools
+**Tools:**
+- A workbench contains tools
 
-Workbench:
-- different tools from different places
+**Workbench:**
+- different tools from different places make up a workbench
 - mojaloop only workbench + simulator workbench
 
-Lab:
+**Lab:**
 - lab requires multiple workbenches put together!
 - you go to different labs to do different things
 	- what are you testing? Do you want to activate TLS and JWS?: different tools
 
-Simulator:
+**Simulator:**
 - a stub that you can send stuff in and out
 - dfsp interfacing with hub or simulator
 	- 2 simulators (show hub operator)
@@ -69,7 +69,7 @@ We divide users in 2 camps: Primary users and Secondary users.
 6. Individual Contributors (including bug bounty hunters?) (Individual Contributor)
 7. Fintechs operating on top of or who will operate on top of a mojaloop-enabled switch (Mojaloop-powered fintech)
 
-![the 3 levels of mojaloopyness]('./images/mojaloop_spokes.png)
+![the 3 levels of mojaloopyness](./images/mojaloop_spokes.png)
 >_The 3 levels of Mojaloopyness, https://medium.com/dfs-lab/what-the-fintech-a-primer-on-mojaloop-50ae1c0ccafb_
 
 
@@ -170,12 +170,11 @@ As stated in our above assumptions, we aren't going to worry about Hub operators
 
 ## OSS Lab/Workbench efforts alongside others
 
-There's other people in the community working on some of these needs we outlined above. How can we align ourselves together to 
-1. Not duplicate efforts (nor step on each other's toes)
-2. Provide the most impact for end users and the Mojaloop community as a whole
+There's other people in the community working on some of these needs we outlined above. How can we align ourselves together to: (1) Not duplicate efforts (nor step on each other's toes) and (2) Provide the most impact for end users and the Mojaloop community as a whole
 
 In general, we reached a consensus around the following:
 - any OSS Lab effort should be focused with a specific end user in mind
+- focus further out on the mojaloop spokes (DFSPs, Fintechs)
 
 
 ### MIFOS
