@@ -1,4 +1,4 @@
--- MySQL dump 10.13  Distrib 8.0.12, for macos10.13 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.16, for macos10.14 (x86_64)
 --
 -- Host: 127.0.0.1    Database: central_ledger
 -- ------------------------------------------------------
@@ -16,6 +16,40 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `amountType`
+--
+
+DROP TABLE IF EXISTS `amountType`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `amountType` (
+  `amountTypeId` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(256) NOT NULL,
+  `description` varchar(1024) DEFAULT NULL,
+  `createdDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'System dateTime stamp pertaining to the inserted record',
+  PRIMARY KEY (`amountTypeId`),
+  UNIQUE KEY `amounttype_name_unique` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `balanceOfPayments`
+--
+
+DROP TABLE IF EXISTS `balanceOfPayments`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `balanceOfPayments` (
+  `balanceOfPaymentsId` int(10) unsigned NOT NULL,
+  `name` varchar(256) NOT NULL,
+  `description` varchar(1024) DEFAULT NULL COMMENT 'Possible values and meaning are defined in https://www.imf.org/external/np/sta/bopcode/',
+  `createdDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'System dateTime stamp pertaining to the inserted record',
+  PRIMARY KEY (`balanceOfPaymentsId`),
+  UNIQUE KEY `balanceofpayments_name_unique` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='See https://www.imf.org/external/np/sta/bopcode/guide.htm';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `bulkProcessingState`
 --
 
@@ -30,7 +64,7 @@ CREATE TABLE `bulkProcessingState` (
   `createdDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`bulkProcessingStateId`),
   UNIQUE KEY `bulkprocessingstate_name_unique` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,10 +77,9 @@ DROP TABLE IF EXISTS `bulkTransfer`;
 CREATE TABLE `bulkTransfer` (
   `bulkTransferId` varchar(36) NOT NULL,
   `bulkQuoteId` varchar(36) DEFAULT NULL,
-  `payerParticipantId` int(10) unsigned NOT NULL,
-  `payeeParticipantId` int(10) unsigned NOT NULL,
+  `payerParticipantId` int(10) unsigned DEFAULT NULL,
+  `payeeParticipantId` int(10) unsigned DEFAULT NULL,
   `expirationDate` datetime NOT NULL,
-  `transfersJson` json NOT NULL,
   `createdDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`bulkTransferId`),
   KEY `bulktransfer_payerparticipantid_index` (`payerParticipantId`),
@@ -65,17 +98,20 @@ DROP TABLE IF EXISTS `bulkTransferAssociation`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `bulkTransferAssociation` (
+  `bulkTransferAssociationId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `transferId` varchar(36) NOT NULL,
   `bulkTransferId` varchar(36) NOT NULL,
   `createdDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `bulkProcessingStateId` int(10) unsigned NOT NULL,
-  `lastProcessedDate` datetime DEFAULT NULL,
-  PRIMARY KEY (`transferId`),
+  `lastProcessedDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `errorCode` int(10) unsigned DEFAULT NULL,
+  `errorDescription` varchar(128) DEFAULT NULL,
+  PRIMARY KEY (`bulkTransferAssociationId`),
+  UNIQUE KEY `bulktransferassociation_transferid_bulktransferid_unique` (`transferId`,`bulkTransferId`),
+  KEY `bulktransferassociation_bulktransferid_foreign` (`bulkTransferId`),
   KEY `bulktransferassociation_bulkprocessingstateid_foreign` (`bulkProcessingStateId`),
-  KEY `bulktransferassociation_bulktransferid_index` (`bulkTransferId`),
   CONSTRAINT `bulktransferassociation_bulkprocessingstateid_foreign` FOREIGN KEY (`bulkProcessingStateId`) REFERENCES `bulkProcessingState` (`bulkprocessingstateid`),
-  CONSTRAINT `bulktransferassociation_bulktransferid_foreign` FOREIGN KEY (`bulkTransferId`) REFERENCES `bulkTransfer` (`bulktransferid`),
-  CONSTRAINT `bulktransferassociation_transferid_foreign` FOREIGN KEY (`transferId`) REFERENCES `transfer` (`transferid`)
+  CONSTRAINT `bulktransferassociation_bulktransferid_foreign` FOREIGN KEY (`bulkTransferId`) REFERENCES `bulkTransfer` (`bulktransferid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -123,7 +159,7 @@ DROP TABLE IF EXISTS `bulkTransferExtension`;
 CREATE TABLE `bulkTransferExtension` (
   `bulkTransferExtensionId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `bulkTransferId` varchar(36) NOT NULL,
-  `bulkTransferFulfilmentId` varchar(36) DEFAULT NULL,
+  `bulkTransferFulfilmentId` bigint(20) unsigned DEFAULT NULL,
   `key` varchar(128) NOT NULL,
   `value` text NOT NULL,
   `createdDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -143,13 +179,12 @@ DROP TABLE IF EXISTS `bulkTransferFulfilment`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `bulkTransferFulfilment` (
-  `bulkTransferFulfilmentId` varchar(36) NOT NULL,
+  `bulkTransferFulfilmentId` bigint(20) unsigned NOT NULL,
   `bulkTransferId` varchar(36) NOT NULL,
   `completedDate` datetime NOT NULL,
-  `transfersJson` json NOT NULL,
   `createdDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`bulkTransferFulfilmentId`),
-  KEY `bulktransferfulfilment_bulktransferid_index` (`bulkTransferId`),
+  UNIQUE KEY `bulktransferfulfilment_bulktransferid_unique` (`bulkTransferId`),
   CONSTRAINT `bulktransferfulfilment_bulktransferfulfilmentid_foreign` FOREIGN KEY (`bulkTransferFulfilmentId`) REFERENCES `bulkTransferFulfilmentDuplicateCheck` (`bulktransferfulfilmentid`),
   CONSTRAINT `bulktransferfulfilment_bulktransferid_foreign` FOREIGN KEY (`bulkTransferId`) REFERENCES `bulkTransfer` (`bulktransferid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -163,12 +198,12 @@ DROP TABLE IF EXISTS `bulkTransferFulfilmentDuplicateCheck`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `bulkTransferFulfilmentDuplicateCheck` (
-  `bulkTransferFulfilmentId` varchar(36) NOT NULL,
+  `bulkTransferFulfilmentId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `bulkTransferId` varchar(36) NOT NULL,
   `hash` varchar(256) DEFAULT NULL,
   `createdDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`bulkTransferFulfilmentId`),
-  KEY `bulktransferfulfilmentduplicatecheck_bulktransferid_index` (`bulkTransferId`)
+  UNIQUE KEY `bulktransferfulfilmentduplicatecheck_bulktransferid_unique` (`bulkTransferId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -259,7 +294,7 @@ CREATE TABLE `endpointType` (
   `createdDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`endpointTypeId`),
   UNIQUE KEY `endpointtype_name_unique` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -275,6 +310,25 @@ CREATE TABLE `event` (
   `description` varchar(512) DEFAULT NULL,
   `createdDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`eventId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `geoCode`
+--
+
+DROP TABLE IF EXISTS `geoCode`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `geoCode` (
+  `geoCodeId` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `quotePartyId` bigint(20) unsigned NOT NULL COMMENT 'Optionally the GeoCode for the Payer/Payee may have been provided. If the Quote Response has the GeoCode for the Payee, an additional row is added',
+  `latitude` varchar(50) NOT NULL COMMENT 'Latitude of the initiating Party',
+  `longitude` varchar(50) NOT NULL COMMENT 'Longitude of the initiating Party',
+  `createdDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'System dateTime stamp pertaining to the inserted record',
+  PRIMARY KEY (`geoCodeId`),
+  KEY `geocode_quotepartyid_foreign` (`quotePartyId`),
+  CONSTRAINT `geocode_quotepartyid_foreign` FOREIGN KEY (`quotePartyId`) REFERENCES `quoteParty` (`quotepartyid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -343,7 +397,7 @@ CREATE TABLE `migration` (
   `batch` int(11) DEFAULT NULL,
   `migration_time` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=97 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=130 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -555,6 +609,353 @@ CREATE TABLE `participantPositionChange` (
   CONSTRAINT `participantpositionchange_transferstatechangeid_foreign` FOREIGN KEY (`transferStateChangeId`) REFERENCES `transferStateChange` (`transferstatechangeid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `party`
+--
+
+DROP TABLE IF EXISTS `party`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `party` (
+  `partyId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `quotePartyId` bigint(20) unsigned NOT NULL,
+  `firstName` varchar(128) DEFAULT NULL,
+  `middleName` varchar(128) DEFAULT NULL,
+  `lastName` varchar(128) DEFAULT NULL,
+  `dateOfBirth` datetime DEFAULT NULL,
+  PRIMARY KEY (`partyId`),
+  KEY `party_quotepartyid_foreign` (`quotePartyId`),
+  CONSTRAINT `party_quotepartyid_foreign` FOREIGN KEY (`quotePartyId`) REFERENCES `quoteParty` (`quotepartyid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Optional pers. data provided during Quote Request & Response';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `partyIdentifierType`
+--
+
+DROP TABLE IF EXISTS `partyIdentifierType`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `partyIdentifierType` (
+  `partyIdentifierTypeId` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL,
+  `description` varchar(512) NOT NULL,
+  PRIMARY KEY (`partyIdentifierTypeId`),
+  UNIQUE KEY `partyidentifiertype_name_unique` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `partyType`
+--
+
+DROP TABLE IF EXISTS `partyType`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `partyType` (
+  `partyTypeId` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(128) NOT NULL,
+  `description` varchar(256) NOT NULL,
+  PRIMARY KEY (`partyTypeId`),
+  UNIQUE KEY `partytype_name_unique` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `quote`
+--
+
+DROP TABLE IF EXISTS `quote`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `quote` (
+  `quoteId` varchar(36) NOT NULL,
+  `transactionReferenceId` varchar(36) NOT NULL COMMENT 'Common ID (decided by the Payer FSP) between the FSPs for the future transaction object',
+  `transactionRequestId` varchar(36) DEFAULT NULL COMMENT 'Optional previously-sent transaction request',
+  `note` text COMMENT 'A memo that will be attached to the transaction',
+  `expirationDate` datetime DEFAULT NULL COMMENT 'Optional expiration for the requested transaction',
+  `transactionInitiatorId` int(10) unsigned NOT NULL COMMENT 'This is part of the transaction initiator',
+  `transactionInitiatorTypeId` int(10) unsigned NOT NULL COMMENT 'This is part of the transaction initiator type',
+  `transactionScenarioId` int(10) unsigned NOT NULL COMMENT 'This is part of the transaction scenario',
+  `balanceOfPaymentsId` int(10) unsigned DEFAULT NULL COMMENT 'This is part of the transaction type that contains the elements- balance of payment',
+  `transactionSubScenarioId` int(10) unsigned DEFAULT NULL COMMENT 'This is part of the transaction type sub scenario as defined by the local scheme',
+  `amountTypeId` int(10) unsigned NOT NULL COMMENT 'This is part of the transaction type that contains valid elements for - Amount Type',
+  `amount` decimal(18,4) NOT NULL DEFAULT '0.0000' COMMENT 'The amount that the quote is being requested for. Need to be interpert in accordance with the amount type',
+  `currencyId` varchar(255) DEFAULT NULL COMMENT 'Trading currency pertaining to the Amount',
+  `createdDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'System dateTime stamp pertaining to the inserted record',
+  PRIMARY KEY (`quoteId`),
+  KEY `quote_transactionreferenceid_foreign` (`transactionReferenceId`),
+  KEY `quote_transactionrequestid_foreign` (`transactionRequestId`),
+  KEY `quote_transactioninitiatorid_foreign` (`transactionInitiatorId`),
+  KEY `quote_transactioninitiatortypeid_foreign` (`transactionInitiatorTypeId`),
+  KEY `quote_transactionscenarioid_foreign` (`transactionScenarioId`),
+  KEY `quote_balanceofpaymentsid_foreign` (`balanceOfPaymentsId`),
+  KEY `quote_transactionsubscenarioid_foreign` (`transactionSubScenarioId`),
+  KEY `quote_amounttypeid_foreign` (`amountTypeId`),
+  KEY `quote_currencyid_foreign` (`currencyId`),
+  CONSTRAINT `quote_amounttypeid_foreign` FOREIGN KEY (`amountTypeId`) REFERENCES `amountType` (`amounttypeid`),
+  CONSTRAINT `quote_balanceofpaymentsid_foreign` FOREIGN KEY (`balanceOfPaymentsId`) REFERENCES `balanceOfPayments` (`balanceofpaymentsid`),
+  CONSTRAINT `quote_currencyid_foreign` FOREIGN KEY (`currencyId`) REFERENCES `currency` (`currencyid`),
+  CONSTRAINT `quote_transactioninitiatorid_foreign` FOREIGN KEY (`transactionInitiatorId`) REFERENCES `transactionInitiator` (`transactioninitiatorid`),
+  CONSTRAINT `quote_transactioninitiatortypeid_foreign` FOREIGN KEY (`transactionInitiatorTypeId`) REFERENCES `transactionInitiatorType` (`transactioninitiatortypeid`),
+  CONSTRAINT `quote_transactionreferenceid_foreign` FOREIGN KEY (`transactionReferenceId`) REFERENCES `transactionReference` (`transactionreferenceid`),
+  CONSTRAINT `quote_transactionrequestid_foreign` FOREIGN KEY (`transactionRequestId`) REFERENCES `transactionReference` (`transactionreferenceid`),
+  CONSTRAINT `quote_transactionscenarioid_foreign` FOREIGN KEY (`transactionScenarioId`) REFERENCES `transactionScenario` (`transactionscenarioid`),
+  CONSTRAINT `quote_transactionsubscenarioid_foreign` FOREIGN KEY (`transactionSubScenarioId`) REFERENCES `transactionSubScenario` (`transactionsubscenarioid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `quoteDuplicateCheck`
+--
+
+DROP TABLE IF EXISTS `quoteDuplicateCheck`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `quoteDuplicateCheck` (
+  `quoteId` varchar(36) NOT NULL COMMENT 'Common ID between the FSPs for the quote object, decided by the Payer FSP',
+  `hash` varchar(1024) DEFAULT NULL COMMENT 'hash value received for the quote request',
+  `createdDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'System dateTime stamp pertaining to the inserted record',
+  PRIMARY KEY (`quoteId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `quoteError`
+--
+
+DROP TABLE IF EXISTS `quoteError`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `quoteError` (
+  `quoteErrorId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `quoteId` varchar(36) NOT NULL COMMENT 'Common ID between the FSPs for the quote object, decided by the Payer FSP',
+  `quoteResponseId` bigint(20) unsigned DEFAULT NULL COMMENT 'The response to the intial quote',
+  `errorCode` int(10) unsigned NOT NULL,
+  `errorDescription` varchar(128) NOT NULL,
+  `createdDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`quoteErrorId`),
+  KEY `quoteerror_quoteid_foreign` (`quoteId`),
+  KEY `quoteerror_quoteresponseid_foreign` (`quoteResponseId`),
+  CONSTRAINT `quoteerror_quoteid_foreign` FOREIGN KEY (`quoteId`) REFERENCES `quote` (`quoteid`),
+  CONSTRAINT `quoteerror_quoteresponseid_foreign` FOREIGN KEY (`quoteResponseId`) REFERENCES `quoteResponse` (`quoteresponseid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `quoteExtension`
+--
+
+DROP TABLE IF EXISTS `quoteExtension`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `quoteExtension` (
+  `quoteExtensionId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `quoteId` varchar(36) NOT NULL COMMENT 'Common ID between the FSPs for the quote object, decided by the Payer FSP',
+  `quoteResponseId` bigint(20) unsigned NOT NULL COMMENT 'The response to the intial quote',
+  `transactionId` varchar(36) NOT NULL COMMENT 'The transaction reference that is part of the initial quote',
+  `key` varchar(128) NOT NULL,
+  `value` text NOT NULL,
+  `createdDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'System dateTime stamp pertaining to the inserted record',
+  PRIMARY KEY (`quoteExtensionId`),
+  KEY `quoteextension_quoteid_foreign` (`quoteId`),
+  KEY `quoteextension_quoteresponseid_foreign` (`quoteResponseId`),
+  KEY `quoteextension_transactionid_foreign` (`transactionId`),
+  CONSTRAINT `quoteextension_quoteid_foreign` FOREIGN KEY (`quoteId`) REFERENCES `quote` (`quoteid`),
+  CONSTRAINT `quoteextension_quoteresponseid_foreign` FOREIGN KEY (`quoteResponseId`) REFERENCES `quoteResponse` (`quoteresponseid`),
+  CONSTRAINT `quoteextension_transactionid_foreign` FOREIGN KEY (`transactionId`) REFERENCES `transactionReference` (`transactionreferenceid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `quoteParty`
+--
+
+DROP TABLE IF EXISTS `quoteParty`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `quoteParty` (
+  `quotePartyId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `quoteId` varchar(36) NOT NULL COMMENT 'Common ID between the FSPs for the quote object, decided by the Payer FSP',
+  `partyTypeId` int(10) unsigned NOT NULL COMMENT 'Specifies the type of party this row relates to; typically PAYER or PAYEE',
+  `partyIdentifierTypeId` int(10) unsigned NOT NULL COMMENT 'Specifies the type of identifier used to identify this party e.g. MSISDN, IBAN etc...',
+  `partyIdentifierValue` varchar(128) NOT NULL COMMENT 'The value of the identifier used to identify this party',
+  `partySubIdOrTypeId` int(10) unsigned DEFAULT NULL COMMENT 'A sub-identifier or sub-type for the Party',
+  `fspId` varchar(255) DEFAULT NULL COMMENT 'This is the FSP ID as provided in the quote. For the switch between multi-parties it is required',
+  `participantId` int(10) unsigned DEFAULT NULL COMMENT 'Reference to the resolved FSP ID (if supplied/known). If not an error will be reported',
+  `merchantClassificationCode` varchar(4) DEFAULT NULL COMMENT 'Used in the context of Payee Information, where the Payee happens to be a merchant accepting merchant payments',
+  `partyName` varchar(128) DEFAULT NULL COMMENT 'Display name of the Party, could be a real name or a nick name',
+  `transferParticipantRoleTypeId` int(10) unsigned NOT NULL COMMENT 'The role this Party is playing in the transaction',
+  `ledgerEntryTypeId` int(10) unsigned NOT NULL COMMENT 'The type of financial entry this Party is presenting',
+  `amount` decimal(18,4) NOT NULL,
+  `currencyId` varchar(3) NOT NULL COMMENT 'Trading currency pertaining to the party amount',
+  `createdDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'System dateTime stamp pertaining to the inserted record',
+  PRIMARY KEY (`quotePartyId`),
+  KEY `quoteparty_quoteid_foreign` (`quoteId`),
+  KEY `quoteparty_partytypeid_foreign` (`partyTypeId`),
+  KEY `quoteparty_partyidentifiertypeid_foreign` (`partyIdentifierTypeId`),
+  KEY `quoteparty_partysubidortypeid_foreign` (`partySubIdOrTypeId`),
+  KEY `quoteparty_participantid_foreign` (`participantId`),
+  KEY `quoteparty_transferparticipantroletypeid_foreign` (`transferParticipantRoleTypeId`),
+  KEY `quoteparty_ledgerentrytypeid_foreign` (`ledgerEntryTypeId`),
+  KEY `quoteparty_currencyid_foreign` (`currencyId`),
+  CONSTRAINT `quoteparty_currencyid_foreign` FOREIGN KEY (`currencyId`) REFERENCES `currency` (`currencyid`),
+  CONSTRAINT `quoteparty_ledgerentrytypeid_foreign` FOREIGN KEY (`ledgerEntryTypeId`) REFERENCES `ledgerEntryType` (`ledgerentrytypeid`),
+  CONSTRAINT `quoteparty_participantid_foreign` FOREIGN KEY (`participantId`) REFERENCES `participant` (`participantid`),
+  CONSTRAINT `quoteparty_partyidentifiertypeid_foreign` FOREIGN KEY (`partyIdentifierTypeId`) REFERENCES `partyIdentifierType` (`partyidentifiertypeid`),
+  CONSTRAINT `quoteparty_partysubidortypeid_foreign` FOREIGN KEY (`partySubIdOrTypeId`) REFERENCES `partyIdentifierType` (`partyidentifiertypeid`),
+  CONSTRAINT `quoteparty_partytypeid_foreign` FOREIGN KEY (`partyTypeId`) REFERENCES `partyType` (`partytypeid`),
+  CONSTRAINT `quoteparty_quoteid_foreign` FOREIGN KEY (`quoteId`) REFERENCES `quote` (`quoteid`),
+  CONSTRAINT `quoteparty_transferparticipantroletypeid_foreign` FOREIGN KEY (`transferParticipantRoleTypeId`) REFERENCES `transferParticipantRoleType` (`transferparticipantroletypeid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Temporary view structure for view `quotePartyView`
+--
+
+DROP TABLE IF EXISTS `quotePartyView`;
+/*!50001 DROP VIEW IF EXISTS `quotePartyView`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8mb4;
+/*!50001 CREATE VIEW `quotePartyView` AS SELECT 
+ 1 AS `quoteId`,
+ 1 AS `quotePartyId`,
+ 1 AS `partyType`,
+ 1 AS `identifierType`,
+ 1 AS `partyIdentifierValue`,
+ 1 AS `partySubIdOrType`,
+ 1 AS `fspId`,
+ 1 AS `merchantClassificationCode`,
+ 1 AS `partyName`,
+ 1 AS `firstName`,
+ 1 AS `lastName`,
+ 1 AS `middleName`,
+ 1 AS `dateOfBirth`,
+ 1 AS `longitude`,
+ 1 AS `latitude`*/;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Table structure for table `quoteResponse`
+--
+
+DROP TABLE IF EXISTS `quoteResponse`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `quoteResponse` (
+  `quoteResponseId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `quoteId` varchar(36) NOT NULL COMMENT 'Common ID between the FSPs for the quote object, decided by the Payer FSP',
+  `transferAmountCurrencyId` varchar(3) NOT NULL COMMENT 'CurrencyId of the transfer amount',
+  `transferAmount` decimal(18,4) NOT NULL COMMENT 'The amount of money that the Payer FSP should transfer to the Payee FSP',
+  `payeeReceiveAmountCurrencyId` varchar(3) DEFAULT NULL COMMENT 'CurrencyId of the payee receive amount',
+  `payeeReceiveAmount` decimal(18,4) DEFAULT NULL COMMENT 'The amount of Money that the Payee should receive in the end-to-end transaction. Optional as the Payee FSP might not want to disclose any optional Payee fees',
+  `payeeFspFeeCurrencyId` varchar(3) DEFAULT NULL COMMENT 'CurrencyId of the payee fsp fee amount',
+  `payeeFspFeeAmount` decimal(18,4) DEFAULT NULL COMMENT 'Payee FSP’s part of the transaction fee',
+  `payeeFspCommissionCurrencyId` varchar(3) DEFAULT NULL COMMENT 'CurrencyId of the payee fsp commission amount',
+  `payeeFspCommissionAmount` decimal(18,4) DEFAULT NULL COMMENT 'Transaction commission from the Payee FSP',
+  `ilpCondition` varchar(256) NOT NULL,
+  `responseExpirationDate` datetime DEFAULT NULL COMMENT 'Optional expiration for the requested transaction',
+  `isValid` tinyint(1) DEFAULT NULL,
+  `createdDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'System dateTime stamp pertaining to the inserted record',
+  PRIMARY KEY (`quoteResponseId`),
+  KEY `quoteresponse_quoteid_foreign` (`quoteId`),
+  KEY `quoteresponse_transferamountcurrencyid_foreign` (`transferAmountCurrencyId`),
+  KEY `quoteresponse_payeereceiveamountcurrencyid_foreign` (`payeeReceiveAmountCurrencyId`),
+  KEY `quoteresponse_payeefspcommissioncurrencyid_foreign` (`payeeFspCommissionCurrencyId`),
+  CONSTRAINT `quoteresponse_payeefspcommissioncurrencyid_foreign` FOREIGN KEY (`payeeFspCommissionCurrencyId`) REFERENCES `currency` (`currencyid`),
+  CONSTRAINT `quoteresponse_payeereceiveamountcurrencyid_foreign` FOREIGN KEY (`payeeReceiveAmountCurrencyId`) REFERENCES `currency` (`currencyid`),
+  CONSTRAINT `quoteresponse_quoteid_foreign` FOREIGN KEY (`quoteId`) REFERENCES `quote` (`quoteid`),
+  CONSTRAINT `quoteresponse_transferamountcurrencyid_foreign` FOREIGN KEY (`transferAmountCurrencyId`) REFERENCES `currency` (`currencyid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='This table is the primary store for quote responses';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `quoteResponseDuplicateCheck`
+--
+
+DROP TABLE IF EXISTS `quoteResponseDuplicateCheck`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `quoteResponseDuplicateCheck` (
+  `quoteResponseId` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'The response to the intial quote',
+  `quoteId` varchar(36) NOT NULL COMMENT 'Common ID between the FSPs for the quote object, decided by the Payer FSP',
+  `hash` varchar(255) DEFAULT NULL COMMENT 'hash value received for the quote response',
+  `createdDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'System dateTime stamp pertaining to the inserted record',
+  PRIMARY KEY (`quoteResponseId`),
+  KEY `quoteresponseduplicatecheck_quoteid_foreign` (`quoteId`),
+  CONSTRAINT `quoteresponseduplicatecheck_quoteid_foreign` FOREIGN KEY (`quoteId`) REFERENCES `quote` (`quoteid`),
+  CONSTRAINT `quoteresponseduplicatecheck_quoteresponseid_foreign` FOREIGN KEY (`quoteResponseId`) REFERENCES `quoteResponse` (`quoteresponseid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `quoteResponseIlpPacket`
+--
+
+DROP TABLE IF EXISTS `quoteResponseIlpPacket`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `quoteResponseIlpPacket` (
+  `quoteResponseId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `value` text NOT NULL COMMENT 'ilpPacket returned from Payee in response to a quote request',
+  PRIMARY KEY (`quoteResponseId`),
+  CONSTRAINT `quoteresponseilppacket_quoteresponseid_foreign` FOREIGN KEY (`quoteResponseId`) REFERENCES `quoteResponse` (`quoteresponseid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Temporary view structure for view `quoteResponseView`
+--
+
+DROP TABLE IF EXISTS `quoteResponseView`;
+/*!50001 DROP VIEW IF EXISTS `quoteResponseView`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8mb4;
+/*!50001 CREATE VIEW `quoteResponseView` AS SELECT 
+ 1 AS `quoteResponseId`,
+ 1 AS `quoteId`,
+ 1 AS `transferAmountCurrencyId`,
+ 1 AS `transferAmount`,
+ 1 AS `payeeReceiveAmountCurrencyId`,
+ 1 AS `payeeReceiveAmount`,
+ 1 AS `payeeFspFeeCurrencyId`,
+ 1 AS `payeeFspFeeAmount`,
+ 1 AS `payeeFspCommissionCurrencyId`,
+ 1 AS `payeeFspCommissionAmount`,
+ 1 AS `ilpCondition`,
+ 1 AS `responseExpirationDate`,
+ 1 AS `isValid`,
+ 1 AS `createdDate`,
+ 1 AS `ilpPacket`,
+ 1 AS `longitude`,
+ 1 AS `latitude`*/;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary view structure for view `quoteView`
+--
+
+DROP TABLE IF EXISTS `quoteView`;
+/*!50001 DROP VIEW IF EXISTS `quoteView`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8mb4;
+/*!50001 CREATE VIEW `quoteView` AS SELECT 
+ 1 AS `quoteId`,
+ 1 AS `transactionReferenceId`,
+ 1 AS `transactionRequestId`,
+ 1 AS `note`,
+ 1 AS `expirationDate`,
+ 1 AS `transactionInitiator`,
+ 1 AS `transactionInitiatorType`,
+ 1 AS `transactionScenario`,
+ 1 AS `balanceOfPaymentsId`,
+ 1 AS `transactionSubScenario`,
+ 1 AS `amountType`,
+ 1 AS `amount`,
+ 1 AS `currency`*/;
+SET character_set_client = @saved_cs_client;
 
 --
 -- Table structure for table `segment`
@@ -807,6 +1208,90 @@ CREATE TABLE `token` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `transactionInitiator`
+--
+
+DROP TABLE IF EXISTS `transactionInitiator`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `transactionInitiator` (
+  `transactionInitiatorId` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(256) NOT NULL,
+  `description` varchar(1024) DEFAULT NULL,
+  `createdDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'System dateTime stamp pertaining to the inserted record',
+  PRIMARY KEY (`transactionInitiatorId`),
+  UNIQUE KEY `transactioninitiator_name_unique` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `transactionInitiatorType`
+--
+
+DROP TABLE IF EXISTS `transactionInitiatorType`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `transactionInitiatorType` (
+  `transactionInitiatorTypeId` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(256) NOT NULL,
+  `description` varchar(1024) DEFAULT NULL,
+  `createdDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'System dateTime stamp pertaining to the inserted record',
+  PRIMARY KEY (`transactionInitiatorTypeId`),
+  UNIQUE KEY `transactioninitiatortype_name_unique` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `transactionReference`
+--
+
+DROP TABLE IF EXISTS `transactionReference`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `transactionReference` (
+  `transactionReferenceId` varchar(36) NOT NULL COMMENT 'Common ID (decided by the Payer FSP) between the FSPs for the future transaction object',
+  `quoteId` varchar(36) DEFAULT NULL COMMENT 'Common ID between the FSPs for the quote object, decided by the Payer FSP',
+  `createdDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'System row creation timestamp',
+  PRIMARY KEY (`transactionReferenceId`),
+  KEY `transactionreference_quoteid_index` (`quoteId`),
+  CONSTRAINT `transactionreference_quoteid_foreign` FOREIGN KEY (`quoteId`) REFERENCES `quoteDuplicateCheck` (`quoteid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `transactionScenario`
+--
+
+DROP TABLE IF EXISTS `transactionScenario`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `transactionScenario` (
+  `transactionScenarioId` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(256) NOT NULL,
+  `description` varchar(1024) DEFAULT NULL,
+  `createdDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'System dateTime stamp pertaining to the inserted record',
+  PRIMARY KEY (`transactionScenarioId`),
+  UNIQUE KEY `transactionscenario_name_unique` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `transactionSubScenario`
+--
+
+DROP TABLE IF EXISTS `transactionSubScenario`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `transactionSubScenario` (
+  `transactionSubScenarioId` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(256) NOT NULL,
+  `description` varchar(1024) DEFAULT NULL COMMENT 'Possible sub-scenario, defined locally within the scheme',
+  `createdDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'System dateTime stamp pertaining to the inserted record',
+  PRIMARY KEY (`transactionSubScenarioId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `transfer`
 --
 
@@ -850,16 +1335,14 @@ DROP TABLE IF EXISTS `transferError`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `transferError` (
-  `transferErrorId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `transferId` varchar(36) NOT NULL,
   `transferStateChangeId` bigint(20) unsigned NOT NULL,
   `errorCode` int(10) unsigned NOT NULL,
   `errorDescription` varchar(128) NOT NULL,
   `createdDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `transferErrorDuplicateCheckId` bigint(20) unsigned DEFAULT NULL,
-  PRIMARY KEY (`transferErrorId`),
-  KEY `transfererror_transferstatechangeid_index` (`transferStateChangeId`),
-  KEY `transfererror_transfererrorduplicatecheckid_index` (`transferErrorDuplicateCheckId`),
-  CONSTRAINT `transfererror_transfererrorduplicatecheckid_foreign` FOREIGN KEY (`transferErrorDuplicateCheckId`) REFERENCES `transferErrorDuplicateCheck` (`transfererrorduplicatecheckid`),
+  PRIMARY KEY (`transferId`),
+  KEY `transfererror_transferstatechangeid_foreign` (`transferStateChangeId`),
+  CONSTRAINT `transfererror_transferid_foreign` FOREIGN KEY (`transferId`) REFERENCES `transferErrorDuplicateCheck` (`transferid`),
   CONSTRAINT `transfererror_transferstatechangeid_foreign` FOREIGN KEY (`transferStateChangeId`) REFERENCES `transferStateChange` (`transferstatechangeid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -872,12 +1355,10 @@ DROP TABLE IF EXISTS `transferErrorDuplicateCheck`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `transferErrorDuplicateCheck` (
-  `transferErrorDuplicateCheckId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `transferId` varchar(36) NOT NULL,
-  `hash` varchar(256) NOT NULL,
+  `hash` varchar(256) DEFAULT NULL,
   `createdDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`transferErrorDuplicateCheckId`),
-  KEY `transfererrorduplicatecheck_transferid_index` (`transferId`),
+  PRIMARY KEY (`transferId`),
   CONSTRAINT `transfererrorduplicatecheck_transferid_foreign` FOREIGN KEY (`transferId`) REFERENCES `transfer` (`transferid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -892,17 +1373,13 @@ DROP TABLE IF EXISTS `transferExtension`;
 CREATE TABLE `transferExtension` (
   `transferExtensionId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `transferId` varchar(36) NOT NULL,
-  `transferFulfilmentId` varchar(36) DEFAULT NULL,
   `key` varchar(128) NOT NULL,
   `value` text NOT NULL,
+  `isFulfilment` tinyint(1) NOT NULL DEFAULT '0',
+  `isError` tinyint(1) NOT NULL DEFAULT '0',
   `createdDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `transferErrorId` bigint(20) unsigned DEFAULT NULL,
   PRIMARY KEY (`transferExtensionId`),
-  KEY `transferextension_transferid_index` (`transferId`),
-  KEY `transferextension_transferfulfilmentid_index` (`transferFulfilmentId`),
-  KEY `transferextension_transfererrorid_foreign` (`transferErrorId`),
-  CONSTRAINT `transferextension_transfererrorid_foreign` FOREIGN KEY (`transferErrorId`) REFERENCES `transferError` (`transfererrorid`),
-  CONSTRAINT `transferextension_transferfulfilmentid_foreign` FOREIGN KEY (`transferFulfilmentId`) REFERENCES `transferFulfilment` (`transferfulfilmentid`),
+  KEY `transferextension_transferid_foreign` (`transferId`),
   CONSTRAINT `transferextension_transferid_foreign` FOREIGN KEY (`transferId`) REFERENCES `transfer` (`transferid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -915,20 +1392,16 @@ DROP TABLE IF EXISTS `transferFulfilment`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `transferFulfilment` (
-  `transferFulfilmentId` varchar(36) NOT NULL,
   `transferId` varchar(36) NOT NULL,
   `ilpFulfilment` varchar(256) DEFAULT NULL,
   `completedDate` datetime NOT NULL,
   `isValid` tinyint(1) DEFAULT NULL,
   `settlementWindowId` bigint(20) unsigned DEFAULT NULL,
   `createdDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`transferFulfilmentId`),
-  UNIQUE KEY `transferfulfilment_transferid_ilpfulfilment_unique` (`transferId`,`ilpFulfilment`),
-  KEY `transferfulfilment_transferid_index` (`transferId`),
-  KEY `transferfulfilment_settlementwindowid_index` (`settlementWindowId`),
+  PRIMARY KEY (`transferId`),
+  KEY `transferfulfilment_settlementwindowid_foreign` (`settlementWindowId`),
   CONSTRAINT `transferfulfilment_settlementwindowid_foreign` FOREIGN KEY (`settlementWindowId`) REFERENCES `settlementWindow` (`settlementwindowid`),
-  CONSTRAINT `transferfulfilment_transferfulfilmentid_foreign` FOREIGN KEY (`transferFulfilmentId`) REFERENCES `transferFulfilmentDuplicateCheck` (`transferfulfilmentid`),
-  CONSTRAINT `transferfulfilment_transferid_foreign` FOREIGN KEY (`transferId`) REFERENCES `transfer` (`transferid`)
+  CONSTRAINT `transferfulfilment_transferid_foreign` FOREIGN KEY (`transferId`) REFERENCES `transferFulfilmentDuplicateCheck` (`transferid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -940,13 +1413,11 @@ DROP TABLE IF EXISTS `transferFulfilmentDuplicateCheck`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `transferFulfilmentDuplicateCheck` (
-  `transferFulfilmentId` varchar(36) NOT NULL,
   `transferId` varchar(36) NOT NULL,
   `hash` varchar(256) DEFAULT NULL,
   `createdDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`transferFulfilmentId`),
-  UNIQUE KEY `tfdc_transferfulfilmentid_hash_unique` (`transferFulfilmentId`,`hash`),
-  KEY `transferfulfilmentduplicatecheck_transferid_index` (`transferId`)
+  PRIMARY KEY (`transferId`),
+  CONSTRAINT `transferfulfilmentduplicatecheck_transferid_foreign` FOREIGN KEY (`transferId`) REFERENCES `transfer` (`transferid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -993,6 +1464,24 @@ CREATE TABLE `transferParticipantRoleType` (
   PRIMARY KEY (`transferParticipantRoleTypeId`),
   UNIQUE KEY `transferparticipantroletype_name_unique` (`name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `transferRules`
+--
+
+DROP TABLE IF EXISTS `transferRules`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `transferRules` (
+  `transferRulesId` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(128) NOT NULL,
+  `description` varchar(512) DEFAULT NULL,
+  `rule` text NOT NULL,
+  `enabled` tinyint(1) NOT NULL DEFAULT '1',
+  `createdDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`transferRulesId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1050,6 +1539,60 @@ CREATE TABLE `transferTimeout` (
   CONSTRAINT `transfertimeout_transferid_foreign` FOREIGN KEY (`transferId`) REFERENCES `transfer` (`transferid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Final view structure for view `quotePartyView`
+--
+
+/*!50001 DROP VIEW IF EXISTS `quotePartyView`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8 */;
+/*!50001 SET character_set_results     = utf8 */;
+/*!50001 SET collation_connection      = utf8_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`central_ledger`@`%` SQL SECURITY DEFINER */
+/*!50001 VIEW `quotePartyView` AS select `qp`.`quoteId` AS `quoteId`,`qp`.`quotePartyId` AS `quotePartyId`,`pt`.`name` AS `partyType`,`pit`.`name` AS `identifierType`,`qp`.`partyIdentifierValue` AS `partyIdentifierValue`,`spit`.`name` AS `partySubIdOrType`,`qp`.`fspId` AS `fspId`,`qp`.`merchantClassificationCode` AS `merchantClassificationCode`,`qp`.`partyName` AS `partyName`,`p`.`firstName` AS `firstName`,`p`.`lastName` AS `lastName`,`p`.`middleName` AS `middleName`,`p`.`dateOfBirth` AS `dateOfBirth`,`gc`.`longitude` AS `longitude`,`gc`.`latitude` AS `latitude` from (((((`quoteParty` `qp` join `partyType` `pt` on((`pt`.`partyTypeId` = `qp`.`partyTypeId`))) join `partyIdentifierType` `pit` on((`pit`.`partyIdentifierTypeId` = `qp`.`partyIdentifierTypeId`))) left join `party` `p` on((`p`.`quotePartyId` = `qp`.`quotePartyId`))) left join `partyIdentifierType` `spit` on((`spit`.`partyIdentifierTypeId` = `qp`.`partySubIdOrTypeId`))) left join `geoCode` `gc` on((`gc`.`quotePartyId` = `qp`.`quotePartyId`))) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `quoteResponseView`
+--
+
+/*!50001 DROP VIEW IF EXISTS `quoteResponseView`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8 */;
+/*!50001 SET character_set_results     = utf8 */;
+/*!50001 SET collation_connection      = utf8_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`central_ledger`@`%` SQL SECURITY DEFINER */
+/*!50001 VIEW `quoteResponseView` AS select `qr`.`quoteResponseId` AS `quoteResponseId`,`qr`.`quoteId` AS `quoteId`,`qr`.`transferAmountCurrencyId` AS `transferAmountCurrencyId`,`qr`.`transferAmount` AS `transferAmount`,`qr`.`payeeReceiveAmountCurrencyId` AS `payeeReceiveAmountCurrencyId`,`qr`.`payeeReceiveAmount` AS `payeeReceiveAmount`,`qr`.`payeeFspFeeCurrencyId` AS `payeeFspFeeCurrencyId`,`qr`.`payeeFspFeeAmount` AS `payeeFspFeeAmount`,`qr`.`payeeFspCommissionCurrencyId` AS `payeeFspCommissionCurrencyId`,`qr`.`payeeFspCommissionAmount` AS `payeeFspCommissionAmount`,`qr`.`ilpCondition` AS `ilpCondition`,`qr`.`responseExpirationDate` AS `responseExpirationDate`,`qr`.`isValid` AS `isValid`,`qr`.`createdDate` AS `createdDate`,`qrilp`.`value` AS `ilpPacket`,`gc`.`longitude` AS `longitude`,`gc`.`latitude` AS `latitude` from ((((`quoteResponse` `qr` join `quoteResponseIlpPacket` `qrilp` on((`qrilp`.`quoteResponseId` = `qr`.`quoteResponseId`))) join `quoteParty` `qp` on((`qp`.`quoteId` = `qr`.`quoteId`))) join `partyType` `pt` on((`pt`.`partyTypeId` = `qp`.`partyTypeId`))) left join `geoCode` `gc` on((`gc`.`quotePartyId` = `qp`.`quotePartyId`))) where (`pt`.`name` = 'PAYEE') */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `quoteView`
+--
+
+/*!50001 DROP VIEW IF EXISTS `quoteView`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8 */;
+/*!50001 SET character_set_results     = utf8 */;
+/*!50001 SET collation_connection      = utf8_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`central_ledger`@`%` SQL SECURITY DEFINER */
+/*!50001 VIEW `quoteView` AS select `q`.`quoteId` AS `quoteId`,`q`.`transactionReferenceId` AS `transactionReferenceId`,`q`.`transactionRequestId` AS `transactionRequestId`,`q`.`note` AS `note`,`q`.`expirationDate` AS `expirationDate`,`ti`.`name` AS `transactionInitiator`,`tit`.`name` AS `transactionInitiatorType`,`ts`.`name` AS `transactionScenario`,`q`.`balanceOfPaymentsId` AS `balanceOfPaymentsId`,`tss`.`name` AS `transactionSubScenario`,`amt`.`name` AS `amountType`,`q`.`amount` AS `amount`,`q`.`currencyId` AS `currency` from (((((`quote` `q` join `transactionInitiator` `ti` on((`ti`.`transactionInitiatorId` = `q`.`transactionInitiatorId`))) join `transactionInitiatorType` `tit` on((`tit`.`transactionInitiatorTypeId` = `q`.`transactionInitiatorTypeId`))) join `transactionScenario` `ts` on((`ts`.`transactionScenarioId` = `q`.`transactionScenarioId`))) join `amountType` `amt` on((`amt`.`amountTypeId` = `q`.`amountTypeId`))) left join `transactionSubScenario` `tss` on((`tss`.`transactionSubScenarioId` = `q`.`transactionSubScenarioId`))) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -1060,4 +1603,4 @@ CREATE TABLE `transferTimeout` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-05-10  1:28:34
+-- Dump completed on 2019-08-23 12:41:12
