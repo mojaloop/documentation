@@ -137,7 +137,7 @@ As stated in our above assumptions, we aren't going to worry about Hub operators
 - help to onboard to the mojaloop ecosystem
 - help to understand the technology, where it works well, and the potential pitfalls/drawbacks
 - minimize investment in getting things working so they can focus on building out use case prototypes
-- take them from little to no understanding of Mojaloop -> demonstrating real world prototypes
+- take them from little to no understanding of Mojaloop -> demonstrating real prototypes
 
 **Inputs: (what are the things that we need to do to meet these goals)**
 1. Improved documentation around specific for this role (e.g. Mojaloop for x). Documentation should be approachable by product manager etc. with little techincal knowledge
@@ -155,7 +155,6 @@ As stated in our above assumptions, we aren't going to worry about Hub operators
 - Learn about mojaloop-enabled hubs and associated use cases (technology perspective)
 - Assess how Mojaloop will affect their business in the future
 
-
 **Examples from our user personas:**
 - EastPay - compare and shop around for banks/payment providers based on Mojaloop's open fee structure
 - Juvo - [todo: finish]
@@ -163,9 +162,10 @@ As stated in our above assumptions, we aren't going to worry about Hub operators
 
 **Outputs: (How can the Mojaloop OSS Community better serve these players?)**
 - Understand how Mojaloop and Wholesale APIs fit together (or don't)
-- take them from little to no understanding of Mojaloop -> demonstrating real world prototypes
+- take them from little to no understanding of Mojaloop -> demonstrating real prototypes
 
 **Inputs: (what are the things that we need to do to meet these goals)**
+- [todo - I don't know how these differ from above]
 
 
 ## OSS Lab/Workbench efforts alongside others
