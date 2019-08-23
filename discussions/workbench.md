@@ -1,5 +1,5 @@
 # Mojaloop Workbench Discussion
-## It's time to get Mojaloopy
+### It's time to get Mojaloopy
 
 >___NOTE:__ This is a working document. Expect it to change dramatically before an official release._
 
