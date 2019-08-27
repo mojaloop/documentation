@@ -212,19 +212,19 @@ Please review [Mojaloop Helm Chart](../repositories/helm.md) to understand the r
 
    The below required config is applicable to Helm release >= versions 6.2.2 for Mojaloop API Services;
    ```text
-   127.0.0.1       central-ledger.local central-settlement.local ml-api-adapter.local account-lookup-service.local account-lookup-service-admin.local quoting-service.local moja-simulator.local
+   127.0.0.1       central-ledger.local central-settlement.local ml-api-adapter.local account-lookup-service.local account-lookup-service-admin.local quoting-service.local moja-simulator.local central-ledger central-settlement ml-api-adapter account-lookup-service account-lookup-service-admin quoting-service simulator host.docker.internal
    ```
       
    The below optional config is applicable to Helm release >= versions 6.2.2 for Internal components, please include the following in the host configuration.
    ```text
    127.0.0.1       forensic-logging-sidecar.local central-kms.local central-event-processor.local email-notifier.local
    ```
-   
+      
    For Helm legacy releases prior to versions 6.2.2, please include the following in the host configuration.
    ```text
    127.0.0.1       interop-switch.local central-end-user-registry.local central-directory.local central-hub.local
    ```
-
+   
 2. Test system health in your browser after installation. This will only work if you have an active helm chart deployment running.
    
    _Note: The examples below are only applicable to a local deployment. The entries should match the DNS values or ingress rules as configured in the [values.yaml](https://github.com/mojaloop/helm/blob/master/mojaloop/values.yaml) or otherwise matching any custom ingress rules configured_.
