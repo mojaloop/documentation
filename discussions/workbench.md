@@ -1,6 +1,6 @@
 # Mojaloop Lab/Workbench Discussion
 
-This discussion aims to lay out the case and align the community around an implementation of a Mojaloop of a Mojaloop Learning Environment
+___Goal:__ This discussion document aims to lay out the case and align the community around the development of an educational Mojaloop Lab environment._
 
 
 ## Goals for the PI8 Convening:
@@ -18,7 +18,7 @@ This discussion aims to lay out the case and align the community around an imple
 
 ## Nomenclature
 
-[TODO: check with Rob]
+<!-- [TODO: get Rob's sign-off] -->
 
 **Tools:**
 - A device or implement used to carry out a function
@@ -50,7 +50,7 @@ This discussion aims to lay out the case and align the community around an imple
 - We don't need a lab environment to serve the needs of a Switch deployment or implementing DFSP - these needs will be met elsewhere
 - The Mojaloop OSS Community wants to make itself attractive 
   - This doesn't mean removing all barriers to entry; but assessing which barriers we should be removing
-- [todo: more]
+<!-- - [todo: more>] -->
 
 
 ## Users
@@ -101,19 +101,20 @@ __g.__ Be able to demonstrate a value proposition for DFSPs/Fintechs/etc. to use
 
 ## User/Use Case Matrix:
 
-As suggested by Rob Reeve, we can plot the users and potential use cases in a matrix:
+We can plot the users and use cases in a matrix:
 
 
-|  __Usecase:__                   | a. Test DFSP Impl | b. Validate Assumptions | c. Reference Impl | d. Learn Internals | e. Learn about Tech | f. Evaluate Business Cases  | g. Demonstrate ML Value |
+|  __Usecase:__                    | a. Test DFSP Impl | b. Validate Assumptions | c. Reference Impl | d. Learn Internals | e. Learn about Tech | f. Evaluate Business Cases  | g. Demonstrate ML Value |
 | :------------------------------- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 | __User:__                        |       |       |       |       |       |       |       |
 | __1. Implementing DFSP__         |   X   |       |   X   |       |       |       |       | 
 | __2. Evalutating DFSP__          |       |   X   |   X   |       |   X   |   X   |       |
 | __3. Evaluating Hub Operator__   |       |       |   X   |       |   X   |   X   |       |
 | __4. General Evaluator__         |       |       |       |       |   X   |   X   |       |
-| __5. Systems Integrator__        |   X   |   X   |   X   |   X   |       |       |       |
+| __5. Systems Integrator__        |   X   |   X   |   X   |   X   |       |       |   X   |
 | __6. Individual Contributor__    |       |   X   |   X   |   X   |       |       |       |
-| __7. Mojaloop-powered fintech__  |       |   X   |       |       |   X   |   X   |       |
+| __7. Mojaloop-powered fintech__  |       |   X   |       |       |   X   |   X   |   X   |
+| __8. 3rd Party App Provider__    |       |       |       |   X   |       |       |   X   |
 
 
 ## Usecase Inputs and outputs:
@@ -144,10 +145,10 @@ As stated in our above assumptions, we aren't going to worry about Hub operators
 - Assess how Mojaloop will affect their business in the future
 
 **Examples from our user personas:**
-- Carbon [todo: why]
-- Ssnapp
-- Oneload
-- Juvo
+- Carbon - Enable cash-outs and OTC remittances over their agent network
+- Ssnapp - Enable multi payer/payee payments and rewards points over mojaloop
+- Oneload - Simplify onboarding for other DFSPs to utilize OneLoad's agent network
+- Juvo - Plug in to a Mojaloop switch for a credit scoring and lending marketplace
 
 **Outputs: (How can the Mojaloop OSS Community better serve these players?)**
 - help to onboard to the mojaloop ecosystem
@@ -156,10 +157,12 @@ As stated in our above assumptions, we aren't going to worry about Hub operators
 - take them from little to no understanding of Mojaloop -> demonstrating real prototypes
 
 **Inputs: (what are the things that we need to do to meet these goals)**
-1. Improved documentation around specific for this role (e.g. Mojaloop for x). Documentation should be approachable by product manager etc. with little techincal knowledge
-2. Technical deep dive on the technology behind mojaloop, why, how it works (perhaps we can repurpose the js demonstrator) [todo: finish]
-3. Improved guides for up and running on 2-3 major kubernetes providers, self service and install scripts (e.g. expand on moja-box)
-4. Helm charts for 3-4 simulators that can be spun alongside a switch, with opinionated pre-configured settings
+1. Improved mojaloop documentation specific for this role.
+  - Think about and design the documentation and onboarding flow specifically for *Evaluating DFSPs*
+  - Documentation should be approachable by product manager etc. with little technical knowledge
+2. Technical deep dive on the technology behind mojaloop, why, how it works (perhaps we can repurpose the js demonstrator in an interactive walkthrough an end to end transaction)
+3. Improved guides for up and running on 2-3 major kubernetes providers, self service and install scripts 
+4. Helm charts for 1-2 simulators/labs that can be spun up alongside a switch, with opinionated pre-configured settings
 
 
 ## Mojaloop Powered Fintech
@@ -168,25 +171,28 @@ As stated in our above assumptions, we aren't going to worry about Hub operators
 
 **Use cases:**
 - Validate assumptions about Mojaloop (how it works, what it does, what it _doesn't_ do)
+- Learn how mojaloop is aligned with wholesale APIs, and what it would take to get a DFSP using these APIs over a Mojaloop switch
 - Learn about mojaloop-enabled hubs and associated use cases (technology perspective)
 - Assess how Mojaloop will affect their business in the future
 
 **Examples from our user personas:**
 - EastPay - compare and shop around for banks/payment providers based on Mojaloop's open fee structure
-- Juvo - [todo: finish]
-- Jumo - 
+- Jumo - Open up transparent and fairer lending markets on top of a Mojaloop enabled switch?
 
 **Outputs: (How can the Mojaloop OSS Community better serve these players?)**
 - Understand how Mojaloop and Wholesale APIs fit together (or don't)
+- Enable fintechs to interact with Mojaloop over 1 or 2 wholesale banking APIs (e.g. GSMA MM api)
 - take them from little to no understanding of Mojaloop -> demonstrating real prototypes
 
 **Inputs: (what are the things that we need to do to meet these goals)**
-- [todo - I don't know how these differ from above]
+1. Improved mojaloop documentation specific for this role.
+2. Documentation or working document on how Mojaloop will work with wholesale apis
+3. Self-deployed lab environment with DFSP that expose some wholesale apis with basic functionality for fintechs to test against
 
 
 ## OSS Lab/Workbench efforts alongside others
 
-There's other people in the community working on some of these needs we outlined above. How can we align ourselves together to: (1) Not duplicate efforts (nor step on each other's toes) and (2) Provide the most impact for end users and the Mojaloop community as a whole
+There are others in the community working on some of these needs we outlined above. How can we align ourselves together to: (1) Not duplicate efforts (nor step on each other's toes) and (2) Provide the most impact for end users and the Mojaloop community as a whole
 
 In general, we reached a consensus around the following:
 - any OSS Lab effort should be focused with a specific end user in mind
@@ -196,8 +202,14 @@ In general, we reached a consensus around the following:
 ### MIFOS
 - Already extensive work done here with Finteract system, which provides out-of-the-box solution for Mojaloop enabled DFSPs
 - working on open api implementations
+- Working on lowering the barriers to entry for DFSPs and Fintechs
+- Mifos Innovation Lab: "The Locomotion on top of Mojaloop's Rails"
+  - Demonstrate end to end Mojaloop systems with DFSP integration
+  - Build and contribute OS tools
+- Working on real world deployments already 
+- See a need for a "Single Point of Entry to the Mojaloop Ecosystem"
+- Have an existing Lab deployment with Mojaloop that is currently being upgraded to work with the latest Helm chart deployments
 
-[todo: add to this from slides etc?]
 
 ### GSMA
 - Have mobile money api, would like to see end to end solution with fintechs/DFSPs talking over a mojaloop switch
@@ -237,9 +249,6 @@ In general, we reached a consensus around the following:
   - But this locks out a lot of people who aren't up to scratch with kubernetes, docker etc. but may still have a good deal of experience with financial services etc.
 
 - Chicken and egg problem(?) between DFSPs and Hub operators. Does it go DFSPs -> Hub Operators or the other way around?
-  - [todo: insert diagram here]
-
-- 
 
 
 ## Recommendations
