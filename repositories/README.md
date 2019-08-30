@@ -32,9 +32,12 @@ Individual repositories in the [Mojaloop GitHub organization](https://github.com
 ### QA/Tools
 - [license-scanner](https://github.com/mojaloop/license-scanner)
 - [postman](https://github.com/mojaloop/postman)
-- [simulator](https://github.com/mojaloop/simulator)
+- [mojaloop-simulator](https://github.com/mojaloop/mojaloop-simulator)
 - [sdk-mock-dfsp-backend](https://github.com/mojaloop/sdk-mock-dfsp-backend)
+- [sdk-scheme-adapter](https://github.com/mojaloop/sdk-scheme-adapter)
+- [simulator](https://github.com/mojaloop/simulator)
 - [terminal-integration](https://github.com/mojaloop/terminal-integration)
+
 
 ### Libraries
 
@@ -54,12 +57,10 @@ Individual repositories in the [Mojaloop GitHub organization](https://github.com
 
 #### Mojaloop Integration Libraries
 - [event-sdk](https://github.com/mojaloop/event-sdk)
-- [sdk-scheme-adapter](https://github.com/mojaloop/sdk-scheme-adapter)
 - [sdk-standard-components](https://github.com/mojaloop/sdk-standard-components)
 
 ### Snapshots (pre-release works in progress)
 - [quoting-service](https://github.com/mojaloop/quoting-service)
 - [transaction-requests-service](https://github.com/mojaloop/transaction-requests-service)
-- [mojaloop-simulator](https://github.com/mojaloop/mojaloop-simulator)
 
 
