@@ -18,11 +18,12 @@ ___Goal:__ This discussion document aims to lay out the case and align the commu
 
 ## Nomenclature
 
-<!-- [TODO: get Rob's sign-off] -->
+
 
 **Tools:**
 - A device or implement used to carry out a function
 - Different tools for different functions: You wouldn't use a screwdriver to drive a nail.
+- In Mojaloop-land, a Bank Oracle [todo: finish]
 
 **Workbench:**
 - Combines different tools together in one place
@@ -32,6 +33,7 @@ ___Goal:__ This discussion document aims to lay out the case and align the commu
 **Lab:**
 - A lab is a place you go to run experiments
 - We run experiments in order to learn, and test our assumptions
+  - For example, a DFSP can set up and run an _experiment_ where they send and receive Quotes
 - A single lab combines multiple workbenches together in one place
 
 **Simulator:**
@@ -40,6 +42,7 @@ ___Goal:__ This discussion document aims to lay out the case and align the commu
 - In the Mojaloop parlance: a simulator can simulate interacting with some component of the system
   - Replace an entire switch to test a DFSP implementation
   - Simulate 2 dfsps to test a switch deployment
+  - A simulator also reduces the need for someone to be with the person testing. So a DFSP can send and receive via the switch, without interaction with the Hub Operator.
 
 
 ## Assumptions
