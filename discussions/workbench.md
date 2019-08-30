@@ -1,45 +1,45 @@
-# Mojaloop Workbench Discussion
-### It's time to get Mojaloopy
+# Mojaloop Lab/Workbench Discussion
 
->___NOTE:__ This is a working document. Expect it to change dramatically before an official release._
+This discussion aims to lay out the case and align the community around an implementation of a Mojaloop of a Mojaloop Learning Environment
+
 
 ## Goals for the PI8 Convening:
 
-1. Define a what a lab/workbench is
-2. Define users and users we won't worry about
-3. Recommendations for a few different solutions to the "Lab Problem"
-	- documentation around business cases and personas Dan developed
+1. Define terms and outline assumptions
+2. Outline existing efforts and how the OSS Community aligns with them (GSMA, MIFOS, ModusBox)
+3. Define users and usecases, and exclude the users we won't worry about
+4. Recommendations for a few different solutions to the "Lab Problem"
+	- Documentation around business cases and personas Dan developed
+  - Simple Mojaloop-over-spreadsheets demo, to get people using mojaloop without Postman
 	- Basic implementation of Lab Configurer, help people build labs with different features
-4. How does this align with GSMA? MIFOS?
 5. Basic implementation and demo
 6. Pose important questions and discuss next steps
 
 
-## Let's talk about names
+## Nomenclature
 
-<!-- Nobody really knows yet. We are as yet defining the term as we go along, but roughly without making too many assumptions:
-- An environment for users to get to know Mojaloop
-- A place for implementers to validate and test their assumptions about Mojaloop -->
-
-[TODO: tidy nomenclature section with notes from Rob]
+[TODO: check with Rob]
 
 **Tools:**
-- A workbench contains tools
+- A device or implement used to carry out a function
+- Different tools for different functions: You wouldn't use a screwdriver to drive a nail.
 
 **Workbench:**
-- different tools from different places make up a workbench
-- mojaloop only workbench + simulator workbench
+- Combines different tools together in one place
+- For example, a hand plane, table saw and chisel can make up a woodworking workbench, while a hacksaw, file and angle grinder can make up a metalworking workbench
+- In the mojaloop parlance, tools to test my DFSP's JWS keys are in a different workbench than tools that demonstrate to a fintech how wholesale api's can work on top of Mojaloop
 
 **Lab:**
-- lab requires multiple workbenches put together!
-- you go to different labs to do different things
-	- what are you testing? Do you want to activate TLS and JWS?: different tools
+- A lab is a place you go to run experiments
+- We run experiments in order to learn, and test our assumptions
+- A single lab combines multiple workbenches together in one place
 
 **Simulator:**
-- a stub that you can send stuff in and out
-- dfsp interfacing with hub or simulator
-	- 2 simulators (show hub operator)
-	- 1 dfsp, 1 simulator (for DFSP)
+- A tool that simplifies or abstracts away some function so you can test one thing at a time
+- Pilots train with simulators _before_ flying a real life, dangerous and expensive plane.
+- In the Mojaloop parlance: a simulator can simulate interacting with some component of the system
+  - Replace an entire switch to test a DFSP implementation
+  - Simulate 2 dfsps to test a switch deployment
 
 
 ## Assumptions
@@ -63,14 +63,20 @@ We divide users in 2 camps: Primary users and Secondary users.
 3. Organisations/Individuals wishing to learn about Mojaloop and wanting to build and test functionality or use cases as a Hub Operator (shorthand: Evaluating Hub Operators)
 4. Regulators, Organisations or Individuals wishing to understand and evaluate Mojaloop and how it might impact their existing service (shorthand: General Evaluators)
 
-
 ### Secondary Users
 5. Systems Integrators wishing to offer Mojaloop as a Service or pieces of Mojaloop integration as a Service (Systems integrator)
 6. Individual Contributors (including bug bounty hunters?) (Individual Contributor)
 7. Fintechs operating on top of or who will operate on top of a mojaloop-enabled switch (Mojaloop-powered fintech)
+8. 3rd Party App Provider interacting with wholesale mobile money APIs, selling integrations to fintechs and the like (3rd party app provider)
+
+In addition to thinking of each of the above users, it's important to understand at what level these users exist at in relationship to a mojaloop deployment. For that we will borrow from Dan Kleinbaum's [_Fintech primer on Mojaloop_](https://medium.com/dfs-lab/what-the-fintech-a-primer-on-mojaloop-50ae1c0ccafb_)
 
 ![the 3 levels of mojaloopyness](./images/mojaloop_spokes.png)
->_The 3 levels of Mojaloopyness, https://medium.com/dfs-lab/what-the-fintech-a-primer-on-mojaloop-50ae1c0ccafb_
+>_The 3 levels of Mojaloopyness, https://medium.com/dfs-lab/what-the-fintech-a-primer-on-mojaloop-50ae1c0ccafb_ by Dan Kleinbaum
+
+**Level 1:** Running a Mojaloop switch (e.g. Hub Operators)
+**Level 2:** Interacting with a Mojaloop Switch directly (e.g. DFSPs, Systems Integrators)
+**Level 3:** Interacting with a DFSP over a Mojaloop Switch (e.g. Fintechs)
 
 
 ## Use Cases
@@ -88,8 +94,9 @@ __a.__ Test a Mojaloop compatible DFSP implementation
 __b.__ Validate assumptions about Mojaloop  
 __c.__ View and use a reference implementation  
 __d.__ Learn about Mojaloop internals  
-__e.__ Learn about Mojaloop-enabled switches and associated use cases (technology)  
+__e.__ Learn about Mojaloop-enabled switches and associated use cases (technology)
 __f.__ Assess how Mojaloop will change fintech business landscape  
+__g.__ Be able to demonstrate a value proposition for DFSPs/Fintechs/etc. to use mojaloop (instead of technology _x_)
 
 
 ## User/Use Case Matrix:
@@ -97,22 +104,31 @@ __f.__ Assess how Mojaloop will change fintech business landscape
 As suggested by Rob Reeve, we can plot the users and potential use cases in a matrix:
 
 
-|  __Usecase:__                   | a. Test DFSP Impl | b. Validate Assumptions | c. Reference Impl | d. Learn Internals | e. Learn about Tech | f. Evaluate Business Cases  |
-| :------------------------------- | :---: | :---: | :---: | :---: | :---: | :---: |
-| __User:__                        |       |       |       |       |       |       |    
-| __1. Implementing DFSP__         |   X   |       |   X   |       |       |       |
-| __2. Evalutating DFSP__          |       |   X   |   X   |       |   X   |   X   |
-| __3. Evaluating Hub Operator__   |       |       |   X   |       |   X   |   X   |
-| __4. General Evaluator__         |       |       |       |       |   X   |   X   |
-| __5. Systems Integrator__        |   X   |   X   |   X   |   X   |       |       |
-| __6. Individual Contributor__    |       |   X   |   X   |   X   |       |       |
-| __7. Mojaloop-powered fintech__  |       |   X   |       |       |   X   |   X   |
+|  __Usecase:__                   | a. Test DFSP Impl | b. Validate Assumptions | c. Reference Impl | d. Learn Internals | e. Learn about Tech | f. Evaluate Business Cases  | g. Demonstrate ML Value |
+| :------------------------------- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| __User:__                        |       |       |       |       |       |       |       |
+| __1. Implementing DFSP__         |   X   |       |   X   |       |       |       |       | 
+| __2. Evalutating DFSP__          |       |   X   |   X   |       |   X   |   X   |       |
+| __3. Evaluating Hub Operator__   |       |       |   X   |       |   X   |   X   |       |
+| __4. General Evaluator__         |       |       |       |       |   X   |   X   |       |
+| __5. Systems Integrator__        |   X   |   X   |   X   |   X   |       |       |       |
+| __6. Individual Contributor__    |       |   X   |   X   |   X   |       |       |       |
+| __7. Mojaloop-powered fintech__  |       |   X   |       |       |   X   |   X   |       |
 
 
 ## Usecase Inputs and outputs:
 
 >_Pick 2 or 3 different users/usecases and drill down into the inputs and outputs for what meeting their needs may look like_
 >>_Note: As with anything of this nature, a lot of the users/usecases and associated conclusions are somewhat squishy, and can likely be put into different or altogether new boxes. Nonetheless, we will try to define these as well as possible._
+
+<!-- 
+It's worth "double clicking" some of these.
+What are the inputs and outputs.
+e.g. if this is a learning environment, the inputs would be "It's an understudied problem", and outputs are "more study for that problem" so that problem can be explained better
+
+Or: system doesn't tolerate some type of user action or function, but after evaluation a way forward is found so it can be documented for implementation.
+
+Understanding how to use the system, and how that can change, OR understanding the important functions etc. -->
 
 ### Evaluating Hub Operator + Implementing DFSP
 As stated in our above assumptions, we aren't going to worry about Hub operators and Implementing DFSPs here.
@@ -174,29 +190,36 @@ There's other people in the community working on some of these needs we outlined
 
 In general, we reached a consensus around the following:
 - any OSS Lab effort should be focused with a specific end user in mind
-- focus further out on the mojaloop spokes (DFSPs, Fintechs)
+- Our focus should be further out on the mojaloop spokes (DFSPs, Fintechs, 3rd Party app providers)
 
 
 ### MIFOS
 - Already extensive work done here with Finteract system, which provides out-of-the-box solution for Mojaloop enabled DFSPs
 - working on open api implementations
 
+[todo: add to this from slides etc?]
+
 ### GSMA
 - Have mobile money api, would like to see end to end solution with fintechs/DFSPs talking over a mojaloop switch
 - The GSMA Lab has a very wide scope, Mojaloop is just one piece of this
 - One main goal is the mobile money API- pushing for default standard for 3rd party integration into mobile money
 - where does Mojaloop sit?
-	- could be one of the branches that the lab will be working on
+	- Is one of the branches that the GSMA Lab will be working on
 	- Where can GSMA add the most value to Mojaloop?
-		- serve a need from the market to get the most impact
-    - see a end-to-end prototype of the MM API talking over a Mojaloop switch
+		- Serve a need from the market to get the most impact
+    - See a end-to-end prototype of the MM API talking over a Mojaloop switch
 
 
 ### ModusBox
 - More on the systems integrator perspective. Building a bunch of tools already to ease the development and onboarding process for switches and DFSPs
 - Have open sourced the Mojaloop JS SDK
-- Interested in showing how the engine works to build confidence in business parters/customers
-
+- Interested in showing 'how the engine works' to build confidence in business parters/customers
+- Also interested (especially in WOCCU case) as a Mojaloop lab as a place for Fintechs to learn and test concepts on top of Mojaloop Switches
+  - Once this is connected, the interesting use cases will start to develop beyond tranfers from A to B
+  - MFIs (especially small-medium) don't have much capacity for experimentation or developing new business cases, but these cases can be driven from fintechs first
+- How can we assist orgs. who have little-to-no technical capability to become confident with Mojaloop?
+  - A technical lab environment won't do much in this case
+  - Can we demonstrate Mojaloop over a spreadsheet? Everyone can undertand spreadsheets.
 
 ## Questions
 
@@ -214,14 +237,17 @@ In general, we reached a consensus around the following:
   - But this locks out a lot of people who aren't up to scratch with kubernetes, docker etc. but may still have a good deal of experience with financial services etc.
 
 - Chicken and egg problem(?) between DFSPs and Hub operators. Does it go DFSPs -> Hub Operators or the other way around?
-  - [insert diagram here]
+  - [todo: insert diagram here]
+
+- 
 
 
 ## Recommendations
 
 - Find a target user that we can build a lab for/with
   - perhaps one of the more serious hackathon teams?
-- Address and improve documentation gaps: driving from a role-specific (i.e. DFSP, fintech) perspective
+- Address and improve documentation gaps: driving from a role-specific (i.e. DFSP, fintech, hub operator) perspective
+- Mojaloop over Spreadsheet demo
 - Build a self-service lab prototype
   - Opinionated set of helm charts that can be deployed alongside general switch
-  - Gather feedback from the community
+  - Gather feedback from the community, and see where and how people are using it
