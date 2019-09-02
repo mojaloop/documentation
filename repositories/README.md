@@ -29,12 +29,12 @@ Individual repositories in the [Mojaloop GitHub organization](https://github.com
 - [event-stream-processor](https://github.com/mojaloop/event-stream-processor)
 - [forensic-logging-client](https://github.com/mojaloop/forensic-logging-client)
 - [forensic-logging-sidecar](https://github.com/mojaloop/forensic-logging-sidecar)
-- [helm](https://github.com/mojaloop/helm)
 
 ### QA/Tools
+- [helm](https://github.com/mojaloop/helm)
 - [license-scanner](https://github.com/mojaloop/license-scanner)
-- [postman](https://github.com/mojaloop/postman)
 - [mojaloop-simulator](https://github.com/mojaloop/mojaloop-simulator)
+- [postman](https://github.com/mojaloop/postman)
 - [sdk-mock-dfsp-backend](https://github.com/mojaloop/sdk-mock-dfsp-backend)
 - [sdk-scheme-adapter](https://github.com/mojaloop/sdk-scheme-adapter)
 - [simulator](https://github.com/mojaloop/simulator)
