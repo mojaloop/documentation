@@ -47,7 +47,7 @@ ___Goal:__ This discussion document aims to lay out the case and align the commu
 
 >_Some of these may go without saying, but I'm going to go ahead and say them anyway._
 
-- Gates/The Entity wants to encourage adoption for Mojaloop at all levels (not just switches)
+- The Gates Foundation wants to encourage adoption for Mojaloop at all levels (not just switches)
 - We don't need a lab environment to serve the needs of a Switch deployment or implementing DFSP - these needs will be met elsewhere
 - The Mojaloop OSS Community wants to make itself attractive 
   - This doesn't mean removing all barriers to entry; but assessing which barriers we should be removing
@@ -236,7 +236,7 @@ In general, we reached a consensus around the following:
 
 ## Questions
 
-- So much of this comes back to Gates'/The Entity's proposed sales cycle for growing mojaloop adoption
+- So much of this comes back to The Gates Foundation's proposed sales cycle for growing mojaloop adoption
   - Looking at the technical briefs from the hackathon alone, there are some __big__ players (Famoco, Ethiopay, GrameenPhone) that could really take mojaloop and run with it
   - How can the initial hurdle be overcome to drive adoption and help these orgs adopt mojaloop and contribute back to the ecosystem?
   - What does the entrypoint to the industry look like for Hub operators?
