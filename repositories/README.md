@@ -15,19 +15,21 @@ The Mojaloop project is organized on the basis of component microservices. As su
 
 Individual repositories in the [Mojaloop GitHub organization](https://github.com/mojaloop/) each describe component-specific details including source and APIs. Below is a non-exhaustive list of the commonly used Mojaloop repositories, grouped into relevant categories.
 
-### Core Related Services
+### Core Services
 - [account-lookup-service](https://github.com/mojaloop/account-lookup-service)
 - [bulk-api-adapter](https://github.com/mojaloop/bulk-api-adapter)
-- [central-event-processor](https://github.com/mojaloop/central-event-processor)
 - [central-ledger](https://github.com/mojaloop/central-ledger)
 - [central-settlement](https://github.com/mojaloop/central-settlement)
+- [ml-api-adapter](https://github.com/mojaloop/ml-api-adapter)
+
+### Core Related Services
+- [central-event-processor](https://github.com/mojaloop/central-event-processor)
 - [email-notifier](https://github.com/mojaloop/email-notifier)
 - [event-sidecar](https://github.com/mojaloop/event-sidecar)
 - [event-stream-processor](https://github.com/mojaloop/event-stream-processor)
 - [forensic-logging-client](https://github.com/mojaloop/forensic-logging-client)
 - [forensic-logging-sidecar](https://github.com/mojaloop/forensic-logging-sidecar)
 - [helm](https://github.com/mojaloop/helm)
-- [ml-api-adapter](https://github.com/mojaloop/ml-api-adapter)
 
 ### QA/Tools
 - [license-scanner](https://github.com/mojaloop/license-scanner)
@@ -37,7 +39,6 @@ Individual repositories in the [Mojaloop GitHub organization](https://github.com
 - [sdk-scheme-adapter](https://github.com/mojaloop/sdk-scheme-adapter)
 - [simulator](https://github.com/mojaloop/simulator)
 - [terminal-integration](https://github.com/mojaloop/terminal-integration)
-
 
 ### Libraries
 
