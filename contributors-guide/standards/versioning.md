@@ -12,7 +12,7 @@ This document provides guidelines regarding the versioning strategy used for the
 
 ### Current Version
 
-The currrent version information for Mojaloop can be found [here](../mojaloop-deployment/current-versions.md).
+The currrent version information for Mojaloop can be found [here](../../deployment-guide/releases.md).
 
 ### Notes
 
