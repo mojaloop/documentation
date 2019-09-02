@@ -15,49 +15,31 @@ ___Goal:__ This discussion document aims to lay out the case and align the commu
 5. Basic implementation and demo
 6. Pose important questions and discuss next steps
 
-
 ## Nomenclature
 
-<<<<<<< HEAD
-
-
-**Tools:**
-- A device or implement used to carry out a function
-- Different tools for different functions: You wouldn't use a screwdriver to drive a nail.
-- In Mojaloop-land, a Bank Oracle [todo: finish]
-=======
-**Tools:**
-- A device or implement used to carry out a function
-- Different tools for different functions: You wouldn't use a screwdriver to drive a nail.
-- In a Mojaloop context, one example of a tool is the Bank Oracle
+**1. Tools:**
+- 1.1 A device or implement used to carry out a function
+- 1.2 Different tools for different functions: You wouldn't use a screwdriver to drive a nail.
+- 1.3 In a Mojaloop context, one example of a tool is the Bank Oracle
   - The Bank Oracle is a tool that plugs into the Account Lookup Service, can be used to allow Mojaloop to connect to existing bank accounts with an IBAN
->>>>>>> 947cac151a5fd90f9fddd3b8493021591d545a22
 
-**Workbench:**
-- Combines different tools together in one place
-- For example, a hand plane, table saw and chisel can make up a woodworking workbench, while a hacksaw, file and angle grinder can make up a metalworking workbench
-- In the mojaloop parlance, tools to test my DFSP's JWS keys are in a different workbench than tools that demonstrate to a fintech how wholesale api's can work on top of Mojaloop
+**2. Workbench:**
+- 2.1 Combines different tools together in one place
+- 2.2 For example, a hand plane, table saw and chisel can make up a woodworking workbench, while a hacksaw, file and angle grinder can make up a metalworking workbench
+- 2.3 In the mojaloop parlance, tools to test my DFSP's JWS keys are in a different workbench than tools that demonstrate to a fintech how wholesale api's can work on top of Mojaloop
 
-**Lab:**
-- A lab is a place you go to run experiments
-- We run experiments in order to learn, and test our assumptions
-<<<<<<< HEAD
-  - For example, a DFSP can set up and run an _experiment_ where they send and receive Quotes
-=======
+**3. Lab:**
+- 3.1 A lab is a place you go to run experiments
+- 3.2 We run experiments in order to learn, and test our assumptions
   - For example, a DFSP can set up and run an _experiment_ where they send and receive Quotes using an in-development API
->>>>>>> 947cac151a5fd90f9fddd3b8493021591d545a22
-- A single lab combines multiple workbenches together in one place
+- 3.3 A single lab combines multiple workbenches together in one place
 
-**Simulator:**
-- A tool that simplifies or abstracts away some function so you can test one thing at a time
-- Pilots train with simulators _before_ flying a real life, dangerous and expensive plane.
-<<<<<<< HEAD
-- In the Mojaloop parlance: a simulator can simulate interacting with some component of the system
-=======
-- Within Mojaloop: a simulator can simulate interacting with some component of the system
->>>>>>> 947cac151a5fd90f9fddd3b8493021591d545a22
+**4. Simulator:**
+- 4.1 A tool that simplifies or abstracts away some function so you can test one thing at a time
+- 4.2 Pilots train with simulators _before_ flying a real life, dangerous and expensive plane.
+- 4.3 Within Mojaloop: a simulator can simulate interacting with some component of the system
   - Replace an entire switch to test a DFSP implementation
-  - Simulate 2 dfsps to test a switch deployment
+  - Simulate 2 DFSPs to test a switch deployment
   - A simulator also reduces the need for someone to be with the person testing. So a DFSP can send and receive via the switch, without interaction with the Hub Operator.
 
 
@@ -219,7 +201,7 @@ In general, we reached a consensus around the following:
 
 
 ### MIFOS
-- Already extensive work done here with Finteract system, which provides out-of-the-box solution for Mojaloop enabled DFSPs
+- Already extensive work done here with Fineract system, which provides out-of-the-box solution for Mojaloop enabled DFSPs
 - working on open api implementations
 - Working on lowering the barriers to entry for DFSPs and Fintechs
 - Mifos Innovation Lab: "The Locomotion on top of Mojaloop's Rails"
@@ -250,7 +232,7 @@ In general, we reached a consensus around the following:
   - MFIs (especially small-medium) don't have much capacity for experimentation or developing new business cases, but these cases can be driven from fintechs first
 - How can we assist orgs. who have little-to-no technical capability to become confident with Mojaloop?
   - A technical lab environment won't do much in this case
-  - Can we demonstrate Mojaloop over a spreadsheet? Everyone can undertand spreadsheets.
+  - Can we demonstrate Mojaloop over a spreadsheet? Everyone can understand spreadsheets.
 
 ## Questions
 
