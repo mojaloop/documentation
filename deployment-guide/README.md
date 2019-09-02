@@ -157,6 +157,7 @@ Please review [Mojaloop Helm Chart](../repositories/helm.md) to understand the r
    ```bash
    helm repo add incubator http://storage.googleapis.com/kubernetes-charts-incubator
    helm repo add kiwigrid https://kiwigrid.github.io
+   helm repo add elastic https://helm.elastic.co
    ```
 
 5. Update helm repositories. _Linux use with sudo_:
@@ -207,18 +208,23 @@ Please review [Mojaloop Helm Chart](../repositories/helm.md) to understand the r
    ```
    _Windows the file can be updated in notepad - need to open with Administrative privileges. File location `C:\Windows\System32\drivers\etc\hosts`_.
    
-   Include the following line to the config.
+   Include the following lines (_or alternatively combine them_) to the host config.
 
-   The below config is applicable to Helm release >= versions 6.2.2;
+   The below required config is applicable to Helm release >= versions 6.2.2 for Mojaloop API Services;
    ```text
-   127.0.0.1       central-ledger forensic-logging-sidecar central-kms.local central-settlement.local central-event-processor.local ml-api-adapter.local email-notifier.local account-lookup-service.local quoting-service.local moja-simulator.local
+   127.0.0.1       central-ledger.local central-settlement.local ml-api-adapter.local account-lookup-service.local account-lookup-service-admin.local quoting-service.local moja-simulator.local central-ledger central-settlement ml-api-adapter account-lookup-service account-lookup-service-admin quoting-service simulator host.docker.internal
+   ```
+      
+   The below optional config is applicable to Helm release >= versions 6.2.2 for Internal components, please include the following in the host configuration.
+   ```text
+   127.0.0.1       forensic-logging-sidecar.local central-kms.local central-event-processor.local email-notifier.local
+   ```
+      
+   For Helm legacy releases prior to versions 6.2.2, please include the following in the host configuration.
+   ```text
+   127.0.0.1       interop-switch.local central-end-user-registry.local central-directory.local central-hub.local
    ```
    
-   For Helm releases prior to versions 6.2.2, please include the following in the above configuration;
-   ```text
-   interop-switch.local central-end-user-registry.local central-directory.local central-hub.local
-   ```
-
 2. Test system health in your browser after installation. This will only work if you have an active helm chart deployment running.
    
    _Note: The examples below are only applicable to a local deployment. The entries should match the DNS values or ingress rules as configured in the [values.yaml](https://github.com/mojaloop/helm/blob/master/mojaloop/values.yaml) or otherwise matching any custom ingress rules configured_.
