@@ -196,10 +196,10 @@ In general, we reached a consensus around the following:
 
 
 ### 8.2 GSMA
-- 1. Have mobile money api, would like to see end to end solution with fintechs/DFSPs talking over a mojaloop switch
-- 2. The GSMA Lab has a very wide scope, Mojaloop is just one piece of this
-- 3. One main goal is the mobile money API- pushing for default standard for 3rd party integration into mobile money
-- 4. where does Mojaloop sit?
+- 1\. Have mobile money api, would like to see end to end solution with fintechs/DFSPs talking over a mojaloop switch
+- 2\. The GSMA Lab has a very wide scope, Mojaloop is just one piece of this
+- 3\. One main goal is the mobile money API- pushing for default standard for 3rd party integration into mobile money
+- 4\. where does Mojaloop sit?
 	- 4.1 Is one of the branches that the GSMA Lab will be working on
 	- 4.2 Where can GSMA add the most value to Mojaloop?
 		- 4.2.1 Serve a need from the market to get the most impact
