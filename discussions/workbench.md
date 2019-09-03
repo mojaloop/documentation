@@ -9,9 +9,9 @@ ___Goal:__ This discussion document aims to lay out the case and align the commu
 2. Outline existing efforts and how the OSS Community aligns with them (GSMA, MIFOS, ModusBox)
 3. Define users and usecases, and exclude the users we won't worry about
 4. Recommendations for a few different solutions to the "Lab Problem"
-	- Documentation around business cases and personas Dan developed
-  - Simple Mojaloop-over-spreadsheets demo, to get people using mojaloop without Postman
+	- Documentation around business cases and personas Dan developed 
 	- Basic implementation of Lab Configurer, help people build labs with different features
+    - Simple Mojaloop-over-spreadsheets demo, to get people using mojaloop without Postman
 5. Basic implementation and demo
 6. Pose important questions and discuss next steps
 
@@ -232,7 +232,7 @@ In general, we reached a consensus around the following:
   - 3.1 If we don't make it too easy to get up and running, we make sure that only interested and determined parties are using mojaloop, which self-selects for a better community (kinda)
   - 3.2 But this locks out a lot of people who aren't up to scratch with kubernetes, docker etc. but may still have a good deal of experience with financial services etc.
 
-- 4. Chicken and egg problem(?) between DFSPs and Hub operators. Does it go DFSPs -> Hub Operators or the other way around?
+- 4\. Chicken and egg problem(?) between DFSPs and Hub operators. Does it go DFSPs -> Hub Operators or the other way around?
 
 
 ## 10. Recommendations
