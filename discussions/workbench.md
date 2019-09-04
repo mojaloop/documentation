@@ -47,9 +47,9 @@ ___Goal:__ This discussion document aims to lay out the case and align the commu
 
 >_Some of these may go without saying, but it's noting them here anyway._
 
-- 1. The Gates Foundation wants to encourage adoption for Mojaloop at all levels (not just switches)
-- 2. We don't need a lab environment to serve the needs of a Switch deployment or implementing DFSP - these needs will be met elsewhere
-- 3. The Mojaloop OSS Community wants to make itself attractive 
+- 1\. The Gates Foundation wants to encourage adoption for Mojaloop at all levels (not just switches)
+- 2\. We don't need a lab environment to serve the needs of a Switch deployment or implementing DFSP - these needs will be met elsewhere
+- 3\. The Mojaloop OSS Community wants to make itself attractive 
   - This doesn't mean removing all barriers to entry; but assessing which barriers we should be removing
 
 
