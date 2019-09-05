@@ -175,7 +175,11 @@ _Note: HEXDIGLC = DIGIT / "a" / "b" / "c" / "d" / "e" / "f" ; lower case hex cha
 
 | Enum | Description |
 | --- | --- |
-| audit | Event action for audits. |
+| default | Standard audit action. |
+| start | Audit action to represent the start of a process. |
+| finish | Audit action to represent the end of a process. |
+| ingress | Audit action to capture ingress activity. |
+| egress | Audit action to capture egress activity. |
 
 ##### 3.2.1.10 Enum: TraceEventAction
 
