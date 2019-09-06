@@ -2,7 +2,7 @@
 
 This document provides an overview of assets available for those interested in observing a Mojaloop environment running.
 
-## Primary assets
+## Primary Assets
 
 The following are the minimum requirements to run an end-to-end test of an environment:
 
@@ -11,14 +11,16 @@ The following are the minimum requirements to run an end-to-end test of an envir
 - **FSP Simulator:** This acts as a mock FSP to simulate the Payer and Payee roles in a transaction. Building and configurations details can be found in the [Github simulator repository](https://github.com/mojaloop/simulator).
 - **Postman:** Postman is an application to send requests and receive responses. In the [Postman repository](https://github.com/mojaloop/postman) you can find some collections and environments that can be imported into a Postman client to interact with the Hub.
 
-## FSP resources
+## FSP Resources
 
 In case you want to build your own mock FSP instead of using the simulator, these are the available resources:
 
 - **API Specification document:** This [document](https://github.com/mojaloop/mojaloop-specification/blob/master/API%20Definition%20v1.0.pdf) introduces and describes the API specification that any FSP should implement to interact with Mojaloop. Also find the complete set of specification documents in the [Mojaloop specification repository](https://github.com/mojaloop/mojaloop-specification).
-- **ILP utility library:**  Mojaloop uses [Interledger](https://interledger.org/) (ILP) as a secure transport protocol for funds. This [Java project](https://github.com/mojaloop/interop-ilp-conditions) provides a library to generate ILP packets, conditions, fulfilments and their respective validations.
+- **SDK Scheme Adapter:** The [SDK Scheme Adapter](https://github.com/mojaloop/sdk-scheme-adapter) demonstrates use of the Mojaloop SDK Standard Components to interface a DFSP backend system to a Mojaloop API compliant system. With the Scheme Adapter, you can turn an existing FSP implementation into a Mojaloop compatible one by implementing a simple REST interface.
+- **SDK Standard Components:** The [SDK Standard Compoents](https://github.com/mojaloop/sdk-standard-components) is a NodeJS library that provides pluggable implementations of JWS Signing, ILP, a Mojaloop Requests library, and Mojaloop compliant errors out of the box.
 
-## Complementary assets
+
+## Complementary Assets
 
 These are other valuable resources available for testing once you have setup your environment. Please note that some of these may still be at a development stage.
 
