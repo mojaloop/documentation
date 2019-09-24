@@ -221,7 +221,7 @@ end
 
 
 group Reference: Failure in Position Validation (Prepare)
-    alt If type == 'bulk-prepare'
+    alt If action == 'bulk-prepare'
         note right of POS_HANDLER #yellow
         Message:
             {
@@ -243,7 +243,7 @@ group Reference: Failure in Position Validation (Prepare)
                         id: <uuid>,
                         responseTo: <previous.uuid>,
                         type: bulk-processing,
-                        action: prepare,
+                        action: bulk-prepare,
                         createdAt: <timestamp>,
                         state: {
                             status: 'error',
@@ -257,7 +257,7 @@ group Reference: Failure in Position Validation (Prepare)
         POS_HANDLER -> TOPIC_BULK_PROCESSING: Publish Position failure event (in Prepare) to Bulk Processing Topic (for Payer) \n<color #FF0000><b>Error codes:</b> 2003</color>
         activate TOPIC_BULK_PROCESSING
         deactivate TOPIC_BULK_PROCESSING
-    else If type == 'prepare'
+    else If action == 'prepare'
         note right of POS_HANDLER #yellow
         Message:
             {
@@ -279,7 +279,7 @@ group Reference: Failure in Position Validation (Prepare)
                         id: <uuid>,
                         responseTo: <previous.uuid>,
                         type: notification,
-                        action: prepare,
+                        action: position,
                         createdAt: <timestamp>,
                         state: {
                             status: 'error',
@@ -298,7 +298,7 @@ group Reference: Failure in Position Validation (Prepare)
 end
 
 group Reference: Position Validation Success case (Prepare)
-    alt If type == 'bulk-prepare'
+    alt If action == 'bulk-prepare'
         note right of POS_HANDLER #yellow
         Message:
             {
@@ -315,7 +315,7 @@ group Reference: Position Validation Success case (Prepare)
                         id: <uuid>,
                         responseTo: <previous.uuid>,
                         type: bulk-processing,
-                        action: prepare,
+                        action: bulk-prepare,
                         createdAt: <timestamp>,
                         state: {
                             status: "success",
@@ -328,7 +328,7 @@ group Reference: Position Validation Success case (Prepare)
         POS_HANDLER -> TOPIC_BULK_PROCESSING: Publish Position Success event (in Prepare) to Bulk Processing Topic\n<color #FF0000><b>Error codes:</b> 2003</color>
         activate TOPIC_BULK_PROCESSING
         deactivate TOPIC_BULK_PROCESSING
-    else If type == 'prepare'
+    else If action == 'prepare'
         note right of POS_HANDLER #yellow
         Message:
             {
@@ -344,8 +344,8 @@ group Reference: Position Validation Success case (Prepare)
                     event: {
                         id: <uuid>,
                         responseTo: <previous.uuid>,
-                        type: transfer,
-                        action: prepare,
+                        type: notification,
+                        action: abort,
                         createdAt: <timestamp>,
                         state: {
                             status: "success",

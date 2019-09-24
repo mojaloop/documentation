@@ -360,7 +360,7 @@ group Timeout Handler Consume
                             event: {
                                 id: <uuid>,
                                 type: bulk-processing,
-                                action: timeout-received,
+                                action: bulk-timeout-received,
                                 createdAt: <timestamp>,
                                 state: {
                                     status: 'error',
@@ -396,8 +396,8 @@ group Timeout Handler Consume
                         metadata: {
                             event: {
                                 id: <uuid>,
-                                type: bulk-position,
-                                action: timeout-reserved,
+                                type: position,
+                                action: bulk-timeout-reserved,
                                 createdAt: <timestamp>,
                                 state: {
                                     status: 'error',
