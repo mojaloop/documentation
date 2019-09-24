@@ -31,6 +31,7 @@ title 1.1.4.a. Send notification to Participant (Payer/Payee) (single message)
 autonumber
 
 ' Actor Keys:
+'   actor - Payer DFSP, Payee DFSP
 '   boundary - APIs/Interfaces, etc
 '   collections - Kafka Topics
 '   control - Kafka Consumers
@@ -38,7 +39,8 @@ autonumber
 '   database - Database Persistance Store
 
 ' declare actors
-actor "DFSP(n)\nParticipant" as DFSP
+actor "Payer DFSP\nParticipant" as PAYER_DFSP
+actor "Payee DFSP\nParticipant" as PAYEE_DFSP
 control "ML API Notification Event Handler" as NOTIFY_HANDLER
 boundary "Central Service API" as CSAPI
 collections "Notification-Topic" as TOPIC_NOTIFICATIONS
@@ -46,8 +48,8 @@ collections "Event-Topic" as TOPIC_EVENTS
 entity "Participant DAO" as PARTICIPANT_DAO
 database "Central Store" as DB
 
-box "Financial Service Provider" #lightGray
-	participant DFSP
+box "Financial Service Provider (Payer)" #lightGray
+	participant PAYER_DFSP
 end box
 
 box "ML API Adapter Service" #LightBlue
@@ -55,16 +57,20 @@ box "ML API Adapter Service" #LightBlue
 end box
 
 box "Central Service" #LightYellow
-participant TOPIC_NOTIFICATIONS
+    participant TOPIC_NOTIFICATIONS
     participant CSAPI
     participant TOPIC_EVENTS
     participant PARTICIPANT_DAO
     participant DB
 end box
 
+box "Financial Service Provider (Payee)" #lightGray
+	participant PAYEE_DFSP
+end box
+
 ' start flow
 activate NOTIFY_HANDLER
-group Send notification to Participant
+group Send notification to Participants
     TOPIC_NOTIFICATIONS <- NOTIFY_HANDLER: Consume Notification event
     activate TOPIC_NOTIFICATIONS
     deactivate TOPIC_NOTIFICATIONS
@@ -102,8 +108,13 @@ group Send notification to Participant
     deactivate PARTICIPANT_DAO
     CSAPI --> NOTIFY_HANDLER: Return Endpoint details for Participant\n<color #FF0000><b>Error codes:</b> 3202, 3203</color>
     deactivate CSAPI
-    NOTIFY_HANDLER -> DFSP: Callback with Prepare/fulfil result/error to Participant to specified Endpoint - POST/PUT \n<color #FF0000><b>Error code:</b> 1001</color>
-    NOTIFY_HANDLER <-- DFSP: HTTP 200 OK 
+    NOTIFY_HANDLER -> PAYER_DFSP: Notification with Prepare/fulfil result/error to Payer DFSP Participant to specified Endpoint - PUT \n<color #FF0000><b>Error code:</b> 1001</color>
+    NOTIFY_HANDLER <-- PAYER_DFSP: HTTP 200 OK 
+    alt Config.SEND_TRANSFER_CONFIRMATION_TO_PAYEE === true
+        NOTIFY_HANDLER -> PAYEE_DFSP: Notification to with fulfil result (committed/aborted/rejected) to Payee DFSP Participant to specified Endpoint - PUT \n<color #FF0000><b>Error code:</b> 1001</color>
+        |||
+        NOTIFY_HANDLER <-- PAYEE_DFSP: HTTP 200 OK 
+    end
 end
 deactivate NOTIFY_HANDLER
 @enduml
