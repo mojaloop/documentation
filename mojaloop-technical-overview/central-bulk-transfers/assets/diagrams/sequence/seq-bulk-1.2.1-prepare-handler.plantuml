@@ -353,7 +353,7 @@ group Prepare Handler Consume
 end
 
 group Reference: Prepare -> Position Produce message
-    alt If type == 'bulk-prepare'
+    alt If action == 'bulk-prepare'
         note right of PREP_HANDLER #yellow
         Message:
             {
@@ -369,8 +369,8 @@ group Reference: Prepare -> Position Produce message
                     event: {
                         id: <uuid>,
                         responseTo: <previous.uuid>,
-                        type: bulk-position,
-                        action: prepare,
+                        type: position,
+                        action: bulk-prepare,
                         createdAt: <timestamp>,
                         state: {
                             status: "success",
@@ -381,7 +381,7 @@ group Reference: Prepare -> Position Produce message
             }
         end note
         PREP_HANDLER -> TOPIC_TRANSFER_POSITION: Route & Publish Position event for Payer\n<color #FF0000><b>Error codes:</b> 2003</color>
-    else If type == 'prepare'
+    else If action == 'prepare'
         note right of PREP_HANDLER #yellow
         Message:
             {
@@ -414,7 +414,7 @@ group Reference: Prepare -> Position Produce message
 end
 
 group Reference: Failure in Prepare Transfer Validation
-    alt If type == 'bulk-prepare'
+    alt If action == 'bulk-prepare'
         note right of PREP_HANDLER #yellow
         Message:
             {
@@ -436,7 +436,7 @@ group Reference: Failure in Prepare Transfer Validation
                         id: <uuid>,
                         responseTo: <previous.uuid>,
                         type: bulk-processing,
-                        action: prepare,
+                        action: bulk-prepare,
                         createdAt: <timestamp>,
                         state: {
                             status: 'error',
@@ -448,7 +448,7 @@ group Reference: Failure in Prepare Transfer Validation
             }
         end note
         PREP_HANDLER -> TOPIC_BULK_PROCESSING: Publish Prepare failure event to Bulk Processing Topic (for Payer) \n<color #FF0000><b>Error codes:</b> 2003</color>
-    else If type == 'prepare'
+    else If action == 'prepare'
         note right of PREP_HANDLER #yellow
         Message:
             {

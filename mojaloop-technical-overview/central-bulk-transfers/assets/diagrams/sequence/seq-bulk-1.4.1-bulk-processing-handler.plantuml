@@ -90,7 +90,7 @@ group Bulk Processing Handler Consume
 
     break
         group Validate Event
-            BULK_PROC_HANDLER <-> BULK_PROC_HANDLER: Validate event - Rule:\ntype == 'bulk-processing' && action IN\n['prepare-duplicate', 'prepare', 'timeout-received',\n'fulfil-duplicate', 'commit', 'reject', 'abort',\n'timeout-reserved']\n<color #FF0000><b>Error codes:</b> 2001</color>
+            BULK_PROC_HANDLER <-> BULK_PROC_HANDLER: Validate event - Rule:\ntype == 'bulk-processing' && action IN\n['bulk-prepare-duplicate<color #red>*</color>', 'bulk-prepare',\n'bulk-timeout-received', 'bulk-commit-duplicate<color #red>*</color>',\n'bulk-commit', 'bulk-reject<color #red>*</color>', 'bulk-abort<color #red>*</color>',\n'bulk-timeout-reserved']\n<color #red><b>Error codes:</b> 2001</color>\n<color #red>*</color> Not implemented
         end
     end
 
@@ -145,10 +145,10 @@ group Bulk Processing Handler Consume
                     note right of BULK_PROC_HANDLER #lightgrey
                         processingState = 'ACCEPTED'
                     end note
-                else action IN ['timeout-received', 'timeout-reserved']
+                else action IN ['bulk-timeout-received', 'bulk-timeout-reserved']
                     note right of BULK_PROC_HANDLER #lightgrey
-                        incompleteBulkState = null
-                        completedBulkState = 'COMPLETED'
+                        incompleteBulkState = 'EXPIRING'
+                        completedBulkState = 'EXPIRED'
                         processingState = 'EXPIRED'
                     end note
                 else all other actions
@@ -158,11 +158,11 @@ group Bulk Processing Handler Consume
                     end note
                 end
             else bulkTransferInfo.bulkTransferState IN ['ACCEPTED']
-                alt action == 'timeout-reserved'
+                alt action == 'bulk-timeout-reserved'
                     note right of BULK_PROC_HANDLER #lightgrey
                         criteriaState = 'ACCEPTED'
-                        incompleteBulkState = null
-                        completedBulkState = 'COMPLETED'
+                        incompleteBulkState = 'EXPIRING'
+                        completedBulkState = 'EXPIRED'
                         processingState = 'EXPIRED'
                     end note
                 else all other actions
@@ -171,7 +171,7 @@ group Bulk Processing Handler Consume
                         errorMessage = 'Invalid action for bulk in ACCEPTED state'
                     end note
                 end
-            else bulkTransferInfo.bulkTransferState IN ['PROCESSING', 'PENDING_FULFIL']
+            else bulkTransferInfo.bulkTransferState IN ['PROCESSING', 'PENDING_FULFIL', 'EXPIRING']
                 note right of BULK_PROC_HANDLER #lightgrey
                     criteriaState = 'ACCEPTED'
                     incompleteBulkState = 'PENDING_FULFIL'
@@ -193,10 +193,10 @@ group Bulk Processing Handler Consume
                     note right of BULK_PROC_HANDLER #lightgrey
                         processingState = 'FULFIL_INVALID'
                     end note
-                else action == 'timeout-reserved'
+                else action == 'bulk-timeout-reserved'
                     note right of BULK_PROC_HANDLER #lightgrey
-                        incompleteBulkState = null
-                        completedBulkState = 'COMPLETED'
+                        incompleteBulkState = 'EXPIRING'
+                        completedBulkState = 'EXPIRED'
                         processingState = 'EXPIRED'
                     end note
                 else all other actions
@@ -284,7 +284,7 @@ group Bulk Processing Handler Consume
                             event: {
                                 id: <uuid>,
                                 responseTo: <previous.uuid>,
-                                type: bulk-notification,
+                                type: notification,
                                 action: bulk-notification,
                                 createdAt: <timestamp>,
                                 state: {
@@ -343,7 +343,7 @@ group Bulk Processing Handler Consume
                             event: {
                                 id: <uuid>,
                                 responseTo: <previous.uuid>,
-                                type: bulk-notification,
+                                type: notification,
                                 action: bulk-notification,
                                 createdAt: <timestamp>,
                                 state: {
