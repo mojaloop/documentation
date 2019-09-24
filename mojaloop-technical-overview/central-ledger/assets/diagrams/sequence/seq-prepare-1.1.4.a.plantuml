@@ -108,10 +108,10 @@ group Send notification to Participants
     deactivate PARTICIPANT_DAO
     CSAPI --> NOTIFY_HANDLER: Return Endpoint details for Participant\n<color #FF0000><b>Error codes:</b> 3202, 3203</color>
     deactivate CSAPI
-    NOTIFY_HANDLER -> PAYER_DFSP: Notification with Prepare/fulfil result/error to Payer DFSP Participant to specified Endpoint - PUT \n<color #FF0000><b>Error code:</b> 1001</color>
+    NOTIFY_HANDLER -> PAYER_DFSP: Notification with Prepare/fulfil result/error to \nPayer DFSP to specified Endpoint - PUT \n<color #FF0000><b>Error code:</b> 1001</color>
     NOTIFY_HANDLER <-- PAYER_DFSP: HTTP 200 OK 
     alt Config.SEND_TRANSFER_CONFIRMATION_TO_PAYEE === true
-        NOTIFY_HANDLER -> PAYEE_DFSP: Notification to with fulfil result (committed/aborted/rejected) to Payee DFSP Participant to specified Endpoint - PUT \n<color #FF0000><b>Error code:</b> 1001</color>
+        NOTIFY_HANDLER -> PAYEE_DFSP: Notification to with fulfil result (committed/aborted/rejected) to Payee DFSP to specified Endpoint - PUT \n<color #FF0000><b>Error code:</b> 1001</color>
         |||
         NOTIFY_HANDLER <-- PAYEE_DFSP: HTTP 200 OK 
     end
