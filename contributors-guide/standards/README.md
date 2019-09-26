@@ -1,8 +1,27 @@
 # Standards
 
-## Standards
+### Coding Style Guide
 
-### Standards for adopting an Open Source contribution into Mojaloop
+[todo: insert details]
+#### Code Style
+
+#### Directory Structure
+
+
+
+### Tool and Framework Recommendations
+
+>Note: while these are listed as recommendations, these are enforced very strictly, and new contributions that don't align with these recommendations may be rejected, or you may be asked to refactor your code before it will be allowed into the Mojaloop Core. For more information, refer to the FAQ [below](todo: link)
+
+- Web Frameworks: HapiJS
+- Package Management: `npm`
+- Logging:
+- Containerization:
+- Unit Testing:
+- Test Coverage:
+
+
+### Adopting Open Source Contributions into Mojaloop
 
 This document provides guidelines regarding the adoption of a contribution to the Mojaloop Open Source repositories.
 
@@ -41,3 +60,11 @@ We use a [standard developer code of conduct](https://www.contributor-covenant.o
 ### Licensing
 
 See [License](https://github.com/mojaloop/mojaloop/blob/master/contribute/License.md) policy
+
+### FAQs
+
+1. What if I want to contribute code, but it doesn't align with the code style and framework/tool recommendations in this guide?
+[todo outline standard control process]
+
+2. Why so strict? I don't using tool x or y.
+[todo: answer this question]
