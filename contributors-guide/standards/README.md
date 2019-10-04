@@ -1,14 +1,14 @@
 # Standards
 
-> *Note:* These standards are by no means written in stone, and as a community, we always want to be iterating and improving Mojaloop. If you want to propose a change to these standards, or suggest futher improvements, please reach out to the Design Authority Channel on the Mojaloop Slack (#design-authority)
+> *Note:* These standards are by no means set in stone, and as a community, we always want to be iterating and improving Mojaloop. If you want to propose a change to these standards, or suggest futher improvements, please reach out to the Design Authority Channel on the Mojaloop Slack (#design-authority)
 
-### Style Guide
+## Style Guide
 
-Mojaloop enforces a strict set of rules for the style of code we write. [todo: finish]
+The Mojaloop Community enforces a strict set of rules for the style of code we write. These standards help ensure that the Mojaloop codebase remains high quality, maintainability and consistency.
 
-#### Code Style
+### Code Style
 
-**Javascript**
+#### Javascript
 
 Mojaloop uses the Javascript code style dictated by [StandardJS](https://standardjs.com/). For a full set of rules, refer to the [Standard Rules](https://standardjs.com/rules.html), but as a brief set of highlights:
 
@@ -34,15 +34,16 @@ window.alert('hi')   // ✓ ok
 window.alert('hi');  // ✗ avoid
 ```
 
-**Typescript**
+#### Typescript
 
->*Note: Standard and Typescript*
+>*Note: Standard and Typescript*  
+>
 >As we start to introduce more Typescript into the codebase, Standard becomes less useful, and can even be detrimental
 >to our development workflow if we try to run standard across the Javascript compiled from Typescript.
 >We need to evaluate other options for Standard in Typescript, such as a combination of Prettier + ESLint
 
 
-**YAML**
+#### YAML
 
 While YAML deserializers can vary from one to another, we follow the following rules when writing YAML:
 > Credit: these examples were taken from the [flathub style guide](https://github.com/flathub/flathub/wiki/YAML-Style-Guide)
@@ -73,8 +74,7 @@ modules:
     sources:
       - type: git
 ```
-
-**sh + bash**
+#### sh + bash
 
 - The Shebang should respect the user's local environment:
 ```bash
@@ -94,11 +94,11 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cat ${DIR}/../Dockerfile | wc -l 
 ```
 
-**Documentation**
+#### Documentation
 
 Refer to the [Documentation style guide.](../documentation/documentation-style-guide.html)
 
-#### Directory Structure
+### Directory Structure
 
 Along with a strict coding style, Mojaloop dictates a fairly strict directory structure. This ensures that developers can easily switch from one project to another, and also ensures that our tools and configs (such as `.circleci/config.yml` and `Dockerfile`s) can be ported easily from one project to another with minor changes.
 
@@ -114,11 +114,11 @@ The directory structure guide requires:
     └── default.json   # RC config file 
 ```
 
-#### Config Files
+### Config Files
 
-The following Config files help to enfore the code styles outlined above:
+The following Config files help to enforce the code styles outlined above:
 
-##### EditorConfig
+#### EditorConfig
 
 ```ini
 root = true
@@ -145,15 +145,15 @@ trim_trailing_whitespace = false
 
 >Note: while these are listed as recommendations, these are enforced strictly, and new contributions that don't align with these recommendations may be rejected, or you may be asked to refactor your code before it will be allowed into the Mojaloop Core. For more information, refer to the FAQ [below](todo: link)
 
-- Web Server: `HapiJS`
+- Web Server: [`HapiJS`](https://github.com/hapijs/hapi)
 - Web UI Framework: [`ReactJS`](https://reactjs.org/)
 - Configuration (both from env variables and config files): [`rc`](https://www.npmjs.com/package/rc)
 - Package Management: `npm`
 - Logging: [`@mojaloop/central-services-logger`](https://github.com/mojaloop/central-services-logger#readme) library, built on top of Winston
-- Containerization: `Docker`
-- Unit Testing: For existing tests, `Tape`, but we are currently moving over to `Jest` for
-- Test Coverage: `nyc`
-- CI: `CircleCI`
+- Containers and Orchestration: [`docker`](https://www.docker.com/) and [`kubernetes`](https://kubernetes.io/)
+- Unit Testing: For existing tests, [`Tape`](https://github.com/substack/tape), but we are currently moving over to [`Jest`](https://jestjs.io/) for new codebases.
+- Test Coverage: [`nyc`](https://github.com/istanbuljs/nyc)
+- CI: [`CircleCI`](https://circleci.com/)
 
 ### Adopting Open Source Contributions into Mojaloop
 
@@ -198,7 +198,7 @@ See [License](https://github.com/mojaloop/mojaloop/blob/master/contribute/Licens
 
 ### FAQs
 
-1. What if I want to contribute code, but it doesn't align with the code style and framework/tool recommendations in this guide?
+- 1. What if I want to contribute code, but it doesn't align with the code style and framework/tool recommendations in this guide?
 [todo outline standard control process]
 
 2. Why so strict? I don't like using tool x or y.
