@@ -143,17 +143,17 @@ trim_trailing_whitespace = false
 
 ### Tool and Framework Recommendations
 
->Note: while these are listed as recommendations, these are enforced strictly, and new contributions that don't align with these recommendations may be rejected, or you may be asked to refactor your code before it will be allowed into the Mojaloop Core. For more information, refer to the FAQ [below](todo: link)
+>Note: While these are listed as recommendations, these are enforced strictly, and new contributions that don't align with these recommendations may be rejected, or you may be asked to refactor your code before it will be allowed into the Mojaloop Core. For more information, refer to the FAQ [below](#faqs).
 
-- Web Server: [`HapiJS`](https://github.com/hapijs/hapi)
-- Web UI Framework: [`ReactJS`](https://reactjs.org/)
-- Configuration (both from env variables and config files): [`rc`](https://www.npmjs.com/package/rc)
-- Package Management: `npm`
-- Logging: [`@mojaloop/central-services-logger`](https://github.com/mojaloop/central-services-logger#readme) library, built on top of Winston
-- Containers and Orchestration: [`docker`](https://www.docker.com/) and [`kubernetes`](https://kubernetes.io/)
-- Unit Testing: For existing tests, [`Tape`](https://github.com/substack/tape), but we are currently moving over to [`Jest`](https://jestjs.io/) for new codebases.
-- Test Coverage: [`nyc`](https://github.com/istanbuljs/nyc)
-- CI: [`CircleCI`](https://circleci.com/)
+- **Web Server:** [`HapiJS`](https://github.com/hapijs/hapi)
+- **Web UI Framework:** [`ReactJS`](https://reactjs.org/)
+- **Runtime Configuration:** [`rc`](https://www.npmjs.com/package/rc) (both from env variables and config files)
+- **Package Management:** `npm`
+- **Logging:** [`@mojaloop/central-services-logger`](https://github.com/mojaloop/central-services-logger#readme) library, built on top of Winston
+- **Containers and Orchestration:** [`docker`](https://www.docker.com/) and [`kubernetes`](https://kubernetes.io/)
+- **Unit Testing:** For existing tests, [`Tape`](https://github.com/substack/tape), but we are currently moving over to [`Jest`](https://jestjs.io/) for new codebases.
+- **Test Coverage:** [`nyc`](https://github.com/istanbuljs/nyc)
+- **CI:** [`CircleCI`](https://circleci.com/)
 
 ### Adopting Open Source Contributions into Mojaloop
 
@@ -198,7 +198,7 @@ See [License](https://github.com/mojaloop/mojaloop/blob/master/contribute/Licens
 
 ### FAQs
 
-- 1. What if I want to contribute code, but it doesn't align with the code style and framework/tool recommendations in this guide?
+1. What if I want to contribute code, but it doesn't align with the code style and framework/tool recommendations in this guide?
 [todo outline standard control process]
 
 2. Why so strict? I don't like using tool x or y.
