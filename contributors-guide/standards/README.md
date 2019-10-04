@@ -4,7 +4,7 @@
 
 ## Style Guide
 
-The Mojaloop Community enforces a strict set of rules for the style of code we write. These standards help ensure that the Mojaloop codebase remains high quality, maintainability and consistency.
+The Mojaloop Community provides a set of guidelines for the style of code we write. These standards help ensure that the Mojaloop codebase remains high quality, maintainability and consistency. 
 
 ### Code Style
 
