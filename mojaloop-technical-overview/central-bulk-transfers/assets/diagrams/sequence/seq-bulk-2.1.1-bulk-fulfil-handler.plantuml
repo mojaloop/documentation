@@ -228,8 +228,8 @@ group Bulk Fulfil Handler Consume
                         event: {
                             id: <uuid>,
                             responseTo: <previous.uuid>,
-                            type: bulk-fulfil,
-                            action: fulfil,
+                            type: fulfil,
+                            action: bulk-commit,
                             createdAt: <timestamp>,
                             state: {
                                 status: "success",
@@ -264,7 +264,7 @@ group Bulk Fulfil Handler Consume
                     event: {
                         id: <uuid>,
                         responseTo: <previous.uuid>,
-                        type: bulk-processing,
+                        type: notification,
                         action: bulk-abort,
                         createdAt: <timestamp>,
                         state: {
