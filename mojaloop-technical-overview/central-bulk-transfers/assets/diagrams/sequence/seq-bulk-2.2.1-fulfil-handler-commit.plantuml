@@ -108,7 +108,7 @@ group Fulfil Handler Consume (Success)
                 deactivate POS_DAO
                 alt transferFulfilment.isValid == 0
                     break
-                        alt If type == 'fulfil'
+                        alt If action == 'commit'
                             note right of FULF_HANDLER #yellow
                             Message:
                             {
@@ -138,7 +138,7 @@ group Fulfil Handler Consume (Success)
                             FULF_HANDLER -> TOPIC_NOTIFICATIONS: Publish Notification event for Payee - Modified Request\n<color #FF0000><b>Error codes:</b> 3106</color>
                             activate TOPIC_NOTIFICATIONS
                             deactivate TOPIC_NOTIFICATIONS
-                        else If type == 'bulk-fulfil'
+                        else If action == 'bulk-commit'
                             note right of FULF_HANDLER #yellow
                             Message:
                             {
@@ -172,9 +172,9 @@ group Fulfil Handler Consume (Success)
                     end
                 else transferState IN ['COMMITTED', 'ABORTED']
                     break
-                        alt If type == 'fulfil'
+                        alt If action == 'commit'
                             ref over FULF_HANDLER, TOPIC_NOTIFICATIONS: Send notification to Participant (Payee)\n
-                        else If type == 'bulk-fulfil'
+                        else If action == 'bulk-commit'
                             note right of FULF_HANDLER #yellow
                             Message:
                             {
@@ -212,9 +212,9 @@ group Fulfil Handler Consume (Success)
                     end
                 else
                     break
-                        alt If type == 'fulfil'
+                        alt If action == 'commit'
                             FULF_HANDLER <-> FULF_HANDLER: Allow previous request to complete
-                        else If type == 'bulk-fulfil'
+                        else If action == 'bulk-commit'
                             note right of FULF_HANDLER #yellow
                             Message:
                             {
@@ -319,7 +319,7 @@ group Fulfil Handler Consume (Success)
                     deactivate POS_DAO
                 end
 
-                alt If type == 'fulfil'
+                alt If action == 'commit'
                     note right of FULF_HANDLER #yellow
                         Message:
                         {
@@ -349,7 +349,7 @@ group Fulfil Handler Consume (Success)
                     FULF_HANDLER -> TOPIC_TRANSFER_POSITION: Route & Publish Position event for Payee
                     activate TOPIC_TRANSFER_POSITION
                     deactivate TOPIC_TRANSFER_POSITION
-                else If type == 'bulk-fulfil'
+                else If action == 'bulk-commit'
                     note right of FULF_HANDLER #yellow
                         Message:
                         {
@@ -365,8 +365,8 @@ group Fulfil Handler Consume (Success)
                                 event: {
                                     id: <uuid>,
                                     responseTo: <previous.uuid>,
-                                    type: bulk-position,
-                                    action: commit,
+                                    type: position,
+                                    action: bulk-commit,
                                     createdAt: <timestamp>,
                                     state: {
                                         status: "success",
@@ -394,7 +394,7 @@ group Fulfil Handler Consume (Success)
 end
 
 group Reference: Failure in validation
-    alt If type == 'bulk-fulfil'
+    alt If action == 'bulk-commit'
         note right of FULF_HANDLER #yellow
         Message:
         {
@@ -411,7 +411,7 @@ group Reference: Failure in validation
                     id: <uuid>,
                     responseTo: <previous.uuid>,
                     type: bulk-processing,
-                    action: commit,
+                    action: bulk-commit,
                     createdAt: <timestamp>,
                     state: {
                         status: "error",
@@ -424,7 +424,7 @@ group Reference: Failure in validation
         FULF_HANDLER -> TOPIC_BULK_PROCESSING: Publish Notification event for Payee to Bulk Processing Topic\n<color #FF0000><b>Error codes:</b> 2003</color>
         activate TOPIC_BULK_PROCESSING
         deactivate TOPIC_BULK_PROCESSING
-    else If type == 'fulfil'
+    else If action == 'commit'
         note right of FULF_HANDLER #yellow
         Message:
         {
