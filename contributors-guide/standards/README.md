@@ -1,8 +1,11 @@
 # Standards
 
-### Coding Style Guide
+> *Note:* These standards are by no means written in stone, and as a community, we always want to be iterating and improving Mojaloop. If you want to propose a change to these standards, or suggest futher improvements, please reach out to the Design Authority Channel on the Mojaloop Slack (#design-authority)
 
-[todo: insert details]
+### Style Guide
+
+Mojaloop enforces a strict set of rules for the style of code we write. [todo: finish]
+
 #### Code Style
 
 **Javascript**
@@ -78,7 +81,7 @@ modules:
 #!/usr/bin/env bash
 ```
 
-- When referring to other files, don't use a relative path:
+- When referring to other files, don't use relative paths:
 
 This is because your script will likely break if somebody runs it from a different directory from where the script is located
 
@@ -111,18 +114,46 @@ The directory structure guide requires:
     └── default.json   # RC config file 
 ```
 
+#### Config Files
+
+The following Config files help to enfore the code styles outlined above:
+
+##### EditorConfig
+
+```ini
+root = true
+
+[*]
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+charset = utf-8
+
+[*.js]
+indent_style = space
+indent_size = 2
+
+[{package.json,*.yml,*.cjson}]
+indent_style = space
+indent_size = 2
+
+[*.md]
+trim_trailing_whitespace = false
+```
 
 ### Tool and Framework Recommendations
 
->Note: while these are listed as recommendations, these are enforced very strictly, and new contributions that don't align with these recommendations may be rejected, or you may be asked to refactor your code before it will be allowed into the Mojaloop Core. For more information, refer to the FAQ [below](todo: link)
+>Note: while these are listed as recommendations, these are enforced strictly, and new contributions that don't align with these recommendations may be rejected, or you may be asked to refactor your code before it will be allowed into the Mojaloop Core. For more information, refer to the FAQ [below](todo: link)
 
-- Web Frameworks: HapiJS
+- Web Server: `HapiJS`
+- Web UI Framework: [`ReactJS`](https://reactjs.org/)
+- Configuration (both from env variables and config files): [`rc`](https://www.npmjs.com/package/rc)
 - Package Management: `npm`
-- Logging:
-- Containerization:
-- Unit Testing:
-- Test Coverage:
-
+- Logging: [`@mojaloop/central-services-logger`](https://github.com/mojaloop/central-services-logger#readme) library, built on top of Winston
+- Containerization: `Docker`
+- Unit Testing: For existing tests, `Tape`, but we are currently moving over to `Jest` for
+- Test Coverage: `nyc`
+- CI: `CircleCI`
 
 ### Adopting Open Source Contributions into Mojaloop
 
@@ -132,6 +163,7 @@ This document provides guidelines regarding the adoption of a contribution to th
 
 1. The contribution should be in-line with the LevelOne Principles
 2. Basic guidelines regarding status of the contribution \(Code-base / Standards / Designs / Specifications\)
+>*Note:* Code Contributions are evaluated on a **case-by-case** basis. Code and Directory style are enforced strictly, so contributions that don't align to these guidelines may be rejected or heavily refactored before being accepted. Other misalignments to these standards (for example, framework choices) may be added to a roadmap for further improvement and OSS-ification in the future
 3. Basic documentation to get started
 
 #### Guidelines regarding adoption
@@ -169,5 +201,5 @@ See [License](https://github.com/mojaloop/mojaloop/blob/master/contribute/Licens
 1. What if I want to contribute code, but it doesn't align with the code style and framework/tool recommendations in this guide?
 [todo outline standard control process]
 
-2. Why so strict? I don't using tool x or y.
+2. Why so strict? I don't like using tool x or y.
 [todo: answer this question]
