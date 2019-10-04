@@ -100,7 +100,7 @@ Refer to the [Documentation style guide.](../documentation/documentation-style-g
 
 ### Directory Structure
 
-Along with a strict coding style, Mojaloop dictates a fairly strict directory structure. This ensures that developers can easily switch from one project to another, and also ensures that our tools and configs (such as `.circleci/config.yml` and `Dockerfile`s) can be ported easily from one project to another with minor changes.
+Along with guidelines for coding styles, the Mojaloop Community recommends the following directory structure. This ensures that developers can easily switch from one project to another, and also ensures that our tools and configs (such as `.circleci/config.yml` and `Dockerfile`s) can be ported easily from one project to another with minor changes.
 
 The directory structure guide requires:
 
@@ -163,18 +163,26 @@ This document provides guidelines regarding the adoption of a contribution to th
 
 1. The contribution should be in-line with the LevelOne Principles
 2. Basic guidelines regarding status of the contribution \(Code-base / Standards / Designs / Specifications\)
->*Note:* Code Contributions are evaluated on a **case-by-case** basis. Code and Directory style are enforced strictly, so contributions that don't align to these guidelines may be rejected or heavily refactored before being accepted. Other misalignments to these standards (for example, framework choices) may be added to a roadmap for further improvement and OSS-ification in the future
+>*Note:* Code Contributions are evaluated on a **case-by-case** basis. Code and Directory style are enforced strictly, so contributions that don't align to these guidelines may be rejected or heavily refactored before being accepted. Other misalignments to these standards (for example, framework choices) may be added to a roadmap for further improvement and OSS Standardization in the future
 3. Basic documentation to get started
 
 #### Guidelines regarding adoption
 
 1. Create a private repo on the Mojaloop GitHub organization
 2. Have a sub-team of the DA take a look to make sure its portable \(to OSS\) - aligns with L1P principles, etc, and ensure design is in line with standards
-3. Check Licensing
+3. Check Licensing, and a the Mojaloop License with attribution to donor/contributors
 4. Assess Performance impact
 5. Create action items \(stories\) to update naming, remove/sanitize any items that are not generic
 6. Configuration for 'modes of operation'
 7. Enable CI/CD pipeline
+
+<!-- 
+TODO: rework into the following 3 big steps:
+
+1. to make donation public - experimental / incubation category
+2. have it run run with minimal refactoring - release as ‘snapshots’ (snapshot category)
+3. chart roadmap for it to become a standard ‘release’ version (release category that is standard) 
+-->
 
 ### Versioning
 
