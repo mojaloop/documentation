@@ -183,7 +183,7 @@ Please review [Mojaloop Helm Chart](../repositories/helm.md) to understand the r
    
    Version specific installation:
    ```bash
-   helm --namespace demo --name moja install mojaloop/mojaloop -version {version}
+   helm --namespace demo --name moja install mojaloop/mojaloop --version {version}
    ```
    
    List of available versions:
