@@ -172,6 +172,12 @@ group Prepare Handler Consume
                 deactivate TOPIC_BULK_PROCESSING
             end
         else hasDuplicateId == FALSE
+            note right of PREP_HANDLER #lightgrey
+                The validation of Payer, Payee can be skipped for individual transfers in Bulk
+                as they should've/would've been validated already in the bulk prepare part.
+                However, leaving it here for now, as in the future, this can be leveraged
+                when bulk transfers to multiple Payees are supported by the Specification.
+            end note
             group Validate Payer
                 PREP_HANDLER -> PARTICIPANT_DAO: Request to retrieve Payer Participant details (if it exists)
                 activate PARTICIPANT_DAO
