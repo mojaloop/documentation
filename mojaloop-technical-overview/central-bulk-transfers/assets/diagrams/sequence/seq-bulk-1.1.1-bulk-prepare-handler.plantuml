@@ -37,12 +37,13 @@ autonumber
 
 ' declare actors
 collections "topic-\nbulk-prepare" as TOPIC_BULK_PREPARE
-collections "mongo-\nobject-store" as OBJECT_STORE
+collections "mojaloop-\nobject-store\n(**MLOS**)" as OBJECT_STORE
 control "Bulk Prepare \nHandler" as BULK_PREP_HANDLER
 collections "topic-\ntransfer-prepare" as TOPIC_TRANSFER_PREPARE
 collections "topic-event" as TOPIC_EVENTS
 collections "topic-\nnotification" as TOPIC_NOTIFICATIONS
-entity "Position DAO" as POS_DAO
+collections "topic-bulk-\nprocessing" as TOPIC_BULK_PROCESSING
+entity "Bulk DAO" as BULK_DAO
 entity "Participant DAO" as PARTICIPANT_DAO
 database "Central Store" as DB
 
@@ -53,7 +54,8 @@ box "Central Service" #LightYellow
     participant TOPIC_TRANSFER_PREPARE
     participant TOPIC_EVENTS
     participant TOPIC_NOTIFICATIONS
-    participant POS_DAO
+    participant TOPIC_BULK_PROCESSING
+    participant BULK_DAO
     participant PARTICIPANT_DAO
     participant DB
 end box
@@ -82,348 +84,223 @@ group Bulk Prepare Handler Consume
         BULK_PREP_HANDLER <-> BULK_PREP_HANDLER: <color #gray>Schema validation of the incoming message</color>
         BULK_PREP_HANDLER <-> BULK_PREP_HANDLER: <color #gray>Verify the message's signature (to be confirmed in future requirement)</color>
         note right of BULK_PREP_HANDLER #lightgrey
-            The above validation steps are already handled by
-            the ML-Adapter for the open source implementation.
+            The above validation steps are already handled by the
+            Bulk-API-Adapter for the open source implementation.
             It may need to be added in future for custom adapters.
         end note
-        
-        Group Individual transfers in the bulk
-            BULK_PREP_HANDLER -> OBJECT_STORE: Retrieve all individual transfer IDs\nin the bulk using its reference
-            activate OBJECT_STORE
-            OBJECT_STORE --> BULK_PREP_HANDLER: Return individual transfers as queried
-            deactivate OBJECT_STORE
-        end
-        BULK_PREP_HANDLER <-> BULK_PREP_HANDLER: Validate that there are no duplicate individualTransfers \n(transfer IDs) from the same bulk. \nOn failure, send bulk error message to Payer. \nNo further processing on individual transfers is done
-        
 
-        group Validate Duplicate check
-            note right of BULK_PREP_HANDLER #Cyan
+        group Validate Duplicate Check
+            note right of BULK_PREP_HANDLER #cyan
                 The Specification doesn't touch on the duplicate handling
                 of bulk transfers, so the current design mostly follows the
-                strategy used for individual transfers, except in two places.
-                For duplicate requests where hash matches, the current design
+                strategy used for individual transfers, except in two places:
+
+                1. For duplicate requests where hash matches, the current design
                 includes only the status of the bulk & timestamp (if completed),
                 but not the individual transfers (for which a GET should be used).
 
-                For duplicate requests where hash matches but are not in a
+                2. For duplicate requests where hash matches, but are not in a
                 finalized state, only the state of the bulkTransfer is sent.
             end note
-            BULK_PREP_HANDLER -> POS_DAO: Request to retrieve Hash for a bulkTransferId
-            activate POS_DAO
-            POS_DAO -> DB: Request Transfer Hash for a bulkTransferId
-            activate DB
-            hnote over DB #lightyellow
-                bulkTransferDuplicateCheck
+            |||
+            BULK_PREP_HANDLER -> DB: Request Duplicate Check
+            ref over BULK_PREP_HANDLER, DB:  Request Duplicate Check (using message.content.payload.hash)\n
+            DB --> BULK_PREP_HANDLER: Return { hasDuplicateId: Boolean, hasDuplicateHash: Boolean }
+        end
+
+        alt hasDuplicateId == TRUE && hasDuplicateHash == TRUE
+            break
+                BULK_PREP_HANDLER -> BULK_DAO: Request to retrieve Bulk Transfer state & completedTimestamp\n<color #FF0000><b>Error code:</b> 2003</color>
+                activate BULK_DAO
+                BULK_DAO -> DB: Query database
+                hnote over DB #lightyellow
+                    bulkTransfer
+                    bulkTransferFulfilment
+                    bulkTransferStateChange
+                end note
+                activate DB
+                BULK_DAO <-- DB: Return resultset
+                deactivate DB
+                BULK_DAO --> BULK_PREP_HANDLER: Return **bulkTransferStateId** & **completedTimestamp** (not null when completed)
+                deactivate BULK_DAO
+
+                note right of BULK_PREP_HANDLER #yellow
+                    Message:
+                    {
+                        id: <messageId>
+                        from: <ledgerName>,
+                        to: <payerFspName>,
+                        type: application/json
+                        content: {
+                            headers: <bulkTransferHeaders>,
+                            payload: {
+                                bulkTransferState: <string>,
+                                completedTimestamp: <optional>
+                            }
+                        },
+                        metadata: {
+                            event: {
+                                id: <uuid>,
+                                responseTo: <previous.uuid>,
+                                type: "notification",
+                                action: "bulk-prepare-duplicate",
+                                createdAt: <timestamp>,
+                                state: {
+                                    status: "success",
+                                    code: 0
+                                }
+                            }
+                        }
+                    }
+                end note
+                BULK_PREP_HANDLER -> TOPIC_NOTIFICATIONS: Publish Notification event for Payer
+                activate TOPIC_NOTIFICATIONS
+                deactivate TOPIC_NOTIFICATIONS
+            end
+        else hasDuplicateId == TRUE && hasDuplicateHash == FALSE
+            note right of BULK_PREP_HANDLER #yellow
+                {
+                    id: <messageId>,
+                    from: <ledgerName>,
+                    to: <payerFspName>,
+                    type: "application/json",
+                    content: {
+                        headers: <bulkTransferHeaders>,
+                        payload: {
+                            errorInformation: {
+                                errorCode: "3106",
+                                errorDescription: "Modified request",
+                                extensionList: {
+                                    extension: [
+                                        {
+                                            key: "_cause",
+                                            value: <FSPIOPError>
+                                        }
+                                    ]
+                                }
+                            },
+                            uriParams: {
+                                id: <bulkTransferId>
+                            }
+                        }
+                    },
+                    metadata: {
+                        correlationId: <uuid>,
+                        event: {
+                            id: <uuid>,
+                            type: "notification",
+                            action: "bulk-prepare",
+                            createdAt: <timestamp>,
+                            state: {
+                                status: "error",
+                                code: "3106",
+                                description: "Modified request"
+                            },
+                            responseTo: <uuid>
+                        }
+                    }
+                }
             end note
-            POS_DAO <-- DB: Return hash if it exists
-            deactivate DB
-            BULK_PREP_HANDLER <-- POS_DAO: Return hash if it exists
-            deactivate POS_DAO
-
-            alt If bulkTransferId exists
-                group Persist Event Information
-                    |||
-                    BULK_PREP_HANDLER -> TOPIC_EVENTS: Publish event information
-                    ref over BULK_PREP_HANDLER, TOPIC_EVENTS :  Event Handler Consume\n
-                    |||
-                end
-                BULK_PREP_HANDLER -> BULK_PREP_HANDLER: Retrieve Hash generated by\nml-api-adapter and compare
-
-                alt BulkTransfer exists, hash matches    
-                    BULK_PREP_HANDLER -> POS_DAO: Request to retrieve Bulk Transfer state \n<color #FF0000><b>Error code:</b> 2003</color>
-                    activate POS_DAO
-                    POS_DAO -> DB: Request BulkTransfer state
+            BULK_PREP_HANDLER -> TOPIC_NOTIFICATIONS: Publish Notification (failure) event for Payer\n<color #FF0000><b>Error codes:</b> 3106</color>
+            activate TOPIC_NOTIFICATIONS
+            deactivate TOPIC_NOTIFICATIONS
+        else hasDuplicateId == FALSE
+            group Validate Payer
+                BULK_PREP_HANDLER -> PARTICIPANT_DAO: Request to retrieve Payer Participant details (if it exists)
+                activate PARTICIPANT_DAO
+                PARTICIPANT_DAO -> DB: Request Participant details
+                hnote over DB #lightyellow
+                    participant
+                    participantCurrency
+                end note
+                activate DB
+                PARTICIPANT_DAO <-- DB: Return Participant details if it exists
+                deactivate DB
+                PARTICIPANT_DAO --> BULK_PREP_HANDLER: Return Participant details if it exists
+                deactivate PARTICIPANT_DAO
+                BULK_PREP_HANDLER <-> BULK_PREP_HANDLER: Validate Payer\n<color #FF0000><b>Error codes:</b> 3202</color>
+            end
+            group Validate Payee
+                BULK_PREP_HANDLER -> PARTICIPANT_DAO: Request to retrieve Payee Participant details (if it exists)
+                activate PARTICIPANT_DAO
+                PARTICIPANT_DAO -> DB: Request Participant details
+                hnote over DB #lightyellow
+                    participant
+                    participantCurrency
+                end note
+                activate DB
+                PARTICIPANT_DAO <-- DB: Return Participant details if it exists
+                deactivate DB
+                PARTICIPANT_DAO --> BULK_PREP_HANDLER: Return Participant details if it exists
+                deactivate PARTICIPANT_DAO
+                BULK_PREP_HANDLER <-> BULK_PREP_HANDLER: Validate Payee\n<color #FF0000><b>Error codes:</b> 3203</color>
+            end
+            BULK_PREP_HANDLER <-> BULK_PREP_HANDLER: Validate crypto-condition\n<color #FF0000><b>Error codes:</b> 3100</color>
+            
+            alt Validate Bulk Prepare Transfer (success)
+                group Persist Bulk Transfer State (with bulkTransferState='RECEIVED')
+                    BULK_PREP_HANDLER -> BULK_DAO: Request to persist bulk transfer\n<color #FF0000><b>Error codes:</b> 2003</color>
+                    activate BULK_DAO
+                    BULK_DAO -> DB: Persist bulkTransfer
                     hnote over DB #lightyellow
                         bulkTransfer
+                        bulkTransferExtension
                         bulkTransferStateChange
                     end note
                     activate DB
-                    POS_DAO <-- DB: Return Transfer state
                     deactivate DB
-                    POS_DAO --> BULK_PREP_HANDLER: Return Transfer state
-                    deactivate POS_DAO
-                    break
-                        alt If bulkTransferState IN ['COMPLETED', 'REJECTED']
-                            BULK_PREP_HANDLER -> POS_DAO: Request to retrieve completedTimestamp
-                            activate POS_DAO
-                            POS_DAO -> DB: Return completedTimestamp
-                            activate DB
-                            hnote over DB #lightyellow
-                                bulkTransfer
-                                bulkTransferFulfilment
-                            end note
-                            POS_DAO <-- DB: Return completedTimestamp
-                            deactivate DB
-                            BULK_PREP_HANDLER <-- POS_DAO: Return completedTimestamp
-                            deactivate POS_DAO
-                            ' loop for each individual transfer in the bulk
-                            '     BULK_PREP_HANDLER -> POS_DAO: Request to retrieve fulfilment, completedTimestamp \nfor each individual transferId
-                            '     activate POS_DAO
-                            '     POS_DAO -> DB: Request fulfilment, \ncompletedTimestamp for the transferId
-                            '     activate DB
-                            '     hnote over DB #lightyellow
-                            '         transfer
-                            '         transferFulfilment
-                            '     end note
-                            '     POS_DAO <-- DB: Return fulfilment, completedTimestamp \n(if they exist) for individual transfers
-                            '     deactivate DB
-                            '     BULK_PREP_HANDLER <-- POS_DAO: Return fulfilment, completedTimestamp \n(if they exist) for individual transfers
-                            '     deactivate POS_DAO
-                            ' end
-                            note right of BULK_PREP_HANDLER #yellow
-                                Message:
-                                {
-                                    id: <bulkTransferMessage.bulkTransferId>
-                                    from: <bulkTransferMessage.payerFsp>,
-                                    to: <bulkTransferMessage.payeeFsp>,
-                                    type: application/json
-                                    content: {
-                                        headers: <bulkTransferHeaders>,
-                                        payload: {
-                                            bulkTransferState: "COMPLETED",
-                                            completedTimestamp: "2019-10-24T08:38:08.699-04:00"
-                                        }
-                                    },
-                                    metadata: {
-                                        event: {
-                                            id: <uuid>,
-                                            responseTo: <previous.uuid>,
-                                            type: bulk-notification,
-                                            action: bulk-prepare-duplicate,
-                                            createdAt: <timestamp>,
-                                            state: {
-                                                status: "success",
-                                                code: 0
-                                            }
-                                        }
-                                    }
-                                }
-                            end note
-                            BULK_PREP_HANDLER -> TOPIC_NOTIFICATIONS: Publish Notification event for Payer with the completed bulk transfer
-                            activate TOPIC_NOTIFICATIONS
-                            deactivate TOPIC_NOTIFICATIONS
-                        else If bulkTransferState IN ['RECEIVED', 'PENDING_PREPARE', 'ACCEPTED', 'PROCESSING', 'PENDING_FULFIL']
-                            note right of BULK_PREP_HANDLER #yellow
-                                Message:
-                                {
-                                    id: <bulkTransferMessage.bulkTransferId>
-                                    from: <bulkTransferMessage.payerFsp>,
-                                    to: <bulkTransferMessage.payeeFsp>,
-                                    type: application/json
-                                    content: {
-                                        headers: <bulkTransferHeaders>,
-                                        payload: {
-                                            bulkTransferState: "?TODO?"
-                                        }
-                                    },
-                                    metadata: {
-                                        event: {
-                                            id: <uuid>,
-                                            responseTo: <previous.uuid>,
-                                            type: bulk-notification,
-                                            action: bulk-prepare-duplicate,
-                                            createdAt: <timestamp>,
-                                            state: {
-                                                status: "success",
-                                                code: 0
-                                            }
-                                        }
-                                    }
-                                }
-                            end note
-                            BULK_PREP_HANDLER <-> TOPIC_NOTIFICATIONS: Publish Notification event for Payer with the completed bulk transfer
-                            activate TOPIC_NOTIFICATIONS
-                            deactivate TOPIC_NOTIFICATIONS
-                        else If bulkTransferState does not exist
-                            note right of BULK_PREP_HANDLER #yellow
-                                Message:
-                                {
-                                    id: <bulkTransferMessage.bulkTransferId>
-                                    from: <ledgerName>,
-                                    to: <bulkTransferMessage.payerFsp>,
-                                    type: application/json
-                                    content: {
-                                        headers: <bulkTransferHeaders>,
-                                        payload: {
-                                            "errorInformation": {
-                                                "errorCode": "3100",
-                                                "errorDescription": "<error description>",
-                                                "extensionList": <transferMessage.extensionList>
-                                        }
-                                    },
-                                    metadata: {
-                                        event: {
-                                            id: <uuid>,
-                                            responseTo: <previous.uuid>,
-                                            type: bulk-notification,
-                                            action: bulk-prepare-duplicate,
-                                            createdAt: <timestamp>,
-                                            state: {
-                                                status: 'error',
-                                                code: <errorInformation.errorCode>
-                                                description: <errorInformation.errorDescription>
-                                            }
-                                        }
-                                    }
-                                }
-                            end note
-                            BULK_PREP_HANDLER -> TOPIC_NOTIFICATIONS: Send /error callback with appropriate error message\n(Invalid duplicate request)\n<color #FF0000><b>Error code:</b> 3100</color>
-                            activate TOPIC_NOTIFICATIONS
-                            deactivate TOPIC_NOTIFICATIONS
-                        end
-                    end
-                else BulkTransfer exists, hash does not match
-                    break
-                        note right of BULK_PREP_HANDLER #yellow
-                                Message:
-                                {
-                                    id: <bulkTransferMessage.bulkTransferId>
-                                    from: <ledgerName>,
-                                    to: <bulkTransferMessage.payerFsp>,
-                                    type: application/json
-                                    content: {
-                                        headers: <bulkTransferHeaders>,
-                                        payload: {
-                                            "errorInformation": {
-                                                "errorCode": "3106"
-                                                "errorDescription": "<error description>",
-                                                "extensionList": <transferMessage.extensionList>
-                                        }
-                                    },
-                                    metadata: {
-                                        event: {
-                                            id: <uuid>,
-                                            responseTo: <previous.uuid>,
-                                            type: bulk-notification,
-                                            action: bulk-prepare-duplicate,
-                                            createdAt: <timestamp>,
-                                            state: {
-                                                status: 'error',
-                                                code: <errorInformation.errorCode>
-                                                description: <errorInformation.errorDescription>
-                                            }
-                                        }
-                                    }
-                                }
-                            end note
-                        BULK_PREP_HANDLER -> TOPIC_NOTIFICATIONS: Publish Notification (failure) event for Payer\n<color #FF0000><b>Error codes:</b> 3106</color>
-                        activate TOPIC_NOTIFICATIONS
-                        deactivate TOPIC_NOTIFICATIONS
-                    end
+                    BULK_DAO --> BULK_PREP_HANDLER: Return success
+                    deactivate BULK_DAO
                 end
-
-            else If bulkTransferId does NOT exist
-                BULK_PREP_HANDLER -> POS_DAO: Request to persist Transfer Hash \n<color #FF0000><b>Error code:</b> 2003</color>
-                activate POS_DAO
-                POS_DAO -> DB: Persist Bulk Transfer message hash
-                hnote over DB #lightyellow
-                    bulkTransferDuplicateCheck
-                end note
-                activate DB
-                deactivate DB
-                POS_DAO --> BULK_PREP_HANDLER: Return success
-                deactivate POS_DAO
-            end
-            deactivate POS_DAO
-            
-        end
-
-        group Validate Payer
-            BULK_PREP_HANDLER -> PARTICIPANT_DAO: Request to retrieve Payer Participant details (if it exists)
-            activate PARTICIPANT_DAO
-            PARTICIPANT_DAO -> DB: Request Participant details
-            hnote over DB #lightyellow
-                participant
-                participantCurrency
-            end note
-            activate DB
-            PARTICIPANT_DAO <-- DB: Return Participant details if it exists
-            deactivate DB
-            PARTICIPANT_DAO --> BULK_PREP_HANDLER: Return Participant details if it exists
-            deactivate PARTICIPANT_DAO
-            BULK_PREP_HANDLER <-> BULK_PREP_HANDLER: Validate Payer\n<color #FF0000><b>Error codes:</b> 3202</color>
-        end
-        group Validate Payee
-            BULK_PREP_HANDLER -> PARTICIPANT_DAO: Request to retrieve Payee Participant details (if it exists)
-            activate PARTICIPANT_DAO
-            PARTICIPANT_DAO -> DB: Request Participant details
-            hnote over DB #lightyellow
-                participant
-                participantCurrency
-            end note
-            activate DB
-            PARTICIPANT_DAO <-- DB: Return Participant details if it exists
-            deactivate DB
-            PARTICIPANT_DAO --> BULK_PREP_HANDLER: Return Participant details if it exists
-            deactivate PARTICIPANT_DAO
-            BULK_PREP_HANDLER <-> BULK_PREP_HANDLER: Validate Payee\n<color #FF0000><b>Error codes:</b> 3203</color>
-        end
-        BULK_PREP_HANDLER <-> BULK_PREP_HANDLER: Validate crypto-condition\n<color #FF0000><b>Error codes:</b> 3100</color>
-        
-        alt Validate Bulk Prepare Transfer (success)
-            group Persist Bulk Transfer State (with bulkTransferState='RECEIVED')
-                BULK_PREP_HANDLER -> POS_DAO: Request to persist bulk transfer\n<color #FF0000><b>Error codes:</b> 2003</color>
-                activate POS_DAO
-                POS_DAO -> DB: Persist bulkTransfer
-                hnote over DB #lightyellow
-                    bulkTransfer
-                    bulkTransferExtension
-                    bulkTransferStateChange
-                end note
-                activate DB
-                deactivate DB
-                POS_DAO --> BULK_PREP_HANDLER: Return success
-                deactivate POS_DAO
-            end
-        else Validate Bulk Prepare Transfer (failure)
-            group Persist Bulk Transfer State (with bulkTransferState='INVALID') (Introducing a new status INVALID to mark these entries)
-                BULK_PREP_HANDLER -> POS_DAO: Request to persist bulk transfer\n(when Payee/Payer/crypto-condition validation fails)\n<color #FF0000><b>Error codes:</b> 2003</color>
-                activate POS_DAO
-                POS_DAO -> DB: Persist transfer
-                hnote over DB #lightyellow
-                    bulkTransfer
-                    bulkTransferExtension
-                    bulkTransferStateChange
-                    bulkTransferError
-                end note
-                activate DB
-                deactivate DB
-                POS_DAO --> BULK_PREP_HANDLER: Return success
-                deactivate POS_DAO
+            else Validate Bulk Prepare Transfer (failure)
+                group Persist Bulk Transfer State (with bulkTransferState='INVALID') (Introducing a new status INVALID to mark these entries)
+                    BULK_PREP_HANDLER -> BULK_DAO: Request to persist bulk transfer\n(when Payee/Payer/crypto-condition validation fails)\n<color #FF0000><b>Error codes:</b> 2003</color>
+                    activate BULK_DAO
+                    BULK_DAO -> DB: Persist transfer
+                    hnote over DB #lightyellow
+                        bulkTransfer
+                        bulkTransferExtension
+                        bulkTransferStateChange
+                        bulkTransferError
+                    end note
+                    activate DB
+                    deactivate DB
+                    BULK_DAO --> BULK_PREP_HANDLER: Return success
+                    deactivate BULK_DAO
+                end
             end
         end
-
     end
     alt Validate Bulk Prepare Transfer (success)
-        BULK_PREP_HANDLER -> BULK_PREP_HANDLER: Break down the bulk into individual transfers\n<color #FF0000><b>Error codes:</b> 2003</color>
-        note right of BULK_PREP_HANDLER #lightgrey
-            Add elements such as Expiry time, Payer FSP, Payee FSP, etc. to each
-            transfer to make their format similar to a single transfer
-        end note
-        loop for every individual transfer in the bulk
-            BULK_PREP_HANDLER -> OBJECT_STORE: Retrieve each individual transfer\nin the bulk using the reference
+        loop for each individual transfer in the bulk
+            BULK_PREP_HANDLER -> OBJECT_STORE: Retrieve individual transfers from the bulk using\nreference: **MLOS.individualTransfers.messageId**
             activate OBJECT_STORE
-            OBJECT_STORE --> BULK_PREP_HANDLER: Return individual transfers as queried
+            note right of OBJECT_STORE #lightgrey
+                Add elements such as Expiry time, Payer FSP, Payee FSP, etc. to each
+                transfer to make their format similar to a single transfer
+            end note
+            OBJECT_STORE --> BULK_PREP_HANDLER: Stream bulk's individual transfers
             deactivate OBJECT_STORE
+
             group Insert Bulk Transfer Association (with bulkProcessingState='RECEIVED')
-                BULK_PREP_HANDLER -> POS_DAO: Request to persist bulk transfer association\n<color #FF0000><b>Error codes:</b> 2003</color>
-                activate POS_DAO
-                POS_DAO -> DB: Insert bulkTransferAssociation
+                BULK_PREP_HANDLER -> BULK_DAO: Request to persist bulk transfer association\n<color #FF0000><b>Error codes:</b> 2003</color>
+                activate BULK_DAO
+                BULK_DAO -> DB: Insert bulkTransferAssociation
                 hnote over DB #lightyellow
                     bulkTransferAssociation
                 end note
                 activate DB
                 deactivate DB
-                POS_DAO --> BULK_PREP_HANDLER: Return success
-                deactivate POS_DAO
+                BULK_DAO --> BULK_PREP_HANDLER: Return success
+                deactivate BULK_DAO
             end
 
             note right of BULK_PREP_HANDLER #yellow
                 Message:
                 {
-                    id: <transferMessage.transferId>
-                    from: <transferMessage.payerFsp>,
-                    to: <transferMessage.payeeFsp>,
+                    id: <messageId>
+                    from: <payerFspName>,
+                    to: <payeeFspName>,
                     type: application/json
                     content: {
                         headers: <transferHeaders>,
@@ -433,12 +310,13 @@ group Bulk Prepare Handler Consume
                         event: {
                             id: <uuid>,
                             responseTo: <previous.uuid>,
-                            type: bulk-prepare,
-                            action: prepare,
+                            type: "prepare",
+                            action: "bulk-prepare",
                             createdAt: <timestamp>,
                             state: {
                                 status: "success",
-                                code: 0
+                                code: 0,
+                                description:"action successful"
                             }
                         }
                     }
@@ -452,10 +330,10 @@ group Bulk Prepare Handler Consume
         note right of BULK_PREP_HANDLER #yellow
             Message:
             {
-                id: <bulkTransferMessage.bulkTransferId>
+                id: <messageId>
                 from: <ledgerName>,
                 to: <bulkTransferMessage.payerFsp>,
-                type: application/json
+                type: "application/json",
                 content: {
                     headers: <bulkTransferHeaders>,
                     payload: {
@@ -469,11 +347,11 @@ group Bulk Prepare Handler Consume
                     event: {
                         id: <uuid>,
                         responseTo: <previous.uuid>,
-                        type: bulk-notification,
-                        action: bulk-abort,
+                        type: "bulk-processing",
+                        action: "bulk-abort",
                         createdAt: <timestamp>,
                         state: {
-                            status: 'error',
+                            status: "error",
                             code: <errorInformation.errorCode>
                             description: <errorInformation.errorDescription>
                         }
@@ -481,9 +359,9 @@ group Bulk Prepare Handler Consume
                 }
             }
         end note
-        BULK_PREP_HANDLER -> TOPIC_NOTIFICATIONS: Publish Notification (failure) event for Payer\n<color #FF0000><b>Error codes:</b> 2003</color>
-        activate TOPIC_NOTIFICATIONS
-        deactivate TOPIC_NOTIFICATIONS
+        BULK_PREP_HANDLER -> TOPIC_BULK_PROCESSING: Publish Processing (failure) event for Payer\n<color #FF0000><b>Error codes:</b> 2003</color>
+        activate TOPIC_BULK_PROCESSING
+        deactivate TOPIC_BULK_PROCESSING
     end
 end
 deactivate BULK_PREP_HANDLER

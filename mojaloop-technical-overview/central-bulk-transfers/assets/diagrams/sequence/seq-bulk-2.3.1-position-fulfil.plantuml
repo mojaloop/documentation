@@ -126,7 +126,7 @@ group Fulfil Position Handler Consume
                     id: <uuid>,
                     responseTo: <previous.uuid>,
                     type: bulk-processing,
-                    action: commit,
+                    action: bulk-commit,
                     createdAt: <timestamp>,
                     state: {
                         status: "success",

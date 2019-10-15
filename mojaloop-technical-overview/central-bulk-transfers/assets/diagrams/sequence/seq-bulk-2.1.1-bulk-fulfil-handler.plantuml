@@ -65,11 +65,6 @@ group Bulk Fulfil Handler Consume
     activate TOPIC_BULK_FULFIL
     deactivate TOPIC_BULK_FULFIL
 
-    BULK_FULF_HANDLER -> OBJECT_STORE: Retrieve bulk payload\nusing reference
-    activate OBJECT_STORE
-    OBJECT_STORE --> BULK_FULF_HANDLER: Return payload
-    deactivate OBJECT_STORE
-
     break
         group Validate Event
             BULK_FULF_HANDLER <-> BULK_FULF_HANDLER: Validate event - Rule:\ntype == 'bulk-fulfil' && action == 'bulk-commit'\n<color #FF0000><b>Error codes:</b> 2001</color>
@@ -85,141 +80,171 @@ group Bulk Fulfil Handler Consume
 
     group Validate FSPIOP-Signature
         |||
-        ref over BULK_FULF_HANDLER, TOPIC_NOTIFICATION: Validate message.content.headers.**FSPIOP-Signature**\n<color #FF0000><b>Error codes:</b> 3105/3106</color>
+        ref over BULK_FULF_HANDLER, TOPIC_NOTIFICATION: Validate message.content.headers.**FSPIOP-Signature**\n<color #FF0000><b>Error codes:</b> 3105/3106</color>\n
+        |||
     end
 
     group Validate Bulk Fulfil Transfer
         BULK_FULF_HANDLER <-> BULK_FULF_HANDLER: <color #gray>Schema validation of the incoming message</color>
         BULK_FULF_HANDLER <-> BULK_FULF_HANDLER: <color #gray>Verify the message's signature</color>\n<color #gray>(to be confirmed in future requirement)</color>
         note right of BULK_FULF_HANDLER #lightgrey
-            The above validation steps are already handled by
-            the ML-Adapter for the open source implementation.
+            The above validation steps are already handled by the
+            Bulk-API-Adapter for the open source implementation.
             It may need to be added in future for custom adapters.
         end note
-        group Validate Bulk Fulfilment Duplicate Check
-            BULK_FULF_HANDLER -> BULK_FULF_HANDLER: Generate bulkTransferFulfilmentId UUID
-            BULK_FULF_HANDLER -> BULK_DAO: Request to retrieve Bulk transfer\nfulfilment hashes by bulkTransferId\n<color #FF0000><b>Error code:</b> 2003</color>
-            activate BULK_DAO
-            BULK_DAO -> DB: Request Bulk transfer fulfilment\nduplicate message hashes
-            hnote over DB #lightyellow
-                SELET transferId, hash
-                FROM **bulkTransferFulfilmentDuplicateCheck**
-                WHERE bulkTransferId = request.params.id
+
+        group Validate Duplicate Check
+            |||
+            BULK_FULF_HANDLER -> DB: Request Duplicate Check
+            ref over BULK_FULF_HANDLER, DB:  Request Duplicate Check\n
+            DB --> BULK_FULF_HANDLER: Return { hasDuplicateId: Boolean, hasDuplicateHash: Boolean }
+        end
+
+        alt hasDuplicateId == TRUE && hasDuplicateHash == TRUE
+            break
+                BULK_FULF_HANDLER -> BULK_DAO: Request to retrieve Bulk Transfer state & completedTimestamp\n<color #FF0000><b>Error code:</b> 2003</color>
+                activate BULK_DAO
+                BULK_DAO -> DB: Query database
+                hnote over DB #lightyellow
+                    bulkTransfer
+                    bulkTransferFulfilment
+                    bulkTransferStateChange
+                end note
+                activate DB
+                BULK_DAO <-- DB: Return resultset
+                deactivate DB
+                BULK_DAO --> BULK_FULF_HANDLER: Return **bulkTransferStateId** & **completedTimestamp** (not null when completed)
+                deactivate BULK_DAO
+
+                note right of BULK_FULF_HANDLER #yellow
+                    Message:
+                    {
+                        id: <messageId>
+                        from: <ledgerName>,
+                        to: <payeeFspName>,
+                        type: application/json
+                        content: {
+                            headers: <bulkTransferHeaders>,
+                            payload: {
+                                bulkTransferState: <string>,
+                                completedTimestamp: <optional>
+                            }
+                        },
+                        metadata: {
+                            event: {
+                                id: <uuid>,
+                                responseTo: <previous.uuid>,
+                                type: "notification",
+                                action: "bulk-fulfil-duplicate",
+                                createdAt: <timestamp>,
+                                state: {
+                                    status: "success",
+                                    code: 0
+                                }
+                            }
+                        }
+                    }
+                end note
+                BULK_FULF_HANDLER -> TOPIC_NOTIFICATION: Publish Notification event for Payee
+                activate TOPIC_NOTIFICATION
+                deactivate TOPIC_NOTIFICATION
+            end
+        else hasDuplicateId == TRUE && hasDuplicateHash == FALSE
+            note right of BULK_FULF_HANDLER #yellow
+                {
+                    id: <messageId>,
+                    from: <ledgerName",
+                    to: <payeeFspName>,
+                    type: "application/json",
+                    content: {
+                        headers: <bulkTransferHeaders>,
+                        payload: {
+                            errorInformation: {
+                                errorCode: "3106",
+                                errorDescription: "Modified request",
+                                extensionList: {
+                                    extension: [
+                                        {
+                                            key: "_cause",
+                                            value: <FSPIOPError>
+                                        }
+                                    ]
+                                }
+                            },
+                            uriParams: {
+                                id: <bulkTransferId>
+                            }
+                        }
+                    },
+                    metadata: {
+                        correlationId: <uuid>,
+                        event: {
+                            id: <uuid>,
+                            type: "notification",
+                            action: "bulk-commit",
+                            createdAt: <timestamp>,
+                            state: {
+                                status: "error",
+                                code: "3106",
+                                description: "Modified request"
+                            },
+                            responseTo: <uuid>
+                        }
+                    }
+                }
             end note
-            activate DB
-            BULK_DAO <-- DB: Return existing hashes
-            deactivate DB
-            BULK_DAO --> BULK_FULF_HANDLER: Return <color #red>**(list of)**</color> transfer fulfil message hash(es)
-            deactivate BULK_DAO
-            BULK_FULF_HANDLER -> BULK_FULF_HANDLER: Loop the list of returned hashes\nand compare each entry with the\ncalculated message hash
-
-            alt Hash matched
-                group Persist Event Information
-                    |||
-                    BULK_FULF_HANDLER -> TOPIC_EVENTS: Publish event information
-                    ref over BULK_FULF_HANDLER, TOPIC_EVENTS:  Event Handler Consume\n
-                    |||
+            BULK_FULF_HANDLER -> TOPIC_NOTIFICATION: Publish Notification (failure) event for Payer\n<color #FF0000><b>Error codes:</b> 3106</color>
+            activate TOPIC_NOTIFICATION
+            deactivate TOPIC_NOTIFICATION
+        else hasDuplicateId == FALSE
+            alt Validate Bulk Transfer Fulfil (success)
+                group Persist Bulk Transfer State (with bulktransferState='PROCESSING')
+                    BULK_FULF_HANDLER -> BULK_DAO: Request to persist bulk transfer fulfil\n<color #FF0000><b>Error codes:</b> 2003</color>
+                    activate BULK_DAO
+                    BULK_DAO -> DB: Persist bulkTransferFulfilment
+                    hnote over DB #lightyellow
+                        bulkTransferFulfilment
+                        bulkTransferStateChange
+                        bulkTransferExtension
+                    end note
+                    activate DB
+                    deactivate DB
+                    BULK_DAO --> BULK_FULF_HANDLER: Return success
+                    deactivate BULK_DAO
                 end
-                BULK_FULF_HANDLER -> BULK_DAO: Request to retrieve Bulk transfer state\n<color #FF0000><b>Error code:</b> 2003</color>
-                activate BULK_DAO
-                BULK_DAO -> DB: Request to retrieve Bulk transfer state
-                hnote over DB #lightyellow
-                    bulkTransferStateChange
-                end note
-                activate DB
-                BULK_DAO <-- DB: Return Bulk transfer state
-                deactivate DB
-                BULK_DAO --> BULK_FULF_HANDLER: Return Bulk transfer state
-                deactivate BULK_DAO
-                alt bulkTransferState IN ['COMPLETED', 'REJECTED']
-                    break
-                        ref over BULK_FULF_HANDLER, TOPIC_NOTIFICATION: Send notification to Participant (Payee)\n
-                    end
-                else transferState NOT 'ACCEPTED'
-                    break
-                        BULK_FULF_HANDLER <-> BULK_FULF_HANDLER: <color #FF0000><b>Error code:</b> 2001</color>
-                    end
-                else
-                    break
-                        BULK_FULF_HANDLER <-> BULK_FULF_HANDLER: Allow previous request to complete
-                    end
+            else Validate Bulk Transfer Fulfil (failure)
+                group Persist Bulk Transfer State (with bulkTransferState='INVALID/REJECTED')
+                    BULK_FULF_HANDLER -> BULK_DAO: Request to persist bulk\ntransfer fulfil failure\n<color #FF0000><b>Error codes:</b> 2003</color>
+                    activate BULK_DAO
+                    BULK_DAO -> DB: Persist transfer
+                    hnote over DB #lightyellow
+                        bulkTransferFulfilment
+                        bulkTransferStateChange
+                        bulkTransferExtension
+                        bulkTransferError
+                    end note
+                    activate DB
+                    deactivate DB
+                    BULK_DAO --> BULK_FULF_HANDLER: Return success
+                    deactivate BULK_DAO
                 end
-            else Hash not matched
-                BULK_FULF_HANDLER -> BULK_DAO: Request to persist transfer hash\n<color #FF0000><b>Error codes:</b> 2003</color>
-                activate BULK_DAO
-                BULK_DAO -> DB: Persist hash
-                hnote over DB #lightyellow
-                    bulkTransferFulfilmentDuplicateCheck
-                end note
-                activate DB
-                deactivate DB
-                BULK_DAO --> BULK_FULF_HANDLER: Return success
-                deactivate BULK_DAO
-            end
-            
-        end
-        
-        alt Validate Bulk Transfer Fulfil (success)
-            group Persist Bulk Transfer State (with bulktransferState='PROCESSING')
-                BULK_FULF_HANDLER -> BULK_DAO: Request to persist bulk transfer fulfil\n<color #FF0000><b>Error codes:</b> 2003</color>
-                activate BULK_DAO
-                BULK_DAO -> DB: Persist bulkTransferFulfilment
-                hnote over DB #lightyellow
-                    bulkTransferFulfilment
-                    bulkTransferStateChange
-                    bulkTransferExtension
-                end note
-                activate DB
-                deactivate DB
-                BULK_DAO --> BULK_FULF_HANDLER: Return success
-                deactivate BULK_DAO
-            end
-        else Validate Bulk Transfer Fulfil (failure)
-            group Persist Bulk Transfer State (with bulkTransferState='INVALID/REJECTED')
-                BULK_FULF_HANDLER -> BULK_DAO: Request to persist bulk\ntransfer fulfil failure\n<color #FF0000><b>Error codes:</b> 2003</color>
-                activate BULK_DAO
-                BULK_DAO -> DB: Persist transfer
-                hnote over DB #lightyellow
-                    bulkTransferFulfilment
-                    bulkTransferStateChange
-                    bulkTransferExtension
-                    bulkTransferError
-                end note
-                activate DB
-                deactivate DB
-                BULK_DAO --> BULK_FULF_HANDLER: Return success
-                deactivate BULK_DAO
             end
         end
-
     end
     alt Validate Bulk Transfer Fulfil (success)
-        BULK_FULF_HANDLER -> BULK_FULF_HANDLER: Break down the bulk into indidivual transfers\n<color #FF0000><b>Error codes:</b> 2003</color>
         loop for every individual transfer in the bulk fulfil list
-            BULK_PREP_HANDLER -> OBJECT_STORE: Retrieve each individual transfer\nin the bulk using the reference
+            BULK_FULF_HANDLER -> OBJECT_STORE: Retrieve individual transfers from the bulk using\nreference: **MLOS.individualTransferFulfils.messageId**
             activate OBJECT_STORE
-            OBJECT_STORE --> BULK_PREP_HANDLER: Return individual transfers as queried
+            OBJECT_STORE --> BULK_FULF_HANDLER: Stream bulk's individual transfer fulfils
             deactivate OBJECT_STORE
-            /' group Update Bulk Transfer Association (with bulkProcessingState='PROCESSING')
-                BULK_FULF_HANDLER -> BULK_DAO: Request to persist bulk transfer association\n<color #FF0000><b>Error codes:</b> 2003</color>
-                activate BULK_DAO
-                BULK_DAO -> DB: Update bulkTransferAssociation
-                hnote over DB #lightyellow
-                    bulkTransferAssociation
-                end note
-                activate DB
-                deactivate DB
-                BULK_DAO --> BULK_FULF_HANDLER: Return success
-                deactivate BULK_DAO
-            end '/
 
             note right of BULK_FULF_HANDLER #yellow
                 Message:
                 {
-                    id: <transferMessage.transferId>
-                    from: <transferMessage.payerFsp>,
-                    to: <transferMessage.payeeFsp>,
-                    type: application/json
+                    id: <messageId>
+                    from: <payeeFspName>,
+                    to: <payerFspName>,
+                    type: "application/json"
                     content: {
                         headers: <transferHeaders>,
                         payload: <transferMessage>
@@ -228,8 +253,8 @@ group Bulk Fulfil Handler Consume
                         event: {
                             id: <uuid>,
                             responseTo: <previous.uuid>,
-                            type: bulk-fulfil,
-                            action: fulfil,
+                            type: "fulfil",
+                            action: "bulk-commit",
                             createdAt: <timestamp>,
                             state: {
                                 status: "success",
@@ -247,10 +272,10 @@ group Bulk Fulfil Handler Consume
         note right of BULK_FULF_HANDLER #yellow
             Message:
             {
-                id: <bulkTransferMessage.bulkTransferId>
+                id: <messageId>
                 from: <ledgerName>,
-                to: <bulkTransferMessage.payerFsp>,
-                type: application/json
+                to: <payerFspName>,
+                type: "application/json"
                 content: {
                     headers: <bulkTransferHeaders>,
                     payload: {
@@ -264,8 +289,8 @@ group Bulk Fulfil Handler Consume
                     event: {
                         id: <uuid>,
                         responseTo: <previous.uuid>,
-                        type: bulk-processing,
-                        action: bulk-abort,
+                        type: "notification",
+                        action: "bulk-abort",
                         createdAt: <timestamp>,
                         state: {
                             status: 'error',

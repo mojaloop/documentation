@@ -66,7 +66,7 @@ autonumber
 collections "topic-bulk-\nprocessing" as TOPIC_BULK_PROCESSING
 control "Bulk Processing\nHandler" as BULK_PROC_HANDLER
 collections "topic-event" as TOPIC_EVENTS
-collections "mongo-\nobject-store" as OBJECT_STORE
+collections "mojaloop-\nobject-store\n(**MLOS**)" as OBJECT_STORE
 collections "topic-notification" as TOPIC_NOTIFICATION
 entity "Bulk DAO" as BULK_DAO
 database "Central Store" as DB
@@ -90,7 +90,7 @@ group Bulk Processing Handler Consume
 
     break
         group Validate Event
-            BULK_PROC_HANDLER <-> BULK_PROC_HANDLER: Validate event - Rule:\ntype == 'bulk-processing' && action IN\n['bulk-prepare-duplicate<color #red>*</color>', 'bulk-prepare',\n'bulk-timeout-received', 'bulk-commit-duplicate<color #red>*</color>',\n'bulk-commit', 'bulk-reject<color #red>*</color>', 'bulk-abort<color #red>*</color>',\n'bulk-timeout-reserved']\n<color #red><b>Error codes:</b> 2001</color>\n<color #red>*</color> Not implemented
+            BULK_PROC_HANDLER <-> BULK_PROC_HANDLER: Validate event - Rule:\ntype == 'bulk-processing' && action IN\n['prepare-duplicate', 'bulk-prepare',\n'bulk-timeout-received', 'fulfil-duplicate',\n'bulk-commit', 'bulk-timeout-reserved']\n<color #red><b>Error codes:</b> 2001</color>
         end
     end
 
@@ -123,8 +123,7 @@ group Bulk Processing Handler Consume
                 let completedBulkState
                 let bulkTransferState
                 let processingState
-                let <color #green>exitCode = 0</color> (success)
-                let errorMessage
+                let errorCode, errorMessage
                 let produceNotification = false
             end note
             alt bulkTransferInfo.bulkTransferState IN ['RECEIVED', 'PENDING_PREPARE']
@@ -133,28 +132,33 @@ group Bulk Processing Handler Consume
                     incompleteBulkState = 'PENDING_PREPARE'
                     completedBulkState = 'ACCEPTED'
                 end note
-                alt action == 'prepare-duplicate'
+                alt action == 'prepare-duplicate' AND state.status == 'error'
                     note right of BULK_PROC_HANDLER #lightgrey
                         processingState = 'RECEIVED_DUPLICATE'
+                        errorCode = payload.errorInformation.errorCode
+                        errorDescription = payload.errorInformation.errorDescription
                     end note
-                else action == 'prepare' AND state.status == 'error'
+                else action == 'bulk-prepare' AND state.status == 'error'
                     note right of BULK_PROC_HANDLER #lightgrey
                         processingState = 'RECEIVED_INVALID'
+                        errorCode = payload.errorInformation.errorCode
+                        errorDescription = payload.errorInformation.errorDescription
                     end note
-                else action == 'prepare' AND state.status == 'success'
+                else action == 'bulk-prepare' AND state.status == 'success'
                     note right of BULK_PROC_HANDLER #lightgrey
                         processingState = 'ACCEPTED'
                     end note
                 else action IN ['bulk-timeout-received', 'bulk-timeout-reserved']
                     note right of BULK_PROC_HANDLER #lightgrey
                         incompleteBulkState = 'EXPIRING'
-                        completedBulkState = 'EXPIRED'
+                        completedBulkState = 'COMPLETED'
                         processingState = 'EXPIRED'
+                        errorCode = payload.errorInformation.errorCode
+                        errorDescription = payload.errorInformation.errorDescription
                     end note
                 else all other actions
                     note right of BULK_PROC_HANDLER #lightgrey
-                        <color #red>exitCode = 2</color>
-                        errorMessage = 'Invalid action for bulk in RECEIVED state'
+                        <color #red>throw</color> ErrorHandler.Factory.createFSPIOPError(INTERNAL_SERVER_ERROR)
                     end note
                 end
             else bulkTransferInfo.bulkTransferState IN ['ACCEPTED']
@@ -162,18 +166,17 @@ group Bulk Processing Handler Consume
                     note right of BULK_PROC_HANDLER #lightgrey
                         criteriaState = 'ACCEPTED'
                         incompleteBulkState = 'EXPIRING'
-                        completedBulkState = 'EXPIRED'
+                        completedBulkState = 'COMPLETED'
                         processingState = 'EXPIRED'
                     end note
                 else all other actions
                     note right of BULK_PROC_HANDLER #lightgrey
-                        <color #red>exitCode = 3</color>
-                        errorMessage = 'Invalid action for bulk in ACCEPTED state'
+                        <color #red>throw</color> ErrorHandler.Factory.createFSPIOPError(INTERNAL_SERVER_ERROR)
                     end note
                 end
             else bulkTransferInfo.bulkTransferState IN ['PROCESSING', 'PENDING_FULFIL', 'EXPIRING']
                 note right of BULK_PROC_HANDLER #lightgrey
-                    criteriaState = 'ACCEPTED'
+                    criteriaState = 'PROCESSING'
                     incompleteBulkState = 'PENDING_FULFIL'
                     completedBulkState = 'COMPLETED'
                 end note
@@ -181,7 +184,7 @@ group Bulk Processing Handler Consume
                     note right of BULK_PROC_HANDLER #lightgrey
                         processingState = 'FULFIL_DUPLICATE'
                     end note
-                else action == 'commit' AND state.status == 'success'
+                else action == 'bulk-commit' AND state.status == 'success'
                     note right of BULK_PROC_HANDLER #lightgrey
                         processingState = 'COMPLETED'
                     end note
@@ -196,114 +199,70 @@ group Bulk Processing Handler Consume
                 else action == 'bulk-timeout-reserved'
                     note right of BULK_PROC_HANDLER #lightgrey
                         incompleteBulkState = 'EXPIRING'
-                        completedBulkState = 'EXPIRED'
+                        completedBulkState = 'COMPLETED'
                         processingState = 'EXPIRED'
+                        errorCode = payload.errorInformation.errorCode
+                        errorDescription = payload.errorInformation.errorDescription
                     end note
                 else all other actions
                     note right of BULK_PROC_HANDLER #lightgrey
-                        <color #red>exitCode = 4</color>
-                        errorMessage = 'Invalid action for bulk in PROCESSING state'
+                        <color #red>throw</color> ErrorHandler.Factory.createFSPIOPError(INTERNAL_SERVER_ERROR)
                     end note
                 end
             else all other ['PENDING_INVALID', 'COMPLETED', 'REJECTED', 'INVALID']
                 note right of BULK_PROC_HANDLER #lightgrey
-                    <color #red>exitCode = 1</color>
-                    errorMessage = 'Individual transfer can not be
-                        processed when bulk transfer state is final'
+                    <color #red>throw</color> ErrorHandler.Factory.createFSPIOPError(INTERNAL_SERVER_ERROR)
                 end note
             end
         end
 
-        opt exitCode == 0 (success)
-            BULK_PROC_HANDLER -> BULK_DAO: Persist individual transfer processing state
-            activate BULK_DAO
-            BULK_DAO -> DB: Persist individual transfer processing state\n<color #gray>-- store errorCode/errorMessage when</color>\n<color #gray>state.status == 'error'</color>
-            activate DB
-            hnote over DB #lightyellow
-                bulkTransferAssociation
-            end note
-            deactivate DB
-            BULK_PROC_HANDLER <-- BULK_DAO: Return success
-            deactivate BULK_DAO
+        BULK_PROC_HANDLER -> BULK_DAO: Persist individual transfer processing state
+        activate BULK_DAO
+        BULK_DAO -> DB: Persist individual transfer processing state\n<color #gray>-- store errorCode/errorMessage when</color>\n<color #gray>state.status == 'error'</color>
+        activate DB
+        hnote over DB #lightyellow
+            bulkTransferAssociation
+        end note
+        deactivate DB
+        BULK_PROC_HANDLER <-- BULK_DAO: Return success
+        deactivate BULK_DAO
 
-            BULK_PROC_HANDLER -> BULK_DAO: Check previously defined completion criteria
-            activate BULK_DAO
-            BULK_DAO -> DB: Select EXISTS (LIMIT 1) in criteriaState
-            activate DB
-            hnote over DB #lightyellow
-                bulkTransferAssociation
-            end note
-            BULK_DAO <-- DB: Return **existingIndividualTransfer**
-            deactivate DB
-            BULK_PROC_HANDLER <-- BULK_DAO: Return **existingIndividualTransfer**
-            deactivate BULK_DAO
+        BULK_PROC_HANDLER -> BULK_DAO: Check previously defined completion criteria
+        activate BULK_DAO
+        BULK_DAO -> DB: Select EXISTS (LIMIT 1) in criteriaState
+        activate DB
+        hnote over DB #lightyellow
+            bulkTransferAssociation
+        end note
+        BULK_DAO <-- DB: Return **existingIndividualTransfer**
+        deactivate DB
+        BULK_PROC_HANDLER <-- BULK_DAO: Return **existingIndividualTransfer**
+        deactivate BULK_DAO
 
-            alt individual transfer exists
-                note right of BULK_PROC_HANDLER #lightgrey
-                    bulkTransferState = incompleteBulkState
-                end note
-            else no transfer in criteriaState exists
-                note right of BULK_PROC_HANDLER #lightgrey
-                    bulkTransferState = completedBulkState
-                    produceNotification = true
-                end note
-            end
-
-            BULK_PROC_HANDLER -> BULK_DAO: Persist bulkTransferState from previous step
-            activate BULK_DAO
-            BULK_DAO -> DB: Persist bulkTransferState
-            activate DB
-            deactivate DB
-            hnote over DB #lightyellow
-                bulkTransferStateChange
+        alt individual transfer exists
+            note right of BULK_PROC_HANDLER #lightgrey
+                bulkTransferState = incompleteBulkState
             end note
-            BULK_PROC_HANDLER <-- BULK_DAO: Return success
-            deactivate BULK_DAO
+        else no transfer in criteriaState exists
+            note right of BULK_PROC_HANDLER #lightgrey
+                bulkTransferState = completedBulkState
+                produceNotification = true
+            end note
         end
 
+        BULK_PROC_HANDLER -> BULK_DAO: Persist bulkTransferState from previous step
+        activate BULK_DAO
+        BULK_DAO -> DB: Persist bulkTransferState
+        activate DB
+        deactivate DB
+        hnote over DB #lightyellow
+            bulkTransferStateChange
+        end note
+        BULK_PROC_HANDLER <-- BULK_DAO: Return success
+        deactivate BULK_DAO
 
-        alt exitCode > 0
-            group Send Bulk Error Notification
-                note right of BULK_PROC_HANDLER #yellow
-                    Message:
-                    {
-                        id: <bulkTransferMessage.bulkTransferId>
-                        from: <ledgerName>,
-                        to: <bulkTransferMessage.payerFsp>,
-                        type: application/json
-                        content: {
-                            headers: <bulkTransferHeaders>,
-                            payload: {
-                                errorInformation: {
-                                    errorCode: exitCode,
-                                    errorMessage: errorMessage
-                                }
-                            }
-                        },
-                        metadata: {
-                            event: {
-                                id: <uuid>,
-                                responseTo: <previous.uuid>,
-                                type: notification,
-                                action: bulk-notification,
-                                createdAt: <timestamp>,
-                                state: {
-                                    status: 'error',
-                                    code: 1
-                                }
-                            }
-                        }
-                    }
-                end note
-                note right of BULK_PROC_HANDLER #lightgrey
-                    Depending on the action decide where to
-                    send notification: payer, payee OR both
-                end note
-                BULK_PROC_HANDLER -> TOPIC_NOTIFICATION: Publish Notification event for Payer/Payee\n<color #FF0000><b>Error codes:</b> 2003</color>
-                activate TOPIC_NOTIFICATION
-                deactivate TOPIC_NOTIFICATION
-            end
-        else produceNotification == true
+
+        alt produceNotification == true
             BULK_PROC_HANDLER -> BULK_DAO: Request to retrieve all bulk transfer and individual transfer results
             activate BULK_DAO
             BULK_DAO -> DB: Get bulkTransferResult
@@ -318,33 +277,36 @@ group Bulk Processing Handler Consume
             BULK_PROC_HANDLER <-- BULK_DAO: Return **bulkTransferResult**
             deactivate BULK_DAO
 
-            group Send Bulk Notification
-                BULK_PROC_HANDLER -> OBJECT_STORE: Generate & Persist bulk message\nto object store
+            group Send Bulk Notification(s)
+                note right of BULK_PROC_HANDLER #lightgrey
+                    Depending on the action decide where to
+                    send notification: payer, payee OR both
+                end note
+
+                BULK_PROC_HANDLER -> OBJECT_STORE: Generate & Persist bulk message to object store:\n**MLOS.bulkTransferResults** by destination
                 activate OBJECT_STORE
-                OBJECT_STORE --> BULK_PROC_HANDLER: Return reference to the stored object
+                OBJECT_STORE --> BULK_PROC_HANDLER: Return reference to the stored object(s)\n**MLOS.bulkTransferResults.messageId**
                 deactivate OBJECT_STORE
                 note right of BULK_PROC_HANDLER #yellow
                     Message:
                     {
-                        id: <bulkTransferMessage.bulkTransferId>
-                        from: <ledgerName>,
-                        to: <bulkTransferMessage.payerFsp>,
-                        type: application/json
+                        id: <messageId>
+                        from: <source>,
+                        to: <destination>,
+                        type: "application/json"
                         content: {
                             headers: <bulkTransferHeaders>,
                             payload: {
-                                objstore: {
-                                        transactionid: <bulkTransferId>
-                                        referenceid: <bulkTransferMessage_ObjectStoreReference_ID>
-                                }
+                                bulkTransferId: <uuid>,
+                                bulkTransferState: <string>
                             }
                         },
                         metadata: {
                             event: {
                                 id: <uuid>,
                                 responseTo: <previous.uuid>,
-                                type: notification,
-                                action: bulk-notification,
+                                type: "notification",
+                                action: "bulk-[prepare | commit | abort | processing]",
                                 createdAt: <timestamp>,
                                 state: {
                                     status: state.status,
@@ -354,17 +316,14 @@ group Bulk Processing Handler Consume
                         }
                     }
                 end note
-                note right of BULK_PROC_HANDLER #lightgrey
-                    Depending on the action decide where to
-                    send notification: payer, payee OR both
-                end note
+
                 BULK_PROC_HANDLER -> TOPIC_NOTIFICATION: Publish Notification event for Payer/Payee\n<color #FF0000><b>Error codes:</b> 2003</color>
                 activate TOPIC_NOTIFICATION
                 deactivate TOPIC_NOTIFICATION
             end
-        else exitCode == 0 && produceNotification == false
+        else produceNotification == false
             note right of BULK_PROC_HANDLER #lightgrey
-                Do nothing (await next individual transfer)
+                Do nothing (awaitAllTransfers)
             end note
         end
     end

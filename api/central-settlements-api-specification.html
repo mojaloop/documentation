@@ -1988,7 +1988,7 @@
                 <tbody>
                     <tr>
                         <td><a href="#operation--health-get">GET /health</a></td>
-                        <td><p>Gets the health of the service and sub-services (i.e. database).</p>
+                        <td><p>getHealth</p>
         </td>
                     </tr>
                 </tbody>
@@ -2006,7 +2006,7 @@
                 <tbody>
                     <tr>
                         <td><a href="#operation--settlementWindows--id--get">GET /settlementWindows/{id}</a></td>
-                        <td><p>Returns a Settlement Window by id.</p>
+                        <td><p>getSettlementWindowById</p>
         </td>
                     </tr>
                 </tbody>
@@ -2024,7 +2024,7 @@
                 <tbody>
                     <tr>
                         <td><a href="#operation--settlements--settlementId--participants--participantId--accounts--accountId--get">GET /settlements/{settlementId}/participants/{participantId}/accounts/{accountId}</a></td>
-                        <td><p>Returns Settlement(s) as per filter criteria.</p>
+                        <td><p>getSettlementBySettlementParticipantAccount</p>
         </td>
                     </tr>
                 </tbody>
@@ -2042,7 +2042,7 @@
                 <tbody>
                     <tr>
                         <td><a href="#operation--settlements--settlementId--participants--participantId--accounts--accountId--put">PUT /settlements/{settlementId}/participants/{participantId}/accounts/{accountId}</a></td>
-                        <td><p>Acknowledgement of settlement by updating the reason and state by Settlements Id, Participant Id and accounts Id.</p>
+                        <td><p>updateSettlementBySettlementParticipantAccount</p>
         </td>
                     </tr>
                 </tbody>
@@ -2060,7 +2060,7 @@
                 <tbody>
                     <tr>
                         <td><a href="#operation--settlementWindows--id--post">POST /settlementWindows/{id}</a></td>
-                        <td><p>If the settlementWindow is open, it can be closed and a new window is created. If it is already closed, return an error message. Returns the new settlement window.</p>
+                        <td><p>closeSettlementWindow</p>
         </td>
                     </tr>
                 </tbody>
@@ -2078,7 +2078,7 @@
                 <tbody>
                     <tr>
                         <td><a href="#operation--settlementWindows-get">GET /settlementWindows</a></td>
-                        <td><p>Returns Settlement Windows as per parameter(s).</p>
+                        <td><p>getSettlementWindowsByParams</p>
         </td>
                     </tr>
                 </tbody>
@@ -2096,7 +2096,7 @@
                 <tbody>
                     <tr>
                         <td><a href="#operation--settlements-get">GET /settlements</a></td>
-                        <td><p>Returns Settlements as per parameter(s).</p>
+                        <td><p>getSettlementsByParams</p>
         </td>
                     </tr>
                 </tbody>
@@ -2114,7 +2114,7 @@
                 <tbody>
                     <tr>
                         <td><a href="#operation--settlements-post">POST /settlements</a></td>
-                        <td><p>Trigger the creation of a settlement, that does the calculation of the net settlement position per participant and marks all transfers in the affected windows as PENDING_SETTLEMENT. Returned dataset is the net settlement report for the settlementWindow</p>
+                        <td><p>createSettlement</p>
         </td>
                     </tr>
                 </tbody>
@@ -2132,7 +2132,7 @@
                 <tbody>
                     <tr>
                         <td><a href="#operation--settlements--id--get">GET /settlements/{id}</a></td>
-                        <td><p>Returns Settlement(s) as per parameters/filter criteria.</p>
+                        <td><p>getSettlementById</p>
         </td>
                     </tr>
                 </tbody>
@@ -2150,7 +2150,7 @@
                 <tbody>
                     <tr>
                         <td><a href="#operation--settlements--id--put">PUT /settlements/{id}</a></td>
-                        <td><p>Acknowledgement of settlement by updating with Settlement Id.</p>
+                        <td><p>updateSettlementById</p>
         </td>
                     </tr>
                 </tbody>
@@ -2168,7 +2168,7 @@
                 <tbody>
                     <tr>
                         <td><a href="#operation--settlements--settlementId--participants--participantId--get">GET /settlements/{settlementId}/participants/{participantId}</a></td>
-                        <td><p>Returns Settlement(s) as per filter criteria.</p>
+                        <td><p>getSettlementBySettlementParticipant</p>
         </td>
                     </tr>
                 </tbody>
@@ -2186,7 +2186,7 @@
                 <tbody>
                     <tr>
                         <td><a href="#operation--settlements--settlementId--participants--participantId--put">PUT /settlements/{settlementId}/participants/{participantId}</a></td>
-                        <td><p>Acknowledgement of settlement by updating with Settlements Id and Participant Id.</p>
+                        <td><p>updateSettlementBySettlementParticipant</p>
         </td>
                     </tr>
                 </tbody>
@@ -2201,14 +2201,15 @@
         <span id="path--health"></span>
             <div id="operation--health-get" class="swagger--panel-operation-get panel">
                 <div class="panel-heading">
-                    <div class="operation-summary">Gets the health of the service and sub-services (i.e. database).</div>
+                    <div class="operation-summary">getHealth</div>
                     <h3 class="panel-title" id="get-health"><span class="operation-name">GET</span> <strong>/health</strong></h3>
                         Tags:
                             <a href="#tag-getHealth">getHealth</a>
                 </div>
                 <div class="panel-body">
                     <section class="sw-operation-description">
-                        
+                        <p>Gets the health of the service and sub-services (i.e. database).</p>
+            
                     </section>
                     
                     
@@ -2258,14 +2259,15 @@
         <span id="path--settlements"></span>
             <div id="operation--settlements-get" class="swagger--panel-operation-get panel">
                 <div class="panel-heading">
-                    <div class="operation-summary">Returns Settlements as per parameter(s).</div>
+                    <div class="operation-summary">getSettlementsByParams</div>
                     <h3 class="panel-title" id="get-settlements"><span class="operation-name">GET</span> <strong>/settlements</strong></h3>
                         Tags:
                             <a href="#tag-getSettlementsByParams">getSettlementsByParams</a>
                 </div>
                 <div class="panel-body">
                     <section class="sw-operation-description">
-                        
+                        <p>Returns Settlements as per parameter(s).</p>
+            
                     </section>
                     
                         <section class="sw-request-params">
@@ -2562,14 +2564,15 @@
                 </div>
             </div>    <div id="operation--settlements-post" class="swagger--panel-operation-post panel">
                 <div class="panel-heading">
-                    <div class="operation-summary">Trigger the creation of a settlement, that does the calculation of the net settlement position per participant and marks all transfers in the affected windows as PENDING_SETTLEMENT. Returned dataset is the net settlement report for the settlementWindow</div>
+                    <div class="operation-summary">createSettlement</div>
                     <h3 class="panel-title" id="post-settlements"><span class="operation-name">POST</span> <strong>/settlements</strong></h3>
                         Tags:
                             <a href="#tag-createSettlement">createSettlement</a>
                 </div>
                 <div class="panel-body">
                     <section class="sw-operation-description">
-                        
+                        <p>Trigger the creation of a settlement, that does the calculation of the net settlement position per participant and marks all transfers in the affected windows as PENDING_SETTLEMENT. Returned dataset is the net settlement report for the settlementWindow</p>
+            
                     </section>
                         
                             <section class="sw-request-body">
@@ -2728,14 +2731,15 @@
         <span id="path--settlements--id-"></span>
             <div id="operation--settlements--id--get" class="swagger--panel-operation-get panel">
                 <div class="panel-heading">
-                    <div class="operation-summary">Returns Settlement(s) as per parameters/filter criteria.</div>
+                    <div class="operation-summary">getSettlementById</div>
                     <h3 class="panel-title" id="get-settlementsid"><span class="operation-name">GET</span> <strong>/settlements/{id}</strong></h3>
                         Tags:
                             <a href="#tag-getSettlementById">getSettlementById</a>
                 </div>
                 <div class="panel-body">
                     <section class="sw-operation-description">
-                        
+                        <p>Returns Settlement(s) as per parameters/filter criteria.</p>
+            
                     </section>
                     
                         <section class="sw-request-params">
@@ -2905,14 +2909,15 @@
                 </div>
             </div>    <div id="operation--settlements--id--put" class="swagger--panel-operation-put panel">
                 <div class="panel-heading">
-                    <div class="operation-summary">Acknowledgement of settlement by updating with Settlement Id.</div>
+                    <div class="operation-summary">updateSettlementById</div>
                     <h3 class="panel-title" id="put-settlementsid"><span class="operation-name">PUT</span> <strong>/settlements/{id}</strong></h3>
                         Tags:
                             <a href="#tag-updateSettlementById">updateSettlementById</a>
                 </div>
                 <div class="panel-body">
                     <section class="sw-operation-description">
-                        
+                        <p>Acknowledgement of settlement by updating with Settlement Id.</p>
+            
                     </section>
                         
                             <section class="sw-request-body">
@@ -3101,14 +3106,15 @@
         <span id="path--settlements--settlementId--participants--participantId-"></span>
             <div id="operation--settlements--settlementId--participants--participantId--get" class="swagger--panel-operation-get panel">
                 <div class="panel-heading">
-                    <div class="operation-summary">Returns Settlement(s) as per filter criteria.</div>
+                    <div class="operation-summary">getSettlementBySettlementParticipant</div>
                     <h3 class="panel-title" id="get-settlementssettlementidparticipantsparticipantid"><span class="operation-name">GET</span> <strong>/settlements/{settlementId}/participants/{participantId}</strong></h3>
                         Tags:
                             <a href="#tag-getSettlementBySettlementParticipant">getSettlementBySettlementParticipant</a>
                 </div>
                 <div class="panel-body">
                     <section class="sw-operation-description">
-                        
+                        <p>Returns Settlement(s) as per filter criteria.</p>
+            
                     </section>
                     
                         <section class="sw-request-params">
@@ -3293,14 +3299,15 @@
                 </div>
             </div>    <div id="operation--settlements--settlementId--participants--participantId--put" class="swagger--panel-operation-put panel">
                 <div class="panel-heading">
-                    <div class="operation-summary">Acknowledgement of settlement by updating with Settlements Id and Participant Id.</div>
+                    <div class="operation-summary">updateSettlementBySettlementParticipant</div>
                     <h3 class="panel-title" id="put-settlementssettlementidparticipantsparticipantid"><span class="operation-name">PUT</span> <strong>/settlements/{settlementId}/participants/{participantId}</strong></h3>
                         Tags:
                             <a href="#tag-updateSettlementBySettlementParticipant">updateSettlementBySettlementParticipant</a>
                 </div>
                 <div class="panel-body">
                     <section class="sw-operation-description">
-                        
+                        <p>Acknowledgement of settlement by updating with Settlements Id and Participant Id.</p>
+            
                     </section>
                         
                             <section class="sw-request-body">
@@ -3504,14 +3511,15 @@
         <span id="path--settlements--settlementId--participants--participantId--accounts--accountId-"></span>
             <div id="operation--settlements--settlementId--participants--participantId--accounts--accountId--get" class="swagger--panel-operation-get panel">
                 <div class="panel-heading">
-                    <div class="operation-summary">Returns Settlement(s) as per filter criteria.</div>
+                    <div class="operation-summary">getSettlementBySettlementParticipantAccount</div>
                     <h3 class="panel-title" id="get-settlementssettlementidparticipantsparticipantidaccountsaccountid"><span class="operation-name">GET</span> <strong>/settlements/{settlementId}/participants/{participantId}/accounts/{accountId}</strong></h3>
                         Tags:
                             <a href="#tag-getSettlementBySettlementParticipantAccount">getSettlementBySettlementParticipantAccount</a>
                 </div>
                 <div class="panel-body">
                     <section class="sw-operation-description">
-                        
+                        <p>Returns Settlement(s) as per filter criteria.</p>
+            
                     </section>
                     
                         <section class="sw-request-params">
@@ -3711,14 +3719,15 @@
                 </div>
             </div>    <div id="operation--settlements--settlementId--participants--participantId--accounts--accountId--put" class="swagger--panel-operation-put panel">
                 <div class="panel-heading">
-                    <div class="operation-summary">Acknowledgement of settlement by updating the reason and state by Settlements Id, Participant Id and accounts Id.</div>
+                    <div class="operation-summary">updateSettlementBySettlementParticipantAccount</div>
                     <h3 class="panel-title" id="put-settlementssettlementidparticipantsparticipantidaccountsaccountid"><span class="operation-name">PUT</span> <strong>/settlements/{settlementId}/participants/{participantId}/accounts/{accountId}</strong></h3>
                         Tags:
                             <a href="#tag-updateSettlementBySettlementParticipantAccount">updateSettlementBySettlementParticipantAccount</a>
                 </div>
                 <div class="panel-body">
                     <section class="sw-operation-description">
-                        
+                        <p>Acknowledgement of settlement by updating the reason and state by Settlements Id, Participant Id and accounts Id.</p>
+            
                     </section>
                         
                             <section class="sw-request-body">
@@ -3937,14 +3946,15 @@
         <span id="path--settlementWindows"></span>
             <div id="operation--settlementWindows-get" class="swagger--panel-operation-get panel">
                 <div class="panel-heading">
-                    <div class="operation-summary">Returns Settlement Windows as per parameter(s).</div>
+                    <div class="operation-summary">getSettlementWindowsByParams</div>
                     <h3 class="panel-title" id="get-settlementwindows"><span class="operation-name">GET</span> <strong>/settlementWindows</strong></h3>
                         Tags:
                             <a href="#tag-getSettlementWindowsByParams">getSettlementWindowsByParams</a>
                 </div>
                 <div class="panel-body">
                     <section class="sw-operation-description">
-                        
+                        <p>Returns Settlement Windows as per parameter(s).</p>
+            
                     </section>
                     
                         <section class="sw-request-params">
@@ -4169,14 +4179,15 @@
         <span id="path--settlementWindows--id-"></span>
             <div id="operation--settlementWindows--id--get" class="swagger--panel-operation-get panel">
                 <div class="panel-heading">
-                    <div class="operation-summary">Returns a Settlement Window by id.</div>
+                    <div class="operation-summary">getSettlementWindowById</div>
                     <h3 class="panel-title" id="get-settlementwindowsid"><span class="operation-name">GET</span> <strong>/settlementWindows/{id}</strong></h3>
                         Tags:
                             <a href="#tag-getSettlementWindowById">getSettlementWindowById</a>
                 </div>
                 <div class="panel-body">
                     <section class="sw-operation-description">
-                        
+                        <p>Returns a Settlement Window by id.</p>
+            
                     </section>
                     
                         <section class="sw-request-params">
@@ -4346,14 +4357,15 @@
                 </div>
             </div>    <div id="operation--settlementWindows--id--post" class="swagger--panel-operation-post panel">
                 <div class="panel-heading">
-                    <div class="operation-summary">If the settlementWindow is open, it can be closed and a new window is created. If it is already closed, return an error message. Returns the new settlement window.</div>
+                    <div class="operation-summary">closeSettlementWindow</div>
                     <h3 class="panel-title" id="post-settlementwindowsid"><span class="operation-name">POST</span> <strong>/settlementWindows/{id}</strong></h3>
                         Tags:
                             <a href="#tag-closeSettlementWindow">closeSettlementWindow</a>
                 </div>
                 <div class="panel-body">
                     <section class="sw-operation-description">
-                        
+                        <p>If the settlementWindow is open, it can be closed and a new window is created. If it is already closed, return an error message. Returns the new settlement window.</p>
+            
                     </section>
                         
                             <section class="sw-request-body">
@@ -5817,7 +5829,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"showToc":false,"title":"Central Settlements","level":"1.7.3","depth":2,"next":{"title":"ALS Oracle","level":"1.7.4","depth":2,"path":"api/als-oracle-api-specification.md","ref":"api/als-oracle-api-specification.md","articles":[]},"previous":{"title":"Central Ledger API","level":"1.7.2","depth":2,"path":"api/central-ledger-api-specification.md","ref":"api/central-ledger-api-specification.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"3.x.x","theme":"default","variables":{"importedVars":{"mojaloop":{"spec":{"version":"v1.0","uri":{"doc":"https://github.com/mojaloop/mojaloop-specification/blob/master/API%20Definition%20v1.0.pdf","api":"https://github.com/mojaloop/mojaloop-specification/blob/master/Supporting%20Files/fspiop-rest-v1.0-OpenAPI-implementation.yaml"}}},"central_ledger":{"spec":{"version":"v2.0","uri":{"doc":"/mojaloop-technical-overview/central-ledger/README.md","api":"https://github.com/mojaloop/central-ledger/blob/master/src/api/interface/swagger.json"}}},"settlement":{"spec":{"version":"v1.1","uri":{"doc":"/mojaloop-technical-overview/central-settlements/README.md","api":"https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json"}}},"als":{"oracle":{"spec":{"version":"v1.2","uri":{"doc":"/mojaloop-technical-overview/account-lookup-service/README.md","api":"https://github.com/mojaloop/documentation/blob/master/api/assets/interface-contracts/oracle-service-swagger-v1.yaml"}}}}}},"plugins":["swagger","editlink","include","insert-logo","plantuml-svg","collapsible-chapters","back-to-top-button","theme-api","variables","changelog","page-toc"],"pluginsConfig":{"plantuml-svg":{},"editlink":{"label":"Edit This Page","multilingual":true,"base":"https://github.com/mojaloop/documentation/edit/master"},"theme-gestalt":{"logo":"https://mojaloop.io/images/logo.png","favicon":"https://mojaloop.io/images/logo.png","baseUrl":null,"excludeDefaultStyles":false,"doNotHideChildrenChapters":false},"include":{},"search":{},"collapsible-chapters":{},"page-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","position":"before-first","showByDefault":true},"swagger":{"file":""},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"uml":{"format":"png","nailgun":false},"changelog":{},"theme-api":{"languages":[],"split":true,"theme":"dark"},"back-to-top-button":{},"variables":{"files":{"importedVars":"book_variables.yml"}},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"insert-logo":{"url":"https://mojaloop.io/images/logo.png","style":"background: none; max-height: 140px; max-width: 140px;"}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"api/central-settlements-api-specification.md","mtime":"2019-09-24T17:37:18.293Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-09-24T17:38:06.819Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"showToc":false,"title":"Central Settlements","level":"1.7.3","depth":2,"next":{"title":"ALS Oracle","level":"1.7.4","depth":2,"path":"api/als-oracle-api-specification.md","ref":"api/als-oracle-api-specification.md","articles":[]},"previous":{"title":"Central Ledger API","level":"1.7.2","depth":2,"path":"api/central-ledger-api-specification.md","ref":"api/central-ledger-api-specification.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"3.x.x","theme":"default","variables":{"importedVars":{"mojaloop":{"spec":{"version":"v1.0","uri":{"doc":"https://github.com/mojaloop/mojaloop-specification/blob/master/API%20Definition%20v1.0.pdf","api":"https://github.com/mojaloop/mojaloop-specification/blob/master/Supporting%20Files/fspiop-rest-v1.0-OpenAPI-implementation.yaml"}}},"central_ledger":{"spec":{"version":"v2.0","uri":{"doc":"/mojaloop-technical-overview/central-ledger/README.md","api":"https://github.com/mojaloop/central-ledger/blob/master/src/api/interface/swagger.json"}}},"settlement":{"spec":{"version":"v1.1","uri":{"doc":"/mojaloop-technical-overview/central-settlements/README.md","api":"https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json"}}},"als":{"oracle":{"spec":{"version":"v1.2","uri":{"doc":"/mojaloop-technical-overview/account-lookup-service/README.md","api":"https://github.com/mojaloop/documentation/blob/master/api/assets/interface-contracts/oracle-service-swagger-v1.yaml"}}}}}},"plugins":["swagger","editlink","include","insert-logo","plantuml-svg","collapsible-chapters","back-to-top-button","theme-api","variables","changelog","page-toc"],"pluginsConfig":{"plantuml-svg":{},"editlink":{"label":"Edit This Page","multilingual":true,"base":"https://github.com/mojaloop/documentation/edit/master"},"theme-gestalt":{"logo":"https://mojaloop.io/images/logo.png","favicon":"https://mojaloop.io/images/logo.png","baseUrl":null,"excludeDefaultStyles":false,"doNotHideChildrenChapters":false},"include":{},"search":{},"collapsible-chapters":{},"page-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","position":"before-first","showByDefault":true},"swagger":{"file":""},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"uml":{"format":"png","nailgun":false},"changelog":{},"theme-api":{"languages":[],"split":true,"theme":"dark"},"back-to-top-button":{},"variables":{"files":{"importedVars":"book_variables.yml"}},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"insert-logo":{"url":"https://mojaloop.io/images/logo.png","style":"background: none; max-height: 140px; max-width: 140px;"}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"api/central-settlements-api-specification.md","mtime":"2019-10-15T15:11:16.372Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-10-15T15:12:15.988Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

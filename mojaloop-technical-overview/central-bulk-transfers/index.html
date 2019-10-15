@@ -2001,27 +2001,20 @@
 <p>Below are the steps involved at a high level for bulk transfers.</p>
 <p><img src="assets/diagrams/architecture/bulk-transfer-arch-flows.svg" alt="architecture diagram">  </p>
 <ol>
-<li>[1.0, 1.1, 1.2] An Incoming bulk Transfer request (POST /bulkTransfers) on the ml-api-adapter is placed in an object store and a notification with a reference to the actual message is sent via a kafka topic &#x201C;bulk prepare&#x201D; and a 202 is sent to the Payer FSP  </li>
-<li>[1.3] Bulk Prepare handler consumes the request, records the status as RECEIVED  <pre><code> a. Bulk Prepare handler then validates the Bulk and changes state to PENDING if the validation is successful  
- b. One validation rule proposed in addition, here is to reject a bulk if there are duplicate transfer IDs used in the bulk itself.
- c. [&lt;alt&gt;1.4] If validation fails, Bulk Prepare handler changes the bulkTransferState to Pending_Rejected (an internal state) and produces a message onto the bulk processing topic  
-     i. Bulk processing Handler then updates the bulkTransferState to REJECTED and sends a notification to the Payer  
-</code></pre></li>
-<li>[1.4] [Continuing 2.a] Bulk Prepare handler breaks down the bulk into individual transfers and puts each of them on the prepare topic  <pre><code> a. As part of this, each transfer is individually assigned the &apos;expiration time&apos; of the bulk Transfer itself (and other fields necessary for individual transfers)  
-</code></pre></li>
-<li>[1.5, 1.6, 1.7] Prepare handler, Position handler are refactored to handle individual transfers in a bulk, using flags such as type, action, status, etc.<pre><code> a. Reservation of funds --&gt; This is left to the individual handlers and the whole bulk is then aggregated in the Bulk Processing Handler.  
-</code></pre></li>
+<li>[1.0, 1.1, 1.2] An Incoming bulk Transfer request (POST /bulkTransfers) on the bulk-api-adapter is placed in an object store and a notification with a reference to the actual message is sent via a kafka topic &#x201C;bulk-prepare&#x201D; and a 202 is sent to the Payer FSP  </li>
+<li>[1.3] Bulk Prepare handler consumes the request, records the status as RECEIVED<br>a. Bulk Prepare handler then validates the Bulk and changes state to PENDING if the validation is successful<br>b. One validation rule proposed in addition, here is to reject a bulk if there are duplicate transfer IDs used in the bulk itself.
+c. [<alt>1.4] If validation fails, Bulk Prepare handler changes the bulkTransferState to PENDING_INVALID (an internal state) and produces a message onto the bulk processing topic<br>   i. Bulk processing Handler then updates the bulkTransferState to REJECTED and sends a notification to the Payer  </alt></li>
+<li>[1.4] [Continuing 2.a] Bulk Prepare handler breaks down the bulk into individual transfers and puts each of them on the prepare topic<br>a. As part of this, each transfer is individually assigned the &apos;expiration time&apos; of the bulk Transfer itself (and other fields necessary for individual transfers)</li>
+<li>[1.5, 1.6, 1.7] Prepare handler, Position handler are refactored to handle individual transfers in a bulk, using flags such as type, action, status, etc.
+a. Reservation of funds --&gt; This is left to the individual handlers and the whole bulk is then aggregated in the Bulk Processing Handler.  </li>
 <li>[1.8] Position Handler produces messages corresponding to individual transfers that are part of a bulk to bulk processing topic  </li>
 <li>[1.9] For every message consumed from the bulk processing topic a check is made on the Bulk processing Handler to see if that&#x2019;s the last individual transfer in a bulk for that processing phase.</li>
-<li>[1.10, 1.11, 1.12] If it is the last transfer, aggregate the state of all the individual transfers and  <pre><code> a. If all of them are in reserved state --&gt; Send POST /bulkTransfers to the Payee (by producing a message to the notifications topic which is then consumed by the notification handler)  
- b. Once the bulkTransfer prepare request is sent to the Payee, then change status to ACCEPTED  
-</code></pre></li>
+<li>[1.10, 1.11, 1.12] If it is the last transfer, aggregate the state of all the individual transfers and<br>a. If all of them are in reserved state --&gt; Send POST /bulkTransfers to the Payee (by producing a message to the notifications topic which is then consumed by the notification handler)<br>b. Once the bulkTransfer prepare request is sent to the Payee, then change status to ACCEPTED  </li>
 <li>In a successful case of Prepare - when the PUT from the Payee FSP for bulkFulfil is received, a notification is put on the bulk fulfil topic with a reference to the actual Fulfil message that&apos;s stored in an Object store.  </li>
 <li>This is to be consumed by the bulkFulfilHandler, which then changes state to PROCESSING.  </li>
 <li>The bulk-fulfil-handler breaks down the bulk into individual transfers and sends each of them through the refactored Fulfil, Position Handlers to commit/abort each of them based on the PUT /bulkTransfers/{ID} message by the Payee and commit/release funds on the Switch  </li>
-<li>The bulk-processing-handler is to then aggregate all the individual transfer results and change the state of bulkTransfer to COMPLETED/REJECTED based on success/failure  <pre><code>a. If the Payee sends COMMITTED for even one of the individual transfers the proposal is to change bulk state to COMPLETED.  
-b. However, for step-8 or if the Payee sends REJECTED as bulkTransferState then final state on Switch should be REJECTED.  
-</code></pre></li>
+<li>The bulk-processing-handler is to then aggregate all the individual transfer results and change the state of bulkTransfer to COMPLETED/REJECTED based on success/failure<br>a. If the Payee sends COMMITTED for even one of the individual transfers the proposal is to change bulk state to COMPLETED.
+b. However, for step-8 or if the Payee sends REJECTED as bulkTransferState then final state on Switch should be REJECTED.  </li>
 <li>Send notifications to both Payer and Payee (similar to Single transfers, though diverging from the Spec 1.0). The Payer-FSP receives the notification that includes an exhaustive list of individual transfers, same as the list present in the prepare request sent by the Payer. The Payee-FSP receives a notification only for sub-set of transfers, which were sent to it from the Switch as the Bulk prepare request (that were able to be reserved at the Switch).  </li>
 </ol>
 <h2 id="4-implementation-details">4. Implementation Details</h2>
@@ -2034,24 +2027,27 @@ b. However, for step-8 or if the Payee sends REJECTED as bulkTransferState then 
 <li>PROCESSING  </li>
 <li>COMPLETED  </li>
 <li>REJECTED</li>
+<li>Internal state - PENDING_PREPARE (mapped to PENDING)</li>
+<li>Internal state - PENDING_INVALID (mapped to PENDING)</li>
+<li>Internal state - PENDING_FULFIL (mapped to PROCESSING)</li>
+<li>Internal state - EXPIRING (mapped to PROCESSING)</li>
+<li>Internal state - EXPIRED (mapped to COMPLETED)</li>
 <li>Internal state - INVALID (mapped to REJECTED)</li>
-<li>Micro-states to be added for internal use on the Switch</li>
+<li>Additional micro-states may be added for internal use on the Switch</li>
 </ol>
 <h3 id="42-proposed-new-tables">4.2 Proposed New tables</h3>
 <p>Below are the proposed tables as part of designing the Bulk transfers</p>
 <ul>
-<li>bulkTransfer  </li>
-<li>bulkTransferStateChange  </li>
-<li>bulkTransferError  </li>
+<li>bulkTransfer</li>
+<li>bulkTransferStateChange</li>
+<li>bulkTransferError</li>
 <li>bulkTransferDuplicateCheck</li>
 <li>bulkTransferFulfilment</li>
 <li>bulkTransferFulfilmentDuplicateCheck</li>
-<li>bulkTransferAssociation  </li>
-<li>bulkTransferExtension  </li>
-<li>bulkTransferParticipant</li>
-<li>bulkTransferState  </li>
-<li>bulkProcessingState  </li>
-<li>Link to the ERD from the PR: <a href="https://github.com/elnyry/documentation/blob/feature/738-bulk-transfers-design-changes/mojaloop-technical-overview/central-bulk-transfers/assets/database/central-ledger-schema.png" target="_blank">https://github.com/elnyry/documentation/blob/feature/738-bulk-transfers-design-changes/mojaloop-technical-overview/central-bulk-transfers/assets/database/central-ledger-schema.png</a></li>
+<li>bulkTransferAssociation</li>
+<li>bulkTransferExtension</li>
+<li>bulkTransferState</li>
+<li>bulkProcessingState</li>
 </ul>
 <h3 id="43-internal-type-action-status-combinations">4.3 Internal Type-Action-Status combinations</h3>
 <h4 id="1-bulk-transfer-that-passes-schema-validation-ml-api-adapter---bulk-prepare-handler">1. Bulk transfer that passes schema validation [ml-api-adapter -&gt; bulk-prepare-handler]</h4>
@@ -2063,28 +2059,24 @@ b. However, for step-8 or if the Payee sends REJECTED as bulkTransferState then 
 </ol>
 <h4 id="2-duplicate-bulk-prepare-handler---notification-handler">2. Duplicate [bulk-prepare-handler -&gt; notification handler]</h4>
 <ol>
-<li>type: bulk-notification</li>
+<li>type: notification</li>
 <li>action: bulk-prepare-duplicate</li>
 <li>Status: success</li>
 <li>Result: bulkTransferState=N/A, bulkProcessingState=N/A</li>
 </ol>
-<h4 id="3-duplicate-bulktransfer-state-does-not-exist-bulk-prepare-handler---notification-handler">3. Duplicate (bulktransfer state does not exist) [bulk-prepare-handler -&gt; notification-handler]</h4>
+<h4 id="3-validate-bulk-prepare-transfer-failure-bulk-prepare-handler---notification-handler">3. Validate Bulk Prepare transfer failure [bulk-prepare-handler -&gt; notification-handler]</h4>
 <ol>
-<li>type: bulk-notification</li>
-<li>action: bulk-prepare-duplicate</li>
+<li>type: notification</li>
+<li>action: bulk-abort</li>
 <li>Status: error</li>
 </ol>
-<h4 id="4-validate-bulk-prepare-transfer-failure-bulk-prepare-handler---notification-handler">4. Validate Bulk Prepare transfer failure [bulk-prepare-handler -&gt; notification-handler]</h4>
-<pre><code>1. type: bulk-notification
-2. action: bulk-abort
-3. Status: error
-</code></pre><h4 id="5-for-a-valid-bulk-prepare-transfer-broken-down-and-sent-as-individual-transfers-bulk-prepare-handler---prepare-handler">5. For a Valid Bulk Prepare transfer (broken down and sent as individual transfers) [bulk-prepare-handler -&gt; prepare-handler]</h4>
+<h4 id="4-for-a-valid-bulk-prepare-transfer-broken-down-and-sent-as-individual-transfers-bulk-prepare-handler---prepare-handler">4. For a Valid Bulk Prepare transfer (broken down and sent as individual transfers) [bulk-prepare-handler -&gt; prepare-handler]</h4>
 <ol>
-<li>type: bulk-prepare</li>
-<li>action: prepare</li>
+<li>type: prepare</li>
+<li>action: bulk-prepare</li>
 <li>Status: success</li>
 </ol>
-<h4 id="6-duplicate-of-individual-transfer-that-is-part-of-a-bulk-transfer-prepare-handler---bulk-processing-handler">6. Duplicate of individual transfer that is part of a bulk-transfer [prepare-handler -&gt; bulk-processing-handler]</h4>
+<h4 id="5-duplicate-of-individual-transfer-that-is-part-of-a-bulk-transfer-prepare-handler---bulk-processing-handler">5. Duplicate of individual transfer that is part of a bulk-transfer [prepare-handler -&gt; bulk-processing-handler]</h4>
 <ol>
 <li>type: bulk-processing</li>
 <li>action: prepare-duplicate</li>
@@ -2092,136 +2084,136 @@ b. However, for step-8 or if the Payee sends REJECTED as bulkTransferState then 
 <li>Expected action: Add error message indicating it&#x2019;s a duplicate</li>
 <li>Result: bulkTransferState=PENDING_PREPARE/ACCEPTED (depending on whether it&#x2019;s the last one), bulkProcessingState=RECEIVED_DUPLICATE  </li>
 </ol>
-<h4 id="7-for-individual-prepare-transfer-thats-a-valid-duplicate-in-prepare-handler-prepare-handler---bulk-processing-handler">7. For individual Prepare transfer that&#x2019;s a valid duplicate in prepare handler [prepare-handler -&gt; bulk-processing-handler]</h4>
+<h4 id="6-for-individual-prepare-transfer-thats-a-valid-duplicate-in-prepare-handler-prepare-handler---bulk-processing-handler">6. For individual Prepare transfer that&#x2019;s a valid duplicate in prepare handler [prepare-handler -&gt; bulk-processing-handler]</h4>
 <ol>
 <li>type: bulk-processing</li>
 <li>action: prepare-duplicate</li>
 <li>Status: error</li>
 <li>Result: bulkTransferState=PENDING_PREPARE/ACCEPTED (depending on whether it&#x2019;s the last one), bulkProcessingState=RECEIVED_DUPLICATE   </li>
 </ol>
-<h4 id="8-for-a-valid-individual-prepare-transfer-thats-part-of-a-bulk-prepare-handler---position-handler">8. For a Valid individual Prepare transfer that&#x2019;s part of a bulk [prepare-handler -&gt; position-handler]</h4>
+<h4 id="7-for-a-valid-individual-prepare-transfer-thats-part-of-a-bulk-prepare-handler---position-handler">7. For a Valid individual Prepare transfer that&#x2019;s part of a bulk [prepare-handler -&gt; position-handler]</h4>
 <ol>
-<li>type: bulk-position</li>
-<li>action: prepare</li>
+<li>type: position</li>
+<li>action: bulk-prepare</li>
 <li>Status: success</li>
 </ol>
-<h4 id="9-for-individual-prepare-transfer-thats-part-of-a-bulk-that-failed-validation-in-prepare-handler-prepare-handler---bulk-processing-handler">9. For individual Prepare transfer that&#x2019;s part of a bulk that failed validation in prepare handler [prepare-handler -&gt; bulk-processing-handler]</h4>
+<h4 id="8-for-individual-prepare-transfer-thats-part-of-a-bulk-that-failed-validation-in-prepare-handler-prepare-handler---bulk-processing-handler">8. For individual Prepare transfer that&#x2019;s part of a bulk that failed validation in prepare handler [prepare-handler -&gt; bulk-processing-handler]</h4>
 <ol>
 <li>type: bulk-processing</li>
-<li>action: prepare</li>
+<li>action: bulk-prepare</li>
 <li>Status: error</li>
 <li>Result: bulkTransferState=PENDING_PREPARE/ACCEPTED (depending on whether it&#x2019;s the last one), bulkProcessingState=RECEIVED_INVALID</li>
 </ol>
-<h4 id="10-for-a-valid-individual-prepare-transfer-thats-part-of-a-bulk-position-handler----bulk-processing-handler">10. For a Valid individual Prepare transfer that&#x2019;s part of a bulk [position-handler -&gt;  bulk-processing-handler]</h4>
+<h4 id="9-for-a-valid-individual-prepare-transfer-thats-part-of-a-bulk-position-handler----bulk-processing-handler">9. For a Valid individual Prepare transfer that&#x2019;s part of a bulk [position-handler -&gt;  bulk-processing-handler]</h4>
 <ol>
 <li>type: bulk-processing</li>
-<li>action: prepare</li>
+<li>action: bulk-prepare</li>
 <li>Status: success</li>
 <li>Result: bulkTransferState=PENDING_PREPARE/ACCEPTED (depending on whether it&#x2019;s the last one), bulkProcessingState=ACCEPTED</li>
 </ol>
-<h4 id="11-for-individual-prepare-transfer-thats-part-of-a-bulk-that-failed-validation-in-position-handler-position-handler---bulk-processing-handler">11. For individual Prepare transfer that&#x2019;s part of a bulk that failed validation in position handler [position-handler -&gt; bulk-processing-handler]</h4>
+<h4 id="10-for-individual-prepare-transfer-thats-part-of-a-bulk-that-failed-validation-in-position-handler-position-handler---bulk-processing-handler">10. For individual Prepare transfer that&#x2019;s part of a bulk that failed validation in position handler [position-handler -&gt; bulk-processing-handler]</h4>
 <ol>
 <li>type: bulk-processing</li>
-<li>action: prepare</li>
+<li>action: bulk-prepare</li>
 <li>Status: error</li>
 <li>Result: bulkTransferState=PENDING_PREPARE/ACCEPTED (depending on whether it&#x2019;s the last one), bulkProcessingState=RECEIVED_INVALID</li>
 </ol>
-<h4 id="12-for-a-valid-individual-fulfil-transfer-for-commit-thats-part-of-a-bulk-position-handler---bulk-processing-handler">12. For a Valid individual Fulfil transfer (for commit) that&#x2019;s part of a bulk [position-handler -&gt; bulk-processing-handler]</h4>
+<h4 id="11-for-a-valid-individual-fulfil-transfer-for-commit-thats-part-of-a-bulk-position-handler---bulk-processing-handler">11. For a Valid individual Fulfil transfer (for commit) that&#x2019;s part of a bulk [position-handler -&gt; bulk-processing-handler]</h4>
 <ol>
 <li>type: bulk-processing</li>
-<li>action: commit</li>
+<li>action: bulk-commit</li>
 <li>Status: success</li>
 <li>Result: bulkTransferState=PENDING_FULFIL/COMPLETED (depending on whether it&#x2019;s the last one), bulkProcessingState=COMPLETED</li>
 </ol>
-<h4 id="13-for-bulk-transfer-fulfil-message-that-passes-validation-ml-api-adapter---bulk-fulfil-handler">13. For Bulk transfer Fulfil message that passes validation [ml-api-adapter -&gt; bulk-fulfil-handler]</h4>
+<h4 id="12-for-bulk-transfer-fulfil-message-that-passes-validation-ml-api-adapter---bulk-fulfil-handler">12. For Bulk transfer Fulfil message that passes validation [ml-api-adapter -&gt; bulk-fulfil-handler]</h4>
 <ol>
 <li>type: bulk-fulfil</li>
-<li>action: bulk-fulfil</li>
+<li>action: bulk-commit</li>
 <li>Status: success</li>
 </ol>
-<h4 id="14-for-a-valid-individual-transfer-part-of-a-bulk-that-timed-out-in-position-handler-position-handler---bulk-processing-handler">14. For a valid individual transfer part of a bulk that timed-out in position handler [position-handler -&gt; bulk-processing-handler]</h4>
+<h4 id="13-for-a-valid-individual-transfer-part-of-a-bulk-that-timed-out-in-position-handler-position-handler---bulk-processing-handler">13. For a valid individual transfer part of a bulk that timed-out in position handler [position-handler -&gt; bulk-processing-handler]</h4>
 <ol>
 <li>type: bulk-processing</li>
-<li>action: abort</li>
+<li>action: bulk-timeout-reserved</li>
 <li>Status: error</li>
 <li>Result: bulkTransferState=PENDING_FULFIL/COMPLETED (depending on whether it&#x2019;s the last one), bulkProcessingState=FULFIL_INVALID</li>
 </ol>
-<h4 id="15-for-a-valid-individual-fulfil-transfer-for-reject-thats-part-of-a-bulk-position-handler---bulk-processing-handler">15. For a Valid individual Fulfil transfer (for reject) that&#x2019;s part of a bulk [position-handler -&gt; bulk-processing-handler]</h4>
+<h4 id="14-for-a-valid-individual-fulfil-transfer-for-reject-thats-part-of-a-bulk-position-handler---bulk-processing-handler">14. For a Valid individual Fulfil transfer (for reject) that&#x2019;s part of a bulk [position-handler -&gt; bulk-processing-handler]</h4>
 <ol>
 <li>type: bulk-processing</li>
 <li>action: reject</li>
 <li>Status: success</li>
 <li>Result: bulkTransferState=PENDING_FULFIL/COMPLETED (depending on whether it&#x2019;s the last one), bulkProcessingState=REJECTED</li>
 </ol>
-<h4 id="16-invalid-fulfil-duplicate-of-an-individual-transfer-in-a-bulk-fulfil-handler---bulk-processing-handler">16. Invalid Fulfil duplicate of an individual transfer in a bulk [fulfil-handler -&gt; bulk-processing-handler]</h4>
+<h4 id="15-invalid-fulfil-duplicate-of-an-individual-transfer-in-a-bulk-fulfil-handler---bulk-processing-handler">15. Invalid Fulfil duplicate of an individual transfer in a bulk [fulfil-handler -&gt; bulk-processing-handler]</h4>
 <ol>
 <li>type: bulk-processing</li>
 <li>action: fulfil-duplicate</li>
 <li>Status: error</li>
 <li>Result: bulkTransferState=PENDING_FULFIL/COMPLETED (depending on whether it&#x2019;s the last one), bulkProcessingState=FULFIL_DUPLICATE</li>
 </ol>
-<h4 id="17-valid-fulfil-duplicate-of-an-individual-transfer-in-a-bulk-fulfil-handler---bulk-processing-handler">17. Valid Fulfil duplicate of an individual transfer in a bulk [fulfil-handler -&gt; bulk-processing-handler]</h4>
+<h4 id="16-valid-fulfil-duplicate-of-an-individual-transfer-in-a-bulk-fulfil-handler---bulk-processing-handler">16. Valid Fulfil duplicate of an individual transfer in a bulk [fulfil-handler -&gt; bulk-processing-handler]</h4>
 <ol>
 <li>type: bulk-processing</li>
 <li>action: fulfil-duplicate</li>
 <li>Status: success</li>
 <li>Result: bulkTransferState=PENDING_FULFIL/COMPLETED (depending on whether it&#x2019;s the last one), bulkProcessingState=FULFIL_DUPLICATE</li>
 </ol>
-<h4 id="18-valid-fulfil-message-of-an-individual-transfer-in-a-bulk-fulfil-handler---position-handler">18. Valid Fulfil message of an individual transfer in a bulk [fulfil-handler -&gt; position-handler]</h4>
+<h4 id="17-valid-fulfil-message-of-an-individual-transfer-in-a-bulk-fulfil-handler---position-handler">17. Valid Fulfil message of an individual transfer in a bulk [fulfil-handler -&gt; position-handler]</h4>
 <ol>
-<li>type: bulk-position</li>
-<li>action: commit</li>
+<li>type: position</li>
+<li>action: bulk-commit</li>
 <li>Status: success</li>
 </ol>
-<h4 id="19-for-individual-fulfil-transfer-thats-part-of-a-bulk-that-failed-validation-in-fulfil-handler-fulfil-handler---bulk-processing-handler">19. For individual Fulfil transfer that&#x2019;s part of a bulk that failed validation in fulfil handler [fulfil-handler -&gt; bulk-processing-handler]</h4>
+<h4 id="18-for-individual-fulfil-transfer-thats-part-of-a-bulk-that-failed-validation-in-fulfil-handler-fulfil-handler---bulk-processing-handler">18. For individual Fulfil transfer that&#x2019;s part of a bulk that failed validation in fulfil handler [fulfil-handler -&gt; bulk-processing-handler]</h4>
 <ol>
 <li>type: bulk-processing</li>
-<li>action: commit</li>
+<li>action: bulk-commit</li>
 <li>Status: error</li>
 <li>Result: bulkTransferState=PENDING_FULFIL/COMPLETED (depending on whether it&#x2019;s the last one), bulkProcessingState=FULFIL_INVALID</li>
 </ol>
-<h4 id="20-fulfil-transfer-request-thats-part-of-a-bulk-that-passes-validation-bulk-fulfil-handler---fulfil-handler">20. Fulfil transfer request that&#x2019;s part of a bulk that passes validation [bulk-fulfil-handler -&gt; fulfil-handler]</h4>
+<h4 id="19-fulfil-transfer-request-thats-part-of-a-bulk-that-passes-validation-bulk-fulfil-handler---fulfil-handler">19. Fulfil transfer request that&#x2019;s part of a bulk that passes validation [bulk-fulfil-handler -&gt; fulfil-handler]</h4>
 <ol>
 <li>type: bulk-fulfil</li>
 <li>action: bulk-commit</li>
 <li>Status: success</li>
 </ol>
-<h4 id="21-for-bulk-transfers-failing-validation-at-bulk-fulfil-handler-level-bulk-fulfil-handler---notification-handler">21. For Bulk transfers failing validation at bulk-fulfil-handler level [bulk-fulfil-handler -&gt; notification-handler]</h4>
+<h4 id="20-for-bulk-transfers-failing-validation-at-bulk-fulfil-handler-level-bulk-fulfil-handler---notification-handler">20. For Bulk transfers failing validation at bulk-fulfil-handler level [bulk-fulfil-handler -&gt; notification-handler]</h4>
 <ol>
-<li>type: bulk-notification</li>
+<li>type: notification</li>
 <li>action: bulk-abort</li>
 <li>Status: error</li>
 </ol>
-<h4 id="22-for-bulk-transfer-notifications-to-fsps-bulk-processing-handler---notification-handler">22. For Bulk transfer notifications to FSPs [bulk-processing-handler -&gt; notification-handler]</h4>
+<h4 id="21-for-bulk-transfer-notifications-to-fsps-bulk-processing-handler---notification-handler">21. For Bulk transfer notifications to FSPs [bulk-processing-handler -&gt; notification-handler]</h4>
 <ol>
-<li>type: bulk-notification</li>
-<li>action: bulk-notification</li>
+<li>type: notification</li>
+<li>action: bulk-prepare / bulk-commit</li>
 <li>Status: success</li>
 </ol>
-<h4 id="23-for-timeout-notification-timeout-handler---bulk-processing-handler">23. For timeout notification [timeout-handler -&gt; bulk-processing-handler]</h4>
+<h4 id="22-for-timeout-notification-timeout-handler---bulk-processing-handler">22. For timeout notification [timeout-handler -&gt; bulk-processing-handler]</h4>
 <ol>
 <li>type: bulk-processing</li>
-<li>action: timeout-received</li>
+<li>action: bulk-timeout-received</li>
 <li>Status: error</li>
 <li>Result: bulkTransferState=COMPLETED (for the last one), bulkProcessingState=EXPIRED</li>
 </ol>
-<h4 id="24-for-timeout-notification-timeout-handler---position-handler">24. For timeout notification [timeout-handler -&gt; position-handler]</h4>
+<h4 id="23-for-timeout-notification-timeout-handler---position-handler">23. For timeout notification [timeout-handler -&gt; position-handler]</h4>
 <ol>
-<li>type: bulk-position</li>
-<li>action: timeout-reserved</li>
+<li>type: position</li>
+<li>action: bulk-timeout-reserved</li>
 <li>Status: error</li>
 </ol>
-<h4 id="25-for-timeout-notification-after-position-adjust-position-handler---bulk-processing-handler">25. For timeout notification after position adjust [position-handler -&gt; bulk-processing-handler]</h4>
+<h4 id="24-for-timeout-notification-after-position-adjust-position-handler---bulk-processing-handler">24. For timeout notification after position adjust [position-handler -&gt; bulk-processing-handler]</h4>
 <ol>
 <li>type: bulk-processing</li>
-<li>action: timeout-reserved</li>
+<li>action: bulk-timeout-reserved</li>
 <li>Status: error</li>
 <li>Result: bulkTransferState=COMPLETED (for the last one), bulkProcessingState=EXPIRED</li>
 </ol>
 <h3 id="44-additional-notes">4.4 Additional Notes</h3>
 <ol>
 <li>Document GET /bulkTransfers to indicate the difference in responses the Payer-FSP &amp; Payee-FSP receive for Bulk Transfers</li>
-<li>Use a separate mode for ml-api-adapter to support bulk transfers end-points (that includes persistence as discussed above)</li>
+<li>Used a separate service: bulk-api-adapter to support bulk transfers end-points (that includes persistence as discussed above)</li>
 </ol>
 <h2 id="5-roadmap-topics">5. Roadmap Topics</h2>
 <ol>
@@ -2231,6 +2223,11 @@ b. However, for step-8 or if the Payee sends REJECTED as bulkTransferState then 
 <li>Throttling of individual transfers in a bulk?</li>
 <li>The aspect of ordering in a Bulk - the order of processing at the Switch and at the FSPs. Recommendation to Scheme to incorporate Rule to mandate all FSPs to process transactions a bulk in the existing order and not have preferential processing. On the Switch currently being neutral with ordering but best practice is to sort in ascending order of amounts and process.</li>
 <li>For Settlements with bulk transfers where Government payments are involved with large sums of money needs to be discussed to allow for moving through transfers without strict liquidity rules needs to be discussed.</li>
+<li>Implement GET /bulkTransfers</li>
+<li>Implement notifications/logging for all bulk negative scenarios</li>
+<li>Full unit tests code coverage</li>
+<li>Integration testing of successful bulk transfer (golden path)</li>
+<li>Regression testing, including negative scenarios</li>
 </ol>
 
                                 
@@ -2265,7 +2262,7 @@ b. However, for step-8 or if the Payee sends REJECTED as bulkTransferState then 
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Bulk Transfer Operations","level":"1.6.4.3","depth":3,"next":{"title":"Bulk Prepare Overview","level":"1.6.4.3.1","depth":4,"path":"mojaloop-technical-overview/central-bulk-transfers/transfers/1.1.0-bulk-prepare-transfer-request-overview.md","ref":"mojaloop-technical-overview/central-bulk-transfers/transfers/1.1.0-bulk-prepare-transfer-request-overview.md","articles":[{"title":"Bulk Prepare Handler","level":"1.6.4.3.1.1","depth":5,"path":"mojaloop-technical-overview/central-bulk-transfers/transfers/1.1.1-bulk-prepare-handler-consume.md","ref":"mojaloop-technical-overview/central-bulk-transfers/transfers/1.1.1-bulk-prepare-handler-consume.md","articles":[]}]},"previous":{"title":"Timeout Handler Consume","level":"1.6.4.2.8.2","depth":5,"path":"mojaloop-technical-overview/central-ledger/transfers/2.3.1-timeout-handler-consume.md","ref":"mojaloop-technical-overview/central-ledger/transfers/2.3.1-timeout-handler-consume.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"3.x.x","theme":"default","variables":{"importedVars":{"mojaloop":{"spec":{"version":"v1.0","uri":{"doc":"https://github.com/mojaloop/mojaloop-specification/blob/master/API%20Definition%20v1.0.pdf","api":"https://github.com/mojaloop/mojaloop-specification/blob/master/Supporting%20Files/fspiop-rest-v1.0-OpenAPI-implementation.yaml"}}},"central_ledger":{"spec":{"version":"v2.0","uri":{"doc":"/mojaloop-technical-overview/central-ledger/README.md","api":"https://github.com/mojaloop/central-ledger/blob/master/src/api/interface/swagger.json"}}},"settlement":{"spec":{"version":"v1.1","uri":{"doc":"/mojaloop-technical-overview/central-settlements/README.md","api":"https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json"}}},"als":{"oracle":{"spec":{"version":"v1.2","uri":{"doc":"/mojaloop-technical-overview/account-lookup-service/README.md","api":"https://github.com/mojaloop/documentation/blob/master/api/assets/interface-contracts/oracle-service-swagger-v1.yaml"}}}}}},"plugins":["swagger","editlink","include","insert-logo","plantuml-svg","collapsible-chapters","back-to-top-button","theme-api","variables","changelog","page-toc"],"pluginsConfig":{"plantuml-svg":{},"editlink":{"label":"Edit This Page","multilingual":true,"base":"https://github.com/mojaloop/documentation/edit/master"},"theme-gestalt":{"logo":"https://mojaloop.io/images/logo.png","favicon":"https://mojaloop.io/images/logo.png","baseUrl":null,"excludeDefaultStyles":false,"doNotHideChildrenChapters":false},"include":{},"search":{},"collapsible-chapters":{},"page-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","position":"before-first","showByDefault":true},"swagger":{"file":""},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"uml":{"format":"png","nailgun":false},"changelog":{},"theme-api":{"languages":[],"split":true,"theme":"dark"},"back-to-top-button":{},"variables":{"files":{"importedVars":"book_variables.yml"}},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"insert-logo":{"url":"https://mojaloop.io/images/logo.png","style":"background: none; max-height: 140px; max-width: 140px;"}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"mojaloop-technical-overview/central-bulk-transfers/README.md","mtime":"2019-09-24T17:37:18.425Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-09-24T17:38:06.819Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Bulk Transfer Operations","level":"1.6.4.3","depth":3,"next":{"title":"Bulk Prepare Overview","level":"1.6.4.3.1","depth":4,"path":"mojaloop-technical-overview/central-bulk-transfers/transfers/1.1.0-bulk-prepare-transfer-request-overview.md","ref":"mojaloop-technical-overview/central-bulk-transfers/transfers/1.1.0-bulk-prepare-transfer-request-overview.md","articles":[{"title":"Bulk Prepare Handler","level":"1.6.4.3.1.1","depth":5,"path":"mojaloop-technical-overview/central-bulk-transfers/transfers/1.1.1-bulk-prepare-handler-consume.md","ref":"mojaloop-technical-overview/central-bulk-transfers/transfers/1.1.1-bulk-prepare-handler-consume.md","articles":[]}]},"previous":{"title":"Timeout Handler Consume","level":"1.6.4.2.8.2","depth":5,"path":"mojaloop-technical-overview/central-ledger/transfers/2.3.1-timeout-handler-consume.md","ref":"mojaloop-technical-overview/central-ledger/transfers/2.3.1-timeout-handler-consume.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"3.x.x","theme":"default","variables":{"importedVars":{"mojaloop":{"spec":{"version":"v1.0","uri":{"doc":"https://github.com/mojaloop/mojaloop-specification/blob/master/API%20Definition%20v1.0.pdf","api":"https://github.com/mojaloop/mojaloop-specification/blob/master/Supporting%20Files/fspiop-rest-v1.0-OpenAPI-implementation.yaml"}}},"central_ledger":{"spec":{"version":"v2.0","uri":{"doc":"/mojaloop-technical-overview/central-ledger/README.md","api":"https://github.com/mojaloop/central-ledger/blob/master/src/api/interface/swagger.json"}}},"settlement":{"spec":{"version":"v1.1","uri":{"doc":"/mojaloop-technical-overview/central-settlements/README.md","api":"https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json"}}},"als":{"oracle":{"spec":{"version":"v1.2","uri":{"doc":"/mojaloop-technical-overview/account-lookup-service/README.md","api":"https://github.com/mojaloop/documentation/blob/master/api/assets/interface-contracts/oracle-service-swagger-v1.yaml"}}}}}},"plugins":["swagger","editlink","include","insert-logo","plantuml-svg","collapsible-chapters","back-to-top-button","theme-api","variables","changelog","page-toc"],"pluginsConfig":{"plantuml-svg":{},"editlink":{"label":"Edit This Page","multilingual":true,"base":"https://github.com/mojaloop/documentation/edit/master"},"theme-gestalt":{"logo":"https://mojaloop.io/images/logo.png","favicon":"https://mojaloop.io/images/logo.png","baseUrl":null,"excludeDefaultStyles":false,"doNotHideChildrenChapters":false},"include":{},"search":{},"collapsible-chapters":{},"page-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","position":"before-first","showByDefault":true},"swagger":{"file":""},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"uml":{"format":"png","nailgun":false},"changelog":{},"theme-api":{"languages":[],"split":true,"theme":"dark"},"back-to-top-button":{},"variables":{"files":{"importedVars":"book_variables.yml"}},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"insert-logo":{"url":"https://mojaloop.io/images/logo.png","style":"background: none; max-height: 140px; max-width: 140px;"}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"mojaloop-technical-overview/central-bulk-transfers/README.md","mtime":"2019-10-15T15:11:16.544Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-10-15T15:12:15.988Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
