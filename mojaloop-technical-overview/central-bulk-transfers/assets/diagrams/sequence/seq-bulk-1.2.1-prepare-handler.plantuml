@@ -94,6 +94,11 @@ group Prepare Handler Consume
         end
 
         alt hasDuplicateId == TRUE && hasDuplicateHash == TRUE
+            note right of PREP_HANDLER #lightgrey
+                In the context of a bulk (when compared to regular transfers), duplicate
+                individual transfers are now considered and reported with Modified Request,
+                because they could have already been handled for another bulk.
+            end note
             break
                 note right of PREP_HANDLER #yellow
                     {
