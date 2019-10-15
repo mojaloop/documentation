@@ -225,10 +225,10 @@ group Reference: Failure in Position Validation (Prepare)
         note right of POS_HANDLER #yellow
         Message:
             {
-                id: <transferMessage.transferId>
+                id: "<messageId>"
                 from: <ledgerName>,
                 to: <transferMessage.payerFsp>,
-                type: application/json
+                type: "application/json"
                 content: {
                     headers: <transferHeaders>,
                     payload: {
@@ -242,11 +242,11 @@ group Reference: Failure in Position Validation (Prepare)
                     event: {
                         id: <uuid>,
                         responseTo: <previous.uuid>,
-                        type: bulk-processing,
-                        action: bulk-prepare,
+                        type: "bulk-processing",
+                        action: "bulk-prepare",
                         createdAt: <timestamp>,
                         state: {
-                            status: 'error',
+                            status: "error",
                             code: <errorInformation.errorCode>
                             description: <errorInformation.errorDescription>
                         }
@@ -261,10 +261,10 @@ group Reference: Failure in Position Validation (Prepare)
         note right of POS_HANDLER #yellow
         Message:
             {
-                id: <transferMessage.transferId>
+                id: "<messageId>"
                 from: <ledgerName>,
                 to: <transferMessage.payerFsp>,
-                type: application/json
+                type: "application/json"
                 content: {
                     headers: <transferHeaders>,
                     payload: {
@@ -278,11 +278,11 @@ group Reference: Failure in Position Validation (Prepare)
                     event: {
                         id: <uuid>,
                         responseTo: <previous.uuid>,
-                        type: notification,
-                        action: position,
+                        type: "notification",
+                        action: "position",
                         createdAt: <timestamp>,
                         state: {
-                            status: 'error',
+                            status: "error",
                             code: <errorInformation.errorCode>
                             description: <errorInformation.errorDescription>
                         }
@@ -302,10 +302,10 @@ group Reference: Position Validation Success case (Prepare)
         note right of POS_HANDLER #yellow
         Message:
             {
-                id: <transferMessage.transferId>
+                id: "<messageId>"
                 from: <transferMessage.payerFsp>,
                 to: <transferMessage.payeeFsp>,
-                type: application/json
+                type: "application/json"
                 content: {
                     headers: <transferHeaders>,
                     payload: <transferMessage>
@@ -314,8 +314,8 @@ group Reference: Position Validation Success case (Prepare)
                     event: {
                         id: <uuid>,
                         responseTo: <previous.uuid>,
-                        type: bulk-processing,
-                        action: bulk-prepare,
+                        type: "bulk-processing",
+                        action: "bulk-prepare",
                         createdAt: <timestamp>,
                         state: {
                             status: "success",
@@ -332,10 +332,10 @@ group Reference: Position Validation Success case (Prepare)
         note right of POS_HANDLER #yellow
         Message:
             {
-                id: <transferMessage.transferId>
+                id: "<messageId>"
                 from: <transferMessage.payerFsp>,
                 to: <transferMessage.payeeFsp>,
-                type: application/json
+                type: "application/json"
                 content: {
                     headers: <transferHeaders>,
                     payload: <transferMessage>
@@ -344,8 +344,8 @@ group Reference: Position Validation Success case (Prepare)
                     event: {
                         id: <uuid>,
                         responseTo: <previous.uuid>,
-                        type: notification,
-                        action: abort,
+                        type: "notification",
+                        action: "abort",
                         createdAt: <timestamp>,
                         state: {
                             status: "success",
