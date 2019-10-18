@@ -46,7 +46,7 @@ The bulk report for payments comes up by date range and, since Nikisha does this
 
 #### Tier Risk Levels
 
-Salem works as an auditor for a large bank in Kampala, Uganda. His job is to monitor, manage and reduce risk for the company. order to do so each new user ID in the system is assigned a default tier level which means they can only transfer a small number and amount of funds in and out of the system over specific periods of time. As users acquire greater balances in their accounts and hold their accounts for longer periods of time their tier levels improve. Tier levels are handled automatically by the system so Salem does not need to worry about assigning or changing these levels under normal circumstances. Part of Salem's job as an auditor is to review the daily reports to ensure that everyone's funds are safe and secure and he kicks off his daily report to review the accounts.
+Salem works as an auditor for a large bank in Kampala, Uganda. His job is to monitor, manage and reduce risk for the company in order to do so each new user ID in the system is assigned a default tier level which means they can only transfer a small number and amount of funds in and out of the system over specific periods of time. As users acquire greater balances in their accounts and hold their accounts for longer periods of time their tier levels improve. Tier levels are handled automatically by the system so Salem does not need to worry about assigning or changing these levels under normal circumstances. Part of Salem's job as an auditor is to review the daily reports to ensure that everyone's funds are safe and secure and he kicks off his daily report to review the accounts.
 
 ```text
 *** Mojaloop technology does its job ***
