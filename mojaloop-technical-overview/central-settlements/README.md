@@ -9,7 +9,7 @@ The Central Settlements service is part of the Mojaloop project and deployment.
 
 ### 1.1. Architecture overview
 
-![Settlements Architecture](./assets/diagrams/architecture/arch-mojaloop-settlements-pi4.svg)
+![Settlements Architecture](./assets/diagrams/architecture/Arch-Mojaloop-Settlements-PI4.svg)
 
 ## 2. Funds In/Out
 
