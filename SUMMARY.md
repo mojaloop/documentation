@@ -122,5 +122,6 @@
   * [Project](repositories/project.md)
 * [Mojaloop Roadmap](mojaloop-roadmap.md)
 * [Mojaloop Publications](mojaloop-publications.md)
+* [Discussion Documents](discussions/readme.md)
 * [Glossary of Terms](glossary.md)
 <!--* [Changelog](changelog.md)-->
