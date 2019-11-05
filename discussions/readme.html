@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Local Setup Linux · GitBook</title>
+        <title>Discussion Documents · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -85,10 +85,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="local-setup-mac.html" />
+    <link rel="next" href="../contributors-guide/frequently-asked-questions.html" />
     
     
-    <link rel="prev" href="releases.html" />
+    <link rel="prev" href="../mojaloop-publications.html" />
     
 
     </head>
@@ -188,9 +188,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4" data-path="./">
+        <li class="chapter " data-level="1.4" data-path="../deployment-guide/">
             
-                <a href="./">
+                <a href="../deployment-guide/">
             
                     
                     Deployment Guide
@@ -202,9 +202,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.1" data-path="releases.html">
+        <li class="chapter " data-level="1.4.1" data-path="../deployment-guide/releases.html">
             
-                <a href="releases.html">
+                <a href="../deployment-guide/releases.html">
             
                     
                     Releases
@@ -215,9 +215,9 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.4.2" data-path="local-setup-linux.html">
+        <li class="chapter " data-level="1.4.2" data-path="../deployment-guide/local-setup-linux.html">
             
-                <a href="local-setup-linux.html">
+                <a href="../deployment-guide/local-setup-linux.html">
             
                     
                     Local Setup Linux
@@ -228,9 +228,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.3" data-path="local-setup-mac.html">
+        <li class="chapter " data-level="1.4.3" data-path="../deployment-guide/local-setup-mac.html">
             
-                <a href="local-setup-mac.html">
+                <a href="../deployment-guide/local-setup-mac.html">
             
                     
                     Local Setup Mac
@@ -241,9 +241,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.4" data-path="local-setup-windows.html">
+        <li class="chapter " data-level="1.4.4" data-path="../deployment-guide/local-setup-windows.html">
             
-                <a href="local-setup-windows.html">
+                <a href="../deployment-guide/local-setup-windows.html">
             
                     
                     Local Setup Windows
@@ -254,9 +254,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.5" data-path="deployment-troubleshooting.html">
+        <li class="chapter " data-level="1.4.5" data-path="../deployment-guide/deployment-troubleshooting.html">
             
-                <a href="deployment-troubleshooting.html">
+                <a href="../deployment-guide/deployment-troubleshooting.html">
             
                     
                     Troubleshooting
@@ -1882,9 +1882,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.10" data-path="../discussions/readme.html">
+        <li class="chapter active" data-level="1.10" data-path="readme.html">
             
-                <a href="../discussions/readme.html">
+                <a href="readme.html">
             
                     
                     Discussion Documents
@@ -1951,7 +1951,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Local Setup Linux</a>
+        <a href=".." >Discussion Documents</a>
     </h1>
 </div>
 
@@ -1966,98 +1966,7 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="mojaloop-setup-for-linux-ubuntu">Mojaloop Setup for Linux (Ubuntu)</h1>
-<p>Local setup on a Laptop or Desktop to run the Mojaloop project.</p>
-<h2 id="setup-introduction">Setup Introduction</h2>
-<p>This document will provide guidelines to a technical capable resources to setup, deploy and configure the Mojaloop applications on a local environment, utilizing Docker, Kubernetes and HELM charts.</p>
-<p>At this point the reader/implementer should be familiar with <a href="./">Mojaloop&apos;s deployment guide</a>. Imported information is contained in that document and as such a prerequisite to this document.</p>
-<ul>
-<li><a href="#1-environment-recommendations">Environment recommendations</a><ul>
-<li><a href="#2-kubernetes">Kubernetes</a><ul>
-<li><a href="#21-microk8s">MicroK8S</a></li>
-</ul>
-</li>
-<li><a href="#12-docker">Docker</a></li>
-</ul>
-</li>
-<li><a href="#2-useful-tips">Useful Tips</a></li>
-</ul>
-<h2 id="1-environment-recommendations">1. Environment recommendations</h2>
-<p>This environment setup was validated on:</p>
-<ul>
-<li>64-bit version of Ubuntu Bionic 18.04(LTS).</li>
-<li>This guide is based on Ubuntu 18.04.2 (bionic) on a x86_64 desktop with 8 CPU&apos;s and 16GB RAM.</li>
-</ul>
-<h2 id="2-kubernetes">2. Kubernetes</h2>
-<p>Kubernetes installation for a local environment.</p>
-<h4 id="21-microk8s">2.1. MicroK8S</h4>
-<p>We recommend install directly from the snap store.</p>
-<p>Don&apos;t have the snap command? <a href="https://snapcraft.io/docs/core/install" target="_blank">Install snapd first</a>.</p>
-<ol>
-<li><p>Installing MicroK8s from snap.</p>
-<pre><code class="lang-bash">snap install microk8s --classic
-</code></pre>
-</li>
-<li><p>Verify MicroK8s is installed and available.</p>
-<pre><code class="lang-bash">microk8s.status
-</code></pre>
-</li>
-<li><p>During installation you can use the --wait-ready flag to wait for the kubernetes services to initialise.</p>
-<pre><code class="lang-bash">microk8s.status --wait -ready
-</code></pre>
-</li>
-<li><p>To avoid colliding with a <strong>kubectl</strong> already installed and to avoid overwriting any existing Kubernetes configuration file, MicroK8s adds a <strong>microk8s.kubectl</strong> command, configured to exclusively access the new <strong>MicroK8s</strong> install.</p>
-<pre><code class="lang-bash">microk8s.kubectl get services
-</code></pre>
-</li>
-<li><p>This step is only necessary if you require <strong>microk8s.kubectl</strong> to function as a standard <strong>kubectl</strong> command. This <strong>DOES NOT</strong> mean that you can then use <strong>kubectl</strong> to access <strong>OTHER</strong> k8s clusters.</p>
-<p>An example of why you would use this: You have a bash script or 3rd party tool that expects <strong>kubectl</strong> to be available. E.g. If you want to use Helm, it will not work against <strong>microk8s.kubectl</strong>, thus one <strong>MUST</strong> setup the alias for Helm to function correctly.</p>
-<pre><code class="lang-bash">snap <span class="hljs-built_in">alias</span> microk8s.kubectl kubectl
-</code></pre>
-<p>Reverting it at any time;</p>
-<pre><code class="lang-bash">snap <span class="hljs-built_in">unalias</span> kubectl
-</code></pre>
-<p>We will stick with the standard command of prefixing with <strong>microk8s.</strong> for this guide.</p>
-</li>
-<li><p>If you already have <strong>kubectl</strong> installed and would like to use it to access the <strong>MicroK8s</strong> deployment.</p>
-<pre><code class="lang-bash">microk8s.kubectl config view --raw &gt; <span class="hljs-variable">$HOME</span>/.kube/config
-</code></pre>
-</li>
-<li><p>View the current context.</p>
-<pre><code class="lang-bash">microk8s.kubectl config get-contexts
-</code></pre>
-</li>
-<li><p>Make sure the current context is <strong>microk8s</strong>. If not, set it as the current context.</p>
-<pre><code class="lang-bash">microk8s.kubectl config use-context microk8s
-</code></pre>
-</li>
-</ol>
-<h3 id="12-docker">1.2. Docker</h3>
-<p>Docker is deployed as part of the MicroK8s installation. The docker daemon used by MicroK8s is listening on unix:///var/snap/microk8s/current/docker.sock. You can access it with the <strong>microk8s.docker</strong> command.</p>
-<ol>
-<li><p>If you require <strong>microk8s.docker</strong> to function as a standard <strong>docker</strong> command, you set an alias.</p>
-<pre><code class="lang-bash">sudo snap <span class="hljs-built_in">alias</span> microk8s.docker docker
-</code></pre>
-<p>Undo the alias;</p>
-<pre><code class="lang-bash">sudo snap <span class="hljs-built_in">unalias</span> docker
-</code></pre>
-</li>
-<li><p>We will apply the native microK8s commands by prefix commands <strong>microk8s.</strong></p>
-<pre><code class="lang-bash">microk8s.docker ps
-</code></pre>
-</li>
-<li><p>Continue setup and configuration from the Kubernetes Dashboard section in the <a href="./#31-kubernetes-dashboard">Mojaloop&apos;s deployment guide</a> document.</p>
-</li>
-</ol>
-<h2 id="2-useful-tips">2. Useful Tips</h2>
-<ol>
-<li>Resolve problems with VSCode and kafka on ubuntu 18.04. To make the code work with VSCode debugger, added the following into the launch.json<pre><code class="lang-json"> <span class="hljs-string">&quot;env&quot;</span>: {
-         <span class="hljs-string">&quot;LD_LIBRARY_PATH&quot;</span>: <span class="hljs-string">&quot;${workspaceFolder}/node_modules/node-rdkafka/build/deps&quot;</span>,
-         <span class="hljs-string">&quot;WITH_SASL&quot;</span>: <span class="hljs-number">0</span>
-       }
-</code></pre>
-</li>
-</ol>
+                                <p>Discussion Document outcomes and principles are posted here.</p>
 
                                 
                                 </section>
@@ -2091,7 +2000,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Local Setup Linux","level":"1.4.2","depth":2,"next":{"title":"Local Setup Mac","level":"1.4.3","depth":2,"path":"deployment-guide/local-setup-mac.md","ref":"deployment-guide/local-setup-mac.md","articles":[]},"previous":{"title":"Releases","level":"1.4.1","depth":2,"path":"deployment-guide/releases.md","ref":"deployment-guide/releases.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"3.x.x","theme":"default","variables":{"importedVars":{"mojaloop":{"spec":{"version":"v1.0","uri":{"doc":"https://github.com/mojaloop/mojaloop-specification/blob/master/API%20Definition%20v1.0.pdf","api":"https://github.com/mojaloop/mojaloop-specification/blob/master/Supporting%20Files/fspiop-rest-v1.0-OpenAPI-implementation.yaml"}}},"central_ledger":{"spec":{"version":"v2.0","uri":{"doc":"/mojaloop-technical-overview/central-ledger/README.md","api":"https://github.com/mojaloop/central-ledger/blob/master/src/api/interface/swagger.json"}}},"settlement":{"spec":{"version":"v1.1","uri":{"doc":"/mojaloop-technical-overview/central-settlements/README.md","api":"https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json"}}},"als":{"oracle":{"spec":{"version":"v1.2","uri":{"doc":"/mojaloop-technical-overview/account-lookup-service/README.md","api":"https://github.com/mojaloop/documentation/blob/master/api/assets/interface-contracts/oracle-service-swagger-v1.yaml"}}}}}},"plugins":["swagger","editlink","include","insert-logo","plantuml-svg","collapsible-chapters","back-to-top-button","theme-api","variables","changelog","page-toc"],"pluginsConfig":{"plantuml-svg":{},"editlink":{"label":"Edit This Page","multilingual":true,"base":"https://github.com/mojaloop/documentation/edit/master"},"theme-gestalt":{"logo":"https://mojaloop.io/images/logo.png","favicon":"https://mojaloop.io/images/logo.png","baseUrl":null,"excludeDefaultStyles":false,"doNotHideChildrenChapters":false},"include":{},"search":{},"collapsible-chapters":{},"page-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","position":"before-first","showByDefault":true},"swagger":{"file":""},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"uml":{"format":"png","nailgun":false},"changelog":{},"theme-api":{"languages":[],"split":true,"theme":"dark"},"back-to-top-button":{},"variables":{"files":{"importedVars":"book_variables.yml"}},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"insert-logo":{"url":"https://mojaloop.io/images/logo.png","style":"background: none; max-height: 140px; max-width: 140px;"}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"deployment-guide/local-setup-linux.md","mtime":"2019-11-05T18:55:37.863Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-11-05T18:56:49.870Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Discussion Documents","level":"1.10","depth":1,"next":{"title":"Frequently Asked Questions","level":"1.11","depth":1,"path":"contributors-guide/frequently-asked-questions.md","ref":"contributors-guide/frequently-asked-questions.md","articles":[]},"previous":{"title":"Mojaloop Publications","level":"1.9","depth":1,"path":"mojaloop-publications.md","ref":"mojaloop-publications.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"3.x.x","theme":"default","variables":{"importedVars":{"mojaloop":{"spec":{"version":"v1.0","uri":{"doc":"https://github.com/mojaloop/mojaloop-specification/blob/master/API%20Definition%20v1.0.pdf","api":"https://github.com/mojaloop/mojaloop-specification/blob/master/Supporting%20Files/fspiop-rest-v1.0-OpenAPI-implementation.yaml"}}},"central_ledger":{"spec":{"version":"v2.0","uri":{"doc":"/mojaloop-technical-overview/central-ledger/README.md","api":"https://github.com/mojaloop/central-ledger/blob/master/src/api/interface/swagger.json"}}},"settlement":{"spec":{"version":"v1.1","uri":{"doc":"/mojaloop-technical-overview/central-settlements/README.md","api":"https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json"}}},"als":{"oracle":{"spec":{"version":"v1.2","uri":{"doc":"/mojaloop-technical-overview/account-lookup-service/README.md","api":"https://github.com/mojaloop/documentation/blob/master/api/assets/interface-contracts/oracle-service-swagger-v1.yaml"}}}}}},"plugins":["swagger","editlink","include","insert-logo","plantuml-svg","collapsible-chapters","back-to-top-button","theme-api","variables","changelog","page-toc"],"pluginsConfig":{"plantuml-svg":{},"editlink":{"label":"Edit This Page","multilingual":true,"base":"https://github.com/mojaloop/documentation/edit/master"},"theme-gestalt":{"logo":"https://mojaloop.io/images/logo.png","favicon":"https://mojaloop.io/images/logo.png","baseUrl":null,"excludeDefaultStyles":false,"doNotHideChildrenChapters":false},"include":{},"search":{},"collapsible-chapters":{},"page-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","position":"before-first","showByDefault":true},"swagger":{"file":""},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"uml":{"format":"png","nailgun":false},"changelog":{},"theme-api":{"languages":[],"split":true,"theme":"dark"},"back-to-top-button":{},"variables":{"files":{"importedVars":"book_variables.yml"}},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"insert-logo":{"url":"https://mojaloop.io/images/logo.png","style":"background: none; max-height: 140px; max-width: 140px;"}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"discussions/readme.md","mtime":"2019-11-05T18:55:37.883Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-11-05T18:56:49.870Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
