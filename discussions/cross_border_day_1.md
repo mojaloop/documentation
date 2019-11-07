@@ -1,5 +1,10 @@
 # Cross Border Discussion Day 1
 
+>**Links**
+>- [Day 2 Notes](./cross_border_day_2.md)
+>- [Relevant Issue on DA Board](https://github.com/mojaloop/design-authority/issues/32)
+>- [Mojaloop Spec Pull Request](https://github.com/mojaloop/mojaloop-specification/pull/22)
+
 ## Attendees:
 
 In person

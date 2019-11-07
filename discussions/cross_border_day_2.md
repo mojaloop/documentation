@@ -1,5 +1,10 @@
 # Cross Border Discussion Day 2
 
+>**Links**
+>- [Day 1 Notes](./cross_border_day_1.md)
+>- [Relevant Issue on DA Board](https://github.com/mojaloop/design-authority/issues/32)
+>- [Mojaloop Spec Pull Request](https://github.com/mojaloop/mojaloop-specification/pull/22)
+
 ## Next Steps:
 
 - Updated the proposal APIs
