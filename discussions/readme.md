@@ -1,7 +1,7 @@
-Discussion Document outcomes and principles are posted here.
+Discussion Documents
 
-[ISO integration](ISO_Integration.md)
+[ISO integration Overivew](ISO_Integration.md)
 
-[Decimal](decimal.md)
+[Moajoop Decimal Type; Based on XML Schema Decimal Type](decimal.md)
 
-[Workbench](workbench.md)
+[Workbench Workstream](workbench.md)
