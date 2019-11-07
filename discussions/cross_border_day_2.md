@@ -1,4 +1,4 @@
-# Cross Border Day 2
+# Cross Border Discussion Day 2
 
 ## Next Steps:
 

@@ -1,4 +1,4 @@
-# Cross Border Day 1
+# Cross Border Discussion Day 1
 
 ## Attendees:
 
