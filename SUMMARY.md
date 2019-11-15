@@ -23,7 +23,7 @@
   * [Documentation](contributors-guide/documentation/README.md)
     * [API Documentation](contributors-guide/documentation/api-documentation.md)
     * [Documentation Style Guide](contributors-guide/documentation/documentation-style-guide.md)
-  * [Mojaloop Technical Overview](mojaloop-technical-overview/README.md)
+* [Mojaloop Technical Overview](mojaloop-technical-overview/README.md)
   * [Mojaloop Hub](mojaloop-technical-overview/overview/README.md)
       * [Legacy Architecture - PI5](mojaloop-technical-overview/overview/components-PI5.md)
       * [Legacy Architecture - PI3](mojaloop-technical-overview/overview/components-PI3.md)
