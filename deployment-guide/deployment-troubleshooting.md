@@ -2,7 +2,36 @@
 
 ## 1. Deployment issues
 
-### 1.1. `ERR_NAME_NOT_RESOLVED` Error
+### 1.1. MicroK8s - helm init connection refused
+
+#### Description
+
+The helm init:
+
+   ```bash
+   helm init
+   ```
+
+fails with error when installing locally on `microk8s`:
+
+   ```
+   Error: error installing: Post http://localhost:8080/apis/apps/v1/namespaces/kube-system/deployments: dial tcp 127.0.0.1:8080: connect: connection refused
+   ```
+   
+#### Potential reason
+
+This may be a missing  `~/.kube/config` file, where helm looks for connection details.
+
+#### Fix
+
+One of the solutions is to generate that file by issuing:
+
+   ```bash
+   microk8s.kubectl config view --raw > $HOME/.kube/config
+   ```
+
+
+### 1.2. `ERR_NAME_NOT_RESOLVED` Error
 
 #### Description
 
@@ -22,7 +51,7 @@ The following error is displayed when attempting to access an end-point (e.g. ce
   
   * Note that the Mojaloop deployment via Helm can take a few minutes to initially startup depending on the system's available resources and specification. It is recommended that you wait at least 10m for all Pods/Containers to self heal before troubleshooting.
   
-### 1.2. MicroK8s - Connectivity Issues
+### 1.3. MicroK8s - Connectivity Issues
 
 #### Description
 
