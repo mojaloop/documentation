@@ -141,7 +141,7 @@ Please review [Mojaloop Helm Chart](../repositories/helm.md) to understand the r
    ```bash
    helm init
    ```
-   _Note: if `helm init` fails with `connection refused error`, refer to [troubleshooting](./deployment-troubleshooting.md)_
+   _Note: if `helm init` fails with `connection refused error`, refer to [troubleshooting](./deployment-troubleshooting.md#helm_init_connection_refused)_
 
 2. Validate Helm Tiller is up and running. _Windows replace `grep` with `findstr`_:
    ```bash

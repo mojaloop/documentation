@@ -27,7 +27,7 @@ When installing mojaloop helm charts, the following error occurs:
   
 In version 1.16 of Kubernetes breaking change has been introduced (more about it [in "Deprecations and Removals" of Kubernetes release notes](https://kubernetes.io/docs/setup/release/notes/#deprecations-and-removals). The  Kubernetes API versions `apps/v1beta1` and `apps/v1beta2`are no longer supported and  and have been replaced by `apps/v1`.
 
-Currently Mojaloop helm charts (as for v8.4.x) refer to deprecated ids, therefore it's not possible to install current Mojaloop charts on Kubernetes version above 1.15 without manually changing charts.
+Currently Mojaloop helm charts (as of v8.4.x) refer to deprecated ids, therefore it's not possible to install current Mojaloop charts on Kubernetes version above 1.15 without manually changing charts.
 
 Refer to the following issue for more info: [mojaloop/helm#219](https://github.com/mojaloop/helm/issues/219)
 
@@ -51,7 +51,7 @@ To install most recent supported version:
 
 ## 2. Deployment issues
 
-### 2.1. MicroK8s - helm init connection refused
+### 2.1. MicroK8s - helm init connection refused<a name="helm_init_connection_refused"></a>
 
 #### Description
 
@@ -67,7 +67,7 @@ fails with error when installing locally on `microk8s`:
    Error: error installing: Post http://localhost:8080/apis/apps/v1/namespaces/kube-system/deployments: dial tcp 127.0.0.1:8080: connect: connection refused
    ```
    
-#### Potential reason
+#### Reason
 
 This may be a missing  `~/.kube/config` file, where helm looks for connection details.
 
