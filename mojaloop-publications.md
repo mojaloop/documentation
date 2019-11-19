@@ -13,5 +13,5 @@ See below listing of current published publications.
 - [January 2010 PI-5 OSS Community Session](./presentations/January%202019)
 
 ## Mojaloop Standard Publications 
-- [Moajoop Decimal Type; Based on XML Schema Decimal Type](decimal.md)
+- [Moajoop Decimal Type; Based on XML Schema Decimal Type](./discussions/decimal.md)
 - [Mojaloop API Specification](https://github.com/mojaloop/mojaloop-specification/blob/master/API%20Definition%20v1.0.pdf)
