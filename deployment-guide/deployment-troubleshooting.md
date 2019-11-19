@@ -1,5 +1,16 @@
 # Deployment Troubleshooting
 
+## Local deployment with MicroK8s - suggestions:
+
+- use **v1.15 of MicroK8s** (higher version not yet supported) (details in "Installation of mojaloop helm charts fail with validation failed" section)
+- try `microk8s.inspect` for hints (for example connectivity problems when ip forwarding is not enabled, more about it in "MicroK8s - Connectivity Issues section")
+- enable following microk8s add-ons (check with `sudo microk8s.status`):
+  - storage
+  - ingress
+  - dns
+  - istio
+  - dashboard
+
 ## 1. Deployment issues
 
 ### 1.1. MicroK8s - helm init connection refused
