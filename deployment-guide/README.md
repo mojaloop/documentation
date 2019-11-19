@@ -141,6 +141,7 @@ Please review [Mojaloop Helm Chart](../repositories/helm.md) to understand the r
    ```bash
    helm init
    ```
+   _Note: if `helm init` fails with error similar to `Error: error installing: Post http://localhost:8080/apis/apps/v1/namespaces/kube-system/deployments: dial tcp 127.0.0.1:8080: connect: connection refused` when installing locally on `microk8s`, this may be a missing  `~/.kube/config` file, where helm looks for connection details. One of the solutions is to generate that file by issuing `microk8s.kubectl config view --raw > $HOME/.kube/config`._
 
 2. Validate Helm Tiller is up and running. _Windows replace `grep` with `findstr`_:
    ```bash
