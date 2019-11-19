@@ -11,9 +11,47 @@
   - istio
   - dashboard
 
-## 1. Deployment issues
+## 1. Known issues
 
-### 1.1. MicroK8s - helm init connection refused
+### 1.1. Mojaloop Helm Charts does not support Kubernetes v1.16 or greater
+
+#### Description
+
+When installing mojaloop helm charts, the following error occurs:
+
+   ```
+   Error: validation failed: [unable to recognize "": no matches for kind "Deployment" in version "apps/v1beta2", unable to recognize "": no matches for kind "Deployment" in version "extensions/v1beta1", unable to recognize "": no matches for kind "StatefulSet" in version "apps/v1beta2", unable to recognize "": no matches for kind "StatefulSet" in version "apps/v1beta1"]
+   ```
+
+#### Reason
+  
+In version 1.16 of Kubernetes breaking change has been introduced (more about it [in "Deprecations and Removals" of Kubernetes release notes](https://kubernetes.io/docs/setup/release/notes/#deprecations-and-removals). The  Kubernetes API versions `apps/v1beta1` and `apps/v1beta2`are no longer supported and  and have been replaced by `apps/v1`.
+
+Currently Mojaloop helm charts (as for v8.4.x) refer to deprecated ids, therefore it's not possible to install current Mojaloop charts on Kubernetes version above 1.15 without manually changing charts.
+
+Refer to the following issue for more info: [mojaloop/helm#219](https://github.com/mojaloop/helm/issues/219)
+
+#### Fixes
+  
+Ensure that you are deploying the Mojaloop Helm charts on v1.15 of Kubernetes (or microk8s when working locally).
+
+#### Additional details for `microk8s` fix
+
+To check version of `microk8s`:
+   ```bash
+   snap info microk8s
+   ```
+_Note: Look at the end of the output for a row starting with "installed"_
+
+To install most recent supported version:
+   ```bash
+   snap refresh microk8s --channel=1.15/stable --classic
+   ```
+
+
+## 2. Deployment issues
+
+### 2.1. MicroK8s - helm init connection refused
 
 #### Description
 
@@ -33,7 +71,7 @@ fails with error when installing locally on `microk8s`:
 
 This may be a missing  `~/.kube/config` file, where helm looks for connection details.
 
-#### Fix
+#### Fix - option #1
 
 One of the solutions is to generate that file by issuing:
 
@@ -41,50 +79,21 @@ One of the solutions is to generate that file by issuing:
    microk8s.kubectl config view --raw > $HOME/.kube/config
    ```
 
-### 1.2. Installation of mojaloop helm charts fail with "validation failed"
+#### Fix - option #2
 
-#### Description
-   When installing mojaloop helm charts, for example with command:
+Another option is to export the config to a new file:
 
    ```bash
-   helm --namespace demo --name moja install mojaloop/mojaloop
+   microk8s.kubectl config view --raw > $HOME/.kube/local.config
    ```
 
-   the following error occurs:
+And then export the following env var:
 
-   ```
-   Error: validation failed: [unable to recognize "": no matches for kind "Deployment" in version "apps/v1beta2", unable to recognize "": no matches for kind "Deployment" in version "extensions/v1beta1", unable to recognize "": no matches for kind "StatefulSet" in version "apps/v1beta2", unable to recognize "": no matches for kind "StatefulSet" in version "apps/v1beta1"]
-   ```
-
-#### Reason
-  
-In version 1.16 of Kubernetes breaking change has been introduced (more about it [in "Deprecations and Removals" of Kubernetes release notes](https://kubernetes.io/docs/setup/release/notes/#deprecations-and-removals). The `apps/v1beta1` and `apps/v1beta2`are no longer supported and `apps/v1` should be used instead.
-
-Currently mojaloop helm charts (as for v8.4.0) refer to deprecated ids, therefore it's not possible to install current mojaloop charts on Kubernetes version above 1.15 without manually changing charts.
-
-#### Fixes
-  
-2 fixes are available:
-  
-  1. Use v1.15 of Kubernetes (or microk8s when working locally).
-  2. Adjust charts manually.
-
-_Note: The new updated charts are expected to be deployed soon._
-
-#### Additional details for `microk8s` fix
-
-To check version of `microk8s`:
    ```bash
-   snap info microk8s
-   ```
-_Note: Look at the end of the output for a row starting with "installed"_
-
-To install most recent supported version:
-   ```bash
-   snap refresh microk8s --channel=1.15/stable --classic
+   export KUBECONFIG=$HOME/.kube/local.config
    ```
 
-### 1.3. `ERR_NAME_NOT_RESOLVED` Error
+### 2.2. `ERR_NAME_NOT_RESOLVED` Error
 
 #### Description
 
@@ -104,7 +113,7 @@ The following error is displayed when attempting to access an end-point (e.g. ce
   
   * Note that the Mojaloop deployment via Helm can take a few minutes to initially startup depending on the system's available resources and specification. It is recommended that you wait at least 10m for all Pods/Containers to self heal before troubleshooting.
   
-### 1.4. MicroK8s - Connectivity Issues
+### 2.3. MicroK8s - Connectivity Issues
 
 #### Description
 
@@ -141,9 +150,9 @@ microk8s.inspect
 ```
 
 
-## 2. Ingress issues
+## 3. Ingress issues
 
-### 2.1. Ingress rules are not resolving for Nginx Ingress v0.22 or later
+### 3.1. Ingress rules are not resolving for Nginx Ingress v0.22 or later
 
 #### Description
 
@@ -158,7 +167,7 @@ This is due to the changes introduced in Nginx Ingress controllers that are v0.2
     `nginx.ingress.kubernetes.io/rewrite-target: '/'` --> `nginx.ingress.kubernetes.io/rewrite-target: '/$1'`
    
 
-### 2.2. Ingress rules are not resolving for Nginx Ingress earlier than v0.22
+### 3.2. Ingress rules are not resolving for Nginx Ingress earlier than v0.22
 
 #### Description
 
