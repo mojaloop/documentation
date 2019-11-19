@@ -30,8 +30,50 @@ One of the solutions is to generate that file by issuing:
    microk8s.kubectl config view --raw > $HOME/.kube/config
    ```
 
+### 1.2. Installation of mojaloop helm charts fail with "validation failed"
 
-### 1.2. `ERR_NAME_NOT_RESOLVED` Error
+#### Description
+   When installing mojaloop helm charts, for example with command:
+
+   ```bash
+   helm --namespace demo --name moja install mojaloop/mojaloop
+   ```
+
+   the following error occurs:
+
+   ```
+   Error: validation failed: [unable to recognize "": no matches for kind "Deployment" in version "apps/v1beta2", unable to recognize "": no matches for kind "Deployment" in version "extensions/v1beta1", unable to recognize "": no matches for kind "StatefulSet" in version "apps/v1beta2", unable to recognize "": no matches for kind "StatefulSet" in version "apps/v1beta1"]
+   ```
+
+#### Reason
+  
+In version 1.16 of Kubernetes breaking change has been introduced (more about it [in "Deprecations and Removals" of Kubernetes release notes](https://kubernetes.io/docs/setup/release/notes/#deprecations-and-removals). The `apps/v1beta1` and `apps/v1beta2`are no longer supported and `apps/v1` should be used instead.
+
+Currently mojaloop helm charts (as for v8.4.0) refer to deprecated ids, therefore it's not possible to install current mojaloop charts on Kubernetes version above 1.15 without manually changing charts.
+
+#### Fixes
+  
+2 fixes are available:
+  
+  1. Use v1.15 of Kubernetes (or microk8s when working locally).
+  2. Adjust charts manually.
+
+_Note: The new updated charts are expected to be deployed soon._
+
+#### Additional details for `microk8s` fix
+
+To check version of `microk8s`:
+   ```bash
+   snap info microk8s
+   ```
+_Note: Look at the end of the output for a row starting with "installed"_
+
+To install most recent supported version:
+   ```bash
+   snap refresh microk8s --channel=1.15/stable --classic
+   ```
+
+### 1.3. `ERR_NAME_NOT_RESOLVED` Error
 
 #### Description
 
@@ -51,7 +93,7 @@ The following error is displayed when attempting to access an end-point (e.g. ce
   
   * Note that the Mojaloop deployment via Helm can take a few minutes to initially startup depending on the system's available resources and specification. It is recommended that you wait at least 10m for all Pods/Containers to self heal before troubleshooting.
   
-### 1.3. MicroK8s - Connectivity Issues
+### 1.4. MicroK8s - Connectivity Issues
 
 #### Description
 
