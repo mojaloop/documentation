@@ -1,0 +1,277 @@
+/'*****
+ License
+ --------------
+ Copyright © 2017 Bill & Melinda Gates Foundation
+ The Mojaloop files are made available by the Bill & Melinda Gates Foundation under the Apache License, Version 2.0 (the "License") and you may not use these files except in compliance with the License. You may obtain a copy of the License at
+ http://www.apache.org/licenses/LICENSE-2.0
+ Unless required by applicable law or agreed to in writing, the Mojaloop files are distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+ Contributors
+ --------------
+ This is the official list of the Mojaloop project contributors for this file.
+ Names of the original copyright holders (individuals or organizations)
+ should be listed with a '*' in the first column. People who have
+ contributed from an organization can be listed under the organization
+ that actually holds the copyright for their contributions (see the
+ Gates Foundation organization for an example). Those individuals should have
+ their names indented and be marked with a '-'. Email address can be added
+ optionally within square brackets <email>.
+ * Gates Foundation
+ - Name Surname <name.surname@gatesfoundation.com>
+
+ * Valentin Genev <valentin.genev@modusbox.com>
+ --------------
+ ******'/
+
+@startuml
+' declate title
+title Event Streaming Processor flow
+
+autonumber
+
+' Actor Keys:
+
+' declare actors
+
+collections "Notification topic" as TOPIC_NOTIFICATIONS
+control "Topic Observable" as TOPIC_OBSERVABLE
+control "Tracing Observable" as TRACING_OBSERVABLE
+control "Caching Observable" as CACHING_OBSERVABLE
+control "Check For Last Span Observable" as LASTSPAN_OBSERVABLE
+control "Create Trace Observable" as CREATETRACE_OBSERVABLE
+control "Cache Handler" as CACHE_HANDLER
+control "Send Trace Handler" as TRACE_HANDLER
+control "Send Span Handler" as SPAN_SENDER
+database "Cache Storage" as CACHE
+boundary "APM" as APM
+
+box "Central Services" #lightGray
+	participant TOPIC_NOTIFICATIONS
+end box
+
+box "Event Stream Processor" #LightBlue
+  participant TOPIC_OBSERVABLE
+  participant TRACING_OBSERVABLE
+  participant CACHING_OBSERVABLE
+  participant LASTSPAN_OBSERVABLE
+  participant CREATETRACE_OBSERVABLE
+  participant TRACE_HANDLER
+  participant SPAN_SENDER
+  participant CACHE_HANDLER
+end box
+
+box "Cache" #LightSteelBlue
+  participant CACHE
+end box
+
+box "Kibana APM" #LightYellow
+    participant APM
+end box
+
+' start flow
+
+group New Event Message Received
+    TOPIC_NOTIFICATIONS -> TOPIC_OBSERVABLE: Consume Event Message
+        activate TOPIC_OBSERVABLE
+        activate TOPIC_NOTIFICATIONS
+        deactivate TOPIC_NOTIFICATIONS
+        note over TOPIC_OBSERVABLE #yellow
+            Message:
+              {
+                "from": "payeefsp",
+                "to": "payerfsp",
+                "id": "659ee338-c8f8-4c06-8aff-944e6c5cd694",
+                "content": {
+                  "headers": {
+                    "content-type": "applicationvnd.interoperability.transfers+json;version=1.0",
+                    "date": "2019-05-28T16:34:41.000Z",
+                    "fspiop-source": "payeefsp",
+                    "fspiop-destination": "payerfsp"
+                  },
+                  "payload": <payload>
+                },
+                "type": "application/json",
+                "metadata": {
+                  "event": {
+                    "id": "3920382d-f78c-4023-adf9-0d7a4a2a3a2f",
+                    "type": "trace",
+                    "action": "span",
+                    "createdAt": "2019-05-29T23:18:32.935Z",
+                    "state": {
+                      "status": "success",
+                      "code": 0,
+                      "description": "action successful"
+                    },
+                    "responseTo": "1a396c07-47ab-4d68-a7a0-7a1ea36f0012"
+                  },
+                  "trace": {
+                    "service": "central-ledger-prepare-handler",
+                    "traceId": "bbd7b2c7bbd7b2c7",
+                    "parentSpanId": "44ba9bbc5840",
+                    "spanId": "2aa9cd0a7e87",
+                    "startTimestamp": "2015-08-29T11:22:09.815479Z",
+                    "finishTimestamp": "2015-08-29T11:22:09.815479Z",
+                    "tags": {
+                      "transctionId": "659ee338-c8f8-4c06-8aff-944e6c5cd694",
+                      "transctionType": "transfer",
+                      "parentEventType": "bulk-prepare",
+                      "parentEventAction": "prepare"
+                    }
+                  }
+                }
+              }
+          end note
+          TOPIC_OBSERVABLE -> TOPIC_OBSERVABLE: Verify its tracing event Message
+          TOPIC_OBSERVABLE -> TRACING_OBSERVABLE: Send Message to Tracing Observable
+          deactivate TOPIC_OBSERVABLE
+          activate TRACING_OBSERVABLE
+            group Cache Span
+            TRACING_OBSERVABLE -> CACHING_OBSERVABLE: Send Span Context, \nmetadata.State and Content\nfrom Message
+            note right of TRACING_OBSERVABLE #yellow
+              {
+                spanContext: {
+                  service: "central-ledger-prepare-handler",
+                  traceId: "bbd7b2c7bbd7b2c7",
+                  parentSpanId: "44ba9bbc5840",
+                  spanId: "2aa9cd0a7e87",
+                  startTimestamp: "2015-08-29T11:22:09.815479Z",
+                  finishTimestamp: "2015-08-29T11:22:09.815479Z",
+                  tags: {
+                    transctionId: "659ee338-c8f8-4c06-8aff-944e6c5cd694",
+                    transctionType: "transfer",
+                    parentEventType: "bulk-prepare",
+                    parentEventAction: "prepare"
+                  },
+                state: metadata.state,
+                content
+              }
+            end note
+                deactivate TRACING_OBSERVABLE
+                activate CACHING_OBSERVABLE
+                CACHING_OBSERVABLE <- CACHE: Get cachedTrace by traceId
+                alt the span should not be cached
+                  CACHING_OBSERVABLE -> SPAN_SENDER: currentSpan
+                  SPAN_SENDER -> APM: store to APM
+                  CACHING_OBSERVABLE -> CACHING_OBSERVABLE: Complete
+                else
+                  CACHING_OBSERVABLE <-> CACHING_OBSERVABLE: Validate transactionType, TransactionAction and service to match Config.START_CRITERIA && !parentSpandId
+                  alt !cachedTrace
+                    CACHING_OBSERVABLE -> CACHING_OBSERVABLE: Create new cachedTrace
+                    note right of CACHING_OBSERVABLE #yellow
+                    { 
+                      spans: {},
+                      masterSpan: null,
+                      lastSpan: null
+                    }
+                    end note
+                  end
+                    alt !parentSpan
+                      CACHING_OBSERVABLE <-> CACHING_OBSERVABLE: Generate MasterSpanId
+                      CACHING_OBSERVABLE <-> CACHING_OBSERVABLE: Make received span child of masterSpan \nmerge({ parentSpanId: MasterSpanId }, { ...spanContext })
+                      CACHING_OBSERVABLE <-> CACHING_OBSERVABLE: Create MasterSpanContext merge({ tags: { ...tags, masterSpan: MasterSpanId } }, \n{ ...spanContext }, \n{ spanId: MasterSpanId, service: `master-${tags.transactionType}` })
+                      CACHING_OBSERVABLE <-> CACHING_OBSERVABLE: Add masterSpan to cachedTrace
+                    end  
+                      CACHING_OBSERVABLE <-> CACHE_HANDLER: Add span to cachedTrace
+                      note right of CACHING_OBSERVABLE #yellow
+                      { 
+                        spans: {
+                          2aa9cd0a7e87: {
+                          state,
+                          content 
+                          spanContext: {
+                            "service": "central-ledger-prepare-handler",
+                            "traceId": "bbd7b2c7bbd7b2c7",
+                            "parentSpanId": <b>MasterSpanId</b>,
+                            "spanId": "2aa9cd0a7e87",
+                            "startTimestamp": "2015-08-29T11:22:09.815479Z",
+                            "finishTimestamp": "2015-08-29T11:22:09.815479Z",
+                            "tags": {
+                              "transctionId": "659ee338-c8f8-4c06-8aff-944e6c5cd694",
+                              "transctionType": "transfer",
+                              "parentEventType": "bulk-prepare",
+                              "parentEventAction": "prepare"
+                            }   
+                          }
+                        },
+                        <b>MasterSpanId:</b> {
+                          state,
+                          content,
+                          MasterSpanContext
+                        }
+                      },
+                      masterSpan: <b>MasterSpanContext</b>,
+                      lastSpan: null
+                      }
+                      end note     
+                      CACHING_OBSERVABLE -> CACHE_HANDLER: Update cachedTrace to Cache
+                      alt cachedTrace not staled or expired
+                        CACHE_HANDLER -> CACHE_HANDLER: unsubscribe from Scheduler
+                        CACHE_HANDLER -> CACHE: record cachedTrace
+                        CACHE_HANDLER <-> CACHE_HANDLER: Reschedule scheduler for handling stale traces
+                      end
+                  end
+              CACHING_OBSERVABLE -> LASTSPAN_OBSERVABLE: Send traceId to check if last span has been received\nand cached
+              deactivate CACHING_OBSERVABLE
+              activate LASTSPAN_OBSERVABLE
+              end
+              group Check for last span
+                LASTSPAN_OBSERVABLE <- CACHE: Get cachedTrace by traceId
+                LASTSPAN_OBSERVABLE -> LASTSPAN_OBSERVABLE: Sort spans by startTimestamp
+                  loop for currentSpan of SortedSpans 
+                    alt parentSpan
+                      LASTSPAN_OBSERVABLE -> LASTSPAN_OBSERVABLE: isError = (errorCode in parentSpan \nOR parentSpan status === failed \nOR status === failed)
+                      LASTSPAN_OBSERVABLE -> LASTSPAN_OBSERVABLE: apply masterSpan and error tags from parent to current span in cachedTrace
+                      alt !isLastSpan
+                        LASTSPAN_OBSERVABLE -> CACHE_HANDLER: Update cachedTrace to Cache
+                        alt cachedTrace not staled or expired
+                          CACHE_HANDLER -> CACHE_HANDLER: unsubscribe from Scheduler
+                          CACHE_HANDLER -> CACHE: record cachedTrace
+                          CACHE_HANDLER <-> CACHE_HANDLER: Reschedule scheduler for handling stale traces
+                        end
+                      else
+                        LASTSPAN_OBSERVABLE -> LASTSPAN_OBSERVABLE: Validate transactionType, TransactionAction, service and isError \nto match Config.START_CRITERIA && !parentSpandId
+                        LASTSPAN_OBSERVABLE -> LASTSPAN_OBSERVABLE: cachedTrace.lastSpan = currentSpan.spanContext
+                        LASTSPAN_OBSERVABLE -> CACHE_HANDLER: Update cachedTrace to Cache
+                        alt cachedTrace not staled or expired
+                          CACHE_HANDLER -> CACHE_HANDLER: unsubscribe from Scheduler
+                          CACHE_HANDLER -> CACHE: record cachedTrace
+                          CACHE_HANDLER <-> CACHE_HANDLER: Reschedule scheduler for handling stale traces
+                        end
+                        LASTSPAN_OBSERVABLE -> CREATETRACE_OBSERVABLE: Send traceId
+                        deactivate LASTSPAN_OBSERVABLE
+                        activate CREATETRACE_OBSERVABLE   
+                      end
+                    end
+                  end
+                end
+              group Recreate Trace from Cached Trace
+                CREATETRACE_OBSERVABLE <- CACHE: get cachedTrace by TraceId
+                alt cachedTrace.lastSpan AND cachedTrace.masterSpan
+                  CREATETRACE_OBSERVABLE -> CREATETRACE_OBSERVABLE: currentSpan = lastSpan
+                  CREATETRACE_OBSERVABLE -> CREATETRACE_OBSERVABLE: resultTrace = [lastSpan]
+                  loop for i = 0; i < cachedTrace.spans.length; i++
+                      CREATETRACE_OBSERVABLE -> CREATETRACE_OBSERVABLE: get parentSpan of currentSpan
+                    alt parentSpan
+                      CREATETRACE_OBSERVABLE -> CREATETRACE_OBSERVABLE: insert parent span in resultTrace in front
+                    else
+                      CREATETRACE_OBSERVABLE -> CREATETRACE_OBSERVABLE: break loop
+                    end
+                  end
+                  alt cachedTrace.masterSpan === currentSpan.spanId
+                    CREATETRACE_OBSERVABLE -> CREATETRACE_OBSERVABLE: masterSpan.finishTimestamp = resultTrace[resultTrace.length - 1].finishTimestamp  
+                    CREATETRACE_OBSERVABLE -> TRACE_HANDLER: send resultTrace
+                    deactivate CREATETRACE_OBSERVABLE
+                    activate TRACE_HANDLER
+                  end
+                end
+              end
+                group send Trace
+                  loop trace elements
+                    TRACE_HANDLER -> SPAN_SENDER: send each span
+                    SPAN_SENDER -> APM: send span to APM 
+                  end
+                  TRACE_HANDLER -> TRACE_HANDLER: unsubscribe scheduler for traceId
+                  TRACE_HANDLER -> CACHE: drop cachedTrace
+
+                end
+            end
+@enduml
