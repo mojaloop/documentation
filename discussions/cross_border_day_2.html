@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Discussion Documents · GitBook</title>
+        <title>Cross Border Meeting Notes Day 2 · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -85,10 +85,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="ISO_Integration.html" />
+    <link rel="next" href="../contributors-guide/frequently-asked-questions.html" />
     
     
-    <link rel="prev" href="../mojaloop-publications.html" />
+    <link rel="prev" href="cross_border_day_1.html" />
     
 
     </head>
@@ -1888,7 +1888,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.11" data-path="readme.html">
+        <li class="chapter " data-level="1.11" data-path="readme.html">
             
                 <a href="readme.html">
             
@@ -1954,7 +1954,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.11.5" data-path="cross_border_day_2.html">
+        <li class="chapter active" data-level="1.11.5" data-path="cross_border_day_2.html">
             
                 <a href="cross_border_day_2.html">
             
@@ -2028,7 +2028,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Discussion Documents</a>
+        <a href=".." >Cross Border Meeting Notes Day 2</a>
     </h1>
 </div>
 
@@ -2043,12 +2043,163 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="discussion-documents">Discussion Documents</h1>
-<p><a href="ISO_Integration.html">ISO integration Overivew</a></p>
-<p><a href="decimal.html">Moajoop Decimal Type; Based on XML Schema Decimal Type</a></p>
-<p><a href="workbench.html">Workbench Workstream</a></p>
-<p><a href="cross_border_day_1.html">Cross Border Meeting Notes Day 1</a></p>
-<p><a href="cross_border_day_2.html">Cross Border Meeting Notes Day 2</a></p>
+                                <h1 id="cross-border-discussion-day-2">Cross Border Discussion Day 2</h1>
+<blockquote>
+<p><strong>Links</strong></p>
+<ul>
+<li><a href="cross_border_day_1.html">Day 1 Notes</a></li>
+<li><a href="https://github.com/mojaloop/design-authority/issues/32" target="_blank">Relevant Issue on DA Board</a></li>
+<li><a href="https://github.com/mojaloop/mojaloop-specification/pull/22" target="_blank">Mojaloop Spec Pull Request</a></li>
+</ul>
+</blockquote>
+<h2 id="next-steps">Next Steps:</h2>
+<ul>
+<li>Updated the proposal APIs</li>
+<li>Present the consolidated change to the CCB in writing</li>
+<li>Couple of weeks to put together the changes (Michael/Adrian to split up the work)</li>
+<li>Mid-November CCB call</li>
+</ul>
+<h2 id="session-1">Session 1</h2>
+<p>Unanswered Questions:</p>
+<ul>
+<li><p>addressing</p>
+<ul>
+<li>break it down?</li>
+<li>cross-mojaloop</li>
+<li>what does a PayerFSP do with an address?</li>
+</ul>
+</li>
+<li><p>ALS + routing</p>
+<ul>
+<li>what optimizations does the API need to do/allow?</li>
+</ul>
+</li>
+<li><p>local vs. remote DFSP ids</p>
+</li>
+<li><p>Downstream failures</p>
+<ul>
+<li>When paymnet does clear, does the payer receive a notification (esp. with &apos;delayed&apos; payments that may interface with non-mojaloop systems)</li>
+<li>Can a CNP send a <code>PATCH</code> of the tx to update the Payee somehow?</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p>multiple quotes and route responses:</p>
+<ul>
+<li>how do display to the user?</li>
+<li>We need to establish rules for filtering routes<ul>
+<li>hard to do: e.g. blacklisting a switch? or express a preference for certain routes</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>how will Sender DFSP discover the scheme rules for a receiver?</p>
+</li>
+<li>does the Sender DFSP need to &apos;know&apos; the final switch? Or can it just &apos;know&apos; the next one?</li>
+</ul>
+<hr>
+<p>Running up against ML + non-ML assumptions</p>
+<ul>
+<li><p>does this mean CNP needs to do more work when connecting to non-ML?</p>
+<ul>
+<li>e.g. knowing the resulting scheme/switch?<ul>
+<li>why? Failure handling</li>
+<li>based on yesterday&apos;s decision: Should the CNP do the work here?</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Take a lesson from SWIFT:</p>
+<ul>
+<li>bank doesn&apos;t know where the money is going</li>
+<li>can we avoid this in ML?</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>CNP: Goal is to &apos;act like&apos; a normal member of the network</p>
+<ul>
+<li>This minimizes the responsibilities that the scheme assumes</li>
+</ul>
+<p>When is the TX considered completed?</p>
+<ul>
+<li>There might be cases where the scheme considers it done, but it is not techincally finished end to end</li>
+</ul>
+<p>How do we deal with service deteroriation?</p>
+<ul>
+<li>Scheme rules</li>
+</ul>
+<hr>
+<p>Back to quotes:</p>
+<ul>
+<li><p>how to express quote information?</p>
+<ul>
+<li>are quotes and routes separate? Presumably, yes</li>
+</ul>
+</li>
+<li><p>The quote is the most expensive step</p>
+<ul>
+<li>Can we provide QOS information here as part of the lookup?</li>
+</ul>
+</li>
+</ul>
+<p>Addressing:</p>
+<ul>
+<li>Need for a globally unique address<ul>
+<li>Allow an address space for DFSPs and unique persons/accounts</li>
+</ul>
+</li>
+<li>sheme says &quot;this isn&apos;t in my space&quot;</li>
+<li>CNP figures out the routes to get to that space</li>
+</ul>
+<hr>
+<h3 id="michaels-tangent">Michael&apos;s Tangent:</h3>
+<ul>
+<li>did we make the wrong assumptions about the CNP?</li>
+</ul>
+<p><strong>switch:</strong> Knows CNPs + FXPs
+<strong>CNPs:</strong> holds routing table and lookup</p>
+<ul>
+<li>if the sender or receiver is an FXP, the the tx is <em>not</em> a cross-currency tx</li>
+</ul>
+<hr>
+<h2 id="session-2">Session 2</h2>
+<p><em>Decision:</em></p>
+<ul>
+<li>header value is CNP id</li>
+<li>partId object is the final FSP</li>
+</ul>
+<p>valueDate</p>
+<ul>
+<li>implied that funds are expected to clear before the valueDate</li>
+<li><p>can still have short expiry times on tx</p>
+</li>
+<li><p>CNP:</p>
+<ul>
+<li>returns an obfuscated set of fees</li>
+<li>fits into our current model</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>condition:</p>
+<ul>
+<li><p>existing object cryptographically tied to the tx object</p>
+<ul>
+<li>but for multi-hop, we don&apos;t only know this</li>
+<li>fixed receive makes this tricker (which is what echo data hopes to solve)</li>
+</ul>
+</li>
+<li><p>We want <strong>only 1 condition for all hops</strong></p>
+</li>
+<li>the idea of a multi-condition is a &quot;perversion&quot; (according to some)</li>
+</ul>
+</li>
+</ul>
+<h2 id="boards">Boards:</h2>
+<p><em>board 3: Cross Network lookup and quotes flow, fixed receive of 1000 PHP from USD</em>
+<img src="images/cb_board_3.jpg" alt="board_3"></p>
 
                                 
                                 </section>
@@ -2082,7 +2233,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Discussion Documents","level":"1.11","depth":1,"next":{"title":"ISO integration Overivew","level":"1.11.1","depth":2,"path":"discussions/ISO_Integration.md","ref":"discussions/ISO_Integration.md","articles":[]},"previous":{"title":"Mojaloop Publications","level":"1.10","depth":1,"path":"mojaloop-publications.md","ref":"mojaloop-publications.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"3.x.x","theme":"default","variables":{"importedVars":{"mojaloop":{"spec":{"version":"v1.0","uri":{"doc":"https://github.com/mojaloop/mojaloop-specification/blob/master/API%20Definition%20v1.0.pdf","api":"https://github.com/mojaloop/mojaloop-specification/blob/master/Supporting%20Files/fspiop-rest-v1.0-OpenAPI-implementation.yaml"}}},"central_ledger":{"spec":{"version":"v2.0","uri":{"doc":"/mojaloop-technical-overview/central-ledger/README.md","api":"https://github.com/mojaloop/central-ledger/blob/master/src/api/interface/swagger.json"}}},"settlement":{"spec":{"version":"v1.1","uri":{"doc":"/mojaloop-technical-overview/central-settlements/README.md","api":"https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json"}}},"als":{"oracle":{"spec":{"version":"v1.2","uri":{"doc":"/mojaloop-technical-overview/account-lookup-service/README.md","api":"https://github.com/mojaloop/documentation/blob/master/api/assets/interface-contracts/oracle-service-swagger-v1.yaml"}}}}}},"plugins":["swagger","editlink","include","insert-logo","plantuml-svg","collapsible-chapters","back-to-top-button","theme-api","variables","changelog","page-toc"],"pluginsConfig":{"plantuml-svg":{},"editlink":{"label":"Edit This Page","multilingual":true,"base":"https://github.com/mojaloop/documentation/edit/master"},"theme-gestalt":{"logo":"https://mojaloop.io/images/logo.png","favicon":"https://mojaloop.io/images/logo.png","baseUrl":null,"excludeDefaultStyles":false,"doNotHideChildrenChapters":false},"include":{},"search":{},"collapsible-chapters":{},"page-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","position":"before-first","showByDefault":true},"swagger":{"file":""},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"uml":{"format":"png","nailgun":false},"changelog":{},"theme-api":{"languages":[],"split":true,"theme":"dark"},"back-to-top-button":{},"variables":{"files":{"importedVars":"book_variables.yml"}},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"insert-logo":{"url":"https://mojaloop.io/images/logo.png","style":"background: none; max-height: 140px; max-width: 140px;"}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"discussions/readme.md","mtime":"2019-11-20T13:28:48.442Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-11-20T13:29:32.322Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Cross Border Meeting Notes Day 2","level":"1.11.5","depth":2,"next":{"title":"Frequently Asked Questions","level":"1.12","depth":1,"path":"contributors-guide/frequently-asked-questions.md","ref":"contributors-guide/frequently-asked-questions.md","articles":[]},"previous":{"title":"Cross Border Meeting Notes Day 1","level":"1.11.4","depth":2,"path":"discussions/cross_border_day_1.md","ref":"discussions/cross_border_day_1.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"3.x.x","theme":"default","variables":{"importedVars":{"mojaloop":{"spec":{"version":"v1.0","uri":{"doc":"https://github.com/mojaloop/mojaloop-specification/blob/master/API%20Definition%20v1.0.pdf","api":"https://github.com/mojaloop/mojaloop-specification/blob/master/Supporting%20Files/fspiop-rest-v1.0-OpenAPI-implementation.yaml"}}},"central_ledger":{"spec":{"version":"v2.0","uri":{"doc":"/mojaloop-technical-overview/central-ledger/README.md","api":"https://github.com/mojaloop/central-ledger/blob/master/src/api/interface/swagger.json"}}},"settlement":{"spec":{"version":"v1.1","uri":{"doc":"/mojaloop-technical-overview/central-settlements/README.md","api":"https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json"}}},"als":{"oracle":{"spec":{"version":"v1.2","uri":{"doc":"/mojaloop-technical-overview/account-lookup-service/README.md","api":"https://github.com/mojaloop/documentation/blob/master/api/assets/interface-contracts/oracle-service-swagger-v1.yaml"}}}}}},"plugins":["swagger","editlink","include","insert-logo","plantuml-svg","collapsible-chapters","back-to-top-button","theme-api","variables","changelog","page-toc"],"pluginsConfig":{"plantuml-svg":{},"editlink":{"label":"Edit This Page","multilingual":true,"base":"https://github.com/mojaloop/documentation/edit/master"},"theme-gestalt":{"logo":"https://mojaloop.io/images/logo.png","favicon":"https://mojaloop.io/images/logo.png","baseUrl":null,"excludeDefaultStyles":false,"doNotHideChildrenChapters":false},"include":{},"search":{},"collapsible-chapters":{},"page-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","position":"before-first","showByDefault":true},"swagger":{"file":""},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"uml":{"format":"png","nailgun":false},"changelog":{},"theme-api":{"languages":[],"split":true,"theme":"dark"},"back-to-top-button":{},"variables":{"files":{"importedVars":"book_variables.yml"}},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"insert-logo":{"url":"https://mojaloop.io/images/logo.png","style":"background: none; max-height: 140px; max-width: 140px;"}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"discussions/cross_border_day_2.md","mtime":"2019-11-20T13:28:48.370Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-11-20T13:29:32.322Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

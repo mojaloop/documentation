@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Discussion Documents · GitBook</title>
+        <title>Cross Border Meeting Notes Day 1 · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -85,10 +85,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="ISO_Integration.html" />
+    <link rel="next" href="cross_border_day_2.html" />
     
     
-    <link rel="prev" href="../mojaloop-publications.html" />
+    <link rel="prev" href="workbench.html" />
     
 
     </head>
@@ -1888,7 +1888,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.11" data-path="readme.html">
+        <li class="chapter " data-level="1.11" data-path="readme.html">
             
                 <a href="readme.html">
             
@@ -1941,7 +1941,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.11.4" data-path="cross_border_day_1.html">
+        <li class="chapter active" data-level="1.11.4" data-path="cross_border_day_1.html">
             
                 <a href="cross_border_day_1.html">
             
@@ -2028,7 +2028,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Discussion Documents</a>
+        <a href=".." >Cross Border Meeting Notes Day 1</a>
     </h1>
 </div>
 
@@ -2043,12 +2043,340 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="discussion-documents">Discussion Documents</h1>
-<p><a href="ISO_Integration.html">ISO integration Overivew</a></p>
-<p><a href="decimal.html">Moajoop Decimal Type; Based on XML Schema Decimal Type</a></p>
-<p><a href="workbench.html">Workbench Workstream</a></p>
-<p><a href="cross_border_day_1.html">Cross Border Meeting Notes Day 1</a></p>
-<p><a href="cross_border_day_2.html">Cross Border Meeting Notes Day 2</a></p>
+                                <h1 id="cross-border-discussion-day-1">Cross Border Discussion Day 1</h1>
+<blockquote>
+<p><strong>Links</strong></p>
+<ul>
+<li><a href="cross_border_day_2.html">Day 2 Notes</a></li>
+<li><a href="https://github.com/mojaloop/design-authority/issues/32" target="_blank">Relevant Issue on DA Board</a></li>
+<li><a href="https://github.com/mojaloop/mojaloop-specification/pull/22" target="_blank">Mojaloop Spec Pull Request</a></li>
+</ul>
+</blockquote>
+<h2 id="attendees">Attendees:</h2>
+<p>In person</p>
+<ul>
+<li>Lewis, Crosslake</li>
+<li>Adrian, Coil</li>
+<li>Nico, MB</li>
+<li>Sam, MB</li>
+<li>Miguel, MB</li>
+<li>Carol Benson, Glenbrook</li>
+<li>Michael Richards, MB</li>
+<li>Henrik Karlsson, Ericsson</li>
+<li>Rob Reeve, MB</li>
+<li>Vanburn, Terra Pay</li>
+<li>Razin, Terra Pay</li>
+<li>Ram, Terra Pay</li>
+<li>JJ, Google</li>
+<li>Matt Bohman, Gates</li>
+<li>David Power, EY</li>
+<li>James Bush, MB</li>
+<li>Warren, MB</li>
+<li>Judit, MB</li>
+<li>Bart-Jan and Bruno from GSMA  - Day #2</li>
+</ul>
+<p>Phone</p>
+<ul>
+<li>Kim Walters, Crosslake</li>
+<li>Istvan Molnar, DPC</li>
+<li>Innocent Ephraim, MB</li>
+</ul>
+<h2 id="session-1">Session 1</h2>
+<p><strong>Goal: Update the API definitions</strong></p>
+<ul>
+<li>Privacy:<ul>
+<li>Can I send USD? <em>yes/no</em></li>
+<li>What can I send? <em>list of currencies</em></li>
+</ul>
+</li>
+</ul>
+<p>Business agreements: there are  a few ways this can happen</p>
+<ul>
+<li>Global scheme, made up of scheme to scheme agreements</li>
+<li>bilateral scheme agreements</li>
+<li>scheme to scheme</li>
+<li>region</li>
+</ul>
+<p>Definitions:</p>
+<ul>
+<li><p>Gateway FSP: An FSP that &apos;bridges&apos; across 2 networks
+e.g. Mowali</p>
+<ul>
+<li>2 logical networks (USD,XOF?)</li>
+<li>a single mojaloop network</li>
+</ul>
+</li>
+<li><p>Cross Network Provider (CNP)</p>
+<ul>
+<li>FXP, same thing?</li>
+</ul>
+</li>
+</ul>
+<p>Michael:</p>
+<ul>
+<li>there is a reason for that assumption</li>
+<li><p>other legal implications here...</p>
+</li>
+<li><p>single entity, legally in 2 different jurisdictions</p>
+<ul>
+<li>a close analogy of a scheme without jurisdiction</li>
+</ul>
+</li>
+<li><p>participant: </p>
+<ul>
+<li>has a tx account that can be debited or credited</li>
+<li>bank, fxp etc.</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Q: Can we have a participant that doesn&apos;t settle? Or would this be covered by CNP that is a party
+e.g. Visa, doesn&apos;t always settle in a given market, but holds an account</p>
+</blockquote>
+<ul>
+<li><p>Resident vs. Non-resident</p>
+<ul>
+<li>reporting requirements are different</li>
+</ul>
+</li>
+<li><p>what are the technical requirements for reporters?</p>
+</li>
+<li><p>settlement</p>
+<ul>
+<li>not too worried about it at this stage (our focus is on the API changes)</li>
+<li>we assume that settlement is possible, but need to narrow scope witht the api first</li>
+</ul>
+</li>
+<li><p>Not only mojaloop</p>
+<ul>
+<li>need to allow for non-mojaloop -&gt; mojaloop transfers and vice versa (both inbound and outbound)</li>
+<li>must still be interoperable</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>who provides routing?<ul>
+<li>switch?</li>
+<li>ALS?</li>
+<li>CNP?</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><em>Follow Up:</em> Need a formal definition of FXP and CNP roles, along with requirements and responsibilities</p>
+</blockquote>
+<p>At a scheme level</p>
+<ul>
+<li>should the sceheme maintain a list of other schemes it allows its FSPs to connect with?</li>
+<li>or should the CNP take care of this?</li>
+</ul>
+<ul>
+<li>not scheme -&gt; scheme, but part of the onboarding CNP process</li>
+<li><p>but the scheme can/should still maintain rules</p>
+</li>
+<li><p>how will quoting work? Should an FSP send multiple quotes, one addressed to each CNP? Or should the switch have some rules engine that helps it determine who to send quotes to?</p>
+</li>
+</ul>
+<p>James: We want to be flexible. Can see instances where we would want both to happen, so we shouldn&apos;t assume too much at this stage.</p>
+<p>Simplest option: The switch talks to the ALS, determines a transfer is not in our network, and then finds a list of CNPs</p>
+<p>CNP + FXP -&gt; essentially the same thing</p>
+<ul>
+<li>they are <em>Roles</em>, and a DFSP can assume more than 1 role</li>
+<li>fxps can also exist in more than 1 zone (e.g. Mowali case)<ul>
+<li>single network fxp is just an fxp,</li>
+<li>multi-network fxp is likely also a CNP</li>
+</ul>
+</li>
+</ul>
+<h2 id="session-2">Session 2</h2>
+<ul>
+<li><p>debate about single or multiple lookups</p>
+<ul>
+<li>we should never return &quot;empty result&quot;</li>
+</ul>
+</li>
+<li><p>are wallets addressable by MSISDN?</p>
+<ul>
+<li>only 1 account at the moment</li>
+<li>but this is internal to the switch</li>
+<li>the oracle&apos;s job is to convert MSIDN -&gt; Mojaloop Address</li>
+</ul>
+</li>
+<li><p>in the future: MSISDN + accounts will be less related</p>
+<ul>
+<li>this topic is adjacently related to addressing</li>
+</ul>
+</li>
+<li><p>&apos;going outisde&apos; mojaloop with addressing will be a little tricky</p>
+</li>
+<li>Standardize addressing?<ul>
+<li>not something we want to do</li>
+</ul>
+</li>
+</ul>
+<p>Ram: There are existing tools (no need to reinvent the wheel), outside the mojaloop scheme</p>
+<ul>
+<li><p>sending to unknown currency</p>
+<ul>
+<li>currently: 1 routing table answer</li>
+<li>future: multiple answers</li>
+</ul>
+</li>
+<li><p>privacy:</p>
+<ul>
+<li>no real need for hard rules at the moment (at least not at the API level, rules come along with schemes)</li>
+<li>we do need a method for mediating information that one switch requires from another (and rejecting quotes should these prerequesites not be met)</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>Domestic vs. Cross border: USer has/needs different information<ul>
+<li>e.g. do we only want to support discovery in domestic case?</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>Adrian: A lot of this stuff is business rule and scheme specific</p>
+<ul>
+<li>maintains competitive space</li>
+<li>How much information is in the:<ul>
+<li>lookup?</li>
+<li>Quote?</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>Proposal: Address lookup -&gt; Returns multiple responses?</li>
+<li><p>MSISDN -&gt; ID, not an address. Someone, not an account</p>
+</li>
+<li><p>there should be only 1 response from the ALS</p>
+</li>
+<li><p>Michael disagrees</p>
+</li>
+<li><p>need to separate out <em>addressing</em> from <em>routing</em></p>
+</li>
+<li><p>we need to think about the downstream affects this will have on testing</p>
+<ul>
+<li>need to find a clear way to test these lookups</li>
+</ul>
+</li>
+</ul>
+<p>For example, airtel UPI issue (where existing MSIDSNs were replaced when they grandfathered in their mobile customers to become mobile money customers)</p>
+<ul>
+<li>we need to avoid a situation like that</li>
+</ul>
+<hr>
+<p>Bring it back to first (L1P) principles </p>
+<ul>
+<li>transfers should clear immediately</li>
+<li><p>no such thing as a future</p>
+</li>
+<li><p>For domestic: we can guarantee delivery, but cross-border is much harder</p>
+</li>
+<li><p>need to maintain transparency requirement on CNPs</p>
+<ul>
+<li>this comes down to business rules</li>
+</ul>
+</li>
+<li><p>Reversible tx&apos;s or rules abour downstream issues</p>
+<ul>
+<li>ILP takes care of <em>most</em> of this for us</li>
+</ul>
+</li>
+<li><p>in TIPS case: 1 ID maps to 1 account</p>
+</li>
+<li>as always, there needs to be a compromise between privacy and features (and that&apos;s ok!)</li>
+</ul>
+<hr>
+<p>At the end of a quote:</p>
+<ul>
+<li>ValueDate</li>
+<li>how much will be received</li>
+<li>what are the fees? (broken down, by step and currency)</li>
+</ul>
+<hr>
+<p>How do we support protocols that don&apos;t support quotes (this is a question for moja to non-moja systems)</p>
+<p>Risk: CNP: they hold the risk in this type of transaction</p>
+<p>CNP as a participant?</p>
+<ul>
+<li>holds an account with a participant</li>
+<li>direct vs indirect approach</li>
+<li>this doesn&apos;t affect the technical requirements (so out of scope for this discussion)</li>
+</ul>
+<hr>
+<ul>
+<li><p>fixed send and receive:</p>
+<ul>
+<li>What direction does data need to be appended to the quote? It depends on if it is fixed receive vs fixed send</li>
+</ul>
+</li>
+<li><p>Either: <code>A send 20 USD to B</code> OR <code>B receives 1000 PHP</code></p>
+</li>
+<li><p>translating fees back for user: FXP <strong>must</strong> apply the same rate for fees as the principal transfer</p>
+</li>
+<li><p>From L1P Perspective: <strong>the goal is transparency</strong></p>
+</li>
+<li><p>how about quotes outside of Mojaloop?</p>
+<ul>
+<li>CNP should take care of this - it is the last bastion of Mojaloopyness</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>Participant Object<ul>
+<li>Attached to the Quotes, one entry per hop?</li>
+<li>So multi-hop quotes hold <em>n</em> participant objects, where <em>n</em> = number of hops + 1</li>
+</ul>
+</li>
+</ul>
+<p>As part of this we need:</p>
+<ul>
+<li>interoperable bits of data (common defs)</li>
+<li>scheme for encryption</li>
+<li>a place to put the data (in the quotes object)</li>
+</ul>
+<p>Should we worry about encryption for now?</p>
+<ul>
+<li>perhaps not, but still should allow for it in the API</li>
+</ul>
+<p>Encryption adds extra integration challenge</p>
+<ul>
+<li>what is the need to get data in the clear?<ul>
+<li>from a techincal perspective: just use a blank encryption key</li>
+</ul>
+</li>
+</ul>
+<p>Do we need to encrypt to ensure the switch(es) can&apos;t see the data?</p>
+<ul>
+<li>perhaps not at this stage</li>
+</ul>
+<blockquote>
+<h3 id="decision">Decision:</h3>
+<ul>
+<li>No encryption for now</li>
+<li>in outbound quote request: have a list of data requirements</li>
+<li>for inbound quote request: participants fill out those requirements</li>
+<li>if requirements are not met: abort the quote</li>
+<li>Don&apos;t hardcode the data requirements, we should use existing standards</li>
+</ul>
+</blockquote>
+<ul>
+<li><p>we need to specify whether or not fields <em>have</em> been verified</p>
+<ul>
+<li>ties in with tiered KYC processes</li>
+</ul>
+</li>
+<li><p>need a common dictionary of data that can/should be requested</p>
+</li>
+</ul>
+<h2 id="boards">Boards:</h2>
+<p><em>board 1: Fixed send flows</em>
+<img src="images/cb_board_1.jpg" alt="board_1"></p>
+<p><em>board 2: Fixed receive flows</em>
+<img src="images/cb_board_2.jpg" alt="board_2"></p>
 
                                 
                                 </section>
@@ -2082,7 +2410,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Discussion Documents","level":"1.11","depth":1,"next":{"title":"ISO integration Overivew","level":"1.11.1","depth":2,"path":"discussions/ISO_Integration.md","ref":"discussions/ISO_Integration.md","articles":[]},"previous":{"title":"Mojaloop Publications","level":"1.10","depth":1,"path":"mojaloop-publications.md","ref":"mojaloop-publications.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"3.x.x","theme":"default","variables":{"importedVars":{"mojaloop":{"spec":{"version":"v1.0","uri":{"doc":"https://github.com/mojaloop/mojaloop-specification/blob/master/API%20Definition%20v1.0.pdf","api":"https://github.com/mojaloop/mojaloop-specification/blob/master/Supporting%20Files/fspiop-rest-v1.0-OpenAPI-implementation.yaml"}}},"central_ledger":{"spec":{"version":"v2.0","uri":{"doc":"/mojaloop-technical-overview/central-ledger/README.md","api":"https://github.com/mojaloop/central-ledger/blob/master/src/api/interface/swagger.json"}}},"settlement":{"spec":{"version":"v1.1","uri":{"doc":"/mojaloop-technical-overview/central-settlements/README.md","api":"https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json"}}},"als":{"oracle":{"spec":{"version":"v1.2","uri":{"doc":"/mojaloop-technical-overview/account-lookup-service/README.md","api":"https://github.com/mojaloop/documentation/blob/master/api/assets/interface-contracts/oracle-service-swagger-v1.yaml"}}}}}},"plugins":["swagger","editlink","include","insert-logo","plantuml-svg","collapsible-chapters","back-to-top-button","theme-api","variables","changelog","page-toc"],"pluginsConfig":{"plantuml-svg":{},"editlink":{"label":"Edit This Page","multilingual":true,"base":"https://github.com/mojaloop/documentation/edit/master"},"theme-gestalt":{"logo":"https://mojaloop.io/images/logo.png","favicon":"https://mojaloop.io/images/logo.png","baseUrl":null,"excludeDefaultStyles":false,"doNotHideChildrenChapters":false},"include":{},"search":{},"collapsible-chapters":{},"page-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","position":"before-first","showByDefault":true},"swagger":{"file":""},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"uml":{"format":"png","nailgun":false},"changelog":{},"theme-api":{"languages":[],"split":true,"theme":"dark"},"back-to-top-button":{},"variables":{"files":{"importedVars":"book_variables.yml"}},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"insert-logo":{"url":"https://mojaloop.io/images/logo.png","style":"background: none; max-height: 140px; max-width: 140px;"}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"discussions/readme.md","mtime":"2019-11-20T13:28:48.442Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-11-20T13:29:32.322Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Cross Border Meeting Notes Day 1","level":"1.11.4","depth":2,"next":{"title":"Cross Border Meeting Notes Day 2","level":"1.11.5","depth":2,"path":"discussions/cross_border_day_2.md","ref":"discussions/cross_border_day_2.md","articles":[]},"previous":{"title":"Workbench Workstream","level":"1.11.3","depth":2,"path":"discussions/workbench.md","ref":"discussions/workbench.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"3.x.x","theme":"default","variables":{"importedVars":{"mojaloop":{"spec":{"version":"v1.0","uri":{"doc":"https://github.com/mojaloop/mojaloop-specification/blob/master/API%20Definition%20v1.0.pdf","api":"https://github.com/mojaloop/mojaloop-specification/blob/master/Supporting%20Files/fspiop-rest-v1.0-OpenAPI-implementation.yaml"}}},"central_ledger":{"spec":{"version":"v2.0","uri":{"doc":"/mojaloop-technical-overview/central-ledger/README.md","api":"https://github.com/mojaloop/central-ledger/blob/master/src/api/interface/swagger.json"}}},"settlement":{"spec":{"version":"v1.1","uri":{"doc":"/mojaloop-technical-overview/central-settlements/README.md","api":"https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json"}}},"als":{"oracle":{"spec":{"version":"v1.2","uri":{"doc":"/mojaloop-technical-overview/account-lookup-service/README.md","api":"https://github.com/mojaloop/documentation/blob/master/api/assets/interface-contracts/oracle-service-swagger-v1.yaml"}}}}}},"plugins":["swagger","editlink","include","insert-logo","plantuml-svg","collapsible-chapters","back-to-top-button","theme-api","variables","changelog","page-toc"],"pluginsConfig":{"plantuml-svg":{},"editlink":{"label":"Edit This Page","multilingual":true,"base":"https://github.com/mojaloop/documentation/edit/master"},"theme-gestalt":{"logo":"https://mojaloop.io/images/logo.png","favicon":"https://mojaloop.io/images/logo.png","baseUrl":null,"excludeDefaultStyles":false,"doNotHideChildrenChapters":false},"include":{},"search":{},"collapsible-chapters":{},"page-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","position":"before-first","showByDefault":true},"swagger":{"file":""},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"uml":{"format":"png","nailgun":false},"changelog":{},"theme-api":{"languages":[],"split":true,"theme":"dark"},"back-to-top-button":{},"variables":{"files":{"importedVars":"book_variables.yml"}},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"insert-logo":{"url":"https://mojaloop.io/images/logo.png","style":"background: none; max-height: 140px; max-width: 140px;"}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"discussions/cross_border_day_1.md","mtime":"2019-11-20T13:28:48.370Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-11-20T13:29:32.322Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

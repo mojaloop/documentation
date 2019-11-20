@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Discussion Documents · GitBook</title>
+        <title>ISO integration Overivew · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -85,10 +85,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="ISO_Integration.html" />
+    <link rel="next" href="decimal.html" />
     
     
-    <link rel="prev" href="../mojaloop-publications.html" />
+    <link rel="prev" href="readme.html" />
     
 
     </head>
@@ -1888,7 +1888,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.11" data-path="readme.html">
+        <li class="chapter " data-level="1.11" data-path="readme.html">
             
                 <a href="readme.html">
             
@@ -1902,7 +1902,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.11.1" data-path="ISO_Integration.html">
+        <li class="chapter active" data-level="1.11.1" data-path="ISO_Integration.html">
             
                 <a href="ISO_Integration.html">
             
@@ -2028,7 +2028,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Discussion Documents</a>
+        <a href=".." >ISO integration Overivew</a>
     </h1>
 </div>
 
@@ -2043,12 +2043,45 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="discussion-documents">Discussion Documents</h1>
-<p><a href="ISO_Integration.html">ISO integration Overivew</a></p>
-<p><a href="decimal.html">Moajoop Decimal Type; Based on XML Schema Decimal Type</a></p>
-<p><a href="workbench.html">Workbench Workstream</a></p>
-<p><a href="cross_border_day_1.html">Cross Border Meeting Notes Day 1</a></p>
-<p><a href="cross_border_day_2.html">Cross Border Meeting Notes Day 2</a></p>
+                                <p>Mojaloop ISO Integration discussions</p>
+<h1 id="mojaloop-iso-integration">Mojaloop-ISO integration</h1>
+<p>The proposed solution would be able to handle ISO to Open API translation and vice versa, by making use of an ISO-OPEN API converter/connecter plug-in or interface, similar to the Scheme Adapter in the Mojaloop system. As the Scheme adapter performs Mojaloop API to FSP API conversion, the custom plug-in/interface would function as a protocol and message translator between the ISO interface and the ML API or the Scheme Adapter.</p>
+<h2 id="scope">Scope</h2>
+<p>Define message flows in both and ISO and Open API networks and mappings between messages.</p>
+<ul>
+<li>Document failure scenarios and message flows for these.</li>
+<li>Define a mechanism for routing that is MSISDN-based .</li>
+<li>Mojaloop Transactions could be sent through existing payment rails conforming to their standards(such as ISO)</li>
+<li>Develop a scheme adapter/plug-ins that could perform ISO-Open API and vice versa.</li>
+<li><p>To be able to send Mojaloop transactions originating from ATM and POS over ISO networks, across Mojaloop systems</p>
+<h2 id="iso-8583---mojaloop---an-inter-network-case-study">ISO 8583 - Mojaloop - An Inter-network case study</h2>
+</li>
+</ul>
+<p>Africa is a great continent with a multitude of Financial Service providers who focuses on region based financial inclusion and services provision. The continent boasts of a vast network of Payment service providers and financial institutions. Some of the most prominent networks are listed below:</p>
+<ul>
+<li>InterSwitch ( Nigeria)</li>
+<li>eProcess ( Ghana)</li>
+<li>Umoja Switch ( Tanzania)</li>
+<li>KenSwitch ( Kenya)</li>
+<li>ZimSwitch ( ZImbabwe)</li>
+<li>RSwitch ( Rwanda)</li>
+</ul>
+<p>Almost all of these networks make use of an ISO 8583 based Payments processing platform ( Postilion Switch) to drive ATM&#x2019;s, POS &amp; Mobile channels, process card based and non card based transactions for both acquiring and issuing verticals.</p>
+<p>As such, the proposition is to create a solution, where by the existing Payment networks could integrate with a Mojaloop based system like Mowali, without having to make any development or design changes to their existing infrastructure.</p>
+<p>In this case study, we are considering the case of Umoja Switch in Tanzania and provide them with a solution whereby, Umoja could provide Mojaloop transactions through their existing ATM deployments.</p>
+<h3 id="umoja-switch">Umoja Switch</h3>
+<p>UmojaSwitch was established in the year 2006 by six banks in Tanzania with the main purpose being able to establish a joint shared infrastructure for financial services and enjoying the economies of scale.</p>
+<p>The aim of establishment was to create a shared platform where financial institutions can integrate and interpolate through a shared switch. </p>
+<p>Eventually, the number of members joining the UmojaSwitch network continued to increase and as of now there are around 27 banks who has joined the Umoja Switch consortium.</p>
+<h2 id="iso-networks-to-open-api">ISO Networks to Open API</h2>
+<p>The goal of the PoC would be to showcase how a Mojaloop transaction would be sent over a standard ISO switch/Network through to a Mojaloop system such as Mowali.</p>
+<p>As a part of this an ISO-Open API Adapter would be implemented which would process ISO messages originating from an ISO network like InterSwitch and send it through to an Open API network like Mowali.</p>
+<h2 id="proposed-solution">Proposed Solution</h2>
+<p>The proposed solution will consist of an interface or adapter/plugin that could process transactions between ISO networks and Mojaloop systems. </p>
+<p>The ISO payments platform makes use of an ISO interface which uses standard TCP/IP connection to send and respond to ISO messages to and from the various channels. In order to accept and process connections from the interface, our solution would have a TCP/IP listener, which would receive and process transactions from ISO network and then map it to Open API , after which the transactions will be sent over to a Mojaloop system like Mowali on a URL.</p>
+<p>In this case the payment networks are largely dependent on their respective (i.e. Visa/ MasterCard/Verve/etc) card or account number, which is used to define the BIN look up table for routing purposes . One of the options would be to predefine a Bin range (eg: 757575) that would identify a Mojaloop transaction and then let the payment network implement a routing logic that would send all Moja transactions through to the Open API network.</p>
+<p>The ISO-Open API adapter would process the ISO message received from the ISO switch and send it through to the Mojaloop system in Open API format.</p>
+<p>However, such changes would imply configurational changes to download applications on ATM and other terminal devices, but this could be handled as a standard operational change similar to the existing configurational changes performed as per the business requirements.</p>
 
                                 
                                 </section>
@@ -2082,7 +2115,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Discussion Documents","level":"1.11","depth":1,"next":{"title":"ISO integration Overivew","level":"1.11.1","depth":2,"path":"discussions/ISO_Integration.md","ref":"discussions/ISO_Integration.md","articles":[]},"previous":{"title":"Mojaloop Publications","level":"1.10","depth":1,"path":"mojaloop-publications.md","ref":"mojaloop-publications.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"3.x.x","theme":"default","variables":{"importedVars":{"mojaloop":{"spec":{"version":"v1.0","uri":{"doc":"https://github.com/mojaloop/mojaloop-specification/blob/master/API%20Definition%20v1.0.pdf","api":"https://github.com/mojaloop/mojaloop-specification/blob/master/Supporting%20Files/fspiop-rest-v1.0-OpenAPI-implementation.yaml"}}},"central_ledger":{"spec":{"version":"v2.0","uri":{"doc":"/mojaloop-technical-overview/central-ledger/README.md","api":"https://github.com/mojaloop/central-ledger/blob/master/src/api/interface/swagger.json"}}},"settlement":{"spec":{"version":"v1.1","uri":{"doc":"/mojaloop-technical-overview/central-settlements/README.md","api":"https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json"}}},"als":{"oracle":{"spec":{"version":"v1.2","uri":{"doc":"/mojaloop-technical-overview/account-lookup-service/README.md","api":"https://github.com/mojaloop/documentation/blob/master/api/assets/interface-contracts/oracle-service-swagger-v1.yaml"}}}}}},"plugins":["swagger","editlink","include","insert-logo","plantuml-svg","collapsible-chapters","back-to-top-button","theme-api","variables","changelog","page-toc"],"pluginsConfig":{"plantuml-svg":{},"editlink":{"label":"Edit This Page","multilingual":true,"base":"https://github.com/mojaloop/documentation/edit/master"},"theme-gestalt":{"logo":"https://mojaloop.io/images/logo.png","favicon":"https://mojaloop.io/images/logo.png","baseUrl":null,"excludeDefaultStyles":false,"doNotHideChildrenChapters":false},"include":{},"search":{},"collapsible-chapters":{},"page-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","position":"before-first","showByDefault":true},"swagger":{"file":""},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"uml":{"format":"png","nailgun":false},"changelog":{},"theme-api":{"languages":[],"split":true,"theme":"dark"},"back-to-top-button":{},"variables":{"files":{"importedVars":"book_variables.yml"}},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"insert-logo":{"url":"https://mojaloop.io/images/logo.png","style":"background: none; max-height: 140px; max-width: 140px;"}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"discussions/readme.md","mtime":"2019-11-20T13:28:48.442Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-11-20T13:29:32.322Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"ISO integration Overivew","level":"1.11.1","depth":2,"next":{"title":"Moajoop Decimal Type; Based on XML Schema Decimal Type","level":"1.11.2","depth":2,"path":"discussions/decimal.md","ref":"discussions/decimal.md","articles":[]},"previous":{"title":"Discussion Documents","level":"1.11","depth":1,"path":"discussions/readme.md","ref":"discussions/readme.md","articles":[{"title":"ISO integration Overivew","level":"1.11.1","depth":2,"path":"discussions/ISO_Integration.md","ref":"discussions/ISO_Integration.md","articles":[]},{"title":"Moajoop Decimal Type; Based on XML Schema Decimal Type","level":"1.11.2","depth":2,"path":"discussions/decimal.md","ref":"discussions/decimal.md","articles":[]},{"title":"Workbench Workstream","level":"1.11.3","depth":2,"path":"discussions/workbench.md","ref":"discussions/workbench.md","articles":[]},{"title":"Cross Border Meeting Notes Day 1","level":"1.11.4","depth":2,"path":"discussions/cross_border_day_1.md","ref":"discussions/cross_border_day_1.md","articles":[]},{"title":"Cross Border Meeting Notes Day 2","level":"1.11.5","depth":2,"path":"discussions/cross_border_day_2.md","ref":"discussions/cross_border_day_2.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"3.x.x","theme":"default","variables":{"importedVars":{"mojaloop":{"spec":{"version":"v1.0","uri":{"doc":"https://github.com/mojaloop/mojaloop-specification/blob/master/API%20Definition%20v1.0.pdf","api":"https://github.com/mojaloop/mojaloop-specification/blob/master/Supporting%20Files/fspiop-rest-v1.0-OpenAPI-implementation.yaml"}}},"central_ledger":{"spec":{"version":"v2.0","uri":{"doc":"/mojaloop-technical-overview/central-ledger/README.md","api":"https://github.com/mojaloop/central-ledger/blob/master/src/api/interface/swagger.json"}}},"settlement":{"spec":{"version":"v1.1","uri":{"doc":"/mojaloop-technical-overview/central-settlements/README.md","api":"https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json"}}},"als":{"oracle":{"spec":{"version":"v1.2","uri":{"doc":"/mojaloop-technical-overview/account-lookup-service/README.md","api":"https://github.com/mojaloop/documentation/blob/master/api/assets/interface-contracts/oracle-service-swagger-v1.yaml"}}}}}},"plugins":["swagger","editlink","include","insert-logo","plantuml-svg","collapsible-chapters","back-to-top-button","theme-api","variables","changelog","page-toc"],"pluginsConfig":{"plantuml-svg":{},"editlink":{"label":"Edit This Page","multilingual":true,"base":"https://github.com/mojaloop/documentation/edit/master"},"theme-gestalt":{"logo":"https://mojaloop.io/images/logo.png","favicon":"https://mojaloop.io/images/logo.png","baseUrl":null,"excludeDefaultStyles":false,"doNotHideChildrenChapters":false},"include":{},"search":{},"collapsible-chapters":{},"page-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","position":"before-first","showByDefault":true},"swagger":{"file":""},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"uml":{"format":"png","nailgun":false},"changelog":{},"theme-api":{"languages":[],"split":true,"theme":"dark"},"back-to-top-button":{},"variables":{"files":{"importedVars":"book_variables.yml"}},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"insert-logo":{"url":"https://mojaloop.io/images/logo.png","style":"background: none; max-height: 140px; max-width: 140px;"}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"discussions/ISO_Integration.md","mtime":"2019-11-20T13:28:48.366Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-11-20T13:29:32.322Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

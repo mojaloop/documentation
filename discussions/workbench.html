@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Discussion Documents · GitBook</title>
+        <title>Workbench Workstream · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -85,10 +85,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="ISO_Integration.html" />
+    <link rel="next" href="cross_border_day_1.html" />
     
     
-    <link rel="prev" href="../mojaloop-publications.html" />
+    <link rel="prev" href="decimal.html" />
     
 
     </head>
@@ -1888,7 +1888,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.11" data-path="readme.html">
+        <li class="chapter " data-level="1.11" data-path="readme.html">
             
                 <a href="readme.html">
             
@@ -1928,7 +1928,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.11.3" data-path="workbench.html">
+        <li class="chapter active" data-level="1.11.3" data-path="workbench.html">
             
                 <a href="workbench.html">
             
@@ -2028,7 +2028,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Discussion Documents</a>
+        <a href=".." >Workbench Workstream</a>
     </h1>
 </div>
 
@@ -2043,12 +2043,377 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="discussion-documents">Discussion Documents</h1>
-<p><a href="ISO_Integration.html">ISO integration Overivew</a></p>
-<p><a href="decimal.html">Moajoop Decimal Type; Based on XML Schema Decimal Type</a></p>
-<p><a href="workbench.html">Workbench Workstream</a></p>
-<p><a href="cross_border_day_1.html">Cross Border Meeting Notes Day 1</a></p>
-<p><a href="cross_border_day_2.html">Cross Border Meeting Notes Day 2</a></p>
+                                <h1 id="mojaloop-labworkbench-discussion">Mojaloop Lab/Workbench Discussion</h1>
+<p><strong>_Goal:</strong> This discussion document aims to lay out the case and align the community around the development of an educational Mojaloop Lab environment._</p>
+<h2 id="1-goals-for-the-pi8-convening">1. Goals for the PI8 Convening:</h2>
+<ol>
+<li>Define terms and outline assumptions</li>
+<li>Outline existing efforts and how the OSS Community aligns with them (GSMA, MIFOS, ModusBox)</li>
+<li>Define users and usecases, and exclude the users we won&apos;t worry about</li>
+<li>Recommendations for a few different solutions to the &quot;Lab Problem&quot;<ul>
+<li>Documentation around business cases and personas Dan developed </li>
+<li>Basic implementation of Lab Configurer, help people build labs with different features</li>
+<li>Simple Mojaloop-over-spreadsheets demo, to get people using mojaloop without Postman</li>
+</ul>
+</li>
+<li>Basic implementation and demo</li>
+<li>Pose important questions and discuss next steps</li>
+</ol>
+<h2 id="2-nomenclature">2. Nomenclature</h2>
+<p><strong>1. Tools:</strong></p>
+<ul>
+<li>1.1 A device used to carry out a function</li>
+<li>1.2 Different tools for different functions: You wouldn&apos;t use a screwdriver to drive a nail.</li>
+<li>1.3 In a Mojaloop context, one example of a tool is the Bank Oracle<ul>
+<li>The Bank Oracle is a tool that plugs into the Account Lookup Service, can be used to allow Mojaloop to connect to existing bank accounts with an IBAN</li>
+</ul>
+</li>
+</ul>
+<p><strong>2. Workbench:</strong></p>
+<ul>
+<li>2.1 Combines different tools together in one place</li>
+<li>2.2 For example, a hand plane, table saw and chisel can make up a woodworking workbench, while a hacksaw, file and angle grinder can make up a metalworking workbench</li>
+<li>2.3 In the mojaloop parlance, tools to test my DFSP&apos;s JWS keys are in a different workbench than tools that demonstrate to a fintech how wholesale api&apos;s can work on top of Mojaloop</li>
+</ul>
+<p><strong>3. Lab:</strong></p>
+<ul>
+<li>3.1 A lab is a place you go to run experiments</li>
+<li>3.2 We run experiments in order to learn, and test our assumptions<ul>
+<li>For example, a DFSP can set up and run an <em>experiment</em> where they send and receive Quotes using an in-development API</li>
+</ul>
+</li>
+<li>3.3 A single lab combines multiple workbenches together in one place</li>
+</ul>
+<p><strong>4. Simulator:</strong></p>
+<ul>
+<li>4.1 A tool that simplifies or abstracts away some function so you can test one thing at a time</li>
+<li>4.2 Pilots train with simulators <em>before</em> flying a real life, dangerous and expensive plane.</li>
+<li>4.3 Within Mojaloop: a simulator can simulate interacting with some component of the system<ul>
+<li>Replace an entire switch to test a DFSP implementation</li>
+<li>Simulate 2 DFSPs to test a switch deployment</li>
+<li>A simulator also reduces the need for someone to be with the person testing. So a DFSP can send and receive via the switch, without interaction with the Hub Operator.</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-assumptions">3. Assumptions</h2>
+<blockquote>
+<p><em>Some of these may go without saying, but it&apos;s noting them here anyway.</em></p>
+</blockquote>
+<ul>
+<li>1. The Gates Foundation wants to encourage adoption for Mojaloop at all levels (not just switches)</li>
+<li>2. We don&apos;t need a lab environment to serve the needs of a Switch deployment or implementing DFSP - these needs will be met elsewhere</li>
+<li>3. The Mojaloop OSS Community wants to make itself attractive <ul>
+<li>This doesn&apos;t mean removing all barriers to entry; but assessing which barriers we should be removing</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-users">4. Users</h2>
+<p>We divide users in 2 camps: Primary users and Secondary users.</p>
+<h3 id="41-primary-users">4.1 Primary Users</h3>
+<ol>
+<li>DFSPs needing to integrate with Mojaloop: (shorthand: Implementing DFSP)</li>
+<li>Organisations/Individuals wishing to learn about Mojaloop and wanting to build and test functionality or use cases as a DFSP (shorthand: Evaluating DFSP)</li>
+<li>Organisations/Individuals wishing to learn about Mojaloop and wanting to build and test functionality or use cases as a Hub Operator (shorthand: Evaluating Hub Operators)</li>
+<li>Regulators, Organisations or Individuals wishing to understand and evaluate Mojaloop and how it might impact their existing service (shorthand: General Evaluators)</li>
+</ol>
+<h3 id="42-secondary-users">4.2 Secondary Users</h3>
+<ol>
+<li>Systems Integrators wishing to offer Mojaloop as a Service or pieces of Mojaloop integration as a Service (Systems integrator)</li>
+<li>Individual Contributors (including bug bounty hunters?) (Individual Contributor)</li>
+<li>Fintechs operating on top of or who will operate on top of a mojaloop-enabled switch (Mojaloop-powered fintech)</li>
+<li>3rd Party App Provider interacting with wholesale mobile money APIs, selling integrations to fintechs and the like (3rd party app provider)</li>
+<li>Financial Advocates, who are interested in promoting Mojaloop and other technologies that help drive financial inclusion (Financial Inclusion Advocates)</li>
+</ol>
+<p>In addition to thinking of each of the above users, it&apos;s important to understand at what level these users exist at in relationship to a mojaloop deployment. For that we will borrow from Dan Kleinbaum&apos;s <a href="https://medium.com/dfs-lab/what-the-fintech-a-primer-on-mojaloop-50ae1c0ccafb" target="_blank"><em>Fintech primer on Mojaloop</em></a></p>
+<p><img src="images/mojaloop_spokes.png" alt="the 3 levels of mojaloopyness"></p>
+<blockquote>
+<p><em>The 3 levels of Mojaloopyness, <a href="https://medium.com/dfs-lab/what-the-fintech-a-primer-on-mojaloop-50ae1c0ccafb" target="_blank">https://medium.com/dfs-lab/what-the-fintech-a-primer-on-mojaloop-50ae1c0ccafb</a> by Dan Kleinbaum</em></p>
+</blockquote>
+<p><strong>Level 1:</strong> Running a Mojaloop switch (e.g. Hub Operators)<br><strong>Level 2:</strong> Interacting with a Mojaloop Switch directly (e.g. DFSPs, Systems Integrators)<br><strong>Level 3:</strong> Interacting with a DFSP over a Mojaloop Switch (e.g. Fintechs)  </p>
+<h2 id="5-use-cases">5. Use Cases</h2>
+<p><strong>a.</strong> Test a Mojaloop compatible DFSP implementation<br><strong>b.</strong> Validate assumptions about Mojaloop<br><strong>c.</strong> View and use a reference implementation<br><strong>d.</strong> Learn about Mojaloop internals<br><strong>e.</strong> Learn about Mojaloop-enabled switches and associated use cases (technology)
+<strong>f.</strong> Assess how Mojaloop will change fintech business landscape<br><strong>g.</strong> Be able to demonstrate a value proposition for DFSPs/Fintechs/etc. to use mojaloop (instead of technology <em>x</em>)</p>
+<h2 id="6-useruse-case-matrix">6. User/Use Case Matrix:</h2>
+<p>We can plot the users and use cases in a matrix:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><strong>Usecase:</strong></th>
+<th style="text-align:center">a. Test DFSP Impl</th>
+<th style="text-align:center">b. Validate Assumptions</th>
+<th style="text-align:center">c. Reference Impl</th>
+<th style="text-align:center">d. Learn Internals</th>
+<th style="text-align:center">e. Learn about Tech</th>
+<th style="text-align:center">f. Evaluate Business Cases</th>
+<th style="text-align:center">g. Demonstrate ML Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>User:</strong></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>1. Implementing DFSP</strong></td>
+<td style="text-align:center">X</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">X</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>2. Evalutating DFSP</strong></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">X</td>
+<td style="text-align:center">X</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">X</td>
+<td style="text-align:center">X</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>3. Evaluating Hub Operator</strong></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">X</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">X</td>
+<td style="text-align:center">X</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>4. General Evaluator</strong></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">X</td>
+<td style="text-align:center">X</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>5. Systems Integrator</strong></td>
+<td style="text-align:center">X</td>
+<td style="text-align:center">X</td>
+<td style="text-align:center">X</td>
+<td style="text-align:center">X</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">X</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>6. Individual Contributor</strong></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">X</td>
+<td style="text-align:center">X</td>
+<td style="text-align:center">X</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>7. Mojaloop-powered fintech</strong></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">X</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">X</td>
+<td style="text-align:center">X</td>
+<td style="text-align:center">X</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>8. 3rd Party App Provider</strong></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">X</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">X</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>9. Financial Inclusion Advocates</strong></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">X</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">X</td>
+<td style="text-align:center">X</td>
+</tr>
+</tbody>
+</table>
+<h2 id="7-usecase-inputs-and-outputs">7. Usecase Inputs and outputs:</h2>
+<blockquote>
+<p><em>Pick 2 or 3 different users/usecases and drill down into the inputs and outputs for what meeting their needs may look like</em></p>
+<blockquote>
+<p><em>Note: As with anything of this nature, a lot of the users/usecases and associated conclusions are somewhat squishy, and can likely be put into different or altogether new boxes. Nonetheless, we will try to define these as well as possible.</em></p>
+</blockquote>
+</blockquote>
+<h3 id="71-evaluating-hub-operator--implementing-dfsp">7.1 Evaluating Hub Operator + Implementing DFSP</h3>
+<p>As stated in our above assumptions, we aren&apos;t going to worry about Hub operators and Implementing DFSPs here.</p>
+<h3 id="72-evaluating-dfsp">7.2 Evaluating DFSP</h3>
+<blockquote>
+<p><em>We think of an evaluating DFSP as one who is not necessarily part of a current switch implementation, but a party who is mojaloop-curious, and a potential candidate to evangelize mojaloop to - without the tangible goal of a switch implementation in sight.</em></p>
+</blockquote>
+<p><strong>7.2.1 Use cases:</strong></p>
+<ul>
+<li>1. Validate assumptions about Mojaloop (how it works, what it does, what it <em>doesn&apos;t</em> do)</li>
+<li>2. View and play with a reference implementation</li>
+<li>3. Learn about mojaloop-enabled hubs and associated use cases (technology perspective)</li>
+<li>4. Assess how Mojaloop will affect their business in the future</li>
+</ul>
+<p><strong>7.2.2 Examples from our user personas:</strong></p>
+<ul>
+<li>1. Carbon - Enable cash-outs and OTC remittances over their agent network</li>
+<li>2. Ssnapp - Enable multi payer/payee payments and rewards points over mojaloop</li>
+<li>3. Oneload - Simplify onboarding for other DFSPs to utilize OneLoad&apos;s agent network</li>
+<li>4. Juvo - Plug in to a Mojaloop switch for a credit scoring and lending marketplace</li>
+</ul>
+<p><strong>7.2.3 Outputs: (How can the Mojaloop OSS Community better serve these players?)</strong></p>
+<ul>
+<li>1. help to onboard to the mojaloop ecosystem</li>
+<li>2. help to understand the technology, where it works well, and the potential pitfalls/drawbacks</li>
+<li>3. minimize investment in getting things working so they can focus on building out use case prototypes</li>
+<li>4. take them from little to no understanding of Mojaloop -&gt; demonstrating real prototypes</li>
+</ul>
+<p><strong>7.2.4 Inputs: (what are the things that we need to do to meet these goals)</strong></p>
+<ul>
+<li>1. Improved mojaloop documentation specific for this role.<ul>
+<li>1.1 Think about and design the documentation and onboarding flow specifically for <em>Evaluating DFSPs</em></li>
+<li>1.2 Documentation should be approachable by product manager etc. with little technical knowledge</li>
+</ul>
+</li>
+<li>2. Technical deep dive on the technology behind mojaloop, why, how it works (perhaps we can repurpose the js demonstrator in an interactive walkthrough an end to end transaction)</li>
+<li>3. Improved guides for up and running on 2-3 major kubernetes providers, self service and install scripts </li>
+<li>4. Helm charts for 1-2 simulators/labs that can be spun up alongside a switch, with opinionated pre-configured settings</li>
+</ul>
+<h3 id="73-mojaloop-powered-fintech">7.3 Mojaloop Powered Fintech</h3>
+<blockquote>
+<p><em>A Mojaloop Powered fintech is a fintech operating or wishing to operate on top of a mojaloop switch. There will definitely be crossover between Fintechs and DFSPs in this classification, but we will focus here on fintechs who are at the third level on the above &quot;Mojaloop Spokes&quot;</em></p>
+</blockquote>
+<p><strong>7.3.1 Use cases:</strong></p>
+<ul>
+<li>1. Validate assumptions about Mojaloop (how it works, what it does, what it <em>doesn&apos;t</em> do)</li>
+<li>2. Learn how mojaloop is aligned with wholesale APIs, and what it would take to get a DFSP using these APIs over a Mojaloop switch</li>
+<li>3. Learn about mojaloop-enabled hubs and associated use cases (technology perspective)</li>
+<li>4. Assess how Mojaloop will affect their business in the future</li>
+</ul>
+<p><strong>7.3.2 Examples from our user personas:</strong></p>
+<ul>
+<li>1. EastPay - compare and shop around for banks/payment providers based on Mojaloop&apos;s open fee structure</li>
+<li>2. Jumo - Open up transparent and fairer lending markets on top of a Mojaloop enabled switch?</li>
+</ul>
+<p><strong>7.3.3 Outputs: (How can the Mojaloop OSS Community better serve these players?)</strong></p>
+<ul>
+<li>1. Understand how Mojaloop and Wholesale APIs fit together (or don&apos;t)</li>
+<li>2. Enable fintechs to interact with Mojaloop over 1 or 2 wholesale banking APIs (e.g. GSMA MM api)</li>
+<li>3. take them from little to no understanding of Mojaloop -&gt; demonstrating real prototypes</li>
+</ul>
+<p><strong>7.3.4 Inputs: (what are the things that we need to do to meet these goals)</strong></p>
+<ul>
+<li>1. Improved mojaloop documentation specific for this role.</li>
+<li>2. Documentation or working document on how Mojaloop will work with wholesale apis</li>
+<li>3. Self-deployed lab environment with DFSP that expose some wholesale apis with basic functionality for fintechs to test against</li>
+</ul>
+<h2 id="8-oss-labworkbench-efforts-alongside-others">8. OSS Lab/Workbench efforts alongside others</h2>
+<p>There are others in the community working on some of these needs we outlined above. How can we align ourselves together to: (1) Not duplicate efforts (nor step on each other&apos;s toes) and (2) Provide the most impact for end users and the Mojaloop community as a whole</p>
+<p>In general, we reached a consensus around the following:</p>
+<ul>
+<li>any OSS Lab effort should be focused with a specific end user in mind</li>
+<li>Our focus should be further out on the mojaloop spokes (DFSPs, Fintechs, 3rd Party app providers)</li>
+</ul>
+<h3 id="81-mifos">8.1 MIFOS</h3>
+<ul>
+<li>1. Already extensive work done here with Fineract system, which provides out-of-the-box solution for Mojaloop enabled DFSPs</li>
+<li>2. working on open api implementations</li>
+<li>3. Working on lowering the barriers to entry for DFSPs and Fintechs</li>
+<li>4. Mifos Innovation Lab: &quot;The Locomotion on top of Mojaloop&apos;s Rails&quot;<ul>
+<li>4.1 Demonstrate end to end Mojaloop systems with DFSP integration</li>
+<li>4.2 Build and contribute OS tools</li>
+</ul>
+</li>
+<li>5. Working on real world deployments already </li>
+<li>6. See a need for a &quot;Single Point of Entry to the Mojaloop Ecosystem&quot;</li>
+<li>7. Have an existing Lab deployment with Mojaloop that is currently being upgraded to work with the latest Helm chart deployments</li>
+</ul>
+<h3 id="82-gsma">8.2 GSMA</h3>
+<ul>
+<li>1. Have mobile money api, would like to see end to end solution with fintechs/DFSPs talking over a mojaloop switch</li>
+<li>2. The GSMA Lab has a very wide scope, Mojaloop is just one piece of this</li>
+<li>3. One main goal is the mobile money API- pushing for default standard for 3rd party integration into mobile money</li>
+<li>4. where does Mojaloop sit?<ul>
+<li>4.1 Is one of the branches that the GSMA Lab will be working on</li>
+<li>4.2 Where can GSMA add the most value to Mojaloop?<ul>
+<li>4.2.1 Serve a need from the market to get the most impact</li>
+</ul>
+</li>
+<li>4.2.2 See a end-to-end prototype of the MM API talking over a Mojaloop switch</li>
+</ul>
+</li>
+</ul>
+<h3 id="83-modusbox">8.3 ModusBox</h3>
+<ul>
+<li>1. More on the systems integrator perspective. Building a bunch of tools already to ease the development and onboarding process for switches and DFSPs</li>
+<li>2. Have open sourced the Mojaloop JS SDK</li>
+<li>3. Interested in showing &apos;how the engine works&apos; to build confidence in business parters/customers</li>
+<li>4. Also interested (especially in WOCCU case) as a Mojaloop lab as a place for Fintechs to learn and test concepts on top of Mojaloop Switches<ul>
+<li>4.1 Once this is connected, the interesting use cases will start to develop beyond tranfers from A to B</li>
+<li>4.2 MFIs (especially small-medium) don&apos;t have much capacity for experimentation or developing new business cases, but these cases can be driven from fintechs first</li>
+</ul>
+</li>
+<li>5. How can we assist orgs. who have little-to-no technical capability to become confident with Mojaloop?<ul>
+<li>5.1 A technical lab environment won&apos;t do much in this case</li>
+<li>5.2 Can we demonstrate Mojaloop over a spreadsheet? Everyone can understand spreadsheets.</li>
+</ul>
+</li>
+</ul>
+<h2 id="9-questions">9. Questions</h2>
+<ul>
+<li><p>1. So much of this comes back to The Gates Foundation&apos;s proposed sales cycle for growing mojaloop adoption</p>
+<ul>
+<li>1.1 Looking at the technical briefs from the hackathon alone, there are some <strong>big</strong> players (Famoco, Ethiopay, GrameenPhone) that could really take mojaloop and run with it</li>
+<li>1.2 How can the initial hurdle be overcome to drive adoption and help these orgs adopt mojaloop and contribute back to the ecosystem?</li>
+<li>1.3 What does the entrypoint to the industry look like for Hub operators?</li>
+</ul>
+</li>
+<li><p>2. For evaluating DFSPs, what is their resource/risk allocation like?</p>
+<ul>
+<li>2.1 If they think Mojaloop is a viable option for a future product, what type of time and resource investment will they put into it?</li>
+<li>2.2 What are their alternatives? (This will be a case-by-case thing)</li>
+</ul>
+</li>
+<li><p>3. Is a certain amount of technical gatekeeping a good or bad thing? (This is a more philisophical question)</p>
+<ul>
+<li>3.1 If we don&apos;t make it too easy to get up and running, we make sure that only interested and determined parties are using mojaloop, which self-selects for a better community (kinda)</li>
+<li>3.2 But this locks out a lot of people who aren&apos;t up to scratch with kubernetes, docker etc. but may still have a good deal of experience with financial services etc.</li>
+</ul>
+</li>
+<li><p>4. Chicken and egg problem(?) between DFSPs and Hub operators. Does it go DFSPs -&gt; Hub Operators or the other way around?</p>
+</li>
+</ul>
+<h2 id="10-recommendations">10. Recommendations</h2>
+<ul>
+<li>1. Find a target user that we can build a lab for/with<ul>
+<li>1.1 perhaps one of the more serious hackathon teams?</li>
+</ul>
+</li>
+<li>2. Address and improve documentation gaps: driving from a role-specific (i.e. DFSP, fintech, hub operator) perspective</li>
+<li>3. Mojaloop over Spreadsheet demo</li>
+<li>4. Build a self-service lab prototype<ul>
+<li>4.1 Opinionated set of helm charts that can be deployed alongside general switch</li>
+<li>4.2 Gather feedback from the community, and see where and how people are using it</li>
+</ul>
+</li>
+</ul>
 
                                 
                                 </section>
@@ -2082,7 +2447,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Discussion Documents","level":"1.11","depth":1,"next":{"title":"ISO integration Overivew","level":"1.11.1","depth":2,"path":"discussions/ISO_Integration.md","ref":"discussions/ISO_Integration.md","articles":[]},"previous":{"title":"Mojaloop Publications","level":"1.10","depth":1,"path":"mojaloop-publications.md","ref":"mojaloop-publications.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"3.x.x","theme":"default","variables":{"importedVars":{"mojaloop":{"spec":{"version":"v1.0","uri":{"doc":"https://github.com/mojaloop/mojaloop-specification/blob/master/API%20Definition%20v1.0.pdf","api":"https://github.com/mojaloop/mojaloop-specification/blob/master/Supporting%20Files/fspiop-rest-v1.0-OpenAPI-implementation.yaml"}}},"central_ledger":{"spec":{"version":"v2.0","uri":{"doc":"/mojaloop-technical-overview/central-ledger/README.md","api":"https://github.com/mojaloop/central-ledger/blob/master/src/api/interface/swagger.json"}}},"settlement":{"spec":{"version":"v1.1","uri":{"doc":"/mojaloop-technical-overview/central-settlements/README.md","api":"https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json"}}},"als":{"oracle":{"spec":{"version":"v1.2","uri":{"doc":"/mojaloop-technical-overview/account-lookup-service/README.md","api":"https://github.com/mojaloop/documentation/blob/master/api/assets/interface-contracts/oracle-service-swagger-v1.yaml"}}}}}},"plugins":["swagger","editlink","include","insert-logo","plantuml-svg","collapsible-chapters","back-to-top-button","theme-api","variables","changelog","page-toc"],"pluginsConfig":{"plantuml-svg":{},"editlink":{"label":"Edit This Page","multilingual":true,"base":"https://github.com/mojaloop/documentation/edit/master"},"theme-gestalt":{"logo":"https://mojaloop.io/images/logo.png","favicon":"https://mojaloop.io/images/logo.png","baseUrl":null,"excludeDefaultStyles":false,"doNotHideChildrenChapters":false},"include":{},"search":{},"collapsible-chapters":{},"page-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","position":"before-first","showByDefault":true},"swagger":{"file":""},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"uml":{"format":"png","nailgun":false},"changelog":{},"theme-api":{"languages":[],"split":true,"theme":"dark"},"back-to-top-button":{},"variables":{"files":{"importedVars":"book_variables.yml"}},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"insert-logo":{"url":"https://mojaloop.io/images/logo.png","style":"background: none; max-height: 140px; max-width: 140px;"}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"discussions/readme.md","mtime":"2019-11-20T13:28:48.442Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-11-20T13:29:32.322Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Workbench Workstream","level":"1.11.3","depth":2,"next":{"title":"Cross Border Meeting Notes Day 1","level":"1.11.4","depth":2,"path":"discussions/cross_border_day_1.md","ref":"discussions/cross_border_day_1.md","articles":[]},"previous":{"title":"Moajoop Decimal Type; Based on XML Schema Decimal Type","level":"1.11.2","depth":2,"path":"discussions/decimal.md","ref":"discussions/decimal.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"3.x.x","theme":"default","variables":{"importedVars":{"mojaloop":{"spec":{"version":"v1.0","uri":{"doc":"https://github.com/mojaloop/mojaloop-specification/blob/master/API%20Definition%20v1.0.pdf","api":"https://github.com/mojaloop/mojaloop-specification/blob/master/Supporting%20Files/fspiop-rest-v1.0-OpenAPI-implementation.yaml"}}},"central_ledger":{"spec":{"version":"v2.0","uri":{"doc":"/mojaloop-technical-overview/central-ledger/README.md","api":"https://github.com/mojaloop/central-ledger/blob/master/src/api/interface/swagger.json"}}},"settlement":{"spec":{"version":"v1.1","uri":{"doc":"/mojaloop-technical-overview/central-settlements/README.md","api":"https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json"}}},"als":{"oracle":{"spec":{"version":"v1.2","uri":{"doc":"/mojaloop-technical-overview/account-lookup-service/README.md","api":"https://github.com/mojaloop/documentation/blob/master/api/assets/interface-contracts/oracle-service-swagger-v1.yaml"}}}}}},"plugins":["swagger","editlink","include","insert-logo","plantuml-svg","collapsible-chapters","back-to-top-button","theme-api","variables","changelog","page-toc"],"pluginsConfig":{"plantuml-svg":{},"editlink":{"label":"Edit This Page","multilingual":true,"base":"https://github.com/mojaloop/documentation/edit/master"},"theme-gestalt":{"logo":"https://mojaloop.io/images/logo.png","favicon":"https://mojaloop.io/images/logo.png","baseUrl":null,"excludeDefaultStyles":false,"doNotHideChildrenChapters":false},"include":{},"search":{},"collapsible-chapters":{},"page-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","position":"before-first","showByDefault":true},"swagger":{"file":""},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"uml":{"format":"png","nailgun":false},"changelog":{},"theme-api":{"languages":[],"split":true,"theme":"dark"},"back-to-top-button":{},"variables":{"files":{"importedVars":"book_variables.yml"}},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"insert-logo":{"url":"https://mojaloop.io/images/logo.png","style":"background: none; max-height: 140px; max-width: 140px;"}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"discussions/workbench.md","mtime":"2019-11-20T13:28:48.442Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-11-20T13:29:32.322Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

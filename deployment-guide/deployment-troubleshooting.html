@@ -1899,6 +1899,77 @@
             
 
             
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.11.1" data-path="../discussions/ISO_Integration.html">
+            
+                <a href="../discussions/ISO_Integration.html">
+            
+                    
+                    ISO integration Overivew
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.2" data-path="../discussions/decimal.html">
+            
+                <a href="../discussions/decimal.html">
+            
+                    
+                    Moajoop Decimal Type; Based on XML Schema Decimal Type
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.3" data-path="../discussions/workbench.html">
+            
+                <a href="../discussions/workbench.html">
+            
+                    
+                    Workbench Workstream
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.4" data-path="../discussions/cross_border_day_1.html">
+            
+                <a href="../discussions/cross_border_day_1.html">
+            
+                    
+                    Cross Border Meeting Notes Day 1
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.5" data-path="../discussions/cross_border_day_2.html">
+            
+                <a href="../discussions/cross_border_day_2.html">
+            
+                    
+                    Cross Border Meeting Notes Day 2
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
         </li>
     
         <li class="chapter " data-level="1.12" data-path="../contributors-guide/frequently-asked-questions.html">
@@ -1973,8 +2044,60 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="deployment-troubleshooting">Deployment Troubleshooting</h1>
-<h2 id="1-deployment-issues">1. Deployment issues</h2>
-<h3 id="11-errnamenotresolved-error">1.1. <code>ERR_NAME_NOT_RESOLVED</code> Error</h3>
+<h2 id="local-deployment-with-microk8s---suggestions">Local deployment with MicroK8s - suggestions:</h2>
+<ul>
+<li>use <strong>v1.15 of MicroK8s</strong> (higher version not yet supported) (details in &quot;Installation of mojaloop helm charts fail with validation failed&quot; section)</li>
+<li>try <code>microk8s.inspect</code> for hints (for example connectivity problems when ip forwarding is not enabled, more about it in &quot;MicroK8s - Connectivity Issues section&quot;)</li>
+<li>enable following microk8s add-ons (check with <code>sudo microk8s.status</code>):<ul>
+<li>storage</li>
+<li>ingress</li>
+<li>dns</li>
+<li>istio</li>
+<li>dashboard</li>
+</ul>
+</li>
+</ul>
+<h2 id="1-known-issues">1. Known issues</h2>
+<h3 id="11-mojaloop-helm-charts-does-not-support-kubernetes-v116-or-greater">1.1. Mojaloop Helm Charts does not support Kubernetes v1.16 or greater</h3>
+<h4 id="description">Description</h4>
+<p>When installing mojaloop helm charts, the following error occurs:</p>
+<pre><code>   Error: validation failed: [unable to recognize &quot;&quot;: no matches for kind &quot;Deployment&quot; in version &quot;apps/v1beta2&quot;, unable to recognize &quot;&quot;: no matches for kind &quot;Deployment&quot; in version &quot;extensions/v1beta1&quot;, unable to recognize &quot;&quot;: no matches for kind &quot;StatefulSet&quot; in version &quot;apps/v1beta2&quot;, unable to recognize &quot;&quot;: no matches for kind &quot;StatefulSet&quot; in version &quot;apps/v1beta1&quot;]
+</code></pre><h4 id="reason">Reason</h4>
+<p>In version 1.16 of Kubernetes breaking change has been introduced (more about it <a href="https://kubernetes.io/docs/setup/release/notes/#deprecations-and-removals" target="_blank">in &quot;Deprecations and Removals&quot; of Kubernetes release notes</a>. The  Kubernetes API versions <code>apps/v1beta1</code> and <code>apps/v1beta2</code>are no longer supported and  and have been replaced by <code>apps/v1</code>.</p>
+<p>Currently Mojaloop helm charts (as of v8.4.x) refer to deprecated ids, therefore it&apos;s not possible to install current Mojaloop charts on Kubernetes version above 1.15 without manually changing charts.</p>
+<p>Refer to the following issue for more info: <a href="https://github.com/mojaloop/helm/issues/219" target="_blank">mojaloop/helm#219</a></p>
+<h4 id="fixes">Fixes</h4>
+<p>Ensure that you are deploying the Mojaloop Helm charts on v1.15 of Kubernetes (or microk8s when working locally).</p>
+<h4 id="additional-details-for-microk8s-fix">Additional details for <code>microk8s</code> fix</h4>
+<p>To check version of <code>microk8s</code>:</p>
+<pre><code class="lang-bash">   snap info microk8s
+</code></pre>
+<p><em>Note: Look at the end of the output for a row starting with &quot;installed&quot;</em></p>
+<p>To install most recent supported version:</p>
+<pre><code class="lang-bash">   snap refresh microk8s --channel=1.15/stable --classic
+</code></pre>
+<h2 id="2-deployment-issues">2. Deployment issues</h2>
+<h3 id="21-microk8s---helm-init-connection-refused">2.1. MicroK8s - helm init connection refused<a name="helm_init_connection_refused"></a></h3>
+<h4 id="description">Description</h4>
+<p>The helm init:</p>
+<pre><code class="lang-bash">   helm init
+</code></pre>
+<p>fails with error when installing locally on <code>microk8s</code>:</p>
+<pre><code>   Error: error installing: Post http://localhost:8080/apis/apps/v1/namespaces/kube-system/deployments: dial tcp 127.0.0.1:8080: connect: connection refused
+</code></pre><h4 id="reason">Reason</h4>
+<p>This may be a missing  <code>~/.kube/config</code> file, where helm looks for connection details.</p>
+<h4 id="fix---option-1">Fix - option #1</h4>
+<p>One of the solutions is to generate that file by issuing:</p>
+<pre><code class="lang-bash">   microk8s.kubectl config view --raw &gt; <span class="hljs-variable">$HOME</span>/.kube/config
+</code></pre>
+<h4 id="fix---option-2">Fix - option #2</h4>
+<p>Another option is to export the config to a new file:</p>
+<pre><code class="lang-bash">   microk8s.kubectl config view --raw &gt; <span class="hljs-variable">$HOME</span>/.kube/local.config
+</code></pre>
+<p>And then export the following env var:</p>
+<pre><code class="lang-bash">   <span class="hljs-built_in">export</span> KUBECONFIG=<span class="hljs-variable">$HOME</span>/.kube/local.config
+</code></pre>
+<h3 id="22-errnamenotresolved-error">2.2. <code>ERR_NAME_NOT_RESOLVED</code> Error</h3>
 <h4 id="description">Description</h4>
 <p>The following error is displayed when attempting to access an end-point (e.g. central-ledger.local) via the Kubernetes Service directly in a browser: <code>ERR_NAME_NOT_RESOLVED</code></p>
 <h4 id="fixes">Fixes</h4>
@@ -1989,7 +2112,7 @@
 <li><p>Note that the Mojaloop deployment via Helm can take a few minutes to initially startup depending on the system&apos;s available resources and specification. It is recommended that you wait at least 10m for all Pods/Containers to self heal before troubleshooting.</p>
 </li>
 </ul>
-<h3 id="12-microk8s---connectivity-issues">1.2. MicroK8s - Connectivity Issues</h3>
+<h3 id="23-microk8s---connectivity-issues">2.3. MicroK8s - Connectivity Issues</h3>
 <h4 id="description">Description</h4>
 <p>My pods can&#x2019;t reach the internet or each other (but my MicroK8s host machine can). </p>
 <p>An example of this is that the Central-Ledger logs indicate that there is an error with the Broker transport as per the following example:</p>
@@ -2009,8 +2132,8 @@ sudo apt-get install iptables-persistent
 <p>The MicroK8s inspect command can be used to check the firewall configuration:</p>
 <pre><code class="lang-bash">microk8s.inspect
 </code></pre>
-<h2 id="2-ingress-issues">2. Ingress issues</h2>
-<h3 id="21-ingress-rules-are-not-resolving-for-nginx-ingress-v022-or-later">2.1. Ingress rules are not resolving for Nginx Ingress v0.22 or later</h3>
+<h2 id="3-ingress-issues">3. Ingress issues</h2>
+<h3 id="31-ingress-rules-are-not-resolving-for-nginx-ingress-v022-or-later">3.1. Ingress rules are not resolving for Nginx Ingress v0.22 or later</h3>
 <h4 id="description">Description</h4>
 <p>Ingress rules are unable to resolve to the correct path based on the annotations specified in the values.yaml configuration files when using Nginx Ingress controllers v0.22 or later.</p>
 <p>This is due to the changes introduced in Nginx Ingress controllers that are v0.22 or later as per the following link: <a href="https://kubernetes.github.io/ingress-nginx/examples/rewrite/#rewrite-target" target="_blank">https://kubernetes.github.io/ingress-nginx/examples/rewrite/#rewrite-target</a>.</p>
@@ -2020,7 +2143,7 @@ sudo apt-get install iptables-persistent
 <p><code>nginx.ingress.kubernetes.io/rewrite-target: &apos;/&apos;</code> --&gt; <code>nginx.ingress.kubernetes.io/rewrite-target: &apos;/$1&apos;</code></p>
 </li>
 </ul>
-<h3 id="22-ingress-rules-are-not-resolving-for-nginx-ingress-earlier-than-v022">2.2. Ingress rules are not resolving for Nginx Ingress earlier than v0.22</h3>
+<h3 id="32-ingress-rules-are-not-resolving-for-nginx-ingress-earlier-than-v022">3.2. Ingress rules are not resolving for Nginx Ingress earlier than v0.22</h3>
 <h4 id="description">Description</h4>
 <p>Ingress rules are unable to resolve to the correct path based on the annotations specified in the values.yaml configuration files when using Nginx Ingress controllers that are older than v0.22.</p>
 <p>This is due to the changes introduced in Nginx Ingress controllers that are v0.22 or later as per the following link: <a href="https://kubernetes.github.io/ingress-nginx/examples/rewrite/#rewrite-target" target="_blank">https://kubernetes.github.io/ingress-nginx/examples/rewrite/#rewrite-target</a>.</p>
@@ -2063,7 +2186,7 @@ sudo apt-get install iptables-persistent
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Troubleshooting","level":"1.4.5","depth":2,"next":{"title":"Contributors Guide","level":"1.5","depth":1,"path":"contributors-guide/README.md","ref":"contributors-guide/README.md","articles":[{"title":"Standards","level":"1.5.1","depth":2,"path":"contributors-guide/standards/README.md","ref":"contributors-guide/standards/README.md","articles":[{"title":"Versioning","level":"1.5.1.1","depth":3,"path":"contributors-guide/standards/versioning.md","ref":"contributors-guide/standards/versioning.md","articles":[]},{"title":"Creating new Features","level":"1.5.1.2","depth":3,"path":"contributors-guide/standards/creating-new-features.md","ref":"contributors-guide/standards/creating-new-features.md","articles":[]},{"title":"ML OSS Bug Triage","level":"1.5.1.3","depth":3,"path":"contributors-guide/standards/triaging-ml-oss-bugs.md","ref":"contributors-guide/standards/triaging-ml-oss-bugs.md","articles":[]}]},{"title":"Tools and Technologies","level":"1.5.2","depth":2,"path":"contributors-guide/tools-and-technologies/README.md","ref":"contributors-guide/tools-and-technologies/README.md","articles":[{"title":"Pragmatic REST","level":"1.5.2.1","depth":3,"path":"contributors-guide/tools-and-technologies/pragmatic-rest.md","ref":"contributors-guide/tools-and-technologies/pragmatic-rest.md","articles":[]},{"title":"Code Quality Metrics","level":"1.5.2.2","depth":3,"path":"contributors-guide/tools-and-technologies/code-quality-metrics.md","ref":"contributors-guide/tools-and-technologies/code-quality-metrics.md","articles":[]},{"title":"Automated Testing","level":"1.5.2.3","depth":3,"path":"contributors-guide/tools-and-technologies/automated-testing.md","ref":"contributors-guide/tools-and-technologies/automated-testing.md","articles":[]}]},{"title":"Documentation","level":"1.5.3","depth":2,"path":"contributors-guide/documentation/README.md","ref":"contributors-guide/documentation/README.md","articles":[{"title":"API Documentation","level":"1.5.3.1","depth":3,"path":"contributors-guide/documentation/api-documentation.md","ref":"contributors-guide/documentation/api-documentation.md","articles":[]},{"title":"Documentation Style Guide","level":"1.5.3.2","depth":3,"path":"contributors-guide/documentation/documentation-style-guide.md","ref":"contributors-guide/documentation/documentation-style-guide.md","articles":[]}]}]},"previous":{"title":"Local Setup Windows","level":"1.4.4","depth":2,"path":"deployment-guide/local-setup-windows.md","ref":"deployment-guide/local-setup-windows.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"3.x.x","theme":"default","variables":{"importedVars":{"mojaloop":{"spec":{"version":"v1.0","uri":{"doc":"https://github.com/mojaloop/mojaloop-specification/blob/master/API%20Definition%20v1.0.pdf","api":"https://github.com/mojaloop/mojaloop-specification/blob/master/Supporting%20Files/fspiop-rest-v1.0-OpenAPI-implementation.yaml"}}},"central_ledger":{"spec":{"version":"v2.0","uri":{"doc":"/mojaloop-technical-overview/central-ledger/README.md","api":"https://github.com/mojaloop/central-ledger/blob/master/src/api/interface/swagger.json"}}},"settlement":{"spec":{"version":"v1.1","uri":{"doc":"/mojaloop-technical-overview/central-settlements/README.md","api":"https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json"}}},"als":{"oracle":{"spec":{"version":"v1.2","uri":{"doc":"/mojaloop-technical-overview/account-lookup-service/README.md","api":"https://github.com/mojaloop/documentation/blob/master/api/assets/interface-contracts/oracle-service-swagger-v1.yaml"}}}}}},"plugins":["swagger","editlink","include","insert-logo","plantuml-svg","collapsible-chapters","back-to-top-button","theme-api","variables","changelog","page-toc"],"pluginsConfig":{"plantuml-svg":{},"editlink":{"label":"Edit This Page","multilingual":true,"base":"https://github.com/mojaloop/documentation/edit/master"},"theme-gestalt":{"logo":"https://mojaloop.io/images/logo.png","favicon":"https://mojaloop.io/images/logo.png","baseUrl":null,"excludeDefaultStyles":false,"doNotHideChildrenChapters":false},"include":{},"search":{},"collapsible-chapters":{},"page-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","position":"before-first","showByDefault":true},"swagger":{"file":""},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"uml":{"format":"png","nailgun":false},"changelog":{},"theme-api":{"languages":[],"split":true,"theme":"dark"},"back-to-top-button":{},"variables":{"files":{"importedVars":"book_variables.yml"}},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"insert-logo":{"url":"https://mojaloop.io/images/logo.png","style":"background: none; max-height: 140px; max-width: 140px;"}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"deployment-guide/deployment-troubleshooting.md","mtime":"2019-11-19T15:32:25.999Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-11-19T15:33:37.262Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Troubleshooting","level":"1.4.5","depth":2,"next":{"title":"Contributors Guide","level":"1.5","depth":1,"path":"contributors-guide/README.md","ref":"contributors-guide/README.md","articles":[{"title":"Standards","level":"1.5.1","depth":2,"path":"contributors-guide/standards/README.md","ref":"contributors-guide/standards/README.md","articles":[{"title":"Versioning","level":"1.5.1.1","depth":3,"path":"contributors-guide/standards/versioning.md","ref":"contributors-guide/standards/versioning.md","articles":[]},{"title":"Creating new Features","level":"1.5.1.2","depth":3,"path":"contributors-guide/standards/creating-new-features.md","ref":"contributors-guide/standards/creating-new-features.md","articles":[]},{"title":"ML OSS Bug Triage","level":"1.5.1.3","depth":3,"path":"contributors-guide/standards/triaging-ml-oss-bugs.md","ref":"contributors-guide/standards/triaging-ml-oss-bugs.md","articles":[]}]},{"title":"Tools and Technologies","level":"1.5.2","depth":2,"path":"contributors-guide/tools-and-technologies/README.md","ref":"contributors-guide/tools-and-technologies/README.md","articles":[{"title":"Pragmatic REST","level":"1.5.2.1","depth":3,"path":"contributors-guide/tools-and-technologies/pragmatic-rest.md","ref":"contributors-guide/tools-and-technologies/pragmatic-rest.md","articles":[]},{"title":"Code Quality Metrics","level":"1.5.2.2","depth":3,"path":"contributors-guide/tools-and-technologies/code-quality-metrics.md","ref":"contributors-guide/tools-and-technologies/code-quality-metrics.md","articles":[]},{"title":"Automated Testing","level":"1.5.2.3","depth":3,"path":"contributors-guide/tools-and-technologies/automated-testing.md","ref":"contributors-guide/tools-and-technologies/automated-testing.md","articles":[]}]},{"title":"Documentation","level":"1.5.3","depth":2,"path":"contributors-guide/documentation/README.md","ref":"contributors-guide/documentation/README.md","articles":[{"title":"API Documentation","level":"1.5.3.1","depth":3,"path":"contributors-guide/documentation/api-documentation.md","ref":"contributors-guide/documentation/api-documentation.md","articles":[]},{"title":"Documentation Style Guide","level":"1.5.3.2","depth":3,"path":"contributors-guide/documentation/documentation-style-guide.md","ref":"contributors-guide/documentation/documentation-style-guide.md","articles":[]}]}]},"previous":{"title":"Local Setup Windows","level":"1.4.4","depth":2,"path":"deployment-guide/local-setup-windows.md","ref":"deployment-guide/local-setup-windows.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"3.x.x","theme":"default","variables":{"importedVars":{"mojaloop":{"spec":{"version":"v1.0","uri":{"doc":"https://github.com/mojaloop/mojaloop-specification/blob/master/API%20Definition%20v1.0.pdf","api":"https://github.com/mojaloop/mojaloop-specification/blob/master/Supporting%20Files/fspiop-rest-v1.0-OpenAPI-implementation.yaml"}}},"central_ledger":{"spec":{"version":"v2.0","uri":{"doc":"/mojaloop-technical-overview/central-ledger/README.md","api":"https://github.com/mojaloop/central-ledger/blob/master/src/api/interface/swagger.json"}}},"settlement":{"spec":{"version":"v1.1","uri":{"doc":"/mojaloop-technical-overview/central-settlements/README.md","api":"https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json"}}},"als":{"oracle":{"spec":{"version":"v1.2","uri":{"doc":"/mojaloop-technical-overview/account-lookup-service/README.md","api":"https://github.com/mojaloop/documentation/blob/master/api/assets/interface-contracts/oracle-service-swagger-v1.yaml"}}}}}},"plugins":["swagger","editlink","include","insert-logo","plantuml-svg","collapsible-chapters","back-to-top-button","theme-api","variables","changelog","page-toc"],"pluginsConfig":{"plantuml-svg":{},"editlink":{"label":"Edit This Page","multilingual":true,"base":"https://github.com/mojaloop/documentation/edit/master"},"theme-gestalt":{"logo":"https://mojaloop.io/images/logo.png","favicon":"https://mojaloop.io/images/logo.png","baseUrl":null,"excludeDefaultStyles":false,"doNotHideChildrenChapters":false},"include":{},"search":{},"collapsible-chapters":{},"page-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","position":"before-first","showByDefault":true},"swagger":{"file":""},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"uml":{"format":"png","nailgun":false},"changelog":{},"theme-api":{"languages":[],"split":true,"theme":"dark"},"back-to-top-button":{},"variables":{"files":{"importedVars":"book_variables.yml"}},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"insert-logo":{"url":"https://mojaloop.io/images/logo.png","style":"background: none; max-height: 140px; max-width: 140px;"}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"deployment-guide/deployment-troubleshooting.md","mtime":"2019-11-20T13:28:48.366Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-11-20T13:29:32.322Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
