@@ -1,8 +1,99 @@
 # Deployment Troubleshooting
 
-## 1. Deployment issues
+## Local deployment with MicroK8s - suggestions:
 
-### 1.1. `ERR_NAME_NOT_RESOLVED` Error
+- use **v1.15 of MicroK8s** (higher version not yet supported) (details in "Installation of mojaloop helm charts fail with validation failed" section)
+- try `microk8s.inspect` for hints (for example connectivity problems when ip forwarding is not enabled, more about it in "MicroK8s - Connectivity Issues section")
+- enable following microk8s add-ons (check with `sudo microk8s.status`):
+  - storage
+  - ingress
+  - dns
+  - istio
+  - dashboard
+
+## 1. Known issues
+
+### 1.1. Mojaloop Helm Charts does not support Kubernetes v1.16 or greater
+
+#### Description
+
+When installing mojaloop helm charts, the following error occurs:
+
+   ```
+   Error: validation failed: [unable to recognize "": no matches for kind "Deployment" in version "apps/v1beta2", unable to recognize "": no matches for kind "Deployment" in version "extensions/v1beta1", unable to recognize "": no matches for kind "StatefulSet" in version "apps/v1beta2", unable to recognize "": no matches for kind "StatefulSet" in version "apps/v1beta1"]
+   ```
+
+#### Reason
+  
+In version 1.16 of Kubernetes breaking change has been introduced (more about it [in "Deprecations and Removals" of Kubernetes release notes](https://kubernetes.io/docs/setup/release/notes/#deprecations-and-removals). The  Kubernetes API versions `apps/v1beta1` and `apps/v1beta2`are no longer supported and  and have been replaced by `apps/v1`.
+
+Currently Mojaloop helm charts (as of v8.4.x) refer to deprecated ids, therefore it's not possible to install current Mojaloop charts on Kubernetes version above 1.15 without manually changing charts.
+
+Refer to the following issue for more info: [mojaloop/helm#219](https://github.com/mojaloop/helm/issues/219)
+
+#### Fixes
+  
+Ensure that you are deploying the Mojaloop Helm charts on v1.15 of Kubernetes (or microk8s when working locally).
+
+#### Additional details for `microk8s` fix
+
+To check version of `microk8s`:
+   ```bash
+   snap info microk8s
+   ```
+_Note: Look at the end of the output for a row starting with "installed"_
+
+To install most recent supported version:
+   ```bash
+   snap refresh microk8s --channel=1.15/stable --classic
+   ```
+
+
+## 2. Deployment issues
+
+### 2.1. MicroK8s - helm init connection refused<a name="helm_init_connection_refused"></a>
+
+#### Description
+
+The helm init:
+
+   ```bash
+   helm init
+   ```
+
+fails with error when installing locally on `microk8s`:
+
+   ```
+   Error: error installing: Post http://localhost:8080/apis/apps/v1/namespaces/kube-system/deployments: dial tcp 127.0.0.1:8080: connect: connection refused
+   ```
+   
+#### Reason
+
+This may be a missing  `~/.kube/config` file, where helm looks for connection details.
+
+#### Fix - option #1
+
+One of the solutions is to generate that file by issuing:
+
+   ```bash
+   microk8s.kubectl config view --raw > $HOME/.kube/config
+   ```
+
+#### Fix - option #2
+
+Another option is to export the config to a new file:
+
+   ```bash
+   microk8s.kubectl config view --raw > $HOME/.kube/local.config
+   ```
+
+And then export the following env var:
+
+   ```bash
+   export KUBECONFIG=$HOME/.kube/local.config
+   ```
+
+### 2.2. `ERR_NAME_NOT_RESOLVED` Error
 
 #### Description
 
@@ -22,7 +113,7 @@ The following error is displayed when attempting to access an end-point (e.g. ce
   
   * Note that the Mojaloop deployment via Helm can take a few minutes to initially startup depending on the system's available resources and specification. It is recommended that you wait at least 10m for all Pods/Containers to self heal before troubleshooting.
   
-### 1.2. MicroK8s - Connectivity Issues
+### 2.3. MicroK8s - Connectivity Issues
 
 #### Description
 
@@ -59,9 +150,9 @@ microk8s.inspect
 ```
 
 
-## 2. Ingress issues
+## 3. Ingress issues
 
-### 2.1. Ingress rules are not resolving for Nginx Ingress v0.22 or later
+### 3.1. Ingress rules are not resolving for Nginx Ingress v0.22 or later
 
 #### Description
 
@@ -76,7 +167,7 @@ This is due to the changes introduced in Nginx Ingress controllers that are v0.2
     `nginx.ingress.kubernetes.io/rewrite-target: '/'` --> `nginx.ingress.kubernetes.io/rewrite-target: '/$1'`
    
 
-### 2.2. Ingress rules are not resolving for Nginx Ingress earlier than v0.22
+### 3.2. Ingress rules are not resolving for Nginx Ingress earlier than v0.22
 
 #### Description
 
