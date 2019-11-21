@@ -174,7 +174,7 @@ group Get Party Details
         ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO --> ALS_PARTICIPANT_HANDLER: List of PayerFSP Participant Callback Endpoints
         deactivate ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO
 
-        ALS_PARTICIPANT_HANDLER -> ALS_PARTICIPANT_HANDLER: Match PayerFSP Participant Callback Endpoints for\nFSPIOP_CALLBACK_URL_PARTIES_PUT
+        ALS_PARTICIPANT_HANDLER -> ALS_PARTICIPANT_HANDLER: Match PayerFSP Participant Callback Endpoints for\nFSPIOP_CALLBACK_URL_PARTICIPANT_PUT
 
         '********************* Get PayerFSP Participant End-point Information - END ************************
 
@@ -194,7 +194,7 @@ group Get Party Details
         ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO --> ALS_PARTICIPANT_HANDLER: List of PayerFSP Participant Callback Endpoints
         deactivate ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO
 
-        ALS_PARTICIPANT_HANDLER -> ALS_PARTICIPANT_HANDLER: Match PayerFSP Participant Callback Endpoints for\nFSPIOP_CALLBACK_URL_PARTIES_PUT_ERROR
+        ALS_PARTICIPANT_HANDLER -> ALS_PARTICIPANT_HANDLER: Match PayerFSP Participant Callback Endpoints for\nFSPIOP_CALLBACK_URL_PARTICIPANT_PUT_ERROR
 
         '********************* Get PayerFSP Participant End-point Information - END ************************
 
