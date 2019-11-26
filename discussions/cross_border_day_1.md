@@ -21,7 +21,7 @@ In person
 - Razin, Terra Pay
 - Ram, Terra Pay
 - JJ, Google
-- Matt Bohman, Gates
+- Matt Bohan, Gates Foundation
 - David Power, EY
 - James Bush, MB
 - Warren, MB
