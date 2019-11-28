@@ -159,14 +159,12 @@ DROP TABLE IF EXISTS `bulkTransferExtension`;
 CREATE TABLE `bulkTransferExtension` (
   `bulkTransferExtensionId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `bulkTransferId` varchar(36) NOT NULL,
-  `bulkTransferFulfilmentId` bigint(20) unsigned DEFAULT NULL,
+  `isFulfilment` tinyint(1) NOT NULL DEFAULT '0',
   `key` varchar(128) NOT NULL,
   `value` text NOT NULL,
   `createdDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`bulkTransferExtensionId`),
   KEY `bulktransferextension_bulktransferid_index` (`bulkTransferId`),
-  KEY `bulktransferextension_bulktransferfulfilmentid_index` (`bulkTransferFulfilmentId`),
-  CONSTRAINT `bulktransferextension_bulktransferfulfilmentid_foreign` FOREIGN KEY (`bulkTransferFulfilmentId`) REFERENCES `bulkTransferFulfilment` (`bulktransferfulfilmentid`),
   CONSTRAINT `bulktransferextension_bulktransferid_foreign` FOREIGN KEY (`bulkTransferId`) REFERENCES `bulkTransfer` (`bulktransferid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -179,14 +177,11 @@ DROP TABLE IF EXISTS `bulkTransferFulfilment`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `bulkTransferFulfilment` (
-  `bulkTransferFulfilmentId` bigint(20) unsigned NOT NULL,
   `bulkTransferId` varchar(36) NOT NULL,
   `completedDate` datetime NOT NULL,
   `createdDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`bulkTransferFulfilmentId`),
-  UNIQUE KEY `bulktransferfulfilment_bulktransferid_unique` (`bulkTransferId`),
-  CONSTRAINT `bulktransferfulfilment_bulktransferfulfilmentid_foreign` FOREIGN KEY (`bulkTransferFulfilmentId`) REFERENCES `bulkTransferFulfilmentDuplicateCheck` (`bulktransferfulfilmentid`),
-  CONSTRAINT `bulktransferfulfilment_bulktransferid_foreign` FOREIGN KEY (`bulkTransferId`) REFERENCES `bulkTransfer` (`bulktransferid`)
+  PRIMARY KEY (`bulkTransferId`),
+  CONSTRAINT `bulktransferfulfilment_bulktransferid_foreign` FOREIGN KEY (`bulkTransferId`) REFERENCES `bulkTransferFulfilmentDuplicateCheck` (`bulktransferid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -198,12 +193,11 @@ DROP TABLE IF EXISTS `bulkTransferFulfilmentDuplicateCheck`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `bulkTransferFulfilmentDuplicateCheck` (
-  `bulkTransferFulfilmentId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `bulkTransferId` varchar(36) NOT NULL,
-  `hash` varchar(256) DEFAULT NULL,
+  `hash` varchar(256) NOT NULL,
   `createdDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`bulkTransferFulfilmentId`),
-  UNIQUE KEY `bulktransferfulfilmentduplicatecheck_bulktransferid_unique` (`bulkTransferId`)
+  PRIMARY KEY (`bulkTransferId`),
+  CONSTRAINT `bulktransferfulfilmentduplicatecheck_bulktransferid_foreign` FOREIGN KEY (`bulkTransferId`) REFERENCES `bulkTransfer` (`bulktransferid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -275,6 +269,7 @@ CREATE TABLE `currency` (
   `name` varchar(128) DEFAULT NULL,
   `isActive` tinyint(1) NOT NULL DEFAULT '1',
   `createdDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `scale` int(10) unsigned NOT NULL DEFAULT '4',
   PRIMARY KEY (`currencyId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -397,7 +392,7 @@ CREATE TABLE `migration` (
   `batch` int(11) DEFAULT NULL,
   `migration_time` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=130 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=138 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -517,7 +512,7 @@ CREATE TABLE `participantLimit` (
   `participantLimitId` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `participantCurrencyId` int(10) unsigned NOT NULL,
   `participantLimitTypeId` int(10) unsigned NOT NULL,
-  `value` decimal(18,2) NOT NULL DEFAULT '0.00',
+  `value` decimal(18,4) NOT NULL DEFAULT '0.0000',
   `thresholdAlarmPercentage` decimal(5,2) NOT NULL DEFAULT '10.00',
   `startAfterParticipantPositionChangeId` bigint(20) unsigned DEFAULT NULL,
   `isActive` tinyint(1) NOT NULL DEFAULT '1',
@@ -579,8 +574,8 @@ DROP TABLE IF EXISTS `participantPosition`;
 CREATE TABLE `participantPosition` (
   `participantPositionId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `participantCurrencyId` int(10) unsigned NOT NULL,
-  `value` decimal(18,2) NOT NULL,
-  `reservedValue` decimal(18,2) NOT NULL,
+  `value` decimal(18,4) NOT NULL,
+  `reservedValue` decimal(18,4) NOT NULL,
   `changedDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`participantPositionId`),
   KEY `participantposition_participantcurrencyid_index` (`participantCurrencyId`),
@@ -599,8 +594,8 @@ CREATE TABLE `participantPositionChange` (
   `participantPositionChangeId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `participantPositionId` bigint(20) unsigned NOT NULL,
   `transferStateChangeId` bigint(20) unsigned NOT NULL,
-  `value` decimal(18,2) NOT NULL,
-  `reservedValue` decimal(18,2) NOT NULL,
+  `value` decimal(18,4) NOT NULL,
+  `reservedValue` decimal(18,4) NOT NULL,
   `createdDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`participantPositionChangeId`),
   KEY `participantpositionchange_participantpositionid_index` (`participantPositionId`),
@@ -1005,7 +1000,7 @@ CREATE TABLE `settlementParticipantCurrency` (
   `settlementParticipantCurrencyId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `settlementId` bigint(20) unsigned NOT NULL,
   `participantCurrencyId` int(10) unsigned NOT NULL,
-  `netAmount` decimal(18,2) NOT NULL,
+  `netAmount` decimal(18,4) NOT NULL,
   `createdDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `currentStateChangeId` bigint(20) unsigned DEFAULT NULL,
   `settlementTransferId` varchar(36) DEFAULT NULL,
@@ -1115,7 +1110,7 @@ CREATE TABLE `settlementTransferParticipant` (
   `participantCurrencyId` int(10) unsigned NOT NULL,
   `transferParticipantRoleTypeId` int(10) unsigned NOT NULL,
   `ledgerEntryTypeId` int(10) unsigned NOT NULL,
-  `amount` decimal(18,2) NOT NULL,
+  `amount` decimal(18,4) NOT NULL,
   `createdDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`settlementTransferParticipantId`),
   KEY `settlementtransferparticipant_settlementid_index` (`settlementId`),
@@ -1300,7 +1295,7 @@ DROP TABLE IF EXISTS `transfer`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `transfer` (
   `transferId` varchar(36) NOT NULL,
-  `amount` decimal(18,2) NOT NULL,
+  `amount` decimal(18,4) NOT NULL,
   `currencyId` varchar(3) NOT NULL,
   `ilpCondition` varchar(256) NOT NULL,
   `expirationDate` datetime NOT NULL,
@@ -1342,7 +1337,6 @@ CREATE TABLE `transferError` (
   `createdDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`transferId`),
   KEY `transfererror_transferstatechangeid_foreign` (`transferStateChangeId`),
-  CONSTRAINT `transfererror_transferid_foreign` FOREIGN KEY (`transferId`) REFERENCES `transferErrorDuplicateCheck` (`transferid`),
   CONSTRAINT `transfererror_transferstatechangeid_foreign` FOREIGN KEY (`transferStateChangeId`) REFERENCES `transferStateChange` (`transferstatechangeid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -1434,7 +1428,7 @@ CREATE TABLE `transferParticipant` (
   `participantCurrencyId` int(10) unsigned NOT NULL,
   `transferParticipantRoleTypeId` int(10) unsigned NOT NULL,
   `ledgerEntryTypeId` int(10) unsigned NOT NULL,
-  `amount` decimal(18,2) NOT NULL,
+  `amount` decimal(18,4) NOT NULL,
   `createdDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`transferParticipantId`),
   KEY `transferparticipant_transferid_index` (`transferId`),
@@ -1603,4 +1597,4 @@ CREATE TABLE `transferTimeout` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-08-23 12:41:12
+-- Dump completed on 2019-10-14 21:12:45
