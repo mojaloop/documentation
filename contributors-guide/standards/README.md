@@ -4,7 +4,7 @@
 
 ## Style Guide
 
-The Mojaloop Community provides a set of guidelines for the style of code we write. These standards help ensure that the Mojaloop codebase remains high quality, maintainability and consistency. 
+The Mojaloop Community provides a set of guidelines for the style of code we write. These standards help ensure that the Mojaloop codebase remains high quality, maintainable and consistent.
 
 ### Code Style
 
@@ -41,6 +41,8 @@ window.alert('hi');  // ✗ avoid
 >As we start to introduce more Typescript into the codebase, Standard becomes less useful, and can even be detrimental
 >to our development workflow if we try to run standard across the Javascript compiled from Typescript.
 >We need to evaluate other options for Standard in Typescript, such as a combination of Prettier + ESLint
+
+Refer to the [template-typescript-public](https://github.com/mojaloop/template-typescript-public) for the standard typescript configuration.
 
 
 #### YAML
@@ -81,6 +83,8 @@ modules:
 #!/usr/bin/env bash
 ```
 
+This ensures that the script will match the `bash` that is defined in the user's environment, instead of hardcoding to a specific bash at `/usr/bin/bash`. 
+
 - When referring to other files, don't use relative paths:
 
 This is because your script will likely break if somebody runs it from a different directory from where the script is located
@@ -119,7 +123,7 @@ The directory structure guide requires:
 The following Config files help to enforce the code styles outlined above:
 
 #### EditorConfig
-
+`.editorconfig`
 ```ini
 root = true
 
@@ -141,9 +145,117 @@ indent_size = 2
 trim_trailing_whitespace = false
 ```
 
-### Tool and Framework Recommendations
+#### NYC (code coverage tool)
 
->Note: While these are listed as recommendations, these are enforced strictly, and new contributions that don't align with these recommendations may be rejected, or you may be asked to refactor your code before it will be allowed into the Mojaloop Core. For more information, refer to the FAQ [below](#faqs).
+`.nycrc.yml`
+```yml
+temp-directory: "./.nyc_output"
+check-coverage: true
+per-file: true
+lines: 90
+statements: 90
+functions: 90
+branches: 90
+all: true
+include: [
+  "src/**/*.js"
+]
+reporter: [
+  "lcov",
+  "text-summary"
+]
+exclude: [
+  "**/node_modules/**",
+  '**/migrations/**'
+]
+```
+
+### Typescript
+
+`.tsconfig.json`
+```json
+{
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/*.spec.ts",
+    "test",
+    "lib",
+    "coverage"
+  ],
+  "compilerOptions": {
+    "target": "es2018",
+    "module": "commonjs",
+    "lib": [
+      "esnext"
+    ],
+    "importHelpers": true,
+    "declaration": true,
+    "sourceMap": true,
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "moduleResolution": "node",
+    "baseUrl": "./",
+    "paths": {
+      "*": [
+        "src/*",
+        "node_modules/*"
+      ]
+    },
+    "esModuleInterop": true
+  }
+}
+```
+
+`.eslint.js`
+```js
+module.exports = {
+  parser: '@typescript-eslint/parser',  // Specifies the ESLint parser
+  extends: [
+    'plugin:@typescript-eslint/recommended',  // Uses the recommended rules from the @typescript-eslint/eslint-plugin
+    'prettier/@typescript-eslint',  // Uses eslint-config-prettier to disable ESLint rules from @typescript-eslint/eslint-plugin that would conflict with prettier
+    'plugin:prettier/recommended',  // Enables eslint-plugin-prettier and displays prettier errors as ESLint errors. Make sure this is always the last configuration in the extends array.
+  ],
+  parserOptions: {
+    ecmaVersion: 2018,  // Allows for the parsing of modern ECMAScript features
+    sourceType: 'module',  // Allows for the use of imports
+  },
+  rules: {
+    '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/no-var-requires': 'off'
+  },
+  overrides: [
+    {
+      // Disable some rules that we abuse in unit tests.
+      files: ['test/**/*.ts'],
+      rules: {
+        '@typescript-eslint/explicit-function-return-type': 'off',
+      },
+    },
+  ],
+};
+```
+
+### Design + Implementation Guidelines
+
+These guidelines are meant as recommendations for writing code in the Mojaloop community (or code that will be adopted into the community). If you are writing code that you wish to donate code to the community, we ask that you follow these guidelines as much as possible to aid with the consistency and maintainability of the codebase. Donations that adhere to these guidelines will be adopted more easily and swiftly.
+
+For more information, refer to the FAQ [below](#faqs).
+
+#### Tools + Frameworks
 
 - **Web Server:** [`HapiJS`](https://github.com/hapijs/hapi)
 - **Web UI Framework:** [`ReactJS`](https://reactjs.org/)
@@ -157,14 +269,19 @@ trim_trailing_whitespace = false
 
 ### Adopting Open Source Contributions into Mojaloop
 
-This document provides guidelines regarding the adoption of a contribution to the Mojaloop Open Source repositories.
+This section provides guidelines regarding the adoption of a contribution to the Mojaloop Open Source repositories.
+
+>*Note:* Code Contributions are evaluated on a **case-by-case** basis. Contributions that don't align to these guidelines not be accepted or require refactoring before being accepted. Other misalignments to these standards (for example, framework choices) may be added to a roadmap for further improvement and OSS Standardization in the future.
 
 #### Prerequisites
 
-1. The contribution should be in-line with the LevelOne Principles
-2. Basic guidelines regarding status of the contribution \(Code-base / Standards / Designs / Specifications\)
->*Note:* Code Contributions are evaluated on a **case-by-case** basis. Code and Directory style are enforced strictly, so contributions that don't align to these guidelines may be rejected or heavily refactored before being accepted. Other misalignments to these standards (for example, framework choices) may be added to a roadmap for further improvement and OSS Standardization in the future
-3. Basic documentation to get started
+Before a contribution is to be considered for adoption, it:
+
+1. Should be in-line with the LevelOne Principles
+2. Should adhere to the above Style and Design + Implementation Guides
+3. Should contain basic documentation to get started: the more, the better
+4. Contain tests with a high level of coverage. At a minimum, a contribution should contain unit tests, but a test suite with unit, integration and functional tests is preferred. Refer to the [contributors guide](./tools-and-technologies/automated-testing) for more information.
+
 
 #### Guidelines regarding adoption
 
@@ -174,15 +291,7 @@ This document provides guidelines regarding the adoption of a contribution to th
 4. Assess Performance impact
 5. Create action items \(stories\) to update naming, remove/sanitize any items that are not generic
 6. Configuration for 'modes of operation'
-7. Enable CI/CD pipeline
-
-<!-- 
-TODO: rework into the following 3 big steps:
-
-1. to make donation public - experimental / incubation category
-2. have it run run with minimal refactoring - release as ‘snapshots’ (snapshot category)
-3. chart roadmap for it to become a standard ‘release’ version (release category that is standard) 
--->
+7. Enable CI/CD pipelines
 
 ### Versioning
 
@@ -194,7 +303,9 @@ Process for creating new [features and branches](creating-new-features.md) in Mo
 
 ### Pull Request Process
 
-It's a good idea to ask about major changes on [Slack](https://mojaloop.slack.com). Submit pull requests which include both the change and the reason for the change. Pull requests will be denied if they violate the [Level One Principles](https://leveloneproject.org/wp-content/uploads/2016/03/L1P_Level-One-Principles-and-Perspective.pdf)
+It's a good idea to ask about major changes on [Slack](https://mojaloop.slack.com). Submit pull requests which include both the change and the reason for the change. Feel free to use GitHub's "Draft Pull Request" feature to open up your changes for comments and review from the community.
+
+Pull requests will be denied if they violate the [Level One Principles](https://leveloneproject.org/wp-content/uploads/2016/03/L1P_Level-One-Principles-and-Perspective.pdf)
 
 ### Code of conduct 
 
@@ -206,8 +317,11 @@ See [License](https://github.com/mojaloop/mojaloop/blob/master/contribute/Licens
 
 ### FAQs
 
-1. What if I want to contribute code, but it doesn't align with the code style and framework/tool recommendations in this guide?
-[todo outline standard control process]
+__1. What if I want to contribute code, but it doesn't align with the code style and framework/tool recommendations in this guide?__
 
-2. Why so strict? I don't like using tool x or y.
-[todo: answer this question]
+Contributions are accepted on a _case by case_ basis. If your contribution is not yet ready to be fully adopted, we may choose to enter into an incubation phase, where the code is refactored with our help and brought into alignment with the code style and framework/tool recommendations.
+
+
+__2. These standards are outdated, and a newer, cooler tool (or framework, method or language) has come along that will solve problem _x_ for us. How can I update the standards?__
+
+Writing high quality, functional code is a moving target, and we always want to be on the lookout for new tools that will improve the Mojaloop OSS codebase. So please talk to us in the design authority slack channel (`#design-authority`) if you have a recommendation.
