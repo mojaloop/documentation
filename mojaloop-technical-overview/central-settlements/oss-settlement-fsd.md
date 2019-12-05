@@ -24,9 +24,9 @@ The following external references are used in this document:
 
 | Reference | Document                                                                                                                                      |
 |-----------|-----------------------------------------------------------------------------------------------------------------------------------------------|
-|           | [Open API for FSP Interoperability Specification](https://github.com/mojaloop/mojaloop-specification/blob/master/API%20Definition%20v1.0.pdf) |
-|           | Settlement API Interface Definition                                                                                                           |
-|           | Current administration API definition                                                                                                         |
+| Ref_1     | [Open API for FSP Interoperability Specification](https://github.com/mojaloop/mojaloop-specification/blob/master/API%20Definition%20v1.0.pdf) |
+| Ref_2     | Settlement API Interface Definition                                                                                                           |
+| Ref_3     | Current administration API definition                                                                                                         |
 
 Versions
 ========
@@ -1014,7 +1014,7 @@ multi-currency settlement.
 
 #### Change to code supporting closeSettlementWindow resource
 
-The existing API described in Ref_2 (@ggrg: where?) above provides a single function
+The existing API described in Ref_2 above provides a single function
 (**closeSettlementWindow**) to manage settlement windows. This function allows
 its user to select a settlement window by ID number and to input a new status
 for the window and a reason for that status.
@@ -1159,8 +1159,6 @@ in the ERD:
 
 -   settlementModel
 
--   settlementType
-
 In addition, the **settlementmodel** table has foreign keys to two existing
 tables, as follows:
 
@@ -1203,7 +1201,7 @@ database would be as follows:
 | Ledger Entry Type | Ledger Account Type       |
 |-------------------|---------------------------|
 | PRINCIPAL_VALUE   | POSITION                  |
-| INTERCHANGE_FEE   | New account type required |
+| INTERCHANGE_FEE   | INTERCHANGE_FEE           |
 | HUB_FEE           | HUB_FEE                   |
 
 #### Changes to the **settlement** table
