@@ -1076,10 +1076,10 @@ GROUP BY swc.settlementWindowContentId, pc.participantCurrencyId,
 #### createSettlement
 
 The parameters for the **createSettlement** resource should be extended to
-include the settlement model for which the settlement is required. [Story \#13]
+include the settlement model for which the settlement is required.
 
 When the settlement is created, the settlement model for which the settlement is
-required should be added to the new row in the **settlement** table.
+required should be added to the new row in the **settlement** table. [Story \#1097]
 
 When a settlement is requested, the switch should check that the settlement
 model for which settlement is being requested requires NET settlement and not
@@ -1091,51 +1091,37 @@ should be changed to check that some of the settlement windows associated with
 the proposed settlement contain entries for the settlement model requested. If
 there are no entries for the settlement model requested for any of the
 settlement windows requested, then an error should be returned and the
-settlement request rejected. [Story \#14]
+settlement request rejected. [Story \#1096]
 
 #### Updating the progress of a settlement.
 
 The process to update the status of a settlement described in Section 5.1.7.1.2
 above allows the caller to specify the currency whose status is to be changed.
 Since the settlement will now be for a settlement model, this parameter should
-be removed. [Story \#15]
+be removed. (@ggrg: not sure what needs to be removed)
 
 When the status for a settlement participant is updated, this will result in
 changes to the status of all the records in the **settlementContentAggregation**
-table for the given participant. These records can be identified using the
+table for the given participant (@ggrg: we don't have attached state to this table). These records can be identified using the
 following query:
-
-SELECT
-
-P.settlementContentAggregationId
-
-FROM
-
-   settlement S
-
-INNER JOIN settlementSettlementWindow W ON S.settlementId = W.settlementId
-
-INNER JOIN settlementModel M ON S.settlementSettlementModelId =
-M.idSettlementModel
-
-INNER JOIN settlementWindowContent C ON W.settlementWindowId =
-C.settlementWindowId
-
-INNER JOIN settlementContentAggregation P ON C.settlementWindowContentId =
-P.settlementWindowContentId
-
-INNER JOIN participantCurrency PC ON P.participantCurrencyId =
-PC.participantCurrencyId
-
-WHERE
-
-   S.settlementId = \@mySettlementId
-
-AND PC.ledgerAccountTypeId = M.ledgerAccountTypeId
-
-AND (C.currencyId = M.settlementCurrencyId OR M.settlementCurrencyId IS NULL)
-
-;
+```
+SELECT sca.settlementContentAggregationId
+FROM settlement s
+INNER JOIN settlementSettlementWindow ssw
+  ON s.settlementId = ssw.settlementId
+INNER JOIN settlementModel sm
+  ON sm.settlementModelId = s.settlementModelId
+INNER JOIN settlementWindowContent swc
+  ON swc.settlementWindowId = ssw.settlementWindowId
+INNER JOIN settlementContentAggregation sca
+  ON sca.settlementWindowContentId = swc.settlementWindowContentId
+INNER JOIN participantCurrency pc
+  ON pc.participantCurrencyId = sca.participantCurrencyId
+WHERE s.settlementId = @mySettlementId
+AND pc.ledgerAccountTypeId = sm.ledgerAccountTypeId
+AND (swc.currencyId = sm.settlementCurrencyId 
+  OR sm.settlementCurrencyId IS NULL);
+```
 
 [Story \#16]
 
@@ -1167,13 +1153,13 @@ A number of new tables are required to define a settlement model and to store
 the enumerations for its definition types. This comprises the following tables
 in the ERD:
 
--   Settlementdelay
+-   settlementDelay
 
--   Settlementinterchange
+-   settlementInterchange
 
--   Settlementmodel
+-   settlementModel
 
--   Settlementtype
+-   settlementType
 
 In addition, the **settlementmodel** table has foreign keys to two existing
 tables, as follows:
@@ -1660,18 +1646,16 @@ Enumerations
 ------------
 
 The following enumerations are required to support the new ERD:
+```
+DELETE FROM settlementGranularity;
+INSERT INTO settlementGranularity (name)
+VALUES ('GROSS'), ('NET');
 
-DELETE FROM settlementgranularity;
+DELETE FROM settlementInterchange;
+INSERT INTO settlementInterchange (name)
+VALUES ('BILATERAL'), ('MULTILATERAL');
 
-INSERT INTO settlementgranularity (settlementTypeName) VALUES ('GROSS'),
-('NET');
-
-DELETE FROM settlementinterchange;
-
-INSERT INTO settlementinterchange (interchangetypename) VALUES ('BILATERAL'),
-('MULTILATERAL');
-
-DELETE FROM settlementdelay;
-
-INSERT INTO settlementdelay(settlementdelayname) VALUES ('IMMEDIATE'),
-('DEFERRED');
+DELETE FROM settlementDelay;
+INSERT INTO settlementDelay(name)
+VALUES ('IMMEDIATE'), ('DEFERRED');
+```
