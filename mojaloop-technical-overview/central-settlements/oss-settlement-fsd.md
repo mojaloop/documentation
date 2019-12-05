@@ -925,7 +925,8 @@ currency. The full column structure of the table is as follows:
 | **settlementWindowId**                  | The settlement window that the record belongs to. | BIGINT(20). Unsigned, not null. Foreign Key to **settlementWindow**                   |
 | **ledgerAccountTypeId**                 | The ledger account that the record refers to.     | INT(10). Unsigned, not null. Foreign key to **ledgerAccountType**                     |
 | **currencyId**                          | The currency that the record refers to.           | VARCHAR(3). Not null. Foreign key to **currency**.                                    |
-| **settlementWindowContentCurrentState** | The current state of this entry                   | BIGINT(20). Unsigned, not null. Foreign key to **settlementWindowContentStateChange** |
+| **createdDate**                         | The date and time when the record was created.    | DATETIME. Not null. Defaults to CURRENT_TIMESTAMP.                                    |
+| **currentStateChangeId**                | The current state of this entry.                  | BIGINT(20). Unsigned. Foreign key to **settlementWindowContentStateChange**           |
 
  
 
@@ -942,7 +943,7 @@ structure of the table is as follows:
 | **settlementWindowContentId**            | The settlement window content record whose status is being tracked. | BIGINT(20). Unsigned, not null. Foreign Key to **settlementWindowContent** |
 | **settlementWindowStateId**              | The record’s status.                                                | VARCHAR(50). Not null. Foreign key to **settlementWindowState**            |
 | **reason**                               | An optional field giving the reason for the state being set.        | VARCHAR(512).                                                              |
-| **createdDate**                          | The date and time when the record was created                       | DATETIME. Defaults to CURRENT_TIMESTAMP                                    |
+| **createdDate**                          | The date and time when the record was created                       | DATETIME. Not null. Defaults to CURRENT_TIMESTAMP                          |
 
  
 
@@ -955,31 +956,18 @@ The column structure of the **settlementContentAggregation** table should be
 modified as follows:
 
 1.  Remove the following foreign keys from the table:
-
     1.  settlementtransferparticipant_settlementid_foreign
-
     2.  settlementtransferparticipant_settlementwindowid_foreign
-
 2.  Remove the following columns from the table:
-
     1.  settlementId
-
     2.  settlementWindowId
-
 3.  Add the following column to the table:
-
     1.  Column name: **settlementWindowContentId**
-
     2.  Attributes: BIGINT(20), unsigned, not null
-
 4.  Add the following foreign key to the table:
-
     1.  Name: settlementContentAggregation_settlementwindowcontent_foreign
-
     2.  Child column **settlementWindowContentId**
-
     3.  Refers to table: **settlementWindowContent**
-
     4.  Refers to column: **settlementWindowContentId**
 
 All database scripts which use the **settlementTransferParticipant** table will
@@ -1007,19 +995,17 @@ The **settlement** table in the central ledger database needs to be modified to
 add a *settlementModel* column. This column should have the following
 characteristics:
 
-·       The column should be required (NOT NULL) and unsigned.
-
-·       The column’s data type should be smallint(6)
-
-·       The column should be defined as a foreign key reference to the
-*idsettlementmodel* field of the **settlementModel** table.
+- The column should be required (NOT NULL) and unsigned.
+- The column’s data type should be integer(10)
+- The column should be defined as a foreign key reference to the
+*settlementModelId* field of the **settlementModel** table.
 
 When this change is applied to an existing database, a settlement model to
 describe the default settlement should be created. The settlementCurrencyId
 column in this model should be left blank (= all currencies.) The
 settlementModel column in all existing records in the settlement table should be
 set to point to this model’s ID. A script to apply this change should be
-created, tested and stored in the repository. [Story \#6]
+created, tested and stored in the repository.
 
 ### Changes to processing
 
@@ -1028,7 +1014,7 @@ multi-currency settlement.
 
 #### Change to code supporting closeSettlementWindow resource
 
-The existing API described in Ref_2 above provides a single function
+The existing API described in Ref_2 (@ggrg: where?) above provides a single function
 (**closeSettlementWindow**) to manage settlement windows. This function allows
 its user to select a settlement window by ID number and to input a new status
 for the window and a reason for that status.
@@ -1037,103 +1023,55 @@ When a settlement window is closed, the code supporting this activity should
 perform two functions, as follows. These functions should be performed in the
 background and without impacting system performance.
 
-##### Generate records in the settlementWindowContent table [Story \#11]
+##### Generate records in the settlementWindowContent table [Story \#1095]
 
 The code should generate a record in the **settlementWindowContent** table for
 each ledger entry type/currency combination found in the transfers in the
 settlement window. This information can be obtained from the following query:
-
+```
 SELECT DISTINCT
+  @mySettlementWindowId, pc.ledgerAccountTypeId, pc.currencyId
+FROM transferFulfilment tf
+INNER JOIN transferParticipant tp
+  ON tp.transferId = tf.transferId
+INNER JOIN participantCurrency pc 
+  ON pc.participantCurrencyId = tp.participantCurrencyId
+WHERE tf.settlementWindowId = @mySettlementWindowId;
+```
 
-   \@mySettlementId
-
-, PC.currencyId
-
-, PC.ledgerAccountTypeId
-
-FROM
-
-   transferFulfilment F
-
-INNER JOIN transferParticipant P on F.transferId = P.transferId
-
-INNER JOIN participantCurrency PC on P.participantCurrencyId =
-PC.participantCurrencyId
-
-WHERE
-
-   F.settlementWindowId = \@mySettlementWindowId;
-
-##### Generate records in the settlementContentTransferParticipant table [Story \#12]
+##### Generate records in the settlementContentAggregation table [Story \#1095]
 
 The code should calculate the aggregate values for all transfers which form part
 of that settlement window and store them in the **settlementContentAggregation**
 table. Aggregates should be produced for the following segmentation:
 
 1.  Participant
-
 2.  Currency
-
 3.  Ledger account type
-
 4.  Participant role type
-
 5.  Ledger entry type
 
 The following query will perform this function for a given settlement window:
 
+```
 INSERT INTO settlementContentAggregation
-
-   (settlementWindowContentId, participantCurrencyId,
-transferParticipantRoleTypeId,
-
-ledgerEntryTypeId, amount, createdDate)
-
-SELECT
-
-   C.settlementWindowContentId
-
-, PC.participantCurrencyId
-
-, P.transferParticipantRoleTypeId
-
-, P.ledgerEntryTypeId
-
-, sum(P.amount)
-
-, CURRENT_TIMESTAMP
-
-FROM
-
-   transferFulfilment F
-
-INNER JOIN transferParticipant P on F.transferId = P.transferId
-
-INNER JOIN participantCurrency PC on P.participantCurrencyId =
-PC.participantCurrencyId
-
-INNER JOIN settlementWindowContent C ON C.settlementWindowId =
-F.settlementWindowId
-
-        AND C.ledgerAccountTypeId = PC.ledgerAccountTypeId
-
-     AND C.currencyId = PC.currencyId
-
-WHERE
-
-   F.settlementWindowId = \@mySettlementId
-
-GROUP BY
-
-   C.settlementWindowContentId
-
-, PC.participantCurrencyId
-
-, P.transferParticipantRoleTypeId
-
-, P.ledgerEntryTypeId
-
-   ;
+  (settlementWindowContentId, participantCurrencyId, 
+  transferParticipantRoleTypeId, ledgerEntryTypeId, amount)
+SELECT swc.settlementWindowContentId, pc.participantCurrencyId,
+  tp.transferParticipantRoleTypeId, tp.ledgerEntryTypeId, SUM(tp.amount)
+FROM transferFulfilment tf
+INNER JOIN transferParticipant tp
+  ON tf.transferId = tp.transferId
+INNER JOIN participantCurrency pc 
+  ON pc.participantCurrencyId = tp.participantCurrencyId
+INNER JOIN settlementWindowContent swc
+  ON swc.settlementWindowId = tf.settlementWindowId
+  AND swc.ledgerAccountTypeId = pc.ledgerAccountTypeId
+  AND swc.currencyId = pc.currencyId
+WHERE tf.settlementWindowId = @mySettlementWindowId
+GROUP BY swc.settlementWindowContentId, pc.participantCurrencyId, 
+   tp.transferParticipantRoleTypeId, tp.ledgerEntryTypeId;
+```
 
 #### createSettlement
 
