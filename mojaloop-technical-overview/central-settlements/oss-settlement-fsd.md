@@ -23,17 +23,17 @@ References
 The following external references are used in this document:
 
 | Reference | Document |
-| --- | --- |
-| Open API for FSP Interoperability Specification | [API Definition v1.0](https://github.com/mojaloop/mojaloop-specification/blob/master/documents/API%20Definition%20v1.0.md) |
-| Settlement API Interface Definition | [API Definition](https://github.com/mojaloop/central-settlement/blob/master/APIDefinition.md)|
-| Current administration API definition | [API](https://github.com/mojaloop/central-ledger/blob/master/API.md)|
+| :--- | :--- |
+| <sup>1</sup> | [Open API for FSP Interoperability Specification](http://mojaloop.io/mojaloop-specification/documents/API%20Definition%20v1.0.html) |
+| <sup>2</sup> | [Settlement API Interface Definition](https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json)|
+| <sup>3</sup> | [Current administration API definition](https://mojaloop.io/documentation/api/central-ledger-api-specification.html)|
 | | |
 
 Versions
 ========
 
 | Version | Description      | Author           | Date       | Changes tracked |
-|---------|------------------|------------------|------------|-----------------|
+|:---------|:------------------|:------------------|:------------|:-----------------|
 | 1.0     | Baseline version | Michael Richards | 2 Dec 2019 | No              |
 |         |                  |                  |            |                 |
 
@@ -106,7 +106,7 @@ transfer. The current values are:
 1.  PRINCIPLE_VALUE. This designates the funds moved as the content of a
     transfer in the Interoperability API Specification sense of that term (i.e.
     the **amount.amount** item in the **Transaction** object described in
-    Section 7.4.17 of the Interoperability API specification.) It should be
+    [Section 7.4.17](https://mojaloop.io/mojaloop-specification/documents/API%20Definition%20v1.0.html#7317-ilpcondition) of the Interoperability API specification<sub>[1](https://mojaloop.io/mojaloop-specification/documents/API%20Definition%20v1.0.html)</sup>.) It should be
     spelt “principal.”
 
 2.  INTERCHANGE_FEE. This designates fees paid between participants in the
@@ -311,8 +311,7 @@ stores other types of funds movement as well.
 This document will therefore adopt the following convention:
 
 -   “Transfers” refers to the content of instructions issued using the
-    **/transfers** resource of the Interoperability API definition. (see Section
-    6.7 of the Interoperability API definition.)
+    **/transfers** resource of the Interoperability API definition<sup>[1](http://mojaloop.io/mojaloop-specification/documents/API%20Definition%20v1.0.html)</sup>. (see [Section 6.7](http://mojaloop.io/mojaloop-specification/documents/API%20Definition%20v1.0.html#67-api-resource-transfers) of the Interoperability API definition<sup>[1](http://mojaloop.io/mojaloop-specification/documents/API%20Definition%20v1.0.html)</sup>.)
 
 -   “Transactions” refers to all movements of funds which are tracked by the
     switch.
@@ -369,7 +368,7 @@ settlement window.
 Records may be created for transactions which are not transfers. Non-transfer
 transactions have their ilpFulfilment set to 0.
 
-The settlement API described in Ref_2 above contains a resource
+The settlement API <sup>[2](https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json)</sup> contains a resource
 (**closeSettlementWindow**) to allow an administrator to close a settlement
 window and create a new one. The resource takes a settlement window ID as part
 of the query string, together with a string describing the status to be assigned
@@ -1029,7 +1028,7 @@ multi-currency settlement.
 
 #### Change to code supporting closeSettlementWindow resource
 
-The existing API described in Ref_2 above provides a single function
+The existing API <sup>[2](https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json)</sup> provides a single function
 (**closeSettlementWindow**) to manage settlement windows. This function allows
 its user to select a settlement window by ID number and to input a new status
 for the window and a reason for that status.
@@ -1311,7 +1310,7 @@ following functions:
 
 #### Close a settlement window
 
-The existing API definition (see Ref_2 above) supports a
+The existing API definition <sup>[2](https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json)</sup> supports a
 **closeSettlementWindow** resource. This function allows its user to select a
 settlement window by ID number and to input a new status for the window and a
 reason for that status. This resource will retain its current signature, but the
@@ -1396,7 +1395,7 @@ S.settlementId
 
 #### Getting information about a settlement window
 
-The existing API definition (see Ref_2 above) supports a
+The existing API definition <sup>[2](https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json)</sup> supports a
 **getSettlementWindowById** resource. This function allows its user to obtain
 information about a settlement window by giving the ID that was returned when
 the settlement window was created.
@@ -1407,7 +1406,7 @@ window belongs.
 
 #### Getting information about settlement windows using parameters
 
-The existing API definition (see Ref_2 above) supports a
+The existing API definition <sup>[2](https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json)</sup> supports a
 **getSettlementWindowsByParams** resource. This function allows its user to
 obtain information about all settlement windows which meet the criteria
 specified by the user. The following changes will need to be made to this call:
@@ -1423,7 +1422,7 @@ specified by the user. The following changes will need to be made to this call:
 
 #### Requesting a settlement
 
-The existing API definition (see Ref_2 above) supports a **createSettlement**
+The existing API definition <sup>[2](https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json)</sup> supports a **createSettlement**
 resource. This function allows its user to request a settlement for a given set
 of settlement windows, which are passed to the resource as parameters. The
 following changes will need to be made to this call:
@@ -1451,7 +1450,7 @@ describe the settlement.
 
 #### Returning the status of a settlement
 
-The existing API definition (see Ref_2 above) supports a **getSettlementById**
+The existing API definition <sup>[2](https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json)</sup> supports a **getSettlementById**
 resource. This function allows its user to obtain information about a settlement
 by giving the ID that was returned when the settlement was created.
 
@@ -1468,7 +1467,7 @@ this in the definition of the **Settlement** object.
 
 #### Getting information about settlements using parameters
 
-The existing API definition (see Ref_2 above) supports a
+The existing API definition<sup>[2](https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json)</sup> supports a
 **getSettlementsByParams** resource. This function allows its user to obtain
 information about all settlements by giving the ID that was returned when the
 settlement was created. The following changes will need to be made to this call:
@@ -1480,7 +1479,7 @@ settlement was created. The following changes will need to be made to this call:
 
 #### Getting information about a specific participant in a settlement
 
-The existing API definition (see Ref_2 above) supports a
+The existing API definition <sup>[2](https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json)</sup>  supports a
 **getSettlementBySettlementParticipant** resource. This function allows its user
 to obtain information about a settlement which meet the criteria specified by
 the user. The following changes will need to be made to this call:
@@ -1491,7 +1490,7 @@ the user. The following changes will need to be made to this call:
 
 #### Updating a specific settlement
 
-The existing API definition (see Ref_2 above) supports an
+The existing API definition <sup>[2](https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json)</sup> supports an
 **updateSettlementById** resource. This function allows its user to update
 information about a settlement by giving the ID that was returned when the
 settlement was created.
@@ -1502,7 +1501,7 @@ further processing will be required for this call.
 
 #### Updating a settlement for a specific participant
 
-The existing API definition (see Ref_2 above) supports an
+The existing API definition <sup>[2](https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json)</sup> supports an
 **updateSettlementBySettlementParticipant** resource. This function allows its
 user to update information about a settlement by giving the ID that was returned
 when the settlement was created, and the participant whose information is to be
@@ -1514,7 +1513,7 @@ further processing will be required for this call.
 
 #### Updating a settlement for a specific participant and account
 
-The existing API definition (see Ref_2 above) supports an
+The existing API definition <sup>[2](https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json)</sup> supports an
 **updateSettlementBySettlementParticipantAccount** resource. This function
 allows its user to update information about a settlement by giving the ID that
 was returned when the settlement was created, and the participant and account
@@ -1526,20 +1525,18 @@ further processing will be required for this call.
 
 #### Recording the deposit of funds by a participant
 
-The existing administration API (see Ref_3 above) contains functions to enable
+The existing administration API <sup>[3](https://mojaloop.io/documentation/api/central-ledger-api-specification.html)</sup> contains functions to enable
 an administrator to record a deposit made by a participant to an account. This
 process is described in Section 5.2 above. The API should be changed to align it
-with the structures used in the existing settlement API described in Ref_2
-above. In addition, the signature of the API should be extended to allow the
+with the structures used in the existing settlement API <sup>[2](https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json)</sup>. In addition, the signature of the API should be extended to allow the
 administrator to specify the account type that will be updated by the deposit.
 
 #### Recording the withdrawal of funds by a participant
 
-The existing administration API (see Ref_3 above) contains functions to enable
+The existing administration API <sup>[3](https://mojaloop.io/documentation/api/central-ledger-api-specification.html)</sup> contains functions to enable
 an administrator to record a withdrawal made by a participant from an account.
 This process is described in Section 5.3 above. The API should be changed to
-align it with the structures used in the existing settlement API described in
-Ref_2 above. In addition, the signature of the API should be extended to allow
+align it with the structures used in the existing settlement API <sup>[2](https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json)</sup>. In addition, the signature of the API should be extended to allow
 the administrator to specify the account type that will be updated by the
 withdrawal.
 
@@ -1716,6 +1713,8 @@ ERD
 ===
 
 The following ERD describes the new data structures required to model settlements.
+
+![](/mojaloop-technical-overview/central-settlements/assets/diagrams/Settlement_ERD.png)
 
 Enumerations
 ------------
