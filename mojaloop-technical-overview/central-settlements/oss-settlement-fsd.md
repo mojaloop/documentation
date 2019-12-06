@@ -22,11 +22,12 @@ References
 
 The following external references are used in this document:
 
-| Reference | Document                                                                                                                                      |
-|-----------|-----------------------------------------------------------------------------------------------------------------------------------------------|
-|           | [Open API for FSP Interoperability Specification](https://github.com/mojaloop/mojaloop-specification/blob/master/API%20Definition%20v1.0.pdf) |
-|           | Settlement API Interface Definition                                                                                                           |
-|           | Current administration API definition                                                                                                         |
+| Reference | Document |
+| --- | --- |
+| Open API for FSP Interoperability Specification | [API Definition v1.0](https://github.com/mojaloop/mojaloop-specification/blob/master/documents/API%20Definition%20v1.0.md) |
+| Settlement API Interface Definition | [API Definition](https://github.com/mojaloop/central-settlement/blob/master/APIDefinition.md)|
+| Current administration API definition | [API](https://github.com/mojaloop/central-ledger/blob/master/API.md)|
+| | |
 
 Versions
 ========
@@ -1281,6 +1282,7 @@ database would be as follows:
 | PRINCIPAL_VALUE   | POSITION                  |
 | INTERCHANGE_FEE   | New account type required |
 | HUB_FEE           | HUB_FEE                   |
+|                   |                           |
 
 #### Changes to the **settlement** table
 
@@ -1713,10 +1715,7 @@ Domain class diagram
 ERD
 ===
 
-The following ERD describes the new data structures required to model
-settlements.
-
-![](media/4f8f8030bce778e7eb338bbc69c21f6a.png)
+The following ERD describes the new data structures required to model settlements.
 
 Enumerations
 ------------
