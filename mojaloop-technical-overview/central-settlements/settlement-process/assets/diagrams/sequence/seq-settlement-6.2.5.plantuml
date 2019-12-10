@@ -110,7 +110,7 @@ group Acknowledgement of Settlement Transfer
         SETTLE_DAO <-- DB: Return **settlementAccountsList**
         deactivate DB
 
-        SETTLE_DAO -> DB: Retrive settlement windows information
+        SETTLE_DAO -> DB: <color #red>Retrieve settlement windows information —> no longer possible</color>\n<color #red><b>We need to add</b> settlementContentAggregation.settlementId</color>\n<color #red>(nullable) to be populated during createSettlement</color>
         activate DB
         hnote over DB #lightyellow
             SELECT ssw.settlementWindowId, swsc.settlementWindowStateId,
