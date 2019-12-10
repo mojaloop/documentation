@@ -18,7 +18,8 @@
  * Gates Foundation
  - Name Surname <name.surname@gatesfoundation.com>
 
- * Georgi Georgiev <georgi.georgiev@modusbox.com>
+ * ModusBox
+ - Georgi Georgiev <georgi.georgiev@modusbox.com>
  --------------
  ******'/
 
@@ -96,6 +97,7 @@ group Close Settlement Window
             end note
 
             SETTLE_DAO -> DB: Close requested window
+            activate DB
             hnote over DB #lightyellow
                 INSERT INTO **settlementWindowStateChange**
                        (settlementWindowId, settlementWindowStateId, reason, createdDate)
@@ -105,6 +107,7 @@ group Close Settlement Window
             deactivate DB
 
             SETTLE_DAO -> DB: Update pointer to current state change id
+            activate DB
             hnote over DB #lightyellow
                 UPDATE **settlementWindow**
                 SET currentStateChangeId = {settlementWindowStateChangeId}
@@ -132,6 +135,7 @@ group Close Settlement Window
             deactivate DB
 
             SETTLE_DAO -> DB: Update pointer to current state change id
+            activate DB
             hnote over DB #lightyellow
                 UPDATE **settlementWindow**
                 SET currentStateChangeId = {newSettlementWindowStateChangeId}
@@ -140,6 +144,84 @@ group Close Settlement Window
             deactivate DB
         end
         SSAPI <-- SETTLE_DAO: Return success
+        group <color #red>DB TRANSACTION (async)</color>
+            note right of SETTLE_DAO #lightgray
+                let **transactionTimestamp** = now()
+            end note
+
+            SETTLE_DAO -> DB: Determine window content and insert
+            activate DB
+            hnote over DB #lightyellow
+                INSERT INTO **settlementWindowContent** (settlementWindowId, ledgerAccountTypeId, currencyId)
+                SELECT DISTINCT {id} settlementWindowId, pc.ledgerAccountTypeId, pc.currencyId
+                FROM **transferFulfilment** tf
+                JOIN **transferParticipant** tp
+                ON tp.transferId = tf.transferId
+                JOIN **participantCurrency** pc
+                ON pc.participantCurrencyId = tp.participantCurrencyId
+                WHERE tf.settlementWindowId = {id}
+            end hnote
+            deactivate DB
+
+            SETTLE_DAO -> DB: Aggregate window data and insert
+            activate DB
+            hnote over DB #lightyellow
+                INSERT INTO **settlementContentAggregation** (settlementWindowContentId, participantCurrencyId, 
+                    transferParticipantRoleTypeId, ledgerEntryTypeId, amount)
+                SELECT swc.settlementWindowContentId, pc.participantCurrencyId,
+                    tp.transferParticipantRoleTypeId, tp.ledgerEntryTypeId, SUM(tp.amount)
+                FROM **transferFulfilment** tf
+                JOIN **transferParticipant** tp
+                ON tf.transferId = tp.transferId
+                JOIN **participantCurrency** pc
+                ON pc.participantCurrencyId = tp.participantCurrencyId
+                JOIN **settlementWindowContent** swc
+                ON swc.settlementWindowId = tf.settlementWindowId
+                AND swc.ledgerAccountTypeId = pc.ledgerAccountTypeId
+                AND swc.currencyId = pc.currencyId
+                WHERE tf.settlementWindowId = {id}
+                GROUP BY swc.settlementWindowContentId, pc.participantCurrencyId, 
+                    tp.transferParticipantRoleTypeId, tp.ledgerEntryTypeId;
+            end hnote
+            deactivate DB
+
+            SETTLE_DAO -> DB: <color #red>Insert initial content aggregation state change</color>
+            activate DB
+            hnote over DB #lightyellow
+                INSERT INTO **settlementContentAggregationStateChange**
+                    (settlementContentAggregationId, settlementWindowStateId)
+                SELECT sca.settlementContentAggregationId, 'CLOSED'
+                FROM **settlementWindowContent** swc
+                JOIN **settlementContentAggregation** sca
+                ON sca.settlementWindowContentId = swc.settlementWindowContentId
+                WHERE swc.settlementWindowId = {id}
+            end hnote
+            deactivate DB
+
+            SETTLE_DAO -> DB: <color #red>Update pointers to current state change ids (<b>knex</b>)</color>
+            activate DB
+            hnote over DB #lightyellow
+                UPDATE **settlementContentAggregation**
+                FROM **settlementContentAggregation** sca
+                JOIN (
+                    SELECT scacs.settlementContentStateAggregationId, 
+                        MAX(scacs.settlementContentAggregationStateChangeId) AS currentStateChangeId
+                    FROM **settlementContentAggregationStateChange** scacs
+                    JOIN **settlementContentAggregation** sca2
+                    ON sca2.settlementContentAggregationId = scacs.settlementContentAggregationId
+                    JOIN **settlementWindowContent** swc2
+                    ON swc2.settlementWindowContentId = sca2.settlementWindowContentId
+                    WHERE swc2.settlementWindowId = {id}
+                    GROUP BY settlementContentStateAggregationId) scasc
+                ON scasc.settlementContentStateAggregationId = sca.settlementContentStateAggregationId
+                SET currentStateChangeId = scasc.currentStateChangeId
+                WHERE settlementWindowContentId IN (
+                    SELECT settlementWindowContentId
+                    FROM settlementWindowContent
+                    WHERE settlementWindowId = {id})
+            end hnote
+            deactivate DB
+        end
         deactivate SETTLE_DAO
 
         note left of SSAPI #yellow
