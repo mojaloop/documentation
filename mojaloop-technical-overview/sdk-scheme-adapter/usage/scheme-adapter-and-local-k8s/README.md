@@ -16,7 +16,7 @@ A detailed documentation for dfsps who want to test the mojaloop cluster deploym
 Please follow the below link to deploy your own cluster on local system.
 https://mojaloop.io/documentation/deployment-guide/
 
-A Linux based operating system is recommended and atleast 16GB Ram and 4 core processor is required.
+A Linux based operating system is recommended and at least 16GB Ram and 4 core processor is required.
 
 After installation please complete the New FSP Onboarding collection available at the below link.
 https://github.com/mojaloop/postman
@@ -178,4 +178,3 @@ curl -X POST \
 ```
 
 You should get a response with COMPLETED currentState.
-If you get 
