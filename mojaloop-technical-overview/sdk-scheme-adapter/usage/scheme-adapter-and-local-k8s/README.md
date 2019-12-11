@@ -91,8 +91,8 @@ docker-compose up -d
 
 ### Additional postman collections
 Download the following files 
-* ["Mojaloop-Local.postman_environment_modified.json"](./postman_files/Mojaloop-Local.postman_environment_modified.json)
-* ["OSS-Custom-FSP-Onboaring-SchemeAdapter-Setup.postman_collection.json"](./postman_files/OSS-Custom-FSP-Onboaring-SchemeAdapter-Setup.postman_collection.json)
+* [Mojaloop-Local.postman_environment_modified.json](assets/postman_files/Mojaloop-Local.postman_environment_modified.json)
+* [OSS-Custom-FSP-Onboaring-SchemeAdapter-Setup.postman_collection.json](assets/postman_files/OSS-Custom-FSP-Onboaring-SchemeAdapter-Setup.postman_collection.json)
 
 Point the following hostnames to your local machine IP by adding the below line in /etc/hosts file
 ```
