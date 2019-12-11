@@ -18,7 +18,8 @@
  * Gates Foundation
  - Name Surname <name.surname@gatesfoundation.com>
 
- * Georgi Georgiev <georgi.georgiev@modusbox.com>
+ * ModusBox
+ - Georgi Georgiev <georgi.georgiev@modusbox.com>
  --------------
  ******'/
 
@@ -104,7 +105,9 @@ activate OPERATOR
         SSAPI <-- SETTLE_DAO: Return **accounts**
         deactivate SETTLE_DAO
 
-        deactivate SETTLE_DAO
+        note left of SSAPI #lightgray
+            <color #red>Are we going to report window content related info below?</color>
+        end note
         note left of SSAPI #yellow
             {
                 "id": settlement.settlementId,
