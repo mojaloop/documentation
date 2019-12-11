@@ -22,51 +22,55 @@ git clone https://github.com/mojaloop/mojaloop-simulator.git
 ```
 * Edit the file src/docker-compose.yml and add the container names for all the containers. Please refer the following lines
 
-    ```
-    version: '3'
-    services:
-     redis1:
-       image: "redis:5.0.4-alpine"
-       container_name: redis1
-     sim:
-       image: "mojaloop-simulator-backend"
-       build: ../
-       env_file: ./sim-backend.env
-       container_name: ml_sim1
-       ports:
-         - "13000:3000"
-         - "3001:3001"
-         - "3003:3003"
-       depends_on:
-         - scheme-adapter
-     scheme-adapter:
-       image: "mojaloop/sdk-scheme-adapter:latest"
-       env_file: ./scheme-adapter.env
-       container_name: sa_sim1
-       ports:
-         - "13500:3000"
-         - "14000:4000"
-       depends_on:
-         - redis1
-    ```
+```
+version: '3'
+services:
+  redis1:
+    image: "redis:5.0.4-alpine"
+    container_name: redis1
+  sim:
+    image: "mojaloop-simulator-backend"
+    build: ../
+    env_file: ./sim-backend.env
+    container_name: ml_sim1
+    ports:
+      - "13000:3000"
+      - "3001:3001"
+      - "3003:3003"
+    depends_on:
+      - scheme-adapter
+  scheme-adapter:
+    image: "mojaloop/sdk-scheme-adapter:latest"
+    env_file: ./scheme-adapter.env
+    container_name: sa_sim1
+    ports:
+      - "13500:3000"
+      - "14000:4000"
+    depends_on:
+      - redis1
+```
 
 * Edit the file src/sim-backend.env file and change the container name of the scheme adapter in that. Please refer the following lines.
 
-    ```
-    OUTBOUND_ENDPOINT=http://sa_sim1:4001
-    ```
+```
+OUTBOUND_ENDPOINT=http://sa_sim1:4001
+```
 
 * Edit the file src/scheme-adapter.env file and change the container names of the another scheme adapter and mojaloop simulator. Please refer the following lines
 
-    ```
-    DFSP_ID=payeefsp
-    CACHE_HOST=redis1
-    PEER_ENDPOINT=sa_sim2:4000
-    BACKEND_ENDPOINT=ml_sim1:3000
-    AUTO_ACCEPT_PARTY=true
-    AUTO_ACCEPT_QUOTES=true
+```
+DFSP_ID=payeefsp
+CACHE_HOST=redis1
+PEER_ENDPOINT=sa_sim2:4000
+BACKEND_ENDPOINT=ml_sim1:3000
+AUTO_ACCEPT_PARTY=true
+AUTO_ACCEPT_QUOTES=true
+VALIDATE_INBOUND_JWS=false
+VALIDATE_INBOUND_PUT_PARTIES_JWS=false
+JWS_SIGN=true
+JWS_SIGN_PUT_PARTIES=true
 
-    ```
+```
 
 Then try running the following command to run the services
 ```
@@ -100,35 +104,39 @@ git clone https://github.com/mojaloop/sdk-mock-dfsp-backend.git
 Edit the files src/docker-compose.yml, src/backend.env and src/scheme-adapter.env and add the container names for all the containers. Please refer the following files.
 docker-compose.yml
 ```
-    version: '3'
-    services:
-      redis2:
-        image: "redis:5.0.4-alpine"
-        container_name: redis2
-      backend:
-        image: "mojaloop/sdk-mock-dfsp-backend"
-        env_file: ./backend.env
-        container_name: dfsp_mock_backend2
-        ports:
-          - "23000:3000"
-        depends_on:
-          - scheme-adapter2
-    
-      scheme-adapter2:
-        image: "mojaloop/sdk-scheme-adapter:latest"
-        env_file: ./scheme-adapter.env
-        container_name: sa_sim2
-        depends_on:
-          - redis2
+version: '3'
+services:
+  redis2:
+    image: "redis:5.0.4-alpine"
+    container_name: redis2
+  backend:
+    image: "mojaloop/sdk-mock-dfsp-backend"
+    env_file: ./backend.env
+    container_name: dfsp_mock_backend2
+    ports:
+      - "23000:3000"
+    depends_on:
+      - scheme-adapter2
+
+  scheme-adapter2:
+    image: "mojaloop/sdk-scheme-adapter:latest"
+    env_file: ./scheme-adapter.env
+    container_name: sa_sim2
+    depends_on:
+      - redis2
 ```
 scheme-adapter.env
 ```
-    DFSP_ID=payerfsp
-    CACHE_HOST=redis2
-    PEER_ENDPOINT=sa_sim1:4000
-    BACKEND_ENDPOINT=dfsp_mock_backend2:3000
-    AUTO_ACCEPT_PARTY=true
-    AUTO_ACCEPT_QUOTES=true
+DFSP_ID=payerfsp
+CACHE_HOST=redis2
+PEER_ENDPOINT=sa_sim1:4000
+BACKEND_ENDPOINT=dfsp_mock_backend2:3000
+AUTO_ACCEPT_PARTY=true
+AUTO_ACCEPT_QUOTES=true
+VALIDATE_INBOUND_JWS=false
+VALIDATE_INBOUND_PUT_PARTIES_JWS=false
+JWS_SIGN=true
+JWS_SIGN_PUT_PARTIES=true
 
 ```
 
@@ -148,7 +156,7 @@ Try to send funds from "payerfsp" (Mock DFSP) to a MSISDN which is in "payeefsp"
 Run the following curl command to issue command to Mock DFSP service.
 ```
 curl -X POST \
-  http://localhost:3000/send \
+  http://localhost:23000/send \
   -H 'Content-Type: application/json' \
   -d '{
     "from": {
