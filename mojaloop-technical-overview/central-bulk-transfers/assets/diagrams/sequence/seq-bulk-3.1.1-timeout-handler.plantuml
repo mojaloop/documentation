@@ -264,8 +264,8 @@ group Timeout Handler Consume
                             },
                             payload: {
                                 "errorInformation": {
-                                    "errorCode": 3303,
-                                    "errorDescription": "Transfer expired",
+                                    "errorCode": 3300,
+                                    "errorDescription": "Generic expired error",
                                     "extensionList": <transferMessage.extensionList>
                                 }
                             }
@@ -311,8 +311,8 @@ group Timeout Handler Consume
                             },
                             payload: {
                                 "errorInformation": {
-                                    "errorCode": 3303,
-                                    "errorDescription": "Transfer expired",
+                                    "errorCode": 3300,
+                                    "errorDescription": "Generic expired error",
                                     "extensionList": <transferMessage.extensionList>
                                 }
                             }
@@ -350,8 +350,8 @@ group Timeout Handler Consume
                             headers: <bulkTransferHeaders>,
                             payload: {
                                 "errorInformation": {
-                                    "errorCode": 3303,
-                                    "errorDescription": "Transfer expired",
+                                    "errorCode": 3300,
+                                    "errorDescription": "Generic expired error",
                                     "extensionList": <transferMessage.extensionList>
                                 }
                             }
@@ -360,7 +360,7 @@ group Timeout Handler Consume
                             event: {
                                 id: <uuid>,
                                 type: bulk-processing,
-                                action: timeout-received,
+                                action: bulk-timeout-received,
                                 createdAt: <timestamp>,
                                 state: {
                                     status: 'error',
@@ -387,8 +387,8 @@ group Timeout Handler Consume
                             headers: <bulkTransferHeaders>,,
                             payload: {
                                 "errorInformation": {
-                                    "errorCode": 3303,
-                                    "errorDescription": "Transfer expired",
+                                    "errorCode": 3300,
+                                    "errorDescription": "Generic expired error",
                                     "extensionList": <transferMessage.extensionList>
                                 }
                             }
@@ -396,8 +396,8 @@ group Timeout Handler Consume
                         metadata: {
                             event: {
                                 id: <uuid>,
-                                type: bulk-position,
-                                action: timeout-reserved,
+                                type: position,
+                                action: bulk-timeout-reserved,
                                 createdAt: <timestamp>,
                                 state: {
                                     status: 'error',
