@@ -16,12 +16,11 @@ A detailed documentation for dfsps who want to test the mojaloop cluster deploym
 Please follow the below link to deploy your own cluster on local system.
 https://mojaloop.io/documentation/deployment-guide/
 
-A Linux based operating system is recommended and at least 16GB Ram and 4 core processor is required.
+A Linux based operating system is recommended and at least 16GB RAM and 4 core processor is required.
 
-After installation please complete the New FSP Onboarding collection available at the below link.
-https://github.com/mojaloop/postman
+After installation please complete the `OSS-New-Deployment-FSP-Setup.postman_collection` collection available at https://github.com/mojaloop/postman
 
-And make sure the oracles & endpoints are configured correctly and can able to run "Golden Path Collection" successfully.
+Then make sure the oracles & endpoints are configured correctly and that the "Golden Path Collection" can be run successfully.
 
 ### DFSP Mock Backend service & SDK Scheme adapter
 There SDK scheme adapter version should be greater than 8.6.0
