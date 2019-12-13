@@ -23,7 +23,7 @@ After installation please complete the `OSS-New-Deployment-FSP-Setup.postman_col
 Then make sure the oracles & endpoints are configured correctly and that the "Golden Path Collection" can be run successfully.
 
 ### DFSP Mock Backend service & SDK Scheme adapter
-There SDK scheme adapter version should be greater than 8.6.0
+The SDK scheme adapter version should be greater than 8.6.0
 The next step starts the scheme adapter from docker-compose file automatically.
 
 Please download the following repository
