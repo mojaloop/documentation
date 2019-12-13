@@ -23,11 +23,11 @@ decimal has a lexical representation consisting of a finite-length sequence of d
 
  Decimal Lexical Validator (what our message receivers accept):
 
-^[-+]?(([0-9]+[.]?[0-9]*)|([.]?[0-9]+))$
+```^[-+]?(([0-9]+[.]?[0-9]*)|([.]?[0-9]+))$```
 
 Decimal Canonical Validator (the form we store and compare; this pattern could be used to assert canonical form in generated messages):
 
-^([0]|([-]?[1-9][0-9]*))[.]([0]|([0-9]*[1-9]))$
+```^([0]|([-]?[1-9][0-9]*))[.]([0]|([0-9]*[1-9]))$```
 
 ## Translating Between External and Internal Forms
 
