@@ -38,13 +38,14 @@ autonumber
 ' declare actors
 actor "DFSP1\nPayer" as DFSP1
 actor "DFSP2\nPayee" as DFSP2
-boundary "ML API Adapter" as MLAPI
-control "ML API Notification Event Handler" as NOTIFY_HANDLER
-control "Transfer Timeout Handler" as EXP_HANDLER
-collections "topic-transfer-position" as TOPIC_TRANSFER_POSITION
-control "Position Event Handler" as POS_HANDLER
-collections "Notification-Topic" as TOPIC_NOTIFICATIONS
-collections "Event-Topic" as TOPIC_EVENT
+boundary "ML API\nAdapter" as MLAPI
+control "Notification\nHandler" as NOTIFY_HANDLER
+control  "Timeout Prepare\nHandler" as EXP_PREP_HANDLER
+collections "topic-\ntransfer-timeout" as TOPIC_TRANSFER_TIMEOUT
+control "Timeout Processing\nHandler" as EXP_HANDLER
+collections "topic-\ntransfer-position" as TOPIC_TRANSFER_POSITION
+control "Position\nHandler" as POS_HANDLER
+collections "topic-notification" as TOPIC_NOTIFICATIONS
 
 box "Financial Service Providers" #lightGray
 	participant DFSP1
@@ -57,20 +58,26 @@ box "ML API Adapter Service" #LightBlue
 end box
 
 box "Central Service" #LightYellow
+    participant EXP_PREP_HANDLER
+    participant TOPIC_TRANSFER_TIMEOUT
     participant EXP_HANDLER
     participant TOPIC_TRANSFER_POSITION
-    participant TOPIC_EVENT
     participant POS_HANDLER
     participant TOPIC_NOTIFICATIONS
 end box
 
 ' start flow
+activate EXP_PREP_HANDLER
 activate NOTIFY_HANDLER
 activate EXP_HANDLER
 activate POS_HANDLER
 group Transfer Expiry
     |||
-    ref over EXP_HANDLER, TOPIC_EVENT :  Timeout Handler Consume\n
+    ref over EXP_PREP_HANDLER, TOPIC_TRANSFER_TIMEOUT :  Timeout Processing Handler Consume\n
+    EXP_PREP_HANDLER -> TOPIC_TRANSFER_TIMEOUT: Produce message
+    |||
+    TOPIC_TRANSFER_TIMEOUT <- EXP_HANDLER: Consume message
+    ref over TOPIC_TRANSFER_TIMEOUT, EXP_HANDLER :  Timeout Processing Handler Consume\n
     alt transferStateId == 'RECEIVED_PREPARE'
         EXP_HANDLER -> TOPIC_NOTIFICATIONS: Produce message
     else transferStateId == 'RESERVED'
