@@ -396,7 +396,7 @@ CREATE TABLE `migration` (
   `batch` int(11) DEFAULT NULL,
   `migration_time` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=152 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=153 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1011,39 +1011,21 @@ CREATE TABLE `settlementContentAggregation` (
   `ledgerEntryTypeId` int(10) unsigned NOT NULL,
   `amount` decimal(18,2) NOT NULL,
   `createdDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `currentStateChangeId` bigint(20) unsigned DEFAULT NULL,
+  `settlementWindowStateId` varchar(50) NOT NULL,
+  `settlementId` bigint(20) unsigned DEFAULT NULL,
   PRIMARY KEY (`settlementContentAggregationId`),
-  KEY `settlementcontentaggregation_settlementwindowcontentid_foreign` (`settlementWindowContentId`),
-  KEY `settlementcontentaggregation_participantcurrencyid_foreign` (`participantCurrencyId`),
-  KEY `sca_transferparticipantroletypeid_foreign` (`transferParticipantRoleTypeId`),
-  KEY `settlementcontentaggregation_ledgerentrytypeid_foreign` (`ledgerEntryTypeId`),
-  KEY `settlementcontentaggregation_currentstatechangeid_foreign` (`currentStateChangeId`),
+  KEY `settlementcontentaggregation_settlementwindowcontentid_index` (`settlementWindowContentId`),
+  KEY `settlementcontentaggregation_participantcurrencyid_index` (`participantCurrencyId`),
+  KEY `settlementcontentaggregation_transferparticipantroletypeid_index` (`transferParticipantRoleTypeId`),
+  KEY `settlementcontentaggregation_ledgerentrytypeid_index` (`ledgerEntryTypeId`),
+  KEY `settlementcontentaggregation_settlementwindowstateid_index` (`settlementWindowStateId`),
+  KEY `settlementcontentaggregation_settlementid_index` (`settlementId`),
   CONSTRAINT `sca_transferparticipantroletypeid_foreign` FOREIGN KEY (`transferParticipantRoleTypeId`) REFERENCES `transferParticipantRoleType` (`transferparticipantroletypeid`),
-  CONSTRAINT `settlementcontentaggregation_currentstatechangeid_foreign` FOREIGN KEY (`currentStateChangeId`) REFERENCES `settlementContentAggregationStateChange` (`settlementcontentaggregationstatechangeid`),
   CONSTRAINT `settlementcontentaggregation_ledgerentrytypeid_foreign` FOREIGN KEY (`ledgerEntryTypeId`) REFERENCES `ledgerEntryType` (`ledgerentrytypeid`),
   CONSTRAINT `settlementcontentaggregation_participantcurrencyid_foreign` FOREIGN KEY (`participantCurrencyId`) REFERENCES `participantCurrency` (`participantcurrencyid`),
-  CONSTRAINT `settlementcontentaggregation_settlementwindowcontentid_foreign` FOREIGN KEY (`settlementWindowContentId`) REFERENCES `settlementWindowContent` (`settlementwindowcontentid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `settlementContentAggregationStateChange`
---
-
-DROP TABLE IF EXISTS `settlementContentAggregationStateChange`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `settlementContentAggregationStateChange` (
-  `settlementContentAggregationStateChangeId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `settlementContentAggregationId` bigint(20) unsigned NOT NULL,
-  `settlementWindowStateId` varchar(50) NOT NULL,
-  `reason` varchar(512) DEFAULT NULL,
-  `createdDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`settlementContentAggregationStateChangeId`),
-  KEY `scasc_settlementcontentAggregationid_index` (`settlementContentAggregationId`),
-  KEY `scasc_settlementwindowstateid_index` (`settlementWindowStateId`),
-  CONSTRAINT `sca_settlementcontentaggregationid_foreign` FOREIGN KEY (`settlementContentAggregationId`) REFERENCES `settlementContentAggregation` (`settlementcontentaggregationid`),
-  CONSTRAINT `sws2_settlementwindowstateid_foreign` FOREIGN KEY (`settlementWindowStateId`) REFERENCES `settlementWindowState` (`settlementwindowstateid`)
+  CONSTRAINT `settlementcontentaggregation_settlementid_foreign` FOREIGN KEY (`settlementId`) REFERENCES `settlement` (`settlementid`),
+  CONSTRAINT `settlementcontentaggregation_settlementwindowcontentid_foreign` FOREIGN KEY (`settlementWindowContentId`) REFERENCES `settlementWindowContent` (`settlementwindowcontentid`),
+  CONSTRAINT `settlementcontentaggregation_settlementwindowstateid_foreign` FOREIGN KEY (`settlementWindowStateId`) REFERENCES `settlementWindowState` (`settlementwindowstateid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1119,11 +1101,11 @@ CREATE TABLE `settlementModel` (
   `requireLiquidityCheck` tinyint(1) NOT NULL DEFAULT '1',
   `ledgerAccountTypeId` int(10) unsigned NOT NULL,
   PRIMARY KEY (`settlementModelId`),
-  KEY `settlementmodel_settlementgranularityid_foreign` (`settlementGranularityId`),
-  KEY `settlementmodel_settlementinterchangeid_foreign` (`settlementInterchangeId`),
-  KEY `settlementmodel_settlementdelayid_foreign` (`settlementDelayId`),
-  KEY `settlementmodel_currencyid_foreign` (`currencyId`),
-  KEY `settlementmodel_ledgeraccounttypeid_foreign` (`ledgerAccountTypeId`),
+  KEY `settlementmodel_settlementgranularityid_index` (`settlementGranularityId`),
+  KEY `settlementmodel_settlementinterchangeid_index` (`settlementInterchangeId`),
+  KEY `settlementmodel_settlementdelayid_index` (`settlementDelayId`),
+  KEY `settlementmodel_currencyid_index` (`currencyId`),
+  KEY `settlementmodel_ledgeraccounttypeid_index` (`ledgerAccountTypeId`),
   CONSTRAINT `settlementmodel_currencyid_foreign` FOREIGN KEY (`currencyId`) REFERENCES `currency` (`currencyid`),
   CONSTRAINT `settlementmodel_ledgeraccounttypeid_foreign` FOREIGN KEY (`ledgerAccountTypeId`) REFERENCES `ledgerAccountType` (`ledgeraccounttypeid`),
   CONSTRAINT `settlementmodel_settlementdelayid_foreign` FOREIGN KEY (`settlementDelayId`) REFERENCES `settlementDelay` (`settlementdelayid`),
@@ -1302,10 +1284,10 @@ CREATE TABLE `settlementWindowContent` (
   `createdDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `currentStateChangeId` bigint(20) unsigned DEFAULT NULL,
   PRIMARY KEY (`settlementWindowContentId`),
-  KEY `settlementwindowcontent_settlementwindowid_foreign` (`settlementWindowId`),
-  KEY `settlementwindowcontent_ledgeraccounttypeid_foreign` (`ledgerAccountTypeId`),
-  KEY `settlementwindowcontent_currencyid_foreign` (`currencyId`),
-  KEY `settlementwindowcontent_currentstatechangeid_foreign` (`currentStateChangeId`),
+  KEY `settlementwindowcontent_settlementwindowid_index` (`settlementWindowId`),
+  KEY `settlementwindowcontent_ledgeraccounttypeid_index` (`ledgerAccountTypeId`),
+  KEY `settlementwindowcontent_currencyid_index` (`currencyId`),
+  KEY `settlementwindowcontent_currentstatechangeid_index` (`currentStateChangeId`),
   CONSTRAINT `settlementwindowcontent_currencyid_foreign` FOREIGN KEY (`currencyId`) REFERENCES `currency` (`currencyid`),
   CONSTRAINT `settlementwindowcontent_currentstatechangeid_foreign` FOREIGN KEY (`currentStateChangeId`) REFERENCES `settlementWindowContentStateChange` (`settlementwindowcontentstatechangeid`),
   CONSTRAINT `settlementwindowcontent_ledgeraccounttypeid_foreign` FOREIGN KEY (`ledgerAccountTypeId`) REFERENCES `ledgerAccountType` (`ledgeraccounttypeid`),
@@ -1787,4 +1769,4 @@ CREATE TABLE `transferTimeout` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-12-06 10:25:18
+-- Dump completed on 2019-12-17 16:53:56
