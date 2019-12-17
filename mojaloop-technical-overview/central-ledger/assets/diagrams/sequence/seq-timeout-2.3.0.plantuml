@@ -18,7 +18,8 @@
  * Gates Foundation
  - Name Surname <name.surname@gatesfoundation.com>
 
- * Georgi Georgiev <georgi.georgiev@modusbox.com>
+ * ModusBox
+ - Georgi Georgiev <georgi.georgiev@modusbox.com>
  --------------
  ******'/   
 
@@ -40,50 +41,50 @@ actor "DFSP1\nPayer" as DFSP1
 actor "DFSP2\nPayee" as DFSP2
 boundary "ML API\nAdapter" as MLAPI
 control "Notification\nHandler" as NOTIFY_HANDLER
-control  "Timeout Prepare\nHandler" as EXP_PREP_HANDLER
+control  "Timeout Prepare\nHandler" as TIMEOUT_PREP_HANDLER
 collections "topic-\ntransfer-timeout" as TOPIC_TRANSFER_TIMEOUT
-control "Timeout Processing\nHandler" as EXP_HANDLER
+control "Timeout\nHandler" as TIMEOUT_HANDLER
 collections "topic-\ntransfer-position" as TOPIC_TRANSFER_POSITION
 control "Position\nHandler" as POS_HANDLER
 collections "topic-notification" as TOPIC_NOTIFICATIONS
 
-box "Financial Service Providers" #lightGray
+box "Financial Service Providers" #lightgray
 	participant DFSP1
 	participant DFSP2
 end box
 
-box "ML API Adapter Service" #LightBlue
+box "ML API Adapter Service" #lightblue
 	participant MLAPI
 	participant NOTIFY_HANDLER
 end box
 
-box "Central Service" #LightYellow
-    participant EXP_PREP_HANDLER
+box "Central Service" #lightyellow
+    participant TIMEOUT_PREP_HANDLER
     participant TOPIC_TRANSFER_TIMEOUT
-    participant EXP_HANDLER
+    participant TIMEOUT_HANDLER
     participant TOPIC_TRANSFER_POSITION
     participant POS_HANDLER
     participant TOPIC_NOTIFICATIONS
 end box
 
 ' start flow
-activate EXP_PREP_HANDLER
+activate TIMEOUT_PREP_HANDLER
 activate NOTIFY_HANDLER
-activate EXP_HANDLER
+activate TIMEOUT_HANDLER
 activate POS_HANDLER
 group Transfer Expiry
     |||
-    ref over EXP_PREP_HANDLER, TOPIC_TRANSFER_TIMEOUT :  Timeout Processing Handler Consume\n
-    EXP_PREP_HANDLER -> TOPIC_TRANSFER_TIMEOUT: Produce message
+    ref over TIMEOUT_PREP_HANDLER, TOPIC_TRANSFER_TIMEOUT:  Timeout Processing Handler Consume\n
+    TIMEOUT_PREP_HANDLER -> TOPIC_TRANSFER_TIMEOUT: Produce message
     |||
-    TOPIC_TRANSFER_TIMEOUT <- EXP_HANDLER: Consume message
-    ref over TOPIC_TRANSFER_TIMEOUT, EXP_HANDLER :  Timeout Processing Handler Consume\n
+    TOPIC_TRANSFER_TIMEOUT <- TIMEOUT_HANDLER: Consume message
+    ref over TOPIC_TRANSFER_TIMEOUT, TIMEOUT_HANDLER:  Timeout Processing Handler Consume\n
     alt transferStateId == 'RECEIVED_PREPARE'
-        EXP_HANDLER -> TOPIC_NOTIFICATIONS: Produce message
+        TIMEOUT_HANDLER -> TOPIC_NOTIFICATIONS: Produce message
     else transferStateId == 'RESERVED'
-        EXP_HANDLER -> TOPIC_TRANSFER_POSITION: Produce message
+        TIMEOUT_HANDLER -> TOPIC_TRANSFER_POSITION: Produce message
         TOPIC_TRANSFER_POSITION <- POS_HANDLER: Consume message
-        ref over TOPIC_TRANSFER_POSITION, TOPIC_NOTIFICATIONS :  Position Hander Consume (Timeout)\n
+        ref over TOPIC_TRANSFER_POSITION, TOPIC_NOTIFICATIONS:  Position Hander Consume (Timeout)\n
         POS_HANDLER -> TOPIC_NOTIFICATIONS: Produce message
     end
     opt action IN ['timeout-received', 'timeout-reserved']
@@ -101,6 +102,6 @@ group Transfer Expiry
     end
 end
 deactivate POS_HANDLER
-deactivate EXP_HANDLER
+deactivate TIMEOUT_HANDLER
 deactivate NOTIFY_HANDLER
 @enduml
