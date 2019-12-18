@@ -70,16 +70,37 @@ group Request Settlement Window
     deactivate SETTLE_DAO
 
     alt settlementWindow found
-        note left of SSAPI #lightgray
-            <color #red>Are we going to report window content related info below?</color>
-        end note
+        SSAPI -> SETTLE_DAO: Request settlementWindowContent(s)\n<color #FF0000><b>Error code:</b> 2001</color>
+        activate SETTLE_DAO
+        SETTLE_DAO -> DB: Select from DB
+        activate DB
+        hnote over DB #lightyellow
+            settlementWindowContent
+            settlementWindowContentStateChange
+            ledgerAccountType
+            currency
+        end hnote
+        deactivate DB
+        SSAPI <-- SETTLE_DAO: Return **contentList**
+        deactivate SETTLE_DAO
         note left of SSAPI #yellow
             {
                 "id": data.settlementWindowId,
                 "state": data.settlementWindowStateId,
                 "reason": data.reason,
                 "createdDate": data.createdDate,
-                "changedDate": data.changedDate
+                "changedDate": data.changedDate,
+                "content": [
+                    {
+                        "id": contentList.settlementWindowContentId,
+                        "ledgerAccountType": contentList.ledgerAccountType,
+                        "currencyId": contentList.currencyId,
+                        "createdDate": contentList.createdDate,
+                        "changedDate": contentList.changedDate,
+                        "state": contentList.settlementWindowStateId,
+                        "settlementId": contentList.settlementId
+                    }
+                ]
             }
         end note
         OPERATOR <-- SSAPI: Respond HTTP - 200 (OK)

@@ -89,9 +89,6 @@ group Get Settlement Windows By Parameters
     SSAPI <-- SETTLE_DAO: Return **settlementWindows**
     deactivate SETTLE_DAO
     alt One or more records found
-        note left of SSAPI #lightgray
-            <color #red>Are we going to report window content related info below?</color>
-        end note
         note left of SSAPI #yellow
             [
                 {
