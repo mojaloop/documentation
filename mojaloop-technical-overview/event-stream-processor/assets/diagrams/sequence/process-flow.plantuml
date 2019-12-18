@@ -43,6 +43,7 @@ control "Send Trace Handler" as TRACE_HANDLER
 control "Send Span Handler" as SPAN_SENDER
 database "Cache Storage" as CACHE
 boundary "APM" as APM
+boundary "Elasticsearch API" as ELASTIC
 
 box "Central Services" #lightGray
 	participant TOPIC_NOTIFICATIONS
@@ -63,8 +64,9 @@ box "Cache" #LightSteelBlue
   participant CACHE
 end box
 
-box "Kibana APM" #LightYellow
+box "Elasticsearch" #LightYellow
     participant APM
+    participant ELASTIC
 end box
 
 ' start flow
@@ -120,6 +122,7 @@ group New Event Message Received
                 }
               }
           end note
+          TOPIC_OBSERVABLE -> ELASTIC: Send message for log purposes to custom index
           TOPIC_OBSERVABLE -> TOPIC_OBSERVABLE: Verify its tracing event Message
           TOPIC_OBSERVABLE -> TRACING_OBSERVABLE: Send Message to Tracing Observable
           deactivate TOPIC_OBSERVABLE
