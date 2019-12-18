@@ -79,27 +79,54 @@ JWS_SIGN=true
 JWS_SIGN_PUT_PARTIES=true
 ```
 
-Start the backend and scheme adapter using the following command.
-```
-cd src
-docker-compose up -d
-```
-
-
-## Testing
-
-### Additional postman collections
-Download the following files 
-* [Mojaloop-Local.postman_environment_modified.json](assets/postman_files/Mojaloop-Local.postman_environment_modified.json)
-* [OSS-Custom-FSP-Onboaring-SchemeAdapter-Setup.postman_collection.json](assets/postman_files/OSS-Custom-FSP-Onboaring-SchemeAdapter-Setup.postman_collection.json)
+### Name resolution configuration - Mac ONLY
 
 Point the following hostnames to your local machine IP by adding the below line in /etc/hosts file
 ```
 192.168.5.101       ml-api-adapter.local account-lookup-service.local central-ledger.local central-settlement.local account-lookup-service-admin.local quoting-service.local moja-simulator.local central-ledger central-settlement ml-api-adapter account-lookup-service account-lookup-service-admin quoting-service simulator host.docker.internal moja-account-lookup-mysql
 ```
 
-By selecting the environment file please run the custom collection in the postman to provision a new FSP called "safsp".
-The endpoints for safsp will be set to the URL of the scheme adapter which is configured in environment file.
+Make sure to change 192.168.5.101 to your real external IP.
+
+### Name resolution configuration - Linux ONLY
+
+Add extra_hosts configuration to scheme-adapter2 config in the docker-compose.yml file, so that the scheme-adapter2 container can resolve dns of account-lookup-service.local, quoting-service.local and ml-api-adapter.local. For example the config could be:
+
+```
+  scheme-adapter2:
+    image: "mojaloop/sdk-scheme-adapter:latest"
+    env_file: ./scheme-adapter.env
+    container_name: sa_sim2
+    ports:
+      - "4000:4000"
+    depends_on:
+      - redis2
+    extra_hosts:
+      - "account-lookup-service.local:172.17.0.1"
+      - "quoting-service.local:172.17.0.1"
+      - "ml-api-adapter.local:172.17.0.1"
+```
+
+The 172.17.0.1 is a default docker0 network interface on linux, however please make sure it's valid in your configuration and change it if needed.
+
+### Start
+
+Start the backend and scheme adapter using the following command.
+```
+cd src
+docker-compose up -d
+```
+
+## Testing
+
+### Configure new FSP 
+Download the following files:
+* [Mojaloop-Local.postman_environment_modified.json](assets/postman_files/Mojaloop-Local.postman_environment_modified.json) - modified environment variables that point to your local setup
+* [OSS-Custom-FSP-Onboaring-SchemeAdapter-Setup.postman_collection.json](assets/postman_files/OSS-Custom-FSP-Onboaring-SchemeAdapter-Setup.postman_collection.json) - steps that will setup new FSP
+
+The SCHEME_ADAPTER_ENDPOINT in the environment file should point to your local scheme-adapter deployment. For mac this is configured already to be http://host.docker.internal:4000. If you're running on Linux, please edit the environment file, so that SCHEME_ADAPTER_ENDPOINT points to your docker0 interface (usually 172.17.0.1 - see remarks in previous step).
+
+In postman, select the environment file and run the custom collection in the postman to provision a new FSP called "safsp". The endpoints for safsp will be set to the URL of the scheme adapter which is configured in environment file.
 
 ### Add the target MSISDN to payee simulator which is running inside the K8S. Run the following commands
 ```
