@@ -1,6 +1,6 @@
 # Mojaloop Releases
 
-Below you will find more information on the future, current and historical releases for Mojaloop.
+Below you will find more information on the current and historical releases for Mojaloop.
 
 Refer to [Versioning Documentation](../contributors-guide/standards/versioning.md) for more information on the release strategy and standards.
 
@@ -17,11 +17,15 @@ Refer to [Versioning Documentation](../contributors-guide/standards/versioning.m
 
 ## Helm Charts Packaged Releases
 
-Refer to [Mojaloop Helm Repository](../repositories/helm.md) documentation to find out more information about Helm.
+Refer to [Mojaloop Helm Repository](../repositories/helm.md) documentation to find out more information about Helm. Below are some of the Helm releases made and timelines. Please note that this is not an exhaustive list. For an exhaustive list, please visit the [Helm releases page](https://github.com/mojaloop/helm/releases).
 
 | Version | Release Date | Tested | Notes |
 | --- | :---: | :---: | --- |
-| 7.0.0 | June 2019 | - | To be released at PI6 Convening in June 2019 |
+| [8.7.0](https://github.com/mojaloop/helm/releases/tag/v8.7.0) | 2019/12/12 | &check; | Sprint release |
+| [8.4.0](https://github.com/mojaloop/helm/releases/tag/v8.4.0) | 2019/11/12 | &check; | Sprint release |
+| [8.1.0](https://github.com/mojaloop/helm/releases/tag/v8.1.0) | 2019/10/08 | &check; | Sprint release |
+| [7.4.3](https://github.com/mojaloop/helm/releases/tag/v7.4.3) | 2019/08/30 | &check; | Sprint release |
+| [7.4.1](https://github.com/mojaloop/helm/releases/tag/v7.4.1) | 2019/08/23 | &check; | Sprint release |
 | [6.3.1](https://github.com/mojaloop/helm/releases/tag/v6.3.1) | 2019/05/31 | &check; | Sprint release |
 | [5.5.0](https://github.com/mojaloop/helm/releases/tag/v5.5.0) | 2019/04/02 | - | Sprint release |
 | [5.4.2](https://github.com/mojaloop/helm/releases/tag/v5.4.2) | 2019/03/29 | &check; | Sprint release |
