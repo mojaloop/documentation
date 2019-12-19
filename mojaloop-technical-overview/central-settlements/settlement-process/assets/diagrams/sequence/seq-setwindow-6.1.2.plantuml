@@ -144,6 +144,18 @@ group Close Settlement Window
             deactivate DB
         end
         SSAPI <-- SETTLE_DAO: Return success
+
+        note left of SSAPI #yellow
+            {
+                "id": settlementWindowId,
+                "state": 'OPEN',
+                "reason": payload.reason,
+                "createdDate": transactionTimestamp,
+                "changedDate": transactionTimestamp
+            }
+        end note
+        OPERATOR <-- SSAPI: Respond HTTP - 201 (Created)
+
         group <color #red>DB TRANSACTION (async)</color>
             note right of SETTLE_DAO #lightgray
                 let **transactionTimestamp** = now()
@@ -167,9 +179,9 @@ group Close Settlement Window
             activate DB
             hnote over DB #lightyellow
                 INSERT INTO **settlementContentAggregation** (settlementWindowContentId, participantCurrencyId, 
-                    transferParticipantRoleTypeId, ledgerEntryTypeId, amount)
+                    transferParticipantRoleTypeId, ledgerEntryTypeId, amount, settlementWindowStateId)
                 SELECT swc.settlementWindowContentId, pc.participantCurrencyId,
-                    tp.transferParticipantRoleTypeId, tp.ledgerEntryTypeId, SUM(tp.amount)
+                    tp.transferParticipantRoleTypeId, tp.ledgerEntryTypeId, SUM(tp.amount), 'CLOSED'
                 FROM **transferFulfilment** tf
                 JOIN **transferParticipant** tp
                 ON tf.transferId = tp.transferId
@@ -181,59 +193,32 @@ group Close Settlement Window
                 AND swc.currencyId = pc.currencyId
                 WHERE tf.settlementWindowId = {id}
                 GROUP BY swc.settlementWindowContentId, pc.participantCurrencyId, 
-                    tp.transferParticipantRoleTypeId, tp.ledgerEntryTypeId;
+                    tp.transferParticipantRoleTypeId, tp.ledgerEntryTypeId
             end hnote
             deactivate DB
 
-            SETTLE_DAO -> DB: <color #red>Insert initial content aggregation state change</color>
+            SETTLE_DAO -> DB: Insert initial window content state change
             activate DB
             hnote over DB #lightyellow
-                INSERT INTO **settlementContentAggregationStateChange**
-                    (settlementContentAggregationId, settlementWindowStateId)
-                SELECT sca.settlementContentAggregationId, 'CLOSED'
+                INSERT INTO **settlementWindowContentStateChange**
+                    (settlementWindowContentId, settlementWindowStateId)
+                SELECT swc.settlementWindowContentId, 'CLOSED'
                 FROM **settlementWindowContent** swc
-                JOIN **settlementContentAggregation** sca
-                ON sca.settlementWindowContentId = swc.settlementWindowContentId
                 WHERE swc.settlementWindowId = {id}
             end hnote
             deactivate DB
 
-            SETTLE_DAO -> DB: <color #red>Update pointers to current state change ids (<b>knex</b>)</color>
+            SETTLE_DAO -> DB: Update pointers to current state change ids
             activate DB
             hnote over DB #lightyellow
-                UPDATE **settlementContentAggregation**
-                FROM **settlementContentAggregation** sca
-                JOIN (
-                    SELECT scacs.settlementContentStateAggregationId, 
-                        MAX(scacs.settlementContentAggregationStateChangeId) AS currentStateChangeId
-                    FROM **settlementContentAggregationStateChange** scacs
-                    JOIN **settlementContentAggregation** sca2
-                    ON sca2.settlementContentAggregationId = scacs.settlementContentAggregationId
-                    JOIN **settlementWindowContent** swc2
-                    ON swc2.settlementWindowContentId = sca2.settlementWindowContentId
-                    WHERE swc2.settlementWindowId = {id}
-                    GROUP BY settlementContentStateAggregationId) scasc
-                ON scasc.settlementContentStateAggregationId = sca.settlementContentStateAggregationId
-                SET currentStateChangeId = scasc.currentStateChangeId
-                WHERE settlementWindowContentId IN (
-                    SELECT settlementWindowContentId
-                    FROM settlementWindowContent
-                    WHERE settlementWindowId = {id})
+                settlementWindowContent
             end hnote
             deactivate DB
         end
-        deactivate SETTLE_DAO
-
-        note left of SSAPI #yellow
-            {
-                "id": settlementWindowId,
-                "state": 'OPEN',
-                "reason": payload.reason,
-                "createdDate": transactionTimestamp,
-                "changedDate": transactionTimestamp
-            }
+        note right of SETTLE_DAO #lightgray
+            <color #red>How do we make sure async has completed successfully?</color>
         end note
-        OPERATOR <-- SSAPI: Respond HTTP - 201 (Created)
+        deactivate SETTLE_DAO
     else
         note right of SSAPI #lightgray
             Log ERROR event

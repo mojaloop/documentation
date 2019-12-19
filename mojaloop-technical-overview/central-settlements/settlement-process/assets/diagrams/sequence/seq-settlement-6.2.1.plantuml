@@ -52,7 +52,7 @@ group Trigger Settlement Event
 activate OPERATOR
     note right of OPERATOR #yellow
         {
-            "settlementModelName": "string",  
+            "settlementModel": "string",  
             "reason": "string",
             "settlementWindows": [
                 {
@@ -173,28 +173,33 @@ activate OPERATOR
             end hnote
             deactivate DB
 
-            SETTLE_DAO -> DB: <color #red>Populate settlementParticipantCurrency with aggregated data</color>
+            SETTLE_DAO -> DB: Bind to settlement
+            activate DB
+            hnote over DB #lightyellow
+                **settlementWindowContent**
+                    .settlementId
+                **settlementContentAggregation**
+                    .settlementId
+                    .settlementWindowStateId
+            end hnote
+            deactivate DB
+
+            SETTLE_DAO -> DB: Change state to 'PENDING_SETTLEMENT'
+            activate DB
+            hnote over DB #lightyellow
+                settlementWindowContentStateChange
+                settlementWindowContent
+            end hnote
+            deactivate DB
+
+            SETTLE_DAO -> DB: Aggregate settlement net amounts
             activate DB
             hnote over DB #lightyellow
                 INSERT INTO **settlementParticipantCurrency**
-                       (settlementId, participantCurrencyId, createdDate, netAmount)
-                SELECT ssw.settlementId, participantCurrencyId, {transactionTimestamp}, SUM(amount)
-                FROM **settlementSettlementWindow** ssw
-                JOIN **settlementWindow** sw
-                ON sw.settlementWindowId = ssw.settlementWindowId
-                JOIN **settlementWindowContent** swc
-                ON swc.settlementWindowId = sw.settlementWindowId
-                <color #red>JOIN **ledgerAccountType** lat</color>
-                <color #red>ON lat.ledgerAccountTypeId = swc.ledgerAccountTypeId</color>
-                <color #red>AND lat.isSettleable = 1</color>
-                <color #red>JOIN **ledgerEntryType** let</color>
-                <color #red>ON let.ledgerAccountTypeId = lat.ledgerAccountTypeId</color>
-                JOIN **settlementContentAggregation** sca
-                ON sca.settlementWindowContentId = swc.settlementWindowContentId
-                <color #red>AND sca.ledgerEntryTypeId = let.ledgerEntryTypeId</color>
-                WHERE ssw.settlementId = {settlementId}
-                AND swc.ledgerAccountTypeId = {smd.ledgerAccountTypeId}
-                AND swc.currencyId = ISNULL({smd.currencyId}, swc.currencyId)
+                       (settlementId, participantCurrencyId, netAmount, createdDate)
+                SELECT settlementId, participantCurrencyId, SUM(amount), {transactionTimestamp}
+                JOIN **settlementContentAggregation**
+                WHERE settlementId = {settlementId}
                 GROUP BY settlementId, participantCurrencyId
             end hnote
             SETTLE_DAO <-- DB: Return inserted **settlementParticipantCurrencyIdList**
@@ -221,53 +226,7 @@ activate OPERATOR
             end hnote
             deactivate DB
 
-            group Populate settlement content aggregation state
-                SETTLE_DAO -> DB: <color #red>Insert current content aggregation state change</color>
-                activate DB
-                hnote over DB #lightyellow
-                    INSERT INTO **settlementContentAggregationStateChange**
-                        (settlementContentAggregationId, settlementWindowStateId)
-                    SELECT sca.settlementContentAggregationId, 'PENDING_SETTLEMENT'
-                    FROM **settlementWindowContent** swc
-                    JOIN **settlementContentAggregation** sca
-                    <color #red>ON sca.settlementWindowContentId = swc.settlementWindowContentId</color>
-                    <color #red>^— no need to filter by sca.ledgerEntryTypeId <b>?</b></color>
-                    WHERE swc.settlementWindowId IN {payload.settlementWindows.idList}
-                    <color #blue>AND swc.ledgerAccountTypeId = {smd.ledgerAccountTypeId}</color>
-                    <color #blue>AND swc.currencyId = ISNULL({smd.currencyId}, swc.currencyId)</color>
-                end hnote
-                deactivate DB
-
-                SETTLE_DAO -> DB: <color #red>Update pointers to current state change ids (<b>knex</b>)</color>
-                activate DB
-                hnote over DB #lightyellow
-                    UPDATE **settlementContentAggregation**
-                    FROM **settlementContentAggregation** sca
-                    JOIN (
-                        SELECT scacs.settlementContentStateAggregationId, 
-                            MAX(scacs.settlementContentAggregationStateChangeId) AS currentStateChangeId
-                        FROM **settlementContentAggregationStateChange** scacs
-                        JOIN **settlementContentAggregation** sca2
-                        ON sca2.settlementContentAggregationId = scacs.settlementContentAggregationId
-                        JOIN **settlementWindowContent** swc2
-                        ON swc2.settlementWindowContentId = sca2.settlementWindowContentId
-                        WHERE swc2.settlementWindowId IN {payload.settlementWindows.idList}
-                        <color #blue>AND swc2.ledgerAccountTypeId = {smd.ledgerAccountTypeId}</color>
-                        <color #blue>AND swc2.currencyId = ISNULL({smd.currencyId}, swc2.currencyId)</color>
-                        GROUP BY settlementContentStateAggregationId) scasc
-                    ON scasc.settlementContentStateAggregationId = sca.settlementContentStateAggregationId
-                    SET currentStateChangeId = scasc.currentStateChangeId
-                    WHERE settlementWindowContentId IN (
-                        SELECT settlementWindowContentId
-                        FROM **settlementWindowContent**
-                        WHERE settlementWindowId IN {payload.settlementWindows.idList}
-                        <color #blue>AND ledgerAccountTypeId = {smd.ledgerAccountTypeId}</color>
-                        <color #blue>AND currencyId = ISNULL({smd.currencyId}, currencyId)</color>)
-                end hnote
-                deactivate DB
-            end
-
-            loop <color #red>foreach w in windowsData</color>
+            loop foreach w in windowsData
                 opt if w.currentStateChangeId IN ('CLOSED', 'ABORTED')
                     SETTLE_DAO -> DB: Insert new state for settlementWindow 'PENDING_SETTLEMENT'
                     activate DB
