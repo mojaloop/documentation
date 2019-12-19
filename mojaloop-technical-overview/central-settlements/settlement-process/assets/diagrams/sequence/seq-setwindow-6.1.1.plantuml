@@ -93,11 +93,11 @@ group Request Settlement Window
                 "content": [
                     {
                         "id": contentList.settlementWindowContentId,
+                        "state": contentList.settlementWindowStateId,
                         "ledgerAccountType": contentList.ledgerAccountType,
                         "currencyId": contentList.currencyId,
                         "createdDate": contentList.createdDate,
                         "changedDate": contentList.changedDate,
-                        "state": contentList.settlementWindowStateId,
                         "settlementId": contentList.settlementId
                     }
                 ]

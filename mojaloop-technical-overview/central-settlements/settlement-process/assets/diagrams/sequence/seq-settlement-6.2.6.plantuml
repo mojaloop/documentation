@@ -188,22 +188,25 @@ group Settlement Abort
 
         ref over SETTLE_DAO, DB: Settlement Transfer Abort\n\n**Inputs**: settlementId, transactionTimestamp, enums, trx\n
 
-        group Bulk insert settlementWindowContentStateChange and \n update settlementContentAggregation records
-            SETTLE_DAO -> DB: Insert swcsc and update sca records
+        group Bulk insert and reset contents & aggregations
+            SETTLE_DAO -> DB: Bulk insert aborted state
             activate DB
             hnote over DB #lightyellow
                 settlementWindowContentStateChange
-                settlementContentAggregation
             end hnote
             SETTLE_DAO <-- DB: Return **swcscIdList**
             deactivate DB
 
             SETTLE_DAO -> SETTLE_DAO: Merge swcscIdList
 
-            SETTLE_DAO -> DB: Update all pointers to current state change ids
+            SETTLE_DAO -> DB: Update current state references and reset settlementId
             activate DB
             hnote over DB #lightyellow
-                UPDATE **settlementWindowContent**.currentStateChangeIds
+                **settlementWindowContent**
+                    .currentStateChangeIds
+                    .settlementId
+                **settlementContentAggregation**
+                    .settlementId
             end hnote
             deactivate DB
         end
