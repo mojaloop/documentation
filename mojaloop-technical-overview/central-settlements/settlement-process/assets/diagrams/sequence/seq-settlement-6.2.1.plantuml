@@ -271,6 +271,21 @@ activate OPERATOR
             deactivate DB
         end
 
+        SETTLE_DAO -> DB: Retrieve all content
+        activate DB
+        hnote over DB #lightyellow
+            settlementWindowContent
+            settlementWindowContentStateChange
+            ledgerAccountType
+            currency
+            settlementWindow
+            settlementWindowStateChange
+        end hnote
+        SETTLE_DAO <-- DB: Return **settlementWindowContentReport**
+        deactivate DB
+
+        SETTLE_DAO -> SETTLE_DAO: Use previous result to produce settlementWindowsData (**swd**) array
+
         SETTLE_DAO -> DB: Select account data for response
         activate DB
         hnote over DB #lightyellow
@@ -291,11 +306,21 @@ activate OPERATOR
                 "state": "PENDING_SETTLEMENT",
                 "settlementWindows": [
                     {
-                        "id": windowsData.settlementWindowIdList,
-                        "state": "PENDING_SETTLEMENT",
-                        "reason": payload.reason,
-                        "createdDate": windowsData.createdDateList,
-                        "changedDate": transactionTimestamp
+                        "id": swd[m].id,
+                        "state": swd[m].state,
+                        "reason": swd[m].reason,
+                        "createdDate": swd[m].createdDate,
+                        "changedDate": swd[m].changedDate,
+                        "content": [
+                            {
+                                "id": swd[m].content[n].settlementWindowContentId,
+                                "state": swd[m].content[n].settlementWindowStateId,
+                                "ledgerAccountType": swd[m].content[n].ledgerAccountType,
+                                "currencyId": swd[m].content[n].currencyId,
+                                "createdDate": swd[m].content[n].createdDate,
+                                "changedDate": swd[m].content[n].changedDate
+                            }
+                        ]
                     }
                 ],
                 "participants": [

@@ -508,7 +508,7 @@ group Acknowledgement of Settlement Transfer
     SSAPI <-- SETTLE_DAO: Return transaction result
     deactivate SETTLE_DAO
 
-    note left of SSAPI #lightyellow
+    note left of SSAPI #yellow
         {
             "id": {id},
             "state": settlementData.state,
@@ -518,7 +518,7 @@ group Acknowledgement of Settlement Transfer
                     "id": swd[m].id,
                     "state": swd[m].state,
                     "reason": swd[m].reason,
-                    "createdDate": swd[m].createdDate
+                    "createdDate": swd[m].createdDate,
                     "changedDate": swd[m].changedDate,
                     "content": [
                         {
