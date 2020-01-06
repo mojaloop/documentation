@@ -1093,35 +1093,11 @@ there are no entries for the settlement model requested for any of the
 settlement windows requested, then an error should be returned and the
 settlement request rejected. [Story \#1096]
 
-#### Updating the progress of a settlement.
+#### Updating the progress of a settlement
 
-The process to update the status of a settlement described in Section 5.1.7.1.2
-above allows the caller to specify the currency whose status is to be changed.
-Since the settlement will now be for a settlement model, this parameter should
-be removed. (@ggrg: not sure what needs to be removed)
-
-When the status for a settlement participant is updated, this will result in
+When the status for a settlement participant is changed to SETTLED, this will result in
 changes to the status of all the records in the **settlementContentAggregation**
-table for the given participant (@ggrg: we don't have attached state to this table). These records can be identified using the
-following query:
-```
-SELECT sca.settlementContentAggregationId
-FROM settlement s
-INNER JOIN settlementSettlementWindow ssw
-  ON s.settlementId = ssw.settlementId
-INNER JOIN settlementModel sm
-  ON sm.settlementModelId = s.settlementModelId
-INNER JOIN settlementWindowContent swc
-  ON swc.settlementWindowId = ssw.settlementWindowId
-INNER JOIN settlementContentAggregation sca
-  ON sca.settlementWindowContentId = swc.settlementWindowContentId
-INNER JOIN participantCurrency pc
-  ON pc.participantCurrencyId = sca.participantCurrencyId
-WHERE s.settlementId = @mySettlementId
-AND pc.ledgerAccountTypeId = sm.ledgerAccountTypeId
-AND (swc.currencyId = sm.settlementCurrencyId 
-  OR sm.settlementCurrencyId IS NULL);
-```
+table for the given participant, identified by the compound key: settlementId + participantCurrencyId.
 
 [Story \#16]
 
