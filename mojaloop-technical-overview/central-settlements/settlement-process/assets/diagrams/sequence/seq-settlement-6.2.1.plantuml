@@ -343,5 +343,7 @@ activate OPERATOR
         end note
         OPERATOR <-- SSAPI: Respond HTTP - 201 (Created)
     end
+    deactivate SSAPI
+    deactivate OPERATOR
 end
 @enduml
