@@ -1720,6 +1720,25 @@
             
 
             
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.7.1" data-path="../event-stream-processor/">
+            
+                <a href="../event-stream-processor/">
+            
+                    
+                    Event Stream Processor
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
         </li>
     
         <li class="chapter " data-level="1.6.8" data-path="../fraud-services/">
@@ -2152,22 +2171,25 @@ different timetables for different currencies.</p>
 <table>
 <thead>
 <tr>
-<th>Reference</th>
-<th>Document</th>
+<th style="text-align:left">Reference</th>
+<th style="text-align:left">Document</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td></td>
-<td><a href="https://github.com/mojaloop/mojaloop-specification/blob/master/API%20Definition%20v1.0.pdf" target="_blank">Open API for FSP Interoperability Specification</a></td>
+<td style="text-align:left"><sup>1</sup></td>
+<td style="text-align:left"><a href="http://mojaloop.io/mojaloop-specification/documents/API%20Definition%20v1.0.html" target="_blank">Open API for FSP Interoperability Specification</a></td>
 </tr>
 <tr>
-<td></td>
-<td>Settlement API Interface Definition</td>
+<td style="text-align:left"><sup>2</sup></td>
+<td style="text-align:left"><a href="https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json" target="_blank">Settlement API Interface Definition</a></td>
 </tr>
 <tr>
-<td></td>
-<td>Current administration API definition</td>
+<td style="text-align:left"><sup>3</sup></td>
+<td style="text-align:left"><a href="https://mojaloop.io/documentation/api/central-ledger-api-specification.html" target="_blank">Current administration API definition</a></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
 </tr>
 </tbody>
 </table>
@@ -2175,26 +2197,26 @@ different timetables for different currencies.</p>
 <table>
 <thead>
 <tr>
-<th>Version</th>
-<th>Description</th>
-<th>Author</th>
-<th>Date</th>
-<th>Changes tracked</th>
+<th style="text-align:left">Version</th>
+<th style="text-align:left">Description</th>
+<th style="text-align:left">Author</th>
+<th style="text-align:left">Date</th>
+<th style="text-align:left">Changes tracked</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>1.0</td>
-<td>Baseline version</td>
-<td>Michael Richards</td>
-<td>2 Dec 2019</td>
-<td>No</td>
+<td style="text-align:left">1.0</td>
+<td style="text-align:left">Baseline version</td>
+<td style="text-align:left">Michael Richards</td>
+<td style="text-align:left">2 Dec 2019</td>
+<td style="text-align:left">No</td>
 </tr>
 <tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
 </tr>
 </tbody>
 </table>
@@ -2261,8 +2283,8 @@ transfer. The current values are:</p>
 <li><p>PRINCIPLE_VALUE. This designates the funds moved as the content of a
 transfer in the Interoperability API Specification sense of that term (i.e.
 the <strong>amount.amount</strong> item in the <strong>Transaction</strong> object described in
-Section 7.4.17 of the Interoperability API specification.) It should be
-spelt &#x201C;principal.&#x201D;</p>
+<a href="https://mojaloop.io/mojaloop-specification/documents/API%20Definition%20v1.0.html#7317-ilpcondition" target="_blank">Section 7.4.17</a> of the Interoperability API specification<sub><a href="https://mojaloop.io/mojaloop-specification/documents/API%20Definition%20v1.0.html" target="_blank">1</a>&lt;/sup&gt;.) It should be
+spelt &#x201C;principal.&#x201D;</sub></p>
 </li>
 <li><p>INTERCHANGE_FEE. This designates fees paid between participants in the
 system. (Not implemented)</p>
@@ -2456,8 +2478,7 @@ stores other types of funds movement as well.</p>
 <p>This document will therefore adopt the following convention:</p>
 <ul>
 <li><p>&#x201C;Transfers&#x201D; refers to the content of instructions issued using the
-<strong>/transfers</strong> resource of the Interoperability API definition. (see Section
-6.7 of the Interoperability API definition.)</p>
+<strong>/transfers</strong> resource of the Interoperability API definition<sup><a href="http://mojaloop.io/mojaloop-specification/documents/API%20Definition%20v1.0.html" target="_blank">1</a></sup>. (see <a href="http://mojaloop.io/mojaloop-specification/documents/API%20Definition%20v1.0.html#67-api-resource-transfers" target="_blank">Section 6.7</a> of the Interoperability API definition<sup><a href="http://mojaloop.io/mojaloop-specification/documents/API%20Definition%20v1.0.html" target="_blank">1</a></sup>.)</p>
 </li>
 <li><p>&#x201C;Transactions&#x201D; refers to all movements of funds which are tracked by the
 switch.</p>
@@ -2500,7 +2521,7 @@ of transactions.</p>
 settlement window.</p>
 <p>Records may be created for transactions which are not transfers. Non-transfer
 transactions have their ilpFulfilment set to 0.</p>
-<p>The settlement API described in Ref_2 above contains a resource
+<p>The settlement API <sup><a href="https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json" target="_blank">2</a></sup> contains a resource
 (<strong>closeSettlementWindow</strong>) to allow an administrator to close a settlement
 window and create a new one. The resource takes a settlement window ID as part
 of the query string, together with a string describing the status to be assigned
@@ -3155,7 +3176,7 @@ created, tested and stored in the repository. [Story #6]</p>
 <p>The following changes to the processing code are required to support
 multi-currency settlement.</p>
 <h4 id="change-to-code-supporting-closesettlementwindow-resource">Change to code supporting closeSettlementWindow resource</h4>
-<p>The existing API described in Ref_2 above provides a single function
+<p>The existing API <sup><a href="https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json" target="_blank">2</a></sup> provides a single function
 (<strong>closeSettlementWindow</strong>) to manage settlement windows. This function allows
 its user to select a settlement window by ID number and to input a new status
 for the window and a reason for that status.</p>
@@ -3350,6 +3371,9 @@ database would be as follows:</p>
 <td>HUB_FEE</td>
 <td>HUB_FEE</td>
 </tr>
+<tr>
+<td></td>
+</tr>
 </tbody>
 </table>
 <h4 id="changes-to-the-settlement-table">Changes to the <strong>settlement</strong> table</h4>
@@ -3371,7 +3395,7 @@ settlement models</p>
 <p>API Support for the settlement functionality required for TIPS will include the
 following functions:</p>
 <h4 id="close-a-settlement-window">Close a settlement window</h4>
-<p>The existing API definition (see Ref_2 above) supports a
+<p>The existing API definition <sup><a href="https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json" target="_blank">2</a></sup> supports a
 <strong>closeSettlementWindow</strong> resource. This function allows its user to select a
 settlement window by ID number and to input a new status for the window and a
 reason for that status. This resource will retain its current signature, but the
@@ -3427,7 +3451,7 @@ PC.participantCurrencyId</p>
 <p>, P.transferParticipantRoleTypeId</p>
 <p>, P.ledgerEntryTypeId;</p>
 <h4 id="getting-information-about-a-settlement-window">Getting information about a settlement window</h4>
-<p>The existing API definition (see Ref_2 above) supports a
+<p>The existing API definition <sup><a href="https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json" target="_blank">2</a></sup> supports a
 <strong>getSettlementWindowById</strong> resource. This function allows its user to obtain
 information about a settlement window by giving the ID that was returned when
 the settlement window was created.</p>
@@ -3435,7 +3459,7 @@ the settlement window was created.</p>
 extended to include the name of the settlement model to which the settlement
 window belongs.</p>
 <h4 id="getting-information-about-settlement-windows-using-parameters">Getting information about settlement windows using parameters</h4>
-<p>The existing API definition (see Ref_2 above) supports a
+<p>The existing API definition <sup><a href="https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json" target="_blank">2</a></sup> supports a
 <strong>getSettlementWindowsByParams</strong> resource. This function allows its user to
 obtain information about all settlement windows which meet the criteria
 specified by the user. The following changes will need to be made to this call:</p>
@@ -3451,7 +3475,7 @@ this call.</p>
 </li>
 </ol>
 <h4 id="requesting-a-settlement">Requesting a settlement</h4>
-<p>The existing API definition (see Ref_2 above) supports a <strong>createSettlement</strong>
+<p>The existing API definition <sup><a href="https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json" target="_blank">2</a></sup> supports a <strong>createSettlement</strong>
 resource. This function allows its user to request a settlement for a given set
 of settlement windows, which are passed to the resource as parameters. The
 following changes will need to be made to this call:</p>
@@ -3476,7 +3500,7 @@ be rejected and an error message returned to the caller.</p>
 settlementModelId column of the row created in the <strong>settlement</strong> table to
 describe the settlement.</p>
 <h4 id="returning-the-status-of-a-settlement">Returning the status of a settlement</h4>
-<p>The existing API definition (see Ref_2 above) supports a <strong>getSettlementById</strong>
+<p>The existing API definition <sup><a href="https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json" target="_blank">2</a></sup> supports a <strong>getSettlementById</strong>
 resource. This function allows its user to obtain information about a settlement
 by giving the ID that was returned when the settlement was created.</p>
 <p>Information about settlements is returned in a <strong>Settlement</strong> object. A
@@ -3488,7 +3512,7 @@ should be required.</p>
 <strong>Settlement</strong> object does not contain the reason. It might be worth including
 this in the definition of the <strong>Settlement</strong> object.</p>
 <h4 id="getting-information-about-settlements-using-parameters">Getting information about settlements using parameters</h4>
-<p>The existing API definition (see Ref_2 above) supports a
+<p>The existing API definition<sup><a href="https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json" target="_blank">2</a></sup> supports a
 <strong>getSettlementsByParams</strong> resource. This function allows its user to obtain
 information about all settlements by giving the ID that was returned when the
 settlement was created. The following changes will need to be made to this call:</p>
@@ -3499,7 +3523,7 @@ these objects will have been changed by the changes specified in Section
 call.</li>
 </ol>
 <h4 id="getting-information-about-a-specific-participant-in-a-settlement">Getting information about a specific participant in a settlement</h4>
-<p>The existing API definition (see Ref_2 above) supports a
+<p>The existing API definition <sup><a href="https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json" target="_blank">2</a></sup>  supports a
 <strong>getSettlementBySettlementParticipant</strong> resource. This function allows its user
 to obtain information about a settlement which meet the criteria specified by
 the user. The following changes will need to be made to this call:</p>
@@ -3509,7 +3533,7 @@ will have been changed by the changes specified in Section 6.2.2.5 above,
 and that no further processing will be required for this call.</li>
 </ol>
 <h4 id="updating-a-specific-settlement">Updating a specific settlement</h4>
-<p>The existing API definition (see Ref_2 above) supports an
+<p>The existing API definition <sup><a href="https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json" target="_blank">2</a></sup> supports an
 <strong>updateSettlementById</strong> resource. This function allows its user to update
 information about a settlement by giving the ID that was returned when the
 settlement was created.</p>
@@ -3517,7 +3541,7 @@ settlement was created.</p>
 have been changed by the changes specified in Section 6.2.2.5 above, and that no
 further processing will be required for this call.</p>
 <h4 id="updating-a-settlement-for-a-specific-participant">Updating a settlement for a specific participant</h4>
-<p>The existing API definition (see Ref_2 above) supports an
+<p>The existing API definition <sup><a href="https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json" target="_blank">2</a></sup> supports an
 <strong>updateSettlementBySettlementParticipant</strong> resource. This function allows its
 user to update information about a settlement by giving the ID that was returned
 when the settlement was created, and the participant whose information is to be
@@ -3526,7 +3550,7 @@ updated.</p>
 have been changed by the changes specified in Section 6.2.2.5 above, and that no
 further processing will be required for this call.</p>
 <h4 id="updating-a-settlement-for-a-specific-participant-and-account">Updating a settlement for a specific participant and account</h4>
-<p>The existing API definition (see Ref_2 above) supports an
+<p>The existing API definition <sup><a href="https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json" target="_blank">2</a></sup> supports an
 <strong>updateSettlementBySettlementParticipantAccount</strong> resource. This function
 allows its user to update information about a settlement by giving the ID that
 was returned when the settlement was created, and the participant and account
@@ -3535,18 +3559,16 @@ whose information is to be updated.</p>
 have been changed by the changes specified in Section 6.2.2.5 above, and that no
 further processing will be required for this call.</p>
 <h4 id="recording-the-deposit-of-funds-by-a-participant">Recording the deposit of funds by a participant</h4>
-<p>The existing administration API (see Ref_3 above) contains functions to enable
+<p>The existing administration API <sup><a href="https://mojaloop.io/documentation/api/central-ledger-api-specification.html" target="_blank">3</a></sup> contains functions to enable
 an administrator to record a deposit made by a participant to an account. This
 process is described in Section 5.2 above. The API should be changed to align it
-with the structures used in the existing settlement API described in Ref_2
-above. In addition, the signature of the API should be extended to allow the
+with the structures used in the existing settlement API <sup><a href="https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json" target="_blank">2</a></sup>. In addition, the signature of the API should be extended to allow the
 administrator to specify the account type that will be updated by the deposit.</p>
 <h4 id="recording-the-withdrawal-of-funds-by-a-participant">Recording the withdrawal of funds by a participant</h4>
-<p>The existing administration API (see Ref_3 above) contains functions to enable
+<p>The existing administration API <sup><a href="https://mojaloop.io/documentation/api/central-ledger-api-specification.html" target="_blank">3</a></sup> contains functions to enable
 an administrator to record a withdrawal made by a participant from an account.
 This process is described in Section 5.3 above. The API should be changed to
-align it with the structures used in the existing settlement API described in
-Ref_2 above. In addition, the signature of the API should be extended to allow
+align it with the structures used in the existing settlement API <sup><a href="https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json" target="_blank">2</a></sup>. In addition, the signature of the API should be extended to allow
 the administrator to specify the account type that will be updated by the
 withdrawal.</p>
 <h4 id="new-resource-opensettlementwindow">New resource: openSettlementWindow</h4>
@@ -3682,9 +3704,8 @@ of rules. This should be an array of evaluation functions, which are triggered
 when the status of a transfer changes to FULFILLED.</p>
 <h1 id="domain-class-diagram">Domain class diagram</h1>
 <h1 id="erd">ERD</h1>
-<p>The following ERD describes the new data structures required to model
-settlements.</p>
-<p><img src="media/4f8f8030bce778e7eb338bbc69c21f6a.png" alt=""></p>
+<p>The following ERD describes the new data structures required to model settlements.</p>
+<p><img src="assets/diagrams/Settlement_ERD.png" alt=""></p>
 <h2 id="enumerations">Enumerations</h2>
 <p>The following enumerations are required to support the new ERD:</p>
 <p>DELETE FROM settlementgranularity;</p>
@@ -3729,7 +3750,7 @@ settlements.</p>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"OSS Settlement FSD","level":"1.6.5.3","depth":3,"next":{"title":"Central-Event-Processor Services","level":"1.6.6","depth":2,"path":"mojaloop-technical-overview/central-event-processor/README.md","ref":"mojaloop-technical-overview/central-event-processor/README.md","articles":[{"title":"Event Handler (Placeholder)","level":"1.6.6.1","depth":3,"path":"mojaloop-technical-overview/central-event-processor/9.1.0-event-handler-placeholder.md","ref":"mojaloop-technical-overview/central-event-processor/9.1.0-event-handler-placeholder.md","articles":[]},{"title":"Notification Handler For Rejections","level":"1.6.6.2","depth":3,"path":"mojaloop-technical-overview/central-event-processor/5.1.1-notification-handler-for-rejections.md","ref":"mojaloop-technical-overview/central-event-processor/5.1.1-notification-handler-for-rejections.md","articles":[]},{"title":"Signature Validation","level":"1.6.6.3","depth":3,"path":"mojaloop-technical-overview/central-event-processor/signature-validation.md","ref":"mojaloop-technical-overview/central-event-processor/signature-validation.md","articles":[]}]},"previous":{"title":"Funds Out - Abort","level":"1.6.5.2.6","depth":4,"path":"mojaloop-technical-overview/central-settlements/funds-in-out/funds-out-abort.md","ref":"mojaloop-technical-overview/central-settlements/funds-in-out/funds-out-abort.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"3.x.x","theme":"default","variables":{"importedVars":{"mojaloop":{"spec":{"version":"v1.0","uri":{"doc":"https://github.com/mojaloop/mojaloop-specification/blob/master/API%20Definition%20v1.0.pdf","api":"https://github.com/mojaloop/mojaloop-specification/blob/master/Supporting%20Files/fspiop-rest-v1.0-OpenAPI-implementation.yaml"}}},"central_ledger":{"spec":{"version":"v2.0","uri":{"doc":"/mojaloop-technical-overview/central-ledger/README.md","api":"https://github.com/mojaloop/central-ledger/blob/master/src/api/interface/swagger.json"}}},"settlement":{"spec":{"version":"v1.1","uri":{"doc":"/mojaloop-technical-overview/central-settlements/README.md","api":"https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json"}}},"als":{"oracle":{"spec":{"version":"v1.2","uri":{"doc":"/mojaloop-technical-overview/account-lookup-service/README.md","api":"https://github.com/mojaloop/documentation/blob/master/api/assets/interface-contracts/oracle-service-swagger-v1.yaml"}}}}}},"plugins":["swagger","editlink","include","insert-logo","plantuml-svg","collapsible-chapters","back-to-top-button","theme-api","variables","changelog","page-toc"],"pluginsConfig":{"plantuml-svg":{},"editlink":{"label":"Edit This Page","multilingual":true,"base":"https://github.com/mojaloop/documentation/edit/master"},"theme-gestalt":{"logo":"https://mojaloop.io/images/logo.png","favicon":"https://mojaloop.io/images/logo.png","baseUrl":null,"excludeDefaultStyles":false,"doNotHideChildrenChapters":false},"include":{},"search":{},"collapsible-chapters":{},"page-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","position":"before-first","showByDefault":true},"swagger":{"file":""},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"uml":{"format":"png","nailgun":false},"changelog":{},"theme-api":{"languages":[],"split":true,"theme":"dark"},"back-to-top-button":{},"variables":{"files":{"importedVars":"book_variables.yml"}},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"insert-logo":{"url":"https://mojaloop.io/images/logo.png","style":"background: none; max-height: 140px; max-width: 140px;"}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"mojaloop-technical-overview/central-settlements/oss-settlement-fsd.md","mtime":"2019-12-11T19:17:35.479Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-12-11T19:18:32.787Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"OSS Settlement FSD","level":"1.6.5.3","depth":3,"next":{"title":"Central-Event-Processor Services","level":"1.6.6","depth":2,"path":"mojaloop-technical-overview/central-event-processor/README.md","ref":"mojaloop-technical-overview/central-event-processor/README.md","articles":[{"title":"Event Handler (Placeholder)","level":"1.6.6.1","depth":3,"path":"mojaloop-technical-overview/central-event-processor/9.1.0-event-handler-placeholder.md","ref":"mojaloop-technical-overview/central-event-processor/9.1.0-event-handler-placeholder.md","articles":[]},{"title":"Notification Handler For Rejections","level":"1.6.6.2","depth":3,"path":"mojaloop-technical-overview/central-event-processor/5.1.1-notification-handler-for-rejections.md","ref":"mojaloop-technical-overview/central-event-processor/5.1.1-notification-handler-for-rejections.md","articles":[]},{"title":"Signature Validation","level":"1.6.6.3","depth":3,"path":"mojaloop-technical-overview/central-event-processor/signature-validation.md","ref":"mojaloop-technical-overview/central-event-processor/signature-validation.md","articles":[]}]},"previous":{"title":"Funds Out - Abort","level":"1.6.5.2.6","depth":4,"path":"mojaloop-technical-overview/central-settlements/funds-in-out/funds-out-abort.md","ref":"mojaloop-technical-overview/central-settlements/funds-in-out/funds-out-abort.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"3.x.x","theme":"default","variables":{"importedVars":{"mojaloop":{"spec":{"version":"v1.0","uri":{"doc":"https://github.com/mojaloop/mojaloop-specification/blob/master/API%20Definition%20v1.0.pdf","api":"https://github.com/mojaloop/mojaloop-specification/blob/master/Supporting%20Files/fspiop-rest-v1.0-OpenAPI-implementation.yaml"}}},"central_ledger":{"spec":{"version":"v2.0","uri":{"doc":"/mojaloop-technical-overview/central-ledger/README.md","api":"https://github.com/mojaloop/central-ledger/blob/master/src/api/interface/swagger.json"}}},"settlement":{"spec":{"version":"v1.1","uri":{"doc":"/mojaloop-technical-overview/central-settlements/README.md","api":"https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json"}}},"als":{"oracle":{"spec":{"version":"v1.2","uri":{"doc":"/mojaloop-technical-overview/account-lookup-service/README.md","api":"https://github.com/mojaloop/documentation/blob/master/api/assets/interface-contracts/oracle-service-swagger-v1.yaml"}}}}}},"plugins":["swagger","editlink","include","insert-logo","plantuml-svg","collapsible-chapters","back-to-top-button","theme-api","variables","changelog","page-toc"],"pluginsConfig":{"plantuml-svg":{},"editlink":{"label":"Edit This Page","multilingual":true,"base":"https://github.com/mojaloop/documentation/edit/master"},"theme-gestalt":{"logo":"https://mojaloop.io/images/logo.png","favicon":"https://mojaloop.io/images/logo.png","baseUrl":null,"excludeDefaultStyles":false,"doNotHideChildrenChapters":false},"include":{},"search":{},"collapsible-chapters":{},"page-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","position":"before-first","showByDefault":true},"swagger":{"file":""},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"uml":{"format":"png","nailgun":false},"changelog":{},"theme-api":{"languages":[],"split":true,"theme":"dark"},"back-to-top-button":{},"variables":{"files":{"importedVars":"book_variables.yml"}},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"insert-logo":{"url":"https://mojaloop.io/images/logo.png","style":"background: none; max-height: 140px; max-width: 140px;"}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"mojaloop-technical-overview/central-settlements/oss-settlement-fsd.md","mtime":"2020-01-06T14:18:56.817Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-01-06T14:19:43.434Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
