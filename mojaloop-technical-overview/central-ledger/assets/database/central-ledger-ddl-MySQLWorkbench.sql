@@ -1,13 +1,13 @@
--- MySQL dump 10.13  Distrib 8.0.16, for macos10.14 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.18, for macos10.14 (x86_64)
 --
--- Host: 127.0.0.1    Database: central_ledger
+-- Host: localhost    Database: central_ledger
 -- ------------------------------------------------------
 -- Server version	8.0.13
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
- SET NAMES utf8 ;
+/*!50503 SET NAMES utf8 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -21,7 +21,7 @@
 
 DROP TABLE IF EXISTS `amountType`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `amountType` (
   `amountTypeId` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(256) NOT NULL,
@@ -38,7 +38,7 @@ CREATE TABLE `amountType` (
 
 DROP TABLE IF EXISTS `balanceOfPayments`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `balanceOfPayments` (
   `balanceOfPaymentsId` int(10) unsigned NOT NULL,
   `name` varchar(256) NOT NULL,
@@ -55,7 +55,7 @@ CREATE TABLE `balanceOfPayments` (
 
 DROP TABLE IF EXISTS `bulkProcessingState`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `bulkProcessingState` (
   `bulkProcessingStateId` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
@@ -73,7 +73,7 @@ CREATE TABLE `bulkProcessingState` (
 
 DROP TABLE IF EXISTS `bulkTransfer`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `bulkTransfer` (
   `bulkTransferId` varchar(36) NOT NULL,
   `bulkQuoteId` varchar(36) DEFAULT NULL,
@@ -96,7 +96,7 @@ CREATE TABLE `bulkTransfer` (
 
 DROP TABLE IF EXISTS `bulkTransferAssociation`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `bulkTransferAssociation` (
   `bulkTransferAssociationId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `transferId` varchar(36) NOT NULL,
@@ -121,7 +121,7 @@ CREATE TABLE `bulkTransferAssociation` (
 
 DROP TABLE IF EXISTS `bulkTransferDuplicateCheck`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `bulkTransferDuplicateCheck` (
   `bulkTransferId` varchar(36) NOT NULL,
   `hash` varchar(256) NOT NULL,
@@ -136,7 +136,7 @@ CREATE TABLE `bulkTransferDuplicateCheck` (
 
 DROP TABLE IF EXISTS `bulkTransferError`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `bulkTransferError` (
   `bulkTransferErrorId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `bulkTransferStateChangeId` bigint(20) unsigned NOT NULL,
@@ -155,18 +155,16 @@ CREATE TABLE `bulkTransferError` (
 
 DROP TABLE IF EXISTS `bulkTransferExtension`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `bulkTransferExtension` (
   `bulkTransferExtensionId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `bulkTransferId` varchar(36) NOT NULL,
-  `bulkTransferFulfilmentId` bigint(20) unsigned DEFAULT NULL,
+  `isFulfilment` tinyint(1) NOT NULL DEFAULT '0',
   `key` varchar(128) NOT NULL,
   `value` text NOT NULL,
   `createdDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`bulkTransferExtensionId`),
   KEY `bulktransferextension_bulktransferid_index` (`bulkTransferId`),
-  KEY `bulktransferextension_bulktransferfulfilmentid_index` (`bulkTransferFulfilmentId`),
-  CONSTRAINT `bulktransferextension_bulktransferfulfilmentid_foreign` FOREIGN KEY (`bulkTransferFulfilmentId`) REFERENCES `bulkTransferFulfilment` (`bulktransferfulfilmentid`),
   CONSTRAINT `bulktransferextension_bulktransferid_foreign` FOREIGN KEY (`bulkTransferId`) REFERENCES `bulkTransfer` (`bulktransferid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -177,16 +175,13 @@ CREATE TABLE `bulkTransferExtension` (
 
 DROP TABLE IF EXISTS `bulkTransferFulfilment`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `bulkTransferFulfilment` (
-  `bulkTransferFulfilmentId` bigint(20) unsigned NOT NULL,
   `bulkTransferId` varchar(36) NOT NULL,
   `completedDate` datetime NOT NULL,
   `createdDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`bulkTransferFulfilmentId`),
-  UNIQUE KEY `bulktransferfulfilment_bulktransferid_unique` (`bulkTransferId`),
-  CONSTRAINT `bulktransferfulfilment_bulktransferfulfilmentid_foreign` FOREIGN KEY (`bulkTransferFulfilmentId`) REFERENCES `bulkTransferFulfilmentDuplicateCheck` (`bulktransferfulfilmentid`),
-  CONSTRAINT `bulktransferfulfilment_bulktransferid_foreign` FOREIGN KEY (`bulkTransferId`) REFERENCES `bulkTransfer` (`bulktransferid`)
+  PRIMARY KEY (`bulkTransferId`),
+  CONSTRAINT `bulktransferfulfilment_bulktransferid_foreign` FOREIGN KEY (`bulkTransferId`) REFERENCES `bulkTransferFulfilmentDuplicateCheck` (`bulktransferid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -196,14 +191,13 @@ CREATE TABLE `bulkTransferFulfilment` (
 
 DROP TABLE IF EXISTS `bulkTransferFulfilmentDuplicateCheck`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `bulkTransferFulfilmentDuplicateCheck` (
-  `bulkTransferFulfilmentId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `bulkTransferId` varchar(36) NOT NULL,
-  `hash` varchar(256) DEFAULT NULL,
+  `hash` varchar(256) NOT NULL,
   `createdDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`bulkTransferFulfilmentId`),
-  UNIQUE KEY `bulktransferfulfilmentduplicatecheck_bulktransferid_unique` (`bulkTransferId`)
+  PRIMARY KEY (`bulkTransferId`),
+  CONSTRAINT `bulktransferfulfilmentduplicatecheck_bulktransferid_foreign` FOREIGN KEY (`bulkTransferId`) REFERENCES `bulkTransfer` (`bulktransferid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -213,7 +207,7 @@ CREATE TABLE `bulkTransferFulfilmentDuplicateCheck` (
 
 DROP TABLE IF EXISTS `bulkTransferState`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `bulkTransferState` (
   `bulkTransferStateId` varchar(50) NOT NULL,
   `enumeration` varchar(50) NOT NULL COMMENT 'bulkTransferState associated to the Mojaloop API',
@@ -230,7 +224,7 @@ CREATE TABLE `bulkTransferState` (
 
 DROP TABLE IF EXISTS `bulkTransferStateChange`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `bulkTransferStateChange` (
   `bulkTransferStateChangeId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `bulkTransferId` varchar(36) NOT NULL,
@@ -251,7 +245,7 @@ CREATE TABLE `bulkTransferStateChange` (
 
 DROP TABLE IF EXISTS `contactType`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contactType` (
   `contactTypeId` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
@@ -269,12 +263,13 @@ CREATE TABLE `contactType` (
 
 DROP TABLE IF EXISTS `currency`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `currency` (
   `currencyId` varchar(3) NOT NULL,
   `name` varchar(128) DEFAULT NULL,
   `isActive` tinyint(1) NOT NULL DEFAULT '1',
   `createdDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `scale` int(10) unsigned NOT NULL DEFAULT '4',
   PRIMARY KEY (`currencyId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -285,7 +280,7 @@ CREATE TABLE `currency` (
 
 DROP TABLE IF EXISTS `endpointType`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `endpointType` (
   `endpointTypeId` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
@@ -294,7 +289,7 @@ CREATE TABLE `endpointType` (
   `createdDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`endpointTypeId`),
   UNIQUE KEY `endpointtype_name_unique` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -303,7 +298,7 @@ CREATE TABLE `endpointType` (
 
 DROP TABLE IF EXISTS `event`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `event` (
   `eventId` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(128) NOT NULL,
@@ -314,12 +309,31 @@ CREATE TABLE `event` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `expiringTransfer`
+--
+
+DROP TABLE IF EXISTS `expiringTransfer`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `expiringTransfer` (
+  `expiringTransferId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `transferId` varchar(36) NOT NULL,
+  `expirationDate` datetime NOT NULL,
+  `createdDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`expiringTransferId`),
+  UNIQUE KEY `expiringtransfer_transferid_unique` (`transferId`),
+  KEY `expiringtransfer_expirationdate_index` (`expirationDate`),
+  CONSTRAINT `expiringtransfer_transferid_foreign` FOREIGN KEY (`transferId`) REFERENCES `transfer` (`transferid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `geoCode`
 --
 
 DROP TABLE IF EXISTS `geoCode`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `geoCode` (
   `geoCodeId` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `quotePartyId` bigint(20) unsigned NOT NULL COMMENT 'Optionally the GeoCode for the Payer/Payee may have been provided. If the Quote Response has the GeoCode for the Payee, an additional row is added',
@@ -338,7 +352,7 @@ CREATE TABLE `geoCode` (
 
 DROP TABLE IF EXISTS `ilpPacket`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ilpPacket` (
   `transferId` varchar(36) NOT NULL,
   `value` text NOT NULL,
@@ -354,7 +368,7 @@ CREATE TABLE `ilpPacket` (
 
 DROP TABLE IF EXISTS `ledgerAccountType`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ledgerAccountType` (
   `ledgerAccountTypeId` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
@@ -372,7 +386,7 @@ CREATE TABLE `ledgerAccountType` (
 
 DROP TABLE IF EXISTS `ledgerEntryType`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ledgerEntryType` (
   `ledgerEntryTypeId` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
@@ -390,14 +404,14 @@ CREATE TABLE `ledgerEntryType` (
 
 DROP TABLE IF EXISTS `migration`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `migration` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
   `batch` int(11) DEFAULT NULL,
   `migration_time` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=130 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=140 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -406,7 +420,7 @@ CREATE TABLE `migration` (
 
 DROP TABLE IF EXISTS `migration_lock`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `migration_lock` (
   `index` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `is_locked` int(11) DEFAULT NULL,
@@ -420,7 +434,7 @@ CREATE TABLE `migration_lock` (
 
 DROP TABLE IF EXISTS `participant`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `participant` (
   `participantId` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(256) NOT NULL,
@@ -439,7 +453,7 @@ CREATE TABLE `participant` (
 
 DROP TABLE IF EXISTS `participantContact`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `participantContact` (
   `participantContactId` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `participantId` int(10) unsigned NOT NULL,
@@ -463,7 +477,7 @@ CREATE TABLE `participantContact` (
 
 DROP TABLE IF EXISTS `participantCurrency`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `participantCurrency` (
   `participantCurrencyId` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `participantId` int(10) unsigned NOT NULL,
@@ -489,7 +503,7 @@ CREATE TABLE `participantCurrency` (
 
 DROP TABLE IF EXISTS `participantEndpoint`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `participantEndpoint` (
   `participantEndpointId` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `participantId` int(10) unsigned NOT NULL,
@@ -512,12 +526,12 @@ CREATE TABLE `participantEndpoint` (
 
 DROP TABLE IF EXISTS `participantLimit`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `participantLimit` (
   `participantLimitId` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `participantCurrencyId` int(10) unsigned NOT NULL,
   `participantLimitTypeId` int(10) unsigned NOT NULL,
-  `value` decimal(18,2) NOT NULL DEFAULT '0.00',
+  `value` decimal(18,4) NOT NULL DEFAULT '0.0000',
   `thresholdAlarmPercentage` decimal(5,2) NOT NULL DEFAULT '10.00',
   `startAfterParticipantPositionChangeId` bigint(20) unsigned DEFAULT NULL,
   `isActive` tinyint(1) NOT NULL DEFAULT '1',
@@ -539,7 +553,7 @@ CREATE TABLE `participantLimit` (
 
 DROP TABLE IF EXISTS `participantLimitType`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `participantLimitType` (
   `participantLimitTypeId` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
@@ -557,7 +571,7 @@ CREATE TABLE `participantLimitType` (
 
 DROP TABLE IF EXISTS `participantParty`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `participantParty` (
   `participantPartyId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `participantId` int(10) unsigned NOT NULL,
@@ -575,12 +589,12 @@ CREATE TABLE `participantParty` (
 
 DROP TABLE IF EXISTS `participantPosition`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `participantPosition` (
   `participantPositionId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `participantCurrencyId` int(10) unsigned NOT NULL,
-  `value` decimal(18,2) NOT NULL,
-  `reservedValue` decimal(18,2) NOT NULL,
+  `value` decimal(18,4) NOT NULL,
+  `reservedValue` decimal(18,4) NOT NULL,
   `changedDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`participantPositionId`),
   KEY `participantposition_participantcurrencyid_index` (`participantCurrencyId`),
@@ -594,13 +608,13 @@ CREATE TABLE `participantPosition` (
 
 DROP TABLE IF EXISTS `participantPositionChange`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `participantPositionChange` (
   `participantPositionChangeId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `participantPositionId` bigint(20) unsigned NOT NULL,
   `transferStateChangeId` bigint(20) unsigned NOT NULL,
-  `value` decimal(18,2) NOT NULL,
-  `reservedValue` decimal(18,2) NOT NULL,
+  `value` decimal(18,4) NOT NULL,
+  `reservedValue` decimal(18,4) NOT NULL,
   `createdDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`participantPositionChangeId`),
   KEY `participantpositionchange_participantpositionid_index` (`participantPositionId`),
@@ -616,7 +630,7 @@ CREATE TABLE `participantPositionChange` (
 
 DROP TABLE IF EXISTS `party`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `party` (
   `partyId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `quotePartyId` bigint(20) unsigned NOT NULL,
@@ -636,7 +650,7 @@ CREATE TABLE `party` (
 
 DROP TABLE IF EXISTS `partyIdentifierType`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `partyIdentifierType` (
   `partyIdentifierTypeId` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
@@ -652,7 +666,7 @@ CREATE TABLE `partyIdentifierType` (
 
 DROP TABLE IF EXISTS `partyType`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `partyType` (
   `partyTypeId` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(128) NOT NULL,
@@ -668,7 +682,7 @@ CREATE TABLE `partyType` (
 
 DROP TABLE IF EXISTS `quote`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `quote` (
   `quoteId` varchar(36) NOT NULL,
   `transactionReferenceId` varchar(36) NOT NULL COMMENT 'Common ID (decided by the Payer FSP) between the FSPs for the future transaction object',
@@ -712,7 +726,7 @@ CREATE TABLE `quote` (
 
 DROP TABLE IF EXISTS `quoteDuplicateCheck`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `quoteDuplicateCheck` (
   `quoteId` varchar(36) NOT NULL COMMENT 'Common ID between the FSPs for the quote object, decided by the Payer FSP',
   `hash` varchar(1024) DEFAULT NULL COMMENT 'hash value received for the quote request',
@@ -727,7 +741,7 @@ CREATE TABLE `quoteDuplicateCheck` (
 
 DROP TABLE IF EXISTS `quoteError`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `quoteError` (
   `quoteErrorId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `quoteId` varchar(36) NOT NULL COMMENT 'Common ID between the FSPs for the quote object, decided by the Payer FSP',
@@ -749,7 +763,7 @@ CREATE TABLE `quoteError` (
 
 DROP TABLE IF EXISTS `quoteExtension`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `quoteExtension` (
   `quoteExtensionId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `quoteId` varchar(36) NOT NULL COMMENT 'Common ID between the FSPs for the quote object, decided by the Payer FSP',
@@ -774,7 +788,7 @@ CREATE TABLE `quoteExtension` (
 
 DROP TABLE IF EXISTS `quoteParty`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `quoteParty` (
   `quotePartyId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `quoteId` varchar(36) NOT NULL COMMENT 'Common ID between the FSPs for the quote object, decided by the Payer FSP',
@@ -818,7 +832,7 @@ CREATE TABLE `quoteParty` (
 DROP TABLE IF EXISTS `quotePartyView`;
 /*!50001 DROP VIEW IF EXISTS `quotePartyView`*/;
 SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8mb4;
+/*!50503 SET character_set_client = utf8mb4 */;
 /*!50001 CREATE VIEW `quotePartyView` AS SELECT 
  1 AS `quoteId`,
  1 AS `quotePartyId`,
@@ -843,7 +857,7 @@ SET character_set_client = @saved_cs_client;
 
 DROP TABLE IF EXISTS `quoteResponse`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `quoteResponse` (
   `quoteResponseId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `quoteId` varchar(36) NOT NULL COMMENT 'Common ID between the FSPs for the quote object, decided by the Payer FSP',
@@ -877,7 +891,7 @@ CREATE TABLE `quoteResponse` (
 
 DROP TABLE IF EXISTS `quoteResponseDuplicateCheck`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `quoteResponseDuplicateCheck` (
   `quoteResponseId` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'The response to the intial quote',
   `quoteId` varchar(36) NOT NULL COMMENT 'Common ID between the FSPs for the quote object, decided by the Payer FSP',
@@ -896,7 +910,7 @@ CREATE TABLE `quoteResponseDuplicateCheck` (
 
 DROP TABLE IF EXISTS `quoteResponseIlpPacket`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `quoteResponseIlpPacket` (
   `quoteResponseId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `value` text NOT NULL COMMENT 'ilpPacket returned from Payee in response to a quote request',
@@ -912,7 +926,7 @@ CREATE TABLE `quoteResponseIlpPacket` (
 DROP TABLE IF EXISTS `quoteResponseView`;
 /*!50001 DROP VIEW IF EXISTS `quoteResponseView`*/;
 SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8mb4;
+/*!50503 SET character_set_client = utf8mb4 */;
 /*!50001 CREATE VIEW `quoteResponseView` AS SELECT 
  1 AS `quoteResponseId`,
  1 AS `quoteId`,
@@ -940,7 +954,7 @@ SET character_set_client = @saved_cs_client;
 DROP TABLE IF EXISTS `quoteView`;
 /*!50001 DROP VIEW IF EXISTS `quoteView`*/;
 SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8mb4;
+/*!50503 SET character_set_client = utf8mb4 */;
 /*!50001 CREATE VIEW `quoteView` AS SELECT 
  1 AS `quoteId`,
  1 AS `transactionReferenceId`,
@@ -963,7 +977,7 @@ SET character_set_client = @saved_cs_client;
 
 DROP TABLE IF EXISTS `segment`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `segment` (
   `segmentId` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `segmentType` varchar(50) NOT NULL,
@@ -982,7 +996,7 @@ CREATE TABLE `segment` (
 
 DROP TABLE IF EXISTS `settlement`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `settlement` (
   `settlementId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `reason` varchar(512) DEFAULT NULL,
@@ -1000,12 +1014,12 @@ CREATE TABLE `settlement` (
 
 DROP TABLE IF EXISTS `settlementParticipantCurrency`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `settlementParticipantCurrency` (
   `settlementParticipantCurrencyId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `settlementId` bigint(20) unsigned NOT NULL,
   `participantCurrencyId` int(10) unsigned NOT NULL,
-  `netAmount` decimal(18,2) NOT NULL,
+  `netAmount` decimal(18,4) NOT NULL,
   `createdDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `currentStateChangeId` bigint(20) unsigned DEFAULT NULL,
   `settlementTransferId` varchar(36) DEFAULT NULL,
@@ -1026,7 +1040,7 @@ CREATE TABLE `settlementParticipantCurrency` (
 
 DROP TABLE IF EXISTS `settlementParticipantCurrencyStateChange`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `settlementParticipantCurrencyStateChange` (
   `settlementParticipantCurrencyStateChangeId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `settlementParticipantCurrencyId` bigint(20) unsigned NOT NULL,
@@ -1048,7 +1062,7 @@ CREATE TABLE `settlementParticipantCurrencyStateChange` (
 
 DROP TABLE IF EXISTS `settlementSettlementWindow`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `settlementSettlementWindow` (
   `settlementSettlementWindowId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `settlementId` bigint(20) unsigned NOT NULL,
@@ -1069,7 +1083,7 @@ CREATE TABLE `settlementSettlementWindow` (
 
 DROP TABLE IF EXISTS `settlementState`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `settlementState` (
   `settlementStateId` varchar(50) NOT NULL,
   `enumeration` varchar(50) NOT NULL,
@@ -1086,7 +1100,7 @@ CREATE TABLE `settlementState` (
 
 DROP TABLE IF EXISTS `settlementStateChange`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `settlementStateChange` (
   `settlementStateChangeId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `settlementId` bigint(20) unsigned NOT NULL,
@@ -1107,7 +1121,7 @@ CREATE TABLE `settlementStateChange` (
 
 DROP TABLE IF EXISTS `settlementTransferParticipant`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `settlementTransferParticipant` (
   `settlementTransferParticipantId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `settlementId` bigint(20) unsigned NOT NULL,
@@ -1115,7 +1129,7 @@ CREATE TABLE `settlementTransferParticipant` (
   `participantCurrencyId` int(10) unsigned NOT NULL,
   `transferParticipantRoleTypeId` int(10) unsigned NOT NULL,
   `ledgerEntryTypeId` int(10) unsigned NOT NULL,
-  `amount` decimal(18,2) NOT NULL,
+  `amount` decimal(18,4) NOT NULL,
   `createdDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`settlementTransferParticipantId`),
   KEY `settlementtransferparticipant_settlementid_index` (`settlementId`),
@@ -1137,7 +1151,7 @@ CREATE TABLE `settlementTransferParticipant` (
 
 DROP TABLE IF EXISTS `settlementWindow`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `settlementWindow` (
   `settlementWindowId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `reason` varchar(512) DEFAULT NULL,
@@ -1155,7 +1169,7 @@ CREATE TABLE `settlementWindow` (
 
 DROP TABLE IF EXISTS `settlementWindowState`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `settlementWindowState` (
   `settlementWindowStateId` varchar(50) NOT NULL,
   `enumeration` varchar(50) NOT NULL,
@@ -1172,7 +1186,7 @@ CREATE TABLE `settlementWindowState` (
 
 DROP TABLE IF EXISTS `settlementWindowStateChange`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `settlementWindowStateChange` (
   `settlementWindowStateChangeId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `settlementWindowId` bigint(20) unsigned NOT NULL,
@@ -1193,7 +1207,7 @@ CREATE TABLE `settlementWindowStateChange` (
 
 DROP TABLE IF EXISTS `token`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `token` (
   `tokenId` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `participantId` int(10) unsigned NOT NULL,
@@ -1213,7 +1227,7 @@ CREATE TABLE `token` (
 
 DROP TABLE IF EXISTS `transactionInitiator`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `transactionInitiator` (
   `transactionInitiatorId` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(256) NOT NULL,
@@ -1230,7 +1244,7 @@ CREATE TABLE `transactionInitiator` (
 
 DROP TABLE IF EXISTS `transactionInitiatorType`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `transactionInitiatorType` (
   `transactionInitiatorTypeId` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(256) NOT NULL,
@@ -1247,7 +1261,7 @@ CREATE TABLE `transactionInitiatorType` (
 
 DROP TABLE IF EXISTS `transactionReference`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `transactionReference` (
   `transactionReferenceId` varchar(36) NOT NULL COMMENT 'Common ID (decided by the Payer FSP) between the FSPs for the future transaction object',
   `quoteId` varchar(36) DEFAULT NULL COMMENT 'Common ID between the FSPs for the quote object, decided by the Payer FSP',
@@ -1264,7 +1278,7 @@ CREATE TABLE `transactionReference` (
 
 DROP TABLE IF EXISTS `transactionScenario`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `transactionScenario` (
   `transactionScenarioId` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(256) NOT NULL,
@@ -1281,7 +1295,7 @@ CREATE TABLE `transactionScenario` (
 
 DROP TABLE IF EXISTS `transactionSubScenario`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `transactionSubScenario` (
   `transactionSubScenarioId` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(256) NOT NULL,
@@ -1297,10 +1311,10 @@ CREATE TABLE `transactionSubScenario` (
 
 DROP TABLE IF EXISTS `transfer`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `transfer` (
   `transferId` varchar(36) NOT NULL,
-  `amount` decimal(18,2) NOT NULL,
+  `amount` decimal(18,4) NOT NULL,
   `currencyId` varchar(3) NOT NULL,
   `ilpCondition` varchar(256) NOT NULL,
   `expirationDate` datetime NOT NULL,
@@ -1318,7 +1332,7 @@ CREATE TABLE `transfer` (
 
 DROP TABLE IF EXISTS `transferDuplicateCheck`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `transferDuplicateCheck` (
   `transferId` varchar(36) NOT NULL,
   `hash` varchar(256) NOT NULL,
@@ -1333,7 +1347,7 @@ CREATE TABLE `transferDuplicateCheck` (
 
 DROP TABLE IF EXISTS `transferError`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `transferError` (
   `transferId` varchar(36) NOT NULL,
   `transferStateChangeId` bigint(20) unsigned NOT NULL,
@@ -1342,7 +1356,6 @@ CREATE TABLE `transferError` (
   `createdDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`transferId`),
   KEY `transfererror_transferstatechangeid_foreign` (`transferStateChangeId`),
-  CONSTRAINT `transfererror_transferid_foreign` FOREIGN KEY (`transferId`) REFERENCES `transferErrorDuplicateCheck` (`transferid`),
   CONSTRAINT `transfererror_transferstatechangeid_foreign` FOREIGN KEY (`transferStateChangeId`) REFERENCES `transferStateChange` (`transferstatechangeid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -1353,7 +1366,7 @@ CREATE TABLE `transferError` (
 
 DROP TABLE IF EXISTS `transferErrorDuplicateCheck`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `transferErrorDuplicateCheck` (
   `transferId` varchar(36) NOT NULL,
   `hash` varchar(256) DEFAULT NULL,
@@ -1369,7 +1382,7 @@ CREATE TABLE `transferErrorDuplicateCheck` (
 
 DROP TABLE IF EXISTS `transferExtension`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `transferExtension` (
   `transferExtensionId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `transferId` varchar(36) NOT NULL,
@@ -1390,7 +1403,7 @@ CREATE TABLE `transferExtension` (
 
 DROP TABLE IF EXISTS `transferFulfilment`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `transferFulfilment` (
   `transferId` varchar(36) NOT NULL,
   `ilpFulfilment` varchar(256) DEFAULT NULL,
@@ -1411,7 +1424,7 @@ CREATE TABLE `transferFulfilment` (
 
 DROP TABLE IF EXISTS `transferFulfilmentDuplicateCheck`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `transferFulfilmentDuplicateCheck` (
   `transferId` varchar(36) NOT NULL,
   `hash` varchar(256) DEFAULT NULL,
@@ -1427,14 +1440,14 @@ CREATE TABLE `transferFulfilmentDuplicateCheck` (
 
 DROP TABLE IF EXISTS `transferParticipant`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `transferParticipant` (
   `transferParticipantId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `transferId` varchar(36) NOT NULL,
   `participantCurrencyId` int(10) unsigned NOT NULL,
   `transferParticipantRoleTypeId` int(10) unsigned NOT NULL,
   `ledgerEntryTypeId` int(10) unsigned NOT NULL,
-  `amount` decimal(18,2) NOT NULL,
+  `amount` decimal(18,4) NOT NULL,
   `createdDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`transferParticipantId`),
   KEY `transferparticipant_transferid_index` (`transferId`),
@@ -1454,7 +1467,7 @@ CREATE TABLE `transferParticipant` (
 
 DROP TABLE IF EXISTS `transferParticipantRoleType`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `transferParticipantRoleType` (
   `transferParticipantRoleTypeId` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
@@ -1472,7 +1485,7 @@ CREATE TABLE `transferParticipantRoleType` (
 
 DROP TABLE IF EXISTS `transferRules`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `transferRules` (
   `transferRulesId` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(128) NOT NULL,
@@ -1490,7 +1503,7 @@ CREATE TABLE `transferRules` (
 
 DROP TABLE IF EXISTS `transferState`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `transferState` (
   `transferStateId` varchar(50) NOT NULL,
   `enumeration` varchar(50) NOT NULL COMMENT 'transferState associated to the Mojaloop API',
@@ -1507,7 +1520,7 @@ CREATE TABLE `transferState` (
 
 DROP TABLE IF EXISTS `transferStateChange`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `transferStateChange` (
   `transferStateChangeId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `transferId` varchar(36) NOT NULL,
@@ -1528,7 +1541,7 @@ CREATE TABLE `transferStateChange` (
 
 DROP TABLE IF EXISTS `transferTimeout`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `transferTimeout` (
   `transferTimeoutId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `transferId` varchar(36) NOT NULL,
@@ -1603,4 +1616,4 @@ CREATE TABLE `transferTimeout` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-08-23 12:41:12
+-- Dump completed on 2020-01-06 15:22:27
