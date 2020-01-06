@@ -1283,14 +1283,17 @@ CREATE TABLE `settlementWindowContent` (
   `currencyId` varchar(3) NOT NULL,
   `createdDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `currentStateChangeId` bigint(20) unsigned DEFAULT NULL,
+  `settlementId` bigint(20) unsigned DEFAULT NULL,
   PRIMARY KEY (`settlementWindowContentId`),
   KEY `settlementwindowcontent_settlementwindowid_index` (`settlementWindowId`),
   KEY `settlementwindowcontent_ledgeraccounttypeid_index` (`ledgerAccountTypeId`),
   KEY `settlementwindowcontent_currencyid_index` (`currencyId`),
   KEY `settlementwindowcontent_currentstatechangeid_index` (`currentStateChangeId`),
+  KEY `settlementwindowcontent_settlementid_index` (`settlementId`),
   CONSTRAINT `settlementwindowcontent_currencyid_foreign` FOREIGN KEY (`currencyId`) REFERENCES `currency` (`currencyid`),
   CONSTRAINT `settlementwindowcontent_currentstatechangeid_foreign` FOREIGN KEY (`currentStateChangeId`) REFERENCES `settlementWindowContentStateChange` (`settlementwindowcontentstatechangeid`),
   CONSTRAINT `settlementwindowcontent_ledgeraccounttypeid_foreign` FOREIGN KEY (`ledgerAccountTypeId`) REFERENCES `ledgerAccountType` (`ledgeraccounttypeid`),
+  CONSTRAINT `settlementwindowcontent_settlementid_foreign` FOREIGN KEY (`settlementId`) REFERENCES `settlement` (`settlementid`),
   CONSTRAINT `settlementwindowcontent_settlementwindowid_foreign` FOREIGN KEY (`settlementWindowId`) REFERENCES `settlementWindow` (`settlementwindowid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -1769,4 +1772,4 @@ CREATE TABLE `transferTimeout` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-12-17 16:53:56
+-- Dump completed on 2020-01-06 15:34:26
