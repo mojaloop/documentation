@@ -110,6 +110,7 @@
     * [Notification Handler For Rejections](mojaloop-technical-overview/central-event-processor/5.1.1-notification-handler-for-rejections.md)
     * [Signature Validation](mojaloop-technical-overview/central-event-processor/signature-validation.md)
   * [Event Framework](mojaloop-technical-overview/event-framework/README.md)
+    * [Event Stream Processor](mojaloop-technical-overview/event-stream-processor/README.md)
   * [Fraud Services](mojaloop-technical-overview/fraud-services/README.md)
     * [Ecosystem Fraud Documentation](mojaloop-technical-overview/fraud-services/related-documents/documentation.md)
   * [SDK Scheme Adapter](mojaloop-technical-overview/sdk-scheme-adapter/README.md)
