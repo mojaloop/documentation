@@ -309,6 +309,25 @@ CREATE TABLE `event` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `expiringTransfer`
+--
+
+DROP TABLE IF EXISTS `expiringTransfer`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `expiringTransfer` (
+  `expiringTransferId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `transferId` varchar(36) NOT NULL,
+  `expirationDate` datetime NOT NULL,
+  `createdDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`expiringTransferId`),
+  UNIQUE KEY `expiringtransfer_transferid_unique` (`transferId`),
+  KEY `expiringtransfer_expirationdate_index` (`expirationDate`),
+  CONSTRAINT `expiringtransfer_transferid_foreign` FOREIGN KEY (`transferId`) REFERENCES `transfer` (`transferid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `geoCode`
 --
 
@@ -1772,4 +1791,4 @@ CREATE TABLE `transferTimeout` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-01-06 15:34:26
+-- Dump completed on 2020-01-07 11:22:43
