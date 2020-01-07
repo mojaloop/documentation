@@ -18,7 +18,8 @@
  * Gates Foundation
  - Name Surname <name.surname@gatesfoundation.com>
 
- * Georgi Georgiev <georgi.georgiev@modusbox.com>
+ * ModusBox
+ - Georgi Georgiev <georgi.georgiev@modusbox.com>
  --------------
  ******'/
 
@@ -51,6 +52,7 @@ group Trigger Settlement Event
 activate OPERATOR
     note right of OPERATOR #yellow
         {
+            "settlementModel": "string",  
             "reason": "string",
             "settlementWindows": [
                 {
@@ -65,39 +67,88 @@ activate OPERATOR
     OPERATOR -> SSAPI: POST - /settlements
     activate SSAPI
 
+    SSAPI-> SETTLE_DAO: Request settlementModel\n<color #FF0000><b>Error code:</b> 2001</color>
+    activate SETTLE_DAO
+    SETTLE_DAO -> DB: Retrieve settlementModel
+    activate DB
+    hnote over DB #lightyellow
+        SELECT sg.name settlementGranularity, si.name settlementInterchange,
+            sd.name settlementDelay, sm.ledgerAccountTypeId,
+            sm.currencyId, sm.requireLiquidityCheck
+        FROM **settlementModel** sm
+        JOIN **settlementGranularity** sg
+        ON sg.settlementGranularityId = sm.settlementGranularityId
+        JOIN **settlementInterchange** si
+        ON si.settlementInterchangeId = sm.settlementInterchangeId
+        JOIN **settlementDelay** sd
+        ON sd.settlementDelayId = sm.settlementDelayId
+        WHERE name = {settlementModelName}
+        AND isActive = 1
+    end hnote
+    SETTLE_DAO <-- DB: Return data
+    deactivate DB
+    SSAPI <-- SETTLE_DAO: Return **settlementModelData (smd)**
+    deactivate SETTLE_DAO
+
+    break smd.settlementGranularity != 'NET' ||\nsmd.settlementInterchange != 'MULTILATERAL' ||\nsmd.settlementDelay != 'DEFERRED'
+        note right of SSAPI #lightgray
+            Log ERROR event
+        end note
+        note left of SSAPI #yellow
+            {
+                errorInformation: {
+                    "errorCode": <integer>,
+                    "errorDescription": "Invalid settlement model"
+                }
+            }
+        end note
+        OPERATOR <-- SSAPI: Respond HTTP - 4xx (Client error)
+    end
+    
     SSAPI-> SETTLE_DAO: Request settlementWindow(s)\n<color #FF0000><b>Error code:</b> 2001</color>
     activate SETTLE_DAO
     SETTLE_DAO -> DB: Retrieve settlementWindow(s)
     activate DB
     hnote over DB #lightyellow
-        SELECT sw.settlementWindowId, swsc.settlementWindowStateId, sw.createdDate
+        SELECT DISTINCT sw.settlementWindowId, sw.currentStateChangeId, sw.createdDate
         FROM **settlementWindow** sw
         JOIN **settlementWindowStateChange** swsc
         ON swsc.settlementWindowStateChangeId = sw.currentStateChangeId
+        JOIN **settlementWindowContent** swc
+        ON swc.settlementWindowId = sw.settlementWindowId
+        JOIN **settlementWindowContentStateChange** swcsc
+        ON swcsc.settlementWindowContentStateChangeId = sw.currentStateChangeId
         WHERE sw.settlementWindowId IN {payload.settlementWindows.idList}
+        AND swc.ledgerAccountType = smd.ledgerAccountType
+        AND swc.currencyId = ISNULL(smd.currencyId, swc.currencyId)
+        AND swsc.settlementWindowStateId IN ('CLOSED', 'ABORTED', 'PENDING_SETTLEMENT')
+        AND swcsc.settlementWindowStateId IN ('CLOSED', 'ABORTED')
     end hnote
     SETTLE_DAO <-- DB: Return data
     deactivate DB
     SSAPI <-- SETTLE_DAO: Return **windowsData**
     deactivate SETTLE_DAO
 
-    group Validate all requested windows are found and applicable
+    break payload.settlementWindows.length != windowsData.length
         note right of SSAPI #lightgray
-            let allSettlementWindowsFound = payload.settlementWindows.length == windowsData.length
-            let allSettlementWindowsApplicable = true
-            let settlementWindow
+            Log ERROR event
         end note
-        loop w IN windowsData
-            note right of SSAPI #lightgray
-                settlementWindow = windowsData[w]
-                if (settlementWindow.state != 'CLOSED' && settlementWindow.state != 'ABORTED') {
-                    allSettlementWindowsApplicable = false
+        note left of SSAPI #yellow
+            {
+                errorInformation: {
+                    "errorCode": <integer>,
+                    "errorDescription": "Invalid window(s) found"
                 }
-            end note
-        end loop
+            }
+        end note
+        OPERATOR <-- SSAPI: Respond HTTP - 4xx (Client error)
     end
 
-    alt allSettlementWindowsFound && allSettlementWindowsApplicable
+    note right of SSAPI #lightgray
+        All preliminary validations succeeded
+    end note
+
+    group Main processing
         SSAPI ->SETTLE_DAO: Create settlement\n<color #FF0000><b>Error code:</b> 2001</color>
         activate SETTLE_DAO
         group <color #blue>DB TRANSACTION</color>
@@ -122,36 +173,32 @@ activate OPERATOR
             end hnote
             deactivate DB
 
-            SETTLE_DAO -> DB: Populate settlementTransferParticipant with aggregated data
+            SETTLE_DAO -> DB: Bind to settlement
             activate DB
             hnote over DB #lightyellow
-                INSERT INTO **settlementTransferParticipant**
-                       (settlementId, settlementWindowId, participantCurrencyId,
-                        transferParticipantRoleTypeId, ledgerEntryTypeId, amount, createdDate)
-                SELECT ssw.settlementId, ssw.settlementWindowId, tp.participantCurrencyId, 
-                       tp.transferParticipantRoleTypeId, tp.ledgerEntryTypeId, SUM(tp.amount),
-                       {transactionTimestamp}
-                FROM **settlementSettlementWindow** ssw
-                JOIN **transferFulfilment** AS tf
-                ON tf.settlementWindowId = ssw.settlementWindowId
-                JOIN **transferStateChange** AS tsc
-                ON tsc.transferId = tf.transferId 
-                AND tsc.transferStateId = ‘COMMITTED’
-                JOIN **transferParticipant** AS tp
-                ON tp.transferId = tf.transferId
-                WHERE ssw.settlementId = {settlementId}
-                GROUP BY ssw.settlementWindowId, tp.participantCurrencyId, 
-                         tp.transferParticipantRoleTypeId, tp.ledgerEntryTypeId
+                **settlementWindowContent**
+                    .settlementId
+                **settlementContentAggregation**
+                    .settlementId
+                    .settlementWindowStateId
             end hnote
             deactivate DB
 
-            SETTLE_DAO -> DB: Populate settlementParticipantCurrency with aggregated data
+            SETTLE_DAO -> DB: Change state to 'PENDING_SETTLEMENT'
+            activate DB
+            hnote over DB #lightyellow
+                settlementWindowContentStateChange
+                settlementWindowContent
+            end hnote
+            deactivate DB
+
+            SETTLE_DAO -> DB: Aggregate settlement net amounts
             activate DB
             hnote over DB #lightyellow
                 INSERT INTO **settlementParticipantCurrency**
-                       (settlementId, participantCurrencyId, createdDate, netAmount)
-                SELECT settlementId, participantCurrencyId, {transactionTimestamp}, SUM(amount)
-                FROM settlementTransferParticipant
+                       (settlementId, participantCurrencyId, netAmount, createdDate)
+                SELECT settlementId, participantCurrencyId, SUM(amount), {transactionTimestamp}
+                JOIN **settlementContentAggregation**
                 WHERE settlementId = {settlementId}
                 GROUP BY settlementId, participantCurrencyId
             end hnote
@@ -179,27 +226,29 @@ activate OPERATOR
             end hnote
             deactivate DB
 
-            SETTLE_DAO -> DB: Insert new state for settlementWindow 'PENDING_SETTLEMENT'
-            activate DB
-            hnote over DB #lightyellow
-                INSERT INTO **settlementWindowStateChange**
-                       (settlementWindowId, settlementWindowStateId, reason, createdDate)
-                VALUES ({payload.settlementWindows.idList}, 'PENDING_SETTLEMENT',
-                       {payload.reason}, {transactionTimestamp})
-            end hnote
-            SETTLE_DAO <-- DB: Return inserted **settlementWindowStateChangeIdList**
-            deactivate DB
+            loop foreach w in windowsData
+                opt if w.currentStateChangeId IN ('CLOSED', 'ABORTED')
+                    SETTLE_DAO -> DB: Insert new state for settlementWindow 'PENDING_SETTLEMENT'
+                    activate DB
+                    hnote over DB #lightyellow
+                        INSERT INTO **settlementWindowStateChange**
+                            (settlementWindowId, settlementWindowStateId, reason, createdDate)
+                        VALUES ({w.settlementWindowId}, 'PENDING_SETTLEMENT',
+                            {payload.reason}, {transactionTimestamp})
+                    end hnote
+                    SETTLE_DAO <-- DB: Return inserted **settlementWindowStateChangeId**
+                    deactivate DB
 
-            SETTLE_DAO -> SETTLE_DAO: Merge settlementWindowStateChangeIdList\nto payload.settlementWindows.idList
-
-            SETTLE_DAO -> DB: Update pointers to current state change ids
-            activate DB
-            hnote over DB #lightyellow
-                UPDATE **settlementWindow**
-                SET currentStateChangeId = {settlementWindowStateChangeIdList}
-                WHERE settlementParticipantCurrencyId = {payload.settlementWindows.idList}
-            end hnote
-            deactivate DB
+                    SETTLE_DAO -> DB: Update pointers to current state change ids
+                    activate DB
+                    hnote over DB #lightyellow
+                        UPDATE **settlementWindow**
+                        SET currentStateChangeId = {settlementWindowStateChangeId}
+                        WHERE settlementWindowId = {w.settlementWindowId}
+                    end hnote
+                    deactivate DB
+                end
+            end
 
             SETTLE_DAO -> DB: Insert initial state for settlement 'PENDING_SETTLEMENT'
             activate DB
@@ -222,6 +271,21 @@ activate OPERATOR
             deactivate DB
         end
 
+        SETTLE_DAO -> DB: Retrieve all content
+        activate DB
+        hnote over DB #lightyellow
+            settlementWindowContent
+            settlementWindowContentStateChange
+            ledgerAccountType
+            currency
+            settlementWindow
+            settlementWindowStateChange
+        end hnote
+        SETTLE_DAO <-- DB: Return **settlementWindowContentReport**
+        deactivate DB
+
+        SETTLE_DAO -> SETTLE_DAO: Use previous result to produce settlementWindowsData (**swd**) array
+
         SETTLE_DAO -> DB: Select account data for response
         activate DB
         hnote over DB #lightyellow
@@ -242,11 +306,21 @@ activate OPERATOR
                 "state": "PENDING_SETTLEMENT",
                 "settlementWindows": [
                     {
-                        "id": windowsData.settlementWindowIdList,
-                        "state": "PENDING_SETTLEMENT",
-                        "reason": payload.reason,
-                        "createdDate": windowsData.createdDateList,
-                        "changedDate": transactionTimestamp
+                        "id": swd[m].id,
+                        "state": swd[m].state,
+                        "reason": swd[m].reason,
+                        "createdDate": swd[m].createdDate,
+                        "changedDate": swd[m].changedDate,
+                        "content": [
+                            {
+                                "id": swd[m].content[n].settlementWindowContentId,
+                                "state": swd[m].content[n].settlementWindowStateId,
+                                "ledgerAccountType": swd[m].content[n].ledgerAccountType,
+                                "currencyId": swd[m].content[n].currencyId,
+                                "createdDate": swd[m].content[n].createdDate,
+                                "changedDate": swd[m].content[n].changedDate
+                            }
+                        ]
                     }
                 ],
                 "participants": [
@@ -268,21 +342,8 @@ activate OPERATOR
             }
         end note
         OPERATOR <-- SSAPI: Respond HTTP - 201 (Created)
-    else
-        note right of SSAPI #lightgray
-            Log ERROR event
-        end note
-        note left of SSAPI #yellow
-            {
-                errorInformation: {
-                    "errorCode": <integer>,
-                    "errorDescription": "Client error description"
-                }
-            }
-        end note
-        OPERATOR <-- SSAPI: Respond HTTP - 4xx (Client error)
-        deactivate SSAPI
-        deactivate OPERATOR
     end
+    deactivate SSAPI
+    deactivate OPERATOR
 end
 @enduml
