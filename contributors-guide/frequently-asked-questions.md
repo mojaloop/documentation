@@ -110,7 +110,7 @@ You should register using the API provided, using postman or curl. Client is usi
   And the status of the pod pi3-kafka-0 is still on CrashLoopBackOff.
   I am using a vps on ubuntu 16.04 with RAM 12GB, 2vCores, 2.4GHz, Rom 50GB at OVH for the deployment.
     
-Increased RAM to 24 MB and CPU to 4 resolved the issues. Appears to be a timeout on Zookeeper due depletion of available resources, resulting in the services shutting down.
+Increased RAM to 24 GB and CPU to 4 resolved the issues. Appears to be a timeout on Zookeeper due depletion of available resources, resulting in the services shutting down.
 
 #### 13. Why am I getting an error when we try to create new DFSP using Admin?
 
