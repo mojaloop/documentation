@@ -4,7 +4,7 @@ description: Repository overview
 
 # Repository Details
 
-The Mojaloop project is organized on the basis of component microservices. As such, there are over twenty different repositories in GitHub that align to the different services. The following four repositories are pinned to the project:
+The [Mojaloop project](https://github.com/mojaloop) is organized on the basis of component microservices. As such, there are over twenty different repositories in GitHub that align to the different services. The following repositories are pinned to the project:
 
 * The [mojaloop repository](https://github.com/mojaloop/mojaloop) contains the master readme file along with the following documents to get started.
 * The [documentation repository](https://github.com/mojaloop/documentation) documents the contributors guidelines, overall architecture, component design, message flow, and an overview of Mojaloop. _(__Note:__ This gitbook you are currently reading is generated from the documentation repository)_
