@@ -480,7 +480,46 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.6.1.1" data-path="../overview/components-PI5.html">
+        <li class="chapter " data-level="1.6.1.1" data-path="../overview/components-PI8.html">
+            
+                <a href="../overview/components-PI8.html">
+            
+                    
+                    Current Architecture - PI8
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.1.2" data-path="../overview/components-PI7.html">
+            
+                <a href="../overview/components-PI7.html">
+            
+                    
+                    Legacy Architecture - PI7
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.1.3" data-path="../overview/components-PI6.html">
+            
+                <a href="../overview/components-PI6.html">
+            
+                    
+                    Legacy Architecture - PI6
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.1.4" data-path="../overview/components-PI5.html">
             
                 <a href="../overview/components-PI5.html">
             
@@ -493,7 +532,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.1.2" data-path="../overview/components-PI3.html">
+        <li class="chapter " data-level="1.6.1.5" data-path="../overview/components-PI3.html">
             
                 <a href="../overview/components-PI3.html">
             
@@ -3054,9 +3093,14 @@ currency. The full column structure of the table is as follows:</p>
 <td>VARCHAR(3). Not null. Foreign key to <strong>currency</strong>.</td>
 </tr>
 <tr>
-<td><strong>settlementWindowContentCurrentState</strong></td>
-<td>The current state of this entry</td>
-<td>BIGINT(20). Unsigned, not null. Foreign key to <strong>settlementWindowContentStateChange</strong></td>
+<td><strong>createdDate</strong></td>
+<td>The date and time when the record was created.</td>
+<td>DATETIME. Not null. Defaults to CURRENT_TIMESTAMP.</td>
+</tr>
+<tr>
+<td><strong>currentStateChangeId</strong></td>
+<td>The current state of this entry.</td>
+<td>BIGINT(20). Unsigned. Foreign key to <strong>settlementWindowContentStateChange</strong></td>
 </tr>
 </tbody>
 </table>
@@ -3097,7 +3141,7 @@ structure of the table is as follows:</p>
 <tr>
 <td><strong>createdDate</strong></td>
 <td>The date and time when the record was created</td>
-<td>DATETIME. Defaults to CURRENT_TIMESTAMP</td>
+<td>DATETIME. Not null. Defaults to CURRENT_TIMESTAMP</td>
 </tr>
 </tbody>
 </table>
@@ -3107,40 +3151,26 @@ structure of the table is as follows:</p>
 <p>The column structure of the <strong>settlementContentAggregation</strong> table should be
 modified as follows:</p>
 <ol>
-<li><p>Remove the following foreign keys from the table:</p>
-<ol>
-<li><p>settlementtransferparticipant_settlementid_foreign</p>
-</li>
-<li><p>settlementtransferparticipant_settlementwindowid_foreign</p>
-</li>
+<li>Remove the following foreign keys from the table:<ol>
+<li>settlementtransferparticipant_settlementid_foreign</li>
+<li>settlementtransferparticipant_settlementwindowid_foreign</li>
 </ol>
 </li>
-<li><p>Remove the following columns from the table:</p>
-<ol>
-<li><p>settlementId</p>
-</li>
-<li><p>settlementWindowId</p>
-</li>
+<li>Remove the following columns from the table:<ol>
+<li>settlementId</li>
+<li>settlementWindowId</li>
 </ol>
 </li>
-<li><p>Add the following column to the table:</p>
-<ol>
-<li><p>Column name: <strong>settlementWindowContentId</strong></p>
-</li>
-<li><p>Attributes: BIGINT(20), unsigned, not null</p>
-</li>
+<li>Add the following column to the table:<ol>
+<li>Column name: <strong>settlementWindowContentId</strong></li>
+<li>Attributes: BIGINT(20), unsigned, not null</li>
 </ol>
 </li>
-<li><p>Add the following foreign key to the table:</p>
-<ol>
-<li><p>Name: settlementContentAggregation_settlementwindowcontent_foreign</p>
-</li>
-<li><p>Child column <strong>settlementWindowContentId</strong></p>
-</li>
-<li><p>Refers to table: <strong>settlementWindowContent</strong></p>
-</li>
-<li><p>Refers to column: <strong>settlementWindowContentId</strong></p>
-</li>
+<li>Add the following foreign key to the table:<ol>
+<li>Name: settlementContentAggregation_settlementwindowcontent_foreign</li>
+<li>Child column <strong>settlementWindowContentId</strong></li>
+<li>Refers to table: <strong>settlementWindowContent</strong></li>
+<li>Refers to column: <strong>settlementWindowContentId</strong></li>
 </ol>
 </li>
 </ol>
@@ -3162,16 +3192,18 @@ implementation will be developed and tested.<strong>[Story #4a]</strong></p>
 <p>The <strong>settlement</strong> table in the central ledger database needs to be modified to
 add a <em>settlementModel</em> column. This column should have the following
 characteristics:</p>
-<p>&#xB7;       The column should be required (NOT NULL) and unsigned.</p>
-<p>&#xB7;       The column&#x2019;s data type should be smallint(6)</p>
-<p>&#xB7;       The column should be defined as a foreign key reference to the
-<em>idsettlementmodel</em> field of the <strong>settlementModel</strong> table.</p>
+<ul>
+<li>The column should be required (NOT NULL) and unsigned.</li>
+<li>The column&#x2019;s data type should be integer(10)</li>
+<li>The column should be defined as a foreign key reference to the
+<em>settlementModelId</em> field of the <strong>settlementModel</strong> table.</li>
+</ul>
 <p>When this change is applied to an existing database, a settlement model to
 describe the default settlement should be created. The settlementCurrencyId
 column in this model should be left blank (= all currencies.) The
 settlementModel column in all existing records in the settlement table should be
 set to point to this model&#x2019;s ID. A script to apply this change should be
-created, tested and stored in the repository. [Story #6]</p>
+created, tested and stored in the repository.</p>
 <h3 id="changes-to-processing">Changes to processing</h3>
 <p>The following changes to the processing code are required to support
 multi-currency settlement.</p>
@@ -3183,72 +3215,52 @@ for the window and a reason for that status.</p>
 <p>When a settlement window is closed, the code supporting this activity should
 perform two functions, as follows. These functions should be performed in the
 background and without impacting system performance.</p>
-<h5 id="generate-records-in-the-settlementwindowcontent-table-story-11">Generate records in the settlementWindowContent table [Story #11]</h5>
+<h5 id="generate-records-in-the-settlementwindowcontent-table-story-1095">Generate records in the settlementWindowContent table [Story #1095]</h5>
 <p>The code should generate a record in the <strong>settlementWindowContent</strong> table for
 each ledger entry type/currency combination found in the transfers in the
 settlement window. This information can be obtained from the following query:</p>
-<p>SELECT DISTINCT</p>
-<p>   \@mySettlementId</p>
-<p>, PC.currencyId</p>
-<p>, PC.ledgerAccountTypeId</p>
-<p>FROM</p>
-<p>   transferFulfilment F</p>
-<p>INNER JOIN transferParticipant P on F.transferId = P.transferId</p>
-<p>INNER JOIN participantCurrency PC on P.participantCurrencyId =
-PC.participantCurrencyId</p>
-<p>WHERE</p>
-<p>   F.settlementWindowId = \@mySettlementWindowId;</p>
-<h5 id="generate-records-in-the-settlementcontenttransferparticipant-table-story-12">Generate records in the settlementContentTransferParticipant table [Story #12]</h5>
+<pre><code>SELECT DISTINCT
+  @mySettlementWindowId, pc.ledgerAccountTypeId, pc.currencyId
+FROM transferFulfilment tf
+INNER JOIN transferParticipant tp
+  ON tp.transferId = tf.transferId
+INNER JOIN participantCurrency pc 
+  ON pc.participantCurrencyId = tp.participantCurrencyId
+WHERE tf.settlementWindowId = @mySettlementWindowId;
+</code></pre><h5 id="generate-records-in-the-settlementcontentaggregation-table-story-1095">Generate records in the settlementContentAggregation table [Story #1095]</h5>
 <p>The code should calculate the aggregate values for all transfers which form part
 of that settlement window and store them in the <strong>settlementContentAggregation</strong>
 table. Aggregates should be produced for the following segmentation:</p>
 <ol>
-<li><p>Participant</p>
-</li>
-<li><p>Currency</p>
-</li>
-<li><p>Ledger account type</p>
-</li>
-<li><p>Participant role type</p>
-</li>
-<li><p>Ledger entry type</p>
-</li>
+<li>Participant</li>
+<li>Currency</li>
+<li>Ledger account type</li>
+<li>Participant role type</li>
+<li>Ledger entry type</li>
 </ol>
 <p>The following query will perform this function for a given settlement window:</p>
-<p>INSERT INTO settlementContentAggregation</p>
-<p>   (settlementWindowContentId, participantCurrencyId,
-transferParticipantRoleTypeId,</p>
-<p>ledgerEntryTypeId, amount, createdDate)</p>
-<p>SELECT</p>
-<p>   C.settlementWindowContentId</p>
-<p>, PC.participantCurrencyId</p>
-<p>, P.transferParticipantRoleTypeId</p>
-<p>, P.ledgerEntryTypeId</p>
-<p>, sum(P.amount)</p>
-<p>, CURRENT_TIMESTAMP</p>
-<p>FROM</p>
-<p>   transferFulfilment F</p>
-<p>INNER JOIN transferParticipant P on F.transferId = P.transferId</p>
-<p>INNER JOIN participantCurrency PC on P.participantCurrencyId =
-PC.participantCurrencyId</p>
-<p>INNER JOIN settlementWindowContent C ON C.settlementWindowId =
-F.settlementWindowId</p>
-<pre><code>    AND C.ledgerAccountTypeId = PC.ledgerAccountTypeId
-
- AND C.currencyId = PC.currencyId
-</code></pre><p>WHERE</p>
-<p>   F.settlementWindowId = \@mySettlementId</p>
-<p>GROUP BY</p>
-<p>   C.settlementWindowContentId</p>
-<p>, PC.participantCurrencyId</p>
-<p>, P.transferParticipantRoleTypeId</p>
-<p>, P.ledgerEntryTypeId</p>
-<p>   ;</p>
-<h4 id="createsettlement">createSettlement</h4>
+<pre><code>INSERT INTO settlementContentAggregation
+  (settlementWindowContentId, participantCurrencyId, 
+  transferParticipantRoleTypeId, ledgerEntryTypeId, amount)
+SELECT swc.settlementWindowContentId, pc.participantCurrencyId,
+  tp.transferParticipantRoleTypeId, tp.ledgerEntryTypeId, SUM(tp.amount)
+FROM transferFulfilment tf
+INNER JOIN transferParticipant tp
+  ON tf.transferId = tp.transferId
+INNER JOIN participantCurrency pc 
+  ON pc.participantCurrencyId = tp.participantCurrencyId
+INNER JOIN settlementWindowContent swc
+  ON swc.settlementWindowId = tf.settlementWindowId
+  AND swc.ledgerAccountTypeId = pc.ledgerAccountTypeId
+  AND swc.currencyId = pc.currencyId
+WHERE tf.settlementWindowId = @mySettlementWindowId
+GROUP BY swc.settlementWindowContentId, pc.participantCurrencyId, 
+   tp.transferParticipantRoleTypeId, tp.ledgerEntryTypeId;
+</code></pre><h4 id="createsettlement">createSettlement</h4>
 <p>The parameters for the <strong>createSettlement</strong> resource should be extended to
-include the settlement model for which the settlement is required. [Story #13]</p>
+include the settlement model for which the settlement is required.</p>
 <p>When the settlement is created, the settlement model for which the settlement is
-required should be added to the new row in the <strong>settlement</strong> table.</p>
+required should be added to the new row in the <strong>settlement</strong> table. [Story #1097]</p>
 <p>When a settlement is requested, the switch should check that the settlement
 model for which settlement is being requested requires NET settlement and not
 GROSS settlement. If the requested settlement model requires GROSS settlement,
@@ -3258,34 +3270,11 @@ should be changed to check that some of the settlement windows associated with
 the proposed settlement contain entries for the settlement model requested. If
 there are no entries for the settlement model requested for any of the
 settlement windows requested, then an error should be returned and the
-settlement request rejected. [Story #14]</p>
-<h4 id="updating-the-progress-of-a-settlement">Updating the progress of a settlement.</h4>
-<p>The process to update the status of a settlement described in Section 5.1.7.1.2
-above allows the caller to specify the currency whose status is to be changed.
-Since the settlement will now be for a settlement model, this parameter should
-be removed. [Story #15]</p>
-<p>When the status for a settlement participant is updated, this will result in
+settlement request rejected. [Story #1096]</p>
+<h4 id="updating-the-progress-of-a-settlement">Updating the progress of a settlement</h4>
+<p>When the status for a settlement participant is changed to SETTLED, this will result in
 changes to the status of all the records in the <strong>settlementContentAggregation</strong>
-table for the given participant. These records can be identified using the
-following query:</p>
-<p>SELECT</p>
-<p>P.settlementContentAggregationId</p>
-<p>FROM</p>
-<p>   settlement S</p>
-<p>INNER JOIN settlementSettlementWindow W ON S.settlementId = W.settlementId</p>
-<p>INNER JOIN settlementModel M ON S.settlementSettlementModelId =
-M.idSettlementModel</p>
-<p>INNER JOIN settlementWindowContent C ON W.settlementWindowId =
-C.settlementWindowId</p>
-<p>INNER JOIN settlementContentAggregation P ON C.settlementWindowContentId =
-P.settlementWindowContentId</p>
-<p>INNER JOIN participantCurrency PC ON P.participantCurrencyId =
-PC.participantCurrencyId</p>
-<p>WHERE</p>
-<p>   S.settlementId = \@mySettlementId</p>
-<p>AND PC.ledgerAccountTypeId = M.ledgerAccountTypeId</p>
-<p>AND (C.currencyId = M.settlementCurrencyId OR M.settlementCurrencyId IS NULL)</p>
-<p>;</p>
+table for the given participant, identified by the compound key: settlementId + participantCurrencyId.</p>
 <p>[Story #16]</p>
 <p>The code should then check to see if, as a result of the updates to the records
 in <strong>settlementContentAggregation</strong>, all records for a given combination of
@@ -3307,13 +3296,11 @@ be summarised as follows:</p>
 the enumerations for its definition types. This comprises the following tables
 in the ERD:</p>
 <ul>
-<li><p>Settlementdelay</p>
+<li><p>settlementDelay</p>
 </li>
-<li><p>Settlementinterchange</p>
+<li><p>settlementInterchange</p>
 </li>
-<li><p>Settlementmodel</p>
-</li>
-<li><p>Settlementtype</p>
+<li><p>settlementModel</p>
 </li>
 </ul>
 <p>In addition, the <strong>settlementmodel</strong> table has foreign keys to two existing
@@ -3365,7 +3352,7 @@ database would be as follows:</p>
 </tr>
 <tr>
 <td>INTERCHANGE_FEE</td>
-<td>New account type required</td>
+<td>INTERCHANGE_FEE</td>
 </tr>
 <tr>
 <td>HUB_FEE</td>
@@ -3708,16 +3695,18 @@ when the status of a transfer changes to FULFILLED.</p>
 <p><img src="assets/diagrams/Settlement_ERD.png" alt=""></p>
 <h2 id="enumerations">Enumerations</h2>
 <p>The following enumerations are required to support the new ERD:</p>
-<p>DELETE FROM settlementgranularity;</p>
-<p>INSERT INTO settlementgranularity (settlementTypeName) VALUES (&apos;GROSS&apos;),
-(&apos;NET&apos;);</p>
-<p>DELETE FROM settlementinterchange;</p>
-<p>INSERT INTO settlementinterchange (interchangetypename) VALUES (&apos;BILATERAL&apos;),
-(&apos;MULTILATERAL&apos;);</p>
-<p>DELETE FROM settlementdelay;</p>
-<p>INSERT INTO settlementdelay(settlementdelayname) VALUES (&apos;IMMEDIATE&apos;),
-(&apos;DEFERRED&apos;);</p>
+<pre><code>DELETE FROM settlementGranularity;
+INSERT INTO settlementGranularity (name)
+VALUES (&apos;GROSS&apos;), (&apos;NET&apos;);
 
+DELETE FROM settlementInterchange;
+INSERT INTO settlementInterchange (name)
+VALUES (&apos;BILATERAL&apos;), (&apos;MULTILATERAL&apos;);
+
+DELETE FROM settlementDelay;
+INSERT INTO settlementDelay(name)
+VALUES (&apos;IMMEDIATE&apos;), (&apos;DEFERRED&apos;);
+</code></pre>
                                 
                                 </section>
                             
@@ -3750,7 +3739,7 @@ when the status of a transfer changes to FULFILLED.</p>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"OSS Settlement FSD","level":"1.6.5.3","depth":3,"next":{"title":"Central-Event-Processor Services","level":"1.6.6","depth":2,"path":"mojaloop-technical-overview/central-event-processor/README.md","ref":"mojaloop-technical-overview/central-event-processor/README.md","articles":[{"title":"Event Handler (Placeholder)","level":"1.6.6.1","depth":3,"path":"mojaloop-technical-overview/central-event-processor/9.1.0-event-handler-placeholder.md","ref":"mojaloop-technical-overview/central-event-processor/9.1.0-event-handler-placeholder.md","articles":[]},{"title":"Notification Handler For Rejections","level":"1.6.6.2","depth":3,"path":"mojaloop-technical-overview/central-event-processor/5.1.1-notification-handler-for-rejections.md","ref":"mojaloop-technical-overview/central-event-processor/5.1.1-notification-handler-for-rejections.md","articles":[]},{"title":"Signature Validation","level":"1.6.6.3","depth":3,"path":"mojaloop-technical-overview/central-event-processor/signature-validation.md","ref":"mojaloop-technical-overview/central-event-processor/signature-validation.md","articles":[]}]},"previous":{"title":"Funds Out - Abort","level":"1.6.5.2.6","depth":4,"path":"mojaloop-technical-overview/central-settlements/funds-in-out/funds-out-abort.md","ref":"mojaloop-technical-overview/central-settlements/funds-in-out/funds-out-abort.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"3.x.x","theme":"default","variables":{"importedVars":{"mojaloop":{"spec":{"version":"v1.0","uri":{"doc":"https://github.com/mojaloop/mojaloop-specification/blob/master/API%20Definition%20v1.0.pdf","api":"https://github.com/mojaloop/mojaloop-specification/blob/master/Supporting%20Files/fspiop-rest-v1.0-OpenAPI-implementation.yaml"}}},"central_ledger":{"spec":{"version":"v2.0","uri":{"doc":"/mojaloop-technical-overview/central-ledger/README.md","api":"https://github.com/mojaloop/central-ledger/blob/master/src/api/interface/swagger.json"}}},"settlement":{"spec":{"version":"v1.1","uri":{"doc":"/mojaloop-technical-overview/central-settlements/README.md","api":"https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json"}}},"als":{"oracle":{"spec":{"version":"v1.2","uri":{"doc":"/mojaloop-technical-overview/account-lookup-service/README.md","api":"https://github.com/mojaloop/documentation/blob/master/api/assets/interface-contracts/oracle-service-swagger-v1.yaml"}}}}}},"plugins":["swagger","editlink","include","insert-logo","plantuml-svg","collapsible-chapters","back-to-top-button","theme-api","variables","changelog","page-toc"],"pluginsConfig":{"plantuml-svg":{},"editlink":{"label":"Edit This Page","multilingual":true,"base":"https://github.com/mojaloop/documentation/edit/master"},"theme-gestalt":{"logo":"https://mojaloop.io/images/logo.png","favicon":"https://mojaloop.io/images/logo.png","baseUrl":null,"excludeDefaultStyles":false,"doNotHideChildrenChapters":false},"include":{},"search":{},"collapsible-chapters":{},"page-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","position":"before-first","showByDefault":true},"swagger":{"file":""},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"uml":{"format":"png","nailgun":false},"changelog":{},"theme-api":{"languages":[],"split":true,"theme":"dark"},"back-to-top-button":{},"variables":{"files":{"importedVars":"book_variables.yml"}},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"insert-logo":{"url":"https://mojaloop.io/images/logo.png","style":"background: none; max-height: 140px; max-width: 140px;"}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"mojaloop-technical-overview/central-settlements/oss-settlement-fsd.md","mtime":"2020-01-06T14:18:56.817Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-01-06T14:19:43.434Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"OSS Settlement FSD","level":"1.6.5.3","depth":3,"next":{"title":"Central-Event-Processor Services","level":"1.6.6","depth":2,"path":"mojaloop-technical-overview/central-event-processor/README.md","ref":"mojaloop-technical-overview/central-event-processor/README.md","articles":[{"title":"Event Handler (Placeholder)","level":"1.6.6.1","depth":3,"path":"mojaloop-technical-overview/central-event-processor/9.1.0-event-handler-placeholder.md","ref":"mojaloop-technical-overview/central-event-processor/9.1.0-event-handler-placeholder.md","articles":[]},{"title":"Notification Handler For Rejections","level":"1.6.6.2","depth":3,"path":"mojaloop-technical-overview/central-event-processor/5.1.1-notification-handler-for-rejections.md","ref":"mojaloop-technical-overview/central-event-processor/5.1.1-notification-handler-for-rejections.md","articles":[]},{"title":"Signature Validation","level":"1.6.6.3","depth":3,"path":"mojaloop-technical-overview/central-event-processor/signature-validation.md","ref":"mojaloop-technical-overview/central-event-processor/signature-validation.md","articles":[]}]},"previous":{"title":"Funds Out - Abort","level":"1.6.5.2.6","depth":4,"path":"mojaloop-technical-overview/central-settlements/funds-in-out/funds-out-abort.md","ref":"mojaloop-technical-overview/central-settlements/funds-in-out/funds-out-abort.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"3.x.x","theme":"default","variables":{"importedVars":{"mojaloop":{"spec":{"version":"v1.0","uri":{"doc":"https://github.com/mojaloop/mojaloop-specification/blob/master/API%20Definition%20v1.0.pdf","api":"https://github.com/mojaloop/mojaloop-specification/blob/master/Supporting%20Files/fspiop-rest-v1.0-OpenAPI-implementation.yaml"}}},"central_ledger":{"spec":{"version":"v2.0","uri":{"doc":"/mojaloop-technical-overview/central-ledger/README.md","api":"https://github.com/mojaloop/central-ledger/blob/master/src/api/interface/swagger.json"}}},"settlement":{"spec":{"version":"v1.1","uri":{"doc":"/mojaloop-technical-overview/central-settlements/README.md","api":"https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json"}}},"als":{"oracle":{"spec":{"version":"v1.2","uri":{"doc":"/mojaloop-technical-overview/account-lookup-service/README.md","api":"https://github.com/mojaloop/documentation/blob/master/api/assets/interface-contracts/oracle-service-swagger-v1.yaml"}}}}}},"plugins":["swagger","editlink","include","insert-logo","plantuml-svg","collapsible-chapters","back-to-top-button","theme-api","variables","changelog","page-toc"],"pluginsConfig":{"plantuml-svg":{},"editlink":{"label":"Edit This Page","multilingual":true,"base":"https://github.com/mojaloop/documentation/edit/master"},"theme-gestalt":{"logo":"https://mojaloop.io/images/logo.png","favicon":"https://mojaloop.io/images/logo.png","baseUrl":null,"excludeDefaultStyles":false,"doNotHideChildrenChapters":false},"include":{},"search":{},"collapsible-chapters":{},"page-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","position":"before-first","showByDefault":true},"swagger":{"file":""},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"uml":{"format":"png","nailgun":false},"changelog":{},"theme-api":{"languages":[],"split":true,"theme":"dark"},"back-to-top-button":{},"variables":{"files":{"importedVars":"book_variables.yml"}},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"insert-logo":{"url":"https://mojaloop.io/images/logo.png","style":"background: none; max-height: 140px; max-width: 140px;"}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"mojaloop-technical-overview/central-settlements/oss-settlement-fsd.md","mtime":"2020-02-07T08:18:07.835Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-02-07T08:19:19.152Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

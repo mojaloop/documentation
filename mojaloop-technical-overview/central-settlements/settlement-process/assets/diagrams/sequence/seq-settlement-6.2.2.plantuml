@@ -18,13 +18,14 @@
  * Gates Foundation
  - Name Surname <name.surname@gatesfoundation.com>
 
- * Georgi Georgiev <georgi.georgiev@modusbox.com>
+ * ModusBox
+ - Georgi Georgiev <georgi.georgiev@modusbox.com>
  --------------
  ******'/
 
 @startuml
 ' declate title
-title 6.2.2. Query Settlements by Parameters
+title 6.2.2. Query Settlements by Parameters (getSettlementsByParams)
 
 autonumber
 
@@ -70,8 +71,8 @@ group Query Settlements by Parameters
 
     SETTLE_DAO -> DB: Retrieve requested data
     activate DB
-    hnote over DB #LightYellow
-        SELECT <color 006>**//DISTINCT//**</color> s.settlementId, ssc.settlementStateId,
+    hnote over DB #lightyellow
+        SELECT <color 00A>**//DISTINCT//**</color> s.settlementId, ssc.settlementStateId,
                ssw.settlementWindowId, swsc.settlementWindowStateId, swsc.reason 
                settlementWindowReason, sw.createdDate, swsc.createdDate changedDate, 
                pc.participantId, spc.participantCurrencyId, spcsc.reason
@@ -86,12 +87,13 @@ group Query Settlements by Parameters
         ON sw.settlementWindowId = ssw.settlementWindowId
         JOIN **settlementWindowStateChange** swsc
         ON swsc.settlementWindowStateChangeId = sw.currentStateChangeId
-        JOIN <color 006>**//settlementTransferParticipant//**</color> stp
-        ON stp.settlementWindowId = s.settlementId
-        AND stp.settlementWindowId = sw.settlementWindowId
+        JOIN <color 00A>**//settlementWindowContent//**</color> swc
+        ON swc.settlementWindowId = sw.settlementWindowId
+        JOIN <color 00A>**//settlementWindowContentAggregation//**</color> swca
+        ON swca.settlementWindowContentId = swc.settlementWindowContentId
         JOIN **settlementParticipantCurrency** spc
-        ON spc.settlementId = stp.settlementId
-        AND spc.participantCurrencyId = stp.participantCurrencyId
+        ON spc.settlementId = s.settlementId
+        AND spc.participantCurrencyId = swca.participantCurrencyId
         JOIN **settlementParticipantCurrencyStateChange** spcsc
         ON spcsc.settlementParticipantCurrencyStateChangeId = spc.currentStateChangeId
         JOIN **participantCurrency** pc
@@ -100,7 +102,7 @@ group Query Settlements by Parameters
         [AND s.createdDate >= {fromDateTime}]
         [AND s.createdDate <= {toDateTime}]
         [AND pc.currencyId = {currencyId}]
-        [AND ssw.settlementWindowId = {settlementWindowId}]
+        [AND sw.settlementWindowId = <color 00A>//{settlementWindowId}//</color>]
         [AND sw.createdDate >= {fromSettlementWindowDateTime}]
         [AND sw.createdDate <= {toSettlementWindowDateTime}]
         [AND pc.participantId = {participantId}]

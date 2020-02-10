@@ -480,7 +480,46 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.6.1.1" data-path="../mojaloop-technical-overview/overview/components-PI5.html">
+        <li class="chapter " data-level="1.6.1.1" data-path="../mojaloop-technical-overview/overview/components-PI8.html">
+            
+                <a href="../mojaloop-technical-overview/overview/components-PI8.html">
+            
+                    
+                    Current Architecture - PI8
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.1.2" data-path="../mojaloop-technical-overview/overview/components-PI7.html">
+            
+                <a href="../mojaloop-technical-overview/overview/components-PI7.html">
+            
+                    
+                    Legacy Architecture - PI7
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.1.3" data-path="../mojaloop-technical-overview/overview/components-PI6.html">
+            
+                <a href="../mojaloop-technical-overview/overview/components-PI6.html">
+            
+                    
+                    Legacy Architecture - PI6
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.1.4" data-path="../mojaloop-technical-overview/overview/components-PI5.html">
             
                 <a href="../mojaloop-technical-overview/overview/components-PI5.html">
             
@@ -493,7 +532,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.1.2" data-path="../mojaloop-technical-overview/overview/components-PI3.html">
+        <li class="chapter " data-level="1.6.1.5" data-path="../mojaloop-technical-overview/overview/components-PI3.html">
             
                 <a href="../mojaloop-technical-overview/overview/components-PI3.html">
             
@@ -2171,7 +2210,7 @@
 <li><a href="#13-why-am-i-getting-an-error-when-we-try-to-create-new-dfsp-using-admin">Why am I getting an error when we try to create new DFSP using Admin</a></li>
 <li><a href="#14-using-mojaloop-to-do-payment-using-crypto-currency">Using Mojaloop to do payment using crypto-currency</a></li>
 <li><a href="#15--can-i-spread-mojaloop-components-over-different-physical-machines-and-vms">Can I spread Mojaloop components over different physical machines and VM&apos;s</a></li>
-<li><a href="#16-can-we-expect-for-tall-the-endpoints-defined-in-the-api-document-are-implemented-in-mojaloop">Can we expect for tall the endpoints defined in the API document are implemented in Mojaloop</a></li>
+<li><a href="#16-can-we-expect-all-the-endpoints-defined-in-the-api-document-are-implemented-in-mojaloop">Can we expect all the endpoints defined in the API document are implemented in Mojaloop</a></li>
 <li><a href="#17-does-mojaloop-store-the-payment-initiator-fsps-quotestatus-info">Does Mojaloop store the payment initiator FSP&#x2019;s quote/status info</a></li>
 <li><a href="#18-does-mojaloop-handle-workflow-validation">Does Mojaloop handle workflow validation</a></li>
 <li><a href="#19-how-is-the-mojaloop-source-accessible">How is the Mojaloop source accessible</a></li>
@@ -2234,14 +2273,14 @@ And the status of the pod pi3-kafka-0 is still on CrashLoopBackOff.
 I am using a vps on ubuntu 16.04 with RAM 12GB, 2vCores, 2.4GHz, Rom 50GB at OVH for the deployment.</p>
 </li>
 </ul>
-<p>Increased RAM to 24 MB and CPU to 4 resolved the issues. Appears to be a timeout on Zookeeper due depletion of available resources, resulting in the services shutting down.</p>
+<p>Increased RAM to 24 GB and CPU to 4 resolved the issues. Appears to be a timeout on Zookeeper due depletion of available resources, resulting in the services shutting down.</p>
 <h4 id="13-why-am-i-getting-an-error-when-we-try-to-create-new-dfsp-using-admin">13. Why am I getting an error when we try to create new DFSP using Admin?</h4>
 <p>Please insure you are using the most current Postman scripts available on <a href="https://github.com/mojaloop/mock-pathfinder" target="_blank">https://github.com/mojaloop/mock-pathfinder</a> repository.</p>
 <h4 id="14-using-mojaloop-to-do-payment-using-crypto-currency">14. Using Mojaloop to do payment using crypto-currency?</h4>
 <p>Not with the current Specification and with this platform. Currently this is limited to currencies listed in the ISO 4217. Since the specification and platform is all about digital transfers, it should be possible to investigate a use-case for this possible requirement. Alternatively, I guess an FSP can provide that conversion (like many do already from crypto to one of the listed currencies).</p>
 <h4 id="15--can-i-spread-mojaloop-components-over-different-physical-machines-and-vms">15.  Can I spread Mojaloop components over different physical machines and VM&apos;s?</h4>
 <p>You should be able to setup on different VM&apos;s or physical machines. The distribution pretty much depend on your requirements and would be implementation specific. We utilise Kubernetes to assist with the Container Orchestration. This enables us to schedule the deployments through the Kubernetes runtime to specific machines if required, and request specific resources if required. The helm charts in the helm repository could be used as guideline to how best allocate and group the components in your deployment. Naturally you would need to update the configurations to complement your custom implementation.</p>
-<h4 id="16-can-we-expect-for-tall-the-endpoints-defined-in-the-api-document-are-implemented-in-mojaloop">16. Can we expect for tall the endpoints defined in the API document are implemented in Mojaloop?</h4>
+<h4 id="16-can-we-expect-all-the-endpoints-defined-in-the-api-document-are-implemented-in-mojaloop">16. Can we expect all the endpoints defined in the API document are implemented in Mojaloop?</h4>
 <p>The Mojaloop Specification API for transfers and the Mojaloop Open Source Switch implementation are independent streams, though obviously the implementation is based on the Specification. Based on the use-cases prioritized for a time-frame and based on the end-points needed to support those use-cases, implementation will be done. If a few end-points are not prioritized then implementation for them may not be available. However, I think the goal is to eventually support all the end-points specified though it may take time. Thanks for the collection. We do have some of these on the &#x2018;postman&#x2019; repo in the mojaloop GitHub org.</p>
 <h4 id="17-does-mojaloop-store-the-payment-initiator-fsps-quotestatus-info">17. Does Mojaloop store the payment initiator FSP&#x2019;s quote/status info?</h4>
 <p>At the moment, the Mojaloop Open source Switch implementation does <em>not</em> store Quotes related information. The onus is on the Payer, Payee involved in the process to store the relevant information.</p>
@@ -2349,7 +2388,7 @@ In this Postman collection you can find the requests to perform the operation in
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"showToc":false,"title":"Frequently Asked Questions","level":"1.12","depth":1,"next":{"title":"Glossary of Terms","level":"1.13","depth":1,"path":"glossary.md","ref":"glossary.md","articles":[]},"previous":{"title":"Cross Border Meeting Notes Day 2","level":"1.11.5","depth":2,"path":"discussions/cross_border_day_2.md","ref":"discussions/cross_border_day_2.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"3.x.x","theme":"default","variables":{"importedVars":{"mojaloop":{"spec":{"version":"v1.0","uri":{"doc":"https://github.com/mojaloop/mojaloop-specification/blob/master/API%20Definition%20v1.0.pdf","api":"https://github.com/mojaloop/mojaloop-specification/blob/master/Supporting%20Files/fspiop-rest-v1.0-OpenAPI-implementation.yaml"}}},"central_ledger":{"spec":{"version":"v2.0","uri":{"doc":"/mojaloop-technical-overview/central-ledger/README.md","api":"https://github.com/mojaloop/central-ledger/blob/master/src/api/interface/swagger.json"}}},"settlement":{"spec":{"version":"v1.1","uri":{"doc":"/mojaloop-technical-overview/central-settlements/README.md","api":"https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json"}}},"als":{"oracle":{"spec":{"version":"v1.2","uri":{"doc":"/mojaloop-technical-overview/account-lookup-service/README.md","api":"https://github.com/mojaloop/documentation/blob/master/api/assets/interface-contracts/oracle-service-swagger-v1.yaml"}}}}}},"plugins":["swagger","editlink","include","insert-logo","plantuml-svg","collapsible-chapters","back-to-top-button","theme-api","variables","changelog","page-toc"],"pluginsConfig":{"plantuml-svg":{},"editlink":{"label":"Edit This Page","multilingual":true,"base":"https://github.com/mojaloop/documentation/edit/master"},"theme-gestalt":{"logo":"https://mojaloop.io/images/logo.png","favicon":"https://mojaloop.io/images/logo.png","baseUrl":null,"excludeDefaultStyles":false,"doNotHideChildrenChapters":false},"include":{},"search":{},"collapsible-chapters":{},"page-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","position":"before-first","showByDefault":true},"swagger":{"file":""},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"uml":{"format":"png","nailgun":false},"changelog":{},"theme-api":{"languages":[],"split":true,"theme":"dark"},"back-to-top-button":{},"variables":{"files":{"importedVars":"book_variables.yml"}},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"insert-logo":{"url":"https://mojaloop.io/images/logo.png","style":"background: none; max-height: 140px; max-width: 140px;"}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"contributors-guide/frequently-asked-questions.md","mtime":"2020-01-06T14:18:56.317Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-01-06T14:19:43.434Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"showToc":false,"title":"Frequently Asked Questions","level":"1.12","depth":1,"next":{"title":"Glossary of Terms","level":"1.13","depth":1,"path":"glossary.md","ref":"glossary.md","articles":[]},"previous":{"title":"Cross Border Meeting Notes Day 2","level":"1.11.5","depth":2,"path":"discussions/cross_border_day_2.md","ref":"discussions/cross_border_day_2.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"3.x.x","theme":"default","variables":{"importedVars":{"mojaloop":{"spec":{"version":"v1.0","uri":{"doc":"https://github.com/mojaloop/mojaloop-specification/blob/master/API%20Definition%20v1.0.pdf","api":"https://github.com/mojaloop/mojaloop-specification/blob/master/Supporting%20Files/fspiop-rest-v1.0-OpenAPI-implementation.yaml"}}},"central_ledger":{"spec":{"version":"v2.0","uri":{"doc":"/mojaloop-technical-overview/central-ledger/README.md","api":"https://github.com/mojaloop/central-ledger/blob/master/src/api/interface/swagger.json"}}},"settlement":{"spec":{"version":"v1.1","uri":{"doc":"/mojaloop-technical-overview/central-settlements/README.md","api":"https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json"}}},"als":{"oracle":{"spec":{"version":"v1.2","uri":{"doc":"/mojaloop-technical-overview/account-lookup-service/README.md","api":"https://github.com/mojaloop/documentation/blob/master/api/assets/interface-contracts/oracle-service-swagger-v1.yaml"}}}}}},"plugins":["swagger","editlink","include","insert-logo","plantuml-svg","collapsible-chapters","back-to-top-button","theme-api","variables","changelog","page-toc"],"pluginsConfig":{"plantuml-svg":{},"editlink":{"label":"Edit This Page","multilingual":true,"base":"https://github.com/mojaloop/documentation/edit/master"},"theme-gestalt":{"logo":"https://mojaloop.io/images/logo.png","favicon":"https://mojaloop.io/images/logo.png","baseUrl":null,"excludeDefaultStyles":false,"doNotHideChildrenChapters":false},"include":{},"search":{},"collapsible-chapters":{},"page-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","position":"before-first","showByDefault":true},"swagger":{"file":""},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"uml":{"format":"png","nailgun":false},"changelog":{},"theme-api":{"languages":[],"split":true,"theme":"dark"},"back-to-top-button":{},"variables":{"files":{"importedVars":"book_variables.yml"}},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"insert-logo":{"url":"https://mojaloop.io/images/logo.png","style":"background: none; max-height: 140px; max-width: 140px;"}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"contributors-guide/frequently-asked-questions.md","mtime":"2020-02-07T08:18:07.307Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-02-07T08:19:19.152Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

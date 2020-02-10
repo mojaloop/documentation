@@ -18,7 +18,8 @@
  * Gates Foundation
  - Name Surname <name.surname@gatesfoundation.com>
 
- * Georgi Georgiev <georgi.georgiev@modusbox.com>
+ * ModusBox
+ - Georgi Georgiev <georgi.georgiev@modusbox.com>
  --------------
  ******'/
 
@@ -186,6 +187,29 @@ group Settlement Abort
         end
 
         ref over SETTLE_DAO, DB: Settlement Transfer Abort\n\n**Inputs**: settlementId, transactionTimestamp, enums, trx\n
+
+        group Bulk insert and reset contents & aggregations
+            SETTLE_DAO -> DB: Bulk insert aborted state
+            activate DB
+            hnote over DB #lightyellow
+                settlementWindowContentStateChange
+            end hnote
+            SETTLE_DAO <-- DB: Return **swcscIdList**
+            deactivate DB
+
+            SETTLE_DAO -> SETTLE_DAO: Merge swcscIdList
+
+            SETTLE_DAO -> DB: Update current state references and reset settlementId
+            activate DB
+            hnote over DB #lightyellow
+                **settlementWindowContent**
+                    .currentStateChangeIds
+                    .settlementId
+                **settlementContentAggregation**
+                    .settlementId
+            end hnote
+            deactivate DB
+        end
 
         group Bulk insert settlementWindowStateChange
             SETTLE_DAO -> DB: Insert settlementWindowStateChange
