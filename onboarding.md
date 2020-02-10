@@ -2,7 +2,7 @@
 
 This document provides an overview of assets available for those interested in observing a Mojaloop environment running.
 
->_Want to get up and running as a contributor to Mojaloop? Check out the [Contributor's Guide](/contributors-guide/) and the [New Contributor Checklist](todo)._
+>_Want to get up and running as a contributor to Mojaloop? Check out the [Contributor's Guide](/contributors-guide/) and the [New Contributor Checklist](/contributors-guide/new-contributor-checklist.md)._
 
 ## Primary Assets
 
