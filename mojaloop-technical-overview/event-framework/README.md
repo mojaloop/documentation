@@ -197,7 +197,7 @@ Below find the current proposed standard HTTP Transport headers for tracing.
 
 Mojaloop has yet to standardise on either standard, or if it will possible support both.
 
-#### 4.1.1 WC3 Http Headers
+#### 4.1.1 W3C Http Headers
 
 Refer to the following publication for more information: https://w3c.github.io/trace-context/
 
