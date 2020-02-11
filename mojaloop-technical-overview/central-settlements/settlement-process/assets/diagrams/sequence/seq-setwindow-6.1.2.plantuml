@@ -67,13 +67,13 @@ group Close Settlement Window
 
     OPERATOR -> SSAPI: POST - /settlementWindows/{id}
     activate SSAPI
-    SSAPI -> SSAPI: Validate payload and requested state
+    SSAPI -> SSAPI: Validate payload, existing window,\nstate, assigned transfers, etc.
     break
         note right of SSAPI #yellow
             {
                 "errorInformation": {
                     "errorCode": <integer>,
-                    "errorDescription": "Invalid payload or state"
+                    "errorDescription": "FSPIOP Error Description"
                 }
             }
         end note
@@ -96,62 +96,64 @@ group Close Settlement Window
     deactivate SETTLE_DAO
 
     alt settlementWindow found && settlementWindowStateId == 'OPEN'
-        SSAPI -> SETTLE_DAO: Terminate current window and open a new one\n<color #FF0000><b>Error code:</b> 2001</color>
-        activate SETTLE_DAO
-        group <color #blue>DB TRANSACTION: Terminate window usage and initate next</color>
-            note right of SETTLE_DAO #lightgray
-                let **transactionTimestamp** = now()
-            end note
+        group Process settlement window
+            SSAPI -> SETTLE_DAO: Terminate current window and open a new one\n<color #FF0000><b>Error code:</b> 2001</color>
+            activate SETTLE_DAO
+            group <color #blue>DB TRANSACTION: Terminate window usage and initate next</color>
+                note right of SETTLE_DAO #lightgray
+                    let **transactionTimestamp** = now()
+                end note
 
-            SETTLE_DAO -> DB: Terminate requested window
-            activate DB
-            hnote over DB #lightyellow
-                INSERT INTO **settlementWindowStateChange**
-                       (settlementWindowId, settlementWindowStateId, reason, createdDate)
-                VALUES ({id}, 'PROCESSING', {payload.reason}, {transactionTimestamp})
-            end hnote
-            SETTLE_DAO <-- DB: Return **settlementWindowStateChangeId**
-            deactivate DB
+                SETTLE_DAO -> DB: Terminate requested window
+                activate DB
+                hnote over DB #lightyellow
+                    INSERT INTO **settlementWindowStateChange**
+                        (settlementWindowId, settlementWindowStateId, reason, createdDate)
+                    VALUES ({id}, 'PROCESSING', {payload.reason}, {transactionTimestamp})
+                end hnote
+                SETTLE_DAO <-- DB: Return **settlementWindowStateChangeId**
+                deactivate DB
 
-            SETTLE_DAO -> DB: Update pointer to current state change id
-            activate DB
-            hnote over DB #lightyellow
-                UPDATE **settlementWindow**
-                SET currentStateChangeId = {settlementWindowStateChangeId}
-                WHERE settlementWindowId = {id}
-            end hnote
-            deactivate DB
+                SETTLE_DAO -> DB: Update pointer to current state change id
+                activate DB
+                hnote over DB #lightyellow
+                    UPDATE **settlementWindow**
+                    SET currentStateChangeId = {settlementWindowStateChangeId}
+                    WHERE settlementWindowId = {id}
+                end hnote
+                deactivate DB
 
-            SETTLE_DAO -> DB: Create new settlementWindow
-            activate DB
-            hnote over DB #lightyellow
-                INSERT INTO **settlementWindow** (reason, createdDate)
-                VALUES ({payload.reason}, {transactionTimestamp})
-            end note
-            SETTLE_DAO <-- DB: Return **settlementWindowId**
-            deactivate DB
+                SETTLE_DAO -> DB: Create new settlementWindow
+                activate DB
+                hnote over DB #lightyellow
+                    INSERT INTO **settlementWindow** (reason, createdDate)
+                    VALUES ({payload.reason}, {transactionTimestamp})
+                end note
+                SETTLE_DAO <-- DB: Return **settlementWindowId**
+                deactivate DB
 
-            SETTLE_DAO -> DB: Insert intial state for the created window
-            activate DB
-            hnote over DB #lightyellow
-                INSERT INTO **settlementWindowStateChange**
-                       (settlementWindowId, settlementWindowStateId, reason, createdDate)
-                VALUES ({settlementWindowId}, 'OPEN', {payload.reason}, {transactionTimestamp})
-            end note
-            SETTLE_DAO <-- DB: Return **newSettlementWindowStateChangeId**
-            deactivate DB
+                SETTLE_DAO -> DB: Insert intial state for the created window
+                activate DB
+                hnote over DB #lightyellow
+                    INSERT INTO **settlementWindowStateChange**
+                        (settlementWindowId, settlementWindowStateId, reason, createdDate)
+                    VALUES ({settlementWindowId}, 'OPEN', {payload.reason}, {transactionTimestamp})
+                end note
+                SETTLE_DAO <-- DB: Return **newSettlementWindowStateChangeId**
+                deactivate DB
 
-            SETTLE_DAO -> DB: Update pointer to current state change id
-            activate DB
-            hnote over DB #lightyellow
-                UPDATE **settlementWindow**
-                SET currentStateChangeId = {newSettlementWindowStateChangeId}
-                WHERE settlementWindowId = {settlementWindowId}
-            end hnote
-            deactivate DB
+                SETTLE_DAO -> DB: Update pointer to current state change id
+                activate DB
+                hnote over DB #lightyellow
+                    UPDATE **settlementWindow**
+                    SET currentStateChangeId = {newSettlementWindowStateChangeId}
+                    WHERE settlementWindowId = {settlementWindowId}
+                end hnote
+                deactivate DB
+            end
+            SSAPI <-- SETTLE_DAO: Return success
+            deactivate SETTLE_DAO
         end
-        SSAPI <-- SETTLE_DAO: Return success
-        deactivate SETTLE_DAO
 
         note right of SSAPI #yellow
             Message:
@@ -197,7 +199,7 @@ group Close Settlement Window
         deactivate SSAPI
         deactivate OPERATOR
 
-        group Settlement Window Handler processing
+        group Close settlement window (SettlementWindowHandler)
             TOPIC_SET_WIN <- SET_WIN_HANDLER: Consume Settlement Window\nevent message
             activate TOPIC_SET_WIN
             deactivate TOPIC_SET_WIN
@@ -229,8 +231,10 @@ group Close Settlement Window
                     SETTLE_DAO -> DB: Determine window content and insert
                     activate DB
                     hnote over DB #lightyellow
-                        INSERT INTO **settlementWindowContent** (settlementWindowId, ledgerAccountTypeId, currencyId)
-                        SELECT DISTINCT {id} settlementWindowId, pc.ledgerAccountTypeId, pc.currencyId
+                        INSERT INTO **settlementWindowContent** (settlementWindowId, ledgerAccountTypeId,
+                            currencyId,  createdDate)
+                        SELECT DISTINCT {id} settlementWindowId, pc.ledgerAccountTypeId,
+                            pc.currencyId, transactionTimestamp
                         FROM **transferFulfilment** tf
                         JOIN **transferParticipant** tp
                         ON tp.transferId = tf.transferId
@@ -244,9 +248,9 @@ group Close Settlement Window
                     activate DB
                     hnote over DB #lightyellow
                         INSERT INTO **settlementContentAggregation** (settlementWindowContentId, participantCurrencyId, 
-                            transferParticipantRoleTypeId, ledgerEntryTypeId, amount, settlementWindowStateId)
-                        SELECT swc.settlementWindowContentId, pc.participantCurrencyId,
-                            tp.transferParticipantRoleTypeId, tp.ledgerEntryTypeId, SUM(tp.amount), 'CLOSED'
+                            transferParticipantRoleTypeId, ledgerEntryTypeId, currentStateId, createdDate, amount)
+                        SELECT swc.settlementWindowContentId, pc.participantCurrencyId, tp.transferParticipantRoleTypeId,
+                            tp.ledgerEntryTypeId, 'CLOSED', transactionTimestamp, SUM(tp.amount)
                         FROM **transferFulfilment** tf
                         JOIN **transferParticipant** tp
                         ON tf.transferId = tp.transferId

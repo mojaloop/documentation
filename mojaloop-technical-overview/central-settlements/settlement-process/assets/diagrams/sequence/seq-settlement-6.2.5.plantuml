@@ -131,6 +131,9 @@ group Acknowledgement of Settlement Transfer
                 psTransfersCommittedCount: <integer>, // count of accounts in PS_TRANSFERS_COMMITTED state
                 settledCount: <integer>, // count of accounts in SETTLED state
                 abortedCount: <integer> // count of accounts in ABORTED state
+                unknownCount:  <integer>,
+                settledIdList: <array>,
+                changedIdList: <array>
             }
             **settlementAccountsInit** copy of previous object to be preserved for comparission at the end
             **allAccounts**: { // same as previous but accessed by account id (derived from <color 0000FF>settlementAccountsList</color>)
@@ -352,7 +355,9 @@ group Acknowledgement of Settlement Transfer
                             settlementParticipantCurrencySettledIdList.push(allAccounts[accountPayload.id].key)
                             settlementAccounts.psTransfersCommittedCount--
                             settlementAccounts.settledCount++
+                            settlementAccounts.settledIdList.push(accountPayload.id)
                         }
+                        settlementAccounts.changedIdList.push(accountPayload.id)
                         allAccounts[accountPayload.id].state = accountPayload.state
                         allAccounts[accountPayload.id].reason = accountPayload.reason
                         allAccounts[accountPayload.id].externalReference = accountPayload.externalReference
@@ -438,7 +443,6 @@ group Acknowledgement of Settlement Transfer
                 settlementWindowContent
                 settlementWindowContentStateChange
                 ledgerAccountType
-                currency
                 settlementWindow
                 settlementWindowStateChange
             end hnote
