@@ -43,7 +43,7 @@ This guide summarizes the steps needed to get up and running as a contributor to
 
 ## 3. Opening your First PR 
 
-> _Complete this part of the guide once you have been added to the Mojaloop GitHub organization. If you don't have access, reach out to: @sam, @miguel de barros or @lewisdaly on Slack_
+> _Complete this part of the guide once you have been added to the Mojaloop GitHub organization. If you don't have access, reach out to us on the `#general` or `#help-mojaloop`
 
 - Sign up for [Zenhub](https://www.zenhub.com/), and connect it to the Mojaloop Organisation, Search for the _'project'_ workspace
 - Install the [Zenhub Browser extension](https://www.zenhub.com/extension) for Chrome or Firefox, and browse the (Mojaloop Project Kanban board](https://github.com/mojaloop/project#zenhub)
@@ -60,4 +60,4 @@ This guide summarizes the steps needed to get up and running as a contributor to
 
 ## FAQs:
 
-> None as of yet. If you have problems getting through this list, or need more help, reach out to @lewisdaly on Slack!
+> None as of yet. If you have problems getting through this list, or need more help, reach out to us on Slack!
