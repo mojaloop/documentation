@@ -221,14 +221,14 @@ end
 
 
 group Reference: Failure in Position Validation (Prepare)
-    alt If type == 'bulk-prepare'
+    alt If action == 'bulk-prepare'
         note right of POS_HANDLER #yellow
         Message:
             {
-                id: <transferMessage.transferId>
+                id: "<messageId>"
                 from: <ledgerName>,
                 to: <transferMessage.payerFsp>,
-                type: application/json
+                type: "application/json"
                 content: {
                     headers: <transferHeaders>,
                     payload: {
@@ -242,11 +242,11 @@ group Reference: Failure in Position Validation (Prepare)
                     event: {
                         id: <uuid>,
                         responseTo: <previous.uuid>,
-                        type: bulk-processing,
-                        action: prepare,
+                        type: "bulk-processing",
+                        action: "bulk-prepare",
                         createdAt: <timestamp>,
                         state: {
-                            status: 'error',
+                            status: "error",
                             code: <errorInformation.errorCode>
                             description: <errorInformation.errorDescription>
                         }
@@ -257,14 +257,14 @@ group Reference: Failure in Position Validation (Prepare)
         POS_HANDLER -> TOPIC_BULK_PROCESSING: Publish Position failure event (in Prepare) to Bulk Processing Topic (for Payer) \n<color #FF0000><b>Error codes:</b> 2003</color>
         activate TOPIC_BULK_PROCESSING
         deactivate TOPIC_BULK_PROCESSING
-    else If type == 'prepare'
+    else If action == 'prepare'
         note right of POS_HANDLER #yellow
         Message:
             {
-                id: <transferMessage.transferId>
+                id: "<messageId>"
                 from: <ledgerName>,
                 to: <transferMessage.payerFsp>,
-                type: application/json
+                type: "application/json"
                 content: {
                     headers: <transferHeaders>,
                     payload: {
@@ -278,11 +278,11 @@ group Reference: Failure in Position Validation (Prepare)
                     event: {
                         id: <uuid>,
                         responseTo: <previous.uuid>,
-                        type: notification,
-                        action: prepare,
+                        type: "notification",
+                        action: "position",
                         createdAt: <timestamp>,
                         state: {
-                            status: 'error',
+                            status: "error",
                             code: <errorInformation.errorCode>
                             description: <errorInformation.errorDescription>
                         }
@@ -298,14 +298,14 @@ group Reference: Failure in Position Validation (Prepare)
 end
 
 group Reference: Position Validation Success case (Prepare)
-    alt If type == 'bulk-prepare'
+    alt If action == 'bulk-prepare'
         note right of POS_HANDLER #yellow
         Message:
             {
-                id: <transferMessage.transferId>
+                id: "<messageId>"
                 from: <transferMessage.payerFsp>,
                 to: <transferMessage.payeeFsp>,
-                type: application/json
+                type: "application/json"
                 content: {
                     headers: <transferHeaders>,
                     payload: <transferMessage>
@@ -314,8 +314,8 @@ group Reference: Position Validation Success case (Prepare)
                     event: {
                         id: <uuid>,
                         responseTo: <previous.uuid>,
-                        type: bulk-processing,
-                        action: prepare,
+                        type: "bulk-processing",
+                        action: "bulk-prepare",
                         createdAt: <timestamp>,
                         state: {
                             status: "success",
@@ -328,14 +328,14 @@ group Reference: Position Validation Success case (Prepare)
         POS_HANDLER -> TOPIC_BULK_PROCESSING: Publish Position Success event (in Prepare) to Bulk Processing Topic\n<color #FF0000><b>Error codes:</b> 2003</color>
         activate TOPIC_BULK_PROCESSING
         deactivate TOPIC_BULK_PROCESSING
-    else If type == 'prepare'
+    else If action == 'prepare'
         note right of POS_HANDLER #yellow
         Message:
             {
-                id: <transferMessage.transferId>
+                id: "<messageId>"
                 from: <transferMessage.payerFsp>,
                 to: <transferMessage.payeeFsp>,
-                type: application/json
+                type: "application/json"
                 content: {
                     headers: <transferHeaders>,
                     payload: <transferMessage>
@@ -344,8 +344,8 @@ group Reference: Position Validation Success case (Prepare)
                     event: {
                         id: <uuid>,
                         responseTo: <previous.uuid>,
-                        type: transfer,
-                        action: prepare,
+                        type: "notification",
+                        action: "abort",
                         createdAt: <timestamp>,
                         state: {
                             status: "success",

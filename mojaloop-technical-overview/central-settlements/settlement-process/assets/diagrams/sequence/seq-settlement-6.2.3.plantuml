@@ -18,13 +18,14 @@
  * Gates Foundation
  - Name Surname <name.surname@gatesfoundation.com>
 
- * Georgi Georgiev <georgi.georgiev@modusbox.com>
+ * ModusBox
+ - Georgi Georgiev <georgi.georgiev@modusbox.com>
  --------------
  ******'/
 
 @startuml
 ' declate title
-title 6.2.3. Get Settlement By Settlement, Participant and Account (getSettlementBySettlementParticipantAccount)
+title 6.2.3. Get Settlement By Settlement, Participant and Account (getSettlementBySPA)
 autonumber
 
 ' declare actors
@@ -157,16 +158,18 @@ activate OPERATOR
         activate DB
         alt accountProvided
             hnote over DB #lightyellow
-                SELECT DISTINCT sw.settlementWindowId, swsc.settlementWindowStateId,
+                SELECT <color 00A>**//DISTINCT//**</color> sw.settlementWindowId, swsc.settlementWindowStateId,
                     swsc.reason, sw.createdDate, swsc.createdDate changedDate
                 FROM **settlementSettlementWindow** ssw
                 JOIN **settlementWindow** sw
                 ON sw.settlementWindowId = ssw.settlementWindowId
                 JOIN **settlementWindowStateChange** swsc
                 ON swsc.settlementWindowStateChangeId = sw.currentStateChangeId
-                JOIN **settlementTransferParticipant** stp
-                ON stp.settlementWindowId = sw.settlementWindowId
-                AND stp.participantCurrencyId = {accountId}
+                JOIN <color 00A>**//settlementWindowContent//**</color> swc
+                ON swc.settlementWindowId = sw.settlementWindowId
+                JOIN <color 00A>**//settlementWindowContentAggregation//**</color> swca
+                ON swca.settlementWindowContentId = swc.settlementWindowContentId
+                AND swca.participantCurrencyId = <color 00A>//{accountId}//</color>
                 WHERE ssw.settlementId = {id}
             end hnote
         else
@@ -178,12 +181,14 @@ activate OPERATOR
                 ON sw.settlementWindowId = ssw.settlementWindowId
                 JOIN **settlementWindowStateChange** swsc
                 ON swsc.settlementWindowStateChangeId = sw.currentStateChangeId
-                JOIN **settlementTransferParticipant** stp
-                ON stp.settlementWindowId = sw.settlementWindowId
-                AND stp.participantCurrencyId IN(
+                JOIN <color 00A>**//settlementWindowContent//**</color> swc
+                ON swc.settlementWindowId = sw.settlementWindowId
+                JOIN <color 00A>**//settlementWindowContentAggregation//**</color> swca
+                ON swca.settlementWindowContentId = swc.settlementWindowContentId
+                AND swca.participantCurrencyId IN(
                     SELECT participantCurrencyId
                     FROM participantCurrency
-                    WHERE participantId = {participantId}
+                    WHERE participantId = <color 00A>//{participantId}//</color>
                 )
                 WHERE ssw.settlementId = {id}
             end hnote
@@ -223,7 +228,6 @@ activate OPERATOR
         SSAPI <-- SETTLE_DAO: Return **accounts**
         deactivate SETTLE_DAO
 
-        deactivate SETTLE_DAO
         note left of SSAPI #yellow
             {
                 "id": settlement.settlementId,

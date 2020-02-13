@@ -114,7 +114,6 @@ group Prepare Handler Consume
                 Validate Prepare Transfer (failure) - Modified Request
             end note
         else hasDuplicateId == FALSE
-
             group Validate Payer
                 PREP_HANDLER -> PARTICIPANT_DAO: Request to retrieve Payer Participant details (if it exists)
                 activate PARTICIPANT_DAO
@@ -183,8 +182,8 @@ group Prepare Handler Consume
                 end
             end
         end
-
     end
+
     alt Validate Prepare Transfer (success)
         note right of PREP_HANDLER #yellow
             Message:

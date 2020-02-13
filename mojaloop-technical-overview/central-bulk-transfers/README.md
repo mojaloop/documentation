@@ -45,27 +45,27 @@ Below are the steps involved at a high level for bulk transfers.
 ![architecture diagram](./assets/diagrams/architecture/bulk-transfer-arch-flows.svg)  
 
 
-1. [1.0, 1.1, 1.2] An Incoming bulk Transfer request (POST /bulkTransfers) on the ml-api-adapter is placed in an object store and a notification with a reference to the actual message is sent via a kafka topic “bulk prepare” and a 202 is sent to the Payer FSP  
+1. [1.0, 1.1, 1.2] An Incoming bulk Transfer request (POST /bulkTransfers) on the bulk-api-adapter is placed in an object store and a notification with a reference to the actual message is sent via a kafka topic “bulk-prepare” and a 202 is sent to the Payer FSP  
 2. [1.3] Bulk Prepare handler consumes the request, records the status as RECEIVED  
-        a. Bulk Prepare handler then validates the Bulk and changes state to PENDING if the validation is successful  
-        b. One validation rule proposed in addition, here is to reject a bulk if there are duplicate transfer IDs used in the bulk itself.
-        c. [<alt>1.4] If validation fails, Bulk Prepare handler changes the bulkTransferState to Pending_Rejected (an internal state) and produces a message onto the bulk processing topic  
-            i. Bulk processing Handler then updates the bulkTransferState to REJECTED and sends a notification to the Payer  
+  a. Bulk Prepare handler then validates the Bulk and changes state to PENDING if the validation is successful  
+  b. One validation rule proposed in addition, here is to reject a bulk if there are duplicate transfer IDs used in the bulk itself.
+  c. [<alt>1.4] If validation fails, Bulk Prepare handler changes the bulkTransferState to PENDING_INVALID (an internal state) and produces a message onto the bulk processing topic  
+      i. Bulk processing Handler then updates the bulkTransferState to REJECTED and sends a notification to the Payer  
 3. [1.4] [Continuing 2.a] Bulk Prepare handler breaks down the bulk into individual transfers and puts each of them on the prepare topic  
-        a. As part of this, each transfer is individually assigned the 'expiration time' of the bulk Transfer itself (and other fields necessary for individual transfers)  
+  a. As part of this, each transfer is individually assigned the 'expiration time' of the bulk Transfer itself (and other fields necessary for individual transfers)
 4. [1.5, 1.6, 1.7] Prepare handler, Position handler are refactored to handle individual transfers in a bulk, using flags such as type, action, status, etc.
-        a. Reservation of funds --> This is left to the individual handlers and the whole bulk is then aggregated in the Bulk Processing Handler.  
+  a. Reservation of funds --> This is left to the individual handlers and the whole bulk is then aggregated in the Bulk Processing Handler.  
 5. [1.8] Position Handler produces messages corresponding to individual transfers that are part of a bulk to bulk processing topic  
 6. [1.9] For every message consumed from the bulk processing topic a check is made on the Bulk processing Handler to see if that’s the last individual transfer in a bulk for that processing phase.
 7. [1.10, 1.11, 1.12] If it is the last transfer, aggregate the state of all the individual transfers and  
-        a. If all of them are in reserved state --> Send POST /bulkTransfers to the Payee (by producing a message to the notifications topic which is then consumed by the notification handler)  
-        b. Once the bulkTransfer prepare request is sent to the Payee, then change status to ACCEPTED  
+  a. If all of them are in reserved state --> Send POST /bulkTransfers to the Payee (by producing a message to the notifications topic which is then consumed by the notification handler)  
+  b. Once the bulkTransfer prepare request is sent to the Payee, then change status to ACCEPTED  
 8. In a successful case of Prepare - when the PUT from the Payee FSP for bulkFulfil is received, a notification is put on the bulk fulfil topic with a reference to the actual Fulfil message that's stored in an Object store.  
 9. This is to be consumed by the bulkFulfilHandler, which then changes state to PROCESSING.  
 10. The bulk-fulfil-handler breaks down the bulk into individual transfers and sends each of them through the refactored Fulfil, Position Handlers to commit/abort each of them based on the PUT /bulkTransfers/{ID} message by the Payee and commit/release funds on the Switch  
 11. The bulk-processing-handler is to then aggregate all the individual transfer results and change the state of bulkTransfer to COMPLETED/REJECTED based on success/failure  
-        a. If the Payee sends COMMITTED for even one of the individual transfers the proposal is to change bulk state to COMPLETED.  
-        b. However, for step-8 or if the Payee sends REJECTED as bulkTransferState then final state on Switch should be REJECTED.  
+  a. If the Payee sends COMMITTED for even one of the individual transfers the proposal is to change bulk state to COMPLETED.
+  b. However, for step-8 or if the Payee sends REJECTED as bulkTransferState then final state on Switch should be REJECTED.  
 12. Send notifications to both Payer and Payee (similar to Single transfers, though diverging from the Spec 1.0). The Payer-FSP receives the notification that includes an exhaustive list of individual transfers, same as the list present in the prepare request sent by the Payer. The Payee-FSP receives a notification only for sub-set of transfers, which were sent to it from the Switch as the Bulk prepare request (that were able to be reserved at the Switch).  
 
 ## 4. Implementation Details
@@ -80,25 +80,28 @@ Below are the states of a Bulk transfer as per the Mojaloop API Specification
 4. PROCESSING  
 5. COMPLETED  
 6. REJECTED
-7. Internal state - INVALID (mapped to REJECTED)
-8. Micro-states to be added for internal use on the Switch
+7. Internal state - PENDING_PREPARE (mapped to PENDING)
+8. Internal state - PENDING_INVALID (mapped to PENDING)
+9. Internal state - PENDING_FULFIL (mapped to PROCESSING)
+10. Internal state - EXPIRING (mapped to PROCESSING)
+11. Internal state - EXPIRED (mapped to COMPLETED)
+12. Internal state - INVALID (mapped to REJECTED)
+13. Additional micro-states may be added for internal use on the Switch
 
 ### 4.2 Proposed New tables
 
 Below are the proposed tables as part of designing the Bulk transfers
 
-- bulkTransfer  
-- bulkTransferStateChange  
-- bulkTransferError  
+- bulkTransfer
+- bulkTransferStateChange
+- bulkTransferError
 - bulkTransferDuplicateCheck
 - bulkTransferFulfilment
 - bulkTransferFulfilmentDuplicateCheck
-- bulkTransferAssociation  
-- bulkTransferExtension  
-- bulkTransferParticipant
-- bulkTransferState  
-- bulkProcessingState  
-- Link to the ERD from the PR: https://github.com/elnyry/documentation/blob/feature/738-bulk-transfers-design-changes/mojaloop-technical-overview/central-bulk-transfers/assets/database/central-ledger-schema.png
+- bulkTransferAssociation
+- bulkTransferExtension
+- bulkTransferState
+- bulkProcessingState
 
 ### 4.3 Internal Type-Action-Status combinations
 
@@ -111,30 +114,24 @@ Below are the proposed tables as part of designing the Bulk transfers
 
 #### 2. Duplicate [bulk-prepare-handler -> notification handler]
 
-  1. type: bulk-notification
+  1. type: notification
   2. action: bulk-prepare-duplicate
   3. Status: success
   4. Result: bulkTransferState=N/A, bulkProcessingState=N/A
 
-#### 3. Duplicate (bulktransfer state does not exist) [bulk-prepare-handler -> notification-handler]
+#### 3. Validate Bulk Prepare transfer failure [bulk-prepare-handler -> notification-handler]
 
-  1. type: bulk-notification
-  2. action: bulk-prepare-duplicate
+  1. type: notification
+  2. action: bulk-abort
   3. Status: error
 
-#### 4. Validate Bulk Prepare transfer failure [bulk-prepare-handler -> notification-handler]
+#### 4. For a Valid Bulk Prepare transfer (broken down and sent as individual transfers) [bulk-prepare-handler -> prepare-handler]
 
-    1. type: bulk-notification
-    2. action: bulk-abort
-    3. Status: error
-
-#### 5. For a Valid Bulk Prepare transfer (broken down and sent as individual transfers) [bulk-prepare-handler -> prepare-handler]
-
-  1. type: bulk-prepare
-  2. action: prepare
+  1. type: prepare
+  2. action: bulk-prepare
   3. Status: success
 
-#### 6. Duplicate of individual transfer that is part of a bulk-transfer [prepare-handler -> bulk-processing-handler]
+#### 5. Duplicate of individual transfer that is part of a bulk-transfer [prepare-handler -> bulk-processing-handler]
 
   1. type: bulk-processing
   2. action: prepare-duplicate
@@ -142,134 +139,134 @@ Below are the proposed tables as part of designing the Bulk transfers
   4. Expected action: Add error message indicating it’s a duplicate
   5. Result: bulkTransferState=PENDING_PREPARE/ACCEPTED (depending on whether it’s the last one), bulkProcessingState=RECEIVED_DUPLICATE  
 
-#### 7. For individual Prepare transfer that’s a valid duplicate in prepare handler [prepare-handler -> bulk-processing-handler]
+#### 6. For individual Prepare transfer that’s a valid duplicate in prepare handler [prepare-handler -> bulk-processing-handler]
 
   1. type: bulk-processing
   2. action: prepare-duplicate
   3. Status: error
   4. Result: bulkTransferState=PENDING_PREPARE/ACCEPTED (depending on whether it’s the last one), bulkProcessingState=RECEIVED_DUPLICATE   
 
-#### 8. For a Valid individual Prepare transfer that’s part of a bulk [prepare-handler -> position-handler]
-  1. type: bulk-position
-  2. action: prepare
+#### 7. For a Valid individual Prepare transfer that’s part of a bulk [prepare-handler -> position-handler]
+  1. type: position
+  2. action: bulk-prepare
   3. Status: success
 
-#### 9. For individual Prepare transfer that’s part of a bulk that failed validation in prepare handler [prepare-handler -> bulk-processing-handler]
+#### 8. For individual Prepare transfer that’s part of a bulk that failed validation in prepare handler [prepare-handler -> bulk-processing-handler]
 
   1. type: bulk-processing
-  2. action: prepare
+  2. action: bulk-prepare
   3. Status: error
   4. Result: bulkTransferState=PENDING_PREPARE/ACCEPTED (depending on whether it’s the last one), bulkProcessingState=RECEIVED_INVALID
 
-#### 10. For a Valid individual Prepare transfer that’s part of a bulk [position-handler ->  bulk-processing-handler]
+#### 9. For a Valid individual Prepare transfer that’s part of a bulk [position-handler ->  bulk-processing-handler]
 
   1. type: bulk-processing
-  2. action: prepare
+  2. action: bulk-prepare
   3. Status: success
   4. Result: bulkTransferState=PENDING_PREPARE/ACCEPTED (depending on whether it’s the last one), bulkProcessingState=ACCEPTED
 
-#### 11. For individual Prepare transfer that’s part of a bulk that failed validation in position handler [position-handler -> bulk-processing-handler]
+#### 10. For individual Prepare transfer that’s part of a bulk that failed validation in position handler [position-handler -> bulk-processing-handler]
   1. type: bulk-processing
-  2. action: prepare
+  2. action: bulk-prepare
   3. Status: error
   4. Result: bulkTransferState=PENDING_PREPARE/ACCEPTED (depending on whether it’s the last one), bulkProcessingState=RECEIVED_INVALID
 
-#### 12. For a Valid individual Fulfil transfer (for commit) that’s part of a bulk [position-handler -> bulk-processing-handler]
+#### 11. For a Valid individual Fulfil transfer (for commit) that’s part of a bulk [position-handler -> bulk-processing-handler]
 
   1. type: bulk-processing
-  2. action: commit
+  2. action: bulk-commit
   3. Status: success
   4. Result: bulkTransferState=PENDING_FULFIL/COMPLETED (depending on whether it’s the last one), bulkProcessingState=COMPLETED
 
-#### 13. For Bulk transfer Fulfil message that passes validation [ml-api-adapter -> bulk-fulfil-handler]
+#### 12. For Bulk transfer Fulfil message that passes validation [ml-api-adapter -> bulk-fulfil-handler]
 
   1. type: bulk-fulfil
-  2. action: bulk-fulfil
+  2. action: bulk-commit
   3. Status: success
 
-#### 14. For a valid individual transfer part of a bulk that timed-out in position handler [position-handler -> bulk-processing-handler]
+#### 13. For a valid individual transfer part of a bulk that timed-out in position handler [position-handler -> bulk-processing-handler]
 
   1. type: bulk-processing
-  2. action: abort
+  2. action: bulk-timeout-reserved
   3. Status: error
   4. Result: bulkTransferState=PENDING_FULFIL/COMPLETED (depending on whether it’s the last one), bulkProcessingState=FULFIL_INVALID
 
-#### 15. For a Valid individual Fulfil transfer (for reject) that’s part of a bulk [position-handler -> bulk-processing-handler]
+#### 14. For a Valid individual Fulfil transfer (for reject) that’s part of a bulk [position-handler -> bulk-processing-handler]
 
   1. type: bulk-processing
   2. action: reject
   3. Status: success
   4. Result: bulkTransferState=PENDING_FULFIL/COMPLETED (depending on whether it’s the last one), bulkProcessingState=REJECTED
 
-#### 16. Invalid Fulfil duplicate of an individual transfer in a bulk [fulfil-handler -> bulk-processing-handler]
+#### 15. Invalid Fulfil duplicate of an individual transfer in a bulk [fulfil-handler -> bulk-processing-handler]
 
   1. type: bulk-processing
   2. action: fulfil-duplicate
   3. Status: error
   4. Result: bulkTransferState=PENDING_FULFIL/COMPLETED (depending on whether it’s the last one), bulkProcessingState=FULFIL_DUPLICATE
 
-#### 17. Valid Fulfil duplicate of an individual transfer in a bulk [fulfil-handler -> bulk-processing-handler]
+#### 16. Valid Fulfil duplicate of an individual transfer in a bulk [fulfil-handler -> bulk-processing-handler]
 
   1. type: bulk-processing
   2. action: fulfil-duplicate
   3. Status: success
   4. Result: bulkTransferState=PENDING_FULFIL/COMPLETED (depending on whether it’s the last one), bulkProcessingState=FULFIL_DUPLICATE
 
-#### 18. Valid Fulfil message of an individual transfer in a bulk [fulfil-handler -> position-handler]
+#### 17. Valid Fulfil message of an individual transfer in a bulk [fulfil-handler -> position-handler]
 
-  1. type: bulk-position
-  2. action: commit
+  1. type: position
+  2. action: bulk-commit
   3. Status: success
 
-#### 19. For individual Fulfil transfer that’s part of a bulk that failed validation in fulfil handler [fulfil-handler -> bulk-processing-handler]
+#### 18. For individual Fulfil transfer that’s part of a bulk that failed validation in fulfil handler [fulfil-handler -> bulk-processing-handler]
 
   1. type: bulk-processing
-  2. action: commit
+  2. action: bulk-commit
   3. Status: error
   4. Result: bulkTransferState=PENDING_FULFIL/COMPLETED (depending on whether it’s the last one), bulkProcessingState=FULFIL_INVALID
 
-#### 20. Fulfil transfer request that’s part of a bulk that passes validation [bulk-fulfil-handler -> fulfil-handler]
+#### 19. Fulfil transfer request that’s part of a bulk that passes validation [bulk-fulfil-handler -> fulfil-handler]
 
   1. type: bulk-fulfil
   2. action: bulk-commit
   3. Status: success
 
-#### 21. For Bulk transfers failing validation at bulk-fulfil-handler level [bulk-fulfil-handler -> notification-handler]
+#### 20. For Bulk transfers failing validation at bulk-fulfil-handler level [bulk-fulfil-handler -> notification-handler]
 
-  1. type: bulk-notification
+  1. type: notification
   2. action: bulk-abort
   3. Status: error
 
-#### 22. For Bulk transfer notifications to FSPs [bulk-processing-handler -> notification-handler]
+#### 21. For Bulk transfer notifications to FSPs [bulk-processing-handler -> notification-handler]
 
-  1. type: bulk-notification
-  2. action: bulk-notification
+  1. type: notification
+  2. action: bulk-prepare / bulk-commit
   3. Status: success
 
-#### 23. For timeout notification [timeout-handler -> bulk-processing-handler]
+#### 22. For timeout notification [timeout-handler -> bulk-processing-handler]
 
   1. type: bulk-processing
-  2. action: timeout-received
+  2. action: bulk-timeout-received
   3. Status: error
   4. Result: bulkTransferState=COMPLETED (for the last one), bulkProcessingState=EXPIRED
 
-#### 24. For timeout notification [timeout-handler -> position-handler]
+#### 23. For timeout notification [timeout-handler -> position-handler]
 
-  1. type: bulk-position
-  2. action: timeout-reserved
+  1. type: position
+  2. action: bulk-timeout-reserved
   3. Status: error
 
-#### 25. For timeout notification after position adjust [position-handler -> bulk-processing-handler]
+#### 24. For timeout notification after position adjust [position-handler -> bulk-processing-handler]
 
   1. type: bulk-processing
-  2. action: timeout-reserved
+  2. action: bulk-timeout-reserved
   3. Status: error
   4. Result: bulkTransferState=COMPLETED (for the last one), bulkProcessingState=EXPIRED
 
 ### 4.4 Additional Notes
 
 1. Document GET /bulkTransfers to indicate the difference in responses the Payer-FSP & Payee-FSP receive for Bulk Transfers
-2. Use a separate mode for ml-api-adapter to support bulk transfers end-points (that includes persistence as discussed above)
+2. Used a separate service: bulk-api-adapter to support bulk transfers end-points (that includes persistence as discussed above)
 
 ## 5. Roadmap Topics
 
@@ -279,3 +276,8 @@ Below are the proposed tables as part of designing the Bulk transfers
 4. Throttling of individual transfers in a bulk?
 5. The aspect of ordering in a Bulk - the order of processing at the Switch and at the FSPs. Recommendation to Scheme to incorporate Rule to mandate all FSPs to process transactions a bulk in the existing order and not have preferential processing. On the Switch currently being neutral with ordering but best practice is to sort in ascending order of amounts and process.
 6. For Settlements with bulk transfers where Government payments are involved with large sums of money needs to be discussed to allow for moving through transfers without strict liquidity rules needs to be discussed.
+7. Implement GET /bulkTransfers
+8. Implement notifications/logging for all bulk negative scenarios
+9. Full unit tests code coverage
+10. Integration testing of successful bulk transfer (golden path)
+11. Regression testing, including negative scenarios
