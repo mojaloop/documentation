@@ -143,6 +143,7 @@ _Note: HEXDIGLC = DIGIT / "a" / "b" / "c" / "d" / "e" / "f" ; lower case hex cha
 | transactionType | string | N | The transaction type represented by the transactionId. E.g. (transfer, quote, etc) | transfer |
 | parentEventType | string | N | The event-type of the parent Span. | bulk-prepare |
 | parentEventAction | string | N | The event-action of the parent Span. | prepare |
+| tracestate | string | N | This tag is set if EventSDK environmental variable `EVENT_SDK_TRACESTATE_HEADER_ENABLED` is `true` or if parent span context has the `tracestate` header or tag included. The tag holds updated `tracestate` header value as per the W3C trace headers specification. [More here](#411-wc3-http-headers)| `congo=t61rcWkgMzE,rojo=00f067aa0ba902b7` | 
 | `<string>` | string | N | Arbitary Key-value pair for additional meta-data to be added to the trace information. | n/a |
 
 ##### 3.2.1.6 Enum: EventStatusType
@@ -196,7 +197,7 @@ Below find the current proposed standard HTTP Transport headers for tracing.
 
 Mojaloop has yet to standardise on either standard, or if it will possible support both.
 
-#### 4.1.1 WC3 Http Headers
+#### 4.1.1 W3C Http Headers
 
 Refer to the following publication for more information: https://w3c.github.io/trace-context/
 

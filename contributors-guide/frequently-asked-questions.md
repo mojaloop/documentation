@@ -23,7 +23,7 @@ This document contains some of the most frequently asked questions from the comm
 * [Why am I getting an error when we try to create new DFSP using Admin](#13-why-am-i-getting-an-error-when-we-try-to-create-new-dfsp-using-admin)
 * [Using Mojaloop to do payment using crypto-currency](#14-using-mojaloop-to-do-payment-using-crypto-currency)
 * [Can I spread Mojaloop components over different physical machines and VM's](#15--can-i-spread-mojaloop-components-over-different-physical-machines-and-vms)
-* [Can we expect for tall the endpoints defined in the API document are implemented in Mojaloop](#16-can-we-expect-for-tall-the-endpoints-defined-in-the-api-document-are-implemented-in-mojaloop)
+* [Can we expect all the endpoints defined in the API document are implemented in Mojaloop](#16-can-we-expect-all-the-endpoints-defined-in-the-api-document-are-implemented-in-mojaloop)
 * [Does Mojaloop store the payment initiator FSP’s quote/status info](#17-does-mojaloop-store-the-payment-initiator-fsps-quotestatus-info)
 * [Does Mojaloop handle workflow validation](#18-does-mojaloop-handle-workflow-validation)
 * [How is the Mojaloop source accessible](#19-how-is-the-mojaloop-source-accessible)
@@ -110,7 +110,7 @@ You should register using the API provided, using postman or curl. Client is usi
   And the status of the pod pi3-kafka-0 is still on CrashLoopBackOff.
   I am using a vps on ubuntu 16.04 with RAM 12GB, 2vCores, 2.4GHz, Rom 50GB at OVH for the deployment.
     
-Increased RAM to 24 MB and CPU to 4 resolved the issues. Appears to be a timeout on Zookeeper due depletion of available resources, resulting in the services shutting down.
+Increased RAM to 24 GB and CPU to 4 resolved the issues. Appears to be a timeout on Zookeeper due depletion of available resources, resulting in the services shutting down.
 
 #### 13. Why am I getting an error when we try to create new DFSP using Admin?
 
@@ -124,7 +124,7 @@ Not with the current Specification and with this platform. Currently this is lim
 
 You should be able to setup on different VM's or physical machines. The distribution pretty much depend on your requirements and would be implementation specific. We utilise Kubernetes to assist with the Container Orchestration. This enables us to schedule the deployments through the Kubernetes runtime to specific machines if required, and request specific resources if required. The helm charts in the helm repository could be used as guideline to how best allocate and group the components in your deployment. Naturally you would need to update the configurations to complement your custom implementation.
 
-#### 16. Can we expect for tall the endpoints defined in the API document are implemented in Mojaloop?
+#### 16. Can we expect all the endpoints defined in the API document are implemented in Mojaloop?
 
 The Mojaloop Specification API for transfers and the Mojaloop Open Source Switch implementation are independent streams, though obviously the implementation is based on the Specification. Based on the use-cases prioritized for a time-frame and based on the end-points needed to support those use-cases, implementation will be done. If a few end-points are not prioritized then implementation for them may not be available. However, I think the goal is to eventually support all the end-points specified though it may take time. Thanks for the collection. We do have some of these on the ‘postman’ repo in the mojaloop GitHub org.
 

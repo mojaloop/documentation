@@ -15,7 +15,7 @@ The following are the minimum requirements to run an end-to-end test of an envir
 
 In case you want to build your own mock FSP instead of using the simulator, these are the available resources:
 
-- **API Specification document:** This [document](https://github.com/mojaloop/mojaloop-specification/blob/master/API%20Definition%20v1.0.pdf) introduces and describes the API specification that any FSP should implement to interact with Mojaloop. Also find the complete set of specification documents in the [Mojaloop specification repository](https://github.com/mojaloop/mojaloop-specification).
+- **API Specification document:** This [document](https://github.com/mojaloop/mojaloop-specification/blob/master/documents/supporting-documentation/API%20Definition%20v1.0.pdf) introduces and describes the API specification that any FSP should implement to interact with Mojaloop. Also find the complete set of specification documents in the [Mojaloop specification repository](https://github.com/mojaloop/mojaloop-specification).
 - **SDK Scheme Adapter:** The [SDK Scheme Adapter](https://github.com/mojaloop/sdk-scheme-adapter) demonstrates use of the Mojaloop SDK Standard Components to interface a DFSP backend system to a Mojaloop API compliant system. With the Scheme Adapter, you can turn an existing FSP implementation into a Mojaloop compatible one by implementing a simple REST interface.
 - **SDK Standard Components:** The [SDK Standard Compoents](https://github.com/mojaloop/sdk-standard-components) is a NodeJS library that provides pluggable implementations of JWS Signing, ILP, a Mojaloop Requests library, and Mojaloop compliant errors out of the box.
 

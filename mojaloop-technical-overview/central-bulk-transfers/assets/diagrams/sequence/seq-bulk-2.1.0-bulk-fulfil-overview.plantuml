@@ -85,77 +85,68 @@ activate BULK_PROC_HANDLER
 group DFSP2 sends a Bulk Fulfil Success Transfer request to DFSP1
     note right of DFSP2 #yellow
         Headers - transferHeaders: {
-            Content-Length: <Content-Length>,
-            Content-Type: <Content-Type>,
-            Date: <Date>,
-            X-Forwarded-For: <X-Forwarded-For>,
-            FSPIOP-Source: <FSPIOP-Source>,
-            FSPIOP-Destination: <FSPIOP-Destination>,
-            FSPIOP-Encryption: <FSPIOP-Encryption>,
-            FSPIOP-Signature: <FSPIOP-Signature>,
-            FSPIOP-URI: <FSPIOP-URI>,
-            FSPIOP-HTTP-Method: <FSPIOP-HTTP-Method>
+            Content-Length: <int>,
+            Content-Type: <string>,
+            Date: <date>,
+            FSPIOP-Source: <string>,
+            FSPIOP-Destination: <string>,
+            FSPIOP-Encryption: <string>,
+            FSPIOP-Signature: <string>,
+            FSPIOP-URI: <uri>,
+            FSPIOP-HTTP-Method: <string>
         }
 
         Payload - bulkTransferMessage:
         {
-            “completedTimestamp": <completedTimeStamp>,
-            “bulkTransferState”: <bulkTransferState>,
-            “individualTransferResults”: 
+            bulkTransferState: <bulkTransferState>,
+            completedTimestamp: <completedTimeStamp>,
+            individualTransferResults: 
             [
                 {
-                    "transferId": <uuid>, 
-                    “fulfilment”: <ilpCondition>,
-                    "extensionList":
-                    {
-                        "extension":
-                        [ 
-                            { 
-                                “key”: <key>, 
-                                “value”: <value> 
-                            }
-                        ]
-                    }
+                    transferId: <uuid>, 
+                    fulfilment: <ilpCondition>,
+                    extensionList: { extension: [ 
+                        { key: <string>, value: <string> }
+                    ] }
                 }
             ],
-            "extensionList": {
-                "extension": [
-                    {
-                        “key”: <key>, 
-                        “value”: <value> 
-                    }
-                ]
-            }
+            extensionList: { extension: [ 
+                { key: <string>, value: <string> }
+            ] }
         }
     end note
     DFSP2 ->> MLAPI: PUT - /bulkTransfers/<ID>
     activate MLAPI
     MLAPI -> MLAPI: Validate incoming message\n<color #FF0000><b>Error codes:</b> 3000-3002, 3100-3107</color>
-    MLAPI -> OBJECT_STORE: Persist incoming bulk message\nto object store
+    MLAPI -> OBJECT_STORE: Persist incoming bulk message to\nobject store: **MLOS.individualTransferFulfils**
     activate OBJECT_STORE
-    OBJECT_STORE --> MLAPI: Return reference to the stored object
+    OBJECT_STORE --> MLAPI: Return messageId reference to the stored object(s)
     deactivate OBJECT_STORE
     note right of MLAPI #yellow
         Message:
         {
-            id: <ID>,
-            from: <transferHeaders.FSPIOP-Source>,
-            to: <transferHeaders.FSPIOP-Destination>,
-            type: application/json,
+            id: <messageId>,
+            from: <payeeFspName>,
+            to: <payerFspName>,
+            type: "application/json",
             content: {
                 headers: <bulkTransferHeaders>,
                 payload: {
-                    objstore: {
-                            transactionid: <bulkTransferId>
-                            referenceid: <bulkTransferMessage_ObjectStoreReference_ID>
-                    }
+                    bulkTransferId: <uuid>,
+                    bulkTransferState: "COMPLETED",
+                    completedTimestamp: <timestamp>,
+                    extensionList: { extension: [ 
+                        { key: <string>, value: <string> } 
+                    ] },
+                    count: <int>,
+                    hash: <string>
                 }
             },
             metadata: {
                 event: {
                     id: <uuid>,
-                    type: bulk-fulfil,
-                    action: bulk-commit,
+                    type: "bulk-fulfil",
+                    action: "bulk-commit",
                     createdAt: <timestamp>,
                     state: {
                         status: "success",
@@ -173,15 +164,15 @@ group DFSP2 sends a Bulk Fulfil Success Transfer request to DFSP1
     MLAPI -->> DFSP2: Respond HTTP - 200 (OK)
     deactivate MLAPI
     TOPIC_BULK_FULFIL <- BULK_FULFIL_HANDLER: Consume message
-    BULK_FULFIL_HANDLER -> OBJECT_STORE: Retrieve bulk payload using reference\nby streaming individual transfers
+    BULK_FULFIL_HANDLER -> OBJECT_STORE: Retrieve individual transfers by key:\n**MLOS.individualTransferFulfils.messageId**
     activate OBJECT_STORE
-    OBJECT_STORE --> BULK_FULFIL_HANDLER: Return individual transfers\npart of the payload
+    OBJECT_STORE --> BULK_FULFIL_HANDLER: Stream bulk's individual transfers
     deactivate OBJECT_STORE
-    ref over TOPIC_BULK_FULFIL, TOPIC_FULFIL: Bulk Fulfil Handler Consume\n
+    ref over  TOPIC_BULK_FULFIL, TOPIC_FULFIL:  Bulk Prepare Handler Consume \n
     alt Success
-        BULK_FULFIL_HANDLER -> TOPIC_FULFIL: Produce single transfer message\nfor each individual transfer [loop]
+        BULK_FULFIL_HANDLER -> TOPIC_FULFIL: Produce (stream) single transfer message\nfor each individual transfer [loop]
     else Failure
-        BULK_FULFIL_HANDLER --> TOPIC_NOTIFICATIONS: Produce message for the bulk transfer
+        BULK_FULFIL_HANDLER --> TOPIC_NOTIFICATIONS: Produce single message for the entire bulk
     end
     |||
     TOPIC_FULFIL <- FULF_HANDLER: Consume message
@@ -198,29 +189,29 @@ group DFSP2 sends a Bulk Fulfil Success Transfer request to DFSP1
     |||
     TOPIC_BULK_PROCESSING <- BULK_PROC_HANDLER: Consume message
     ref over TOPIC_BULK_PROCESSING, TOPIC_NOTIFICATIONS: Bulk Processing Handler Consume (Success)\n
-    BULK_PROC_HANDLER -> OBJECT_STORE: Persist bulk message to object store
+    BULK_PROC_HANDLER -> OBJECT_STORE:  Persist bulk message by destination to the\nobject store: **MLOS.bulkTransferResults**
     activate OBJECT_STORE
-    OBJECT_STORE --> BULK_PROC_HANDLER: Return reference to the stored object
+    OBJECT_STORE --> BULK_PROC_HANDLER: Return the reference to the stored \nnotification object(s): **messageId**
     deactivate OBJECT_STORE
-    BULK_PROC_HANDLER -> TOPIC_NOTIFICATIONS: Produce bulk notification
+    BULK_PROC_HANDLER -> TOPIC_NOTIFICATIONS: Send Bulk Commit notification
     |||
     TOPIC_NOTIFICATIONS <- NOTIFY_HANDLER: Consume message
-    NOTIFY_HANDLER -> OBJECT_STORE: Retrieve bulk payload\nusing reference
+    NOTIFY_HANDLER -> OBJECT_STORE: Retrieve bulk notification(s) by reference & destination:\n**MLOS.bulkTransferResults.messageId + destination**
     activate OBJECT_STORE
-    OBJECT_STORE --> NOTIFY_HANDLER: Return payload
+    OBJECT_STORE --> NOTIFY_HANDLER: Return notification payload
     deactivate OBJECT_STORE
-    opt action == 'commit'
+    opt action == 'bulk-commit'
         |||
         ref over DFSP1, TOPIC_NOTIFICATIONS: Send notification to Participant (Payer)\n
         NOTIFY_HANDLER -> DFSP1: Send callback notification
     end
     |||
     TOPIC_NOTIFICATIONS <- NOTIFY_HANDLER: Consume message
-    NOTIFY_HANDLER -> OBJECT_STORE: Retrieve bulk payload\nusing reference
+    NOTIFY_HANDLER -> OBJECT_STORE: Retrieve bulk notification(s) by reference & destination:\n**MLOS.bulkTransferResults.messageId + destination**
     activate OBJECT_STORE
-    OBJECT_STORE --> NOTIFY_HANDLER: Return payload
+    OBJECT_STORE --> NOTIFY_HANDLER: Return notification payload
     deactivate OBJECT_STORE
-    opt action == 'commit'
+    opt action == 'bulk-commit'
         |||
         ref over DFSP2, TOPIC_NOTIFICATIONS: Send notification to Participant (Payee)\n
         NOTIFY_HANDLER -> DFSP2: Send callback notification
