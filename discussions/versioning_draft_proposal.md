@@ -85,16 +85,14 @@ e.g.:
 This section deals with how Mojaloop services interact within a given deployment. Here, we attempt to propose questions such as "should an instance of central-ledger:v10.0.1 be able to talk to ml-api-adapter:v10.1.0? How about ml-api-adapter:v11.0.0?"? or "how do we make sure both central-ledger:v10.0.1 and central-ledger:v10.1.0 talk to the database at the same time?"
 
 There are two places where this happens:
-1. Where services interact with eachother - Apache Kakfa and (some) internal APIs
-2. Where services interact with saved state - MySQL Percona Databases
+1. Where services interact with saved state - MySQL Percona Databases
+2. Where services interact with each other - Apache Kakfa and (some) internal APIs
 
 This implies we need to version:
+- the database schema
 - messages within Apache kafka
   - need to make sure the right services can appropriately read the right messages. E.g. Can `mojaloop/ml-api-adapter:v10.1.0` publish messages to kafka that `mojaloop/central-ledger:v10.0.1` can understand?
-  - Q: how do we connection drain properly?
-
-- the database schema
-  - Q: How do we even do this?
+  - Q: If we decide to make breaking changes to the message format, how can we ensure that messages in the kafka streams don't get picked up by the wong services?
 
 ### Versioning the Database
 
@@ -153,6 +151,31 @@ This means for any one change of the database schema, multiple application versi
   - If we don't design it correctly, it could mean that a single schema change could require all DFSPs to be on board
     - This is why I think the API version and Service version should be unrelated. We should be able to deploy a new version of a service (which runs a migration), and supports an old API version
 
+## Versioning in Kafka Messages
+
+Currently, we use the lime protocol for our kafka message formats: https://limeprotocol.org/
+
+Also refer to the [mojaloop/central-services-stream readme](https://github.com/mojaloop/central-services-stream/blob/master/src/kafka/protocol/readme.md) for more information about the message format. 
+
+The lime protocol provides for a `type`, field, which supports MIME type declarations. So we could potentially handle messages in a manner similar to the API above (e.g. `application/vnd.specific+json`). Versioning messages in this manner means that consumers reading these messages would need to be backwards and fowards compatible (consecutive message versions must be schema compatible).
+
+
+- Q. does it make sense to put the `version` in the Kafka topic?
+  - One example, ml-api-adapter publishes messages to the `prepare` topic
+  - If we add versioning to this, `ml-api-adapter:v10.0.0` publishes messages to a `prepare_v10.0` topic, and a new instance of the `ml-api-adapter:v10.1.0` will publish to the `prepare_v10.1` topic.
+  - subscribers can subscribe to whichever prepare topic they want, or both, depending on their own tolerance to such messages
+  - This may have some serious performance side effects
+
+
+- Another potential option would be to allow for a message _'adapter'_ in the deployment. Say the `ml-api-adapter:v10.1.0` is producing messages to a `prepare_v10.1` topic, and there is no corresponding `central-ledger` in the deployment to read such messages, we could have an _adapter_, which subcscribes to `prepare_v10.1`, reformats them to be backwards compatible, and publishes them to `prepare_v10.0` in the old format.
+
+Such an approach would allow for incremental schema changes to the messaging format as services are gradually upgraded.
+
+All in all, I didn't see too much about this subject, so we'll likely need to return later down the line.
+
+[6] suggests some approaches, such as using a schema registry for kafka messages, such as [Apache Arvo](https://docs.confluent.io/current/schema-registry/index.html)
+- This adds a certain level of 'strictness' to the messages we produce, and will help enforce versioning
+- Adds a separate 'schema registry' component, which ensures messages conform to a given schema. This doesn't really help enforce versioning, and leaves the work up to us still, but does give more guarantees about the message formats.
 
 ## References
 
@@ -161,3 +184,4 @@ This means for any one change of the database schema, multiple application versi
 - [3] https://www.ben-morris.com/rest-apis-dont-need-a-versioning-strategy-they-need-a-change-strategy/
 - [4] https://cloud.google.com/apis/design/compatibility
 - [5] [Nicolas Frankel - Zero-downtime deployment with Kubernetes, Spring Boot and Flyway](https://www.youtube.com/watch?v=RvCnrBZ0DPY)
+- [6] [Stackoverflow - Kafka Topic Message Versioning](https://stackoverflow.com/questions/52387013/kafka-topic-message-versioning)
