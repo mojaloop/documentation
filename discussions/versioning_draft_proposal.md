@@ -11,8 +11,8 @@ __Goal:__
 
 ## Definitions:
 
-- _service_: Service refers to a docker container that runs inside a pod on a Kubernetes cluster. e.g. `mojaloop/central-ledger` is the central-ledger service
-- _service version_: The version of the given service. This currently doesn't follow semantic versioning, but may in the future e.g. `mojaloop/central-ledger:v10.0.1`
+- _service_: Mojaloop follows a microservices oriented approach, where a large application is broken down into smaller _micro services_. In this instance, Service refers to a containerized application running as part of a Mojaloop deployment. At the moment, this takes the form of a Docker container running inside of a Kubernetes cluster. e.g. `mojaloop/central-ledger` is the _central-ledger_ service
+- _service version_: The version of the given service. This currently doesn't follow semantic versioning, but may in the future e.g. `mojaloop/central-ledger:v10.0.1`. The current approach is described in more detail in the [standards/Versioning doc](https://github.com/mojaloop/documentation/blob/master/contributors-guide/standards/versioning.md).
 - _helm_: Helm is an application package manager that runs on top of Kubernetes. It may also be refered to as the "deployment". A single helm deployment runs many different services, and MAY run multiple versions of the same service simultaneously. We also refer to the deployment as it's repo, `mojaloop/helm` interchangably.
 - _helm version_: A helm version is the version of the packaged helm charts, e.g.`mojaloop/helm:v1.1.0`
 - _api_: Application Programming Interface - in most cases referring to the `FSPIOP-API` a.k.a. Open API for FSP Interoperability  defined [here](https://github.com/mojaloop/mojaloop-specification).
@@ -53,7 +53,7 @@ Another best practice around versioning is specifying to what level clients may 
   - e.g. The Google API Platform supports only major versions, not minor and patch versions
   - Given the new features that may become available with v1.1 of the Mojaloop API, we might want to allow participants to specify MAJOR and MINOR versions, i.e. vX.X. This practice should be avoided however, since minor versions should be backwards compatible
 
-Q. Is a participant using API v1.0 able to transfer funds to participant using API v2.0? what about v1.1?
+Participants talking on on the same MAJOR version of the API should be able to interact. Participants on different MAJOR versions are not able to interact. For example, a participant on API v1.1 can send transfers to another participant on v1.0, but not to a different participant on v2.0.
 
 
 ### Managing Switch Versions
