@@ -8,13 +8,13 @@ The goal is to come up with a proposal that keeps the versioning Scheme simple t
 
 
 #### Proposal
-A Mojaloop Version x.y can be defined that can encompass the versions of all the three APIs included (detailed below).
+A Mojaloop Version _**x.y**_ can be defined that can encompass the versions of all the three APIs included (detailed below).
 
-In the version x.y, ‘x’ indicates the Major version and ‘y’ a minor version, similar to the Mojaloop FSPIOP API versioning standards.
+In the version _**x.y**_, ‘x’ indicates the Major version and ‘y’ a minor version, similar to the Mojaloop FSPIOP API versioning standards.
 
 To keep things simple, there is a need to bundle all the components included in the Mojaloop eco-system indicating what all items are included there.
 
-In effect we may say Mojaloop version x.y includes
+In effect we may say Mojaloop version _**x.y**_ includes
 1. Mojaloop FSPIOP API
 1.1 Maintained by CCB
 1.2 Uses x.y format
@@ -39,14 +39,14 @@ In effect we may say Mojaloop version x.y includes
 **For example**:
 Mojaloop **1.0** includes
 1. APIs
-1.1 FSPIOP 1.0
-1.2 Settlement 1.1
-1.3 Admin 1.0
+1.1 FSPIOP API v1.0
+1.2 Settlements API v1.1
+1.3 Admin API v1.0
 2. Internal schemas
-2.1 DB Schema 1.0
-2.2 Internal messaging version 1.0
+2.1 DB Schema v1.0
+2.2 Internal messaging version v1.0
 3. Helm v9.1.0
-3.1 Individual services
+3.1 Individual services' versions
 3.2 Monitoring components versions
 
 #### Advantages:
@@ -55,7 +55,7 @@ Mojaloop **1.0** includes
 2. The other advantage, obviously, is that it caters for everyone who may be interested in differing levels of details, whether high level or detailed. Because of the nature of how the major and minor versions, it should be easy for Users and adopters to understand compatibility issues as well.
 
 #### Compatibility:
-As described in the section 3.3 of the API Definition v1.0, https://github.com/mojaloop/mojaloop-specification/blob/master/documents/API%20Definition%20v1.0.md#33-api-versioning , whether a version is backwards compatible or not, is indicated by the Major version. All versions with the same major version must be compatible while those having different major versions, will most likely not be compatible.
+As described in the section 3.3 of the API Definition v1.0 - https://github.com/mojaloop/mojaloop-specification/blob/master/documents/API%20Definition%20v1.0.md#33-api-versioning , whether or not a version is backwards compatible, is indicated by the Major version. All versions with the same major version must be compatible while those having different major versions, will most likely not be compatible.
 
 #### Helm version:
 1. Uses x.y.z format
