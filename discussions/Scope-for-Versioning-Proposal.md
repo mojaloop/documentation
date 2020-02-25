@@ -16,37 +16,65 @@ To keep things simple, there is a need to bundle all the components included in 
 
 In effect we may say Mojaloop version _**x.y**_ includes
 1. Mojaloop FSPIOP API
+
 1.1 Maintained by CCB
+
 1.2 Uses x.y format
+
 1.3 Currently version v1.0, v1.1 and v2.0 are in the pipeline
+
 2. Settlement API
+
 2.1 Maintained by Settlements stream, core-team
+
 2.2 To use x.y format 
+
 2.3 Currently version v1.1 and v2.0 is in the pipeline
+
 3. Admin / Operations API
+
 3.1 Maintained by the core-team
+
 3.2 To use x.y format
+
 3.3 Can use version v1.0
+
 4. Helm
+
 4.1 Maintained by Core-team
+
 4.2 Uses x.y.z format
+
 4.3 PI, Sprint based versioning.
+
 4.4 Bundles compatible versions of individual services together
+
 5. Internal Schemas
+
 5.1 DB Schema x.y
+
 5.2 Internal messaging Schema (Kafka) x.y
 
 **For example**:
 Mojaloop **1.0** includes
 1. APIs
+
 1.1 FSPIOP API v1.0
+
 1.2 Settlements API v1.1
+
 1.3 Admin API v1.0
+
 2. Internal schemas
+
 2.1 DB Schema v1.0
+
 2.2 Internal messaging version v1.0
+
 3. Helm v9.1.0
+
 3.1 Individual services' versions
+
 3.2 Monitoring components versions
 
 #### Advantages:
