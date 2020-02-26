@@ -3,10 +3,12 @@
 >_Note:_ This document is a living draft of a proposal for versioning within Mojaloop. Once the proposal is ready, it will be submitted to the CCB for approval.
 
 __Goal:__ 
-- Propose a standard for handling versions across Mojaloop, including:
-  1. API versions (FSPIOP API, Hub Operations / Admin API, Settlement API)
-  2. Switch Versions, i.e. mojaloop/helm release versions
-  3. Internal: version management across microservices within Mojaloop
+- Propose a standard a new 'Mojaloop Version', which embodies:
+  1. API Versions: FSPIOP API, Hub Operations / Admin API, Settlement API
+  2. Internal Schema Versions: Database Schema and Internal Messaging Versions
+  3. Helm: Individual Service Versions, Monitoring Component Versions 
+
+This is covered in more detail in [Versioning Proposal Scope](./Scope-for-Versioning-Proposal.md)
 
 
 ## Definitions:
@@ -15,8 +17,9 @@ __Goal:__
 - _service version_: The version of the given service. This currently doesn't follow semantic versioning, but may in the future e.g. `mojaloop/central-ledger:v10.0.1`. The current approach is described in more detail in the [standards/Versioning doc](https://github.com/mojaloop/documentation/blob/master/contributors-guide/standards/versioning.md).
 - _helm_: Helm is an application package manager that runs on top of Kubernetes. It may also be refered to as the "deployment". A single helm deployment runs many different services, and MAY run multiple versions of the same service simultaneously. We also refer to the deployment as it's repo, `mojaloop/helm` interchangably.
 - _helm version_: A helm version is the version of the packaged helm charts, e.g.`mojaloop/helm:v1.1.0`
-- _api_: Application Programming Interface - in most cases referring to the `FSPIOP-API` a.k.a. Open API for FSP Interoperability  defined [here](https://github.com/mojaloop/mojaloop-specification).
-- _api version_: The Version of the `FSPIOP-API`, e.g. `FSPIOP-API v1`. For the purposes of this document, it refers to the contract between a Mojaloop Switch and Providers (DFSPs) who implement the FSPIOP-API
+- _interface_: An interface is the protocol by which a Mojaloop switch interacts with the outside world. This includes interactions with Participants (DFSPs) who transfer funds through the switch, hub operators running a Mojaloop switch, and admins performing administrative functions.
+- _api_: Application Programming Interface - in most cases referring to the `FSPIOP-API` a.k.a. Open API for FSP Interoperability defined [here](https://github.com/mojaloop/mojaloop-specification).
+- _api version_: The Version of the `FSPIOP-API`, e.g. `FSPIOP-API v1`. For the purposes of this document, it refers to the contract between a Mojaloop Switch and Participants (DFSPs) who implement the FSPIOP-API
 
 
 ## 1. [1197](https://github.com/mojaloop/project/issues/1197) Versioning Best Practices:
