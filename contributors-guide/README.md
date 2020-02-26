@@ -5,7 +5,7 @@
 * Review the [Mojaloop Deployment](../deployment-guide/) Guide and the [Onboarding Guide](https://github.com/mojaloop/mojaloop/blob/master/onboarding.md)
 * Browse through the [Repository Overview](../repositories/) to understand how the Mojaloop code is managed across multiple Github Repositories
 * Get familiar with our [Standards](standards/) on contributing to this project
-* View the project board and work on your [good first issue](https://github.com/mojaloop/project/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22)
+* Go through the [New Contributor Checklist](./new-contributor-checklist.md), and browse through the project board and work on your [good first issue](https://github.com/mojaloop/project/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22)
 * Review the [Roadmap](../mojaloop-roadmap.md) and contribute to future opportunities
 
 ## What work is needed?
