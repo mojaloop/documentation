@@ -34,12 +34,13 @@ autonumber
 '   entity - Database Access Objects
 '   database - Database Persistance Store
 ' declare actors
-collections "Fulfil-Topic" as TOPIC_FULFIL
-control "Fulfil Event Handler" as FULF_HANDLER
-collections "Event-Topic" as TOPIC_EVENT
-collections "topic-transfer-position" as TOPIC_TRANSFER_POSITION
-collections "Notification-Topic" as TOPIC_NOTIFICATIONS
-'entity "Transfer Duplicate Facade" as DUP_FACADE
+collections "topic-fulfil" as TOPIC_FULFIL
+control "Fulfil Event\nHandler" as FULF_HANDLER
+collections "topic-event" as TOPIC_EVENT
+collections "topic-\ntransfer-position" as TOPIC_TRANSFER_POSITION
+collections "topic-\nsettlement-model" as TOPIC_SETMODEL
+collections "topic-\nnotification" as TOPIC_NOTIFICATIONS
+
 entity "Position DAO" as POS_DAO
 database "Central Store" as DB
 box "Central Service" #LightYellow
@@ -47,6 +48,7 @@ box "Central Service" #LightYellow
     participant FULF_HANDLER
     participant TOPIC_TRANSFER_POSITION
     participant TOPIC_EVENT
+    participant TOPIC_SETMODEL
     participant TOPIC_NOTIFICATIONS
     participant POS_DAO
     participant DB
@@ -157,7 +159,38 @@ group Fulfil Handler Consume (Success)
                     note right of FULF_HANDLER #yellow
                         Message:
                         {
-                            id: <ID>,
+                            id: <id>,
+                            from: switch,
+                            to: switch,
+                            type: application/json
+                            content: {
+                                payload: {
+                                    transferId: {id}
+                                }
+                            },
+                            metadata: {
+                                event: {
+                                    id: <uuid>,
+                                    responseTo: <previous.uuid>,
+                                    type: setmodel,
+                                    action: commit,
+                                    createdAt: <timestamp>,
+                                    state: {
+                                        status: "success",
+                                        code: 0
+                                    }
+                                }
+                            }
+                        }
+                    end note
+                    FULF_HANDLER -> TOPIC_SETMODEL: Route & Publish settlement model event
+                    activate TOPIC_SETMODEL
+                    deactivate TOPIC_SETMODEL
+
+                    note right of FULF_HANDLER #yellow
+                        Message:
+                        {
+                            id: <id>,
                             from: <transferHeaders.FSPIOP-Source>,
                             to: <transferHeaders.FSPIOP-Destination>,
                             type: application/json,
@@ -200,7 +233,7 @@ group Fulfil Handler Consume (Success)
                     note right of FULF_HANDLER #yellow
                         Message:
                         {
-                            id: <ID>,
+                            id: <id>,
                             from: <transferHeaders.FSPIOP-Source>,
                             to: <transferHeaders.FSPIOP-Destination>,
                             type: application/json,

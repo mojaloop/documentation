@@ -187,6 +187,8 @@ activate OPERATOR
             SETTLE_DAO -> DB: Change state to 'PENDING_SETTLEMENT'
             activate DB
             hnote over DB #lightyellow
+                transferParticipantStateChange
+                transferParticipant
                 settlementWindowContentStateChange
                 settlementWindowContent
             end hnote

@@ -1,0 +1,122 @@
+/'*****
+ License
+ --------------
+ Copyright © 2017 Bill & Melinda Gates Foundation
+ The Mojaloop files are made available by the Bill & Melinda Gates Foundation under the Apache License, Version 2.0 (the "License") and you may not use these files except in compliance with the License. You may obtain a copy of the License at
+ http://www.apache.org/licenses/LICENSE-2.0
+ Unless required by applicable law or agreed to in writing, the Mojaloop files are distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+ Contributors
+ --------------
+ This is the official list of the Mojaloop project contributors for this file.
+ Names of the original copyright holders (individuals or organizations)
+ should be listed with a '*' in the first column. People who have
+ contributed from an organization can be listed under the organization
+ that actually holds the copyright for their contributions (see the
+ Gates Foundation organization for an example). Those individuals should have
+ their names indented and be marked with a '-'. Email address can be added
+ optionally within square brackets <email>.
+ * Gates Foundation
+ - Name Surname <name.surname@gatesfoundation.com>
+
+ * ModusBox
+ - Georgi Georgiev <georgi.georgiev@modusbox.com>
+ --------------
+ ******'/
+
+@startuml
+' declate title
+title 2.1.2. Settlement Model Handler Consume
+autonumber
+' Actor Keys:
+'   boundary - APIs/Interfaces, etc
+'   collections - Kafka Topics
+'   control - Kafka Consumers
+'   entity - Database Access Objects
+'   database - Database Persistance Store
+' declare actors
+collections "topic-\nsettlement-model" as TOPIC_SETMODEL
+control "Settlement Model\nHandler" as SETMODEL_HANDLER
+collections "topic-event" as TOPIC_EVENT
+entity "Settlement DAO" as SET_DAO
+database "Central Store" as DB
+
+box "Central Service" #LightYellow
+    participant TOPIC_SETMODEL
+    participant SETMODEL_HANDLER
+    participant TOPIC_EVENT
+    participant SET_DAO
+    participant DB
+end box
+
+' start flow
+activate SETMODEL_HANDLER
+group Settlement Model Handler Consume
+    alt Consume Single Message
+        TOPIC_SETMODEL <- SETMODEL_HANDLER: Consume settlement model\nevent message
+        activate TOPIC_SETMODEL
+        deactivate TOPIC_SETMODEL
+        break
+            group Validate Event
+                SETMODEL_HANDLER <-> SETMODEL_HANDLER: Validate event - Rule: type == 'setmodel' && action == 'commit'\n<color #FF0000><b>Error codes:</b> 2001</color>
+            end
+        end
+        group Persist Event Information
+            |||
+            SETMODEL_HANDLER -> TOPIC_EVENT: Publish event information
+            ref over SETMODEL_HANDLER, TOPIC_EVENT:  Event Handler Consume\n
+            |||
+        end
+
+        SETMODEL_HANDLER -> SET_DAO: Assign transferParicipant state(s)\n<color #FF0000><b>Error code:</b> 2003</color>
+        activate SET_DAO
+        group <color #blue>DB TRANSACTION</color>
+            SET_DAO -> DB: Fetch transfer participant entries
+            activate DB
+            hnote over DB #lightyellow
+                transferParticipant
+            end note
+            DB --> SET_DAO: Return **transferParticipantRecords**
+            deactivate DB
+
+            loop for each transferParticipant
+                note right of SET_DAO #lightgrey
+                    Settlement models caching to be considered
+                end note
+                SET_DAO -> DB: Get settlement model by currency and ledger entry
+                activate DB
+                hnote over DB #lightyellow
+                    settlementModel
+                end note
+                DB --> SET_DAO: Return **settlementModel**
+                deactivate DB
+
+                opt settlementModel.delay == 'IMMEDIATE' && settlementModel.granularity == 'GROSS'
+                    SET_DAO -> DB: Set states: CLOSED->PENDING_SETTLEMENT->SETTLED
+                    activate DB
+                    hnote over DB #lightyellow
+                        transferParticipantStateChange
+                        transferParticipant
+                    end note
+                    deactivate DB
+                else
+                    SET_DAO -> DB: Set state: OPEN
+                    activate DB
+                    hnote over DB #lightyellow
+                        transferParticipantStateChange
+                        transferParticipant
+                    end note
+                    deactivate DB
+                end
+
+            end
+        end
+        SETMODEL_HANDLER <-- SET_DAO: Return success
+        deactivate SET_DAO
+    else Consume Batch Messages
+        note left of SETMODEL_HANDLER #lightblue
+            To be delivered by future story
+        end note
+    end
+end
+deactivate SETMODEL_HANDLER
+@enduml
