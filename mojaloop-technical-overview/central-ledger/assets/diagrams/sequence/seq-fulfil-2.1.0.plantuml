@@ -41,11 +41,13 @@ actor "DFSP2\nPayee" as DFSP2
 boundary "ML API Adapter" as MLAPI
 control "ML API Notification Event Handler" as NOTIFY_HANDLER
 boundary "Central Service API" as CSAPI
-collections "Fulfil-Topic" as TOPIC_FULFIL
+collections "topic-fulfil" as TOPIC_FULFIL
 control "Fulfil Event Handler" as FULF_HANDLER
-collections "topic-transfer-position" as TOPIC_TRANSFER_POSITION
-control "Position Event Handler" as POS_HANDLER
-collections "Notification-Topic" as TOPIC_NOTIFICATIONS
+collections "topic-\nsettlement-model" as TOPIC_SETMODEL
+control "Settlement Model\nHandler" as SETMODEL_HANDLER
+collections "topic-\ntransfer-position" as TOPIC_TRANSFER_POSITION
+control "Position Handler" as POS_HANDLER
+collections "topic-\nnotification" as TOPIC_NOTIFICATIONS
 
 box "Financial Service Providers" #lightGray
 	participant DFSP1
@@ -61,6 +63,8 @@ box "Central Service" #LightYellow
     participant CSAPI
 	participant TOPIC_FULFIL
     participant FULF_HANDLER
+    participant TOPIC_SETMODEL
+    participant SETMODEL_HANDLER
     participant TOPIC_TRANSFER_POSITION
     participant POS_HANDLER
     participant TOPIC_NOTIFICATIONS
@@ -69,6 +73,7 @@ end box
 ' start flow
 activate NOTIFY_HANDLER
 activate FULF_HANDLER
+activate SETMODEL_HANDLER
 activate POS_HANDLER
 group DFSP2 sends a Fulfil Success Transfer request
     DFSP2 <-> DFSP2: Retrieve fulfilment string generated during\nthe quoting process or regenerate it using\n**Local secret** and **ILP Packet** as inputs
@@ -138,7 +143,11 @@ group DFSP2 sends a Fulfil Success Transfer request
     deactivate MLAPI
     TOPIC_FULFIL <- FULF_HANDLER: Consume message
     ref over TOPIC_FULFIL, TOPIC_TRANSFER_POSITION: Fulfil Handler Consume (Success) {[[https://github.com/mojaloop/documentation/tree/master/mojaloop-technical-overview/central-ledger/assets/diagrams/sequence/seq-fulfil-2.1.1.svg 2.1.1]]} \n
+    FULF_HANDLER -> TOPIC_SETMODEL: Produce message
     FULF_HANDLER -> TOPIC_TRANSFER_POSITION: Produce message
+    |||
+    TOPIC_SETMODEL <- SETMODEL_HANDLER: Consume message
+    ref over TOPIC_SETMODEL, SETMODEL_HANDLER:  Settlement Model Handler Consume (Success)\n
     |||
     TOPIC_TRANSFER_POSITION <- POS_HANDLER: Consume message
     ref over TOPIC_TRANSFER_POSITION, TOPIC_NOTIFICATIONS:  Position Handler Consume (Success)\n

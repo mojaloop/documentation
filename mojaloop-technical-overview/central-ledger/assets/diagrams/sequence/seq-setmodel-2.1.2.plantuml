@@ -39,6 +39,7 @@ control "Settlement Model\nHandler" as SETMODEL_HANDLER
 collections "topic-event" as TOPIC_EVENT
 entity "Settlement DAO" as SET_DAO
 database "Central Store" as DB
+
 box "Central Service" #LightYellow
     participant TOPIC_SETMODEL
     participant SETMODEL_HANDLER
@@ -56,7 +57,7 @@ group Settlement Model Handler Consume
         deactivate TOPIC_SETMODEL
         break
             group Validate Event
-                SETMODEL_HANDLER <-> SETMODEL_HANDLER: Validate event - Rule: type == 'setmodel' && action == 'assign'\n<color #FF0000><b>Error codes:</b> 2001</color>
+                SETMODEL_HANDLER <-> SETMODEL_HANDLER: Validate event - Rule: type == 'setmodel' && action == 'commit'\n<color #FF0000><b>Error codes:</b> 2001</color>
             end
         end
         group Persist Event Information
@@ -66,30 +67,9 @@ group Settlement Model Handler Consume
             |||
         end
 
-        group Request current Settlement Window
-            SETMODEL_HANDLER -> SET_DAO: Request to retrieve current/latest transfer settlement window\n<color #FF0000><b>Error code:</b> 2003</color>
-            activate SET_DAO
-            SET_DAO -> DB: Fetch OPEN window
-            activate DB
-            hnote over DB #lightyellow
-                settlementWindow
-            end note
-            DB --> SET_DAO: Return settlementWindowId
-            deactivate DB
-            SETMODEL_HANDLER <-- SET_DAO: Return settlementWindowId
-            deactivate SET_DAO
-        end
-
-        SETMODEL_HANDLER -> SET_DAO: Assign window and transferParicipant state\n<color #FF0000><b>Error code:</b> 2003</color>
+        SETMODEL_HANDLER -> SET_DAO: Assign transferParicipant state(s)\n<color #FF0000><b>Error code:</b> 2003</color>
         activate SET_DAO
         group <color #blue>DB TRANSACTION</color>
-            SET_DAO -> DB: Assign settlement window id
-            activate DB
-            hnote over DB #lightyellow
-                transferFulfilment
-            end note
-            deactivate DB
-
             SET_DAO -> DB: Fetch transfer participant entries
             activate DB
             hnote over DB #lightyellow
@@ -99,6 +79,9 @@ group Settlement Model Handler Consume
             deactivate DB
 
             loop for each transferParticipant
+                note right of SET_DAO #lightgrey
+                    Settlement models caching to be considered
+                end note
                 SET_DAO -> DB: Get settlement model by currency and ledger entry
                 activate DB
                 hnote over DB #lightyellow
@@ -107,8 +90,8 @@ group Settlement Model Handler Consume
                 DB --> SET_DAO: Return **settlementModel**
                 deactivate DB
 
-                opt settlementModel.delay == 'IMMEDIATE' || settlementModel.granularity == 'GROSS'
-                    SET_DAO -> DB: Set state: OPEN->CLOSED->PENDING_SETTLEMENT->SETTLED
+                opt settlementModel.delay == 'IMMEDIATE' && settlementModel.granularity == 'GROSS'
+                    SET_DAO -> DB: Set states: CLOSED->PENDING_SETTLEMENT->SETTLED
                     activate DB
                     hnote over DB #lightyellow
                         transferParticipantStateChange
