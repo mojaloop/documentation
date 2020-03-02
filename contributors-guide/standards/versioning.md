@@ -14,15 +14,29 @@ This document provides guidelines regarding the versioning strategy used for the
 
 The currrent version information for Mojaloop can be found [here](../../deployment-guide/releases.md).
 
-### Sprint schedule for PI8
+### Sprint schedule for PI9
 
-Below is the Sprint schedule for Program Increment 8 which ends with Phase-4 kickoff event at the of January 2020 in Johannesburg, SA. Please use this as guidance during the versioning and release processes.
+Below is the Sprint schedule for Program Increment 9 which ends with the PI 10 on-site event at the of January 2020 in Tanzania. Please use this as guidance during the versioning and release processes.
 
 |Phase/Milestone|Start|End|Weeks|Notes|
 |---|---|---|---|---|
 |**Phase-3 PI6 On-site**|4/16/2019|4/18/2019|3 days| Johannesburg|
 |**Phase-3 PI7 On-site**|6/25/2019|6/27/2019|3 days| Arusha|
 |**Phase-3 PI8 On-site**|9/10/2019|9/12/2019|3 days| Abidjan|
+|**Phase-4 Kick-off On-site**|1/28/2020|1/30/2020|3 days| Johannesburg|
+|**Sprint 9.1**|2/3/2020|2/16/2020|2 weeks| |
+|**Sprint 9.2**|2/17/2020|3/1/2020|2 weeks| |
+|**Sprint 9.3**|3/2/2020|3/15/2020|2 weeks| |
+|**Sprint 9.4**|3/16/2020|3/29/2020|2 weeks| |
+|**Sprint 9.5**|3/30/2020|4/12/2020|2 weeks| |
+|**Sprint 9.6**|3/13/2020|4/19/2020|1 week | |
+|**Phase-4 PI 10 On-site**|4/21/2020|4/23/2020|3 days| Tanzania |
+
+### Previous Sprint Schedules:
+
+#### PI8
+|Phase/Milestone|Start|End|Weeks|Notes|
+|---|---|---|---|---|
 |**Sprint 8.1**|9/16/2019|9/29/2019|2 weeks| |
 |**Sprint 8.2**|9/30/2019|10/13/2019|2 weeks| |
 |**Sprint 8.3**|10/14/2019|10/27/2019|2 weeks| |
