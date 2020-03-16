@@ -220,13 +220,13 @@ A few options:
 
 
 ## Action Items
-[ ] Follow up Authorizations concerns with team Coil + DA
-[ ] `PUT /transactionRequests/<ID>` model changes: need more clarity and discussion
-[ ] Need to follow up the sign up phase and rules dictating a PISP, they should likely be as strict as a DFSP’s rules
-[ ] AML and auditing requrements in event logging: This is a bigger conversation with Sybrin that will be brought up in the upcoming Fraud/AML meeting
-[ ] we will likely want special functions in the FIDO server, so we might have issues where DFSPs want to BYO FIDO
-[ ] JJ to merge 2 different PISP design docs into one
-[ ] Investigate more into FIDO: are there standards that govern this stuff like OAuth? 
+- [ ] Follow up Authorizations concerns with team Coil + DA
+- [ ] `PUT /transactionRequests/<ID>` model changes: need more clarity and discussion
+- [ ] Need to follow up the sign up phase and rules dictating a PISP, they should likely be as strict as a DFSP’s rules
+- [ ] AML and auditing requrements in event logging: This is a bigger conversation with Sybrin that will be brought up in the upcoming Fraud/AML meeting
+- [ ] we will likely want special functions in the FIDO server, so we might have issues where DFSPs want to BYO FIDO
+- [ ] JJ to merge 2 different PISP design docs into one
+- [ ] Investigate more into FIDO: are there standards that govern this stuff like OAuth? 
 
 
 ## Decisions
