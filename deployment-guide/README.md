@@ -12,7 +12,7 @@ The document is intended for an audience with a stable technical knowledge that 
 - [Postman](#6-postman)
   - [Installing Postman](#61-installing-postman)
   - [Setup Postman](#62-setup-postman)
-  
+
 ### 1. Pre-requisites
 
 A list of the pre-requisite tool set required for the deployment of Mojaloop;
@@ -39,7 +39,7 @@ This provides environment resource recommendations with a view of the infrastruc
 **Resources Requirements:**
 
 * Control Plane (i.e. Master Node)
-  
+
   [https://kubernetes.io/docs/setup/cluster-large/#size-of-master-and-master-components](https://kubernetes.io/docs/setup/cluster-large/#size-of-master-and-master-components)
 
   * 3x Master Nodes for future node scaling and HA (High Availability)
@@ -92,7 +92,7 @@ Insure **kubectl** is installed. A complete set of installation instruction are 
    ```bash
    kubectl create -f https://raw.githubusercontent.com/kubernetes/dashboard/v1.10.1/src/deploy/recommended/kubernetes-dashboard.yaml
    ```
-   
+
    If you have installed MicroK8s, **enable the MicroK8s** dashboard;
    ```bash
    microk8s.enable dashboard
@@ -110,19 +110,19 @@ Insure **kubectl** is installed. A complete set of installation instruction are 
    ```
 
 4. Open URI in default browser:
-    
+
    ```
    http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/
    ```
 
    Select **Token**. Generate a token to use there by: _Windows replace `grep` with `findstr`_
-   
+
    ```bash
    kubectl -n kube-system get secrets | grep dashboard-token
    ```
 
    The token to use is shown on the last line of the output of that command;
-   
+
    ```bash
    kubectl -n kube-system describe secrets/kubernetes-dashboard-token-btbwf
    ```
@@ -131,7 +131,7 @@ Insure **kubectl** is installed. A complete set of installation instruction are 
 
 ![kubernetes-dashboard](./assets/diagrams/deployment/kubernetesDashboard.png)
 
-### 4. Helm 
+### 4. Helm
 
 Please review [Mojaloop Helm Chart](../repositories/helm.md) to understand the relationships between the deployed Mojaloop helm charts.
 
@@ -181,17 +181,17 @@ Please review [Mojaloop Helm Chart](../repositories/helm.md) to understand the r
    ```bash
    helm --namespace demo --name moja install mojaloop/mojaloop
    ```
-   
+
    Version specific installation:
    ```bash
    helm --namespace demo --name moja install mojaloop/mojaloop --version {version}
    ```
-   
+
    List of available versions:
    ```bash
    helm search -l mojaloop/mojaloop
    ```
-   
+
    Custom configured installation:
    ```bash
    helm --namespace demo --name moja install mojaloop/mojaloop -f {custom-values.yaml}
@@ -203,33 +203,33 @@ Please review [Mojaloop Helm Chart](../repositories/helm.md) to understand the r
 1. Update your /ect/hosts for local deployment:
 
    _Note: This is only applicable for local deployments, and is not needed if custom DNS or ingress rules are configured in a customized [values.yaml](https://github.com/mojaloop/helm/blob/master/mojaloop/values.yaml)_.
-   
+
    ```bash
    vi /etc/hosts
    ```
    _Windows the file can be updated in notepad - need to open with Administrative privileges. File location `C:\Windows\System32\drivers\etc\hosts`_.
-   
+
    Include the following lines (_or alternatively combine them_) to the host config.
 
    The below required config is applicable to Helm release >= versions 6.2.2 for Mojaloop API Services;
    ```text
    127.0.0.1       central-ledger.local central-settlement.local ml-api-adapter.local account-lookup-service.local account-lookup-service-admin.local quoting-service.local moja-simulator.local central-ledger central-settlement ml-api-adapter account-lookup-service account-lookup-service-admin quoting-service simulator host.docker.internal
    ```
-      
+
    The below optional config is applicable to Helm release >= versions 6.2.2 for Internal components, please include the following in the host configuration.
    ```text
    127.0.0.1       forensic-logging-sidecar.local central-kms.local central-event-processor.local email-notifier.local
    ```
-      
+
    For Helm legacy releases prior to versions 6.2.2, please include the following in the host configuration.
    ```text
    127.0.0.1       interop-switch.local central-end-user-registry.local central-directory.local central-hub.local
    ```
-   
+
 2. Test system health in your browser after installation. This will only work if you have an active helm chart deployment running.
-   
+
    _Note: The examples below are only applicable to a local deployment. The entries should match the DNS values or ingress rules as configured in the [values.yaml](https://github.com/mojaloop/helm/blob/master/mojaloop/values.yaml) or otherwise matching any custom ingress rules configured_.
-   
+
    **ml-api-adapter** health test:
    ```
    http://ml-api-adapter.local/health
@@ -238,7 +238,7 @@ Please review [Mojaloop Helm Chart](../repositories/helm.md) to understand the r
    **central-ledger** health test:
    ```
    http://central-ledger.local/health
-   ``` 
+   ```
 
 ### 6. Postman
 
@@ -251,7 +251,7 @@ Please, follow these instructions: [Get Postman](https://www.getpostman.com/post
 #### 6.2. Setup Postman
 
 Grab the latest collections & environment files from [Mojaloop Postman Github repo](https://github.com/mojaloop/postman): [https://github.com/mojaloop/postman](https://github.com/mojaloop/postman)
- 
+
 After an initial setup or new deployment, the [OSS New Deployment FSP Setup section](../contributors-guide/tools-and-technologies/automated-testing.md) needs to be completed. This will seed the Database with the required enumerations and static data to enable the sucessful execution of any manual or automation tests by the other collections.
 
-Refer to the [QA and Regression Testing in Mojaloop](../contributors-guide/tools-and-technologies/automated-testing.md) documentation for more complete information to complement your testing requirements. 
+Refer to the [QA and Regression Testing in Mojaloop](../contributors-guide/tools-and-technologies/automated-testing.md) documentation for more complete information to complement your testing requirements.

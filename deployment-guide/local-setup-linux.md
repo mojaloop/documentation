@@ -24,16 +24,17 @@ This environment setup was validated on:
 
 Kubernetes installation for a local environment.
 
-#### 2.1. MicroK8S
+### 2.1. MicroK8S
 
-We recommend install directly from the snap store.
+We recommend installing directly from the snap store.
 
 Don't have the snap command? [Install snapd first](https://snapcraft.io/docs/core/install).
 
 1. Installing MicroK8s from snap.
    ```bash
-   snap install microk8s --classic
+   snap install microk8s --classic --channel=1.13/stable
    ```
+   MicroK8s 1.14 release and onward have replaced dockerd with contanerd.
 
 2. Verify MicroK8s is installed and available.
    ```bash
@@ -51,7 +52,7 @@ Don't have the snap command? [Install snapd first](https://snapcraft.io/docs/cor
    ```
 
 5. This step is only necessary if you require **microk8s.kubectl** to function as a standard **kubectl** command. This **DOES NOT** mean that you can then use **kubectl** to access **OTHER** k8s clusters.
-   
+
    An example of why you would use this: You have a bash script or 3rd party tool that expects **kubectl** to be available. E.g. If you want to use Helm, it will not work against **microk8s.kubectl**, thus one **MUST** setup the alias for Helm to function correctly.
    ```bash
    snap alias microk8s.kubectl kubectl
@@ -79,9 +80,21 @@ Don't have the snap command? [Install snapd first](https://snapcraft.io/docs/cor
    microk8s.kubectl config use-context microk8s
    ```
 
-### 1.2. Docker
+### 2.2. Helm
 
-Docker is deployed as part of the MicroK8s installation. The docker daemon used by MicroK8s is listening on unix:///var/snap/microk8s/current/docker.sock. You can access it with the **microk8s.docker** command.
+We recommend installing directly from the snap store.
+
+Don't have the snap command? [Install snapd first](https://snapcraft.io/docs/core/install).
+
+1. Installing Helm from snap.
+   ```bash
+   snap install helm --channel=2.16/stable
+   ```
+   Helm version >2.16 does not support `helm init` used in the deployment guide.
+
+### 2.3. Docker
+
+Docker is deployed as part of the MicroK8s 1.13 installation. The docker daemon used by MicroK8s is listening on unix:///var/snap/microk8s/current/docker.sock. You can access it with the **microk8s.docker** command.
 
 1. If you require **microk8s.docker** to function as a standard **docker** command, you set an alias.
    ```bash
@@ -100,7 +113,7 @@ Docker is deployed as part of the MicroK8s installation. The docker daemon used 
 
 3. Continue setup and configuration from the Kubernetes Dashboard section in the [Mojaloop's deployment guide](./README.md#31-kubernetes-dashboard) document.
 
-## 2. Useful Tips
+## 3. Useful Tips
 
 1. Resolve problems with VSCode and kafka on ubuntu 18.04. To make the code work with VSCode debugger, added the following into the launch.json
     ```json
