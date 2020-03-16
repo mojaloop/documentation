@@ -1,0 +1,105 @@
+/'*****
+ License
+ --------------
+ Copyright © 2017 Bill & Melinda Gates Foundation
+ The Mojaloop files are made available by the Bill & Melinda Gates Foundation under the Apache License, Version 2.0 (the "License") and you may not use these files except in compliance with the License. You may obtain a copy of the License at
+ http://www.apache.org/licenses/LICENSE-2.0
+ Unless required by applicable law or agreed to in writing, the Mojaloop files are distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+ Contributors
+ --------------
+ This is the official list of the Mojaloop project contributors for this file.
+ Names of the original copyright holders (individuals or organizations)
+ should be listed with a '*' in the first column. People who have
+ contributed from an organization can be listed under the organization
+ that actually holds the copyright for their contributions (see the
+ Gates Foundation organization for an example). Those individuals should have
+ their names indented and be marked with a '-'. Email address can be added
+ optionally within square brackets <email>.
+ * Gates Foundation
+ - Name Surname <name.surname@gatesfoundation.com>
+
+ * Shashikant Hirugade <shashikant.hirugade@modusbox.com>
+ --------------
+ ******'/
+
+@startuml
+' declate title
+title 1.0.0 Get a settlement model
+
+autonumber
+
+
+' Actor Keys:
+' boundary - APIs/Interfaces, etc
+' collections - Kafka Topics
+' control - Kafka Consumers
+' entity - Database Access Objects
+' database - Database Persistance Store
+
+' declare actors
+entity "HUB OPERATOR" as OPERATOR
+boundary "Central Service API" as CSAPI
+control "SettlementModels Handler" as SETTLEMENTMODELS_HANDLER
+entity "Central Service API" as CSAPI
+entity "SettlementModel DAO" as SETTLEMENTMODELS_DAO
+database "Central Store" as DB
+
+box "Central Services" #LightYellow
+participant CSAPI
+participant SETTLEMENTMODELS_HANDLER
+participant SETTLEMENTMODELS_DAO
+participant DB
+end box
+
+' start flow
+
+activate OPERATOR
+group Get all settlement models
+    OPERATOR -> CSAPI: Request to get Limits - GET - /settlementModels/{name}
+
+    activate CSAPI
+    CSAPI -> SETTLEMENTMODELS_HANDLER: Fetch settlement model
+    activate SETTLEMENTMODELS_HANDLER
+        SETTLEMENTMODELS_HANDLER ->SETTLEMENTMODELS_DAO: Fetch settlement model \n<color #FF0000><b>Error code:</b> 3000</color>
+        activate SETTLEMENTMODELS_DAO
+        SETTLEMENTMODELS_DAO ->DB: Fetch settlement model
+
+        activate DB
+        hnote over DB #lightyellow
+                name
+                isActive
+                settlementGranularityId
+                settlementInterchangeId
+                settlementDelayId
+                currencyId
+                requireLiquidityCheck
+                ledgerAccountTypeId
+                autoPositionReset
+        end note
+        DB --> SETTLEMENTMODELS_DAO: Retrieved settlement model
+        deactivate DB
+        SETTLEMENTMODELS_DAO -->SETTLEMENTMODELS_HANDLER: Return settlement model
+        deactivate SETTLEMENTMODELS_DAO
+        note right of SETTLEMENTMODELS_HANDLER #yellow
+                Message:
+                    {
+                      settlementModelId: <id>
+                      name: <string>,
+                      settlementGranularity" <string>,
+                      settlementInterchange: <string>,
+                      settlementDelay: <string>,
+                      currency": <string>,
+                      requireLiquidityCheck: <boolean>,
+                      ledgerAccountType: <string>,
+                      autoPositionReset: <boolean>
+                    }
+        end note
+        SETTLEMENTMODELS_HANDLER -->CSAPI: Return settlement model \n<color #FF0000><b>Error code:</b> 3000</color>
+        deactivate SETTLEMENTMODELS_HANDLER
+        CSAPI -->OPERATOR: Return a list settlement model \n<color #FF0000><b>Error code:</b> 3000</color>
+
+    deactivate CSAPI
+    deactivate OPERATOR
+end
+
+@enduml
