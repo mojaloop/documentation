@@ -90,7 +90,7 @@ Don't have the snap command? [Install snapd first](https://snapcraft.io/docs/cor
    ```bash
    snap install helm --channel=2.16/stable
    ```
-   Helm version >2.16 does not support `helm init` used in the deployment guide.
+   Helm version >2.16 does not support `helm init` and Tiller used in the deployment guide.
 
 ### 2.3. Docker
 

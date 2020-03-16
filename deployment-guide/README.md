@@ -93,9 +93,9 @@ Insure **kubectl** is installed. A complete set of installation instruction are 
    kubectl create -f https://raw.githubusercontent.com/kubernetes/dashboard/v1.10.1/src/deploy/recommended/kubernetes-dashboard.yaml
    ```
 
-   If you have installed MicroK8s, **enable the MicroK8s** dashboard;
+   If you have installed MicroK8s, **enable the MicroK8s** dashboard and other required extensions;
    ```bash
-   microk8s.enable dashboard
+   microk8s.enable dashboard storage ingress dns istio
    ```
    **Remember** to prefix all **kubectl** commands with **microk8s** if you opted not to create an alias.
 
