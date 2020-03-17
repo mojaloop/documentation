@@ -1,14 +1,13 @@
+---
+Authors: Lewis Daly, Matthew De Haast, Samuel Kummary
+Proposal Name: Mojaloop Versioning Proposal
+Solution Proposal Status: Draft
+Created: 26-Feb-2020
+Last Updated: 17-Mar-2020
+Approved/Rejected Date: N/A
+---
+
 # Mojaloop Versioning, A Proposal
-
-
-Author(s)
-Lewis Daly, Matthew De Haast, Samuel Kummary
-Status
-Draft
-Last updated
-17-Mar-2020
-Created
-26-Feb-2020
 
 _Note: This document is a living draft of a proposal for versioning within Mojaloop. Once the proposal is ready, it will be submitted to the CCB for approval._
 
