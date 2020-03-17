@@ -129,7 +129,19 @@ In effect we may say Mojaloop version **x.y** includes
     * DB Schema x.y
     * Internal messaging Schema (Kafka) x.y
 
-TODO: Insert Table
+| **Mojaloop** | x.y | | |
+|---|---|---|---
+|   | Owner/Maintainer | Format | Meaning |
+| **APIs** | | | |
+| - FSPIOP API | CCB | *x.y* | Major.Minor |
+| - Settlement API | Core-team/Settlements Worksteam | *x.y* | Major.Minor |
+| - Admin/Operations API | Core-team | *x.y* | Major.Minor |
+| Helm | Core-team | *x.y.z* | PI.Sprint.Increment |
+| **Internal Schemas** | | | |
+| - DB Schema | Core-team | *x.y* | Major.Minor |
+| - Internal Messaging | Core-team | *x.y* | Major.Minor |
+
+
 
 For example: Mojaloop 1.0 includes
 1. APIs
@@ -143,7 +155,17 @@ For example: Mojaloop 1.0 includes
     * DB Schema v1.0
     * Internal messaging version v1.0
 
-TODO: Insert Table
+| **Mojaloop** | v1.0 | | |
+|---|---|---|---
+|   | Owner/Maintainer | Version |
+| **APIs** | | | |
+| - FSPIOP API | CCB | *1.0* |
+| - Settlement API | Core-team/Settlements Worksteam | *1.1* |
+| - Admin/Operations API | Core-team | *1.0* |
+| Helm | Core-team | *9.1.0* |
+| **Internal Schemas** | | | |
+| - DB Schema | Core-team | *1.0* |
+| - Internal Messaging | Core-team | *1.0* |
 
 ### Advantages
 
