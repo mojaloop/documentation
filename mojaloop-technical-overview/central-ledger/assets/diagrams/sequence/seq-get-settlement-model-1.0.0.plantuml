@@ -55,7 +55,7 @@ end box
 
 activate OPERATOR
 group Get all settlement models
-    OPERATOR -> CSAPI: Request to get Limits - GET - /settlementModels/{name}
+    OPERATOR -> CSAPI: Request to get SettlementModel - GET - /settlementModels/{name}
 
     activate CSAPI
     CSAPI -> SETTLEMENTMODELS_HANDLER: Fetch settlement model
