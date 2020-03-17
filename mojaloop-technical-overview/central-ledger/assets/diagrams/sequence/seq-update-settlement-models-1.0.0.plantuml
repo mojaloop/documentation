@@ -100,7 +100,7 @@ group Update Settlement Models
 
             CSAPI --> OPERATOR: Return updated settlementModel and status 200
 
-    else Validate settlementDelay, settlementGranularity and settlementInterchange (failure)
+    else Settlement Model not found (failure)
         note right of SETTLEMENTMODELS_HANDLER #red: Validation failure!
 
         note right of SETTLEMENTMODELS_HANDLER #yellow
