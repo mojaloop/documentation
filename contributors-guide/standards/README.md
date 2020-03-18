@@ -1,6 +1,6 @@
 # Standards
 
-> *Note:* These standards are by no means set in stone, and as a community, we always want to be iterating and improving Mojaloop. If you want to propose a change to these standards, or suggest futher improvements, please reach out to the Design Authority Channel on the Mojaloop Slack (#design-authority)
+> *Note:* These standards are by no means set in stone, and as a community, we always want to be iterating and improving Mojaloop. If you want to propose a change to these standards, or suggest further improvements, please reach out to the Design Authority Channel on the Mojaloop Slack (#design-authority)
 
 ## Style Guide
 
@@ -97,6 +97,8 @@ cat ../Dockerfile | wc -l
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cat ${DIR}/../Dockerfile | wc -l 
 ```
+
+For other recommended bash conventions, refer to this blog post: [Best Practices for Writing Shell Scripts](https://kvz.io/bash-best-practices.html)
 
 #### Documentation
 
@@ -257,6 +259,8 @@ For more information, refer to the FAQ [below](#faqs).
 
 #### Tools + Frameworks
 
+In the Mojaloop OSS Community, we are prefer the following tools and frameworks:
+
 - **Web Server:** [`HapiJS`](https://github.com/hapijs/hapi)
 - **Web UI Framework:** [`ReactJS`](https://reactjs.org/)
 - **Runtime Configuration:** [`rc`](https://www.npmjs.com/package/rc) (both from env variables and config files)
@@ -267,31 +271,39 @@ For more information, refer to the FAQ [below](#faqs).
 - **Test Coverage:** [`nyc`](https://github.com/istanbuljs/nyc)
 - **CI:** [`CircleCI`](https://circleci.com/)
 
+By using these tools and frameworks, we maintain a high level of consistency and maintainability across the codebase, which keeps our developers productive and happy. While we don't mandate that donated codebases use these same tools and frameworks, we would like to stress that adoptions that use different tools could create an undue maintenance burden on the Community.
+
 ### Adopting Open Source Contributions into Mojaloop
 
-This section provides guidelines regarding the adoption of a contribution to the Mojaloop Open Source repositories.
+This section provides guidelines regarding the adoption of a contribution to the Mojaloop Open Source repositories. Adoption is the process where we as the community work with a contributor to bring a contribution into alignment with our standards and guidelines to be a part of the Mojaloop OSS Codebase.
 
->*Note:* Code Contributions are evaluated on a **case-by-case** basis. Contributions that don't align to these guidelines not be accepted or require refactoring before being accepted. Other misalignments to these standards (for example, framework choices) may be added to a roadmap for further improvement and OSS Standardization in the future.
+>*Note:* Code Contributions are evaluated on a **case-by-case** basis. Contributions that don't align to these guidelines will need to go through the incubation phase as described below. Other misalignments to these standards (for example, framework choices) may be added to a roadmap for further improvement and OSS Standardization in the future.
 
-#### Prerequisites
+#### Step 0: Prerequisites
 
 Before a contribution is to be considered for adoption, it:
 
-1. Should be in-line with the LevelOne Principles
-2. Should adhere to the above Style and Design + Implementation Guides
-3. Should contain basic documentation to get started: the more, the better
-4. Contain tests with a high level of coverage. At a minimum, a contribution should contain unit tests, but a test suite with unit, integration and functional tests is preferred. Refer to the [contributors guide](./tools-and-technologies/automated-testing) for more information.
+1. Should be in-line with the [Level One Project Principles](https://leveloneproject.org/)
+1. Should adhere to the above Style and Design + Implementation Guides
+1. Should contain documentation to get started: the more, the better
+1. Contain tests with a high level of coverage. At a minimum, a contribution should contain unit tests, but a test suite with unit, integration and functional tests is preferred. Refer to the [contributors guide](./tools-and-technologies/automated-testing) for more information.
 
+#### Step 1: Incubation
 
-#### Guidelines regarding adoption
+1. Create a private repo within the Mojaloop GitHub organization for the adopted code
+1. Have a sub-team of the DA take a look to make sure its portable \(to OSS\) - aligns with L1P principles, etc, and ensure design is in line with standards
+1. Check Licensing of the contribution and any new dependencies it requires, and add the standard Mojaloop License with attribution to donor/contributors
+1. Assess the current state of the codebase, including documentation, tests, code quality, and address any shortfalls
+1. Assess Performance impact
+1. Create action items \(stories\) to update naming, remove/sanitize any items that are not generic
+1. Inspect and discuss any framework and tooling choices. 
+  - If a decision is made to make any changes, add them to the roadmap
 
-1. Create a private repo on the Mojaloop GitHub organization
-2. Have a sub-team of the DA take a look to make sure its portable \(to OSS\) - aligns with L1P principles, etc, and ensure design is in line with standards
-3. Check Licensing, and a the Mojaloop License with attribution to donor/contributors
-4. Assess Performance impact
-5. Create action items \(stories\) to update naming, remove/sanitize any items that are not generic
-6. Configuration for 'modes of operation'
-7. Enable CI/CD pipelines
+#### Step 2: Public Adoption
+
+1. Make the project public on Mojaloop GitHub
+1. Announce on the slack `#announcements` channel
+1. Enable CI/CD Pipelines and publish any relevant artifacts, such as Docker Images or npm modules
 
 ### Versioning
 
@@ -319,7 +331,7 @@ See [License](https://github.com/mojaloop/mojaloop/blob/master/contribute/Licens
 
 __1. What if I want to contribute code, but it doesn't align with the code style and framework/tool recommendations in this guide?__
 
-Contributions are accepted on a _case by case_ basis. If your contribution is not yet ready to be fully adopted, we may choose to enter into an incubation phase, where the code is refactored with our help and brought into alignment with the code style and framework/tool recommendations.
+Contributions are accepted on a _case by case_ basis. If your contribution is not yet ready to be fully adopted, we can go through the incubation phase described above, where the code is refactored with our help and brought into alignment with the code and documentation requirements.
 
 
 __2. These standards are outdated, and a newer, cooler tool (or framework, method or language) has come along that will solve problem _x_ for us. How can I update the standards?__
