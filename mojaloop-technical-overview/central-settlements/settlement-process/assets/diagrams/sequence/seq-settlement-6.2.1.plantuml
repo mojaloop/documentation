@@ -137,7 +137,7 @@ activate OPERATOR
             {
                 errorInformation: {
                     "errorCode": <integer>,
-                    "errorDescription": "Invalid window(s) found"
+                    "errorDescription": "Inapplicable windows found: ${windowId1}, ${windowId2}, ..."
                 }
             }
         end note
@@ -180,13 +180,15 @@ activate OPERATOR
                     .settlementId
                 **settlementContentAggregation**
                     .settlementId
-                    .settlementWindowStateId
+                    .currentStateId
             end hnote
             deactivate DB
 
             SETTLE_DAO -> DB: Change state to 'PENDING_SETTLEMENT'
             activate DB
             hnote over DB #lightyellow
+                transferParticipantStateChange
+                transferParticipant
                 settlementWindowContentStateChange
                 settlementWindowContent
             end hnote
