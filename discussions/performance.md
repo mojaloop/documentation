@@ -128,7 +128,7 @@ Meeting Notes/Deatils
 
 Attendees:
 •       Don, Jordon (newly hired perf expert) - Coil
-•       Miguel, Roman, Valentine, Warren, Bryan, Rajiv - ModusBox
+•       Sam, Miguel, Roman, Valentine, Warren, Bryan, Rajiv - ModusBox
 •       Pedro - Crosslake
 •       Rhys, Nakul Mishra - Confluent
 •       Miller - BGMF
