@@ -1,22 +1,24 @@
-3.11.20 -- Performance Workstream
+Performance Workstream
 Wednesday, March 11, 2020
 
-Performance Goals:
-Current HW system achieving stable 1k TPS, peak 5k and proven horizontal scalability (more instances = more performance in almost linear fashion) - Kim/Sam w/ Miller`
-Get volunteers for two immediate Proof of Concepts:
-
-POCs:
+**Performance Goals:**
+Current HW system achieving stable 1k TPS, peak 5k and proven horizontal scalability
+More instances = more performance in almost linear fashion.
+Validate the minimum infrastructure to do 1K TPS (fin TPS)
+Determine the entry level configuration and cost (AWS and on-premise)
+ 
+**POCs:**
 Test the impact or a direct replace of the mysql DB with an shared memory network service like redis (using redlock alg if locks are required)
 Test a different method of sharing state, using a light version of event-drive with some CQRS
 
-Resources:
+**Resources:**
 Slack Channel: perf-engineering
 Mid-PI performance presentation:
 https://github.com/mojaloop/documentation-artifacts/tree/master/presentations/March2020-PI9-MidPI-Review
 Setting up the monitoring components
 https://github.com/mojaloop/helm/tree/master/monitoring
  
-Action/Follow-up Items
+**Action/Follow-up Items**
 •       What Kafka metrics (client & server side) should we be reviewing? - Confluent to assist
 •       Explore Locking and position settlement - Sybrin to assist
         o   Review RedLock - pessimistic locking vs automatic locking
