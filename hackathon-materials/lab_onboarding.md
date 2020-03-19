@@ -16,7 +16,7 @@
 - 1.3 Click “Sign Up” > follow the dialog box to the sign in page > Enter your details and “Sign In”
 
 <img src="./images/lab_onboarding_04.png" width="400"/></br>
-<img src="./images/lab_onboarding_05.png" width="400"/>
+<img src="./images/lab_onboarding_05.png" width="600"/>
 
 
 - 1.4 In the top left, select “Applications”
@@ -39,7 +39,7 @@
 
 - 1.8 Observe that your access token has been created. You can copy this for later reference
 
-<img src="./images/lab_onboarding_11.png" width="400"/>
+<img src="./images/lab_onboarding_11.png" width="600"/>
 
 - 1.9 Navigate to APIs in the top left menu
 
@@ -52,19 +52,19 @@
 
 - 1.11 You now need to subscribe the DefaultApplication to this api. You can do this in the top right > “Subscribe”
 
-<img src="./images/lab_onboarding_14.png" width="400"/></br>
-<img src="./images/lab_onboarding_15.png" width="400"/>
+<img src="./images/lab_onboarding_14.png" width="600"/></br>
+<img src="./images/lab_onboarding_15.png" width="600"/>
 
 
 - 1.12 Navigate to “Api Console”. Your access token should already be pre-filled for you.
 
-<img src="./images/lab_onboarding_16.png" width="400"/>
+<img src="./images/lab_onboarding_16.png" width="600"/>
 
 - 1.13 Now we can test out the `/health` endpoint of the central-ledger service. Browse down the list of endpoints > “Try it out” > “Execute”
 
-<img src="./images/lab_onboarding_17.png" width="400"/></br>
-<img src="./images/lab_onboarding_18.png" width="400"/></br>
-<img src="./images/lab_onboarding_19.png" width="400"/></br>
+<img src="./images/lab_onboarding_17.png" width="600"/></br>
+<img src="./images/lab_onboarding_18.png" width="200"/></br>
+<img src="./images/lab_onboarding_19.png" width="500"/></br>
 
 
 
