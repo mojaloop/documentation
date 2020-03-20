@@ -27,10 +27,10 @@ https://github.com/mojaloop/helm/tree/master/monitoring
 •       What Kafka metrics (client & server side) should we be reviewing? - Confluent to assist
 
 •       Explore Locking and position settlement - Sybrin to assist
-
-        o   Review RedLock - pessimistic locking vs automatic locking
         
-        o   Remove the shared DB in the middle (automatic locking on Reddis)
+ 1. Review RedLock - pessimistic locking vs automatic locking
+        
+ 2. Remove the shared DB in the middle (automatic locking on Reddis)
 
 •       Combine prepare/position handler w/ distributed DB
 
@@ -46,9 +46,9 @@ https://github.com/mojaloop/helm/tree/master/monitoring
 
 •       Missing someone who is excellent on mysql and percona
 
-        o   Are we leveraging this correctly
+1. Are we leveraging this correctly
         
-        o   What cache layer are we using (in memory)
+2. What cache layer are we using (in memory)
 
 •       Review the event modeling implementation - identify the domain events
 
@@ -62,65 +62,65 @@ https://github.com/mojaloop/helm/tree/master/monitoring
 
 •       History
 
-        o   Technology has been put in place, hoped the design solves an enterprise problem
+1. Technology has been put in place, hoped the design solves an enterprise problem
         
-        o   Community effort did not prioritize on making the slices of the system enterprise grade or cheap to run
+2. Community effort did not prioritize on making the slices of the system enterprise grade or cheap to run
         
-        o   OSS technology choices
+3. OSS technology choices
 
 •       Goals
 
-        o   Optimize current system
+1. Optimize current system
 
-        o   Make it cheaper to run
+2. Make it cheaper to run
         
-        o   Make it scalable to 5K TPS
+3. Make it scalable to 5K TPS
         
-        o   Ensure value added services can effectively and securely access transaction data 
+4. Ensure value added services can effectively and securely access transaction data 
 
 •       Testing Constraints
 
-        o   Only done the golden transfer - transfer leg
+1. Only done the golden transfer - transfer leg
         
-        o   Flow of transfer
+2. Flow of transfer
         
-        o   Simulators (legacy and advance) - using the legacy one for continuity 
+3. Simulators (legacy and advance) - using the legacy one for continuity 
         
-        o   Disabled the timeout handler
+4. Disabled the timeout handler
         
-        o   8 DFSP (participant organizations) w/ more DFSPs we would be able to scale
+5. 8 DFSP (participant organizations) w/ more DFSPs we would be able to scale
 
 •       Process
 
-        o   Jmeter initiates payer request
+1. Jmeter initiates payer request
         
-        o   Legacy simulator Receives fulfill notify callback
+2. Legacy simulator Receives fulfill notify callback
         
-        o   Legacy simulator Handles Payee processing, initiatives Fulfillment Callback
+3. Legacy simulator Handles Payee processing, initiatives Fulfillment Callback
         
-        o   Record in the positions table for each DFSP
+4. Record in the positions table for each DFSP
 
 •       Partial algorithm where the locking is done to reserve the funds, do calculations and do the final commits 
 
 •       Position handler is Processing one record at a time
 
-          Future algorithm would do a bulk 
+1. Future algorithm would do a bulk 
         
-          One transfer is handler by one position handler
+2. One transfer is handler by one position handler
 
 •       Transfers are all pre-funded
 
-          Reduced settlement costs
+1. Reduced settlement costs
         
-          Can control how fast DFSPs respond to the fulfill request (complete the transfers committed first before handling new requests)
+2. Can control how fast DFSPs respond to the fulfill request (complete the transfers committed first before handling new requests)
         
-        o   System need to timeout transfers that go longer then 30 seconds
+3. System need to timeout transfers that go longer then 30 seconds
 
 •       Any redesign of the DBs 
 
 •       Test Cases
 
-        o   Financial transaction
+1. Financial transaction
 
 •       End-to-end
 
@@ -128,7 +128,7 @@ https://github.com/mojaloop/helm/tree/master/monitoring
 
 •       Fulfil only
 
-        o   Individual Mojaloop Characterization
+1. Individual Mojaloop Characterization
 
 •       Services & Handlers
 
@@ -138,57 +138,57 @@ https://github.com/mojaloop/helm/tree/master/monitoring
 
 •       What changed: 150 to 300 TPS 
 
-        o   How we process the messages
+1. How we process the messages
 
-        o   Position handler (run in mixed mode, random 
+2. Position handler (run in mixed mode, random 
 
 •       Latency Measurement
 
-        o   5 sec for DB to process, X sec for Kafka to process
+1. 5 sec for DB to process, X sec for Kafka to process
         
-        o   How to measure this?
+2. How to measure this?
 
 •       Targets 
 
-        o   High enough the system has to function well
+1. High enough the system has to function well
         
-        o   Crank the system up to add scale (x DFSPs addition) 
+2. Crank the system up to add scale (x DFSPs addition) 
         
-        o   Suspicious cases for investigations
+3. Suspicious cases for investigations
         
-        o   Observing contentions around the DB
+4. Observing contentions around the DB
         
-        o   Shared DB, 600MS w/ out any errors
+5. Shared DB, 600MS w/ out any errors
 
 •       Contention is fully on the DB
 
 •       Bottleneck is the DB (distribute systems so they run independently 
 
-          16 databases run end to end 
+1. 16 databases run end to end 
         
-        o   GSMA - 500 TPS
+2. GSMA - 500 TPS
         
-        o   What is the optimal design?
+3. What is the optimal design?
 
 •       Contentions 
 
-        o   System handler contention 
+1. System handler contention 
 
 •       Where the system can be scaled
 
-        o   If there are arch changes that we need to make we can explore this
+1. If there are arch changes that we need to make we can explore this
 
 •       Consistency for each DFSP
 
 •       Threading of info flows - open question
 
-        o   Sku'ed results of single DB for all DFSPs
+1. Sku'ed results of single DB for all DFSPs
         
-        o   Challenge is where get to with additional HW 
+2. Challenge is where get to with additional HW 
 
 •       What are the limits of the application design
 
-        o   Financial transfers (in and out of the system)
+1. Financial transfers (in and out of the system)
 
 •       Audit systems
 
@@ -198,11 +198,11 @@ https://github.com/mojaloop/helm/tree/master/monitoring
 
 •       Confluent feedback
 
-        o   Shared DB issues, multiple DBs
+1. Shared DB issues, multiple DBs
         
-        o   Application design level issues
+2. Application design level issues
         
-        o   Seen situations where we ran a bunch of simulators/sandboxes
+3. Seen situations where we ran a bunch of simulators/sandboxes
 
 •       Need to rely on tracers and scans once this gets in productions
 
@@ -210,31 +210,31 @@ https://github.com/mojaloop/helm/tree/master/monitoring
  
 •       Known Issues
 
-        o   Load CPU resources on boxes (node waiting around) - reoptimize code
+1. Load CPU resources on boxes (node waiting around) - reoptimize code
 
-        o   Processing times increase over time
+2. Processing times increase over time
 
 •       Optimization
 
-        o   Distributed monolithic - PRISM - getting rid of redundant reads
+ 1. Distributed monolithic - PRISM - getting rid of redundant reads
 
-        o   Combine the handlers - Prepare+Position & Fulfil+Position
+ 2. Combine the handlers - Prepare+Position & Fulfil+Position
 
 •       What are we trying to fix?
 
-        o   Can we scale the system?
+  1. Can we scale the system?
         
-        o   What does this cost to do this? (scale unit cost) 
+  2. What does this cost to do this? (scale unit cost) 
         
-        o   Need to understand  - how to do this from a small and large scale
+  3. Need to understand  - how to do this from a small and large scale
         
-        o   Optimized the resources
+  3. Optimized the resources
         
-        o   2.5 sprints
+  4. 2.5 sprints
         
-        o   Need to scale horizontal 
+  5. Need to scale horizontal 
         
-        o   Add audit and repeatability - 
+  6. Add audit and repeatability - 
 
 Attendees:
 
