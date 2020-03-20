@@ -119,7 +119,7 @@ actor "<$actor>\nPayee" as Payee
 payeefsp <- Payee: I would like to receive\nfunds from +123456789
 activate payeefsp
 payeefsp <- payeefsp: Lookup +123456789\n(process not shown her)
-Switch <<- payeefsp: **POST /transactionRequest/**\n(Payee information,\ntransaction details)
+Switch <<- payeefsp: **POST /transactionRequests/**\n(Payee information,\ntransaction details)
 activate Switch
 Switch -->> payeefsp: **HTTP 202** (Accepted)
 payerfsp <<- Switch: **POST /transactionRequest/**\n(Payee information,\ntransaction details)
