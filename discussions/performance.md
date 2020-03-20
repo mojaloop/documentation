@@ -58,7 +58,7 @@ https://github.com/mojaloop/helm/tree/master/monitoring
 
 •       How we are doing async technology - review this (Node.JS - larger issue) threaded models need to be optimize - Nakul
  
-**Meeting Notes/Deatils**
+**Meeting Notes/Details**
 
 •       History
 
@@ -162,7 +162,7 @@ https://github.com/mojaloop/helm/tree/master/monitoring
 
 •       Contention is fully on the DB
 
-•       Bottleneck is the DB (distribute systems so they run independently 
+•       Bottleneck is the DB (distribute systems so they run independently)
 
 1. 16 databases run end to end 
         
