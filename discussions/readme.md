@@ -4,6 +4,9 @@
 
 - [Versioning Draft Proposal](./versioning_draft_proposal.md)
 - [Code Improvement Project](./code_improvement.md)
+- [Performance Project](./performance.md)
+- [Cross Border Project](./crossborder.md)
+- [PSIP Project](./pisp.md)
 
 ## PI 8
 
