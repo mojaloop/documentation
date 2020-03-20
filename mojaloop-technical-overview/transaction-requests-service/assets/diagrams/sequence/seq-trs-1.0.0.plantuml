@@ -118,13 +118,8 @@ actor "<$actor>\nPayee" as Payee
 ' start flow
 payeefsp <- Payee: I would like to receive\nfunds from +123456789
 activate payeefsp
-<<<<<<< HEAD
 payeefsp <- payeefsp: Lookup +123456789\n(process not shown here)
 Switch <<- payeefsp: **POST /transactionRequest/**\n(Payee information,\ntransaction details)
-=======
-payeefsp <- payeefsp: Lookup +123456789\n(process not shown her)
-Switch <<- payeefsp: **POST /transactionRequests/**\n(Payee information,\ntransaction details)
->>>>>>> 1267f066b8cc22507b65ee1ff12fff3569ced850
 activate Switch
 Switch -->> payeefsp: **HTTP 202** (Accepted)
 payerfsp <<- Switch: **POST /transactionRequests/**\n(Payee information,\ntransaction details)
