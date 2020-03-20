@@ -129,7 +129,7 @@ payeefsp -> payeefsp: Perform optional validation
 payerfsp ->> Switch: **PUT /transactionRequests/**<i><ID></i>\n(Received status)
 payerfsp <<-- Switch: **HTTP 200** (OK)
 deactivate payerfsp
-Switch ->> payeefsp: **PUT /transactionRequest/**<i><ID></i>\n(Received status)
+Switch ->> payeefsp: **PUT /transactionRequests/**<i><ID></i>\n(Received status)
 Switch <<-- payeefsp: **HTTP 200** (OK)
 deactivate Switch
 payeefsp -> payeefsp: Wait for either quote and\ntransfer, or rejected\ntransaction request by Payer
