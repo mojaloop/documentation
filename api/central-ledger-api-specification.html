@@ -2195,7 +2195,7 @@
 <div class="container">
     <div class="swagger">
     <h1 id="central-ledger-api-documentation">Central Ledger API Documentation</h1>
-    <p class="sw-info">Base URL: <span class="sw-info-basePath">/</span>, Version: <span class="sw-info-version">7.2.0</span></p>
+    <p class="sw-info">Base URL: <span class="sw-info-basePath">/</span>, Version: <span class="sw-info-version">9.3.0</span></p>
     <p></p>
     
     
@@ -2344,6 +2344,35 @@
                         <td><a href="#operation--participants--name--accounts--id--transfers--transferId--put">PUT /participants/{name}/accounts/{id}/transfers/{transferId}</a></td>
                         <td><p>Record Funds In or Out of participant account</p>
         </td>
+                    </tr>
+                </tbody>
+            </table>
+            <h3 id="tag-settlementModels" class="swagger-summary-tag">Tag: settlementModels</h3>
+            
+        
+            <table class="table table-bordered table-condensed swagger--summary">
+                <thead>
+                <tr>
+                    <th>Operation</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><a href="#operation--settlementModels-get">GET /settlementModels</a></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><a href="#operation--settlementModels-post">POST /settlementModels</a></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><a href="#operation--settlementModels--name--get">GET /settlementModels/{name}</a></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><a href="#operation--settlementModels--name--put">PUT /settlementModels/{name}</a></td>
+                        <td></td>
                     </tr>
                 </tbody>
             </table>
@@ -4894,6 +4923,258 @@
                             </dl>
                         </section>
                 </div>
+            </div>    
+        <span id="path--settlementModels"></span>
+            <div id="operation--settlementModels-get" class="swagger--panel-operation-get panel">
+                <div class="panel-heading">
+                    <div class="operation-summary"></div>
+                    <h3 class="panel-title" id="get-settlementmodels"><span class="operation-name">GET</span> <strong>/settlementModels</strong></h3>
+                        Tags:
+                            <a href="#tag-settlementModels">settlementModels</a>
+                </div>
+                <div class="panel-body">
+                    <section class="sw-operation-description">
+                        
+                    </section>
+                    
+                    
+                        <section class="sw-responses">
+                    
+                            <dl>
+                                    <dt class="sw-response-default">
+                                        default 
+                                    
+                                    </dt>
+                                    <dd class="sw-response-default">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <p>Successful</p>
+                                            
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                
+                                                <div class="col-md-6 sw-response-model">
+                                                <div class="panel panel-definition">
+                                                    <div class="panel-body">
+                                                            
+                                                    </div>
+                                                </div></div>
+                                            
+                                            </div>                </dd>
+                            </dl>
+                        </section>
+                </div>
+            </div>    <div id="operation--settlementModels-post" class="swagger--panel-operation-post panel">
+                <div class="panel-heading">
+                    <div class="operation-summary"></div>
+                    <h3 class="panel-title" id="post-settlementmodels"><span class="operation-name">POST</span> <strong>/settlementModels</strong></h3>
+                        Tags:
+                            <a href="#tag-settlementModels">settlementModels</a>
+                </div>
+                <div class="panel-body">
+                    <section class="sw-operation-description">
+                        
+                    </section>
+                        
+                            <section class="sw-request-body">
+                                
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <p></p>
+                                            </div>
+                                            <div class="col-md-6 sw-request-model">
+                            <div class="panel panel-definition">
+                                <div class="panel-body">
+                                            <a class="json-schema-ref" href="#/definitions/Model%2012">Model%2012</a>
+                                </div>
+                            </div></div>
+                                        </div>
+                            </section>        
+                    
+                        <section class="sw-responses">
+                    
+                            <dl>
+                                    <dt class="sw-response-default">
+                                        default 
+                                    
+                                    </dt>
+                                    <dd class="sw-response-default">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <p>Successful</p>
+                                            
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                
+                                                <div class="col-md-6 sw-response-model">
+                                                <div class="panel panel-definition">
+                                                    <div class="panel-body">
+                                                            
+                                                    </div>
+                                                </div></div>
+                                            
+                                            </div>                </dd>
+                            </dl>
+                        </section>
+                </div>
+            </div>    
+        <span id="path--settlementModels--name-"></span>
+            <div id="operation--settlementModels--name--get" class="swagger--panel-operation-get panel">
+                <div class="panel-heading">
+                    <div class="operation-summary"></div>
+                    <h3 class="panel-title" id="get-settlementmodelsname"><span class="operation-name">GET</span> <strong>/settlementModels/{name}</strong></h3>
+                        Tags:
+                            <a href="#tag-settlementModels">settlementModels</a>
+                </div>
+                <div class="panel-body">
+                    <section class="sw-operation-description">
+                        
+                    </section>
+                    
+                        <section class="sw-request-params">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th class="sw-param-name">Name</th>
+                                    <th class="sw-param-description">Description</th>
+                                    <th class="sw-param-type">Type</th>
+                                    <th class="sw-param-data-type">Data Type</th>
+                                    <th class="sw-param-annotation">Annotation</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                        <tr>
+                                            <td>
+                                                name
+                                            </td><td><p>SettlementModel name</p>
+                                        </td>
+                                            <td>path</td>
+                                            <td>
+                                        <span class="json-property-type">string</span>
+                                        <span class="json-property-range" title="Value limits"></span>
+                                        
+                                            </td>
+                                            <td>
+                                                    <span class="json-property-required"></span>
+                                            </td>
+                                        </tr>
+                                </tbody>
+                            </table>
+                        </section>
+                    
+                        <section class="sw-responses">
+                    
+                            <dl>
+                                    <dt class="sw-response-default">
+                                        default 
+                                    
+                                    </dt>
+                                    <dd class="sw-response-default">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <p>Successful</p>
+                                            
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                
+                                                <div class="col-md-6 sw-response-model">
+                                                <div class="panel panel-definition">
+                                                    <div class="panel-body">
+                                                            
+                                                    </div>
+                                                </div></div>
+                                            
+                                            </div>                </dd>
+                            </dl>
+                        </section>
+                </div>
+            </div>    <div id="operation--settlementModels--name--put" class="swagger--panel-operation-put panel">
+                <div class="panel-heading">
+                    <div class="operation-summary"></div>
+                    <h3 class="panel-title" id="put-settlementmodelsname"><span class="operation-name">PUT</span> <strong>/settlementModels/{name}</strong></h3>
+                        Tags:
+                            <a href="#tag-settlementModels">settlementModels</a>
+                </div>
+                <div class="panel-body">
+                    <section class="sw-operation-description">
+                        
+                    </section>
+                        
+                            <section class="sw-request-body">
+                                
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <p></p>
+                                            </div>
+                                            <div class="col-md-6 sw-request-model">
+                            <div class="panel panel-definition">
+                                <div class="panel-body">
+                                            <a class="json-schema-ref" href="#/definitions/Model%2013">Model%2013</a>
+                                </div>
+                            </div></div>
+                                        </div>
+                            </section>        
+                        <section class="sw-request-params">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th class="sw-param-name">Name</th>
+                                    <th class="sw-param-description">Description</th>
+                                    <th class="sw-param-type">Type</th>
+                                    <th class="sw-param-data-type">Data Type</th>
+                                    <th class="sw-param-annotation">Annotation</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                        <tr>
+                                            <td>
+                                                name
+                                            </td><td><p>settlementModel name</p>
+                                        </td>
+                                            <td>path</td>
+                                            <td>
+                                        <span class="json-property-type">string</span>
+                                        <span class="json-property-range" title="Value limits"></span>
+                                        
+                                            </td>
+                                            <td>
+                                                    <span class="json-property-required"></span>
+                                            </td>
+                                        </tr>
+                                </tbody>
+                            </table>
+                        </section>
+                    
+                        <section class="sw-responses">
+                    
+                            <dl>
+                                    <dt class="sw-response-default">
+                                        default 
+                                    
+                                    </dt>
+                                    <dd class="sw-response-default">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <p>Successful</p>
+                                            
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                
+                                                <div class="col-md-6 sw-response-model">
+                                                <div class="panel panel-definition">
+                                                    <div class="panel-body">
+                                                            
+                                                    </div>
+                                                </div></div>
+                                            
+                                            </div>                </dd>
+                            </dl>
+                        </section>
+                </div>
             </div>
      
     
@@ -5530,6 +5811,599 @@
                                                 </dt>
                                                 <dd>
                                                     
+                                                    <div class="json-inner-schema">
+                                                        
+                                                    </div>
+                                                </dd>
+                                        </dl>
+                                    </section>
+                    </div>
+                </div>        
+                <div id="definition-Model-12" class="panel panel-definition">
+                        <div class="panel-heading">
+                                <h3 class="panel-title" id="model-12
+------------------------------------
+----------------object
+----------------
+----------------
+----------------
+--------------------------------"><a name="/definitions/Model 12"></a>Model 12:
+                                    <span class="json-property-type">
+                <span class="json-property-type">object</span>
+                <span class="json-property-range" title="Value limits"></span>
+                
+                </span>
+                                </h3>
+                        </div>
+                    <div class="panel-body">
+                            
+                                    <section class="json-schema-properties">
+                                        <dl>
+                                                <dt data-property-name="name">
+                                                    <span class="json-property-name">name:</span>
+                                                    
+                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-range" title="Value limits"></span>
+                                                    
+                                                        <span class="json-property-range" title="String length limits">
+                                                                (2 to 30 chars)
+                                                        </span>
+                                                        <span class="json-property-required"></span>
+                                                </dt>
+                                                <dd>
+                                                    <p>Name of the settlement model</p>
+                                    
+                                                    <div class="json-inner-schema">
+                                                        
+                                                    </div>
+                                                </dd>
+                                                <dt data-property-name="settlementGranularity">
+                                                    <span class="json-property-name">settlementGranularity:</span>
+                                                    
+                                                    <span class="json-property-type">string</span>    <span class="json-property-enum" title="Possible values">, x &#x2208; {
+                                                                    <span class="json-property-enum-item">GROSS</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">NET</span>
+                                                                
+                                                            }
+                                                            </span>
+                                                    <span class="json-property-range" title="Value limits"></span>
+                                                    
+                                                        <span class="json-property-required"></span>
+                                                </dt>
+                                                <dd>
+                                                    <p>Granularity type for the settlement model GROSS or NET</p>
+                                    
+                                                    <div class="json-inner-schema">
+                                                        
+                                                    </div>
+                                                </dd>
+                                                <dt data-property-name="settlementInterchange">
+                                                    <span class="json-property-name">settlementInterchange:</span>
+                                                    
+                                                    <span class="json-property-type">string</span>    <span class="json-property-enum" title="Possible values">, x &#x2208; {
+                                                                    <span class="json-property-enum-item">BILATERAL</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">MULTILATERAL</span>
+                                                                
+                                                            }
+                                                            </span>
+                                                    <span class="json-property-range" title="Value limits"></span>
+                                                    
+                                                        <span class="json-property-required"></span>
+                                                </dt>
+                                                <dd>
+                                                    <p>Interchange type for the settlement model BILATERAL or MULTILATERAL</p>
+                                    
+                                                    <div class="json-inner-schema">
+                                                        
+                                                    </div>
+                                                </dd>
+                                                <dt data-property-name="settlementDelay">
+                                                    <span class="json-property-name">settlementDelay:</span>
+                                                    
+                                                    <span class="json-property-type">string</span>    <span class="json-property-enum" title="Possible values">, x &#x2208; {
+                                                                    <span class="json-property-enum-item">DEFERRED</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">IMMEDIATE</span>
+                                                                
+                                                            }
+                                                            </span>
+                                                    <span class="json-property-range" title="Value limits"></span>
+                                                    
+                                                        <span class="json-property-required"></span>
+                                                </dt>
+                                                <dd>
+                                                    <p>Delay type for the settlement model IMMEDIATE or DEFERRED</p>
+                                    
+                                                    <div class="json-inner-schema">
+                                                        
+                                                    </div>
+                                                </dd>
+                                                <dt data-property-name="currency">
+                                                    <span class="json-property-name">currency:</span>
+                                                    
+                                                    <span class="json-property-type">string</span>    <span class="json-property-enum" title="Possible values">, x &#x2208; {
+                                                                    <span class="json-property-enum-item">AED</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">AFA</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">AFN</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">ALL</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">AMD</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">ANG</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">AOA</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">AOR</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">ARS</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">AUD</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">AWG</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">AZN</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">BAM</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">BBD</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">BDT</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">BGN</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">BHD</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">BIF</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">BMD</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">BND</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">BOB</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">BOV</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">BRL</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">BSD</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">BTN</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">BWP</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">BYN</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">BYR</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">BZD</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">CAD</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">CDF</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">CHE</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">CHF</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">CHW</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">CLF</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">CLP</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">CNY</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">COP</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">COU</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">CRC</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">CUC</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">CUP</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">CVE</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">CZK</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">DJF</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">DKK</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">DOP</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">DZD</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">EEK</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">EGP</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">ERN</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">ETB</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">EUR</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">FJD</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">FKP</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">GBP</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">GEL</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">GGP</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">GHS</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">GIP</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">GMD</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">GNF</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">GTQ</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">GYD</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">HKD</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">HNL</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">HRK</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">HTG</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">HUF</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">IDR</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">ILS</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">IMP</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">INR</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">IQD</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">IRR</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">ISK</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">JEP</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">JMD</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">JOD</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">JPY</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">KES</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">KGS</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">KHR</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">KMF</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">KPW</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">KRW</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">KWD</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">KYD</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">KZT</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">LAK</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">LBP</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">LKR</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">LRD</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">LSL</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">LTL</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">LVL</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">LYD</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">MAD</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">MDL</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">MGA</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">MKD</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">MMK</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">MNT</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">MOP</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">MRO</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">MUR</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">MVR</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">MWK</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">MXN</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">MXV</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">MYR</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">MZN</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">NAD</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">NGN</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">NIO</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">NOK</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">NPR</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">NZD</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">OMR</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">PAB</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">PEN</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">PGK</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">PHP</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">PKR</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">PLN</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">PYG</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">QAR</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">RON</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">RSD</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">RUB</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">RWF</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">SAR</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">SBD</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">SCR</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">SDG</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">SEK</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">SGD</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">SHP</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">SLL</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">SOS</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">SPL</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">SRD</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">SSP</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">STD</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">SVC</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">SYP</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">SZL</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">THB</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">TJS</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">TMT</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">TND</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">TOP</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">TRY</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">TTD</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">TVD</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">TWD</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">TZS</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">UAH</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">UGX</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">USD</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">USN</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">UYI</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">UYU</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">UZS</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">VEF</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">VND</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">VUV</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">WST</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">XAF</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">XAG</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">XAU</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">XCD</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">XDR</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">XFO</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">XFU</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">XOF</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">XPD</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">XPF</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">XPT</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">XSU</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">XTS</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">XUA</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">XXX</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">YER</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">ZAR</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">ZMK</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">ZMW</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">ZWD</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">ZWL</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">ZWN</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">ZWR</span>
+                                                                
+                                                            }
+                                                            </span>
+                                                    <span class="json-property-range" title="Value limits"></span>
+                                                    
+                                                </dt>
+                                                <dd>
+                                                    <p>Currency code</p>
+                                    
+                                                    <div class="json-inner-schema">
+                                                        
+                                                    </div>
+                                                </dd>
+                                                <dt data-property-name="requireLiquidityCheck">
+                                                    <span class="json-property-name">requireLiquidityCheck:</span>
+                                                    
+                                                    <span class="json-property-type">boolean</span>
+                                                    <span class="json-property-range" title="Value limits"></span>
+                                                    
+                                                        <span class="json-property-required"></span>
+                                                </dt>
+                                                <dd>
+                                                    <p>Liquidity Check boolean</p>
+                                    
+                                                    <div class="json-inner-schema">
+                                                        
+                                                    </div>
+                                                </dd>
+                                                <dt data-property-name="ledgerAccountType">
+                                                    <span class="json-property-name">ledgerAccountType:</span>
+                                                    
+                                                    <span class="json-property-type">string</span>    <span class="json-property-enum" title="Possible values">, x &#x2208; {
+                                                                    <span class="json-property-enum-item">INTERCHANGE_FEE</span>
+                                                                ,
+                                                                    <span class="json-property-enum-item">POSITION</span>
+                                                                
+                                                            }
+                                                            </span>
+                                                    <span class="json-property-range" title="Value limits"></span>
+                                                    
+                                                        <span class="json-property-required"></span>
+                                                </dt>
+                                                <dd>
+                                                    <p>Account type for the settlement model POSITION, SETTLEMENT or INTERCHANGE_FEE</p>
+                                    
+                                                    <div class="json-inner-schema">
+                                                        
+                                                    </div>
+                                                </dd>
+                                                <dt data-property-name="autoPositionReset">
+                                                    <span class="json-property-name">autoPositionReset:</span>
+                                                    
+                                                    <span class="json-property-type">boolean</span>
+                                                    <span class="json-property-range" title="Value limits"></span>
+                                                    
+                                                        <span class="json-property-required"></span>
+                                                </dt>
+                                                <dd>
+                                                    <p>Automatic position reset setting, which determines whether to execute the settlement transfer or not</p>
+                                    
+                                                    <div class="json-inner-schema">
+                                                        
+                                                    </div>
+                                                </dd>
+                                        </dl>
+                                    </section>
+                    </div>
+                </div>        
+                <div id="definition-Model-13" class="panel panel-definition">
+                        <div class="panel-heading">
+                                <h3 class="panel-title" id="model-13
+------------------------------------
+----------------object
+----------------
+----------------
+----------------
+--------------------------------"><a name="/definitions/Model 13"></a>Model 13:
+                                    <span class="json-property-type">
+                <span class="json-property-type">object</span>
+                <span class="json-property-range" title="Value limits"></span>
+                
+                </span>
+                                </h3>
+                        </div>
+                    <div class="panel-body">
+                            
+                                    <section class="json-schema-properties">
+                                        <dl>
+                                                <dt data-property-name="isActive">
+                                                    <span class="json-property-name">isActive:</span>
+                                                    
+                                                    <span class="json-property-type">boolean</span>
+                                                    <span class="json-property-range" title="Value limits"></span>
+                                                    
+                                                        <span class="json-property-required"></span>
+                                                </dt>
+                                                <dd>
+                                                    <p>settlementModel isActive boolean</p>
+                                    
                                                     <div class="json-inner-schema">
                                                         
                                                     </div>
@@ -7553,7 +8427,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"showToc":false,"title":"Central Ledger API","level":"1.7.2","depth":2,"next":{"title":"Central Settlements","level":"1.7.3","depth":2,"path":"api/central-settlements-api-specification.md","ref":"api/central-settlements-api-specification.md","articles":[]},"previous":{"title":"Mojaloop","level":"1.7.1","depth":2,"path":"api/mojaloop-api-specification.md","ref":"api/mojaloop-api-specification.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"3.x.x","theme":"default","variables":{"importedVars":{"mojaloop":{"spec":{"version":"v1.0","uri":{"doc":"https://github.com/mojaloop/mojaloop-specification/blob/master/API%20Definition%20v1.0.pdf","api":"https://github.com/mojaloop/mojaloop-specification/blob/master/Supporting%20Files/fspiop-rest-v1.0-OpenAPI-implementation.yaml"}}},"central_ledger":{"spec":{"version":"v2.0","uri":{"doc":"/mojaloop-technical-overview/central-ledger/README.md","api":"https://github.com/mojaloop/central-ledger/blob/master/src/api/interface/swagger.json"}}},"settlement":{"spec":{"version":"v1.1","uri":{"doc":"/mojaloop-technical-overview/central-settlements/README.md","api":"https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json"}}},"als":{"oracle":{"spec":{"version":"v1.2","uri":{"doc":"/mojaloop-technical-overview/account-lookup-service/README.md","api":"https://github.com/mojaloop/documentation/blob/master/api/assets/interface-contracts/oracle-service-swagger-v1.yaml"}}}}}},"plugins":["swagger","editlink","include","insert-logo","plantuml-svg","collapsible-chapters","back-to-top-button","theme-api","variables","changelog","page-toc"],"pluginsConfig":{"plantuml-svg":{},"editlink":{"label":"Edit This Page","multilingual":true,"base":"https://github.com/mojaloop/documentation/edit/master"},"theme-gestalt":{"logo":"https://mojaloop.io/images/logo.png","favicon":"https://mojaloop.io/images/logo.png","baseUrl":null,"excludeDefaultStyles":false,"doNotHideChildrenChapters":false},"include":{},"search":{},"collapsible-chapters":{},"page-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","position":"before-first","showByDefault":true},"swagger":{"file":""},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"uml":{"format":"png","nailgun":false},"changelog":{},"theme-api":{"languages":[],"split":true,"theme":"dark"},"back-to-top-button":{},"variables":{"files":{"importedVars":"book_variables.yml"}},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"insert-logo":{"url":"https://mojaloop.io/images/logo.png","style":"background: none; max-height: 140px; max-width: 140px;"}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"api/central-ledger-api-specification.md","mtime":"2020-02-07T08:18:07.299Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-02-07T08:19:19.152Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"showToc":false,"title":"Central Ledger API","level":"1.7.2","depth":2,"next":{"title":"Central Settlements","level":"1.7.3","depth":2,"path":"api/central-settlements-api-specification.md","ref":"api/central-settlements-api-specification.md","articles":[]},"previous":{"title":"Mojaloop","level":"1.7.1","depth":2,"path":"api/mojaloop-api-specification.md","ref":"api/mojaloop-api-specification.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"3.x.x","theme":"default","variables":{"importedVars":{"mojaloop":{"spec":{"version":"v1.0","uri":{"doc":"https://mojaloop.io/mojaloop-specification/","api":"https://github.com/mojaloop/mojaloop-specification/blob/master/Supporting%20Files/fspiop-rest-v1.0-OpenAPI-implementation.yaml"}}},"central_ledger":{"spec":{"version":"v2.0","uri":{"doc":"/mojaloop-technical-overview/central-ledger/README.md","api":"https://github.com/mojaloop/central-ledger/blob/master/src/api/interface/swagger.json"}}},"settlement":{"spec":{"version":"v1.1","uri":{"doc":"/mojaloop-technical-overview/central-settlements/README.md","api":"https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json"}}},"als":{"oracle":{"spec":{"version":"v1.2","uri":{"doc":"/mojaloop-technical-overview/account-lookup-service/README.md","api":"https://github.com/mojaloop/documentation/blob/master/api/assets/interface-contracts/oracle-service-swagger-v1.yaml"}}}}}},"plugins":["swagger","editlink","include","insert-logo","plantuml-svg","collapsible-chapters","back-to-top-button","theme-api","variables","changelog","page-toc"],"pluginsConfig":{"plantuml-svg":{},"editlink":{"label":"Edit This Page","multilingual":true,"base":"https://github.com/mojaloop/documentation/edit/master"},"theme-gestalt":{"logo":"https://mojaloop.io/images/logo.png","favicon":"https://mojaloop.io/images/logo.png","baseUrl":null,"excludeDefaultStyles":false,"doNotHideChildrenChapters":false},"include":{},"search":{},"collapsible-chapters":{},"page-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","position":"before-first","showByDefault":true},"swagger":{"file":""},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"uml":{"format":"png","nailgun":false},"changelog":{},"theme-api":{"languages":[],"split":true,"theme":"dark"},"back-to-top-button":{},"variables":{"files":{"importedVars":"book_variables.yml"}},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"insert-logo":{"url":"https://mojaloop.io/images/logo.png","style":"background: none; max-height: 140px; max-width: 140px;"}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"api/central-ledger-api-specification.md","mtime":"2020-03-23T19:23:37.693Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-23T19:24:49.407Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

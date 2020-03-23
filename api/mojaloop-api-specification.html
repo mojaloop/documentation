@@ -2194,7 +2194,7 @@
                                 
 <div class="container">
     <div class="swagger">
-    <h1 id="open-api-for-fsp-interoperability-fspiop-implementation-friendly-version">Open API for FSP Interoperability (FSPIOP) (Implementation Friendly Version)</h1>
+    <h1 id="open-api-for-fsp-interoperability-fspiop">Open API for FSP Interoperability (FSPIOP)</h1>
     <p class="sw-info">Base URL: <span class="sw-info-basePath">/fsp</span>, Version: <span class="sw-info-version">1.0</span></p>
     <p></p><p>Based on API Definition.docx updated on 2018-03-13 Version 1.0. Note - The API supports a maximum size of 65536 bytes (64 Kilobytes) in the HTTP header.</p>
     <p></p>
@@ -11975,7 +11975,7 @@
                 </div>
                 <div class="panel-body">
                     <section class="sw-operation-description">
-                        <p>If there is an error during FSP information creation in the server, the error callback PUT /participants/<id>/error is used. The <id> in the URI should contain the requestId that was used for the creation of the participant information.</id></id></p>
+                        <p>If there is an error during FSP information creation in the server, the error callback PUT /participants/{ID}/error is used. The <id> in the URI should contain the requestId that was used for the creation of the participant information.</id></p>
             
                     </section>
                         
@@ -36282,13 +36282,15 @@
                                                 <dt data-property-name="authentication">
                                                     <span class="json-property-name">authentication:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/AuthenticationType">AuthenticationType</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                         <span class="json-property-required"></span>
                                                 </dt>
                                                 <dd>
-                                                    
+                                                    <p>Type of authentication.</p>
+                                    
                                                     <div class="json-inner-schema">
                                                         
                                                     </div>
@@ -36296,13 +36298,15 @@
                                                 <dt data-property-name="authenticationValue">
                                                     <span class="json-property-name">authenticationValue:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/AuthenticationValue">AuthenticationValue</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                         <span class="json-property-required"></span>
                                                 </dt>
                                                 <dd>
-                                                    
+                                                    <p>Authentication value.</p>
+                                    
                                                     <div class="json-inner-schema">
                                                         
                                                     </div>
@@ -36440,7 +36444,8 @@
                                                 <dt data-property-name="authenticationInfo">
                                                     <span class="json-property-name">authenticationInfo:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/AuthenticationInfo">AuthenticationInfo</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                 </dt>
@@ -36454,7 +36459,8 @@
                                                 <dt data-property-name="responseType">
                                                     <span class="json-property-name">responseType:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/AuthorizationResponse">AuthorizationResponse</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                         <span class="json-property-required"></span>
@@ -36598,7 +36604,8 @@
                                                 <dt data-property-name="expiration">
                                                     <span class="json-property-name">expiration:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/DateTime">DateTime</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                         <span class="json-property-required"></span>
@@ -36656,7 +36663,8 @@
                                                 <dt data-property-name="bulkQuoteId">
                                                     <span class="json-property-name">bulkQuoteId:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/CorrelationId">CorrelationId</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                         <span class="json-property-required"></span>
@@ -36702,7 +36710,8 @@
                                                 <dt data-property-name="expiration">
                                                     <span class="json-property-name">expiration:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/DateTime">DateTime</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                 </dt>
@@ -36783,7 +36792,8 @@
                                                 <dt data-property-name="completedTimestamp">
                                                     <span class="json-property-name">completedTimestamp:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/DateTime">DateTime</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                 </dt>
@@ -36820,7 +36830,8 @@
                                                 <dt data-property-name="bulkTransferState">
                                                     <span class="json-property-name">bulkTransferState:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/BulkTransferState">BulkTransferState</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                         <span class="json-property-required"></span>
@@ -36878,7 +36889,8 @@
                                                 <dt data-property-name="bulkTransferId">
                                                     <span class="json-property-name">bulkTransferId:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/CorrelationId">CorrelationId</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                         <span class="json-property-required"></span>
@@ -36893,7 +36905,8 @@
                                                 <dt data-property-name="bulkQuoteId">
                                                     <span class="json-property-name">bulkQuoteId:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/CorrelationId">CorrelationId</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                         <span class="json-property-required"></span>
@@ -36908,7 +36921,8 @@
                                                 <dt data-property-name="payerFsp">
                                                     <span class="json-property-name">payerFsp:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/FspId">FspId</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                         <span class="json-property-required"></span>
@@ -36923,7 +36937,8 @@
                                                 <dt data-property-name="payeeFsp">
                                                     <span class="json-property-name">payeeFsp:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/FspId">FspId</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                         <span class="json-property-required"></span>
@@ -36962,7 +36977,8 @@
                                                 <dt data-property-name="expiration">
                                                     <span class="json-property-name">expiration:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/DateTime">DateTime</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                         <span class="json-property-required"></span>
@@ -37940,7 +37956,8 @@
                                                 <dt data-property-name="errorCode">
                                                     <span class="json-property-name">errorCode:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/ErrorCode">ErrorCode</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                         <span class="json-property-required"></span>
@@ -37955,7 +37972,8 @@
                                                 <dt data-property-name="errorDescription">
                                                     <span class="json-property-name">errorDescription:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/ErrorDescription">ErrorDescription</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                         <span class="json-property-required"></span>
@@ -38098,7 +38116,8 @@
                                                 <dt data-property-name="key">
                                                     <span class="json-property-name">key:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/ExtensionKey">ExtensionKey</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                         <span class="json-property-required"></span>
@@ -38113,7 +38132,8 @@
                                                 <dt data-property-name="value">
                                                     <span class="json-property-name">value:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/ExtensionValue">ExtensionValue</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                         <span class="json-property-required"></span>
@@ -38330,7 +38350,8 @@
                                                 <dt data-property-name="latitude">
                                                     <span class="json-property-name">latitude:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/Latitude">Latitude</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                         <span class="json-property-required"></span>
@@ -38345,7 +38366,8 @@
                                                 <dt data-property-name="longitude">
                                                     <span class="json-property-name">longitude:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/Longitude">Longitude</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                         <span class="json-property-required"></span>
@@ -38484,7 +38506,8 @@
                                                 <dt data-property-name="quoteId">
                                                     <span class="json-property-name">quoteId:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/CorrelationId">CorrelationId</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                         <span class="json-property-required"></span>
@@ -38499,7 +38522,8 @@
                                                 <dt data-property-name="transactionId">
                                                     <span class="json-property-name">transactionId:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/CorrelationId">CorrelationId</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                         <span class="json-property-required"></span>
@@ -38530,7 +38554,8 @@
                                                 <dt data-property-name="amountType">
                                                     <span class="json-property-name">amountType:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/AmountType">AmountType</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                         <span class="json-property-required"></span>
@@ -38592,7 +38617,8 @@
                                                 <dt data-property-name="note">
                                                     <span class="json-property-name">note:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/Note">Note</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                 </dt>
@@ -38649,7 +38675,8 @@
                                                 <dt data-property-name="quoteId">
                                                     <span class="json-property-name">quoteId:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/CorrelationId">CorrelationId</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                         <span class="json-property-required"></span>
@@ -38685,7 +38712,7 @@
                                                     
                                                 </dt>
                                                 <dd>
-                                                    <p>Amount that the Payee FSP should receive.</p>
+                                                    <p>The amount of Money that the Payer FSP should transfer to the Payee FSP.</p>
                                     
                                                     <div class="json-inner-schema">
                                                         
@@ -38739,7 +38766,8 @@
                                                 <dt data-property-name="ilpPacket">
                                                     <span class="json-property-name">ilpPacket:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/IlpPacket">IlpPacket</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                 </dt>
@@ -38753,7 +38781,8 @@
                                                 <dt data-property-name="condition">
                                                     <span class="json-property-name">condition:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/IlpCondition">IlpCondition</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                 </dt>
@@ -38773,7 +38802,7 @@
                                                     
                                                 </dt>
                                                 <dd>
-                                                    <p>Error code, category description. Note - receiveAmount, payeeFspFee, payeeFspCommission, expiration, ilpPacket, condition should not be set if errorInformation is set.</p>
+                                                    <p>Error code, category description. Note - payee, transferAmount, payeeReceiveAmount, payeeFspFee, payeeFspCommission, ilpPacket, and condition should not be set if errorInformation is set.</p>
                                     
                                                     <div class="json-inner-schema">
                                                         
@@ -38825,7 +38854,8 @@
                                                 <dt data-property-name="transferId">
                                                     <span class="json-property-name">transferId:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/CorrelationId">CorrelationId</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                         <span class="json-property-required"></span>
@@ -38856,7 +38886,8 @@
                                                 <dt data-property-name="ilpPacket">
                                                     <span class="json-property-name">ilpPacket:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/IlpPacket">IlpPacket</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                         <span class="json-property-required"></span>
@@ -38871,7 +38902,8 @@
                                                 <dt data-property-name="condition">
                                                     <span class="json-property-name">condition:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/IlpCondition">IlpCondition</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                         <span class="json-property-required"></span>
@@ -38929,7 +38961,8 @@
                                                 <dt data-property-name="transferId">
                                                     <span class="json-property-name">transferId:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/CorrelationId">CorrelationId</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                         <span class="json-property-required"></span>
@@ -38944,7 +38977,8 @@
                                                 <dt data-property-name="fulfilment">
                                                     <span class="json-property-name">fulfilment:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/IlpFulfilment">IlpFulfilment</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                 </dt>
@@ -39184,7 +39218,8 @@
                                                 <dt data-property-name="currency">
                                                     <span class="json-property-name">currency:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/Currency">Currency</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                         <span class="json-property-required"></span>
@@ -39199,7 +39234,8 @@
                                                 <dt data-property-name="amount">
                                                     <span class="json-property-name">amount:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/Amount">Amount</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                         <span class="json-property-required"></span>
@@ -39348,7 +39384,8 @@
                                                 <dt data-property-name="currency">
                                                     <span class="json-property-name">currency:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/Currency">Currency</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                 </dt>
@@ -39390,7 +39427,8 @@
                                                 <dt data-property-name="requestId">
                                                     <span class="json-property-name">requestId:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/CorrelationId">CorrelationId</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                         <span class="json-property-required"></span>
@@ -39429,7 +39467,8 @@
                                                 <dt data-property-name="currency">
                                                     <span class="json-property-name">currency:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/Currency">Currency</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                 </dt>
@@ -39471,7 +39510,8 @@
                                                 <dt data-property-name="fspId">
                                                     <span class="json-property-name">fspId:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/FspId">FspId</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                 </dt>
@@ -39513,7 +39553,8 @@
                                                 <dt data-property-name="fspId">
                                                     <span class="json-property-name">fspId:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/FspId">FspId</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                         <span class="json-property-required"></span>
@@ -39528,7 +39569,8 @@
                                                 <dt data-property-name="currency">
                                                     <span class="json-property-name">currency:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/Currency">Currency</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                 </dt>
@@ -39630,7 +39672,8 @@
                                                 <dt data-property-name="merchantClassificationCode">
                                                     <span class="json-property-name">merchantClassificationCode:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/MerchantClassificationCode">MerchantClassificationCode</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                 </dt>
@@ -39644,7 +39687,8 @@
                                                 <dt data-property-name="name">
                                                     <span class="json-property-name">name:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/PartyName">PartyName</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                 </dt>
@@ -39701,7 +39745,8 @@
                                                 <dt data-property-name="firstName">
                                                     <span class="json-property-name">firstName:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/FirstName">FirstName</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                 </dt>
@@ -39715,7 +39760,8 @@
                                                 <dt data-property-name="middleName">
                                                     <span class="json-property-name">middleName:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/MiddleName">MiddleName</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                 </dt>
@@ -39729,7 +39775,8 @@
                                                 <dt data-property-name="lastName">
                                                     <span class="json-property-name">lastName:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/LastName">LastName</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                 </dt>
@@ -39801,7 +39848,8 @@
                                                 <dt data-property-name="partyIdType">
                                                     <span class="json-property-name">partyIdType:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/PartyIdType">PartyIdType</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                         <span class="json-property-required"></span>
@@ -39816,7 +39864,8 @@
                                                 <dt data-property-name="partyIdentifier">
                                                     <span class="json-property-name">partyIdentifier:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/PartyIdentifier">PartyIdentifier</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                         <span class="json-property-required"></span>
@@ -39831,7 +39880,8 @@
                                                 <dt data-property-name="partySubIdOrType">
                                                     <span class="json-property-name">partySubIdOrType:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/PartySubIdOrType">PartySubIdOrType</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                 </dt>
@@ -39845,7 +39895,8 @@
                                                 <dt data-property-name="fspId">
                                                     <span class="json-property-name">fspId:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/FspId">FspId</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                 </dt>
@@ -39992,7 +40043,8 @@
                                                 <dt data-property-name="dateOfBirth">
                                                     <span class="json-property-name">dateOfBirth:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/DateOfBirth">DateOfBirth</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                 </dt>
@@ -40240,7 +40292,7 @@
                                                         <span class="json-property-required"></span>
                                                 </dt>
                                                 <dd>
-                                                    <p>The amount of money that the Payee FSP should receive.</p>
+                                                    <p>The amount of Money that the Payer FSP should transfer to the Payee FSP.</p>
                                     
                                                     <div class="json-inner-schema">
                                                         
@@ -40294,7 +40346,8 @@
                                                 <dt data-property-name="expiration">
                                                     <span class="json-property-name">expiration:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/DateTime">DateTime</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                         <span class="json-property-required"></span>
@@ -40324,7 +40377,8 @@
                                                 <dt data-property-name="ilpPacket">
                                                     <span class="json-property-name">ilpPacket:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/IlpPacket">IlpPacket</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                         <span class="json-property-required"></span>
@@ -40339,7 +40393,8 @@
                                                 <dt data-property-name="condition">
                                                     <span class="json-property-name">condition:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/IlpCondition">IlpCondition</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                         <span class="json-property-required"></span>
@@ -40397,7 +40452,8 @@
                                                 <dt data-property-name="quoteId">
                                                     <span class="json-property-name">quoteId:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/CorrelationId">CorrelationId</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                         <span class="json-property-required"></span>
@@ -40412,7 +40468,8 @@
                                                 <dt data-property-name="transactionId">
                                                     <span class="json-property-name">transactionId:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/CorrelationId">CorrelationId</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                         <span class="json-property-required"></span>
@@ -40427,7 +40484,8 @@
                                                 <dt data-property-name="transactionRequestId">
                                                     <span class="json-property-name">transactionRequestId:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/CorrelationId">CorrelationId</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                 </dt>
@@ -40473,7 +40531,8 @@
                                                 <dt data-property-name="amountType">
                                                     <span class="json-property-name">amountType:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/AmountType">AmountType</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                         <span class="json-property-required"></span>
@@ -40550,7 +40609,8 @@
                                                 <dt data-property-name="note">
                                                     <span class="json-property-name">note:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/Note">Note</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                 </dt>
@@ -40564,7 +40624,8 @@
                                                 <dt data-property-name="expiration">
                                                     <span class="json-property-name">expiration:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/DateTime">DateTime</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                 </dt>
@@ -40621,7 +40682,8 @@
                                                 <dt data-property-name="originalTransactionId">
                                                     <span class="json-property-name">originalTransactionId:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/CorrelationId">CorrelationId</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                         <span class="json-property-required"></span>
@@ -40636,7 +40698,8 @@
                                                 <dt data-property-name="refundReason">
                                                     <span class="json-property-name">refundReason:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/RefundReason">RefundReason</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                 </dt>
@@ -40734,7 +40797,8 @@
                                                 <dt data-property-name="transactionId">
                                                     <span class="json-property-name">transactionId:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/CorrelationId">CorrelationId</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                         <span class="json-property-required"></span>
@@ -40749,7 +40813,8 @@
                                                 <dt data-property-name="quoteId">
                                                     <span class="json-property-name">quoteId:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/CorrelationId">CorrelationId</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                         <span class="json-property-required"></span>
@@ -40828,7 +40893,8 @@
                                                 <dt data-property-name="note">
                                                     <span class="json-property-name">note:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/Note">Note</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                 </dt>
@@ -40965,7 +41031,8 @@
                                                 <dt data-property-name="transactionId">
                                                     <span class="json-property-name">transactionId:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/CorrelationId">CorrelationId</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                 </dt>
@@ -40979,7 +41046,8 @@
                                                 <dt data-property-name="transactionRequestState">
                                                     <span class="json-property-name">transactionRequestState:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/TransactionRequestState">TransactionRequestState</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                         <span class="json-property-required"></span>
@@ -41037,7 +41105,8 @@
                                                 <dt data-property-name="transactionRequestId">
                                                     <span class="json-property-name">transactionRequestId:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/CorrelationId">CorrelationId</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                         <span class="json-property-required"></span>
@@ -41116,7 +41185,8 @@
                                                 <dt data-property-name="note">
                                                     <span class="json-property-name">note:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/Note">Note</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                 </dt>
@@ -41145,7 +41215,8 @@
                                                 <dt data-property-name="authenticationType">
                                                     <span class="json-property-name">authenticationType:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/AuthenticationType">AuthenticationType</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                 </dt>
@@ -41159,7 +41230,8 @@
                                                 <dt data-property-name="expiration">
                                                     <span class="json-property-name">expiration:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/DateTime">DateTime</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                 </dt>
@@ -41308,7 +41380,8 @@
                                                 <dt data-property-name="completedTimestamp">
                                                     <span class="json-property-name">completedTimestamp:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/DateTime">DateTime</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                 </dt>
@@ -41322,7 +41395,8 @@
                                                 <dt data-property-name="transactionState">
                                                     <span class="json-property-name">transactionState:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/TransactionState">TransactionState</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                         <span class="json-property-required"></span>
@@ -41337,7 +41411,8 @@
                                                 <dt data-property-name="code">
                                                     <span class="json-property-name">code:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/Code">Code</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                 </dt>
@@ -41464,7 +41539,8 @@
                                                 <dt data-property-name="scenario">
                                                     <span class="json-property-name">scenario:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/TransactionScenario">TransactionScenario</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                         <span class="json-property-required"></span>
@@ -41479,7 +41555,8 @@
                                                 <dt data-property-name="subScenario">
                                                     <span class="json-property-name">subScenario:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/TransactionSubScenario">TransactionSubScenario</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                 </dt>
@@ -41493,7 +41570,8 @@
                                                 <dt data-property-name="initiator">
                                                     <span class="json-property-name">initiator:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/TransactionInitiator">TransactionInitiator</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                         <span class="json-property-required"></span>
@@ -41508,7 +41586,8 @@
                                                 <dt data-property-name="initiatorType">
                                                     <span class="json-property-name">initiatorType:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/TransactionInitiatorType">TransactionInitiatorType</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                         <span class="json-property-required"></span>
@@ -41538,7 +41617,8 @@
                                                 <dt data-property-name="balanceOfPayments">
                                                     <span class="json-property-name">balanceOfPayments:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/BalanceOfPayments">BalanceOfPayments</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                 </dt>
@@ -41580,7 +41660,8 @@
                                                 <dt data-property-name="fulfilment">
                                                     <span class="json-property-name">fulfilment:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/IlpFulfilment">IlpFulfilment</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                 </dt>
@@ -41594,7 +41675,8 @@
                                                 <dt data-property-name="completedTimestamp">
                                                     <span class="json-property-name">completedTimestamp:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/DateTime">DateTime</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                 </dt>
@@ -41608,7 +41690,8 @@
                                                 <dt data-property-name="transferState">
                                                     <span class="json-property-name">transferState:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/TransferState">TransferState</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                         <span class="json-property-required"></span>
@@ -41666,7 +41749,8 @@
                                                 <dt data-property-name="transferId">
                                                     <span class="json-property-name">transferId:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/CorrelationId">CorrelationId</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                         <span class="json-property-required"></span>
@@ -41681,7 +41765,8 @@
                                                 <dt data-property-name="payeeFsp">
                                                     <span class="json-property-name">payeeFsp:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/FspId">FspId</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                         <span class="json-property-required"></span>
@@ -41696,7 +41781,8 @@
                                                 <dt data-property-name="payerFsp">
                                                     <span class="json-property-name">payerFsp:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/FspId">FspId</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                         <span class="json-property-required"></span>
@@ -41727,7 +41813,8 @@
                                                 <dt data-property-name="ilpPacket">
                                                     <span class="json-property-name">ilpPacket:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/IlpPacket">IlpPacket</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                         <span class="json-property-required"></span>
@@ -41742,7 +41829,8 @@
                                                 <dt data-property-name="condition">
                                                     <span class="json-property-name">condition:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/IlpCondition">IlpCondition</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                         <span class="json-property-required"></span>
@@ -41757,7 +41845,8 @@
                                                 <dt data-property-name="expiration">
                                                     <span class="json-property-name">expiration:</span>
                                                     
-                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/DateTime">DateTime</a>
+                                                    </span>
                                                     <span class="json-property-range" title="Value limits"></span>
                                                     
                                                         <span class="json-property-required"></span>
@@ -41893,7 +41982,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"showToc":false,"title":"Mojaloop","level":"1.7.1","depth":2,"next":{"title":"Central Ledger API","level":"1.7.2","depth":2,"path":"api/central-ledger-api-specification.md","ref":"api/central-ledger-api-specification.md","articles":[]},"previous":{"title":"API Specifications","level":"1.7","depth":1,"path":"api/README.md","ref":"api/README.md","articles":[{"title":"Mojaloop","level":"1.7.1","depth":2,"path":"api/mojaloop-api-specification.md","ref":"api/mojaloop-api-specification.md","articles":[]},{"title":"Central Ledger API","level":"1.7.2","depth":2,"path":"api/central-ledger-api-specification.md","ref":"api/central-ledger-api-specification.md","articles":[]},{"title":"Central Settlements","level":"1.7.3","depth":2,"path":"api/central-settlements-api-specification.md","ref":"api/central-settlements-api-specification.md","articles":[]},{"title":"ALS Oracle","level":"1.7.4","depth":2,"path":"api/als-oracle-api-specification.md","ref":"api/als-oracle-api-specification.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"3.x.x","theme":"default","variables":{"importedVars":{"mojaloop":{"spec":{"version":"v1.0","uri":{"doc":"https://github.com/mojaloop/mojaloop-specification/blob/master/API%20Definition%20v1.0.pdf","api":"https://github.com/mojaloop/mojaloop-specification/blob/master/Supporting%20Files/fspiop-rest-v1.0-OpenAPI-implementation.yaml"}}},"central_ledger":{"spec":{"version":"v2.0","uri":{"doc":"/mojaloop-technical-overview/central-ledger/README.md","api":"https://github.com/mojaloop/central-ledger/blob/master/src/api/interface/swagger.json"}}},"settlement":{"spec":{"version":"v1.1","uri":{"doc":"/mojaloop-technical-overview/central-settlements/README.md","api":"https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json"}}},"als":{"oracle":{"spec":{"version":"v1.2","uri":{"doc":"/mojaloop-technical-overview/account-lookup-service/README.md","api":"https://github.com/mojaloop/documentation/blob/master/api/assets/interface-contracts/oracle-service-swagger-v1.yaml"}}}}}},"plugins":["swagger","editlink","include","insert-logo","plantuml-svg","collapsible-chapters","back-to-top-button","theme-api","variables","changelog","page-toc"],"pluginsConfig":{"plantuml-svg":{},"editlink":{"label":"Edit This Page","multilingual":true,"base":"https://github.com/mojaloop/documentation/edit/master"},"theme-gestalt":{"logo":"https://mojaloop.io/images/logo.png","favicon":"https://mojaloop.io/images/logo.png","baseUrl":null,"excludeDefaultStyles":false,"doNotHideChildrenChapters":false},"include":{},"search":{},"collapsible-chapters":{},"page-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","position":"before-first","showByDefault":true},"swagger":{"file":""},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"uml":{"format":"png","nailgun":false},"changelog":{},"theme-api":{"languages":[],"split":true,"theme":"dark"},"back-to-top-button":{},"variables":{"files":{"importedVars":"book_variables.yml"}},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"insert-logo":{"url":"https://mojaloop.io/images/logo.png","style":"background: none; max-height: 140px; max-width: 140px;"}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"api/mojaloop-api-specification.md","mtime":"2020-02-07T08:18:07.299Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-02-07T08:19:19.152Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"showToc":false,"title":"Mojaloop","level":"1.7.1","depth":2,"next":{"title":"Central Ledger API","level":"1.7.2","depth":2,"path":"api/central-ledger-api-specification.md","ref":"api/central-ledger-api-specification.md","articles":[]},"previous":{"title":"API Specifications","level":"1.7","depth":1,"path":"api/README.md","ref":"api/README.md","articles":[{"title":"Mojaloop","level":"1.7.1","depth":2,"path":"api/mojaloop-api-specification.md","ref":"api/mojaloop-api-specification.md","articles":[]},{"title":"Central Ledger API","level":"1.7.2","depth":2,"path":"api/central-ledger-api-specification.md","ref":"api/central-ledger-api-specification.md","articles":[]},{"title":"Central Settlements","level":"1.7.3","depth":2,"path":"api/central-settlements-api-specification.md","ref":"api/central-settlements-api-specification.md","articles":[]},{"title":"ALS Oracle","level":"1.7.4","depth":2,"path":"api/als-oracle-api-specification.md","ref":"api/als-oracle-api-specification.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"3.x.x","theme":"default","variables":{"importedVars":{"mojaloop":{"spec":{"version":"v1.0","uri":{"doc":"https://mojaloop.io/mojaloop-specification/","api":"https://github.com/mojaloop/mojaloop-specification/blob/master/Supporting%20Files/fspiop-rest-v1.0-OpenAPI-implementation.yaml"}}},"central_ledger":{"spec":{"version":"v2.0","uri":{"doc":"/mojaloop-technical-overview/central-ledger/README.md","api":"https://github.com/mojaloop/central-ledger/blob/master/src/api/interface/swagger.json"}}},"settlement":{"spec":{"version":"v1.1","uri":{"doc":"/mojaloop-technical-overview/central-settlements/README.md","api":"https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json"}}},"als":{"oracle":{"spec":{"version":"v1.2","uri":{"doc":"/mojaloop-technical-overview/account-lookup-service/README.md","api":"https://github.com/mojaloop/documentation/blob/master/api/assets/interface-contracts/oracle-service-swagger-v1.yaml"}}}}}},"plugins":["swagger","editlink","include","insert-logo","plantuml-svg","collapsible-chapters","back-to-top-button","theme-api","variables","changelog","page-toc"],"pluginsConfig":{"plantuml-svg":{},"editlink":{"label":"Edit This Page","multilingual":true,"base":"https://github.com/mojaloop/documentation/edit/master"},"theme-gestalt":{"logo":"https://mojaloop.io/images/logo.png","favicon":"https://mojaloop.io/images/logo.png","baseUrl":null,"excludeDefaultStyles":false,"doNotHideChildrenChapters":false},"include":{},"search":{},"collapsible-chapters":{},"page-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","position":"before-first","showByDefault":true},"swagger":{"file":""},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"uml":{"format":"png","nailgun":false},"changelog":{},"theme-api":{"languages":[],"split":true,"theme":"dark"},"back-to-top-button":{},"variables":{"files":{"importedVars":"book_variables.yml"}},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"insert-logo":{"url":"https://mojaloop.io/images/logo.png","style":"background: none; max-height: 140px; max-width: 140px;"}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"api/mojaloop-api-specification.md","mtime":"2020-03-23T19:23:37.693Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-23T19:24:49.407Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
