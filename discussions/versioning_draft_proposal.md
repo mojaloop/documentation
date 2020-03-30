@@ -108,23 +108,25 @@ In the version **x.y**.z, ‘x’ indicates the Major version and ‘y’ a mino
 
 In effect we may say Mojaloop version **x.y** includes
 1. Mojaloop FSPIOP API
-    * Maintained by CCB
+    * Maintained by the CCB (Change Control Board)
     * Uses x.y format
     * Currently version v1.0, v1.1 and v2.0 are in the pipeline
 2. Settlement API
-    * Maintained by Settlements stream, core-team
+    * Maintained by the CCB
     * To use x.y format
     * Currently version v1.1 and v2.0 is in the pipeline
 3. Admin / Operations API
-    * Maintained by the core-team
+    * Maintained by the CCB
     * To use x.y format
     * Can use version v1.0
 4. Helm
-    * Maintained by Core-team
+    * Maintained by the Design Authority
     * Uses x.y.z format
-    * PI, Sprint based versioning.
+    * PI (Program Increment) + Sprint based versioning.
+    > *Note:* _PI + Sprint based versioning_ make sense in the context of the current Mojaloop Program Increments, but will need to be revised at a later date.
     * Bundles compatible versions of individual services together
 5. Internal Schemas
+    * Maintained by the Design Authority
     * DB Schema x.y
     * Internal messaging Schema (Kafka) x.y
 
@@ -133,12 +135,12 @@ In effect we may say Mojaloop version **x.y** includes
 |   | Owner/Maintainer | Format | Meaning |
 | **APIs** | | | |
 | - FSPIOP API | CCB | *x.y* | Major.Minor |
-| - Settlement API | Core-team/Settlements Worksteam | *x.y* | Major.Minor |
-| - Admin/Operations API | Core-team | *x.y* | Major.Minor |
-| Helm | Core-team | *x.y.z* | PI.Sprint.Increment |
+| - Settlement API | CCB | *x.y* | Major.Minor |
+| - Admin/Operations API | CCB | *x.y* | Major.Minor |
+| Helm | Design Authority  | *x.y.z* | PI.Sprint.Increment |
 | **Internal Schemas** | | | |
-| - DB Schema | Core-team | *x.y* | Major.Minor |
-| - Internal Messaging | Core-team | *x.y* | Major.Minor |
+| - DB Schema | Design Authority | *x.y* | Major.Minor |
+| - Internal Messaging | Design Authority | *x.y* | Major.Minor |
 
 
 
@@ -159,12 +161,12 @@ For example: Mojaloop 1.0 includes
 |   | Owner/Maintainer | Version |
 | **APIs** | | | |
 | - FSPIOP API | CCB | *1.0* |
-| - Settlement API | Core-team/Settlements Worksteam | *1.1* |
-| - Admin/Operations API | Core-team | *1.0* |
-| Helm | Core-team | *9.1.0* |
+| - Settlement API | CCB | *1.1* |
+| - Admin/Operations API | CCB | *1.0* |
+| Helm | Design Authority  | *9.1.0* |
 | **Internal Schemas** | | | |
-| - DB Schema | Core-team | *1.0* |
-| - Internal Messaging | Core-team | *1.0* |
+| - DB Schema | Design Authority | *1.0* |
+| - Internal Messaging | Design Authority  | *1.0* |
 
 ### Advantages
 
