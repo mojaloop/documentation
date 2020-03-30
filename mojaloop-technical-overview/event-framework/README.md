@@ -195,7 +195,7 @@ _Note: HEXDIGLC = DIGIT / "a" / "b" / "c" / "d" / "e" / "f" ; lower case hex cha
 
 Below find the current proposed standard HTTP Transport headers for tracing.
 
-Mojaloop has yet to standardise on either standard, or if it will possible support both.
+Mojaloop has standardise on W3C Http Headers.
 
 #### 4.1.1 W3C Http Headers
 
@@ -211,6 +211,8 @@ Note: Before this specification was written, some tracers propagated X-B3-Sample
 #### 4.1.2 B3 HTTP Headers
 
 Refer to the following publication for more information: https://github.com/apache/incubator-zipkin-b3-propagation
+
+Mojaloop support for this standard has yet to be determined.
 
 | Header | Description | Example |
 | --- | --- | --- |
