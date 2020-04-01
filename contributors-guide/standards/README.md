@@ -6,6 +6,10 @@
 
 The Mojaloop Community provides a set of guidelines for the style of code we write. These standards help ensure that the Mojaloop codebase remains high quality, maintainable and consistent.
 
+These style guides are chosen because they can be easily enforced and checked using popular tools with minimal customisation. While we recognise that developers will have personal preferences that may conflict with these guidelines we favour consistency over bike-shedding these rules.
+
+The goal of these guides is to ensure an easy developer workflow and reduce code commits that contain changes for the sake of style over content. By reducing the noise in diffs we make the job of reviewers easier. 
+
 ### Code Style
 
 #### Javascript
