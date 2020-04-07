@@ -6,7 +6,7 @@
 
 The Mojaloop Community provides a set of guidelines for the style of code we write. These standards help ensure that the Mojaloop codebase remains high quality, maintainable and consistent.
 
-These style guides are chosen because they can be easily enforced and checked using popular tools with minimal customisation. While we recognise that developers will have personal preferences that may conflict with these guidelines we favour consistency over bike-shedding these rules.
+These style guides are chosen because they can be easily enforced and checked using popular tools with minimal customisation. While we recognise that developers will have personal preferences that may conflict with these guidelines we favour consistency over [bike-shedding](https://en.wikipedia.org/wiki/Law_of_triviality) these rules.
 
 The goal of these guides is to ensure an easy developer workflow and reduce code commits that contain changes for the sake of style over content. By reducing the noise in diffs we make the job of reviewers easier. 
 
@@ -117,6 +117,7 @@ The directory structure guide requires:
 ```bash
 ├── package.json       # at the root of the project
 ├── src                # directory containing project source files 
+├── dist               # directory containing compiled javascript files (see tsconfig below)
 ├── test               # directory for tests, containing at least:
 │   ├── unit           # unit tests, matching the directory structure in `./src`
 │   └── integration    # integration tests, matching the directory structure in `./src`
@@ -128,7 +129,10 @@ The directory structure guide requires:
 
 The following Config files help to enforce the code styles outlined above:
 
+
 #### EditorConfig
+> EditorConfig is supported out of the box in many IDEs and Text editors. For more information, refer to the [EditorConfig guide](https://editorconfig.org/).
+
 `.editorconfig`
 ```ini
 root = true
@@ -139,11 +143,7 @@ insert_final_newline = true
 trim_trailing_whitespace = true
 charset = utf-8
 
-[*.js]
-indent_style = space
-indent_size = 2
-
-[{package.json,*.yml,*.cjson}]
+[{*.js,*.ts,package.json,*.yml,*.cjson}]
 indent_style = space
 indent_size = 2
 
@@ -226,14 +226,18 @@ exclude: [
 }
 ```
 
-`.eslint.js`
+`.eslintrc.js`
 ```js
 module.exports = {
   parser: '@typescript-eslint/parser',  // Specifies the ESLint parser
   extends: [
     'plugin:@typescript-eslint/recommended',  // Uses the recommended rules from the @typescript-eslint/eslint-plugin
-    'prettier/@typescript-eslint',  // Uses eslint-config-prettier to disable ESLint rules from @typescript-eslint/eslint-plugin that would conflict with prettier
-    'plugin:prettier/recommended',  // Enables eslint-plugin-prettier and displays prettier errors as ESLint errors. Make sure this is always the last configuration in the extends array.
+    'prettier/@typescript-eslint', // Uses eslint-config-prettier to disable ESLint rules from @typescript-eslint/eslint-plugin that would conflict with prettier
+    'plugin:prettier/recommended', // Enables eslint-plugin-prettier and displays prettier errors as ESLint errors. Make sure this is always the last configuration in the extends array.
+    // Enforces ES6+ import/export syntax
+    'plugin:import/errors',
+    'plugin:import/warnings',
+    'plugin:import/typescript',
   ],
   parserOptions: {
     ecmaVersion: 2018,  // Allows for the parsing of modern ECMAScript features
@@ -254,6 +258,8 @@ module.exports = {
   ],
 };
 ```
+
+For a more detailed list of the recommended typescript configuration, including `package.json`, `jest.config.js` and more, refer to the [Typescript Template Project](https://github.com/mojaloop/template-typescript-public)
 
 ### Design + Implementation Guidelines
 
