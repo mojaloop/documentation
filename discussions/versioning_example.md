@@ -74,7 +74,7 @@ The existing Mojaloop Version:
 > some version values are made up for demonstration purposes
 
 | **Mojaloop**            | v1.0     |
-|---|---|---
+|---|---|
 |                         | Version  |
 | **APIs**                |          |
 | - FSPIOP API            | *1.0*    |
@@ -89,7 +89,7 @@ The existing Mojaloop Version:
 Thus, by introducing this breaking API change, we can summarize the new version as follows:
 
 | **Mojaloop**            | v2.0     |
-|---|---|---
+|---|---|
 |                         | Version  |
 | **APIs**                |          |
 | - FSPIOP API            | *2.0*    |
