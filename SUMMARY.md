@@ -137,6 +137,10 @@
   * [Workbench Workstream](discussions/workbench.md)
   * [Cross Border Meeting Notes Day 1](discussions/cross_border_day_1.md)
   * [Cross Border Meeting Notes Day 2](discussions/cross_border_day_2.md)
+* [Mojaloop DA, CCB, Scrum-of-scrum Notes](meeting-notes/readme.md)
+  * [Scrum-of-scrum meeting notes](meeting-notes/scrum-of-scrum-notes.md)
+  * [DA meeting notes](meeting-notes/da-notes.md)
+  * [Workbench Workstream](meeting-notes/ccb-notes.md)
 * [Frequently Asked Questions](contributors-guide/frequently-asked-questions.md)
 * [Glossary of Terms](glossary.md)
 <!--* [Changelog](changelog.md)-->
