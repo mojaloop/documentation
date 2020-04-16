@@ -16,7 +16,7 @@
   g. Lewis: Container scans working - will work with Victor, early benchmarks
   h. Lewis: Finally - versioning update
 3. Mifos:
-  a. Ed: Work on Payment Hub, integrating with Kafka, ML transactions going through, usiing Elastic Search, for backoffice ops moniring
+  a. Ed: Work on Payment Hub, integrating with Kafka, ML transactions going through, using Elastic Search, for backoffice ops monitoring
   b. Ed: Demo Prep for PI10 meetings
 4. Core team:
   a. Sam: Performance: Drafting reports, Moving metrics, other enhancements to master branches
