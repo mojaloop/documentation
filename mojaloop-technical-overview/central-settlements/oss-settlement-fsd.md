@@ -1609,7 +1609,7 @@ Process transfers for continuous gross settlement [EPIC]
 
 When a settlement model specifies that an account is to be settled immediate gross, then each ledger entry which is of a type belonging to that scheme account should be settled immediately. This immediate settlement should have the following characteristics:
 
-- It should be performed by a process which is logged.
+- It should be performed by a process which is forensically logged.
 - It should be performed immediately, so that participants can check their current position against the transfers that comprise it.
 - It should be aggregated to settlement window level, so that the checks which are currently performed on the overall status of a settlement window will continue to work.
 
@@ -1621,7 +1621,7 @@ The following changes are required to the database to implement transfer process
 
 #### Addition of a new table to store changes in state
 
-A new table should be added to store changes in state for individual transfers. The name of this table should be **transferParticipantStateChange**. Its column structure should be as follows:
+A new table should be added to store changes in state for ledger entries for individual transfers. The name of this table should be **transferParticipantStateChange**. Its column structure should be as follows:
 
 1.  The unique key to the record. Column name: **transferParticipantStateChangeId**; type: unsigned BIGINT; not nullable; primary key
 2.  The record in **TransferParticipant** whose state change this record marks. Column name: **transferParticipantId**; type: unsigned BIGINT; not nullable; foreign key to the **transferParticipantId** column of the **transferParticipant** table.
@@ -1631,25 +1631,27 @@ A new table should be added to store changes in state for individual transfers. 
 
 #### Changes to the TransferParticipant table
 
-The **transferParticipant** table should have a new column added to store the current state of the transaction. The name of the column should be **currentStateChangeId** and its data type should be UNSIGNED BIGINT. The column should be nullable, and it should have a foreign key reference to the **transferParticipantStateChangeId** column of the **transferParticipantStateChange** table.
+No changes to the **transferParticipant** table are required. The relationship between records in the **transferParticipant** table and records in the **transferParticipantStateChange** table is managed via the **transferParticipantId** column in the **transferParticipantStateChange** table.
+
+#### Changes to the settlementModel table
+
+Existing implementations have functionality which automatically adjusts participants' positions when settlements are completed. In order to support backwards compatibility for these implementations, the settlement model will be expanded to allow automated position adjustment to be switched off and on.
+
+This functionality will be managed through a new column in the **settlementModel** table. The name of the column will be **adjustPosition**. Its type will be TINYINT(1), and it should not be nullable. It should have a default value of zero (FALSE).
 
 ### Processing changes
 
 The following changes to processing are required to support immediate settlement of gross ledger entries.
-
-#### Generating entries in settlementTransferParticipant
-
-When a new row is inserted in the **transferParticipant** table, the value of the **currentStateChangeId** column for that row should be set to NULL.
-
 
 
 #### Generating entries in settlementContentAggregation
 
 The following changes to the process that creates aggregation records in the **settlementContentAggregation** table are required.
 
-1.  The aggregation process for a settlement window may not be performed if there are any records in the **transferParticipant** table which belong to the settlement window to be aggregated (as defined by joining the **transferParticipant** records to the matching records in the **transferFulfilment** table on the **transferId** column in both tables) and which have their **currentStateChangeId** column set to NULL.
-2.  When there are no records in **transferParticipant** which meet the blocking criteria described in step 1 above, then all records belonging to the settlement window which has just been closed, and which currently have the status OPEN, should have their status set to CLOSED. This means: a record should be added to the **transferParticipantStateChange** table for the qualifying **transferParticipant** record whose status is CLOSED, and the **currentStateChangeId** column for the qualifying **transferParticipant** record should be set to point to the newly created record.
-2.  When aggregating records for insertion into the **settlementContentAggregation** table, if all the records in the **transferParticipant** table which are to be aggregated into a single record in the **settlementContentAggregation** table have the same value in their **currentStateChangeId** column, then the value of the **currentStateId** column in the newly created record in the **settlementContentAggregation** table should be set as follows. The value of the **currentStateId** column in the newly created record in the **settlementContentAggregation** table should be set to the shared value in the constituent records from the **transferParticipant** table, except in the following case: if the shared value in the constituent records from the **transferParticipant** table is OPEN, then the value of the **currentStateId** column should be set to the value CLOSED.
+1.  The aggregation process for a settlement window may not be performed if there are any records in the **transferParticipant** table which belong to the settlement window to be aggregated (as defined by joining the **transferParticipant** records to the matching records in the **transferFulfilment** table on the **transferId** column in both tables) and which do not have any corresponding entries in the **transferParticipantStateChange** table. This test is performed via a LEFT OUTER JOIN relationship between the **transferParticipantStateChange** table and the **transferParticipant** table, using the foregin key relation between the **transferParticipantId** columns in the **transferParticipant** table and the **transferParticipantStateChange** table.
+2.  In the discussion which follows, the current status of a record in **transferParticipant** is defined as: the status of the record in the **transferParticipantStateChange** table which is keyed to the record in **transferParticipant** and which has the latest value in the **createdDate** column of the **transferParticipantStateChange** table.
+3.  When there are no records in **transferParticipant** which meet the blocking criteria described in step 1 above, then all records belonging to the settlement window which has just been closed, and which currently have the status OPEN, should have their status set to CLOSED. This means: a record should be added to the **transferParticipantStateChange** table for the qualifying **transferParticipant** record whose status is CLOSED, and the **currentStateChangeId** column for the qualifying **transferParticipant** record should be set to point to the newly created record.
+4.  When aggregating records for insertion into the **settlementContentAggregation** table, if all the records in the **transferParticipant** table which are to be aggregated into a single record in the **settlementContentAggregation** table have the same value in their **currentStateChangeId** column, then the value of the **currentStateId** column in the newly created record in the **settlementContentAggregation** table should be set as follows. The value of the **currentStateId** column in the newly created record in the **settlementContentAggregation** table should be set to the shared value in the constituent records from the **transferParticipant** table, except in the following case: if the shared value in the constituent records from the **transferParticipant** table is OPEN, then the value of the **currentStateId** column should be set to the value CLOSED.
 
 #### Marking transfers as settled
 
@@ -1661,18 +1663,36 @@ When a transfer is completed, a record is generated in the **transferFulfilment*
 
 ##### Processing settlements
 
-A new service should be developed for processing settlements. The characteristics of the service should be as follows:
+A new service should be developed for processing gross (i.e. per-transfer) settlements. The requirements for this service are as follows:
+1.  It should enable an auditor to verify that a given transfer has been settled using the agreed process
+2.  It should allow transfer settlement to be recorded either internally, using an automatic process, or externally, exporting the information for each transfer to be settled to a configurable endpoint.
+3.  It should not delay processing of the transfer itself
+
+The characteristics of the service should be as follows:
 
 1.  Pick a transfer from the Kafka stream holding transfers awaiting settlement processing. There is no requirement for sequence preservation, so this service can pick up multiple transfer entries if this would accelerate processing.
-2   For each record in the **transferParticipant** table which belongs to the transfer *and* whose **ledgerEntryType** column specifies a ledger entry type which belongs to a settlement model which is settled both GROSS and IMMEDIATE, the service should generate consecutive records in the **transferParticipantStateChange** table with the values: CLOSED, PENDING_SETTLEMENT, and SETTLED, in that order. The **currentStateChangeId** column for the record in the **transferParticipant** table should be set to point to the record in the **transferParticipantStateChange** table whose value is SETTLED.
-3   For all other records in the **transferParticipant** table which belong to the transfer, the service should generate a record in the **transferParticipantStateChange** table with a value of OPEN. The **currentStateChangeId** column for the record in the **transferParticipant** table should be set to point to the record in the **transferParticipantStateChange** table which was created.
+2.  For each record in the **transferParticipant** table which belongs to the transfer *and* whose **ledgerEntryType** column specifies a ledger entry type which belongs to a settlement model which is settled both GROSS and IMMEDIATE, the service should generate consecutive records in the **transferParticipantStateChange** table with the values: CLOSED, PENDING_SETTLEMENT, and SETTLED, in that order. The **currentStateChangeId** column for the record in the **transferParticipant** table should be set to point to the record in the **transferParticipantStateChange** table whose value is SETTLED.
+3.  For each record in the **transferParticipant** table which belongs to the transfer *and* whose **ledgerEntryType** column specifies a ledger entry type which belongs to a settlement model which is settled both GROSS and IMMEDIATE *and* where the settlement model has an export endpoint configured, the process should export the information relating to the entry that is being settled to the endpoint specified in an agreed format. The format to be used, the means of specifying the endpoint to be addressed, and the process by which exports are generated and acknowledged, are not specified at this time.
+4.  For all other records in the **transferParticipant** table which belong to the transfer, the service should generate a record in the **transferParticipantStateChange** table with a value of OPEN. The **currentStateChangeId** column for the record in the **transferParticipant** table should be set to point to the record in the **transferParticipantStateChange** table which was created.
 
 #### Updating status values for net settlements
 
 When the status is updated for a participant in a settlement which belongs to a settlement model which is not settled both GROSS and IMMEDIATE, then the constituent records for that participant in the settlement in the **transferParticipant** table need to be updated. The rules for this are:
 
 1.  When the settlement is created, all the records in **transferParticipant** which belong to a transfer which belongs to a window which belongs to the settlement being created (i.e. which are contained in the inner join between **transferParticipant**, **transferfulfilment** (on **transferId**) and **settlementSettlementWindow** (on **settlementWindowId**) for the settlement Id which is being created) should have a record created in **settlementContentAggregationStateChange** with the **settlementWindowStateId** column set to PENDING_SETTLEMENT.
-2.  When a participant's settlement status is updated to SETTLED in **settlementParticipantCurrency**, then all the records in **transferParticipant** for settlement windows which belong to that settlement, and whose participant and currency IDs match the participant and currency of the records in **settlementParticipantCurrency** which have been updated, shoul have their status set to SETTLED.
+2.  When a participant's settlement status is updated to SETTLED in **settlementParticipantCurrency**, then all the records in **transferParticipant** for settlement windows which belong to that settlement, and whose participant and currency IDs match the participant and currency of the records in **settlementParticipantCurrency** which have been updated, should have their status set to SETTLED.
+
+#### Gross settlement and position management
+
+If gross settlement is enabled for a settlement model and that settlement model also has its **adjustPosition** flag set to TRUE, then an adjustment to both participants' positions should be made. This should be done in the following way:
+
+1.  For each record in the **transferParticipant** table which is being settled, create a record in the **participantPositionChange** table with the following characteristics:
+    a.  The **participantPositionId** column should be set to the value of the **participantPositionId** column in the **participantPosition** table for the record whose **participantCurrencyId** field is the same as that of the record in the **transferParticipant** table which has been settled.
+    b.  The **transferStateChangeId** column should be set to the value of the **transferStateChangeId** column for the record in the **transferStateChange** table whose **transferId** column is the same as the value of the **transferId** column in the **transferParticipant** table for the record which is being settled, and which has the latet value in its **createdDate** column.
+    c.  The **value** column should be set to the **amount** column in the **transferParticipant** table for the record which is being settled.
+    d.  The **reservedValue** column should be set to zero.
+    e.  The **createdDate** column should be set to the current date and time.
+2.  The record in the **participantPosition** table whose **participantCurrencyId** field matches that of the record in the **transferParticipant** table which has been settled should have the **amount** column of the corresponding record in the **transferParticipant** table added to its **value** column.
 
 Domain class diagram
 ====================
