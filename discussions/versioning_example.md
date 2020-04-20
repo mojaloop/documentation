@@ -152,7 +152,7 @@ In this approach, you will see how we can partition kafka based on message _vers
 
 The following diagram shows a simplified message flow of `POST /transfers v1.1` through the system:
 
-<img src="./images/2_infra_old.png" width=800>
+<img src="./images/2_infra_old.png" width=1000>
 
 Before we dive into the steps, we must first introduce more mojaloop internals: the `central-ledger` microservice, which handles the transfer requests.
 
@@ -164,7 +164,7 @@ Inside of a _single_ helm deployment, we can run both 2 versions of `central-led
 
 This is what our infrastructure would look like with such a change:
 
-<img src="./images/2_infra_new.png" width=800>
+<img src="./images/2_infra_new.png" width=1000>
 
 However... what about the database? And this is the tricky part. We have (at least) 2 failure conditions here:
 
