@@ -12,7 +12,7 @@ For example, a current proposal is to include the `quoteId` in the `POST /transf
 ```
 POST /transfers HTTP/1.1
 Accept: application/vnd.interoperability.transfers+json;version=2
-Date: Tue, 15 Nov 1994 08:12:31 GMT
+Date: Tue, 15 Nov 2020 08:12:31 GMT
 ... other headers...
 Body:
 {
@@ -26,9 +26,6 @@ Body:
   "expiration": "2020-05-24T08:38:08.699-04:00"
 }
 ```
-
-[TODO: talk about the breaking change? and why it is breaking?]
-
 
 ### API Implications
 
@@ -76,7 +73,7 @@ The existing Mojaloop Version:
 |---|---|
 |                         | Version  |
 | **APIs**                |          |
-| - FSPIOP API            | *1.0*    |
+| - FSPIOP API            | *1.1*    |
 | - Settlement API        | *1.1*    |
 | - Admin/Operations API  | *1.0*    |
 | Helm                    | *11.0.0* |
@@ -125,17 +122,17 @@ We will now summarize a few different methods for implementing such a change.
 | Technical Debt (supporting many versions) | NONE          |
 
 
-In "Stop The World", the approach is to simply take down the entire switch, apply any changes, and start it back up again.
+In "Stop The World", the approach is to simply take down the entire Mojaloop deployment, apply the changes, and start it back up again.
 
-This is not a desirable case, although it is the case that we have by default today. I want to quantify it here so we can benchmark our other implementation approaches against it.
+This is not a desirable case, although it is the case that we have by default today. I want to expand on it here so we can benchmark our other implementation approaches against it.
 
 #### Steps:
-1. At the API Gateway level, stop any incoming quote requests, and wait until the pending transfers are complete or timed out. This is essentially draining the messages inside of the kafka queues
+1. At the API Gateway level, stop any incoming quote requests, and wait until the pending transfers are complete or timed out. This is essentially draining the messages inside of the kafka streams
 1. Once again at the API Gateway, kill all traffic to the switch
 1. Assuming database persistence, update the helm charts from `v11.0.0` to `v11.1.0`
 1. Behind the scenes, when the new helm containers start up, the above migration to the database will be run
 1. Once all services are healthy, reenable all traffic and we are good to go.
-    - Note that since we did nothing around supporting multiple FSPIOP API versions, _by default_ the upgraded switch will only support `POST /transfers` requests at version 2. 
+    - Note that since we did nothing around supporting multiple FSPIOP API versions, _by default_ the upgraded switch will _only_ support `POST /transfers` requests at version 2. 
 
 
 ### 2. Worry about it in the infrastructure
@@ -153,6 +150,10 @@ In "Worry about it in the infrastructure", we use kubernetes and helm to help us
 
 In this approach, you will see how we can partition kafka based on message _versions_ to ensure the right microservices pick up the right messages. [todo: talk about database issues...]
 
+The following diagram shows a simplified message flow of `POST /transfers v1.1` through the system:
+
+<img src="./images/2_infra_old.png" width=800>
+
 Before we dive into the steps, we must first introduce more mojaloop internals: the `central-ledger` microservice, which handles the transfer requests.
 
 For example take the following:
@@ -161,14 +162,30 @@ For example take the following:
 
 Inside of a _single_ helm deployment, we can run both 2 versions of `central-ledger`, `v11.0.0` and `v11.1.0` at the same time. Assuming some routing magic that can send the right version of requests to the right service, this gives us the ability to understand `POST /transfer` requests of both versions.
 
-However... what about the database? And this is the tricky part. We have 2 failure conditions here:
+This is what our infrastructure would look like with such a change:
+
+<img src="./images/2_infra_new.png" width=800>
+
+However... what about the database? And this is the tricky part. We have (at least) 2 failure conditions here:
 
 1. `central-ledger:v11.0.0` sees an additional field, `quoteId` in the database and cannot handle it
 2. `central-ledger:v11.1.0` doesn't see the `quoteId` field, and cannot handle a request. (This would happen on a `GET /transfers`, which doesn't currently exist) [todo: go through these failure conditions again]
 
 
 #### Steps:
-1. [todo]
+1. Author a new Helm version 11.1.0, which :
+    - spins up a new database alongside the existing database, instead of replacing it
+    - adds new services (e.g. `central-ledger:v11.1.0`), instead of replacing them
+1. While still not allowing v2 requests at the API Gateway, `helm upgrade` to spin up new infrastructure alongside the existing infrastructure
+1. Execute Database copies and set up triggers [todo: this needs more detail - this may not need to _copy_ the database, but apply schema updates and apply _views_ for different versions...] 
+1. Once all services are healthy, open up traffic to `v2.0`, and we are good to go
+
+
+#### Other Thoughts:
+- This method supports multiple API versions at the same time, but 
+  - Requires a lot of infrastructure heavy lifting for such a small change.
+  - And does it support DFSPs at different API levels transacting with one another? I'm not quite sure...
+  - Also could impact Kafka performance by partitioning topics per message version
 
 
 
