@@ -37,8 +37,6 @@ This change is touching the `FSPIOP API` only, so we wouldn't need to increment 
 
 Since we're adding new fields to the API, this will also impact the internal messages of the switch (kafka), and will (potentially?) make it backwards incompatible. Thus, we will make a new message schema version (2.0):
 
-[todo: example of current internal transfer request message, and list out the changes]
-[note: this may not necessarily be a breaking change internally, if we handle things right... for example, with adapters for the messages]
 
 ### Database Schema
 
@@ -91,17 +89,10 @@ Thus, by introducing this breaking API change, we can summarize the new version 
 | - FSPIOP API            | *2.0*    |
 | - Settlement API        | *1.1*    |
 | - Admin/Operations API  | *1.0*    |
-| Helm                    | *11.1.0* |
+| Helm                    | *12.0.0* |
 | **Internal Schemas**    |          |
-| - DB Schema             | *11.1*   |
-| - Internal Messaging    | *11.1*   |
-
-Since the changes to Helm and the internal schemas are backwards compatible, they only need to be bumped a `MINOR` version, but since the FSPIOP API change is not backwards compatible, the `MAJOR` version is bumped.
-
-[notes:
-  - do we actually need to bump up to Mojaloop v2.0? I'm not 100% sure on this, and if we should, we should establish a rule
-  - perhaps we should pick an example of something that _is_ a breaking change to the db schema, since that will make for a better example
-]
+| - DB Schema             | *12.0*   |
+| - Internal Messaging    | *12.0*   |
 
 
 ## Implementation:
@@ -129,7 +120,7 @@ This is not a desirable case, although it is the case that we have by default to
 #### Steps:
 1. At the API Gateway level, stop any incoming quote requests, and wait until the pending transfers are complete or timed out. This is essentially draining the messages inside of the kafka streams
 1. Once again at the API Gateway, kill all traffic to the switch
-1. Assuming database persistence, update the helm charts from `v11.0.0` to `v11.1.0`
+1. Assuming database persistence, update the helm charts from `v11.0.0` to `v12.0.0`
 1. Behind the scenes, when the new helm containers start up, the above migration to the database will be run
 1. Once all services are healthy, reenable all traffic and we are good to go.
     - Note that since we did nothing around supporting multiple FSPIOP API versions, _by default_ the upgraded switch will _only_ support `POST /transfers` requests at version 2. 
@@ -146,9 +137,7 @@ This is not a desirable case, although it is the case that we have by default to
 | Technical Debt (supporting many versions) | YES          |
 
 
-In "Worry about it in the infrastructure", we use kubernetes and helm to help us manage and run multiple 'internal' versions of different microservices simultaneously.
-
-In this approach, you will see how we can partition kafka based on message _versions_ to ensure the right microservices pick up the right messages. [todo: talk about database issues...]
+In "Worry about it in the infrastructure", we use kubernetes and helm to help us manage and run multiple 'internal' versions of our microservices simultaneously. In this approach, you will see how we can partition kafka based on message _versions_ to ensure the right microservices pick up the right messages.
 
 The following diagram shows a simplified message flow of `POST /transfers v1.1` through the system:
 
@@ -158,9 +147,9 @@ Before we dive into the steps, we must first introduce more mojaloop internals: 
 
 For example take the following:
 - `central-ledger:v11.0.0`, which can understand `POST /transfer` requests of `v1.1`, that is, without the additional `quoteId` field. (this is a simplification, but bear with me).
-- `central-ledger:v11.1.0`, which can understand both `POST /transfer` requests of `v2.0`, _with_ the additional `quoteId` field.
+- `central-ledger:v12.0.0`, which can understand `POST /transfer` requests of `v2.0`, _with_ the additional `quoteId` field.
 
-Inside of a _single_ helm deployment, we can run both 2 versions of `central-ledger`, `v11.0.0` and `v11.1.0` at the same time. Assuming some routing magic that can send the right version of requests to the right service, this gives us the ability to understand `POST /transfer` requests of both versions.
+Inside of a _single_ helm deployment, we can run both 2 versions of `central-ledger`, `v11.0.0` and `v12.0.0` at the same time. Assuming some routing magic that can send the right version of requests to the right service, this gives us the ability to understand `POST /transfer` requests of both versions.
 
 This is what our infrastructure would look like with such a change:
 
@@ -168,24 +157,26 @@ This is what our infrastructure would look like with such a change:
 
 However... what about the database? And this is the tricky part. We have (at least) 2 failure conditions here:
 
-1. `central-ledger:v11.0.0` sees an additional field, `quoteId` in the database and cannot handle it
-2. `central-ledger:v11.1.0` doesn't see the `quoteId` field, and cannot handle a request. (This would happen on a `GET /transfers`, which doesn't currently exist) [todo: go through these failure conditions again]
+1. `central-ledger:v11.0.0` sees an additional field, `quoteId` in the database and doesn't know what to do with it.
+2. `central-ledger:v12.0.0` sees either no `quoteId`, or `quoteId` is null, when it is expecting it to be some value.
+
+For this, we would likely rely on database views and versioning at the database schema, so each respective `central-ledger` `v11.0.0` and `v12.0.0` has a strong guarantee about what it can read and write to the database.
 
 
 #### Steps:
-1. Author a new Helm version 11.1.0, which :
-    - spins up a new database alongside the existing database, instead of replacing it
-    - adds new services (e.g. `central-ledger:v11.1.0`), instead of replacing them
+1. Author a new Helm version `v12.0.0`, which:
+    - spins up a new database alongside the existing database, instead of replacing it [or multiple database _views_?]
+    - adds new services (e.g. `central-ledger:v12.0.0`), instead of replacing them
 1. While still not allowing v2 requests at the API Gateway, `helm upgrade` to spin up new infrastructure alongside the existing infrastructure
-1. Execute Database copies and set up triggers [todo: this needs more detail - this may not need to _copy_ the database, but apply schema updates and apply _views_ for different versions...] 
+1. Execute database schema migration and setting up versioned views etc.
 1. Once all services are healthy, open up traffic to `v2.0`, and we are good to go
 
 
 #### Other Thoughts:
 - This method supports multiple API versions at the same time, but 
-  - Requires a lot of infrastructure heavy lifting for such a small change.
-  - And does it support DFSPs at different API levels transacting with one another? I'm not quite sure...
-  - Also could impact Kafka performance by partitioning topics per message version
+  - Requires a lot of infrastructure heavy lifting for such a small change. (What about the next change? Do we need to run another copy of almost all the services?)
+  - Does not allow DFSPs at different `MAJOR` versions to interoperate (which it may not need to).
+  - It could impact Kafka performance by partitioning topics per message version
 
 
 
@@ -199,7 +190,41 @@ However... what about the database? And this is the tricky part. We have (at lea
 | Allows for hotfixes and security patches | YES           |
 | Technical Debt (supporting many versions) | LESS          |
 
-For "Worry about it in the code", we (as the title implies), worry about such changes in the code. We don't rely upon helm and kubernetes to run multiple versions of a given service at the same time; our services _always talk the latest API_, and in order to talk the older versions of the API, we _adapt the messages_ backwards.
+For "Worry about it in the code", we (as the title implies), worry about such changes in the code. We don't rely upon helm and kubernetes to run multiple versions of a given service at the same time; our services _always talk the latest API_, and in order to talk the older versions of the API, we _adapt the messages_ forwards and backwards.
 
-[todo: go into more detail here]
+The advantage with this approach is that we can always run and maintain the _latest_ version of our services, and minimize the need to touch legacy code.
+
+Once again, let's take a look at our simplified transfer request flow:
+
+<img src="./images/2_infra_old.png" width=1000>
+
+For this approach, we define a new service called `compat-adapter`, which is responsible for upgrading incoming messages and downgrading outgoing messages to the correct API versions. 
+
+<img src="./images/3_code_new.png" width=1000>
+
+By default, once we deploy `helm v12.0.0`, the mojaloop switch talks `transfers v2.0`. In order to understand and responsd to `transfers v1.1` messages, the `compat-adapter` does the work in upgrading the incoming messages, and downgrading the outgoing messages to the relevant API versions.
+
+For example:
+
+<img src="./images/upgrade.png" width=750>
+</br>
+<img src="./images/downgrade.png" width=750>
+
+
+#### Steps
+1. Author a new Helm `v11.1.0`, which:
+    - Applies any necessary database and message schema changes for upcoming version `v12.0.0`
+1. Deploy Helm `v11.1.0` with `helm upgrade`. Database migrations will be applied live
+1. Update internal services to be able to handle the new `transfer.quoteId`, as an optional field, and implement business logic for handling cases without it
+1. Bundle these internal service changes in Helm `v11.2.0`
+1. Deploy Helm `v11.2.0` with `helm upgrade`. Internal services will now be able to handle the `transfer.quoteId` field, but since all messages are still `v1.1`, nothing has changed.
+1. Build/update `compat-adapter` service to handle upgrading and downgrading requests and responses to and from `v1.1` and `v2.0`
+1. Bundle the `compat-adapter` in with Helm `v12.0.0`
+1. Deploy helm `v12.0.0`, which will start the `compat-adapter` service
+1. Once all services are healthy, open up traffic to `v2.0` requests at the API Gateway, and we are good to go
+
+
+Caveats:
+- all services now need to know how to deal with null values for `transfer.quoteId`, so there is additional heavy lifting required in the code.
+- 
 
