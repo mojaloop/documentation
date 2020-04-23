@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Moajoop Decimal Type; Based on XML Schema Decimal Type · GitBook</title>
+        <title>Code Quality and Security · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -85,10 +85,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="workbench.html" />
+    <link rel="next" href="../contributors-guide/frequently-asked-questions.html" />
     
     
-    <link rel="prev" href="ISO_Integration.html" />
+    <link rel="prev" href="../meeting-notes/ccb-notes.html" />
     
 
     </head>
@@ -2036,9 +2036,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.11" data-path="readme.html">
+        <li class="chapter " data-level="1.11" data-path="../discussions/readme.html">
             
-                <a href="readme.html">
+                <a href="../discussions/readme.html">
             
                     
                     Discussion Documents
@@ -2050,9 +2050,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.11.1" data-path="ISO_Integration.html">
+        <li class="chapter " data-level="1.11.1" data-path="../discussions/ISO_Integration.html">
             
-                <a href="ISO_Integration.html">
+                <a href="../discussions/ISO_Integration.html">
             
                     
                     ISO integration Overivew
@@ -2063,9 +2063,9 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.11.2" data-path="decimal.html">
+        <li class="chapter " data-level="1.11.2" data-path="../discussions/decimal.html">
             
-                <a href="decimal.html">
+                <a href="../discussions/decimal.html">
             
                     
                     Moajoop Decimal Type; Based on XML Schema Decimal Type
@@ -2076,9 +2076,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.11.3" data-path="workbench.html">
+        <li class="chapter " data-level="1.11.3" data-path="../discussions/workbench.html">
             
-                <a href="workbench.html">
+                <a href="../discussions/workbench.html">
             
                     
                     Workbench Workstream
@@ -2089,9 +2089,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.11.4" data-path="cross_border_day_1.html">
+        <li class="chapter " data-level="1.11.4" data-path="../discussions/cross_border_day_1.html">
             
-                <a href="cross_border_day_1.html">
+                <a href="../discussions/cross_border_day_1.html">
             
                     
                     Cross Border Meeting Notes Day 1
@@ -2102,9 +2102,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.11.5" data-path="cross_border_day_2.html">
+        <li class="chapter " data-level="1.11.5" data-path="../discussions/cross_border_day_2.html">
             
-                <a href="cross_border_day_2.html">
+                <a href="../discussions/cross_border_day_2.html">
             
                     
                     Cross Border Meeting Notes Day 2
@@ -2178,9 +2178,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.13" data-path="../code_quality_security/readme.html">
+        <li class="chapter active" data-level="1.13" data-path="readme.html">
             
-                <a href="../code_quality_security/readme.html">
+                <a href="readme.html">
             
                     
                     Code Quality and Security
@@ -2247,7 +2247,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Moajoop Decimal Type; Based on XML Schema Decimal Type</a>
+        <a href=".." >Code Quality and Security</a>
     </h1>
 </div>
 
@@ -2262,28 +2262,12 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="moajoop-decimal-type-based-on-xml-schema-decimal-type">Moajoop Decimal Type; Based on XML Schema Decimal Type</h1>
-<h2 id="decimal-value-type">Decimal value type</h2>
-<p> Definition: decimal represents a subset of the real numbers, which can be represented by decimal numerals. The value space of decimal is the set of numbers that can be obtained by multiplying an integer by a non-positive power of ten, i.e., expressible as <em>i</em> &#xD7; 10<sup>-n</sup> where <em>i</em> and <em>n</em> are integers and <em>n</em> &#x2265; 0. Precision is not reflected in this value space; the number 2.0 is not distinct from the number 2.00. The order relation on decimal is the order relation on real numbers, restricted to this subset.
- Req: All Level One processors must support decimal numbers with a minimum of 18 decimal digits. However, Level One processors may conform to a scheme-defined limit on the maximum number of decimal digits they are prepared to support, which must be 18 or more digits, in which case that scheme-defined maximum number must be clearly documented.</p>
-<h2 id="lexical-representation">Lexical representation</h2>
-<p>decimal has a lexical representation consisting of a finite-length sequence of decimal digits (#x30 &#x2013; #x39) separated by a period as a decimal indicator. An optional leading sign is allowed. If the sign is omitted, &quot;+&quot; is assumed. Leading and trailing zeroes are optional. If the fractional part is zero, the period and following zero(es) can be omitted. For example: -1.23, 12678967.543233, +100000.00, 210., 452</p>
-<h2 id="canonical-representation">Canonical representation</h2>
-<p> The canonical representation for decimal is defined by prohibiting certain options from the Lexical representation (&#xA7;3.2.3.1). Specifically, the preceding optional &quot;+&quot; sign is prohibited. The decimal point is required. Leading and trailing zeroes are prohibited subject to the following: there must be at least one digit, which may be a zero, to the right and to the left of the decimal point.</p>
-<p> This canonical form conforms to XML Decimal lexical representation, so it would be accepted by any XML schema conforming system.</p>
-<p> What others write in canonical form, we can read as a lexical representation; what we write in canonical form, others can read as a lexical representation. But we reject exponential formats on reading and we won&#x2019;t write exponential form. We can directly compare the canonical string representations of two values for equality.</p>
-<p> When exchanging messages, a lexical form that shows implied precision using trailing zeros is preferred to pure canonical form if it improves clarity. E.g. We might write &#x201C;5.00&#x201D; instead of &#x201C;5.0&#x201D; where the unit of exchange is commonly specified precise to two decimal places, as in USD, EUR, or GBP. This lexical representation option is permitted within valid lexical forms of both XML decimal and Mojaloop decimal.</p>
-<h2 id="validators">Validators</h2>
-<p> Decimal Lexical Validator (what our message receivers accept):</p>
-<pre><code class="lang-^[-+]?(([0-9]+[.]?[0-9]*)|([.]?[0-9]+))$```">
-Decimal Canonical Validator (the form we store and compare; this pattern could be used to assert canonical form in generated messages):
-
-```^([0]|([-]?[1-9][0-9]*))[.]([0]|([0-9]*[1-9]))$
-</code></pre>
-<h2 id="translating-between-external-and-internal-forms">Translating Between External and Internal Forms</h2>
-<p> When converting from lexical or canonical form to a binary internal representation, the value space of the internal representation must be large enough to hold the scheme-specific range of decimal values, with a significand defined as the signed integer range &#x2013;10<sup><em>m</em>&#x2013;1</sup>..10<sup><em>m</em>&#x2013;1</sup>, and a non-positive integer exponent in the range &#x2013;<em>m</em>..0, where <em>m</em> is the maximum number of decimal digits, at least 18, and as defined by the specific Level One scheme.</p>
-<p>An implementation must not translate between decimal external representations and any floating-point binary internal representation. And all calculations on internal representations of decimal values must produce results as if they were performed in decimal long hand on the external representation.</p>
-<p>It should be noted that the value space of a signed 64-bit binary integer is sufficiently large to encode a signed 18-digit decimal significand and the value space of a signed 6-bit binary integer is sufficiently large to encode its required non-positive base-ten exponent.</p>
+                                <h1 id="code-quality-and-security-stream">Code quality and Security stream</h1>
+<h2 id="arfifacts-for-guidance-produced">Arfifacts for guidance produced:</h2>
+<ul>
+<li>Here&apos;s the guidance on <strong>Vulnerability reporting procedure</strong>: <a href="https://github.com/mojaloop/documentation-artifacts/blob/master/presentations/discussion-docs/Mojaloop_Application_Security_Summary-27Jan2020.pdf" target="_blank">Link on documentation-artifacts repo</a></li>
+<li>You may find the <strong>Mojaloop Application Security Summary</strong> here: <a href="https://github.com/mojaloop/documentation-artifacts/blob/master/presentations/discussion-docs/Mojaloop_Application_Security_Summary-27Jan2020.pdf" target="_blank">Link on documentation-artifacts repo</a></li>
+</ul>
 
                                 
                                 </section>
@@ -2317,7 +2301,7 @@ Decimal Canonical Validator (the form we store and compare; this pattern could b
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Moajoop Decimal Type; Based on XML Schema Decimal Type","level":"1.11.2","depth":2,"next":{"title":"Workbench Workstream","level":"1.11.3","depth":2,"path":"discussions/workbench.md","ref":"discussions/workbench.md","articles":[]},"previous":{"title":"ISO integration Overivew","level":"1.11.1","depth":2,"path":"discussions/ISO_Integration.md","ref":"discussions/ISO_Integration.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"3.x.x","theme":"default","variables":{"importedVars":{"mojaloop":{"spec":{"version":"v1.0","uri":{"doc":"https://mojaloop.io/mojaloop-specification/","api":"https://github.com/mojaloop/mojaloop-specification/blob/master/Supporting%20Files/fspiop-rest-v1.0-OpenAPI-implementation.yaml"}}},"central_ledger":{"spec":{"version":"v2.0","uri":{"doc":"/mojaloop-technical-overview/central-ledger/README.md","api":"https://github.com/mojaloop/central-ledger/blob/master/src/api/interface/swagger.json"}}},"settlement":{"spec":{"version":"v1.1","uri":{"doc":"/mojaloop-technical-overview/central-settlements/README.md","api":"https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json"}}},"als":{"oracle":{"spec":{"version":"v1.2","uri":{"doc":"/mojaloop-technical-overview/account-lookup-service/README.md","api":"https://github.com/mojaloop/documentation/blob/master/api/assets/interface-contracts/oracle-service-swagger-v1.yaml"}}}}}},"plugins":["swagger","editlink","include","insert-logo","plantuml-svg","collapsible-chapters","back-to-top-button","theme-api","variables","changelog","page-toc"],"pluginsConfig":{"plantuml-svg":{},"editlink":{"label":"Edit This Page","multilingual":true,"base":"https://github.com/mojaloop/documentation/edit/master"},"theme-gestalt":{"logo":"https://mojaloop.io/images/logo.png","favicon":"https://mojaloop.io/images/logo.png","baseUrl":null,"excludeDefaultStyles":false,"doNotHideChildrenChapters":false},"include":{},"search":{},"collapsible-chapters":{},"page-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","position":"before-first","showByDefault":true},"swagger":{"file":""},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"uml":{"format":"png","nailgun":false},"changelog":{},"theme-api":{"languages":[],"split":true,"theme":"dark"},"back-to-top-button":{},"variables":{"files":{"importedVars":"book_variables.yml"}},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"insert-logo":{"url":"https://mojaloop.io/images/logo.png","style":"background: none; max-height: 140px; max-width: 140px;"}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"discussions/decimal.md","mtime":"2020-04-23T04:51:17.761Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-23T04:52:25.032Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Code Quality and Security","level":"1.13","depth":1,"next":{"title":"Frequently Asked Questions","level":"1.14","depth":1,"path":"contributors-guide/frequently-asked-questions.md","ref":"contributors-guide/frequently-asked-questions.md","articles":[]},"previous":{"title":"Workbench Workstream","level":"1.12.3","depth":2,"path":"meeting-notes/ccb-notes.md","ref":"meeting-notes/ccb-notes.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"3.x.x","theme":"default","variables":{"importedVars":{"mojaloop":{"spec":{"version":"v1.0","uri":{"doc":"https://mojaloop.io/mojaloop-specification/","api":"https://github.com/mojaloop/mojaloop-specification/blob/master/Supporting%20Files/fspiop-rest-v1.0-OpenAPI-implementation.yaml"}}},"central_ledger":{"spec":{"version":"v2.0","uri":{"doc":"/mojaloop-technical-overview/central-ledger/README.md","api":"https://github.com/mojaloop/central-ledger/blob/master/src/api/interface/swagger.json"}}},"settlement":{"spec":{"version":"v1.1","uri":{"doc":"/mojaloop-technical-overview/central-settlements/README.md","api":"https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json"}}},"als":{"oracle":{"spec":{"version":"v1.2","uri":{"doc":"/mojaloop-technical-overview/account-lookup-service/README.md","api":"https://github.com/mojaloop/documentation/blob/master/api/assets/interface-contracts/oracle-service-swagger-v1.yaml"}}}}}},"plugins":["swagger","editlink","include","insert-logo","plantuml-svg","collapsible-chapters","back-to-top-button","theme-api","variables","changelog","page-toc"],"pluginsConfig":{"plantuml-svg":{},"editlink":{"label":"Edit This Page","multilingual":true,"base":"https://github.com/mojaloop/documentation/edit/master"},"theme-gestalt":{"logo":"https://mojaloop.io/images/logo.png","favicon":"https://mojaloop.io/images/logo.png","baseUrl":null,"excludeDefaultStyles":false,"doNotHideChildrenChapters":false},"include":{},"search":{},"collapsible-chapters":{},"page-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","position":"before-first","showByDefault":true},"swagger":{"file":""},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"uml":{"format":"png","nailgun":false},"changelog":{},"theme-api":{"languages":[],"split":true,"theme":"dark"},"back-to-top-button":{},"variables":{"files":{"importedVars":"book_variables.yml"}},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"insert-logo":{"url":"https://mojaloop.io/images/logo.png","style":"background: none; max-height: 140px; max-width: 140px;"}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"code_quality_security/readme.md","mtime":"2020-04-23T04:51:17.621Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-23T04:52:25.032Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

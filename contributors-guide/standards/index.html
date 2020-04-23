@@ -2120,7 +2120,78 @@
             
         </li>
     
-        <li class="chapter " data-level="1.12" data-path="../frequently-asked-questions.html">
+        <li class="chapter " data-level="1.12" data-path="../../meeting-notes/readme.html">
+            
+                <a href="../../meeting-notes/readme.html">
+            
+                    
+                    Mojaloop DA, CCB, Scrum-of-scrum Notes
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.12.1" data-path="../../meeting-notes/scrum-of-scrum-notes.html">
+            
+                <a href="../../meeting-notes/scrum-of-scrum-notes.html">
+            
+                    
+                    Scrum-of-scrum meeting notes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.2" data-path="../../meeting-notes/da-notes.html">
+            
+                <a href="../../meeting-notes/da-notes.html">
+            
+                    
+                    DA meeting notes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.3" data-path="../../meeting-notes/ccb-notes.html">
+            
+                <a href="../../meeting-notes/ccb-notes.html">
+            
+                    
+                    Workbench Workstream
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13" data-path="../../code_quality_security/readme.html">
+            
+                <a href="../../code_quality_security/readme.html">
+            
+                    
+                    Code Quality and Security
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14" data-path="../frequently-asked-questions.html">
             
                 <a href="../frequently-asked-questions.html">
             
@@ -2133,7 +2204,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.13" data-path="../../glossary.html">
+        <li class="chapter " data-level="1.15" data-path="../../glossary.html">
             
                 <a href="../../glossary.html">
             
@@ -2192,35 +2263,303 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="standards">Standards</h1>
-<h2 id="standards">Standards</h2>
-<h3 id="standards-for-adopting-an-open-source-contribution-into-mojaloop">Standards for adopting an Open Source contribution into Mojaloop</h3>
-<p>This document provides guidelines regarding the adoption of a contribution to the Mojaloop Open Source repositories.</p>
-<h4 id="prerequisites">Prerequisites</h4>
+<blockquote>
+<p><em>Note:</em> These standards are by no means set in stone, and as a community, we always want to be iterating and improving Mojaloop. If you want to propose a change to these standards, or suggest further improvements, please reach out to the Design Authority Channel on the Mojaloop Slack (#design-authority)</p>
+</blockquote>
+<h2 id="style-guide">Style Guide</h2>
+<p>The Mojaloop Community provides a set of guidelines for the style of code we write. These standards help ensure that the Mojaloop codebase remains high quality, maintainable and consistent.</p>
+<p>These style guides are chosen because they can be easily enforced and checked using popular tools with minimal customisation. While we recognise that developers will have personal preferences that may conflict with these guidelines we favour consistency over <a href="https://en.wikipedia.org/wiki/Law_of_triviality" target="_blank">bike-shedding</a> these rules.</p>
+<p>The goal of these guides is to ensure an easy developer workflow and reduce code commits that contain changes for the sake of style over content. By reducing the noise in diffs we make the job of reviewers easier. </p>
+<h3 id="code-style">Code Style</h3>
+<h4 id="javascript">Javascript</h4>
+<p>Mojaloop uses the Javascript code style dictated by <a href="https://standardjs.com/" target="_blank">StandardJS</a>. For a full set of rules, refer to the <a href="https://standardjs.com/rules.html" target="_blank">Standard Rules</a>, but as a brief set of highlights:</p>
+<ul>
+<li><p>Use <em>2 spaces</em> for indentation</p>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">helloWorld</span> (<span class="hljs-params">name</span>) </span>{
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;hi&apos;</span>, name)
+}
+</code></pre>
+</li>
+<li><p>Use <em>single quotes</em> for strings except to avoid escaping.</p>
+</li>
+</ul>
+<pre><code class="lang-js"><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;hello there&apos;</span>)    <span class="hljs-comment">// &#x2713; ok</span>
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;hello there&quot;</span>)    <span class="hljs-comment">// &#x2717; avoid</span>
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">`hello there`</span>)    <span class="hljs-comment">// &#x2717; avoid</span>
+</code></pre>
+<ul>
+<li>No semicolons. (see: 1, 2, 3)</li>
+</ul>
+<pre><code class="lang-js"><span class="hljs-built_in">window</span>.alert(<span class="hljs-string">&apos;hi&apos;</span>)   <span class="hljs-comment">// &#x2713; ok</span>
+<span class="hljs-built_in">window</span>.alert(<span class="hljs-string">&apos;hi&apos;</span>);  <span class="hljs-comment">// &#x2717; avoid</span>
+</code></pre>
+<h4 id="typescript">Typescript</h4>
+<blockquote>
+<p><em>Note: Standard and Typescript</em>  </p>
+<p>As we start to introduce more Typescript into the codebase, Standard becomes less useful, and can even be detrimental
+to our development workflow if we try to run standard across the Javascript compiled from Typescript.
+We need to evaluate other options for Standard in Typescript, such as a combination of Prettier + ESLint</p>
+</blockquote>
+<p>Refer to the <a href="https://github.com/mojaloop/template-typescript-public" target="_blank">template-typescript-public</a> for the standard typescript configuration.</p>
+<h4 id="yaml">YAML</h4>
+<p>While YAML deserializers can vary from one to another, we follow the following rules when writing YAML:</p>
+<blockquote>
+<p>Credit: these examples were taken from the <a href="https://github.com/flathub/flathub/wiki/YAML-Style-Guide" target="_blank">flathub style guide</a></p>
+</blockquote>
+<ul>
+<li>2 space indents</li>
+<li>Always indent child elements
+```yaml<h1 id="good">GOOD:</h1>
+modules:<ul>
+<li>name: foo
+sources:<ul>
+<li>type: bar</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="bad">BAD:</h1>
+<p>modules:</p>
+<ul>
+<li><p>name: foo
+sources:</p>
+<ul>
+<li>type: bar
+```</li>
+</ul>
+</li>
+<li><p>Do not align values</p>
+</li>
+</ul>
+<pre><code class="lang-yaml"><span class="hljs-comment"># BAD:</span>
+<span class="hljs-attr">id:</span>           org.example.Foo   
+<span class="hljs-attr">modules:</span>
+<span class="hljs-attr">  - name:</span>     foo
+<span class="hljs-attr">    sources:</span>
+<span class="hljs-attr">      - type:</span> git
+</code></pre>
+<h4 id="sh--bash">sh + bash</h4>
+<ul>
+<li>The Shebang should respect the user&apos;s local environment:<pre><code class="lang-bash"><span class="hljs-meta">#!/usr/bin/env bash
+</span></code></pre>
+</li>
+</ul>
+<p>This ensures that the script will match the <code>bash</code> that is defined in the user&apos;s environment, instead of hardcoding to a specific bash at <code>/usr/bin/bash</code>. </p>
+<ul>
+<li>When referring to other files, don&apos;t use relative paths:</li>
+</ul>
+<p>This is because your script will likely break if somebody runs it from a different directory from where the script is located</p>
+<pre><code class="lang-bash"><span class="hljs-comment"># BAD:</span>
+cat ../Dockerfile | wc <span class="hljs-_">-l</span>
+
+<span class="hljs-comment"># GOOD:</span>
+DIR=<span class="hljs-string">&quot;<span class="hljs-variable">$( cd &quot;$( dirname &quot;${BASH_SOURCE[0]}&quot; )</span>&quot;</span> &amp;&amp; <span class="hljs-built_in">pwd</span> )<span class="hljs-string">&quot;
+cat <span class="hljs-variable">${DIR}</span>/../Dockerfile | wc -l
+</span></code></pre>
+<p>For other recommended bash conventions, refer to this blog post: <a href="https://kvz.io/bash-best-practices.html" target="_blank">Best Practices for Writing Shell Scripts</a></p>
+<h4 id="documentation">Documentation</h4>
+<p>Refer to the <a href="../documentation/documentation-style-guide.html">Documentation style guide.</a></p>
+<h3 id="directory-structure">Directory Structure</h3>
+<p>Along with guidelines for coding styles, the Mojaloop Community recommends the following directory structure. This ensures that developers can easily switch from one project to another, and also ensures that our tools and configs (such as <code>.circleci/config.yml</code> and <code>Dockerfile</code>s) can be ported easily from one project to another with minor changes.</p>
+<p>The directory structure guide requires:</p>
+<pre><code class="lang-bash">&#x251C;&#x2500;&#x2500; package.json       <span class="hljs-comment"># at the root of the project</span>
+&#x251C;&#x2500;&#x2500; src                <span class="hljs-comment"># directory containing project source files </span>
+&#x251C;&#x2500;&#x2500; dist               <span class="hljs-comment"># directory containing compiled javascript files (see tsconfig below)</span>
+&#x251C;&#x2500;&#x2500; <span class="hljs-built_in">test</span>               <span class="hljs-comment"># directory for tests, containing at least:</span>
+&#x2502;   &#x251C;&#x2500;&#x2500; unit           <span class="hljs-comment"># unit tests, matching the directory structure in `./src`</span>
+&#x2502;   &#x2514;&#x2500;&#x2500; integration    <span class="hljs-comment"># integration tests, matching the directory structure in `./src`</span>
+&#x2514;&#x2500;&#x2500; config 
+    &#x2514;&#x2500;&#x2500; default.json   <span class="hljs-comment"># RC config file</span>
+</code></pre>
+<h3 id="config-files">Config Files</h3>
+<p>The following Config files help to enforce the code styles outlined above:</p>
+<h4 id="editorconfig">EditorConfig</h4>
+<blockquote>
+<p>EditorConfig is supported out of the box in many IDEs and Text editors. For more information, refer to the <a href="https://editorconfig.org/" target="_blank">EditorConfig guide</a>.</p>
+</blockquote>
+<p><code>.editorconfig</code></p>
+<pre><code class="lang-ini"><span class="hljs-attr">root</span> = <span class="hljs-literal">true</span>
+<span class="hljs-section">
+[*]</span>
+<span class="hljs-attr">end_of_line</span> = lf
+<span class="hljs-attr">insert_final_newline</span> = <span class="hljs-literal">true</span>
+<span class="hljs-attr">trim_trailing_whitespace</span> = <span class="hljs-literal">true</span>
+<span class="hljs-attr">charset</span> = utf-<span class="hljs-number">8</span>
+<span class="hljs-section">
+[{*.js,*.ts,package.json,*.yml,*.cjson}]</span>
+<span class="hljs-attr">indent_style</span> = space
+<span class="hljs-attr">indent_size</span> = <span class="hljs-number">2</span>
+<span class="hljs-section">
+[*.md]</span>
+<span class="hljs-attr">trim_trailing_whitespace</span> = <span class="hljs-literal">false</span>
+</code></pre>
+<h4 id="nyc-code-coverage-tool">NYC (code coverage tool)</h4>
+<p><code>.nycrc.yml</code></p>
+<pre><code class="lang-yml"><span class="hljs-attr">temp-directory:</span> <span class="hljs-string">&quot;./.nyc_output&quot;</span>
+<span class="hljs-attr">check-coverage:</span> <span class="hljs-literal">true</span>
+<span class="hljs-attr">per-file:</span> <span class="hljs-literal">true</span>
+<span class="hljs-attr">lines:</span> <span class="hljs-number">90</span>
+<span class="hljs-attr">statements:</span> <span class="hljs-number">90</span>
+<span class="hljs-attr">functions:</span> <span class="hljs-number">90</span>
+<span class="hljs-attr">branches:</span> <span class="hljs-number">90</span>
+<span class="hljs-attr">all:</span> <span class="hljs-literal">true</span>
+<span class="hljs-attr">include:</span> [
+  <span class="hljs-string">&quot;src/**/*.js&quot;</span>
+]
+<span class="hljs-attr">reporter:</span> [
+  <span class="hljs-string">&quot;lcov&quot;</span>,
+  <span class="hljs-string">&quot;text-summary&quot;</span>
+]
+<span class="hljs-attr">exclude:</span> [
+  <span class="hljs-string">&quot;**/node_modules/**&quot;</span>,
+  <span class="hljs-string">&apos;**/migrations/**&apos;</span>
+]
+</code></pre>
+<h3 id="typescript">Typescript</h3>
+<p><code>.tsconfig.json</code></p>
+<pre><code class="lang-json">{
+  <span class="hljs-string">&quot;include&quot;</span>: [
+    <span class="hljs-string">&quot;src&quot;</span>
+  ],
+  <span class="hljs-string">&quot;exclude&quot;</span>: [
+    <span class="hljs-string">&quot;node_modules&quot;</span>,
+    <span class="hljs-string">&quot;**/*.spec.ts&quot;</span>,
+    <span class="hljs-string">&quot;test&quot;</span>,
+    <span class="hljs-string">&quot;lib&quot;</span>,
+    <span class="hljs-string">&quot;coverage&quot;</span>
+  ],
+  <span class="hljs-string">&quot;compilerOptions&quot;</span>: {
+    <span class="hljs-string">&quot;target&quot;</span>: <span class="hljs-string">&quot;es2018&quot;</span>,
+    <span class="hljs-string">&quot;module&quot;</span>: <span class="hljs-string">&quot;commonjs&quot;</span>,
+    <span class="hljs-string">&quot;lib&quot;</span>: [
+      <span class="hljs-string">&quot;esnext&quot;</span>
+    ],
+    <span class="hljs-string">&quot;importHelpers&quot;</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-string">&quot;declaration&quot;</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-string">&quot;sourceMap&quot;</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-string">&quot;rootDir&quot;</span>: <span class="hljs-string">&quot;./src&quot;</span>,
+    <span class="hljs-string">&quot;outDir&quot;</span>: <span class="hljs-string">&quot;./dist&quot;</span>,
+    <span class="hljs-string">&quot;strict&quot;</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-string">&quot;noImplicitAny&quot;</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-string">&quot;strictNullChecks&quot;</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-string">&quot;strictFunctionTypes&quot;</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-string">&quot;strictPropertyInitialization&quot;</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-string">&quot;noImplicitThis&quot;</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-string">&quot;alwaysStrict&quot;</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-string">&quot;noUnusedLocals&quot;</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-string">&quot;noUnusedParameters&quot;</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-string">&quot;noImplicitReturns&quot;</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-string">&quot;noFallthroughCasesInSwitch&quot;</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-string">&quot;moduleResolution&quot;</span>: <span class="hljs-string">&quot;node&quot;</span>,
+    <span class="hljs-string">&quot;baseUrl&quot;</span>: <span class="hljs-string">&quot;./&quot;</span>,
+    <span class="hljs-string">&quot;paths&quot;</span>: {
+      <span class="hljs-string">&quot;*&quot;</span>: [
+        <span class="hljs-string">&quot;src/*&quot;</span>,
+        <span class="hljs-string">&quot;node_modules/*&quot;</span>
+      ]
+    },
+    <span class="hljs-string">&quot;esModuleInterop&quot;</span>: <span class="hljs-literal">true</span>
+  }
+}
+</code></pre>
+<p><code>.eslintrc.js</code></p>
+<pre><code class="lang-js"><span class="hljs-built_in">module</span>.exports = {
+  parser: <span class="hljs-string">&apos;@typescript-eslint/parser&apos;</span>,  <span class="hljs-comment">// Specifies the ESLint parser</span>
+  extends: [
+    <span class="hljs-string">&apos;plugin:@typescript-eslint/recommended&apos;</span>,  <span class="hljs-comment">// Uses the recommended rules from the @typescript-eslint/eslint-plugin</span>
+    <span class="hljs-string">&apos;prettier/@typescript-eslint&apos;</span>, <span class="hljs-comment">// Uses eslint-config-prettier to disable ESLint rules from @typescript-eslint/eslint-plugin that would conflict with prettier</span>
+    <span class="hljs-string">&apos;plugin:prettier/recommended&apos;</span>, <span class="hljs-comment">// Enables eslint-plugin-prettier and displays prettier errors as ESLint errors. Make sure this is always the last configuration in the extends array.</span>
+    <span class="hljs-comment">// Enforces ES6+ import/export syntax</span>
+    <span class="hljs-string">&apos;plugin:import/errors&apos;</span>,
+    <span class="hljs-string">&apos;plugin:import/warnings&apos;</span>,
+    <span class="hljs-string">&apos;plugin:import/typescript&apos;</span>,
+  ],
+  parserOptions: {
+    ecmaVersion: <span class="hljs-number">2018</span>,  <span class="hljs-comment">// Allows for the parsing of modern ECMAScript features</span>
+    sourceType: <span class="hljs-string">&apos;module&apos;</span>,  <span class="hljs-comment">// Allows for the use of imports</span>
+  },
+  rules: {
+    <span class="hljs-string">&apos;@typescript-eslint/no-explicit-any&apos;</span>: <span class="hljs-string">&apos;off&apos;</span>,
+    <span class="hljs-string">&apos;@typescript-eslint/no-var-requires&apos;</span>: <span class="hljs-string">&apos;off&apos;</span>
+  },
+  overrides: [
+    {
+      <span class="hljs-comment">// Disable some rules that we abuse in unit tests.</span>
+      files: [<span class="hljs-string">&apos;test/**/*.ts&apos;</span>],
+      rules: {
+        <span class="hljs-string">&apos;@typescript-eslint/explicit-function-return-type&apos;</span>: <span class="hljs-string">&apos;off&apos;</span>,
+      },
+    },
+  ],
+};
+</code></pre>
+<p>For a more detailed list of the recommended typescript configuration, including <code>package.json</code>, <code>jest.config.js</code> and more, refer to the <a href="https://github.com/mojaloop/template-typescript-public" target="_blank">Typescript Template Project</a></p>
+<h3 id="design--implementation-guidelines">Design + Implementation Guidelines</h3>
+<p>These guidelines are meant as recommendations for writing code in the Mojaloop community (or code that will be adopted into the community). If you are writing code that you wish to donate code to the community, we ask that you follow these guidelines as much as possible to aid with the consistency and maintainability of the codebase. Donations that adhere to these guidelines will be adopted more easily and swiftly.</p>
+<p>For more information, refer to the FAQ <a href="#faqs">below</a>.</p>
+<h4 id="tools--frameworks">Tools + Frameworks</h4>
+<p>In the Mojaloop OSS Community, we are prefer the following tools and frameworks:</p>
+<ul>
+<li><strong>Web Server:</strong> <a href="https://github.com/hapijs/hapi" target="_blank"><code>HapiJS</code></a></li>
+<li><strong>Web UI Framework:</strong> <a href="https://reactjs.org/" target="_blank"><code>ReactJS</code></a></li>
+<li><strong>Runtime Configuration:</strong> <a href="https://www.npmjs.com/package/rc" target="_blank"><code>rc</code></a> (both from env variables and config files)</li>
+<li><strong>Package Management:</strong> <code>npm</code></li>
+<li><strong>Logging:</strong> <a href="https://github.com/mojaloop/central-services-logger#readme" target="_blank"><code>@mojaloop/central-services-logger</code></a> library, built on top of Winston</li>
+<li><strong>Containers and Orchestration:</strong> <a href="https://www.docker.com/" target="_blank"><code>docker</code></a> and <a href="https://kubernetes.io/" target="_blank"><code>kubernetes</code></a></li>
+<li><strong>Unit Testing:</strong> For existing tests, <a href="https://github.com/substack/tape" target="_blank"><code>Tape</code></a>, but we are currently moving over to <a href="https://jestjs.io/" target="_blank"><code>Jest</code></a> for new codebases.</li>
+<li><strong>Test Coverage:</strong> <a href="https://github.com/istanbuljs/nyc" target="_blank"><code>nyc</code></a></li>
+<li><strong>CI:</strong> <a href="https://circleci.com/" target="_blank"><code>CircleCI</code></a></li>
+</ul>
+<p>By using these tools and frameworks, we maintain a high level of consistency and maintainability across the codebase, which keeps our developers productive and happy. While we don&apos;t mandate that donated codebases use these same tools and frameworks, we would like to stress that adoptions that use different tools could create an undue maintenance burden on the Community.</p>
+<h3 id="adopting-open-source-contributions-into-mojaloop">Adopting Open Source Contributions into Mojaloop</h3>
+<p>This section provides guidelines regarding the adoption of a contribution to the Mojaloop Open Source repositories. Adoption is the process where we as the community work with a contributor to bring a contribution into alignment with our standards and guidelines to be a part of the Mojaloop OSS Codebase.</p>
+<blockquote>
+<p><em>Note:</em> Code Contributions are evaluated on a <strong>case-by-case</strong> basis. Contributions that don&apos;t align to these guidelines will need to go through the incubation phase as described below. Other misalignments to these standards (for example, framework choices) may be added to a roadmap for further improvement and OSS Standardization in the future.</p>
+</blockquote>
+<h4 id="step-0-prerequisites">Step 0: Prerequisites</h4>
+<p>Before a contribution is to be considered for adoption, it:</p>
 <ol>
-<li>The contribution should be in-line with the LevelOne Principles</li>
-<li>Basic guidelines regarding status of the contribution (Code-base / Standards / Designs / Specifications)</li>
-<li>Basic documentation to get started</li>
+<li>Should be in-line with the <a href="https://leveloneproject.org/" target="_blank">Level One Project Principles</a></li>
+<li>Should adhere to the above Style and Design + Implementation Guides</li>
+<li>Should contain documentation to get started: the more, the better</li>
+<li>Contain tests with a high level of coverage. At a minimum, a contribution should contain unit tests, but a test suite with unit, integration and functional tests is preferred. Refer to the <a href="tools-and-technologies/automated-testing">contributors guide</a> for more information.</li>
 </ol>
-<h4 id="guidelines-regarding-adoption">Guidelines regarding adoption</h4>
+<h4 id="step-1-incubation">Step 1: Incubation</h4>
 <ol>
-<li>Create a private repo on the Mojaloop GitHub organization</li>
+<li>Create a private repo within the Mojaloop GitHub organization for the adopted code</li>
 <li>Have a sub-team of the DA take a look to make sure its portable (to OSS) - aligns with L1P principles, etc, and ensure design is in line with standards</li>
-<li>Check Licensing</li>
+<li>Check Licensing of the contribution and any new dependencies it requires, and add the standard Mojaloop License with attribution to donor/contributors</li>
+<li>Assess the current state of the codebase, including documentation, tests, code quality, and address any shortfalls</li>
 <li>Assess Performance impact</li>
 <li>Create action items (stories) to update naming, remove/sanitize any items that are not generic</li>
-<li>Configuration for &apos;modes of operation&apos;</li>
-<li>Enable CI/CD pipeline</li>
+<li>Inspect and discuss any framework and tooling choices. <ul>
+<li>If a decision is made to make any changes, add them to the roadmap</li>
+</ul>
+</li>
+</ol>
+<h4 id="step-2-public-adoption">Step 2: Public Adoption</h4>
+<ol>
+<li>Make the project public on Mojaloop GitHub</li>
+<li>Announce on the slack <code>#announcements</code> channel</li>
+<li>Enable CI/CD Pipelines and publish any relevant artifacts, such as Docker Images or npm modules</li>
 </ol>
 <h3 id="versioning">Versioning</h3>
 <p>Review the information on <a href="versioning.html">versioning</a> for Mojaloop.</p>
 <h3 id="creating-new-features">Creating new Features</h3>
 <p>Process for creating new <a href="creating-new-features.html">features and branches</a> in Mojaloop.</p>
 <h3 id="pull-request-process">Pull Request Process</h3>
-<p>It&apos;s a good idea to ask about major changes on <a href="https://mojaloop.slack.com" target="_blank">Slack</a>. Submit pull requests which include both the change and the reason for the change. Pull requests will be denied if they violate the <a href="https://leveloneproject.org/wp-content/uploads/2016/03/L1P_Level-One-Principles-and-Perspective.pdf" target="_blank">Level One Principles</a></p>
+<p>It&apos;s a good idea to ask about major changes on <a href="https://mojaloop.slack.com" target="_blank">Slack</a>. Submit pull requests which include both the change and the reason for the change. Feel free to use GitHub&apos;s &quot;Draft Pull Request&quot; feature to open up your changes for comments and review from the community.</p>
+<p>Pull requests will be denied if they violate the <a href="https://leveloneproject.org/wp-content/uploads/2016/03/L1P_Level-One-Principles-and-Perspective.pdf" target="_blank">Level One Principles</a></p>
 <h3 id="code-of-conduct">Code of conduct</h3>
 <p>We use a <a href="https://www.contributor-covenant.org/version/1/4/code-of-conduct.html" target="_blank">standard developer code of conduct</a></p>
 <h3 id="licensing">Licensing</h3>
 <p>See <a href="https://github.com/mojaloop/mojaloop/blob/master/contribute/License.md" target="_blank">License</a> policy</p>
+<h3 id="faqs">FAQs</h3>
+<p><strong>1. What if I want to contribute code, but it doesn&apos;t align with the code style and framework/tool recommendations in this guide?</strong></p>
+<p>Contributions are accepted on a <em>case by case</em> basis. If your contribution is not yet ready to be fully adopted, we can go through the incubation phase described above, where the code is refactored with our help and brought into alignment with the code and documentation requirements.</p>
+<p><strong>2. These standards are outdated, and a newer, cooler tool (or framework, method or language) has come along that will solve problem <em>x</em> for us. How can I update the standards?</strong></p>
+<p>Writing high quality, functional code is a moving target, and we always want to be on the lookout for new tools that will improve the Mojaloop OSS codebase. So please talk to us in the design authority slack channel (<code>#design-authority</code>) if you have a recommendation.</p>
 
                                 
                                 </section>
@@ -2254,7 +2593,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Standards","level":"1.5.1","depth":2,"next":{"title":"Versioning","level":"1.5.1.1","depth":3,"path":"contributors-guide/standards/versioning.md","ref":"contributors-guide/standards/versioning.md","articles":[]},"previous":{"title":"Contributors Guide","level":"1.5","depth":1,"path":"contributors-guide/README.md","ref":"contributors-guide/README.md","articles":[{"title":"Standards","level":"1.5.1","depth":2,"path":"contributors-guide/standards/README.md","ref":"contributors-guide/standards/README.md","articles":[{"title":"Versioning","level":"1.5.1.1","depth":3,"path":"contributors-guide/standards/versioning.md","ref":"contributors-guide/standards/versioning.md","articles":[]},{"title":"Creating new Features","level":"1.5.1.2","depth":3,"path":"contributors-guide/standards/creating-new-features.md","ref":"contributors-guide/standards/creating-new-features.md","articles":[]},{"title":"ML OSS Bug Triage","level":"1.5.1.3","depth":3,"path":"contributors-guide/standards/triaging-ml-oss-bugs.md","ref":"contributors-guide/standards/triaging-ml-oss-bugs.md","articles":[]}]},{"title":"Tools and Technologies","level":"1.5.2","depth":2,"path":"contributors-guide/tools-and-technologies/README.md","ref":"contributors-guide/tools-and-technologies/README.md","articles":[{"title":"Pragmatic REST","level":"1.5.2.1","depth":3,"path":"contributors-guide/tools-and-technologies/pragmatic-rest.md","ref":"contributors-guide/tools-and-technologies/pragmatic-rest.md","articles":[]},{"title":"Code Quality Metrics","level":"1.5.2.2","depth":3,"path":"contributors-guide/tools-and-technologies/code-quality-metrics.md","ref":"contributors-guide/tools-and-technologies/code-quality-metrics.md","articles":[]},{"title":"Automated Testing","level":"1.5.2.3","depth":3,"path":"contributors-guide/tools-and-technologies/automated-testing.md","ref":"contributors-guide/tools-and-technologies/automated-testing.md","articles":[]}]},{"title":"Documentation","level":"1.5.3","depth":2,"path":"contributors-guide/documentation/README.md","ref":"contributors-guide/documentation/README.md","articles":[{"title":"API Documentation","level":"1.5.3.1","depth":3,"path":"contributors-guide/documentation/api-documentation.md","ref":"contributors-guide/documentation/api-documentation.md","articles":[]},{"title":"Documentation Style Guide","level":"1.5.3.2","depth":3,"path":"contributors-guide/documentation/documentation-style-guide.md","ref":"contributors-guide/documentation/documentation-style-guide.md","articles":[]}]}]},"dir":"ltr"},"config":{"gitbook":"3.x.x","theme":"default","variables":{"importedVars":{"mojaloop":{"spec":{"version":"v1.0","uri":{"doc":"https://mojaloop.io/mojaloop-specification/","api":"https://github.com/mojaloop/mojaloop-specification/blob/master/Supporting%20Files/fspiop-rest-v1.0-OpenAPI-implementation.yaml"}}},"central_ledger":{"spec":{"version":"v2.0","uri":{"doc":"/mojaloop-technical-overview/central-ledger/README.md","api":"https://github.com/mojaloop/central-ledger/blob/master/src/api/interface/swagger.json"}}},"settlement":{"spec":{"version":"v1.1","uri":{"doc":"/mojaloop-technical-overview/central-settlements/README.md","api":"https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json"}}},"als":{"oracle":{"spec":{"version":"v1.2","uri":{"doc":"/mojaloop-technical-overview/account-lookup-service/README.md","api":"https://github.com/mojaloop/documentation/blob/master/api/assets/interface-contracts/oracle-service-swagger-v1.yaml"}}}}}},"plugins":["swagger","editlink","include","insert-logo","plantuml-svg","collapsible-chapters","back-to-top-button","theme-api","variables","changelog","page-toc"],"pluginsConfig":{"plantuml-svg":{},"editlink":{"label":"Edit This Page","multilingual":true,"base":"https://github.com/mojaloop/documentation/edit/master"},"theme-gestalt":{"logo":"https://mojaloop.io/images/logo.png","favicon":"https://mojaloop.io/images/logo.png","baseUrl":null,"excludeDefaultStyles":false,"doNotHideChildrenChapters":false},"include":{},"search":{},"collapsible-chapters":{},"page-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","position":"before-first","showByDefault":true},"swagger":{"file":""},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"uml":{"format":"png","nailgun":false},"changelog":{},"theme-api":{"languages":[],"split":true,"theme":"dark"},"back-to-top-button":{},"variables":{"files":{"importedVars":"book_variables.yml"}},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"insert-logo":{"url":"https://mojaloop.io/images/logo.png","style":"background: none; max-height: 140px; max-width: 140px;"}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"contributors-guide/standards/README.md","mtime":"2020-03-23T19:23:37.701Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-23T19:24:49.407Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Standards","level":"1.5.1","depth":2,"next":{"title":"Versioning","level":"1.5.1.1","depth":3,"path":"contributors-guide/standards/versioning.md","ref":"contributors-guide/standards/versioning.md","articles":[]},"previous":{"title":"Contributors Guide","level":"1.5","depth":1,"path":"contributors-guide/README.md","ref":"contributors-guide/README.md","articles":[{"title":"Standards","level":"1.5.1","depth":2,"path":"contributors-guide/standards/README.md","ref":"contributors-guide/standards/README.md","articles":[{"title":"Versioning","level":"1.5.1.1","depth":3,"path":"contributors-guide/standards/versioning.md","ref":"contributors-guide/standards/versioning.md","articles":[]},{"title":"Creating new Features","level":"1.5.1.2","depth":3,"path":"contributors-guide/standards/creating-new-features.md","ref":"contributors-guide/standards/creating-new-features.md","articles":[]},{"title":"ML OSS Bug Triage","level":"1.5.1.3","depth":3,"path":"contributors-guide/standards/triaging-ml-oss-bugs.md","ref":"contributors-guide/standards/triaging-ml-oss-bugs.md","articles":[]}]},{"title":"Tools and Technologies","level":"1.5.2","depth":2,"path":"contributors-guide/tools-and-technologies/README.md","ref":"contributors-guide/tools-and-technologies/README.md","articles":[{"title":"Pragmatic REST","level":"1.5.2.1","depth":3,"path":"contributors-guide/tools-and-technologies/pragmatic-rest.md","ref":"contributors-guide/tools-and-technologies/pragmatic-rest.md","articles":[]},{"title":"Code Quality Metrics","level":"1.5.2.2","depth":3,"path":"contributors-guide/tools-and-technologies/code-quality-metrics.md","ref":"contributors-guide/tools-and-technologies/code-quality-metrics.md","articles":[]},{"title":"Automated Testing","level":"1.5.2.3","depth":3,"path":"contributors-guide/tools-and-technologies/automated-testing.md","ref":"contributors-guide/tools-and-technologies/automated-testing.md","articles":[]}]},{"title":"Documentation","level":"1.5.3","depth":2,"path":"contributors-guide/documentation/README.md","ref":"contributors-guide/documentation/README.md","articles":[{"title":"API Documentation","level":"1.5.3.1","depth":3,"path":"contributors-guide/documentation/api-documentation.md","ref":"contributors-guide/documentation/api-documentation.md","articles":[]},{"title":"Documentation Style Guide","level":"1.5.3.2","depth":3,"path":"contributors-guide/documentation/documentation-style-guide.md","ref":"contributors-guide/documentation/documentation-style-guide.md","articles":[]}]}]},"dir":"ltr"},"config":{"gitbook":"3.x.x","theme":"default","variables":{"importedVars":{"mojaloop":{"spec":{"version":"v1.0","uri":{"doc":"https://mojaloop.io/mojaloop-specification/","api":"https://github.com/mojaloop/mojaloop-specification/blob/master/Supporting%20Files/fspiop-rest-v1.0-OpenAPI-implementation.yaml"}}},"central_ledger":{"spec":{"version":"v2.0","uri":{"doc":"/mojaloop-technical-overview/central-ledger/README.md","api":"https://github.com/mojaloop/central-ledger/blob/master/src/api/interface/swagger.json"}}},"settlement":{"spec":{"version":"v1.1","uri":{"doc":"/mojaloop-technical-overview/central-settlements/README.md","api":"https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json"}}},"als":{"oracle":{"spec":{"version":"v1.2","uri":{"doc":"/mojaloop-technical-overview/account-lookup-service/README.md","api":"https://github.com/mojaloop/documentation/blob/master/api/assets/interface-contracts/oracle-service-swagger-v1.yaml"}}}}}},"plugins":["swagger","editlink","include","insert-logo","plantuml-svg","collapsible-chapters","back-to-top-button","theme-api","variables","changelog","page-toc"],"pluginsConfig":{"plantuml-svg":{},"editlink":{"label":"Edit This Page","multilingual":true,"base":"https://github.com/mojaloop/documentation/edit/master"},"theme-gestalt":{"logo":"https://mojaloop.io/images/logo.png","favicon":"https://mojaloop.io/images/logo.png","baseUrl":null,"excludeDefaultStyles":false,"doNotHideChildrenChapters":false},"include":{},"search":{},"collapsible-chapters":{},"page-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","position":"before-first","showByDefault":true},"swagger":{"file":""},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"uml":{"format":"png","nailgun":false},"changelog":{},"theme-api":{"languages":[],"split":true,"theme":"dark"},"back-to-top-button":{},"variables":{"files":{"importedVars":"book_variables.yml"}},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"insert-logo":{"url":"https://mojaloop.io/images/logo.png","style":"background: none; max-height: 140px; max-width: 140px;"}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"contributors-guide/standards/README.md","mtime":"2020-04-23T04:51:17.629Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-23T04:52:25.032Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
