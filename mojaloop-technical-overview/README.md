@@ -11,6 +11,6 @@ Mojaloop addresses these issues in several key ways:
 
 ![Mojaloop End-to-end Architecture Flow PI5](./assets/diagrams/architecture/Arch-Mojaloop-end-to-end-PI6.svg)
 
-The Mojaloop Hub is the primary container and reference we use to describe the Mojaloop echo-system which is split in to the following domains:
+The Mojaloop Hub is the primary container and reference we use to describe the Mojaloop ecosystem which is split in to the following domains:
 * Mojaloop Open Source Services - Core Mojaloop Open Source Software (OSS) that has been supported by the Bill & Melinda Gates Foundation in partnership with the Open Source Community.
 * Mojaloop Hub - Overall Mojaloop reference (and customizable) implementation for Hub Operators is based on the above OSS solution.
