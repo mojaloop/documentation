@@ -21,6 +21,8 @@ Refer to [Mojaloop Helm Repository](../repositories/helm.md) documentation to fi
 
 | Version | Release Date | Tested | Notes |
 | --- | :---: | :---: | --- |
+| [9.2.0](https://github.com/mojaloop/helm/releases/tag/v9.2.0) | 2019/03/04 | &check; | Sprint release |
+| [8.8.0](https://github.com/mojaloop/helm/releases/tag/v8.8.0) | 2020/02/12 | &check; | Sprint release |
 | [8.7.0](https://github.com/mojaloop/helm/releases/tag/v8.7.0) | 2019/12/12 | &check; | Sprint release |
 | [8.4.0](https://github.com/mojaloop/helm/releases/tag/v8.4.0) | 2019/11/12 | &check; | Sprint release |
 | [8.1.0](https://github.com/mojaloop/helm/releases/tag/v8.1.0) | 2019/10/08 | &check; | Sprint release |
