@@ -12,6 +12,8 @@
   * [Local Setup Windows](deployment-guide/local-setup-windows.md)
   * [Troubleshooting](deployment-guide/deployment-troubleshooting.md)
 * [Contributors Guide](contributors-guide/README.md)
+  * [New Contributor Checklist](contributors-guide/new-contributor-checklist.md)
+  * [FAQ](contributors-guide/frequently-asked-questions.md)
   * [Standards](contributors-guide/standards/README.md)
     * [Versioning](contributors-guide/standards/versioning.md)
     * [Creating new Features](contributors-guide/standards/creating-new-features.md)
