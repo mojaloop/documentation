@@ -17,6 +17,7 @@ The goal of these guides is to ensure an easy developer workflow and reduce code
 Mojaloop uses the Javascript code style dictated by [StandardJS](https://standardjs.com/). For a full set of rules, refer to the [Standard Rules](https://standardjs.com/rules.html), but as a brief set of highlights:
 
 - Use *2 spaces* for indentation
+
 ```js
 function helloWorld (name) {
   console.log('hi', name)
@@ -56,6 +57,7 @@ While YAML deserializers can vary from one to another, we follow the following r
 
 - 2 space indents
 - Always indent child elements
+
 ```yaml
 # GOOD:
 modules:
@@ -83,6 +85,7 @@ modules:
 #### sh + bash
 
 - The Shebang should respect the user's local environment:
+
 ```bash
 #!/usr/bin/env bash
 ```
