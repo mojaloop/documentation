@@ -16,7 +16,7 @@ This document provides guidelines regarding the versioning strategy used for the
 
 The currrent version information for Mojaloop can be found [here](../../deployment-guide/releases.md).
 
-### Sprint schedule for PI9
+### Sprint schedule for PI0
 
 Below is the Sprint schedule for Program Increment 9 which ends with the PI 10 on-site event at the of January 2020 in Tanzania. Please use this as guidance during the versioning and release processes.
 
