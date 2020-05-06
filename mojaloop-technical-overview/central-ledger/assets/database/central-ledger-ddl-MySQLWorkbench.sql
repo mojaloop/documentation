@@ -1,4 +1,4 @@
--- MySQL dump 10.13  Distrib 8.0.18, for macos10.14 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.19, for macos10.15 (x86_64)
 --
 -- Host: localhost    Database: central_ledger
 -- ------------------------------------------------------
@@ -830,6 +830,25 @@ CREATE TABLE `quoteParty` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `quotePartyIdInfoExtension`
+--
+
+DROP TABLE IF EXISTS `quotePartyIdInfoExtension`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `quotePartyIdInfoExtension` (
+  `quotePartyIdInfoExtensionId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `quotePartyId` bigint(20) unsigned NOT NULL COMMENT 'quotePartyId: a common id between the tables quotePartyIdInfoExtension and quoteParty',
+  `key` varchar(128) NOT NULL,
+  `value` text NOT NULL,
+  `createdDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'System dateTime stamp pertaining to the inserted record',
+  PRIMARY KEY (`quotePartyIdInfoExtensionId`),
+  KEY `quotepartyidinfoextension_quotepartyid_foreign` (`quotePartyId`),
+  CONSTRAINT `quotepartyidinfoextension_quotepartyid_foreign` FOREIGN KEY (`quotePartyId`) REFERENCES `quoteParty` (`quotepartyid`)
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Temporary view structure for view `quotePartyView`
 --
 
@@ -837,7 +856,7 @@ DROP TABLE IF EXISTS `quotePartyView`;
 /*!50001 DROP VIEW IF EXISTS `quotePartyView`*/;
 SET @saved_cs_client     = @@character_set_client;
 /*!50503 SET character_set_client = utf8mb4 */;
-/*!50001 CREATE VIEW `quotePartyView` AS SELECT 
+/*!50001 CREATE VIEW `quotePartyView` AS SELECT
  1 AS `quoteId`,
  1 AS `quotePartyId`,
  1 AS `partyType`,
@@ -931,7 +950,7 @@ DROP TABLE IF EXISTS `quoteResponseView`;
 /*!50001 DROP VIEW IF EXISTS `quoteResponseView`*/;
 SET @saved_cs_client     = @@character_set_client;
 /*!50503 SET character_set_client = utf8mb4 */;
-/*!50001 CREATE VIEW `quoteResponseView` AS SELECT 
+/*!50001 CREATE VIEW `quoteResponseView` AS SELECT
  1 AS `quoteResponseId`,
  1 AS `quoteId`,
  1 AS `transferAmountCurrencyId`,
@@ -959,7 +978,7 @@ DROP TABLE IF EXISTS `quoteView`;
 /*!50001 DROP VIEW IF EXISTS `quoteView`*/;
 SET @saved_cs_client     = @@character_set_client;
 /*!50503 SET character_set_client = utf8mb4 */;
-/*!50001 CREATE VIEW `quoteView` AS SELECT 
+/*!50001 CREATE VIEW `quoteView` AS SELECT
  1 AS `quoteId`,
  1 AS `transactionReferenceId`,
  1 AS `transactionRequestId`,
@@ -1028,7 +1047,7 @@ CREATE TABLE `settlementContentAggregation` (
   `participantCurrencyId` int(10) unsigned NOT NULL,
   `transferParticipantRoleTypeId` int(10) unsigned NOT NULL,
   `ledgerEntryTypeId` int(10) unsigned NOT NULL,
-  `amount` decimal(18,2) NOT NULL,
+  `amount` decimal(18,4) NOT NULL,
   `createdDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `currentStateId` varchar(50) NOT NULL,
   `settlementId` bigint(20) unsigned DEFAULT NULL,
@@ -1626,14 +1645,12 @@ CREATE TABLE `transferParticipant` (
   `ledgerEntryTypeId` int(10) unsigned NOT NULL,
   `amount` decimal(18,4) NOT NULL,
   `createdDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `currentStateChangeId` bigint(20) unsigned DEFAULT NULL,
   PRIMARY KEY (`transferParticipantId`),
   KEY `transferparticipant_transferid_index` (`transferId`),
   KEY `transferparticipant_participantcurrencyid_index` (`participantCurrencyId`),
   KEY `transferparticipant_transferparticipantroletypeid_index` (`transferParticipantRoleTypeId`),
   KEY `transferparticipant_ledgerentrytypeid_index` (`ledgerEntryTypeId`),
-  KEY `transferparticipant_currentstatechangeid_foreign` (`currentStateChangeId`),
-  CONSTRAINT `transferparticipant_currentstatechangeid_foreign` FOREIGN KEY (`currentStateChangeId`) REFERENCES `transferParticipantStateChange` (`transferparticipantstatechangeid`),
+  KEY `getTransferInfoToChangePosition` (`transferId`,`transferParticipantRoleTypeId`,`ledgerEntryTypeId`),
   CONSTRAINT `transferparticipant_ledgerentrytypeid_foreign` FOREIGN KEY (`ledgerEntryTypeId`) REFERENCES `ledgerEntryType` (`ledgerentrytypeid`),
   CONSTRAINT `transferparticipant_participantcurrencyid_foreign` FOREIGN KEY (`participantCurrencyId`) REFERENCES `participantCurrency` (`participantcurrencyid`),
   CONSTRAINT `transferparticipant_transferid_foreign` FOREIGN KEY (`transferId`) REFERENCES `transfer` (`transferid`),
@@ -1669,14 +1686,14 @@ DROP TABLE IF EXISTS `transferParticipantStateChange`;
 CREATE TABLE `transferParticipantStateChange` (
   `transferParticipantStateChangeId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `transferParticipantId` bigint(20) unsigned NOT NULL,
-  `settlementWindowStateId` varchar(50) NOT NULL,
+  `settlementWindowStateId` varchar(50) DEFAULT NULL,
   `reason` varchar(512) DEFAULT NULL,
   `createdDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`transferParticipantStateChangeId`),
-  KEY `transferparticipantstatechange_transferparticipantid_index` (`transferParticipantId`),
-  KEY `transferparticipantstatechange_settlementwindowstateid_index` (`settlementWindowStateId`),
+  KEY `tt_transferParticipantId_fk` (`transferParticipantId`),
+  KEY `transferparticipantstatechange_settlementwindowstateid_foreign` (`settlementWindowStateId`),
   CONSTRAINT `transferparticipantstatechange_settlementwindowstateid_foreign` FOREIGN KEY (`settlementWindowStateId`) REFERENCES `settlementWindowState` (`settlementwindowstateid`),
-  CONSTRAINT `transferparticipantstatechange_transferparticipantid_foreign` FOREIGN KEY (`transferParticipantId`) REFERENCES `transferParticipant` (`transferparticipantid`)
+  CONSTRAINT `tt_transferParticipantId_fk` FOREIGN KEY (`transferParticipantId`) REFERENCES `transferParticipant` (`transferparticipantid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1817,4 +1834,4 @@ CREATE TABLE `transferTimeout` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-02-20 22:51:43
+-- Dump completed on 2020-04-17 10:20:37
