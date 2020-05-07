@@ -135,7 +135,7 @@
 * [Mojaloop Publications](mojaloop-publications.md)
 * [Discussion Documents](discussions/readme.md)
   * [ISO integration Overivew](discussions/ISO_Integration.md)
-  * [Moajoop Decimal Type; Based on XML Schema Decimal Type](discussions/decimal.md)
+  * [Mojaloop Decimal Type; Based on XML Schema Decimal Type](discussions/decimal.md)
   * [Workbench Workstream](discussions/workbench.md)
   * [Cross Border Meeting Notes Day 1](discussions/cross_border_day_1.md)
   * [Cross Border Meeting Notes Day 2](discussions/cross_border_day_2.md)
