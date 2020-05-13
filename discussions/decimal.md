@@ -1,4 +1,4 @@
-# Moajoop Decimal Type; Based on XML Schema Decimal Type
+# Mojaloop Decimal Type; Based on XML Schema Decimal Type
 
 ## Decimal value type
 
