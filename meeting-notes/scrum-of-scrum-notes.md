@@ -1,5 +1,31 @@
 # Meeting Notes from Weekly Scrum-of-scrum meetings
 
+## OSS Scrum or scrum calls Thu **May 7th** 2020
+
+1. Coil - Don:
+  a Performance: 'Big Gap' problem; changes to cs-stream; changed results; putting together a doc with changes for review; Joran's work on concurrent message processing on Kafka topics -> try to test it; seeing 40-50% throughput;
+  b LPS adapter: Working with Renjith (Applied Payments); putting together a lab / envt for partner teams to use it; Exploring collaboration with GSMA lab
+2. Crosslake - Lewis:
+  a. Performance: Had report out with Confluent with Nakul, engagement wrapping up; Disseminating docs Nakul produced
+  b. PISP: Design discussions going on along with Implementation
+  c. Versioning: Figuring scope for ZDD deployments
+  d. Official launch related issues: DNS issues - worked on and were resolved
+3. ModusBox - Sam:
+  a. Performance: Moving / standardizing Perf changes from PI-9 into master (not all PoCs); Working on goals, strategy for PI10
+  b. Core-team: Bulk transfers - getting started by providing support in sdk-scheme-adapter
+  c. Maintenance (Bug Fixes):
+    i) Accents in names - Ongoing
+    ii) Mojaloop simulator on AWS deployments - almost done, working on QA scripts (on 'dev2' - second environment)
+  d. Testing toolkit: Currently available for testing - all resources in ML FSPIOP API Supported. Reports can be generated. Working on providing Command line options and more portability
+  e. CCB: Publishing v1.1 Spec this week - API Definition and corresponding Swagger (Open API)
+4. Virtual / Mojaloop Foundation - Megan:
+  a. Launch of Mojaloop Foundation
+  b. Paula H - Executive Director of the Mojaloop Foundation.
+5. Mojaloop Foundation - Simeon:
+  a. Provide feedback on the Community Survey 
+  b. Hackathon possible in early June time-frame in collaboration with Google
+  c. Mojaloop Newsletter with interesting items such as ML FSPIOP v1.1 Spec, Helm v10.1.0 release, etc. to be launched next week.
+
 ## OSS Scrum or scrum calls Thu **April 16th** 2020
 
 1. Coil:
