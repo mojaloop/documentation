@@ -107,9 +107,11 @@ cat ${DIR}/../Dockerfile | wc -l
 
 For other recommended bash conventions, refer to this blog post: [Best Practices for Writing Shell Scripts](https://kvz.io/bash-best-practices.html)
 
-#### Documentation
+### Documentation
 
-Refer to the [Documentation style guide.](../documentation/documentation-style-guide.html)
+Documentation should be written in Mark Down format.  
+All discusison documents should be placed in /documentation/discussions
+The use of Google Docs and other tools should not be used.
 
 ### Directory Structure
 
