@@ -119,6 +119,4 @@ valueDate
 ## Boards:
 
 _board 3: Cross Network lookup and quotes flow, fixed receive of 1000 PHP from USD_
-![board_3](./images/cb_board_3.jpg)
-
-
+![board_3](../assets/images/cb_board_3.jpg)

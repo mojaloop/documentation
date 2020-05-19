@@ -132,11 +132,22 @@
 * [Mojaloop Roadmap](mojaloop-roadmap.md)
 * [Mojaloop Publications](mojaloop-publications.md)
 * [Discussion Documents](discussions/readme.md)
+  * [Code Improvement Project](discussions/code_improvement.md)
+  * Cross Border
+    * Meetings
+      * [Cross Border Project PI9](discussions/crossborder/meetings/cross_border_pi9.md)
+      * [Cross Border Meeting PI8 Notes Day 1](discussions/crossborder/meetings/cross_border_day_1.md)
+      * [Cross Border Meeting PI8 Notes Day 2](discussions/crossborder/meetings/cross_border_day_2.md)
   * [ISO integration Overivew](discussions/ISO_Integration.md)
   * [Moajoop Decimal Type; Based on XML Schema Decimal Type](discussions/decimal.md)
+  * [Performance Stream](discussions/performance/readme.md)
+    * Benchmarks
+      * [2020 April](discussions/performance/benchmarks/2020april.md)
+    * Meetings
+      * [2020 March 11](discussions/performance/meetings/2020march11.md)
+  * [PSIP Project](discussions/pisp.md)
+  * [Versioning Draft Proposal](discussions/versioning_draft_proposal.md)
   * [Workbench Workstream](discussions/workbench.md)
-  * [Cross Border Meeting Notes Day 1](discussions/cross_border_day_1.md)
-  * [Cross Border Meeting Notes Day 2](discussions/cross_border_day_2.md)
 * [Frequently Asked Questions](contributors-guide/frequently-asked-questions.md)
 * [Glossary of Terms](glossary.md)
 <!--* [Changelog](changelog.md)-->

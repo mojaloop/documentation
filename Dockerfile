@@ -31,6 +31,7 @@ ENV PORT $PORT
 
 WORKDIR /opt/gitbook
 COPY --from=gitbook-builder /opt/gitbook .
+COPY . /opt/gitbook
 
 EXPOSE $PORT
 

@@ -256,10 +256,10 @@ Do we need to encrypt to ensure the switch(es) can't see the data?
 ## Boards:
 
 _board 1: Fixed send flows_
-![board_1](./images/cb_board_1.jpg)
+![board_1](../assets/images/cb_board_1.jpg)
 
 _board 2: Fixed receive flows_
-![board_2](./images/cb_board_2.jpg)
+![board_2](../assets/images/cb_board_2.jpg)
 
 
 

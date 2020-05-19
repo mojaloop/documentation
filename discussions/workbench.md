@@ -72,7 +72,7 @@ We divide users in 2 camps: Primary users and Secondary users.
 
 In addition to thinking of each of the above users, it's important to understand at what level these users exist at in relationship to a mojaloop deployment. For that we will borrow from Dan Kleinbaum's [_Fintech primer on Mojaloop_](https://medium.com/dfs-lab/what-the-fintech-a-primer-on-mojaloop-50ae1c0ccafb)
 
-![the 3 levels of mojaloopyness](./images/mojaloop_spokes.png)
+![the 3 levels of mojaloopyness](./assets/images/mojaloop_spokes.png)
 >_The 3 levels of Mojaloopyness, https://medium.com/dfs-lab/what-the-fintech-a-primer-on-mojaloop-50ae1c0ccafb by Dan Kleinbaum_
 
 **Level 1:** Running a Mojaloop switch (e.g. Hub Operators)  
