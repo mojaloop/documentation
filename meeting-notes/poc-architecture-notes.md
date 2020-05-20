@@ -26,4 +26,7 @@ Meetings
 * Kick-off and PI planning session 20th May at 9am UK - 1.5hr
 
 Resources
-* Miguel and Pedro to try to work 4 days a week until end of may, then 2 days a week for the remaining PI
+* Miguel and Pedro to try to work 3 days a week until end of may, then 2.5 days a week for the remaining PI
+* Roman P available full-time
+* Joran D G and Don C committed for 4hrs each on a weekly basis
+* Amar R will help with QA 2.5 days a week in May and full-time after that.
