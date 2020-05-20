@@ -9,7 +9,7 @@ Atendees:
 
 TODOS
 * Pedro - Send invites for the sessions
-* Sam - Send invites for the kickoff meeting
+* Sam - Send invites for the kickoff meeting. - Done
 * Sam - Create slack channel - DONE
 * Sam - share google doc and space to put docs/notes - DONE - https://docs.google.com/document/d/1AENW5mpHsZd3GvKazsvOdzHOPvj0vLnB04mGMuB9BIE/edit?invite=CNil3bUJ&ts=5ec3b665
 * Sam - create epic in zenhub
@@ -27,4 +27,3 @@ Meetings
 
 Resources
 * Miguel and Pedro to try to work 4 days a week until end of may, then 2 days a week for the remaining PI
-
