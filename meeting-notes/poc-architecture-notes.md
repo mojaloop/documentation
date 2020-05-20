@@ -12,7 +12,7 @@ TODOS
 * Sam - Send invites for the kickoff meeting. - Done
 * Sam - Create slack channel - DONE
 * Sam - share google doc and space to put docs/notes - DONE - https://docs.google.com/document/d/1AENW5mpHsZd3GvKazsvOdzHOPvj0vLnB04mGMuB9BIE/edit?invite=CNil3bUJ&ts=5ec3b665
-* Sam - create epic in zenhub
+* Sam - create epic in zenhub - Done
 
 Notes
 * We foollow kanban approach
