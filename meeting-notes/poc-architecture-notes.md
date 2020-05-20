@@ -16,7 +16,7 @@ TODOS
 
 Notes
 * We foollow kanban approach
-* The PoC is not just about performance, let’s not name it performance, name is "Architecture PoC"
+* The PoC is not just about performance, let’s not name it performance, name is "Architecture PoC", but the focus in PI-10 is on Scalability
 
 Meetings
 * Dedicated work sessions - 2 times a week - Tuesday and Thursday 9:30 am UK to 12
@@ -27,5 +27,4 @@ Meetings
 
 Resources
 * Miguel and Pedro to try to work 4 days a week until end of may, then 2 days a week for the remaining PI
-
 
