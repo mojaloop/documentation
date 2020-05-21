@@ -1,5 +1,30 @@
 # Meeting Notes from Proof of Concept Architecture Stream
 
+##20 May 2020 - Team kick-off call
+
+Attendees:
+* Sam
+* Pedro
+* Amarmath
+* Donovan
+* Miguel
+* Roman
+* Lewis
+* Rajiv
+* Valentin
+
+Agenda
+* Run through the deck, explain the objectives goals, etc
+* Get agreement on meeting schedules
+* Plan and objectives for next 2 sprints
+    * For this sprint ending this week is to deliver the arch diagrams
+    * For the next one the delivery is the initial prototype of the happy path
+
+Decisions
+* Agreed the time slots for the working sessions and standups as follows:
+* Dedicated work sessions - 2 times a week - Tuesday and Thursday 9:30 am UK to 12
+* Standups for Mondays and Fridays - 9:30am UK for 30 mins
+
 
 ## Pre-planning Meeting **May 19th** 2020
 Atendees:
@@ -8,7 +33,7 @@ Atendees:
 * Pedro
 
 TODOS
-* Pedro - Send invites for the sessions
+* Pedro - Send invites for the sessions - DONE
 * Sam - Send invites for the kickoff meeting. - Done
 * Sam - Create slack channel - DONE
 * Sam - share google doc and space to put docs/notes - DONE - https://docs.google.com/document/d/1AENW5mpHsZd3GvKazsvOdzHOPvj0vLnB04mGMuB9BIE/edit?invite=CNil3bUJ&ts=5ec3b665
