@@ -1,5 +1,19 @@
 # Meeting Notes from Proof of Concept Architecture Stream
 
+##21May2020 - working session
+
+TODOs
+* Miguel to create the repo
+* Pedro to prime the diagrams and share for review by Friday at, before sending to sponsors
+* Pedro to create the service skeleton and share by Friday 22nd standup
+
+Decisions
+* tech stack:
+    * typescript v3.9
+    * latest node LTS in async/await
+    * initially we use simple redis for persistency and kafka for messages
+* initially keep everything in a single repo to facilitate library sharing, testing and ci/cd stuff
+
 ##20 May 2020 - Team kick-off call
 
 Attendees:
