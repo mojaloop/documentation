@@ -50,6 +50,18 @@ We can use the "Tag Editor" in the AWS console to search for untagged resources.
 
 >TODO: insert instructions
 
+1. Log into the AWS Console
+2. Under Resource Groups, select "Tag Editor"
+![](./images/tagging_01.png)
+3. From the tag editor, select a Region (I typically use "All regions"), and Resource Type (I also typically use "All resource types")
+4. Now select "Search Resources", and wait for the resources to appear
+
+You can also search by tags, or the absense of tags to see what resources have not been tagged yet.
+![](./images/tagging_02.png)
+
+5. Once you have a list of the resources, you can select and edit tags for many resources at once!
+6. You can also export a `.csv` file of resources found in your search
+
 
 ## Automated Tagging
 
