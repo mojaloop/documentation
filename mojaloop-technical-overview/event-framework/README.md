@@ -35,54 +35,62 @@ _Disclaimer: This is experimental and is being implemented as a PoC. As such the
 
 ```JSON
 {
-    "from": "noresponsepayeefsp",
-    "to": "payerfsp",
-    "id": "aa398930-f210-4dcd-8af0-7c769cea1660",
-    "content": {
-        "headers": {
-            "content-type": "application/vnd.interoperability.transfers+json;version=1.0",
-            "date": "2019-05-28T16:34:41.000Z",
-            "fspiop-source": "noresponsepayeefsp",
-            "fspiop-destination": "payerfsp"
-        },
-        "payload": "data:application/vnd.interoperability.transfers+json;version=1.0;base64,ewogICJmdWxmaWxtZW50IjogIlVObEo5OGhaVFlfZHN3MGNBcXc0aV9VTjN2NHV0dDdDWkZCNHlmTGJWRkEiLAogICJjb21wbGV0ZWRUaW1lc3RhbXAiOiAiMjAxOS0wNS0yOVQyMzoxODozMi44NTZaIiwKICAidHJhbnNmZXJTdGF0ZSI6ICJDT01NSVRURUQiCn0"
+  "from": "payeefsp",
+  "to": "payerfsp",
+  "id": "aa398930-f210-4dcd-8af0-7c769cea1660",
+  "content": {
+    "headers": {
+      "content-type": "application/vnd.interoperability.transfers+json;version=1.0",
+      "date": "2019-05-28T16:34:41.000Z",
+      "fspiop-source": "payeefsp",
+      "fspiop-destination": "payerfsp"
     },
-    "type": "application/json",
-    "metadata": {
-        "event": {
-            "id": "3920382d-f78c-4023-adf9-0d7a4a2a3a2f",
-            "type": "trace",
-            "action": "span",
-            "createdAt": "2019-05-29T23:18:32.935Z",
-            "state": {
-                "status": "success",
-                "code": 0,
-                "description": "action successful"
-            },
-            "responseTo": "1a396c07-47ab-4d68-a7a0-7a1ea36f0012"
-        },
-        "trace": {
-            "service": "central-ledger-prepare-handler",
-            "traceId": "bbd7b2c7-3978-408e-ae2e-a13012c47739",
-            "parentSpanId": "4e3ce424-d611-417b-a7b3-44ba9bbc5840",
-            "spanId": "efeb5c22-689b-4d04-ac5a-2aa9cd0a7e87",
-            "startTimestamp": "2015-08-29T11:22:09.815479Z",
-            "finishTimestamp": "2015-08-29T11:22:09.815479Z",
-            "tags": {
-              "transctionId": "659ee338-c8f8-4c06-8aff-944e6c5cd694",
-              "transctionType": "transfer",
-              "parentEventType": "bulk-prepare",
-              "parentEventAction": "prepare"
-            }
+    "payload": "data:application/vnd.interoperability.transfers+json;version=1.0;base64,ewogICJmdWxmaWxtZW50IjogIlVObEo5OGhaVFlfZHN3MGNBcXc0aV9VTjN2NHV0dDdDWkZCNHlmTGJWRkEiLAogICJjb21wbGV0ZWRUaW1lc3RhbXAiOiAiMjAxOS0wNS0yOVQyMzoxODozMi44NTZaIiwKICAidHJhbnNmZXJTdGF0ZSI6ICJDT01NSVRURUQiCn0"
+  },
+  "type": "application/json",
+  "metadata": {
+    "event": {
+      "id": "3920382d-f78c-4023-adf9-0d7a4a2a3a2f",
+      "type": "trace",
+      "action": "span",
+      "createdAt": "2019-05-29T23:18:32.935Z",
+      "state": {
+        "status": "success",
+        "code": 0,
+        "description": "action successful"
+      },
+      "responseTo": "1a396c07-47ab-4d68-a7a0-7a1ea36f0012"
+    },
+    "trace": {
+      "service": "central-ledger-prepare-handler",
+      "traceId": "664314d5b207d3ba722c6c0fdcd44c61",
+      "parentSpanId": "e457b5a2e4d86bd1",
+      "spanId": "81fa25e8d66d2e88",
+      "startTimestamp": "2015-08-29T11:22:09.815479Z",
+      "finishTimestamp": "2015-08-29T11:22:09.815479Z",
+      "tags": {
+        "transctionId": "659ee338-c8f8-4c06-8aff-944e6c5cd694",
+        "transctionType": "transfer",
+        "transactionAction": "prepare",
+        "source": "payeefsp",
+        "destination": "payerfsp",
+        "tracestate": "acmevendor=eyJzcGFuSWQiOiJjMDYwYjFiMThjMTUxMTcwIn0="
+      },
+      "tracestates": {
+        "acmevendor": {
+          "spanId": "81fa25e8d66d2e88",
+          "tx_transfer_prepare": "1590581229"
         }
+      }
     }
+  }
 }
 ```
 
 ## 3.2 Schema Definition
 
 ### 3.2.1 Object Definition: EventMessage
-
+****
 | Name | Type | Mandatory  (Y/N) | Description | Example |
 | --- | --- | --- | --- | --- |
 | id | string | Y | The id references the related message. |  |
@@ -131,7 +139,8 @@ _Disclaimer: This is experimental and is being implemented as a PoC. As such the
 | flags | number | N | Indicator if event message should be included in the trace flow. ( Debug `1` - this will override the sampled value ) | 0 |
 | startTimestamp | datetime | N | ISO 8601 with the following format `yyyy-MM-dd'T'HH:mm:ss.SSSSSSz`. If not included the current timestamp will be taken. Represents the start timestamp of a span.| 2015-08-29T11:22:09.815479Z |
 | finishTimestamp | datetime | N | ISO 8601 with the following format `yyyy-MM-dd'T'HH:mm:ss.SSSSSSz`. If not included the current timestamp will be taken. Represents the finish timestamp of a span | 2015-08-29T11:22:09.815479Z |
-| tags | object `<EventTraceMetaDataTags>` | Y | The id references the related message. | success |
+| tags | object `<EventTraceMetaDataTags>` | Y | User added tags     | success |
+| tracestates | key value pair of all tracestates as the key is per vendor. The own configured vendor value is another hash map with spanId and user defined tags| Y | The id references the related message. | success |
 
 _Note: HEXDIGLC = DIGIT / "a" / "b" / "c" / "d" / "e" / "f" ; lower case hex character. Ref: [WC3 standard for trace-context](https://www.w3.org/TR/trace-context/#field-value)._
 
