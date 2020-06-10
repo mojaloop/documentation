@@ -213,7 +213,7 @@ Please review [Mojaloop Helm Chart](../repositories/helm.md) to understand the r
 
    The below required config is applicable to Helm release >= versions 6.2.2 for Mojaloop API Services;
    ```text
-   127.0.0.1       central-ledger.local central-settlement.local ml-api-adapter.local account-lookup-service.local account-lookup-service-admin.local quoting-service.local moja-simulator.local central-ledger central-settlement ml-api-adapter account-lookup-service account-lookup-service-admin quoting-service simulator host.docker.internal
+   127.0.0.1       central-ledger.local central-settlement.local ml-api-adapter.local account-lookup-service.local account-lookup-service-admin.local quoting-service.local moja-simulator.local central-ledger central-settlement ml-api-adapter account-lookup-service account-lookup-service-admin quoting-service simulator host.docker.internal transaction-request-service.local
    ```
       
    The below optional config is applicable to Helm release >= versions 6.2.2 for Internal components, please include the following in the host configuration.
