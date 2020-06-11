@@ -14,7 +14,11 @@ The central ledger is a series of services that facilitate clearing and settleme
 
 ## 2. Transfers End-to-End Architecture
 
+
+### 2.1 Transfers End-to-End Architecture for v1.1
 ![Transfers Architecture for Mojaloop FSP Interoperability API v1.1](assets/diagrams/architecture/Transfers-Arch-End-to-End-v1.1.svg)
+
+### 2.2 Transfers End-to-End Architecture for v1.0
 ![Transfers Architecture for Mojaloop FSP Interoperability API v1.0](assets/diagrams/architecture/Transfers-Arch-End-to-End-v1.0.svg)
 
 ## 3. Database Design
