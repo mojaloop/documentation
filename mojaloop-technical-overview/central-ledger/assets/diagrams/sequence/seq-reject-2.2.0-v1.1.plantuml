@@ -146,6 +146,6 @@ group DFSP2 sends a Fulfil Reject Transfer request
     deactivate MLAPI
     TOPIC_FULFIL <- FULF_HANDLER: Consume message
     FULF_HANDLER -> FULF_HANDLER: Log error message
-    note right of FULF_HANDLER: action REJECT is not allowed into fulfil handler
+    note right of FULF_HANDLER: (corresponding to a Fulfil message with transferState='ABORTED')\naction REJECT is not allowed into fulfil handler
 end
 @enduml
