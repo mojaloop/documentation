@@ -90,7 +90,7 @@ Insure **kubectl** is installed. A complete set of installation instruction are 
 
    **IMPORTANT:** Always verify the current [kubernetes-dashboard](https://github.com/kubernetes/dashboard) yaml file is still correct as used in the below command.
    ```bash
-   kubectl create -f https://raw.githubusercontent.com/kubernetes/dashboard/v1.10.1/src/deploy/recommended/kubernetes-dashboard.yaml
+   kubectl create -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.1/aio/deploy/recommended.yaml
    ```
    
    If you have installed MicroK8s, **enable the MicroK8s** dashboard;
@@ -103,6 +103,8 @@ Insure **kubectl** is installed. A complete set of installation instruction are 
    ```bash
    kubectl get pod --namespace=kube-system |grep dashboard
    ```
+   If using kubernetes v2.x - replace `kube-system` with `kubernetes-dashboard`
+   
 
 3. Start proxy for local UI in new terminal;
    ```bash
@@ -111,9 +113,16 @@ Insure **kubectl** is installed. A complete set of installation instruction are 
 
 4. Open URI in default browser:
     
+   v1.x:
    ```
    http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/
    ```
+   
+   v2.x:
+   ```
+   http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/
+   ```
+  
 
    Select **Token**. Generate a token to use there by: _Windows replace `grep` with `findstr`_
    
@@ -127,7 +136,8 @@ Insure **kubectl** is installed. A complete set of installation instruction are 
    kubectl -n kube-system describe secrets/kubernetes-dashboard-token-btbwf
    ```
 
-   The **{kubernetes-dashboard-token-btbwf}** is retrieved from the output in the previous step. For more information on generating the token, follow the **Authentication** link in the window.
+   The **{kubernetes-dashboard-token-btbwf}** is retrieved from the output in the previous step. For more information on generating the token, follow the **Authentication** link in the window.  
+   If using kubernetes v2.x - replace `kube-system` with `kubernetes-dashboard`.
 
 ![kubernetes-dashboard](./assets/diagrams/deployment/kubernetesDashboard.png)
 
