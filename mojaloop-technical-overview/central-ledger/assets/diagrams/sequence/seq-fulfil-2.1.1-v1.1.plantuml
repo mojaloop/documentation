@@ -1,0 +1,272 @@
+/'*****
+ License
+ --------------
+ Copyright © 2017 Bill & Melinda Gates Foundation
+ The Mojaloop files are made available by the Bill & Melinda Gates Foundation under the Apache License, Version 2.0 (the "License") and you may not use these files except in compliance with the License. You may obtain a copy of the License at
+ http://www.apache.org/licenses/LICENSE-2.0
+ Unless required by applicable law or agreed to in writing, the Mojaloop files are distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+ Contributors
+ --------------
+ This is the official list of the Mojaloop project contributors for this file.
+ Names of the original copyright holders (individuals or organizations)
+ should be listed with a '*' in the first column. People who have
+ contributed from an organization can be listed under the organization
+ that actually holds the copyright for their contributions (see the
+ Gates Foundation organization for an example). Those individuals should have
+ their names indented and be marked with a '-'. Email address can be added
+ optionally within square brackets <email>.
+ * Gates Foundation
+ - Name Surname <name.surname@gatesfoundation.com>
+
+ * Rajiv Mothilal <rajiv.mothilal@modusbox.com>
+ * Georgi Georgiev <georgi.georgiev@modusbox.com>
+ --------------
+ ******'/
+
+@startuml
+' declate title
+title 2.1.1. Fulfil Handler Consume (Success)
+autonumber
+' Actor Keys:
+'   boundary - APIs/Interfaces, etc
+'   collections - Kafka Topics
+'   control - Kafka Consumers
+'   entity - Database Access Objects
+'   database - Database Persistance Store
+' declare actors
+collections "topic-fulfil" as TOPIC_FULFIL
+control "Fulfil Event\nHandler" as FULF_HANDLER
+collections "topic-event" as TOPIC_EVENT
+collections "topic-\ntransfer-position" as TOPIC_TRANSFER_POSITION
+collections "topic-\nsettlement-model" as TOPIC_SETMODEL
+collections "topic-\nnotification" as TOPIC_NOTIFICATIONS
+
+entity "Position DAO" as POS_DAO
+database "Central Store" as DB
+box "Central Service" #LightYellow
+    participant TOPIC_FULFIL
+    participant FULF_HANDLER
+    participant TOPIC_TRANSFER_POSITION
+    participant TOPIC_EVENT
+    participant TOPIC_SETMODEL
+    participant TOPIC_NOTIFICATIONS
+    participant POS_DAO
+    participant DB
+end box
+' start flow
+activate FULF_HANDLER
+group Fulfil Handler Consume (Success)
+    alt Consume Single Message
+        TOPIC_FULFIL <- FULF_HANDLER: Consume Fulfil event message for Payer
+        activate TOPIC_FULFIL
+        deactivate TOPIC_FULFIL
+        break
+            group Validate Event
+                FULF_HANDLER <-> FULF_HANDLER: Validate event - Rule: type == 'fulfil' && action IN ['commit', 'reserve']\n<color #FF0000><b>Error codes:</b> 2001</color>
+            end
+        end
+        group Persist Event Information
+            |||
+            FULF_HANDLER -> TOPIC_EVENT: Publish event information
+            ref over FULF_HANDLER, TOPIC_EVENT:  Event Handler Consume\n
+            |||
+        end
+
+        group Validate Duplicate Check
+            |||
+            FULF_HANDLER -> DB: Request Duplicate Check
+            ref over FULF_HANDLER, DB:  Request Duplicate Check\n
+            DB --> FULF_HANDLER: Return { hasDuplicateId: Boolean, hasDuplicateHash: Boolean }
+        end
+
+        alt hasDuplicateId == TRUE && hasDuplicateHash == TRUE
+            break
+                FULF_HANDLER -> FULF_HANDLER: stateRecord = await getTransferState(transferId)
+                alt endStateList.includes(stateRecord.transferStateId)
+                    |||
+                    ref over FULF_HANDLER, TOPIC_NOTIFICATIONS: getTransfer callback\n
+                    FULF_HANDLER -> TOPIC_NOTIFICATIONS: Produce message
+                else
+                    note right of FULF_HANDLER #lightgrey
+                        Ignore - resend in progress
+                    end note
+                end
+            end
+        else hasDuplicateId == TRUE && hasDuplicateHash == FALSE
+            note right of FULF_HANDLER #lightgrey
+                Validate Prepare Transfer (failure) - Modified Request
+            end note
+        else hasDuplicateId == FALSE
+            group Validate and persist Transfer Fulfilment
+                FULF_HANDLER -> POS_DAO: Request information for the validate checks\n<color #FF0000><b>Error code:</b> 2003</color>
+                activate POS_DAO
+                POS_DAO -> DB: Fetch from database
+                activate DB
+                hnote over DB #lightyellow
+                    transfer
+                end note
+                DB --> POS_DAO
+                deactivate DB
+                FULF_HANDLER <-- POS_DAO: Return transfer
+                deactivate POS_DAO
+                FULF_HANDLER ->FULF_HANDLER: Validate that Transfer.ilpCondition = SHA-256 (content.payload.fulfilment)\n<color #FF0000><b>Error code:</b> 2001</color>
+                FULF_HANDLER -> FULF_HANDLER: Validate expirationDate\n<color #FF0000><b>Error code:</b> 3303</color>
+
+                opt Transfer.ilpCondition validate successful
+                    group Request current Settlement Window
+                        FULF_HANDLER -> POS_DAO: Request to retrieve current/latest transfer settlement window\n<color #FF0000><b>Error code:</b> 2003</color>
+                        activate POS_DAO
+                        POS_DAO -> DB: Fetch settlementWindowId
+                        activate DB
+                        hnote over DB #lightyellow
+                            settlementWindow
+                        end note
+                        DB --> POS_DAO
+                        deactivate DB
+                        FULF_HANDLER <-- POS_DAO: Return settlementWindowId to be appended during transferFulfilment insert\n**TODO**: During settlement design make sure transfers in 'RECEIVED-FULFIL'\nstate are updated to the next settlement window
+                        deactivate POS_DAO
+                    end
+                end
+
+                group Persist fulfilment
+                    FULF_HANDLER -> POS_DAO: Persist fulfilment with the result of the above check (transferFulfilment.isValid)\n<color #FF0000><b>Error code:</b> 2003</color>
+                    activate POS_DAO
+                    POS_DAO -> DB: Persist to database
+                    activate DB
+                    deactivate DB
+                    hnote over DB #lightyellow
+                        transferFulfilment
+                        transferExtension
+                    end note
+                    FULF_HANDLER <-- POS_DAO: Return success
+                    deactivate POS_DAO
+                end
+
+                alt Transfer.ilpCondition validate successful
+                    group Persist Transfer State (with transferState='RECEIVED-FULFIL')
+                        FULF_HANDLER -> POS_DAO: Request to persist transfer state\n<color #FF0000><b>Error code:</b> 2003</color>
+                        activate POS_DAO
+                        POS_DAO -> DB: Persist transfer state
+                        activate DB
+                        hnote over DB #lightyellow
+                            transferStateChange
+                        end note
+                        deactivate DB
+                        POS_DAO --> FULF_HANDLER: Return success
+                        deactivate POS_DAO
+                    end
+
+                    note right of FULF_HANDLER #yellow
+                        Message:
+                        {
+                            id: <id>,
+                            from: switch,
+                            to: switch,
+                            type: application/json
+                            content: {
+                                payload: {
+                                    transferId: {id}
+                                }
+                            },
+                            metadata: {
+                                event: {
+                                    id: <uuid>,
+                                    responseTo: <previous.uuid>,
+                                    type: setmodel,
+                                    action: commit,
+                                    createdAt: <timestamp>,
+                                    state: {
+                                        status: "success",
+                                        code: 0
+                                    }
+                                }
+                            }
+                        }
+                    end note
+                    FULF_HANDLER -> TOPIC_SETMODEL: Route & Publish settlement model event
+                    activate TOPIC_SETMODEL
+                    deactivate TOPIC_SETMODEL
+
+                    note right of FULF_HANDLER #yellow
+                        Message:
+                        {
+                            id: <id>,
+                            from: <transferHeaders.FSPIOP-Source>,
+                            to: <transferHeaders.FSPIOP-Destination>,
+                            type: application/json,
+                            content: {
+                                headers: <transferHeaders>,
+                                payload: <transferMessage>
+                            },
+                            metadata: {
+                                event: {
+                                    id: <uuid>,
+                                    responseTo: <previous.uuid>,
+                                    type: position,
+                                    action: commit || reserve,
+                                    createdAt: <timestamp>,
+                                    state: {
+                                        status: "success",
+                                        code: 0
+                                    }
+                                }
+                            }
+                        }
+                    end note
+                    FULF_HANDLER -> TOPIC_TRANSFER_POSITION: Route & Publish Position event for Payee
+                    activate TOPIC_TRANSFER_POSITION
+                    deactivate TOPIC_TRANSFER_POSITION
+                else Validate Fulfil Transfer not successful
+                    group Persist Transfer State (with transferState='ABORTED')
+                        FULF_HANDLER -> POS_DAO: Request to persist transfer state\n<color #FF0000><b>Error code:</b> 2003</color>
+                        activate POS_DAO
+                        POS_DAO -> DB: Persist transfer state
+                        activate DB
+                        hnote over DB #lightyellow
+                            transferStateChange
+                        end note
+                        deactivate DB
+                        POS_DAO --> FULF_HANDLER: Return success
+                        deactivate POS_DAO
+                    end
+
+                    note right of FULF_HANDLER #yellow
+                        Message:
+                        {
+                            id: <id>,
+                            from: <transferHeaders.FSPIOP-Source>,
+                            to: <transferHeaders.FSPIOP-Destination>,
+                            type: application/json,
+                            content: {
+                                headers: <transferHeaders>,
+                                payload: <transferMessage>
+                            },
+                            metadata: {
+                                event: {
+                                    id: <uuid>,
+                                    responseTo: <previous.uuid>,
+                                    type: position,
+                                    action: abort,
+                                    createdAt: <timestamp>,
+                                    state: {
+                                        status: "error",
+                                        code: 1
+                                    }
+                                }
+                            }
+                        }
+                    end note
+                    FULF_HANDLER -> TOPIC_TRANSFER_POSITION: Route & Publish Position event for Payer
+                    activate TOPIC_TRANSFER_POSITION
+                    deactivate TOPIC_TRANSFER_POSITION
+                end
+            end
+        end
+    else Consume Batch Messages
+        note left of FULF_HANDLER #lightblue
+            To be delivered by future story
+        end note
+    end
+end
+deactivate FULF_HANDLER
+@enduml
