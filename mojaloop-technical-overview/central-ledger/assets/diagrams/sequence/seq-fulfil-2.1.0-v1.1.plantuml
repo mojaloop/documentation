@@ -25,7 +25,7 @@
 
 @startuml
 ' declate title
-title 2.1.0. DFSP2 sends a Fulfil Success Transfer request
+title 2.1.0. DFSP2 sends a Fulfil Success Transfer request v1.1
 
 autonumber
 ' Actor Keys:
@@ -193,7 +193,7 @@ group DFSP2 sends a request for notification after tranfer is being committed in
     end
     |||
     TOPIC_NOTIFICATIONS <- NOTIFY_HANDLER: Consume message
-    opt action == 'commit'
+    opt action == 'reserve'
         |||
         ref over DFSP2, TOPIC_NOTIFICATIONS: Send notification to Participant (Payee)\n
         NOTIFY_HANDLER -> DFSP2: Send callback notification
