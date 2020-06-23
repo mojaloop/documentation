@@ -77,35 +77,67 @@ activate SETMODEL_HANDLER
 activate POS_HANDLER
 group DFSP2 sends a request for notification after tranfer is being committed in the Switch
     DFSP2 <-> DFSP2: Retrieve fulfilment string generated during\nthe quoting process or regenerate it using\n**Local secret** and **ILP Packet** as inputs
-    note right of DFSP2 #yellow
-        Headers - transferHeaders: {
-            Content-Length: <Content-Length>,
-            Content-Type: <Content-Type>,
-            Date: <Date>,
-            X-Forwarded-For: <X-Forwarded-For>,
-            FSPIOP-Source: <FSPIOP-Source>,
-            FSPIOP-Destination: <FSPIOP-Destination>,
-            FSPIOP-Encryption: <FSPIOP-Encryption>,
-            FSPIOP-Signature: <FSPIOP-Signature>,
-            FSPIOP-URI: <FSPIOP-URI>,
-            FSPIOP-HTTP-Method: <FSPIOP-HTTP-Method>
-        }
-
-        Payload - transferMessage:
-        {
-            "fulfilment": <IlpFulfilment>,
-            "completedTimestamp": <DateTime>,
-            "transferState": "RESERVED" || "COMIITED"
-            "extensionList": {
-                "extension": [
-                    {
-                        "key": <string>,
-                        "value": <string>
-                    }
-                ]
+    alt Send back notification reserve request
+        note right of DFSP2 #yellow
+            Headers - transferHeaders: {
+                Content-Length: <Content-Length>,
+                Content-Type: <Content-Type>,
+                Date: <Date>,
+                X-Forwarded-For: <X-Forwarded-For>,
+                FSPIOP-Source: <FSPIOP-Source>,
+                FSPIOP-Destination: <FSPIOP-Destination>,
+                FSPIOP-Encryption: <FSPIOP-Encryption>,
+                FSPIOP-Signature: <FSPIOP-Signature>,
+                FSPIOP-URI: <FSPIOP-URI>,
+                FSPIOP-HTTP-Method: <FSPIOP-HTTP-Method>
             }
-        }
-    end note
+
+            Payload - transferMessage:
+            {
+                "fulfilment": <IlpFulfilment>,
+                "transferState": "RESERVED"
+                "extensionList": {
+                    "extension": [
+                        {
+                            "key": <string>,
+                            "value": <string>
+                        }
+                    ]
+                }
+            }
+        end note
+    else Send back commit request
+
+        note right of DFSP2 #yellow
+            Headers - transferHeaders: {
+                Content-Length: <Content-Length>,
+                Content-Type: <Content-Type>,
+                Date: <Date>,
+                X-Forwarded-For: <X-Forwarded-For>,
+                FSPIOP-Source: <FSPIOP-Source>,
+                FSPIOP-Destination: <FSPIOP-Destination>,
+                FSPIOP-Encryption: <FSPIOP-Encryption>,
+                FSPIOP-Signature: <FSPIOP-Signature>,
+                FSPIOP-URI: <FSPIOP-URI>,
+                FSPIOP-HTTP-Method: <FSPIOP-HTTP-Method>
+            }
+
+            Payload - transferMessage:
+            {
+                "fulfilment": <IlpFulfilment>,
+                "completedTimestamp": <DateTime>,
+                "transferState": "COMIITED"
+                "extensionList": {
+                    "extension": [
+                        {
+                            "key": <string>,
+                            "value": <string>
+                        }
+                    ]
+                }
+            }
+        end note
+    end
     DFSP2 ->> MLAPI: PUT - /transfers/<ID>
     activate MLAPI
     MLAPI -> MLAPI: Validate incoming token and originator matching Payee\n<color #FF0000><b>Error codes:</b> 3000-3002, 3100-3107</color>
