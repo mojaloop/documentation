@@ -1,0 +1,2458 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Fulfil Reject Transfer v1.1 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-swagger/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-insert-logo/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-collapsible-chapters/collapsible-chapters.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-back-to-top-button/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-changelog/changelog.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-page-toc/page-toc.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-theme-api/theme-api.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="2.2.0.a-fulfil-abort-transfer-v1.1.html" />
+    
+    
+    <link rel="prev" href="2.2.1-fulfil-reject-handler.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../../">
+            
+                <a href="../../../">
+            
+                    
+                    Mojaloop Overview
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../../../mojaloop-background/">
+            
+                <a href="../../../mojaloop-background/">
+            
+                    
+                    Mojaloop Background
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../../../mojaloop-background/core-scenarios.html">
+            
+                <a href="../../../mojaloop-background/core-scenarios.html">
+            
+                    
+                    Core Scenarios
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../../../mojaloop-background/level-one-principles.html">
+            
+                <a href="../../../mojaloop-background/level-one-principles.html">
+            
+                    
+                    Level One Principles
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../../../onboarding.html">
+            
+                <a href="../../../onboarding.html">
+            
+                    
+                    Onboarding
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../../../deployment-guide/">
+            
+                <a href="../../../deployment-guide/">
+            
+                    
+                    Deployment Guide
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../../../deployment-guide/releases.html">
+            
+                <a href="../../../deployment-guide/releases.html">
+            
+                    
+                    Releases
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../../../deployment-guide/local-setup-linux.html">
+            
+                <a href="../../../deployment-guide/local-setup-linux.html">
+            
+                    
+                    Local Setup Linux
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="../../../deployment-guide/local-setup-mac.html">
+            
+                <a href="../../../deployment-guide/local-setup-mac.html">
+            
+                    
+                    Local Setup Mac
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="../../../deployment-guide/local-setup-windows.html">
+            
+                <a href="../../../deployment-guide/local-setup-windows.html">
+            
+                    
+                    Local Setup Windows
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="../../../deployment-guide/deployment-troubleshooting.html">
+            
+                <a href="../../../deployment-guide/deployment-troubleshooting.html">
+            
+                    
+                    Troubleshooting
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../../../contributors-guide/">
+            
+                <a href="../../../contributors-guide/">
+            
+                    
+                    Contributors Guide
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../../../contributors-guide/new-contributor-checklist.html">
+            
+                <a href="../../../contributors-guide/new-contributor-checklist.html">
+            
+                    
+                    New Contributor Checklist
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../../../contributors-guide/frequently-asked-questions.html">
+            
+                <a href="../../../contributors-guide/frequently-asked-questions.html">
+            
+                    
+                    FAQ
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="../../../contributors-guide/standards/">
+            
+                <a href="../../../contributors-guide/standards/">
+            
+                    
+                    Standards
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.3.1" data-path="../../../contributors-guide/standards/versioning.html">
+            
+                <a href="../../../contributors-guide/standards/versioning.html">
+            
+                    
+                    Versioning
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3.2" data-path="../../../contributors-guide/standards/creating-new-features.html">
+            
+                <a href="../../../contributors-guide/standards/creating-new-features.html">
+            
+                    
+                    Creating new Features
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3.3" data-path="../../../contributors-guide/standards/triaging-ml-oss-bugs.html">
+            
+                <a href="../../../contributors-guide/standards/triaging-ml-oss-bugs.html">
+            
+                    
+                    ML OSS Bug Triage
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4" data-path="../../../contributors-guide/tools-and-technologies/">
+            
+                <a href="../../../contributors-guide/tools-and-technologies/">
+            
+                    
+                    Tools and Technologies
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.4.1" data-path="../../../contributors-guide/tools-and-technologies/pragmatic-rest.html">
+            
+                <a href="../../../contributors-guide/tools-and-technologies/pragmatic-rest.html">
+            
+                    
+                    Pragmatic REST
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4.2" data-path="../../../contributors-guide/tools-and-technologies/code-quality-metrics.html">
+            
+                <a href="../../../contributors-guide/tools-and-technologies/code-quality-metrics.html">
+            
+                    
+                    Code Quality Metrics
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4.3" data-path="../../../contributors-guide/tools-and-technologies/automated-testing.html">
+            
+                <a href="../../../contributors-guide/tools-and-technologies/automated-testing.html">
+            
+                    
+                    Automated Testing
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.5" data-path="../../../contributors-guide/documentation/">
+            
+                <a href="../../../contributors-guide/documentation/">
+            
+                    
+                    Documentation
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.5.1" data-path="../../../contributors-guide/documentation/api-documentation.html">
+            
+                <a href="../../../contributors-guide/documentation/api-documentation.html">
+            
+                    
+                    API Documentation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.5.2" data-path="../../../contributors-guide/documentation/documentation-style-guide.html">
+            
+                <a href="../../../contributors-guide/documentation/documentation-style-guide.html">
+            
+                    
+                    Documentation Style Guide
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    Mojaloop Technical Overview
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../../overview/">
+            
+                <a href="../../overview/">
+            
+                    
+                    Mojaloop Hub
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1.1" data-path="../../overview/components-PI8.html">
+            
+                <a href="../../overview/components-PI8.html">
+            
+                    
+                    Current Architecture - PI8
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.1.2" data-path="../../overview/components-PI7.html">
+            
+                <a href="../../overview/components-PI7.html">
+            
+                    
+                    Legacy Architecture - PI7
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.1.3" data-path="../../overview/components-PI6.html">
+            
+                <a href="../../overview/components-PI6.html">
+            
+                    
+                    Legacy Architecture - PI6
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.1.4" data-path="../../overview/components-PI5.html">
+            
+                <a href="../../overview/components-PI5.html">
+            
+                    
+                    Legacy Architecture - PI5
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.1.5" data-path="../../overview/components-PI3.html">
+            
+                <a href="../../overview/components-PI3.html">
+            
+                    
+                    Legacy Architecture - PI3
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="../../account-lookup-service/">
+            
+                <a href="../../account-lookup-service/">
+            
+                    
+                    Account-Lookup Service
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.2.1" data-path="../../account-lookup-service/als-get-participants.html">
+            
+                <a href="../../account-lookup-service/als-get-participants.html">
+            
+                    
+                    GET Participants
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.2" data-path="../../account-lookup-service/als-post-participants.html">
+            
+                <a href="../../account-lookup-service/als-post-participants.html">
+            
+                    
+                    POST Participants
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.3" data-path="../../account-lookup-service/als-post-participants-batch.html">
+            
+                <a href="../../account-lookup-service/als-post-participants-batch.html">
+            
+                    
+                    POST Participants (batch)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.4" data-path="../../account-lookup-service/als-del-participants.html">
+            
+                <a href="../../account-lookup-service/als-del-participants.html">
+            
+                    
+                    DEL Participants
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.5" data-path="../../account-lookup-service/als-get-parties.html">
+            
+                <a href="../../account-lookup-service/als-get-parties.html">
+            
+                    
+                    GET Parties
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3" data-path="../../quoting-service/">
+            
+                <a href="../../quoting-service/">
+            
+                    
+                    Quoting Service
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Central-Ledger Services
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.4.1" data-path="../admin-operations/">
+            
+                <a href="../admin-operations/">
+            
+                    
+                    Admin Operations
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.4.1.1" data-path="../admin-operations/1.0.0-post-participant-position-limit.html">
+            
+                <a href="../admin-operations/1.0.0-post-participant-position-limit.html">
+            
+                    
+                    POST Participant Limit
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.1.2" data-path="../admin-operations/1.1.0-get-participant-limit-details.html">
+            
+                <a href="../admin-operations/1.1.0-get-participant-limit-details.html">
+            
+                    
+                    GET Participant Limit Details
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.1.3" data-path="../admin-operations/1.0.0-get-limits-for-all-participants.html">
+            
+                <a href="../admin-operations/1.0.0-get-limits-for-all-participants.html">
+            
+                    
+                    GET All Participant Limits
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.1.4" data-path="../admin-operations/1.1.0-post-participant-limits.html">
+            
+                <a href="../admin-operations/1.1.0-post-participant-limits.html">
+            
+                    
+                    POST Participant limits
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.1.5" data-path="../admin-operations/1.1.5-get-transfer-status.html">
+            
+                <a href="../admin-operations/1.1.5-get-transfer-status.html">
+            
+                    
+                    GET Transfer Status
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.1.6" data-path="../admin-operations/3.1.0-post-participant-callback-details.html">
+            
+                <a href="../admin-operations/3.1.0-post-participant-callback-details.html">
+            
+                    
+                    POST Participant Callback
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.1.7" data-path="../admin-operations/3.1.0-get-participant-callback-details.html">
+            
+                <a href="../admin-operations/3.1.0-get-participant-callback-details.html">
+            
+                    
+                    GET Participant Callback
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.1.8" data-path="../admin-operations/4.1.0-get-participant-position-details.html">
+            
+                <a href="../admin-operations/4.1.0-get-participant-position-details.html">
+            
+                    
+                    GET Participant Position
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.1.9" data-path="../admin-operations/4.2.0-get-positions-of-all-participants.html">
+            
+                <a href="../admin-operations/4.2.0-get-positions-of-all-participants.html">
+            
+                    
+                    GET All Participants Positions
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.2" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Transfer Operations
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.4.2.1" data-path="1.1.0-prepare-transfer-request.html">
+            
+                <a href="1.1.0-prepare-transfer-request.html">
+            
+                    
+                    Prepare Handler
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.4.2.1.1" data-path="1.1.1.a-prepare-handler-consume.html">
+            
+                <a href="1.1.1.a-prepare-handler-consume.html">
+            
+                    
+                    Prepare Handler Consume (a)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.2.1.2" data-path="1.1.1.b-prepare-handler-consume.html">
+            
+                <a href="1.1.1.b-prepare-handler-consume.html">
+            
+                    
+                    Prepare Handler Consume (b)
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.2.2" data-path="1.3.0-position-handler-consume.html">
+            
+                <a href="1.3.0-position-handler-consume.html">
+            
+                    
+                    Prepare Position Handler
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.4.2.2.1" data-path="1.3.1-prepare-position-handler-consume.html">
+            
+                <a href="1.3.1-prepare-position-handler-consume.html">
+            
+                    
+                    Prepare Position Handler
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.2.2.2" data-path="1.1.2.a-position-handler-consume.html">
+            
+                <a href="1.1.2.a-position-handler-consume.html">
+            
+                    
+                    Position Handler Consume (a)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.2.2.3" data-path="1.1.2.b-position-handler-consume.html">
+            
+                <a href="1.1.2.b-position-handler-consume.html">
+            
+                    
+                    Position Handler Consume (b)
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.2.3" data-path="2.1.0-fulfil-transfer-request.html">
+            
+                <a href="2.1.0-fulfil-transfer-request.html">
+            
+                    
+                    Fulfil Handler
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.4.2.3.1" data-path="2.1.1-fulfil-handler-consume.html">
+            
+                <a href="2.1.1-fulfil-handler-consume.html">
+            
+                    
+                    Fulfil Handler Consume
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.2.4" data-path="1.3.0-position-handler-consume.html">
+            
+                <a href="1.3.0-position-handler-consume.html">
+            
+                    
+                    Fulfil Position Handler
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.4.2.4.1" data-path="1.3.2-fulfil-position-handler-consume.html">
+            
+                <a href="1.3.2-fulfil-position-handler-consume.html">
+            
+                    
+                    Fulfil Position Handler
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.2.5" data-path="2.2.0-fulfil-reject-transfer.html">
+            
+                <a href="2.2.0-fulfil-reject-transfer.html">
+            
+                    
+                    Fulfil Reject Transfer
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.4.2.5.1" data-path="2.2.0.a-fulfil-abort-transfer.html">
+            
+                <a href="2.2.0.a-fulfil-abort-transfer.html">
+            
+                    
+                    Fulfil Reject Transfer (a)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.2.5.2" data-path="2.2.1-fulfil-reject-handler.html">
+            
+                <a href="2.2.1-fulfil-reject-handler.html">
+            
+                    
+                    Fulfil Handler (Reject-Abort)
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.6.4.2.6" data-path="2.2.0-fulfil-reject-transfer-v1.1.html">
+            
+                <a href="2.2.0-fulfil-reject-transfer-v1.1.html">
+            
+                    
+                    Fulfil Reject Transfer v1.1
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.4.2.6.1" data-path="2.2.0.a-fulfil-abort-transfer-v1.1.html">
+            
+                <a href="2.2.0.a-fulfil-abort-transfer-v1.1.html">
+            
+                    
+                    Fulfil Reject Transfer (a) v1.1
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.2.6.2" data-path="2.2.1-fulfil-reject-handler-v1.1.html">
+            
+                <a href="2.2.1-fulfil-reject-handler-v1.1.html">
+            
+                    
+                    Fulfil Handler (Reject-Abort) v1.1
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.2.7" >
+            
+                <span>
+            
+                    
+                    Notifications
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.4.2.7.1" data-path="1.1.4.a-send-notification-to-participant.html">
+            
+                <a href="1.1.4.a-send-notification-to-participant.html">
+            
+                    
+                    Notification to Participant (a)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.2.7.2" data-path="1.1.4.b-send-notification-to-participant.html">
+            
+                <a href="1.1.4.b-send-notification-to-participant.html">
+            
+                    
+                    Notification to Participant (b)
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.2.8" >
+            
+                <span>
+            
+                    
+                    Reject/Abort
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.4.2.8.1" data-path="1.3.3-abort-position-handler-consume.html">
+            
+                <a href="1.3.3-abort-position-handler-consume.html">
+            
+                    
+                    Abort Position Handler
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.2.9" >
+            
+                <span>
+            
+                    
+                    Timeout
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.4.2.9.1" data-path="2.3.0-transfer-timeout.html">
+            
+                <a href="2.3.0-transfer-timeout.html">
+            
+                    
+                    Transfer Timeout
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.2.9.2" data-path="2.3.1-timeout-handler-consume.html">
+            
+                <a href="2.3.1-timeout-handler-consume.html">
+            
+                    
+                    Timeout Handler Consume
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.3" data-path="../../central-bulk-transfers/">
+            
+                <a href="../../central-bulk-transfers/">
+            
+                    
+                    Bulk Transfer Operations
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.4.3.1" data-path="../../central-bulk-transfers/transfers/1.1.0-bulk-prepare-transfer-request-overview.html">
+            
+                <a href="../../central-bulk-transfers/transfers/1.1.0-bulk-prepare-transfer-request-overview.html">
+            
+                    
+                    Bulk Prepare Overview
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.4.3.1.1" data-path="../../central-bulk-transfers/transfers/1.1.1-bulk-prepare-handler-consume.html">
+            
+                <a href="../../central-bulk-transfers/transfers/1.1.1-bulk-prepare-handler-consume.html">
+            
+                    
+                    Bulk Prepare Handler
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.3.2" data-path="../../central-bulk-transfers/transfers/1.2.1-prepare-handler-consume-for-bulk.html">
+            
+                <a href="../../central-bulk-transfers/transfers/1.2.1-prepare-handler-consume-for-bulk.html">
+            
+                    
+                    Prepare Handler
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.3.3" data-path="../../central-bulk-transfers/transfers/1.3.0-position-handler-consume-overview.html">
+            
+                <a href="../../central-bulk-transfers/transfers/1.3.0-position-handler-consume-overview.html">
+            
+                    
+                    Position Handler Overview
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.4.3.3.1" data-path="../../central-bulk-transfers/transfers/1.3.1-prepare-position-handler-consume.html">
+            
+                <a href="../../central-bulk-transfers/transfers/1.3.1-prepare-position-handler-consume.html">
+            
+                    
+                    Prepare Position Handler Consume
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.3.3.2" data-path="../../central-bulk-transfers/transfers/2.3.1-fulfil-position-handler-consume.html">
+            
+                <a href="../../central-bulk-transfers/transfers/2.3.1-fulfil-position-handler-consume.html">
+            
+                    
+                    Fulfil Position Handler Consume
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.3.3.3" data-path="../../central-bulk-transfers/transfers/2.3.2-position-consume-abort.html">
+            
+                <a href="../../central-bulk-transfers/transfers/2.3.2-position-consume-abort.html">
+            
+                    
+                    Fulfil Abort Position Handler Consume
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.3.4" data-path="../../central-bulk-transfers/transfers/2.1.0-bulk-fulfil-transfer-request-overview.html">
+            
+                <a href="../../central-bulk-transfers/transfers/2.1.0-bulk-fulfil-transfer-request-overview.html">
+            
+                    
+                    Bulk Fulfil Handler Overview
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.4.3.4.1" data-path="../../central-bulk-transfers/transfers/2.1.1-bulk-fulfil-handler-consume.html">
+            
+                <a href="../../central-bulk-transfers/transfers/2.1.1-bulk-fulfil-handler-consume.html">
+            
+                    
+                    Bulk Fulfil Handler Consume
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.3.4.2" data-path="../../central-bulk-transfers/transfers/2.2.1-fulfil-commit-for-bulk.html">
+            
+                <a href="../../central-bulk-transfers/transfers/2.2.1-fulfil-commit-for-bulk.html">
+            
+                    
+                    Fulfil Handler - Commit
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.3.4.3" data-path="../../central-bulk-transfers/transfers/2.2.2-fulfil-abort-for-bulk.html">
+            
+                <a href="../../central-bulk-transfers/transfers/2.2.2-fulfil-abort-for-bulk.html">
+            
+                    
+                    Fulfil Handler - Reject/Abort
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.3.5" data-path="../../central-bulk-transfers/transfers/1.4.1-bulk-processing-handler.html">
+            
+                <a href="../../central-bulk-transfers/transfers/1.4.1-bulk-processing-handler.html">
+            
+                    
+                    Bulk Processing Handler
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.3.6" >
+            
+                <span>
+            
+                    
+                    Notifications
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.4.3.6.1" data-path="1.1.4.a-send-notification-to-participant.html">
+            
+                <a href="1.1.4.a-send-notification-to-participant.html">
+            
+                    
+                    Notification to Participant (a)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.3.6.2" data-path="1.1.4.b-send-notification-to-participant.html">
+            
+                <a href="1.1.4.b-send-notification-to-participant.html">
+            
+                    
+                    Notification to Participant (b)
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.3.7" data-path="../../central-bulk-transfers/transfers/3.1.0-transfer-timeout-overview-for-bulk.html">
+            
+                <a href="../../central-bulk-transfers/transfers/3.1.0-transfer-timeout-overview-for-bulk.html">
+            
+                    
+                    Timeout Overview
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.4.3.7.1" data-path="../../central-bulk-transfers/transfers/3.1.1-transfer-timeout-handler-consume.html">
+            
+                <a href="../../central-bulk-transfers/transfers/3.1.1-transfer-timeout-handler-consume.html">
+            
+                    
+                    Timeout Handler Consume
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.3.8" data-path="../../central-bulk-transfers/transfers/4.1.0-transfer-abort-overview-for-bulk.html">
+            
+                <a href="../../central-bulk-transfers/transfers/4.1.0-transfer-abort-overview-for-bulk.html">
+            
+                    
+                    Bulk Abort Overview
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.5" data-path="../../central-settlements/">
+            
+                <a href="../../central-settlements/">
+            
+                    
+                    Central-Settlements Service
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.5.1" data-path="../../central-settlements/settlement-process/">
+            
+                <a href="../../central-settlements/settlement-process/">
+            
+                    
+                    Settlement Process
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.5.1.1" data-path="../../central-settlements/settlement-process/get-settlement-windows-by-params.html">
+            
+                <a href="../../central-settlements/settlement-process/get-settlement-windows-by-params.html">
+            
+                    
+                    Settlement Windows By Params
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.5.1.2" data-path="../../central-settlements/settlement-process/get-settlement-window-by-id.html">
+            
+                <a href="../../central-settlements/settlement-process/get-settlement-window-by-id.html">
+            
+                    
+                    Request Settlement Window
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.5.1.3" data-path="../../central-settlements/settlement-process/post-close-settlement-window.html">
+            
+                <a href="../../central-settlements/settlement-process/post-close-settlement-window.html">
+            
+                    
+                    Close Settlement Window
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.5.1.4" data-path="../../central-settlements/settlement-process/post-create-settlement.html">
+            
+                <a href="../../central-settlements/settlement-process/post-create-settlement.html">
+            
+                    
+                    Create Settlement
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.5.1.5" data-path="../../central-settlements/settlement-process/get-settlement-by-id.html">
+            
+                <a href="../../central-settlements/settlement-process/get-settlement-by-id.html">
+            
+                    
+                    Request Settlement
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.5.1.6" data-path="../../central-settlements/settlement-process/put-settlement-transfer-ack.html">
+            
+                <a href="../../central-settlements/settlement-process/put-settlement-transfer-ack.html">
+            
+                    
+                    Settlement Transfer Acknowledgement
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.5.1.7" data-path="../../central-settlements/settlement-process/put-settlement-abort.html">
+            
+                <a href="../../central-settlements/settlement-process/put-settlement-abort.html">
+            
+                    
+                    Settlement Abort
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.5.1.8" data-path="../../central-settlements/settlement-process/get-settlement-by-spa.html">
+            
+                <a href="../../central-settlements/settlement-process/get-settlement-by-spa.html">
+            
+                    
+                    Request Settlement By SPA
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.5.1.9" data-path="../../central-settlements/settlement-process/get-settlements-by-params.html">
+            
+                <a href="../../central-settlements/settlement-process/get-settlements-by-params.html">
+            
+                    
+                    Request Settlements By Params
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.5.2" data-path="../../central-settlements/funds-in-out/">
+            
+                <a href="../../central-settlements/funds-in-out/">
+            
+                    
+                    Funds In/Out
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.5.2.1" data-path="../../central-settlements/funds-in-out/reconciliation-transfer-prepare.html">
+            
+                <a href="../../central-settlements/funds-in-out/reconciliation-transfer-prepare.html">
+            
+                    
+                    Reconciliation Transfer Prepare
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.5.2.2" data-path="../../central-settlements/funds-in-out/transfer-state-and-position-change.html">
+            
+                <a href="../../central-settlements/funds-in-out/transfer-state-and-position-change.html">
+            
+                    
+                    Transfer State and Position Change
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.5.2.3" data-path="../../central-settlements/funds-in-out/funds-in-prepare-reserve-commit.html">
+            
+                <a href="../../central-settlements/funds-in-out/funds-in-prepare-reserve-commit.html">
+            
+                    
+                    Funds In
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.5.2.4" data-path="../../central-settlements/funds-in-out/funds-out-prepare-reserve.html">
+            
+                <a href="../../central-settlements/funds-in-out/funds-out-prepare-reserve.html">
+            
+                    
+                    Funds Out - Prepare & Reserve
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.5.2.5" data-path="../../central-settlements/funds-in-out/funds-out-commit.html">
+            
+                <a href="../../central-settlements/funds-in-out/funds-out-commit.html">
+            
+                    
+                    Funds Out - Commit
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.5.2.6" data-path="../../central-settlements/funds-in-out/funds-out-abort.html">
+            
+                <a href="../../central-settlements/funds-in-out/funds-out-abort.html">
+            
+                    
+                    Funds Out - Abort
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.5.3" data-path="../../central-settlements/oss-settlement-fsd.html">
+            
+                <a href="../../central-settlements/oss-settlement-fsd.html">
+            
+                    
+                    OSS Settlement FSD
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.6" data-path="../../central-event-processor/">
+            
+                <a href="../../central-event-processor/">
+            
+                    
+                    Central-Event-Processor Services
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.6.1" data-path="../../central-event-processor/9.1.0-event-handler-placeholder.html">
+            
+                <a href="../../central-event-processor/9.1.0-event-handler-placeholder.html">
+            
+                    
+                    Event Handler (Placeholder)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.6.2" data-path="../../central-event-processor/5.1.1-notification-handler-for-rejections.html">
+            
+                <a href="../../central-event-processor/5.1.1-notification-handler-for-rejections.html">
+            
+                    
+                    Notification Handler For Rejections
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.6.3" data-path="../../central-event-processor/signature-validation.html">
+            
+                <a href="../../central-event-processor/signature-validation.html">
+            
+                    
+                    Signature Validation
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.7" data-path="../../event-framework/">
+            
+                <a href="../../event-framework/">
+            
+                    
+                    Event Framework
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.7.1" data-path="../../event-stream-processor/">
+            
+                <a href="../../event-stream-processor/">
+            
+                    
+                    Event Stream Processor
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.8" data-path="../../fraud-services/">
+            
+                <a href="../../fraud-services/">
+            
+                    
+                    Fraud Services
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.8.1" data-path="../../fraud-services/related-documents/documentation.html">
+            
+                <a href="../../fraud-services/related-documents/documentation.html">
+            
+                    
+                    Ecosystem Fraud Documentation
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.9" data-path="../../sdk-scheme-adapter/">
+            
+                <a href="../../sdk-scheme-adapter/">
+            
+                    
+                    SDK Scheme Adapter
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.9.1" data-path="../../sdk-scheme-adapter/usage/">
+            
+                <a href="../../sdk-scheme-adapter/usage/">
+            
+                    
+                    Usage
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.9.1.1" data-path="../../sdk-scheme-adapter/usage/scheme-adapter-to-scheme-adapter/">
+            
+                <a href="../../sdk-scheme-adapter/usage/scheme-adapter-to-scheme-adapter/">
+            
+                    
+                    Scheme Adapter to Scheme Adapter
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.9.1.2" data-path="../../sdk-scheme-adapter/usage/scheme-adapter-and-local-k8s/">
+            
+                <a href="../../sdk-scheme-adapter/usage/scheme-adapter-and-local-k8s/">
+            
+                    
+                    Scheme Adapter to Local ML Cluster
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.9.1.3" data-path="../../sdk-scheme-adapter/usage/scheme-adapter-and-wso2-api-gateway/">
+            
+                <a href="../../sdk-scheme-adapter/usage/scheme-adapter-and-wso2-api-gateway/">
+            
+                    
+                    Scheme Adapter to WSO2 API Gateway
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../../../api/">
+            
+                <a href="../../../api/">
+            
+                    
+                    API Specifications
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="../../../api/mojaloop-api-specification.html">
+            
+                <a href="../../../api/mojaloop-api-specification.html">
+            
+                    
+                    Mojaloop
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" data-path="../../../api/central-ledger-api-specification.html">
+            
+                <a href="../../../api/central-ledger-api-specification.html">
+            
+                    
+                    Central Ledger API
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3" data-path="../../../api/central-settlements-api-specification.html">
+            
+                <a href="../../../api/central-settlements-api-specification.html">
+            
+                    
+                    Central Settlements
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4" data-path="../../../api/als-oracle-api-specification.html">
+            
+                <a href="../../../api/als-oracle-api-specification.html">
+            
+                    
+                    ALS Oracle
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="../../../repositories/">
+            
+                <a href="../../../repositories/">
+            
+                    
+                    Repo Details
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1" data-path="../../../repositories/helm.html">
+            
+                <a href="../../../repositories/helm.html">
+            
+                    
+                    Helm
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.2" data-path="../../../repositories/project.html">
+            
+                <a href="../../../repositories/project.html">
+            
+                    
+                    Project
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="../../../mojaloop-roadmap.html">
+            
+                <a href="../../../mojaloop-roadmap.html">
+            
+                    
+                    Mojaloop Roadmap
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="../../../mojaloop-publications.html">
+            
+                <a href="../../../mojaloop-publications.html">
+            
+                    
+                    Mojaloop Publications
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="../../../discussions/readme.html">
+            
+                <a href="../../../discussions/readme.html">
+            
+                    
+                    Discussion Documents
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.11.1" data-path="../../../discussions/ISO_Integration.html">
+            
+                <a href="../../../discussions/ISO_Integration.html">
+            
+                    
+                    ISO integration Overivew
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.2" data-path="../../../discussions/decimal.html">
+            
+                <a href="../../../discussions/decimal.html">
+            
+                    
+                    Mojaloop Decimal Type; Based on XML Schema Decimal Type
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.3" data-path="../../../discussions/workbench.html">
+            
+                <a href="../../../discussions/workbench.html">
+            
+                    
+                    Workbench Workstream
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.4" data-path="../../../discussions/cross_border_day_1.html">
+            
+                <a href="../../../discussions/cross_border_day_1.html">
+            
+                    
+                    Cross Border Meeting Notes Day 1
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.5" data-path="../../../discussions/cross_border_day_2.html">
+            
+                <a href="../../../discussions/cross_border_day_2.html">
+            
+                    
+                    Cross Border Meeting Notes Day 2
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="../../../meeting-notes/readme.html">
+            
+                <a href="../../../meeting-notes/readme.html">
+            
+                    
+                    Mojaloop DA, CCB, Scrum-of-scrum Notes
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.12.1" data-path="../../../meeting-notes/scrum-of-scrum-notes.html">
+            
+                <a href="../../../meeting-notes/scrum-of-scrum-notes.html">
+            
+                    
+                    Scrum-of-scrum meeting notes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.2" data-path="../../../meeting-notes/da-notes.html">
+            
+                <a href="../../../meeting-notes/da-notes.html">
+            
+                    
+                    DA meeting notes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.3" data-path="../../../meeting-notes/ccb-notes.html">
+            
+                <a href="../../../meeting-notes/ccb-notes.html">
+            
+                    
+                    CCB Notes
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13" data-path="../../../code_quality_security/readme.html">
+            
+                <a href="../../../code_quality_security/readme.html">
+            
+                    
+                    Code Quality and Security
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14" data-path="../../../contributors-guide/frequently-asked-questions.html">
+            
+                <a href="../../../contributors-guide/frequently-asked-questions.html">
+            
+                    
+                    Frequently Asked Questions
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15" data-path="../../../glossary.html">
+            
+                <a href="../../../glossary.html">
+            
+                    
+                    Glossary of Terms
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../../.." >Fulfil Reject Transfer v1.1</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="payee-sends-a-fulfil-abort-transfer-request">Payee sends a Fulfil Abort Transfer request</h1>
+<p>Sequence design diagram for the Fulfil Reject Transfer process for version 1.1. of the API.</p>
+<h2 id="sequence-diagram">Sequence Diagram</h2>
+<p><object data="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiBjb250ZW50U2NyaXB0VHlwZT0iYXBwbGljYXRpb24vZWNtYXNjcmlwdCIgY29udGVudFN0eWxlVHlwZT0idGV4dC9jc3MiIGhlaWdodD0iMTYyOXB4IiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIiBzdHlsZT0id2lkdGg6MjAyNHB4O2hlaWdodDoxNjI5cHg7IiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAyMDI0IDE2MjkiIHdpZHRoPSIyMDI0cHgiIHpvb21BbmRQYW49Im1hZ25pZnkiPjxkZWZzPjxmaWx0ZXIgaGVpZ2h0PSIzMDAlIiBpZD0iZjFsNmszaTZ6NnZ3dTMiIHdpZHRoPSIzMDAlIiB4PSItMSIgeT0iLTEiPjxmZUdhdXNzaWFuQmx1ciByZXN1bHQ9ImJsdXJPdXQiIHN0ZERldmlhdGlvbj0iMi4wIi8+PGZlQ29sb3JNYXRyaXggaW49ImJsdXJPdXQiIHJlc3VsdD0iYmx1ck91dDIiIHR5cGU9Im1hdHJpeCIgdmFsdWVzPSIwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAuNCAwIi8+PGZlT2Zmc2V0IGR4PSI0LjAiIGR5PSI0LjAiIGluPSJibHVyT3V0MiIgcmVzdWx0PSJibHVyT3V0MyIvPjxmZUJsZW5kIGluPSJTb3VyY2VHcmFwaGljIiBpbjI9ImJsdXJPdXQzIiBtb2RlPSJub3JtYWwiLz48L2ZpbHRlcj48L2RlZnM+PGc+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGZvbnQtd2VpZ2h0PSJib2xkIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmdBbmRHbHlwaHMiIHRleHRMZW5ndGg9IjQwMyIgeD0iODExLjUiIHk9IjIyLjk5NTEiPjIuMi4wLiBERlNQMiBzZW5kcyBhIEZ1bGZpbCBSZWplY3QgVHJhbnNmZXIgcmVxdWVzdDwvdGV4dD48cmVjdCBmaWxsPSIjRDNEM0QzIiBoZWlnaHQ9IjE1ODQuMzUxNiIgc3R5bGU9InN0cm9rZTogI0E4MDAzNjsgc3Ryb2tlLXdpZHRoOiAxLjA7IiB3aWR0aD0iMjA0IiB4PSI0IiB5PSIzNC4yOTY5Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGZvbnQtd2VpZ2h0PSJib2xkIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmdBbmRHbHlwaHMiIHRleHRMZW5ndGg9IjE5OCIgeD0iNyIgeT0iNDYuMzYzOCI+RmluYW5jaWFsIFNlcnZpY2UgUHJvdmlkZXJzPC90ZXh0PjxyZWN0IGZpbGw9IiNBREQ4RTYiIGhlaWdodD0iMTU4NC4zNTE2IiBzdHlsZT0ic3Ryb2tlOiAjQTgwMDM2OyBzdHJva2Utd2lkdGg6IDEuMDsiIHdpZHRoPSI1NjgiIHg9IjQxNiIgeT0iMzQuMjk2OSIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBmb250LXdlaWdodD0iYm9sZCIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nQW5kR2x5cGhzIiB0ZXh0TGVuZ3RoPSIxNzMiIHg9IjYxMy41IiB5PSI0Ni4zNjM4Ij5NTCBBUEkgQWRhcHRlciBTZXJ2aWNlPC90ZXh0PjxyZWN0IGZpbGw9IiNGRkZGRTAiIGhlaWdodD0iMTU4NC4zNTE2IiBzdHlsZT0ic3Ryb2tlOiAjQTgwMDM2OyBzdHJva2Utd2lkdGg6IDEuMDsiIHdpZHRoPSI2MzMuNSIgeD0iOTg2IiB5PSIzNC4yOTY5Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGZvbnQtd2VpZ2h0PSJib2xkIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmdBbmRHbHlwaHMiIHRleHRMZW5ndGg9IjExMSIgeD0iMTI0Ny4yNSIgeT0iNDYuMzYzOCI+Q2VudHJhbCBTZXJ2aWNlPC90ZXh0PjxyZWN0IGZpbGw9IiNGRkZGRkYiIGZpbHRlcj0idXJsKCNmMWw2azNpNno2dnd1MykiIGhlaWdodD0iNTQzLjcxODgiIHN0eWxlPSJzdHJva2U6ICNBODAwMzY7IHN0cm9rZS13aWR0aDogMS4wOyIgd2lkdGg9IjEwIiB4PSI0NjkiIHk9IjgyMS44MDQ3Ii8+PHJlY3QgZmlsbD0iI0ZGRkZGRiIgZmlsdGVyPSJ1cmwoI2YxbDZrM2k2ejZ2d3UzKSIgaGVpZ2h0PSIxMzQ0LjAzMTMiIHN0eWxlPSJzdHJva2U6ICNBODAwMzY7IHN0cm9rZS13aWR0aDogMS4wOyIgd2lkdGg9IjEwIiB4PSI4NjAiIHk9IjE2My4wMjM0Ii8+PHJlY3QgZmlsbD0iI0ZGRkZGRiIgZmlsdGVyPSJ1cmwoI2YxbDZrM2k2ejZ2d3UzKSIgaGVpZ2h0PSI3MS4yNjU2IiBzdHlsZT0ic3Ryb2tlOiAjQTgwMDM2OyBzdHJva2Utd2lkdGg6IDEuMDsiIHdpZHRoPSIxMCIgeD0iMTE3Ni41IiB5PSIxMjY1LjEyNSIvPjxyZWN0IGZpbGw9IiNGRkZGRkYiIGZpbHRlcj0idXJsKCNmMWw2azNpNno2dnd1MykiIGhlaWdodD0iMTM0NC4wMzEzIiBzdHlsZT0ic3Ryb2tlOiAjQTgwMDM2OyBzdHJva2Utd2lkdGg6IDEuMDsiIHdpZHRoPSIxMCIgeD0iMTU0Mi41IiB5PSIxNjMuMDIzNCIvPjxyZWN0IGZpbGw9IiNGRkZGRkYiIGZpbHRlcj0idXJsKCNmMWw2azNpNno2dnd1MykiIGhlaWdodD0iMTMyOS4wMzEzIiBzdHlsZT0ic3Ryb2tlOiAjMDAwMDAwOyBzdHJva2Utd2lkdGg6IDIuMDsiIHdpZHRoPSIxOTEyIiB4PSIxMDEiIHk9IjE3MC4wMjM0Ii8+PGxpbmUgc3R5bGU9InN0cm9rZTogI0E4MDAzNjsgc3Ryb2tlLXdpZHRoOiAxLjA7IHN0cm9rZS1kYXNoYXJyYXk6IDUuMCw1LjA7IiB4MT0iNzUiIHgyPSI3NSIgeTE9IjE1My4wMjM0IiB5Mj0iMTUxNi4wNTQ3Ii8+PGxpbmUgc3R5bGU9InN0cm9rZTogI0E4MDAzNjsgc3Ryb2tlLXdpZHRoOiAxLjA7IHN0cm9rZS1kYXNoYXJyYXk6IDUuMCw1LjA7IiB4MT0iMTM3IiB4Mj0iMTM3IiB5MT0iMTUzLjAyMzQiIHkyPSIxNTE2LjA1NDciLz48bGluZSBzdHlsZT0ic3Ryb2tlOiAjQTgwMDM2OyBzdHJva2Utd2lkdGg6IDEuMDsgc3Ryb2tlLWRhc2hhcnJheTogNS4wLDUuMDsiIHgxPSI0NzQiIHgyPSI0NzQiIHkxPSIxNTMuMDIzNCIgeTI9IjE1MTYuMDU0NyIvPjxsaW5lIHN0eWxlPSJzdHJva2U6ICNBODAwMzY7IHN0cm9rZS13aWR0aDogMS4wOyBzdHJva2UtZGFzaGFycmF5OiA1LjAsNS4wOyIgeDE9Ijg2NSIgeDI9Ijg2NSIgeTE9IjE1My4wMjM0IiB5Mj0iMTUxNi4wNTQ3Ii8+PGxpbmUgc3R5bGU9InN0cm9rZTogI0E4MDAzNjsgc3Ryb2tlLXdpZHRoOiAxLjA7IHN0cm9rZS1kYXNoYXJyYXk6IDUuMCw1LjA7IiB4MT0iMTA1NyIgeDI9IjEwNTciIHkxPSIxNTMuMDIzNCIgeTI9IjE1MTYuMDU0NyIvPjxsaW5lIHN0eWxlPSJzdHJva2U6ICNBODAwMzY7IHN0cm9rZS13aWR0aDogMS4wOyBzdHJva2UtZGFzaGFycmF5OiA1LjAsNS4wOyIgeDE9IjExODEiIHgyPSIxMTgxIiB5MT0iMTUzLjAyMzQiIHkyPSIxNTE2LjA1NDciLz48bGluZSBzdHlsZT0ic3Ryb2tlOiAjQTgwMDM2OyBzdHJva2Utd2lkdGg6IDEuMDsgc3Ryb2tlLWRhc2hhcnJheTogNS4wLDUuMDsiIHgxPSIxNTQ3LjUiIHgyPSIxNTQ3LjUiIHkxPSIxNTMuMDIzNCIgeTI9IjE1MTYuMDU0NyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmdBbmRHbHlwaHMiIHRleHRMZW5ndGg9IjQ2IiB4PSI0OSIgeT0iMTMzLjQyNDgiPkRGU1AxPC90ZXh0Pjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmdBbmRHbHlwaHMiIHRleHRMZW5ndGg9IjM4IiB4PSI1MyIgeT0iMTQ5LjcyMTciPlBheWVyPC90ZXh0PjxlbGxpcHNlIGN4PSI3NSIgY3k9IjYzLjQyOTciIGZpbGw9IiNGRUZFQ0UiIGZpbHRlcj0idXJsKCNmMWw2azNpNno2dnd1MykiIHJ4PSI4IiByeT0iOCIgc3R5bGU9InN0cm9rZTogI0E4MDAzNjsgc3Ryb2tlLXdpZHRoOiAyLjA7Ii8+PHBhdGggZD0iTTc1LDcxLjQyOTcgTDc1LDk4LjQyOTcgTTYyLDc5LjQyOTcgTDg4LDc5LjQyOTcgTTc1LDk4LjQyOTcgTDYyLDExMy40Mjk3IE03NSw5OC40Mjk3IEw4OCwxMTMuNDI5NyAiIGZpbGw9Im5vbmUiIGZpbHRlcj0idXJsKCNmMWw2azNpNno2dnd1MykiIHN0eWxlPSJzdHJva2U6ICNBODAwMzY7IHN0cm9rZS13aWR0aDogMi4wOyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmdBbmRHbHlwaHMiIHRleHRMZW5ndGg9IjQ2IiB4PSI0OSIgeT0iMTUyOC4wNDk4Ij5ERlNQMTwvdGV4dD48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nQW5kR2x5cGhzIiB0ZXh0TGVuZ3RoPSIzOCIgeD0iNTMiIHk9IjE1NDQuMzQ2NyI+UGF5ZXI8L3RleHQ+PGVsbGlwc2UgY3g9Ijc1IiBjeT0iMTU1Ny42NDg0IiBmaWxsPSIjRkVGRUNFIiBmaWx0ZXI9InVybCgjZjFsNmszaTZ6NnZ3dTMpIiByeD0iOCIgcnk9IjgiIHN0eWxlPSJzdHJva2U6ICNBODAwMzY7IHN0cm9rZS13aWR0aDogMi4wOyIvPjxwYXRoIGQ9Ik03NSwxNTY1LjY0ODQgTDc1LDE1OTIuNjQ4NCBNNjIsMTU3My42NDg0IEw4OCwxNTczLjY0ODQgTTc1LDE1OTIuNjQ4NCBMNjIsMTYwNy42NDg0IE03NSwxNTkyLjY0ODQgTDg4LDE2MDcuNjQ4NCAiIGZpbGw9Im5vbmUiIGZpbHRlcj0idXJsKCNmMWw2azNpNno2dnd1MykiIHN0eWxlPSJzdHJva2U6ICNBODAwMzY7IHN0cm9rZS13aWR0aDogMi4wOyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmdBbmRHbHlwaHMiIHRleHRMZW5ndGg9IjQ2IiB4PSIxMTEiIHk9IjEzMy40MjQ4Ij5ERlNQMjwvdGV4dD48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nQW5kR2x5cGhzIiB0ZXh0TGVuZ3RoPSI0MiIgeD0iMTEzIiB5PSIxNDkuNzIxNyI+UGF5ZWU8L3RleHQ+PGVsbGlwc2UgY3g9IjEzNyIgY3k9IjYzLjQyOTciIGZpbGw9IiNGRUZFQ0UiIGZpbHRlcj0idXJsKCNmMWw2azNpNno2dnd1MykiIHJ4PSI4IiByeT0iOCIgc3R5bGU9InN0cm9rZTogI0E4MDAzNjsgc3Ryb2tlLXdpZHRoOiAyLjA7Ii8+PHBhdGggZD0iTTEzNyw3MS40Mjk3IEwxMzcsOTguNDI5NyBNMTI0LDc5LjQyOTcgTDE1MCw3OS40Mjk3IE0xMzcsOTguNDI5NyBMMTI0LDExMy40Mjk3IE0xMzcsOTguNDI5NyBMMTUwLDExMy40Mjk3ICIgZmlsbD0ibm9uZSIgZmlsdGVyPSJ1cmwoI2YxbDZrM2k2ejZ2d3UzKSIgc3R5bGU9InN0cm9rZTogI0E4MDAzNjsgc3Ryb2tlLXdpZHRoOiAyLjA7Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGxlbmd0aEFkanVzdD0ic3BhY2luZ0FuZEdseXBocyIgdGV4dExlbmd0aD0iNDYiIHg9IjExMSIgeT0iMTUyOC4wNDk4Ij5ERlNQMjwvdGV4dD48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nQW5kR2x5cGhzIiB0ZXh0TGVuZ3RoPSI0MiIgeD0iMTEzIiB5PSIxNTQ0LjM0NjciPlBheWVlPC90ZXh0PjxlbGxpcHNlIGN4PSIxMzciIGN5PSIxNTU3LjY0ODQiIGZpbGw9IiNGRUZFQ0UiIGZpbHRlcj0idXJsKCNmMWw2azNpNno2dnd1MykiIHJ4PSI4IiByeT0iOCIgc3R5bGU9InN0cm9rZTogI0E4MDAzNjsgc3Ryb2tlLXdpZHRoOiAyLjA7Ii8+PHBhdGggZD0iTTEzNywxNTY1LjY0ODQgTDEzNywxNTkyLjY0ODQgTTEyNCwxNTczLjY0ODQgTDE1MCwxNTczLjY0ODQgTTEzNywxNTkyLjY0ODQgTDEyNCwxNjA3LjY0ODQgTTEzNywxNTkyLjY0ODQgTDE1MCwxNjA3LjY0ODQgIiBmaWxsPSJub25lIiBmaWx0ZXI9InVybCgjZjFsNmszaTZ6NnZ3dTMpIiBzdHlsZT0ic3Ryb2tlOiAjQTgwMDM2OyBzdHJva2Utd2lkdGg6IDIuMDsiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nQW5kR2x5cGhzIiB0ZXh0TGVuZ3RoPSIxMDIiIHg9IjQyMCIgeT0iMTQ5LjcyMTciPk1MIEFQSSBBZGFwdGVyPC90ZXh0PjxwYXRoIGQ9Ik00NTMuNSwxMDguNzI2NiBMNDUzLjUsMTMyLjcyNjYgTTQ1My41LDEyMC43MjY2IEw0NzAuNSwxMjAuNzI2NiAiIGZpbGw9Im5vbmUiIGZpbHRlcj0idXJsKCNmMWw2azNpNno2dnd1MykiIHN0eWxlPSJzdHJva2U6ICNBODAwMzY7IHN0cm9rZS13aWR0aDogMi4wOyIvPjxlbGxpcHNlIGN4PSI0ODIuNSIgY3k9IjEyMC43MjY2IiBmaWxsPSIjRkVGRUNFIiBmaWx0ZXI9InVybCgjZjFsNmszaTZ6NnZ3dTMpIiByeD0iMTIiIHJ5PSIxMiIgc3R5bGU9InN0cm9rZTogI0E4MDAzNjsgc3Ryb2tlLXdpZHRoOiAyLjA7Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGxlbmd0aEFkanVzdD0ic3BhY2luZ0FuZEdseXBocyIgdGV4dExlbmd0aD0iMTAyIiB4PSI0MjAiIHk9IjE1MjguMDQ5OCI+TUwgQVBJIEFkYXB0ZXI8L3RleHQ+PHBhdGggZD0iTTQ1My41LDE1MzUuMzUxNiBMNDUzLjUsMTU1OS4zNTE2IE00NTMuNSwxNTQ3LjM1MTYgTDQ3MC41LDE1NDcuMzUxNiAiIGZpbGw9Im5vbmUiIGZpbHRlcj0idXJsKCNmMWw2azNpNno2dnd1MykiIHN0eWxlPSJzdHJva2U6ICNBODAwMzY7IHN0cm9rZS13aWR0aDogMi4wOyIvPjxlbGxpcHNlIGN4PSI0ODIuNSIgY3k9IjE1NDcuMzUxNiIgZmlsbD0iI0ZFRkVDRSIgZmlsdGVyPSJ1cmwoI2YxbDZrM2k2ejZ2d3UzKSIgcng9IjEyIiByeT0iMTIiIHN0eWxlPSJzdHJva2U6ICNBODAwMzY7IHN0cm9rZS13aWR0aDogMi4wOyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmdBbmRHbHlwaHMiIHRleHRMZW5ndGg9IjIyNCIgeD0iNzUwIiB5PSIxNDkuNzIxNyI+TUwgQVBJIE5vdGlmaWNhdGlvbiBFdmVudCBIYW5kbGVyPC90ZXh0PjxlbGxpcHNlIGN4PSI4NjUiIGN5PSIxMjAuNzI2NiIgZmlsbD0iI0ZFRkVDRSIgZmlsdGVyPSJ1cmwoI2YxbDZrM2k2ejZ2d3UzKSIgcng9IjEyIiByeT0iMTIiIHN0eWxlPSJzdHJva2U6ICNBODAwMzY7IHN0cm9rZS13aWR0aDogMi4wOyIvPjxwb2x5Z29uIGZpbGw9IiNBODAwMzYiIHBvaW50cz0iODYxLDEwOC43MjY2LDg2NywxMDMuNzI2Niw4NjUsMTA4LjcyNjYsODY3LDExMy43MjY2LDg2MSwxMDguNzI2NiIgc3R5bGU9InN0cm9rZTogI0E4MDAzNjsgc3Ryb2tlLXdpZHRoOiAxLjA7Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGxlbmd0aEFkanVzdD0ic3BhY2luZ0FuZEdseXBocyIgdGV4dExlbmd0aD0iMjI0IiB4PSI3NTAiIHk9IjE1MjguMDQ5OCI+TUwgQVBJIE5vdGlmaWNhdGlvbiBFdmVudCBIYW5kbGVyPC90ZXh0PjxlbGxpcHNlIGN4PSI4NjUiIGN5PSIxNTQ3LjM1MTYiIGZpbGw9IiNGRUZFQ0UiIGZpbHRlcj0idXJsKCNmMWw2azNpNno2dnd1MykiIHJ4PSIxMiIgcnk9IjEyIiBzdHlsZT0ic3Ryb2tlOiAjQTgwMDM2OyBzdHJva2Utd2lkdGg6IDIuMDsiLz48cG9seWdvbiBmaWxsPSIjQTgwMDM2IiBwb2ludHM9Ijg2MSwxNTM1LjM1MTYsODY3LDE1MzAuMzUxNiw4NjUsMTUzNS4zNTE2LDg2NywxNTQwLjM1MTYsODYxLDE1MzUuMzUxNiIgc3R5bGU9InN0cm9rZTogI0E4MDAzNjsgc3Ryb2tlLXdpZHRoOiAxLjA7Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGxlbmd0aEFkanVzdD0ic3BhY2luZ0FuZEdseXBocyIgdGV4dExlbmd0aD0iMTI4IiB4PSI5OTAiIHk9IjE0OS43MjE3Ij5DZW50cmFsIFNlcnZpY2UgQVBJPC90ZXh0PjxwYXRoIGQ9Ik0xMDM2LjUsMTA4LjcyNjYgTDEwMzYuNSwxMzIuNzI2NiBNMTAzNi41LDEyMC43MjY2IEwxMDUzLjUsMTIwLjcyNjYgIiBmaWxsPSJub25lIiBmaWx0ZXI9InVybCgjZjFsNmszaTZ6NnZ3dTMpIiBzdHlsZT0ic3Ryb2tlOiAjQTgwMDM2OyBzdHJva2Utd2lkdGg6IDIuMDsiLz48ZWxsaXBzZSBjeD0iMTA2NS41IiBjeT0iMTIwLjcyNjYiIGZpbGw9IiNGRUZFQ0UiIGZpbHRlcj0idXJsKCNmMWw2azNpNno2dnd1MykiIHJ4PSIxMiIgcnk9IjEyIiBzdHlsZT0ic3Ryb2tlOiAjQTgwMDM2OyBzdHJva2Utd2lkdGg6IDIuMDsiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nQW5kR2x5cGhzIiB0ZXh0TGVuZ3RoPSIxMjgiIHg9Ijk5MCIgeT0iMTUyOC4wNDk4Ij5DZW50cmFsIFNlcnZpY2UgQVBJPC90ZXh0PjxwYXRoIGQ9Ik0xMDM2LjUsMTUzNS4zNTE2IEwxMDM2LjUsMTU1OS4zNTE2IE0xMDM2LjUsMTU0Ny4zNTE2IEwxMDUzLjUsMTU0Ny4zNTE2ICIgZmlsbD0ibm9uZSIgZmlsdGVyPSJ1cmwoI2YxbDZrM2k2ejZ2d3UzKSIgc3R5bGU9InN0cm9rZTogI0E4MDAzNjsgc3Ryb2tlLXdpZHRoOiAyLjA7Ii8+PGVsbGlwc2UgY3g9IjEwNjUuNSIgY3k9IjE1NDcuMzUxNiIgZmlsbD0iI0ZFRkVDRSIgZmlsdGVyPSJ1cmwoI2YxbDZrM2k2ejZ2d3UzKSIgcng9IjEyIiByeT0iMTIiIHN0eWxlPSJzdHJva2U6ICNBODAwMzY7IHN0cm9rZS13aWR0aDogMi4wOyIvPjxyZWN0IGZpbGw9IiNGRUZFQ0UiIGZpbHRlcj0idXJsKCNmMWw2azNpNno2dnd1MykiIGhlaWdodD0iMzAuMjk2OSIgc3R5bGU9InN0cm9rZTogI0E4MDAzNjsgc3Ryb2tlLXdpZHRoOiAxLjU7IiB3aWR0aD0iODciIHg9IjExMzgiIHk9IjExMy43MjY2Ii8+PHJlY3QgZmlsbD0iI0ZFRkVDRSIgZmlsdGVyPSJ1cmwoI2YxbDZrM2k2ejZ2d3UzKSIgaGVpZ2h0PSIzMC4yOTY5IiBzdHlsZT0ic3Ryb2tlOiAjQTgwMDM2OyBzdHJva2Utd2lkdGg6IDEuNTsiIHdpZHRoPSI4NyIgeD0iMTEzNCIgeT0iMTE3LjcyNjYiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nQW5kR2x5cGhzIiB0ZXh0TGVuZ3RoPSI3MyIgeD0iMTE0MSIgeT0iMTM3LjcyMTciPkZ1bGZpbC1Ub3BpYzwvdGV4dD48cmVjdCBmaWxsPSIjRkVGRUNFIiBmaWx0ZXI9InVybCgjZjFsNmszaTZ6NnZ3dTMpIiBoZWlnaHQ9IjMwLjI5NjkiIHN0eWxlPSJzdHJva2U6ICNBODAwMzY7IHN0cm9rZS13aWR0aDogMS41OyIgd2lkdGg9Ijg3IiB4PSIxMTM4IiB5PSIxNTE1LjA1NDciLz48cmVjdCBmaWxsPSIjRkVGRUNFIiBmaWx0ZXI9InVybCgjZjFsNmszaTZ6NnZ3dTMpIiBoZWlnaHQ9IjMwLjI5NjkiIHN0eWxlPSJzdHJva2U6ICNBODAwMzY7IHN0cm9rZS13aWR0aDogMS41OyIgd2lkdGg9Ijg3IiB4PSIxMTM0IiB5PSIxNTE5LjA1NDciLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nQW5kR2x5cGhzIiB0ZXh0TGVuZ3RoPSI3MyIgeD0iMTE0MSIgeT0iMTUzOS4wNDk4Ij5GdWxmaWwtVG9waWM8L3RleHQ+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGxlbmd0aEFkanVzdD0ic3BhY2luZ0FuZEdseXBocyIgdGV4dExlbmd0aD0iMTMwIiB4PSIxNDc5LjUiIHk9IjE0OS43MjE3Ij5GdWxmaWwgRXZlbnQgSGFuZGxlcjwvdGV4dD48ZWxsaXBzZSBjeD0iMTU0Ny41IiBjeT0iMTIwLjcyNjYiIGZpbGw9IiNGRUZFQ0UiIGZpbHRlcj0idXJsKCNmMWw2azNpNno2dnd1MykiIHJ4PSIxMiIgcnk9IjEyIiBzdHlsZT0ic3Ryb2tlOiAjQTgwMDM2OyBzdHJva2Utd2lkdGg6IDIuMDsiLz48cG9seWdvbiBmaWxsPSIjQTgwMDM2IiBwb2ludHM9IjE1NDMuNSwxMDguNzI2NiwxNTQ5LjUsMTAzLjcyNjYsMTU0Ny41LDEwOC43MjY2LDE1NDkuNSwxMTMuNzI2NiwxNTQzLjUsMTA4LjcyNjYiIHN0eWxlPSJzdHJva2U6ICNBODAwMzY7IHN0cm9rZS13aWR0aDogMS4wOyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmdBbmRHbHlwaHMiIHRleHRMZW5ndGg9IjEzMCIgeD0iMTQ3OS41IiB5PSIxNTI4LjA0OTgiPkZ1bGZpbCBFdmVudCBIYW5kbGVyPC90ZXh0PjxlbGxpcHNlIGN4PSIxNTQ3LjUiIGN5PSIxNTQ3LjM1MTYiIGZpbGw9IiNGRUZFQ0UiIGZpbHRlcj0idXJsKCNmMWw2azNpNno2dnd1MykiIHJ4PSIxMiIgcnk9IjEyIiBzdHlsZT0ic3Ryb2tlOiAjQTgwMDM2OyBzdHJva2Utd2lkdGg6IDIuMDsiLz48cG9seWdvbiBmaWxsPSIjQTgwMDM2IiBwb2ludHM9IjE1NDMuNSwxNTM1LjM1MTYsMTU0OS41LDE1MzAuMzUxNiwxNTQ3LjUsMTUzNS4zNTE2LDE1NDkuNSwxNTQwLjM1MTYsMTU0My41LDE1MzUuMzUxNiIgc3R5bGU9InN0cm9rZTogI0E4MDAzNjsgc3Ryb2tlLXdpZHRoOiAxLjA7Ii8+PHJlY3QgZmlsbD0iI0ZGRkZGRiIgZmlsdGVyPSJ1cmwoI2YxbDZrM2k2ejZ2d3UzKSIgaGVpZ2h0PSI1NDMuNzE4OCIgc3R5bGU9InN0cm9rZTogI0E4MDAzNjsgc3Ryb2tlLXdpZHRoOiAxLjA7IiB3aWR0aD0iMTAiIHg9IjQ2OSIgeT0iODIxLjgwNDciLz48cmVjdCBmaWxsPSIjRkZGRkZGIiBmaWx0ZXI9InVybCgjZjFsNmszaTZ6NnZ3dTMpIiBoZWlnaHQ9IjEzNDQuMDMxMyIgc3R5bGU9InN0cm9rZTogI0E4MDAzNjsgc3Ryb2tlLXdpZHRoOiAxLjA7IiB3aWR0aD0iMTAiIHg9Ijg2MCIgeT0iMTYzLjAyMzQiLz48cmVjdCBmaWxsPSIjRkZGRkZGIiBmaWx0ZXI9InVybCgjZjFsNmszaTZ6NnZ3dTMpIiBoZWlnaHQ9IjcxLjI2NTYiIHN0eWxlPSJzdHJva2U6ICNBODAwMzY7IHN0cm9rZS13aWR0aDogMS4wOyIgd2lkdGg9IjEwIiB4PSIxMTc2LjUiIHk9IjEyNjUuMTI1Ii8+PHJlY3QgZmlsbD0iI0ZGRkZGRiIgZmlsdGVyPSJ1cmwoI2YxbDZrM2k2ejZ2d3UzKSIgaGVpZ2h0PSIxMzQ0LjAzMTMiIHN0eWxlPSJzdHJva2U6ICNBODAwMzY7IHN0cm9rZS13aWR0aDogMS4wOyIgd2lkdGg9IjEwIiB4PSIxNTQyLjUiIHk9IjE2My4wMjM0Ii8+PHBhdGggZD0iTTEwMSwxNzAuMDIzNCBMNDc3LDE3MC4wMjM0IEw0NzcsMTc3LjAyMzQgTDQ2NywxODcuMDIzNCBMMTAxLDE4Ny4wMjM0IEwxMDEsMTcwLjAyMzQgIiBmaWxsPSIjRUVFRUVFIiBzdHlsZT0ic3Ryb2tlOiAjMDAwMDAwOyBzdHJva2Utd2lkdGg6IDEuMDsiLz48cmVjdCBmaWxsPSJub25lIiBoZWlnaHQ9IjEzMjkuMDMxMyIgc3R5bGU9InN0cm9rZTogIzAwMDAwMDsgc3Ryb2tlLXdpZHRoOiAyLjA7IiB3aWR0aD0iMTkxMiIgeD0iMTAxIiB5PSIxNzAuMDIzNCIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBmb250LXdlaWdodD0iYm9sZCIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nQW5kR2x5cGhzIiB0ZXh0TGVuZ3RoPSIzMzEiIHg9IjExNiIgeT0iMTgzLjA5MDMiPkRGU1AyIHNlbmRzIGEgRnVsZmlsIFJlamVjdCBUcmFuc2ZlciByZXF1ZXN0PC90ZXh0PjxsaW5lIHN0eWxlPSJzdHJva2U6ICNBODAwMzY7IHN0cm9rZS13aWR0aDogMS4wOyIgeDE9IjEzNyIgeDI9IjE3OSIgeTE9IjIzOC41NTQ3IiB5Mj0iMjM4LjU1NDciLz48bGluZSBzdHlsZT0ic3Ryb2tlOiAjQTgwMDM2OyBzdHJva2Utd2lkdGg6IDEuMDsiIHgxPSIxNzkiIHgyPSIxNzkiIHkxPSIyMzguNTU0NyIgeTI9IjI1MS41NTQ3Ii8+PGxpbmUgc3R5bGU9InN0cm9rZTogI0E4MDAzNjsgc3Ryb2tlLXdpZHRoOiAxLjA7IiB4MT0iMTM4IiB4Mj0iMTc5IiB5MT0iMjUxLjU1NDciIHkyPSIyNTEuNTU0NyIvPjxwb2x5Z29uIGZpbGw9IiNBODAwMzYiIHBvaW50cz0iMTQ4LDI0Ny41NTQ3LDEzOCwyNTEuNTU0NywxNDgsMjU1LjU1NDcsMTQ0LDI1MS41NTQ3IiBzdHlsZT0ic3Ryb2tlOiAjQTgwMDM2OyBzdHJva2Utd2lkdGg6IDEuMDsiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgZm9udC13ZWlnaHQ9ImJvbGQiIGxlbmd0aEFkanVzdD0ic3BhY2luZ0FuZEdseXBocyIgdGV4dExlbmd0aD0iOSIgeD0iMTQ0IiB5PSIyMTguMzU2Ij4xPC90ZXh0Pjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmdBbmRHbHlwaHMiIHRleHRMZW5ndGg9IjI2OSIgeD0iMTU3IiB5PSIyMDMuMjIzMSI+UmV0cmlldmUgZnVsZmlsbWVudCBzdHJpbmcgZ2VuZXJhdGVkIGR1cmluZzwvdGV4dD48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nQW5kR2x5cGhzIiB0ZXh0TGVuZ3RoPSIyNjkiIHg9IjE1NyIgeT0iMjE4LjM1NiI+dGhlIHF1b3RpbmcgcHJvY2VzcyBvciByZWdlbmVyYXRlIGl0IHVzaW5nPC90ZXh0Pjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBmb250LXdlaWdodD0iYm9sZCIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nQW5kR2x5cGhzIiB0ZXh0TGVuZ3RoPSI4OSIgeD0iMTU3IiB5PSIyMzMuNDg4OCI+TG9jYWwgc2VjcmV0PC90ZXh0Pjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmdBbmRHbHlwaHMiIHRleHRMZW5ndGg9IjI0IiB4PSIyNTAiIHk9IjIzMy40ODg4Ij5hbmQ8L3RleHQ+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGZvbnQtd2VpZ2h0PSJib2xkIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmdBbmRHbHlwaHMiIHRleHRMZW5ndGg9Ijc4IiB4PSIyNzgiIHk9IjIzMy40ODg4Ij5JTFAgUGFja2V0PC90ZXh0Pjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmdBbmRHbHlwaHMiIHRleHRMZW5ndGg9IjU4IiB4PSIzNjAiIHk9IjIzMy40ODg4Ij5hcyBpbnB1dHM8L3RleHQ+PHBhdGggZD0iTTE0MiwyNjQuNTU0NyBMMTQyLDMwNC41NTQ3IEw0NTAsMzA0LjU1NDcgTDQ1MCwyNzQuNTU0NyBMNDQwLDI2NC41NTQ3IEwxNDIsMjY0LjU1NDcgIiBmaWxsPSIjQUREOEU2IiBmaWx0ZXI9InVybCgjZjFsNmszaTZ6NnZ3dTMpIiBzdHlsZT0ic3Ryb2tlOiAjQTgwMDM2OyBzdHJva2Utd2lkdGg6IDEuMDsiLz48cGF0aCBkPSJNNDQwLDI2NC41NTQ3IEw0NDAsMjc0LjU1NDcgTDQ1MCwyNzQuNTU0NyBMNDQwLDI2NC41NTQ3ICIgZmlsbD0iI0FERDhFNiIgc3R5bGU9InN0cm9rZTogI0E4MDAzNjsgc3Ryb2tlLXdpZHRoOiAxLjA7Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGZvbnQtd2VpZ2h0PSJib2xkIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmdBbmRHbHlwaHMiIHRleHRMZW5ndGg9IjM1IiB4PSIxNDgiIHk9IjI4MS42MjE2Ij5Ob3RlPC90ZXh0Pjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmdBbmRHbHlwaHMiIHRleHRMZW5ndGg9IjI1MiIgeD0iMTgzIiB5PSIyODEuNjIxNiI+OiBJbiB0aGUgcGF5bG9hZCBmb3IgUFVUIC90cmFuc2ZlcnMvJmx0O0lEJmd0OzwvdGV4dD48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nQW5kR2x5cGhzIiB0ZXh0TGVuZ3RoPSI1MSIgeD0iMTQ4IiB5PSIyOTYuNzU0NCI+b25seSB0aGU8L3RleHQ+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGZvbnQtd2VpZ2h0PSJib2xkIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmdBbmRHbHlwaHMiIHRleHRMZW5ndGg9Ijk4IiB4PSIyMDMiIHk9IjI5Ni43NTQ0Ij50cmFuc2ZlclN0YXRlPC90ZXh0Pjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmdBbmRHbHlwaHMiIHRleHRMZW5ndGg9IjQwIiB4PSIzMDUiIHk9IjI5Ni43NTQ0Ij5maWVsZCBpczwvdGV4dD48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgZm9udC13ZWlnaHQ9ImJvbGQiIGxlbmd0aEFkanVzdD0ic3BhY2luZ0FuZEdseXBocyIgdGV4dExlbmd0aD0iNjMiIHg9IjM0OSIgeT0iMjk2Ljc1NDQiPnJlcXVpcmVkPC90ZXh0PjxwYXRoIGQ9Ik0xNDIsMzE4LjgyMDMgTDE0Miw3MzYuODIwMyBMNDc5LDczNi44MjAzIEw0NzksMzI4LjgyMDMgTDQ2OSwzMTguODIwMyBMMTQyLDMxOC44MjAzICIgZmlsbD0iI0ZGRkYwMCIgZmlsdGVyPSJ1cmwoI2YxbDZrM2k2ejZ2d3UzKSIgc3R5bGU9InN0cm9rZTogI0E4MDAzNjsgc3Ryb2tlLXdpZHRoOiAxLjA7Ii8+PHBhdGggZD0iTTQ2OSwzMTguODIwMyBMNDY5LDMyOC44MjAzIEw0NzksMzI4LjgyMDMgTDQ2OSwzMTguODIwMyAiIGZpbGw9IiNGRkZGMDAiIHN0eWxlPSJzdHJva2U6ICNBODAwMzY7IHN0cm9rZS13aWR0aDogMS4wOyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmdBbmRHbHlwaHMiIHRleHRMZW5ndGg9IjE4NyIgeD0iMTQ4IiB5PSIzMzUuODg3MiI+SGVhZGVycyAtIHRyYW5zZmVySGVhZGVyczogezwvdGV4dD48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nQW5kR2x5cGhzIiB0ZXh0TGVuZ3RoPSIyMzQiIHg9IjE2NCIgeT0iMzUxLjAyIj5Db250ZW50LUxlbmd0aDogJmx0O0NvbnRlbnQtTGVuZ3RoJmd0Oyw8L3RleHQ+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGxlbmd0aEFkanVzdD0ic3BhY2luZ0FuZEdseXBocyIgdGV4dExlbmd0aD0iMjA2IiB4PSIxNjQiIHk9IjM2Ni4xNTI4Ij5Db250ZW50LVR5cGU6ICZsdDtDb250ZW50LVR5cGUmZ3Q7LDwvdGV4dD48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nQW5kR2x5cGhzIiB0ZXh0TGVuZ3RoPSI5NiIgeD0iMTY0IiB5PSIzODEuMjg1NiI+RGF0ZTogJmx0O0RhdGUmZ3Q7LDwvdGV4dD48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nQW5kR2x5cGhzIiB0ZXh0TGVuZ3RoPSIyNDIiIHg9IjE2NCIgeT0iMzk2LjQxODUiPlgtRm9yd2FyZGVkLUZvcjogJmx0O1gtRm9yd2FyZGVkLUZvciZndDssPC90ZXh0Pjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmdBbmRHbHlwaHMiIHRleHRMZW5ndGg9IjIyNCIgeD0iMTY0IiB5PSI0MTEuNTUxMyI+RlNQSU9QLVNvdXJjZTogJmx0O0ZTUElPUC1Tb3VyY2UmZ3Q7LDwvdGV4dD48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nQW5kR2x5cGhzIiB0ZXh0TGVuZ3RoPSIyODAiIHg9IjE2NCIgeT0iNDI2LjY4NDEiPkZTUElPUC1EZXN0aW5hdGlvbjogJmx0O0ZTUElPUC1EZXN0aW5hdGlvbiZndDssPC90ZXh0Pjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmdBbmRHbHlwaHMiIHRleHRMZW5ndGg9IjI2OCIgeD0iMTY0IiB5PSI0NDEuODE2OSI+RlNQSU9QLUVuY3J5cHRpb246ICZsdDtGU1BJT1AtRW5jcnlwdGlvbiZndDssPC90ZXh0Pjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmdBbmRHbHlwaHMiIHRleHRMZW5ndGg9IjI1OCIgeD0iMTY0IiB5PSI0NTYuOTQ5NyI+RlNQSU9QLVNpZ25hdHVyZTogJmx0O0ZTUElPUC1TaWduYXR1cmUmZ3Q7LDwvdGV4dD48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nQW5kR2x5cGhzIiB0ZXh0TGVuZ3RoPSIxNzYiIHg9IjE2NCIgeT0iNDcyLjA4MjUiPkZTUElPUC1VUkk6ICZsdDtGU1BJT1AtVVJJJmd0Oyw8L3RleHQ+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGxlbmd0aEFkanVzdD0ic3BhY2luZ0FuZEdseXBocyIgdGV4dExlbmd0aD0iMzAwIiB4PSIxNjQiIHk9IjQ4Ny4yMTUzIj5GU1BJT1AtSFRUUC1NZXRob2Q6ICZsdDtGU1BJT1AtSFRUUC1NZXRob2QmZ3Q7PC90ZXh0Pjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmdBbmRHbHlwaHMiIHRleHRMZW5ndGg9IjgiIHg9IjE0OCIgeT0iNTAyLjM0ODEiPn08L3RleHQ+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGxlbmd0aEFkanVzdD0ic3BhY2luZ0FuZEdseXBocyIgdGV4dExlbmd0aD0iMCIgeD0iMTUyIiB5PSI1MTcuNDgxIi8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGxlbmd0aEFkanVzdD0ic3BhY2luZ0FuZEdseXBocyIgdGV4dExlbmd0aD0iMTc0IiB4PSIxNDgiIHk9IjUzMi42MTM4Ij5QYXlsb2FkIC0gdHJhbnNmZXJNZXNzYWdlOjwvdGV4dD48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nQW5kR2x5cGhzIiB0ZXh0TGVuZ3RoPSI4IiB4PSIxNDgiIHk9IjU0Ny43NDY2Ij57PC90ZXh0Pjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmdBbmRHbHlwaHMiIHRleHRMZW5ndGg9IjE3OSIgeD0iMTY0IiB5PSI1NjIuODc5NCI+ImZ1bGZpbG1lbnQiOiAmbHQ7SWxwRnVsZmlsbWVudCZndDssPC90ZXh0Pjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmdBbmRHbHlwaHMiIHRleHRMZW5ndGg9IjI0NiIgeD0iMTY0IiB5PSI1NzguMDEyMiI+ImNvbXBsZXRlZFRpbWVzdGFtcCI6ICZsdDtEYXRlVGltZSZndDssPC90ZXh0Pjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmdBbmRHbHlwaHMiIHRleHRMZW5ndGg9IjE3OCIgeD0iMTY0IiB5PSI1OTMuMTQ1Ij4idHJhbnNmZXJTdGF0ZSI6ICJBQk9SVEVEIiw8L3RleHQ+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGxlbmd0aEFkanVzdD0ic3BhY2luZ0FuZEdseXBocyIgdGV4dExlbmd0aD0iMTEwIiB4PSIxNjQiIHk9IjYwOC4yNzc4Ij4iZXh0ZW5zaW9uTGlzdCI6IHs8L3RleHQ+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGxlbmd0aEFkanVzdD0ic3BhY2luZ0FuZEdseXBocyIgdGV4dExlbmd0aD0iODUiIHg9IjE4MCIgeT0iNjIzLjQxMDYiPiJleHRlbnNpb24iOiBbPC90ZXh0Pjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmdBbmRHbHlwaHMiIHRleHRMZW5ndGg9IjgiIHg9IjE5NiIgeT0iNjM4LjU0MzUiPns8L3RleHQ+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGxlbmd0aEFkanVzdD0ic3BhY2luZ0FuZEdseXBocyIgdGV4dExlbmd0aD0iMTAyIiB4PSIyMTIiIHk9IjY1My42NzYzIj4ia2V5IjogJmx0O3N0cmluZyZndDssPC90ZXh0Pjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmdBbmRHbHlwaHMiIHRleHRMZW5ndGg9IjExMCIgeD0iMjEyIiB5PSI2NjguODA5MSI+InZhbHVlIjogJmx0O3N0cmluZyZndDs8L3RleHQ+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGxlbmd0aEFkanVzdD0ic3BhY2luZ0FuZEdseXBocyIgdGV4dExlbmd0aD0iOCIgeD0iMTk2IiB5PSI2ODMuOTQxOSI+fTwvdGV4dD48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nQW5kR2x5cGhzIiB0ZXh0TGVuZ3RoPSI1IiB4PSIxODAiIHk9IjY5OS4wNzQ3Ij5dPC90ZXh0Pjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmdBbmRHbHlwaHMiIHRleHRMZW5ndGg9IjgiIHg9IjE2NCIgeT0iNzE0LjIwNzUiPn08L3RleHQ+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGxlbmd0aEFkanVzdD0ic3BhY2luZ0FuZEdseXBocyIgdGV4dExlbmd0aD0iOCIgeD0iMTQ4IiB5PSI3MjkuMzQwMyI+fTwvdGV4dD48cGF0aCBkPSJNMTQyLDc1MS40MDYzIEwxNDIsNzkxLjQwNjMgTDQ3OSw3OTEuNDA2MyBMNDc5LDc2MS40MDYzIEw0NjksNzUxLjQwNjMgTDE0Miw3NTEuNDA2MyAiIGZpbGw9IiNEM0QzRDMiIGZpbHRlcj0idXJsKCNmMWw2azNpNno2dnd1MykiIHN0eWxlPSJzdHJva2U6ICNBODAwMzY7IHN0cm9rZS13aWR0aDogMS4wOyIvPjxwYXRoIGQ9Ik00NjksNzUxLjQwNjMgTDQ2OSw3NjEuNDA2MyBMNDc5LDc2MS40MDYzIEw0NjksNzUxLjQwNjMgIiBmaWxsPSIjRDNEM0QzIiBzdHlsZT0ic3Ryb2tlOiAjQTgwMDM2OyBzdHJva2Utd2lkdGg6IDEuMDsiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgZm9udC13ZWlnaHQ9ImJvbGQiIGxlbmd0aEFkanVzdD0ic3BhY2luZ0FuZEdseXBocyIgdGV4dExlbmd0aD0iMzUiIHg9IjE0OCIgeT0iNzY4LjQ3MzEiPk5vdGU8L3RleHQ+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGxlbmd0aEFkanVzdD0ic3BhY2luZ0FuZEdseXBocyIgdGV4dExlbmd0aD0iMjgxIiB4PSIxODMiIHk9Ijc2OC40NzMxIj46IFBheWVlIHJlamVjdGlvbiByZWFzb24gc2hvdWxkIGJlIGNhcHR1cmVkPC90ZXh0Pjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmdBbmRHbHlwaHMiIHRleHRMZW5ndGg9IjI0NyIgeD0iMTQ4IiB5PSI3ODMuNjA2Ij5pbiB0aGUgZXh0ZW5zaW9uTGlzdCB3aXRoaW4gdGhlIHBheWxvYWQuPC90ZXh0PjxsaW5lIHN0eWxlPSJzdHJva2U6ICNBODAwMzY7IHN0cm9rZS13aWR0aDogMS4wOyIgeDE9IjQ2NyIgeDI9IjQ1NyIgeTE9IjgyMS44MDQ3IiB5Mj0iODE3LjgwNDciLz48bGluZSBzdHlsZT0ic3Ryb2tlOiAjQTgwMDM2OyBzdHJva2Utd2lkdGg6IDEuMDsiIHgxPSI0NjciIHgyPSI0NTciIHkxPSI4MjEuODA0NyIgeTI9IjgyNS44MDQ3Ii8+PGxpbmUgc3R5bGU9InN0cm9rZTogI0E4MDAzNjsgc3Ryb2tlLXdpZHRoOiAxLjA7IiB4MT0iMTM3IiB4Mj0iNDY4IiB5MT0iODIxLjgwNDciIHkyPSI4MjEuODA0NyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBmb250LXdlaWdodD0iYm9sZCIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nQW5kR2x5cGhzIiB0ZXh0TGVuZ3RoPSI5IiB4PSIxNDQiIHk9IjgxNi43Mzg4Ij4yPC90ZXh0Pjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBmb250LXdlaWdodD0iYm9sZCIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nQW5kR2x5cGhzIiB0ZXh0TGVuZ3RoPSIxNTciIHg9IjE1NyIgeT0iODE2LjczODgiPlBVVCAtIC90cmFuc2ZlcnMvJmx0O0lEJmd0OzwvdGV4dD48bGluZSBzdHlsZT0ic3Ryb2tlOiAjQTgwMDM2OyBzdHJva2Utd2lkdGg6IDEuMDsiIHgxPSI0NzkiIHgyPSI1MjEiIHkxPSI4NTAuOTM3NSIgeTI9Ijg1MC45Mzc1Ii8+PGxpbmUgc3R5bGU9InN0cm9rZTogI0E4MDAzNjsgc3Ryb2tlLXdpZHRoOiAxLjA7IiB4MT0iNTIxIiB4Mj0iNTIxIiB5MT0iODUwLjkzNzUiIHkyPSI4NjMuOTM3NSIvPjxsaW5lIHN0eWxlPSJzdHJva2U6ICNBODAwMzY7IHN0cm9rZS13aWR0aDogMS4wOyIgeDE9IjQ4MCIgeDI9IjUyMSIgeTE9Ijg2My45Mzc1IiB5Mj0iODYzLjkzNzUiLz48cG9seWdvbiBmaWxsPSIjQTgwMDM2IiBwb2ludHM9IjQ5MCw4NTkuOTM3NSw0ODAsODYzLjkzNzUsNDkwLDg2Ny45Mzc1LDQ4Niw4NjMuOTM3NSIgc3R5bGU9InN0cm9rZTogI0E4MDAzNjsgc3Ryb2tlLXdpZHRoOiAxLjA7Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGZvbnQtd2VpZ2h0PSJib2xkIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmdBbmRHbHlwaHMiIHRleHRMZW5ndGg9IjkiIHg9IjQ4NiIgeT0iODQ1Ljg3MTYiPjM8L3RleHQ+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGxlbmd0aEFkanVzdD0ic3BhY2luZ0FuZEdseXBocyIgdGV4dExlbmd0aD0iMzU0IiB4PSI0OTkiIHk9Ijg0NS44NzE2Ij5WYWxpZGF0ZSBpbmNvbWluZyB0b2tlbiBhbmQgb3JpZ2luYXRvciBtYXRjaGluZyBQYXllZTwvdGV4dD48cGF0aCBkPSJNNDg0LDg3Ni45Mzc1IEw0ODQsMTIzNC45Mzc1IEw3OTksMTIzNC45Mzc1IEw3OTksODg2LjkzNzUgTDc4OSw4NzYuOTM3NSBMNDg0LDg3Ni45Mzc1ICIgZmlsbD0iI0ZGRkYwMCIgZmlsdGVyPSJ1cmwoI2YxbDZrM2k2ejZ2d3UzKSIgc3R5bGU9InN0cm9rZTogI0E4MDAzNjsgc3Ryb2tlLXdpZHRoOiAxLjA7Ii8+PHBhdGggZD0iTTc4OSw4NzYuOTM3NSBMNzg5LDg4Ni45Mzc1IEw3OTksODg2LjkzNzUgTDc4OSw4NzYuOTM3NSAiIGZpbGw9IiNGRkZGMDAiIHN0eWxlPSJzdHJva2U6ICNBODAwMzY7IHN0cm9rZS13aWR0aDogMS4wOyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmdBbmRHbHlwaHMiIHRleHRMZW5ndGg9IjYxIiB4PSI0OTAiIHk9Ijg5NC4wMDQ0Ij5NZXNzYWdlOjwvdGV4dD48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nQW5kR2x5cGhzIiB0ZXh0TGVuZ3RoPSI4IiB4PSI0OTAiIHk9IjkwOS4xMzcyIj57PC90ZXh0Pjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmdBbmRHbHlwaHMiIHRleHRMZW5ndGg9IjU4IiB4PSI1MDYiIHk9IjkyNC4yNyI+aWQ6ICZsdDtJRCZndDssPC90ZXh0Pjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmdBbmRHbHlwaHMiIHRleHRMZW5ndGg9IjI2NyIgeD0iNTA2IiB5PSI5MzkuNDAyOCI+ZnJvbTogJmx0O3RyYW5zZmVySGVhZGVycy5GU1BJT1AtU291cmNlJmd0Oyw8L3RleHQ+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGxlbmd0aEFkanVzdD0ic3BhY2luZ0FuZEdseXBocyIgdGV4dExlbmd0aD0iMjc4IiB4PSI1MDYiIHk9Ijk1NC41MzU2Ij50bzogJmx0O3RyYW5zZmVySGVhZGVycy5GU1BJT1AtRGVzdGluYXRpb24mZ3Q7LDwvdGV4dD48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nQW5kR2x5cGhzIiB0ZXh0TGVuZ3RoPSIxMzkiIHg9IjUwNiIgeT0iOTY5LjY2ODUiPnR5cGU6IGFwcGxpY2F0aW9uL2pzb24sPC90ZXh0Pjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmdBbmRHbHlwaHMiIHRleHRMZW5ndGg9IjY1IiB4PSI1MDYiIHk9Ijk4NC44MDEzIj5jb250ZW50OiB7PC90ZXh0Pjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmdBbmRHbHlwaHMiIHRleHRMZW5ndGg9IjE5MCIgeD0iNTIyIiB5PSI5OTkuOTM0MSI+aGVhZGVyczogJmx0O3RyYW5zZmVySGVhZGVycyZndDssPC90ZXh0Pjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmdBbmRHbHlwaHMiIHRleHRMZW5ndGg9IjE4NyIgeD0iNTIyIiB5PSIxMDE1LjA2NjkiPnBheWxvYWQ6ICZsdDt0cmFuc2Zlck1lc3NhZ2UmZ3Q7PC90ZXh0Pjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmdBbmRHbHlwaHMiIHRleHRMZW5ndGg9IjEyIiB4PSI1MDYiIHk9IjEwMzAuMTk5NyI+fSw8L3RleHQ+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGxlbmd0aEFkanVzdD0ic3BhY2luZ0FuZEdseXBocyIgdGV4dExlbmd0aD0iNzkiIHg9IjUwNiIgeT0iMTA0NS4zMzI1Ij5tZXRhZGF0YTogezwvdGV4dD48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nQW5kR2x5cGhzIiB0ZXh0TGVuZ3RoPSI1MiIgeD0iNTIyIiB5PSIxMDYwLjQ2NTMiPmV2ZW50OiB7PC90ZXh0Pjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmdBbmRHbHlwaHMiIHRleHRMZW5ndGg9IjcyIiB4PSI1MzgiIHk9IjEwNzUuNTk4MSI+aWQ6ICZsdDt1dWlkJmd0Oyw8L3RleHQ+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGxlbmd0aEFkanVzdD0ic3BhY2luZ0FuZEdseXBocyIgdGV4dExlbmd0aD0iNjUiIHg9IjUzOCIgeT0iMTA5MC43MzEiPnR5cGU6IGZ1bGZpbCw8L3RleHQ+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGxlbmd0aEFkanVzdD0ic3BhY2luZ0FuZEdseXBocyIgdGV4dExlbmd0aD0iODciIHg9IjUzOCIgeT0iMTEwNS44NjM4Ij5hY3Rpb246IHJlamVjdCw8L3RleHQ+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGxlbmd0aEFkanVzdD0ic3BhY2luZ0FuZEdseXBocyIgdGV4dExlbmd0aD0iMTY3IiB4PSI1MzgiIHk9IjExMjAuOTk2NiI+Y3JlYXRlZEF0OiAmbHQ7dGltZXN0YW1wJmd0Oyw8L3RleHQ+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGxlbmd0aEFkanVzdD0ic3BhY2luZ0FuZEdseXBocyIgdGV4dExlbmd0aD0iNDkiIHg9IjUzOCIgeT0iMTEzNi4xMjk0Ij5zdGF0ZTogezwvdGV4dD48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nQW5kR2x5cGhzIiB0ZXh0TGVuZ3RoPSIxMTMiIHg9IjU1NCIgeT0iMTE1MS4yNjIyIj5zdGF0dXM6ICJzdWNjZXNzIiw8L3RleHQ+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGxlbmd0aEFkanVzdD0ic3BhY2luZ0FuZEdseXBocyIgdGV4dExlbmd0aD0iNDciIHg9IjU1NCIgeT0iMTE2Ni4zOTUiPmNvZGU6IDA8L3RleHQ+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGxlbmd0aEFkanVzdD0ic3BhY2luZ0FuZEdseXBocyIgdGV4dExlbmd0aD0iOCIgeD0iNTM4IiB5PSIxMTgxLjUyNzgiPn08L3RleHQ+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGxlbmd0aEFkanVzdD0ic3BhY2luZ0FuZEdseXBocyIgdGV4dExlbmd0aD0iOCIgeD0iNTIyIiB5PSIxMTk2LjY2MDYiPn08L3RleHQ+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGxlbmd0aEFkanVzdD0ic3BhY2luZ0FuZEdseXBocyIgdGV4dExlbmd0aD0iOCIgeD0iNTA2IiB5PSIxMjExLjc5MzUiPn08L3RleHQ+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGxlbmd0aEFkanVzdD0ic3BhY2luZ0FuZEdseXBocyIgdGV4dExlbmd0aD0iOCIgeD0iNDkwIiB5PSIxMjI2LjkyNjMiPn08L3RleHQ+PHBvbHlnb24gZmlsbD0iI0E4MDAzNiIgcG9pbnRzPSIxMTY0LjUsMTI2MS4xMjUsMTE3NC41LDEyNjUuMTI1LDExNjQuNSwxMjY5LjEyNSwxMTY4LjUsMTI2NS4xMjUiIHN0eWxlPSJzdHJva2U6ICNBODAwMzY7IHN0cm9rZS13aWR0aDogMS4wOyIvPjxsaW5lIHN0eWxlPSJzdHJva2U6ICNBODAwMzY7IHN0cm9rZS13aWR0aDogMS4wOyIgeDE9IjQ3OSIgeDI9IjExNzAuNSIgeTE9IjEyNjUuMTI1IiB5Mj0iMTI2NS4xMjUiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgZm9udC13ZWlnaHQ9ImJvbGQiIGxlbmd0aEFkanVzdD0ic3BhY2luZ0FuZEdseXBocyIgdGV4dExlbmd0aD0iOSIgeD0iNDg2IiB5PSIxMjYwLjA1OTEiPjQ8L3RleHQ+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGxlbmd0aEFkanVzdD0ic3BhY2luZ0FuZEdseXBocyIgdGV4dExlbmd0aD0iMjM3IiB4PSI0OTkiIHk9IjEyNjAuMDU5MSI+Um91dGUgJmFtcDsgUHVibGlzaCBGdWxmaWwgZXZlbnQgZm9yIFBheWVlPC90ZXh0PjxsaW5lIHN0eWxlPSJzdHJva2U6ICNBODAwMzY7IHN0cm9rZS13aWR0aDogMS4wOyIgeDE9IjExODYuNSIgeDI9IjEyMjguNSIgeTE9IjEyOTQuMjU3OCIgeTI9IjEyOTQuMjU3OCIvPjxsaW5lIHN0eWxlPSJzdHJva2U6ICNBODAwMzY7IHN0cm9rZS13aWR0aDogMS4wOyIgeDE9IjEyMjguNSIgeDI9IjEyMjguNSIgeTE9IjEyOTQuMjU3OCIgeTI9IjEzMDcuMjU3OCIvPjxsaW5lIHN0eWxlPSJzdHJva2U6ICNBODAwMzY7IHN0cm9rZS13aWR0aDogMS4wOyIgeDE9IjExODcuNSIgeDI9IjEyMjguNSIgeTE9IjEzMDcuMjU3OCIgeTI9IjEzMDcuMjU3OCIvPjxwb2x5Z29uIGZpbGw9IiNBODAwMzYiIHBvaW50cz0iMTE5Ny41LDEzMDMuMjU3OCwxMTg3LjUsMTMwNy4yNTc4LDExOTcuNSwxMzExLjI1NzgsMTE5My41LDEzMDcuMjU3OCIgc3R5bGU9InN0cm9rZTogI0E4MDAzNjsgc3Ryb2tlLXdpZHRoOiAxLjA7Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGZvbnQtd2VpZ2h0PSJib2xkIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmdBbmRHbHlwaHMiIHRleHRMZW5ndGg9IjkiIHg9IjExOTMuNSIgeT0iMTI4OS4xOTE5Ij41PC90ZXh0Pjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmdBbmRHbHlwaHMiIHRleHRMZW5ndGg9IjMyOSIgeD0iMTIwNi41IiB5PSIxMjg5LjE5MTkiPkVuc3VyZSBldmVudCBpcyByZXBsaWNhdGVkIGFzIGNvbmZpZ3VyZWQgKEFDS1M9YWxsKTwvdGV4dD48cG9seWdvbiBmaWxsPSIjQTgwMDM2IiBwb2ludHM9IjQ5MCwxMzMyLjM5MDYsNDgwLDEzMzYuMzkwNiw0OTAsMTM0MC4zOTA2LDQ4NiwxMzM2LjM5MDYiIHN0eWxlPSJzdHJva2U6ICNBODAwMzY7IHN0cm9rZS13aWR0aDogMS4wOyIvPjxsaW5lIHN0eWxlPSJzdHJva2U6ICNBODAwMzY7IHN0cm9rZS13aWR0aDogMS4wOyBzdHJva2UtZGFzaGFycmF5OiAyLjAsMi4wOyIgeDE9IjQ4NCIgeDI9IjExODAuNSIgeTE9IjEzMzYuMzkwNiIgeTI9IjEzMzYuMzkwNiIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBmb250LXdlaWdodD0iYm9sZCIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nQW5kR2x5cGhzIiB0ZXh0TGVuZ3RoPSI5IiB4PSI0OTYiIHk9IjEzMzEuMzI0NyI+NjwvdGV4dD48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nQW5kR2x5cGhzIiB0ZXh0TGVuZ3RoPSIzODEiIHg9IjUwOSIgeT0iMTMzMS4zMjQ3Ij5SZXNwb25kIHJlcGxpY2F0aW9uIGFja25vd2xlZGdlbWVudHMgaGF2ZSBiZWVuIHJlY2VpdmVkPC90ZXh0PjxsaW5lIHN0eWxlPSJzdHJva2U6ICNBODAwMzY7IHN0cm9rZS13aWR0aDogMS4wOyIgeDE9IjEzNyIgeDI9IjE0NyIgeTE9IjEzNjUuNTIzNCIgeTI9IjEzNjEuNTIzNCIvPjxsaW5lIHN0eWxlPSJzdHJva2U6ICNBODAwMzY7IHN0cm9rZS13aWR0aDogMS4wOyIgeDE9IjEzNyIgeDI9IjE0NyIgeTE9IjEzNjUuNTIzNCIgeTI9IjEzNjkuNTIzNCIvPjxsaW5lIHN0eWxlPSJzdHJva2U6ICNBODAwMzY7IHN0cm9rZS13aWR0aDogMS4wOyBzdHJva2UtZGFzaGFycmF5OiAyLjAsMi4wOyIgeDE9IjEzNyIgeDI9IjQ3MyIgeTE9IjEzNjUuNTIzNCIgeTI9IjEzNjUuNTIzNCIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBmb250LXdlaWdodD0iYm9sZCIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nQW5kR2x5cGhzIiB0ZXh0TGVuZ3RoPSI5IiB4PSIxNTQiIHk9IjEzNjAuNDU3NSI+NzwvdGV4dD48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nQW5kR2x5cGhzIiB0ZXh0TGVuZ3RoPSIxNjAiIHg9IjE2NyIgeT0iMTM2MC40NTc1Ij5SZXNwb25kIEhUVFAgLSAyMDAgKE9LKTwvdGV4dD48cG9seWdvbiBmaWxsPSIjQTgwMDM2IiBwb2ludHM9IjExOTIuNSwxMzkwLjY1NjMsMTE4Mi41LDEzOTQuNjU2MywxMTkyLjUsMTM5OC42NTYzLDExODguNSwxMzk0LjY1NjMiIHN0eWxlPSJzdHJva2U6ICNBODAwMzY7IHN0cm9rZS13aWR0aDogMS4wOyIvPjxsaW5lIHN0eWxlPSJzdHJva2U6ICNBODAwMzY7IHN0cm9rZS13aWR0aDogMS4wOyIgeDE9IjExODYuNSIgeDI9IjE1NDEuNSIgeTE9IjEzOTQuNjU2MyIgeTI9IjEzOTQuNjU2MyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBmb250LXdlaWdodD0iYm9sZCIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nQW5kR2x5cGhzIiB0ZXh0TGVuZ3RoPSI5IiB4PSIxMTk4LjUiIHk9IjEzODkuNTkwMyI+ODwvdGV4dD48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nQW5kR2x5cGhzIiB0ZXh0TGVuZ3RoPSIxMjQiIHg9IjEyMTEuNSIgeT0iMTM4OS41OTAzIj5Db25zdW1lIG1lc3NhZ2U8L3RleHQ+PGxpbmUgc3R5bGU9InN0cm9rZTogI0E4MDAzNjsgc3Ryb2tlLXdpZHRoOiAxLjA7IiB4MT0iMTU1Mi41IiB4Mj0iMTU5NC41IiB5MT0iMTQyMy43ODkxIiB5Mj0iMTQyMy43ODkxIi8+PGxpbmUgc3R5bGU9InN0cm9rZTogI0E4MDAzNjsgc3Ryb2tlLXdpZHRoOiAxLjA7IiB4MT0iMTU5NC41IiB4Mj0iMTU5NC41IiB5MT0iMTQyMy43ODkxIiB5Mj0iMTQzNi43ODkxIi8+PGxpbmUgc3R5bGU9InN0cm9rZTogI0E4MDAzNjsgc3Ryb2tlLXdpZHRoOiAxLjA7IiB4MT0iMTU1My41IiB4Mj0iMTU5NC41IiB5MT0iMTQzNi43ODkxIiB5Mj0iMTQzNi43ODkxIi8+PHBvbHlnb24gZmlsbD0iI0E4MDAzNiIgcG9pbnRzPSIxNTYzLjUsMTQzMi43ODkxLDE1NTMuNSwxNDM2Ljc4OTEsMTU2My41LDE0NDAuNzg5MSwxNTU5LjUsMTQzNi43ODkxIiBzdHlsZT0ic3Ryb2tlOiAjQTgwMDM2OyBzdHJva2Utd2lkdGg6IDEuMDsiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgZm9udC13ZWlnaHQ9ImJvbGQiIGxlbmd0aEFkanVzdD0ic3BhY2luZ0FuZEdseXBocyIgdGV4dExlbmd0aD0iOSIgeD0iMTU1OS41IiB5PSIxNDE4LjcyMzEiPjk8L3RleHQ+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGxlbmd0aEFkanVzdD0ic3BhY2luZ0FuZEdseXBocyIgdGV4dExlbmd0aD0iMTIxIiB4PSIxNTcyLjUiIHk9IjE0MTguNzIzMSI+TG9nIGVycm9yIG1lc3NhZ2U8L3RleHQ+PHBhdGggZD0iTTE1NTcsMTQ0OS43ODkxIEwxNTU3LDE0ODkuNzg5MSBMMTk5OSwxNDg5Ljc4OTEgTDE5OTksMTQ1OS43ODkxIEwxOTg5LDE0NDkuNzg5MSBMMTU1NywxNDQ5Ljc4OTEgIiBmaWxsPSIjRkJGQjc3IiBmaWx0ZXI9InVybCgjZjFsNmszaTZ6NnZ3dTMpIiBzdHlsZT0ic3Ryb2tlOiAjQTgwMDM2OyBzdHJva2Utd2lkdGg6IDEuMDsiLz48cGF0aCBkPSJNMTk4OSwxNDQ5Ljc4OTEgTDE5ODksMTQ1OS43ODkxIEwxOTk5LDE0NTkuNzg5MSBMMTk4OSwxNDQ5Ljc4OTEgIiBmaWxsPSIjRkJGQjc3IiBzdHlsZT0ic3Ryb2tlOiAjQTgwMDM2OyBzdHJva2Utd2lkdGg6IDEuMDsiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nQW5kR2x5cGhzIiB0ZXh0TGVuZ3RoPSI0MjEiIHg9IjE1NjMiIHk9IjE0NjYuODU2Ij4oY29ycmVzcG9uZGluZyB0byBhIEZ1bGZpbCBtZXNzYWdlIHdpdGggdHJhbnNmZXJTdGF0ZT0nQUJPUlRFRCcpPC90ZXh0Pjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmdBbmRHbHlwaHMiIHRleHRMZW5ndGg9IjI4NSIgeD0iMTU2MyIgeT0iMTQ4MS45ODg4Ij5hY3Rpb24gUkVKRUNUIGlzIG5vdCBhbGxvd2VkIGludG8gZnVsZmlsIGhhbmRsZXI8L3RleHQ+PCEtLQpAc3RhcnR1bWwNCnRpdGxlIDIuMi4wLiBERlNQMiBzZW5kcyBhIEZ1bGZpbCBSZWplY3QgVHJhbnNmZXIgcmVxdWVzdA0KDQphdXRvbnVtYmVyDQoNCg0KYWN0b3IgIkRGU1AxXG5QYXllciIgYXMgREZTUDENCmFjdG9yICJERlNQMlxuUGF5ZWUiIGFzIERGU1AyDQpib3VuZGFyeSAiTUwgQVBJIEFkYXB0ZXIiIGFzIE1MQVBJDQpjb250cm9sICJNTCBBUEkgTm90aWZpY2F0aW9uIEV2ZW50IEhhbmRsZXIiIGFzIE5PVElGWV9IQU5ETEVSDQpib3VuZGFyeSAiQ2VudHJhbCBTZXJ2aWNlIEFQSSIgYXMgQ1NBUEkNCmNvbGxlY3Rpb25zICJGdWxmaWwtVG9waWMiIGFzIFRPUElDX0ZVTEZJTA0KY29udHJvbCAiRnVsZmlsIEV2ZW50IEhhbmRsZXIiIGFzIEZVTEZfSEFORExFUg0KDQoNCmJveCAiRmluYW5jaWFsIFNlcnZpY2UgUHJvdmlkZXJzIiAjbGlnaHRHcmF5DQoJcGFydGljaXBhbnQgREZTUDENCglwYXJ0aWNpcGFudCBERlNQMg0KZW5kIGJveA0KDQpib3ggIk1MIEFQSSBBZGFwdGVyIFNlcnZpY2UiICNMaWdodEJsdWUNCglwYXJ0aWNpcGFudCBNTEFQSQ0KCXBhcnRpY2lwYW50IE5PVElGWV9IQU5ETEVSDQplbmQgYm94DQoNCmJveCAiQ2VudHJhbCBTZXJ2aWNlIiAjTGlnaHRZZWxsb3cNCiAgICBwYXJ0aWNpcGFudCBDU0FQSQ0KCXBhcnRpY2lwYW50IFRPUElDX0ZVTEZJTA0KICAgIHBhcnRpY2lwYW50IEZVTEZfSEFORExFUg0KZW5kIGJveA0KDQphY3RpdmF0ZSBOT1RJRllfSEFORExFUg0KYWN0aXZhdGUgRlVMRl9IQU5ETEVSDQpncm91cCBERlNQMiBzZW5kcyBhIEZ1bGZpbCBSZWplY3QgVHJhbnNmZXIgcmVxdWVzdA0KICAgIERGU1AyIDwtPiBERlNQMjogUmV0cmlldmUgZnVsZmlsbWVudCBzdHJpbmcgZ2VuZXJhdGVkIGR1cmluZ1xudGhlIHF1b3RpbmcgcHJvY2VzcyBvciByZWdlbmVyYXRlIGl0IHVzaW5nXG4qKkxvY2FsIHNlY3JldCoqIGFuZCAqKklMUCBQYWNrZXQqKiBhcyBpbnB1dHMNCiAgICBub3RlIHJpZ2h0IG9mIERGU1AyICNsaWdodGJsdWUNCiAgICAgICAgKipOb3RlKio6IEluIHRoZSBwYXlsb2FkIGZvciBQVVQgL3RyYW5zZmVycy88SUQ+DQogICAgICAgIG9ubHkgdGhlICoqdHJhbnNmZXJTdGF0ZSoqIGZpZWxkIGlzICoqcmVxdWlyZWQqKg0KICAgIGVuZCBub3RlDQogICAgbm90ZSByaWdodCBvZiBERlNQMiAjeWVsbG93DQogICAgICAgIEhlYWRlcnMgLSB0cmFuc2ZlckhlYWRlcnM6IHsNCiAgICAgICAgICAgIENvbnRlbnQtTGVuZ3RoOiA8Q29udGVudC1MZW5ndGg+LA0KICAgICAgICAgICAgQ29udGVudC1UeXBlOiA8Q29udGVudC1UeXBlPiwNCiAgICAgICAgICAgIERhdGU6IDxEYXRlPiwNCiAgICAgICAgICAgIFgtRm9yd2FyZGVkLUZvcjogPFgtRm9yd2FyZGVkLUZvcj4sDQogICAgICAgICAgICBGU1BJT1AtU291cmNlOiA8RlNQSU9QLVNvdXJjZT4sDQogICAgICAgICAgICBGU1BJT1AtRGVzdGluYXRpb246IDxGU1BJT1AtRGVzdGluYXRpb24+LA0KICAgICAgICAgICAgRlNQSU9QLUVuY3J5cHRpb246IDxGU1BJT1AtRW5jcnlwdGlvbj4sDQogICAgICAgICAgICBGU1BJT1AtU2lnbmF0dXJlOiA8RlNQSU9QLVNpZ25hdHVyZT4sDQogICAgICAgICAgICBGU1BJT1AtVVJJOiA8RlNQSU9QLVVSST4sDQogICAgICAgICAgICBGU1BJT1AtSFRUUC1NZXRob2Q6IDxGU1BJT1AtSFRUUC1NZXRob2Q+DQogICAgICAgIH0NCg0KICAgICAgICBQYXlsb2FkIC0gdHJhbnNmZXJNZXNzYWdlOg0KICAgICAgICB7DQogICAgICAgICAgICAiZnVsZmlsbWVudCI6IDxJbHBGdWxmaWxtZW50PiwNCiAgICAgICAgICAgICJjb21wbGV0ZWRUaW1lc3RhbXAiOiA8RGF0ZVRpbWU+LA0KICAgICAgICAgICAgInRyYW5zZmVyU3RhdGUiOiAiQUJPUlRFRCIsDQogICAgICAgICAgICAiZXh0ZW5zaW9uTGlzdCI6IHsNCiAgICAgICAgICAgICAgICAiZXh0ZW5zaW9uIjogWw0KICAgICAgICAgICAgICAgICAgICB7DQogICAgICAgICAgICAgICAgICAgICAgICAia2V5IjogPHN0cmluZz4sDQogICAgICAgICAgICAgICAgICAgICAgICAidmFsdWUiOiA8c3RyaW5nPg0KICAgICAgICAgICAgICAgICAgICB9DQogICAgICAgICAgICAgICAgXQ0KICAgICAgICAgICAgfQ0KICAgICAgICB9DQogICAgZW5kIG5vdGUNCiAgICBub3RlIHJpZ2h0IG9mIERGU1AyICNsaWdodGdyYXkNCiAgICAgICAgKipOb3RlKio6IFBheWVlIHJlamVjdGlvbiByZWFzb24gc2hvdWxkIGJlIGNhcHR1cmVkDQogICAgICAgIGluIHRoZSBleHRlbnNpb25MaXN0IHdpdGhpbiB0aGUgcGF5bG9hZC4NCiAgICBlbmQgbm90ZQ0KICAgIERGU1AyIC0+PiBNTEFQSTogKipQVVQgLSAvdHJhbnNmZXJzLzxJRD4qKg0KICAgIA0KICAgIGFjdGl2YXRlIE1MQVBJDQogICAgTUxBUEkgLT4gTUxBUEk6IFZhbGlkYXRlIGluY29taW5nIHRva2VuIGFuZCBvcmlnaW5hdG9yIG1hdGNoaW5nIFBheWVlDQogICAgbm90ZSByaWdodCBvZiBNTEFQSSAjeWVsbG93DQogICAgICAgIE1lc3NhZ2U6DQogICAgICAgIHsNCiAgICAgICAgICAgIGlkOiA8SUQ+LA0KICAgICAgICAgICAgZnJvbTogPHRyYW5zZmVySGVhZGVycy5GU1BJT1AtU291cmNlPiwNCiAgICAgICAgICAgIHRvOiA8dHJhbnNmZXJIZWFkZXJzLkZTUElPUC1EZXN0aW5hdGlvbj4sDQogICAgICAgICAgICB0eXBlOiBhcHBsaWNhdGlvbi9qc29uLA0KICAgICAgICAgICAgY29udGVudDogew0KICAgICAgICAgICAgICAgIGhlYWRlcnM6IDx0cmFuc2ZlckhlYWRlcnM+LA0KICAgICAgICAgICAgICAgIHBheWxvYWQ6IDx0cmFuc2Zlck1lc3NhZ2U+DQogICAgICAgICAgICB9LA0KICAgICAgICAgICAgbWV0YWRhdGE6IHsNCiAgICAgICAgICAgICAgICBldmVudDogew0KICAgICAgICAgICAgICAgICAgICBpZDogPHV1aWQ+LA0KICAgICAgICAgICAgICAgICAgICB0eXBlOiBmdWxmaWwsDQogICAgICAgICAgICAgICAgICAgIGFjdGlvbjogcmVqZWN0LA0KICAgICAgICAgICAgICAgICAgICBjcmVhdGVkQXQ6IDx0aW1lc3RhbXA+LA0KICAgICAgICAgICAgICAgICAgICBzdGF0ZTogew0KICAgICAgICAgICAgICAgICAgICAgICAgc3RhdHVzOiAic3VjY2VzcyIsDQogICAgICAgICAgICAgICAgICAgICAgICBjb2RlOiAwDQogICAgICAgICAgICAgICAgICAgIH0NCiAgICAgICAgICAgICAgICB9DQogICAgICAgICAgICB9DQogICAgICAgIH0NCiAgICBlbmQgbm90ZQ0KICAgIE1MQVBJIC0+IFRPUElDX0ZVTEZJTDogUm91dGUgJiBQdWJsaXNoIEZ1bGZpbCBldmVudCBmb3IgUGF5ZWUNCiAgICBhY3RpdmF0ZSBUT1BJQ19GVUxGSUwNCiAgICBUT1BJQ19GVUxGSUwgPC0+IFRPUElDX0ZVTEZJTDogRW5zdXJlIGV2ZW50IGlzIHJlcGxpY2F0ZWQgYXMgY29uZmlndXJlZCAoQUNLUz1hbGwpDQogICAgVE9QSUNfRlVMRklMIC0gLT4gTUxBUEk6IFJlc3BvbmQgcmVwbGljYXRpb24gYWNrbm93bGVkZ2VtZW50cyBoYXZlIGJlZW4gcmVjZWl2ZWQNCiAgICBkZWFjdGl2YXRlIFRPUElDX0ZVTEZJTA0KICAgIE1MQVBJIC0gLT4+IERGU1AyOiBSZXNwb25kIEhUVFAgLSAyMDAgKE9LKQ0KICAgIGRlYWN0aXZhdGUgTUxBUEkNCiAgICBUT1BJQ19GVUxGSUwgPC0gRlVMRl9IQU5ETEVSOiBDb25zdW1lIG1lc3NhZ2UNCiAgICBGVUxGX0hBTkRMRVIgLT4gRlVMRl9IQU5ETEVSOiBMb2cgZXJyb3IgbWVzc2FnZQ0KICAgIG5vdGUgcmlnaHQgb2YgRlVMRl9IQU5ETEVSOiAoY29ycmVzcG9uZGluZyB0byBhIEZ1bGZpbCBtZXNzYWdlIHdpdGggdHJhbnNmZXJTdGF0ZT0nQUJPUlRFRCcpXG5hY3Rpb24gUkVKRUNUIGlzIG5vdCBhbGxvd2VkIGludG8gZnVsZmlsIGhhbmRsZXINCmVuZA0KQGVuZHVtbA0KClBsYW50VU1MIHZlcnNpb24gMS4yMDE4LjEyKFN1biBPY3QgMjEgMTA6MTU6MTUgVVRDIDIwMTgpCihHUEwgc291cmNlIGRpc3RyaWJ1dGlvbikKSmF2YSBSdW50aW1lOiBPcGVuSkRLIFJ1bnRpbWUgRW52aXJvbm1lbnQKSlZNOiBPcGVuSkRLIDY0LUJpdCBTZXJ2ZXIgVk0KSmF2YSBWZXJzaW9uOiAxLjguMF8xNjItaGVyb2t1LWIxMgpPcGVyYXRpbmcgU3lzdGVtOiBMaW51eApPUyBWZXJzaW9uOiA0LjQuMC0xMDY2LWF3cwpEZWZhdWx0IEVuY29kaW5nOiBVVEYtOApMYW5ndWFnZTogZW4KQ291bnRyeTogVVMKLS0+PC9nPjwvc3ZnPg==" type="image/svg+xml"></object></p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Fulfil Reject Transfer v1.1","level":"1.6.4.2.6","depth":4,"next":{"title":"Fulfil Reject Transfer (a) v1.1","level":"1.6.4.2.6.1","depth":5,"path":"mojaloop-technical-overview/central-ledger/transfers/2.2.0.a-fulfil-abort-transfer-v1.1.md","ref":"mojaloop-technical-overview/central-ledger/transfers/2.2.0.a-fulfil-abort-transfer-v1.1.md","articles":[]},"previous":{"title":"Fulfil Handler (Reject-Abort)","level":"1.6.4.2.5.2","depth":5,"path":"mojaloop-technical-overview/central-ledger/transfers/2.2.1-fulfil-reject-handler.md","ref":"mojaloop-technical-overview/central-ledger/transfers/2.2.1-fulfil-reject-handler.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"3.x.x","theme":"default","variables":{"importedVars":{"mojaloop":{"spec":{"version":"v1.0","uri":{"doc":"https://mojaloop.io/mojaloop-specification/","api":"https://github.com/mojaloop/mojaloop-specification/blob/master/Supporting%20Files/fspiop-rest-v1.0-OpenAPI-implementation.yaml"}}},"central_ledger":{"spec":{"version":"v2.0","uri":{"doc":"/mojaloop-technical-overview/central-ledger/README.md","api":"https://github.com/mojaloop/central-ledger/blob/master/src/api/interface/swagger.json"}}},"settlement":{"spec":{"version":"v1.1","uri":{"doc":"/mojaloop-technical-overview/central-settlements/README.md","api":"https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json"}}},"als":{"oracle":{"spec":{"version":"v1.2","uri":{"doc":"/mojaloop-technical-overview/account-lookup-service/README.md","api":"https://github.com/mojaloop/documentation/blob/master/api/assets/interface-contracts/oracle-service-swagger-v1.yaml"}}}}}},"plugins":["swagger","editlink","include","insert-logo","plantuml-svg","collapsible-chapters","back-to-top-button","theme-api","variables","changelog","page-toc"],"pluginsConfig":{"plantuml-svg":{},"editlink":{"label":"Edit This Page","multilingual":true,"base":"https://github.com/mojaloop/documentation/edit/master"},"theme-gestalt":{"logo":"https://mojaloop.io/images/logo.png","favicon":"https://mojaloop.io/images/logo.png","baseUrl":null,"excludeDefaultStyles":false,"doNotHideChildrenChapters":false},"include":{},"search":{},"collapsible-chapters":{},"page-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","position":"before-first","showByDefault":true},"swagger":{"file":""},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"uml":{"format":"png","nailgun":false},"changelog":{},"theme-api":{"languages":[],"split":true,"theme":"dark"},"back-to-top-button":{},"variables":{"files":{"importedVars":"book_variables.yml"}},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"insert-logo":{"url":"https://mojaloop.io/images/logo.png","style":"background: none; max-height: 140px; max-width: 140px;"}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"mojaloop-technical-overview/central-ledger/transfers/2.2.0-fulfil-reject-transfer-v1.1.md","mtime":"2020-06-26T10:24:44.237Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-06-26T10:26:24.361Z"},"basePath":"../../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../../gitbook/gitbook.js"></script>
+    <script src="../../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-swagger/plugin.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-editlink/plugin.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-insert-logo/plugin.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-collapsible-chapters/collapsible-chapters.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-back-to-top-button/plugin.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-changelog/changelog.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-page-toc/anchor-3.1.1.min.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-page-toc/page-toc.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-theme-api/theme-api.js"></script>
+        
+    
+
+    </body>
+</html>
+
