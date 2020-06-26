@@ -201,14 +201,14 @@ group DFSP2 sends a Fulfil Abort Transfer request
     end
     |||
     loop n times, n = number of individual transfers
-        TOPIC_POSITION <- POSITION_HANDLER: Consume message
-        ref over TOPIC_FULFIL, TOPIC_EVENTS: : Position Handler Consume (bulk-abort)\n
-        POSITION_HANDLER -> TOPIC_BULK_PROCESSING: Produce message
+        TOPIC_POSITION <- POS_HANDLER: Consume message
+        ref over TOPIC_POSITION, BULK_PROCESSING_HANDLER: : Position Handler Consume (bulk-abort)\n
+        POS_HANDLER -> TOPIC_BULK_PROCESSING: Produce message
     end
     |||
     loop n times, n = number of individual transfers
         TOPIC_BULK_PROCESSING <- BULK_PROCESSING_HANDLER: Consume individual transfer message
-        ref over TOPIC_POSITION, TOPIC_NOTIFICATIONS: Bulk Processing Handler Consume (bulk-abort)\n
+        ref over TOPIC_BULK_PROCESSING, TOPIC_NOTIFICATIONS: Bulk Processing Handler Consume (bulk-abort)\n
     end
     BULK_PROCESSING_HANDLER -> TOPIC_NOTIFICATIONS: Produce message (Payer)
     BULK_PROCESSING_HANDLER -> TOPIC_NOTIFICATIONS: Produce message (Payee)
@@ -216,13 +216,13 @@ group DFSP2 sends a Fulfil Abort Transfer request
     TOPIC_NOTIFICATIONS <- NOTIFY_HANDLER: Consume message (Payee)
     opt action == 'bulk-abort'
         |||
-        ref over DFSP1, TOPIC_NOTIFICATIONS: Send notification to Participant (Payer)\n
+        ref over DFSP1, TOPIC_NOTIFICATIONS: Notification Handler (Payer)\n
         NOTIFY_HANDLER -> DFSP1: Send callback notification
     end
     |||
     opt action == 'bulk-abort'
         |||
-        ref over DFSP2, TOPIC_NOTIFICATIONS: Send notification to Participant (Payee)\n
+        ref over DFSP2, TOPIC_NOTIFICATIONS: Notification Handler (Payee)\n
         NOTIFY_HANDLER -> DFSP2: Send callback notification
     end
     |||
