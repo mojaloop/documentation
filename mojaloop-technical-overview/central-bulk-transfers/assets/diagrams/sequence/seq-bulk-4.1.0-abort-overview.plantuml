@@ -170,36 +170,36 @@ group DFSP2 sends a Fulfil Abort Transfer request
 
     TOPIC_BULK_FULFIL <- BULK_FULFIL_HANDLER: Consume bulk-fulfil message
     BULK_FULFIL_HANDLER -> BULK_FULFIL_HANDLER: Perform duplicate check
-    BULK_FULFIL_HANDLER -> BULK_FULFIL_HANDLER: Validate bulk transfer fulfilment
-        loop n times, n = number of individual transfers
-            note right of BULK_FULFIL_HANDLER
-                Message: {
+    BULK_FULFIL_HANDLER -> BULK_FULFIL_HANDLER: Validate request
+    loop n times, n = number of individual transfers
+        note right of BULK_FULFIL_HANDLER
+            Message: {
+                transferId: <string>,
+                bulkTransferId< <string>,
+                bulkTransferAssociationRecord: {
                     transferId: <string>,
-                    bulkTransferId< <string>,
-                    bulkTransferAssociationRecord: {
-                        transferId: <string>,
-                        bulkTransferId: <string>,
-                        bulkProcessingStateId: <string>,
-                        errorCode: <string>,
-                        errorDescription: <string>
-                    }
+                    bulkTransferId: <string>,
+                    bulkProcessingStateId: <string>,
+                    errorCode: <string>,
+                    errorDescription: <string>
                 }
-            end note
-            BULK_FULFIL_HANDLER -> DB: Update bulkTransferAssociation table
-            activate DB
-                hnote over DB #lightyellow
-                    bulkTransferAssociation
-                end hnote
-            deactivate DB
-            BULK_FULFIL_HANDLER -> TOPIC_FULFIL: Produce fulfil message with action bulk-abort for each individual transfer
-        end
-    
+            }
+        end note
+        BULK_FULFIL_HANDLER -> DB: Update bulkTransferAssociation table
+        activate DB
+            hnote over DB #lightyellow
+                bulkTransferAssociation
+            end hnote
+        deactivate DB
+        BULK_FULFIL_HANDLER -> TOPIC_FULFIL: Produce fulfil message with action bulk-abort for each individual transfer
+    end
+    |||
     loop n times, n = number of individual transfers
         TOPIC_FULFIL <- FULFIL_HANDLER: Consume message
-        ref over TOPIC_FULFIL, TOPIC_EVENTS: : Position Handler Consume (bulk-abort)\n
+        ref over TOPIC_FULFIL, TOPIC_EVENTS: : Fulfil Handler Consume (bulk-abort)\n
         FULFIL_HANDLER -> TOPIC_POSITION: Produce message
     end
-    
+    |||
     loop n times, n = number of individual transfers
         TOPIC_POSITION <- POSITION_HANDLER: Consume message
         ref over TOPIC_FULFIL, TOPIC_EVENTS: : Position Handler Consume (bulk-abort)\n
