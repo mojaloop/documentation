@@ -69,7 +69,7 @@
       * [Fulfil Reject Transfer](mojaloop-technical-overview/central-ledger/transfers/2.2.0-fulfil-reject-transfer.md)
         * [Fulfil Reject Transfer (a)](mojaloop-technical-overview/central-ledger/transfers/2.2.0.a-fulfil-abort-transfer.md)
         * [Fulfil Handler (Reject-Abort)](mojaloop-technical-overview/central-ledger/transfers/2.2.1-fulfil-reject-handler.md)
-      * [Fulfil Reject Transfer v1.1](mojaloop-technical-overview/central-ledger/transfers/2.2.0-fulfil-reject-transfer-v1.1.md) 
+      * [Fulfil Reject Transfer v1.1](mojaloop-technical-overview/central-ledger/transfers/2.2.0-fulfil-reject-transfer-v1.1.md)
         * [Fulfil Reject Transfer (a) v1.1](mojaloop-technical-overview/central-ledger/transfers/2.2.0.a-fulfil-abort-transfer-v1.1.md)
         * [Fulfil Handler (Reject-Abort) v1.1](mojaloop-technical-overview/central-ledger/transfers/2.2.1-fulfil-reject-handler-v1.1.md)
       * [Notifications]()
