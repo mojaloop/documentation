@@ -175,7 +175,7 @@ group DFSP2 sends a request for notification after tranfer is being committed in
     MLAPI -->> DFSP2: Respond HTTP - 200 (OK)
     deactivate MLAPI
     TOPIC_FULFIL <- FULF_HANDLER: Consume message
-    ref over TOPIC_FULFIL, TOPIC_TRANSFER_POSITION: Fulfil Handler Consume (Success) {[[https://github.com/mojaloop/documentation/tree/master/mojaloop-technical-overview/central-ledger/assets/diagrams/sequence/seq-fulfil-2.1.1.svg 2.1.1]]} \n
+    ref over TOPIC_FULFIL, TOPIC_TRANSFER_POSITION: Fulfil Handler Consume (Success) {[[https://github.com/mojaloop/documentation/tree/master/mojaloop-technical-overview/central-ledger/assets/diagrams/sequence/seq-fulfil-2.1.1-v1.1.svg 2.1.1-v1.1]]} \n
     FULF_HANDLER -> TOPIC_SETMODEL: Produce message
     FULF_HANDLER -> TOPIC_TRANSFER_POSITION: Produce message
     |||
