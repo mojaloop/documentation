@@ -99,6 +99,7 @@
         * [Notification to Participant (b)](mojaloop-technical-overview/central-ledger/transfers/1.1.4.b-send-notification-to-participant.md)
       * [Timeout Overview](mojaloop-technical-overview/central-bulk-transfers/transfers/3.1.0-transfer-timeout-overview-for-bulk.md)
         * [Timeout Handler Consume](mojaloop-technical-overview/central-bulk-transfers/transfers/3.1.1-transfer-timeout-handler-consume.md)  
+      * [Bulk Abort Overview](mojaloop-technical-overview/central-bulk-transfers/transfers/4.1.0-transfer-abort-overview-for-bulk.md)
   * [Central-Settlements Service](mojaloop-technical-overview/central-settlements/README.md)
     * [Settlement Process](mojaloop-technical-overview/central-settlements/settlement-process/README.md)
       * [Settlement Windows By Params](mojaloop-technical-overview/central-settlements/settlement-process/get-settlement-windows-by-params.md)
