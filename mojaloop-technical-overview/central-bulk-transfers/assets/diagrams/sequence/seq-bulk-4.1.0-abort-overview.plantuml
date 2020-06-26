@@ -106,7 +106,6 @@ group DFSP2 sends a Fulfil Abort Transfer request
             FSPIOP-URI: <FSPIOP-URI>,
             FSPIOP-HTTP-Method: <FSPIOP-HTTP-Method>
         }
-
         Payload - errorMessage:
         {
             "errorInformation": {
@@ -125,7 +124,6 @@ group DFSP2 sends a Fulfil Abort Transfer request
     end note
     DFSP2 ->> BULKAPI: **PUT - /bulkTransfers/<ID>/error**
     activate BULKAPI
-    BULKAPI -> BULKAPI: Validate incoming token and originator matching Payee
     note right of BULKAPI #yellow
         Message:
         {
@@ -164,10 +162,8 @@ group DFSP2 sends a Fulfil Abort Transfer request
         individualTransferFulfils
     end hnote
     deactivate CACHE
-    
     BULKAPI -> TOPIC_BULK_FULFIL: Produce bulk-fulfil message
     BULKAPI -->> DFSP2: Respond HTTP - 200 (OK)
-
     TOPIC_BULK_FULFIL <- BULK_FULFIL_HANDLER: Consume bulk-fulfil message
     BULK_FULFIL_HANDLER -> BULK_FULFIL_HANDLER: Perform duplicate check
     BULK_FULFIL_HANDLER -> BULK_FULFIL_HANDLER: Validate request
