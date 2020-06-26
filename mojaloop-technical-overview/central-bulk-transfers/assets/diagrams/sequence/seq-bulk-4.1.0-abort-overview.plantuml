@@ -192,13 +192,13 @@ group DFSP2 sends a Fulfil Abort Transfer request
     |||
     loop n times, n = number of individual transfers
         TOPIC_FULFIL <- FULFIL_HANDLER: Consume message
-        ref over TOPIC_FULFIL, TOPIC_EVENTS: : Fulfil Handler Consume (bulk-abort)\n
+        ref over TOPIC_FULFIL, TOPIC_EVENTS: Fulfil Handler Consume (bulk-abort)\n
         FULFIL_HANDLER -> TOPIC_POSITION: Produce message
     end
     |||
     loop n times, n = number of individual transfers
         TOPIC_POSITION <- POS_HANDLER: Consume message
-        ref over TOPIC_POSITION, BULK_PROCESSING_HANDLER: : Position Handler Consume (bulk-abort)\n
+        ref over TOPIC_POSITION, BULK_PROCESSING_HANDLER: Position Handler Consume (bulk-abort)\n
         POS_HANDLER -> TOPIC_BULK_PROCESSING: Produce message
     end
     |||
