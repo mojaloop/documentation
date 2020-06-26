@@ -26,7 +26,7 @@
 
 @startuml
 ' declate title
-title 1.1.4.a. Send notification to Participant (Payer/Payee) (single message)
+title 1.1.4.a. Send notification to Participant (Payer/Payee) (single message) v1.1
 
 autonumber
 
@@ -114,7 +114,8 @@ group Send notification to Participants
         alt event.status === 'success'
         NOTIFY_HANDLER -> PAYEE_DFSP: Notification to with succesful fulfil result (committed) to Payee DFSP to specified Endpoint - PATCH \n<color #FF0000><b>Error code:</b> 1001</color>
         |||
-        NOTIFY_HANDLER <-- PAYEE_DFSP: HTTP 200 OK 
+        NOTIFY_HANDLER <-- PAYEE_DFSP: HTTP 200 OK
+        end 
     end
 end
 deactivate NOTIFY_HANDLER
