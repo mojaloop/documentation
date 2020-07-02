@@ -5,7 +5,7 @@ The **Mojaloop Testing Toolkit** was designed to help Mojaloop Schemes scale eff
 
 This was initially aimed at FSPs/Participants that would like to participate in a Mojaloop scheme. However, in its current form, this tool set can potentially be used by both DFSPs and _Mojaloop Hubs_ to verify integration between the 2 entities. Intentionally build as a standard integration testing tool between a _Digital Financial Service Provider (DFSP)_ and the _Mojaloop Switch_ (Hub), to facilitate testing. 
 
-For additional back ground information on the Self Testing Toolkit, please see [Mojaloop Testing Toolkit](https://github.com/mojaloop/ml-testing-toolkit/blob/master/documents/Mojaloop-Testing-Toolkit.md). It would be to the particpant's benefit to familiarise themselves with the understanding of the  [Architecture Diagram](https://github.com/mojaloop/ml-testing-toolkit/blob/master/documents/Mojaloop-Testing-Toolkit.md#7-architecture) that explains the various components and related flows.
+For additional background on the Self Testing Toolkit, please see [Mojaloop Testing Toolkit](https://github.com/mojaloop/ml-testing-toolkit/blob/master/documents/Mojaloop-Testing-Toolkit.md). It would be to the particpant's benefit to familiarise themselves with the understanding of the  [Architecture Diagram](https://github.com/mojaloop/ml-testing-toolkit/blob/master/documents/Mojaloop-Testing-Toolkit.md#7-architecture) that explains the various components and related flows.
 
 ## Usage Guides
 
