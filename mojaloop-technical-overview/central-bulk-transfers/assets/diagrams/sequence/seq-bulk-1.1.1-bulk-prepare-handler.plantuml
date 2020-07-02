@@ -66,29 +66,7 @@ group Bulk Prepare Handler Consume
     TOPIC_BULK_PREPARE <- BULK_PREP_HANDLER: Consume Bulk Prepare message
     activate TOPIC_BULK_PREPARE
     deactivate TOPIC_BULK_PREPARE
-
-    ' break
-    '     group Validate Event
-    '         BULK_PREP_HANDLER <-> BULK_PREP_HANDLER: Validate event - Rule: type == 'bulk-prepare' && action == 'bulk-prepare'\n<color #FF0000><b>Error codes:</b> 2001</color>
-    '     end
-    ' end
-
-    ' group Persist Event Information
-    '     |||
-    '     BULK_PREP_HANDLER -> TOPIC_EVENTS: Publish event information
-    '     ref over BULK_PREP_HANDLER, TOPIC_EVENTS :  Event Handler Consume\n
-    '     |||
-    ' end
-
     group Validate Bulk Prepare Transfer 
-        ' BULK_PREP_HANDLER <-> BULK_PREP_HANDLER: <color #gray>Schema validation of the incoming message</color>
-        ' BULK_PREP_HANDLER <-> BULK_PREP_HANDLER: <color #gray>Verify the message's signature (to be confirmed in future requirement)</color>
-        ' note right of BULK_PREP_HANDLER #lightgrey
-        '     The above validation steps are already handled by the
-        '     Bulk-API-Adapter for the open source implementation.
-        '     It may need to be added in future for custom adapters.
-        ' end note
-
         group Duplicate Check
             note right of BULK_PREP_HANDLER #cyan
                 The Specification doesn't touch on the duplicate handling
@@ -286,41 +264,41 @@ group Bulk Prepare Handler Consume
             deactivate TOPIC_TRANSFER_PREPARE
         end
     else Validate Bulk Prepare Transfer (failure)
-        ' note right of BULK_PREP_HANDLER #yellow
-        '     Message:
-        '     {
-        '         id: <messageId>
-        '         from: <ledgerName>,
-        '         to: <bulkTransferMessage.payerFsp>,
-        '         type: "application/json",
-        '         content: {
-        '             headers: <bulkTransferHeaders>,
-        '             payload: {
-        '                 "errorInformation": {
-        '                     "errorCode": <possible codes: [2003, 3100, 3105, 3106, 3202, 3203, 3300, 3301]>
-        '                     "errorDescription": "<refer to section 7.6 for description>",
-        '                     "extensionList": <transferMessage.extensionList>
-        '             }
-        '         },
-        '         metadata: {
-        '             event: {
-        '                 id: <uuid>,
-        '                 responseTo: <previous.uuid>,
-        '                 type: "bulk-processing",
-        '                 action: "bulk-abort",
-        '                 createdAt: <timestamp>,
-        '                 state: {
-        '                     status: "error",
-        '                     code: <errorInformation.errorCode>
-        '                     description: <errorInformation.errorDescription>
-        '                 }
-        '             }
-        '         }
-        '     }
-        ' end note
-        ' BULK_PREP_HANDLER -> TOPIC_BULK_PROCESSING: Publish Processing (failure) event for Payer\n<color #FF0000><b>Error codes:</b> 2003</color>
-        ' activate TOPIC_BULK_PROCESSING
-        ' deactivate TOPIC_BULK_PROCESSING
+        note right of BULK_PREP_HANDLER #yellow
+            Message:
+            {
+                id: <messageId>
+                from: <ledgerName>,
+                to: <bulkTransferMessage.payerFsp>,
+                type: "application/json",
+                content: {
+                    headers: <bulkTransferHeaders>,
+                    payload: {
+                        "errorInformation": {
+                            "errorCode": <possible codes: [2003, 3100, 3105, 3106, 3202, 3203, 3300, 3301]>
+                            "errorDescription": "<refer to section 7.6 for description>",
+                            "extensionList": <transferMessage.extensionList>
+                    }
+                },
+                metadata: {
+                    event: {
+                        id: <uuid>,
+                        responseTo: <previous.uuid>,
+                        type: "bulk-processing",
+                        action: "bulk-abort",
+                        createdAt: <timestamp>,
+                        state: {
+                            status: "error",
+                            code: <errorInformation.errorCode>
+                            description: <errorInformation.errorDescription>
+                        }
+                    }
+                }
+            }
+        end note
+        BULK_PREP_HANDLER -> TOPIC_BULK_PROCESSING: Publish Processing (failure) event for Payer\n<color #FF0000><b>Error codes:</b> 2003</color>
+        activate TOPIC_BULK_PROCESSING
+        deactivate TOPIC_BULK_PROCESSING
         group Insert Bulk Transfer Association (with bulkProcessingState='INVALID')
             BULK_PREP_HANDLER -> BULK_DAO: Request to persist bulk transfer association\n<color #FF0000><b>Error codes:</b> 2003</color>
             activate BULK_DAO
