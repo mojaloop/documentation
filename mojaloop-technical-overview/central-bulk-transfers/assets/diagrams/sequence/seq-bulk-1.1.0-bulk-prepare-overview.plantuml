@@ -38,8 +38,8 @@ autonumber
 ' declare actors
 actor "DFSP1\nPayer" as DFSP1
 actor "DFSP2\nPayee" as DFSP2
-boundary "ML API Adapter" as MLAPI
-control "ML API Notification \nHandler" as NOTIFY_HANDLER
+boundary "Bulk API Adapter" as BULK_API
+control "Bulk API Notification \nHandler" as NOTIFY_HANDLER
 collections "mojaloop-\nobject-store\n(**MLOS**)" as OBJECT_STORE
 boundary "Central Service API" as CSAPI
 collections "topic-\nbulk-prepare" as TOPIC_BULK_PREPARE
@@ -57,8 +57,8 @@ box "Financial Service Providers" #lightGray
 	participant DFSP2
 end box
 
-box "ML API Adapter Service" #LightBlue
-	participant MLAPI
+box "Bulk API Adapter Service" #LightBlue
+	participant BULK_API
 	participant NOTIFY_HANDLER
 end box
 
@@ -123,14 +123,16 @@ group DFSP1 sends a Bulk Prepare Transfer request to DFSP2
             expiration: <string>
         }
     end note
-    DFSP1 ->> MLAPI: POST - /bulkTransfers
-    activate MLAPI
-    MLAPI -> MLAPI: Validate incoming message\n<color #FF0000><b>Error codes:</b> 3000-3002, 3100-3107</color>
-    MLAPI -> OBJECT_STORE: Persist incoming bulk message to\nobject store: **MLOS.individualTransfers**
-    activate OBJECT_STORE
-    OBJECT_STORE --> MLAPI: Return messageId reference to the stored object(s)
-    deactivate OBJECT_STORE
-    note right of MLAPI #yellow
+    DFSP1 ->> BULK_API: POST - /bulkTransfers
+    activate BULK_API
+    BULK_API -> BULK_API: Validate incoming message\n<color #FF0000><b>Error codes:</b> 3000-3002, 3100-3107</color>
+    loop
+        BULK_API -> OBJECT_STORE: Persist individual transfers in the bulk to\nobject store: **MLOS.individualTransfers**
+        activate OBJECT_STORE
+        OBJECT_STORE --> BULK_API: Return messageId reference to the stored object(s)
+        deactivate OBJECT_STORE
+    end
+    note right of BULK_API #yellow
         Message:
         {
             id: <messageId>
@@ -162,19 +164,19 @@ group DFSP1 sends a Bulk Prepare Transfer request to DFSP2
             }
         }
     end note
-    MLAPI -> TOPIC_BULK_PREPARE: Route & Publish Bulk Prepare event \nfor Payer\n<color #FF0000><b>Error code:</b> 2003</color>
+    BULK_API -> TOPIC_BULK_PREPARE: Route & Publish Bulk Prepare event \nfor Payer\n<color #FF0000><b>Error code:</b> 2003</color>
     activate TOPIC_BULK_PREPARE
     TOPIC_BULK_PREPARE <-> TOPIC_BULK_PREPARE: Ensure event is replicated \nas configured (ACKS=all)\n<color #FF0000><b>Error code:</b> 2003</color>
-    TOPIC_BULK_PREPARE --> MLAPI: Respond replication acknowledgements \nhave been received
+    TOPIC_BULK_PREPARE --> BULK_API: Respond replication acknowledgements \nhave been received
     deactivate TOPIC_BULK_PREPARE
-    MLAPI -->> DFSP1: Respond HTTP - 202 (Accepted)
-    deactivate MLAPI
+    BULK_API -->> DFSP1: Respond HTTP - 202 (Accepted)
+    deactivate BULK_API
     |||
     TOPIC_BULK_PREPARE <- BULK_PREP_HANDLER: Consume message
-    BULK_PREP_HANDLER -> OBJECT_STORE: Retrieve individual transfers by key:\n**MLOS.individualTransfers.messageId**
-    activate OBJECT_STORE
-    OBJECT_STORE --> BULK_PREP_HANDLER: Stream bulk's individual transfers
-    deactivate OBJECT_STORE
+    ' BULK_PREP_HANDLER -> OBJECT_STORE: Retrieve individual transfers by key:\n**MLOS.individualTransfers.messageId**
+    ' activate OBJECT_STORE
+    ' OBJECT_STORE --> BULK_PREP_HANDLER: Stream bulk's individual transfers
+    ' deactivate OBJECT_STORE
     ref over TOPIC_BULK_PREPARE, BULK_PREP_HANDLER, TOPIC_TRANSFER_PREPARE:  Bulk Prepare Handler Consume \n
     alt Success
         BULK_PREP_HANDLER -> TOPIC_TRANSFER_PREPARE: Produce (stream) single transfer message\nfor each individual transfer [loop]

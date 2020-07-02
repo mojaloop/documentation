@@ -124,6 +124,21 @@ group DFSP2 sends a Fulfil Abort Transfer request
     end note
     DFSP2 ->> BULKAPI: **PUT - /bulkTransfers/<ID>/error**
     activate BULKAPI
+    
+    BULKAPI -> CACHE: Persist request payload with messageId in cache
+    activate CACHE
+    note right of BULKAPI #yellow
+        Message: {
+            messageId: <string>,
+            bulkTransferId: <string>,
+            payload: <object>
+        }
+    end note
+    hnote over CACHE #lightyellow
+        individualTransferFulfils
+    end hnote
+    BULKAPI <- CACHE: Response of save operation
+    deactivate CACHE
     note right of BULKAPI #yellow
         Message:
         {
@@ -149,19 +164,6 @@ group DFSP2 sends a Fulfil Abort Transfer request
             }
         }
     end note
-    BULKAPI -> CACHE: Persist request payload with messageId in cache
-    activate CACHE
-    note right of BULKAPI #yellow
-        Message: {
-            messageId: <string>,
-            bulkTransferId: <string>,
-            payload: <object>
-        }
-    end note
-    hnote over CACHE #lightyellow
-        individualTransferFulfils
-    end hnote
-    deactivate CACHE
     BULKAPI -> TOPIC_BULK_FULFIL: Produce bulk-fulfil message
     BULKAPI -->> DFSP2: Respond HTTP - 200 (OK)
     TOPIC_BULK_FULFIL <- BULK_FULFIL_HANDLER: Consume bulk-fulfil message
