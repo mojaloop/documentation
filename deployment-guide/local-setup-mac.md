@@ -88,7 +88,7 @@ To install Kubernetes with Docker, follow the steps below;
 
 3. Install an Ingress Controller
 
-Install nginx-ingress for load balancing & external access. _Linux use with sudo_:
+Install nginx-ingress for load balancing & external access:
    ```bash
    helm --namespace kube-public install stable/nginx-ingress
    ```

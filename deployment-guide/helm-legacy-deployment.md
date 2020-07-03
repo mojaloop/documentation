@@ -19,7 +19,7 @@ This document exists for legacy purposes and describes how to install Mojaloop u
    kubectl -n kube-system get po | grep tiller
    ```
 
-3. Add mojaloop repo to your Helm config (optional). _Linux use with sudo_:
+3. Add mojaloop repo to your Helm config (optional):
    ```bash
    helm repo add mojaloop http://mojaloop.io/helm/repo/
    ```
@@ -32,7 +32,7 @@ This document exists for legacy purposes and describes how to install Mojaloop u
    helm repo add elastic https://helm.elastic.co
    ```
 
-5. Update helm repositories. _Linux use with sudo_:
+5. Update helm repositories:
    ```bash
    helm repo update
    ```

@@ -143,7 +143,7 @@ Refer to the [Helm v2 to v3 Migration Guide](./helm-legacy-migration.md) if you 
 
 #### 4.1. Helm configuration
 
-1. Add mojaloop repo to your Helm config (optional). _Linux use with sudo_:
+1. Add mojaloop repo to your Helm config (optional):
    ```bash
    helm repo add mojaloop http://mojaloop.io/helm/repo/
    ```
