@@ -119,4 +119,11 @@ The following are Kubernetes concepts used within the project. An understanding 
 
    ![Docker For Desktop](./assets/diagrams/deployment/DockerForDesktop.png)    
 
-3. Continue setup and configuration from the Kubernetes Dashboard section in the [Mojaloop's deployment guide](./README.md#31-kubernetes-dashboard) document.
+3. Install an Ingress Controller
+
+Install nginx-ingress for load balancing & external access. _Linux use with sudo_:
+   ```bash
+   helm --namespace kube-public install stable/nginx-ingress
+   ```
+
+4. Continue setup and configuration from the Kubernetes Dashboard section in the [Mojaloop's deployment guide](./README.md#31-kubernetes-dashboard) document.

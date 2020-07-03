@@ -11,6 +11,8 @@
   * [Local Setup Mac](deployment-guide/local-setup-mac.md)
   * [Local Setup Windows](deployment-guide/local-setup-windows.md)
   * [Troubleshooting](deployment-guide/deployment-troubleshooting.md)
+  * [Helm v2 to v3 Migration Guide](deployment-guide/helm-legacy-migration.md)
+  * [Deployment with (Deprecated) Helm v2](deployment-guide/helm-legacy-deployment.md)
 * [Contributors Guide](contributors-guide/README.md)
   * [New Contributor Checklist](contributors-guide/new-contributor-checklist.md)
   * [FAQ](contributors-guide/frequently-asked-questions.md)
