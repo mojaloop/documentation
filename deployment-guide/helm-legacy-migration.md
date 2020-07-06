@@ -48,18 +48,18 @@ This document provides instructions on how to migrate existing Mojaloop installa
    helm3 2to3 move config
    ```
 
-   Run the following to ensure that the configuration was properly migrated:
+   Run the following to ensure that the configuration was properly migrated, and your prviously Helm v2 configured repo config is shown:
    ```bash
-   $ helm3 plugin list
-   NAME            URL                                                      
-   stable          https://kubernetes-charts.storage.googleapis.com         
-   local           http://127.0.0.1:8879/charts                             
+   $ helm3 repo list
+   NAME            URL
+   stable          https://kubernetes-charts.storage.googleapis.com
+   local           http://127.0.0.1:8879/charts
    incubator       http://storage.googleapis.com/kubernetes-charts-incubator
-   kiwigrid        https://kiwigrid.github.io                               
-   elastic         https://helm.elastic.co                                  
-   jetstack        https://charts.jetstack.io                               
-   mojaloop        http://mojaloop.io/helm/repo/                            
-   rancher-stable  https://releases.rancher.com/server-charts/stable     
+   kiwigrid        https://kiwigrid.github.io
+   elastic         https://helm.elastic.co
+   kiwigrid        https://kiwigrid.github.io
+   bitnami         https://charts.bitnami.com/bitnami
+   mojaloop        http://mojaloop.io/helm/repo/
    ```
 
 #### 2. Migrating Helm Installations
