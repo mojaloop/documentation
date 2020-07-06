@@ -5,6 +5,10 @@ The meetings are open for the public to participate, though discussions are usua
 
 More details can be found [here](https://github.com/mojaloop/design-authority/issues/42#workspaces/da-issue-log-5cdd507422733779191866e9/board?notFullScreen=false&repos=186592307)
 
+# DA Meeting - 1 July 2020
+As part of the "Versioning" workstream, a "zero down-time deployment proposal" PoC is being conducted and feedback from that project has been presented in the form of a problem statement, solution and a demo. The team currently working on that is Lewis Daly, Mat de Haast and Sam Kummary. The feedback was well received and as this work is ongoing, the DA will follow up with any action items to come out of the upcoming presentation for this workstream at the PI 11 Meeting.
+Please see the link on the Design Authority Board here: https://github.com/mojaloop/design-authority/issues/54 for a detailed problem statement, progression on meetings in the notes and remarks and also, if completed, the subsequent decision.
+
 # DA Meeting (Ad-Hoc) - 29 June 2020
 KNEX Discussion - continued. The KNEX discussion extended into talking about the possible use of third-party tools to assist in the generation of queries to help migration efforts. This has no direct bearing on the use of KNEX itself and after exploring a bit deeper, it was decided that there was no compelling reason to continue further investigation into the use of KNEX itself, but to keep an open mind and look out for alternative solutions out there as and when they are introduced. Those libraries will be measured against the current implementation to ensure we deploy the right tools for the right purpose. This issue is now closed.
 Please see the link on the Design Authority Board here: https://github.com/mojaloop/design-authority/issues/27 for a detailed problem statement, progression on meetings in the notes and remarks and also, if completed, the subsequent decision.
