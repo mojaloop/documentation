@@ -1,0 +1,191 @@
+/'*****
+ License
+ --------------
+ Copyright © 2017 Bill & Melinda Gates Foundation
+ The Mojaloop files are made available by the Bill & Melinda Gates Foundation under the Apache License, Version 2.0 (the "License") and you may not use these files except in compliance with the License. You may obtain a copy of the License at
+ http://www.apache.org/licenses/LICENSE-2.0
+ Unless required by applicable law or agreed to in writing, the Mojaloop files are distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+ Contributors
+ --------------
+ This is the official list of the Mojaloop project contributors for this file.
+ Names of the original copyright holders (individuals or organizations)
+ should be listed with a '*' in the first column. People who have
+ contributed from an organization can be listed under the organization
+ that actually holds the copyright for their contributions (see the
+ Gates Foundation organization for an example). Those individuals should have
+ their names indented and be marked with a '-'. Email address can be added
+ optionally within square brackets <email>.
+ * Gates Foundation
+ - Name Surname <name.surname@gatesfoundation.com>
+
+ * Steven Oderayi <steven.oderayi@modusbox.com>
+ --------------
+ ******'/
+
+@startuml
+' declate title
+title 5.1.0. Request Bulk Transfer Status
+
+autonumber
+
+' declare actors
+actor "DFSP(n)\nParticipant" as DFSP
+control "Bulk API Notification Event Handler" as NOTIFY_HANDLER
+boundary "Bulk API Adapter" as BULKAPI
+collections "Topic-Transfer-Get" as TOPIC_GET
+control "GET Event Handler" as GET_HANDLER
+entity "Bulk Transfer DAO" as TRANSFER_DAO
+database "Central Store" as DB
+
+box "Financial Service Provider" #lightGray
+	participant DFSP
+end box
+
+box "Bulk API Adapter Service" #LightBlue
+    participant BULKAPI
+	participant NOTIFY_HANDLER
+end box
+
+box "Central Ledger" #LightYellow
+    participant TOPIC_GET
+    participant GET_HANDLER
+    participant TRANSFER_DAO
+    participant DB
+end box
+
+' start flow
+group Request transfer status
+    activate DFSP
+    DFSP -> BULKAPI: Request bulk transfer status - GET - /bulkTransfers/{ID}
+    |||
+    BULKAPI -> TOPIC_GET: Publish event information
+    activate TOPIC_GET
+    |||
+    ref over TOPIC_GET, GET_HANDLER :  GET Handler Consume\n
+    |||
+    BULKAPI <-- TOPIC_GET: Return success
+    deactivate TOPIC_GET
+    
+    DFSP <-- BULKAPI: Respond HTTP - 200 (OK)
+    GET_HANDLER -> TOPIC_GET: Consume message
+
+    activate GET_HANDLER
+    GET_HANDLER -> TRANSFER_DAO: Request transfer status
+
+    activate TRANSFER_DAO
+    TRANSFER_DAO -> DB: Fetch transfer status
+    activate DB
+    hnote over DB #lightyellow
+        bulkTransferStateChange
+        bulkTransferState
+        bulkTransferError
+        bulkTransferExtension
+        transferStateChange
+        transferState
+        transferFulfilment
+        transferError
+        transferExtension
+        ilpPacket
+    end hnote
+    TRANSFER_DAO <-- DB: Return query result
+    deactivate DB
+    GET_HANDLER <-- TRANSFER_DAO: Return transfer status
+    deactivate TRANSFER_DAO
+    
+    alt Is there a bulk transfer with the given ID recorded in the system?
+        alt Request is from Payee FSP?
+            GET_HANDLER <-> GET_HANDLER: Filter out transfers not included in original request to Payee FSP, if any\n (e.g. in partial fulfilment scenario).
+        end
+        alt Yes AND transferState for all indvidual transfers is COMMITTED \nThis implies that a succesful transfer with the given ID is recorded in the system
+            note left of GET_HANDLER #yellow
+                {
+                    "bulkTransferState": "COMMITTED",
+                    "individualTransferResults": [
+                        {
+                            "fulfilment": "WLctttbu2HvTsa1XWvUoGRcQozHsqeu9Ahl2JW9Bsu8",
+                            "transferState": "COMMITTED",
+                            "extensionList": {
+                                "extension":
+                                    [
+                                        {
+                                            "key": "Description",
+                                            "value": "This is a more detailed description"
+                                        }
+                                    ]
+                            }
+                        }
+                    ]
+                    "completedTimestamp": "2018-09-24T08:38:08.699-04:00",
+                    "extensionList":
+                        {
+                        "extension":
+                            [
+                                {
+                                    "key": "Description",
+                                    "value": "This is a more detailed description"
+                                }
+                            ]
+                    }
+                }
+            end note
+            NOTIFY_HANDLER <- GET_HANDLER: Publish notification event
+            DFSP <- NOTIFY_HANDLER: callback PUT on /bulkTransfers/{ID}
+        else transferState for individual transfers in [ABORTED_REJECTED, EXPIRED_RESERVED]
+            note left of GET_HANDLER #yellow
+                {
+                    "bulkTransferState": <bulk-state>,
+                    "individualTransferResults": [
+                        {
+                            "transferState": <state>,
+                            "errorInformation": {
+                                "errorCode": <error-code>,
+                                "errorDescription": <error-description>
+                            }
+                            "extensionList": {
+                                "extension":
+                                    [
+                                        {
+                                            "key": "Description",
+                                            "value": "This is a more detailed description"
+                                        }
+                                    ]
+                            }
+                        }
+                    ]
+                    "completedTimestamp": "2018-09-24T08:38:08.699-04:00",
+                    "extensionList":
+                        {
+                        "extension":
+                            [
+                                {
+                                    "key": "Description",
+                                    "value": "This is a more detailed description"
+                                }
+                            ]
+                    }
+                }
+            end note
+            NOTIFY_HANDLER <- GET_HANDLER: Publish notification event
+            deactivate GET_HANDLER
+            DFSP <- NOTIFY_HANDLER: callback PUT on /bulkTransfers/{ID}
+        end
+        note right of NOTIFY_HANDLER #lightgray
+            Log ERROR event
+        end note
+    else A bulk transfer with the given ID is not present in the System or this is an invalid request
+        note left of NOTIFY_HANDLER #yellow
+            {
+                "errorInformation": {
+                    "errorCode": <integer>,
+                    "errorDescription": "Client error description"
+                }
+            }
+        end note
+        DFSP <- NOTIFY_HANDLER: callback PUT on /bulkTransfers/{ID}/error
+    end
+
+    deactivate GET_HANDLER
+    deactivate NOTIFY_HANDLER
+deactivate DFSP
+end
+@enduml
