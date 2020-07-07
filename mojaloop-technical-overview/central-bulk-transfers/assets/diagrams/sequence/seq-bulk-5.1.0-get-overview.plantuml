@@ -61,16 +61,16 @@ group Request transfer status
     deactivate BULKAPI
     activate TOPIC_GET
     |||
-    ref over TOPIC_GET, GET_HANDLER :  GET Handler Consume\n
-    |||
-    BULKAPI <-- TOPIC_GET: Return success
     deactivate GET_HANDLER
-    activate BULKAPI
-    deactivate TOPIC_GET
+    
     DFSP <-- BULKAPI: Respond HTTP - 200 (OK)
     deactivate DFSP
     deactivate BULKAPI
     GET_HANDLER -> TOPIC_GET: Consume message
+    |||
+    ref over TOPIC_GET, GET_HANDLER :  GET Handler Consume\n
+    |||
+    deactivate TOPIC_GET
     activate GET_HANDLER
     GET_HANDLER -> TRANSFER_DAO: Request transfer status
     activate TRANSFER_DAO
