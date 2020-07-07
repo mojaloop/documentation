@@ -40,12 +40,10 @@ database "Central Store" as DB
 box "Financial Service Provider" #lightGray
 	participant DFSP
 end box
-
 box "Bulk API Adapter Service" #LightBlue
     participant BULKAPI
 	participant NOTIFY_HANDLER
 end box
-
 box "Central Ledger" #LightYellow
     participant TOPIC_GET
     participant GET_HANDLER
@@ -57,23 +55,27 @@ end box
 group Request transfer status
     activate DFSP
     DFSP -> BULKAPI: Request bulk transfer status - GET - /bulkTransfers/{ID}
+    activate BULKAPI
     |||
     BULKAPI -> TOPIC_GET: Publish event information
+    deactivate BULKAPI
     activate TOPIC_GET
     |||
     ref over TOPIC_GET, GET_HANDLER :  GET Handler Consume\n
     |||
     BULKAPI <-- TOPIC_GET: Return success
+    deactivate GET_HANDLER
+    activate BULKAPI
     deactivate TOPIC_GET
-    
     DFSP <-- BULKAPI: Respond HTTP - 200 (OK)
+    deactivate DFSP
+    deactivate BULKAPI
     GET_HANDLER -> TOPIC_GET: Consume message
-
     activate GET_HANDLER
     GET_HANDLER -> TRANSFER_DAO: Request transfer status
-
     activate TRANSFER_DAO
     TRANSFER_DAO -> DB: Fetch transfer status
+
     activate DB
     hnote over DB #lightyellow
         bulkTransferStateChange
@@ -89,86 +91,70 @@ group Request transfer status
     end hnote
     TRANSFER_DAO <-- DB: Return query result
     deactivate DB
+    
     GET_HANDLER <-- TRANSFER_DAO: Return transfer status
     deactivate TRANSFER_DAO
     
     alt Is there a bulk transfer with the given ID recorded in the system?
-        alt Request is from Payee FSP?
-            GET_HANDLER <-> GET_HANDLER: Filter out transfers not included in original request to Payee FSP, if any\n (e.g. in partial fulfilment scenario).
-        end
-        alt Yes AND transferState for all indvidual transfers is COMMITTED \nThis implies that a succesful transfer with the given ID is recorded in the system
+        alt Bulk Transfer state is **"PROCESSING"**
             note left of GET_HANDLER #yellow
                 {
-                    "bulkTransferState": "COMMITTED",
-                    "individualTransferResults": [
-                        {
-                            "fulfilment": "WLctttbu2HvTsa1XWvUoGRcQozHsqeu9Ahl2JW9Bsu8",
-                            "transferState": "COMMITTED",
-                            "extensionList": {
-                                "extension":
-                                    [
-                                        {
-                                            "key": "Description",
-                                            "value": "This is a more detailed description"
-                                        }
-                                    ]
-                            }
-                        }
-                    ]
-                    "completedTimestamp": "2018-09-24T08:38:08.699-04:00",
-                    "extensionList":
-                        {
-                        "extension":
-                            [
-                                {
-                                    "key": "Description",
-                                    "value": "This is a more detailed description"
-                                }
-                            ]
-                    }
-                }
-            end note
-            NOTIFY_HANDLER <- GET_HANDLER: Publish notification event
-            DFSP <- NOTIFY_HANDLER: callback PUT on /bulkTransfers/{ID}
-        else transferState for individual transfers in [ABORTED_REJECTED, EXPIRED_RESERVED]
-            note left of GET_HANDLER #yellow
-                {
-                    "bulkTransferState": <bulk-state>,
-                    "individualTransferResults": [
-                        {
-                            "transferState": <state>,
-                            "errorInformation": {
-                                "errorCode": <error-code>,
-                                "errorDescription": <error-description>
-                            }
-                            "extensionList": {
-                                "extension":
-                                    [
-                                        {
-                                            "key": "Description",
-                                            "value": "This is a more detailed description"
-                                        }
-                                    ]
-                            }
-                        }
-                    ]
-                    "completedTimestamp": "2018-09-24T08:38:08.699-04:00",
-                    "extensionList":
-                        {
-                        "extension":
-                            [
-                                {
-                                    "key": "Description",
-                                    "value": "This is a more detailed description"
-                                }
-                            ]
-                    }
+                    "bulkTransferState": "PROCESSING"
                 }
             end note
             NOTIFY_HANDLER <- GET_HANDLER: Publish notification event
             deactivate GET_HANDLER
-            DFSP <- NOTIFY_HANDLER: callback PUT on /bulkTransfers/{ID}
+            activate NOTIFY_HANDLER
+            NOTIFY_HANDLER -> DFSP: Send callback - PUT /bulkTransfers/{ID}
+            deactivate NOTIFY_HANDLER
         end
+        |||
+        alt Request is from Payee FSP?
+            GET_HANDLER <-> GET_HANDLER: Exclude transfers with **transferStateId** not in \n [ **COMMITTED**, **ABORTED_REJECTED**, **EXPIRED_RESERVED** ]
+            activate GET_HANDLER
+        end
+        
+        note left of GET_HANDLER #yellow
+            {
+                "bulkTransferState": "<BulkTransferState>",
+                "individualTransferResults": [
+                    {
+                        "transferId": "<TransferId>",
+                        "fulfilment": "WLctttbu2HvTsa1XWvUoGRcQozHsqeu9Ahl2JW9Bsu8",
+                        "errorInformation": <ErrorInformationObject>,
+                        "extensionList": {
+                            "extension":
+                                [
+                                    {
+                                        "key": "Description",
+                                        "value": "This is a more detailed description"
+                                    }
+                                ]
+                        }
+                    }
+                ],
+                "completedTimestamp": "2018-09-24T08:38:08.699-04:00",
+                "extensionList":
+                    {
+                    "extension":
+                        [
+                            {
+                                "key": "Description",
+                                "value": "This is a more detailed description"
+                            }
+                        ]
+                }
+            }
+        end note
+        note left of GET_HANDLER #lightGray
+            NOTE: If transfer is REJECTED, error information may be provided.
+            Either fulfilment or errorInformation should be set, not both.
+        end note
+        NOTIFY_HANDLER <- GET_HANDLER: Publish notification event
+        deactivate GET_HANDLER
+        activate NOTIFY_HANDLER
+        DFSP <- NOTIFY_HANDLER: callback PUT on /bulkTransfers/{ID}
+        deactivate NOTIFY_HANDLER
         note right of NOTIFY_HANDLER #lightgray
             Log ERROR event
         end note
@@ -181,7 +167,10 @@ group Request transfer status
                 }
             }
         end note
+        GET_HANDLER -> NOTIFY_HANDLER: Publish notification event (404)
+        activate NOTIFY_HANDLER
         DFSP <- NOTIFY_HANDLER: callback PUT on /bulkTransfers/{ID}/error
+        deactivate NOTIFY_HANDLER
     end
 
     deactivate GET_HANDLER
