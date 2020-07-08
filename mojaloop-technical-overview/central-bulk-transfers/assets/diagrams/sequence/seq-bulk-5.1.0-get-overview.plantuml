@@ -52,7 +52,7 @@ box "Central Ledger" #LightYellow
 end box
 
 ' start flow
-group Request transfer status
+group Request Bulk transfer status
     activate DFSP
     DFSP -> BULKAPI: Request bulk transfer status - GET - /bulkTransfers/{ID}
     activate BULKAPI
