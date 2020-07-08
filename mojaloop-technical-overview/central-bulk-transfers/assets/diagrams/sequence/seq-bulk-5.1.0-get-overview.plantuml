@@ -34,7 +34,7 @@ control "Bulk API Notification Event Handler" as NOTIFY_HANDLER
 boundary "Bulk API Adapter" as BULKAPI
 collections "Topic-Transfer-Get" as TOPIC_GET
 control "GET Event Handler" as GET_HANDLER
-entity "Bulk Transfer DAO" as TRANSFER_DAO
+entity "Bulk Transfer DAO" as BULK_TRANSFER_DAO
 database "Central Store" as DB
 
 box "Financial Service Provider" #lightGray
@@ -47,7 +47,7 @@ end box
 box "Central Ledger" #LightYellow
     participant TOPIC_GET
     participant GET_HANDLER
-    participant TRANSFER_DAO
+    participant BULK_TRANSFER_DAO
     participant DB
 end box
 
@@ -71,10 +71,39 @@ group Request Bulk transfer status
     ref over TOPIC_GET, GET_HANDLER :  GET Handler Consume\n
     |||
     deactivate TOPIC_GET
+    
+    GET_HANDLER -> BULK_TRANSFER_DAO: Request bulk transfer participants 
     activate GET_HANDLER
-    GET_HANDLER -> TRANSFER_DAO: Request transfer status
-    activate TRANSFER_DAO
-    TRANSFER_DAO -> DB: Fetch transfer status
+    activate BULK_TRANSFER_DAO
+    BULK_TRANSFER_DAO -> DB: Fetch bulk transfer participants
+    activate DB
+    hnote over DB #lightYellow
+        bulkTransfer
+        participant
+    end hnote
+    BULK_TRANSFER_DAO <-- DB: Return query result 
+    deactivate DB
+    GET_HANDLER <-- BULK_TRANSFER_DAO: Return bulk transfer participants
+    deactivate BULK_TRANSFER_DAO
+    alt Is request not from bulk transfer Payer or Payee FSP?
+        note left of NOTIFY_HANDLER #yellow
+            {
+                "errorInformation": {
+                    "errorCode": 3210,
+                    "errorDescription": "Bulk transfer ID not found"
+                }
+            }
+        end note
+        GET_HANDLER -> NOTIFY_HANDLER: Publish notification event (404)
+        deactivate GET_HANDLER
+        activate NOTIFY_HANDLER
+        DFSP <- NOTIFY_HANDLER: callback PUT on /bulkTransfers/{ID}/error
+        deactivate NOTIFY_HANDLER
+    end
+    GET_HANDLER -> BULK_TRANSFER_DAO: Request bulk transfer status
+    activate GET_HANDLER
+    activate BULK_TRANSFER_DAO
+    BULK_TRANSFER_DAO -> DB: Fetch bulk transfer status
 
     activate DB
     hnote over DB #lightyellow
@@ -89,11 +118,11 @@ group Request Bulk transfer status
         transferExtension
         ilpPacket
     end hnote
-    TRANSFER_DAO <-- DB: Return query result
+    BULK_TRANSFER_DAO <-- DB: Return query result
     deactivate DB
     
-    GET_HANDLER <-- TRANSFER_DAO: Return transfer status
-    deactivate TRANSFER_DAO
+    GET_HANDLER <-- BULK_TRANSFER_DAO: Return bulk transfer status
+    deactivate BULK_TRANSFER_DAO
     
     alt Is there a bulk transfer with the given ID recorded in the system?
         alt Bulk Transfer state is **"PROCESSING"**
@@ -163,7 +192,7 @@ group Request Bulk transfer status
             {
                 "errorInformation": {
                     "errorCode": 3210,
-                    "errorDescription": "Client error description"
+                    "errorDescription": "Bulk transfer ID not found"
                 }
             }
         end note
