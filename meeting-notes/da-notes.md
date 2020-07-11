@@ -5,6 +5,11 @@ The meetings are open for the public to participate, though discussions are usua
 
 More details can be found [here](https://github.com/mojaloop/design-authority/issues/42#workspaces/da-issue-log-5cdd507422733779191866e9/board?notFullScreen=false&repos=186592307)
 
+
+# DA Meeting - 8 July 2020
+The TIPS team did a presentation of the design and implementation of a **Rules Engine** satisfying their requirements of interpretation in the **Settlements Portion**, to extend fees levied as part of a transfer. The implementation allows for rules to be interpreted at any stage during a transaction. A formal presentation will be made at the convening during the week of the 20th July 2020 after which more informed decisions as to the adaption of this implementation into the Core OSS codebase can be considered as a generic approach to implementation of a rules engine.
+Please see the link on the Design Authority Board here: https://github.com/mojaloop/design-authority/issues/53 for a detailed problem statement, progression on meetings in the notes and remarks and also, if completed, the subsequent decision.
+
 # DA Meeting - 1 July 2020
 As part of the "Versioning" workstream, a "zero down-time deployment proposal" PoC is being conducted and feedback from that project has been presented in the form of a problem statement, solution and a demo. The team currently working on that is Lewis Daly, Mat de Haast and Sam Kummary. The feedback was well received and as this work is ongoing, the DA will follow up with any action items to come out of the upcoming presentation for this workstream at the PI 11 Meeting.
 Please see the link on the Design Authority Board here: https://github.com/mojaloop/design-authority/issues/54 for a detailed problem statement, progression on meetings in the notes and remarks and also, if completed, the subsequent decision.
