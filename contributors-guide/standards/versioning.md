@@ -32,7 +32,7 @@ Below is the Sprint schedule for Program Increment 11 which ends with the PI 12 
 |**Sprint 11.5**|9/21/2020|10/4/2020|2 weeks| |
 |**Sprint 11.6**|10/5/2020|10/18/2020|2 weeks | |
 |**Phase-4 PI-12**|10/20/2020|10/23/2020|4 days| TBD |
-|**Phase-4 Wrap-Up / PI-13**|1/19/2021|1/23/2021|3 days| TBD |
+|**Phase-4 Wrap-Up / PI-13**|1/26/2021|1/29/2021|4 days| TBD |
 
 ### Previous Sprint Schedules:
 
