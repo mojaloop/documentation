@@ -16,9 +16,29 @@ This document provides guidelines regarding the versioning strategy used for the
 
 The currrent version information for Mojaloop can be found [here](../../deployment-guide/releases.md).
 
-### Sprint schedule for PI0
+### Sprint schedule for PI-11
 
-Below is the Sprint schedule for Program Increment 9 which ends with the PI 10 on-site event at the of January 2020 in Tanzania. Please use this as guidance during the versioning and release processes.
+Below is the Sprint schedule for Program Increment 11 which ends with the PI 12 Event. Please use this as guidance during the versioning and release processes.
+
+|Phase/Milestone|Start|End|Weeks|Notes|
+|---|---|---|---|---|
+|**Phase-4 Kick-off On-site**|1/28/2020|1/30/2020|3 days| Johannesburg|
+|**Phase-4 PI-10 Virtual**|4/21/2020|4/24/2020|4 days| Virtual Zoom Webinars |
+|**Phase-4 PI-11 Virtual**|7/21/2020|7/24/2020|4 days| Virtual Zoom Webinars |
+|**Sprint 11.1**|7/27/2020|8/9/2020|2 weeks| |
+|**Sprint 11.2**|8/10/2020|8/23/2020|2 weeks| |
+|**Sprint 11.3**|8/24/2020|9/6/2020|2 weeks| |
+|**Sprint 11.4**|9/7/2020|9/20/2020|2 weeks| |
+|**Sprint 11.5**|9/21/2020|10/4/2020|2 weeks| |
+|**Sprint 11.6**|10/5/2020|10/18/2020|2 weeks | |
+|**Phase-4 PI-12**|10/20/2020|10/23/2020|4 days| TBD |
+|**Phase-4 Wrap-Up / PI-13**|1/19/2021|1/23/2021|3 days| TBD |
+
+### Previous Sprint Schedules:
+
+#### Sprint schedule for PI-10
+
+Below is the Sprint schedule for Program Increment 10 which ends with the PI 11 Event. Please use this as guidance during the versioning and release processes.
 
 |Phase/Milestone|Start|End|Weeks|Notes|
 |---|---|---|---|---|
@@ -35,9 +55,7 @@ Below is the Sprint schedule for Program Increment 9 which ends with the PI 10 o
 |**Sprint 10.6**|7/6/2020|7/19/2020|2 weeks | |
 |**Phase-4 PI 11 On-Site**|7/21/2020|7/23/2020|3 days| Kenya (Tentative) |
 
-### Previous Sprint Schedules:
-
-#### PI9
+#### PI-9
 |Phase/Milestone|Start|End|Weeks|Notes|
 |---|---|---|---|---|
 |**Sprint 9.1**|2/3/2020|2/16/2020|2 weeks| |
@@ -48,7 +66,7 @@ Below is the Sprint schedule for Program Increment 9 which ends with the PI 10 o
 |**Sprint 9.6**|3/13/2020|4/19/2020|1 week | |
 |**Phase-4 PI 10 Virtual**|4/21/2020|4/23/2020|5 days| Virtual Zoom Webinars |
 
-#### PI8
+#### PI-8
 |Phase/Milestone|Start|End|Weeks|Notes|
 |---|---|---|---|---|
 |**Sprint 8.1**|9/16/2019|9/29/2019|2 weeks| |
