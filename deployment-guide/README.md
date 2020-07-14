@@ -250,7 +250,7 @@ Please, follow these instructions: [Get Postman](https://www.getpostman.com/post
 
 #### 6.2. Setup Postman
 
-Grab the latest collections & environment files from [Mojaloop Postman Github repo](https://github.com/mojaloop/postman): [https://github.com/mojaloop/postman](https://github.com/mojaloop/postman)
+Grab the latest collections & environment files from [Mojaloop Postman Github repo](https://github.com/mojaloop/postman).
  
 After an initial setup or new deployment, the [OSS New Deployment FSP Setup section](../contributors-guide/tools-and-technologies/automated-testing.md) needs to be completed. This will seed the Database with the required enumerations and static data to enable the sucessful execution of any manual or automation tests by the other collections.
 
