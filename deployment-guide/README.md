@@ -15,8 +15,10 @@ The document is intended for an audience with a stable technical knowledge that 
   
 ### 1. Pre-requisites
 
-A list of the pre-requisite tool set required for the deployment of Mojaloop;
-- **Kubernetes** An open-source system for automating deployment, scaling, and management of containerized applications. Find out more about [Kubernetes](https://kubernetes.io),
+Versions numbers below are hard requirements, not just recommendations (more recent versions are known not to work).
+
+A list of the pre-requisite tool set required for the deployment of Mojaloop:
+- **Kubernetes 1.15.x** An open-source system for automating deployment, scaling, and management of containerized applications. Find out more about [Kubernetes](https://kubernetes.io),
   - kubectl - Kubernetes CLI for Kubernetes Management is required. Find out more about [kubectl](https://kubernetes.io/docs/reference/kubectl/overview/),
     - [Install-kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/),
   - microk8s - MicroK8s installs a barebones upstream Kubernetes for a single node deployment generally used for local development. We recommend this installation on Linux (ubuntu) OS. Find out more about [microk8s](https://microk8s.io/) and [microk8s documents](https://microk8s.io/docs/),
@@ -24,7 +26,7 @@ A list of the pre-requisite tool set required for the deployment of Mojaloop;
   - kubectx - Not required but useful. Find out more about [kubectx](https://github.com/ahmetb/kubectx),
   - kubetail - Not required but useful. Bash script that enables you to aggregate (tail/follow) logs from multiple pods into one stream. Find out more about [kubetail](https://github.com/johanhaleby/kubetail),
 - **Docker** Provides containerized environment to host the application. Find out more about [Docker](https://docker.com),
-- **Helm** A package manager for Kubernetes. Find out more about [Helm](https://helm.sh),
+- **Helm v2.x** A package manager for Kubernetes. Find out more about [Helm](https://helm.sh),
 - **Postman** Postman is a Google Chrome application for the interacting with HTTP API's. It presents you with a friendly GUI for the construction requests and reading responces.	https://www.getpostman.com/apps. Find out more about [Postman](https://postman.com).
 
 For **local guides** on how to setup the pre-requisites on your laptop or desktop, refer to the appropriate link document below;
