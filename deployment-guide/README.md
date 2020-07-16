@@ -148,25 +148,25 @@ Please review [Mojaloop Helm Chart](../repositories/helm.md) to understand the r
    kubectl -n kube-system get po | grep tiller
    ```
 
-3. Add mojaloop repo to your Helm config (optional). _Linux use with sudo_:
+3. Add mojaloop repo to your Helm config:
    ```bash
    helm repo add mojaloop http://mojaloop.io/helm/repo/
    ```
    If the repo already exists, substitute 'add' with 'apply' in the above command.
 
-4. Add the additional dependency Helm repositories. This is needed to resolve Helm Chart dependencies required by Mojaloop charts. Linux use with sudo;
+4. Add the additional dependency Helm repositories. This is needed to resolve Helm Chart dependencies required by Mojaloop charts.
    ```bash
    helm repo add incubator http://storage.googleapis.com/kubernetes-charts-incubator
    helm repo add kiwigrid https://kiwigrid.github.io
    helm repo add elastic https://helm.elastic.co
    ```
 
-5. Update helm repositories. _Linux use with sudo_:
+5. Update helm repositories:
    ```bash
    helm repo update
    ```
 
-6. Install nginx-ingress for load balancing & external access. _Linux use with sudo_:
+6. Install nginx-ingress for load balancing & external access:
    ```bash
    helm --namespace kube-public install stable/nginx-ingress
    ```
@@ -175,7 +175,7 @@ Please review [Mojaloop Helm Chart](../repositories/helm.md) to understand the r
 
 #### 5.1. Mojaloop Helm Deployment
 
-1. Install Mojaloop. _Linux use with sudo_:
+1. Install Mojaloop:
 
    Default installation:
    ```bash
