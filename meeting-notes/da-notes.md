@@ -5,6 +5,14 @@ The meetings are open for the public to participate, though discussions are usua
 
 More details can be found [here](https://github.com/mojaloop/design-authority/issues/42#workspaces/da-issue-log-5cdd507422733779191866e9/board?notFullScreen=false&repos=186592307)
 
+# DA Meeting - 22 July 2020
+Canceled as a result of the PI-11 Mojaloop Convening taking place
+
+# DA Meeting - 15 July 2020
+Sam walked through some of the high-level changes being introduced with Helm v10.4.0 release and various sections from the release notes: https://github.com/mojaloop/helm/releases/tag/v10.4.0
+Please have a look on the DA Topic board: https://github.com/mojaloop/design-authority/issues/56
+
+Neal and Michael discussed the issue of shared DB, code between central-settlement and central-ledger; they’re going to continue with the current work on Continuous Gross Settlement but after the convening will get the inputs from the Perf/Arch PoC (Event sourcing / CQRS) and then align. https://github.com/mojaloop/design-authority/issues/58
 
 # DA Meeting - 8 July 2020
 The TIPS team did a presentation of the design and implementation of a **Rules Engine** satisfying their requirements of interpretation in the **Settlements Portion**, to extend fees levied as part of a transfer. The implementation allows for rules to be interpreted at any stage during a transaction. A formal presentation will be made at the convening during the week of the 20th July 2020 after which more informed decisions as to the adaption of this implementation into the Core OSS codebase can be considered as a generic approach to implementation of a rules engine.
