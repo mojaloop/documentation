@@ -51,7 +51,7 @@ collections "topic-bulk-processing" as TOPIC_BULK_PROCESSING
 control "Bulk Processing Event Handler" as BULK_PROCESSING_HANDLER
 collections "Event-Topic" as TOPIC_EVENTS
 collections "Notification-Topic" as TOPIC_NOTIFICATIONS
-database "Cache" as CACHE
+collections "mojaloop-\nobject-store\n(**MLOS**)" as OBJECT_STORE
 database "Central Services DB" as DB
 
 box "Financial Service Providers" #lightGray
@@ -76,7 +76,7 @@ box "Central Service" #LightYellow
     participant TOPIC_BULK_PROCESSING
     participant BULK_PROCESSING_HANDLER
     participant TOPIC_NOTIFICATIONS
-    participant CACHE
+    participant OBJECT_STORE
     participant DB
 end box
 
@@ -124,6 +124,21 @@ group DFSP2 sends a Fulfil Abort Transfer request
     end note
     DFSP2 ->> BULKAPI: **PUT - /bulkTransfers/<ID>/error**
     activate BULKAPI
+    
+    BULKAPI -> OBJECT_STORE: Persist request payload with messageId in cache
+    activate OBJECT_STORE
+    note right of BULKAPI #yellow
+        Message: {
+            messageId: <string>,
+            bulkTransferId: <string>,
+            payload: <object>
+        }
+    end note
+    hnote over OBJECT_STORE #lightyellow
+        individualTransferFulfils
+    end hnote
+    BULKAPI <- OBJECT_STORE: Response of save operation
+    deactivate OBJECT_STORE
     note right of BULKAPI #yellow
         Message:
         {
@@ -149,19 +164,6 @@ group DFSP2 sends a Fulfil Abort Transfer request
             }
         }
     end note
-    BULKAPI -> CACHE: Persist request payload with messageId in cache
-    activate CACHE
-    note right of BULKAPI #yellow
-        Message: {
-            messageId: <string>,
-            bulkTransferId: <string>,
-            payload: <object>
-        }
-    end note
-    hnote over CACHE #lightyellow
-        individualTransferFulfils
-    end hnote
-    deactivate CACHE
     BULKAPI -> TOPIC_BULK_FULFIL: Produce bulk-fulfil message
     BULKAPI -->> DFSP2: Respond HTTP - 200 (OK)
     TOPIC_BULK_FULFIL <- BULK_FULFIL_HANDLER: Consume bulk-fulfil message

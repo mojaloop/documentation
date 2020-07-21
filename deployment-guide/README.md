@@ -15,8 +15,10 @@ The document is intended for an audience with a stable technical knowledge that 
   
 ### 1. Pre-requisites
 
-A list of the pre-requisite tool set required for the deployment of Mojaloop;
-- **Kubernetes** An open-source system for automating deployment, scaling, and management of containerized applications. Find out more about [Kubernetes](https://kubernetes.io),
+Versions numbers below are hard requirements, not just recommendations (more recent versions are known not to work).
+
+A list of the pre-requisite tool set required for the deployment of Mojaloop:
+- **Kubernetes 1.15.x** An open-source system for automating deployment, scaling, and management of containerized applications. Find out more about [Kubernetes](https://kubernetes.io),
   - kubectl - Kubernetes CLI for Kubernetes Management is required. Find out more about [kubectl](https://kubernetes.io/docs/reference/kubectl/overview/),
     - [Install-kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/),
   - microk8s - MicroK8s installs a barebones upstream Kubernetes for a single node deployment generally used for local development. We recommend this installation on Linux (ubuntu) OS. Find out more about [microk8s](https://microk8s.io/) and [microk8s documents](https://microk8s.io/docs/),
@@ -24,7 +26,7 @@ A list of the pre-requisite tool set required for the deployment of Mojaloop;
   - kubectx - Not required but useful. Find out more about [kubectx](https://github.com/ahmetb/kubectx),
   - kubetail - Not required but useful. Bash script that enables you to aggregate (tail/follow) logs from multiple pods into one stream. Find out more about [kubetail](https://github.com/johanhaleby/kubetail),
 - **Docker** Provides containerized environment to host the application. Find out more about [Docker](https://docker.com),
-- **Helm** A package manager for Kubernetes. Find out more about [Helm](https://helm.sh),
+- **Helm v2.x** A package manager for Kubernetes. Find out more about [Helm](https://helm.sh),
 - **Postman** Postman is a Google Chrome application for the interacting with HTTP API's. It presents you with a friendly GUI for the construction requests and reading responces.	https://www.getpostman.com/apps. Find out more about [Postman](https://postman.com).
 
 For **local guides** on how to setup the pre-requisites on your laptop or desktop, refer to the appropriate link document below;
@@ -143,13 +145,13 @@ Refer to the [Helm v2 to v3 Migration Guide](./helm-legacy-migration.md) if you 
 
 #### 4.1. Helm configuration
 
-1. Add mojaloop repo to your Helm config (optional):
+1. Add mojaloop repo to your Helm config:
    ```bash
    helm repo add mojaloop http://mojaloop.io/helm/repo/
    ```
    If the repo already exists, substitute 'add' with 'apply' in the above command.
 
-4. Add the additional dependency Helm repositories. This is needed to resolve Helm Chart dependencies required by Mojaloop charts. Linux use with sudo;
+2. Add the additional dependency Helm repositories. This is needed to resolve Helm Chart dependencies required by Mojaloop charts.
    ```bash
    helm repo add incubator http://storage.googleapis.com/kubernetes-charts-incubator
    helm repo add kiwigrid https://kiwigrid.github.io
@@ -157,9 +159,14 @@ Refer to the [Helm v2 to v3 Migration Guide](./helm-legacy-migration.md) if you 
    helm repo add bitnami https://charts.bitnami.com/bitnami 
    ```
 
-5. Update helm repositories:
+3. Update helm repositories:
    ```bash
    helm repo update
+   ```
+
+4. Optionally Install nginx-ingress for load balancing & external access:
+   ```bash
+   helm --namespace kube-public install stable/nginx-ingress
    ```
 
 ### 5. Mojaloop
@@ -242,7 +249,7 @@ Please, follow these instructions: [Get Postman](https://www.getpostman.com/post
 
 #### 6.2. Setup Postman
 
-Grab the latest collections & environment files from [Mojaloop Postman Github repo](https://github.com/mojaloop/postman): [https://github.com/mojaloop/postman](https://github.com/mojaloop/postman)
+Grab the latest collections & environment files from [Mojaloop Postman Github repo](https://github.com/mojaloop/postman).
  
 After an initial setup or new deployment, the [OSS New Deployment FSP Setup section](../contributors-guide/tools-and-technologies/automated-testing.md) needs to be completed. This will seed the Database with the required enumerations and static data to enable the sucessful execution of any manual or automation tests by the other collections.
 
