@@ -170,12 +170,12 @@ Refer to the [Helm v2 to v3 Migration Guide](./helm-legacy-migration.md) if you 
 
    Default installation:
    ```bash
-   helm --namespace demo moja install mojaloop/mojaloop
+   helm --namespace demo install moja mojaloop/mojaloop
    ```
 
    Version specific installation:
    ```bash
-   helm --namespace demo moja install mojaloop/mojaloop --version {version}
+   helm --namespace demo install moja mojaloop/mojaloop --version {version}
    ```
    
    List of available versions:
@@ -185,7 +185,7 @@ Refer to the [Helm v2 to v3 Migration Guide](./helm-legacy-migration.md) if you 
    
    Custom configured installation:
    ```bash
-   helm --namespace demo moja install mojaloop/mojaloop -f {custom-values.yaml}
+   helm --namespace demo install moja mojaloop/mojaloop -f {custom-values.yaml}
    ```
 
    _Note: Download and customize the [values.yaml](https://github.com/mojaloop/helm/blob/master/mojaloop/values.yaml). Also ensure that you are using the value.yaml from the correct version which can be found via [Helm Releases](https://github.com/mojaloop/helm/releases)._
