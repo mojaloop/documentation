@@ -5,6 +5,12 @@ The meetings are open for the public to participate, though discussions are usua
 
 More details can be found [here](https://github.com/mojaloop/design-authority/issues/42#workspaces/da-issue-log-5cdd507422733779191866e9/board?notFullScreen=false&repos=186592307)
 
+# DA Meeting - 29 July 2020
+Issue discussed: https://github.com/mojaloop/design-authority/issues/60
+Claudio noted three observations regarding usage of best practices in the Mojaloop Core codebase. One of the issues has an active issue and will be used for tracking it; the other two will be followed up as separate stories/bugs as well (standards). Claudio will provide examples and in some cases sample snippets that can be used.
+
+Istvan and Michael discussed the usage of a unique ID for lookup requests and proposed to have a follow-up meeting the upcoming week for those interested. The current trace headers (optional) usage for traceability (APM) was brought up as a solution, which after the DA review can be proposed to the CCB (if accepted by the DA).
+
 # DA Meeting - 22 July 2020
 Canceled as a result of the PI-11 Mojaloop Convening taking place
 
