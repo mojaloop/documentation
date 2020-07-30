@@ -15,7 +15,7 @@ This document provides guidelines regarding the versioning strategy used for the
 
 
 #### Versioning Strategy used until PI-10
-1. The Mojaloop (up to PI-100 versioning system is inspired by the [Semantic Versioning](https://semver.org/) numbering system for releases.
+1. The Mojaloop (up to PI-10) versioning system is inspired by the [Semantic Versioning](https://semver.org/) numbering system for releases.
 2. However, this is customized to depict the timelines of the Mojaloop project, based on the Program Increment \(PI\) and Sprint numbers
 3. For example, the release number v5.1.0 implies that this release was the first one made during a Sprint 5.1, where Sprint5.1 is the first Sprint in PI-5. So for a version vX.Y.Z, X.Y is the Sprint number where X is the PI number and Z represents the number of release for this specific repository. Example v4.4.4 implies that the current release is the fourth of four releases made in Sprint 4.4 \(of PI-4\)
 
