@@ -5,6 +5,20 @@ The meetings are open for the public to participate, though discussions are usua
 
 More details can be found [here](https://github.com/mojaloop/design-authority/issues/42#workspaces/da-issue-log-5cdd507422733779191866e9/board?notFullScreen=false&repos=186592307)
 
+# DA Meeting - 29 July 2020
+Issue discussed: https://github.com/mojaloop/design-authority/issues/60
+Claudio noted three observations regarding usage of best practices in the Mojaloop Core codebase. One of the issues has an active issue and will be used for tracking it; the other two will be followed up as separate stories/bugs as well (standards). Claudio will provide examples and in some cases sample snippets that can be used.
+
+Istvan and Michael discussed the usage of a unique ID for lookup requests and proposed to have a follow-up meeting the upcoming week for those interested. The current trace headers (optional) usage for traceability (APM) was brought up as a solution, which after the DA review can be proposed to the CCB (if accepted by the DA).
+
+# DA Meeting - 22 July 2020
+Canceled as a result of the PI-11 Mojaloop Convening taking place
+
+# DA Meeting - 15 July 2020
+Sam walked through some of the high-level changes being introduced with Helm v10.4.0 release and various sections from the release notes: https://github.com/mojaloop/helm/releases/tag/v10.4.0
+Please have a look on the DA Topic board: https://github.com/mojaloop/design-authority/issues/56
+
+Neal and Michael discussed the issue of shared DB, code between central-settlement and central-ledger; they’re going to continue with the current work on Continuous Gross Settlement but after the convening will get the inputs from the Perf/Arch PoC (Event sourcing / CQRS) and then align. https://github.com/mojaloop/design-authority/issues/58
 
 # DA Meeting - 8 July 2020
 The TIPS team did a presentation of the design and implementation of a **Rules Engine** satisfying their requirements of interpretation in the **Settlements Portion**, to extend fees levied as part of a transfer. The implementation allows for rules to be interpreted at any stage during a transaction. A formal presentation will be made at the convening during the week of the 20th July 2020 after which more informed decisions as to the adaption of this implementation into the Core OSS codebase can be considered as a generic approach to implementation of a rules engine.
