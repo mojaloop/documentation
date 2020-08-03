@@ -1,6 +1,17 @@
-# AWS Tagging Guidelines
+# AWS Tagging Guidelines + Policies
 
 To better manage and understand our AWS usage and spending, we are implementing the following tagging guidelines.
+
+## Contents
+- [Proposed tags and their meanings](#proposed-tags-and-their-meanings)
+    - [mojaloop/cost_center](#mojaloopcost_center)
+    - [mojaloop/owner](#mojaloopowner)
+- [Manual Tagging](#manual-tagging)
+- [Automated Tagging](#automated-tagging)
+- [AWS Tagging Policies](#aws-tagging-policies)
+    - [Viewing Tag Reports + Compliance](#viewing-tag-reports--compliance)
+    - [Editing Tag Policies](#editing-tag-policies)
+    - [Attaching/Detaching Tag Policies](#attachingdetaching-tag-policies)
 
 ## Proposed tags and their meanings
 
@@ -65,6 +76,8 @@ You can also search by tags, or the absense of tags to see what resources have n
 
 ## Automated Tagging
 
+We currently automate tagging on the following
+
 As we have a firmer grasp of our tagging guidelines, we need to introduce them into our tooling so that all of the grunt work of manual tagging.
 
 At the moment, this will look like introducing tags into:
@@ -72,7 +85,43 @@ At the moment, this will look like introducing tags into:
 2. IAC - The upcoming IAC code that will eventually be running our dev environments
 
 
-## Searching for Untagged Resources
+## AWS Tagging Policies
 
-> TODO: Lewis will investigate an writing a script for automating the search for untagged resources, that perhaps can send a weekly email or slack notification to AWS owners to investigate and retag instances.
+As of August 3, 2020, we have started introducing [AWS Tagging Policies](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies.html) to better enforce tags and monitor our resources (especially with respect to costs).
 
+
+### Viewing Tag Reports + Compliance
+
+1. Log in to the AWS Console
+2. "Resource Groups" > "Tag Editor"
+3. On the left sidebar, select "Tag Policies"
+
+From here you can see the tag policies "compliance report"
+
+![](./images/tagging_03.png)
+
+
+### Editing Tag Policies
+
+> Note: This may require special admin priviledges to access these pages
+
+1. Log in to the AWS Console
+2. Select "username@mojaloop" in the top right > "My Organization"
+3. Select "Policies" > "Tag Policies"
+
+![](./images/tagging_04.png)
+
+4. From here, you can view the current tag policies
+
+![](./images/tagging_05.png)
+
+5. In the sidebar, you can click "View details" > "Edit policy" to edit the policy
+
+
+### Attaching/Detaching Tag Policies
+
+1. Go to the "My Organization" page
+2. Select the relevant account > "Tag policies" in the sidebar
+3. From here you can Attach + Detach tag policies
+
+![](./images/tagging_06.png)
