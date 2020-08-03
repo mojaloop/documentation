@@ -59,8 +59,6 @@ Once again, we will reserve the following values:
 
 We can use the "Tag Editor" in the AWS console to search for untagged resources.
 
->TODO: insert instructions
-
 1. Log into the AWS Console
 2. Under Resource Groups, select "Tag Editor"
 ![](./images/tagging_01.png)
