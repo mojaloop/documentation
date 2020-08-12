@@ -187,7 +187,7 @@ Refer to the [Helm v2 to v3 Migration Guide](./helm-legacy-migration.md) if you 
    
    List of available versions:
    ```bash
-   helm search -l mojaloop/mojaloop
+   helm search repo -l mojaloop/mojaloop
    ```
    
    Custom configured installation:
