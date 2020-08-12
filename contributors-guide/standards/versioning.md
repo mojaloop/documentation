@@ -6,11 +6,20 @@ This document provides guidelines regarding the versioning strategy used for the
 
 ### Versioning Strategy
 
-1. The current versioning system is inspired by the [Semantic Versioning](https://semver.org/) numbering system for releases.
+
+#### Standard for PI-11 and beyond
+1. Starting PI-11 (27th July, 2020) the Versioning guidance is to move to a versioning system that is closely aligned with Semantic versioning by removing the PI/Sprint dependency. So starting 11.x.x, the proposal is to move to pure [SemVer](https://semver.org/).
+2. At a high-level, we will still follow the vX.Y.Z format, but X represents ‘Major’ version, Y represents ‘Minor’ version and Z represents ‘patch’ version. Minor fixes, patches affect increments to ‘Z’, whereas non-breaking functionality changes affect changes to ‘Y’; breaking changes affect the ‘X’ version.
+3. Along with these, suffixes such as “-snapshot”, “-patch”, “-hotfix” are used as relevant and on need basis (supported by CI config).
+4. So starting with 11.0.0 (primarily for Helm, but for individual services as well) for PI-11, the proposal is to move to pure [SemVer](https://semver.org/).
+
+
+#### Versioning Strategy used until PI-10
+1. The Mojaloop (up to PI-10) versioning system is inspired by the [Semantic Versioning](https://semver.org/) numbering system for releases.
 2. However, this is customized to depict the timelines of the Mojaloop project, based on the Program Increment \(PI\) and Sprint numbers
 3. For example, the release number v5.1.0 implies that this release was the first one made during a Sprint 5.1, where Sprint5.1 is the first Sprint in PI-5. So for a version vX.Y.Z, X.Y is the Sprint number where X is the PI number and Z represents the number of release for this specific repository. Example v4.4.4 implies that the current release is the fourth of four releases made in Sprint 4.4 \(of PI-4\)
 
-**Note**: Starting PI-11 the Versioning guidance is to move to a versioning system thats closely aligned with Semantic versioning by removing the PI/Sprint dependency. So starting 11.x.x, the proposal is to move to pure SemVer. For PI10 however, we'll continue with the same versioning system outlined in points 1-3 above.
+
 
 ### Current Version
 
