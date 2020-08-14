@@ -86,4 +86,11 @@ To install Kubernetes with Docker, follow the steps below;
    kubectx docker-for-desktop
    ```
 
-3. Continue setup and configuration from the Kubernetes Dashboard section in the [Mojaloop's deployment guide](./README.md#31-kubernetes-dashboard) document.
+3. Install an Ingress Controller
+
+Install nginx-ingress for load balancing & external access:
+   ```bash
+   helm --namespace kube-public install stable/nginx-ingress
+   ```
+
+4. Continue setup and configuration from the Kubernetes Dashboard section in the [Mojaloop's deployment guide](./README.md#31-kubernetes-dashboard) document.
