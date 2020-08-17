@@ -5,6 +5,11 @@ The meetings are open for the public to participate, though discussions are usua
 
 More details can be found [here](https://github.com/mojaloop/design-authority/issues/42#workspaces/da-issue-log-5cdd507422733779191866e9/board?notFullScreen=false&repos=186592307)
 
+
+# DA Meeting - 12 August 2020
+The topic for discussion was: https://github.com/mojaloop/design-authority/issues/63
+The DA discussed the topic of where and how to create and work on issue tickets. With over 50 repositories, it makes sense to create a ticket in the repo where it originated and keep working on it there until it is resolved. The Product Owner and Scrum Master would have context and should replicate a ticket in the Design Autority Repo with a link to the originating ticket. Please have a look at the DA Board for the decisions made here: https://github.com/mojaloop/design-authority#workspaces/da-issue-log-5cdd507422733779191866e9/board?repos=186592307
+
 # DA Meeting - 5 August 2020
 The topic for discussion was: https://github.com/mojaloop/project/issues/852
 The "HSM Integration Approach" was touched on a few times, and the workgroup taking care of the design and implementation, tabled this for discussion at this week's DA meeting to answer a few questions arising from the last PI-Planning session where progress on this was again presented.
