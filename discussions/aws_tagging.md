@@ -1,5 +1,7 @@
 # AWS Tagging Guidelines + Policies
 
+> **Note:** These guidelines are specific to the Mojaloop Community's AWS Environment for testing and validating Mojaloop installations, and are primarily for internal purposes. They may, however, be a useful reference to others wishing to implement similar tagging strategies in their own organizations.
+
 To better manage and understand our AWS usage and spending, we are implementing the following tagging guidelines.
 
 ## Contents
