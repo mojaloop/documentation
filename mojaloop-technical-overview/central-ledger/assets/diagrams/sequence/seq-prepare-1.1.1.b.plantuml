@@ -60,6 +60,10 @@ end box
 ' start flow
 activate PREP_HANDLER
 group Prepare Handler Consume
+    note over TOPIC_TRANSFER_PREPARE #LightSalmon
+        This flow has not been implemented
+    end note
+
     TOPIC_TRANSFER_PREPARE <- PREP_HANDLER: Consume Prepare event batch of messages for Payer
     activate TOPIC_TRANSFER_PREPARE
     deactivate TOPIC_TRANSFER_PREPARE
