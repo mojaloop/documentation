@@ -208,6 +208,8 @@ Refer to the following publication for more information: https://w3c.github.io/t
 
 Note: Before this specification was written, some tracers propagated X-B3-Sampled as true or false as opposed to 1 or 0. While you shouldn't encode X-B3-Sampled as true or false, a lenient implementation may accept them.
 
+Note: (Event-SDK)[https://github.com/mojaloop/event-sdk] since version v9.4.1 has methods to add key value tags in the tracestate, and since version v9.5.2 the tracestate is base64 encoded. To be able to use the tracestate consistently, use matching versions across all services in a system.
+
 #### 4.1.2 B3 HTTP Headers
 
 Refer to the following publication for more information: https://github.com/apache/incubator-zipkin-b3-propagation
