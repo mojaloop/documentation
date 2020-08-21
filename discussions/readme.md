@@ -1,5 +1,11 @@
 # Discussion Documents
 
+## PI 10
+- [Performance Project](./Mojaloop%20Performance%202020.pdf)
+- [Code Improvement Project](./code_improvement.md)
+- [Cross Border Project](./crossborder.md)
+- [PSIP Project](./pisp.md)
+
 ## PI 9
 
 - [Versioning Draft Proposal](./versioning_draft_proposal.md)

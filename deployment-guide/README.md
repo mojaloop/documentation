@@ -15,8 +15,10 @@ The document is intended for an audience with a stable technical knowledge that 
   
 ### 1. Pre-requisites
 
-A list of the pre-requisite tool set required for the deployment of Mojaloop;
-- **Kubernetes** An open-source system for automating deployment, scaling, and management of containerized applications. Find out more about [Kubernetes](https://kubernetes.io),
+Versions numbers below are hard requirements, not just recommendations (more recent versions are known not to work).
+
+A list of the pre-requisite tool set required for the deployment of Mojaloop:
+- **Kubernetes 1.15.x** An open-source system for automating deployment, scaling, and management of containerized applications. Find out more about [Kubernetes](https://kubernetes.io),
   - kubectl - Kubernetes CLI for Kubernetes Management is required. Find out more about [kubectl](https://kubernetes.io/docs/reference/kubectl/overview/),
     - [Install-kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/),
   - microk8s - MicroK8s installs a barebones upstream Kubernetes for a single node deployment generally used for local development. We recommend this installation on Linux (ubuntu) OS. Find out more about [microk8s](https://microk8s.io/) and [microk8s documents](https://microk8s.io/docs/),
@@ -24,7 +26,7 @@ A list of the pre-requisite tool set required for the deployment of Mojaloop;
   - kubectx - Not required but useful. Find out more about [kubectx](https://github.com/ahmetb/kubectx),
   - kubetail - Not required but useful. Bash script that enables you to aggregate (tail/follow) logs from multiple pods into one stream. Find out more about [kubetail](https://github.com/johanhaleby/kubetail),
 - **Docker** Provides containerized environment to host the application. Find out more about [Docker](https://docker.com),
-- **Helm** A package manager for Kubernetes. Find out more about [Helm](https://helm.sh),
+- **Helm v2.x** A package manager for Kubernetes. Find out more about [Helm](https://helm.sh),
 - **Postman** Postman is a Google Chrome application for the interacting with HTTP API's. It presents you with a friendly GUI for the construction requests and reading responces.	https://www.getpostman.com/apps. Find out more about [Postman](https://postman.com).
 
 For **local guides** on how to setup the pre-requisites on your laptop or desktop, refer to the appropriate link document below;
@@ -135,38 +137,34 @@ Insure **kubectl** is installed. A complete set of installation instruction are 
 
 Please review [Mojaloop Helm Chart](../repositories/helm.md) to understand the relationships between the deployed Mojaloop helm charts.
 
+Refer to the official documentation on how to install the latest version of Helm v3: https://helm.sh/docs/intro/install/
+
+Refer to the following document if are using Helm v2: [Deployment with (Deprecated) Helm v2](./helm-legacy-deployment.md)
+
+Refer to the [Helm v2 to v3 Migration Guide](./helm-legacy-migration.md) if you wish to migrate an existing Helm v2 deployment to v3.
+
 #### 4.1. Helm configuration
 
-1. Config Helm CLI and install Helm Tiller on K8s cluster:
-   ```bash
-   helm init
-   ```
-   _Note: if `helm init` fails with `connection refused error`, refer to [troubleshooting](./deployment-troubleshooting.md#helm_init_connection_refused)_
-
-2. Validate Helm Tiller is up and running. _Windows replace `grep` with `findstr`_:
-   ```bash
-   kubectl -n kube-system get po | grep tiller
-   ```
-
-3. Add mojaloop repo to your Helm config (optional). _Linux use with sudo_:
+1. Add mojaloop repo to your Helm config:
    ```bash
    helm repo add mojaloop http://mojaloop.io/helm/repo/
    ```
    If the repo already exists, substitute 'add' with 'apply' in the above command.
 
-4. Add the additional dependency Helm repositories. This is needed to resolve Helm Chart dependencies required by Mojaloop charts. Linux use with sudo;
+2. Add the additional dependency Helm repositories. This is needed to resolve Helm Chart dependencies required by Mojaloop charts.
    ```bash
    helm repo add incubator http://storage.googleapis.com/kubernetes-charts-incubator
    helm repo add kiwigrid https://kiwigrid.github.io
    helm repo add elastic https://helm.elastic.co
+   helm repo add bitnami https://charts.bitnami.com/bitnami 
    ```
 
-5. Update helm repositories. _Linux use with sudo_:
+3. Update helm repositories:
    ```bash
    helm repo update
    ```
 
-6. Install nginx-ingress for load balancing & external access. _Linux use with sudo_:
+4. Optionally Install nginx-ingress for load balancing & external access:
    ```bash
    helm --namespace kube-public install stable/nginx-ingress
    ```
@@ -175,27 +173,28 @@ Please review [Mojaloop Helm Chart](../repositories/helm.md) to understand the r
 
 #### 5.1. Mojaloop Helm Deployment
 
-1. Install Mojaloop. _Linux use with sudo_:
+1. Install Mojaloop:
 
    Default installation:
    ```bash
-   helm --namespace demo --name moja install mojaloop/mojaloop
+   helm --namespace demo install moja mojaloop/mojaloop
    ```
-   
+
    Version specific installation:
    ```bash
-   helm --namespace demo --name moja install mojaloop/mojaloop --version {version}
+   helm --namespace demo install moja mojaloop/mojaloop --version {version}
    ```
    
    List of available versions:
    ```bash
-   helm search -l mojaloop/mojaloop
+   helm search repo -l mojaloop/mojaloop
    ```
    
    Custom configured installation:
    ```bash
-   helm --namespace demo --name moja install mojaloop/mojaloop -f {custom-values.yaml}
+   helm --namespace demo install moja mojaloop/mojaloop -f {custom-values.yaml}
    ```
+
    _Note: Download and customize the [values.yaml](https://github.com/mojaloop/helm/blob/master/mojaloop/values.yaml). Also ensure that you are using the value.yaml from the correct version which can be found via [Helm Releases](https://github.com/mojaloop/helm/releases)._
 
 #### 5.2. Verifying Mojaloop Deployment
@@ -213,7 +212,7 @@ Please review [Mojaloop Helm Chart](../repositories/helm.md) to understand the r
 
    The below required config is applicable to Helm release >= versions 6.2.2 for Mojaloop API Services;
    ```text
-   127.0.0.1       central-ledger.local central-settlement.local ml-api-adapter.local account-lookup-service.local account-lookup-service-admin.local quoting-service.local moja-simulator.local central-ledger central-settlement ml-api-adapter account-lookup-service account-lookup-service-admin quoting-service simulator host.docker.internal
+   127.0.0.1       central-ledger.local central-settlement.local ml-api-adapter.local account-lookup-service.local account-lookup-service-admin.local quoting-service.local moja-simulator.local central-ledger central-settlement ml-api-adapter account-lookup-service account-lookup-service-admin quoting-service simulator host.docker.internal transaction-request-service.local
    ```
       
    The below optional config is applicable to Helm release >= versions 6.2.2 for Internal components, please include the following in the host configuration.
@@ -250,7 +249,7 @@ Please, follow these instructions: [Get Postman](https://www.getpostman.com/post
 
 #### 6.2. Setup Postman
 
-Grab the latest collections & environment files from [Mojaloop Postman Github repo](https://github.com/mojaloop/postman): [https://github.com/mojaloop/postman](https://github.com/mojaloop/postman)
+Grab the latest collections & environment files from [Mojaloop Postman Github repo](https://github.com/mojaloop/postman).
  
 After an initial setup or new deployment, the [OSS New Deployment FSP Setup section](../contributors-guide/tools-and-technologies/automated-testing.md) needs to be completed. This will seed the Database with the required enumerations and static data to enable the sucessful execution of any manual or automation tests by the other collections.
 
