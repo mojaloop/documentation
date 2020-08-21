@@ -1,6 +1,6 @@
 {
   "name": "documentation",
-  "version": "9.4.0",
+  "version": "11.0.2",
   "description": "Mojaloop Documentation GitBook Project",
   "dependencies": {
     "express": "4.17.1",
@@ -18,9 +18,13 @@
     "gitbook-plugin-theme-api": "1.1.2",
     "gitbook-plugin-uml": "1.0.1",
     "gitbook-plugin-variables": "1.1.0",
-    "svgexport": "0.4.0"
+    "svgexport": "0.4.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "license-checker": "25.0.1",
+    "npm-audit-resolver": "2.2.1",
+    "npm-check-updates": "7.0.2"
+  },
   "scripts": {
     "run": "npm run gitbook:serve",
     "start": "npm run gitbook:serveNoReload",
@@ -32,7 +36,13 @@
     "docker:build": "docker build --no-cache -t mojaloop/documentation .",
     "docker:push": "docker push mojaloop/documentation",
     "docker:run": "docker run --rm -it --name mojadoc -p 8989:8989 mojaloop/documentation",
-    "express:run": "node index.js"
+    "express:run": "node index.js",
+    "audit:resolve": "SHELL=sh resolve-audit",
+    "audit:check": "SHELL=sh check-audit",
+    "license:list": "license-checker . --excludePackages `cat .licenseignore | grep '^[^#;]' | awk 'BEGIN { ORS=\"\" } { print p$0\";\"; } END { print \n }'` --production --csv",
+    "license:check": "npm run license:list -- --failOn `cat .licensebanned | grep '^[^#;]' | awk 'BEGIN { ORS=\"\" } { print p$0\";\"; } END { print \n }'`",
+    "dep:check": "npx ncu -e 2",
+    "dep:update": "npx ncu -u"
   },
   "repository": {
     "type": "git",

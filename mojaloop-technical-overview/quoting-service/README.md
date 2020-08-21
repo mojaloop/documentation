@@ -1,4 +1,4 @@
-# Quoting Service
+# Quoting Service Overview
 The **Quoting Service** (**QS**) _(refer to section `5.1`)_ as per the [Mojaloop {{ book.importedVars.mojaloop.spec.version }} Specification]({{ book.importedVars.mojaloop.spec.uri.doc }}) implements the following use-cases:
 * P2P Transfers
 
