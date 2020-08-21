@@ -1,11 +1,24 @@
 # Meeting Notes from Proof of Concept Architecture Stream
 
+##25 May 2020 - standup and initial code review
+
+Notes
+* Initial code looks good, abstractions make sense
+* Needs the correct coding standards and a proper yarn structure
+
+TODOs:
+* First Miguel to implement linter and proper coding standards
+* Parallel
+    * Don - replace npm with yarn and implement proper mono-repo structure
+    * Miguel and Pedro to add the transfers and the cmd handlers
+
+
 ##21May2020 - working session
 
 TODOs
-* Miguel to create the repo
-* Pedro to prime the diagrams and share for review by Friday at, before sending to sponsors
-* Pedro to create the service skeleton and share by Friday 22nd standup
+* Miguel to create the repo - DONE
+* Pedro to prime the diagrams and share for review by Friday at, before sending to sponsors - WIP
+* Pedro to create the service skeleton and share by Friday 22nd standup - DONE by 24th
 
 Decisions
 * tech stack:
