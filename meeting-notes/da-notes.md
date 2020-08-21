@@ -5,6 +5,13 @@ The meetings are open for the public to participate, though discussions are usua
 
 More details can be found [here](https://github.com/mojaloop/design-authority/issues/42#workspaces/da-issue-log-5cdd507422733779191866e9/board?notFullScreen=false&repos=186592307)
 
+# DA Meeting - 12 August 2020
+The topic for discussion was: https://github.com/mojaloop/design-authority/issues/61.  
+The group agreed that there needs to be a balance between the need to eliminate reconciliation and liquidity management of (Payer) FSPs by not holding/reserving funds for longer than necessary. In addition, It was proposed to use 'grace time period' before timing out transfers to compensate for differences in clocks. It was also suggested that for risky transactions, the final notification in the form of a PATCH call that was introduced with FSPIOP API v1.1 can be used to mitigate risk to the Payee FSPs.
+
+One point made was that after the timeout period (plus the grace period to account for clock difference), a transfer status cannot be changed - it is either finalized or it isn't, but it cannot be changed. For example, if a timeout period (expressed as a time in future and not duration) is 10 seconds, then a Payer FSP (or Switch), may add a grace period of 1second and after waiting for 11seconds can query the downstream entity to find the transfer's status; At this point, if a transfer is finalized (Committed or Aborted), then the Payer FSP can take action accordingly; however if it is in an intermediate state, then the transfer has to be timed-out since the time-out period is done.
+
+The group agreed on the need to revisit the topic of implementing 'telescopic timeouts', which is not currently supported in favor of end-to-end encryption of (most) messages.
 
 # DA Meeting - 12 August 2020
 The topic for discussion was: https://github.com/mojaloop/design-authority/issues/63
