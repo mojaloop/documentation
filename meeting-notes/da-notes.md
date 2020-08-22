@@ -5,7 +5,7 @@ The meetings are open for the public to participate, though discussions are usua
 
 More details can be found [here](https://github.com/mojaloop/design-authority/issues/42#workspaces/da-issue-log-5cdd507422733779191866e9/board?notFullScreen=false&repos=186592307)
 
-# DA Meeting - 12 August 2020
+# DA Meeting - 19 August 2020
 The topic for discussion was: https://github.com/mojaloop/design-authority/issues/61.  
 The group agreed that there needs to be a balance between the need to eliminate reconciliation and liquidity management of (Payer) FSPs by not holding/reserving funds for longer than necessary. In addition, It was proposed to use 'grace time period' before timing out transfers to compensate for differences in clocks. It was also suggested that for risky transactions, the final notification in the form of a PATCH call that was introduced with FSPIOP API v1.1 can be used to mitigate risk to the Payee FSPs.
 
