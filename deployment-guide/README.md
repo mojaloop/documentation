@@ -199,7 +199,7 @@ Refer to the [Helm v2 to v3 Migration Guide](./helm-legacy-migration.md) if you 
 
 #### 5.2. Verifying Mojaloop Deployment
 
-1. Update your /ect/hosts for local deployment:
+1. Update your /etc/hosts for local deployment:
 
    _Note: This is only applicable for local deployments, and is not needed if custom DNS or ingress rules are configured in a customized [values.yaml](https://github.com/mojaloop/helm/blob/master/mojaloop/values.yaml)_.
    
