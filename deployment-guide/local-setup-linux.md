@@ -32,7 +32,7 @@ Don't have the snap command? [Install snapd first](https://snapcraft.io/docs/cor
 
 1. Installing MicroK8s from snap.
    ```bash
-   snap install microk8s --classic
+   snap install microk8s --classic --channel=1.13/stable
    ```
 
 2. Verify MicroK8s is installed and available.
