@@ -70,7 +70,6 @@ end box
 activate NOTIFY_HANDLER
 activate FULF_HANDLER
 group DFSP2 sends an error callback to reject a transfer with an errorCode and description
-    DFSP2 <-> DFSP2: Retrieve fulfilment string generated during\nthe quoting process or regenerate it using\n**Local secret** and **ILP Packet** as inputs
     note right of DFSP2 #yellow
         Headers - transferHeaders: {
             Content-Length: <Content-Length>,
