@@ -100,10 +100,6 @@ group DFSP2 sends an error callback to reject a transfer with an errorCode and d
             }
         }
     end note
-    note right of DFSP2 #lightgray
-        **Note**: Payee rejection reason should be captured
-        in the extensionList within the payload.
-    end note
     DFSP2 ->> MLAPI: **PUT - /transfers/<ID>/error**
     
     activate MLAPI
