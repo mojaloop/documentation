@@ -5,6 +5,12 @@ The meetings are open for the public to participate, though discussions are usua
 
 More details can be found [here](https://github.com/mojaloop/design-authority/issues/42#workspaces/da-issue-log-5cdd507422733779191866e9/board?notFullScreen=false&repos=186592307)
 
+# DA Meeting - 2 September 2020
+We concluded discussions on the separate scheme-adapter for a PISP - see issue on board: https://github.com/mojaloop/design-authority/issues/51
+Please have a look at the draft document at this location: https://github.com/mojaloop/pisp/blob/scratch/api-collision/docs/api-collision.md
+The above link has a detailed discussion regarding the latest thinking and some examples of mitigations.
+The decision has been taken to block this topic until further development on the PoC has been done, in order for the DA to assess if the designs are still aligned with the recommended approach.
+
 # DA Meeting - 26 August 2020
 We discussed https://github.com/mojaloop/design-authority/issues/51 further on our DA Meeting on 26/08/2020.
 
