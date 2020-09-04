@@ -2,10 +2,10 @@
 Title Retrieve Quote Information
 participant "Payer DFSP" as PayerDFSP
 participant "Switch\n[Quoting\nService]" as Switch
-participant "Payee DFSP" as PayeeDFSP
 database "Central Store" as DB
+participant "Payee DFSP" as PayeeDFSP
 autonumber
-note over PayerDFSP, Switch: Payer DFSP sends request to get quote details \nto Payee DFSP via the Switch
+note right of PayerDFSP: Payer DFSP sends request to get quote details \nto Payee DFSP via the Switch
 PayerDFSP -\ Switch: GET /quotes/{ID}
 note right of Switch #aaa
     Validate request against 
@@ -13,16 +13,16 @@ note right of Switch #aaa
     **<color #red>Error code: 300x, 310x</color>**
     **<color #red>HTTP error response code: 4xx</color>**
 end note
-Switch -> Switch: Validate request
+Switch -> Switch: Schema validation
 PayerDFSP \-- Switch: 202 Accepted
 Switch -> Switch: Retrieve quotes endpoint for Payee DFSP
 alt Payee DFSP quotes endpoint is found
-    note over Switch, PayeeDFSP: Switch forwards request to Payee DFSP (pass-through mode)\n<Payer based Rules> 
+    note right of Switch: Switch forwards request to Payee DFSP (pass-through mode)\n<Payer based Rules> 
     Switch -\ PayeeDFSP: GET /quotes/{ID}
     PayeeDFSP --/ Switch: 202 Accepted
     PayeeDFSP -> PayeeDFSP: Payee DFSP retireves quote
     alt Payee DFSP successfully retieves quote
-        note over PayeeDFSP, Switch: Payee DFSP responds to quote request
+        note left of PayeeDFSP: Payee DFSP responds to quote request
         PayeeDFSP -\ Switch: PUT /quotes/{ID}
         Switch --/ PayeeDFSP: 200 Ok
         Switch -> Switch: Validate response (schema, 'accept' header (<color #red>**Error code: 3100**</color>))
@@ -43,38 +43,38 @@ alt Payee DFSP quotes endpoint is found
                     deactivate DB
                 end
             end
-            note over Switch, PayerDFSP: Switch forwards quote response to Payer DFSP\n<Payee \ whole request Rule>
             alt SimpleRoutingMode is TRUE
                 Switch -> Switch: Retrieve quotes endpoint for the Payer FSP
             else SimpleRoutingMode is FALSE
                 Switch -> Switch: Retrieve quote party endpoint (PAYER)
             end
             alt Quotes callback endpoint found
+                note left of Switch: Switch forwards quote response to Payer DFSP\n<Payee \ whole request Rule>
                 Switch -\ PayerDFSP: PUT /quotes/{ID}
                 PayerDFSP --/ Switch: 200 Ok    
-            else Quotes callback endpoint not found:
-                 note over Switch, PayeeDFSP: Switch returns error to Payee DFSP
+            else Quotes callback endpoint not found
+                note right of Switch: Switch returns error to Payee DFSP
                 Switch -\ PayeeDFSP: PUT /quotes/{ID}/error
                 PayeeDFSP --/ Switch : 200 Ok
             end
         else Response is invalid
-            note over Switch, PayeeDFSP: Switch returns error to Payee DFSP
+            note right of Switch: Switch returns error to Payee DFSP
             Switch -\ PayeeDFSP: PUT /quotes/{ID}/error
             PayeeDFSP --/ Switch : 200 Ok
             note over Switch, PayeeDFSP #ec7063: Note that under this\nscenario the Payer DFSP\nmay not receive a response
         end
 
     else Quote not found
-        note over PayeeDFSP, Switch: Payee DFSP returns error to Switch\n <color #red>**Error code: 3205**</color>
+        note left of PayeeDFSP: Payee DFSP returns error to Switch\n <color #red>**Error code: 3205**</color>
         PayeeDFSP -\ Switch: PUT quotes/{ID}/error
         Switch --/ PayeeDFSP: 200 OK
         Switch -> Switch: Persist error data
-        note over PayerDFSP, Switch: Switch returns error to Payer DFSP\n <color #red>**Error code: 3205**</color>
+        note left of Switch: Switch returns error to Payer DFSP\n <color #red>**Error code: 3205**</color>
         Switch -\ PayerDFSP: PUT quotes/{ID}/error
         PayerDFSP --/ Switch: 200 OK
     end
 else Payee DFSP quotes endpoint is not found
-    note over PayerDFSP, Switch
+    note left of Switch
         Switch returns error to Payer DFSP
         **<color #red>Error code: 3201</color>**
     end note
