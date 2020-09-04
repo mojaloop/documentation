@@ -15,61 +15,70 @@ note right of Switch #aaa
 end note
 Switch -> Switch: Validate request
 PayerDFSP \-- Switch: 202 Accepted
-alt Request is valid
-    Switch -> Switch: Retrieve quotes endpoint for Payee DFSP
-    alt Payee DFSP quotes endpoint is found
-        note over Switch, PayeeDFSP: Switch forwards request to Payee DFSP (pass-through mode)\n<Payer based Rules> 
-        Switch -\ PayeeDFSP: GET /quotes/{ID}
-        PayeeDFSP --/ Switch: 202 Accepted
-        PayeeDFSP -> PayeeDFSP: Payee DFSP retireves quote
-        alt Payee DFSP successfully retieves quote
-            note over PayeeDFSP, Switch: Payee DFSP responds to quote request
-            PayeeDFSP -\ Switch: PUT /quotes/{ID}
-            Switch --/ PayeeDFSP: 200 Ok
-            Switch -> Switch: Validate response (schema, 'accept' header)
-            alt response is ok
-                alt ENV SimpleRoutingMode is FALSE
-                    Switch -> Switch: Validate response (duplicate response check (<color #red>**Error code: 3106**</color>))
-                    alt Validation passed
-                        Switch -\ DB: Persist quote response
-                        activate DB
-                            hnote over DB
-                                quoteResponse
-                                quoteResponseDuplicateCheck
-                                quoteResponseIlpPacket
-                                geoCode
-                                quoteExtensions
-                            end hnote
-                        Switch \-- DB: Quote response saved
-                        deactivate DB
-                    end
+Switch -> Switch: Retrieve quotes endpoint for Payee DFSP
+alt Payee DFSP quotes endpoint is found
+    note over Switch, PayeeDFSP: Switch forwards request to Payee DFSP (pass-through mode)\n<Payer based Rules> 
+    Switch -\ PayeeDFSP: GET /quotes/{ID}
+    PayeeDFSP --/ Switch: 202 Accepted
+    PayeeDFSP -> PayeeDFSP: Payee DFSP retireves quote
+    alt Payee DFSP successfully retieves quote
+        note over PayeeDFSP, Switch: Payee DFSP responds to quote request
+        PayeeDFSP -\ Switch: PUT /quotes/{ID}
+        Switch --/ PayeeDFSP: 200 Ok
+        Switch -> Switch: Validate response (schema, 'accept' header (<color #red>**Error code: 3100**</color>))
+        alt Response is ok
+            alt SimpleRoutingMode is FALSE
+                Switch -> Switch: Validate response (duplicate response check, handle resend scenario (<color #red>**Error code: 3106**</color>))
+                alt Validation passed
+                    Switch -\ DB: Persist quote response
+                    activate DB
+                        hnote over DB
+                            quoteResponse
+                            quoteResponseDuplicateCheck
+                            quoteResponseIlpPacket
+                            quoteExtensions
+                            geoCode
+                        end hnote
+                    Switch \-- DB: Quote response saved
+                    deactivate DB
                 end
-                note over Switch, PayerDFSP: Switch forwards quote response to Payer DFSP\n<Payee \ whole request Rule>
+            end
+            note over Switch, PayerDFSP: Switch forwards quote response to Payer DFSP\n<Payee \ whole request Rule>
+            alt SimpleRoutingMode is TRUE
+                Switch -> Switch: Retrieve quotes endpoint for the Payer FSP
+            else SimpleRoutingMode is FALSE
+                Switch -> Switch: Retrieve quote party endpoint (PAYER)
+            end
+            alt Quotes callback endpoint found
                 Switch -\ PayerDFSP: PUT /quotes/{ID}
-                PayerDFSP --/ Switch: 200 Ok
-            else response invalid
-                note over Switch, PayeeDFSP: Switch returns error to Payee DFSP
+                PayerDFSP --/ Switch: 200 Ok    
+            else Quotes callback endpoint not found:
+                 note over Switch, PayeeDFSP: Switch returns error to Payee DFSP
                 Switch -\ PayeeDFSP: PUT /quotes/{ID}/error
                 PayeeDFSP --/ Switch : 200 Ok
-                note over Switch, PayeeDFSP #ec7063: Note that under this\nscenario the Payer DFSP\nmay not receive a response
             end
-
-        else Quote not found
-            note over PayeeDFSP, Switch: Payee DFSP returns error to Switch\n <color #red>**Error code: 3205**</color>
-            PayeeDFSP -\ Switch: PUT quotes/{ID}/error
-            Switch --/ PayeeDFSP: 200 OK
-            Switch -> Switch: Persist error data
-            note over PayerDFSP, Switch: Switch returns error to Payer DFSP\n <color #red>**Error code: 3205**</color>
-            Switch -\ PayerDFSP: PUT quotes/{ID}/error
-            PayerDFSP --/ Switch: 200 OK
+        else Response is invalid
+            note over Switch, PayeeDFSP: Switch returns error to Payee DFSP
+            Switch -\ PayeeDFSP: PUT /quotes/{ID}/error
+            PayeeDFSP --/ Switch : 200 Ok
+            note over Switch, PayeeDFSP #ec7063: Note that under this\nscenario the Payer DFSP\nmay not receive a response
         end
-    else Payee DFSP quotes endpoint is not found
-        note over PayerDFSP, Switch
-            Switch returns error to Payer DFSP
-            **<color #red>Error code: 3201</color>**
-        end note
-        PayerDFSP /- Switch: PUT quotes/{ID}error
+
+    else Quote not found
+        note over PayeeDFSP, Switch: Payee DFSP returns error to Switch\n <color #red>**Error code: 3205**</color>
+        PayeeDFSP -\ Switch: PUT quotes/{ID}/error
+        Switch --/ PayeeDFSP: 200 OK
+        Switch -> Switch: Persist error data
+        note over PayerDFSP, Switch: Switch returns error to Payer DFSP\n <color #red>**Error code: 3205**</color>
+        Switch -\ PayerDFSP: PUT quotes/{ID}/error
         PayerDFSP --/ Switch: 200 OK
     end
+else Payee DFSP quotes endpoint is not found
+    note over PayerDFSP, Switch
+        Switch returns error to Payer DFSP
+        **<color #red>Error code: 3201</color>**
+    end note
+    PayerDFSP /- Switch: PUT quotes/{ID}error
+    PayerDFSP --/ Switch: 200 OK
 end
 @enduml
