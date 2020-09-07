@@ -95,7 +95,7 @@ alt Payee quotes endpoint found
         note left of PayeeDFSP: Payee DFSP sends error callback to Payer DFSP via the Switch
         Switch /- PayeeDFSP: PUT /quotes/{ID}/error
         Switch --/ PayeeDFSP: 200 OK
-        alt SimpleRoutingMode === TRUE
+        alt SimpleRoutingMode === FALSE
             Switch -\ DB: Store quote error
             activate DB
             hnote over DB
