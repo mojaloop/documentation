@@ -24,30 +24,28 @@
 
 
 @startuml
-Title Transaction Requests Service - Create
+Title Transaction Requests Service - Query
 participant "Payer FSP"
 participant "Switch\ntransaction-requests-service" as Switch
 participant "Payee FSP"
 
 autonumber
-"Payee FSP" -\ "Payee FSP": Lookup process\n(not shown here)
-note over "Payee FSP", Switch: Payee FSP generates a transaction-request to the Payer FSP
-"Payee FSP" -\ Switch: POST /transactionRequests
-Switch -> Switch: Validate POST /transactionRequests schema
+note over "Payee FSP", Switch: Payee FSP requests the status of a transaction-request at the Payer FSP.\nID here is the ID of prevoiusly created transaction-request
+"Payee FSP" -\ Switch: GET /transactionRequests/{ID}
+Switch -> Switch: Validate GET /transactionRequests/{ID}
 Switch --/ "Payee FSP": 202 Accepted
 
-alt transaction-request is valid
+alt transaction-request query is valid
     
-    Switch -> Switch: Validate POST /transactionRequests (internal validation)
     Switch -> Switch: Retrieve corresponding end-points for Payer FSP
-    note over Switch, "Payer FSP": Switch forwards POST /transactionRequests request to Payer FSP
-    Switch -\ "Payer FSP": POST /transactionRequests
+    note over Switch, "Payer FSP": Switch forwards GET /transactionRequests/{ID} request to Payer FSP
+    Switch -\ "Payer FSP": GET /transactionRequests/{ID}
     "Payer FSP" --/ Switch: 202 Accepted
-    "Payer FSP" -> "Payer FSP": Process transaction-request
+    "Payer FSP" -> "Payer FSP": Retrieve transaction-request
     
-    alt Payer FSP successfully processes transaction-request
+    alt Payer FSP successfully retrieves transaction-request
     
-        note over "Payer FSP", Switch: Payer FSP responds to POST /transactionRequests
+        note over "Payer FSP", Switch: Payer FSP responds with the\nPUT /transactionRequests/{ID} callback
         "Payer FSP" -\ Switch: PUT /transactionRequests/{ID}
         Switch --/ "Payer FSP": 200 Ok
         
@@ -61,7 +59,6 @@ alt transaction-request is valid
             Switch -\ "Payee FSP": PUT /transactionRequests/{ID}
             "Payee FSP" --/ Switch: 200 Ok
             
-            note over "Payee FSP" #3498db: Wait for a quote, transfer by Payer FSP\nor a rejected transaction-request
         else response invalid
         
             note over Switch, "Payer FSP": Switch returns error to Payer FSP
@@ -72,7 +69,7 @@ alt transaction-request is valid
             note over Switch, "Payer FSP" #ec7063: Note that under this\nscenario the Payee FSP\nmay not receive a response
         
         end
-    else Payer FSP calculation fails or rejects the request
+    else Payer FSP is unable to retrieve the transaction-request
     
         note over "Payer FSP", Switch: Payer FSP returns error to Switch
     
