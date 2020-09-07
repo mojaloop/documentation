@@ -50,9 +50,9 @@ alt SimpleRoutingMode === FALSE
 end
 |||
 alt SimpleRoutingMode === TRUE
-    Switch -> Switch: Retrieve quotes endpoint for Payee DFSP
+    Switch -> Switch: Use fspiop-destination header to retrieve quotes endpoint for Payee DFSP
 else SimpleRoutingMode === FALSE
-    Switch -> Switch: Retireve quote party endpoint (PAYEE)
+    Switch -> Switch: Retireve Payee DFSP endpoint using quote party information
 end
 |||
 alt Payee quotes endpoint found
@@ -67,7 +67,7 @@ alt Payee quotes endpoint found
         Switch --/ PayeeDFSP: 200 OK
 
         Switch -> Switch: Validate quote response
-        alt SimpleRoutingMode === TRUE
+        alt SimpleRoutingMode === FALSE
             Switch -> Switch: Duplicate check
             alt Response is duplicate but not a resend
                 Switch -\ PayeeDFSP: PUT /quotes/{ID}/error
@@ -76,18 +76,18 @@ alt Payee quotes endpoint found
             alt Response is a duplicate and a resend
                 Switch -> Switch: Switch handles resend scenario
             end
+            Switch -\ DB: Persist quote response
+            activate DB
+            hnote over DB
+                quoteResponse
+                quoteDuplicateCheck
+                quoteResponseIlpPacket
+                geoCode
+                quoteExtension
+            end hnote
+            Switch \-- DB: Quote response saved
+            deactivate DB
         end
-        Switch -\ DB: Persist quote response
-        activate DB
-        hnote over DB
-            quoteResponse
-            quoteDuplicateCheck
-            quoteResponseIlpPacket
-            geoCode
-            quoteExtension
-        end hnote
-        Switch \-- DB: Quote response saved
-        deactivate DB
         note left of Switch: Switch forwards quote response to Payer DFSP
         PayerDFSP /- Switch: PUT /quotes/{ID}
         PayerDFSP --/ Switch: 200 OK
@@ -95,7 +95,7 @@ alt Payee quotes endpoint found
         note left of PayeeDFSP: Payee DFSP sends error callback to Payer DFSP via the Switch
         Switch /- PayeeDFSP: PUT /quotes/{ID}/error
         Switch --/ PayeeDFSP: 200 OK
-        alt SimpleRoutingMode === TRUE
+        alt SimpleRoutingMode === FALSE
             Switch -\ DB: Store quote error
             activate DB
             hnote over DB

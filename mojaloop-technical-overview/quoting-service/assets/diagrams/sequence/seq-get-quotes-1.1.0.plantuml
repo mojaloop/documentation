@@ -68,7 +68,9 @@ alt Payee DFSP quotes endpoint is found
         note left of PayeeDFSP: Payee DFSP returns error to Switch\n <color #red>**Error code: 3205**</color>
         PayeeDFSP -\ Switch: PUT quotes/{ID}/error
         Switch --/ PayeeDFSP: 200 OK
-        Switch -> Switch: Persist error data
+        alt SimpleRoutingMode is FALSE
+            Switch -> Switch: Persist error data
+        end
         note left of Switch: Switch returns error to Payer DFSP\n <color #red>**Error code: 3205**</color>
         Switch -\ PayerDFSP: PUT quotes/{ID}/error
         PayerDFSP --/ Switch: 200 OK
