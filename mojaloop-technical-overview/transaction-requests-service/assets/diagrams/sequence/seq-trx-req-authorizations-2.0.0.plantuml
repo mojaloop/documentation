@@ -59,5 +59,6 @@ else authorization request is invalid
     note over "Payer FSP", Switch: Switch returns error callback to Payer FSP
     Switch -\ "Payer FSP": PUT /authorizations/{TransactionRequestID}/error
     "Payer FSP" --/ Switch: 200 OK
+    "Payer FSP" --> "Payer FSP": Validate OTP sent by Payee FSP
 end
 @enduml
