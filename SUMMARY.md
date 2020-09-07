@@ -15,6 +15,7 @@
   * [Deployment with (Deprecated) Helm v2](deployment-guide/helm-legacy-deployment.md)
 * [Contributors Guide](contributors-guide/README.md)
   * [New Contributor Checklist](contributors-guide/new-contributor-checklist.md)
+  * [Code Of Conduct](contributors-guide/code-of-conduct.md)
   * [FAQ](contributors-guide/frequently-asked-questions.md)
   * [Standards](contributors-guide/standards/README.md)
     * [Versioning](contributors-guide/standards/versioning.md)
