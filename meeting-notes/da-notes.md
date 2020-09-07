@@ -5,6 +5,51 @@ The meetings are open for the public to participate, though discussions are usua
 
 More details can be found [here](https://github.com/mojaloop/design-authority/issues/42#workspaces/da-issue-log-5cdd507422733779191866e9/board?notFullScreen=false&repos=186592307)
 
+# DA Meeting - 2 September 2020
+We concluded discussions on the separate scheme-adapter for a PISP - see issue on board: https://github.com/mojaloop/design-authority/issues/51
+Please have a look at the draft document at this location: https://github.com/mojaloop/pisp/blob/scratch/api-collision/docs/api-collision.md
+The above link has a detailed discussion regarding the latest thinking and some examples of mitigations.
+The decision has been taken to block this topic until further development on the PoC has been done, in order for the DA to assess if the designs are still aligned with the recommended approach.
+
+# DA Meeting - 26 August 2020
+We discussed https://github.com/mojaloop/design-authority/issues/51 further on our DA Meeting on 26/08/2020.
+
+Some of the key points were noted:
+
+In order to take advantage of Typescript, and to help speed up development, the PISP workstream has gone ahead and separated out the thirdparty-scheme-adapter already.
+
+One of the challenges identified with the "multi-scheme-adapter" approach was for cases where there are shared resources between the APIs, such as GET /parties/{type}/{id}.
+
+Our decision to break the Thirdparty API into it's own API (and not extend the FSPIOP-API) was predicated on the idea that "not all participants will want thirdparty functions", and therefore shouldn't have to worry about them. As a part of the decision to keep a separate Thirdparty API, we decided that some resources would be duplicated between the two.
+
+This could lead to problems down the line, where callbacks to some resources might not be able to reach their desired destination: for example if a DFSP needs to listen for PUT /parties/{type}/{id} callbacks for both the FSPIOP API and the Thirdparty API, it may not be possible for DFSPs to route such callbacks to the right place.
+
+Lewis Daly will spend more time working on some diagrams and design documents, and come back to the DA shortly
+
+# DA Meeting (Ad-Hoc) - 24 August 2020
+The topic for discussion was: https://github.com/mojaloop/design-authority/issues/65
+The Ad-Hoc meeting was conducted with a wider issue being addressed relating to recommendations required to be taken to the CCB for consideration to change/enhance the API spec.
+
+Many valid points were raised and discussed and Michael and Adrian suggested some collaboration on this platform to consolidate the ideas put forward in order to formulate a recommendation to the CCB.
+
+# DA Meeting - 19 August 2020
+The topic for discussion was: https://github.com/mojaloop/design-authority/issues/61 
+The group agreed that there needs to be a balance between the need to eliminate reconciliation and liquidity management of (Payer) FSPs by not holding/reserving funds for longer than necessary. In addition, It was proposed to use 'grace time period' before timing out transfers to compensate for differences in clocks. It was also suggested that for risky transactions, the final notification in the form of a PATCH call that was introduced with FSPIOP API v1.1 can be used to mitigate risk to the Payee FSPs.
+
+One point made was that after the timeout period (plus the grace period to account for clock difference), a transfer status cannot be changed - it is either finalized or it isn't, but it cannot be changed. For example, if a timeout period (expressed as a time in future and not duration) is 10 seconds, then a Payer FSP (or Switch), may add a grace period of 1second and after waiting for 11seconds can query the downstream entity to find the transfer's status; At this point, if a transfer is finalized (Committed or Aborted), then the Payer FSP can take action accordingly; however if it is in an intermediate state, then the transfer has to be timed-out since the time-out period is done.
+
+The group agreed on the need to revisit the topic of implementing 'telescopic timeouts', which is not currently supported in favor of end-to-end encryption of (most) messages.
+
+# DA Meeting - 12 August 2020
+The topic for discussion was: https://github.com/mojaloop/design-authority/issues/63
+The DA discussed the topic of where and how to create and work on issue tickets. With over 50 repositories, it makes sense to create a ticket in the repo where it originated and keep working on it there until it is resolved. The Product Owner and Scrum Master would have context and should replicate a ticket in the Design Autority Repo with a link to the originating ticket. Please have a look at the DA Board for the decisions made here: https://github.com/mojaloop/design-authority#workspaces/da-issue-log-5cdd507422733779191866e9/board?repos=186592307
+
+# DA Meeting - 5 August 2020
+The topic for discussion was: https://github.com/mojaloop/project/issues/852
+The "HSM Integration Approach" was touched on a few times, and the workgroup taking care of the design and implementation, tabled this for discussion at this week's DA meeting to answer a few questions arising from the last PI-Planning session where progress on this was again presented.
+
+As we have not completed the discussion, an ad-hoc DA meeting has been arranged for this Friday with a sub-section of the DA Members. The reason for that was because there were a few specific questions we did not have time to go into detail for, which will be clarified with the individuals who raised those questions. Please drop me a note if you would like to participate in that meeting.
+
 # DA Meeting - 29 July 2020
 Issue discussed: https://github.com/mojaloop/design-authority/issues/60
 Claudio noted three observations regarding usage of best practices in the Mojaloop Core codebase. One of the issues has an active issue and will be used for tracking it; the other two will be followed up as separate stories/bugs as well (standards). Claudio will provide examples and in some cases sample snippets that can be used.

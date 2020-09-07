@@ -74,9 +74,19 @@ Don't have the snap command? [Install snapd first](https://snapcraft.io/docs/cor
    microk8s.kubectl config get-contexts
    ```
 
-9. Make sure the current context is **microk8s**. If not, set it as the current context.
+8. Make sure the current context is **microk8s**. If not, set it as the current context.
    ```bash
    microk8s.kubectl config use-context microk8s
+   ```
+
+9. Install an Ingress Controller
+Install an NGINX Ingress Controller for MicroK8s by running the command:
+   ```bash
+   microk8s enable ingress
+   ```
+   Alternatively via Helm Charts:
+   ```bash
+   helm --namespace kube-public install stable/nginx-ingress
    ```
 
 ### 1.2. Docker
@@ -98,7 +108,7 @@ Docker is deployed as part of the MicroK8s installation. The docker daemon used 
    microk8s.docker ps
    ```
 
-3. Continue setup and configuration from the Kubernetes Dashboard section in the [Mojaloop's deployment guide](./README.md#31-kubernetes-dashboard) document.
+4. Continue setup and configuration from the Kubernetes Dashboard section in the [Mojaloop's deployment guide](./README.md#31-kubernetes-dashboard) document.
 
 ## 2. Useful Tips
 
