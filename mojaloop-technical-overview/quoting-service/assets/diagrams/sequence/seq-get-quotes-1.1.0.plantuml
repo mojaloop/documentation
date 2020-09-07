@@ -25,7 +25,7 @@ alt Payee DFSP quotes endpoint is found
         note left of PayeeDFSP: Payee DFSP responds to quote request
         PayeeDFSP -\ Switch: PUT /quotes/{ID}
         Switch --/ PayeeDFSP: 200 Ok
-        Switch -> Switch: Validate response (schema, 'accept' header (<color #red>**Error code: 3100**</color>))
+        Switch -> Switch: Validate response (schema, headers (<color #red>**Error code: 3100**</color>))
         alt Response is ok
             alt SimpleRoutingMode is FALSE
                 Switch -> Switch: Validate response (duplicate response check, handle resend scenario (<color #red>**Error code: 3106**</color>))
