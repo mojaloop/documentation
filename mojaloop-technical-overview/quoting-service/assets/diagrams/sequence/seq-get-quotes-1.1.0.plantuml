@@ -1,0 +1,86 @@
+@startuml
+Title Retrieve Quote Information
+participant "Payer DFSP" as PayerDFSP
+participant "Switch\n[Quoting\nService]" as Switch
+database "Central Store" as DB
+participant "Payee DFSP" as PayeeDFSP
+autonumber
+note right of PayerDFSP: Payer DFSP sends request to get quote details \nto Payee DFSP via the Switch
+PayerDFSP -\ Switch: GET /quotes/{ID}
+note right of Switch #aaa
+    Validate request against 
+    Mojaloop interface specification
+    **<color #red>Error code: 300x, 310x</color>**
+    **<color #red>HTTP error response code: 4xx</color>**
+end note
+Switch -> Switch: Schema validation
+PayerDFSP \-- Switch: 202 Accepted
+Switch -> Switch: Retrieve quotes endpoint for Payee DFSP
+alt Payee DFSP quotes endpoint is found
+    note right of Switch: Switch forwards request to Payee DFSP (pass-through mode)\n<Payer based Rules> 
+    Switch -\ PayeeDFSP: GET /quotes/{ID}
+    PayeeDFSP --/ Switch: 202 Accepted
+    PayeeDFSP -> PayeeDFSP: Payee DFSP retireves quote
+    alt Payee DFSP successfully retieves quote
+        note left of PayeeDFSP: Payee DFSP responds to quote request
+        PayeeDFSP -\ Switch: PUT /quotes/{ID}
+        Switch --/ PayeeDFSP: 200 Ok
+        Switch -> Switch: Validate response (schema, headers (<color #red>**Error code: 3100**</color>))
+        alt Response is ok
+            alt SimpleRoutingMode is FALSE
+                Switch -> Switch: Validate response (duplicate response check, handle resend scenario (<color #red>**Error code: 3106**</color>))
+                alt Validation passed
+                    Switch -\ DB: Persist quote response
+                    activate DB
+                        hnote over DB
+                            quoteResponse
+                            quoteResponseDuplicateCheck
+                            quoteResponseIlpPacket
+                            quoteExtensions
+                            geoCode
+                        end hnote
+                    Switch \-- DB: Quote response saved
+                    deactivate DB
+                end
+            end
+            alt SimpleRoutingMode is TRUE
+                Switch -> Switch: Retrieve quotes endpoint for the Payer FSP
+            else SimpleRoutingMode is FALSE
+                Switch -> Switch: Retrieve quote party endpoint (PAYER)
+            end
+            alt Quotes callback endpoint found
+                note left of Switch: Switch forwards quote response to Payer DFSP\n<Payee \ whole request Rule>
+                Switch -\ PayerDFSP: PUT /quotes/{ID}
+                PayerDFSP --/ Switch: 200 Ok    
+            else Quotes callback endpoint not found
+                note right of Switch: Switch returns error to Payee DFSP
+                Switch -\ PayeeDFSP: PUT /quotes/{ID}/error
+                PayeeDFSP --/ Switch : 200 Ok
+            end
+        else Response is invalid
+            note right of Switch: Switch returns error to Payee DFSP
+            Switch -\ PayeeDFSP: PUT /quotes/{ID}/error
+            PayeeDFSP --/ Switch : 200 Ok
+            note over Switch, PayeeDFSP #ec7063: Note that under this\nscenario the Payer DFSP\nmay not receive a response
+        end
+
+    else Quote not found
+        note left of PayeeDFSP: Payee DFSP returns error to Switch\n <color #red>**Error code: 3205**</color>
+        PayeeDFSP -\ Switch: PUT quotes/{ID}/error
+        Switch --/ PayeeDFSP: 200 OK
+        alt SimpleRoutingMode is FALSE
+            Switch -> Switch: Persist error data
+        end
+        note left of Switch: Switch returns error to Payer DFSP\n <color #red>**Error code: 3205**</color>
+        Switch -\ PayerDFSP: PUT quotes/{ID}/error
+        PayerDFSP --/ Switch: 200 OK
+    end
+else Payee DFSP quotes endpoint is not found
+    note left of Switch
+        Switch returns error to Payer DFSP
+        **<color #red>Error code: 3201</color>**
+    end note
+    PayerDFSP /- Switch: PUT quotes/{ID}error
+    PayerDFSP --/ Switch: 200 OK
+end
+@enduml
