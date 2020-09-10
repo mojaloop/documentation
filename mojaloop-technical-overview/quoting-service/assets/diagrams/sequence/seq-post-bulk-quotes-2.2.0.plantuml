@@ -82,7 +82,7 @@ alt Payee bulkQuotes endpoint found
         note left of Switch: Switch forwards quote response to Payer FSP
         PayerFSP /- Switch: PUT /bulkQuotes/{ID}
         PayerFSP --/ Switch: 200 OK
-    else Payee rejects bulk quote or encounters and error
+    else Payee rejects bulk quote or encounters an error
         note left of PayeeFSP: Payee FSP sends error callback to Payer FSP via the Switch
         Switch /- PayeeFSP: PUT /bulkQuotes/{ID}/error
         Switch --/ PayeeFSP: 200 OK
