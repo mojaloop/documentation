@@ -58,7 +58,7 @@ else Request is a duplicate and a resend
 end
 |||
 Switch -> Switch: Use fspiop-destination header to retrieve\n bulk quotes endpoint for Payee DFSP
-alt Payee bulkQuotes endpoint found
+alt Payee bulk quotes endpoint found
     note right of Switch: Switch forwards bulk quote request to Payee FSP
     Switch -\ PayeeFSP: POST /bulkQuotes
     Switch \-- PayeeFSP: 202 OK
