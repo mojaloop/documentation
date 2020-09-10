@@ -1,0 +1,68 @@
+@startuml
+Title Quoting Service Sequences
+participant "Payer FSP"
+participant "Switch\nQuoting\nService" as Switch
+participant "Payee FSP"
+
+autonumber
+note over "Payer FSP", Switch: Payer FSP requests quote from Payee FSP
+"Payer FSP" -\ Switch: POST /quotes
+Switch --/ "Payer FSP": 202 Accepted
+Switch -> Switch: Validate Quote Request
+
+alt quote is valid
+    
+    Switch -> Switch: Persist Quote Data
+    note over Switch, "Payee FSP": Switch forwards quote request to Payee FSP\n<Payer based Rules> 
+    Switch -\ "Payee FSP": POST /quotes
+    "Payee FSP" --/ Switch: 202 Accepted
+    "Payee FSP" -> "Payee FSP": Calculate Fees/Charges
+    
+    alt Payee FSP successfully calculates quote
+    
+        note over "Payee FSP", Switch: Payee FSP responds to quote request
+        "Payee FSP" -\ Switch: PUT /quotes/{ID}
+        Switch --/ "Payee FSP": 200 Ok
+        
+        Switch -> Switch: Validate Quote Response
+        
+        alt response is ok
+        ƒ
+            Switch -> Switch: Persist Response Data
+            
+            note over Switch, "Payer FSP": Switch forwards quote response to Payer FSP\n<Payee \ whole request Rule>
+            
+            Switch -\ "Payer FSP": PUT /quotes/{ID}
+            "Payer FSP" --/ Switch: 200 Ok
+            
+            note over "Payer FSP" #3498db: Payer FSP continues\nwith transfer if quote\nis acceptable...
+        else response invalid
+        
+            note over Switch, "Payee FSP": Switch returns error to Payee FSP
+        
+            Switch -\ "Payee FSP": PUT /quotes/{ID}/error
+            "Payee FSP" --/ Switch : 200 Ok
+            
+            note over Switch, "Payee FSP" #ec7063: Note that under this\nscenario the Payer FSP\nmay not receive a response
+        
+        end
+    else Payee FSP calculation fails or rejects the request
+    
+        note over "Payee FSP", Switch: Payee FSP returns error to Switch
+    
+        "Payee FSP" -\ Switch: PUT quotes/{ID}/error
+        Switch --/ "Payee FSP": 200 OK
+        Switch -> Switch: Persist error data
+        
+        note over "Payer FSP", Switch: Switch returns error to Payer FSP
+        
+        Switch -\ "Payer FSP": PUT quotes/{ID}/error
+        "Payer FSP" --/ Switch: 200 OK
+    
+    end
+else quote invalid
+    note over "Payer FSP", Switch: Switch returns error to Payer FSP
+    Switch -\ "Payer FSP": PUT quotes/{ID}/error
+    "Payer FSP" --/ Switch: 200 OK
+end
+@enduml
