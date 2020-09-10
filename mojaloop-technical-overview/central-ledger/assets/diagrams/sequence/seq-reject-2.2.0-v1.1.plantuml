@@ -69,12 +69,7 @@ end box
 ' start flow
 activate NOTIFY_HANDLER
 activate FULF_HANDLER
-group DFSP2 sends a Fulfil Reject Transfer request
-    DFSP2 <-> DFSP2: Retrieve fulfilment string generated during\nthe quoting process or regenerate it using\n**Local secret** and **ILP Packet** as inputs
-    note right of DFSP2 #lightblue
-        **Note**: In the payload for PUT /transfers/<ID>
-        only the **transferState** field is **required**
-    end note
+group DFSP2 sends an error callback to reject a transfer with an errorCode and description
     note right of DFSP2 #yellow
         Headers - transferHeaders: {
             Content-Length: <Content-Length>,
@@ -91,24 +86,21 @@ group DFSP2 sends a Fulfil Reject Transfer request
 
         Payload - transferMessage:
         {
-            "fulfilment": <IlpFulfilment>,
-            "completedTimestamp": <DateTime>,
-            "transferState": "ABORTED",
-            "extensionList": {
-                "extension": [
-                    {
-                        "key": <string>,
-                        "value": <string>
-                    }
-                ]
+            "errorInformation": {
+                "errorCode": <errorCode>,
+                "errorDescription": <errorDescription>,
+                "extensionList": {
+                    "extension": [
+                        {
+                            "key": <string>,
+                            "value": <string>
+                        }
+                    ]
+                }
             }
         }
     end note
-    note right of DFSP2 #lightgray
-        **Note**: Payee rejection reason should be captured
-        in the extensionList within the payload.
-    end note
-    DFSP2 ->> MLAPI: **PUT - /transfers/<ID>**
+    DFSP2 ->> MLAPI: **PUT - /transfers/<ID>/error**
     
     activate MLAPI
     MLAPI -> MLAPI: Validate incoming token and originator matching Payee
