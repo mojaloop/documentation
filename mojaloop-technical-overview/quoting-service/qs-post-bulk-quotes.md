@@ -1,6 +1,6 @@
 # POST Quote
 
-Design for a Quote request by an FSP.
+Design for a Bulk Quote request by an FSP.
 
 ## Sequence Diagram
 
