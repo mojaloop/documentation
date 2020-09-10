@@ -1,13 +1,13 @@
 @startuml
 Title Request Quote Creation
-participant "Payer DFSP" as PayerDFSP
+participant "Payer FSP" as PayerFSP
 participant "Switch\n[Quoting\nService]" as Switch
 database "Central Store" as DB
-participant "Payee DFSP" as PayeeDFSP
+participant "Payee FSP" as PayeeFSP
 autonumber
 
-note over PayerDFSP, Switch: Payer DFSP sends request for quote \nto Payee DFSP via the Switch
-PayerDFSP -\ Switch: POST /quotes
+note over PayerFSP, Switch: Payer FSP sends request for quote \nto Payee FSP via the Switch
+PayerFSP -\ Switch: POST /quotes
 note right of Switch #aaa
     Validate request against 
     Mojaloop interface specification
@@ -15,7 +15,7 @@ note right of Switch #aaa
     **<color #red>HTTP error response code: 4xx</color>**
 end note
 Switch -> Switch: Schema validation
-PayerDFSP \-- Switch: 202 Accepted
+PayerFSP \-- Switch: 202 Accepted
 |||
 Switch -> Switch: Quote request validation (rules engine etc.)
 |||
@@ -25,11 +25,11 @@ alt SimpleRoutingMode === FALSE
     alt Request is a duplicate but not a resend
     |||
         note left of Switch
-            Switch returns error back to Payer DFSP
+            Switch returns error back to Payer FSP
             <color #red>**Error code: 3106**</color>
         end note
-        PayerDFSP /- Switch: PUT /quotes/{ID}/error
-        PayerDFSP --/ Switch: 200 OK
+        PayerFSP /- Switch: PUT /quotes/{ID}/error
+        PayerFSP --/ Switch: 200 OK
     |||
     else Request is a duplicate and a resend
         Switch -> Switch: Switch handles resend scenario
@@ -50,28 +50,28 @@ alt SimpleRoutingMode === FALSE
 end
 |||
 alt SimpleRoutingMode === TRUE
-    Switch -> Switch: Use fspiop-destination header to retrieve quotes endpoint for Payee DFSP
+    Switch -> Switch: Use fspiop-destination header to retrieve quotes endpoint for Payee FSP
 else SimpleRoutingMode === FALSE
-    Switch -> Switch: Retireve Payee DFSP endpoint using quote party information
+    Switch -> Switch: Retireve Payee FSP endpoint using quote party information
 end
 |||
 alt Payee quotes endpoint found
-    note right of Switch: Switch forwards quote request to Payee DFSP
-    Switch -\ PayeeDFSP: POST /quotes
-    Switch \-- PayeeDFSP: 202 OK
+    note right of Switch: Switch forwards quote request to Payee FSP
+    Switch -\ PayeeFSP: POST /quotes
+    Switch \-- PayeeFSP: 202 OK
 
-    PayeeDFSP -> PayeeDFSP: Payee DFSP presists and calculates quote
+    PayeeFSP -> PayeeFSP: Payee FSP presists and calculates quote
     alt Payee quotes processing successful
-        note left of PayeeDFSP: Payee DFSP sends quote response back to Payer DFSP via the Switch
-        Switch /- PayeeDFSP: PUT /quotes/{ID}
-        Switch --/ PayeeDFSP: 200 OK
+        note left of PayeeFSP: Payee FSP sends quote response back to Payer FSP via the Switch
+        Switch /- PayeeFSP: PUT /quotes/{ID}
+        Switch --/ PayeeFSP: 200 OK
 
         Switch -> Switch: Validate quote response
         alt SimpleRoutingMode === FALSE
             Switch -> Switch: Duplicate check
             alt Response is duplicate but not a resend
-                Switch -\ PayeeDFSP: PUT /quotes/{ID}/error
-                Switch \-- PayeeDFSP: 200 OK
+                Switch -\ PayeeFSP: PUT /quotes/{ID}/error
+                Switch \-- PayeeFSP: 200 OK
             end
             alt Response is a duplicate and a resend
                 Switch -> Switch: Switch handles resend scenario
@@ -88,13 +88,13 @@ alt Payee quotes endpoint found
             Switch \-- DB: Quote response saved
             deactivate DB
         end
-        note left of Switch: Switch forwards quote response to Payer DFSP
-        PayerDFSP /- Switch: PUT /quotes/{ID}
-        PayerDFSP --/ Switch: 200 OK
+        note left of Switch: Switch forwards quote response to Payer FSP
+        PayerFSP /- Switch: PUT /quotes/{ID}
+        PayerFSP --/ Switch: 200 OK
     else Payee rejects quotes or encounters and error
-        note left of PayeeDFSP: Payee DFSP sends error callback to Payer DFSP via the Switch
-        Switch /- PayeeDFSP: PUT /quotes/{ID}/error
-        Switch --/ PayeeDFSP: 200 OK
+        note left of PayeeFSP: Payee FSP sends error callback to Payer FSP via the Switch
+        Switch /- PayeeFSP: PUT /quotes/{ID}/error
+        Switch --/ PayeeFSP: 200 OK
         alt SimpleRoutingMode === FALSE
             Switch -\ DB: Store quote error
             activate DB
@@ -104,14 +104,14 @@ alt Payee quotes endpoint found
             Switch \-- DB: Quote error saved
             deactivate DB
         end
-        note left of Switch: Switch forwards error callback to Payer DFSP
-        PayerDFSP /- Switch: PUT /quotes/{ID}/error
-        PayerDFSP --/ Switch: 200 OK
+        note left of Switch: Switch forwards error callback to Payer FSP
+        PayerFSP /- Switch: PUT /quotes/{ID}/error
+        PayerFSP --/ Switch: 200 OK
     end
-else Payee DFSP quotes endpoint not found
-    note left of Switch: Switch sends an error callback to Payer DFSP \n <color #red>**Error code: 3201**</color>
-    PayerDFSP /- Switch: PUT /quotes/{ID}/error
-    PayerDFSP --\ Switch: 200 OK
+else Payee FSP quotes endpoint not found
+    note left of Switch: Switch sends an error callback to Payer FSP \n <color #red>**Error code: 3201**</color>
+    PayerFSP /- Switch: PUT /quotes/{ID}/error
+    PayerFSP --\ Switch: 200 OK
 end
 
 @enduml

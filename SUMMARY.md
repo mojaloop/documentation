@@ -44,6 +44,8 @@
   * [Quoting Service Overview](mojaloop-technical-overview/quoting-service/README.md)
     * [GET Quote](mojaloop-technical-overview/quoting-service/qs-get-quotes.md)
     * [POST Quote](mojaloop-technical-overview/quoting-service/qs-post-quotes.md)
+    * [GET Bulk Quote](mojaloop-technical-overview/quoting-service/qs-get-bulk-quotes.md)
+    * [POST Bulk Quote](mojaloop-technical-overview/quoting-service/qs-post-bulk-quotes.md)
   * [Central-Ledger Services](mojaloop-technical-overview/central-ledger/README.md)
     * [Admin Operations](mojaloop-technical-overview/central-ledger/admin-operations/README.md)
       * [POST Participant Limit](mojaloop-technical-overview/central-ledger/admin-operations/1.0.0-post-participant-position-limit.md)
