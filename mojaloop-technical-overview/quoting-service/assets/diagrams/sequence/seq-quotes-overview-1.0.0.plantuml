@@ -27,7 +27,6 @@ alt quote is valid
         Switch -> Switch: Validate Quote Response
         
         alt response is ok
-        ƒ
             Switch -> Switch: Persist Response Data
             
             note over Switch, "Payer FSP": Switch forwards quote response to Payer FSP\n<Payee \ whole request Rule>
