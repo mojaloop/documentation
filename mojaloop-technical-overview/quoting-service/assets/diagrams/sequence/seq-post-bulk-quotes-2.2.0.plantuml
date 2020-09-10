@@ -63,7 +63,7 @@ alt Payee bulk quotes endpoint found
     Switch -\ PayeeFSP: POST /bulkQuotes
     Switch \-- PayeeFSP: 202 OK
 
-    PayeeFSP -> PayeeFSP: Payee FSP calculates individual quotes\nand responds with a bulk Quote result
+    PayeeFSP -> PayeeFSP: Payee FSP calculates individual quotes\nand responds with a bulk quote result
     alt Payee bulkQuotes processing successful
         note over PayeeFSP, Switch: Payee FSP sends bulk quote response back to Payer FSP via the Switch
         Switch /- PayeeFSP: PUT /bulkQuotes/{ID}
