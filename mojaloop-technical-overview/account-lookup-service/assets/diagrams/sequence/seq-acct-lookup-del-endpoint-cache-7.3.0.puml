@@ -32,17 +32,17 @@ autonumber
 
 ' Actor Keys:
 ' boundary - APIs/Interfaces, etc
-' control - ALS Admin Handler
+' control - ALS API Handler
 ' database - Database Persistent Store
 
 ' declare actors
 entity "HUB OPERATOR" as OPERATOR
-boundary "Account Lookup Service Admin API" as ALSADM
+boundary "Account Lookup Service API" as ALSAPI
 control "Delete Endpoint Cache Handler" as DEL_HANDLER
 database "Cache" as Cache
 
 box "Account Lookup Service" #LightYellow
-participant ALSADM
+participant ALSAPI
 participant DEL_HANDLER
 participant Cache
 end box
@@ -51,10 +51,11 @@ end box
 
 activate OPERATOR
 group Delete Endpoint Cache
-  OPERATOR -> ALSADM: Request to DELETE Endpoint Cache - DELETE /endpointcache
-  activate ALSADM
+  OPERATOR -> ALSAPI: Request to DELETE Endpoint Cache - DELETE /endpointcache
+  activate ALSAPI
+  activate ALSAPI
 
-  ALSADM -> DEL_HANDLER: Delete Cache
+  ALSAPI -> DEL_HANDLER: Delete Cache
   activate DEL_HANDLER
   DEL_HANDLER -> Cache: Stop Cache
   activate Cache
@@ -68,20 +69,20 @@ group Delete Endpoint Cache
     activate Cache
     Cache -> DEL_HANDLER: Return Status
     deactivate Cache
-    DEL_HANDLER -> ALSADM: Return Status
+    DEL_HANDLER -> ALSAPI: Return Status
     deactivate DEL_HANDLER
-    ALSADM --> OPERATOR: Return <color #000000><b>HTTP Status:</b> 202</color>
+    ALSAPI --> OPERATOR: Return <color #000000><b>HTTP Status:</b> 202</color>
 
-    deactivate ALSADM
+    deactivate ALSAPI
     deactivate OPERATOR
   end
 
   alt Validate Status (service failure)
     Cache --> DEL_HANDLER: Throw Error
     deactivate Cache
-    DEL_HANDLER -> ALSADM: Throw Error
+    DEL_HANDLER -> ALSAPI: Throw Error
     deactivate DEL_HANDLER
-    note left of ALSADM #yellow
+    note left of ALSAPI #yellow
         Message:
         {
             "errorInformation": {
@@ -91,9 +92,9 @@ group Delete Endpoint Cache
         }
     end note
 
-    ALSADM --> OPERATOR: Return <color #FF0000><b>HTTP Status:</b> 502</color>
+    ALSAPI --> OPERATOR: Return <color #FF0000><b>HTTP Status:</b> 502</color>
 
-    deactivate ALSADM
+    deactivate ALSAPI
     deactivate OPERATOR
 
 

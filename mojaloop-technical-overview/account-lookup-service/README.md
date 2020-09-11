@@ -71,9 +71,36 @@ _Note: The Participant Lookup use-case similarly applies to for a Payee Initiate
 
 - [Sequence Diagram for GET Parties](als-get-parties.md)
 
-## 4. Database Design
+## 4. ALS Admin Design
 
-### 4.1. ALS Database Schema
+### 4.1. Architecture overview
+![Architecture Flow Account-Lookup for Admin Get Oracles](./assets/diagrams/architecture/arch-flow-account-lookup-admin.svg)
+
+### 4.2. Sequence diagram
+
+#### 4.2.1 GET Oracles
+
+- [Sequence Diagram for GET Oracles](als-admin-get-oracles.md)
+
+#### 4.2.2 POST Oracle
+
+- [Sequence Diagram for POST Oracle](als-admin-post-oracles.md)
+
+#### 4.2.3 PUT Oracle
+
+- [Sequence Diagram for PUT Oracle](als-admin-put-oracles.md)
+
+#### 4.2.4 DELETE Oracle
+
+- [Sequence Diagram for DELETE Oracle](als-admin-del-oracles.md)
+
+#### 4.2.5 DELETE Endpoint Cache
+
+- [Sequence Diagram for DELETE Endpoint Cache](als-del-endpoint.md)
+
+## 5. Database Design
+
+### 5.1. ALS Database Schema
 
 #### Notes
 - `partyIdType` - Values are currently seeded as per section _`7.5.6`_ [Mojaloop {{ book.importedVars.mojaloop.spec.version }} Specification]({{ book.importedVars.mojaloop.spec.uri.doc }}).
@@ -87,10 +114,10 @@ _Note: The Participant Lookup use-case similarly applies to for a Payee Initiate
 * [Acount Lookup Service DBeaver ERD](./assets/entities/AccountLookupDB-schema-DBeaver.erd)
 * [Acount Lookup Service MySQL Workbench Export](./assets/entities/AccountLookup-ddl-MySQLWorkbench.sql)
 
-## 5. ALS Oracle Design
+## 6. ALS Oracle Design
 
 Detail design for the Oracle is out of scope for this document. The Oracle design and implementation is specific to each Oracle's requirements.
 
-### 5.1. API Specification
+### 6.1. API Specification
 
 Refer to **ALS Oracle API** in the [API Specifications](../../api/README.md#als-oracle-api) section.
