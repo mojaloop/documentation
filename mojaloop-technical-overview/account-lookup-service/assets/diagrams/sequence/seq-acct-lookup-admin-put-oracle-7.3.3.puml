@@ -25,7 +25,7 @@
 
 @startuml
 ' declare title
-title 7.3.1 Create Oracle Endpoints
+title 7.3.3 Update Oracle Endpoint
 
 autonumber
 
@@ -38,7 +38,7 @@ autonumber
 ' declare actors
 entity "HUB OPERATOR" as OPERATOR
 boundary "Account Lookup Service Admin API" as ALSADM
-control "POST Oracle Handler" as ORC_HANDLER
+control "PUT Oracle Handler" as ORC_HANDLER
 database "ALS Store" as DB
 
 box "Account Lookup Service" #LightYellow
@@ -51,7 +51,7 @@ end box
 
 activate OPERATOR
 group Get Oracle Endpoint
-  OPERATOR -> ALSADM: Request to Create Oracle Endpoint -\nPOST /oracles
+  OPERATOR -> ALSADM: Request to Update Oracle Endpoint -\nPUT /oracles/{ID}
   note left of ALSADM #yellow
       Message:
       {
@@ -66,30 +66,55 @@ group Get Oracle Endpoint
   end note
   activate ALSADM
 
-  ALSADM -> ORC_HANDLER: Create Oracle Endpoint
+  ALSADM -> ORC_HANDLER: Update Oracle Endpoint
 
   activate ORC_HANDLER
-  ORC_HANDLER -> ORC_HANDLER: Build Oracle Endpoint Data Object
-  ORC_HANDLER -> DB: Insert Oracle Endpoint Data Object
-  activate DB
+  ORC_HANDLER -> DB: Find existing Oracle Endpoint
+  alt Find existing Oracle Endpoint (success)
+      activate DB
+          DB -> ORC_HANDLER: Return Oracle Endpoint Result
+          deactivate DB
+          ORC_HANDLER -> ORC_HANDLER: Update Returned Oracle Data Object
+          ORC_HANDLER -> DB: Update Oracle Data Object
+          activate DB
+      alt Update Oracle Entry (success)
+        DB --> ORC_HANDLER: Return success response
+        deactivate DB
 
-  alt Create Oracle Entry (success)
-    DB --> ORC_HANDLER: Return success response
-    deactivate DB
+        ORC_HANDLER -> ALSADM: Return success response
+        deactivate ORC_HANDLER
+        ALSADM --> OPERATOR: Return <color #000000><b>HTTP Status:</b> 204</color>
 
-    ORC_HANDLER -> ALSADM: Return success response
-    deactivate ORC_HANDLER
-    ALSADM --> OPERATOR: Return <color #000000><b>HTTP Status:</b> 201</color>
+        deactivate ALSADM
+        deactivate OPERATOR
+      end
 
-    deactivate ALSADM
-    deactivate OPERATOR
+      alt Update Oracle Entry (failure)
+        DB --> ORC_HANDLER: Throw Error
+        deactivate DB
+        ORC_HANDLER -> ALSADM: Throw Error
+        deactivate ORC_HANDLER
+        note left of ALSADM #yellow
+            Message:
+            {
+                "errorInformation": {
+                    "errorCode": <Error Code>,
+                    "errorDescription": <Msg>,
+                }
+            }
+        end note
+
+        ALSADM --> OPERATOR: Return <color #FF0000><b>HTTP Status:</b> 502</color>
+
+        deactivate ALSADM
+        deactivate OPERATOR
+
+
+      end
   end
-
-  alt Create Oracle Entry (failure)
-    DB --> ORC_HANDLER: Throw Error
-    deactivate DB
+  alt Find existing Oracle Endpoint (failure)
+    DB -> ORC_HANDLER: Returns Empty Object
     ORC_HANDLER -> ALSADM: Throw Error
-    deactivate ORC_HANDLER
     note left of ALSADM #yellow
         Message:
         {
@@ -99,13 +124,7 @@ group Get Oracle Endpoint
             }
         }
     end note
-
     ALSADM --> OPERATOR: Return <color #FF0000><b>HTTP Status:</b> 502</color>
-
-    deactivate ALSADM
-    deactivate OPERATOR
-
-
   end
 end
 
