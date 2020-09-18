@@ -1,6 +1,6 @@
 # GET Quote By ID
 
-Design for the retrieval of a Quote by a DFSP.
+Design for the retrieval of a Quote by an FSP.
 
 ## Sequence Diagram
 
