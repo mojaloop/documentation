@@ -5,6 +5,29 @@ The meetings are open for the public to participate, though discussions are usua
 
 More details can be found [here](https://github.com/mojaloop/design-authority/issues/42#workspaces/da-issue-log-5cdd507422733779191866e9/board?notFullScreen=false&repos=186592307)
 
+# DA Meeting - 2 September 2020
+First we discussed the topic about the "models" folder from being excluded from the unit test coverage checks. The decision taken was that if the folder contains business logic (which generally should not be the case), it must be refactored and moved out. Once at that "business logic isolated" state, coverage testing for that folder can be ignored. See: https://github.com/mojaloop/design-authority/issues/64
+
+We concluded discussions on the separate scheme-adapter for a PISP - see issue on board: https://github.com/mojaloop/design-authority/issues/51
+Please have a look at the draft document at this location: https://github.com/mojaloop/pisp/blob/scratch/api-collision/docs/api-collision.md
+The above link has a detailed discussion regarding the latest thinking and some examples of mitigations.
+The decision has been taken to block this topic until further development on the PoC has been done, in order for the DA to assess if the designs are still aligned with the recommended approach.
+
+# DA Meeting - 26 August 2020
+We discussed https://github.com/mojaloop/design-authority/issues/51 further on our DA Meeting on 26/08/2020.
+
+Some of the key points were noted:
+
+In order to take advantage of Typescript, and to help speed up development, the PISP workstream has gone ahead and separated out the thirdparty-scheme-adapter already.
+
+One of the challenges identified with the "multi-scheme-adapter" approach was for cases where there are shared resources between the APIs, such as GET /parties/{type}/{id}.
+
+Our decision to break the Thirdparty API into it's own API (and not extend the FSPIOP-API) was predicated on the idea that "not all participants will want thirdparty functions", and therefore shouldn't have to worry about them. As a part of the decision to keep a separate Thirdparty API, we decided that some resources would be duplicated between the two.
+
+This could lead to problems down the line, where callbacks to some resources might not be able to reach their desired destination: for example if a DFSP needs to listen for PUT /parties/{type}/{id} callbacks for both the FSPIOP API and the Thirdparty API, it may not be possible for DFSPs to route such callbacks to the right place.
+
+Lewis Daly will spend more time working on some diagrams and design documents, and come back to the DA shortly
+
 # DA Meeting (Ad-Hoc) - 24 August 2020
 The topic for discussion was: https://github.com/mojaloop/design-authority/issues/65
 The Ad-Hoc meeting was conducted with a wider issue being addressed relating to recommendations required to be taken to the CCB for consideration to change/enhance the API spec.
