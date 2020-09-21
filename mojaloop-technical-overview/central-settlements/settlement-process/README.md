@@ -78,3 +78,13 @@ Used to request drill-down information regarding a settlement, participant and a
 This endpoint enables advanced reporting capabilities.
 
 - [Sequence Diagram for Query Settlements by Parameters](get-settlements-by-params.md)
+
+### 2.10 Transfer Settlement Handler
+
+This handler executes after each transfer is committed and performs the following operations on success:
+1. Execute custom scripts that implementers can use to implement per-transfer actions once a transfer has been committed such as interchange fees.
+2. Handle the updating of the POSITION and SETTLEMENT accounts for participants involved in a transfer where there is a settlement model defined as immeditate and gross on the POSITION account to facilitate RTCGS (Rel-Time Continuous Gross Settlement) per transfer.
+
+This is done by consuming events of the notification topic.
+
+[Sequence Diagram for Transfer Settlement Handler](transfer-settlement-handler-consume.md)
