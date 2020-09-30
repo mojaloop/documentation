@@ -7,6 +7,7 @@
 * Get familiar with our [Standards](standards/) on contributing to this project
 * Go through the [New Contributor Checklist](./new-contributor-checklist.md), and browse through the project board and work on your [good first issue](https://github.com/mojaloop/project/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22)
 * Review the [Roadmap](../mojaloop-roadmap.md) and contribute to future opportunities
+* Familiarize yourself with our Community [Code of Conduct](../code-of-conduct.md)
 
 ## What work is needed?
 
