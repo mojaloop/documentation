@@ -5,6 +5,14 @@ The meetings are open for the public to participate, though discussions are usua
 
 More details can be found [here](https://github.com/mojaloop/design-authority/issues/42#workspaces/da-issue-log-5cdd507422733779191866e9/board?notFullScreen=false&repos=186592307)
 
+# DA Meeting - 30 September 2020
+Discussion around the topics mentioned started - the newly implemented "patch" in version 1.1 of the API spec was discussed and the majority of the meeting was spent on how to promote wider adoption of this new pattern.
+
+Concerns about the implementation and use of the "patch" command was raised, stating that further discussion is required to determine if we are not trying to patch a design flaw with another potential implementation flaw.
+
+See: https://github.com/mojaloop/design-authority/issues/68
+
+
 # DA Meeting - 2 September 2020
 First we discussed the topic about the "models" folder from being excluded from the unit test coverage checks. The decision taken was that if the folder contains business logic (which generally should not be the case), it must be refactored and moved out. Once at that "business logic isolated" state, coverage testing for that folder can be ignored. See: https://github.com/mojaloop/design-authority/issues/64
 
