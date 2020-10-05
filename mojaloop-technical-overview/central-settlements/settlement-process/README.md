@@ -7,6 +7,10 @@
 - `settlementWindow` - a table where all settlement windows are stored;
 - `settlementWindowStateChange` - stores information regarding settlement windows state;
 - `settlement` - keeps data regarding all settlements;
+- `settlementContentAggregation` - contains aggregated values for a settlement, participant currency, role type and ledger entry type grouping in a settlement;
+- `settlementModel` - contains the configured settlement models for the switch;
+- `settlementWindowContent` - contains an entry for each item of content in a given settlement window, broken down by ledger account type and currency;
+- `settlementWindowContentStateChange` - tracks settlement window content state changes;
 - `settlementSettlementWindow` - association table for settlements and settlement windows, providing connection many-to-many;
 - `settlementStateChange` - tracks the settlement state change;
 - `settlementTransferParticipant` - this table is used for staging data for all transfers which are to be included in a settlement;
