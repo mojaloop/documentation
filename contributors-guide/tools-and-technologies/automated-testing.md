@@ -43,14 +43,21 @@ There is a complete repository containing all of the scripts, setup procedures a
 #### Postman Collections
 
 There are a number of Postman collections in use throughout the different processes:
-+ [OSS-New-Deployment-FSP-Setup](https://github.com/mojaloop/postman/blob/master/OSS-New-Deployment-FSP-Setup.postman_collection.json) : This collection needs to be executed once after a new deployment, normally by the Release Manager, to seed the Database with the required enumerations and static data, as well as test FSPs with their accounts and position data in order to be able to execute any manual or automation tests by other collections.
-    + Notes: Ensure that there is a delay of `200ms` if executed through Postman UI Test Runner. This will ensure that tests have enough time to validate requests against the simulator. 
-+ [OSS-API-Tests](https://github.com/mojaloop/postman/blob/master/OSS-API-Tests.postman_collection.json) : This suite of tests will issue a request/response against each and every exposed API, testing APIs such as the Mojaloop core APIs, bulk quotes, admin-APIs, Settlement APIs, Metrics APIs, Fund-in and out APIs etc. These tests are done to test the message headers, body, responses received and not to test the end-to-end flow of a transfer for example
-    + Notes: Ensure that there is a delay of `1500ms` if executed through Postman UI Test Runner. This will ensure that tests have enough time to validate requests against the simulator.
-+ [OSS-Feature-Tests](https://github.com/mojaloop/postman/blob/master/OSS-Feature-Tests.postman_collection.json) : Scenario based testing are performed with this collection, such as Settlements processes, Block Transfers, Negative testing scenarios and so on
-    + Notes: Ensure that there is a delay of `1500ms` if executed through Postman UI Test Runner. This will ensure that tests have enough time to validate requests against the simulator.
-+ [Golden_Path](https://github.com/mojaloop/postman/blob/master/Golden_Path.postman_collection.json) : This test collection is the one used by the scheduled regression testing framework to test end-to-end scenarios, resembling real-world use-cases where the response from one API call is used to populate the request of a subsequent call. We make use of an intelligent simulator playing the role of an FSP on the recipient side of the scenario, responding to various request from a Payer FSP as an example
-    + Notes: Ensure that there is a delay of `1500ms` if executed through Postman UI Test Runner. This will ensure that tests have enough time to validate requests against the simulator.
+
+For Mojaloop Simulator:
+
++ [MojaloopHub_Setup](https://github.com/mojaloop/postman/blob/master/MojaloopHub_Setup.postman_collection.json) : This collection needs to be executed once after a new deployment, normally by the Release Manager. It sets up an empty Mojaloop hub, including things such as the Hub's currency, the settlement accounts.
++ [MojaloopSims_Onboarding](https://github.com/mojaloop/postman/blob/master/MojaloopSims_Onboarding.postman_collection.json) : MojaloopSims_Onboarding sets up the DFSP simulators, and configures things such as the endpoint urls so that the Mojaloop hub knows where to send request callbacks.
++ [Golden_Path_Mojaloop](https://github.com/mojaloop/postman/blob/master/Golden_Path_Mojaloop.postman_collection.json) : The Golden_Path_Mojaloop collection is an end-to-end regression test pack which does a complete test of all the deployed functionality. This test can be run manually but is actually designed to be run from the start, in an automated fashion, right through to the end, as response values are being passed from one request to the next. (The core team uses this set to validate various releases and deployments)
+    + Notes: In some cases, there is need for a delay of `250ms` - `500ms` if executed through Postman UI Test Runner. This will ensure that tests have enough time to validate requests against the simulator. However, this is not always required.
++ [Bulk_API_Transfers_MojaSims](https://github.com/mojaloop/postman/blob/master/Bulk_API_Transfers_MojaSims.postman_collection.json) : This collection can be used test the bulk transfers functionality that targets Mojaloop Simulator.
+
+For Legacy Simulator (encouraged to use Mojaloop Simulator, as this will not be supported starting PI-12 (Oct 2020) ):
+
++ [ML_OSS_Setup_LegacySim](https://github.com/mojaloop/postman/blob/master/ML_OSS_Setup_LegacySim.postman_collection.json) : This collection needs to be executed once after a new deployment (if it uses Legacy Simulator), normally by the Release Manager. It sets up the Mojaloop hub, including things such as the Hub's currency, the settlement accounts along with the Legacy Simulator(s) as FSP(s).
++ [ML_OSS_Golden_Path_LegacySim](https://github.com/mojaloop/postman/blob/master/ML_OSS_Golden_Path_LegacySim.postman_collection.json) : The Golden_Path_Mojaloop collection is an end-to-end regression test pack which does a complete test of all the deployed functionality. This test can be run manually but is actually designed to be run from the start, in an automated fashion, right through to the end, as response values are being passed from one request to the next. (The core team uses this set to validate various releases and deployments)
+    + Notes: In some cases, there is need for a delay of `250ms` - `500ms` if executed through Postman UI Test Runner. This will ensure that tests have enough time to validate requests against the simulator. However, this is not always required.
++ [Bulk API Transfers.postman_collection](https://github.com/mojaloop/postman/blob/master/Bulk%20API%20Transfers.postman_collection.json) : This collection can be used test the bulk transfers functionality that targets Legacy Simulator.
     
 #### Environment Configuration
 
