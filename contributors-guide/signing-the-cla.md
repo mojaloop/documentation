@@ -1,6 +1,6 @@
 # Signing the CLA
 
-Mojaloop has a [Contributor Licence Agreement (CLA)](https://github.com/mojaloop/mojaloop/blob/master/CONTRIBUTOR_LICENSE_AGREEMENT.md) which clarifies the intelletual property for contributions from individuals or entities.
+Mojaloop has a [Contributor License Agreement (CLA)](https://github.com/mojaloop/mojaloop/blob/master/CONTRIBUTOR_LICENSE_AGREEMENT.md) which clarifies the intellectual property rights for contributions from individuals or entities.
 
 To ensure every developer has signed the CLA, we use [CLA Assistant](https://cla-assistant.io/), a well maintained, open source tool which checks to make sure that a contributor has signed the CLA before allowing a pull request to be merged.
 
@@ -96,5 +96,4 @@ You can also add a `metadata` file to the CLA gist, to build a custom form for t
 Produces the following form:
 
 <img src="./images/cla/cla_2_2.png" width=750>
-
 
