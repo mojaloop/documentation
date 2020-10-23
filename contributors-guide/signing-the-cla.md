@@ -2,26 +2,33 @@
 
 Mojaloop has a [Contributor Licence Agreement (CLA)](https://github.com/mojaloop/mojaloop/blob/master/CONTRIBUTOR_LICENSE_AGREEMENT.md) which clarifies the intelletual property for contributions from individuals or entities.
 
-To ensure every developer has signed the CLA, or their company has signed it on their behalf, we use [CLA Assistant](https://cla-assistant.io/), a well maintained, open source tool which checks to make sure that a contributor has signed the CLA before allowing a pull request to be merged.
+To ensure every developer has signed the CLA, we use [CLA Assistant](https://cla-assistant.io/), a well maintained, open source tool which checks to make sure that a contributor has signed the CLA before allowing a pull request to be merged.
 
 ## How to sign the CLA
 
 1. Open a pull request to any Mojaloop repository
 2. When the pull request performs the standard checks, you will see the `license/cla` check has run, and requests users to sign the CLA:
-![](./images/cla/cla_1.png)
+
+<img src="./images/cla/cla_1.png" width=600>
+
 
 
 3. Click 'Details', and you will be directed to the CLA Assistant tool, where you can read the CLA, fill out some personal details, and sign it.
-![](./images/cla/cla_2_1.png)
-![](./images/cla/cla_2_2.png)
+
+<img src="./images/cla/cla_2_1.png" width=600>
+</br>
+<img src="./images/cla/cla_2_2.png" width=600>
+
 
 4. Once you have clicked "I agree", navigate back to the Pull request, and see that the CLA Assistant check has passed.
-![](./images/cla/cla_3.png)
+
+<img src="./images/cla/cla_3.png" width=600>
+
 
 
 ### Signing For A Company
 
-Section 3 of the [Mojaloop CLA](https://github.com/mojaloop/mojaloop/blob/master/CONTRIBUTOR_LICENSE_AGREEMENT.md) covers contributions both from individuals and contributions made by individuals on behalf of their employer. If you are contributing to the Mojaloop Community on behalf of your employer, please type in your employer's name in the "Company or Organization" field. If not, feel free to write "OSS Contributor" and leave the "role" field blank.
+Section 3 of the [Mojaloop CLA](https://github.com/mojaloop/mojaloop/blob/master/CONTRIBUTOR_LICENSE_AGREEMENT.md) covers contributions both from individuals and contributions made by individuals on behalf of their employer. If you are contributing to the Mojaloop Community on behalf of your employer, please enter your employer's name in the "Company or Organization" field. If not, feel free to write "OSS Contributor" and leave the "role" field blank.
 
 
 ## Administering the CLA tool
@@ -86,5 +93,6 @@ You can also add a `metadata` file to the CLA gist, to build a custom form for t
 
 Produces the following form:
 
-![](./images/cla/cla_2_2.png)
+<img src="./images/cla/cla_2_2.png" width=600>
+
 
