@@ -58,6 +58,10 @@ This guide summarizes the steps needed to get up and running as a contributor to
 - (Optional) Post a link to your PR on the `#ml-oss-devs` channel in Slack so everyone can share in the fun
 
 
+## 4. Signing the CLA
+
+After you open your first PR, our CI/CD pipelines will ask you to sign the CLA. For more information on what the CLA is and how to sign it, see [./signing-the-cla.html]
+
 ## FAQs:
 
 > None as of yet. If you have problems getting through this list, or need more help, reach out to us on Slack!
