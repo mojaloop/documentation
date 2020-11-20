@@ -150,8 +150,6 @@ jobs:
           command: |
             set +o pipefail
             npm run build:plantuml:all
-            git diff --name-only
-            git diff --cached --name-only
             FILE_COUNT=$(git diff --name-only | grep .svg | wc -l)
             if [ ${FILE_COUNT} -ne "0" ]; then
               echo 'Plantuml files are out of sync. Please run npm run build:plantuml and try again.';
