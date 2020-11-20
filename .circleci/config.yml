@@ -144,7 +144,7 @@ jobs:
           <<: *defaults_Dependencies
       - restore_cache:
           keys:
-            - dependency-cache-{{ checksum "package-lock.json" }}
+            - key: dependency-cache-{{ .Revision }}
       - run:
           name: Check if plantuml has been updated correctly
           command: |
