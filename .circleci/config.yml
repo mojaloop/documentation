@@ -141,8 +141,7 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Install general dependencies
-          command: *defaults_Dependencies
+          <<: *defaults_Dependencies
       - restore_cache:
           keys:
             - dependency-cache-{{ checksum "package-lock.json" }}
