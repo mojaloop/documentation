@@ -134,9 +134,8 @@ jobs:
             - _book
   
   test-svg:
-    setup:
-      <<: *defaults_working_directory
-      <<: *defaults_docker_node
+    <<: *defaults_working_directory
+    <<: *defaults_docker_node
     steps:
       - checkout
       - run:
