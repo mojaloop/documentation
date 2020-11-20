@@ -132,6 +132,31 @@ jobs:
           key: build-cache-{{ .Revision }}
           paths:
             - _book
+  
+  test-svg:
+    setup:
+      <<: *defaults_working_directory
+      <<: *defaults_docker_node
+    steps:
+      - checkout
+      - run:
+          name: Install general dependencies
+          command: *defaults_Dependencies
+      - restore_cache:
+          keys:
+            - dependency-cache-{{ checksum "package-lock.json" }}
+      - run:
+          name: Check if plantuml has been updated correctly
+          command: |
+            set +o pipefail
+            npm run build:plantuml:all
+            FILE_COUNT=$(git diff --cached --name-only | grep .png | wc -l)
+            if [ ${FILE_COUNT} -ne "0" ]; then
+              echo 'Plantuml files are out of sync. Please run npm run build:plantuml and try again.';
+              exit 1;
+            else
+              echo 'Plantuml files are up to date';
+            fi
 
   deploy:
     <<: *defaults_working_directory
@@ -176,10 +201,21 @@ workflows:
                 - /feature.*/
                 - /bugfix.*/
                 - gh-pages
-      - build:
+      - test-svg:
           context: org-global
           requires:
             - setup
+          filters:
+            tags:
+              only: /.*/
+            branches:
+              ignore:
+                - /feature*/
+                - /bugfix*/
+      - build:
+          context: org-global
+          requires:
+            - test-svg
           filters:
             tags:
               only: /.*/
