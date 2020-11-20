@@ -8,7 +8,7 @@ PATH="${PATH}:${DIR}/../node_modules/.bin"
 # and exports them using `node-plantuml`
 ##
 
-for i in $(find ${DIR}/.. -name '*.p*uml'); do
+for i in $(find ${DIR}/..  -path ${DIR}/../node_modules -prune -false -o -name '*.p*uml'); do
   echo "rendering .puml -> .svg for diagram diagram: $i"
   puml generate -s $i -o $(echo $i | sed 's/puml/svg/g' | sed 's/plantuml/svg/g' ) -i $(echo $i | sed -e 's;[^/]*$;;');
 done
