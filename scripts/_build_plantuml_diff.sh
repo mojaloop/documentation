@@ -9,7 +9,6 @@ PATH="${PATH}:${DIR}/../node_modules/.bin"
 ##
 for i in $(git diff --staged --name-only `find ${DIR}/.. -name '*.p*uml'`); do
   echo "rendering .puml -> .svg for diagram diagram: $i"
-  # make the destination directory if not exists
   puml generate -s $i -o $(echo $i | sed 's/puml/svg/g' | sed 's/plantuml/svg/g') -i $(echo $i | sed -e 's;[^/]*$;;');
 done
 
