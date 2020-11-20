@@ -15,7 +15,8 @@ defaults_Dependencies: &defaults_Dependencies
     apk --no-cache add ca-certificates
     apk --no-cache add curl
     apk --no-cache add openssh-client
-    apk --no-cache add openjdk11
+    # for node 10.15-alpine, need to install from edge repo
+    apk --no-cache add openjdk11 --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community
     apk add --no-cache -t build-dependencies make gcc g++ python libtool autoconf automake
     npm config set unsafe-perm true
     npm install -g gitbook-cli
