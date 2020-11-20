@@ -63,7 +63,7 @@ excludeList = [
 ### PR Flow
 
 When a new Pull Request is opened for a Mojaloop project, the license scanner runs as a part of the CI/CD workflow. The step in CircleCI is called 'audit-licenses'
-
+</br>
 <img alt="Example CircleCI Build Overview PR" src="./assets/images/automated-license-scanning/circle-pr-build.png" width=700>
 
 The license-scanner does the following:

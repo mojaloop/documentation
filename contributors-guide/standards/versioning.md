@@ -25,9 +25,29 @@ This document provides guidelines regarding the versioning strategy used for the
 
 The currrent version information for Mojaloop can be found [here](../../deployment-guide/releases.md).
 
+### Sprint schedule for PI-12
+
+Below is the Sprint schedule for Program Increment 12 which ends with the PI-13 Community event in January 2021.
+
+|Phase/Milestone|Start|End|Weeks|Notes|
+|---|---|---|---|---|
+|**Phase-4 Kick-off On-site**|1/28/2020|1/30/2020|3 days| Johannesburg|
+|**Phase-4 PI-10 Virtual**|4/21/2020|4/24/2020|4 days| Virtual Zoom Webinars|
+|**Phase-4 PI-11 Virtual**|7/21/2020|7/24/2020|4 days| Virtual Zoom Webinars|
+|**Phase-4 PI-12 Virtual**|10/19/2020|10/23/2020|5 days| Virtual Zoom Webinars|
+|**Sprint 12.1**|10/26/2020|11/15/2020|3 weeks | |
+|**Sprint 12.2**|11/16/2020|11/29/2020|2 weeks | |
+|**Sprint 12.3**|11/30/2020|12/13/2020|2 weeks | |
+|**Sprint 12.4**|12/14/2020|12/27/2020|2 weeks | |
+|**Sprint 12.5**|12/28/2020|01/10/2021|2 weeks | |
+|**Sprint 12.6**|01/11/2020|01/24/2020|2 weeks | |
+|**Phase-5 Kick-off / PI-13**|01/25/2021|01/29/2021|5 days| TBD |
+
+### Previous Sprint Schedules:
+
 ### Sprint schedule for PI-11
 
-Below is the Sprint schedule for Program Increment 11 which ends with the PI 12 Event. Please use this as guidance during the versioning and release processes.
+Below is the Sprint schedule for Program Increment 11 which ends with the PI 12 Event.
 
 |Phase/Milestone|Start|End|Weeks|Notes|
 |---|---|---|---|---|
@@ -41,9 +61,6 @@ Below is the Sprint schedule for Program Increment 11 which ends with the PI 12 
 |**Sprint 11.5**|9/21/2020|10/4/2020|2 weeks| |
 |**Sprint 11.6**|10/5/2020|10/18/2020|2 weeks | |
 |**Phase-4 PI-12**|10/20/2020|10/23/2020|4 days| TBD |
-|**Phase-4 Wrap-Up / PI-13**|1/26/2021|1/29/2021|4 days| TBD |
-
-### Previous Sprint Schedules:
 
 #### Sprint schedule for PI-10
 
@@ -90,5 +107,4 @@ Below is the Sprint schedule for Program Increment 10 which ends with the PI 11 
 
 ### Notes
 
-1. A new release for **helm** repo is made whenver a configuration change is needed for any of the core Switch services based on the changes made \(features, bug-fixes\).
-2. However, if there is no release made to helm necessitated by a configuration change, then a release is done every Sprint anyway, to bring it up to date with the latest releases on the core Switch services.
+1. A new release for **helm** repo is made based on the feature and configuration changes made to core services and requirements from thhe Community.
