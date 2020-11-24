@@ -31,15 +31,23 @@
   "scripts": {
     "audit:check": "SHELL=sh check-audit",
     "audit:resolve": "SHELL=sh resolve-audit",
-    "build:plantuml:diff": "./scripts/_build_plantuml_diff.sh",
     "build:plantuml:all": "./scripts/_build_plantuml_all.sh",
+    "build:plantuml:diff": "./scripts/_build_plantuml_diff.sh",
     "dep:check": "npx ncu -e 2",
     "dep:update": "npx ncu -u",
     "docker:build": "docker build --no-cache -t mojaloop/documentation .",
-    "docker:run": "docker run --rm -it --name mojadoc -p 8989:8989 mojaloop/documentation",
     "docker:push": "docker push mojaloop/documentation",
+    "docker:run": "docker run --rm -it --name mojadoc -p 8989:8989 mojaloop/documentation",
+    "express:run": "node index.js",
+    "gitbook:build": "gitbook build",
+    "gitbook:export:pdf": "gitbook pdf ./",
+    "gitbook:install": "gitbook install",
+    "gitbook:serve": "gitbook serve --port 8989",
+    "gitbook:serveNoReload": "gitbook serve --no-live --port 8989",
+    "license:check": "npm run license:list -- --failOn `cat .licensebanned | grep '^[^#;]' | awk 'BEGIN { ORS=\"\" } { print p$0\";\"; } END { print \n }'`",
     "license:list": "license-checker . --excludePackages `cat .licenseignore | grep '^[^#;]' | awk 'BEGIN { ORS=\"\" } { print p$0\";\"; } END { print \n }'` --production --csv",
-    "license:check": "npm run license:list -- --failOn `cat .licensebanned | grep '^[^#;]' | awk 'BEGIN { ORS=\"\" } { print p$0\";\"; } END { print \n }'`"
+    "run": "npm run gitbook:serve",
+    "start": "npm run gitbook:serveNoReload"
   },
   "husky": {
     "hooks": {
