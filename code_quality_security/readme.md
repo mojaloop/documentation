@@ -1,6 +1,15 @@
-# Code quality and Security stream
+# Code Quality & Security
 
-## Arfifacts for guidance produced:
+[ todo - overview of effort, work, etc ]
 
-* Here's the guidance on **Vulnerability reporting procedure**: [Link on documentation-artifacts repo](https://github.com/mojaloop/documentation-artifacts/blob/master/presentations/discussion-docs/Mojaloop_Application_Security_Summary-27Jan2020.pdf)
-* You may find the **Mojaloop Application Security Summary** here: [Link on documentation-artifacts repo](https://github.com/mojaloop/documentation-artifacts/blob/master/presentations/discussion-docs/Mojaloop_Application_Security_Summary-27Jan2020.pdf)
+
+## Overview
+
+- [Program Management](./program-management)
+- [Standards + Guidelines](./standards-guidelines)
+- [Reference Implementation](./reference-implementation)
+
+## Other Links
+
+- The Mojaloop Community's [Vulnerability reporting procedure](https://github.com/mojaloop/documentation-artifacts/blob/master/presentations/discussion-docs/Mojaloop_Application_Security_Summary-27Jan2020.pdf)
+- Presentation on [Mojaloop Application Security Summary](https://github.com/mojaloop/documentation-artifacts/blob/master/presentations/discussion-docs/Mojaloop_Application_Security_Summary-27Jan2020.pdf)
