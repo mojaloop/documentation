@@ -1,18 +1,26 @@
 # Program Management
 
->Program management section provide an overview of Mojaloop’s risk and security management initiatives at program level. The target audience is risk management, compliance, governance, regulatory and leadership (business/government) stakeholders.
+This section provides an overview of Mojaloop's Risk and Security Management Initiatives.
 
-
+**Who is this for?**
+*Risk Management, Compliance, Governance, Regulatory, and Leadership Stakeholders*
 
 ## Mojaloop Data Security and Privacy Program:
-a)	Program Overview
-b)	Current PI Objectives
-c)	PI Reports (8 – 10)
-d)	Vulnerability disclosure procedure
+### 1. Program Overview
+
+### 2. Current PI Objectives
+### 3. PI Reports (8 – 10)
+
+1. PI 8
+1. PI 9
+1. PI 10
+
+### 4. Vulnerability disclosure procedure
 
 ## Scheme Rules Risk Management Guidelines:
-a)	Risk Management, Security, Privacy and Data Confidentiality
+### Risk Management, Security, Privacy and Data Confidentiality
 
 ## Standard Baselining
-a)	GDPR Scoping Analysis Report
-b)	PCI DSS Baseline report and recommendations – Responsibility matrix (Hub/Switch)
+
+### GDPR Scoping Analysis Report
+### PCI DSS Baseline report and recommendations – Responsibility matrix (Hub/Switch)
