@@ -152,7 +152,7 @@ Refer to the [Helm v2 to v3 Migration Guide](./helm-legacy-migration.md) if you 
 
 1. Add mojaloop repo to your Helm config:
    ```bash
-   helm repo add mojaloop http://mojaloop.io/helm/repo/
+   helm repo add mojaloop https://mojaloop.io/helm/repo/
    ```
    If the repo already exists, substitute 'add' with 'apply' in the above command.
 
