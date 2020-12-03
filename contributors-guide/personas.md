@@ -1,4 +1,4 @@
-# Mojaloop Personas
+# Mojaloop OSS/Community Personas
 
 # Document Purpose
 
@@ -10,7 +10,7 @@ A contributor is someone that is actively involved in contributing to the Mojalo
 
 ## Hub Operator
 
-This person would be responsible for deploying a Mojaloop hub; they might already have a payments hub. A payment hub operator would need to know how the technical components work (ex how payments and messaging work, API flows, etc). They would also have to have operational control and participate in regulatory forums.
+A hub operator is someone who would be responsible for deploying a Mojaloop hub; they might already have a payments hub. A payment hub operator would need to know how the technical components work (ex how payments and messaging work, API flows, etc). They would also have to have operational control and participate in regulatory forums.
 
 ## Digital Financial Service Provider (DFSP)
 
@@ -42,8 +42,5 @@ The auditor role represents the board of directors and shareholders of a given i
 
 ## Regulator
 
-The regulator ensures the safety and soundness of the financial systems. Like the auditor role, will require a high level of knowledge of the system and access to ~~the~~ forensic logs. This role might have access to the different operational hubs and might represent a specific function, and have different access levels for the various components.
+The regulator ensures the safety and soundness of the financial systems. Like the auditor role, will require a high level of knowledge of the system and access to forensic logs. This role might have access to the different operational hubs and might represent a specific function, and have different access levels for the various components.
 
-## Administrator/Super User
-
-This full access role will have similar needs as a contributor but will also need access to all logs and have password controls across the entire system. Ideally, this person(s) would have contributed to the level one project first and then go into this role eventually. There could potentially have different Super User by component. (i.e. one for DFSP 1, one for DFSP X, one for the Central ledger).
