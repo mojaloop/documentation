@@ -1,159 +1,473 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="2045px" preserveAspectRatio="none" style="width:654px;height:2045px;" version="1.1" viewBox="0 0 654 2045" width="654px" zoomAndPan="magnify"><defs><filter height="300%" id="f7uct21up5rt1" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="555" x="50" y="23.5352">5.1.0.b. Transfer state and position change (transferStateAndPositionChange)</text><rect fill="#FFFFE0" height="2000.3281" style="stroke: #A80036; stroke-width: 1.0;" width="344.5" x="35" y="34.4883"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="101" x="156.75" y="47.0566">Central Service</text><rect fill="#FFFFFF" filter="url(#f7uct21up5rt1)" height="521.9375" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="322.5" y="318.3926"/><rect fill="#FFFFFF" filter="url(#f7uct21up5rt1)" height="30" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="322.5" y="893.9512"/><rect fill="#FFFFFF" filter="url(#f7uct21up5rt1)" height="30" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="322.5" y="1016.8379"/><rect fill="#FFFFFF" filter="url(#f7uct21up5rt1)" height="77.9316" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="322.5" y="1131.7695"/><rect fill="#FFFFFF" filter="url(#f7uct21up5rt1)" height="30" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="322.5" y="1333.9434"/><rect fill="#FFFFFF" filter="url(#f7uct21up5rt1)" height="30" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="322.5" y="1650.9805"/><rect fill="#FFFFFF" filter="url(#f7uct21up5rt1)" height="1819.041" style="stroke: #000000; stroke-width: 2.0;" width="629" x="13" y="133.2871"/><rect fill="#FFFFFF" filter="url(#f7uct21up5rt1)" height="248.1289" style="stroke: #000000; stroke-width: 2.0;" width="594" x="29" y="855.3301"/><rect fill="#FFFFFF" height="122.8867" style="stroke: none; stroke-width: 1.0;" width="594" x="29" y="980.5723"/><rect fill="#FFFFFF" filter="url(#f7uct21up5rt1)" height="303.0371" style="stroke: #000000; stroke-width: 2.0;" width="527" x="29" y="1224.7012"/><rect fill="#FFFFFF" filter="url(#f7uct21up5rt1)" height="56.6211" style="stroke: #000000; stroke-width: 2.0;" width="309" x="83" y="1249.0117"/><rect fill="#FFFFFF" filter="url(#f7uct21up5rt1)" height="303.0371" style="stroke: #000000; stroke-width: 2.0;" width="525" x="29" y="1541.7383"/><rect fill="#FFFFFF" filter="url(#f7uct21up5rt1)" height="56.6211" style="stroke: #000000; stroke-width: 2.0;" width="309" x="83" y="1566.0488"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="88" x2="88" y1="116.2871" y2="1969.3281"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="327.5" x2="327.5" y1="116.2871" y2="1969.3281"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="93" x="39" y="113.334">Transfer DAO</text><ellipse cx="88.5" cy="83.7988" fill="#FEFECE" filter="url(#f7uct21up5rt1)" rx="12" ry="12" style="stroke: #A80036; stroke-width: 2.0;"/><line style="stroke: #A80036; stroke-width: 2.0;" x1="76.5" x2="100.5" y1="97.7988" y2="97.7988"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="93" x="39" y="1981.8633">Transfer DAO</text><ellipse cx="88.5" cy="2000.8164" fill="#FEFECE" filter="url(#f7uct21up5rt1)" rx="12" ry="12" style="stroke: #A80036; stroke-width: 2.0;"/><line style="stroke: #A80036; stroke-width: 2.0;" x1="76.5" x2="100.5" y1="2014.8164" y2="2014.8164"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="90" x="279.5" y="113.334">Central Store</text><path d="M309.5,63.7988 C309.5,53.7988 327.5,53.7988 327.5,53.7988 C327.5,53.7988 345.5,53.7988 345.5,63.7988 L345.5,89.7988 C345.5,99.7988 327.5,99.7988 327.5,99.7988 C327.5,99.7988 309.5,99.7988 309.5,89.7988 L309.5,63.7988 " fill="#FEFECE" filter="url(#f7uct21up5rt1)" style="stroke: #000000; stroke-width: 1.5;"/><path d="M309.5,63.7988 C309.5,73.7988 327.5,73.7988 327.5,73.7988 C327.5,73.7988 345.5,73.7988 345.5,63.7988 " fill="none" style="stroke: #000000; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="90" x="279.5" y="1981.8633">Central Store</text><path d="M309.5,1994.8164 C309.5,1984.8164 327.5,1984.8164 327.5,1984.8164 C327.5,1984.8164 345.5,1984.8164 345.5,1994.8164 L345.5,2020.8164 C345.5,2030.8164 327.5,2030.8164 327.5,2030.8164 C327.5,2030.8164 309.5,2030.8164 309.5,2020.8164 L309.5,1994.8164 " fill="#FEFECE" filter="url(#f7uct21up5rt1)" style="stroke: #000000; stroke-width: 1.5;"/><path d="M309.5,1994.8164 C309.5,2004.8164 327.5,2004.8164 327.5,2004.8164 C327.5,2004.8164 345.5,2004.8164 345.5,1994.8164 " fill="none" style="stroke: #000000; stroke-width: 1.5;"/><rect fill="#FFFFFF" filter="url(#f7uct21up5rt1)" height="521.9375" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="322.5" y="318.3926"/><rect fill="#FFFFFF" filter="url(#f7uct21up5rt1)" height="30" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="322.5" y="893.9512"/><rect fill="#FFFFFF" filter="url(#f7uct21up5rt1)" height="30" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="322.5" y="1016.8379"/><rect fill="#FFFFFF" filter="url(#f7uct21up5rt1)" height="77.9316" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="322.5" y="1131.7695"/><rect fill="#FFFFFF" filter="url(#f7uct21up5rt1)" height="30" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="322.5" y="1333.9434"/><rect fill="#FFFFFF" filter="url(#f7uct21up5rt1)" height="30" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="322.5" y="1650.9805"/><path d="M13,133.2871 L368,133.2871 L368,140.2871 L358,150.2871 L13,150.2871 L13,133.2871 " fill="#EEEEEE" style="stroke: #000000; stroke-width: 1.0;"/><rect fill="none" height="1819.041" style="stroke: #000000; stroke-width: 2.0;" width="629" x="13" y="133.2871"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="310" x="28" y="146.8555">transferStateAndPositionUpdate (param1, trx)</text><path d="M93,155.5977 L93,287.5977 L366,287.5977 L366,165.5977 L356,155.5977 L93,155.5977 " fill="#D3D3D3" filter="url(#f7uct21up5rt1)" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M356,155.5977 L356,165.5977 L366,165.5977 L356,155.5977 " fill="#D3D3D3" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="53" x="99" y="173.166">param1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="18" x="156" y="173.166">= {</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="195" x="115" y="188.4766">transferId: {payload.transferId},</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="149" x="115" y="203.7871">transferStateId: "enum",</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="157" x="115" y="219.0977">reason: {payload.reason},</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="236" x="115" y="234.4082">createdDate: {transactionTimestamp},</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="137" x="115" y="249.7188">drUpdated: "boolean",</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="132" x="115" y="265.0293">crUpdated: "boolean"</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="4" x="99" y="280.3398">}</text><polygon fill="#A80036" points="310.5,314.3926,320.5,318.3926,310.5,322.3926,314.5,318.3926" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="88.5" x2="316.5" y1="318.3926" y2="318.3926"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="95.5" y="313.6504">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="141" x="108.5" y="313.6504">Select all required info</text><polygon fill="#FFFFE0" filter="url(#f7uct21up5rt1)" points="102,331.3926,553,331.3926,563,572.3926,553,813.3926,102,813.3926,92,572.3926,102,331.3926" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="307" x="104" y="347.9609">SELECT dr.participantCurrencyId AS drAccountId,</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="420" x="120" y="363.2715">dr.amount AS drAmount, drp.participantPositionId AS drPositionId,</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="431" x="120" y="378.582">drp.value AS drPositionValue, drp.reservedValue AS drReservedValue,</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="256" x="120" y="393.8926">cr.participantCurrencyId AS crAccountId,</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="416" x="120" y="409.2031">cr.amount AS crAmount, crp.participantPositionId AS crPositionId,</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="427" x="120" y="424.5137">crp.value AS crPositionValue, crp.reservedValue AS crReservedValue,</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="115" x="120" y="439.8242">tsc.transferStateId</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="36" x="104" y="455.1348">FROM</text><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="54" x="144" y="455.1348">transfer</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="5" x="202" y="455.1348">t</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="28" x="104" y="470.4453">JOIN</text><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="127" x="136" y="470.4453">transferParticipant</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="13" x="267" y="470.4453">dr</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="190" x="104" y="485.7559">ON dr.transferId = t.transferId</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="124" x="104" y="501.0664">AND dr.amount &gt; 0</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="28" x="104" y="516.377">JOIN</text><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="136" x="136" y="516.377">participantCurrency</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="28" x="276" y="516.377">drpc</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="363" x="104" y="531.6875">ON drpc.participantCurrencyId = dr.participantCurrencyId</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="28" x="104" y="546.998">JOIN</text><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="127" x="136" y="546.998">participantPosition</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="21" x="267" y="546.998">drp</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="356" x="104" y="562.3086">ON drp.participantCurrencyId = dr.participantCurrencyId</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="28" x="104" y="577.6191">JOIN</text><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="127" x="136" y="577.6191">transferParticipant</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="12" x="267" y="577.6191">cr</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="189" x="104" y="592.9297">ON cr.transferId = t.transferId</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="123" x="104" y="608.2402">AND cr.amount &lt; 0</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="28" x="104" y="623.5508">JOIN</text><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="136" x="136" y="623.5508">participantCurrency</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="27" x="276" y="623.5508">crpc</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="362" x="104" y="638.8613">ON crpc.participantCurrencyId = dr.participantCurrencyId</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="28" x="104" y="654.1719">JOIN</text><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="127" x="136" y="654.1719">participantPosition</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="20" x="267" y="654.1719">crp</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="354" x="104" y="669.4824">ON crp.participantCurrencyId = cr.participantCurrencyId</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="28" x="104" y="684.793">JOIN</text><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="139" x="136" y="684.793">transferStateChange</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="19" x="279" y="684.793">tsc</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="196" x="104" y="700.1035">ON tsc.transferId = t.transferId</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="240" x="104" y="715.4141">WHERE t.transferId = param1.tranferId</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="391" x="104" y="730.7246">AND drpc.ledgerAccountTypeId IN('POSITION', 'SETTLEMENT', '</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="377" x="120" y="746.0352">HUB_RECONCILIATION', 'HUB_MULTILATERAL_SETTLEMENT')</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="390" x="104" y="761.3457">AND crpc.ledgerAccountTypeId IN('POSITION', 'SETTLEMENT', '</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="377" x="120" y="776.6563">HUB_RECONCILIATION', 'HUB_MULTILATERAL_SETTLEMENT')</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="242" x="104" y="791.9668">ORDER BY transferStateChangeId DESC</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="46" x="104" y="807.2773">LIMIT 1</text><polygon fill="#A80036" points="99.5,836.3301,89.5,840.3301,99.5,844.3301,95.5,840.3301" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="93.5" x2="326.5" y1="840.3301" y2="840.3301"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="105.5" y="835.5879">2</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="41" x="118.5" y="835.5879">Return</text><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="26" x="163.5" y="835.5879">info</text><path d="M29,855.3301 L96,855.3301 L96,862.3301 L86,872.3301 L29,872.3301 L29,855.3301 " fill="#EEEEEE" style="stroke: #000000; stroke-width: 1.0;"/><rect fill="none" height="248.1289" style="stroke: #000000; stroke-width: 2.0;" width="594" x="29" y="855.3301"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="22" x="44" y="868.8984">opt</text><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="239" x="111" y="867.9648">[param1.transferStateId == 'COMMITTED']</text><polygon fill="#A80036" points="310.5,889.9512,320.5,893.9512,310.5,897.9512,314.5,893.9512" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="88.5" x2="316.5" y1="893.9512" y2="893.9512"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="95.5" y="889.209">3</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="135" x="108.5" y="889.209">Change transfer state</text><polygon fill="#FFFFE0" filter="url(#f7uct21up5rt1)" points="51,936.9512,603,936.9512,613,955.9512,603,974.9512,51,974.9512,41,955.9512,51,936.9512" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="80" x="53" y="953.5195">INSERT INTO</text><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="139" x="137" y="953.5195">transferStateChange</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="302" x="280" y="953.5195">(transferId, transferStateId, reason, createdDate)</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="548" x="53" y="968.8301">VALUES ({param1.transferId, 'RECEIVED_FULFIL', {param1.reason}, {param1.createdDate})</text><line style="stroke: #000000; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="29" x2="623" y1="981.5723" y2="981.5723"/><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="222" x="34" y="992.207">[param1.transferStateId == 'ABORTED']</text><polygon fill="#A80036" points="310.5,1012.8379,320.5,1016.8379,310.5,1020.8379,314.5,1016.8379" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="88.5" x2="316.5" y1="1016.8379" y2="1016.8379"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="95.5" y="1012.0957">4</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="135" x="108.5" y="1012.0957">Change transfer state</text><polygon fill="#FFFFE0" filter="url(#f7uct21up5rt1)" points="61,1059.8379,594,1059.8379,604,1078.8379,594,1097.8379,61,1097.8379,51,1078.8379,61,1059.8379" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="80" x="63" y="1076.4063">INSERT INTO</text><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="139" x="147" y="1076.4063">transferStateChange</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="302" x="290" y="1076.4063">(transferId, transferStateId, reason, createdDate)</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="500" x="63" y="1091.7168">VALUES ({param1.transferId, 'REJECTED', {param1.reason}, {param1.createdDate})</text><polygon fill="#A80036" points="310.5,1127.7695,320.5,1131.7695,310.5,1135.7695,314.5,1131.7695" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="88.5" x2="316.5" y1="1131.7695" y2="1131.7695"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="95.5" y="1127.0273">5</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="135" x="108.5" y="1127.0273">Change transfer state</text><polygon fill="#FFFFE0" filter="url(#f7uct21up5rt1)" points="33,1144.7695,622,1144.7695,632,1163.7695,622,1182.7695,33,1182.7695,23,1163.7695,33,1144.7695" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="80" x="35" y="1161.3379">INSERT INTO</text><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="139" x="119" y="1161.3379">transferStateChange</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="302" x="262" y="1161.3379">(transferId, transferStateId, reason, createdDate)</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="585" x="35" y="1176.6484">VALUES ({param1.transferId, {param1.transferStateId}, {param1.reason}, {param1.createdDate})</text><polygon fill="#A80036" points="99.5,1205.7012,89.5,1209.7012,99.5,1213.7012,95.5,1209.7012" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="93.5" x2="326.5" y1="1209.7012" y2="1209.7012"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="105.5" y="1204.959">6</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="41" x="118.5" y="1204.959">Return</text><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="152" x="163.5" y="1204.959">transferStateChangeId</text><path d="M29,1224.7012 L96,1224.7012 L96,1231.7012 L86,1241.7012 L29,1241.7012 L29,1224.7012 " fill="#EEEEEE" style="stroke: #000000; stroke-width: 1.0;"/><rect fill="none" height="303.0371" style="stroke: #000000; stroke-width: 2.0;" width="527" x="29" y="1224.7012"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="22" x="44" y="1238.2695">opt</text><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="158" x="111" y="1237.3359">[param1.drUpdated == true]</text><path d="M83,1249.0117 L150,1249.0117 L150,1256.0117 L140,1266.0117 L83,1266.0117 L83,1249.0117 " fill="#EEEEEE" style="stroke: #000000; stroke-width: 1.0;"/><rect fill="none" height="56.6211" style="stroke: #000000; stroke-width: 2.0;" width="309" x="83" y="1249.0117"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="22" x="98" y="1262.5801">opt</text><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="222" x="165" y="1261.6465">[param1.transferStateId == 'ABORTED']</text><path d="M93,1271.3223 L93,1296.3223 L324,1296.3223 L324,1281.3223 L314,1271.3223 L93,1271.3223 " fill="#D3D3D3" filter="url(#f7uct21up5rt1)" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M314,1271.3223 L314,1281.3223 L324,1281.3223 L314,1271.3223 " fill="#D3D3D3" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="210" x="99" y="1288.8906">info.drAmount = -info.drAmount</text><polygon fill="#A80036" points="310.5,1329.9434,320.5,1333.9434,310.5,1337.9434,314.5,1333.9434" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="88.5" x2="316.5" y1="1333.9434" y2="1333.9434"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="95.5" y="1329.2012">7</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="125" x="108.5" y="1329.2012">Change DR position</text><polygon fill="#FFFFE0" filter="url(#f7uct21up5rt1)" points="119,1376.9434,536,1376.9434,546,1448.9434,536,1521.9434,119,1521.9434,109,1448.9434,119,1376.9434" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="50" x="121" y="1393.5117">UPDATE</text><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="127" x="175" y="1393.5117">participantPosition</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="322" x="121" y="1408.8223">SET value = {info.drPositionValue + info.drAmount}</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="309" x="121" y="1424.1328">WHERE participantPositionId = {info.drPositionId}</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="0" x="125" y="1439.4434"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="80" x="121" y="1454.7539">INSERT INTO</text><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="179" x="205" y="1454.7539">participantPositionChange</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="139" x="388" y="1454.7539">(participantPositionId,</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="362" x="137" y="1470.0645">transferStateChangeId, value, reservedValue, createdDate)</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="327" x="121" y="1485.375">VALUES ({info.drPositionId}, {transferStateChangeId},</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="397" x="137" y="1500.6855">{info.drPositionValue + info.drAmount}, {info.drReservedValue},</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="138" x="137" y="1515.9961">{param1.createdDate})</text><path d="M29,1541.7383 L96,1541.7383 L96,1548.7383 L86,1558.7383 L29,1558.7383 L29,1541.7383 " fill="#EEEEEE" style="stroke: #000000; stroke-width: 1.0;"/><rect fill="none" height="303.0371" style="stroke: #000000; stroke-width: 2.0;" width="525" x="29" y="1541.7383"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="22" x="44" y="1555.3066">opt</text><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="157" x="111" y="1554.373">[param1.crUpdated == true]</text><path d="M83,1566.0488 L150,1566.0488 L150,1573.0488 L140,1583.0488 L83,1583.0488 L83,1566.0488 " fill="#EEEEEE" style="stroke: #000000; stroke-width: 1.0;"/><rect fill="none" height="56.6211" style="stroke: #000000; stroke-width: 2.0;" width="309" x="83" y="1566.0488"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="22" x="98" y="1579.6172">opt</text><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="222" x="165" y="1578.6836">[param1.transferStateId == 'ABORTED']</text><path d="M93,1588.3594 L93,1613.3594 L322,1613.3594 L322,1598.3594 L312,1588.3594 L93,1588.3594 " fill="#D3D3D3" filter="url(#f7uct21up5rt1)" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M312,1588.3594 L312,1598.3594 L322,1598.3594 L312,1588.3594 " fill="#D3D3D3" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="208" x="99" y="1605.9277">info.crAmount = -info.crAmount</text><polygon fill="#A80036" points="310.5,1646.9805,320.5,1650.9805,310.5,1654.9805,314.5,1650.9805" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="88.5" x2="316.5" y1="1650.9805" y2="1650.9805"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="95.5" y="1646.2383">8</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="124" x="108.5" y="1646.2383">Change CR position</text><polygon fill="#FFFFE0" filter="url(#f7uct21up5rt1)" points="120,1693.9805,534,1693.9805,544,1765.9805,534,1838.9805,120,1838.9805,110,1765.9805,120,1693.9805" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="50" x="122" y="1710.5488">UPDATE</text><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="127" x="176" y="1710.5488">participantPosition</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="320" x="122" y="1725.8594">SET value = {info.crPositionValue + info.crAmount}</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="308" x="122" y="1741.1699">WHERE participantPositionId = {info.crPositionId}</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="0" x="126" y="1756.4805"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="80" x="122" y="1771.791">INSERT INTO</text><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="179" x="206" y="1771.791">participantPositionChange</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="139" x="389" y="1771.791">(participantPositionId,</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="362" x="138" y="1787.1016">transferStateChangeId, value, reservedValue, createdDate)</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="326" x="122" y="1802.4121">VALUES ({info.crPositionId}, {transferStateChangeId},</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="394" x="138" y="1817.7227">{info.crPositionValue + info.crAmount}, {info.crReservedValue},</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="138" x="138" y="1833.0332">{param1.createdDate})</text><path d="M93,1856.7754 L93,1942.7754 L481,1942.7754 L481,1866.7754 L471,1856.7754 L93,1856.7754 " fill="#D3D3D3" filter="url(#f7uct21up5rt1)" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M471,1856.7754 L471,1866.7754 L481,1866.7754 L471,1856.7754 " fill="#D3D3D3" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="43" x="99" y="1874.3438">return</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="4" x="146" y="1874.3438">{</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="143" x="115" y="1889.6543">transferStateChangeId,</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="351" x="115" y="1904.9648">drPositionValue: {info.drPositionValue + info.drAmount}</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="348" x="115" y="1920.2754">crPositionValue: {info.crPositionValue + info.crAmount}</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="4" x="99" y="1935.5859">}</text><!--
-@startuml
-title 5.1.0.b. Transfer state and position change (transferStateAndPositionChange)
-
-autonumber
-
-
-entity "Transfer DAO" as TRANSFER_DAO
-database "Central Store" as DB
-
-box "Central Service" #LightYellow
-    participant TRANSFER_DAO
-    participant DB
-end box
-
-group transferStateAndPositionUpdate (param1, trx)
-    note right of TRANSFER_DAO #lightgray
-        **param1** = {
-            transferId: {payload.transferId},
-            transferStateId: "enum",
-            reason: {payload.reason},
-            createdDate: {transactionTimestamp},
-            drUpdated: "boolean",
-            crUpdated: "boolean"
-        }
-    end note
-
-    TRANSFER_DAO -> DB: Select all required info
-    activate DB
-    hnote over DB #lightyellow
-        SELECT dr.participantCurrencyId AS drAccountId,
-            dr.amount AS drAmount, drp.participantPositionId AS drPositionId,
-            drp.value AS drPositionValue, drp.reservedValue AS drReservedValue,
-            cr.participantCurrencyId AS crAccountId,
-            cr.amount AS crAmount, crp.participantPositionId AS crPositionId,
-            crp.value AS crPositionValue, crp.reservedValue AS crReservedValue,
-            tsc.transferStateId
-        FROM **transfer** t
-        JOIN **transferParticipant** dr
-        ON dr.transferId = t.transferId
-        AND dr.amount > 0
-        JOIN **participantCurrency** drpc
-        ON drpc.participantCurrencyId = dr.participantCurrencyId
-        JOIN **participantPosition** drp
-        ON drp.participantCurrencyId = dr.participantCurrencyId
-        JOIN **transferParticipant** cr
-        ON cr.transferId = t.transferId
-        AND cr.amount < 0
-        JOIN **participantCurrency** crpc
-        ON crpc.participantCurrencyId = dr.participantCurrencyId
-        JOIN **participantPosition** crp
-        ON crp.participantCurrencyId = cr.participantCurrencyId
-        JOIN **transferStateChange** tsc
-        ON tsc.transferId = t.transferId
-        WHERE t.transferId = param1.tranferId
-        AND drpc.ledgerAccountTypeId IN('POSITION', 'SETTLEMENT', '
-            HUB_RECONCILIATION', 'HUB_MULTILATERAL_SETTLEMENT')
-        AND crpc.ledgerAccountTypeId IN('POSITION', 'SETTLEMENT', '
-            HUB_RECONCILIATION', 'HUB_MULTILATERAL_SETTLEMENT')
-        ORDER BY transferStateChangeId DESC
-        LIMIT 1
-    end hnote
-    TRANSFER_DAO <- - DB: Return **info**
-    deactivate DB
-
-    opt param1.transferStateId == 'COMMITTED'
-        TRANSFER_DAO -> DB: Change transfer state
-        activate DB
-        deactivate DB
-        hnote over DB #lightyellow
-            INSERT INTO **transferStateChange** (transferId, transferStateId, reason, createdDate)
-            VALUES ({param1.transferId, 'RECEIVED_FULFIL', {param1.reason}, {param1.createdDate})
-        end hnote
-    else param1.transferStateId == 'ABORTED'
-        TRANSFER_DAO -> DB: Change transfer state
-        activate DB
-        deactivate DB
-        hnote over DB #lightyellow
-            INSERT INTO **transferStateChange** (transferId, transferStateId, reason, createdDate)
-            VALUES ({param1.transferId, 'REJECTED', {param1.reason}, {param1.createdDate})
-        end hnote
-    end
-
-    TRANSFER_DAO -> DB: Change transfer state
-    activate DB
-    hnote over DB #lightyellow
-        INSERT INTO **transferStateChange** (transferId, transferStateId, reason, createdDate)
-        VALUES ({param1.transferId, {param1.transferStateId}, {param1.reason}, {param1.createdDate})
-    end hnote
-    TRANSFER_DAO <- - DB: Return **transferStateChangeId**
-    deactivate DB
-
-    opt param1.drUpdated == true
-        opt param1.transferStateId == 'ABORTED'
-            note right of TRANSFER_DAO #lightgray
-                info.drAmount = -info.drAmount
-            end note
-        end
-
-        TRANSFER_DAO -> DB: Change DR position
-        activate DB
-        deactivate DB
-        hnote over DB #lightyellow
-            UPDATE **participantPosition**
-            SET value = {info.drPositionValue + info.drAmount}
-            WHERE participantPositionId = {info.drPositionId}
-
-            INSERT INTO **participantPositionChange** (participantPositionId,
-                transferStateChangeId, value, reservedValue, createdDate)
-            VALUES ({info.drPositionId}, {transferStateChangeId},
-                {info.drPositionValue + info.drAmount}, {info.drReservedValue},
-                {param1.createdDate})
-        end hnote
-    end
-
-    opt param1.crUpdated == true
-        opt param1.transferStateId == 'ABORTED'
-            note right of TRANSFER_DAO #lightgray
-                info.crAmount = -info.crAmount
-            end note
-        end
-
-        TRANSFER_DAO -> DB: Change CR position
-        activate DB
-        deactivate DB
-        hnote over DB #lightyellow
-            UPDATE **participantPosition**
-            SET value = {info.crPositionValue + info.crAmount}
-            WHERE participantPositionId = {info.crPositionId}
-
-            INSERT INTO **participantPositionChange** (participantPositionId,
-                transferStateChangeId, value, reservedValue, createdDate)
-            VALUES ({info.crPositionId}, {transferStateChangeId},
-                {info.crPositionValue + info.crAmount}, {info.crReservedValue},
-                {param1.createdDate})
-        end hnote
-    end
-
-    note right of TRANSFER_DAO #lightgray
-        **return** {
-            transferStateChangeId,
-            drPositionValue: {info.drPositionValue + info.drAmount}
-            crPositionValue: {info.crPositionValue + info.crAmount}
-        }
-    end note
-end
-@enduml
-
-PlantUML version 1.2019.06(Sat May 25 01:10:25 PHT 2019)
-(GPL source distribution)
-Java Runtime: Java(TM) SE Runtime Environment
-JVM: Java HotSpot(TM) 64-Bit Server VM
-Java Version: 1.8.0_171-b11
-Operating System: Mac OS X
-OS Version: 10.13.6
-Default Encoding: UTF-8
-Language: en
-Country: AU
---></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" height="2031" preserveAspectRatio="none" style="width:711px;height:2031px" width="711">
+  <defs>
+    <filter height="300%" id="a" width="300%" x="-1" y="-1">
+      <feGaussianBlur result="blurOut" stdDeviation="2"/>
+      <feColorMatrix in="blurOut" result="blurOut2" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/>
+      <feOffset dx="4" dy="4" in="blurOut2" result="blurOut3"/>
+      <feBlend in="SourceGraphic" in2="blurOut3"/>
+    </filter>
+  </defs>
+  <text font-family="sans-serif" font-size="18" lengthAdjust="spacingAndGlyphs" textLength="684" x="11.5" y="28.708">
+    5.1.0.b. Transfer state and position change (transferStateAndPositionChange)
+  </text>
+  <path fill="#FFFFE0" stroke="#a80036" d="M44 40.953h361v1984.688H44z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="111" x="169" y="53.02">
+    Central Service
+  </text>
+  <path fill="#FFF" filter="url(#a)" stroke="#a80036" d="M348 322.711h10v516.25h-10zM348 892.227h10v30h-10zM348 1014.43h10v30h-10zM348 1128.828h10v77.398h-10zM348 1329.758h10v30h-10zM348 1644.484h10v30h-10z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M9 139.383h687v1803.961H9z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M34 853.961h638v246.734H34z"/>
+  <path fill="#FFF" d="M34 978.492h638v122.203H34z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M38 1221.227h552v300.727H38z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M92 1245.359h341v56.266H92zM38 1535.953h551v300.727H38z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M92 1560.086h341v56.266H92z"/>
+  <path stroke="#a80036" stroke-dasharray="5,5" d="M97 122.383v1837.961M353 122.383v1837.961"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="92" x="48" y="119.081">
+    Transfer DAO
+  </text>
+  <circle cx="97" cy="90.086" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path stroke="#a80036" stroke-width="2" d="M85 104.086h24"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="92" x="48" y="1972.339">
+    Transfer DAO
+  </text>
+  <circle cx="97" cy="1991.641" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path stroke="#a80036" stroke-width="2" d="M85 2005.641h24"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="90" x="305" y="119.081">
+    Central Store
+  </text>
+  <path d="M335 70.086c0-10 18-10 18-10s18 0 18 10v26c0 10-18 10-18 10s-18 0-18-10v-26" fill="#FEFECE" filter="url(#a)" stroke="#000" stroke-width="1.5"/>
+  <path d="M335 70.086c0 10 18 10 18 10s18 0 18-10" fill="none" stroke="#000" stroke-width="1.5"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="90" x="305" y="1972.339">
+    Central Store
+  </text>
+  <path d="M335 1985.64c0-10 18-10 18-10s18 0 18 10v26c0 10-18 10-18 10s-18 0-18-10v-26" fill="#FEFECE" filter="url(#a)" stroke="#000" stroke-width="1.5"/>
+  <path d="M335 1985.64c0 10 18 10 18 10s18 0 18-10" fill="none" stroke="#000" stroke-width="1.5"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#a80036" d="M348 322.711h10v516.25h-10zM348 892.227h10v30h-10zM348 1014.43h10v30h-10zM348 1128.828h10v77.398h-10zM348 1329.758h10v30h-10zM348 1644.484h10v30h-10z"/>
+  <path d="M9 139.383h389v7l-10 10H9v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M9 139.383h687v1803.961H9z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="344" x="24" y="152.45">
+    transferStateAndPositionUpdate (param1, trx)
+  </text>
+  <path d="M102 161.516v131h289v-121l-10-10H102" fill="#D3D3D3" filter="url(#a)" stroke="#a80036"/>
+  <path d="M381 161.516v10h10l-10-10" fill="#D3D3D3" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="57" x="108" y="178.583">
+    param1
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="23" x="169" y="178.583">
+    = {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="204" x="124" y="193.715">
+    transferId: {payload.transferId},
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="155" x="124" y="208.848">
+    transferStateId: &quot;enum&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="170" x="124" y="223.981">
+    reason: {payload.reason},
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="252" x="124" y="239.114">
+    createdDate: {transactionTimestamp},
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="141" x="124" y="254.247">
+    drUpdated: &quot;boolean&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="136" x="124" y="269.379">
+    crUpdated: &quot;boolean&quot;
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="108" y="284.512">
+    }
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M336 318.71l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M97 322.711h245"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="104" y="317.645">
+    1
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="142" x="117" y="317.645">
+    Select all required info
+  </text>
+  <path fill="#FFFFE0" filter="url(#a)" stroke="#a80036" d="M119 335.71h467l10 238-10 239H119l-10-239 10-238z"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="311" x="121" y="351.778">
+    SELECT dr.participantCurrencyId AS drAccountId,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="423" x="137" y="366.911">
+    dr.amount AS drAmount, drp.participantPositionId AS drPositionId,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="447" x="137" y="382.043">
+    drp.value AS drPositionValue, drp.reservedValue AS drReservedValue,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="257" x="137" y="397.176">
+    cr.participantCurrencyId AS crAccountId,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="419" x="137" y="412.309">
+    cr.amount AS crAmount, crp.participantPositionId AS crPositionId,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="443" x="137" y="427.442">
+    crp.value AS crPositionValue, crp.reservedValue AS crReservedValue,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="119" x="137" y="442.575">
+    tsc.transferStateId
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="36" x="121" y="457.707">
+    FROM
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="59" x="161" y="457.707">
+    transfer
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="5" x="224" y="457.707">
+    t
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="26" x="121" y="472.84">
+    JOIN
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="140" x="151" y="472.84">
+    transferParticipant
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="13" x="295" y="472.84">
+    dr
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="191" x="121" y="487.973">
+    ON dr.transferId = t.transferId
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="127" x="121" y="503.106">
+    AND dr.amount &gt; 0
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="26" x="121" y="518.239">
+    JOIN
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="146" x="151" y="518.239">
+    participantCurrency
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="28" x="301" y="518.239">
+    drpc
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="364" x="121" y="533.372">
+    ON drpc.participantCurrencyId = dr.participantCurrencyId
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="26" x="121" y="548.504">
+    JOIN
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="140" x="151" y="548.504">
+    participantPosition
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="21" x="295" y="548.504">
+    drp
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="357" x="121" y="563.637">
+    ON drp.participantCurrencyId = dr.participantCurrencyId
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="26" x="121" y="578.77">
+    JOIN
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="140" x="151" y="578.77">
+    transferParticipant
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="12" x="295" y="578.77">
+    cr
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="190" x="121" y="593.903">
+    ON cr.transferId = t.transferId
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="126" x="121" y="609.036">
+    AND cr.amount &lt; 0
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="26" x="121" y="624.168">
+    JOIN
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="146" x="151" y="624.168">
+    participantCurrency
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="27" x="301" y="624.168">
+    crpc
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="363" x="121" y="639.301">
+    ON crpc.participantCurrencyId = dr.participantCurrencyId
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="26" x="121" y="654.434">
+    JOIN
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="140" x="151" y="654.434">
+    participantPosition
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="20" x="295" y="654.434">
+    crp
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="355" x="121" y="669.567">
+    ON crp.participantCurrencyId = cr.participantCurrencyId
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="26" x="121" y="684.7">
+    JOIN
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="154" x="151" y="684.7">
+    transferStateChange
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="19" x="309" y="684.7">
+    tsc
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="197" x="121" y="699.832">
+    ON tsc.transferId = t.transferId
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="246" x="121" y="714.965">
+    WHERE t.transferId = param1.tranferId
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="393" x="121" y="730.098">
+    AND drpc.ledgerAccountTypeId IN(&apos;POSITION&apos;, &apos;SETTLEMENT&apos;, &apos;
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="382" x="137" y="745.231">
+    HUB_RECONCILIATION&apos;, &apos;HUB_MULTILATERAL_SETTLEMENT&apos;)
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="392" x="121" y="760.364">
+    AND crpc.ledgerAccountTypeId IN(&apos;POSITION&apos;, &apos;SETTLEMENT&apos;, &apos;
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="382" x="137" y="775.497">
+    HUB_RECONCILIATION&apos;, &apos;HUB_MULTILATERAL_SETTLEMENT&apos;)
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="253" x="121" y="790.629">
+    ORDER BY transferStateChangeId DESC
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="43" x="121" y="805.762">
+    LIMIT 1
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M108 834.96l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M102 838.961h250"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="114" y="833.895">
+    2
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="42" x="127" y="833.895">
+    Return
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="28" x="173" y="833.895">
+    info
+  </text>
+  <path d="M34 853.96h70v7l-10 10H34v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M34 853.961h638v246.734H34z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="25" x="49" y="867.028">
+    opt
+  </text>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="269" x="119" y="866.171">
+    [param1.transferStateId == &apos;COMMITTED&apos;]
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M336 888.227l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M97 892.227h245"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="104" y="887.161">
+    3
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="140" x="117" y="887.161">
+    Change transfer state
+  </text>
+  <path fill="#FFFFE0" filter="url(#a)" stroke="#a80036" d="M54 935.227h598l10 19-10 19H54l-10-19 10-19z"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="79" x="56" y="951.293">
+    INSERT INTO
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="154" x="139" y="951.293">
+    transferStateChange
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="315" x="297" y="951.293">
+    (transferId, transferStateId, reason, createdDate)
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="594" x="56" y="966.426">
+    VALUES ({param1.transferId, &apos;RECEIVED_FULFIL&apos;, {param1.reason}, {param1.createdDate})
+  </text>
+  <path stroke="#000" stroke-dasharray="2,2" d="M34 979.492h638"/>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="251" x="39" y="989.703">
+    [param1.transferStateId == &apos;ABORTED&apos;]
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M336 1010.43l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M97 1014.43h245"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="104" y="1009.364">
+    4
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="140" x="117" y="1009.364">
+    Change transfer state
+  </text>
+  <path fill="#FFFFE0" filter="url(#a)" stroke="#a80036" d="M73 1057.43h560l10 19-10 19H73l-10-19 10-19z"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="79" x="75" y="1073.497">
+    INSERT INTO
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="154" x="158" y="1073.497">
+    transferStateChange
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="315" x="316" y="1073.497">
+    (transferId, transferStateId, reason, createdDate)
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="544" x="75" y="1088.629">
+    VALUES ({param1.transferId, &apos;REJECTED&apos;, {param1.reason}, {param1.createdDate})
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M336 1124.828l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M97 1128.828h245"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="104" y="1123.762">
+    5
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="140" x="117" y="1123.762">
+    Change transfer state
+  </text>
+  <path fill="#FFFFE0" filter="url(#a)" stroke="#a80036" d="M29 1141.828h647l10 19-10 19H29l-10-19 10-19z"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="79" x="31" y="1157.895">
+    INSERT INTO
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="154" x="114" y="1157.895">
+    transferStateChange
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="315" x="272" y="1157.895">
+    (transferId, transferStateId, reason, createdDate)
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="643" x="31" y="1173.028">
+    VALUES ({param1.transferId, {param1.transferStateId}, {param1.reason}, {param1.createdDate})
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M108 1202.227l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M102 1206.227h250"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="114" y="1201.161">
+    6
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="42" x="127" y="1201.161">
+    Return
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="168" x="173" y="1201.161">
+    transferStateChangeId
+  </text>
+  <path d="M38 1221.227h70v7l-10 10H38v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M38 1221.227h552v300.727H38z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="25" x="53" y="1234.293">
+    opt
+  </text>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="181" x="123" y="1233.437">
+    [param1.drUpdated == true]
+  </text>
+  <path d="M92 1245.36h70v7l-10 10H92v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M92 1245.359h341v56.266H92z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="25" x="107" y="1258.426">
+    opt
+  </text>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="251" x="177" y="1257.57">
+    [param1.transferStateId == &apos;ABORTED&apos;]
+  </text>
+  <path d="M102 1267.492v25h227v-15l-10-10H102" fill="#D3D3D3" filter="url(#a)" stroke="#a80036"/>
+  <path d="M319 1267.492v10h10l-10-10" fill="#D3D3D3" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="206" x="108" y="1284.559">
+    info.drAmount = -info.drAmount
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M336 1325.758l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M97 1329.758h245"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="104" y="1324.692">
+    7
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="125" x="117" y="1324.692">
+    Change DR position
+  </text>
+  <path fill="#FFFFE0" filter="url(#a)" stroke="#a80036" d="M135 1372.758h435l10 72-10 72H135l-10-72 10-72z"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="52" x="137" y="1388.825">
+    UPDATE
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="140" x="193" y="1388.825">
+    participantPosition
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="333" x="137" y="1403.957">
+    SET value = {info.drPositionValue + info.drAmount}
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="314" x="137" y="1419.09">
+    WHERE participantPositionId = {info.drPositionId}
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="79" x="137" y="1449.356">
+    INSERT INTO
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="196" x="220" y="1449.356">
+    participantPositionChange
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="138" x="420" y="1449.356">
+    (participantPositionId,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="380" x="153" y="1464.489">
+    transferStateChangeId, value, reservedValue, createdDate)
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="351" x="137" y="1479.622">
+    VALUES ({info.drPositionId}, {transferStateChangeId},
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="415" x="153" y="1494.754">
+    {info.drPositionValue + info.drAmount}, {info.drReservedValue},
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="155" x="153" y="1509.887">
+    {param1.createdDate})
+  </text>
+  <path d="M38 1535.953h70v7l-10 10H38v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M38 1535.953h551v300.727H38z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="25" x="53" y="1549.02">
+    opt
+  </text>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="180" x="123" y="1548.164">
+    [param1.crUpdated == true]
+  </text>
+  <path d="M92 1560.086h70v7l-10 10H92v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M92 1560.086h341v56.266H92z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="25" x="107" y="1573.153">
+    opt
+  </text>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="251" x="177" y="1572.296">
+    [param1.transferStateId == &apos;ABORTED&apos;]
+  </text>
+  <path d="M102 1582.219v25h225v-15l-10-10H102" fill="#D3D3D3" filter="url(#a)" stroke="#a80036"/>
+  <path d="M317 1582.219v10h10l-10-10" fill="#D3D3D3" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="204" x="108" y="1599.286">
+    info.crAmount = -info.crAmount
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M336 1640.484l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M97 1644.484h245"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="104" y="1639.418">
+    8
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="124" x="117" y="1639.418">
+    Change CR position
+  </text>
+  <path fill="#FFFFE0" filter="url(#a)" stroke="#a80036" d="M137 1687.484h432l10 72-10 72H137l-10-72 10-72z"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="52" x="139" y="1703.551">
+    UPDATE
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="140" x="195" y="1703.551">
+    participantPosition
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="331" x="139" y="1718.684">
+    SET value = {info.crPositionValue + info.crAmount}
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="313" x="139" y="1733.817">
+    WHERE participantPositionId = {info.crPositionId}
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="79" x="139" y="1764.082">
+    INSERT INTO
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="196" x="222" y="1764.082">
+    participantPositionChange
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="138" x="422" y="1764.082">
+    (participantPositionId,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="380" x="155" y="1779.215">
+    transferStateChangeId, value, reservedValue, createdDate)
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="350" x="139" y="1794.348">
+    VALUES ({info.crPositionId}, {transferStateChangeId},
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="412" x="155" y="1809.481">
+    {info.crPositionValue + info.crAmount}, {info.crReservedValue},
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="155" x="155" y="1824.614">
+    {param1.createdDate})
+  </text>
+  <path d="M102 1848.68v85h396v-75l-10-10H102" fill="#D3D3D3" filter="url(#a)" stroke="#a80036"/>
+  <path d="M488 1848.68v10h10l-10-10" fill="#D3D3D3" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="45" x="108" y="1865.747">
+    return
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="157" y="1865.747">
+    {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="149" x="124" y="1880.879">
+    transferStateChangeId,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="359" x="124" y="1896.012">
+    drPositionValue: {info.drPositionValue + info.drAmount}
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="356" x="124" y="1911.145">
+    crPositionValue: {info.crPositionValue + info.crAmount}
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="108" y="1926.278">
+    }
+  </text>
+</svg>

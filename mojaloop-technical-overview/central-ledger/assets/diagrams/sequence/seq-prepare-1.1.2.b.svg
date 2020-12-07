@@ -1,124 +1,337 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="1557px" preserveAspectRatio="none" style="width:1891px;height:1557px;" version="1.1" viewBox="0 0 1891 1557" width="1891px" zoomAndPan="magnify"><defs><filter height="300%" id="f4jp52m1f0n5m" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="376" x="758.5" y="23.5352">1.1.2.b. Position Handler Consume (batch messages)</text><rect fill="#FFFFE0" height="1512.5039" style="stroke: #A80036; stroke-width: 1.0;" width="1808" x="19" y="34.4883"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="101" x="872.5" y="47.0566">Central Service</text><rect fill="#FFFFFF" filter="url(#f4jp52m1f0n5m)" height="30" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="109" y="171.9082"/><rect fill="#FFFFFF" filter="url(#f4jp52m1f0n5m)" height="1345.2168" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="484" y="126.2871"/><rect fill="#FFFFFF" filter="url(#f4jp52m1f0n5m)" height="30" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1092" y="1419.5039"/><rect fill="#FFFFFF" filter="url(#f4jp52m1f0n5m)" height="121.9316" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1469" y="451.3926"/><rect fill="#FFFFFF" filter="url(#f4jp52m1f0n5m)" height="121.9316" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1469" y="687.2559"/><rect fill="#FFFFFF" filter="url(#f4jp52m1f0n5m)" height="121.9316" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1576.5" y="869.8086"/><rect fill="#FFFFFF" filter="url(#f4jp52m1f0n5m)" height="30" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1770" y="480.7031"/><rect fill="#FFFFFF" filter="url(#f4jp52m1f0n5m)" height="30" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1770" y="716.5664"/><rect fill="#FFFFFF" filter="url(#f4jp52m1f0n5m)" height="30" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1770" y="899.1191"/><rect fill="#FFFFFF" filter="url(#f4jp52m1f0n5m)" height="1331.2168" style="stroke: #000000; stroke-width: 2.0;" width="1867" x="13" y="133.2871"/><rect fill="#FFFFFF" filter="url(#f4jp52m1f0n5m)" height="157.5527" style="stroke: #000000; stroke-width: 2.0;" width="870" x="399" y="216.9082"/><rect fill="#FFFFFF" filter="url(#f4jp52m1f0n5m)" height="1069.043" style="stroke: #000000; stroke-width: 2.0;" width="1481" x="389" y="388.4609"/><rect fill="#FFFFFF" filter="url(#f4jp52m1f0n5m)" height="404.416" style="stroke: #000000; stroke-width: 2.0;" width="1448" x="399" y="412.7715"/><rect fill="#FFFFFF" filter="url(#f4jp52m1f0n5m)" height="168.5527" style="stroke: #000000; stroke-width: 2.0;" width="1461" x="399" y="831.1875"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="114" x2="114" y1="116.2871" y2="1481.5039"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="489" x2="489" y1="116.2871" y2="1481.5039"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="1097" x2="1097" y1="116.2871" y2="1481.5039"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="1214" x2="1214" y1="116.2871" y2="1481.5039"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="1342" x2="1342" y1="116.2871" y2="1481.5039"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="1474" x2="1474" y1="116.2871" y2="1481.5039"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="1581" x2="1581" y1="116.2871" y2="1481.5039"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="1775" x2="1775" y1="116.2871" y2="1481.5039"/><rect fill="#FEFECE" filter="url(#f4jp52m1f0n5m)" height="30.4883" style="stroke: #A80036; stroke-width: 1.5;" width="174" x="27" y="76.7988"/><rect fill="#FEFECE" filter="url(#f4jp52m1f0n5m)" height="30.4883" style="stroke: #A80036; stroke-width: 1.5;" width="174" x="23" y="80.7988"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="160" x="30" y="101.334">topic-transfer-position</text><rect fill="#FEFECE" filter="url(#f4jp52m1f0n5m)" height="30.4883" style="stroke: #A80036; stroke-width: 1.5;" width="174" x="27" y="1480.5039"/><rect fill="#FEFECE" filter="url(#f4jp52m1f0n5m)" height="30.4883" style="stroke: #A80036; stroke-width: 1.5;" width="174" x="23" y="1484.5039"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="160" x="30" y="1505.0391">topic-transfer-position</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="154" x="409" y="113.334">Position Event Handler</text><ellipse cx="489" cy="83.7988" fill="#FEFECE" filter="url(#f4jp52m1f0n5m)" rx="12" ry="12" style="stroke: #A80036; stroke-width: 2.0;"/><polygon fill="#A80036" points="485,71.7988,491,66.7988,489,71.7988,491,76.7988,485,71.7988" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="154" x="409" y="1494.0391">Position Event Handler</text><ellipse cx="489" cy="1512.9922" fill="#FEFECE" filter="url(#f4jp52m1f0n5m)" rx="12" ry="12" style="stroke: #A80036; stroke-width: 2.0;"/><polygon fill="#A80036" points="485,1500.9922,491,1495.9922,489,1500.9922,491,1505.9922,485,1500.9922" style="stroke: #A80036; stroke-width: 1.0;"/><rect fill="#FEFECE" filter="url(#f4jp52m1f0n5m)" height="30.4883" style="stroke: #A80036; stroke-width: 1.5;" width="118" x="1038" y="76.7988"/><rect fill="#FEFECE" filter="url(#f4jp52m1f0n5m)" height="30.4883" style="stroke: #A80036; stroke-width: 1.5;" width="118" x="1034" y="80.7988"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="104" x="1041" y="101.334">Transfer-Topic</text><rect fill="#FEFECE" filter="url(#f4jp52m1f0n5m)" height="30.4883" style="stroke: #A80036; stroke-width: 1.5;" width="118" x="1038" y="1480.5039"/><rect fill="#FEFECE" filter="url(#f4jp52m1f0n5m)" height="30.4883" style="stroke: #A80036; stroke-width: 1.5;" width="118" x="1034" y="1484.5039"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="104" x="1041" y="1505.0391">Transfer-Topic</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="83" x="1170" y="113.334">Event-Topic</text><ellipse cx="1214.5" cy="83.7988" fill="#FEFECE" filter="url(#f4jp52m1f0n5m)" rx="12" ry="12" style="stroke: #A80036; stroke-width: 2.0;"/><line style="stroke: #A80036; stroke-width: 2.0;" x1="1202.5" x2="1226.5" y1="97.7988" y2="97.7988"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="83" x="1170" y="1494.0391">Event-Topic</text><ellipse cx="1214.5" cy="1512.9922" fill="#FEFECE" filter="url(#f4jp52m1f0n5m)" rx="12" ry="12" style="stroke: #A80036; stroke-width: 2.0;"/><line style="stroke: #A80036; stroke-width: 2.0;" x1="1202.5" x2="1226.5" y1="1526.9922" y2="1526.9922"/><rect fill="#FEFECE" filter="url(#f4jp52m1f0n5m)" height="30.4883" style="stroke: #A80036; stroke-width: 1.5;" width="139" x="1273" y="76.7988"/><rect fill="#FEFECE" filter="url(#f4jp52m1f0n5m)" height="30.4883" style="stroke: #A80036; stroke-width: 1.5;" width="139" x="1269" y="80.7988"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="125" x="1276" y="101.334">Notification-Topic</text><rect fill="#FEFECE" filter="url(#f4jp52m1f0n5m)" height="30.4883" style="stroke: #A80036; stroke-width: 1.5;" width="139" x="1273" y="1480.5039"/><rect fill="#FEFECE" filter="url(#f4jp52m1f0n5m)" height="30.4883" style="stroke: #A80036; stroke-width: 1.5;" width="139" x="1269" y="1484.5039"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="125" x="1276" y="1505.0391">Notification-Topic</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="90" x="1426" y="113.334">Position DAO</text><ellipse cx="1474" cy="83.7988" fill="#FEFECE" filter="url(#f4jp52m1f0n5m)" rx="12" ry="12" style="stroke: #A80036; stroke-width: 2.0;"/><line style="stroke: #A80036; stroke-width: 2.0;" x1="1462" x2="1486" y1="97.7988" y2="97.7988"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="90" x="1426" y="1494.0391">Position DAO</text><ellipse cx="1474" cy="1512.9922" fill="#FEFECE" filter="url(#f4jp52m1f0n5m)" rx="12" ry="12" style="stroke: #A80036; stroke-width: 2.0;"/><line style="stroke: #A80036; stroke-width: 2.0;" x1="1462" x2="1486" y1="1526.9922" y2="1526.9922"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="93" x="1532" y="113.334">Transfer DAO</text><ellipse cx="1581.5" cy="83.7988" fill="#FEFECE" filter="url(#f4jp52m1f0n5m)" rx="12" ry="12" style="stroke: #A80036; stroke-width: 2.0;"/><line style="stroke: #A80036; stroke-width: 2.0;" x1="1569.5" x2="1593.5" y1="97.7988" y2="97.7988"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="93" x="1532" y="1494.0391">Transfer DAO</text><ellipse cx="1581.5" cy="1512.9922" fill="#FEFECE" filter="url(#f4jp52m1f0n5m)" rx="12" ry="12" style="stroke: #A80036; stroke-width: 2.0;"/><line style="stroke: #A80036; stroke-width: 2.0;" x1="1569.5" x2="1593.5" y1="1526.9922" y2="1526.9922"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="90" x="1727" y="113.334">Central Store</text><path d="M1757,63.7988 C1757,53.7988 1775,53.7988 1775,53.7988 C1775,53.7988 1793,53.7988 1793,63.7988 L1793,89.7988 C1793,99.7988 1775,99.7988 1775,99.7988 C1775,99.7988 1757,99.7988 1757,89.7988 L1757,63.7988 " fill="#FEFECE" filter="url(#f4jp52m1f0n5m)" style="stroke: #000000; stroke-width: 1.5;"/><path d="M1757,63.7988 C1757,73.7988 1775,73.7988 1775,73.7988 C1775,73.7988 1793,73.7988 1793,63.7988 " fill="none" style="stroke: #000000; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="90" x="1727" y="1494.0391">Central Store</text><path d="M1757,1506.9922 C1757,1496.9922 1775,1496.9922 1775,1496.9922 C1775,1496.9922 1793,1496.9922 1793,1506.9922 L1793,1532.9922 C1793,1542.9922 1775,1542.9922 1775,1542.9922 C1775,1542.9922 1757,1542.9922 1757,1532.9922 L1757,1506.9922 " fill="#FEFECE" filter="url(#f4jp52m1f0n5m)" style="stroke: #000000; stroke-width: 1.5;"/><path d="M1757,1506.9922 C1757,1516.9922 1775,1516.9922 1775,1516.9922 C1775,1516.9922 1793,1516.9922 1793,1506.9922 " fill="none" style="stroke: #000000; stroke-width: 1.5;"/><rect fill="#FFFFFF" filter="url(#f4jp52m1f0n5m)" height="30" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="109" y="171.9082"/><rect fill="#FFFFFF" filter="url(#f4jp52m1f0n5m)" height="1345.2168" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="484" y="126.2871"/><rect fill="#FFFFFF" filter="url(#f4jp52m1f0n5m)" height="30" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1092" y="1419.5039"/><rect fill="#FFFFFF" filter="url(#f4jp52m1f0n5m)" height="121.9316" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1469" y="451.3926"/><rect fill="#FFFFFF" filter="url(#f4jp52m1f0n5m)" height="121.9316" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1469" y="687.2559"/><rect fill="#FFFFFF" filter="url(#f4jp52m1f0n5m)" height="121.9316" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1576.5" y="869.8086"/><rect fill="#FFFFFF" filter="url(#f4jp52m1f0n5m)" height="30" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1770" y="480.7031"/><rect fill="#FFFFFF" filter="url(#f4jp52m1f0n5m)" height="30" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1770" y="716.5664"/><rect fill="#FFFFFF" filter="url(#f4jp52m1f0n5m)" height="30" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1770" y="899.1191"/><path d="M13,133.2871 L236,133.2871 L236,140.2871 L226,150.2871 L13,150.2871 L13,133.2871 " fill="#EEEEEE" style="stroke: #000000; stroke-width: 1.0;"/><rect fill="none" height="1331.2168" style="stroke: #000000; stroke-width: 2.0;" width="1867" x="13" y="133.2871"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="178" x="28" y="146.8555">Position Handler Consume</text><polygon fill="#A80036" points="130,167.9082,120,171.9082,130,175.9082,126,171.9082" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="124" x2="483" y1="171.9082" y2="171.9082"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="136" y="167.166">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="333" x="149" y="167.166">Consume Position event batch of messages for Payer</text><path d="M399,216.9082 L614,216.9082 L614,223.9082 L604,233.9082 L399,233.9082 L399,216.9082 " fill="#EEEEEE" style="stroke: #000000; stroke-width: 1.0;"/><rect fill="none" height="157.5527" style="stroke: #000000; stroke-width: 2.0;" width="870" x="399" y="216.9082"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="170" x="414" y="230.4766">Persist Event Information</text><polygon fill="#A80036" points="1202.5,276.5293,1212.5,280.5293,1202.5,284.5293,1206.5,280.5293" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="494" x2="1208.5" y1="280.5293" y2="280.5293"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="501" y="275.7871">2</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="162" x="514" y="275.7871">Publish event information</text><rect fill="#FFFFFF" filter="url(#f4jp52m1f0n5m)" height="55.9316" style="stroke: #000000; stroke-width: 2.0;" width="852" x="406" y="288.5293"/><polygon fill="#EEEEEE" points="406,288.5293,470,288.5293,470,295.5293,460,305.5293,406,305.5293,406,288.5293" style="stroke: #000000; stroke-width: 2.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19" x="419" y="303.0977">ref</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="150" x="759" y="322.0977">Event Handler Consume</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="0" x="763" y="337.4082"/><path d="M389,388.4609 L463,388.4609 L463,395.4609 L453,405.4609 L389,405.4609 L389,388.4609 " fill="#EEEEEE" style="stroke: #000000; stroke-width: 1.0;"/><rect fill="none" height="1069.043" style="stroke: #000000; stroke-width: 2.0;" width="1481" x="389" y="388.4609"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="29" x="404" y="402.0293">loop</text><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="155" x="478" y="401.0957">[for each message in batch]</text><path d="M399,412.7715 L698,412.7715 L698,419.7715 L688,429.7715 L399,429.7715 L399,412.7715 " fill="#EEEEEE" style="stroke: #000000; stroke-width: 1.0;"/><rect fill="none" height="404.416" style="stroke: #000000; stroke-width: 2.0;" width="1448" x="399" y="412.7715"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="254" x="414" y="426.3398">Calculate position and persist change</text><polygon fill="#A80036" points="1457,447.3926,1467,451.3926,1457,455.3926,1461,451.3926" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="494" x2="1463" y1="451.3926" y2="451.3926"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="501" y="446.6504">3</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="259" x="514" y="446.6504">Request latest position from DB for Payer</text><polygon fill="#A80036" points="1758,476.7031,1768,480.7031,1758,484.7031,1762,480.7031" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="1479" x2="1764" y1="480.7031" y2="480.7031"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="1486" y="475.9609">4</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="259" x="1499" y="475.9609">Retrieve latest position from DB for Payer</text><polygon fill="#FFFFE0" filter="url(#f4jp52m1f0n5m)" points="1723,523.7031,1827,523.7031,1837,534.7031,1827,546.7031,1723,546.7031,1713,534.7031,1723,523.7031" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="100" x="1725" y="540.2715">transferPosition</text><polygon fill="#A80036" points="505,569.3242,495,573.3242,505,577.3242,501,573.3242" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="499" x2="1473" y1="573.3242" y2="573.3242"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="511" y="568.582">5</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="136" x="524" y="568.582">Return latest position</text><line style="stroke: #A80036; stroke-width: 1.0;" x1="494" x2="536" y1="602.6348" y2="602.6348"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="536" x2="536" y1="602.6348" y2="615.6348"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="495" x2="536" y1="615.6348" y2="615.6348"/><polygon fill="#A80036" points="505,611.6348,495,615.6348,505,619.6348,501,615.6348" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="501" y="597.8926">6</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="424" x="514" y="597.8926">Calculate latest position (lpos) by incrementing transfer for prepare</text><line style="stroke: #A80036; stroke-width: 1.0;" x1="494" x2="536" y1="644.9453" y2="644.9453"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="536" x2="536" y1="644.9453" y2="657.9453"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="495" x2="536" y1="657.9453" y2="657.9453"/><polygon fill="#A80036" points="505,653.9453,495,657.9453,505,661.9453,501,657.9453" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="501" y="640.2031">7</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="571" x="514" y="640.2031">Validate Calculated latest position against the net-debit cap (netcap) - Rule: lpos &lt; netcap</text><polygon fill="#A80036" points="1457,683.2559,1467,687.2559,1457,691.2559,1461,687.2559" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="494" x2="1463" y1="687.2559" y2="687.2559"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="501" y="682.5137">8</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="268" x="514" y="682.5137">Request to persist latest position for Payer</text><polygon fill="#A80036" points="1758,712.5664,1768,716.5664,1758,720.5664,1762,716.5664" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="1479" x2="1764" y1="716.5664" y2="716.5664"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="1486" y="711.8242">9</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="234" x="1499" y="711.8242">Persist latest position to DB for Payer</text><polygon fill="#FFFFE0" filter="url(#f4jp52m1f0n5m)" points="1723,759.5664,1827,759.5664,1837,770.5664,1827,782.5664,1723,782.5664,1713,770.5664,1723,759.5664" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="100" x="1725" y="776.1348">transferPosition</text><polygon fill="#A80036" points="505,805.1875,495,809.1875,505,813.1875,501,809.1875" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="499" x2="1473" y1="809.1875" y2="809.1875"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="511" y="804.4453">10</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="95" x="533" y="804.4453">Return success</text><path d="M399,831.1875 L963,831.1875 L963,838.1875 L953,848.1875 L399,848.1875 L399,831.1875 " fill="#EEEEEE" style="stroke: #000000; stroke-width: 1.0;"/><rect fill="none" height="168.5527" style="stroke: #000000; stroke-width: 2.0;" width="1461" x="399" y="831.1875"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="519" x="414" y="844.7559">Persist Transfer State (with transferState='RESERVED' on position check pass)</text><polygon fill="#A80036" points="1564.5,865.8086,1574.5,869.8086,1564.5,873.8086,1568.5,869.8086" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="494" x2="1570.5" y1="869.8086" y2="869.8086"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="501" y="865.0664">11</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="206" x="523" y="865.0664">Request to persist batch transfer</text><polygon fill="#A80036" points="1758,895.1191,1768,899.1191,1758,903.1191,1762,899.1191" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="1586.5" x2="1764" y1="899.1191" y2="899.1191"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1593.5" y="894.377">12</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="134" x="1615.5" y="894.377">Persist batch transfer</text><polygon fill="#FFFFE0" filter="url(#f4jp52m1f0n5m)" points="1709,942.1191,1840,942.1191,1850,953.1191,1840,965.1191,1709,965.1191,1699,953.1191,1709,942.1191" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="127" x="1711" y="958.6875">transferStateChange</text><polygon fill="#A80036" points="505,987.7402,495,991.7402,505,995.7402,501,991.7402" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="499" x2="1580.5" y1="991.7402" y2="991.7402"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="511" y="986.998">13</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="95" x="533" y="986.998">Return success</text><path d="M499,1011.7402 L499,1388.7402 L761,1388.7402 L761,1021.7402 L751,1011.7402 L499,1011.7402 " fill="#FFFF00" filter="url(#f4jp52m1f0n5m)" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M751,1011.7402 L751,1021.7402 L761,1021.7402 L751,1011.7402 " fill="#FFFF00" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="58" x="505" y="1029.3086">Message:</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="4" x="505" y="1044.6191">{</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="208" x="521" y="1059.9297">id: &lt;transferMessage.transferId&gt;</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="225" x="521" y="1075.2402">from: &lt;transferMessage.payerFsp&gt;,</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="210" x="521" y="1090.5508">to: &lt;transferMessage.payeeFsp&gt;,</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="139" x="521" y="1105.8613">type: application/json</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="60" x="521" y="1121.1719">content: {</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="181" x="537" y="1136.4824">headers: &lt;transferHeaders&gt;,</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="180" x="537" y="1151.793">payload: &lt;transferMessage&gt;</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="521" y="1167.1035">},</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="70" x="521" y="1182.4141">metadata: {</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="46" x="537" y="1197.7246">event: {</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="72" x="553" y="1213.0352">id: &lt;uuid&gt;,</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="191" x="553" y="1228.3457">responseTo: &lt;previous.uuid&gt;,</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="88" x="553" y="1243.6563">type: transfer,</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="98" x="553" y="1258.9668">action: prepare,</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="159" x="553" y="1274.2773">createdAt: &lt;timestamp&gt;,</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="43" x="553" y="1289.5879">state: {</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="111" x="569" y="1304.8984">status: "success",</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="46" x="569" y="1320.209">code: 0</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="4" x="553" y="1335.5195">}</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="4" x="537" y="1350.8301">}</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="4" x="521" y="1366.1406">}</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="4" x="505" y="1381.4512">}</text><polygon fill="#A80036" points="1080,1415.5039,1090,1419.5039,1080,1423.5039,1084,1419.5039" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="494" x2="1086" y1="1419.5039" y2="1419.5039"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="501" y="1414.7617">14</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="140" x="523" y="1414.7617">Publish Transfer event</text><!--
-@startuml
-title 1.1.2.b. Position Handler Consume (batch messages)
-
-autonumber
-
-
-collections "topic-transfer-position" as TOPIC_TRANSFER_POSITION
-control "Position Event Handler" as POS_HANDLER
-collections "Transfer-Topic" as TOPIC_TRANSFERS
-entity "Position DAO" as POS_DAO
-entity "Event-Topic" as TOPIC_EVENTS
-collections "Notification-Topic" as TOPIC_NOTIFICATIONS
-entity "Transfer DAO" as TRANS_DAO
-database "Central Store" as DB
-
-box "Central Service" #LightYellow
-    participant TOPIC_TRANSFER_POSITION
-    participant POS_HANDLER
-    participant TOPIC_TRANSFERS
-    participant TOPIC_EVENTS
-    participant TOPIC_NOTIFICATIONS
-    participant POS_DAO
-    participant TRANS_DAO
-    participant DB
-end box
-
-activate POS_HANDLER
-group Position Handler Consume
-    TOPIC_TRANSFER_POSITION <- POS_HANDLER: Consume Position event batch of messages for Payer
-    activate TOPIC_TRANSFER_POSITION
-    deactivate TOPIC_TRANSFER_POSITION
-
-    group Persist Event Information
-        |||
-        POS_HANDLER -> TOPIC_EVENTS: Publish event information
-        ref over POS_HANDLER, TOPIC_EVENTS : Event Handler Consume\n
-        |||
-    end
-
-    loop for each message in batch
-        group Calculate position and persist change
-            POS_HANDLER -> POS_DAO: Request latest position from DB for Payer
-            activate POS_DAO
-            POS_DAO -> DB: Retrieve latest position from DB for Payer
-            hnote over DB #lightyellow
-                transferPosition
-            end note
-            activate DB
-            deactivate DB
-            POS_DAO - -> POS_HANDLER: Return latest position
-            deactivate POS_DAO
-
-            POS_HANDLER <-> POS_HANDLER: Calculate latest position (lpos) by incrementing transfer for prepare
-            POS_HANDLER <-> POS_HANDLER: Validate Calculated latest position against the net-debit cap (netcap) - Rule: lpos < netcap
-            
-            POS_HANDLER -> POS_DAO: Request to persist latest position for Payer
-            activate POS_DAO
-            POS_DAO -> DB: Persist latest position to DB for Payer
-            hnote over DB #lightyellow
-                transferPosition
-            end note
-            activate DB
-            deactivate DB
-            POS_DAO - -> POS_HANDLER: Return success
-            deactivate POS_DAO
-        end
-        group Persist Transfer State (with transferState='RESERVED' on position check pass)
-            POS_HANDLER -> TRANS_DAO: Request to persist batch transfer
-            activate TRANS_DAO
-            TRANS_DAO -> DB: Persist batch transfer
-            hnote over DB #lightyellow
-                transferStateChange
-            end note
-            activate DB
-            deactivate DB
-            TRANS_DAO - -> POS_HANDLER: Return success
-            deactivate TRANS_DAO
-        end
-        note right of POS_HANDLER #yellow
-            Message:
-            {
-                id: <transferMessage.transferId>
-                from: <transferMessage.payerFsp>,
-                to: <transferMessage.payeeFsp>,
-                type: application/json
-                content: {
-                    headers: <transferHeaders>,
-                    payload: <transferMessage>
-                },
-                metadata: {
-                    event: {
-                        id: <uuid>,
-                        responseTo: <previous.uuid>,
-                        type: transfer,
-                        action: prepare,
-                        createdAt: <timestamp>,
-                        state: {
-                            status: "success",
-                            code: 0
-                        }
-                    }
-                }
-            }
-        end note
-        POS_HANDLER -> TOPIC_TRANSFERS: Publish Transfer event
-        activate TOPIC_TRANSFERS
-        deactivate TOPIC_TRANSFERS
-    end
-end
-deactivate POS_HANDLER
-@enduml
-
-PlantUML version 1.2019.06(Sat May 25 01:10:25 PHT 2019)
-(GPL source distribution)
-Java Runtime: Java(TM) SE Runtime Environment
-JVM: Java HotSpot(TM) 64-Bit Server VM
-Java Version: 1.8.0_171-b11
-Operating System: Mac OS X
-OS Version: 10.13.6
-Default Encoding: UTF-8
-Language: en
-Country: AU
---></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" height="1550" preserveAspectRatio="none" style="width:1902px;height:1550px" width="1902">
+  <defs>
+    <filter height="300%" id="a" width="300%" x="-1" y="-1">
+      <feGaussianBlur result="blurOut" stdDeviation="2"/>
+      <feColorMatrix in="blurOut" result="blurOut2" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/>
+      <feOffset dx="4" dy="4" in="blurOut2" result="blurOut3"/>
+      <feBlend in="SourceGraphic" in2="blurOut3"/>
+    </filter>
+  </defs>
+  <text font-family="sans-serif" font-size="18" lengthAdjust="spacingAndGlyphs" textLength="465" x="716.5" y="28.708">
+    1.1.2.b. Position Handler Consume (batch messages)
+  </text>
+  <path fill="#FFFFE0" stroke="#a80036" d="M16 40.953h1815v1503.234H16z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="111" x="868" y="53.02">
+    Central Service
+  </text>
+  <path fill="#FFF" filter="url(#a)" stroke="#a80036" d="M102 177.648h10v30h-10zM486 132.383h10v1336.508h-10zM1100 1416.891h10v30h-10zM1468 455.711h10v121.398h-10zM1468 690.508h10v121.398h-10zM1575 872.172h10V993.57h-10zM1774 484.844h10v30h-10zM1774 719.641h10v30h-10zM1774 901.305h10v30h-10z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M10 139.383h1878v1322.508H10z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M400.5 222.648H1274v156.664H400.5zM390.5 393.313H1878v1061.578H390.5z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M400.5 417.445H1851v402.461H400.5zM400.5 833.906H1868v167.664H400.5z"/>
+  <path stroke="#a80036" stroke-dasharray="5,5" d="M107 122.383v1356.508M490.5 122.383v1356.508M1105 122.383v1356.508M1220 122.383v1356.508M1344 122.383v1356.508M1473 122.383v1356.508M1580 122.383v1356.508M1779 122.383v1356.508"/>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M24 83.086h166v30.297H24z"/>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M20 87.086h166v30.297H20z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="152" x="27" y="107.081">
+    topic-transfer-position
+  </text>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M24 1477.891h166v30.297H24z"/>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M20 1481.891h166v30.297H20z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="152" x="27" y="1501.886">
+    topic-transfer-position
+  </text>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="155" x="410.5" y="119.081">
+    Position Event Handler
+  </text>
+  <circle cx="491" cy="90.086" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path fill="#A80036" stroke="#a80036" d="M487 78.086l6-5-2 5 2 5-6-5z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="155" x="410.5" y="1490.886">
+    Position Event Handler
+  </text>
+  <circle cx="491" cy="1510.188" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path fill="#A80036" stroke="#a80036" d="M487 1498.188l6-5-2 5 2 5-6-5z"/>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M1048 83.086h114v30.297h-114z"/>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M1044 87.086h114v30.297h-114z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="100" x="1051" y="107.081">
+    Transfer-Topic
+  </text>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M1048 1477.891h114v30.297h-114z"/>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M1044 1481.891h114v30.297h-114z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="100" x="1051" y="1501.886">
+    Transfer-Topic
+  </text>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="82" x="1176" y="119.081">
+    Event-Topic
+  </text>
+  <circle cx="1220" cy="90.086" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path stroke="#a80036" stroke-width="2" d="M1208 104.086h24"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="82" x="1176" y="1490.886">
+    Event-Topic
+  </text>
+  <circle cx="1220" cy="1510.188" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path stroke="#a80036" stroke-width="2" d="M1208 1524.188h24"/>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M1278 83.086h133v30.297h-133z"/>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M1274 87.086h133v30.297h-133z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="119" x="1281" y="107.081">
+    Notification-Topic
+  </text>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M1278 1477.891h133v30.297h-133z"/>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M1274 1481.891h133v30.297h-133z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="119" x="1281" y="1501.886">
+    Notification-Topic
+  </text>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="90" x="1425" y="119.081">
+    Position DAO
+  </text>
+  <circle cx="1473" cy="90.086" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path stroke="#a80036" stroke-width="2" d="M1461 104.086h24"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="90" x="1425" y="1490.886">
+    Position DAO
+  </text>
+  <circle cx="1473" cy="1510.188" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path stroke="#a80036" stroke-width="2" d="M1461 1524.188h24"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="92" x="1531" y="119.081">
+    Transfer DAO
+  </text>
+  <circle cx="1580" cy="90.086" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path stroke="#a80036" stroke-width="2" d="M1568 104.086h24"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="92" x="1531" y="1490.886">
+    Transfer DAO
+  </text>
+  <circle cx="1580" cy="1510.188" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path stroke="#a80036" stroke-width="2" d="M1568 1524.188h24"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="90" x="1731" y="119.081">
+    Central Store
+  </text>
+  <path d="M1761 70.086c0-10 18-10 18-10s18 0 18 10v26c0 10-18 10-18 10s-18 0-18-10v-26" fill="#FEFECE" filter="url(#a)" stroke="#000" stroke-width="1.5"/>
+  <path d="M1761 70.086c0 10 18 10 18 10s18 0 18-10" fill="none" stroke="#000" stroke-width="1.5"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="90" x="1731" y="1490.886">
+    Central Store
+  </text>
+  <path d="M1761 1504.188c0-10 18-10 18-10s18 0 18 10v26c0 10-18 10-18 10s-18 0-18-10v-26" fill="#FEFECE" filter="url(#a)" stroke="#000" stroke-width="1.5"/>
+  <path d="M1761 1504.188c0 10 18 10 18 10s18 0 18-10" fill="none" stroke="#000" stroke-width="1.5"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#a80036" d="M102 177.648h10v30h-10zM486 132.383h10v1336.508h-10zM1100 1416.891h10v30h-10zM1468 455.711h10v121.398h-10zM1468 690.508h10v121.398h-10zM1575 872.172h10V993.57h-10zM1774 484.844h10v30h-10zM1774 719.641h10v30h-10zM1774 901.305h10v30h-10z"/>
+  <path d="M10 139.383h240v7l-10 10H10v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M10 139.383h1878v1322.508H10z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="195" x="25" y="152.45">
+    Position Handler Consume
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M123 173.648l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" d="M117 177.648h368"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="129" y="172.583">
+    1
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="342" x="142" y="172.583">
+    Consume Position event batch of messages for Payer
+  </text>
+  <path d="M400.5 222.648h232v7l-10 10h-222v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M400.5 222.648H1274v156.664H400.5z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="187" x="415.5" y="235.715">
+    Persist Event Information
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1208 281.914l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M496 285.914h718"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="503" y="280.848">
+    2
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="162" x="516" y="280.848">
+    Publish event information
+  </text>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M407.5 293.914H1263v55.398H407.5z"/>
+  <path fill="#EEE" stroke="#000" stroke-width="2" d="M407.5 293.914h66v7l-10 10h-56v-17z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="21" x="420.5" y="307.981">
+    ref
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="155" x="759.75" y="326.981">
+    Event Handler Consume
+  </text>
+  <path d="M390.5 393.313h77v7l-10 10h-67v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M390.5 393.313H1878v1061.578H390.5z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="32" x="405.5" y="406.379">
+    loop
+  </text>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="180" x="482.5" y="405.523">
+    [for each message in batch]
+  </text>
+  <path d="M400.5 417.445h325v7l-10 10h-315v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M400.5 417.445H1851v402.461H400.5z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="280" x="415.5" y="430.512">
+    Calculate position and persist change
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1456 451.71l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M496 455.711h966"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="503" y="450.645">
+    3
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="264" x="516" y="450.645">
+    Request latest position from DB for Payer
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1762 480.844l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M1478 484.844h290"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="1485" y="479.778">
+    4
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="264" x="1498" y="479.778">
+    Retrieve latest position from DB for Payer
+  </text>
+  <path fill="#FFFFE0" filter="url(#a)" stroke="#a80036" d="M1727 527.844h104l10 11-10 12h-104l-10-12 10-11z"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="100" x="1729" y="543.911">
+    transferPosition
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M507 573.11l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M501 577.109h971"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="513" y="572.043">
+    5
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="136" x="526" y="572.043">
+    Return latest position
+  </text>
+  <path stroke="#a80036" d="M496 606.242h42M538 606.242v13M497 619.242h41"/>
+  <path fill="#A80036" stroke="#a80036" d="M507 615.242l-10 4 10 4-4-4z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="503" y="601.176">
+    6
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="429" x="516" y="601.176">
+    Calculate latest position (lpos) by incrementing transfer for prepare
+  </text>
+  <path stroke="#a80036" d="M496 648.375h42M538 648.375v13M497 661.375h41"/>
+  <path fill="#A80036" stroke="#a80036" d="M507 657.375l-10 4 10 4-4-4z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="503" y="643.309">
+    7
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="577" x="516" y="643.309">
+    Validate Calculated latest position against the net-debit cap (netcap) - Rule: lpos &lt; netcap
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1456 686.508l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M496 690.508h966"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="503" y="685.442">
+    8
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="271" x="516" y="685.442">
+    Request to persist latest position for Payer
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1762 715.64l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M1478 719.641h290"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="1485" y="714.575">
+    9
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="238" x="1498" y="714.575">
+    Persist latest position to DB for Payer
+  </text>
+  <path fill="#FFFFE0" filter="url(#a)" stroke="#a80036" d="M1727 762.64h104l10 11-10 12h-104l-10-12 10-11z"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="100" x="1729" y="778.707">
+    transferPosition
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M507 807.906l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M501 811.906h971"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="513" y="806.84">
+    10
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="97" x="535" y="806.84">
+    Return success
+  </text>
+  <path d="M400.5 833.906h628v7l-10 10h-618v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M400.5 833.906H1868v167.664H400.5z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="583" x="415.5" y="846.973">
+    Persist Transfer State (with transferState=&apos;RESERVED&apos; on position check pass)
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1563 868.172l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M496 872.172h1073"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="503" y="867.106">
+    11
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="210" x="525" y="867.106">
+    Request to persist batch transfer
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1762 897.305l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M1585 901.305h183"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1592" y="896.239">
+    12
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="137" x="1614" y="896.239">
+    Persist batch transfer
+  </text>
+  <path fill="#FFFFE0" filter="url(#a)" stroke="#a80036" d="M1710 944.305h138l10 11-10 12h-138l-10-12 10-11z"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="134" x="1712" y="960.372">
+    transferStateChange
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M507 989.57l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M501 993.57h1078"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="513" y="988.504">
+    13
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="97" x="535" y="988.504">
+    Return success
+  </text>
+  <path d="M501 1013.57v373h270v-363l-10-10H501" fill="#FF0" filter="url(#a)" stroke="#a80036"/>
+  <path d="M761 1013.57v10h10l-10-10" fill="#FF0" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="61" x="507" y="1030.637">
+    Message:
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="507" y="1045.77">
+    {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="213" x="523" y="1060.903">
+    id: &lt;transferMessage.transferId&gt;
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="233" x="523" y="1076.036">
+    from: &lt;transferMessage.payerFsp&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="219" x="523" y="1091.168">
+    to: &lt;transferMessage.payeeFsp&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="135" x="523" y="1106.301">
+    type: application/json
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="65" x="523" y="1121.434">
+    content: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="190" x="539" y="1136.567">
+    headers: &lt;transferHeaders&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="187" x="539" y="1151.7">
+    payload: &lt;transferMessage&gt;
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="12" x="523" y="1166.832">
+    },
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="79" x="523" y="1181.965">
+    metadata: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="52" x="539" y="1197.098">
+    event: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="72" x="555" y="1212.231">
+    id: &lt;uuid&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="193" x="555" y="1227.364">
+    responseTo: &lt;previous.uuid&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="90" x="555" y="1242.497">
+    type: transfer,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="101" x="555" y="1257.629">
+    action: prepare,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="167" x="555" y="1272.762">
+    createdAt: &lt;timestamp&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="49" x="555" y="1287.895">
+    state: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="113" x="571" y="1303.028">
+    status: &quot;success&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="47" x="571" y="1318.161">
+    code: 0
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="555" y="1333.293">
+    }
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="539" y="1348.426">
+    }
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="523" y="1363.559">
+    }
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="507" y="1378.692">
+    }
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1088 1412.89l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M496 1416.891h598"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="503" y="1411.825">
+    14
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="141" x="525" y="1411.825">
+    Publish Transfer event
+  </text>
+</svg>

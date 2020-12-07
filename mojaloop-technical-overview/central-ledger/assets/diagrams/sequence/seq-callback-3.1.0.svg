@@ -1,139 +1,409 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="1664px" preserveAspectRatio="none" style="width:1853px;height:1664px;" version="1.1" viewBox="0 0 1853 1664" width="1853px" zoomAndPan="magnify"><defs><filter height="300%" id="f1as0212fdbe98" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="267" x="794" y="23.5352">3.1.0 Get Participant Callback Details</text><rect fill="#ADD8E6" height="1619.2773" style="stroke: #A80036; stroke-width: 1.0;" width="163" x="25" y="34.4883"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="157" x="28" y="47.0566">ML API Adapter Service</text><rect fill="#FFFFE0" height="1619.2773" style="stroke: #A80036; stroke-width: 1.0;" width="1138" x="652.5" y="34.4883"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="108" x="1167.5" y="47.0566">Central Services</text><rect fill="#FFFFFF" filter="url(#f1as0212fdbe98)" height="1444.9902" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="101.5" y="126.2871"/><rect fill="#FFFFFF" filter="url(#f1as0212fdbe98)" height="1399.3691" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="718.5" y="171.9082"/><rect fill="#FFFFFF" filter="url(#f1as0212fdbe98)" height="649.4531" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1012.5" y="201.2188"/><rect fill="#FFFFFF" filter="url(#f1as0212fdbe98)" height="646.9844" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1012.5" y="879.9824"/><rect fill="#FFFFFF" filter="url(#f1as0212fdbe98)" height="121.2422" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1364.5" y="245.8398"/><rect fill="#FFFFFF" filter="url(#f1as0212fdbe98)" height="191.1738" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1364.5" y="544.9453"/><rect fill="#FFFFFF" filter="url(#f1as0212fdbe98)" height="175.8633" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1364.5" y="939.5586"/><rect fill="#FFFFFF" filter="url(#f1as0212fdbe98)" height="62.6211" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1733.5" y="275.1504"/><rect fill="#FFFFFF" filter="url(#f1as0212fdbe98)" height="132.5527" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1733.5" y="574.2559"/><rect fill="#FFFFFF" filter="url(#f1as0212fdbe98)" height="117.2422" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1733.5" y="968.8691"/><rect fill="#FFFFFF" filter="url(#f1as0212fdbe98)" height="1437.9902" style="stroke: #000000; stroke-width: 2.0;" width="1829" x="13" y="133.2871"/><rect fill="#FFFFFF" filter="url(#f1as0212fdbe98)" height="1139.8848" style="stroke: #000000; stroke-width: 2.0;" width="1809" x="23" y="424.3926"/><rect fill="#FFFFFF" filter="url(#f1as0212fdbe98)" height="822.2031" style="stroke: #000000; stroke-width: 2.0;" width="1789" x="33" y="491.0137"/><rect fill="#FFFFFF" height="425.2344" style="stroke: none; stroke-width: 1.0;" width="1789" x="33" y="887.9824"/><rect fill="#FFFFFF" height="244.0605" style="stroke: none; stroke-width: 1.0;" width="1809" x="23" y="1320.2168"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="106" x2="106" y1="116.2871" y2="1588.2773"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="723.5" x2="723.5" y1="116.2871" y2="1588.2773"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="1017" x2="1017" y1="116.2871" y2="1588.2773"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="1369.5" x2="1369.5" y1="116.2871" y2="1588.2773"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="1738.5" x2="1738.5" y1="116.2871" y2="1588.2773"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="121" x="43" y="113.334">ML-API-ADAPTER</text><ellipse cx="106.5" cy="83.7988" fill="#FEFECE" filter="url(#f1as0212fdbe98)" rx="12" ry="12" style="stroke: #A80036; stroke-width: 2.0;"/><line style="stroke: #A80036; stroke-width: 2.0;" x1="94.5" x2="118.5" y1="97.7988" y2="97.7988"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="121" x="43" y="1600.8125">ML-API-ADAPTER</text><ellipse cx="106.5" cy="1619.7656" fill="#FEFECE" filter="url(#f1as0212fdbe98)" rx="12" ry="12" style="stroke: #A80036; stroke-width: 2.0;"/><line style="stroke: #A80036; stroke-width: 2.0;" x1="94.5" x2="118.5" y1="1633.7656" y2="1633.7656"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="128" x="656.5" y="113.334">Central Service API</text><path d="M703,71.7988 L703,95.7988 M703,83.7988 L720,83.7988 " fill="none" filter="url(#f1as0212fdbe98)" style="stroke: #A80036; stroke-width: 2.0;"/><ellipse cx="732" cy="83.7988" fill="#FEFECE" filter="url(#f1as0212fdbe98)" rx="12" ry="12" style="stroke: #A80036; stroke-width: 2.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="128" x="656.5" y="1600.8125">Central Service API</text><path d="M703,1607.7656 L703,1631.7656 M703,1619.7656 L720,1619.7656 " fill="none" filter="url(#f1as0212fdbe98)" style="stroke: #A80036; stroke-width: 2.0;"/><ellipse cx="732" cy="1619.7656" fill="#FEFECE" filter="url(#f1as0212fdbe98)" rx="12" ry="12" style="stroke: #A80036; stroke-width: 2.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="131" x="949" y="113.334">Participant Handler</text><ellipse cx="1017.5" cy="83.7988" fill="#FEFECE" filter="url(#f1as0212fdbe98)" rx="12" ry="12" style="stroke: #A80036; stroke-width: 2.0;"/><polygon fill="#A80036" points="1013.5,71.7988,1019.5,66.7988,1017.5,71.7988,1019.5,76.7988,1013.5,71.7988" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="131" x="949" y="1600.8125">Participant Handler</text><ellipse cx="1017.5" cy="1619.7656" fill="#FEFECE" filter="url(#f1as0212fdbe98)" rx="12" ry="12" style="stroke: #A80036; stroke-width: 2.0;"/><polygon fill="#A80036" points="1013.5,1607.7656,1019.5,1602.7656,1017.5,1607.7656,1019.5,1612.7656,1013.5,1607.7656" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="108" x="1312.5" y="113.334">Participant DAO</text><ellipse cx="1369.5" cy="83.7988" fill="#FEFECE" filter="url(#f1as0212fdbe98)" rx="12" ry="12" style="stroke: #A80036; stroke-width: 2.0;"/><line style="stroke: #A80036; stroke-width: 2.0;" x1="1357.5" x2="1381.5" y1="97.7988" y2="97.7988"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="108" x="1312.5" y="1600.8125">Participant DAO</text><ellipse cx="1369.5" cy="1619.7656" fill="#FEFECE" filter="url(#f1as0212fdbe98)" rx="12" ry="12" style="stroke: #A80036; stroke-width: 2.0;"/><line style="stroke: #A80036; stroke-width: 2.0;" x1="1357.5" x2="1381.5" y1="1633.7656" y2="1633.7656"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="90" x="1690.5" y="113.334">Central Store</text><path d="M1720.5,63.7988 C1720.5,53.7988 1738.5,53.7988 1738.5,53.7988 C1738.5,53.7988 1756.5,53.7988 1756.5,63.7988 L1756.5,89.7988 C1756.5,99.7988 1738.5,99.7988 1738.5,99.7988 C1738.5,99.7988 1720.5,99.7988 1720.5,89.7988 L1720.5,63.7988 " fill="#FEFECE" filter="url(#f1as0212fdbe98)" style="stroke: #000000; stroke-width: 1.5;"/><path d="M1720.5,63.7988 C1720.5,73.7988 1738.5,73.7988 1738.5,73.7988 C1738.5,73.7988 1756.5,73.7988 1756.5,63.7988 " fill="none" style="stroke: #000000; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="90" x="1690.5" y="1600.8125">Central Store</text><path d="M1720.5,1613.7656 C1720.5,1603.7656 1738.5,1603.7656 1738.5,1603.7656 C1738.5,1603.7656 1756.5,1603.7656 1756.5,1613.7656 L1756.5,1639.7656 C1756.5,1649.7656 1738.5,1649.7656 1738.5,1649.7656 C1738.5,1649.7656 1720.5,1649.7656 1720.5,1639.7656 L1720.5,1613.7656 " fill="#FEFECE" filter="url(#f1as0212fdbe98)" style="stroke: #000000; stroke-width: 1.5;"/><path d="M1720.5,1613.7656 C1720.5,1623.7656 1738.5,1623.7656 1738.5,1623.7656 C1738.5,1623.7656 1756.5,1623.7656 1756.5,1613.7656 " fill="none" style="stroke: #000000; stroke-width: 1.5;"/><rect fill="#FFFFFF" filter="url(#f1as0212fdbe98)" height="1444.9902" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="101.5" y="126.2871"/><rect fill="#FFFFFF" filter="url(#f1as0212fdbe98)" height="1399.3691" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="718.5" y="171.9082"/><rect fill="#FFFFFF" filter="url(#f1as0212fdbe98)" height="649.4531" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1012.5" y="201.2188"/><rect fill="#FFFFFF" filter="url(#f1as0212fdbe98)" height="646.9844" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1012.5" y="879.9824"/><rect fill="#FFFFFF" filter="url(#f1as0212fdbe98)" height="121.2422" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1364.5" y="245.8398"/><rect fill="#FFFFFF" filter="url(#f1as0212fdbe98)" height="191.1738" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1364.5" y="544.9453"/><rect fill="#FFFFFF" filter="url(#f1as0212fdbe98)" height="175.8633" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1364.5" y="939.5586"/><rect fill="#FFFFFF" filter="url(#f1as0212fdbe98)" height="62.6211" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1733.5" y="275.1504"/><rect fill="#FFFFFF" filter="url(#f1as0212fdbe98)" height="132.5527" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1733.5" y="574.2559"/><rect fill="#FFFFFF" filter="url(#f1as0212fdbe98)" height="117.2422" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1733.5" y="968.8691"/><path d="M13,133.2871 L192,133.2871 L192,140.2871 L182,150.2871 L13,150.2871 L13,133.2871 " fill="#EEEEEE" style="stroke: #000000; stroke-width: 1.0;"/><rect fill="none" height="1437.9902" style="stroke: #000000; stroke-width: 2.0;" width="1829" x="13" y="133.2871"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="134" x="28" y="146.8555">Get Callback Details</text><polygon fill="#A80036" points="706.5,167.9082,716.5,171.9082,706.5,175.9082,710.5,171.9082" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="111.5" x2="712.5" y1="171.9082" y2="171.9082"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="118.5" y="167.166">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="561" x="131.5" y="167.166">Request to get callback details - GET - /participants/{name}/endpoints?type={typeValue}</text><polygon fill="#A80036" points="1000.5,197.2188,1010.5,201.2188,1000.5,205.2188,1004.5,201.2188" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="728.5" x2="1006.5" y1="201.2188" y2="201.2188"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="735.5" y="196.4766">2</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="231" x="748.5" y="196.4766">Fetch Callback details for Participant</text><polygon fill="#A80036" points="1352.5,241.8398,1362.5,245.8398,1352.5,249.8398,1356.5,245.8398" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="1022.5" x2="1358.5" y1="245.8398" y2="245.8398"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="1029.5" y="233.4424">3</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="105" x="1042.5" y="225.7871">Fetch Participant</text><text fill="#FF0000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="73" x="1042.5" y="241.0977">Error code:</text><text fill="#FF0000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="32" x="1119.5" y="241.0977">3200</text><polygon fill="#A80036" points="1721.5,271.1504,1731.5,275.1504,1721.5,279.1504,1725.5,275.1504" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="1374.5" x2="1727.5" y1="275.1504" y2="275.1504"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="1381.5" y="270.4082">4</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="105" x="1394.5" y="270.4082">Fetch Participant</text><polygon fill="#FFFFE0" filter="url(#f1as0212fdbe98)" points="1702,288.1504,1774,288.1504,1784,299.1504,1774,311.1504,1702,311.1504,1692,299.1504,1702,288.1504" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="68" x="1704" y="304.7188">participant</text><polygon fill="#A80036" points="1385.5,333.7715,1375.5,337.7715,1385.5,341.7715,1381.5,337.7715" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="1379.5" x2="1737.5" y1="337.7715" y2="337.7715"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="1391.5" y="333.0293">5</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="129" x="1404.5" y="333.0293">Retrieved Participant</text><polygon fill="#A80036" points="1033.5,363.082,1023.5,367.082,1033.5,371.082,1029.5,367.082" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="1027.5" x2="1368.5" y1="367.082" y2="367.082"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="1039.5" y="362.3398">6</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="112" x="1052.5" y="362.3398">Return Participant</text><line style="stroke: #A80036; stroke-width: 1.0;" x1="1022.5" x2="1064.5" y1="396.3926" y2="396.3926"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="1064.5" x2="1064.5" y1="396.3926" y2="409.3926"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="1023.5" x2="1064.5" y1="409.3926" y2="409.3926"/><polygon fill="#A80036" points="1033.5,405.3926,1023.5,409.3926,1033.5,413.3926,1029.5,409.3926" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="1029.5" y="391.6504">7</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="85" x="1042.5" y="391.6504">Validate DFSP</text><path d="M23,424.3926 L85,424.3926 L85,431.3926 L75,441.3926 L23,441.3926 L23,424.3926 " fill="#EEEEEE" style="stroke: #000000; stroke-width: 1.0;"/><rect fill="none" height="1139.8848" style="stroke: #000000; stroke-width: 2.0;" width="1809" x="23" y="424.3926"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="17" x="38" y="437.9609">alt</text><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="172" x="100" y="437.0273">[Validate participant (success)]</text><line style="stroke: #A80036; stroke-width: 1.0;" x1="1022.5" x2="1064.5" y1="463.0137" y2="463.0137"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="1064.5" x2="1064.5" y1="463.0137" y2="476.0137"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="1023.5" x2="1064.5" y1="476.0137" y2="476.0137"/><polygon fill="#A80036" points="1033.5,472.0137,1023.5,476.0137,1033.5,480.0137,1029.5,476.0137" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="1029.5" y="458.2715">8</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="204" x="1042.5" y="458.2715">check if "type" parameter is sent</text><path d="M33,491.0137 L95,491.0137 L95,498.0137 L85,508.0137 L33,508.0137 L33,491.0137 " fill="#EEEEEE" style="stroke: #000000; stroke-width: 1.0;"/><rect fill="none" height="822.2031" style="stroke: #000000; stroke-width: 2.0;" width="1789" x="33" y="491.0137"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="17" x="48" y="504.582">alt</text><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="228" x="110" y="503.6484">[Check if "type" parameter is sent (Sent)]</text><polygon fill="#A80036" points="1352.5,540.9453,1362.5,544.9453,1352.5,548.9453,1356.5,544.9453" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="1022.5" x2="1358.5" y1="544.9453" y2="544.9453"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="1029.5" y="532.5479">9</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="289" x="1042.5" y="524.8926">Fetch Callback details for Participant and type</text><text fill="#FF0000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="73" x="1042.5" y="540.2031">Error code:</text><text fill="#FF0000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="32" x="1119.5" y="540.2031">3000</text><polygon fill="#A80036" points="1721.5,570.2559,1731.5,574.2559,1721.5,578.2559,1725.5,574.2559" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="1374.5" x2="1727.5" y1="574.2559" y2="574.2559"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1381.5" y="569.5137">10</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="289" x="1403.5" y="569.5137">Fetch Callback details for Participant and type</text><path d="M1379,587.2559 L1379,642.2559 L1587,642.2559 L1587,597.2559 L1577,587.2559 L1379,587.2559 " fill="#D3D3D3" filter="url(#f1as0212fdbe98)" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M1577,587.2559 L1577,597.2559 L1587,597.2559 L1577,587.2559 " fill="#D3D3D3" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="66" x="1385" y="604.8242">Condition:</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="76" x="1401" y="620.1348">isActive = 1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="171" x="1401" y="635.4453">[endpointTypeId = &lt;type&gt;]</text><polygon fill="#FFFFE0" filter="url(#f1as0212fdbe98)" points="1674,657.1875,1802,657.1875,1812,668.1875,1802,680.1875,1674,680.1875,1664,668.1875,1674,657.1875" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="124" x="1676" y="673.7559">participantEndpoint</text><polygon fill="#A80036" points="1385.5,702.8086,1375.5,706.8086,1385.5,710.8086,1381.5,706.8086" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="1379.5" x2="1737.5" y1="706.8086" y2="706.8086"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1391.5" y="702.0664">11</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="313" x="1413.5" y="702.0664">Retrieved Callback details for Participant and type</text><polygon fill="#A80036" points="1033.5,732.1191,1023.5,736.1191,1033.5,740.1191,1029.5,736.1191" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="1027.5" x2="1368.5" y1="736.1191" y2="736.1191"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1039.5" y="731.377">12</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="296" x="1061.5" y="731.377">Return Callback details for Participant and type</text><path d="M1027,749.1191 L1027,820.1191 L1327,820.1191 L1327,759.1191 L1317,749.1191 L1027,749.1191 " fill="#FFFF00" filter="url(#f1as0212fdbe98)" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M1317,749.1191 L1317,759.1191 L1327,759.1191 L1317,749.1191 " fill="#FFFF00" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="58" x="1033" y="766.6875">Message:</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="4" x="1033" y="781.998">{</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="263" x="1049" y="797.3086">endpoints: {type: &lt;type&gt;, value: &lt;value&gt;}</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="4" x="1033" y="812.6191">}</text><polygon fill="#A80036" points="739.5,846.6719,729.5,850.6719,739.5,854.6719,735.5,850.6719" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="733.5" x2="1016.5" y1="850.6719" y2="850.6719"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="745.5" y="845.9297">13</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="238" x="767.5" y="845.9297">Return Callback details for Participant</text><polygon fill="#A80036" points="122.5,875.9824,112.5,879.9824,122.5,883.9824,118.5,879.9824" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="116.5" x2="717.5" y1="879.9824" y2="879.9824"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="128.5" y="875.2402">14</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="238" x="150.5" y="875.2402">Return Callback details for Participant</text><line style="stroke: #000000; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="33" x2="1822" y1="888.9824" y2="888.9824"/><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="251" x="38" y="899.6172">[Check if "type" parameter is sent (Not Sent)]</text><polygon fill="#A80036" points="1352.5,935.5586,1362.5,939.5586,1352.5,943.5586,1356.5,939.5586" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="1022.5" x2="1358.5" y1="939.5586" y2="939.5586"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1029.5" y="927.1611">15</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="231" x="1051.5" y="919.5059">Fetch Callback details for Participant</text><text fill="#FF0000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="73" x="1051.5" y="934.8164">Error code:</text><text fill="#FF0000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="32" x="1128.5" y="934.8164">3000</text><polygon fill="#A80036" points="1721.5,964.8691,1731.5,968.8691,1721.5,972.8691,1725.5,968.8691" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="1374.5" x2="1727.5" y1="968.8691" y2="968.8691"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1381.5" y="964.127">16</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="231" x="1403.5" y="964.127">Fetch Callback details for Participant</text><path d="M1379,981.8691 L1379,1021.8691 L1492,1021.8691 L1492,991.8691 L1482,981.8691 L1379,981.8691 " fill="#D3D3D3" filter="url(#f1as0212fdbe98)" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M1482,981.8691 L1482,991.8691 L1492,991.8691 L1482,981.8691 " fill="#D3D3D3" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="66" x="1385" y="999.4375">Condition:</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="76" x="1401" y="1014.748">isActive = 1</text><polygon fill="#FFFFE0" filter="url(#f1as0212fdbe98)" points="1674,1036.4902,1802,1036.4902,1812,1047.4902,1802,1059.4902,1674,1059.4902,1664,1047.4902,1674,1036.4902" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="124" x="1676" y="1053.0586">participantEndpoint</text><polygon fill="#A80036" points="1385.5,1082.1113,1375.5,1086.1113,1385.5,1090.1113,1381.5,1086.1113" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="1379.5" x2="1737.5" y1="1086.1113" y2="1086.1113"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1391.5" y="1081.3691">17</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="255" x="1413.5" y="1081.3691">Retrieved Callback details for Participant</text><polygon fill="#A80036" points="1033.5,1111.4219,1023.5,1115.4219,1033.5,1119.4219,1029.5,1115.4219" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="1027.5" x2="1368.5" y1="1115.4219" y2="1115.4219"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1039.5" y="1110.6797">18</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="238" x="1061.5" y="1110.6797">Return Callback details for Participant</text><path d="M1027,1128.4219 L1027,1245.4219 L1276,1245.4219 L1276,1138.4219 L1266,1128.4219 L1027,1128.4219 " fill="#FFFF00" filter="url(#f1as0212fdbe98)" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M1266,1128.4219 L1266,1138.4219 L1276,1138.4219 L1266,1128.4219 " fill="#FFFF00" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="58" x="1033" y="1145.9902">Message:</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="4" x="1033" y="1161.3008">{</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="75" x="1049" y="1176.6113">endpoints: [</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="196" x="1065" y="1191.9219">{type: &lt;type&gt;, value: &lt;value&gt;},</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="192" x="1065" y="1207.2324">{type: &lt;type&gt;, value: &lt;value&gt;}</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="4" x="1049" y="1222.543">]</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="4" x="1033" y="1237.8535">}</text><polygon fill="#A80036" points="739.5,1271.9063,729.5,1275.9063,739.5,1279.9063,735.5,1275.9063" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="733.5" x2="1011.5" y1="1275.9063" y2="1275.9063"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="745.5" y="1271.1641">19</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="238" x="767.5" y="1271.1641">Return Callback details for Participant</text><polygon fill="#A80036" points="122.5,1301.2168,112.5,1305.2168,122.5,1309.2168,118.5,1305.2168" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="116.5" x2="717.5" y1="1305.2168" y2="1305.2168"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="128.5" y="1300.4746">20</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="238" x="150.5" y="1300.4746">Return Callback details for Participant</text><line style="stroke: #000000; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="23" x2="1832" y1="1321.2168" y2="1321.2168"/><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="205" x="28" y="1331.8516">[Validate participant (failure)/ Error]</text><path d="M1027,1340.1719 L1027,1365.1719 L1200,1365.1719 L1200,1350.1719 L1190,1340.1719 L1027,1340.1719 " fill="#FF0000" filter="url(#f1as0212fdbe98)" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M1190,1340.1719 L1190,1350.1719 L1200,1350.1719 L1190,1340.1719 " fill="#FF0000" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="152" x="1033" y="1357.7402">Validation failure/ Error!</text><path d="M1027,1379.4824 L1027,1496.4824 L1309,1496.4824 L1309,1389.4824 L1299,1379.4824 L1027,1379.4824 " fill="#FFFF00" filter="url(#f1as0212fdbe98)" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M1299,1379.4824 L1299,1389.4824 L1309,1389.4824 L1299,1379.4824 " fill="#FFFF00" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="58" x="1033" y="1397.0508">Message:</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="4" x="1033" y="1412.3613">{</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="126" x="1049" y="1427.6719">"errorInformation": {</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="166" x="1065" y="1442.9824">"errorCode": &lt;errorCode&gt;,</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="229" x="1065" y="1458.293">"errorDescription": &lt;ErrorMessage&gt;,</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="4" x="1049" y="1473.6035">}</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="4" x="1033" y="1488.9141">}</text><polygon fill="#A80036" points="739.5,1522.9668,729.5,1526.9668,739.5,1530.9668,735.5,1526.9668" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="733.5" x2="1016.5" y1="1526.9668" y2="1526.9668"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="745.5" y="1522.2246">21</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="41" x="767.5" y="1522.2246">Return</text><text fill="#FF0000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="73" x="812.5" y="1522.2246">Error code:</text><text fill="#FF0000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="72" x="889.5" y="1522.2246">3000, 3200</text><polygon fill="#A80036" points="122.5,1552.2773,112.5,1556.2773,122.5,1560.2773,118.5,1556.2773" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="116.5" x2="717.5" y1="1556.2773" y2="1556.2773"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="128.5" y="1551.5352">22</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="41" x="150.5" y="1551.5352">Return</text><text fill="#FF0000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="73" x="195.5" y="1551.5352">Error code:</text><text fill="#FF0000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="72" x="272.5" y="1551.5352">3000, 3200</text><!--
-@startuml
-title 3.1.0 Get Participant Callback Details
-
-autonumber
-
-entity "ML-API-ADAPTER" as MLAPI
-boundary "Central Service API" as CSAPI
-control "Participant Handler" as PARTICIPANT_HANDLER
-entity "Central Service API" as CSAPI
-entity "Participant DAO" as PARTICIPANT_DAO
-database "Central Store" as DB
-box "ML API Adapter Service" #LightBlue
-participant MLAPI
-end box
-
-box "Central Services" #LightYellow
-participant CSAPI
-participant PARTICIPANT_HANDLER
-participant PARTICIPANT_DAO
-participant DB
-end box
-
-
-activate MLAPI
-group Get Callback Details
-    MLAPI -> CSAPI: Request to get callback details - GET - /participants/{name}/endpoints?type={typeValue}
-    activate CSAPI
-    CSAPI -> PARTICIPANT_HANDLER: Fetch Callback details for Participant
-    activate PARTICIPANT_HANDLER
-    PARTICIPANT_HANDLER ->PARTICIPANT_DAO: Fetch Participant \n<color #FF0000><b>Error code:</b> 3200</color>
-
-    activate PARTICIPANT_DAO
-    PARTICIPANT_DAO ->DB: Fetch Participant
-    activate DB
-    hnote over DB #lightyellow
-        participant
-    end note
-    DB - -> PARTICIPANT_DAO: Retrieved Participant
-    deactivate DB
-    PARTICIPANT_DAO - ->PARTICIPANT_HANDLER: Return Participant
-    deactivate PARTICIPANT_DAO
-    PARTICIPANT_HANDLER ->PARTICIPANT_HANDLER: Validate DFSP
-    alt Validate participant (success)
-        PARTICIPANT_HANDLER -> PARTICIPANT_HANDLER: check if "type" parameter is sent
-        alt Check if "type" parameter is sent (Sent)
-            PARTICIPANT_HANDLER ->PARTICIPANT_DAO: Fetch Callback details for Participant and type \n<color #FF0000><b>Error code:</b> 3000</color>
-            activate PARTICIPANT_DAO
-            PARTICIPANT_DAO ->DB: Fetch Callback details for Participant and type
-            note right of PARTICIPANT_DAO #lightgrey
-                Condition:
-                    isActive = 1
-                    [endpointTypeId = <type>]
-            end note
-
-            activate DB
-            hnote over DB #lightyellow
-                participantEndpoint
-            end note
-            DB - -> PARTICIPANT_DAO: Retrieved Callback details for Participant and type
-            deactivate DB
-            PARTICIPANT_DAO - ->PARTICIPANT_HANDLER: Return Callback details for Participant and type
-            deactivate PARTICIPANT_DAO
-            note right of PARTICIPANT_HANDLER #yellow
-                Message:
-                {
-                    endpoints: {type: <type>, value: <value>}
-                }
-            end note
-            PARTICIPANT_HANDLER - ->CSAPI: Return Callback details for Participant
-            deactivate PARTICIPANT_HANDLER
-            CSAPI - ->MLAPI: Return Callback details for Participant
-        else Check if "type" parameter is sent (Not Sent)
-            activate PARTICIPANT_HANDLER
-            PARTICIPANT_HANDLER ->PARTICIPANT_DAO: Fetch Callback details for Participant \n<color #FF0000><b>Error code:</b> 3000</color>
-            activate PARTICIPANT_DAO
-            PARTICIPANT_DAO ->DB: Fetch Callback details for Participant
-            note right of PARTICIPANT_DAO #lightgrey
-                Condition:
-                    isActive = 1
-            end note
-
-            activate DB
-            hnote over DB #lightyellow
-                participantEndpoint
-            end note
-            DB - -> PARTICIPANT_DAO: Retrieved Callback details for Participant
-            deactivate DB
-            PARTICIPANT_DAO - ->PARTICIPANT_HANDLER: Return Callback details for Participant
-            deactivate PARTICIPANT_DAO
-            note right of PARTICIPANT_HANDLER #yellow
-                Message:
-                {
-                    endpoints: [
-                        {type: <type>, value: <value>},
-                        {type: <type>, value: <value>}
-                    ]
-                }
-            end note
-            PARTICIPANT_HANDLER - ->CSAPI: Return Callback details for Participant
-            CSAPI - ->MLAPI: Return Callback details for Participant
-        end
-
-
-    else Validate participant (failure)/ Error
-        activate PARTICIPANT_HANDLER
-        note right of PARTICIPANT_HANDLER #red: Validation failure/ Error!
-        activate PARTICIPANT_HANDLER
-        note right of PARTICIPANT_HANDLER #yellow
-            Message:
-            {
-                "errorInformation": {
-                    "errorCode": <errorCode>,
-                    "errorDescription": <ErrorMessage>,
-                }
-            }
-        end note
-        PARTICIPANT_HANDLER - ->CSAPI: Return <color #FF0000><b>Error code:</b> 3000, 3200</color>
-        deactivate PARTICIPANT_HANDLER
-        CSAPI - ->MLAPI: Return <color #FF0000><b>Error code:</b> 3000, 3200</color>
-
-    end
-    deactivate CSAPI
-    deactivate MLAPI
-end
-
-@enduml
-
-PlantUML version 1.2019.06(Sat May 25 01:10:25 PHT 2019)
-(GPL source distribution)
-Java Runtime: Java(TM) SE Runtime Environment
-JVM: Java HotSpot(TM) 64-Bit Server VM
-Java Version: 1.8.0_171-b11
-Operating System: Mac OS X
-OS Version: 10.13.6
-Default Encoding: UTF-8
-Language: en
-Country: AU
---></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" height="1655" preserveAspectRatio="none" style="width:1880px;height:1655px" width="1880">
+  <defs>
+    <filter height="300%" id="a" width="300%" x="-1" y="-1">
+      <feGaussianBlur result="blurOut" stdDeviation="2"/>
+      <feColorMatrix in="blurOut" result="blurOut2" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/>
+      <feOffset dx="4" dy="4" in="blurOut2" result="blurOut3"/>
+      <feBlend in="SourceGraphic" in2="blurOut3"/>
+    </filter>
+  </defs>
+  <text font-family="sans-serif" font-size="18" lengthAdjust="spacingAndGlyphs" textLength="328" x="774.25" y="28.708">
+    3.1.0 Get Participant Callback Details
+  </text>
+  <path fill="#ADD8E6" stroke="#a80036" d="M11.5 40.953h179v1608.641h-179z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="173" x="14.5" y="53.02">
+    ML API Adapter Service
+  </text>
+  <path fill="#FFFFE0" stroke="#a80036" d="M671.5 40.953h1143v1608.641h-1143z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="119" x="1183.5" y="53.02">
+    Central Services
+  </text>
+  <path fill="#FFF" filter="url(#a)" stroke="#a80036" d="M96 132.383h10v1434.914H96zM737.5 177.648h10v1389.648h-10zM1031.5 206.781h10v645.188h-10zM1031.5 881.102h10v642.063h-10zM1385.5 251.047h10v120.531h-10zM1385.5 548.375h10v189.93h-10zM1385.5 940.172h10v174.797h-10zM1757.5 280.18h10v62.266h-10zM1757.5 577.508h10v131.664h-10zM1757.5 969.305h10v116.531h-10z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M10 139.383h1856v1427.914H10z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M20 428.711h1836v1131.586H20z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M30 494.977h1816v816.188H30z"/>
+  <path fill="#FFF" d="M30 889.102h1816v422.063H30zM20 1318.164h1836v242.133H20z"/>
+  <path stroke="#a80036" stroke-dasharray="5,5" d="M101 122.383v1461.914M742.5 122.383v1461.914M1036 122.383v1461.914M1390 122.383v1461.914M1762.5 122.383v1461.914"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="116" x="40" y="119.081">
+    ML-API-ADAPTER
+  </text>
+  <circle cx="101" cy="90.086" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path stroke="#a80036" stroke-width="2" d="M89 104.086h24"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="116" x="40" y="1596.292">
+    ML-API-ADAPTER
+  </text>
+  <circle cx="101" cy="1615.594" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path stroke="#a80036" stroke-width="2" d="M89 1629.594h24"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="128" x="675.5" y="119.081">
+    Central Service API
+  </text>
+  <path d="M722 78.086v24m0-12h17" fill="none" filter="url(#a)" stroke="#a80036" stroke-width="2"/>
+  <circle cx="751" cy="90.086" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="128" x="675.5" y="1596.292">
+    Central Service API
+  </text>
+  <path d="M722 1603.594v24m0-12h17" fill="none" filter="url(#a)" stroke="#a80036" stroke-width="2"/>
+  <circle cx="751" cy="1615.594" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="129" x="969" y="119.081">
+    Participant Handler
+  </text>
+  <circle cx="1036.5" cy="90.086" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path fill="#A80036" stroke="#a80036" d="M1032.5 78.086l6-5-2 5 2 5-6-5z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="129" x="969" y="1596.292">
+    Participant Handler
+  </text>
+  <circle cx="1036.5" cy="1615.594" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path fill="#A80036" stroke="#a80036" d="M1032.5 1603.594l6-5-2 5 2 5-6-5z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="107" x="1334" y="119.081">
+    Participant DAO
+  </text>
+  <circle cx="1390.5" cy="90.086" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path stroke="#a80036" stroke-width="2" d="M1378.5 104.086h24"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="107" x="1334" y="1596.292">
+    Participant DAO
+  </text>
+  <circle cx="1390.5" cy="1615.594" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path stroke="#a80036" stroke-width="2" d="M1378.5 1629.594h24"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="90" x="1714.5" y="119.081">
+    Central Store
+  </text>
+  <path d="M1744.5 70.086c0-10 18-10 18-10s18 0 18 10v26c0 10-18 10-18 10s-18 0-18-10v-26" fill="#FEFECE" filter="url(#a)" stroke="#000" stroke-width="1.5"/>
+  <path d="M1744.5 70.086c0 10 18 10 18 10s18 0 18-10" fill="none" stroke="#000" stroke-width="1.5"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="90" x="1714.5" y="1596.292">
+    Central Store
+  </text>
+  <path d="M1744.5 1609.594c0-10 18-10 18-10s18 0 18 10v26c0 10-18 10-18 10s-18 0-18-10v-26" fill="#FEFECE" filter="url(#a)" stroke="#000" stroke-width="1.5"/>
+  <path d="M1744.5 1609.594c0 10 18 10 18 10s18 0 18-10" fill="none" stroke="#000" stroke-width="1.5"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#a80036" d="M96 132.383h10v1434.914H96zM737.5 177.648h10v1389.648h-10zM1031.5 206.781h10v645.188h-10zM1031.5 881.102h10v642.063h-10zM1385.5 251.047h10v120.531h-10zM1385.5 548.375h10v189.93h-10zM1385.5 940.172h10v174.797h-10zM1757.5 280.18h10v62.266h-10zM1757.5 577.508h10v131.664h-10zM1757.5 969.305h10v116.531h-10z"/>
+  <path d="M10 139.383h195v7l-10 10H10v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M10 139.383h1856v1427.914H10z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="150" x="25" y="152.45">
+    Get Callback Details
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M725.5 173.648l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M106 177.648h625.5"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="113" y="172.583">
+    1
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="575" x="126" y="172.583">
+    Request to get callback details - GET - /participants/{name}/endpoints?type={typeValue}
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1019.5 202.781l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M747.5 206.781h278"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="754.5" y="201.715">
+    2
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="231" x="767.5" y="201.715">
+    Fetch Callback details for Participant
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1373.5 247.047l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M1041.5 251.047h338"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="1048.5" y="238.415">
+    3
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="107" x="1061.5" y="230.848">
+    Fetch Participant
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="82" x="1061.5" y="245.981">
+    Error code:
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="32" x="1147.5" y="245.981">
+    3200
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1745.5 276.18l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M1395.5 280.18h356"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="1402.5" y="275.114">
+    4
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="107" x="1415.5" y="275.114">
+    Fetch Participant
+  </text>
+  <path fill="#FFFFE0" filter="url(#a)" stroke="#a80036" d="M1726 293.18h72l10 11-10 12h-72l-10-12 10-11z"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="68" x="1728" y="309.247">
+    participant
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1406.5 338.445l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M1400.5 342.445h361"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="1412.5" y="337.379">
+    5
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="132" x="1425.5" y="337.379">
+    Retrieved Participant
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1052.5 367.578l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M1046.5 371.578h343"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="1058.5" y="366.512">
+    6
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="114" x="1071.5" y="366.512">
+    Return Participant
+  </text>
+  <path stroke="#a80036" d="M1041.5 400.711h42M1083.5 400.711v13M1042.5 413.711h41"/>
+  <path fill="#A80036" stroke="#a80036" d="M1052.5 409.71l-10 4 10 4-4-4z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="1048.5" y="395.645">
+    7
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="90" x="1061.5" y="395.645">
+    Validate DFSP
+  </text>
+  <path d="M20 428.71h64v7l-10 10H20v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M20 428.711h1836v1131.586H20z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19" x="35" y="441.778">
+    alt
+  </text>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="202" x="99" y="440.921">
+    [Validate participant (success)]
+  </text>
+  <path stroke="#a80036" d="M1041.5 466.977h42M1083.5 466.977v13M1042.5 479.977h41"/>
+  <path fill="#A80036" stroke="#a80036" d="M1052.5 475.977l-10 4 10 4-4-4z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="1048.5" y="461.911">
+    8
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="208" x="1061.5" y="461.911">
+    check if &quot;type&quot; parameter is sent
+  </text>
+  <path d="M30 494.977h64v7l-10 10H30v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M30 494.977h1816v816.188H30z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19" x="45" y="508.043">
+    alt
+  </text>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="266" x="109" y="507.187">
+    [Check if &quot;type&quot; parameter is sent (Sent)]
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1373.5 544.375l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M1041.5 548.375h338"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="1048.5" y="535.743">
+    9
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="291" x="1061.5" y="528.176">
+    Fetch Callback details for Participant and type
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="82" x="1061.5" y="543.309">
+    Error code:
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="32" x="1147.5" y="543.309">
+    3000
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1745.5 573.508l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M1395.5 577.508h356"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1402.5" y="572.442">
+    10
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="291" x="1424.5" y="572.442">
+    Fetch Callback details for Participant and type
+  </text>
+  <path d="M1400 590.508v55h213v-45l-10-10h-203" fill="#D3D3D3" filter="url(#a)" stroke="#a80036"/>
+  <path d="M1603 590.508v10h10l-10-10" fill="#D3D3D3" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="64" x="1406" y="607.575">
+    Condition:
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="76" x="1422" y="622.707">
+    isActive = 1
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="176" x="1422" y="637.84">
+    [endpointTypeId = &lt;type&gt;]
+  </text>
+  <path fill="#FFFFE0" filter="url(#a)" stroke="#a80036" d="M1698 659.906h128l10 11-10 12h-128l-10-12 10-11z"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="124" x="1700" y="675.973">
+    participantEndpoint
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1406.5 705.172l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M1400.5 709.172h361"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1412.5" y="704.106">
+    11
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="316" x="1434.5" y="704.106">
+    Retrieved Callback details for Participant and type
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1052.5 734.305l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M1046.5 738.305h343"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1058.5" y="733.239">
+    12
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="298" x="1080.5" y="733.239">
+    Return Callback details for Participant and type
+  </text>
+  <path d="M1046 751.305v70h316v-60l-10-10h-306" fill="#FF0" filter="url(#a)" stroke="#a80036"/>
+  <path d="M1352 751.305v10h10l-10-10" fill="#FF0" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="61" x="1052" y="768.372">
+    Message:
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="1052" y="783.504">
+    {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="279" x="1068" y="798.637">
+    endpoints: {type: &lt;type&gt;, value: &lt;value&gt;}
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="1052" y="813.77">
+    }
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M758.5 847.969l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M752.5 851.969h283"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="764.5" y="846.903">
+    13
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="238" x="786.5" y="846.903">
+    Return Callback details for Participant
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M117 877.102l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M111 881.102h625.5"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="123" y="876.036">
+    14
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="238" x="145" y="876.036">
+    Return Callback details for Participant
+  </text>
+  <path stroke="#000" stroke-dasharray="2,2" d="M30 890.102h1816"/>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="292" x="35" y="900.312">
+    [Check if &quot;type&quot; parameter is sent (Not Sent)]
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1373.5 936.172l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M1041.5 940.172h338"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1048.5" y="927.54">
+    15
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="231" x="1070.5" y="919.973">
+    Fetch Callback details for Participant
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="82" x="1070.5" y="935.106">
+    Error code:
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="32" x="1156.5" y="935.106">
+    3000
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1745.5 965.305l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M1395.5 969.305h356"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1402.5" y="964.239">
+    16
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="231" x="1424.5" y="964.239">
+    Fetch Callback details for Participant
+  </text>
+  <path d="M1400 982.305v40h113v-30l-10-10h-103" fill="#D3D3D3" filter="url(#a)" stroke="#a80036"/>
+  <path d="M1503 982.305v10h10l-10-10" fill="#D3D3D3" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="64" x="1406" y="999.372">
+    Condition:
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="76" x="1422" y="1014.504">
+    isActive = 1
+  </text>
+  <path fill="#FFFFE0" filter="url(#a)" stroke="#a80036" d="M1698 1036.57h128l10 11-10 12h-128l-10-12 10-11z"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="124" x="1700" y="1052.637">
+    participantEndpoint
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1406.5 1081.836l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M1400.5 1085.836h361"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1412.5" y="1080.77">
+    17
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="256" x="1434.5" y="1080.77">
+    Retrieved Callback details for Participant
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1052.5 1110.969l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M1046.5 1114.969h343"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1058.5" y="1109.903">
+    18
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="238" x="1080.5" y="1109.903">
+    Return Callback details for Participant
+  </text>
+  <path d="M1046 1127.969v115h265v-105l-10-10h-255" fill="#FF0" filter="url(#a)" stroke="#a80036"/>
+  <path d="M1301 1127.969v10h10l-10-10" fill="#FF0" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="61" x="1052" y="1145.036">
+    Message:
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="1052" y="1160.168">
+    {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="76" x="1068" y="1175.301">
+    endpoints: [
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="212" x="1084" y="1190.434">
+    {type: &lt;type&gt;, value: &lt;value&gt;},
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="208" x="1084" y="1205.567">
+    {type: &lt;type&gt;, value: &lt;value&gt;}
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="5" x="1068" y="1220.7">
+    ]
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="1052" y="1235.832">
+    }
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M758.5 1270.031l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M752.5 1274.031h278"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="764.5" y="1268.965">
+    19
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="238" x="786.5" y="1268.965">
+    Return Callback details for Participant
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M117 1299.164l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M111 1303.164h625.5"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="123" y="1298.098">
+    20
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="238" x="145" y="1298.098">
+    Return Callback details for Participant
+  </text>
+  <path stroke="#000" stroke-dasharray="2,2" d="M20 1319.164h1836"/>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="232" x="25" y="1329.374">
+    [Validate participant (failure)/ Error]
+  </text>
+  <path d="M1046 1337.969v25h171v-15l-10-10h-161" fill="red" filter="url(#a)" stroke="#a80036"/>
+  <path d="M1207 1337.969v10h10l-10-10" fill="red" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="150" x="1052" y="1355.036">
+    Validation failure/ Error!
+  </text>
+  <path d="M1046 1377.102v115h288v-105l-10-10h-278" fill="#FF0" filter="url(#a)" stroke="#a80036"/>
+  <path d="M1324 1377.102v10h10l-10-10" fill="#FF0" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="61" x="1052" y="1394.168">
+    Message:
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="1052" y="1409.301">
+    {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="130" x="1068" y="1424.434">
+    &quot;errorInformation&quot;: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="172" x="1084" y="1439.567">
+    &quot;errorCode&quot;: &lt;errorCode&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="235" x="1084" y="1454.7">
+    &quot;errorDescription&quot;: &lt;ErrorMessage&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="1068" y="1469.832">
+    }
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="1052" y="1484.965">
+    }
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M758.5 1519.164l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M752.5 1523.164h283"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="764.5" y="1518.098">
+    21
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="42" x="786.5" y="1518.098">
+    Return
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="82" x="832.5" y="1518.098">
+    Error code:
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="72" x="918.5" y="1518.098">
+    3000, 3200
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M117 1548.297l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M111 1552.297h625.5"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="123" y="1547.231">
+    22
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="42" x="145" y="1547.231">
+    Return
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="82" x="191" y="1547.231">
+    Error code:
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="72" x="277" y="1547.231">
+    3000, 3200
+  </text>
+</svg>

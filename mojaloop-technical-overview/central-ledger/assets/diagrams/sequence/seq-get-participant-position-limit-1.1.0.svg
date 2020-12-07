@@ -1,186 +1,568 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="2347px" preserveAspectRatio="none" style="width:2062px;height:2347px;" version="1.1" viewBox="0 0 2062 2347" width="2062px" zoomAndPan="magnify"><defs><filter height="300%" id="f1p8fm8qyn0ji8" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="374" x="845" y="23.5352">1.1.0 Request Participant Position and Limit Details</text><rect fill="#FFFFE0" height="2301.8594" style="stroke: #A80036; stroke-width: 1.0;" width="1181" x="714.5" y="34.4883"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="108" x="1251" y="47.0566">Central Services</text><rect fill="#FFFFFF" filter="url(#f1p8fm8qyn0ji8)" height="2127.5723" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="94.5" y="126.2871"/><rect fill="#FFFFFF" filter="url(#f1p8fm8qyn0ji8)" height="2081.9512" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="780.5" y="171.9082"/><rect fill="#FFFFFF" filter="url(#f1p8fm8qyn0ji8)" height="756.627" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1030.5" y="201.2188"/><rect fill="#FFFFFF" filter="url(#f1p8fm8qyn0ji8)" height="971.332" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1035.5" y="987.1563"/><rect fill="#FFFFFF" filter="url(#f1p8fm8qyn0ji8)" height="214.75" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1035.5" y="987.1563"/><rect fill="#FFFFFF" filter="url(#f1p8fm8qyn0ji8)" height="274.0605" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1035.5" y="1987.7988"/><rect fill="#FFFFFF" filter="url(#f1p8fm8qyn0ji8)" height="214.75" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1035.5" y="1987.7988"/><rect fill="#FFFFFF" filter="url(#f1p8fm8qyn0ji8)" height="136.5527" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1409.5" y="312.4609"/><rect fill="#FFFFFF" filter="url(#f1p8fm8qyn0ji8)" height="252.416" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1409.5" y="560.2559"/><rect fill="#FFFFFF" filter="url(#f1p8fm8qyn0ji8)" height="121.2422" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1409.5" y="1297.793"/><rect fill="#FFFFFF" filter="url(#f1p8fm8qyn0ji8)" height="283.0371" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1409.5" y="1530.2773"/><rect fill="#FFFFFF" filter="url(#f1p8fm8qyn0ji8)" height="77.9316" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1838.5" y="341.7715"/><rect fill="#FFFFFF" filter="url(#f1p8fm8qyn0ji8)" height="193.7949" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1838.5" y="589.5664"/><rect fill="#FFFFFF" filter="url(#f1p8fm8qyn0ji8)" height="62.6211" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1838.5" y="1327.1035"/><rect fill="#FFFFFF" filter="url(#f1p8fm8qyn0ji8)" height="224.416" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1838.5" y="1559.5879"/><rect fill="#FFFFFF" filter="url(#f1p8fm8qyn0ji8)" height="2120.5723" style="stroke: #000000; stroke-width: 2.0;" width="2038" x="13" y="133.2871"/><rect fill="#FFFFFF" filter="url(#f1p8fm8qyn0ji8)" height="1988.3301" style="stroke: #000000; stroke-width: 2.0;" width="2018" x="23" y="258.5293"/><rect fill="#FFFFFF" filter="url(#f1p8fm8qyn0ji8)" height="732.8926" style="stroke: #000000; stroke-width: 2.0;" width="1998" x="33" y="506.3242"/><rect fill="#FFFFFF" height="244.0605" style="stroke: none; stroke-width: 1.0;" width="1998" x="33" y="995.1563"/><rect fill="#FFFFFF" height="1000.6426" style="stroke: none; stroke-width: 1.0;" width="2018" x="23" y="1246.2168"/><rect fill="#FFFFFF" filter="url(#f1p8fm8qyn0ji8)" height="763.5137" style="stroke: #000000; stroke-width: 2.0;" width="1998" x="33" y="1476.3457"/><rect fill="#FFFFFF" height="244.0605" style="stroke: none; stroke-width: 1.0;" width="1998" x="33" y="1995.7988"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="99" x2="99" y1="116.2871" y2="2270.8594"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="785.5" x2="785.5" y1="116.2871" y2="2270.8594"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="1035" x2="1035" y1="116.2871" y2="2270.8594"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="1414" x2="1414" y1="116.2871" y2="2270.8594"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="1843.5" x2="1843.5" y1="116.2871" y2="2270.8594"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="107" x="43" y="113.334">HUB OPERATOR</text><ellipse cx="99.5" cy="83.7988" fill="#FEFECE" filter="url(#f1p8fm8qyn0ji8)" rx="12" ry="12" style="stroke: #A80036; stroke-width: 2.0;"/><line style="stroke: #A80036; stroke-width: 2.0;" x1="87.5" x2="111.5" y1="97.7988" y2="97.7988"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="107" x="43" y="2283.3945">HUB OPERATOR</text><ellipse cx="99.5" cy="2302.3477" fill="#FEFECE" filter="url(#f1p8fm8qyn0ji8)" rx="12" ry="12" style="stroke: #A80036; stroke-width: 2.0;"/><line style="stroke: #A80036; stroke-width: 2.0;" x1="87.5" x2="111.5" y1="2316.3477" y2="2316.3477"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="128" x="718.5" y="113.334">Central Service API</text><path d="M765,71.7988 L765,95.7988 M765,83.7988 L782,83.7988 " fill="none" filter="url(#f1p8fm8qyn0ji8)" style="stroke: #A80036; stroke-width: 2.0;"/><ellipse cx="794" cy="83.7988" fill="#FEFECE" filter="url(#f1p8fm8qyn0ji8)" rx="12" ry="12" style="stroke: #A80036; stroke-width: 2.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="128" x="718.5" y="2283.3945">Central Service API</text><path d="M765,2290.3477 L765,2314.3477 M765,2302.3477 L782,2302.3477 " fill="none" filter="url(#f1p8fm8qyn0ji8)" style="stroke: #A80036; stroke-width: 2.0;"/><ellipse cx="794" cy="2302.3477" fill="#FEFECE" filter="url(#f1p8fm8qyn0ji8)" rx="12" ry="12" style="stroke: #A80036; stroke-width: 2.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="131" x="967" y="113.334">Participant Handler</text><ellipse cx="1035.5" cy="83.7988" fill="#FEFECE" filter="url(#f1p8fm8qyn0ji8)" rx="12" ry="12" style="stroke: #A80036; stroke-width: 2.0;"/><polygon fill="#A80036" points="1031.5,71.7988,1037.5,66.7988,1035.5,71.7988,1037.5,76.7988,1031.5,71.7988" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="131" x="967" y="2283.3945">Participant Handler</text><ellipse cx="1035.5" cy="2302.3477" fill="#FEFECE" filter="url(#f1p8fm8qyn0ji8)" rx="12" ry="12" style="stroke: #A80036; stroke-width: 2.0;"/><polygon fill="#A80036" points="1031.5,2290.3477,1037.5,2285.3477,1035.5,2290.3477,1037.5,2295.3477,1031.5,2290.3477" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="125" x="1349" y="113.334">Participant Facade</text><ellipse cx="1414.5" cy="83.7988" fill="#FEFECE" filter="url(#f1p8fm8qyn0ji8)" rx="12" ry="12" style="stroke: #A80036; stroke-width: 2.0;"/><line style="stroke: #A80036; stroke-width: 2.0;" x1="1402.5" x2="1426.5" y1="97.7988" y2="97.7988"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="125" x="1349" y="2283.3945">Participant Facade</text><ellipse cx="1414.5" cy="2302.3477" fill="#FEFECE" filter="url(#f1p8fm8qyn0ji8)" rx="12" ry="12" style="stroke: #A80036; stroke-width: 2.0;"/><line style="stroke: #A80036; stroke-width: 2.0;" x1="1402.5" x2="1426.5" y1="2316.3477" y2="2316.3477"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="90" x="1795.5" y="113.334">Central Store</text><path d="M1825.5,63.7988 C1825.5,53.7988 1843.5,53.7988 1843.5,53.7988 C1843.5,53.7988 1861.5,53.7988 1861.5,63.7988 L1861.5,89.7988 C1861.5,99.7988 1843.5,99.7988 1843.5,99.7988 C1843.5,99.7988 1825.5,99.7988 1825.5,89.7988 L1825.5,63.7988 " fill="#FEFECE" filter="url(#f1p8fm8qyn0ji8)" style="stroke: #000000; stroke-width: 1.5;"/><path d="M1825.5,63.7988 C1825.5,73.7988 1843.5,73.7988 1843.5,73.7988 C1843.5,73.7988 1861.5,73.7988 1861.5,63.7988 " fill="none" style="stroke: #000000; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="90" x="1795.5" y="2283.3945">Central Store</text><path d="M1825.5,2296.3477 C1825.5,2286.3477 1843.5,2286.3477 1843.5,2286.3477 C1843.5,2286.3477 1861.5,2286.3477 1861.5,2296.3477 L1861.5,2322.3477 C1861.5,2332.3477 1843.5,2332.3477 1843.5,2332.3477 C1843.5,2332.3477 1825.5,2332.3477 1825.5,2322.3477 L1825.5,2296.3477 " fill="#FEFECE" filter="url(#f1p8fm8qyn0ji8)" style="stroke: #000000; stroke-width: 1.5;"/><path d="M1825.5,2296.3477 C1825.5,2306.3477 1843.5,2306.3477 1843.5,2306.3477 C1843.5,2306.3477 1861.5,2306.3477 1861.5,2296.3477 " fill="none" style="stroke: #000000; stroke-width: 1.5;"/><rect fill="#FFFFFF" filter="url(#f1p8fm8qyn0ji8)" height="2127.5723" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="94.5" y="126.2871"/><rect fill="#FFFFFF" filter="url(#f1p8fm8qyn0ji8)" height="2081.9512" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="780.5" y="171.9082"/><rect fill="#FFFFFF" filter="url(#f1p8fm8qyn0ji8)" height="756.627" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1030.5" y="201.2188"/><rect fill="#FFFFFF" filter="url(#f1p8fm8qyn0ji8)" height="971.332" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1035.5" y="987.1563"/><rect fill="#FFFFFF" filter="url(#f1p8fm8qyn0ji8)" height="214.75" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1035.5" y="987.1563"/><rect fill="#FFFFFF" filter="url(#f1p8fm8qyn0ji8)" height="274.0605" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1035.5" y="1987.7988"/><rect fill="#FFFFFF" filter="url(#f1p8fm8qyn0ji8)" height="214.75" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1035.5" y="1987.7988"/><rect fill="#FFFFFF" filter="url(#f1p8fm8qyn0ji8)" height="136.5527" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1409.5" y="312.4609"/><rect fill="#FFFFFF" filter="url(#f1p8fm8qyn0ji8)" height="252.416" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1409.5" y="560.2559"/><rect fill="#FFFFFF" filter="url(#f1p8fm8qyn0ji8)" height="121.2422" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1409.5" y="1297.793"/><rect fill="#FFFFFF" filter="url(#f1p8fm8qyn0ji8)" height="283.0371" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1409.5" y="1530.2773"/><rect fill="#FFFFFF" filter="url(#f1p8fm8qyn0ji8)" height="77.9316" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1838.5" y="341.7715"/><rect fill="#FFFFFF" filter="url(#f1p8fm8qyn0ji8)" height="193.7949" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1838.5" y="589.5664"/><rect fill="#FFFFFF" filter="url(#f1p8fm8qyn0ji8)" height="62.6211" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1838.5" y="1327.1035"/><rect fill="#FFFFFF" filter="url(#f1p8fm8qyn0ji8)" height="224.416" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1838.5" y="1559.5879"/><path d="M13,133.2871 L192,133.2871 L192,140.2871 L182,150.2871 L13,150.2871 L13,133.2871 " fill="#EEEEEE" style="stroke: #000000; stroke-width: 1.0;"/><rect fill="none" height="2120.5723" style="stroke: #000000; stroke-width: 2.0;" width="2038" x="13" y="133.2871"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="134" x="28" y="146.8555">Get Callback Details</text><polygon fill="#A80036" points="768.5,167.9082,778.5,171.9082,768.5,175.9082,772.5,171.9082" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="104.5" x2="774.5" y1="171.9082" y2="171.9082"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="111.5" y="167.166">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="644" x="124.5" y="167.166">Request to get Limits - GET - /participants/{name}/limits?type={typeValue}&amp;currency={currencyValue}</text><polygon fill="#A80036" points="1018.5,197.2188,1028.5,201.2188,1018.5,205.2188,1022.5,201.2188" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="790.5" x2="1024.5" y1="201.2188" y2="201.2188"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="797.5" y="196.4766">2</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="170" x="810.5" y="196.4766">Fetch Limits for Participant</text><line style="stroke: #A80036; stroke-width: 1.0;" x1="1040.5" x2="1082.5" y1="230.5293" y2="230.5293"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="1082.5" x2="1082.5" y1="230.5293" y2="243.5293"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="1041.5" x2="1082.5" y1="243.5293" y2="243.5293"/><polygon fill="#A80036" points="1051.5,239.5293,1041.5,243.5293,1051.5,247.5293,1047.5,243.5293" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="1047.5" y="225.7871">3</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="231" x="1060.5" y="225.7871">check if "currency" parameter is sent</text><path d="M23,258.5293 L85,258.5293 L85,265.5293 L75,275.5293 L23,275.5293 L23,258.5293 " fill="#EEEEEE" style="stroke: #000000; stroke-width: 1.0;"/><rect fill="none" height="1988.3301" style="stroke: #000000; stroke-width: 2.0;" width="2018" x="23" y="258.5293"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="17" x="38" y="272.0977">alt</text><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="253" x="100" y="271.1641">[Check if "currency" parameter is sent (Sent)]</text><polygon fill="#A80036" points="1397.5,308.4609,1407.5,312.4609,1397.5,316.4609,1401.5,312.4609" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="1040.5" x2="1403.5" y1="312.4609" y2="312.4609"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="1047.5" y="300.0635">4</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="182" x="1060.5" y="292.4082">Fetch Participant/currency id</text><text fill="#FF0000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="73" x="1060.5" y="307.7188">Error code:</text><text fill="#FF0000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="32" x="1137.5" y="307.7188">3200</text><polygon fill="#A80036" points="1826.5,337.7715,1836.5,341.7715,1826.5,345.7715,1830.5,341.7715" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="1419.5" x2="1832.5" y1="341.7715" y2="341.7715"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="1426.5" y="337.0293">5</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="182" x="1439.5" y="337.0293">Fetch Participant/currency id</text><polygon fill="#FFFFE0" filter="url(#f1p8fm8qyn0ji8)" points="1779,354.7715,1907,354.7715,1917,373.7715,1907,392.7715,1779,392.7715,1769,373.7715,1779,354.7715" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="68" x="1781" y="371.3398">participant</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="124" x="1781" y="386.6504">participantCurrency</text><polygon fill="#A80036" points="1430.5,415.7031,1420.5,419.7031,1430.5,423.7031,1426.5,419.7031" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="1424.5" x2="1842.5" y1="419.7031" y2="419.7031"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="1436.5" y="414.9609">6</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="129" x="1449.5" y="414.9609">Retrieved Participant</text><polygon fill="#A80036" points="1051.5,445.0137,1041.5,449.0137,1051.5,453.0137,1047.5,449.0137" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="1045.5" x2="1413.5" y1="449.0137" y2="449.0137"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="1057.5" y="444.2715">7</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="189" x="1070.5" y="444.2715">Return Participant/currency id</text><line style="stroke: #A80036; stroke-width: 1.0;" x1="1040.5" x2="1082.5" y1="478.3242" y2="478.3242"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="1082.5" x2="1082.5" y1="478.3242" y2="491.3242"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="1041.5" x2="1082.5" y1="491.3242" y2="491.3242"/><polygon fill="#A80036" points="1051.5,487.3242,1041.5,491.3242,1051.5,495.3242,1047.5,491.3242" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="1047.5" y="473.582">8</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="85" x="1060.5" y="473.582">Validate DFSP</text><path d="M33,506.3242 L95,506.3242 L95,513.3242 L85,523.3242 L33,523.3242 L33,506.3242 " fill="#EEEEEE" style="stroke: #000000; stroke-width: 1.0;"/><rect fill="none" height="732.8926" style="stroke: #000000; stroke-width: 2.0;" width="1998" x="33" y="506.3242"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="17" x="48" y="519.8926">alt</text><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="172" x="110" y="518.959">[Validate participant (success)]</text><polygon fill="#A80036" points="1397.5,556.2559,1407.5,560.2559,1397.5,564.2559,1401.5,560.2559" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="1040.5" x2="1403.5" y1="560.2559" y2="560.2559"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="1047.5" y="547.8584">9</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="286" x="1060.5" y="540.2031">Fetch Participant Limits for currency and type</text><text fill="#FF0000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="73" x="1060.5" y="555.5137">Error code:</text><text fill="#FF0000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="32" x="1137.5" y="555.5137">3000</text><polygon fill="#A80036" points="1826.5,585.5664,1836.5,589.5664,1826.5,593.5664,1830.5,589.5664" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="1419.5" x2="1832.5" y1="589.5664" y2="589.5664"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1426.5" y="584.8242">10</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="360" x="1448.5" y="584.8242">Fetch Participant Limit  for currencyId and type(if passed)</text><path d="M1424,602.5664 L1424,703.5664 L2017,703.5664 L2017,612.5664 L2007,602.5664 L1424,602.5664 " fill="#D3D3D3" filter="url(#f1p8fm8qyn0ji8)" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M2007,602.5664 L2007,612.5664 L2017,612.5664 L2007,602.5664 " fill="#D3D3D3" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="66" x="1430" y="620.1348">Condition:</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="180" x="1446" y="635.4453">participantLimit.isActive = 1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="344" x="1446" y="650.7559">participantLimit.participantCurrencyId = &lt;currencyId&gt;</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="556" x="1446" y="666.0664">[   participantLimit.participantLimitTypeId = participantLimitType.participantLimitTypeId</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="233" x="1462" y="681.377">participantLimitType.name = &lt;type&gt;</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="4" x="1446" y="696.6875">]</text><polygon fill="#FFFFE0" filter="url(#f1p8fm8qyn0ji8)" points="1776,718.4297,1910,718.4297,1920,737.4297,1910,756.4297,1776,756.4297,1766,737.4297,1776,718.4297" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="100" x="1778" y="734.998">participantLimit</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="130" x="1778" y="750.3086">participantLimitType</text><polygon fill="#A80036" points="1430.5,779.3613,1420.5,783.3613,1430.5,787.3613,1426.5,783.3613" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="1424.5" x2="1842.5" y1="783.3613" y2="783.3613"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1436.5" y="778.6191">11</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="322" x="1458.5" y="778.6191">Retrieved Participant Limits for currencyId and type</text><polygon fill="#A80036" points="1051.5,808.6719,1041.5,812.6719,1051.5,816.6719,1047.5,812.6719" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="1045.5" x2="1413.5" y1="812.6719" y2="812.6719"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1057.5" y="807.9297">12</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="305" x="1079.5" y="807.9297">Return Participant Limits for currencyId and type</text><path d="M1045,825.6719 L1045,926.6719 L1327,926.6719 L1327,835.6719 L1317,825.6719 L1045,825.6719 " fill="#FFFF00" filter="url(#f1p8fm8qyn0ji8)" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M1317,825.6719 L1317,835.6719 L1327,835.6719 L1317,825.6719 " fill="#FFFF00" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="58" x="1051" y="843.2402">Message:</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="4" x="1051" y="858.5508">[</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="168" x="1067" y="873.8613">{   currency: &lt;currencyId&gt;,</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="229" x="1083" y="889.1719">limit: {type: &lt;type&gt;, value: &lt;value&gt;}</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="4" x="1067" y="904.4824">}</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="4" x="1051" y="919.793">]</text><polygon fill="#A80036" points="801.5,953.8457,791.5,957.8457,801.5,961.8457,797.5,957.8457" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="795.5" x2="1034.5" y1="957.8457" y2="957.8457"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="807.5" y="953.1035">13</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="155" x="829.5" y="953.1035">Return Participant Limits</text><polygon fill="#A80036" points="115.5,983.1563,105.5,987.1563,115.5,991.1563,111.5,987.1563" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="109.5" x2="779.5" y1="987.1563" y2="987.1563"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="121.5" y="982.4141">14</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="155" x="143.5" y="982.4141">Return Participant Limits</text><line style="stroke: #000000; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="33" x2="2031" y1="996.1563" y2="996.1563"/><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="205" x="38" y="1006.791">[Validate participant (failure)/ Error]</text><path d="M1050,1015.1113 L1050,1040.1113 L1223,1040.1113 L1223,1025.1113 L1213,1015.1113 L1050,1015.1113 " fill="#FF0000" filter="url(#f1p8fm8qyn0ji8)" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M1213,1015.1113 L1213,1025.1113 L1223,1025.1113 L1213,1015.1113 " fill="#FF0000" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="152" x="1056" y="1032.6797">Validation failure/ Error!</text><path d="M1050,1054.4219 L1050,1171.4219 L1332,1171.4219 L1332,1064.4219 L1322,1054.4219 L1050,1054.4219 " fill="#FFFF00" filter="url(#f1p8fm8qyn0ji8)" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M1322,1054.4219 L1322,1064.4219 L1332,1064.4219 L1322,1054.4219 " fill="#FFFF00" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="58" x="1056" y="1071.9902">Message:</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="4" x="1056" y="1087.3008">{</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="126" x="1072" y="1102.6113">"errorInformation": {</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="166" x="1088" y="1117.9219">"errorCode": &lt;errorCode&gt;,</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="229" x="1088" y="1133.2324">"errorDescription": &lt;ErrorMessage&gt;,</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="4" x="1072" y="1148.543">}</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="4" x="1056" y="1163.8535">}</text><polygon fill="#A80036" points="801.5,1197.9063,791.5,1201.9063,801.5,1205.9063,797.5,1201.9063" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="795.5" x2="1029.5" y1="1201.9063" y2="1201.9063"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="807.5" y="1197.1641">15</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="41" x="829.5" y="1197.1641">Return</text><text fill="#FF0000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="73" x="874.5" y="1197.1641">Error code:</text><text fill="#FF0000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="72" x="951.5" y="1197.1641">3000, 3200</text><polygon fill="#A80036" points="115.5,1227.2168,105.5,1231.2168,115.5,1235.2168,111.5,1231.2168" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="109.5" x2="779.5" y1="1231.2168" y2="1231.2168"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="121.5" y="1226.4746">16</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="41" x="143.5" y="1226.4746">Return</text><text fill="#FF0000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="73" x="188.5" y="1226.4746">Error code:</text><text fill="#FF0000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="72" x="265.5" y="1226.4746">3000, 3200</text><line style="stroke: #000000; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="23" x2="2041" y1="1247.2168" y2="1247.2168"/><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="276" x="28" y="1257.8516">[Check if "currency" parameter is sent (Not Sent)]</text><polygon fill="#A80036" points="1397.5,1293.793,1407.5,1297.793,1397.5,1301.793,1401.5,1297.793" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="1040.5" x2="1403.5" y1="1297.793" y2="1297.793"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1047.5" y="1285.3955">17</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="105" x="1069.5" y="1277.7402">Fetch Participant</text><text fill="#FF0000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="73" x="1069.5" y="1293.0508">Error code:</text><text fill="#FF0000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="32" x="1146.5" y="1293.0508">3200</text><polygon fill="#A80036" points="1826.5,1323.1035,1836.5,1327.1035,1826.5,1331.1035,1830.5,1327.1035" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="1419.5" x2="1832.5" y1="1327.1035" y2="1327.1035"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1426.5" y="1322.3613">18</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="105" x="1448.5" y="1322.3613">Fetch Participant</text><polygon fill="#FFFFE0" filter="url(#f1p8fm8qyn0ji8)" points="1807,1340.1035,1879,1340.1035,1889,1351.1035,1879,1363.1035,1807,1363.1035,1797,1351.1035,1807,1340.1035" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="68" x="1809" y="1356.6719">participant</text><polygon fill="#A80036" points="1430.5,1385.7246,1420.5,1389.7246,1430.5,1393.7246,1426.5,1389.7246" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="1424.5" x2="1842.5" y1="1389.7246" y2="1389.7246"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1436.5" y="1384.9824">19</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="129" x="1458.5" y="1384.9824">Retrieved Participant</text><polygon fill="#A80036" points="1051.5,1415.0352,1041.5,1419.0352,1051.5,1423.0352,1047.5,1419.0352" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="1045.5" x2="1413.5" y1="1419.0352" y2="1419.0352"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1057.5" y="1414.293">20</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="112" x="1079.5" y="1414.293">Return Participant</text><line style="stroke: #A80036; stroke-width: 1.0;" x1="1040.5" x2="1082.5" y1="1448.3457" y2="1448.3457"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="1082.5" x2="1082.5" y1="1448.3457" y2="1461.3457"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="1041.5" x2="1082.5" y1="1461.3457" y2="1461.3457"/><polygon fill="#A80036" points="1051.5,1457.3457,1041.5,1461.3457,1051.5,1465.3457,1047.5,1461.3457" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1047.5" y="1443.6035">21</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="85" x="1069.5" y="1443.6035">Validate DFSP</text><path d="M33,1476.3457 L95,1476.3457 L95,1483.3457 L85,1493.3457 L33,1493.3457 L33,1476.3457 " fill="#EEEEEE" style="stroke: #000000; stroke-width: 1.0;"/><rect fill="none" height="763.5137" style="stroke: #000000; stroke-width: 2.0;" width="1998" x="33" y="1476.3457"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="17" x="48" y="1489.9141">alt</text><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="172" x="110" y="1488.9805">[Validate participant (success)]</text><polygon fill="#A80036" points="1397.5,1526.2773,1407.5,1530.2773,1397.5,1534.2773,1401.5,1530.2773" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="1040.5" x2="1403.5" y1="1530.2773" y2="1530.2773"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1047.5" y="1517.8799">22</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="316" x="1069.5" y="1510.2246">Fetch Participant Limits for all currencies and type</text><text fill="#FF0000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="73" x="1069.5" y="1525.5352">Error code:</text><text fill="#FF0000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="32" x="1146.5" y="1525.5352">3000</text><polygon fill="#A80036" points="1826.5,1555.5879,1836.5,1559.5879,1826.5,1563.5879,1830.5,1559.5879" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="1419.5" x2="1832.5" y1="1559.5879" y2="1559.5879"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1426.5" y="1554.8457">23</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="378" x="1448.5" y="1554.8457">Fetch Participant Limit  for all currencies and type(if passed)</text><path d="M1424,1572.5879 L1424,1689.5879 L2017,1689.5879 L2017,1582.5879 L2007,1572.5879 L1424,1572.5879 " fill="#D3D3D3" filter="url(#f1p8fm8qyn0ji8)" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M2007,1572.5879 L2007,1582.5879 L2017,1582.5879 L2007,1572.5879 " fill="#D3D3D3" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="66" x="1430" y="1590.1563">Condition:</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="326" x="1446" y="1605.4668">participantCurrency.participantId = &lt;participantId&gt;</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="522" x="1446" y="1620.7773">participantLimit.participantCurrencyId = participantCurrency.participantCurrencyId</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="180" x="1446" y="1636.0879">participantLimit.isActive = 1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="556" x="1446" y="1651.3984">[   participantLimit.participantLimitTypeId = participantLimitType.participantLimitTypeId</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="233" x="1462" y="1666.709">participantLimitType.name = &lt;type&gt;</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="4" x="1446" y="1682.0195">]</text><polygon fill="#FFFFE0" filter="url(#f1p8fm8qyn0ji8)" points="1776,1703.7617,1910,1703.7617,1920,1729.7617,1910,1756.7617,1776,1756.7617,1766,1729.7617,1776,1703.7617" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="124" x="1778" y="1720.3301">participantCurrency</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="100" x="1778" y="1735.6406">participantLimit</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="130" x="1778" y="1750.9512">participantLimitType</text><polygon fill="#A80036" points="1430.5,1780.0039,1420.5,1784.0039,1430.5,1788.0039,1426.5,1784.0039" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="1424.5" x2="1842.5" y1="1784.0039" y2="1784.0039"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1436.5" y="1779.2617">24</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="340" x="1458.5" y="1779.2617">Retrieved Participant Limits for all currencies and type</text><polygon fill="#A80036" points="1051.5,1809.3145,1041.5,1813.3145,1051.5,1817.3145,1047.5,1813.3145" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="1045.5" x2="1413.5" y1="1813.3145" y2="1813.3145"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1057.5" y="1808.5723">25</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="323" x="1079.5" y="1808.5723">Return Participant Limits for all currencies and type</text><path d="M1045,1826.3145 L1045,1927.3145 L1327,1927.3145 L1327,1836.3145 L1317,1826.3145 L1045,1826.3145 " fill="#FFFF00" filter="url(#f1p8fm8qyn0ji8)" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M1317,1826.3145 L1317,1836.3145 L1327,1836.3145 L1317,1826.3145 " fill="#FFFF00" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="58" x="1051" y="1843.8828">Message:</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="4" x="1051" y="1859.1934">[</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="168" x="1067" y="1874.5039">{   currency: &lt;currencyId&gt;,</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="229" x="1083" y="1889.8145">limit: {type: &lt;type&gt;, value: &lt;value&gt;}</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="4" x="1067" y="1905.125">}</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="4" x="1051" y="1920.4355">]</text><polygon fill="#A80036" points="801.5,1954.4883,791.5,1958.4883,801.5,1962.4883,797.5,1958.4883" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="795.5" x2="1034.5" y1="1958.4883" y2="1958.4883"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="807.5" y="1953.7461">26</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="155" x="829.5" y="1953.7461">Return Participant Limits</text><polygon fill="#A80036" points="115.5,1983.7988,105.5,1987.7988,115.5,1991.7988,111.5,1987.7988" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="109.5" x2="779.5" y1="1987.7988" y2="1987.7988"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="121.5" y="1983.0566">27</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="155" x="143.5" y="1983.0566">Return Participant Limits</text><line style="stroke: #000000; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="33" x2="2031" y1="1996.7988" y2="1996.7988"/><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="205" x="38" y="2007.4336">[Validate participant (failure)/ Error]</text><path d="M1050,2015.7539 L1050,2040.7539 L1223,2040.7539 L1223,2025.7539 L1213,2015.7539 L1050,2015.7539 " fill="#FF0000" filter="url(#f1p8fm8qyn0ji8)" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M1213,2015.7539 L1213,2025.7539 L1223,2025.7539 L1213,2015.7539 " fill="#FF0000" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="152" x="1056" y="2033.3223">Validation failure/ Error!</text><path d="M1050,2055.0645 L1050,2172.0645 L1332,2172.0645 L1332,2065.0645 L1322,2055.0645 L1050,2055.0645 " fill="#FFFF00" filter="url(#f1p8fm8qyn0ji8)" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M1322,2055.0645 L1322,2065.0645 L1332,2065.0645 L1322,2055.0645 " fill="#FFFF00" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="58" x="1056" y="2072.6328">Message:</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="4" x="1056" y="2087.9434">{</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="126" x="1072" y="2103.2539">"errorInformation": {</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="166" x="1088" y="2118.5645">"errorCode": &lt;errorCode&gt;,</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="229" x="1088" y="2133.875">"errorDescription": &lt;ErrorMessage&gt;,</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="4" x="1072" y="2149.1855">}</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="4" x="1056" y="2164.4961">}</text><polygon fill="#A80036" points="801.5,2198.5488,791.5,2202.5488,801.5,2206.5488,797.5,2202.5488" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="795.5" x2="1029.5" y1="2202.5488" y2="2202.5488"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="807.5" y="2197.8066">28</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="41" x="829.5" y="2197.8066">Return</text><text fill="#FF0000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="73" x="874.5" y="2197.8066">Error code:</text><text fill="#FF0000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="72" x="951.5" y="2197.8066">3000, 3200</text><polygon fill="#A80036" points="115.5,2227.8594,105.5,2231.8594,115.5,2235.8594,111.5,2231.8594" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="109.5" x2="779.5" y1="2231.8594" y2="2231.8594"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="121.5" y="2227.1172">29</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="41" x="143.5" y="2227.1172">Return</text><text fill="#FF0000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="73" x="188.5" y="2227.1172">Error code:</text><text fill="#FF0000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="72" x="265.5" y="2227.1172">3000, 3200</text><!--
-@startuml
-title 1.1.0 Request Participant Position and Limit Details
-
-autonumber
-
-
-
-entity "HUB OPERATOR" as OPERATOR
-boundary "Central Service API" as CSAPI
-control "Participant Handler" as PARTICIPANT_HANDLER
-entity "Central Service API" as CSAPI
-entity "Participant Facade" as PARTICIPANT_DAO
-database "Central Store" as DB
-
-box "Central Services" #LightYellow
-participant CSAPI
-participant PARTICIPANT_HANDLER
-participant PARTICIPANT_DAO
-participant DB
-end box
-
-
-activate OPERATOR
-group Get Callback Details
-    OPERATOR -> CSAPI: Request to get Limits - GET - /participants/{name}/limits?type={typeValue}&currency={currencyValue}
-    activate CSAPI
-    CSAPI -> PARTICIPANT_HANDLER: Fetch Limits for Participant
-    activate PARTICIPANT_HANDLER
-    PARTICIPANT_HANDLER -> PARTICIPANT_HANDLER: check if "currency" parameter is sent
-    alt Check if "currency" parameter is sent (Sent)
-        PARTICIPANT_HANDLER ->PARTICIPANT_DAO: Fetch Participant/currency id \n<color #FF0000><b>Error code:</b> 3200</color>
-
-        activate PARTICIPANT_DAO
-        PARTICIPANT_DAO ->DB: Fetch Participant/currency id
-        activate DB
-        hnote over DB #lightyellow
-            participant
-            participantCurrency
-        end note
-        DB - -> PARTICIPANT_DAO: Retrieved Participant
-        deactivate DB
-        PARTICIPANT_DAO - ->PARTICIPANT_HANDLER: Return Participant/currency id
-        deactivate PARTICIPANT_DAO
-        PARTICIPANT_HANDLER ->PARTICIPANT_HANDLER: Validate DFSP
-        alt Validate participant (success)
-            PARTICIPANT_HANDLER ->PARTICIPANT_DAO: Fetch Participant Limits for currency and type \n<color #FF0000><b>Error code:</b> 3000</color>
-            activate PARTICIPANT_DAO
-            PARTICIPANT_DAO ->DB: Fetch Participant Limit  for currencyId and type(if passed)
-            note right of PARTICIPANT_DAO #lightgrey
-            Condition:
-                participantLimit.isActive = 1
-                participantLimit.participantCurrencyId = <currencyId>
-                [   participantLimit.participantLimitTypeId = participantLimitType.participantLimitTypeId
-                    participantLimitType.name = <type>
-                ]
-            end note
-
-            activate DB
-            hnote over DB #lightyellow
-                participantLimit
-                participantLimitType
-            end note
-            DB - -> PARTICIPANT_DAO: Retrieved Participant Limits for currencyId and type
-            deactivate DB
-            PARTICIPANT_DAO - ->PARTICIPANT_HANDLER: Return Participant Limits for currencyId and type
-            deactivate PARTICIPANT_DAO
-            note right of PARTICIPANT_HANDLER #yellow
-                Message:
-                [   
-                    {   currency: <currencyId>,
-                        limit: {type: <type>, value: <value>}
-                    }
-                ]
-            end note
-            PARTICIPANT_HANDLER - ->CSAPI: Return Participant Limits
-            deactivate PARTICIPANT_HANDLER
-            CSAPI - ->OPERATOR: Return Participant Limits
-
-
-        else Validate participant (failure)/ Error
-                activate PARTICIPANT_HANDLER
-                note right of PARTICIPANT_HANDLER #red: Validation failure/ Error!
-                activate PARTICIPANT_HANDLER
-                note right of PARTICIPANT_HANDLER #yellow
-                    Message:
-                    {
-                        "errorInformation": {
-                            "errorCode": <errorCode>,
-                            "errorDescription": <ErrorMessage>,
-                        }
-                    }
-                end note
-                PARTICIPANT_HANDLER - ->CSAPI: Return <color #FF0000><b>Error code:</b> 3000, 3200</color>
-                deactivate PARTICIPANT_HANDLER
-                CSAPI - ->OPERATOR: Return <color #FF0000><b>Error code:</b> 3000, 3200</color>
-        end
-
-    else Check if "currency" parameter is sent (Not Sent)
-        PARTICIPANT_HANDLER ->PARTICIPANT_DAO: Fetch Participant \n<color #FF0000><b>Error code:</b> 3200</color>
-
-        activate PARTICIPANT_DAO
-        PARTICIPANT_DAO ->DB: Fetch Participant
-        activate DB
-        hnote over DB #lightyellow
-            participant
-        end note
-        DB - -> PARTICIPANT_DAO: Retrieved Participant
-        deactivate DB
-        PARTICIPANT_DAO - ->PARTICIPANT_HANDLER: Return Participant
-        deactivate PARTICIPANT_DAO
-        PARTICIPANT_HANDLER ->PARTICIPANT_HANDLER: Validate DFSP
-        alt Validate participant (success)
-            PARTICIPANT_HANDLER ->PARTICIPANT_DAO: Fetch Participant Limits for all currencies and type \n<color #FF0000><b>Error code:</b> 3000</color>
-            activate PARTICIPANT_DAO
-            PARTICIPANT_DAO ->DB: Fetch Participant Limit  for all currencies and type(if passed)
-            note right of PARTICIPANT_DAO #lightgrey
-            Condition:
-                participantCurrency.participantId = <participantId>
-                participantLimit.participantCurrencyId = participantCurrency.participantCurrencyId
-                participantLimit.isActive = 1
-                [   participantLimit.participantLimitTypeId = participantLimitType.participantLimitTypeId
-                    participantLimitType.name = <type>
-                ]
-            end note
-
-            activate DB
-            hnote over DB #lightyellow
-                participantCurrency
-                participantLimit
-                participantLimitType
-            end note
-            DB - -> PARTICIPANT_DAO: Retrieved Participant Limits for all currencies and type
-            deactivate DB
-            PARTICIPANT_DAO - ->PARTICIPANT_HANDLER: Return Participant Limits for all currencies and type
-            deactivate PARTICIPANT_DAO
-            note right of PARTICIPANT_HANDLER #yellow
-                Message:
-                [   
-                    {   currency: <currencyId>,
-                        limit: {type: <type>, value: <value>}
-                    }
-                ]
-            end note
-            PARTICIPANT_HANDLER - ->CSAPI: Return Participant Limits
-            deactivate PARTICIPANT_HANDLER
-            CSAPI - ->OPERATOR: Return Participant Limits
-
-
-        else Validate participant (failure)/ Error
-                activate PARTICIPANT_HANDLER
-                note right of PARTICIPANT_HANDLER #red: Validation failure/ Error!
-                activate PARTICIPANT_HANDLER
-                note right of PARTICIPANT_HANDLER #yellow
-                    Message:
-                    {
-                        "errorInformation": {
-                            "errorCode": <errorCode>,
-                            "errorDescription": <ErrorMessage>,
-                        }
-                    }
-                end note
-                PARTICIPANT_HANDLER - ->CSAPI: Return <color #FF0000><b>Error code:</b> 3000, 3200</color>
-                deactivate PARTICIPANT_HANDLER
-                CSAPI - ->OPERATOR: Return <color #FF0000><b>Error code:</b> 3000, 3200</color>
-        end
-    end
-
-
-    deactivate CSAPI
-    deactivate OPERATOR
-end
-
-@enduml
-
-PlantUML version 1.2019.06(Sat May 25 01:10:25 PHT 2019)
-(GPL source distribution)
-Java Runtime: Java(TM) SE Runtime Environment
-JVM: Java HotSpot(TM) 64-Bit Server VM
-Java Version: 1.8.0_171-b11
-Operating System: Mac OS X
-OS Version: 10.13.6
-Default Encoding: UTF-8
-Language: en
-Country: AU
---></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" height="2332" preserveAspectRatio="none" style="width:2100px;height:2332px" width="2100">
+  <defs>
+    <filter height="300%" id="a" width="300%" x="-1" y="-1">
+      <feGaussianBlur result="blurOut" stdDeviation="2"/>
+      <feColorMatrix in="blurOut" result="blurOut2" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/>
+      <feOffset dx="4" dy="4" in="blurOut2" result="blurOut3"/>
+      <feBlend in="SourceGraphic" in2="blurOut3"/>
+    </filter>
+  </defs>
+  <text font-family="sans-serif" font-size="18" lengthAdjust="spacingAndGlyphs" textLength="452" x="822" y="28.708">
+    1.1.0 Request Participant Position and Limit Details
+  </text>
+  <path fill="#FFFFE0" stroke="#a80036" d="M741 40.953h1197v2285.563H741z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="119" x="1280" y="53.02">
+    Central Services
+  </text>
+  <path fill="#FFF" filter="url(#a)" stroke="#a80036" d="M94 132.383h10v2111.836H94zM807 177.648h10v2066.57h-10zM1067 206.781h10v751.117h-10zM1072 987.031h10v963.922h-10z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#a80036" d="M1072 987.031h10v213h-10zM1072 1980.086h10v272.133h-10z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#a80036" d="M1072 1980.086h10v213h-10zM1448 317.313h10v135.664h-10zM1448 563.508h10v250.461h-10zM1448 1295.234h10v120.531h-10zM1448 1526.297h10v280.727h-10zM1881 346.445h10v77.398h-10zM1881 592.641h10v192.195h-10zM1881 1324.367h10v62.266h-10zM1881 1555.43h10v222.461h-10z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M10 139.383h2076v2104.836H10z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M20 263.914h2056v1973.305H20z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M30 510.109h2036v727.055H30z"/>
+  <path fill="#FFF" d="M30 995.031h2036v242.133H30zM20 1244.164h2056v993.055H20z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M30 1472.898h2036v757.32H30z"/>
+  <path fill="#FFF" d="M30 1988.086h2036v242.133H30z"/>
+  <path stroke="#a80036" stroke-dasharray="5,5" d="M99 122.383v2138.836M812 122.383v2138.836M1071.5 122.383v2138.836M1453 122.383v2138.836M1886 122.383v2138.836"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="112" x="40" y="119.081">
+    HUB OPERATOR
+  </text>
+  <circle cx="99" cy="90.086" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path stroke="#a80036" stroke-width="2" d="M87 104.086h24"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="112" x="40" y="2273.214">
+    HUB OPERATOR
+  </text>
+  <circle cx="99" cy="2292.516" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path stroke="#a80036" stroke-width="2" d="M87 2306.516h24"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="128" x="745" y="119.081">
+    Central Service API
+  </text>
+  <path d="M791.5 78.086v24m0-12h17" fill="none" filter="url(#a)" stroke="#a80036" stroke-width="2"/>
+  <circle cx="820.5" cy="90.086" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="128" x="745" y="2273.214">
+    Central Service API
+  </text>
+  <path d="M791.5 2280.516v24m0-12h17" fill="none" filter="url(#a)" stroke="#a80036" stroke-width="2"/>
+  <circle cx="820.5" cy="2292.516" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="129" x="1004.5" y="119.081">
+    Participant Handler
+  </text>
+  <circle cx="1072" cy="90.086" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path fill="#A80036" stroke="#a80036" d="M1068 78.086l6-5-2 5 2 5-6-5z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="129" x="1004.5" y="2273.214">
+    Participant Handler
+  </text>
+  <circle cx="1072" cy="2292.516" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path fill="#A80036" stroke="#a80036" d="M1068 2280.516l6-5-2 5 2 5-6-5z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="126" x="1387" y="119.081">
+    Participant Facade
+  </text>
+  <circle cx="1453" cy="90.086" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path stroke="#a80036" stroke-width="2" d="M1441 104.086h24"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="126" x="1387" y="2273.214">
+    Participant Facade
+  </text>
+  <circle cx="1453" cy="2292.516" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path stroke="#a80036" stroke-width="2" d="M1441 2306.516h24"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="90" x="1838" y="119.081">
+    Central Store
+  </text>
+  <path d="M1868 70.086c0-10 18-10 18-10s18 0 18 10v26c0 10-18 10-18 10s-18 0-18-10v-26" fill="#FEFECE" filter="url(#a)" stroke="#000" stroke-width="1.5"/>
+  <path d="M1868 70.086c0 10 18 10 18 10s18 0 18-10" fill="none" stroke="#000" stroke-width="1.5"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="90" x="1838" y="2273.214">
+    Central Store
+  </text>
+  <path d="M1868 2286.516c0-10 18-10 18-10s18 0 18 10v26c0 10-18 10-18 10s-18 0-18-10v-26" fill="#FEFECE" filter="url(#a)" stroke="#000" stroke-width="1.5"/>
+  <path d="M1868 2286.516c0 10 18 10 18 10s18 0 18-10" fill="none" stroke="#000" stroke-width="1.5"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#a80036" d="M94 132.383h10v2111.836H94zM807 177.648h10v2066.57h-10zM1067 206.781h10v751.117h-10zM1072 987.031h10v963.922h-10z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#a80036" d="M1072 987.031h10v213h-10zM1072 1980.086h10v272.133h-10z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#a80036" d="M1072 1980.086h10v213h-10zM1448 317.313h10v135.664h-10zM1448 563.508h10v250.461h-10zM1448 1295.234h10v120.531h-10zM1448 1526.297h10v280.727h-10zM1881 346.445h10v77.398h-10zM1881 592.641h10v192.195h-10zM1881 1324.367h10v62.266h-10zM1881 1555.43h10v222.461h-10z"/>
+  <path d="M10 139.383h195v7l-10 10H10v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M10 139.383h2076v2104.836H10z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="150" x="25" y="152.45">
+    Get Callback Details
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M795 173.648l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M104 177.648h697"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="111" y="172.583">
+    1
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="671" x="124" y="172.583">
+    Request to get Limits - GET - /participants/{name}/limits?type={typeValue}&amp;currency={currencyValue}
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1055 202.781l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M817 206.781h244"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="824" y="201.715">
+    2
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="170" x="837" y="201.715">
+    Fetch Limits for Participant
+  </text>
+  <path stroke="#a80036" d="M1077 235.914h42M1119 235.914v13M1078 248.914h41"/>
+  <path fill="#A80036" stroke="#a80036" d="M1088 244.914l-10 4 10 4-4-4z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="1084" y="230.848">
+    3
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="235" x="1097" y="230.848">
+    check if &quot;currency&quot; parameter is sent
+  </text>
+  <path d="M20 263.914h64v7l-10 10H20v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M20 263.914h2056v1973.305H20z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19" x="35" y="276.981">
+    alt
+  </text>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="293" x="99" y="276.125">
+    [Check if &quot;currency&quot; parameter is sent (Sent)]
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1436 313.313l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M1077 317.313h365"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="1084" y="304.68">
+    4
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="181" x="1097" y="297.114">
+    Fetch Participant/currency id
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="82" x="1097" y="312.247">
+    Error code:
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="32" x="1183" y="312.247">
+    3200
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1869 342.445l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M1458 346.445h417"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="1465" y="341.379">
+    5
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="181" x="1478" y="341.379">
+    Fetch Participant/currency id
+  </text>
+  <path fill="#FFFFE0" filter="url(#a)" stroke="#a80036" d="M1821 359.445h129l10 19-10 19h-129l-10-19 10-19z"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="68" x="1823" y="375.512">
+    participant
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="125" x="1823" y="390.645">
+    participantCurrency
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1469 419.844l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M1463 423.844h422"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="1475" y="418.778">
+    6
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="132" x="1488" y="418.778">
+    Retrieved Participant
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1088 448.977l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M1082 452.977h370"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="1094" y="447.911">
+    7
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="188" x="1107" y="447.911">
+    Return Participant/currency id
+  </text>
+  <path stroke="#a80036" d="M1077 482.109h42M1119 482.109v13M1078 495.109h41"/>
+  <path fill="#A80036" stroke="#a80036" d="M1088 491.11l-10 4 10 4-4-4z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="1084" y="477.043">
+    8
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="90" x="1097" y="477.043">
+    Validate DFSP
+  </text>
+  <path d="M30 510.11h64v7l-10 10H30v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M30 510.109h2036v727.055H30z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19" x="45" y="523.176">
+    alt
+  </text>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="202" x="109" y="522.32">
+    [Validate participant (success)]
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1436 559.508l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M1077 563.508h365"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="1084" y="550.875">
+    9
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="289" x="1097" y="543.309">
+    Fetch Participant Limits for currency and type
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="82" x="1097" y="558.442">
+    Error code:
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="32" x="1183" y="558.442">
+    3000
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1869 588.64l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M1458 592.641h417"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1465" y="587.575">
+    10
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="364" x="1487" y="587.575">
+    Fetch Participant Limit for currencyId and type(if passed)
+  </text>
+  <path d="M1463 605.64v100h589v-90l-10-10h-579" fill="#D3D3D3" filter="url(#a)" stroke="#a80036"/>
+  <path d="M2042 605.64v10h10l-10-10" fill="#D3D3D3" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="64" x="1469" y="622.707">
+    Condition:
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="179" x="1485" y="637.84">
+    participantLimit.isActive = 1
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="346" x="1485" y="652.973">
+    participantLimit.participantCurrencyId = &lt;currencyId&gt;
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="552" x="1485" y="668.106">
+    [ participantLimit.participantLimitTypeId = participantLimitType.participantLimitTypeId
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="239" x="1501" y="683.239">
+    participantLimitType.name = &lt;type&gt;
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="5" x="1485" y="698.372">
+    ]
+  </text>
+  <path fill="#FFFFE0" filter="url(#a)" stroke="#a80036" d="M1819 720.438h133l10 19-10 19h-133l-10-19 10-19z"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="99" x="1821" y="736.504">
+    participantLimit
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="129" x="1821" y="751.637">
+    participantLimitType
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1469 780.836l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M1463 784.836h422"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1475" y="779.77">
+    11
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="325" x="1497" y="779.77">
+    Retrieved Participant Limits for currencyId and type
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1088 809.969l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M1082 813.969h370"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1094" y="808.903">
+    12
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="307" x="1116" y="808.903">
+    Return Participant Limits for currencyId and type
+  </text>
+  <path d="M1082 826.969v100h296v-90l-10-10h-286" fill="#FF0" filter="url(#a)" stroke="#a80036"/>
+  <path d="M1368 826.969v10h10l-10-10" fill="#FF0" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="61" x="1088" y="844.036">
+    Message:
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="5" x="1088" y="859.168">
+    [
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="175" x="1104" y="874.301">
+    { currency: &lt;currencyId&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="243" x="1120" y="889.434">
+    limit: {type: &lt;type&gt;, value: &lt;value&gt;}
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="1104" y="904.567">
+    }
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="5" x="1088" y="919.7">
+    ]
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M828 953.898l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M822 957.898h249"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="834" y="952.832">
+    13
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="156" x="856" y="952.832">
+    Return Participant Limits
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M115 983.031l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M109 987.031h697"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="121" y="981.965">
+    14
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="156" x="143" y="981.965">
+    Return Participant Limits
+  </text>
+  <path stroke="#000" stroke-dasharray="2,2" d="M30 996.031h2036"/>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="232" x="35" y="1006.242">
+    [Validate participant (failure)/ Error]
+  </text>
+  <path d="M1087 1014.836v25h171v-15l-10-10h-161" fill="red" filter="url(#a)" stroke="#a80036"/>
+  <path d="M1248 1014.836v10h10l-10-10" fill="red" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="150" x="1093" y="1031.903">
+    Validation failure/ Error!
+  </text>
+  <path d="M1087 1053.969v115h288v-105l-10-10h-278" fill="#FF0" filter="url(#a)" stroke="#a80036"/>
+  <path d="M1365 1053.969v10h10l-10-10" fill="#FF0" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="61" x="1093" y="1071.036">
+    Message:
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="1093" y="1086.168">
+    {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="130" x="1109" y="1101.301">
+    &quot;errorInformation&quot;: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="172" x="1125" y="1116.434">
+    &quot;errorCode&quot;: &lt;errorCode&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="235" x="1125" y="1131.567">
+    &quot;errorDescription&quot;: &lt;ErrorMessage&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="1109" y="1146.7">
+    }
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="1093" y="1161.832">
+    }
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M828 1196.031l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M822 1200.031h244"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="834" y="1194.965">
+    15
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="42" x="856" y="1194.965">
+    Return
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="82" x="902" y="1194.965">
+    Error code:
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="72" x="988" y="1194.965">
+    3000, 3200
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M115 1225.164l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M109 1229.164h697"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="121" y="1224.098">
+    16
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="42" x="143" y="1224.098">
+    Return
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="82" x="189" y="1224.098">
+    Error code:
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="72" x="275" y="1224.098">
+    3000, 3200
+  </text>
+  <path stroke="#000" stroke-dasharray="2,2" d="M20 1245.164h2056"/>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="319" x="25" y="1255.374">
+    [Check if &quot;currency&quot; parameter is sent (Not Sent)]
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1436 1291.234l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M1077 1295.234h365"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1084" y="1282.602">
+    17
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="107" x="1106" y="1275.036">
+    Fetch Participant
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="82" x="1106" y="1290.168">
+    Error code:
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="32" x="1192" y="1290.168">
+    3200
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1869 1320.367l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M1458 1324.367h417"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1465" y="1319.301">
+    18
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="107" x="1487" y="1319.301">
+    Fetch Participant
+  </text>
+  <path fill="#FFFFE0" filter="url(#a)" stroke="#a80036" d="M1850 1337.367h72l10 11-10 12h-72l-10-12 10-11z"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="68" x="1852" y="1353.434">
+    participant
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1469 1382.633l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M1463 1386.633h422"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1475" y="1381.567">
+    19
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="132" x="1497" y="1381.567">
+    Retrieved Participant
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1088 1411.766l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M1082 1415.766h370"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1094" y="1410.7">
+    20
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="114" x="1116" y="1410.7">
+    Return Participant
+  </text>
+  <path stroke="#a80036" d="M1077 1444.898h42M1119 1444.898v13M1078 1457.898h41"/>
+  <path fill="#A80036" stroke="#a80036" d="M1088 1453.898l-10 4 10 4-4-4z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1084" y="1439.832">
+    21
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="90" x="1106" y="1439.832">
+    Validate DFSP
+  </text>
+  <path d="M30 1472.898h64v7l-10 10H30v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M30 1472.898h2036v757.32H30z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19" x="45" y="1485.965">
+    alt
+  </text>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="202" x="109" y="1485.109">
+    [Validate participant (success)]
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1436 1522.297l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M1077 1526.297h365"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1084" y="1513.665">
+    22
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="318" x="1106" y="1506.098">
+    Fetch Participant Limits for all currencies and type
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="82" x="1106" y="1521.231">
+    Error code:
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="32" x="1192" y="1521.231">
+    3000
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1869 1551.43l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M1458 1555.43h417"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1465" y="1550.364">
+    23
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="382" x="1487" y="1550.364">
+    Fetch Participant Limit for all currencies and type(if passed)
+  </text>
+  <path d="M1463 1568.43v115h589v-105l-10-10h-579" fill="#D3D3D3" filter="url(#a)" stroke="#a80036"/>
+  <path d="M2042 1568.43v10h10l-10-10" fill="#D3D3D3" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="64" x="1469" y="1585.497">
+    Condition:
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="328" x="1485" y="1600.629">
+    participantCurrency.participantId = &lt;participantId&gt;
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="523" x="1485" y="1615.762">
+    participantLimit.participantCurrencyId = participantCurrency.participantCurrencyId
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="179" x="1485" y="1630.895">
+    participantLimit.isActive = 1
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="552" x="1485" y="1646.028">
+    [ participantLimit.participantLimitTypeId = participantLimitType.participantLimitTypeId
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="239" x="1501" y="1661.161">
+    participantLimitType.name = &lt;type&gt;
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="5" x="1485" y="1676.293">
+    ]
+  </text>
+  <path fill="#FFFFE0" filter="url(#a)" stroke="#a80036" d="M1819 1698.36h133l10 26-10 27h-133l-10-27 10-26z"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="125" x="1821" y="1714.426">
+    participantCurrency
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="99" x="1821" y="1729.559">
+    participantLimit
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="129" x="1821" y="1744.692">
+    participantLimitType
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1469 1773.89l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M1463 1777.891h422"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1475" y="1772.825">
+    24
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="343" x="1497" y="1772.825">
+    Retrieved Participant Limits for all currencies and type
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1088 1803.023l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M1082 1807.023h370"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1094" y="1801.957">
+    25
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="325" x="1116" y="1801.957">
+    Return Participant Limits for all currencies and type
+  </text>
+  <path d="M1082 1820.023v100h296v-90l-10-10h-286" fill="#FF0" filter="url(#a)" stroke="#a80036"/>
+  <path d="M1368 1820.023v10h10l-10-10" fill="#FF0" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="61" x="1088" y="1837.09">
+    Message:
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="5" x="1088" y="1852.223">
+    [
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="175" x="1104" y="1867.356">
+    { currency: &lt;currencyId&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="243" x="1120" y="1882.489">
+    limit: {type: &lt;type&gt;, value: &lt;value&gt;}
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="1104" y="1897.622">
+    }
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="5" x="1088" y="1912.754">
+    ]
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M828 1946.953l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M822 1950.953h249"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="834" y="1945.887">
+    26
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="156" x="856" y="1945.887">
+    Return Participant Limits
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M115 1976.086l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M109 1980.086h697"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="121" y="1975.02">
+    27
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="156" x="143" y="1975.02">
+    Return Participant Limits
+  </text>
+  <path stroke="#000" stroke-dasharray="2,2" d="M30 1989.086h2036"/>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="232" x="35" y="1999.296">
+    [Validate participant (failure)/ Error]
+  </text>
+  <path d="M1087 2007.89v25h171v-15l-10-10h-161" fill="red" filter="url(#a)" stroke="#a80036"/>
+  <path d="M1248 2007.89v10h10l-10-10" fill="red" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="150" x="1093" y="2024.957">
+    Validation failure/ Error!
+  </text>
+  <path d="M1087 2047.023v115h288v-105l-10-10h-278" fill="#FF0" filter="url(#a)" stroke="#a80036"/>
+  <path d="M1365 2047.023v10h10l-10-10" fill="#FF0" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="61" x="1093" y="2064.09">
+    Message:
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="1093" y="2079.223">
+    {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="130" x="1109" y="2094.356">
+    &quot;errorInformation&quot;: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="172" x="1125" y="2109.489">
+    &quot;errorCode&quot;: &lt;errorCode&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="235" x="1125" y="2124.622">
+    &quot;errorDescription&quot;: &lt;ErrorMessage&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="1109" y="2139.754">
+    }
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="1093" y="2154.887">
+    }
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M828 2189.086l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M822 2193.086h244"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="834" y="2188.02">
+    28
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="42" x="856" y="2188.02">
+    Return
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="82" x="902" y="2188.02">
+    Error code:
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="72" x="988" y="2188.02">
+    3000, 3200
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M115 2218.219l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M109 2222.219h697"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="121" y="2217.153">
+    29
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="42" x="143" y="2217.153">
+    Return
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="82" x="189" y="2217.153">
+    Error code:
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="72" x="275" y="2217.153">
+    3000, 3200
+  </text>
+</svg>

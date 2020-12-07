@@ -1,93 +1,301 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="1691px" preserveAspectRatio="none" style="width:1175px;height:1691px;" version="1.1" viewBox="0 0 1175 1691" width="1175px" zoomAndPan="magnify"><defs><filter height="300%" id="fbbb0dp8we8eq" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="395" x="391.25" y="23.5352">1.3.0. Position Handler Consume (single message) v1.1</text><rect fill="#FFFFE0" height="1646.1719" style="stroke: #A80036; stroke-width: 1.0;" width="1119.5" x="29" y="34.4883"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="101" x="538.25" y="47.0566">Central Service</text><rect fill="#FFFFFF" filter="url(#fbbb0dp8we8eq)" height="30" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="119" y="182.2188"/><rect fill="#FFFFFF" filter="url(#fbbb0dp8we8eq)" height="30" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="119" y="663.5215"/><rect fill="#FFFFFF" filter="url(#fbbb0dp8we8eq)" height="30" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="119" y="1144.8242"/><rect fill="#FFFFFF" filter="url(#fbbb0dp8we8eq)" height="1506.8848" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="433" y="112.2871"/><rect fill="#FFFFFF" filter="url(#fbbb0dp8we8eq)" height="1492.8848" style="stroke: #000000; stroke-width: 2.0;" width="1151.5" x="13" y="119.2871"/><rect fill="#FFFFFF" filter="url(#fbbb0dp8we8eq)" height="1461.5742" style="stroke: #000000; stroke-width: 2.0;" width="1131.5" x="23" y="143.5977"/><rect fill="#FFFFFF" filter="url(#fbbb0dp8we8eq)" height="106.2422" style="stroke: #000000; stroke-width: 2.0;" width="524.5" x="358.5" y="227.2188"/><rect fill="#FFFFFF" filter="url(#fbbb0dp8we8eq)" height="74.9316" style="stroke: #000000; stroke-width: 2.0;" width="504.5" x="368.5" y="251.5293"/><rect fill="#FFFFFF" filter="url(#fbbb0dp8we8eq)" height="157.5527" style="stroke: #000000; stroke-width: 2.0;" width="629" x="368.5" y="347.4609"/><rect fill="#FFFFFF" height="481.3027" style="stroke: none; stroke-width: 1.0;" width="1131.5" x="23" y="627.2559"/><rect fill="#FFFFFF" filter="url(#fbbb0dp8we8eq)" height="106.2422" style="stroke: #000000; stroke-width: 2.0;" width="586.5" x="358.5" y="708.5215"/><rect fill="#FFFFFF" filter="url(#fbbb0dp8we8eq)" height="74.9316" style="stroke: #000000; stroke-width: 2.0;" width="566.5" x="368.5" y="732.832"/><rect fill="#FFFFFF" filter="url(#fbbb0dp8we8eq)" height="157.5527" style="stroke: #000000; stroke-width: 2.0;" width="629" x="368.5" y="828.7637"/><rect fill="#FFFFFF" height="496.6133" style="stroke: none; stroke-width: 1.0;" width="1131.5" x="23" y="1108.5586"/><rect fill="#FFFFFF" filter="url(#fbbb0dp8we8eq)" height="121.5527" style="stroke: #000000; stroke-width: 2.0;" width="409.5" x="358.5" y="1189.8242"/><rect fill="#FFFFFF" filter="url(#fbbb0dp8we8eq)" height="90.2422" style="stroke: #000000; stroke-width: 2.0;" width="389.5" x="368.5" y="1214.1348"/><rect fill="#FFFFFF" filter="url(#fbbb0dp8we8eq)" height="157.5527" style="stroke: #000000; stroke-width: 2.0;" width="629" x="368.5" y="1325.377"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="124" x2="124" y1="102.2871" y2="1629.1719"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="437.5" x2="437.5" y1="102.2871" y2="1629.1719"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="934.5" x2="934.5" y1="102.2871" y2="1629.1719"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="1070.5" x2="1070.5" y1="102.2871" y2="1629.1719"/><rect fill="#FEFECE" filter="url(#fbbb0dp8we8eq)" height="30.4883" style="stroke: #A80036; stroke-width: 1.5;" width="174" x="37" y="62.7988"/><rect fill="#FEFECE" filter="url(#fbbb0dp8we8eq)" height="30.4883" style="stroke: #A80036; stroke-width: 1.5;" width="174" x="33" y="66.7988"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="160" x="40" y="87.334">topic-transfer-position</text><rect fill="#FEFECE" filter="url(#fbbb0dp8we8eq)" height="30.4883" style="stroke: #A80036; stroke-width: 1.5;" width="174" x="37" y="1628.1719"/><rect fill="#FEFECE" filter="url(#fbbb0dp8we8eq)" height="30.4883" style="stroke: #A80036; stroke-width: 1.5;" width="174" x="33" y="1632.1719"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="160" x="40" y="1652.707">topic-transfer-position</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="113" x="378.5" y="99.334">Position Handler</text><ellipse cx="438" cy="69.7988" fill="#FEFECE" filter="url(#fbbb0dp8we8eq)" rx="12" ry="12" style="stroke: #A80036; stroke-width: 2.0;"/><polygon fill="#A80036" points="434,57.7988,440,52.7988,438,57.7988,440,62.7988,434,57.7988" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="113" x="378.5" y="1641.707">Position Handler</text><ellipse cx="438" cy="1660.6602" fill="#FEFECE" filter="url(#fbbb0dp8we8eq)" rx="12" ry="12" style="stroke: #A80036; stroke-width: 2.0;"/><polygon fill="#A80036" points="434,1648.6602,440,1643.6602,438,1648.6602,440,1653.6602,434,1648.6602" style="stroke: #A80036; stroke-width: 1.0;"/><rect fill="#FEFECE" filter="url(#fbbb0dp8we8eq)" height="30.4883" style="stroke: #A80036; stroke-width: 1.5;" width="97" x="886.5" y="62.7988"/><rect fill="#FEFECE" filter="url(#fbbb0dp8we8eq)" height="30.4883" style="stroke: #A80036; stroke-width: 1.5;" width="97" x="882.5" y="66.7988"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="83" x="889.5" y="87.334">Event-Topic</text><rect fill="#FEFECE" filter="url(#fbbb0dp8we8eq)" height="30.4883" style="stroke: #A80036; stroke-width: 1.5;" width="97" x="886.5" y="1628.1719"/><rect fill="#FEFECE" filter="url(#fbbb0dp8we8eq)" height="30.4883" style="stroke: #A80036; stroke-width: 1.5;" width="97" x="882.5" y="1632.1719"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="83" x="889.5" y="1652.707">Event-Topic</text><rect fill="#FEFECE" filter="url(#fbbb0dp8we8eq)" height="30.4883" style="stroke: #A80036; stroke-width: 1.5;" width="139" x="1001.5" y="62.7988"/><rect fill="#FEFECE" filter="url(#fbbb0dp8we8eq)" height="30.4883" style="stroke: #A80036; stroke-width: 1.5;" width="139" x="997.5" y="66.7988"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="125" x="1004.5" y="87.334">Notification-Topic</text><rect fill="#FEFECE" filter="url(#fbbb0dp8we8eq)" height="30.4883" style="stroke: #A80036; stroke-width: 1.5;" width="139" x="1001.5" y="1628.1719"/><rect fill="#FEFECE" filter="url(#fbbb0dp8we8eq)" height="30.4883" style="stroke: #A80036; stroke-width: 1.5;" width="139" x="997.5" y="1632.1719"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="125" x="1004.5" y="1652.707">Notification-Topic</text><rect fill="#FFFFFF" filter="url(#fbbb0dp8we8eq)" height="30" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="119" y="182.2188"/><rect fill="#FFFFFF" filter="url(#fbbb0dp8we8eq)" height="30" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="119" y="663.5215"/><rect fill="#FFFFFF" filter="url(#fbbb0dp8we8eq)" height="30" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="119" y="1144.8242"/><rect fill="#FFFFFF" filter="url(#fbbb0dp8we8eq)" height="1506.8848" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="433" y="112.2871"/><path d="M13,119.2871 L236,119.2871 L236,126.2871 L226,136.2871 L13,136.2871 L13,119.2871 " fill="#EEEEEE" style="stroke: #000000; stroke-width: 1.0;"/><rect fill="none" height="1492.8848" style="stroke: #000000; stroke-width: 2.0;" width="1151.5" x="13" y="119.2871"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="178" x="28" y="132.8555">Position Handler Consume</text><path d="M23,143.5977 L85,143.5977 L85,150.5977 L75,160.5977 L23,160.5977 L23,143.5977 " fill="#EEEEEE" style="stroke: #000000; stroke-width: 1.0;"/><rect fill="none" height="1461.5742" style="stroke: #000000; stroke-width: 2.0;" width="1131.5" x="23" y="143.5977"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="17" x="38" y="157.166">alt</text><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="213" x="100" y="156.2324">[Consume Prepare message for Payer]</text><polygon fill="#A80036" points="140,178.2188,130,182.2188,140,186.2188,136,182.2188" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="134" x2="432" y1="182.2188" y2="182.2188"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="146" y="177.4766">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="270" x="159" y="177.4766">Consume Position event message for Payer</text><path d="M358.5,227.2188 L442.5,227.2188 L442.5,234.2188 L432.5,244.2188 L358.5,244.2188 L358.5,227.2188 " fill="#EEEEEE" style="stroke: #000000; stroke-width: 1.0;"/><rect fill="none" height="106.2422" style="stroke: #000000; stroke-width: 2.0;" width="524.5" x="358.5" y="227.2188"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="39" x="373.5" y="240.7871">break</text><path d="M368.5,251.5293 L510.5,251.5293 L510.5,258.5293 L500.5,268.5293 L368.5,268.5293 L368.5,251.5293 " fill="#EEEEEE" style="stroke: #000000; stroke-width: 1.0;"/><rect fill="none" height="74.9316" style="stroke: #000000; stroke-width: 2.0;" width="504.5" x="368.5" y="251.5293"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="97" x="383.5" y="265.0977">Validate Event</text><line style="stroke: #A80036; stroke-width: 1.0;" x1="443" x2="485" y1="305.4609" y2="305.4609"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="485" x2="485" y1="305.4609" y2="318.4609"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="444" x2="485" y1="318.4609" y2="318.4609"/><polygon fill="#A80036" points="454,314.4609,444,318.4609,454,322.4609,450,318.4609" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="450" y="293.0635">2</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="398" x="463" y="285.4082">Validate event - Rule: type == 'position' &amp;&amp; action == 'prepare'</text><text fill="#FF0000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="80" x="463" y="300.7188">Error codes:</text><text fill="#FF0000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="32" x="547" y="300.7188">2001</text><path d="M368.5,347.4609 L583.5,347.4609 L583.5,354.4609 L573.5,364.4609 L368.5,364.4609 L368.5,347.4609 " fill="#EEEEEE" style="stroke: #000000; stroke-width: 1.0;"/><rect fill="none" height="157.5527" style="stroke: #000000; stroke-width: 2.0;" width="629" x="368.5" y="347.4609"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="170" x="383.5" y="361.0293">Persist Event Information</text><polygon fill="#A80036" points="923,407.082,933,411.082,923,415.082,927,411.082" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="443" x2="929" y1="411.082" y2="411.082"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="450" y="406.3398">3</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="162" x="463" y="406.3398">Publish event information</text><rect fill="#FFFFFF" filter="url(#fbbb0dp8we8eq)" height="55.9316" style="stroke: #000000; stroke-width: 2.0;" width="611" x="375.5" y="419.082"/><polygon fill="#EEEEEE" points="375.5,419.082,439.5,419.082,439.5,426.082,429.5,436.082,375.5,436.082,375.5,419.082" style="stroke: #000000; stroke-width: 2.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19" x="388.5" y="433.6504">ref</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="150" x="608" y="452.6504">Event Handler Consume</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="0" x="612" y="467.9609"/><rect fill="#FFFFFF" filter="url(#fbbb0dp8we8eq)" height="55.9316" style="stroke: #000000; stroke-width: 2.0;" width="225" x="375.5" y="537.0137"/><polygon fill="#EEEEEE" points="375.5,537.0137,439.5,537.0137,439.5,544.0137,429.5,554.0137,375.5,554.0137,375.5,537.0137" style="stroke: #000000; stroke-width: 2.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19" x="388.5" y="551.582">ref</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="217" x="381.5" y="570.582">Prepare Position Handler Consume</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="0" x="385.5" y="585.8926"/><polygon fill="#A80036" points="1059,615.2559,1069,619.2559,1059,623.2559,1063,619.2559" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="443" x2="1065" y1="619.2559" y2="619.2559"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="450" y="614.5137">4</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="109" x="463" y="614.5137">Produce message</text><line style="stroke: #000000; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="23" x2="1154.5" y1="628.2559" y2="628.2559"/><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="202" x="28" y="638.8906">[Consume Fulfil message for Payee]</text><polygon fill="#A80036" points="140,659.5215,130,663.5215,140,667.5215,136,663.5215" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="134" x2="432" y1="663.5215" y2="663.5215"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="146" y="658.7793">5</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="272" x="159" y="658.7793">Consume Position event message for Payee</text><path d="M358.5,708.5215 L442.5,708.5215 L442.5,715.5215 L432.5,725.5215 L358.5,725.5215 L358.5,708.5215 " fill="#EEEEEE" style="stroke: #000000; stroke-width: 1.0;"/><rect fill="none" height="106.2422" style="stroke: #000000; stroke-width: 2.0;" width="586.5" x="358.5" y="708.5215"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="39" x="373.5" y="722.0898">break</text><path d="M368.5,732.832 L510.5,732.832 L510.5,739.832 L500.5,749.832 L368.5,749.832 L368.5,732.832 " fill="#EEEEEE" style="stroke: #000000; stroke-width: 1.0;"/><rect fill="none" height="74.9316" style="stroke: #000000; stroke-width: 2.0;" width="566.5" x="368.5" y="732.832"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="97" x="383.5" y="746.4004">Validate Event</text><line style="stroke: #A80036; stroke-width: 1.0;" x1="443" x2="485" y1="786.7637" y2="786.7637"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="485" x2="485" y1="786.7637" y2="799.7637"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="444" x2="485" y1="799.7637" y2="799.7637"/><polygon fill="#A80036" points="454,795.7637,444,799.7637,454,803.7637,450,799.7637" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="450" y="774.3662">6</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="460" x="463" y="766.7109">Validate event - Rule: type == 'position' &amp;&amp; action IN ['commit', 'reserve']</text><text fill="#FF0000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="80" x="463" y="782.0215">Error codes:</text><text fill="#FF0000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="32" x="547" y="782.0215">2001</text><path d="M368.5,828.7637 L583.5,828.7637 L583.5,835.7637 L573.5,845.7637 L368.5,845.7637 L368.5,828.7637 " fill="#EEEEEE" style="stroke: #000000; stroke-width: 1.0;"/><rect fill="none" height="157.5527" style="stroke: #000000; stroke-width: 2.0;" width="629" x="368.5" y="828.7637"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="170" x="383.5" y="842.332">Persist Event Information</text><polygon fill="#A80036" points="923,888.3848,933,892.3848,923,896.3848,927,892.3848" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="443" x2="929" y1="892.3848" y2="892.3848"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="450" y="887.6426">7</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="162" x="463" y="887.6426">Publish event information</text><rect fill="#FFFFFF" filter="url(#fbbb0dp8we8eq)" height="55.9316" style="stroke: #000000; stroke-width: 2.0;" width="611" x="375.5" y="900.3848"/><polygon fill="#EEEEEE" points="375.5,900.3848,439.5,900.3848,439.5,907.3848,429.5,917.3848,375.5,917.3848,375.5,900.3848" style="stroke: #000000; stroke-width: 2.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19" x="388.5" y="914.9531">ref</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="150" x="608" y="933.9531">Event Handler Consume</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="0" x="612" y="949.2637"/><rect fill="#FFFFFF" filter="url(#fbbb0dp8we8eq)" height="55.9316" style="stroke: #000000; stroke-width: 2.0;" width="211" x="375.5" y="1018.3164"/><polygon fill="#EEEEEE" points="375.5,1018.3164,439.5,1018.3164,439.5,1025.3164,429.5,1035.3164,375.5,1035.3164,375.5,1018.3164" style="stroke: #000000; stroke-width: 2.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19" x="388.5" y="1032.8848">ref</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="203" x="381.5" y="1051.8848">Fulfil Position Handler Consume</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="0" x="385.5" y="1067.1953"/><polygon fill="#A80036" points="1059,1096.5586,1069,1100.5586,1059,1104.5586,1063,1100.5586" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="443" x2="1065" y1="1100.5586" y2="1100.5586"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="450" y="1095.8164">8</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="109" x="463" y="1095.8164">Produce message</text><line style="stroke: #000000; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="23" x2="1154.5" y1="1109.5586" y2="1109.5586"/><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="147" x="28" y="1120.1934">[Consume Abort message]</text><polygon fill="#A80036" points="140,1140.8242,130,1144.8242,140,1148.8242,136,1144.8242" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="134" x2="432" y1="1144.8242" y2="1144.8242"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="146" y="1140.082">9</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="211" x="159" y="1140.082">Consume Position event message</text><path d="M358.5,1189.8242 L442.5,1189.8242 L442.5,1196.8242 L432.5,1206.8242 L358.5,1206.8242 L358.5,1189.8242 " fill="#EEEEEE" style="stroke: #000000; stroke-width: 1.0;"/><rect fill="none" height="121.5527" style="stroke: #000000; stroke-width: 2.0;" width="409.5" x="358.5" y="1189.8242"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="39" x="373.5" y="1203.3926">break</text><path d="M368.5,1214.1348 L510.5,1214.1348 L510.5,1221.1348 L500.5,1231.1348 L368.5,1231.1348 L368.5,1214.1348 " fill="#EEEEEE" style="stroke: #000000; stroke-width: 1.0;"/><rect fill="none" height="90.2422" style="stroke: #000000; stroke-width: 2.0;" width="389.5" x="368.5" y="1214.1348"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="97" x="383.5" y="1227.7031">Validate Event</text><line style="stroke: #A80036; stroke-width: 1.0;" x1="443" x2="485" y1="1283.377" y2="1283.377"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="485" x2="485" y1="1283.377" y2="1296.377"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="444" x2="485" y1="1296.377" y2="1296.377"/><polygon fill="#A80036" points="454,1292.377,444,1296.377,454,1300.377,450,1296.377" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="450" y="1263.3242">10</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="274" x="472" y="1248.0137">Validate event - Rule: type == 'position' &amp;&amp;</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="268" x="472" y="1263.3242">action IN ['timeout-reserved', 'reject', 'fail']</text><text fill="#FF0000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="80" x="472" y="1278.6348">Error codes:</text><text fill="#FF0000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="32" x="556" y="1278.6348">2001</text><path d="M368.5,1325.377 L583.5,1325.377 L583.5,1332.377 L573.5,1342.377 L368.5,1342.377 L368.5,1325.377 " fill="#EEEEEE" style="stroke: #000000; stroke-width: 1.0;"/><rect fill="none" height="157.5527" style="stroke: #000000; stroke-width: 2.0;" width="629" x="368.5" y="1325.377"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="170" x="383.5" y="1338.9453">Persist Event Information</text><polygon fill="#A80036" points="923,1384.998,933,1388.998,923,1392.998,927,1388.998" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="443" x2="929" y1="1388.998" y2="1388.998"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="450" y="1384.2559">11</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="162" x="472" y="1384.2559">Publish event information</text><rect fill="#FFFFFF" filter="url(#fbbb0dp8we8eq)" height="55.9316" style="stroke: #000000; stroke-width: 2.0;" width="611" x="375.5" y="1396.998"/><polygon fill="#EEEEEE" points="375.5,1396.998,439.5,1396.998,439.5,1403.998,429.5,1413.998,375.5,1413.998,375.5,1396.998" style="stroke: #000000; stroke-width: 2.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19" x="388.5" y="1411.5664">ref</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="150" x="608" y="1430.5664">Event Handler Consume</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="0" x="612" y="1445.877"/><rect fill="#FFFFFF" filter="url(#fbbb0dp8we8eq)" height="55.9316" style="stroke: #000000; stroke-width: 2.0;" width="214" x="375.5" y="1514.9297"/><polygon fill="#EEEEEE" points="375.5,1514.9297,439.5,1514.9297,439.5,1521.9297,429.5,1531.9297,375.5,1531.9297,375.5,1514.9297" style="stroke: #000000; stroke-width: 2.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19" x="388.5" y="1529.498">ref</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="206" x="381.5" y="1548.498">Abort Position Handler Consume</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="0" x="385.5" y="1563.8086"/><polygon fill="#A80036" points="1059,1593.1719,1069,1597.1719,1059,1601.1719,1063,1597.1719" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="443" x2="1065" y1="1597.1719" y2="1597.1719"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="450" y="1592.4297">12</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="109" x="472" y="1592.4297">Produce message</text><!--
-@startuml
-title 1.3.0. Position Handler Consume (single message) v1.1
-
-autonumber
-
-
-collections "topic-transfer-position" as TOPIC_TRANSFER_POSITION
-control "Position Handler" as POS_HANDLER
-collections "Event-Topic" as TOPIC_EVENTS
-collections "Notification-Topic" as TOPIC_NOTIFICATIONS
-
-
-box "Central Service" #LightYellow
-    participant TOPIC_TRANSFER_POSITION
-    participant POS_HANDLER
-    participant TOPIC_EVENTS
-    participant TOPIC_NOTIFICATIONS
-end box
-
-activate POS_HANDLER
-group Position Handler Consume
-    alt Consume Prepare message for Payer
-        TOPIC_TRANSFER_POSITION <- POS_HANDLER: Consume Position event message for Payer
-        activate TOPIC_TRANSFER_POSITION
-        deactivate TOPIC_TRANSFER_POSITION
-        break
-            group Validate Event
-                POS_HANDLER <-> POS_HANDLER: Validate event - Rule: type == 'position' && action == 'prepare'\n<color #FF0000><b>Error codes:</b> 2001</color>
-            end
-        end
-        group Persist Event Information
-            |||
-            POS_HANDLER -> TOPIC_EVENTS: Publish event information
-            ref over POS_HANDLER, TOPIC_EVENTS :  Event Handler Consume\n
-            |||
-        end
-        |||
-        ref over POS_HANDLER: Prepare Position Handler Consume\n
-        POS_HANDLER -> TOPIC_NOTIFICATIONS: Produce message
-    else Consume Fulfil message for Payee
-        TOPIC_TRANSFER_POSITION <- POS_HANDLER: Consume Position event message for Payee
-        activate TOPIC_TRANSFER_POSITION
-        deactivate TOPIC_TRANSFER_POSITION
-        break
-            group Validate Event
-                POS_HANDLER <-> POS_HANDLER: Validate event - Rule: type == 'position' && action IN ['commit', 'reserve']\n<color #FF0000><b>Error codes:</b> 2001</color>
-            end
-        end
-        group Persist Event Information
-            |||
-            POS_HANDLER -> TOPIC_EVENTS: Publish event information
-            ref over POS_HANDLER, TOPIC_EVENTS :  Event Handler Consume\n
-            |||
-        end
-        |||
-        ref over POS_HANDLER: Fulfil Position Handler Consume\n
-        POS_HANDLER -> TOPIC_NOTIFICATIONS: Produce message
-    else Consume Abort message
-        TOPIC_TRANSFER_POSITION <- POS_HANDLER: Consume Position event message
-        activate TOPIC_TRANSFER_POSITION
-        deactivate TOPIC_TRANSFER_POSITION
-        break
-            group Validate Event
-                POS_HANDLER <-> POS_HANDLER: Validate event - Rule: type == 'position' &&\naction IN ['timeout-reserved', 'reject', 'fail']\n<color #FF0000><b>Error codes:</b> 2001</color>
-            end
-        end
-        group Persist Event Information
-            |||
-            POS_HANDLER -> TOPIC_EVENTS: Publish event information
-            ref over POS_HANDLER, TOPIC_EVENTS :  Event Handler Consume\n
-            |||
-        end
-        |||
-        ref over POS_HANDLER: Abort Position Handler Consume\n
-        POS_HANDLER -> TOPIC_NOTIFICATIONS: Produce message
-    end
-
-end
-deactivate POS_HANDLER
-@enduml
-
-PlantUML version 1.2019.06(Sat May 25 03:10:25 AEST 2019)
-(GPL source distribution)
-Java Runtime: Java(TM) SE Runtime Environment
-JVM: Java HotSpot(TM) 64-Bit Server VM
-Java Version: 1.8.0_171-b11
-Operating System: Mac OS X
-OS Version: 10.13.6
-Default Encoding: UTF-8
-Language: en
-Country: AU
---></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" height="1684" preserveAspectRatio="none" style="width:1186px;height:1684px" width="1186">
+  <defs>
+    <filter height="300%" id="a" width="300%" x="-1" y="-1">
+      <feGaussianBlur result="blurOut" stdDeviation="2"/>
+      <feColorMatrix in="blurOut" result="blurOut2" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/>
+      <feOffset dx="4" dy="4" in="blurOut2" result="blurOut3"/>
+      <feBlend in="SourceGraphic" in2="blurOut3"/>
+    </filter>
+  </defs>
+  <text font-family="sans-serif" font-size="18" lengthAdjust="spacingAndGlyphs" textLength="488" x="347" y="28.708">
+    1.3.0. Position Handler Consume (single message) v1.1
+  </text>
+  <path fill="#FFFFE0" stroke="#a80036" d="M26 40.953h1130v1637.313H26z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="111" x="535.5" y="53.02">
+    Central Service
+  </text>
+  <path fill="#FFF" filter="url(#a)" stroke="#a80036" d="M112 187.781h10v30h-10zM112 666.445h10v30h-10zM112 1145.109h10v30h-10zM436 118.383h10v1498.586h-10z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M10 125.383h1162v1484.586H10z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M20 149.516h1142v1453.453H20z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M362 232.781h535v105.531H362z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M372 256.914h515v74.398H372zM372 352.313h639v156.664H372z"/>
+  <path fill="#FFF" d="M20 630.508h1142v478.664H20z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M362 711.445h597v105.531H362z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M372 735.578h577v74.398H372zM372 830.977h639v156.664H372z"/>
+  <path fill="#FFF" d="M20 1109.172h1142v493.797H20z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M362 1190.109h415v120.664H362z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M372 1214.242h395v89.531H372zM372 1324.773h639v156.664H372z"/>
+  <path stroke="#a80036" stroke-dasharray="5,5" d="M117 108.383v1518.586M441 108.383v1518.586M949 108.383v1518.586M1081 108.383v1518.586"/>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M34 69.086h166v30.297H34z"/>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M30 73.086h166v30.297H30z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="152" x="37" y="93.081">
+    topic-transfer-position
+  </text>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M34 1625.969h166v30.297H34z"/>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M30 1629.969h166v30.297H30z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="152" x="37" y="1649.964">
+    topic-transfer-position
+  </text>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="112" x="382" y="105.081">
+    Position Handler
+  </text>
+  <circle cx="441" cy="76.086" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path fill="#A80036" stroke="#a80036" d="M437 64.086l6-5-2 5 2 5-6-5z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="112" x="382" y="1638.964">
+    Position Handler
+  </text>
+  <circle cx="441" cy="1658.266" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path fill="#A80036" stroke="#a80036" d="M437 1646.266l6-5-2 5 2 5-6-5z"/>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M901 69.086h96v30.297h-96z"/>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M897 73.086h96v30.297h-96z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="82" x="904" y="93.081">
+    Event-Topic
+  </text>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M901 1625.969h96v30.297h-96z"/>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M897 1629.969h96v30.297h-96z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="82" x="904" y="1649.964">
+    Event-Topic
+  </text>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M1015 69.086h133v30.297h-133z"/>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M1011 73.086h133v30.297h-133z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="119" x="1018" y="93.081">
+    Notification-Topic
+  </text>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M1015 1625.969h133v30.297h-133z"/>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M1011 1629.969h133v30.297h-133z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="119" x="1018" y="1649.964">
+    Notification-Topic
+  </text>
+  <path fill="#FFF" filter="url(#a)" stroke="#a80036" d="M112 187.781h10v30h-10zM112 666.445h10v30h-10zM112 1145.109h10v30h-10zM436 118.383h10v1498.586h-10z"/>
+  <path d="M10 125.383h240v7l-10 10H10v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M10 125.383h1162v1484.586H10z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="195" x="25" y="138.45">
+    Position Handler Consume
+  </text>
+  <path d="M20 149.516h64v7l-10 10H20v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M20 149.516h1142v1453.453H20z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19" x="35" y="162.583">
+    alt
+  </text>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="246" x="99" y="161.726">
+    [Consume Prepare message for Payer]
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M133 183.781l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" d="M127 187.781h308"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="139" y="182.715">
+    1
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="279" x="152" y="182.715">
+    Consume Position event message for Payer
+  </text>
+  <path d="M362 232.781h88v7l-10 10h-78v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M362 232.781h535v105.531H362z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="43" x="377" y="245.848">
+    break
+  </text>
+  <path d="M372 256.914h152v7l-10 10H372v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M372 256.914h515v74.398H372z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="107" x="387" y="269.981">
+    Validate Event
+  </text>
+  <path stroke="#a80036" d="M446 310.313h42M488 310.313v13M447 323.313h41"/>
+  <path fill="#A80036" stroke="#a80036" d="M457 319.313l-10 4 10 4-4-4z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="453" y="297.68">
+    2
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="409" x="466" y="290.114">
+    Validate event - Rule: type == &apos;position&apos; &amp;&amp; action == &apos;prepare&apos;
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="90" x="466" y="305.247">
+    Error codes:
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="32" x="560" y="305.247">
+    2001
+  </text>
+  <path d="M372 352.313h232v7l-10 10H372v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M372 352.313h639v156.664H372z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="187" x="387" y="365.379">
+    Persist Event Information
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M937 411.578l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M446 415.578h497"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="453" y="410.512">
+    3
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="162" x="466" y="410.512">
+    Publish event information
+  </text>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M379 423.578h621v55.398H379z"/>
+  <path fill="#EEE" stroke="#000" stroke-width="2" d="M379 423.578h66v7l-10 10h-56v-17z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="21" x="392" y="437.645">
+    ref
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="155" x="614" y="456.645">
+    Event Handler Consume
+  </text>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M379 540.977h231v55.398H379z"/>
+  <path fill="#EEE" stroke="#000" stroke-width="2" d="M379 540.977h66v7l-10 10h-56v-17z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="21" x="392" y="555.043">
+    ref
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="223" x="385" y="574.043">
+    Prepare Position Handler Consume
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1069.5 618.508l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M446 622.508h629.5"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="453" y="617.442">
+    4
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="115" x="466" y="617.442">
+    Produce message
+  </text>
+  <path stroke="#000" stroke-dasharray="2,2" d="M20 631.508h1142"/>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="232" x="25" y="641.718">
+    [Consume Fulfil message for Payee]
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M133 662.445l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" d="M127 666.445h308"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="139" y="661.379">
+    5
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="282" x="152" y="661.379">
+    Consume Position event message for Payee
+  </text>
+  <path d="M362 711.445h88v7l-10 10h-78v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M362 711.445h597v105.531H362z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="43" x="377" y="724.512">
+    break
+  </text>
+  <path d="M372 735.578h152v7l-10 10H372v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M372 735.578h577v74.398H372z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="107" x="387" y="748.645">
+    Validate Event
+  </text>
+  <path stroke="#a80036" d="M446 788.977h42M488 788.977v13M447 801.977h41"/>
+  <path fill="#A80036" stroke="#a80036" d="M457 797.977l-10 4 10 4-4-4z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="453" y="776.344">
+    6
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="471" x="466" y="768.778">
+    Validate event - Rule: type == &apos;position&apos; &amp;&amp; action IN [&apos;commit&apos;, &apos;reserve&apos;]
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="90" x="466" y="783.911">
+    Error codes:
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="32" x="560" y="783.911">
+    2001
+  </text>
+  <path d="M372 830.977h232v7l-10 10H372v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M372 830.977h639v156.664H372z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="187" x="387" y="844.043">
+    Persist Event Information
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M937 890.242l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M446 894.242h497"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="453" y="889.176">
+    7
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="162" x="466" y="889.176">
+    Publish event information
+  </text>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M379 902.242h621v55.398H379z"/>
+  <path fill="#EEE" stroke="#000" stroke-width="2" d="M379 902.242h66v7l-10 10h-56v-17z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="21" x="392" y="916.309">
+    ref
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="155" x="614" y="935.309">
+    Event Handler Consume
+  </text>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M379 1019.641h209v55.398H379z"/>
+  <path fill="#EEE" stroke="#000" stroke-width="2" d="M379 1019.64h66v7l-10 10h-56v-17z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="21" x="392" y="1033.707">
+    ref
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="201" x="385" y="1052.707">
+    Fulfil Position Handler Consume
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1069.5 1097.172l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M446 1101.172h629.5"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="453" y="1096.106">
+    8
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="115" x="466" y="1096.106">
+    Produce message
+  </text>
+  <path stroke="#000" stroke-dasharray="2,2" d="M20 1110.172h1142"/>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="168" x="25" y="1120.382">
+    [Consume Abort message]
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M133 1141.11l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" d="M127 1145.109h308"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="139" y="1140.043">
+    9
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="218" x="152" y="1140.043">
+    Consume Position event message
+  </text>
+  <path d="M362 1190.11h88v7l-10 10h-78v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M362 1190.109h415v120.664H362z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="43" x="377" y="1203.176">
+    break
+  </text>
+  <path d="M372 1214.242h152v7l-10 10H372v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M372 1214.242h395v89.531H372z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="107" x="387" y="1227.309">
+    Validate Event
+  </text>
+  <path stroke="#a80036" d="M446 1282.773h42M488 1282.773v13M447 1295.773h41"/>
+  <path fill="#A80036" stroke="#a80036" d="M457 1291.773l-10 4 10 4-4-4z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="453" y="1262.575">
+    10
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="280" x="475" y="1247.442">
+    Validate event - Rule: type == &apos;position&apos; &amp;&amp;
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="269" x="475" y="1262.575">
+    action IN [&apos;timeout-reserved&apos;, &apos;reject&apos;, &apos;fail&apos;]
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="90" x="475" y="1277.707">
+    Error codes:
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="32" x="569" y="1277.707">
+    2001
+  </text>
+  <path d="M372 1324.773h232v7l-10 10H372v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M372 1324.773h639v156.664H372z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="187" x="387" y="1337.84">
+    Persist Event Information
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M937 1384.04l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M446 1388.039h497"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="453" y="1382.973">
+    11
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="162" x="475" y="1382.973">
+    Publish event information
+  </text>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M379 1396.039h621v55.398H379z"/>
+  <path fill="#EEE" stroke="#000" stroke-width="2" d="M379 1396.04h66v7l-10 10h-56v-17z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="21" x="392" y="1410.106">
+    ref
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="155" x="614" y="1429.106">
+    Event Handler Consume
+  </text>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M379 1513.438h216v55.398H379z"/>
+  <path fill="#EEE" stroke="#000" stroke-width="2" d="M379 1513.438h66v7l-10 10h-56v-17z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="21" x="392" y="1527.504">
+    ref
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="208" x="385" y="1546.504">
+    Abort Position Handler Consume
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1069.5 1590.969l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M446 1594.969h629.5"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="453" y="1589.903">
+    12
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="115" x="475" y="1589.903">
+    Produce message
+  </text>
+</svg>

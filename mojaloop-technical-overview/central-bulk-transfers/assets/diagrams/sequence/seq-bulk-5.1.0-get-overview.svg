@@ -1,195 +1,552 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="2387px" preserveAspectRatio="none" style="width:1878px;height:2387px;" version="1.1" viewBox="0 0 1878 2387" width="1878px" zoomAndPan="magnify"><defs><filter height="300%" id="fcoipmf23dyv2" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="252" x="813.5" y="23.5352">5.1.0. Request Bulk Transfer Status</text><rect fill="#D3D3D3" height="2342.168" style="stroke: #A80036; stroke-width: 1.0;" width="179" x="4" y="34.4883"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="173" x="7" y="47.0566">Financial Service Provider</text><rect fill="#ADD8E6" height="2342.168" style="stroke: #A80036; stroke-width: 1.0;" width="381" x="474.5" y="34.4883"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="166" x="582" y="47.0566">Bulk API Adapter Service</text><rect fill="#FFFFE0" height="2342.168" style="stroke: #A80036; stroke-width: 1.0;" width="959.5" x="857.5" y="34.4883"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="101" x="1286.75" y="47.0566">Central Ledger</text><rect fill="#FFFFFF" filter="url(#fcoipmf23dyv2)" height="154.2422" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="88.5" y="163.7754"/><rect fill="#FFFFFF" filter="url(#fcoipmf23dyv2)" height="54.3105" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="533.5" y="209.3965"/><rect fill="#FFFFFF" filter="url(#fcoipmf23dyv2)" height="29.3105" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="725" y="793.6074"/><rect fill="#FFFFFF" filter="url(#fcoipmf23dyv2)" height="29.3105" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="725" y="1266.1289"/><rect fill="#FFFFFF" filter="url(#fcoipmf23dyv2)" height="29.3105" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="725" y="1983.6191"/><rect fill="#FFFFFF" filter="url(#fcoipmf23dyv2)" height="29.3105" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="725" y="2212.3691"/><rect fill="#FFFFFF" filter="url(#fcoipmf23dyv2)" height="83.6211" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="935" y="263.707"/><rect fill="#FFFFFF" filter="url(#fcoipmf23dyv2)" height="306.0371" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1095" y="487.5703"/><rect fill="#FFFFFF" filter="url(#fcoipmf23dyv2)" height="406.9004" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1095" y="859.2285"/><rect fill="#FFFFFF" filter="url(#fcoipmf23dyv2)" height="579.248" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1095" y="1404.3711"/><rect fill="#FFFFFF" filter="url(#fcoipmf23dyv2)" height="136.5527" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1520" y="487.5703"/><rect fill="#FFFFFF" filter="url(#fcoipmf23dyv2)" height="259.0371" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1520" y="859.2285"/><rect fill="#FFFFFF" filter="url(#fcoipmf23dyv2)" height="77.9316" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1760" y="516.8809"/><rect fill="#FFFFFF" filter="url(#fcoipmf23dyv2)" height="200.416" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1760" y="888.5391"/><rect fill="#FFFFFF" filter="url(#fcoipmf23dyv2)" height="2085.9043" style="stroke: #000000; stroke-width: 2.0;" width="1842" x="24" y="170.7754"/><rect fill="#FFFFFF" filter="url(#fcoipmf23dyv2)" height="191.7949" style="stroke: #000000; stroke-width: 2.0;" width="1132" x="44" y="639.123"/><rect fill="#FFFFFF" filter="url(#fcoipmf23dyv2)" height="1116.4141" style="stroke: #000000; stroke-width: 2.0;" width="1511" x="34" y="1133.2656"/><rect fill="#FFFFFF" filter="url(#fcoipmf23dyv2)" height="145.8633" style="stroke: #000000; stroke-width: 2.0;" width="1132" x="44" y="1157.5762"/><rect fill="#FFFFFF" filter="url(#fcoipmf23dyv2)" height="74.9316" style="stroke: #000000; stroke-width: 2.0;" width="511" x="1024" y="1342.4395"/><rect fill="#FFFFFF" height="189.4395" style="stroke: none; stroke-width: 1.0;" width="1511" x="34" y="2060.2402"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="93" x2="93" y1="153.7754" y2="2273.6797"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="538.5" x2="538.5" y1="153.7754" y2="2273.6797"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="729.5" x2="729.5" y1="153.7754" y2="2273.6797"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="939.5" x2="939.5" y1="153.7754" y2="2273.6797"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="1100" x2="1100" y1="153.7754" y2="2273.6797"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="1525" x2="1525" y1="153.7754" y2="2273.6797"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="1765" x2="1765" y1="153.7754" y2="2273.6797"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="53" x="64" y="134.334">DFSP(n)</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="73" x="54" y="150.8223">Participant</text><ellipse cx="93.5" cy="63.7988" fill="#FEFECE" filter="url(#fcoipmf23dyv2)" rx="8" ry="8" style="stroke: #A80036; stroke-width: 2.0;"/><path d="M93.5,71.7988 L93.5,98.7988 M80.5,79.7988 L106.5,79.7988 M93.5,98.7988 L80.5,113.7988 M93.5,98.7988 L106.5,113.7988 " fill="none" filter="url(#fcoipmf23dyv2)" style="stroke: #A80036; stroke-width: 2.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="53" x="64" y="2286.2148">DFSP(n)</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="73" x="54" y="2302.7031">Participant</text><ellipse cx="93.5" cy="2315.6563" fill="#FEFECE" filter="url(#fcoipmf23dyv2)" rx="8" ry="8" style="stroke: #A80036; stroke-width: 2.0;"/><path d="M93.5,2323.6563 L93.5,2350.6563 M80.5,2331.6563 L106.5,2331.6563 M93.5,2350.6563 L80.5,2365.6563 M93.5,2350.6563 L106.5,2365.6563 " fill="none" filter="url(#fcoipmf23dyv2)" style="stroke: #A80036; stroke-width: 2.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="114" x="478.5" y="150.8223">Bulk API Adapter</text><path d="M518,109.2871 L518,133.2871 M518,121.2871 L535,121.2871 " fill="none" filter="url(#fcoipmf23dyv2)" style="stroke: #A80036; stroke-width: 2.0;"/><ellipse cx="547" cy="121.2871" fill="#FEFECE" filter="url(#fcoipmf23dyv2)" rx="12" ry="12" style="stroke: #A80036; stroke-width: 2.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="114" x="478.5" y="2286.2148">Bulk API Adapter</text><path d="M518,2293.168 L518,2317.168 M518,2305.168 L535,2305.168 " fill="none" filter="url(#fcoipmf23dyv2)" style="stroke: #A80036; stroke-width: 2.0;"/><ellipse cx="547" cy="2305.168" fill="#FEFECE" filter="url(#fcoipmf23dyv2)" rx="12" ry="12" style="stroke: #A80036; stroke-width: 2.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="237" x="608.5" y="150.8223">Bulk API Notification Event Handler</text><ellipse cx="730" cy="121.2871" fill="#FEFECE" filter="url(#fcoipmf23dyv2)" rx="12" ry="12" style="stroke: #A80036; stroke-width: 2.0;"/><polygon fill="#A80036" points="726,109.2871,732,104.2871,730,109.2871,732,114.2871,726,109.2871" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="237" x="608.5" y="2286.2148">Bulk API Notification Event Handler</text><ellipse cx="730" cy="2305.168" fill="#FEFECE" filter="url(#fcoipmf23dyv2)" rx="12" ry="12" style="stroke: #A80036; stroke-width: 2.0;"/><polygon fill="#A80036" points="726,2293.168,732,2288.168,730,2293.168,732,2298.168,726,2293.168" style="stroke: #A80036; stroke-width: 1.0;"/><rect fill="#FEFECE" filter="url(#fcoipmf23dyv2)" height="30.4883" style="stroke: #A80036; stroke-width: 1.5;" width="149" x="865.5" y="114.2871"/><rect fill="#FEFECE" filter="url(#fcoipmf23dyv2)" height="30.4883" style="stroke: #A80036; stroke-width: 1.5;" width="149" x="861.5" y="118.2871"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="135" x="868.5" y="138.8223">Topic-Transfer-Get</text><rect fill="#FEFECE" filter="url(#fcoipmf23dyv2)" height="30.4883" style="stroke: #A80036; stroke-width: 1.5;" width="149" x="865.5" y="2272.6797"/><rect fill="#FEFECE" filter="url(#fcoipmf23dyv2)" height="30.4883" style="stroke: #A80036; stroke-width: 1.5;" width="149" x="861.5" y="2276.6797"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="135" x="868.5" y="2297.2148">Topic-Transfer-Get</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="126" x="1034" y="150.8223">GET Event Handler</text><ellipse cx="1100" cy="121.2871" fill="#FEFECE" filter="url(#fcoipmf23dyv2)" rx="12" ry="12" style="stroke: #A80036; stroke-width: 2.0;"/><polygon fill="#A80036" points="1096,109.2871,1102,104.2871,1100,109.2871,1102,114.2871,1096,109.2871" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="126" x="1034" y="2286.2148">GET Event Handler</text><ellipse cx="1100" cy="2305.168" fill="#FEFECE" filter="url(#fcoipmf23dyv2)" rx="12" ry="12" style="stroke: #A80036; stroke-width: 2.0;"/><polygon fill="#A80036" points="1096,2293.168,1102,2288.168,1100,2293.168,1102,2298.168,1096,2293.168" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="126" x="1459" y="150.8223">Bulk Transfer DAO</text><ellipse cx="1525" cy="121.2871" fill="#FEFECE" filter="url(#fcoipmf23dyv2)" rx="12" ry="12" style="stroke: #A80036; stroke-width: 2.0;"/><line style="stroke: #A80036; stroke-width: 2.0;" x1="1513" x2="1537" y1="135.2871" y2="135.2871"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="126" x="1459" y="2286.2148">Bulk Transfer DAO</text><ellipse cx="1525" cy="2305.168" fill="#FEFECE" filter="url(#fcoipmf23dyv2)" rx="12" ry="12" style="stroke: #A80036; stroke-width: 2.0;"/><line style="stroke: #A80036; stroke-width: 2.0;" x1="1513" x2="1537" y1="2319.168" y2="2319.168"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="90" x="1717" y="150.8223">Central Store</text><path d="M1747,101.2871 C1747,91.2871 1765,91.2871 1765,91.2871 C1765,91.2871 1783,91.2871 1783,101.2871 L1783,127.2871 C1783,137.2871 1765,137.2871 1765,137.2871 C1765,137.2871 1747,137.2871 1747,127.2871 L1747,101.2871 " fill="#FEFECE" filter="url(#fcoipmf23dyv2)" style="stroke: #000000; stroke-width: 1.5;"/><path d="M1747,101.2871 C1747,111.2871 1765,111.2871 1765,111.2871 C1765,111.2871 1783,111.2871 1783,101.2871 " fill="none" style="stroke: #000000; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="90" x="1717" y="2286.2148">Central Store</text><path d="M1747,2299.168 C1747,2289.168 1765,2289.168 1765,2289.168 C1765,2289.168 1783,2289.168 1783,2299.168 L1783,2325.168 C1783,2335.168 1765,2335.168 1765,2335.168 C1765,2335.168 1747,2335.168 1747,2325.168 L1747,2299.168 " fill="#FEFECE" filter="url(#fcoipmf23dyv2)" style="stroke: #000000; stroke-width: 1.5;"/><path d="M1747,2299.168 C1747,2309.168 1765,2309.168 1765,2309.168 C1765,2309.168 1783,2309.168 1783,2299.168 " fill="none" style="stroke: #000000; stroke-width: 1.5;"/><rect fill="#FFFFFF" filter="url(#fcoipmf23dyv2)" height="154.2422" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="88.5" y="163.7754"/><rect fill="#FFFFFF" filter="url(#fcoipmf23dyv2)" height="54.3105" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="533.5" y="209.3965"/><rect fill="#FFFFFF" filter="url(#fcoipmf23dyv2)" height="29.3105" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="725" y="793.6074"/><rect fill="#FFFFFF" filter="url(#fcoipmf23dyv2)" height="29.3105" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="725" y="1266.1289"/><rect fill="#FFFFFF" filter="url(#fcoipmf23dyv2)" height="29.3105" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="725" y="1983.6191"/><rect fill="#FFFFFF" filter="url(#fcoipmf23dyv2)" height="29.3105" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="725" y="2212.3691"/><rect fill="#FFFFFF" filter="url(#fcoipmf23dyv2)" height="83.6211" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="935" y="263.707"/><rect fill="#FFFFFF" filter="url(#fcoipmf23dyv2)" height="306.0371" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1095" y="487.5703"/><rect fill="#FFFFFF" filter="url(#fcoipmf23dyv2)" height="406.9004" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1095" y="859.2285"/><rect fill="#FFFFFF" filter="url(#fcoipmf23dyv2)" height="579.248" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1095" y="1404.3711"/><rect fill="#FFFFFF" filter="url(#fcoipmf23dyv2)" height="136.5527" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1520" y="487.5703"/><rect fill="#FFFFFF" filter="url(#fcoipmf23dyv2)" height="259.0371" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1520" y="859.2285"/><rect fill="#FFFFFF" filter="url(#fcoipmf23dyv2)" height="77.9316" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1760" y="516.8809"/><rect fill="#FFFFFF" filter="url(#fcoipmf23dyv2)" height="200.416" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1760" y="888.5391"/><path d="M24,170.7754 L260,170.7754 L260,177.7754 L250,187.7754 L24,187.7754 L24,170.7754 " fill="#EEEEEE" style="stroke: #000000; stroke-width: 1.0;"/><rect fill="none" height="2085.9043" style="stroke: #000000; stroke-width: 2.0;" width="1842" x="24" y="170.7754"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="191" x="39" y="184.3438">Request Bulk transfer status</text><polygon fill="#A80036" points="521.5,205.3965,531.5,209.3965,521.5,213.3965,525.5,209.3965" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="98.5" x2="527.5" y1="209.3965" y2="209.3965"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="105.5" y="204.6543">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="357" x="118.5" y="204.6543">Request bulk transfer status - GET - /bulkTransfers/{ID}</text><polygon fill="#A80036" points="923,259.707,933,263.707,923,267.707,927,263.707" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="538.5" x2="929" y1="263.707" y2="263.707"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="545.5" y="258.9648">2</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="162" x="558.5" y="258.9648">Publish event information</text><polygon fill="#A80036" points="104.5,314.0176,94.5,318.0176,104.5,322.0176,100.5,318.0176" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="98.5" x2="537.5" y1="318.0176" y2="318.0176"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="110.5" y="313.2754">3</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="161" x="123.5" y="313.2754">Respond HTTP - 200 (OK)</text><polygon fill="#A80036" points="951,343.3281,941,347.3281,951,351.3281,947,347.3281" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="945" x2="1099" y1="347.3281" y2="347.3281"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="957" y="342.5859">4</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="118" x="970" y="342.5859">Consume message</text><rect fill="#FFFFFF" filter="url(#fcoipmf23dyv2)" height="55.9316" style="stroke: #000000; stroke-width: 2.0;" width="306.5" x="858.5" y="380.3281"/><polygon fill="#EEEEEE" points="858.5,380.3281,922.5,380.3281,922.5,387.3281,912.5,397.3281,858.5,397.3281,858.5,380.3281" style="stroke: #000000; stroke-width: 2.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19" x="871.5" y="394.8965">ref</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="140" x="943.75" y="413.8965">GET Handler Consume</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="0" x="947.75" y="429.207"/><polygon fill="#A80036" points="1508,483.5703,1518,487.5703,1508,491.5703,1512,487.5703" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="1105" x2="1514" y1="487.5703" y2="487.5703"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="1112" y="482.8281">5</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="214" x="1125" y="482.8281">Request bulk transfer participants</text><polygon fill="#A80036" points="1748,512.8809,1758,516.8809,1748,520.8809,1752,516.8809" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="1530" x2="1754" y1="516.8809" y2="516.8809"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="1537" y="512.1387">6</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="198" x="1550" y="512.1387">Fetch bulk transfer participants</text><polygon fill="#FFFFE0" filter="url(#fcoipmf23dyv2)" points="1723,529.8809,1807,529.8809,1817,548.8809,1807,567.8809,1723,567.8809,1713,548.8809,1723,529.8809" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="80" x="1725" y="546.4492">bulkTransfer</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="68" x="1725" y="561.7598">participant</text><polygon fill="#A80036" points="1541,590.8125,1531,594.8125,1541,598.8125,1537,594.8125" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="1535" x2="1764" y1="594.8125" y2="594.8125"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="1547" y="590.0703">7</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="120" x="1560" y="590.0703">Return query result</text><polygon fill="#A80036" points="1116,620.123,1106,624.123,1116,628.123,1112,624.123" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="1110" x2="1524" y1="624.123" y2="624.123"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="1122" y="619.3809">8</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="205" x="1135" y="619.3809">Return bulk transfer participants</text><path d="M44,639.123 L106,639.123 L106,646.123 L96,656.123 L44,656.123 L44,639.123 " fill="#EEEEEE" style="stroke: #000000; stroke-width: 1.0;"/><rect fill="none" height="191.7949" style="stroke: #000000; stroke-width: 2.0;" width="1132" x="44" y="639.123"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="17" x="59" y="652.6914">alt</text><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="307" x="121" y="651.7578">[Is request not from bulk transfer Payer or Payee FSP?]</text><path d="M373,661.4336 L373,762.4336 L721,762.4336 L721,671.4336 L711,661.4336 L373,661.4336 " fill="#FFFF00" filter="url(#fcoipmf23dyv2)" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M711,661.4336 L711,671.4336 L721,671.4336 L711,661.4336 " fill="#FFFF00" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="4" x="379" y="679.002">{</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="126" x="395" y="694.3125">"errorInformation": {</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="116" x="411" y="709.623">"errorCode": 3210,</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="295" x="411" y="724.9336">"errorDescription": "Bulk transfer ID not found"</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="4" x="395" y="740.2441">}</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="4" x="379" y="755.5547">}</text><polygon fill="#A80036" points="746,789.6074,736,793.6074,746,797.6074,742,793.6074" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="740" x2="1099" y1="793.6074" y2="793.6074"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="752" y="788.8652">9</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="197" x="765" y="788.8652">Publish notification event (404)</text><polygon fill="#A80036" points="104.5,818.918,94.5,822.918,104.5,826.918,100.5,822.918" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="98.5" x2="729" y1="822.918" y2="822.918"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="110.5" y="818.1758">10</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="264" x="132.5" y="818.1758">callback PUT on /bulkTransfers/{ID}/error</text><polygon fill="#A80036" points="1508,855.2285,1518,859.2285,1508,863.2285,1512,859.2285" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="1105" x2="1514" y1="859.2285" y2="859.2285"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1112" y="854.4863">11</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="178" x="1134" y="854.4863">Request bulk transfer status</text><polygon fill="#A80036" points="1748,884.5391,1758,888.5391,1748,892.5391,1752,888.5391" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="1530" x2="1754" y1="888.5391" y2="888.5391"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1537" y="883.7969">12</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="162" x="1559" y="883.7969">Fetch bulk transfer status</text><polygon fill="#FFFFE0" filter="url(#fcoipmf23dyv2)" points="1684,901.5391,1846,901.5391,1856,981.5391,1846,1062.5391,1684,1062.5391,1674,981.5391,1684,901.5391" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="158" x="1686" y="918.1074">bulkTransferStateChange</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="111" x="1686" y="933.418">bulkTransferState</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="110" x="1686" y="948.7285">bulkTransferError</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="142" x="1686" y="964.0391">bulkTransferExtension</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="127" x="1686" y="979.3496">transferStateChange</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="80" x="1686" y="994.6602">transferState</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="113" x="1686" y="1009.9707">transferFulfilment</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="79" x="1686" y="1025.2813">transferError</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="111" x="1686" y="1040.5918">transferExtension</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="57" x="1686" y="1055.9023">ilpPacket</text><polygon fill="#A80036" points="1541,1084.9551,1531,1088.9551,1541,1092.9551,1537,1088.9551" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="1535" x2="1764" y1="1088.9551" y2="1088.9551"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1547" y="1084.2129">13</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="120" x="1569" y="1084.2129">Return query result</text><polygon fill="#A80036" points="1116,1114.2656,1106,1118.2656,1116,1122.2656,1112,1118.2656" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="1110" x2="1524" y1="1118.2656" y2="1118.2656"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1122" y="1113.5234">14</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="169" x="1144" y="1113.5234">Return bulk transfer status</text><path d="M34,1133.2656 L96,1133.2656 L96,1140.2656 L86,1150.2656 L34,1150.2656 L34,1133.2656 " fill="#EEEEEE" style="stroke: #000000; stroke-width: 1.0;"/><rect fill="none" height="1116.4141" style="stroke: #000000; stroke-width: 2.0;" width="1511" x="34" y="1133.2656"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="17" x="49" y="1146.834">alt</text><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="375" x="111" y="1145.9004">[Is there a bulk transfer with the given ID recorded in the system?]</text><path d="M44,1157.5762 L106,1157.5762 L106,1164.5762 L96,1174.5762 L44,1174.5762 L44,1157.5762 " fill="#EEEEEE" style="stroke: #000000; stroke-width: 1.0;"/><rect fill="none" height="145.8633" style="stroke: #000000; stroke-width: 2.0;" width="1132" x="44" y="1157.5762"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="17" x="59" y="1171.1445">alt</text><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="125" x="121" y="1170.2109">[Bulk Transfer state is</text><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="81" x="250" y="1170.2109">"PROCESSING"</text><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="4" x="331" y="1170.2109">]</text><path d="M832,1179.8867 L832,1234.8867 L1086,1234.8867 L1086,1189.8867 L1076,1179.8867 L832,1179.8867 " fill="#FFFF00" filter="url(#fcoipmf23dyv2)" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M1076,1179.8867 L1076,1189.8867 L1086,1189.8867 L1076,1179.8867 " fill="#FFFF00" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="4" x="838" y="1197.4551">{</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="217" x="854" y="1212.7656">"bulkTransferState": "PROCESSING"</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="4" x="838" y="1228.0762">}</text><polygon fill="#A80036" points="746,1262.1289,736,1266.1289,746,1270.1289,742,1266.1289" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="740" x2="1099" y1="1266.1289" y2="1266.1289"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="752" y="1261.3867">15</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="161" x="774" y="1261.3867">Publish notification event</text><polygon fill="#A80036" points="104.5,1291.4395,94.5,1295.4395,104.5,1299.4395,100.5,1295.4395" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="98.5" x2="729" y1="1295.4395" y2="1295.4395"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="110.5" y="1290.6973">16</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="253" x="132.5" y="1290.6973">Send callback - PUT /bulkTransfers/{ID}</text><path d="M1024,1342.4395 L1086,1342.4395 L1086,1349.4395 L1076,1359.4395 L1024,1359.4395 L1024,1342.4395 " fill="#EEEEEE" style="stroke: #000000; stroke-width: 1.0;"/><rect fill="none" height="74.9316" style="stroke: #000000; stroke-width: 2.0;" width="511" x="1024" y="1342.4395"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="17" x="1039" y="1356.0078">alt</text><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="161" x="1101" y="1355.0742">[Request is from Payee FSP?]</text><line style="stroke: #A80036; stroke-width: 1.0;" x1="1100" x2="1147" y1="1391.3711" y2="1391.3711"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="1147" x2="1147" y1="1391.3711" y2="1404.3711"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="1106" x2="1147" y1="1404.3711" y2="1404.3711"/><polygon fill="#A80036" points="1116,1400.3711,1106,1404.3711,1116,1408.3711,1112,1404.3711" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1112" y="1378.9736">17</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="140" x="1134" y="1371.3184">Exclude transfers with</text><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="100" x="1278" y="1371.3184">transferStateId</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="37" x="1382" y="1371.3184">not in</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="4" x="1138" y="1386.6289">[</text><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="84" x="1146" y="1386.6289">COMMITTED</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="4" x="1230" y="1386.6289">,</text><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="138" x="1238" y="1386.6289">ABORTED_REJECTED</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="4" x="1376" y="1386.6289">,</text><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="131" x="1384" y="1386.6289">EXPIRED_RESERVED</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="4" x="1519" y="1386.6289">]</text><path d="M590,1429.3711 L590,1898.3711 L1086,1898.3711 L1086,1439.3711 L1076,1429.3711 L590,1429.3711 " fill="#FFFF00" filter="url(#fcoipmf23dyv2)" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M1076,1429.3711 L1076,1439.3711 L1086,1439.3711 L1076,1429.3711 " fill="#FFFF00" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="4" x="596" y="1446.9395">{</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="273" x="612" y="1462.25">"bulkTransferState": "&lt;BulkTransferState&gt;",</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="182" x="612" y="1477.5605">"individualTransferResults": [</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="4" x="628" y="1492.8711">{</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="177" x="644" y="1508.1816">"transferId": "&lt;TransferId&gt;",</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="427" x="644" y="1523.4922">"fulfilment": "WLctttbu2HvTsa1XWvUoGRcQozHsqeu9Ahl2JW9Bsu8",</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="291" x="644" y="1538.8027">"errorInformation": &lt;ErrorInformationObject&gt;,</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="107" x="644" y="1554.1133">"extensionList": {</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="76" x="660" y="1569.4238">"extension":</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="4" x="676" y="1584.7344">[</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="4" x="692" y="1600.0449">{</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="127" x="708" y="1615.3555">"key": "Description",</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="279" x="708" y="1630.666">"value": "This is a more detailed description"</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="4" x="692" y="1645.9766">}</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="4" x="676" y="1661.2871">]</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="4" x="644" y="1676.5977">}</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="4" x="628" y="1691.9082">}</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="612" y="1707.2188">],</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="384" x="612" y="1722.5293">"completedTimestamp": "2018-09-24T08:38:08.699-04:00",</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="99" x="612" y="1737.8398">"extensionList":</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="4" x="628" y="1753.1504">{</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="76" x="628" y="1768.4609">"extension":</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="4" x="644" y="1783.7715">[</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="4" x="660" y="1799.082">{</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="127" x="676" y="1814.3926">"key": "Description",</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="279" x="676" y="1829.7031">"value": "This is a more detailed description"</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="4" x="660" y="1845.0137">}</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="4" x="644" y="1860.3242">]</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="4" x="612" y="1875.6348">}</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="4" x="596" y="1890.9453">}</text><path d="M653,1912.6875 L653,1952.6875 L1086,1952.6875 L1086,1922.6875 L1076,1912.6875 L653,1912.6875 " fill="#D3D3D3" filter="url(#fcoipmf23dyv2)" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M1076,1912.6875 L1076,1922.6875 L1086,1922.6875 L1076,1912.6875 " fill="#D3D3D3" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="412" x="659" y="1930.2559">NOTE: If transfer is REJECTED, error information may be provided.</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="382" x="659" y="1945.5664">Either fulfilment or errorInformation should be set, not both.</text><polygon fill="#A80036" points="746,1979.6191,736,1983.6191,746,1987.6191,742,1983.6191" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="740" x2="1099" y1="1983.6191" y2="1983.6191"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="752" y="1978.877">18</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="161" x="774" y="1978.877">Publish notification event</text><polygon fill="#A80036" points="104.5,2008.9297,94.5,2012.9297,104.5,2016.9297,100.5,2012.9297" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="98.5" x2="729" y1="2012.9297" y2="2012.9297"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="110.5" y="2008.1875">19</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="227" x="132.5" y="2008.1875">callback PUT on /bulkTransfers/{ID}</text><path d="M735,2025.9297 L735,2050.9297 L862,2050.9297 L862,2035.9297 L852,2025.9297 L735,2025.9297 " fill="#D3D3D3" filter="url(#fcoipmf23dyv2)" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M852,2025.9297 L852,2035.9297 L862,2035.9297 L852,2025.9297 " fill="#D3D3D3" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="106" x="741" y="2043.498">Log ERROR event</text><line style="stroke: #000000; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="34" x2="1545" y1="2061.2402" y2="2061.2402"/><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="514" x="39" y="2071.875">[A bulk transfer with the given ID is not present in the System or this is an invalid request]</text><path d="M373,2080.1953 L373,2181.1953 L721,2181.1953 L721,2090.1953 L711,2080.1953 L373,2080.1953 " fill="#FFFF00" filter="url(#fcoipmf23dyv2)" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M711,2080.1953 L711,2090.1953 L721,2090.1953 L711,2080.1953 " fill="#FFFF00" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="4" x="379" y="2097.7637">{</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="126" x="395" y="2113.0742">"errorInformation": {</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="116" x="411" y="2128.3848">"errorCode": 3210,</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="295" x="411" y="2143.6953">"errorDescription": "Bulk transfer ID not found"</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="4" x="395" y="2159.0059">}</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="4" x="379" y="2174.3164">}</text><polygon fill="#A80036" points="746,2208.3691,736,2212.3691,746,2216.3691,742,2212.3691" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="740" x2="1099" y1="2212.3691" y2="2212.3691"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="752" y="2207.627">20</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="197" x="774" y="2207.627">Publish notification event (404)</text><polygon fill="#A80036" points="104.5,2237.6797,94.5,2241.6797,104.5,2245.6797,100.5,2241.6797" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="98.5" x2="729" y1="2241.6797" y2="2241.6797"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="110.5" y="2236.9375">21</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="264" x="132.5" y="2236.9375">callback PUT on /bulkTransfers/{ID}/error</text><!--
-@startuml
-title 5.1.0. Request Bulk Transfer Status
-
-autonumber
-
-actor "DFSP(n)\nParticipant" as DFSP
-control "Bulk API Notification Event Handler" as NOTIFY_HANDLER
-boundary "Bulk API Adapter" as BULKAPI
-collections "Topic-Transfer-Get" as TOPIC_GET
-control "GET Event Handler" as GET_HANDLER
-entity "Bulk Transfer DAO" as BULK_TRANSFER_DAO
-database "Central Store" as DB
-
-box "Financial Service Provider" #lightGray
-	participant DFSP
-end box
-box "Bulk API Adapter Service" #LightBlue
-    participant BULKAPI
-	participant NOTIFY_HANDLER
-end box
-box "Central Ledger" #LightYellow
-    participant TOPIC_GET
-    participant GET_HANDLER
-    participant BULK_TRANSFER_DAO
-    participant DB
-end box
-
-group Request Bulk transfer status
-    activate DFSP
-    DFSP -> BULKAPI: Request bulk transfer status - GET - /bulkTransfers/{ID}
-    activate BULKAPI
-    |||
-    BULKAPI -> TOPIC_GET: Publish event information
-    deactivate BULKAPI
-    activate TOPIC_GET
-    |||
-    deactivate GET_HANDLER
-    
-    DFSP <- - BULKAPI: Respond HTTP - 200 (OK)
-    deactivate DFSP
-    deactivate BULKAPI
-    GET_HANDLER -> TOPIC_GET: Consume message
-    |||
-    ref over TOPIC_GET, GET_HANDLER :  GET Handler Consume\n
-    |||
-    deactivate TOPIC_GET
-    
-    GET_HANDLER -> BULK_TRANSFER_DAO: Request bulk transfer participants 
-    activate GET_HANDLER
-    activate BULK_TRANSFER_DAO
-    BULK_TRANSFER_DAO -> DB: Fetch bulk transfer participants
-    activate DB
-    hnote over DB #lightYellow
-        bulkTransfer
-        participant
-    end hnote
-    BULK_TRANSFER_DAO <- - DB: Return query result 
-    deactivate DB
-    GET_HANDLER <- - BULK_TRANSFER_DAO: Return bulk transfer participants
-    deactivate BULK_TRANSFER_DAO
-    alt Is request not from bulk transfer Payer or Payee FSP?
-        note left of NOTIFY_HANDLER #yellow
-            {
-                "errorInformation": {
-                    "errorCode": 3210,
-                    "errorDescription": "Bulk transfer ID not found"
-                }
-            }
-        end note
-        GET_HANDLER -> NOTIFY_HANDLER: Publish notification event (404)
-        deactivate GET_HANDLER
-        activate NOTIFY_HANDLER
-        DFSP <- NOTIFY_HANDLER: callback PUT on /bulkTransfers/{ID}/error
-        deactivate NOTIFY_HANDLER
-    end
-    GET_HANDLER -> BULK_TRANSFER_DAO: Request bulk transfer status
-    activate GET_HANDLER
-    activate BULK_TRANSFER_DAO
-    BULK_TRANSFER_DAO -> DB: Fetch bulk transfer status
-
-    activate DB
-    hnote over DB #lightyellow
-        bulkTransferStateChange
-        bulkTransferState
-        bulkTransferError
-        bulkTransferExtension
-        transferStateChange
-        transferState
-        transferFulfilment
-        transferError
-        transferExtension
-        ilpPacket
-    end hnote
-    BULK_TRANSFER_DAO <- - DB: Return query result
-    deactivate DB
-    
-    GET_HANDLER <- - BULK_TRANSFER_DAO: Return bulk transfer status
-    deactivate BULK_TRANSFER_DAO
-    
-    alt Is there a bulk transfer with the given ID recorded in the system?
-        alt Bulk Transfer state is **"PROCESSING"**
-            note left of GET_HANDLER #yellow
-                {
-                    "bulkTransferState": "PROCESSING"
-                }
-            end note
-            NOTIFY_HANDLER <- GET_HANDLER: Publish notification event
-            deactivate GET_HANDLER
-            activate NOTIFY_HANDLER
-            NOTIFY_HANDLER -> DFSP: Send callback - PUT /bulkTransfers/{ID}
-            deactivate NOTIFY_HANDLER
-        end
-        |||
-        alt Request is from Payee FSP?
-            GET_HANDLER <-> GET_HANDLER: Exclude transfers with **transferStateId** not in \n [ **COMMITTED**, **ABORTED_REJECTED**, **EXPIRED_RESERVED** ]
-            activate GET_HANDLER
-        end
-        
-        note left of GET_HANDLER #yellow
-            {
-                "bulkTransferState": "<BulkTransferState>",
-                "individualTransferResults": [
-                    {
-                        "transferId": "<TransferId>",
-                        "fulfilment": "WLctttbu2HvTsa1XWvUoGRcQozHsqeu9Ahl2JW9Bsu8",
-                        "errorInformation": <ErrorInformationObject>,
-                        "extensionList": {
-                            "extension":
-                                [
-                                    {
-                                        "key": "Description",
-                                        "value": "This is a more detailed description"
-                                    }
-                                ]
-                        }
-                    }
-                ],
-                "completedTimestamp": "2018-09-24T08:38:08.699-04:00",
-                "extensionList":
-                    {
-                    "extension":
-                        [
-                            {
-                                "key": "Description",
-                                "value": "This is a more detailed description"
-                            }
-                        ]
-                }
-            }
-        end note
-        note left of GET_HANDLER #lightGray
-            NOTE: If transfer is REJECTED, error information may be provided.
-            Either fulfilment or errorInformation should be set, not both.
-        end note
-        NOTIFY_HANDLER <- GET_HANDLER: Publish notification event
-        deactivate GET_HANDLER
-        activate NOTIFY_HANDLER
-        DFSP <- NOTIFY_HANDLER: callback PUT on /bulkTransfers/{ID}
-        deactivate NOTIFY_HANDLER
-        note right of NOTIFY_HANDLER #lightgray
-            Log ERROR event
-        end note
-    else A bulk transfer with the given ID is not present in the System or this is an invalid request
-        note left of NOTIFY_HANDLER #yellow
-            {
-                "errorInformation": {
-                    "errorCode": 3210,
-                    "errorDescription": "Bulk transfer ID not found"
-                }
-            }
-        end note
-        GET_HANDLER -> NOTIFY_HANDLER: Publish notification event (404)
-        activate NOTIFY_HANDLER
-        DFSP <- NOTIFY_HANDLER: callback PUT on /bulkTransfers/{ID}/error
-        deactivate NOTIFY_HANDLER
-    end
-
-    deactivate GET_HANDLER
-    deactivate NOTIFY_HANDLER
-deactivate DFSP
-end
-@enduml
-
-PlantUML version 1.2019.06(Sat May 25 01:10:25 PHT 2019)
-(GPL source distribution)
-Java Runtime: Java(TM) SE Runtime Environment
-JVM: Java HotSpot(TM) 64-Bit Server VM
-Java Version: 1.8.0_171-b11
-Operating System: Mac OS X
-OS Version: 10.13.6
-Default Encoding: UTF-8
-Language: en
-Country: AU
---></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" height="2372" preserveAspectRatio="none" style="width:1922px;height:2372px" width="1922">
+  <defs>
+    <filter height="300%" id="a" width="300%" x="-1" y="-1">
+      <feGaussianBlur result="blurOut" stdDeviation="2"/>
+      <feColorMatrix in="blurOut" result="blurOut2" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/>
+      <feOffset dx="4" dy="4" in="blurOut2" result="blurOut3"/>
+      <feBlend in="SourceGraphic" in2="blurOut3"/>
+    </filter>
+  </defs>
+  <text font-family="sans-serif" font-size="18" lengthAdjust="spacingAndGlyphs" textLength="313" x="802.5" y="28.708">
+    5.1.0. Request Bulk Transfer Status
+  </text>
+  <path fill="#D3D3D3" stroke="#a80036" d="M1 40.953h196v2325.078H1z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="190" x="4" y="53.02">
+    Financial Service Provider
+  </text>
+  <path fill="#ADD8E6" stroke="#a80036" d="M485.5 40.953h378v2325.078h-378z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="184" x="582.5" y="53.02">
+    Bulk API Adapter Service
+  </text>
+  <path fill="#FFFFE0" stroke="#a80036" d="M865.5 40.953h992v2325.078h-992z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="110" x="1306.5" y="53.02">
+    Central Ledger
+  </text>
+  <path fill="#FFF" filter="url(#a)" stroke="#a80036" d="M94 169.68h10v153.531H94zM544 214.945h10v54.133h-10zM734 795.602h10v29.133h-10zM734 1264.391h10v29.133h-10zM734 1975.305h10v29.133h-10zM734 2202.305h10v29.133h-10zM940.5 269.078h10v83.266h-10zM1106.5 491.875h10v303.727h-10zM1106.5 860.867h10v403.523h-10zM1106.5 1401.922h10v573.383h-10zM1560.5 491.875h10v135.664h-10zM1560.5 860.867h10v256.727h-10zM1800.5 521.008h10v77.398h-10zM1800.5 890h10v198.461h-10z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M30 176.68h1878v2069.758H30z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M50 642.539h1139v190.195H50zM40 1132.594h1545.5v1106.844H40z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M50 1156.727h1139v144.797H50zM1034 1340.523h541.5v74.398H1034z"/>
+  <path fill="#FFF" d="M40 2051.57h1545.5v187.867H40z"/>
+  <path stroke="#a80036" stroke-dasharray="5,5" d="M99 159.68v2103.758M548.5 159.68v2103.758M738.5 159.68v2103.758M945.5 159.68v2103.758M1111 159.68v2103.758M1565.5 159.68v2103.758M1805.5 159.68v2103.758"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="56" x="68" y="140.081">
+    DFSP(n)
+  </text>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="72" x="60" y="156.378">
+    Participant
+  </text>
+  <circle cx="99" cy="70.086" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="8"/>
+  <path d="M99 78.086v27m-13-19h26m-13 19l-13 15m13-15l13 15" fill="none" filter="url(#a)" stroke="#a80036" stroke-width="2"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="56" x="68" y="2275.433">
+    DFSP(n)
+  </text>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="72" x="60" y="2291.729">
+    Participant
+  </text>
+  <circle cx="99" cy="2305.031" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="8"/>
+  <path d="M99 2313.031v27m-13-19h26m-13 19l-13 15m13-15l13 15" fill="none" filter="url(#a)" stroke="#a80036" stroke-width="2"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="113" x="489.5" y="156.378">
+    Bulk API Adapter
+  </text>
+  <path d="M528.5 115.383v24m0-12h17" fill="none" filter="url(#a)" stroke="#a80036" stroke-width="2"/>
+  <circle cx="557.5" cy="127.383" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="113" x="489.5" y="2275.433">
+    Bulk API Adapter
+  </text>
+  <path d="M528.5 2282.734v24m0-12h17" fill="none" filter="url(#a)" stroke="#a80036" stroke-width="2"/>
+  <circle cx="557.5" cy="2294.734" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="235" x="618.5" y="156.378">
+    Bulk API Notification Event Handler
+  </text>
+  <circle cx="739" cy="127.383" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path fill="#A80036" stroke="#a80036" d="M735 115.383l6-5-2 5 2 5-6-5z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="235" x="618.5" y="2275.433">
+    Bulk API Notification Event Handler
+  </text>
+  <circle cx="739" cy="2294.734" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path fill="#A80036" stroke="#a80036" d="M735 2282.734l6-5-2 5 2 5-6-5z"/>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M873.5 120.383h144v30.297h-144z"/>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M869.5 124.383h144v30.297h-144z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="130" x="876.5" y="144.378">
+    Topic-Transfer-Get
+  </text>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M873.5 2262.438h144v30.297h-144z"/>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M869.5 2266.438h144v30.297h-144z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="130" x="876.5" y="2286.433">
+    Topic-Transfer-Get
+  </text>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="129" x="1044" y="156.378">
+    GET Event Handler
+  </text>
+  <circle cx="1111.5" cy="127.383" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path fill="#A80036" stroke="#a80036" d="M1107.5 115.383l6-5-2 5 2 5-6-5z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="129" x="1044" y="2275.433">
+    GET Event Handler
+  </text>
+  <circle cx="1111.5" cy="2294.734" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path fill="#A80036" stroke="#a80036" d="M1107.5 2282.734l6-5-2 5 2 5-6-5z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="126" x="1499.5" y="156.378">
+    Bulk Transfer DAO
+  </text>
+  <circle cx="1565.5" cy="127.383" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path stroke="#a80036" stroke-width="2" d="M1553.5 141.383h24"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="126" x="1499.5" y="2275.433">
+    Bulk Transfer DAO
+  </text>
+  <circle cx="1565.5" cy="2294.734" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path stroke="#a80036" stroke-width="2" d="M1553.5 2308.734h24"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="90" x="1757.5" y="156.378">
+    Central Store
+  </text>
+  <path d="M1787.5 107.383c0-10 18-10 18-10s18 0 18 10v26c0 10-18 10-18 10s-18 0-18-10v-26" fill="#FEFECE" filter="url(#a)" stroke="#000" stroke-width="1.5"/>
+  <path d="M1787.5 107.383c0 10 18 10 18 10s18 0 18-10" fill="none" stroke="#000" stroke-width="1.5"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="90" x="1757.5" y="2275.433">
+    Central Store
+  </text>
+  <path d="M1787.5 2288.734c0-10 18-10 18-10s18 0 18 10v26c0 10-18 10-18 10s-18 0-18-10v-26" fill="#FEFECE" filter="url(#a)" stroke="#000" stroke-width="1.5"/>
+  <path d="M1787.5 2288.734c0 10 18 10 18 10s18 0 18-10" fill="none" stroke="#000" stroke-width="1.5"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#a80036" d="M94 169.68h10v153.531H94zM544 214.945h10v54.133h-10zM734 795.602h10v29.133h-10zM734 1264.391h10v29.133h-10zM734 1975.305h10v29.133h-10zM734 2202.305h10v29.133h-10zM940.5 269.078h10v83.266h-10zM1106.5 491.875h10v303.727h-10zM1106.5 860.867h10v403.523h-10zM1106.5 1401.922h10v573.383h-10zM1560.5 491.875h10v135.664h-10zM1560.5 860.867h10v256.727h-10zM1800.5 521.008h10v77.398h-10zM1800.5 890h10v198.461h-10z"/>
+  <path d="M30 176.68h258v7l-10 10H30v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M30 176.68h1878v2069.758H30z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="213" x="45" y="189.747">
+    Request Bulk transfer status
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M532 210.945l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M104 214.945h434"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="111" y="209.879">
+    1
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="353" x="124" y="209.879">
+    Request bulk transfer status - GET - /bulkTransfers/{ID}
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M928.5 265.078l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M549 269.078h385.5"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="556" y="264.012">
+    2
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="162" x="569" y="264.012">
+    Publish event information
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M110 319.21l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M104 323.211h444"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="116" y="318.145">
+    3
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="160" x="129" y="318.145">
+    Respond HTTP - 200 (OK)
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M956.5 348.344l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" d="M950.5 352.344h160"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="962.5" y="347.278">
+    4
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="124" x="975.5" y="347.278">
+    Consume message
+  </text>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M866.5 385.344H1178v55.398H866.5z"/>
+  <path fill="#EEE" stroke="#000" stroke-width="2" d="M866.5 385.344h66v7l-10 10h-56v-17z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="21" x="879.5" y="399.411">
+    ref
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="144" x="952.25" y="418.411">
+    GET Handler Consume
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1548.5 487.875l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M1116.5 491.875h438"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="1123.5" y="486.809">
+    5
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="215" x="1136.5" y="486.809">
+    Request bulk transfer participants
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1788.5 517.008l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M1570.5 521.008h224"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="1577.5" y="515.942">
+    6
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="198" x="1590.5" y="515.942">
+    Fetch bulk transfer participants
+  </text>
+  <path fill="#FFFFE0" filter="url(#a)" stroke="#a80036" d="M1764 534.008h82l10 19-10 19h-82l-10-19 10-19z"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="78" x="1766" y="550.075">
+    bulkTransfer
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="68" x="1766" y="565.207">
+    participant
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1581.5 594.406l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M1575.5 598.406h229"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="1587.5" y="593.34">
+    7
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="122" x="1600.5" y="593.34">
+    Return query result
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1127.5 623.54l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M1121.5 627.539h443"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="1133.5" y="622.473">
+    8
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="205" x="1146.5" y="622.473">
+    Return bulk transfer participants
+  </text>
+  <path d="M50 642.54h64v7l-10 10H50v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M50 642.539h1139v190.195H50z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19" x="65" y="655.606">
+    alt
+  </text>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="352" x="129" y="654.75">
+    [Is request not from bulk transfer Payer or Payee FSP?]
+  </text>
+  <path d="M383 664.672v100h347v-90l-10-10H383" fill="#FF0" filter="url(#a)" stroke="#a80036"/>
+  <path d="M720 664.672v10h10l-10-10" fill="#FF0" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="389" y="681.739">
+    {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="130" x="405" y="696.872">
+    &quot;errorInformation&quot;: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="118" x="421" y="712.004">
+    &quot;errorCode&quot;: 3210,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="294" x="421" y="727.137">
+    &quot;errorDescription&quot;: &quot;Bulk transfer ID not found&quot;
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="405" y="742.27">
+    }
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="389" y="757.403">
+    }
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M755 791.602l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" d="M749 795.602h361.5"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="761" y="790.536">
+    9
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="197" x="774" y="790.536">
+    Publish notification event (404)
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M110 820.734l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" d="M104 824.734h634"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="116" y="819.668">
+    10
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="261" x="138" y="819.668">
+    callback PUT on /bulkTransfers/{ID}/error
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1548.5 856.867l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M1116.5 860.867h438"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1123.5" y="855.801">
+    11
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="180" x="1145.5" y="855.801">
+    Request bulk transfer status
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1788.5 886l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M1570.5 890h224"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1577.5" y="884.934">
+    12
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="163" x="1599.5" y="884.934">
+    Fetch bulk transfer status
+  </text>
+  <path fill="#FFFFE0" filter="url(#a)" stroke="#a80036" d="M1722 903h166l10 79-10 80h-166l-10-80 10-79z"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="162" x="1724" y="919.067">
+    bulkTransferStateChange
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="113" x="1724" y="934.2">
+    bulkTransferState
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="109" x="1724" y="949.332">
+    bulkTransferError
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="140" x="1724" y="964.465">
+    bulkTransferExtension
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="134" x="1724" y="979.598">
+    transferStateChange
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="85" x="1724" y="994.731">
+    transferState
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="112" x="1724" y="1009.864">
+    transferFulfilment
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="81" x="1724" y="1024.997">
+    transferError
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="112" x="1724" y="1040.129">
+    transferExtension
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="57" x="1724" y="1055.262">
+    ilpPacket
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1581.5 1084.46l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M1575.5 1088.461h229"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1587.5" y="1083.395">
+    13
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="122" x="1609.5" y="1083.395">
+    Return query result
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1127.5 1113.594l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M1121.5 1117.594h443"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1133.5" y="1112.528">
+    14
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="170" x="1155.5" y="1112.528">
+    Return bulk transfer status
+  </text>
+  <path d="M40 1132.594h64v7l-10 10H40v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M40 1132.594h1545.5v1106.844H40z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19" x="55" y="1145.661">
+    alt
+  </text>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="427" x="119" y="1144.804">
+    [Is there a bulk transfer with the given ID recorded in the system?]
+  </text>
+  <path d="M50 1156.727h64v7l-10 10H50v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M50 1156.727h1139v144.797H50z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19" x="65" y="1169.793">
+    alt
+  </text>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="143" x="129" y="1168.937">
+    [Bulk Transfer state is
+  </text>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="93" x="276" y="1168.937">
+    &quot;PROCESSING&quot;
+  </text>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="5" x="369" y="1168.937">
+    ]
+  </text>
+  <path d="M835 1178.86v55h262v-45l-10-10H835" fill="#FF0" filter="url(#a)" stroke="#a80036"/>
+  <path d="M1087 1178.86v10h10l-10-10" fill="#FF0" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="841" y="1195.926">
+    {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="225" x="857" y="1211.059">
+    &quot;bulkTransferState&quot;: &quot;PROCESSING&quot;
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="841" y="1226.192">
+    }
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M755 1260.39l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" d="M749 1264.391h361.5"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="761" y="1259.325">
+    15
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="159" x="783" y="1259.325">
+    Publish notification event
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M110 1289.523l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" d="M104 1293.523h634"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="116" y="1288.457">
+    16
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="252" x="138" y="1288.457">
+    Send callback - PUT /bulkTransfers/{ID}
+  </text>
+  <path d="M1034 1340.523h64v7l-10 10h-54v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M1034 1340.523h541.5v74.398H1034z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19" x="1049" y="1353.59">
+    alt
+  </text>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="187" x="1113" y="1352.734">
+    [Request is from Payee FSP?]
+  </text>
+  <path stroke="#a80036" d="M1111.5 1388.922h47M1158.5 1388.922v13M1117.5 1401.922h41"/>
+  <path fill="#A80036" stroke="#a80036" d="M1127.5 1397.922l-10 4 10 4-4-4z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1123.5" y="1376.29">
+    17
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="139" x="1145.5" y="1368.723">
+    Exclude transfers with
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="112" x="1288.5" y="1368.723">
+    transferStateId
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="36" x="1404.5" y="1368.723">
+    not in
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="5" x="1149.5" y="1383.856">
+    [
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="87" x="1158.5" y="1383.856">
+    COMMITTED
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="4" x="1245.5" y="1383.856">
+    ,
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="146" x="1253.5" y="1383.856">
+    ABORTED_REJECTED
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="4" x="1399.5" y="1383.856">
+    ,
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="147" x="1407.5" y="1383.856">
+    EXPIRED_RESERVED
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="5" x="1558.5" y="1383.856">
+    ]
+  </text>
+  <path d="M601 1426.922v463h496v-453l-10-10H601" fill="#FF0" filter="url(#a)" stroke="#a80036"/>
+  <path d="M1087 1426.922v10h10l-10-10" fill="#FF0" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="607" y="1443.989">
+    {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="281" x="623" y="1459.122">
+    &quot;bulkTransferState&quot;: &quot;&lt;BulkTransferState&gt;&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="180" x="623" y="1474.254">
+    &quot;individualTransferResults&quot;: [
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="639" y="1489.387">
+    {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="178" x="655" y="1504.52">
+    &quot;transferId&quot;: &quot;&lt;TransferId&gt;&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="427" x="655" y="1519.653">
+    &quot;fulfilment&quot;: &quot;WLctttbu2HvTsa1XWvUoGRcQozHsqeu9Ahl2JW9Bsu8&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="293" x="655" y="1534.786">
+    &quot;errorInformation&quot;: &lt;ErrorInformationObject&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="110" x="655" y="1549.918">
+    &quot;extensionList&quot;: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="76" x="671" y="1565.051">
+    &quot;extension&quot;:
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="5" x="687" y="1580.184">
+    [
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="703" y="1595.317">
+    {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="126" x="719" y="1610.45">
+    &quot;key&quot;: &quot;Description&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="280" x="719" y="1625.582">
+    &quot;value&quot;: &quot;This is a more detailed description&quot;
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="703" y="1640.715">
+    }
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="5" x="687" y="1655.848">
+    ]
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="655" y="1670.981">
+    }
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="639" y="1686.114">
+    }
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="9" x="623" y="1701.247">
+    ],
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="378" x="623" y="1716.379">
+    &quot;completedTimestamp&quot;: &quot;2018-09-24T08:38:08.699-04:00&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="98" x="623" y="1731.512">
+    &quot;extensionList&quot;:
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="639" y="1746.645">
+    {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="76" x="639" y="1761.778">
+    &quot;extension&quot;:
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="5" x="655" y="1776.911">
+    [
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="671" y="1792.043">
+    {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="126" x="687" y="1807.176">
+    &quot;key&quot;: &quot;Description&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="280" x="687" y="1822.309">
+    &quot;value&quot;: &quot;This is a more detailed description&quot;
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="671" y="1837.442">
+    }
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="5" x="655" y="1852.575">
+    ]
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="623" y="1867.707">
+    }
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="607" y="1882.84">
+    }
+  </text>
+  <path d="M662 1904.906v40h435v-30l-10-10H662" fill="#D3D3D3" filter="url(#a)" stroke="#a80036"/>
+  <path d="M1087 1904.906v10h10l-10-10" fill="#D3D3D3" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="414" x="668" y="1921.973">
+    NOTE: If transfer is REJECTED, error information may be provided.
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="381" x="668" y="1937.106">
+    Either fulfilment or errorInformation should be set, not both.
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M755 1971.305l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" d="M749 1975.305h361.5"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="761" y="1970.239">
+    18
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="159" x="783" y="1970.239">
+    Publish notification event
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M110 2000.438l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" d="M104 2004.438h634"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="116" y="1999.372">
+    19
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="226" x="138" y="1999.372">
+    callback PUT on /bulkTransfers/{ID}
+  </text>
+  <path d="M744 2017.438v25h130v-15l-10-10H744" fill="#D3D3D3" filter="url(#a)" stroke="#a80036"/>
+  <path d="M864 2017.438v10h10l-10-10" fill="#D3D3D3" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="109" x="750" y="2034.504">
+    Log ERROR event
+  </text>
+  <path stroke="#000" stroke-dasharray="2,2" d="M40 2052.57h1545.5"/>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="581" x="45" y="2062.781">
+    [A bulk transfer with the given ID is not present in the System or this is an invalid request]
+  </text>
+  <path d="M383 2071.375v100h347v-90l-10-10H383" fill="#FF0" filter="url(#a)" stroke="#a80036"/>
+  <path d="M720 2071.375v10h10l-10-10" fill="#FF0" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="389" y="2088.442">
+    {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="130" x="405" y="2103.575">
+    &quot;errorInformation&quot;: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="118" x="421" y="2118.707">
+    &quot;errorCode&quot;: 3210,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="294" x="421" y="2133.84">
+    &quot;errorDescription&quot;: &quot;Bulk transfer ID not found&quot;
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="405" y="2148.973">
+    }
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="389" y="2164.106">
+    }
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M755 2198.305l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" d="M749 2202.305h361.5"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="761" y="2197.239">
+    20
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="197" x="783" y="2197.239">
+    Publish notification event (404)
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M110 2227.438l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" d="M104 2231.438h634"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="116" y="2226.372">
+    21
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="261" x="138" y="2226.372">
+    callback PUT on /bulkTransfers/{ID}/error
+  </text>
+</svg>

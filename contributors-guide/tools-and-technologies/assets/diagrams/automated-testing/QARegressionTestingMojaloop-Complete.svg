@@ -1,83 +1,255 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="1319px" preserveAspectRatio="none" style="width:962px;height:1319px;background:#353B42;" version="1.1" viewBox="0 0 962 1319" width="962px" zoomAndPan="magnify"><defs><filter height="300%" id="f3yypcsi1brw0" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><text fill="#819FF7" font-family="sans-serif" font-size="23" lengthAdjust="spacingAndGlyphs" textLength="293" x="333.625" y="32.2363">Regression Test Life Cycle</text><text fill="#819FF7" font-family="sans-serif" font-size="23" lengthAdjust="spacingAndGlyphs" textLength="393" x="283.625" y="59.3242">(Self-contained Test Server on EC2)</text><ellipse cx="508.75" cy="74.1758" fill="#40FF00" filter="url(#f3yypcsi1brw0)" rx="10" ry="10" style="stroke: none; stroke-width: 1.0;"/><path d="M586.25,94.1758 L586.25,125.7969 L566.25,129.7969 L586.25,133.7969 L586.25,165.418 A0,0 0 0 0 586.25,165.418 L843.25,165.418 A0,0 0 0 0 843.25,165.418 L843.25,104.1758 L833.25,94.1758 L586.25,94.1758 A0,0 0 0 0 586.25,94.1758 " fill="#FBFB77" filter="url(#f3yypcsi1brw0)" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M833.25,94.1758 L833.25,104.1758 L843.25,104.1758 L833.25,94.1758 " fill="#FBFB77" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="196" x="592.25" y="111.7441">This could be a manual trigger,</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="115" x="592.25" y="127.0547">scheduler timer or</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="232" x="592.25" y="142.3652">an external action like a Pull Request</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="200" x="592.25" y="157.6758">from the Source Control System</text><rect fill="#2E9AFE" filter="url(#f3yypcsi1brw0)" height="34.1328" rx="12.5" ry="12.5" style="stroke: #A9D0F5; stroke-width: 1.5;" width="115" x="451.25" y="112.7305"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="95" x="461.25" y="134.332">Test is triggered</text><polygon fill="#FEFECE" filter="url(#f3yypcsi1brw0)" points="408.75,185.418,608.75,185.418,620.75,197.418,608.75,209.418,408.75,209.418,396.75,197.418,408.75,185.418" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="200" x="408.75" y="201.5752">Validate run parameters as expected?</text><text fill="#6CBF50" font-family="sans-serif" font-size="10" lengthAdjust="spacingAndGlyphs" textLength="16" x="380.75" y="195.3086">yes</text><text fill="#6CBF50" font-family="sans-serif" font-size="10" lengthAdjust="spacingAndGlyphs" textLength="12" x="620.75" y="195.3086">no</text><path d="M10,219.418 L10,321.2813 A0,0 0 0 0 10,321.2813 L219,321.2813 A0,0 0 0 0 219,321.2813 L219,274.3496 L239,270.3496 L219,266.3496 L219,229.418 L209,219.418 L10,219.418 A0,0 0 0 0 10,219.418 " fill="#FBFB77" filter="url(#f3yypcsi1brw0)" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M209,219.418 L209,229.418 L219,229.418 L209,219.418 " fill="#FBFB77" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="93" x="16" y="236.9863">Set Timestamp</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="188" x="16" y="252.2969">PostmanCollection to execute</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="144" x="16" y="267.6074">List of email recipients</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="140" x="16" y="282.918">Environment Variables</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="136" x="16" y="298.2285">Execution Timestamp</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="106" x="16" y="313.5391">Output FileName</text><rect fill="#2E9AFE" filter="url(#f3yypcsi1brw0)" height="34.1328" rx="12.5" ry="12.5" style="stroke: #A9D0F5; stroke-width: 1.5;" width="238" x="239" y="253.2832"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="218" x="249" y="274.8848">Prepare environment for required run</text><rect fill="#2E9AFE" filter="url(#f3yypcsi1brw0)" height="34.1328" rx="12.5" ry="12.5" style="stroke: #A9D0F5; stroke-width: 1.5;" width="325" x="497" y="219.418"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="305" x="507" y="241.0195">Abort run with Note stating incorrect Run Parameters</text><ellipse cx="659.5" cy="299.5508" fill="#FFFFFF" filter="url(#f3yypcsi1brw0)" rx="11" ry="11" style="stroke: #FF0000; stroke-width: 1.0;"/><ellipse cx="659.5" cy="299.5508" fill="#FF0000" rx="6" ry="6" style="stroke: #FF7F7F; stroke-width: 1.0;"/><rect fill="#2E9AFE" filter="url(#f3yypcsi1brw0)" height="34.1328" rx="12.5" ry="12.5" style="stroke: #A9D0F5; stroke-width: 1.5;" width="219" x="399.25" y="341.2813"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="199" x="409.25" y="362.8828">Create Simulator Docker Container</text><path d="M164.75,392.1699 L164.75,432.791 A0,0 0 0 0 164.75,432.791 L359.75,432.791 A0,0 0 0 0 359.75,432.791 L359.75,416.4805 L379.75,412.4805 L359.75,408.4805 L359.75,402.1699 L349.75,392.1699 L164.75,392.1699 A0,0 0 0 0 164.75,392.1699 " fill="#FBFB77" filter="url(#f3yypcsi1brw0)" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M349.75,392.1699 L349.75,402.1699 L359.75,402.1699 L349.75,392.1699 " fill="#FBFB77" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="151" x="170.75" y="409.7383">This container has node</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="174" x="170.75" y="425.0488">Newman\email SMTP Server</text><rect fill="#2E9AFE" filter="url(#f3yypcsi1brw0)" height="34.1328" rx="12.5" ry="12.5" style="stroke: #A9D0F5; stroke-width: 1.5;" width="258" x="379.75" y="395.4141"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="238" x="389.75" y="417.0156">Create Regression Test Docker Container</text><path d="M618.25,504.7148 L618.25,521.0254 L598.25,525.0254 L618.25,529.0254 L618.25,545.3359 A0,0 0 0 0 618.25,545.3359 L863.25,545.3359 A0,0 0 0 0 863.25,545.3359 L863.25,514.7148 L853.25,504.7148 L618.25,504.7148 A0,0 0 0 0 618.25,504.7148 " fill="#FBFB77" filter="url(#f3yypcsi1brw0)" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M853.25,504.7148 L853.25,514.7148 L863.25,514.7148 L853.25,504.7148 " fill="#FBFB77" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="147" x="624.25" y="522.2832">Set up any variables for</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="224" x="624.25" y="537.5938">preparation of the request to follow</text><rect fill="#2E9AFE" filter="url(#f3yypcsi1brw0)" height="34.1328" rx="12.5" ry="12.5" style="stroke: #A9D0F5; stroke-width: 1.5;" width="179" x="419.25" y="507.959"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="159" x="429.25" y="529.5605">Perform Pre-Request Script</text><rect fill="#2E9AFE" filter="url(#f3yypcsi1brw0)" height="34.1328" rx="12.5" ry="12.5" style="stroke: #A9D0F5; stroke-width: 1.5;" width="169" x="424.25" y="565.3359"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="149" x="434.25" y="586.9375">Execute Postman Request</text><rect fill="#2E9AFE" filter="url(#f3yypcsi1brw0)" height="34.1328" rx="12.5" ry="12.5" style="stroke: #A9D0F5; stroke-width: 1.5;" width="95" x="461.25" y="619.4688"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="75" x="471.25" y="641.0703">Perform Test</text><path d="M571.25,663.6016 L571.25,687.5674 L551.25,691.5674 L571.25,695.5674 L571.25,719.5332 A0,0 0 0 0 571.25,719.5332 L924.25,719.5332 A0,0 0 0 0 924.25,719.5332 L924.25,673.6016 L914.25,663.6016 L571.25,663.6016 A0,0 0 0 0 571.25,663.6016 " fill="#FBFB77" filter="url(#f3yypcsi1brw0)" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M914.25,663.6016 L914.25,673.6016 L924.25,673.6016 L914.25,663.6016 " fill="#FBFB77" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="131" x="577.25" y="681.1699">Inspect the response</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="243" x="577.25" y="696.4805">against variables set previously during</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="332" x="577.25" y="711.791">the run to determine if expected results are obtained</text><rect fill="#2E9AFE" filter="url(#f3yypcsi1brw0)" height="34.1328" rx="12.5" ry="12.5" style="stroke: #A9D0F5; stroke-width: 1.5;" width="85" x="466.25" y="674.501"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="65" x="476.25" y="696.1025">Log Results</text><polygon fill="#FEFECE" filter="url(#f3yypcsi1brw0)" points="383.25,787.5332,634.25,787.5332,646.25,799.5332,634.25,811.5332,383.25,811.5332,371.25,799.5332,383.25,787.5332" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#6CBF50" font-family="sans-serif" font-size="10" lengthAdjust="spacingAndGlyphs" textLength="12" x="512.75" y="821.2012">no</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="251" x="383.25" y="803.6904">Run Parameter requested 'Abort at First Error'?</text><text fill="#6CBF50" font-family="sans-serif" font-size="10" lengthAdjust="spacingAndGlyphs" textLength="16" x="646.25" y="797.4238">yes</text><ellipse cx="682.25" cy="799.5332" fill="#2E9AFE" filter="url(#f3yypcsi1brw0)" rx="10" ry="10" style="stroke: #A9D0F5; stroke-width: 1.5;"/><path d="M683.2637,799.7168 L681.7871,795.9785 L680.3047,799.7168 Z M684.5645,803.0332 L683.6211,800.6309 L679.9473,800.6309 L678.9922,803.0332 L677.8496,803.0332 L681.2891,794.3613 L682.5078,794.3613 L685.8945,803.0332 Z "/><polygon fill="#FEFECE" filter="url(#f3yypcsi1brw0)" points="450.25,739.5332,567.25,739.5332,579.25,751.5332,567.25,763.5332,450.25,763.5332,438.25,751.5332,450.25,739.5332" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#6CBF50" font-family="sans-serif" font-size="10" lengthAdjust="spacingAndGlyphs" textLength="16" x="512.75" y="773.2012">yes</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="117" x="450.25" y="755.6904">Assertion Test Failed?</text><text fill="#6CBF50" font-family="sans-serif" font-size="10" lengthAdjust="spacingAndGlyphs" textLength="12" x="579.25" y="749.4238">no</text><polygon fill="#FEFECE" filter="url(#f3yypcsi1brw0)" points="508.75,843.5332,520.75,855.5332,508.75,867.5332,496.75,855.5332,508.75,843.5332" style="stroke: #A80036; stroke-width: 1.5;"/><polygon fill="#FEFECE" filter="url(#f3yypcsi1brw0)" points="424.25,452.791,593.25,452.791,605.25,464.791,593.25,476.791,424.25,476.791,412.25,464.791,424.25,452.791" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#6CBF50" font-family="sans-serif" font-size="10" lengthAdjust="spacingAndGlyphs" textLength="17" x="512.75" y="486.459">Yes</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="169" x="424.25" y="468.9482">More Postman Requests to run?</text><text fill="#6CBF50" font-family="sans-serif" font-size="10" lengthAdjust="spacingAndGlyphs" textLength="13" x="399.25" y="462.6816">No</text><ellipse cx="508.75" cy="919.5332" fill="#2E9AFE" filter="url(#f3yypcsi1brw0)" rx="10" ry="10" style="stroke: #A9D0F5; stroke-width: 1.5;"/><path d="M509.7637,919.7168 L508.2871,915.9785 L506.8047,919.7168 Z M511.0645,923.0332 L510.1211,920.6309 L506.4473,920.6309 L505.4922,923.0332 L504.3496,923.0332 L507.7891,914.3613 L509.0078,914.3613 L512.3945,923.0332 Z "/><rect fill="#2E9AFE" filter="url(#f3yypcsi1brw0)" height="34.1328" rx="12.5" ry="12.5" style="stroke: #A9D0F5; stroke-width: 1.5;" width="225" x="396.25" y="949.5332"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="205" x="406.25" y="971.1348">Destroy Simulator Docker Container</text><rect fill="#2E9AFE" filter="url(#f3yypcsi1brw0)" height="34.1328" rx="12.5" ry="12.5" style="stroke: #A9D0F5; stroke-width: 1.5;" width="105" x="456.25" y="1003.666"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="85" x="466.25" y="1025.2676">Finalise Report</text><rect fill="#2E9AFE" filter="url(#f3yypcsi1brw0)" height="34.1328" rx="12.5" ry="12.5" style="stroke: #A9D0F5; stroke-width: 1.5;" width="148" x="434.75" y="1057.7988"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="128" x="444.75" y="1079.4004">Prepare Notification(s)</text><rect fill="#2E9AFE" filter="url(#f3yypcsi1brw0)" height="34.1328" rx="12.5" ry="12.5" style="stroke: #A9D0F5; stroke-width: 1.5;" width="105" x="456.25" y="1111.9316"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="85" x="466.25" y="1133.5332">Attach Reports</text><path d="M604.75,1156.0645 L604.75,1180.0303 L584.75,1184.0303 L604.75,1188.0303 L604.75,1211.9961 A0,0 0 0 0 604.75,1211.9961 L861.75,1211.9961 A0,0 0 0 0 861.75,1211.9961 L861.75,1166.0645 L851.75,1156.0645 L604.75,1156.0645 A0,0 0 0 0 604.75,1156.0645 " fill="#FBFB77" filter="url(#f3yypcsi1brw0)" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M851.75,1156.0645 L851.75,1166.0645 L861.75,1166.0645 L851.75,1156.0645 " fill="#FBFB77" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="220" x="610.75" y="1173.6328">The Attachment (Generated Report)</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="154" x="610.75" y="1188.9434">is sent as an attachment</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="236" x="610.75" y="1204.2539">to the different notification channels.</text><rect fill="#2E9AFE" filter="url(#f3yypcsi1brw0)" height="34.1328" rx="12.5" ry="12.5" style="stroke: #A9D0F5; stroke-width: 1.5;" width="152" x="432.75" y="1166.9639"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="132" x="442.75" y="1188.5654">Send out Notification(s)</text><rect fill="#2E9AFE" filter="url(#f3yypcsi1brw0)" height="34.1328" rx="12.5" ry="12.5" style="stroke: #A9D0F5; stroke-width: 1.5;" width="264" x="376.75" y="1231.9961"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="244" x="386.75" y="1253.5977">Destroy Regression Test Docker Container</text><ellipse cx="508.75" cy="1297.1289" fill="#FFFFFF" filter="url(#f3yypcsi1brw0)" rx="11" ry="11" style="stroke: #FF0000; stroke-width: 1.0;"/><ellipse cx="508.75" cy="1297.1289" fill="#FF0000" rx="6" ry="6" style="stroke: #FF7F7F; stroke-width: 1.0;"/><line style="stroke: #BFA350; stroke-width: 1.5;" x1="508.75" x2="508.75" y1="84.1758" y2="112.7305"/><polygon fill="#BFA350" points="504.75,102.7305,508.75,112.7305,512.75,102.7305,508.75,106.7305" style="stroke: #BFA350; stroke-width: 1.0;"/><line style="stroke: #FF0000; stroke-width: 1.5;" x1="659.5" x2="659.5" y1="253.5508" y2="288.5508"/><polygon fill="#FF0000" points="655.5,278.5508,659.5,288.5508,663.5,278.5508,659.5,282.5508" style="stroke: #FF0000; stroke-width: 1.0;"/><line style="stroke: #BFA350; stroke-width: 1.5;" x1="396.75" x2="358" y1="197.418" y2="197.418"/><line style="stroke: #BFA350; stroke-width: 1.5;" x1="358" x2="358" y1="197.418" y2="253.2832"/><polygon fill="#BFA350" points="354,243.2832,358,253.2832,362,243.2832,358,247.2832" style="stroke: #BFA350; stroke-width: 1.0;"/><line style="stroke: #FF0000; stroke-width: 1.5;" x1="620.75" x2="659.5" y1="197.418" y2="197.418"/><line style="stroke: #FF0000; stroke-width: 1.5;" x1="659.5" x2="659.5" y1="197.418" y2="219.418"/><polygon fill="#FF0000" points="655.5,209.418,659.5,219.418,663.5,209.418,659.5,213.418" style="stroke: #FF0000; stroke-width: 1.0;"/><line style="stroke: #BFA350; stroke-width: 1.5;" x1="358" x2="358" y1="287.416" y2="326.2813"/><line style="stroke: #BFA350; stroke-width: 1.5;" x1="358" x2="508.75" y1="326.2813" y2="326.2813"/><line style="stroke: #BFA350; stroke-width: 1.5;" x1="508.75" x2="508.75" y1="326.2813" y2="341.2813"/><polygon fill="#BFA350" points="504.75,331.2813,508.75,341.2813,512.75,331.2813,508.75,335.2813" style="stroke: #BFA350; stroke-width: 1.0;"/><line style="stroke: #BFA350; stroke-width: 1.5;" x1="508.75" x2="508.75" y1="146.8633" y2="185.418"/><polygon fill="#BFA350" points="504.75,175.418,508.75,185.418,512.75,175.418,508.75,179.418" style="stroke: #BFA350; stroke-width: 1.0;"/><line style="stroke: #BFA350; stroke-width: 1.5;" x1="508.75" x2="508.75" y1="375.4141" y2="395.4141"/><polygon fill="#BFA350" points="504.75,385.4141,508.75,395.4141,512.75,385.4141,508.75,389.4141" style="stroke: #BFA350; stroke-width: 1.0;"/><line style="stroke: #BFA350; stroke-width: 1.5;" x1="508.75" x2="508.75" y1="542.0918" y2="565.3359"/><polygon fill="#BFA350" points="504.75,555.3359,508.75,565.3359,512.75,555.3359,508.75,559.3359" style="stroke: #BFA350; stroke-width: 1.0;"/><line style="stroke: #BFA350; stroke-width: 1.5;" x1="508.75" x2="508.75" y1="599.4688" y2="619.4688"/><polygon fill="#BFA350" points="504.75,609.4688,508.75,619.4688,512.75,609.4688,508.75,613.4688" style="stroke: #BFA350; stroke-width: 1.0;"/><line style="stroke: #BFA350; stroke-width: 1.5;" x1="508.75" x2="508.75" y1="653.6016" y2="674.501"/><polygon fill="#BFA350" points="504.75,664.501,508.75,674.501,512.75,664.501,508.75,668.501" style="stroke: #BFA350; stroke-width: 1.0;"/><line style="stroke: #BFA350; stroke-width: 1.5;" x1="508.75" x2="508.75" y1="811.5332" y2="843.5332"/><polygon fill="#BFA350" points="504.75,833.5332,508.75,843.5332,512.75,833.5332,508.75,837.5332" style="stroke: #BFA350; stroke-width: 1.0;"/><line style="stroke: #BFA350; stroke-width: 1.5;" x1="646.25" x2="672.25" y1="799.5332" y2="799.5332"/><polygon fill="#BFA350" points="662.25,795.5332,672.25,799.5332,662.25,803.5332,666.25,799.5332" style="stroke: #BFA350; stroke-width: 1.0;"/><line style="stroke: #BFA350; stroke-width: 1.5;" x1="508.75" x2="508.75" y1="763.5332" y2="787.5332"/><polygon fill="#BFA350" points="504.75,777.5332,508.75,787.5332,512.75,777.5332,508.75,781.5332" style="stroke: #BFA350; stroke-width: 1.0;"/><line style="stroke: #BFA350; stroke-width: 1.5;" x1="579.25" x2="714.25" y1="751.5332" y2="751.5332"/><polygon fill="#BFA350" points="710.25,813.5332,714.25,823.5332,718.25,813.5332,714.25,817.5332" style="stroke: #BFA350; stroke-width: 1.5;"/><line style="stroke: #BFA350; stroke-width: 1.5;" x1="714.25" x2="714.25" y1="751.5332" y2="855.5332"/><line style="stroke: #BFA350; stroke-width: 1.5;" x1="714.25" x2="520.75" y1="855.5332" y2="855.5332"/><polygon fill="#BFA350" points="530.75,851.5332,520.75,855.5332,530.75,859.5332,526.75,855.5332" style="stroke: #BFA350; stroke-width: 1.0;"/><line style="stroke: #BFA350; stroke-width: 1.5;" x1="508.75" x2="508.75" y1="708.6338" y2="739.5332"/><polygon fill="#BFA350" points="504.75,729.5332,508.75,739.5332,512.75,729.5332,508.75,733.5332" style="stroke: #BFA350; stroke-width: 1.0;"/><line style="stroke: #BFA350; stroke-width: 1.5;" x1="508.75" x2="508.75" y1="476.791" y2="507.959"/><polygon fill="#BFA350" points="504.75,497.959,508.75,507.959,512.75,497.959,508.75,501.959" style="stroke: #BFA350; stroke-width: 1.0;"/><line style="stroke: #BFA350; stroke-width: 1.5;" x1="508.75" x2="508.75" y1="867.5332" y2="877.5332"/><line style="stroke: #BFA350; stroke-width: 1.5;" x1="508.75" x2="936.25" y1="877.5332" y2="877.5332"/><polygon fill="#BFA350" points="932.25,678.2354,936.25,668.2354,940.25,678.2354,936.25,674.2354" style="stroke: #BFA350; stroke-width: 1.5;"/><line style="stroke: #BFA350; stroke-width: 1.5;" x1="936.25" x2="936.25" y1="464.791" y2="877.5332"/><line style="stroke: #BFA350; stroke-width: 1.5;" x1="936.25" x2="605.25" y1="464.791" y2="464.791"/><polygon fill="#BFA350" points="615.25,460.791,605.25,464.791,615.25,468.791,611.25,464.791" style="stroke: #BFA350; stroke-width: 1.0;"/><line style="stroke: #BFA350; stroke-width: 1.5;" x1="412.25" x2="349.25" y1="464.791" y2="464.791"/><polygon fill="#BFA350" points="345.25,664.2354,349.25,674.2354,353.25,664.2354,349.25,668.2354" style="stroke: #BFA350; stroke-width: 1.5;"/><line style="stroke: #BFA350; stroke-width: 1.5;" x1="349.25" x2="349.25" y1="464.791" y2="889.5332"/><line style="stroke: #BFA350; stroke-width: 1.5;" x1="349.25" x2="508.75" y1="889.5332" y2="889.5332"/><line style="stroke: #BFA350; stroke-width: 1.5;" x1="508.75" x2="508.75" y1="889.5332" y2="909.5332"/><polygon fill="#BFA350" points="504.75,899.5332,508.75,909.5332,512.75,899.5332,508.75,903.5332" style="stroke: #BFA350; stroke-width: 1.0;"/><line style="stroke: #BFA350; stroke-width: 1.5;" x1="508.75" x2="508.75" y1="429.5469" y2="452.791"/><polygon fill="#BFA350" points="504.75,442.791,508.75,452.791,512.75,442.791,508.75,446.791" style="stroke: #BFA350; stroke-width: 1.0;"/><line style="stroke: #BFA350; stroke-width: 1.5;" x1="508.75" x2="508.75" y1="929.5332" y2="949.5332"/><polygon fill="#BFA350" points="504.75,939.5332,508.75,949.5332,512.75,939.5332,508.75,943.5332" style="stroke: #BFA350; stroke-width: 1.0;"/><line style="stroke: #BFA350; stroke-width: 1.5;" x1="508.75" x2="508.75" y1="983.666" y2="1003.666"/><polygon fill="#BFA350" points="504.75,993.666,508.75,1003.666,512.75,993.666,508.75,997.666" style="stroke: #BFA350; stroke-width: 1.0;"/><line style="stroke: #BFA350; stroke-width: 1.5;" x1="508.75" x2="508.75" y1="1037.7988" y2="1057.7988"/><polygon fill="#BFA350" points="504.75,1047.7988,508.75,1057.7988,512.75,1047.7988,508.75,1051.7988" style="stroke: #BFA350; stroke-width: 1.0;"/><line style="stroke: #BFA350; stroke-width: 1.5;" x1="508.75" x2="508.75" y1="1091.9316" y2="1111.9316"/><polygon fill="#BFA350" points="504.75,1101.9316,508.75,1111.9316,512.75,1101.9316,508.75,1105.9316" style="stroke: #BFA350; stroke-width: 1.0;"/><line style="stroke: #BFA350; stroke-width: 1.5;" x1="508.75" x2="508.75" y1="1146.0645" y2="1166.9639"/><polygon fill="#BFA350" points="504.75,1156.9639,508.75,1166.9639,512.75,1156.9639,508.75,1160.9639" style="stroke: #BFA350; stroke-width: 1.0;"/><line style="stroke: #BFA350; stroke-width: 1.5;" x1="508.75" x2="508.75" y1="1201.0967" y2="1231.9961"/><polygon fill="#BFA350" points="504.75,1221.9961,508.75,1231.9961,512.75,1221.9961,508.75,1225.9961" style="stroke: #BFA350; stroke-width: 1.0;"/><line style="stroke: #BFA350; stroke-width: 1.5;" x1="508.75" x2="508.75" y1="1266.1289" y2="1286.1289"/><polygon fill="#BFA350" points="504.75,1276.1289,508.75,1286.1289,512.75,1276.1289,508.75,1280.1289" style="stroke: #BFA350; stroke-width: 1.0;"/><!--
-@startuml
-
-skinparam TitleFontColor #819FF7
-skinparam TitleFontSize 23
-
-title Regression Test Life Cycle\n(Self-contained Test Server on EC2)
-
-skinparam backgroundColor #353B42
-skinparam activity {
-  StartColor #40FF00
-  EndColor #FF0000
-  BackgroundColor #2E9AFE
-  BorderColor #A9D0F5
-  LineColor #AAAAAA
-}
-
-skinparam Arrow{
-    Color #BFA350
-    FontSize 10
-    FontColor #6CBF50
-}
-
-start
-
-:Test is triggered;
-note right: This could be a manual trigger, \nscheduler timer or \nan external action like a Pull Request \nfrom the Source Control System
-
-if (Validate run parameters as expected?) then (yes)
-  :Prepare environment for required run;
-  note left: Set Timestamp\nPostmanCollection to execute\nList of email recipients\nEnvironment Variables\nExecution Timestamp\nOutput FileName
-else (no)
-  -[#red]->
-  :Abort run with Note stating incorrect Run Parameters;
-  -[#red]->
-  stop
-endif
-
-:Create Simulator Docker Container;
-:Create Regression Test Docker Container;
-note left: This container has node\nNewman\email SMTP Server
-
-while (More Postman Requests to run?)  is (Yes)
-  :Perform Pre-Request Script;
-  note right: Set up any variables for\npreparation of the request to follow
-  :Execute Postman Request;
-  :Perform Test;
-  :Log Results;
-  note right: Inspect the response \nagainst variables set previously during\nthe run to determine if expected results are obtained
-  if (Assertion Test Failed?) then (yes)
-    if (Run Parameter requested 'Abort at First Error'?) then (yes)
-      -[#red]->
-      (A)
-      detach
-    else (no)
-    endif
-  else (no)
-  endif
-endwhile (No)
-
-(A)
-:Destroy Simulator Docker Container;
-:Finalise Report;
-:Prepare Notification(s);
-:Attach Reports;
-:Send out Notification(s);
-note right: The Attachment (Generated Report) \nis sent as an attachment \nto the different notification channels.
-:Destroy Regression Test Docker Container;
-stop
-
-@enduml
-
-PlantUML version 1.2019.06(Sat May 25 01:10:25 PHT 2019)
-(GPL source distribution)
-Java Runtime: Java(TM) SE Runtime Environment
-JVM: Java HotSpot(TM) 64-Bit Server VM
-Java Version: 1.8.0_171-b11
-Operating System: Mac OS X
-OS Version: 10.13.6
-Default Encoding: UTF-8
-Language: en
-Country: AU
---></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" height="1319" preserveAspectRatio="none" style="width:996px;height:1319px;background:#353b42" width="996">
+  <defs>
+    <filter height="300%" id="a" width="300%" x="-1" y="-1">
+      <feGaussianBlur result="blurOut" stdDeviation="2"/>
+      <feColorMatrix in="blurOut" result="blurOut2" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/>
+      <feOffset dx="4" dy="4" in="blurOut2" result="blurOut3"/>
+      <feBlend in="SourceGraphic" in2="blurOut3"/>
+    </filter>
+  </defs>
+  <text fill="#819FF7" font-family="sans-serif" font-size="23" lengthAdjust="spacingAndGlyphs" textLength="301" x="346.5" y="31.349">
+    Regression Test Life Cycle
+  </text>
+  <text fill="#819FF7" font-family="sans-serif" font-size="23" lengthAdjust="spacingAndGlyphs" textLength="411" x="291.5" y="58.123">
+    (Self-contained Test Server on EC2)
+  </text>
+  <circle cx="532" cy="73.547" fill="#40FF00" filter="url(#a)" r="10"/>
+  <path d="M613.5 93.547v31.266l-20 4 20 4v31.265h259v-60.531l-10-10h-249 0" fill="#FBFB77" filter="url(#a)" stroke="#a80036"/>
+  <path d="M862.5 93.547v10h10l-10-10" fill="#FBFB77" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="197" x="619.5" y="110.614">
+    This could be a manual trigger,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="117" x="619.5" y="125.747">
+    scheduler timer or
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="234" x="619.5" y="140.879">
+    an external action like a Pull Request
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="207" x="619.5" y="156.012">
+    from the Source Control System
+  </text>
+  <rect fill="#2E9AFE" filter="url(#a)" height="33.969" rx="12.5" ry="12.5" width="123" x="470.5" y="111.828" stroke="#a9d0f5" stroke-width="1.5"/>
+  <text font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="103" x="480.5" y="132.967">
+    Test is triggered
+  </text>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M423 184.078h218l12 12-12 12H423l-12-12 12-12z"/>
+  <text font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="218" x="423" y="199.886">
+    Validate run parameters as expected?
+  </text>
+  <text fill="#6CBF50" font-family="sans-serif" font-size="10" lengthAdjust="spacingAndGlyphs" textLength="17" x="394" y="193.72">
+    yes
+  </text>
+  <text fill="#6CBF50" font-family="sans-serif" font-size="10" lengthAdjust="spacingAndGlyphs" textLength="12" x="653" y="193.72">
+    no
+  </text>
+  <path d="M10 218.078v100.797h212v-46.398l20-4-20-4v-36.399l-10-10H10h0" fill="#FBFB77" filter="url(#a)" stroke="#a80036"/>
+  <path d="M212 218.078v10h10l-10-10" fill="#FBFB77" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="98" x="16" y="235.145">
+    Set Timestamp
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="191" x="16" y="250.278">
+    PostmanCollection to execute
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="143" x="16" y="265.411">
+    List of email recipients
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="144" x="16" y="280.543">
+    Environment Variables
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="138" x="16" y="295.676">
+    Execution Timestamp
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="108" x="16" y="310.809">
+    Output FileName
+  </text>
+  <rect fill="#2E9AFE" filter="url(#a)" height="33.969" rx="12.5" ry="12.5" width="255" x="242" y="251.492" stroke="#a9d0f5" stroke-width="1.5"/>
+  <text font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="235" x="252" y="272.631">
+    Prepare environment for required run
+  </text>
+  <rect fill="#2E9AFE" filter="url(#a)" height="33.969" rx="12.5" ry="12.5" width="355" x="517" y="218.078" stroke="#a9d0f5" stroke-width="1.5"/>
+  <text font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="335" x="527" y="239.217">
+    Abort run with Note stating incorrect Run Parameters
+  </text>
+  <circle cx="694.5" cy="298.047" fill="#FFF" filter="url(#a)" stroke="red" r="11"/>
+  <circle cx="694.5" cy="298.047" fill="red" stroke="#ff7f7f" r="6"/>
+  <rect fill="#2E9AFE" filter="url(#a)" height="33.969" rx="12.5" ry="12.5" width="238" x="413" y="338.875" stroke="#a9d0f5" stroke-width="1.5"/>
+  <text font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="218" x="423" y="360.014">
+    Create Simulator Docker Container
+  </text>
+  <path d="M171 389.695v40.266h201v-16.133l20-4-20-4v-6.133l-10-10H171h0" fill="#FBFB77" filter="url(#a)" stroke="#a80036"/>
+  <path d="M362 389.695v10h10l-10-10" fill="#FBFB77" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="152" x="177" y="406.762">
+    This container has node
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="180" x="177" y="421.895">
+    Newman\email SMTP Server
+  </text>
+  <rect fill="#2E9AFE" filter="url(#a)" height="33.969" rx="12.5" ry="12.5" width="280" x="392" y="392.844" stroke="#a9d0f5" stroke-width="1.5"/>
+  <text font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="260" x="402" y="413.982">
+    Create Regression Test Docker Container
+  </text>
+  <path d="M647 501.595v16.132l-20 4 20 4v16.133h245v-30.265l-10-10H647h0" fill="#FBFB77" filter="url(#a)" stroke="#a80036"/>
+  <path d="M882 501.595v10h10l-10-10" fill="#FBFB77" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="151" x="653" y="518.662">
+    Set up any variables for
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="224" x="653" y="533.794">
+    preparation of the request to follow
+  </text>
+  <rect fill="#2E9AFE" filter="url(#a)" height="33.969" rx="12.5" ry="12.5" width="190" x="437" y="504.743" stroke="#a9d0f5" stroke-width="1.5"/>
+  <text font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="170" x="447" y="525.882">
+    Perform Pre-Request Script
+  </text>
+  <rect fill="#2E9AFE" filter="url(#a)" height="33.969" rx="12.5" ry="12.5" width="185" x="439.5" y="561.86" stroke="#a9d0f5" stroke-width="1.5"/>
+  <text font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="165" x="449.5" y="582.999">
+    Execute Postman Request
+  </text>
+  <rect fill="#2E9AFE" filter="url(#a)" height="33.969" rx="12.5" ry="12.5" width="100" x="482" y="615.829" stroke="#a9d0f5" stroke-width="1.5"/>
+  <text font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="80" x="492" y="636.968">
+    Perform Test
+  </text>
+  <path d="M598 659.798v23.7l-20 4 20 4v23.698h360v-45.398l-10-10H598h0" fill="#FBFB77" filter="url(#a)" stroke="#a80036"/>
+  <path d="M948 659.798v10h10l-10-10" fill="#FBFB77" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="134" x="604" y="676.865">
+    Inspect the response
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="244" x="604" y="691.998">
+    against variables set previously during
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="339" x="604" y="707.13">
+    the run to determine if expected results are obtained
+  </text>
+  <rect fill="#2E9AFE" filter="url(#a)" height="33.969" rx="12.5" ry="12.5" width="92" x="486" y="670.513" stroke="#a9d0f5" stroke-width="1.5"/>
+  <text font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="72" x="496" y="691.651">
+    Log Results
+  </text>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M397 783.196h270l12 12-12 12H397l-12-12 12-12z"/>
+  <text fill="#6CBF50" font-family="sans-serif" font-size="10" lengthAdjust="spacingAndGlyphs" textLength="12" x="536" y="816.479">
+    no
+  </text>
+  <text font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="270" x="397" y="799.004">
+    Run Parameter requested &apos;Abort at First Error&apos;?
+  </text>
+  <text fill="#6CBF50" font-family="sans-serif" font-size="10" lengthAdjust="spacingAndGlyphs" textLength="17" x="679" y="792.838">
+    yes
+  </text>
+  <circle cx="716" cy="795.196" fill="#2E9AFE" filter="url(#a)" stroke="#a9d0f5" stroke-width="1.5" r="10"/>
+  <path d="M716.11 791.368l-1.61 4.344h3.219l-1.61-4.344zm-.673-1.172h1.344l3.328 8.75h-1.234l-.797-2.25h-3.937l-.797 2.25h-1.25l3.343-8.75z"/>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M469 735.196h126l12 12-12 12H469l-12-12 12-12z"/>
+  <text fill="#6CBF50" font-family="sans-serif" font-size="10" lengthAdjust="spacingAndGlyphs" textLength="17" x="536" y="768.479">
+    yes
+  </text>
+  <text font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="126" x="469" y="751.004">
+    Assertion Test Failed?
+  </text>
+  <text fill="#6CBF50" font-family="sans-serif" font-size="10" lengthAdjust="spacingAndGlyphs" textLength="12" x="607" y="744.838">
+    no
+  </text>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M532 839.196l12 12-12 12-12-12 12-12zM440.5 449.96h183l12 12-12 12h-183l-12-12 12-12z"/>
+  <text fill="#6CBF50" font-family="sans-serif" font-size="10" lengthAdjust="spacingAndGlyphs" textLength="18" x="536" y="483.243">
+    Yes
+  </text>
+  <text font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="183" x="440.5" y="465.769">
+    More Postman Requests to run?
+  </text>
+  <text fill="#6CBF50" font-family="sans-serif" font-size="10" lengthAdjust="spacingAndGlyphs" textLength="14" x="414.5" y="459.603">
+    No
+  </text>
+  <circle cx="532" cy="915.196" fill="#2E9AFE" filter="url(#a)" stroke="#a9d0f5" stroke-width="1.5" r="10"/>
+  <path d="M532.11 911.368l-1.61 4.344h3.219l-1.61-4.344zm-.673-1.172h1.344l3.328 8.75h-1.234l-.797-2.25h-3.937l-.797 2.25h-1.25l3.343-8.75z"/>
+  <rect fill="#2E9AFE" filter="url(#a)" height="33.969" rx="12.5" ry="12.5" width="244" x="410" y="945.196" stroke="#a9d0f5" stroke-width="1.5"/>
+  <text font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="224" x="420" y="966.335">
+    Destroy Simulator Docker Container
+  </text>
+  <rect fill="#2E9AFE" filter="url(#a)" height="33.969" rx="12.5" ry="12.5" width="113" x="475.5" y="999.165" stroke="#a9d0f5" stroke-width="1.5"/>
+  <text font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="93" x="485.5" y="1020.304">
+    Finalise Report
+  </text>
+  <rect fill="#2E9AFE" filter="url(#a)" height="33.969" rx="12.5" ry="12.5" width="162" x="451" y="1053.134" stroke="#a9d0f5" stroke-width="1.5"/>
+  <text font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="142" x="461" y="1074.273">
+    Prepare Notification(s)
+  </text>
+  <rect fill="#2E9AFE" filter="url(#a)" height="33.969" rx="12.5" ry="12.5" width="114" x="475" y="1107.102" stroke="#a9d0f5" stroke-width="1.5"/>
+  <text font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="94" x="485" y="1128.241">
+    Attach Reports
+  </text>
+  <path d="M636.5 1151.071v23.7l-20 4 20 4v23.699h256v-45.399l-10-10h-246 0" fill="#FBFB77" filter="url(#a)" stroke="#a80036"/>
+  <path d="M882.5 1151.071v10h10l-10-10" fill="#FBFB77" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="231" x="642.5" y="1168.138">
+    The Attachment (Generated Report)
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="160" x="642.5" y="1183.271">
+    is sent as an attachment
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="234" x="642.5" y="1198.404">
+    to the different notification channels.
+  </text>
+  <rect fill="#2E9AFE" filter="url(#a)" height="33.969" rx="12.5" ry="12.5" width="169" x="447.5" y="1161.786" stroke="#a9d0f5" stroke-width="1.5"/>
+  <text font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="149" x="457.5" y="1182.925">
+    Send out Notification(s)
+  </text>
+  <rect fill="#2E9AFE" filter="url(#a)" height="33.969" rx="12.5" ry="12.5" width="286" x="389" y="1226.47" stroke="#a9d0f5" stroke-width="1.5"/>
+  <text font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="266" x="399" y="1247.608">
+    Destroy Regression Test Docker Container
+  </text>
+  <circle cx="532" cy="1291.438" fill="#FFF" filter="url(#a)" stroke="red" r="11"/>
+  <circle cx="532" cy="1291.438" fill="red" stroke="#ff7f7f" r="6"/>
+  <path stroke="#bfa350" stroke-width="1.5" d="M532 83.547v28.281"/>
+  <path fill="#BFA350" stroke="#bfa350" d="M528 101.828l4 10 4-10-4 4z"/>
+  <path stroke="red" stroke-width="1.5" d="M694.5 252.047v35"/>
+  <path fill="red" stroke="red" d="M690.5 277.047l4 10 4-10-4 4z"/>
+  <path stroke="#bfa350" stroke-width="1.5" d="M411 196.078h-41.5M369.5 196.078v55.414"/>
+  <path fill="#BFA350" stroke="#bfa350" d="M365.5 241.492l4 10 4-10-4 4z"/>
+  <path stroke="red" stroke-width="1.5" d="M653 196.078h41.5M694.5 196.078v22"/>
+  <path fill="red" stroke="red" d="M690.5 208.078l4 10 4-10-4 4z"/>
+  <path stroke="#bfa350" stroke-width="1.5" d="M369.5 285.461v38.414M369.5 323.875H532M532 323.875v15"/>
+  <path fill="#BFA350" stroke="#bfa350" d="M528 328.875l4 10 4-10-4 4z"/>
+  <path stroke="#bfa350" stroke-width="1.5" d="M532 145.797v38.281"/>
+  <path fill="#BFA350" stroke="#bfa350" d="M528 174.078l4 10 4-10-4 4z"/>
+  <path stroke="#bfa350" stroke-width="1.5" d="M532 372.844v20"/>
+  <path fill="#BFA350" stroke="#bfa350" d="M528 382.844l4 10 4-10-4 4z"/>
+  <path stroke="#bfa350" stroke-width="1.5" d="M532 538.712v23.148"/>
+  <path fill="#BFA350" stroke="#bfa350" d="M528 551.86l4 10 4-10-4 4z"/>
+  <path stroke="#bfa350" stroke-width="1.5" d="M532 595.829v20"/>
+  <path fill="#BFA350" stroke="#bfa350" d="M528 605.83l4 10 4-10-4 4z"/>
+  <path stroke="#bfa350" stroke-width="1.5" d="M532 649.798v20.715"/>
+  <path fill="#BFA350" stroke="#bfa350" d="M528 660.513l4 10 4-10-4 4z"/>
+  <path stroke="#bfa350" stroke-width="1.5" d="M532 807.196v32"/>
+  <path fill="#BFA350" stroke="#bfa350" d="M528 829.196l4 10 4-10-4 4z"/>
+  <path stroke="#bfa350" stroke-width="1.5" d="M679 795.196h27"/>
+  <path fill="#BFA350" stroke="#bfa350" d="M696 791.196l10 4-10 4 4-4z"/>
+  <path stroke="#bfa350" stroke-width="1.5" d="M532 759.196v24"/>
+  <path fill="#BFA350" stroke="#bfa350" d="M528 773.196l4 10 4-10-4 4z"/>
+  <path stroke="#bfa350" stroke-width="1.5" d="M607 747.196h141"/>
+  <path fill="#BFA350" stroke="#bfa350" stroke-width="1.5" d="M744 809.196l4 10 4-10-4 4z"/>
+  <path stroke="#bfa350" stroke-width="1.5" d="M748 747.196v104M748 851.196H544"/>
+  <path fill="#BFA350" stroke="#bfa350" d="M554 847.196l-10 4 10 4-4-4z"/>
+  <path stroke="#bfa350" stroke-width="1.5" d="M532 704.481v30.715"/>
+  <path fill="#BFA350" stroke="#bfa350" d="M528 725.196l4 10 4-10-4 4z"/>
+  <path stroke="#bfa350" stroke-width="1.5" d="M532 473.961v30.782"/>
+  <path fill="#BFA350" stroke="#bfa350" d="M528 494.743l4 10 4-10-4 4z"/>
+  <path stroke="#bfa350" stroke-width="1.5" d="M532 863.196v10M532 873.196h438"/>
+  <path fill="#BFA350" stroke="#bfa350" stroke-width="1.5" d="M966 674.575l4-10 4 10-4-4z"/>
+  <path stroke="#bfa350" stroke-width="1.5" d="M970 461.961v411.235M970 461.961H635.5"/>
+  <path fill="#BFA350" stroke="#bfa350" d="M645.5 457.96l-10 4 10 4-4-4z"/>
+  <path stroke="#bfa350" stroke-width="1.5" d="M428.5 461.961H363"/>
+  <path fill="#BFA350" stroke="#bfa350" stroke-width="1.5" d="M359 660.575l4 10 4-10-4 4z"/>
+  <path stroke="#bfa350" stroke-width="1.5" d="M363 461.961v423.235M363 885.196h169M532 885.196v20"/>
+  <path fill="#BFA350" stroke="#bfa350" d="M528 895.196l4 10 4-10-4 4z"/>
+  <path stroke="#bfa350" stroke-width="1.5" d="M532 426.813v23.148"/>
+  <path fill="#BFA350" stroke="#bfa350" d="M528 439.96l4 10 4-10-4 4z"/>
+  <path stroke="#bfa350" stroke-width="1.5" d="M532 925.196v20"/>
+  <path fill="#BFA350" stroke="#bfa350" d="M528 935.196l4 10 4-10-4 4z"/>
+  <path stroke="#bfa350" stroke-width="1.5" d="M532 979.165v20"/>
+  <path fill="#BFA350" stroke="#bfa350" d="M528 989.165l4 10 4-10-4 4z"/>
+  <path stroke="#bfa350" stroke-width="1.5" d="M532 1033.134v20"/>
+  <path fill="#BFA350" stroke="#bfa350" d="M528 1043.134l4 10 4-10-4 4z"/>
+  <path stroke="#bfa350" stroke-width="1.5" d="M532 1087.102v20"/>
+  <path fill="#BFA350" stroke="#bfa350" d="M528 1097.102l4 10 4-10-4 4z"/>
+  <path stroke="#bfa350" stroke-width="1.5" d="M532 1141.071v20.715"/>
+  <path fill="#BFA350" stroke="#bfa350" d="M528 1151.786l4 10 4-10-4 4z"/>
+  <path stroke="#bfa350" stroke-width="1.5" d="M532 1195.755v30.715"/>
+  <path fill="#BFA350" stroke="#bfa350" d="M528 1216.47l4 10 4-10-4 4z"/>
+  <path stroke="#bfa350" stroke-width="1.5" d="M532 1260.438v20"/>
+  <path fill="#BFA350" stroke="#bfa350" d="M528 1270.438l4 10 4-10-4 4z"/>
+</svg>
