@@ -2,25 +2,33 @@
 
 Helpers and notes for building and working on these docs.
 
+
 ## Building `.svg`s from plantuml sources
 
 We use a git commit hook to automatically rebuild `.svg` files from plantuml 
 sources. The magic of git hooks means that no extra work is required by you
 after creating or editing a `.puml` file
 
-### Updating my changed diagram manually
+### Creating a new PUML
 
-During the editing process, you may want to rebuild the `.svg` files manually
-to make sure they are rendering correctly.
+1. Create a new `*.puml/plantuml` file
+2. Add the file and generate the `.svg`
 
 ```bash
 git add . #(or the specific file you are working on)
 npm run build:plantuml:diff
 ```
+3. Update your `.md` file to refer to the newly created `.svg` file
+4. Git add/commit
+### Updating an existing PUML
+
+1. Make changes to an existing `*.puml/plantuml` file
+2. `git add` + `git commit`
+3. The pre-commit hook rebuilds the changed SVG files, and adds them before the commit
 
 ### Building all `.puml` sources manually
 
-You can force a complete rebuild of all `.puml` and `.plantuml` sources like so:
+You can also force a complete rebuild of all `.puml` and `.plantuml` sources like so:
 
 ```bash
 npm install
