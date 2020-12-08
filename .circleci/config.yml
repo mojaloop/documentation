@@ -112,7 +112,7 @@ jobs:
           command: cd $(npm root -g)/npm
       - run:
           name: Update NPM install
-          command: npm install
+          command: npm ci
       - run:
           name: Delete build dependencies
           command: apk del build-dependencies
@@ -163,7 +163,7 @@ jobs:
             nvm install v12.16.1
             nvm alias default v12.16.1
             node --version
-            npm install
+            npm ci
       - run:
           name: Check if plantuml has been updated correctly
           command: |
