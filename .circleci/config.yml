@@ -21,6 +21,9 @@ defaults_Dependencies: &defaults_Dependencies
     apk --no-cache add ca-certificates
     apk --no-cache add curl
     apk --no-cache add openssh-client
+    # for node 10.15-alpine, need to install from edge repo
+    apk --no-cache add openjdk11 --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community
+    apk --no-cache add graphviz
     apk add --no-cache -t build-dependencies make gcc g++ python libtool autoconf automake
     npm config set unsafe-perm true
     npm install -g gitbook-cli
@@ -114,7 +117,7 @@ jobs:
           name: Delete build dependencies
           command: apk del build-dependencies
       - save_cache:
-          key: dependency-cache-{{ .Revision }}
+          key: dependency-cache-{{ checksum "package-lock.json" }}
           paths:
             - node_modules
 
@@ -138,13 +141,13 @@ jobs:
             curl -L https://sourceforge.net/projects/plantuml/files/plantuml.${PLANTUML_VERSION}.jar/download -o plantuml.jar
       - restore_cache:
           keys:
-          - dependency-cache-{{ .Revision }}
+          - dependency-cache-{{ checksum "package-lock.json" }}
       - run:
           name: Build Gitbooks
           command: |
             npm run gitbook:build
       - save_cache:
-          key: build-cache-{{ .Revision }}
+          key: dependency-cache-{{ checksum "package-lock.json" }}
           paths:
             - _book
   
@@ -234,7 +237,7 @@ workflows:
       - build:
           context: org-global
           requires:
-            - test-svg
+            - setup
           filters:
             tags:
               only: /.*/
