@@ -89,7 +89,7 @@ executors:
   default-docker:
     working_directory: /home/circleci/project
     docker:
-      - image: node:12.16.1-alpine
+      - image: node:10.15-alpine
 
   default-machine:
     machine:
@@ -160,8 +160,8 @@ jobs:
           command: |
             echo ${NVM_DIR}
             [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-            nvm install v12.16.1
-            nvm alias default v12.16.1
+            nvm install v10.15.3
+            nvm alias default v10.15.3
             node --version
             npm ci
       - run:
