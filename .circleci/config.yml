@@ -1,13 +1,19 @@
-# CircleCI v2 Config
-version: 2
+# CircleCI v2.1 Config
+version: 2.1
 
-defaults_working_directory: &defaults_working_directory
-  working_directory: /home/circleci/project
+##
+# orbs
+#
+# Orbs used in this pipeline
+##
+orbs:
+  slack: circleci/slack@3.4.2
 
-defaults_docker_node: &defaults_docker_node
-  docker:
-    - image: node:10.15-alpine
-
+##
+# defaults
+#
+# YAML defaults templates, in alphabetical order
+##
 defaults_Dependencies: &defaults_Dependencies
   name: Install default dependencies
   command: |
@@ -15,14 +21,13 @@ defaults_Dependencies: &defaults_Dependencies
     apk --no-cache add ca-certificates
     apk --no-cache add curl
     apk --no-cache add openssh-client
+    # for node 10.15-alpine, need to install from edge repo
+    apk --no-cache add openjdk11 --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community
+    apk --no-cache add graphviz
     apk add --no-cache -t build-dependencies make gcc g++ python libtool autoconf automake
     npm config set unsafe-perm true
     npm install -g gitbook-cli
 
-defaults_Environment: &defaults_environment
-  name: Set default environment
-  command: |
-    echo "Nothing to do here right now...move along!"
 
 defaults_slack_announcement: &defaults_slack_announcement
   name: Slack announcement for tag releases
@@ -75,40 +80,53 @@ defaults_publish_to_gh_pages: &defaults_publish_to_gh_pages
 
     echo "Publishing $GITHUB_TAG release to $GITBOOK_TARGET_BRANCH on github..."
     git push -q $GITHUB_PROJECT_USERNAME $GITBOOK_TARGET_BRANCH &> git.log
+##
+# Executors
+#
+# CircleCI Executors
+##
+executors:
+  default-docker:
+    working_directory: /home/circleci/project
+    docker:
+      - image: node:10.15-alpine
 
+  default-machine:
+    machine:
+      image: ubuntu-1604:201903-01
+
+##
+# Jobs
+#
+# A map of CircleCI jobs
+##
 jobs:
   setup:
-    <<: *defaults_working_directory
-    <<: *defaults_docker_node
+    executor: default-docker
     steps:
       - checkout
       - run:
           <<: *defaults_Dependencies
-      - run:
-          <<: *defaults_environment
       - run:
           name: Access npm folder as root
           command: cd $(npm root -g)/npm
       - run:
           name: Update NPM install
-          command: npm install
+          command: npm ci
       - run:
           name: Delete build dependencies
           command: apk del build-dependencies
       - save_cache:
-          key: dependency-cache-{{ .Revision }}
+          key: dependency-cache-{{ checksum "package-lock.json" }}
           paths:
             - node_modules
 
   build:
-    <<: *defaults_working_directory
-    <<: *defaults_docker_node
+    executor: default-docker
     steps:
       - checkout
       - run:
           <<: *defaults_Dependencies
-      - run:
-          <<: *defaults_environment
       - run:
           name: Installing build dependencies
           command: |
@@ -123,25 +141,49 @@ jobs:
             curl -L https://sourceforge.net/projects/plantuml/files/plantuml.${PLANTUML_VERSION}.jar/download -o plantuml.jar
       - restore_cache:
           keys:
-          - dependency-cache-{{ .Revision }}
+          - dependency-cache-{{ checksum "package-lock.json" }}
       - run:
           name: Build Gitbooks
           command: |
             npm run gitbook:build
       - save_cache:
-          key: build-cache-{{ .Revision }}
+          key: dependency-cache-{{ checksum "package-lock.json" }}
           paths:
             - _book
+  
+  test-svg:
+    executor: default-machine
+    steps:
+      - checkout
+      - run:
+          name: Set up NVM
+          command: |
+            echo ${NVM_DIR}
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+            nvm install v10.15.3
+            nvm alias default v10.15.3
+            node --version
+            npm ci
+      - run:
+          name: Check if plantuml has been updated correctly
+          command: |
+            set +o pipefail
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+            npm run build:plantuml:all
+            FILE_COUNT=$(git diff --name-only | grep .svg | wc -l)
+            if [ ${FILE_COUNT} -ne "0" ]; then
+              echo "${FILE_COUNT} plantuml files are out of sync. Please run npm run build:plantuml and try again.";
+              exit 1;
+            else
+              echo 'Plantuml files are up to date';
+            fi
 
   deploy:
-    <<: *defaults_working_directory
-    <<: *defaults_docker_node
+    executor: default-docker
     steps:
       - checkout
       - run:
           <<: *defaults_Dependencies
-      - run:
-          <<: *defaults_environment
       - run:
           name: setup environment vars
           command: |
@@ -162,6 +204,11 @@ jobs:
       - run:
           <<: *defaults_slack_announcement
 
+##
+# Workflows
+#
+# CircleCI Workflow config
+##
 workflows:
   version: 2
   build_and_test:
@@ -176,6 +223,17 @@ workflows:
                 - /feature.*/
                 - /bugfix.*/
                 - gh-pages
+      - test-svg:
+          context: org-global
+          requires:
+            - setup
+          filters:
+            tags:
+              only: /.*/
+            branches:
+              ignore:
+                - /feature*/
+                - /bugfix*/
       - build:
           context: org-global
           requires:
