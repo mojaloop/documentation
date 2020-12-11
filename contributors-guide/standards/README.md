@@ -336,7 +336,7 @@ Pull requests will be denied if they violate the [Level One Principles](https://
 
 ### Code of conduct 
 
-We use a [standard developer code of conduct](https://www.contributor-covenant.org/version/1/4/code-of-conduct.html)
+We use the [Mojaloop Foundation Code of Conduct](https://github.com/mojaloop/mojaloop/blob/master/CODE_OF_CONDUCT.md)
 
 ### Licensing
 
