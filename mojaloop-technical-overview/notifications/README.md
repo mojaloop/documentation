@@ -16,9 +16,9 @@ This document will discuss the architecture and design of Mojaloop's Notificatio
 1.3. Reliability
     a. Notification-engine must support retries based on a configuration
     b. HTTP keep-alive must be configured for HTTP transports
-    c. A delivery-report must be published to a kafka event topic indicating the result of the notifications:
+    c. A delivery-report must be published to a kafka event topic indicating the result of the notification:
         i. success / error
-        ii. meta-data: retry-count, request-latency, etc
+        ii. meta-data: request-timestamp, delivery-timestamp, request-latency
     d. Delivery-reports events must be persisted into a data-store (Central-Ledger?)
     
 1.4. Notification-engine must be support the following ingress:
