@@ -29,13 +29,18 @@ This document will discuss the architecture and design of Mojaloop's Notificatio
 ```
 
 
-## 2. Architecture
+## 2. Design
 
 ### 2.1 Overview
 ...
+![example](assets/diagrams/Transfers-Arch-End-to-End-with-Notify-Engine-v1.0.svg)
 <!--
 ![example](assets/diagrams/architecture/example.svg)
 -->
+
+### 2.2. Sequence Diagram
+
+![example](assets/sequence/seq-notify-v2-1.0.0.svg)
 
 ### 2.2 Types of Notifications
 ...
@@ -51,7 +56,10 @@ This document will discuss the architecture and design of Mojaloop's Notificatio
 
 ### 3.2. Examples
 
-#### 3.2.1. Ingress Event
+#### 3.2.1. Events
+
+<!--
+#### 3.2.1.a. Notification Commands
 ```JSON
 {
     "from": "noresponsepayeefsp",
@@ -117,11 +125,57 @@ This document will discuss the architecture and design of Mojaloop's Notificatio
         }
     }
 }
+```-->
+
+#### 3.2.1.a. Notification Commands
+
+```JSON
+{
+    "msgId": "18efb9ea-d29a-42b9-9b30-59e1e7cfe216",
+    "msgKey": "861b86e6-c3da-48b3-ba17-896710287d1f",
+    "msgName": "NotifyCmd",
+    "msgType": 2,
+    "msgTopic": "NotificationCommands",
+    "msgPartition": null,
+    "msgTimestamp": 1607677081837,
+    "aggregateName": "Notifications",
+    "aggregateId": "861b86e6-c3da-48b3-ba17-896710287d1f",
+    "transport": { // transport information required by the notification-engine
+      "type": "HTTP", // transport
+      "method": "GET", // Optional method for the associated transport
+      "endpoint": "http://fsp.com/parties/{{partyIdType}}/{{partyId}}}?key={{value}}", // templated endpoint
+      "params": { // template parameters <-- is this needed?
+        "partyIdType": "MSISDN",
+        "partyId": "12345",
+        "value": "ABCD"
+      },
+      "options": { // run-time config options for the notification-engine
+        "delivery-report": true, // enabled delivery-report
+        "retry": { //retry config
+          "count": 3,
+          "type": "noDelay|exponentialDelay",
+          "condition": "isNetworkError|isSafeRequestError|isIdempotentRequestError|isNetworkOrIdempotentRequestError"
+        }
+      }
+    },
+    "payload": {
+      "headers": {
+        "content-type": "application/vnd.interoperability.transfers+json;version=1.0",
+        "date": "2019-05-28T16:34:41.000Z",
+        "fspiop-source": "noresponsepayeefsp",
+        "fspiop-destination": "payerfsp"
+      },
+      "body": "data:application/vnd.interoperability.transfers+json;version=1.0;base64,ewogICJmdWxmaWxtZW50IjogIlVObEo5OGhaVFlfZHN3MGNBcXc0aV9VTjN2NHV0dDdDWkZCNHlmTGJWRkEiLAogICJjb21wbGV0ZWRUaW1lc3RhbXAiOiAiMjAxOS0wNS0yOVQyMzoxODozMi44NTZaIiwKICAidHJhbnNmZXJTdGF0ZSI6ICJDT01NSVRURUQiCn0",
+    },
+    "traceInfo": {
+        "traceParent": "00-8e540e87060d56a2d2e0be5d732791e7-d96a5971b7c5cac6-21",
+        "traceState": "acmevendor=eyJzcGFuSWQiOiJkOTZhNTk3MWI3YzVjYWM2IiwidGltZUFwaVByZXBhcmUiOiIxNjA3Njc3MDgxNzAwIiwidGltZUFwaUZ1bGZpbCI6IjE2MDc2NzcwODE4MTkifQ=="
+    }
+}
 ```
 
 #### 3.2.2. Delivery-report Event
-```JSON
-{}
+```
 ```
 
 ## 4. References

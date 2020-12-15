@@ -1,0 +1,943 @@
+<svg xmlns="http://www.w3.org/2000/svg" height="4577" preserveAspectRatio="none" style="width:2311px;height:4577px" width="2311">
+  <defs>
+    <filter height="300%" id="a" width="300%" x="-1" y="-1">
+      <feGaussianBlur result="blurOut" stdDeviation="2"/>
+      <feColorMatrix in="blurOut" result="blurOut2" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/>
+      <feOffset dx="4" dy="4" in="blurOut2" result="blurOut3"/>
+      <feBlend in="SourceGraphic" in2="blurOut3"/>
+    </filter>
+  </defs>
+  <text font-family="sans-serif" font-size="18" lengthAdjust="spacingAndGlyphs" textLength="661" x="823" y="28.708">
+    1.0.0. Send Notification to Participant (Payer/Payee) (single message) v2.0
+  </text>
+  <path fill="#FFFFE0" stroke="#a80036" d="M16 40.953h1070.5v4530.148H16z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="111" x="495.75" y="53.02">
+    Central Service
+  </text>
+  <path fill="#E0FFFF" stroke="#a80036" d="M1088.5 40.953h754v4530.148h-754z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="140" x="1395.5" y="53.02">
+    Notification Engine
+  </text>
+  <path fill="#D3D3D3" stroke="#a80036" d="M1844.5 40.953h294v4530.148h-294z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="288" x="1847.5" y="53.02">
+    Financial Service Provider (Participant)
+  </text>
+  <path fill="#FFF" filter="url(#a)" stroke="#a80036" d="M85.5 198.648h10v30h-10zM85.5 3784.617h10v30h-10zM303.5 198.648h10v3615.969h-10zM303.5 4394.539h10v58.266h-10zM884.5 381.445h10v30h-10zM884.5 657.711h10v30h-10zM884.5 933.977h10v30h-10zM884.5 1210.242h10v30h-10zM884.5 1495.836h10v30h-10zM884.5 1779.102h10v30h-10zM884.5 2055.367h10v30h-10zM884.5 2331.633h10v30h-10zM884.5 2607.898h10v30h-10zM884.5 2869.359h10v30h-10zM884.5 3145.625h10v30h-10zM884.5 3421.891h10v30h-10zM1176 3748.484h10v125.266h-10zM1176 4335.406h10v30h-10zM1491 3843.75h10v521.656h-10zM1761 4306.273h10v88.266h-10zM1761 4452.805h10v23h-10z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M10 160.383h2287v4307.422H10z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M207.5 243.648h885v46.266h-885zM187.5 303.914h799v3350.172h-799z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M197.5 328.047h779v3319.039h-779z"/>
+  <path fill="#FFF" d="M197.5 606.641h779v276.266h-779z"/>
+  <path fill="#FFF" d="M197.5 882.906h779v276.266h-779zM197.5 1159.172h779v568.859h-779z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M207.5 1442.438h759v278.594h-759z"/>
+  <path fill="#FFF" d="M197.5 1728.031h779v276.266h-779zM197.5 2004.297h779v276.266h-779zM197.5 2280.563h779v276.266h-779z"/>
+  <path fill="#FFF" d="M197.5 2556.828h779v537.727h-779zM197.5 3094.555h779v276.266h-779z"/>
+  <path fill="#FFF" d="M197.5 3370.82h779v276.266h-779z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M207.5 3710.219h1072v46.266h-1072zM1398.5 3930.883H2287v280.992h-888.5zM207.5 4268.008h1641v192.797h-1641z"/>
+  <path stroke="#a80036" stroke-dasharray="5,5" d="M90 143.383v4341.422M308.5 143.383v4341.422M889.5 143.383v4341.422M1024.5 143.383v4341.422M1180.5 143.383v4341.422M1495.5 143.383v4341.422M1765.5 143.383v4341.422M1991.5 143.383v4341.422"/>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M24 104.086h133v30.297H24z"/>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M20 108.086h133v30.297H20z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="119" x="27" y="128.081">
+    Notification-Topic
+  </text>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M24 4483.805h133v30.297H24z"/>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M20 4487.805h133v30.297H20z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="119" x="27" y="4507.8">
+    Notification-Topic
+  </text>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="176" x="217.5" y="140.081">
+    Notification Event Handler
+  </text>
+  <circle cx="308.5" cy="111.086" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path fill="#A80036" stroke="#a80036" d="M304.5 99.086l6-5-2 5 2 5-6-5z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="176" x="217.5" y="4496.8">
+    Notification Event Handler
+  </text>
+  <circle cx="308.5" cy="4516.102" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path fill="#A80036" stroke="#a80036" d="M304.5 4504.102l6-5-2 5 2 5-6-5z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="128" x="822.5" y="140.081">
+    Central Service API
+  </text>
+  <path d="M869 99.086v24m0-12h17" fill="none" filter="url(#a)" stroke="#a80036" stroke-width="2"/>
+  <circle cx="898" cy="111.086" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="128" x="822.5" y="4496.8">
+    Central Service API
+  </text>
+  <path d="M869 4504.102v24m0-12h17" fill="none" filter="url(#a)" stroke="#a80036" stroke-width="2"/>
+  <circle cx="898" cy="4516.102" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="110" x="966.5" y="140.081">
+    Persistant Store
+  </text>
+  <path d="M1006.5 91.086c0-10 18-10 18-10s18 0 18 10v26c0 10-18 10-18 10s-18 0-18-10v-26" fill="#FEFECE" filter="url(#a)" stroke="#000" stroke-width="1.5"/>
+  <path d="M1006.5 91.086c0 10 18 10 18 10s18 0 18-10" fill="none" stroke="#000" stroke-width="1.5"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="110" x="966.5" y="4496.8">
+    Persistant Store
+  </text>
+  <path d="M1006.5 4510.102c0-10 18-10 18-10s18 0 18 10v26c0 10-18 10-18 10s-18 0-18-10v-26" fill="#FEFECE" filter="url(#a)" stroke="#000" stroke-width="1.5"/>
+  <path d="M1006.5 4510.102c0 10 18 10 18 10s18 0 18-10" fill="none" stroke="#000" stroke-width="1.5"/>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M1096.5 104.086h169v30.297h-169z"/>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M1092.5 108.086h169v30.297h-169z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="155" x="1099.5" y="128.081">
+    NotificationsCommand
+  </text>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M1096.5 4483.805h169v30.297h-169z"/>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M1092.5 4487.805h169v30.297h-169z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="155" x="1099.5" y="4507.8">
+    NotificationsCommand
+  </text>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="169" x="1408.5" y="140.081">
+    Notification Cmd Handler
+  </text>
+  <circle cx="1496" cy="111.086" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path fill="#A80036" stroke="#a80036" d="M1492 99.086l6-5-2 5 2 5-6-5z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="169" x="1408.5" y="4496.8">
+    Notification Cmd Handler
+  </text>
+  <circle cx="1496" cy="4516.102" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path fill="#A80036" stroke="#a80036" d="M1492 4504.102l6-5-2 5 2 5-6-5z"/>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M1697.5 104.086h137v30.297h-137z"/>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M1693.5 108.086h137v30.297h-137z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="123" x="1700.5" y="128.081">
+    NotificationsEvent
+  </text>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M1697.5 4483.805h137v30.297h-137z"/>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M1693.5 4487.805h137v30.297h-137z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="123" x="1700.5" y="4507.8">
+    NotificationsEvent
+  </text>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="72" x="1952.5" y="140.081">
+    Participant
+  </text>
+  <circle cx="1991.5" cy="70.086" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="8"/>
+  <path d="M1991.5 78.086v27m-13-19h26m-13 19l-13 15m13-15l13 15" fill="none" filter="url(#a)" stroke="#a80036" stroke-width="2"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="72" x="1952.5" y="4496.8">
+    Participant
+  </text>
+  <circle cx="1991.5" cy="4510.102" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="8"/>
+  <path d="M1991.5 4518.102v27m-13-19h26m-13 19l-13 15m13-15l13 15" fill="none" filter="url(#a)" stroke="#a80036" stroke-width="2"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#a80036" d="M85.5 198.648h10v30h-10zM85.5 3784.617h10v30h-10zM303.5 198.648h10v3615.969h-10zM303.5 4394.539h10v58.266h-10zM884.5 381.445h10v30h-10zM884.5 657.711h10v30h-10zM884.5 933.977h10v30h-10zM884.5 1210.242h10v30h-10zM884.5 1495.836h10v30h-10zM884.5 1779.102h10v30h-10zM884.5 2055.367h10v30h-10zM884.5 2331.633h10v30h-10zM884.5 2607.898h10v30h-10zM884.5 2869.359h10v30h-10zM884.5 3145.625h10v30h-10zM884.5 3421.891h10v30h-10zM1176 3748.484h10v125.266h-10zM1176 4335.406h10v30h-10zM1491 3843.75h10v521.656h-10zM1761 4306.273h10v88.266h-10zM1761 4452.805h10v23h-10z"/>
+  <path d="M10 160.383h284v7l-10 10H10v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M10 160.383h2287v4307.422H10z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="239" x="25" y="173.45">
+    Send notification to Participants
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M106.5 194.648l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" d="M100.5 198.648h202"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="112.5" y="193.583">
+    1
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="177" x="125.5" y="193.583">
+    Consume Notification event
+  </text>
+  <path d="M207.5 243.648h64v7l-10 10h-54v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M207.5 243.648h885v46.266h-885z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19" x="222.5" y="256.715">
+    alt
+  </text>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="274" x="286.5" y="255.859">
+    [transport.options.deliver-report === true]
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1012.5 277.914l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M313.5 281.914h705"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="320.5" y="276.848">
+    2
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="160" x="333.5" y="276.848">
+    Record Notification event
+  </text>
+  <path d="M187.5 303.914h142v7l-10 10h-132v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M187.5 303.914h799v3350.172h-799z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="97" x="202.5" y="316.981">
+    Routing logic
+  </text>
+  <path d="M197.5 328.047h64v7l-10 10h-54v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M197.5 328.047h779v3319.039h-779z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19" x="212.5" y="341.114">
+    alt
+  </text>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="592" x="276.5" y="340.257">
+    [event.type === &apos;notification&apos; &amp;&amp; event.action === &apos;prepare&apos; &amp;&amp; event.status === &apos;success&apos;]
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M324.5 377.445l-10 4 10 4-4-4zM872.5 377.445l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M318.5 381.445h560"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="330.5" y="368.813">
+    3
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="285" x="343.5" y="361.247">
+    Return Endpoint details for Payee-Participant
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="90" x="343.5" y="376.379">
+    Error codes:
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="72" x="437.5" y="376.379">
+    3202, 3203
+  </text>
+  <path stroke="#a80036" d="M313.5 440.578h42M355.5 440.578v13M314.5 453.578h41"/>
+  <path fill="#A80036" stroke="#a80036" d="M324.5 449.578l-10 4 10 4-4-4z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="320.5" y="435.512">
+    4
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="401" x="333.5" y="435.512">
+    Construct NotifyCmd Command Message - recipient: PayerFSP
+  </text>
+  <path d="M318 466.578v131h433v-121l-10-10H318" fill="#FF0" filter="url(#a)" stroke="#a80036"/>
+  <path d="M741 466.578v10h10l-10-10" fill="#FF0" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="85" x="324" y="483.645">
+    &quot;transport&quot;: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="92" x="340" y="498.778">
+    &quot;type&quot;: &quot;HTTP&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="116" x="340" y="513.911">
+    &quot;method&quot;: &quot;POST&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="396" x="340" y="529.043">
+    &quot;endpoint&quot;: &quot;http://Payee-Participant/transfers/{{transferId}}&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="75" x="340" y="544.176">
+    &quot;params&quot;: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="166" x="356" y="559.309">
+    &quot;transferId&quot;: &quot;{transferId}&quot;
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="340" y="574.442">
+    }
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="324" y="589.575">
+    }
+  </text>
+  <path stroke="#000" stroke-dasharray="2,2" d="M197.5 607.641h779"/>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="693" x="202.5" y="617.851">
+    [event.type === &apos;notification&apos; &amp;&amp; event.action === &apos;prepare.*|position-prepare&apos; &amp;&amp; event.status === &apos;error&apos;]
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M324.5 653.71l-10 4 10 4-4-4zM872.5 653.71l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M318.5 657.711h560"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="330.5" y="645.079">
+    5
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="282" x="343.5" y="637.512">
+    Return Endpoint details for Payer-Participant
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="90" x="343.5" y="652.645">
+    Error codes:
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="72" x="437.5" y="652.645">
+    3202, 3203
+  </text>
+  <path stroke="#a80036" d="M313.5 716.844h42M355.5 716.844v13M314.5 729.844h41"/>
+  <path fill="#A80036" stroke="#a80036" d="M324.5 725.844l-10 4 10 4-4-4z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="320.5" y="711.778">
+    6
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="524" x="333.5" y="711.778">
+    Construct NotifyCmd Command Message with enriched message &amp; endpoint data
+  </text>
+  <path d="M318 742.844v131h465v-121l-10-10H318" fill="#FF0" filter="url(#a)" stroke="#a80036"/>
+  <path d="M773 742.844v10h10l-10-10" fill="#FF0" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="85" x="324" y="759.911">
+    &quot;transport&quot;: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="92" x="340" y="775.043">
+    &quot;type&quot;: &quot;HTTP&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="107" x="340" y="790.176">
+    &quot;method&quot;: &quot;PUT&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="428" x="340" y="805.309">
+    &quot;endpoint&quot;: &quot;http://Payer-Participant/transfers/{{transferId}}/error&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="75" x="340" y="820.442">
+    &quot;params&quot;: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="166" x="356" y="835.575">
+    &quot;transferId&quot;: &quot;{transferId}&quot;
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="340" y="850.707">
+    }
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="324" y="865.84">
+    }
+  </text>
+  <path stroke="#000" stroke-dasharray="2,2" d="M197.5 883.906h779"/>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="657" x="202.5" y="894.117">
+    [event.type === &apos;notification&apos; &amp;&amp; event.action === &apos;prepare-duplicate&apos; &amp;&amp; event.status === &apos;success&apos;]
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M324.5 929.977l-10 4 10 4-4-4zM872.5 929.977l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M318.5 933.977h560"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="330.5" y="921.344">
+    7
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="282" x="343.5" y="913.778">
+    Return Endpoint details for Payer-Participant
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="90" x="343.5" y="928.911">
+    Error codes:
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="72" x="437.5" y="928.911">
+    3202, 3203
+  </text>
+  <path stroke="#a80036" d="M313.5 993.109h42M355.5 993.109v13M314.5 1006.109h41"/>
+  <path fill="#A80036" stroke="#a80036" d="M324.5 1002.11l-10 4 10 4-4-4z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="320.5" y="988.043">
+    8
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="524" x="333.5" y="988.043">
+    Construct NotifyCmd Command Message with enriched message &amp; endpoint data
+  </text>
+  <path d="M318 1019.11v131h465v-121l-10-10H318" fill="#FF0" filter="url(#a)" stroke="#a80036"/>
+  <path d="M773 1019.11v10h10l-10-10" fill="#FF0" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="85" x="324" y="1036.176">
+    &quot;transport&quot;: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="92" x="340" y="1051.309">
+    &quot;type&quot;: &quot;HTTP&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="107" x="340" y="1066.442">
+    &quot;method&quot;: &quot;PUT&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="428" x="340" y="1081.575">
+    &quot;endpoint&quot;: &quot;http://Payer-Participant/transfers/{{transferId}}/error&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="75" x="340" y="1096.707">
+    &quot;params&quot;: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="166" x="356" y="1111.84">
+    &quot;transferId&quot;: &quot;{transferId}&quot;
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="340" y="1126.973">
+    }
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="324" y="1142.106">
+    }
+  </text>
+  <path stroke="#000" stroke-dasharray="2,2" d="M197.5 1160.172h779"/>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="640" x="202.5" y="1170.382">
+    [event.type === &apos;notification&apos; &amp;&amp; event.action === &apos;commit|reserve&apos; &amp;&amp; event.status === &apos;success&apos;]
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M324.5 1206.242l-10 4 10 4-4-4zM872.5 1206.242l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M318.5 1210.242h560"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="330.5" y="1197.61">
+    9
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="282" x="343.5" y="1190.043">
+    Return Endpoint details for Payer-Participant
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="90" x="343.5" y="1205.176">
+    Error codes:
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="72" x="437.5" y="1205.176">
+    3202, 3203
+  </text>
+  <path stroke="#a80036" d="M313.5 1269.375h42M355.5 1269.375v13M314.5 1282.375h41"/>
+  <path fill="#A80036" stroke="#a80036" d="M324.5 1278.375l-10 4 10 4-4-4z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="320.5" y="1264.309">
+    10
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="524" x="342.5" y="1264.309">
+    Construct NotifyCmd Command Message with enriched message &amp; endpoint data
+  </text>
+  <path d="M318 1295.375v131h430v-121l-10-10H318" fill="#FF0" filter="url(#a)" stroke="#a80036"/>
+  <path d="M738 1295.375v10h10l-10-10" fill="#FF0" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="85" x="324" y="1312.442">
+    &quot;transport&quot;: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="92" x="340" y="1327.575">
+    &quot;type&quot;: &quot;HTTP&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="107" x="340" y="1342.707">
+    &quot;method&quot;: &quot;PUT&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="393" x="340" y="1357.84">
+    &quot;endpoint&quot;: &quot;http://Payer-Participant/transfers/{{transferId}}&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="75" x="340" y="1372.973">
+    &quot;params&quot;: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="166" x="356" y="1388.106">
+    &quot;transferId&quot;: &quot;{transferId}&quot;
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="340" y="1403.239">
+    }
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="324" y="1418.372">
+    }
+  </text>
+  <path d="M207.5 1442.438h64v7l-10 10h-54v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M207.5 1442.438h759v278.594h-759z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19" x="222.5" y="1455.504">
+    alt
+  </text>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="675" x="286.5" y="1454.648">
+    [(Config.SEND_TRANSFER_CONFIRMATION_TO_PAYEE === true || event.action === &apos;reserve&apos;) &amp;&amp; to!=from]
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M324.5 1491.836l-10 4 10 4-4-4zM872.5 1491.836l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M318.5 1495.836h560"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="330.5" y="1483.204">
+    11
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="285" x="352.5" y="1475.637">
+    Return Endpoint details for Payee-Participant
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="90" x="352.5" y="1490.77">
+    Error codes:
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="72" x="446.5" y="1490.77">
+    3202, 3203
+  </text>
+  <path stroke="#a80036" d="M313.5 1554.969h42M355.5 1554.969v13M314.5 1567.969h41"/>
+  <path fill="#A80036" stroke="#a80036" d="M324.5 1563.969l-10 4 10 4-4-4z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="320.5" y="1549.903">
+    12
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="524" x="342.5" y="1549.903">
+    Construct NotifyCmd Command Message with enriched message &amp; endpoint data
+  </text>
+  <path d="M318 1580.969v131h433v-121l-10-10H318" fill="#FF0" filter="url(#a)" stroke="#a80036"/>
+  <path d="M741 1580.969v10h10l-10-10" fill="#FF0" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="85" x="324" y="1598.036">
+    &quot;transport&quot;: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="92" x="340" y="1613.168">
+    &quot;type&quot;: &quot;HTTP&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="107" x="340" y="1628.301">
+    &quot;method&quot;: &quot;PUT&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="396" x="340" y="1643.434">
+    &quot;endpoint&quot;: &quot;http://Payee-Participant/transfers/{{transferId}}&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="75" x="340" y="1658.567">
+    &quot;params&quot;: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="166" x="356" y="1673.7">
+    &quot;transferId&quot;: &quot;{transferId}&quot;
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="340" y="1688.832">
+    }
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="324" y="1703.965">
+    }
+  </text>
+  <path stroke="#000" stroke-dasharray="2,2" d="M197.5 1729.031h779"/>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="617" x="202.5" y="1739.242">
+    [event.type === &apos;notification&apos; &amp;&amp; event.action === &apos;reject|abort&apos; &amp;&amp; event.status === &apos;success&apos;]
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M324.5 1775.102l-10 4 10 4-4-4zM872.5 1775.102l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M318.5 1779.102h560"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="330.5" y="1766.469">
+    13
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="285" x="352.5" y="1758.903">
+    Return Endpoint details for Payee-Participant
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="90" x="352.5" y="1774.036">
+    Error codes:
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="72" x="446.5" y="1774.036">
+    3202, 3203
+  </text>
+  <path stroke="#a80036" d="M313.5 1838.234h42M355.5 1838.234v13M314.5 1851.234h41"/>
+  <path fill="#A80036" stroke="#a80036" d="M324.5 1847.234l-10 4 10 4-4-4z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="320.5" y="1833.168">
+    14
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="524" x="342.5" y="1833.168">
+    Construct NotifyCmd Command Message with enriched message &amp; endpoint data
+  </text>
+  <path d="M318 1864.234v131h468v-121l-10-10H318" fill="#FF0" filter="url(#a)" stroke="#a80036"/>
+  <path d="M776 1864.234v10h10l-10-10" fill="#FF0" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="85" x="324" y="1881.301">
+    &quot;transport&quot;: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="92" x="340" y="1896.434">
+    &quot;type&quot;: &quot;HTTP&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="107" x="340" y="1911.567">
+    &quot;method&quot;: &quot;PUT&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="431" x="340" y="1926.7">
+    &quot;endpoint&quot;: &quot;http://Payee-Participant/transfers/{{transferId}}/error&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="75" x="340" y="1941.832">
+    &quot;params&quot;: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="166" x="356" y="1956.965">
+    &quot;transferId&quot;: &quot;{transferId}&quot;
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="340" y="1972.098">
+    }
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="324" y="1987.231">
+    }
+  </text>
+  <path stroke="#000" stroke-dasharray="2,2" d="M197.5 2005.297h779"/>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="620" x="202.5" y="2015.507">
+    [event.type === &apos;notification&apos; &amp;&amp; event.action === &apos;commit|reserve&apos; &amp;&amp; event.status === &apos;error&apos;]
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M324.5 2051.367l-10 4 10 4-4-4zM872.5 2051.367l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M318.5 2055.367h560"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="330.5" y="2042.735">
+    15
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="285" x="352.5" y="2035.168">
+    Return Endpoint details for Payee-Participant
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="90" x="352.5" y="2050.301">
+    Error codes:
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="72" x="446.5" y="2050.301">
+    3202, 3203
+  </text>
+  <path stroke="#a80036" d="M313.5 2114.5h42M355.5 2114.5v13M314.5 2127.5h41"/>
+  <path fill="#A80036" stroke="#a80036" d="M324.5 2123.5l-10 4 10 4-4-4z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="320.5" y="2109.434">
+    16
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="524" x="342.5" y="2109.434">
+    Construct NotifyCmd Command Message with enriched message &amp; endpoint data
+  </text>
+  <path d="M318 2140.5v131h468v-121l-10-10H318" fill="#FF0" filter="url(#a)" stroke="#a80036"/>
+  <path d="M776 2140.5v10h10l-10-10" fill="#FF0" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="85" x="324" y="2157.567">
+    &quot;transport&quot;: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="92" x="340" y="2172.7">
+    &quot;type&quot;: &quot;HTTP&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="107" x="340" y="2187.832">
+    &quot;method&quot;: &quot;PUT&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="431" x="340" y="2202.965">
+    &quot;endpoint&quot;: &quot;http://Payee-Participant/transfers/{{transferId}}/error&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="75" x="340" y="2218.098">
+    &quot;params&quot;: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="166" x="356" y="2233.231">
+    &quot;transferId&quot;: &quot;{transferId}&quot;
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="340" y="2248.364">
+    }
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="324" y="2263.497">
+    }
+  </text>
+  <path stroke="#000" stroke-dasharray="2,2" d="M197.5 2281.563h779"/>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="631" x="202.5" y="2291.773">
+    [event.type === &apos;notification&apos; &amp;&amp; event.action === &apos;timeout-received&apos; &amp;&amp; event.status === &apos;error&apos;]
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M324.5 2327.633l-10 4 10 4-4-4zM872.5 2327.633l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M318.5 2331.633h560"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="330.5" y="2319.001">
+    17
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="285" x="352.5" y="2311.434">
+    Return Endpoint details for Payee-Participant
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="90" x="352.5" y="2326.567">
+    Error codes:
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="72" x="446.5" y="2326.567">
+    3202, 3203
+  </text>
+  <path stroke="#a80036" d="M313.5 2390.766h42M355.5 2390.766v13M314.5 2403.766h41"/>
+  <path fill="#A80036" stroke="#a80036" d="M324.5 2399.766l-10 4 10 4-4-4z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="320.5" y="2385.7">
+    18
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="524" x="342.5" y="2385.7">
+    Construct NotifyCmd Command Message with enriched message &amp; endpoint data
+  </text>
+  <path d="M318 2416.766v131h468v-121l-10-10H318" fill="#FF0" filter="url(#a)" stroke="#a80036"/>
+  <path d="M776 2416.766v10h10l-10-10" fill="#FF0" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="85" x="324" y="2433.832">
+    &quot;transport&quot;: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="92" x="340" y="2448.965">
+    &quot;type&quot;: &quot;HTTP&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="107" x="340" y="2464.098">
+    &quot;method&quot;: &quot;PUT&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="431" x="340" y="2479.231">
+    &quot;endpoint&quot;: &quot;http://Payee-Participant/transfers/{{transferId}}/error&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="75" x="340" y="2494.364">
+    &quot;params&quot;: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="166" x="356" y="2509.497">
+    &quot;transferId&quot;: &quot;{transferId}&quot;
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="340" y="2524.629">
+    }
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="324" y="2539.762">
+    }
+  </text>
+  <path stroke="#000" stroke-dasharray="2,2" d="M197.5 2557.828h779"/>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="652" x="202.5" y="2568.039">
+    [event.type === &apos;notification&apos; &amp;&amp; event.action === &apos;timeout-reserved&apos; &amp;&amp; event.status === &apos;success&apos;]
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M324.5 2603.898l-10 4 10 4-4-4zM872.5 2603.898l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M318.5 2607.898h560"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="330.5" y="2595.266">
+    19
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="282" x="352.5" y="2587.7">
+    Return Endpoint details for Payer-Participant
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="90" x="352.5" y="2602.832">
+    Error codes:
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="72" x="446.5" y="2602.832">
+    3202, 3203
+  </text>
+  <path stroke="#a80036" d="M313.5 2667.031h42M355.5 2667.031v13M314.5 2680.031h41"/>
+  <path fill="#A80036" stroke="#a80036" d="M324.5 2676.031l-10 4 10 4-4-4z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="320.5" y="2661.965">
+    20
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="524" x="342.5" y="2661.965">
+    Construct NotifyCmd Command Message with enriched message &amp; endpoint data
+  </text>
+  <path d="M318 2693.031v131h465v-121l-10-10H318" fill="#FF0" filter="url(#a)" stroke="#a80036"/>
+  <path d="M773 2693.031v10h10l-10-10" fill="#FF0" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="85" x="324" y="2710.098">
+    &quot;transport&quot;: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="92" x="340" y="2725.231">
+    &quot;type&quot;: &quot;HTTP&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="107" x="340" y="2740.364">
+    &quot;method&quot;: &quot;PUT&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="428" x="340" y="2755.497">
+    &quot;endpoint&quot;: &quot;http://Payer-Participant/transfers/{{transferId}}/error&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="75" x="340" y="2770.629">
+    &quot;params&quot;: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="166" x="356" y="2785.762">
+    &quot;transferId&quot;: &quot;{transferId}&quot;
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="340" y="2800.895">
+    }
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="324" y="2816.028">
+    }
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M324.5 2865.36l-10 4 10 4-4-4zM872.5 2865.36l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M318.5 2869.359h560"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="330.5" y="2856.727">
+    21
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="285" x="352.5" y="2849.161">
+    Return Endpoint details for Payee-Participant
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="90" x="352.5" y="2864.294">
+    Error codes:
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="72" x="446.5" y="2864.294">
+    3202, 3203
+  </text>
+  <path stroke="#a80036" d="M313.5 2928.492h42M355.5 2928.492v13M314.5 2941.492h41"/>
+  <path fill="#A80036" stroke="#a80036" d="M324.5 2937.492l-10 4 10 4-4-4z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="320.5" y="2923.426">
+    22
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="524" x="342.5" y="2923.426">
+    Construct NotifyCmd Command Message with enriched message &amp; endpoint data
+  </text>
+  <path d="M318 2954.492v131h468v-121l-10-10H318" fill="#FF0" filter="url(#a)" stroke="#a80036"/>
+  <path d="M776 2954.492v10h10l-10-10" fill="#FF0" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="85" x="324" y="2971.559">
+    &quot;transport&quot;: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="92" x="340" y="2986.692">
+    &quot;type&quot;: &quot;HTTP&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="107" x="340" y="3001.825">
+    &quot;method&quot;: &quot;PUT&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="431" x="340" y="3016.957">
+    &quot;endpoint&quot;: &quot;http://Payee-Participant/transfers/{{transferId}}/error&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="75" x="340" y="3032.09">
+    &quot;params&quot;: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="166" x="356" y="3047.223">
+    &quot;transferId&quot;: &quot;{transferId}&quot;
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="340" y="3062.356">
+    }
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="324" y="3077.489">
+    }
+  </text>
+  <path stroke="#000" stroke-dasharray="2,2" d="M197.5 3095.555h779"/>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="563" x="202.5" y="3105.765">
+    [event.type === &apos;notification&apos; &amp;&amp; event.action === &apos;get&apos; &amp;&amp; event.status === &apos;success&apos;]
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M324.5 3141.625l-10 4 10 4-4-4zM872.5 3141.625l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M318.5 3145.625h560"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="330.5" y="3132.993">
+    23
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="317" x="352.5" y="3125.426">
+    Return Endpoint details for Requesting-Participant
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="90" x="352.5" y="3140.559">
+    Error codes:
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="72" x="446.5" y="3140.559">
+    3202, 3203
+  </text>
+  <path stroke="#a80036" d="M313.5 3204.758h42M355.5 3204.758v13M314.5 3217.758h41"/>
+  <path fill="#A80036" stroke="#a80036" d="M324.5 3213.758l-10 4 10 4-4-4z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="320.5" y="3199.692">
+    24
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="524" x="342.5" y="3199.692">
+    Construct NotifyCmd Command Message with enriched message &amp; endpoint data
+  </text>
+  <path d="M318 3230.758v131h465v-121l-10-10H318" fill="#FF0" filter="url(#a)" stroke="#a80036"/>
+  <path d="M773 3230.758v10h10l-10-10" fill="#FF0" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="85" x="324" y="3247.825">
+    &quot;transport&quot;: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="92" x="340" y="3262.957">
+    &quot;type&quot;: &quot;HTTP&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="107" x="340" y="3278.09">
+    &quot;method&quot;: &quot;PUT&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="428" x="340" y="3293.223">
+    &quot;endpoint&quot;: &quot;http://Requesting-Participant/transfers/{{transferId}}&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="75" x="340" y="3308.356">
+    &quot;params&quot;: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="166" x="356" y="3323.489">
+    &quot;transferId&quot;: &quot;{transferId}&quot;
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="340" y="3338.622">
+    }
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="324" y="3353.754">
+    }
+  </text>
+  <path stroke="#000" stroke-dasharray="2,2" d="M197.5 3371.82h779"/>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="543" x="202.5" y="3382.031">
+    [event.type === &apos;notification&apos; &amp;&amp; event.action === &apos;get&apos; &amp;&amp; event.status === &apos;error&apos;]
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M324.5 3417.89l-10 4 10 4-4-4zM872.5 3417.89l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M318.5 3421.891h560"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="330.5" y="3409.258">
+    25
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="317" x="352.5" y="3401.692">
+    Return Endpoint details for Requesting-Participant
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="90" x="352.5" y="3416.825">
+    Error codes:
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="72" x="446.5" y="3416.825">
+    3202, 3203
+  </text>
+  <path stroke="#a80036" d="M313.5 3481.023h42M355.5 3481.023v13M314.5 3494.023h41"/>
+  <path fill="#A80036" stroke="#a80036" d="M324.5 3490.023l-10 4 10 4-4-4z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="320.5" y="3475.957">
+    26
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="524" x="342.5" y="3475.957">
+    Construct NotifyCmd Command Message with enriched message &amp; endpoint data
+  </text>
+  <path d="M318 3507.023v131h500v-121l-10-10H318" fill="#FF0" filter="url(#a)" stroke="#a80036"/>
+  <path d="M808 3507.023v10h10l-10-10" fill="#FF0" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="85" x="324" y="3524.09">
+    &quot;transport&quot;: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="92" x="340" y="3539.223">
+    &quot;type&quot;: &quot;HTTP&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="107" x="340" y="3554.356">
+    &quot;method&quot;: &quot;PUT&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="463" x="340" y="3569.489">
+    &quot;endpoint&quot;: &quot;http://Requesting-Participant/transfers/{{transferId}}/error&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="75" x="340" y="3584.622">
+    &quot;params&quot;: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="166" x="356" y="3599.754">
+    &quot;transferId&quot;: &quot;{transferId}&quot;
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="340" y="3614.887">
+    }
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="324" y="3630.02">
+    }
+  </text>
+  <path stroke="#a80036" d="M313.5 3682.219h42M355.5 3682.219v13M314.5 3695.219h41"/>
+  <path fill="#A80036" stroke="#a80036" d="M324.5 3691.219l-10 4 10 4-4-4z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="320.5" y="3677.153">
+    27
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="535" x="342.5" y="3677.153">
+    Construct NotifyCmd Command Message with notficiation-payload &amp; transport-data
+  </text>
+  <path d="M207.5 3710.219h351v7l-10 10h-341v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M207.5 3710.219h1072v46.266h-1072z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="306" x="222.5" y="3723.286">
+    For-each NotifyCmd Command Messages
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1164 3744.484l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M313.5 3748.484H1170"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="320.5" y="3743.419">
+    28
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="248" x="342.5" y="3743.419">
+    Publish NotifyCmd Command Message
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M106.5 3780.617l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" d="M100.5 3784.617h202"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="112.5" y="3779.551">
+    29
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="167" x="134.5" y="3779.551">
+    Commit Notification event
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1197 3839.75l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" d="M1191 3843.75h299"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1203" y="3838.684">
+    30
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="264" x="1225" y="3838.684">
+    Consume NotifyCmd Command Message
+  </text>
+  <path stroke="#a80036" d="M1501 3902.883h42M1543 3902.883v13M1502 3915.883h41"/>
+  <path fill="#A80036" stroke="#a80036" d="M1512 3911.883l-10 4 10 4-4-4z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1508" y="3897.817">
+    31
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="188" x="1530" y="3897.817">
+    Construct Transport Message
+  </text>
+  <path d="M1398.5 3930.883h456v7l-10 10h-446v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M1398.5 3930.883H2287v280.992h-888.5z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="411" x="1413.5" y="3943.95">
+    Retry Transport Mechanism based on transport options
+  </text>
+  <path d="M1506 3953.016v161h767v-151l-10-10h-757" fill="#FF0" filter="url(#a)" stroke="#a80036"/>
+  <path d="M2263 3953.016v10h10l-10-10" fill="#FF0" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="85" x="1512" y="3970.082">
+    &quot;transport&quot;: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="73" x="1528" y="3985.215">
+    &quot;options&quot;: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="141" x="1544" y="4000.348">
+    &quot;delivery-report&quot;: true,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="56" x="1544" y="4015.481">
+    &quot;retry&quot;: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="66" x="1544" y="4030.614">
+    &quot;count&quot;: 3,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="226" x="1544" y="4045.747">
+    &quot;type&quot;: &quot;noDelay|exponentialDelay&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="714" x="1544" y="4060.879">
+    &quot;condition&quot;: &quot;isNetworkError|isSafeRequestError|isIdempotentRequestError|isNetworkOrIdempotentRequestError&quot;
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="1544" y="4076.012">
+    }
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="1528" y="4091.145">
+    }
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="1512" y="4106.278">
+    }
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1979.5 4170.742l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M1501 4174.742h484.5"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1508" y="4154.543">
+    32
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="276" x="1530" y="4139.411">
+    Notification with Prepare/fulfil result/error to
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="249" x="1530" y="4154.543">
+    Payer DFSP to specified Endpoint - PUT
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="82" x="1530" y="4169.676">
+    Error code:
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="32" x="1616" y="4169.676">
+    1001
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1512 4199.875l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M1506 4203.875h484.5"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1518" y="4198.809">
+    33
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="82" x="1540" y="4198.809">
+    HTTP 200 OK
+  </text>
+  <path stroke="#a80036" d="M1501 4240.008h42M1543 4240.008v13M1502 4253.008h41"/>
+  <path fill="#A80036" stroke="#a80036" d="M1512 4249.008l-10 4 10 4-4-4z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1508" y="4234.942">
+    34
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="151" x="1530" y="4234.942">
+    Prepare Delivery Report
+  </text>
+  <path d="M207.5 4268.008h64v7l-10 10h-54v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M207.5 4268.008h1641v192.797h-1641z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19" x="222.5" y="4281.075">
+    alt
+  </text>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="274" x="286.5" y="4280.218">
+    [transport.options.deliver-report === true]
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1749 4302.273l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M1501 4306.273h254"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1508" y="4301.208">
+    35
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="219" x="1530" y="4301.208">
+    Publish NotifyDeliveryReport event
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1197 4331.406l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" d="M1191 4335.406h299"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1203" y="4330.34">
+    36
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="162" x="1225" y="4330.34">
+    Commit NotifyCmd event
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1754 4390.54l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M313.5 4394.539H1760"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="320.5" y="4389.473">
+    37
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="235" x="342.5" y="4389.473">
+    Consume NotifyDeliveryReport event
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1012.5 4419.672l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M313.5 4423.672h705"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="320.5" y="4418.606">
+    38
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="218" x="342.5" y="4418.606">
+    Record NotifyDeliveryReport event
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1749 4448.805l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M308.5 4452.805H1755"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="315.5" y="4447.739">
+    39
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="225" x="337.5" y="4447.739">
+    Commit NotifyDeliveryReport event
+  </text>
+</svg>

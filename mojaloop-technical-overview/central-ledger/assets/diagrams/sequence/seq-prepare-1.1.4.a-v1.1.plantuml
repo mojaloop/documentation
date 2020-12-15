@@ -76,23 +76,18 @@ group Send notification to Participants
     activate TOPIC_NOTIFICATIONS
     deactivate TOPIC_NOTIFICATIONS
 
-    group Persist Event Information
-        NOTIFY_HANDLER -> CSAPI: Request to persist event information - POST - /events
-        activate CSAPI
-        CSAPI -> TOPIC_EVENTS: Publish event information
-        activate TOPIC_EVENTS
-        |||
-        ref over TOPIC_EVENTS :  Event Handler Consume\n
-        |||
-        TOPIC_EVENTS --> CSAPI: Return success
-        deactivate TOPIC_EVENTS
-        CSAPI --> NOTIFY_HANDLER: Return success
-        deactivate CSAPI
-    end
-    note right of NOTIFY_HANDLER #lightgray
-        The endpoint details are cached, when the cache
-        expires, the details are fetched again
+    note right of OPERATOR #yellow
+        Message:
+        {
+            payload: {
+                endpoint: {
+                    type: <typeValue>,
+                    value: <endpointValue>
+               }
+            }
+        }
     end note
+    
     NOTIFY_HANDLER -> CSAPI: Request Endpoint details for Participant - GET - /participants/{{fsp}}/endpoints\n<color #FF0000><b>Error code:</b> 2003</color>
 
     activate CSAPI
