@@ -355,13 +355,6 @@ group Send notification to Participants
         NOTIFY_HANDLER_CMD -> TOPIC_NOTIFICATIONS_EVT: Publish NotifyDeliveryReport event
         activate TOPIC_NOTIFICATIONS_EVT
 
-        NOTIFY_HANDLER_CMD -> TOPIC_NOTIFICATIONS_CMD: Commit NotifyCmd event
-        activate TOPIC_NOTIFICATIONS_CMD
-        deactivate TOPIC_NOTIFICATIONS_CMD
-        deactivate NOTIFY_HANDLER_CMD
-
-        
-
         TOPIC_NOTIFICATIONS_EVT <- NOTIFY_HANDLER_EVT: Consume NotifyDeliveryReport event
         deactivate TOPIC_NOTIFICATIONS_EVT
         activate NOTIFY_HANDLER_EVT
@@ -374,6 +367,11 @@ group Send notification to Participants
         activate TOPIC_NOTIFICATIONS_EVT
         deactivate TOPIC_NOTIFICATIONS_EVT
     end
+
+    NOTIFY_HANDLER_CMD -> TOPIC_NOTIFICATIONS_CMD: Commit NotifyCmd event
+    activate TOPIC_NOTIFICATIONS_CMD
+    deactivate TOPIC_NOTIFICATIONS_CMD
+    deactivate NOTIFY_HANDLER_CMD
 
 end
 @enduml
