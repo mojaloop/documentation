@@ -32,6 +32,15 @@ This document will discuss the architecture and design of Mojaloop's Notificatio
 ## 2. Design
 
 ### 2.1 Overview
+
+This design proposes the seperation of the current Notification capabilities (transport vs mojaloop-contextual processing) into the following components:
+
+| Components | Description | Notes |
+| --- | --- | --- |
+| Notification Evt Handler | Consumes existing Notification events, then interprates (in context of Mojaloop use-cases) those events into an appropriate NotifyCmd message to some explicit receipient. This component is stateful, and will store information of the notification events and delivery reports as required. | This component is a "Central-Service" |
+| Notification Cmd Handler | Notification Command message produced by the NotificationEvt Handler, which is consumed and processed by the NotificationCmd Handler. This component is stateless, and has no dependency on any persistance or caching stores. This enables Mojaloop implementors to introduce their own plugable Notification Cmd Handler to send notifications via any transport. | This component is a "Supporting-Service" |
+
+
 ...
 ![example](assets/diagrams/Transfers-Arch-End-to-End-with-Notify-Engine-v1.0.svg)
 <!--
@@ -42,11 +51,13 @@ This document will discuss the architecture and design of Mojaloop's Notificatio
 
 ![example](assets/sequence/seq-notify-v2-1.0.0.svg)
 
-### 2.2 Types of Notifications
-...
-<!--
-![example](assets/diagrams/architecture/example.svg)
--->
+### 2.3 Types of Notifications
+
+| Event | Description | Notes |
+| --- | --- | --- |
+| Notification | Existing Notification event currently produced by Central-Service components which is the result of some Mojaloop use-case. | . |
+| NotifyCmd | Notification Command message produced by the Notification Evt Handler, which is consumed and processed by the Notification Cmd Handler. This message is generic, and can be used for any notification purposes. It is not context aware, nor does it have any knowledge of a Mojaloop use-case. It contains only the transport specific information requires to delivery the notification. | . |
+| NotifyDelivered | Domain event message to broadcast Delivery reports to Central-Services. This event can be consumed by the Central-Services (currently the Notification Evt Handler) to persist this information to a store. | . |
 
 ## 3. Models
 
@@ -58,49 +69,28 @@ This document will discuss the architecture and design of Mojaloop's Notificatio
 
 #### 3.2.1. Events
 
-<!--
-#### 3.2.1.a. Notification Commands
+#### 3.2.1.a. Notification event produced by Central-Services
+
 ```JSON
 {
-    "from": "noresponsepayeefsp",
-    "to": "payerfsp",
+    "from": "payerfsp",
+    "to": "payeefsp",
     "id": "aa398930-f210-4dcd-8af0-7c769cea1660",
     "content": {
-        "transport": { // transport information required by the notification-engine
-          "type": "HTTP", // transport
-          "method": "GET", // Optional method for the associated transport
-          "endpoint": "http:///fsp.com/parties/{{partyIdType}}/{{partyId}}}?key={{value}}", // templated endpoint
-          "params": { // template parameters <-- is this needed?
-            "partyIdType": "MSISDN",
-            "partyId": "12345",
-            "value": "ABCD"
-          },
-          "options": { // run-time config options for the notification-engine
-            "delivery-report": true, // enabled delivery-report
-            "retry": { //retry config
-              "count": 3,
-              "type": "noDelay|exponentialDelay",
-              "condition": "isNetworkError|isSafeRequestError|isIdempotentRequestError|isNetworkOrIdempotentRequestError"
-            }
-          },
-          "customHeaders": { // any extra headers that the switch wants to include
-            "yup": "nope"
-          }
-        },
-        "headers": {
-            "content-type": "application/vnd.interoperability.transfers+json;version=1.0",
-            "date": "2019-05-28T16:34:41.000Z",
-            "fspiop-source": "noresponsepayeefsp",
-            "fspiop-destination": "payerfsp"
-        },
-        "payload": "data:application/vnd.interoperability.transfers+json;version=1.0;base64,ewogICJmdWxmaWxtZW50IjogIlVObEo5OGhaVFlfZHN3MGNBcXc0aV9VTjN2NHV0dDdDWkZCNHlmTGJWRkEiLAogICJjb21wbGV0ZWRUaW1lc3RhbXAiOiAiMjAxOS0wNS0yOVQyMzoxODozMi44NTZaIiwKICAidHJhbnNmZXJTdGF0ZSI6ICJDT01NSVRURUQiCn0"
+      "headers": {
+          "content-type": "application/vnd.interoperability.transfers+json;version=1.0",
+          "date": "2019-05-28T16:34:41.000Z",
+          "fspiop-source": "payerfsp",
+          "fspiop-destination": "payeefsp"
+      },
+      "payload": "data:application/vnd.interoperability.transfers+json;version=1.0;base64,ewogICJmdWxmaWxtZW50IjogIlVObEo5OGhaVFlfZHN3MGNBcXc0aV9VTjN2NHV0dDdDWkZCNHlmTGJWRkEiLAogICJjb21wbGV0ZWRUaW1lc3RhbXAiOiAiMjAxOS0wNS0yOVQyMzoxODozMi44NTZaIiwKICAidHJhbnNmZXJTdGF0ZSI6ICJDT01NSVRURUQiCn0"
     },
     "type": "application/json",
     "metadata": {
         "event": {
             "id": "3920382d-f78c-4023-adf9-0d7a4a2a3a2f",
-            "type": "trace",
-            "action": "span",
+            "type": "transfer",
+            "action": "prepare",
             "createdAt": "2019-05-29T23:18:32.935Z",
             "state": {
                 "status": "success",
@@ -125,33 +115,36 @@ This document will discuss the architecture and design of Mojaloop's Notificatio
         }
     }
 }
-```-->
+```
 
-#### 3.2.1.a. Notification Commands
+#### 3.2.1.b. Notification Command produced by Notificant Evt Handler
 
 ```JSON
 {
-    "msgId": "18efb9ea-d29a-42b9-9b30-59e1e7cfe216",
-    "msgKey": "861b86e6-c3da-48b3-ba17-896710287d1f",
+    "msgId": "18efb9ea-d29a-42b9-9b30-59e1e7cfe216", // Generated by the NotificationEvtHandler
+    "msgKey": "861b86e6-c3da-48b3-ba17-896710287d1f", // Mapped from the aggregateId, used by Kafka for Key-partitioning
     "msgName": "NotifyCmd",
-    "msgType": 2,
-    "msgTopic": "NotificationCommands",
-    "msgPartition": null,
-    "msgTimestamp": 1607677081837,
+    "msgType": 2, // DomainEvents
+    "msgTopic": "NotificationCommands", // Topic that the message will be published too
+    "msgPartition": null, // Optional partition used for publishing the message to the msgTopic
+    "msgTimestamp": 1607677081837, // Time of message creation
     "aggregateName": "Notifications",
-    "aggregateId": "861b86e6-c3da-48b3-ba17-896710287d1f",
-    "transport": { // transport information required by the notification-engine
-      "type": "HTTP", // transport
+    "aggregateId": "861b86e6-c3da-48b3-ba17-896710287d1f", // Generated by the NotificationEvtHandler
+    "notifyId": "3920382d-f78c-4023-adf9-0d7a4a2a3a2f", // Mapped from the metadata.event.id by the NotificationEvtHandler, used to correlate multiple NotifyCmd.
+    "transport": { // Transport information required by the notification-engine
+      "type": "HTTP", // Transport type
       "method": "GET", // Optional method for the associated transport
-      "endpoint": "http://fsp.com/parties/{{partyIdType}}/{{partyId}}}?key={{value}}", // templated endpoint
-      "params": { // template parameters <-- is this needed?
-        "partyIdType": "MSISDN",
-        "partyId": "12345",
-        "value": "ABCD"
+      "recipient": {
+        "endpoint": "http://fsp.com/parties/{{partyIdType}}/{{partyId}}}?key={{value}}", // Templated endpoint. It can be a hardcoded string with all parameters pre-rendered into the string.
+        "params": { // Optional template parameters
+          "partyIdType": "MSISDN",
+          "partyId": "12345",
+          "value": "ABCD"
+        }
       },
-      "options": { // run-time config options for the notification-engine
-        "delivery-report": true, // enabled delivery-report
-        "retry": { //retry config
+      "options": { // Run-time config options for the notification-engine
+        "deliveryReport": true, // Enable delivery-reporting
+        "retry": { //Retry config
           "count": 3,
           "type": "noDelay|exponentialDelay",
           "condition": "isNetworkError|isSafeRequestError|isIdempotentRequestError|isNetworkOrIdempotentRequestError"
@@ -159,23 +152,67 @@ This document will discuss the architecture and design of Mojaloop's Notificatio
       }
     },
     "payload": {
+      // Headers to be send in request. Note trace-headers (traceParent, traceState) will also included when sending out the request when provided in traceInfo section.
       "headers": {
         "content-type": "application/vnd.interoperability.transfers+json;version=1.0",
         "date": "2019-05-28T16:34:41.000Z",
-        "fspiop-source": "noresponsepayeefsp",
+        "fspiop-source": "payerfsp",
         "fspiop-destination": "payerfsp"
       },
+      // Body is optional and may be ignored depending on the transport.method
       "body": "data:application/vnd.interoperability.transfers+json;version=1.0;base64,ewogICJmdWxmaWxtZW50IjogIlVObEo5OGhaVFlfZHN3MGNBcXc0aV9VTjN2NHV0dDdDWkZCNHlmTGJWRkEiLAogICJjb21wbGV0ZWRUaW1lc3RhbXAiOiAiMjAxOS0wNS0yOVQyMzoxODozMi44NTZaIiwKICAidHJhbnNmZXJTdGF0ZSI6ICJDT01NSVRURUQiCn0",
     },
-    "traceInfo": {
+    "traceInfo": { // Optional. Populate if trace-headers are to be be included in request headers.
         "traceParent": "00-8e540e87060d56a2d2e0be5d732791e7-d96a5971b7c5cac6-21",
-        "traceState": "acmevendor=eyJzcGFuSWQiOiJkOTZhNTk3MWI3YzVjYWM2IiwidGltZUFwaVByZXBhcmUiOiIxNjA3Njc3MDgxNzAwIiwidGltZUFwaUZ1bGZpbCI6IjE2MDc2NzcwODE4MTkifQ=="
+        "traceState": "acmevendor=eyJzcGFuSWQiOiJkOTZhNTk3MWI3YzVjYWM2IiwidGltZUFwaVByZXBhcmUiOiIxNjA3Njc3MDgxNzAwIiwidGltZUFwaUZ1bGZpbCI6IjE2MDc2NzcwODE4MTkifQ==",
+        "service": "notification-evt-handler",
+        "startTimestamp": 1607677081837,
+        "finishTimestamp": 2007677081838
     }
 }
 ```
 
-#### 3.2.2. Delivery-report Event
-```
+#### 3.2.1.c. Delivery-report Event produced by Notification Cmd Handler
+
+
+```JSON
+{
+    "msgId": "18efb9ea-d29a-42b9-9b30-59e1e7cfe216", // Generated by the NotificationEvtHandler
+    "msgKey": "861b86e6-c3da-48b3-ba17-896710287d1f", // Mapped from the aggregateId, used by Kafka for Key-partitioning
+    "msgName": "NotifyDelivered",
+    "msgType": 2, // DomainEvents
+    "msgTopic": "NotificationCommands", // Topic that the message will be published too
+    "msgPartition": null, // Optional partition used for publishing the message to the msgTopic
+    "msgTimestamp": 2007677081820, // UTC Time of message creation
+    "aggregateName": "Notifications",
+    "aggregateId": "861b86e6-c3da-48b3-ba17-896710287d1f", // Generated by the NotificationEvtHandler
+    "notifyId": "3920382d-f78c-4023-adf9-0d7a4a2a3a2f", // Mapped from the metadata.event.id by the NotificationEvtHandler, used to correlate multiple NotifyCmd.
+    "report": { // Transport information required by the notification-engine
+      "deliveryTimestamp": 1607677081840, // UTC Timestamp of delivery
+      "retryAttempts": 1, // Number of retries that were necessary to delivery the message
+      "response": {
+        "statusCode": "202", // error code from transport
+        "statusDescription": "Accepted", // templated endpoint
+        "headers": {
+          "content-type": "application/vnd.interoperability.transfers+json;version=1.0",
+          "date": "2019-05-28T16:34:41.000Z"
+        },
+        "body": "{}",
+      },
+      "accepted": true,
+      "errorInformation": { // Only applicable if "accepted"=false, and expected to occur if we are not able to deliver the notification due to a transport issues: connectivity, timeout or certificate.
+        "errorCode": "408", // Internal error code - may be the same as statusCode
+        "errorDescription": "ECONNABORTED\ntimeout of 2ms exceeded\nError: timeout of 2ms exceeded\n    at createError (/node_modules/axios/lib/core/createError.js:16:15)\n    at Timeout.handleRequestTimeout (/node_modules/axios/lib/adapters/http.js:252:16)\n    at listOnTimeout (timers.js:324:15)\n    at processTimers (timers.js:268:5)" // Can include a stringified stack trace.
+      }
+    },
+    "traceInfo": {
+        "traceParent": "00-8e540e87060d56a2d2e0be5d732791e7-d96a5971b7c5cac6-21",
+        "traceState": "acmevendor=eyJzcGFuSWQiOiJkOTZhNTk3MWI3YzVjYWM2IiwidGltZUFwaVByZXBhcmUiOiIxNjA3Njc3MDgxNzAwIiwidGltZUFwaUZ1bGZpbCI6IjE2MDc2NzcwODE4MTkifQ==",
+        "service": "notification-Cmd-handler",
+        "startTimestamp": 1607677081837,
+        "finishTimestamp": 2007677081838
+    }
+}
 ```
 
 ## 4. References
