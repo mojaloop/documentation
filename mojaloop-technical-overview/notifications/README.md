@@ -38,7 +38,7 @@ This design proposes the seperation of the current Notification capabilities (tr
 | Components | Description | Notes |
 | --- | --- | --- |
 | Notification Evt Handler | Consumes existing Notification events, then interprates (in context of Mojaloop use-cases) those events into an appropriate NotifyCmd message to some explicit receipient. This component is stateful, and will store information of the notification events and delivery reports as required. | This component is a "Central-Service" |
-| Notification Cmd Handler | This is responsible for the "notification-engine" capabilities. This will consume and process Notification Command message produced by the NotificationEvt Handler. This component is stateless, and has no dependency on any persistance or caching stores. This enables Mojaloop implementors to introduce their own plugable Notification Cmd Handler to send notifications via any transport. | This component is a "Supporting-Service" |
+| Notification Cmd Handler | This is responsible for the "notification-engine" capabilities. This will consume and process Notification Command message produced by the NotificationEvt Handler. This component is stateless, and has no dependency on any persistence or caching stores. This allows for multiple pluggable Cmd Handlers to exist to handle different transports as required. | This component is a "Supporting-Service" |
 
 
 ...

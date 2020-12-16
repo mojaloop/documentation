@@ -111,14 +111,16 @@ group Send notification to Participants
             activate CSAPI
             deactivate CSAPI
 
-            NOTIFY_HANDLER_EVT -> NOTIFY_HANDLER_EVT: Construct NotifyCmd Command Message - recipient: PayerFSP
+            NOTIFY_HANDLER_EVT -> NOTIFY_HANDLER_EVT: Construct NotifyCmd Command Message with enriched message & endpoint data
             note right of NOTIFY_HANDLER_EVT #yellow
                 "transport": {
                     "type": "HTTP",
                     "method": "POST",
-                    "endpoint": "http://Payee-Participant/transfers/{{transferId}}",
-                    "params": {
-                        "transferId": "{transferId}"
+                    "recipient": {
+                        "endpoint": "http://Payee-Participant/transfers/{{transferId}}",
+                        "params": {
+                            "transferId": "{transferId}"
+                        }
                     }
                 }
             end note
@@ -132,9 +134,11 @@ group Send notification to Participants
                 "transport": {
                     "type": "HTTP",
                     "method": "PUT",
-                    "endpoint": "http://Payer-Participant/transfers/{{transferId}}/error",
-                    "params": {
-                        "transferId": "{transferId}"
+                    "recipient": {
+                        "endpoint": "http://Payer-Participant/transfers/{{transferId}}/error",
+                        "params": {
+                            "transferId": "{transferId}"
+                        }
                     }
                 }
             end note
@@ -148,9 +152,11 @@ group Send notification to Participants
                 "transport": {
                     "type": "HTTP",
                     "method": "PUT",
-                    "endpoint": "http://Payer-Participant/transfers/{{transferId}}/error",
-                    "params": {
-                        "transferId": "{transferId}"
+                    "recipient": {
+                        "endpoint": "http://Payer-Participant/transfers/{{transferId}}/error",
+                        "params": {
+                            "transferId": "{transferId}"
+                        }
                     }
                 }
             end note
@@ -164,9 +170,11 @@ group Send notification to Participants
                 "transport": {
                     "type": "HTTP",
                     "method": "PUT",
-                    "endpoint": "http://Payer-Participant/transfers/{{transferId}}",
-                    "params": {
-                        "transferId": "{transferId}"
+                    "recipient": {
+                        "endpoint": "http://Payer-Participant/transfers/{{transferId}}",
+                        "params": {
+                            "transferId": "{transferId}"
+                        }
                     }
                 }
             end note
@@ -184,9 +192,11 @@ group Send notification to Participants
                     "transport": {
                         "type": "HTTP",
                         "method": "PUT",
-                        "endpoint": "http://Payee-Participant/transfers/{{transferId}}",
-                        "params": {
-                            "transferId": "{transferId}"
+                        "recipient": {
+                            "endpoint": "http://Payee-Participant/transfers/{{transferId}}",
+                            "params": {
+                                "transferId": "{transferId}"
+                            }
                         }
                     }
                 end note
@@ -201,9 +211,11 @@ group Send notification to Participants
                 "transport": {
                     "type": "HTTP",
                     "method": "PUT",
-                    "endpoint": "http://Payee-Participant/transfers/{{transferId}}/error",
-                    "params": {
-                        "transferId": "{transferId}"
+                    "recipient": {
+                        "endpoint": "http://Payee-Participant/transfers/{{transferId}}/error",
+                        "params": {
+                            "transferId": "{transferId}"
+                        }
                     }
                 }
             end note
@@ -217,9 +229,11 @@ group Send notification to Participants
                 "transport": {
                     "type": "HTTP",
                     "method": "PUT",
-                    "endpoint": "http://Payee-Participant/transfers/{{transferId}}/error",
-                    "params": {
-                        "transferId": "{transferId}"
+                    "recipient": {
+                        "endpoint": "http://Payee-Participant/transfers/{{transferId}}/error",
+                        "params": {
+                            "transferId": "{transferId}"
+                        }
                     }
                 }
             end note
@@ -233,9 +247,11 @@ group Send notification to Participants
                 "transport": {
                     "type": "HTTP",
                     "method": "PUT",
-                    "endpoint": "http://Payee-Participant/transfers/{{transferId}}/error",
-                    "params": {
-                        "transferId": "{transferId}"
+                    "recipient": {
+                        "endpoint": "http://Payee-Participant/transfers/{{transferId}}/error",
+                        "params": {
+                            "transferId": "{transferId}"
+                        }
                     }
                 }
             end note
@@ -249,9 +265,11 @@ group Send notification to Participants
                 "transport": {
                     "type": "HTTP",
                     "method": "PUT",
-                    "endpoint": "http://Payer-Participant/transfers/{{transferId}}/error",
-                    "params": {
-                        "transferId": "{transferId}"
+                    "recipient": {
+                        "endpoint": "http://Payer-Participant/transfers/{{transferId}}/error",
+                        "params": {
+                            "transferId": "{transferId}"
+                        }
                     }
                 }
             end note
@@ -269,9 +287,11 @@ group Send notification to Participants
                 "transport": {
                     "type": "HTTP",
                     "method": "PUT",
-                    "endpoint": "http://Payee-Participant/transfers/{{transferId}}/error",
-                    "params": {
-                        "transferId": "{transferId}"
+                    "recipient": {
+                        "endpoint": "http://Payee-Participant/transfers/{{transferId}}/error",
+                        "params": {
+                            "transferId": "{transferId}"
+                        }
                     }
                 }
             end note
@@ -286,9 +306,11 @@ group Send notification to Participants
                 "transport": {
                     "type": "HTTP",
                     "method": "PUT",
-                    "endpoint": "http://Requesting-Participant/transfers/{{transferId}}",
-                    "params": {
-                        "transferId": "{transferId}"
+                    "recipient": {
+                        "endpoint": "http://Requesting-Participant/transfers/{{transferId}}",
+                        "params": {
+                            "transferId": "{transferId}"
+                        }
                     }
                 }
             end note
@@ -302,9 +324,11 @@ group Send notification to Participants
                 "transport": {
                     "type": "HTTP",
                     "method": "PUT",
-                    "endpoint": "http://Requesting-Participant/transfers/{{transferId}}/error",
-                    "params": {
-                        "transferId": "{transferId}"
+                    "recipient": {
+                        "endpoint": "http://Requesting-Participant/transfers/{{transferId}}/error",
+                        "params": {
+                            "transferId": "{transferId}"
+                        }
                     }
                 }
             end note
@@ -336,7 +360,7 @@ group Send notification to Participants
         note right of NOTIFY_HANDLER_CMD #yellow
             "transport": {
                 "options": {
-                    "delivery-report": true,
+                    "deliveryReport": true,
                     "retry": {
                     "count": 3,
                     "type": "noDelay|exponentialDelay",
