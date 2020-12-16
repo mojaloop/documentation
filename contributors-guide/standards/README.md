@@ -20,7 +20,7 @@ To avoid confusion and guarantee cross-language interoperation, follow these rul
 - Use Pascal case or camel case for names more than two characters long depending on context (e.g. class names vs variable names). For example, use `SettlementWindow` (Class) or `settlementWindow` (Variable). 
 - You should capitalize abbreviations that consist of only two characters, such as `ID` instead of `Id` when isolated. For example, use `/transfer/{{ID}}` instead of `/transfer/{{Id}}` when representing `ID` as a URI parameter.
 - Avoid abbreviations in identifiers or parameter names. If you must use abbreviations, use camel case for abbreviations that consist of more than two characters, even if this contradicts the standard abbreviation of the word.
-- Use screaming Snack case for Enumerations. For example, use `RECORD_FUNDS_OUT_PREPARE_RESERVE`. 
+- Use screaming (capitalized) Snack case for Enumerations. For example, use `RECORD_FUNDS_OUT_PREPARE_RESERVE`. 
 
 Ref: [Microsoft - Design Guidelines for Class Library Developers](https://docs.microsoft.com/en-us/previous-versions/dotnet/netframework-1.1/141e06ef(v=vs.71)?redirectedfrom=MSDN)
 
