@@ -193,7 +193,7 @@ This design proposes the seperation of the current Notification capabilities (tr
       "deliveryReqLatency": 100, // Request latency of the successful delivery in miliseconds (optional)
       "retryAttempts": 1, // Number of retries that were necessary to delivery the message
       "response": {
-        "statusCode": "202", // error code from transport
+        "statusCode": "202", // status code from transport
         "statusDescription": "Accepted", // templated endpoint
         "headers": {
           "content-type": "application/vnd.interoperability.transfers+json;version=1.0",
