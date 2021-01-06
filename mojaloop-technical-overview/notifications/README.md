@@ -147,7 +147,7 @@ This design proposes the seperation of the current Notification capabilities (tr
         "retry": { //Retry config
           "count": 3,
           "type": "noDelay|exponentialDelay", // ref for exponentialDelay: https://developers.google.com/analytics/devguides/reporting/core/v3/errors#backoff
-          "condition": "isNetworkError|isIdempotentRequestError|isNetworkOrIdempotentRequestError" //  isNetworkOrIdempotentRequestError is default, it retries if it is a network error or a 5xx error on an idempotent request (i.e. for HTTP: GET, HEAD, OPTIONS, PUT or DELETE)
+          "condition": "isNetworkError|isIdempotentRequestError|isNetworkOrIdempotentRequestError" //  isNetworkOrIdempotentRequestError is default, it retries if it is a network error or (using HTTP as an example) 5xx error on an idempotent request (i.e GET, HEAD, OPTIONS, PUT or DELETE)
         }
       }
     },
