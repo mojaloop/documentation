@@ -35,10 +35,10 @@ This document will discuss the architecture and design of Mojaloop's Notificatio
 
 This design proposes the seperation of the current Notification capabilities (transport vs mojaloop-contextual processing) into the following components:
 
-| Components | Description | Notes |
-| --- | --- | --- |
-| Notification Evt Handler | Consumes existing Notification events, then interprates (in context of Mojaloop use-cases) those events into an appropriate NotifyCmd message to some explicit receipient. This component is stateful, and will store information of the notification events and delivery reports as required. | This component is a "Central-Service" |
-| Notification Cmd Handler | This is responsible for the "notification-engine" capabilities. This will consume and process Notification Command message produced by the NotificationEvt Handler. This component is stateless, and has no dependency on any persistence or caching stores. This allows for multiple pluggable Cmd Handlers to exist to handle different transports as required. | This component is a "Supporting-Service" |
+| Components | Description | APIs | Notes |
+| --- | --- | --- | --- |
+| Notification Evt Handler | Consumes existing Notification events, then interprates (in context of Mojaloop use-cases) those events into an appropriate NotifyCmd message to some explicit receipient. This component is stateful, and will store information of the notification events and delivery reports as required. | API operations to query stored deliveryReports | This component is a "Central-Service" |
+| Notification Cmd Handler | This is responsible for the "notification-engine" capabilities. This will consume and process Notification Command message produced by the NotificationEvt Handler. This component is stateless, and has no dependency on any persistence or caching stores. This allows for multiple pluggable Cmd Handlers to exist to handle different transports as required. This component will also manage message and transport security aspects such as TLS (Transport Layer Security) and JWS Signing for HTTP transports. | API operations to send notifications synchronously | This component is a "Supporting-Service" |
 
 
 ...
@@ -55,9 +55,9 @@ This design proposes the seperation of the current Notification capabilities (tr
 
 | Event | Description | Notes |
 | --- | --- | --- |
-| Notification | Existing Notification event currently produced by Central-Service components which is the result of some Mojaloop use-case. | . |
-| NotifyCmd | Notification Command message produced by the Notification Evt Handler, which is consumed and processed by the Notification Cmd Handler. This message is generic, and can be used for any notification purposes. It is not context aware, nor does it have any knowledge of a Mojaloop use-case. It contains only the transport specific information requires to delivery the notification. | . |
-| NotifyDelivered | Domain event message to broadcast Delivery reports to Central-Services. This event can be consumed by the Central-Services (currently the Notification Evt Handler) to persist this information to a store. | . |
+| Notification | Existing Notification event currently produced by Central-Service components which is the result of some Mojaloop use-case. |  |
+| NotifyCmd | Notification Command message produced by the Notification Evt Handler, which is consumed and processed by the Notification Cmd Handler. This message is generic, and can be used for any notification purposes. It is not context aware, nor does it have any knowledge of a Mojaloop use-case. It contains only the transport specific information requires to delivery the notification. |  |
+| NotifyDelivered | Domain event message to broadcast Delivery reports to Central-Services. This event can be consumed by the Central-Services (currently the Notification Evt Handler) to persist this information to a store. |  |
 
 ## 3. Models
 
@@ -146,8 +146,8 @@ This design proposes the seperation of the current Notification capabilities (tr
         "deliveryReport": true, // Enable delivery-reporting
         "retry": { //Retry config
           "count": 3,
-          "type": "noDelay|exponentialDelay",
-          "condition": "isNetworkError|isSafeRequestError|isIdempotentRequestError|isNetworkOrIdempotentRequestError"
+          "type": "noDelay|exponentialDelay", // ref for exponentialDelay: https://developers.google.com/analytics/devguides/reporting/core/v3/errors#backoff
+          "condition": "isNetworkError|isIdempotentRequestError|isNetworkOrIdempotentRequestError" //  isNetworkOrIdempotentRequestError is default, it retries if it is a network error or a 5xx error on an idempotent request (i.e. for HTTP: GET, HEAD, OPTIONS, PUT or DELETE)
         }
       }
     },
