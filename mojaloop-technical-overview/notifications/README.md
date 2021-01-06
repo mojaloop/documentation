@@ -190,7 +190,7 @@ This design proposes the seperation of the current Notification capabilities (tr
     "report": { // Transport information required by the notification-engine
       "requestTimestamp": 1607677081840, // UTC Timestamp of when request was received
       "deliveryTimestamp": 1607677081840, // UTC Timestamp of delivery
-      "deliveryLatency": 1607677081840, // Latency of successful delivery attempt in miliseconds (optional)
+      "deliveryReqLatency": 1607677081840, // Request latency of the successful delivery in miliseconds (optional)
       "retryAttempts": 1, // Number of retries that were necessary to delivery the message
       "response": {
         "statusCode": "202", // error code from transport
