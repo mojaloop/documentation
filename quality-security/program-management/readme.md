@@ -67,8 +67,6 @@ See [Vulnerability Disclosure Procedure](./vulnerability-disclosure-procedure.md
 
 See [Scheme Rules Guidelines](./scheme-rules-guidelines.md) for more information
 
-[ link to markdown - Scheme rules]
-
 ## 3. Standard Baselining
 
 ### 3.1 GDPR Scoping Analysis Report
