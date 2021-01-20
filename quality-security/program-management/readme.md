@@ -63,15 +63,18 @@ This section provides an overview of Mojaloop's Risk and Security Management Ini
 See [Vulnerability Disclosure Procedure](./vulnerability-disclosure-procedure.md) for more information
 
 
-## 2. Scheme Rules Risk Management Guidelines:
+## 2. Scheme Rules Risk Management, Security, Privacy and Data Confidentiality
 
-### 2.1 Risk Management, Security, Privacy and Data Confidentiality
+See [Scheme Rules Guidelines](./scheme-rules-guidelines.md) for more information
 
-[todo - not sure what should go here]
+[ link to markdown - Scheme rules]
 
 ## 3. Standard Baselining
 
 ### 3.1 GDPR Scoping Analysis Report
 
+(todo - pdf, upload both pdf and word to docs-artifacts and link to pdf)
 
 ### 3.2 PCI DSS Baseline report and recommendations – Responsibility matrix (Hub/Switch)
+
+(todo - upload excel to docs-artifacts and link to )
