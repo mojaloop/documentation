@@ -10,7 +10,7 @@ We break down this effort into the following three categories:
 
 1. [Program Management](./program-management/)
 1. [Standards + Guidelines](./standards-guidelines.md)
-1. [Reference Implementation](./reference-implementation/)
+1. [Reference Implementation](./reference-implementation.md)
 
 ## Other Links
 
