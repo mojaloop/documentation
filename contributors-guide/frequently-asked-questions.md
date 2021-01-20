@@ -139,7 +139,7 @@ Not at the moment, but this may happen in the future. Regarding correlating requ
 #### 19. How is the Mojaloop source accessible?
 
 Here are some resources to start with:
-1. Docs: https://github.com/mojaloop/documents. Note we are in the process to migrate from https://github.com/mojaloop/docs to https://github.com/mojaloop/documents.
+1. Docs: https://github.com/mojaloop/documentation.
 2. Look at the repos that have “CORE COMPONENT (Mojaloop)” in the description and these are core components. “CORE RELATED (Mojaloop)” repos are the ones that are needed to support the current Mojaloop Switch implementation/deployment.
 3. As a generic point of note, for latest code, please use the ‘develop’ branch for the time-being.
 4. Current architecture: https://github.com/mojaloop/docs/tree/master/Diagrams/ArchitectureDiagrams. Please note that these are currently being migrated to https://github.com/mojaloop/documents.

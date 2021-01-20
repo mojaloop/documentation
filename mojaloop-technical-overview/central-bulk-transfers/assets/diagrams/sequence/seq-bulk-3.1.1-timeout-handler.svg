@@ -1,0 +1,1340 @@
+<svg xmlns="http://www.w3.org/2000/svg" height="5586" preserveAspectRatio="none" style="width:1749px;height:5586px" width="1749">
+  <defs>
+    <filter height="300%" id="a" width="300%" x="-1" y="-1">
+      <feGaussianBlur result="blurOut" stdDeviation="2"/>
+      <feColorMatrix in="blurOut" result="blurOut2" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/>
+      <feOffset dx="4" dy="4" in="blurOut2" result="blurOut3"/>
+      <feBlend in="SourceGraphic" in2="blurOut3"/>
+    </filter>
+  </defs>
+  <text font-family="sans-serif" font-size="18" lengthAdjust="spacingAndGlyphs" textLength="475" x="635" y="28.708">
+    3.1.1. Timeout Handler Consume (incl. Bulk Transfer)
+  </text>
+  <path fill="#FFFFE0" stroke="#a80036" d="M46 40.953h1372.5v5539.523H46z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="111" x="676.75" y="53.02">
+    Central Service
+  </text>
+  <path fill="#FFF" filter="url(#a)" stroke="#a80036" d="M107 134.68h10v5361.203h-10zM353 4271.641h10v30h-10zM353 5436.883h10v30h-10zM479 3553.258h10v30h-10zM714 4869.828h10v30h-10zM838.5 639.336h10v287.859h-10zM838.5 987.461h10v135.664h-10zM838.5 1183.391h10v1591.891h-10zM1103.5 324.742h10v181.063h-10zM1361.5 353.875h10v122.797h-10zM1361.5 668.469h10v30h-10zM1361.5 1016.594h10v77.398h-10zM1361.5 1278.789h10v30h-10zM1361.5 1552.648h10v30h-10zM1361.5 1856.773h10v30h-10zM1361.5 2130.633h10v30h-10zM1361.5 2366.094h10v380.055h-10z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M10 141.68h1725v5354.203H10z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M40 165.813h612.5v106.664H40zM30 286.477h1490v300.594H30z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M40 520.805h441v59.266H40zM40 601.07h1630v334.125H40zM40 949.195h1528v181.93H40zM40 1145.125h1685v1638.156H40z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M785.5 1198.391H1715v1139.57H785.5zM20 2797.281h795.5v2691.602H20z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M30 2846.414h775.5v2635.469H30z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M40 2870.547h502.5v1439.094H40z"/>
+  <path fill="#FFF" d="M40 3591.258h502.5v718.383H40zM30 4316.641h775.5v1165.242H30z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M40 4338.445h755.5v1136.438H40z"/>
+  <path fill="#FFF" d="M40 4907.828h755.5v567.055H40z"/>
+  <path stroke="#a80036" stroke-dasharray="5,5" d="M112 124.68v5388.203M357.5 124.68v5388.203M483.5 124.68v5388.203M592.5 124.68v5388.203M718.5 124.68v5388.203M843.5 124.68v5388.203M1108.5 124.68v5388.203M1366.5 124.68v5388.203"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="118" x="50" y="105.081">
+    Transfer Timeout
+  </text>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="53" x="82.5" y="121.378">
+    Handler
+  </text>
+  <circle cx="112" cy="76.086" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path fill="#A80036" stroke="#a80036" d="M108 64.086l6-5-2 5 2 5-6-5z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="118" x="50" y="5524.878">
+    Transfer Timeout
+  </text>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="53" x="82.5" y="5541.175">
+    Handler
+  </text>
+  <circle cx="112" cy="5560.477" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path fill="#A80036" stroke="#a80036" d="M108 5548.477l6-5-2 5 2 5-6-5z"/>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M294.5 69.086h127v46.594h-127z"/>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M290.5 73.086h127v46.594h-127z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="39" x="334.5" y="93.081">
+    topic-
+  </text>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="113" x="297.5" y="109.378">
+    transfer-position
+  </text>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M294.5 5511.883h127v46.594h-127z"/>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M290.5 5515.883h127v46.594h-127z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="39" x="334.5" y="5535.878">
+    topic-
+  </text>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="113" x="297.5" y="5552.175">
+    transfer-position
+  </text>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M439.5 69.086h89v46.594h-89z"/>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M435.5 73.086h89v46.594h-89z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="39" x="460.5" y="93.081">
+    topic-
+  </text>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="75" x="442.5" y="109.378">
+    notification
+  </text>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M439.5 5511.883h89v46.594h-89z"/>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M435.5 5515.883h89v46.594h-89z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="39" x="460.5" y="5535.878">
+    topic-
+  </text>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="75" x="442.5" y="5552.175">
+    notification
+  </text>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M546.5 85.383h92v30.297h-92z"/>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M542.5 89.383h92v30.297h-92z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="78" x="549.5" y="109.378">
+    topic-event
+  </text>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M546.5 5511.883h92v30.297h-92z"/>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M542.5 5515.883h92v30.297h-92z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="78" x="549.5" y="5535.878">
+    topic-event
+  </text>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M656.5 69.086h125v46.594h-125z"/>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M652.5 73.086h125v46.594h-125z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="39" x="695.5" y="93.081">
+    topic-
+  </text>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="111" x="659.5" y="109.378">
+    bulk-processing
+  </text>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M656.5 5511.883h125v46.594h-125z"/>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M652.5 5515.883h125v46.594h-125z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="39" x="695.5" y="5535.878">
+    topic-
+  </text>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="111" x="659.5" y="5552.175">
+    bulk-processing
+  </text>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="90" x="795.5" y="121.378">
+    Position DAO
+  </text>
+  <circle cx="843.5" cy="92.383" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path stroke="#a80036" stroke-width="2" d="M831.5 106.383h24"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="90" x="795.5" y="5524.878">
+    Position DAO
+  </text>
+  <circle cx="843.5" cy="5544.18" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path stroke="#a80036" stroke-width="2" d="M831.5 5558.18h24"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="98" x="1056.5" y="121.378">
+    Segment DAO
+  </text>
+  <circle cx="1108.5" cy="92.383" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path stroke="#a80036" stroke-width="2" d="M1096.5 106.383h24"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="98" x="1056.5" y="5524.878">
+    Segment DAO
+  </text>
+  <circle cx="1108.5" cy="5544.18" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path stroke="#a80036" stroke-width="2" d="M1096.5 5558.18h24"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="90" x="1318.5" y="121.378">
+    Central Store
+  </text>
+  <path d="M1348.5 72.383c0-10 18-10 18-10s18 0 18 10v26c0 10-18 10-18 10s-18 0-18-10v-26" fill="#FEFECE" filter="url(#a)" stroke="#000" stroke-width="1.5"/>
+  <path d="M1348.5 72.383c0 10 18 10 18 10s18 0 18-10" fill="none" stroke="#000" stroke-width="1.5"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="90" x="1318.5" y="5524.878">
+    Central Store
+  </text>
+  <path d="M1348.5 5538.18c0-10 18-10 18-10s18 0 18 10v26c0 10-18 10-18 10s-18 0-18-10v-26" fill="#FEFECE" filter="url(#a)" stroke="#000" stroke-width="1.5"/>
+  <path d="M1348.5 5538.18c0 10 18 10 18 10s18 0 18-10" fill="none" stroke="#000" stroke-width="1.5"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#a80036" d="M107 134.68h10v5361.203h-10zM353 4271.641h10v30h-10zM353 5436.883h10v30h-10zM479 3553.258h10v30h-10zM714 4869.828h10v30h-10zM838.5 639.336h10v287.859h-10zM838.5 987.461h10v135.664h-10zM838.5 1183.391h10v1591.891h-10zM1103.5 324.742h10v181.063h-10zM1361.5 353.875h10v122.797h-10zM1361.5 668.469h10v30h-10zM1361.5 1016.594h10v77.398h-10zM1361.5 1278.789h10v30h-10zM1361.5 1552.648h10v30h-10zM1361.5 1856.773h10v30h-10zM1361.5 2130.633h10v30h-10zM1361.5 2366.094h10v380.055h-10z"/>
+  <path d="M10 141.68h240v7l-10 10H10v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M10 141.68h1725v5354.203H10z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="195" x="25" y="154.747">
+    Timeout Handler Consume
+  </text>
+  <path d="M40 165.813h232v7l-10 10H40v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M40 165.813h612.5v106.664H40z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="187" x="55" y="178.879">
+    Persist Event Information
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M580.5 200.078l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M117 204.078h469.5"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="124" y="199.012">
+    1
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="162" x="137" y="199.012">
+    Publish event information
+  </text>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M47 212.078h594.5v55.398H47z"/>
+  <path fill="#EEE" stroke="#000" stroke-width="2" d="M47 212.078h66v7l-10 10H47v-17z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="21" x="60" y="226.145">
+    ref
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="155" x="268.75" y="245.145">
+    Event Handler Consume
+  </text>
+  <path d="M30 286.477h605v7l-10 10H30v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M30 286.477h1490v300.594H30z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="560" x="45" y="299.543">
+    Get previous checkpoint of last record processed (Lower limit for inclusion)
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1091.5 320.742l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M117 324.742h980.5"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="124" y="319.676">
+    2
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="216" x="137" y="319.676">
+    Get last segment as @intervalMin
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1349.5 349.875l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M1113.5 353.875h242"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="1120.5" y="348.809">
+    3
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="216" x="1133.5" y="348.809">
+    Get last segment as @intervalMin
+  </text>
+  <path fill="#FFFFE0" filter="url(#a)" stroke="#a80036" d="M1233 366.875h267l10 41-10 42h-267l-10-42 10-41z"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="206" x="1235" y="382.942">
+    SELECT value INTO @intervalMin
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="36" x="1235" y="398.075">
+    FROM
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="65" x="1275" y="398.075">
+    segment
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="211" x="1235" y="413.207">
+    WHERE segmentType = &apos;timeout&apos;
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="142" x="1235" y="428.34">
+    AND enumeration = 0
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="263" x="1235" y="443.473">
+    AND tableName = &apos;transferStateChange&apos;
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1124.5 472.672l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M1118.5 476.672h247"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="1130.5" y="471.606">
+    4
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="128" x="1143.5" y="471.606">
+    Return @intervalMin
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M128 501.805l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M122 505.805h985.5"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="134" y="500.739">
+    5
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="128" x="147" y="500.739">
+    Return @intervalMin
+  </text>
+  <path d="M40 520.805h70v7l-10 10H40v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M40 520.805h441v59.266H40z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="25" x="55" y="533.872">
+    opt
+  </text>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="351" x="125" y="533.015">
+    [@intervalMin IS NULL =&gt; segment record NOT FOUND]
+  </text>
+  <path stroke="#a80036" d="M117 559.07h42M159 559.07v13M118 572.07h41"/>
+  <path fill="#A80036" stroke="#a80036" d="M128 568.07l-10 4 10 4-4-4z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="124" y="554.004">
+    6
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="135" x="137" y="554.004">
+    Set @intervalMin = 0
+  </text>
+  <path d="M40 601.07h130v7l-10 10H40v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M40 601.07h1630v334.125H40z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="85" x="55" y="614.137">
+    Do Cleanup
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M826.5 635.336l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M117 639.336h715.5"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="124" y="634.27">
+    7
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="313" x="137" y="634.27">
+    Clean up transferTimeout from finalised transfers
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1349.5 664.469l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M848.5 668.469h507"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="855.5" y="663.403">
+    8
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="313" x="868.5" y="663.403">
+    Clean up transferTimeout from finalised transfers
+  </text>
+  <path fill="#FFFFE0" filter="url(#a)" stroke="#a80036" d="M1082 711.469h568l10 94-10 95h-568l-10-95 10-94z"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="62" x="1084" y="727.536">
+    DELETE tt
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="36" x="1084" y="742.668">
+    FROM
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="118" x="1124" y="742.668">
+    transferTimeout
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="32" x="1246" y="742.668">
+    AS tt
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="564" x="1084" y="757.801">
+    JOIN (SELECT tsc.transferId, MAX(tsc.transferStateChangeId) maxTransferStateChangeId
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="36" x="1108" y="772.934">
+    FROM
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="118" x="1148" y="772.934">
+    transferTimeout
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="18" x="1270" y="772.934">
+    tt1
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="26" x="1108" y="788.067">
+    JOIN
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="154" x="1138" y="788.067">
+    transferStateChange
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="19" x="1296" y="788.067">
+    tsc
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="210" x="1108" y="803.2">
+    ON tsc.transferId = tt1.transferId
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="152" x="1108" y="818.332">
+    GROUP BY transferId) ts
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="195" x="1084" y="833.465">
+    ON ts.transferId = tt.transferId
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="26" x="1084" y="848.598">
+    JOIN
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="154" x="1114" y="848.598">
+    transferStateChange
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="19" x="1272" y="848.598">
+    tsc
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="402" x="1084" y="863.731">
+    ON tsc.transferStateChangeId = ts.maxTransferStateChangeId
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="459" x="1084" y="878.864">
+    WHERE tsc.transferStateId IN (&apos;RECEIVED_FULFIL&apos;, &apos;COMMITTED&apos;, &apos;FAILED&apos;
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="505" x="1100" y="893.997">
+    , &apos;EXPIRED&apos;, &apos;REJECTED&apos;, &apos;EXPIRED_PREPARED&apos;, &apos;EXPIRED_RESERVED&apos;, &apos;ABORTED&apos;)
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M128 923.195l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M122 927.195h720.5"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="134" y="922.129">
+    9
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="97" x="147" y="922.129">
+    Return success
+  </text>
+  <path d="M40 949.195h406v7l-10 10H40v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M40 949.195h1528v181.93H40z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="361" x="55" y="962.262">
+    Determine IntervalMax (Upper limit for inclusion)
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M826.5 983.46l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M117 987.461h715.5"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="124" y="982.395">
+    10
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="308" x="146" y="982.395">
+    Get last transferStateChangeId as @intervalMax
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1349.5 1012.594l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M848.5 1016.594h507"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="855.5" y="1011.528">
+    11
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="308" x="877.5" y="1011.528">
+    Get last transferStateChangeId as @intervalMax
+  </text>
+  <path fill="#FFFFE0" filter="url(#a)" stroke="#a80036" d="M1185 1029.594h363l10 19-10 19h-363l-10-19 10-19z"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="359" x="1187" y="1045.661">
+    SELECT MAX(transferStateChangeId) INTO @intervalMax
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="36" x="1187" y="1060.793">
+    FROM
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="154" x="1227" y="1060.793">
+    transferStateChange
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M859.5 1089.992l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M853.5 1093.992h512"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="865.5" y="1088.926">
+    12
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="132" x="887.5" y="1088.926">
+    Return @intervalMax
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M128 1119.125l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M122 1123.125h720.5"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="134" y="1118.059">
+    13
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="132" x="156" y="1118.059">
+    Return @intervalMax
+  </text>
+  <path d="M40 1145.125h387v7l-10 10H40v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M40 1145.125h1685v1638.156H40z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="342" x="55" y="1158.192">
+    Prepare data and return the list for expiration
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M826.5 1179.39l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M117 1183.391h715.5"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="124" y="1178.325">
+    14
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="285" x="146" y="1178.325">
+    Prepare data and get transfers to be expired
+  </text>
+  <path d="M785.5 1198.39h173v7l-10 10h-163v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M785.5 1198.391H1715v1139.57H785.5z"/>
+  <text fill="#00F" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="128" x="800.5" y="1211.457">
+    DB TRANSACTION
+  </text>
+  <path stroke="#a80036" d="M848.5 1236.656h42M890.5 1236.656v13M849.5 1249.656h41"/>
+  <path fill="#A80036" stroke="#a80036" d="M859.5 1245.656l-10 4 10 4-4-4z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="855.5" y="1231.59">
+    15
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="165" x="877.5" y="1231.59">
+    transactionTimestamp
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="50" x="1046.5" y="1231.59">
+    = now()
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1349.5 1274.79l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M848.5 1278.789h507"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="855.5" y="1273.723">
+    16
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="294" x="877.5" y="1273.723">
+    Insert all new transfers still in processing state
+  </text>
+  <path fill="#FFFFE0" filter="url(#a)" stroke="#a80036" d="M1105 1321.79h522l10 94-10 95h-522l-10-95 10-94z"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="79" x="1107" y="1337.856">
+    INSERT INTO
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="118" x="1190" y="1337.856">
+    transferTimeout
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="173" x="1308" y="1337.856">
+    (transferId, expirationDate)
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="233" x="1107" y="1352.989">
+    SELECT t.transferId, t.expirationDate
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="36" x="1107" y="1368.122">
+    FROM
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="59" x="1147" y="1368.122">
+    transfer
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="5" x="1210" y="1368.122">
+    t
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="518" x="1107" y="1383.254">
+    JOIN (SELECT transferId, MAX(transferStateChangeId) maxTransferStateChangeId
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="36" x="1131" y="1398.387">
+    FROM
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="154" x="1171" y="1398.387">
+    transferStateChange
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="295" x="1131" y="1413.52">
+    WHERE transferStateChangeId &gt; @intervalMin
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="294" x="1131" y="1428.653">
+    AND transferStateChangeId &lt;= @intervalMax
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="152" x="1131" y="1443.786">
+    GROUP BY transferId) ts
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="190" x="1107" y="1458.918">
+    ON ts.transferId = t.transferId
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="26" x="1107" y="1474.051">
+    JOIN
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="154" x="1137" y="1474.051">
+    transferStateChange
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="19" x="1295" y="1474.051">
+    tsc
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="402" x="1107" y="1489.184">
+    ON tsc.transferStateChangeId = ts.maxTransferStateChangeId
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="414" x="1107" y="1504.317">
+    WHERE tsc.transferStateId IN (&apos;RECEIVED_PREPARE&apos;, &apos;RESERVED&apos;)
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1349.5 1548.648l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M848.5 1552.648h507"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="855.5" y="1540.016">
+    17
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="213" x="877.5" y="1532.45">
+    Insert transfer state ABORTED for
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="239" x="877.5" y="1547.582">
+    expired RECEIVED_PREPARE transfers
+  </text>
+  <path fill="#FFFFE0" filter="url(#a)" stroke="#a80036" d="M1037 1595.648h658l10 109-10 110h-658l-10-110 10-109z"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="79" x="1039" y="1611.715">
+    INSERT INTO
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="154" x="1122" y="1611.715">
+    transferStateChange
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="654" x="1039" y="1626.848">
+    SELECT tt.transferId, &apos;EXPIRED_PREPARED&apos; AS transferStateId, &apos;Aborted by Timeout Handler&apos; AS reason
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="36" x="1039" y="1641.981">
+    FROM
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="118" x="1079" y="1641.981">
+    transferTimeout
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="10" x="1201" y="1641.981">
+    tt
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="35" x="1039" y="1657.114">
+    JOIN (
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="458" x="1078" y="1657.114">
+    -- Following subquery is reused 3 times and may be optimized if needed
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="545" x="1063" y="1672.247">
+    SELECT tsc1.transferId, MAX(tsc1.transferStateChangeId) maxTransferStateChangeId
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="36" x="1063" y="1687.379">
+    FROM
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="154" x="1103" y="1687.379">
+    transferStateChange
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="27" x="1261" y="1687.379">
+    tsc1
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="26" x="1063" y="1702.512">
+    JOIN
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="118" x="1093" y="1702.512">
+    transferTimeout
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="18" x="1215" y="1702.512">
+    tt1
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="218" x="1063" y="1717.645">
+    ON tt1.transferId = tsc1.transferId
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="183" x="1063" y="1732.778">
+    GROUP BY tsc1.transferId) ts
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="195" x="1039" y="1747.911">
+    ON ts.transferId = tt.transferId
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="26" x="1039" y="1763.043">
+    JOIN
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="154" x="1069" y="1763.043">
+    transferStateChange
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="19" x="1227" y="1763.043">
+    tsc
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="402" x="1039" y="1778.176">
+    ON tsc.transferStateChangeId = ts.maxTransferStateChangeId
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="336" x="1039" y="1793.309">
+    WHERE tt.expirationDate &lt; {transactionTimestamp}
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="304" x="1039" y="1808.442">
+    AND tsc.transferStateId = &apos;RECEIVED_PREPARE&apos;
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1349.5 1852.773l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M848.5 1856.773h507"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="855.5" y="1844.141">
+    18
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="205" x="877.5" y="1836.575">
+    Insert transfer state EXPIRED for
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="180" x="877.5" y="1851.707">
+    expired RESERVED transfers
+  </text>
+  <path fill="#FFFFE0" filter="url(#a)" stroke="#a80036" d="M1037 1899.773h658l10 102-10 102h-658l-10-102 10-102z"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="79" x="1039" y="1915.84">
+    INSERT INTO
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="154" x="1122" y="1915.84">
+    transferStateChange
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="654" x="1039" y="1930.973">
+    SELECT tt.transferId, &apos;RESERVED_TIMEOUT&apos; AS transferStateId, &apos;Expired by Timeout Handler&apos; AS reason
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="36" x="1039" y="1946.106">
+    FROM
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="118" x="1079" y="1946.106">
+    transferTimeout
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="10" x="1201" y="1946.106">
+    tt
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="580" x="1039" y="1961.239">
+    JOIN (SELECT tsc1.transferId, MAX(tsc1.transferStateChangeId) maxTransferStateChangeId
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="36" x="1063" y="1976.372">
+    FROM
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="154" x="1103" y="1976.372">
+    transferStateChange
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="27" x="1261" y="1976.372">
+    tsc1
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="26" x="1063" y="1991.504">
+    JOIN
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="118" x="1093" y="1991.504">
+    transferTimeout
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="18" x="1215" y="1991.504">
+    tt1
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="218" x="1063" y="2006.637">
+    ON tt1.transferId = tsc1.transferId
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="183" x="1063" y="2021.77">
+    GROUP BY tsc1.transferId) ts
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="195" x="1039" y="2036.903">
+    ON ts.transferId = tt.transferId
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="26" x="1039" y="2052.036">
+    JOIN
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="154" x="1069" y="2052.036">
+    transferStateChange
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="19" x="1227" y="2052.036">
+    tsc
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="402" x="1039" y="2067.169">
+    ON tsc.transferStateChangeId = ts.maxTransferStateChangeId
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="336" x="1039" y="2082.301">
+    WHERE tt.expirationDate &lt; {transactionTimestamp}
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="245" x="1039" y="2097.434">
+    AND tsc.transferStateId = &apos;RESERVED&apos;
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1349.5 2126.633l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M848.5 2130.633h507"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="855.5" y="2125.567">
+    19
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="319" x="877.5" y="2125.567">
+    Update segment table to be used for the next run
+  </text>
+  <path fill="#FFFFE0" filter="url(#a)" stroke="#a80036" d="M1153 2173.633h427l10 79-10 80h-427l-10-80 10-79z"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="123" x="1155" y="2189.7">
+    IF @intervalMin = 0
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="45" x="1171" y="2204.832">
+    INSERT
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="30" x="1171" y="2219.965">
+    INTO
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="65" x="1205" y="2219.965">
+    segment
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="308" x="1270" y="2219.965">
+    (segmentType, enumeration, tableName, value)
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="380" x="1171" y="2235.098">
+    VALUES (&apos;timeout&apos;, 0, &apos;transferStateChange&apos;, @intervalMax)
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="32" x="1155" y="2250.231">
+    ELSE
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="52" x="1171" y="2265.364">
+    UPDATE
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="65" x="1227" y="2265.364">
+    segment
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="167" x="1171" y="2280.497">
+    SET value = @intervalMax
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="211" x="1171" y="2295.629">
+    WHERE segmentType = &apos;timeout&apos;
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="142" x="1171" y="2310.762">
+    AND enumeration = 0
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="263" x="1171" y="2325.895">
+    AND tableName = &apos;transferStateChange&apos;
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1349.5 2362.094l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M848.5 2366.094h507"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="855.5" y="2361.028">
+    20
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="326" x="877.5" y="2361.028">
+    Get list of transfers to be expired with current state
+  </text>
+  <path fill="#FFFFE0" filter="url(#a)" stroke="#a80036" d="M1074 2379.094h584l10 170-10 170h-584l-10-170 10-170z"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="492" x="1076" y="2395.161">
+    SELECT tt.*, tsc.transferStateId, tp1.participantCurrencyId payerParticipantId,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="405" x="1108" y="2410.294">
+    tp2.participantCurrencyId payeeParticipantId, bta.bulkTransferId
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="36" x="1076" y="2425.426">
+    FROM
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="118" x="1116" y="2425.426">
+    transferTimeout
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="10" x="1238" y="2425.426">
+    tt
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="580" x="1076" y="2440.559">
+    JOIN (SELECT tsc1.transferId, MAX(tsc1.transferStateChangeId) maxTransferStateChangeId
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="36" x="1108" y="2455.692">
+    FROM
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="154" x="1148" y="2455.692">
+    transferStateChange
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="27" x="1306" y="2455.692">
+    tsc1
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="26" x="1108" y="2470.825">
+    JOIN
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="118" x="1138" y="2470.825">
+    transferTimeout
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="18" x="1260" y="2470.825">
+    tt1
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="218" x="1108" y="2485.957">
+    ON tt1.transferId = tsc1.transferId
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="183" x="1108" y="2501.09">
+    GROUP BY tsc1.transferId) ts
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="195" x="1076" y="2516.223">
+    ON ts.transferId = tt.transferId
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="26" x="1076" y="2531.356">
+    JOIN
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="154" x="1106" y="2531.356">
+    transferStateChange
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="19" x="1264" y="2531.356">
+    tsc
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="402" x="1076" y="2546.489">
+    ON tsc.transferStateChangeId = ts.maxTransferStateChangeId
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="26" x="1076" y="2561.622">
+    JOIN
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="140" x="1106" y="2561.622">
+    transferParticipant
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="21" x="1250" y="2561.622">
+    tp1
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="204" x="1076" y="2576.754">
+    ON tp1.transferId = tt.transferId
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="360" x="1076" y="2591.887">
+    AND tp1.transferParticipantRoleTypeId = {PAYER_DFSP}
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="321" x="1076" y="2607.02">
+    AND tp1.ledgerEntryTypeId = {PRINCIPLE_VALUE}
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="26" x="1076" y="2622.153">
+    JOIN
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="140" x="1106" y="2622.153">
+    transferParticipant
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="21" x="1250" y="2622.153">
+    tp2
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="204" x="1076" y="2637.286">
+    ON tp2.transferId = tt.transferId
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="360" x="1076" y="2652.419">
+    AND tp2.transferParticipantRoleTypeId = {PAYEE_DFSP}
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="321" x="1076" y="2667.551">
+    AND tp2.ledgerEntryTypeId = {PRINCIPLE_VALUE}
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="59" x="1076" y="2682.684">
+    LEFT JOIN
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="177" x="1139" y="2682.684">
+    bulkTransferAssociation
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="21" x="1320" y="2682.684">
+    bta
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="204" x="1076" y="2697.817">
+    ON bta.transferId = tt.transferId
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="336" x="1076" y="2712.95">
+    WHERE tt.expirationDate &lt; {transactionTimestamp}
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M859.5 2742.148l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M853.5 2746.148h512"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="865.5" y="2741.082">
+    21
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="42" x="887.5" y="2741.082">
+    Return
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="144" x="933.5" y="2741.082">
+    transferTimeoutList
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M128 2771.281l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M122 2775.281h720.5"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="134" y="2770.215">
+    22
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="42" x="156" y="2770.215">
+    Return
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="144" x="202" y="2770.215">
+    transferTimeoutList
+  </text>
+  <path d="M20 2797.281h77v7l-10 10H20v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M20 2797.281h795.5v2691.602H20z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="32" x="35" y="2810.348">
+    loop
+  </text>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="183" x="112" y="2809.492">
+    [for each transfer in the list]
+  </text>
+  <path d="M30 2846.414h64v7l-10 10H30v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M30 2846.414h775.5v2635.469H30z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19" x="45" y="2859.481">
+    alt
+  </text>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="412" x="109" y="2858.624">
+    [transferTimeoutList.bulkTransferId == NULL (Regular Transfer)]
+  </text>
+  <path d="M40 2870.547h64v7l-10 10H40v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M40 2870.547h502.5v1439.094H40z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19" x="55" y="2883.614">
+    alt
+  </text>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="263" x="119" y="2882.757">
+    [transferStateId == &apos;RECEIVED_PREPARE&apos;]
+  </text>
+  <path d="M122 2892.68v630h404v-620l-10-10H122" fill="#FF0" filter="url(#a)" stroke="#a80036"/>
+  <path d="M516 2892.68v10h10l-10-10" fill="#FF0" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="61" x="128" y="2909.747">
+    Message:
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="128" y="2924.879">
+    {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="106" x="144" y="2940.012">
+    id: &lt;transferId&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="179" x="144" y="2955.145">
+    from: &lt;payerParticipantId&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="165" x="144" y="2970.278">
+    to: &lt;payeeParticipantId&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="139" x="144" y="2985.411">
+    type: application/json,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="65" x="144" y="3000.544">
+    content: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="68" x="160" y="3015.676">
+    headers: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="234" x="176" y="3030.809">
+    Content-Length: &lt;Content-Length&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="206" x="176" y="3045.942">
+    Content-Type: &lt;Content-Type&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="96" x="176" y="3061.075">
+    Date: &lt;Date&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="242" x="176" y="3076.207">
+    X-Forwarded-For: &lt;X-Forwarded-For&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="224" x="176" y="3091.34">
+    FSPIOP-Source: &lt;FSPIOP-Source&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="280" x="176" y="3106.473">
+    FSPIOP-Destination: &lt;FSPIOP-Destination&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="268" x="176" y="3121.606">
+    FSPIOP-Encryption: &lt;FSPIOP-Encryption&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="258" x="176" y="3136.739">
+    FSPIOP-Signature: &lt;FSPIOP-Signature&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="176" x="176" y="3151.872">
+    FSPIOP-URI: &lt;FSPIOP-URI&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="300" x="176" y="3167.004">
+    FSPIOP-HTTP-Method: &lt;FSPIOP-HTTP-Method&gt;
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="12" x="160" y="3182.137">
+    },
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="66" x="160" y="3197.27">
+    payload: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="130" x="176" y="3212.403">
+    &quot;errorInformation&quot;: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="118" x="192" y="3227.536">
+    &quot;errorCode&quot;: 3300,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="270" x="192" y="3242.669">
+    &quot;errorDescription&quot;: &quot;Generic expired error&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="319" x="192" y="3257.801">
+    &quot;extensionList&quot;: &lt;transferMessage.extensionList&gt;
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="176" y="3272.934">
+    }
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="160" y="3288.067">
+    }
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="12" x="144" y="3303.2">
+    },
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="79" x="144" y="3318.332">
+    metadata: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="52" x="160" y="3333.465">
+    event: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="72" x="176" y="3348.598">
+    id: &lt;uuid&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="110" x="176" y="3363.731">
+    type: notification,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="160" x="176" y="3378.864">
+    action: timeout-received,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="167" x="176" y="3393.997">
+    createdAt: &lt;timestamp&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="49" x="176" y="3409.129">
+    state: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="89" x="192" y="3424.262">
+    status: &apos;error&apos;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="233" x="192" y="3439.395">
+    code: &lt;errorInformation.errorCode&gt;
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="311" x="192" y="3454.528">
+    description: &lt;errorInformation.errorDescription&gt;
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="176" y="3469.661">
+    }
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="160" y="3484.794">
+    }
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="144" y="3499.926">
+    }
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="128" y="3515.059">
+    }
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M467 3549.258l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M117 3553.258h356"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="124" y="3548.192">
+    23
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="161" x="146" y="3548.192">
+    Publish Notification event
+  </text>
+  <path stroke="#000" stroke-dasharray="2,2" d="M40 3592.258h502.5"/>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="204" x="45" y="3602.468">
+    [transferStateId == &apos;RESERVED&apos;]
+  </text>
+  <path d="M122 3611.063v630h404v-620l-10-10H122" fill="#FF0" filter="url(#a)" stroke="#a80036"/>
+  <path d="M516 3611.063v10h10l-10-10" fill="#FF0" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="61" x="128" y="3628.129">
+    Message:
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="128" y="3643.262">
+    {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="106" x="144" y="3658.395">
+    id: &lt;transferId&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="179" x="144" y="3673.528">
+    from: &lt;payerParticipantId&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="165" x="144" y="3688.661">
+    to: &lt;payeeParticipantId&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="139" x="144" y="3703.794">
+    type: application/json,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="65" x="144" y="3718.926">
+    content: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="68" x="160" y="3734.059">
+    headers: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="234" x="176" y="3749.192">
+    Content-Length: &lt;Content-Length&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="206" x="176" y="3764.325">
+    Content-Type: &lt;Content-Type&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="96" x="176" y="3779.457">
+    Date: &lt;Date&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="242" x="176" y="3794.59">
+    X-Forwarded-For: &lt;X-Forwarded-For&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="224" x="176" y="3809.723">
+    FSPIOP-Source: &lt;FSPIOP-Source&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="280" x="176" y="3824.856">
+    FSPIOP-Destination: &lt;FSPIOP-Destination&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="268" x="176" y="3839.989">
+    FSPIOP-Encryption: &lt;FSPIOP-Encryption&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="258" x="176" y="3855.122">
+    FSPIOP-Signature: &lt;FSPIOP-Signature&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="176" x="176" y="3870.254">
+    FSPIOP-URI: &lt;FSPIOP-URI&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="300" x="176" y="3885.387">
+    FSPIOP-HTTP-Method: &lt;FSPIOP-HTTP-Method&gt;
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="12" x="160" y="3900.52">
+    },
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="66" x="160" y="3915.653">
+    payload: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="130" x="176" y="3930.786">
+    &quot;errorInformation&quot;: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="118" x="192" y="3945.919">
+    &quot;errorCode&quot;: 3300,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="270" x="192" y="3961.051">
+    &quot;errorDescription&quot;: &quot;Generic expired error&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="319" x="192" y="3976.184">
+    &quot;extensionList&quot;: &lt;transferMessage.extensionList&gt;
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="176" y="3991.317">
+    }
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="160" y="4006.45">
+    }
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="12" x="144" y="4021.582">
+    },
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="79" x="144" y="4036.715">
+    metadata: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="52" x="160" y="4051.848">
+    event: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="72" x="176" y="4066.981">
+    id: &lt;uuid&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="90" x="176" y="4082.114">
+    type: position,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="162" x="176" y="4097.247">
+    action: timeout-reserved,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="167" x="176" y="4112.379">
+    createdAt: &lt;timestamp&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="49" x="176" y="4127.512">
+    state: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="89" x="192" y="4142.645">
+    status: &apos;error&apos;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="233" x="192" y="4157.778">
+    code: &lt;errorInformation.errorCode&gt;
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="311" x="192" y="4172.911">
+    description: &lt;errorInformation.errorDescription&gt;
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="176" y="4188.043">
+    }
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="160" y="4203.176">
+    }
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="144" y="4218.309">
+    }
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="128" y="4233.442">
+    }
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M341 4267.64l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M117 4271.641h230"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="124" y="4266.575">
+    24
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="195" x="146" y="4266.575">
+    Route &amp; Publish Position event
+  </text>
+  <path stroke="#000" stroke-dasharray="2,2" d="M30 4317.641h775.5"/>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="208" x="35" y="4327.851">
+    [Individual Transfer from a Bulk]
+  </text>
+  <path d="M40 4338.445h64v7l-10 10H40v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M40 4338.445h755.5v1136.438H40z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19" x="55" y="4351.512">
+    alt
+  </text>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="263" x="119" y="4350.656">
+    [transferStateId == &apos;RECEIVED_PREPARE&apos;]
+  </text>
+  <path d="M122 4360.578v479h404v-469l-10-10H122" fill="#FF0" filter="url(#a)" stroke="#a80036"/>
+  <path d="M516 4360.578v10h10l-10-10" fill="#FF0" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="61" x="128" y="4377.645">
+    Message:
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="128" y="4392.778">
+    {
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="11" x="144" y="4407.911">
+    id
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="251" x="155" y="4407.911">
+    : &lt;transferTimeoutList.bulkTransferId&gt;,
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="61" x="144" y="4423.043">
+    transferId
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="223" x="205" y="4423.043">
+    : &lt;transferTimeoutList.transferId&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="179" x="144" y="4438.176">
+    from: &lt;payerParticipantId&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="165" x="144" y="4453.309">
+    to: &lt;payeeParticipantId&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="139" x="144" y="4468.442">
+    type: application/json,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="65" x="144" y="4483.575">
+    content: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="218" x="160" y="4498.708">
+    headers: &lt;bulkTransferHeaders&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="66" x="160" y="4513.84">
+    payload: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="130" x="176" y="4528.973">
+    &quot;errorInformation&quot;: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="118" x="192" y="4544.106">
+    &quot;errorCode&quot;: 3300,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="270" x="192" y="4559.239">
+    &quot;errorDescription&quot;: &quot;Generic expired error&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="319" x="192" y="4574.372">
+    &quot;extensionList&quot;: &lt;transferMessage.extensionList&gt;
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="176" y="4589.504">
+    }
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="160" y="4604.637">
+    }
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="12" x="144" y="4619.77">
+    },
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="79" x="144" y="4634.903">
+    metadata: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="52" x="160" y="4650.036">
+    event: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="72" x="176" y="4665.168">
+    id: &lt;uuid&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="140" x="176" y="4680.301">
+    type: bulk-processing,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="191" x="176" y="4695.434">
+    action: bulk-timeout-received,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="167" x="176" y="4710.567">
+    createdAt: &lt;timestamp&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="49" x="176" y="4725.7">
+    state: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="89" x="192" y="4740.833">
+    status: &apos;error&apos;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="233" x="192" y="4755.965">
+    code: &lt;errorInformation.errorCode&gt;
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="311" x="192" y="4771.098">
+    description: &lt;errorInformation.errorDescription&gt;
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="176" y="4786.231">
+    }
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="160" y="4801.364">
+    }
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="144" y="4816.497">
+    }
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="128" y="4831.629">
+    }
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M702 4865.828l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M117 4869.828h591"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="124" y="4864.762">
+    25
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="201" x="146" y="4864.762">
+    Publish to Bulk Processing topic
+  </text>
+  <path stroke="#000" stroke-dasharray="2,2" d="M40 4908.828h755.5"/>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="204" x="45" y="4919.039">
+    [transferStateId == &apos;RESERVED&apos;]
+  </text>
+  <path d="M122 4927.633v479h404v-469l-10-10H122" fill="#FF0" filter="url(#a)" stroke="#a80036"/>
+  <path d="M516 4927.633v10h10l-10-10" fill="#FF0" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="61" x="128" y="4944.7">
+    Message:
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="128" y="4959.833">
+    {
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="11" x="144" y="4974.965">
+    id
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="251" x="155" y="4974.965">
+    : &lt;transferTimeoutList.bulkTransferId&gt;,
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="61" x="144" y="4990.098">
+    transferId
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="223" x="205" y="4990.098">
+    : &lt;transferTimeoutList.transferId&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="179" x="144" y="5005.231">
+    from: &lt;payerParticipantId&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="165" x="144" y="5020.364">
+    to: &lt;payeeParticipantId&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="139" x="144" y="5035.497">
+    type: application/json,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="65" x="144" y="5050.629">
+    content: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="222" x="160" y="5065.762">
+    headers: &lt;bulkTransferHeaders&gt;,,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="66" x="160" y="5080.895">
+    payload: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="130" x="176" y="5096.028">
+    &quot;errorInformation&quot;: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="118" x="192" y="5111.161">
+    &quot;errorCode&quot;: 3300,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="270" x="192" y="5126.293">
+    &quot;errorDescription&quot;: &quot;Generic expired error&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="319" x="192" y="5141.426">
+    &quot;extensionList&quot;: &lt;transferMessage.extensionList&gt;
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="176" y="5156.559">
+    }
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="160" y="5171.692">
+    }
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="12" x="144" y="5186.825">
+    },
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="79" x="144" y="5201.958">
+    metadata: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="52" x="160" y="5217.09">
+    event: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="72" x="176" y="5232.223">
+    id: &lt;uuid&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="90" x="176" y="5247.356">
+    type: position,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="193" x="176" y="5262.489">
+    action: bulk-timeout-reserved,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="167" x="176" y="5277.622">
+    createdAt: &lt;timestamp&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="49" x="176" y="5292.754">
+    state: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="89" x="192" y="5307.887">
+    status: &apos;error&apos;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="233" x="192" y="5323.02">
+    code: &lt;errorInformation.errorCode&gt;
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="311" x="192" y="5338.153">
+    description: &lt;errorInformation.errorDescription&gt;
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="176" y="5353.286">
+    }
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="160" y="5368.418">
+    }
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="144" y="5383.551">
+    }
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="128" y="5398.684">
+    }
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M341 5432.883l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M117 5436.883h230"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="124" y="5431.817">
+    26
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="195" x="146" y="5431.817">
+    Route &amp; Publish Position event
+  </text>
+</svg>

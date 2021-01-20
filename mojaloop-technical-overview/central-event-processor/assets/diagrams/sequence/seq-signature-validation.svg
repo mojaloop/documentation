@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" height="255" preserveAspectRatio="none" style="width:299px;height:255px" width="299">
+  <defs>
+    <filter height="300%" id="a" width="300%" x="-1" y="-1">
+      <feGaussianBlur result="blurOut" stdDeviation="2"/>
+      <feColorMatrix in="blurOut" result="blurOut2" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/>
+      <feOffset dx="4" dy="4" in="blurOut2" result="blurOut3"/>
+      <feBlend in="SourceGraphic" in2="blurOut3"/>
+    </filter>
+  </defs>
+  <text font-family="sans-serif" font-size="18" lengthAdjust="spacingAndGlyphs" textLength="178" x="58" y="28.708">
+    Signature Validation
+  </text>
+  <path stroke="#a80036" stroke-dasharray="5,5" d="M30 75.25v136.531M266 75.25v136.531"/>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M5 39.953h46V70.25H5z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="32" x="12" y="59.948">
+    Alice
+  </text>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M5 210.781h46v30.297H5z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="32" x="12" y="230.776">
+    Alice
+  </text>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M243 39.953h42V70.25h-42z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="28" x="250" y="59.948">
+    Bob
+  </text>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M243 210.781h42v30.297h-42z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="28" x="250" y="230.776">
+    Bob
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M254 102.383l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M30 106.383h230"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="149" x="37" y="101.317">
+    Authentication Request
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M41 131.516l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M35 135.516h230"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="159" x="47" y="130.45">
+    Authentication Response
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M254 160.648l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M30 164.648h230"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="203" x="37" y="159.583">
+    Another authentication Request
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M41 189.781l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M35 193.781h230"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="212" x="47" y="188.715">
+    another authentication Response
+  </text>
+</svg>
