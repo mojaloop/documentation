@@ -1,7 +1,7 @@
 # Security, Risk Management, and Data Confidentiality
 
-> Note: this document is a reference from [todo] -
-> Please refer to ... for more information
+> Note: this document is a reference from the [Scheme Business Rules](https://docs.mojaloop.io/mojaloop-business-docs/documents/scheme-business-rules.html)
+> Please refer to [Mojaloop Business Docs](https://docs.mojaloop.io/mojaloop-business-docs/) for more information and context
 
 ## 1.1 Confidentiality and Protection of Personal Information
 - Confidential Information of the Scheme that is disclosed to Participants will be held in confidence by Participants and will be used only for the purposes permitted by the Rules. Scheme Confidential Information may include proprietary technology and other matters designated by the Scheme.
