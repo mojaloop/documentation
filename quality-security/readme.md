@@ -8,9 +8,9 @@ The Quality and Security effort in Mojaloop is focused on delivering high qualit
 
 We break down this effort into the following three categories:
 
-1. [Program Management](./program-management.md)
-1. [Standards + Guidelines](./standards-guidelines.md)
-1. [Reference Implementation](./reference-implementation.md)
+1. [Program Management](./program-management/)
+1. [Standards + Guidelines](./standards-guidelines/)
+1. [Reference Implementation](./reference-implementation/)
 
 ## Other Links
 
