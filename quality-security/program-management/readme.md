@@ -60,7 +60,7 @@ This section provides an overview of Mojaloop's Risk and Security Management Ini
 
 ### 1.4 Vulnerability disclosure procedure
 
-See [Vulnerability Disclosure Procedure](./vulnerability-disclosure-procedure) for more information
+See [Vulnerability Disclosure Procedure](./vulnerability-disclosure-procedure/) for more information
 
 
 ## 2. Scheme Rules Risk Management Guidelines:
