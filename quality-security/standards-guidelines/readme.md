@@ -24,7 +24,7 @@
 c) [Database Security Standard](https://github.com/mojaloop/documentation-artifacts/blob/master/reference/database_security_standard_v1.0.pdf)
 ## 4. Security Architectural Reviews
 - 1. [Mojaloop Portals](https://github.com/mojaloop/documentation-artifacts/blob/master/reference/portal_threat_models_v1.0.pdf)
-- 2. [PISP Linking and Transfer Flows](https://github.com/mojaloop/documentation-artifacts/blob/master/reference/pisp_thread_analysis_v1.0.pdf))
+- 2. [PISP Linking and Transfer Flows](https://github.com/mojaloop/documentation-artifacts/blob/master/reference/pisp_thread_analysis_v1.0.pdf)
 
 ## 5. Secure Network Access 
 
