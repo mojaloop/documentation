@@ -2,7 +2,7 @@
 
 This section provides an overview of Mojaloop's Risk and Security Management Initiatives.
 
-**Who is this for?**
+**Who is this for?**  
 *Risk Management, Compliance, Governance, Regulatory, and Leadership Stakeholders*
 
 ## 1. Mojaloop Data Security and Privacy Program:
@@ -67,19 +67,11 @@ See [Vulnerability Disclosure Procedure](./vulnerability-disclosure-procedure.md
 
 See [Scheme Rules Guidelines](./scheme-rules-guidelines.md) for more information
 
-## 3. Standard Baselining
+## 3. Standard Baselining Reports
 
-### 3.1 GDPR Scoping Analysis Report
-
-(todo - pdf, upload both pdf and word to docs-artifacts and link to pdf)
-
-### 3.2 PCI DSS Baseline report and recommendations – Responsibility matrix (Hub/Switch)
-
-(todo - upload excel to docs-artifacts and link to )
-
+- [GDPR Scoping Analysis Report](https://raw.githubusercontent.com/mojaloop/documentation-artifacts/master/reference/gdpr_scope_analysis_report.pdf)
+- [PCI DSS Baseline report and recommendations – Responsibility matrix (Hub/Switch)](https://github.com/mojaloop/documentation-artifacts/raw/mojaloop/reference/Mojaloop%20PCI%20DSS%20Compliace%20Baseline%20Requirement%20Overall%20Report%20v1.0%2005012021.xlsx)
 
 ## 4. Code Security Overview
 
-Refer to this presentation on 
-
-<!-- TODO: link to pdf of older presentation in /reference-implementation -->
+Refer to [this presentation](https://raw.githubusercontent.com/mojaloop/documentation-artifacts/master/reference/code_security_overview.pdf) for an overview of the Code Security Practices in the Mojaloop Community.
