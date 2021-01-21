@@ -3,14 +3,14 @@
 > Standards and guidelines are basically recommended security measures and controls to be considered for implementation by the switch core team and hub operators. The target audience is architects, implementation engineers, security management and IT Ops.
 
 ## 1. Design Principles
-- 1. Coding Standards (todo: link to existing doc)
+- 1. [Coding Standards](../contributors-guide/standards)
 
 ## 2. Scheme Trust Architecture 
 - 1. [Encryption Standard](https://docs.mojaloop.io/mojaloop-specification/documents/Encryption.html)
-- 1. [Signature Standard](https://docs.mojaloop.io/mojaloop-specification/documents/Signature.html)
-- 1. [PKI Best Practice Standard](https://docs.mojaloop.io/mojaloop-specification/documents/PKI%20Best%20Practices.html)
-- 1. [Ledger Cryptographic interlock](https://docs.mojaloop.io/mojaloop-specification/documents/API%20Definition%20v1.0.html#4-interledger-protocol)
-- 1. Cryptographic Processing Module (CPM) Designs:
+- 2. [Signature Standard](https://docs.mojaloop.io/mojaloop-specification/documents/Signature.html)
+- 3. [PKI Best Practice Standard](https://docs.mojaloop.io/mojaloop-specification/documents/PKI%20Best%20Practices.html)
+- 4. [Ledger Cryptographic interlock](https://docs.mojaloop.io/mojaloop-specification/documents/API%20Definition%20v1.0.html#4-interledger-protocol)
+- 5. Cryptographic Processing Module (CPM) Designs:
     - [CPM High Level Design](https://github.com/mojaloop/documentation-artifacts/blob/master/reference/cpm_high_level_design_v1.0.pdf)
     - [CPM Techincal Spec](https://github.com/mojaloop/documentation-artifacts/blob/master/reference/cpm_design_technical_spec_v1.0.pdf)
     - [CPM Design Framework](https://github.com/mojaloop/documentation-artifacts/blob/master/reference/cpm_design_framework_v1.0.pdf)
