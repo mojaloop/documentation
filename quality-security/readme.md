@@ -14,6 +14,4 @@ We break down this effort into the following three categories:
 
 ## Other Links
 
-[ todo - fix links ]
-- Presentation on [Mojaloop Application Security Summary](https://github.com/mojaloop/documentation-artifacts/blob/master/presentations/discussion-docs/Mojaloop_Application_Security_Summary-27Jan2020.pdf)
-- [Summary of the Snyk investigation](./snyk_investigation)
+- [Summary of the Snyk investigation](./snyk_investigation.md)
