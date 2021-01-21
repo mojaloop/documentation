@@ -6,11 +6,11 @@
 - 1. Coding Standards (todo: link to existing doc)
 
 ## 2. Scheme Trust Architecture 
-- a) [Encryption Standard](https://docs.mojaloop.io/mojaloop-specification/documents/Encryption.html)
-- b) [Signature Standard](https://docs.mojaloop.io/mojaloop-specification/documents/Signature.html)
-- c) [PKI Best Practice Standard](https://docs.mojaloop.io/mojaloop-specification/documents/PKI%20Best%20Practices.html)
-- d) [Ledger Cryptographic interlock](https://docs.mojaloop.io/mojaloop-specification/documents/API%20Definition%20v1.0.html#4-interledger-protocol)
-- e) Cryptographic Processing Module (CPM) Designs:
+- 1. [Encryption Standard](https://docs.mojaloop.io/mojaloop-specification/documents/Encryption.html)
+- 1. [Signature Standard](https://docs.mojaloop.io/mojaloop-specification/documents/Signature.html)
+- 1. [PKI Best Practice Standard](https://docs.mojaloop.io/mojaloop-specification/documents/PKI%20Best%20Practices.html)
+- 1. [Ledger Cryptographic interlock](https://docs.mojaloop.io/mojaloop-specification/documents/API%20Definition%20v1.0.html#4-interledger-protocol)
+- 1. Cryptographic Processing Module (CPM) Designs:
     - [CPM High Level Design](https://github.com/mojaloop/documentation-artifacts/blob/master/reference/cpm_high_level_design_v1.0.pdf)
     - [CPM Techincal Spec](https://github.com/mojaloop/documentation-artifacts/blob/master/reference/cpm_design_technical_spec_v1.0.pdf)
     - [CPM Design Framework](https://github.com/mojaloop/documentation-artifacts/blob/master/reference/cpm_design_framework_v1.0.pdf)
