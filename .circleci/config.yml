@@ -147,7 +147,7 @@ jobs:
           command: |
             npm run gitbook:build
       - save_cache:
-          key: dependency-cache-{{ checksum "package-lock.json" }}
+          key: build-cache-{{ checksum "package-lock.json" }}
           paths:
             - _book
   
@@ -196,7 +196,7 @@ jobs:
             echo 'export GIT_CI_EMAIL=$GIT_CI_EMAIL' >> $BASH_ENV
       - restore_cache:
           keys:
-          - build-cache-{{ .Revision }}
+          - build-cache-{{ checksum "package-lock.json" }}
       - run:
           <<: *defaults_git_identity_setup
       - run:
