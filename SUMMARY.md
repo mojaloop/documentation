@@ -168,7 +168,12 @@
   * [Scrum-of-scrum meeting notes](meeting-notes/scrum-of-scrum-notes.md)
   * [DA meeting notes](meeting-notes/da-notes.md)
   * [CCB Notes](meeting-notes/ccb-notes.md)
-* [Code Quality and Security](code_quality_security/readme.md)
+* [Code Quality and Security](quality-security/readme.md)
+  * [Program Management](quality-security/program-management/readme.md)
+    * [Vulnerability Reporting](quality-security/program-management/vulnerability-disclosure-procedure.md)
+    * [Scheme Rules Guidelines](quality-security/program-management/scheme-rules-guidelines.md)
+  * [Standards + Guidelines](quality-security/standards-guidelines/readme.md)
+  * [Reference Implementation](quality-security/reference-implementation.md)
 * [Frequently Asked Questions](contributors-guide/frequently-asked-questions.md)
 * [Glossary of Terms](glossary.md)
 <!--* [Changelog](changelog.md)-->

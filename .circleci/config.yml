@@ -196,7 +196,7 @@ jobs:
             echo 'export GIT_CI_EMAIL=$GIT_CI_EMAIL' >> $BASH_ENV
       - restore_cache:
           keys:
-          - build-cache-{{ .Revision }}
+          - dependency-cache-{{ checksum "package-lock.json" }}
       - run:
           <<: *defaults_git_identity_setup
       - run:
