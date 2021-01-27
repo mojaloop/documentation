@@ -53,10 +53,10 @@ This section provides an overview of Mojaloop's Risk and Security Management Ini
 ### 1.3 PI Reports (8 – 10)
 
 1. [PI 8](https://raw.githubusercontent.com/mojaloop/documentation-artifacts/master/presentations/September%202019%20PI-8_OSS_community%20session/cqs_pi_08_report.pdf)
-1. [PI 9](https://raw.githubusercontent.com/mojaloop/documentation-artifacts/master/presentations/January%202020%20OSS%20Community%20Session/cqs_pi_09_report.pdf)
-1. [PI 10](https://github.com/mojaloop/documentation-artifacts/blob/master/presentations/April%202020%20Community%20Event/Presentations/code_quality_and_security-PI%2010%20final.pdf)
-1. [PI 11](https://github.com/mojaloop/documentation-artifacts/blob/master/presentations/July%202020%20Community%20Event/Presentations/Code%20Quality%20Security%20PI%2010%20Report%20-%2020%20July%202020%20v1.9%20Final.pdf)
-1. PI 12 _(link coming soon)_
+2. [PI 9](https://raw.githubusercontent.com/mojaloop/documentation-artifacts/master/presentations/January%202020%20OSS%20Community%20Session/cqs_pi_09_report.pdf)
+3. [PI 10](https://github.com/mojaloop/documentation-artifacts/blob/master/presentations/April%202020%20Community%20Event/Presentations/code_quality_and_security-PI%2010%20final.pdf)
+4. [PI 11](https://github.com/mojaloop/documentation-artifacts/blob/master/presentations/July%202020%20Community%20Event/Presentations/Code%20Quality%20Security%20PI%2010%20Report%20-%2020%20July%202020%20v1.9%20Final.pdf)
+5. PI 12 _(link coming soon)_
 
 ### 1.4 Vulnerability disclosure procedure
 
