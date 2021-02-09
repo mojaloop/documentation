@@ -9,9 +9,10 @@ This document provides guidelines regarding the versioning strategy used for the
 
 #### Standard for PI-11 and beyond
 1. Starting PI-11 (27th July, 2020) the Versioning guidance is to move to a versioning system that is closely aligned with Semantic versioning by removing the PI/Sprint dependency. So starting 11.x.x, the proposal is to move to pure [SemVer](https://semver.org/).
-2. At a high-level, we will still follow the vX.Y.Z format, but X represents ‘Major’ version, Y represents ‘Minor’ version and Z represents ‘patch’ version. Minor fixes, patches affect increments to ‘Z’, whereas non-breaking functionality changes affect changes to ‘Y’; breaking changes affect the ‘X’ version.
+2. At a high-level, we will still follow the vX.Y.Z format, but X represents ‘Major’ version, Y represents ‘Minor’ version and Z represents ‘patch’ version. Minor fixes, patches affect increments to ‘Z’, whereas non-breaking functionality changes affect changes to ‘Y; breaking changes affect the ‘X’ version.
 3. Along with these, suffixes such as “-snapshot”, “-patch”, “-hotfix” are used as relevant and on need basis (supported by CI config).
 4. So starting with 11.0.0 (primarily for Helm, but for individual services as well) for PI-11, the proposal is to move to pure [SemVer](https://semver.org/).
+5. This implies that for any new release of a package/service below X=11 will first be baselined to v11.0.0 and from then on follow standard SemVer guidelines as discussed above
 
 
 #### Versioning Strategy used until PI-10
