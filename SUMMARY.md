@@ -122,6 +122,7 @@
       * [Settlement Abort](mojaloop-technical-overview/central-settlements/settlement-process/put-settlement-abort.md)
       * [Request Settlement By SPA](mojaloop-technical-overview/central-settlements/settlement-process/get-settlement-by-spa.md)
       * [Request Settlements By Params](mojaloop-technical-overview/central-settlements/settlement-process/get-settlements-by-params.md)
+      * [Transfer Settlement Handler](mojaloop-technical-overview/central-settlements/settlement-process/transfer-settlement-handler-consume.md)
     * [Funds In/Out](mojaloop-technical-overview/central-settlements/funds-in-out/README.md)
       * [Reconciliation Transfer Prepare](mojaloop-technical-overview/central-settlements/funds-in-out/reconciliation-transfer-prepare.md)
       * [Transfer State and Position Change](mojaloop-technical-overview/central-settlements/funds-in-out/transfer-state-and-position-change.md)

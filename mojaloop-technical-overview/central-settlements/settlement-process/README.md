@@ -7,6 +7,10 @@
 - `settlementWindow` - a table where all settlement windows are stored;
 - `settlementWindowStateChange` - stores information regarding settlement windows state;
 - `settlement` - keeps data regarding all settlements;
+- `settlementContentAggregation` - contains aggregated values for a settlement, participant currency, role type and ledger entry type grouping in a settlement;
+- `settlementModel` - contains the configured settlement models for the switch;
+- `settlementWindowContent` - contains an entry for each item of content in a given settlement window, broken down by ledger account type and currency;
+- `settlementWindowContentStateChange` - tracks settlement window content state changes;
 - `settlementSettlementWindow` - association table for settlements and settlement windows, providing connection many-to-many;
 - `settlementStateChange` - tracks the settlement state change;
 - `settlementTransferParticipant` - this table is used for staging data for all transfers which are to be included in a settlement;
@@ -78,3 +82,13 @@ Used to request drill-down information regarding a settlement, participant and a
 This endpoint enables advanced reporting capabilities.
 
 - [Sequence Diagram for Query Settlements by Parameters](get-settlements-by-params.md)
+
+### 2.10 Transfer Settlement Handler
+
+This handler executes after each transfer is committed and performs the following operations on success:
+1. Execute custom scripts that implementers can use to implement per-transfer actions once a transfer has been committed such as interchange fees.
+2. Handle the updating of the POSITION and SETTLEMENT accounts for participants involved in a transfer where there is a settlement model defined as immeditate and gross on the POSITION account to facilitate RTCGS (Rel-Time Continuous Gross Settlement) per transfer.
+
+This is done by consuming events of the notification topic.
+
+[Sequence Diagram for Transfer Settlement Handler](transfer-settlement-handler-consume.md)
