@@ -36,14 +36,14 @@ autonumber
 ' declare actors
 collections "topic-notification" as TOPIC_NOTIFICATION
 control "Gross Settlement Handler" as SETTLEMENT_HANDLER
+control "Gross Settlement Service" as SETTLEMENT_SERVICE
 database "central_ledger" as DB
-entity "Transaction DAO" as TRANSACTION_DAO
 entity "Settlement DAO" as SETTLEMENT_DAO
 
 box "Settlement Service" #LightGreen
     participant TOPIC_NOTIFICATION
     participant SETTLEMENT_HANDLER
-    participant TRANSACTION_DAO
+    participant SETTLEMENT_SERVICE
     participant SETTLEMENT_DAO
 end box
 
@@ -65,63 +65,29 @@ group Gross Settlement Handler Consume (Success)
             
             group Retry (default 3 retries)
                 group <color #blue>DB TRANSACTION: settle transfer</color>
-                    SETTLEMENT_HANDLER -> SETTLEMENT_DAO: Insert ledger entries
-                    loop ledgerEntry
-                        SETTLEMENT_DAO -> DB: Insert transferParticipant records
-                        activate DB
+                    SETTLEMENT_HANDLER -> SETTLEMENT_SERVICE: Process fulfil message
+                    SETTLEMENT_SERVICE -> SETTLEMENT_DAO: Get Gross settlement model
+                    SETTLEMENT_DAO -> DB: Get settlement model records
+                    activate DB
                         deactivate DB
                         hnote over DB #lightyellow
-                            insert into **transferParticipant**
-                            select {transferId} AS transferId,
-                                   `PC`.`participantCurrencyId`,
-                                   IFNULL(`T1`.`transferparticipantroletypeId`,
-                                          `T2`.`transferparticipantroletypeId`) as `transferParticipantRoleTypeId`,
-                                   `E`.`ledgerEntryTypeId`,
-                                   CASE `P`.`name`
-                                       WHEN {ledgerEntry.payerFspId} THEN {ledgerEntry.amount}
-                                       WHEN {ledgerEntry.payeeFspId} THEN {ledgerEntry.amount * -1}
-                                       ELSE 0
-                                   END AS `amount`
-                            from `participantCurrency` as `PC`
-                            inner join `participant` as `P` on `P`.`participantId` = `PC`.`participantId`
-                            inner join `ledgerEntryType` as `E` on `E`.`LedgerAccountTypeId` = `PC`.`LedgerAccountTypeId`
-                            left outer join `transferParticipantRoleType` as `T1` on `P`.`name` = {ledgerEntry.payerFspId} and `T1`.`name` = 'PAYER_DFSP'
-                            left outer join `transferParticipantRoleType` as `T2` on `P`.`name` = {ledgerEntry.payerFspId} and `T2`.`name` = 'PAYEE_DFSP'
-                            where `E`.`name` = {ledgerEntry.ledgerEntryTypeId}
-                              and `P`.`name` in ({ledgerEntry.payerFspId}, {ledgerEntry.payeeFspId})
-                              and `PC`.`currencyId` = {ledgerEntry.currency};
+                        SELECT settlementModel.*
+                        FROM **settlementModel**
+                            INNER JOIN `participantCurrency` AS `pc` ON `pc`.`currencyId` = `settlementModel`.`currencyId`
+                                AND `pc`.`ledgerAccountTypeId` `settlementModel`.`ledgerAccountTypeId`
+                            INNER JOIN `transferParticipant` AS `tp` ON `tp`.`participantCurrencyId` = `pc`.`participantCurrencyId`
+                            INNER JOIN settlementGranularity AS `g` ON `g`.`settlementGranularityId` = `settlementModel`.`settlementGranularityId`
+                        WHERE `tp`.`transferId`, {transferId}
+                            AND `g`.`name`, {settlementGranularityName}
+                            AND `settlementModel`.`isActive`, {1};
                         end hnote
-                        SETTLEMENT_DAO -> DB: Update positions
-                        activate DB
-                        deactivate DB
-                        loop transferParticipant records
-                            hnote over DB #lightyellow
-                                update **`participantPosition`**
-                                set `value` = `value` + {record.amount}
-                                where `participantCurrencyId` = {record.participantCurrencyId};
-                            end hnote
-                        end
-                        SETTLEMENT_DAO -> DB: Get transferStateChange record
-                        activate DB
-                        deactivate DB
-                        hnote over DB #lightyellow
-                            select `transferStateChangeId`
-                            from **`transferStateChange`**
-                            where `transferId` = {transferId}
-                              and `transferStateId` = 'COMMITTED';
-                        end hnote
-                        SETTLEMENT_DAO -> DB: Insert participantPositionChange records
-                        activate DB
-                        deactivate DB
-                        hnote over DB #lightyellow
-                            insert into **`participantPositionChange`**
-                            select `participantPositionId`, {transferStateChangeId}, `value`, `reservedValue`
-                            from `participantPosition`
-                            where `participantCurrencyId` = {transferParticipantRecord1.participantCurrencyId}
-                               or `participantCurrencyId` = {transferParticipantRecord2.participantCurrencyId};
-                        end hnote
+                    SETTLEMENT_DAO <-- DB: Gross settlement model result
+                    SETTLEMENT_SERVICE <-- SETTLEMENT_DAO: Gross settlement model result
+                    group Validate settlement model
+                        SETTLEMENT_SERVICE <-> SETTLEMENT_SERVICE: Valid Gross settlement model does not exist
+                        SETTLEMENT_HANDLER <- SETTLEMENT_SERVICE: Return true
                     end
-                    SETTLEMENT_HANDLER -> SETTLEMENT_DAO: Settle transfer if CGS
+                    SETTLEMENT_SERVICE -> SETTLEMENT_DAO: Settle transfer if CGS
                     SETTLEMENT_DAO -> DB: Insert transferParticipant entries
                     activate DB
                     deactivate DB
