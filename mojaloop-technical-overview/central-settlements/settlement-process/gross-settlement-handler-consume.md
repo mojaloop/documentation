@@ -1,6 +1,6 @@
-# Transfer Settlement Handler
+# Gross Settlement Handler
 
-Sequence design diagram for the transfer settlement handler.
+Sequence design diagram for the gross settlement handler.
 
 ## Sequence Diagram
 

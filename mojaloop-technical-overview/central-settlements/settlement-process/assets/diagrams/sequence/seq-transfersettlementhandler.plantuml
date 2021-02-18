@@ -24,7 +24,7 @@
 
 @startuml
 ' declare title
-title Transfer Settlement Handler Consume (Success)
+title Gross Settlement Handler Consume (Success)
 autonumber
 ' Actor Keys:
 '   boundary - APIs/Interfaces, etc
@@ -35,18 +35,14 @@ autonumber
 
 ' declare actors
 collections "topic-notification" as TOPIC_NOTIFICATION
-control "Transfer Settlement Handler" as SETTLEMENT_HANDLER
+control "Gross Settlement Handler" as SETTLEMENT_HANDLER
 database "central_ledger" as DB
-entity "Scripts Loader" as SCRIPTS_LOADER
-entity "Script Engine" as SCRIPT_ENGINE
 entity "Transaction DAO" as TRANSACTION_DAO
 entity "Settlement DAO" as SETTLEMENT_DAO
 
 box "Settlement Service" #LightGreen
     participant TOPIC_NOTIFICATION
     participant SETTLEMENT_HANDLER
-    participant SCRIPTS_LOADER
-    participant SCRIPT_ENGINE
     participant TRANSACTION_DAO
     participant SETTLEMENT_DAO
 end box
@@ -57,33 +53,7 @@ end box
 
 ' start flow
 activate SETTLEMENT_HANDLER
-group Transfer Settlement Handler Consume (Success)
-    group Load Scripts
-        SETTLEMENT_HANDLER -> SCRIPTS_LOADER: load scripts (scriptDirectory)
-        activate SCRIPTS_LOADER
-        loop script
-            SCRIPTS_LOADER -> SCRIPTS_LOADER: retrieve script configuration
-        end
-        note right of SETTLEMENT_HANDLER #yellow
-            example:
-            {
-                scriptType: {
-                    scriptAction: {
-                        scriptStatus: {[
-                            {
-                                filename: "interchangeFeeCalculation.js",
-                                startTime: "2020-06-01T00:00:00.000Z",
-                                endTime: "2100-12-31T23:59:59.999Z",
-                                script: [vm.Script]
-                            }
-                        ]}
-                    }
-                }
-            }
-        end note
-        SCRIPTS_LOADER --> SETTLEMENT_HANDLER: script map
-        deactivate SCRIPTS_LOADER
-    end
+group Gross Settlement Handler Consume (Success)
     alt Consume Single Message
         TOPIC_NOTIFICATION <- SETTLEMENT_HANDLER: Consume notification event message
         activate TOPIC_NOTIFICATION
@@ -92,33 +62,9 @@ group Transfer Settlement Handler Consume (Success)
             SETTLEMENT_HANDLER <-> SETTLEMENT_HANDLER: Validate event - Rule: message has payload\n<color #FF0000><b>Error codes:</b> 2001</color>
         end
         opt action == 'COMMIT'
-            group Execute Scripts
-                SETTLEMENT_HANDLER -> SCRIPTS_LOADER: execute scripts
-                activate SCRIPTS_LOADER
-                loop script
-                    SCRIPTS_LOADER -> SCRIPT_ENGINE: execute(script, message payload)
-                    activate SCRIPT_ENGINE
-                    SCRIPT_ENGINE -> TRANSACTION_DAO: Get transaction by transfer Id
-                    activate TRANSACTION_DAO
-                    TRANSACTION_DAO -> DB: retrieve ILP packet from ilpPacket
-                    activate DB
-                    DB --> TRANSACTION_DAO: ilpPacket row
-                    deactivate DB
-                    TRANSACTION_DAO --> SCRIPT_ENGINE: ilpPacket row
-                    SCRIPT_ENGINE -> TRANSACTION_DAO: Get transaction object
-                    TRANSACTION_DAO -> TRANSACTION_DAO: decode ILP packet
-                    TRANSACTION_DAO --> SCRIPT_ENGINE: Transaction object
-                    SCRIPT_ENGINE -> SCRIPT_ENGINE: execute script in sandbox
-                    deactivate
-                    SCRIPT_ENGINE --> SCRIPTS_LOADER: Ledger entries
-                    deactivate SCRIPT_ENGINE
-                    SCRIPTS_LOADER -> SCRIPTS_LOADER: Merge results
-                end
-                SCRIPTS_LOADER --> SETTLEMENT_HANDLER: script results
-                deactivate SCRIPTS_LOADER
-            end
+            
             group Retry (default 3 retries)
-                group <color #blue>DB TRANSACTION: Insert ledger entries and settle transfer</color>
+                group <color #blue>DB TRANSACTION: settle transfer</color>
                     SETTLEMENT_HANDLER -> SETTLEMENT_DAO: Insert ledger entries
                     loop ledgerEntry
                         SETTLEMENT_DAO -> DB: Insert transferParticipant records
