@@ -60,7 +60,7 @@ This guide summarizes the steps needed to get up and running as a contributor to
 
 ## 4. Signing the CLA
 
-After you open your first PR, our CI/CD pipelines will ask you to sign the CLA. For more information on what the CLA is and how to sign it, see [./signing-the-cla.html]
+After you open your first PR, our CI/CD pipelines will ask you to sign the CLA. For more information on what the CLA is and how to sign it, see [signing the cla](./signing-the-cla.html)
 
 ## FAQs:
 
