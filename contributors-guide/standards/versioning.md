@@ -25,6 +25,21 @@ This document provides guidelines regarding the versioning strategy used for the
 
 The currrent version information for Mojaloop can be found [here](../../deployment-guide/releases.md).
 
+### Sprint schedule for PI-13
+
+Below is the Sprint schedule for Program Increment 13 which ends with the PI-14 Community event in April 2021.
+
+|Phase/Milestone|Start|End|Weeks|Notes|
+|---|---|---|---|---|
+|**Phase-5 Kick-off On-site**|1/25/2021|1/29/2021|5 days| Virtual Zoom Webinars|
+|**Sprint 13.1**|02/01/2021|02/14/2021|2 weeks | |
+|**Sprint 13.2**|02/15/2021|02/28/2021|2 weeks | |
+|**Sprint 13.3**|03/01/2021|03/14/2021|2 weeks | |
+|**Sprint 13.4**|03/15/2021|03/28/2021|2 weeks | |
+|**Sprint 13.5**|03/29/2021|04/11/2021|2 weeks | |
+|**Sprint 13.6**|04/12/2021|04/25/2021|2 weeks | |
+|**Phase-5 PI-14**|04/26/2021|04/30/2021|5 days| Virtual meetings |
+
 ### Sprint schedule for PI-12
 
 Below is the Sprint schedule for Program Increment 12 which ends with the PI-13 Community event in January 2021.
