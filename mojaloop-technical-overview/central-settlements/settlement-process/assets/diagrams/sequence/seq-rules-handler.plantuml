@@ -25,7 +25,7 @@
 
 @startuml
 ' declare title
-title Transfer Settlement Handler Consume (Success)
+title Rules Handler Consume (Success)
 autonumber
 ' Actor Keys:
 '   boundary - APIs/Interfaces, etc
@@ -62,22 +62,12 @@ end box
 activate RULES_HANDLER
 group Transfer Settlement Handler Consume (Success)
     group Load Scripts
-        RULES_HANDLER -> SCRIPTS_LOADER: load scripts (scriptDirectory)
+        RULES_HANDLER -> SCRIPTS_LOADER: load scripts (yaml file) (scriptDirectory)
         activate SCRIPTS_LOADER
         loop script
-            SCRIPTS_LOADER -> SCRIPTS_LOADER: retrieve script configuration
-            SCRIPTS_LOADER -> SCRIPTS_LOADER: validate script headers are valid and combination of type, action, status is allowed;
-            note right of SCRIPTS_LOADER #yellow
-                { 
-                   notification: {
-                      commit: {
-                        success: true
-                      }
-                   }
-                } 
-            end note
-            SCRIPTS_LOADER -> SCRIPTS_LOADER: Execute script with sample transfer to see all required ledger fields are filled?
+            SCRIPTS_LOADER -> SCRIPTS_LOADER: validate script type, action and status against enums; validate script is valid JS; validate start and end timestamps;
         end
+        SCRIPTS_LOADER --> RULES_HANDLER: create script map
         note right of RULES_HANDLER #yellow
             example:
             {
@@ -85,18 +75,16 @@ group Transfer Settlement Handler Consume (Success)
                     scriptAction: {
                         scriptStatus: {[
                             {
-                                filename: "interchangeFeeCalculation.js",
+                                name: "interchangeFeeCalculation",
                                 startTime: "2020-06-01T00:00:00.000Z",
                                 endTime: "2100-12-31T23:59:59.999Z",
-                                script: [vm.Script],
-                                failPolicy: 'oneFailsAll' // insertOnlyValid
+                                script: [vm.Script]
                             }
                         ]}
                     }
                 }
             }
-        end note
-        SCRIPTS_LOADER --> RULES_HANDLER: script map
+        end note        
         deactivate SCRIPTS_LOADER
     end
     group Process Single Message
@@ -138,17 +126,14 @@ group Transfer Settlement Handler Consume (Success)
                     loop ledgerEntry
                         group Validate Ledger entries
                             alt participant is payer and settlement model is checking NDC 
-                                RULES_HANDLER -> CENTRAL_LEDGER_DAO: participant position and limit
+                                RULES_HANDLER -> CENTRAL_LEDGER_DAO: participants positions and limits
                                 activate CENTRAL_LEDGER_DAO
-                                CENTRAL_LEDGER_DAO --> RULES_HANDLER: participant position and limit
+                                CENTRAL_LEDGER_DAO --> RULES_HANDLER: participants positions and limits
                                 deactivate CENTRAL_LEDGER_DAO
-                                RULES_HANDLER -> RULES_HANDLER: Increace position with ledgerEntry.amount
+                                RULES_HANDLER -> RULES_HANDLER: Calculate position after ledger entry with ledgerEntry.amount
                                 alt Calculated position is breaching NDC
-                                    alt failPolicy is oneFailsAll
-                                        RULES_HANDLER -> RULES_HANDLER: validBatch = []; break Loop ledgerEntry
-                                    else
-                                        RULES_HANDLER -> RULES_HANDLER: continue Loop ledgerEntry
-                                    end
+                                    RULES_HANDLER -> RULES_HANDLER: validBatch = [];
+                                    RULES_HANDLER -> RULES_HANDLER: break Loop ledgerEntry
                                 else    
                                     RULES_HANDLER -> RULES_HANDLER: Insert LedgerEntry into Valid batch;    
                                 end
