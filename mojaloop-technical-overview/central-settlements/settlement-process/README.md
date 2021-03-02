@@ -90,4 +90,13 @@ This handler executes after each transfer is committed and performs the followin
 
 This is done by consuming events of the notification topic.
 
-[Sequence Diagram for Transfer Settlement Handler](transfer-settlement-handler-consume.md)
+- [Sequence Diagram for Gross Settlement Handler](gross-settlement-handler-consume.md)
+
+### 2.11 Rules Handler
+
+This handler executes after each transfer is committed and performs the following operations on success:
+ Execute the rules defined by the scripts in the SCRIPTS_FOLDER. The rules are validated for valid headers before loading.
+
+This is done by consuming events of the notification topic.
+
+- [Sequence Diagram for Rules Handler](rules-handler-consume.md)

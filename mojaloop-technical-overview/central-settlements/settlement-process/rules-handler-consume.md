@@ -10,8 +10,7 @@ Sequence design diagram for the rules handler.
 
 ## Sequence Diagram
 
-{% uml src="mojaloop-technical-overview/central-settlements/settlement-process/assets/diagrams/sequence/seq-rules-handler.plantuml" %}
-{% enduml %}
+![example](assets/diagrams/sequence/seq-rules-handler.svg)
 
 ### Interchange fee case
 

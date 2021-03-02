@@ -61,12 +61,12 @@ end box
 
 ' start flow
 activate RULES_HANDLER
-group Transfer Settlement Handler Consume (Success)
+group Rules Handler Consume (Success)
     group Load Scripts
         RULES_HANDLER -> SCRIPTS_LOADER: load scripts (yaml file) (scriptDirectory)
         activate SCRIPTS_LOADER
         loop script
-            SCRIPTS_LOADER -> SCRIPTS_LOADER: validate script type, action and status against enums; validate script is valid JS; validate start and end timestamps;
+            SCRIPTS_LOADER -> SCRIPTS_LOADER: validate script type, action and status against enums; validate script is valid JS; validate start and end timestamps; Create a map ScriptMap[type][action][result]
         end
         SCRIPTS_LOADER --> RULES_HANDLER: create script map
         note right of RULES_HANDLER #yellow
