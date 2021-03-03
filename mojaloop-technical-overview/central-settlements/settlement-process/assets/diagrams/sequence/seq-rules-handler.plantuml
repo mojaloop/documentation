@@ -122,91 +122,96 @@ group Rules Handler Consume (Success)
                 SCRIPTS_LOADER --> RULES_HANDLER: script results
                 deactivate SCRIPTS_LOADER
             end
-                group <color #blue>DB TRANSACTION: Validate and Insert ledger entries</color>
-                    RULES_HANDLER -> RULES_HANDLER: Create validBatch = []; 
-                    loop ledgerEntry
-                        group Validate Ledger entries
-                            alt participant is payer and settlement model is checking NDC 
-                                RULES_HANDLER -> CENTRAL_LEDGER_DAO: participants positions and limits
-                                activate CENTRAL_LEDGER_DAO
-                                CENTRAL_LEDGER_DAO --> RULES_HANDLER: participants positions and limits
-                                deactivate CENTRAL_LEDGER_DAO
-                                RULES_HANDLER -> RULES_HANDLER: Calculate position after ledger entry with ledgerEntry.amount
-                                alt Calculated position is breaching NDC
-                                    RULES_HANDLER -> RULES_HANDLER: validBatch = [];
-                                    RULES_HANDLER -> RULES_HANDLER: break Loop ledgerEntry
-                                else    
-                                    RULES_HANDLER -> RULES_HANDLER: Insert LedgerEntry into Valid batch;    
-                                end
-                            else
-                                RULES_HANDLER -> RULES_HANDLER: Insert LedgerEntry into Valid batch;    
-                            end
-                        end
-                    end
-                    alt validBatch has entries
-                        RULES_HANDLER -> SETTLEMENT_DAO: Insert valid ledger entries
-                        loop validBatch
-                            SETTLEMENT_DAO -> DB: Insert transferParticipant records
+                
+            alt Has ledger entries
+                        group <color #blue>DB TRANSACTION: Validate and Insert ledger entries</color>
+                            RULES_HANDLER -> SETTLEMENT_DAO: Insert valid ledger entries
+                            SETTLEMENT_DAO -> DB: Get the records to insert
                             activate DB
-                            deactivate DB
                             hnote over DB #lightyellow
-                                insert into **transferParticipant**
                                 select {transferId} AS transferId,
-                                      `PC`.`participantCurrencyId`,
-                                      IFNULL(`T1`.`transferparticipantroletypeId`,
-                                              `T2`.`transferparticipantroletypeId`) as `transferParticipantRoleTypeId`,
-                                      `E`.`ledgerEntryTypeId`,
-                                      CASE `P`.`name`
-                                          WHEN {ledgerEntry.payerFspId} THEN {ledgerEntry.amount}
-                                          WHEN {ledgerEntry.payeeFspId} THEN {ledgerEntry.amount * -1}
-                                          ELSE 0
-                                      END AS `amount`
-                                from `participantCurrency` as `PC`
-                                inner join `participant` as `P` on `P`.`participantId` = `PC`.`participantId`
-                                inner join `ledgerEntryType` as `E` on `E`.`LedgerAccountTypeId` = `PC`.`LedgerAccountTypeId`
-                                left outer join `transferParticipantRoleType` as `T1` on `P`.`name` = {ledgerEntry.payerFspId} and `T1`.`name` = 'PAYER_DFSP'
-                                left outer join `transferParticipantRoleType` as `T2` on `P`.`name` = {ledgerEntry.payerFspId} and `T2`.`name` = 'PAYEE_DFSP'
-                                where `E`.`name` = {ledgerEntry.ledgerEntryTypeId}
-                                  and `P`.`name` in ({ledgerEntry.payerFspId}, {ledgerEntry.payeeFspId})
-                                  and `PC`.`currencyId` = {ledgerEntry.currency};
+                                        `PC`.`participantCurrencyId`,
+                                        IFNULL(`T1`.`transferparticipantroletypeId`,
+                                                `T2`.`transferparticipantroletypeId`) as `transferParticipantRoleTypeId`,
+                                        `E`.`ledgerEntryTypeId`,
+                                        CASE `P`.`name`
+                                            WHEN {ledgerEntry.payerFspId} THEN {ledgerEntry.amount}
+                                            WHEN {ledgerEntry.payeeFspId} THEN {ledgerEntry.amount * -1}
+                                            ELSE 0
+                                        END AS `amount`
+                                    from `participantCurrency` as `PC`
+                                    inner join `participant` as `P` on `P`.`participantId` = `PC`.`participantId`
+                                    inner join `ledgerEntryType` as `E` on `E`.`LedgerAccountTypeId` = `PC`.`LedgerAccountTypeId`
+                                    left outer join `transferParticipantRoleType` as `T1` on `P`.`name` = {ledgerEntry.payerFspId} and `T1`.`name` = 'PAYER_DFSP'
+                                    left outer join `transferParticipantRoleType` as `T2` on `P`.`name` = {ledgerEntry.payerFspId} and `T2`.`name` = 'PAYEE_DFSP'
+                                    where `E`.`name` = {ledgerEntry.ledgerEntryTypeId}
+                                    and `P`.`name` in ({ledgerEntry.payerFspId}, {ledgerEntry.payeeFspId})
+                                    and `PC`.`currencyId` = {ledgerEntry.currency};
                             end hnote
-                            SETTLEMENT_DAO -> DB: Update positions
-                            activate DB
+                            SETTLEMENT_DAO <-- DB: recordsToInsert
                             deactivate DB
-                            loop transferParticipant records
+
+                            alt Has records to insert
+                                SETTLEMENT_DAO -> DB: Insert transferParticipant records
+                                activate DB
+                                deactivate DB
                                 hnote over DB #lightyellow
-                                    update **`participantPosition`**
-                                    set `value` = `value` + {record.amount}
-                                    where `participantCurrencyId` = {record.participantCurrencyId};
+                                    insert into **transferParticipant**
+                                    
                                 end hnote
+                                SETTLEMENT_DAO -> DB: Update positions
+                                activate DB
+                                deactivate DB
+                                loop transferParticipant records
+                                    hnote over DB #lightyellow
+                                        update **`participantPosition`**
+                                        set `value` = `value` + {record.amount}
+                                        where `participantCurrencyId` = {record.participantCurrencyId};
+                                    end hnote
+                                end
+                                SETTLEMENT_DAO -> DB: Get transferStateChange record
+                                activate DB
+                                hnote over DB #lightyellow
+                                    select `transferStateChangeId`
+                                    from **`transferStateChange`**
+                                    where `transferId` = {transferId}
+                                    and `transferStateId` = 'COMMITTED';
+                                end hnote
+                                SETTLEMENT_DAO <-- DB: transferStateChange record
+                                deactivate DB
+                                SETTLEMENT_DAO -> DB: Get participantPosition record
+                                activate DB
+                                hnote over DB #lightyellow
+                                    select `participantPositionId`, `value`, `reservedValue`
+                                    from **`participantPosition`**
+                                    where `participantCurrencyId` = {recordsToInsert[0].participantCurrencyId}
+                                    OR `participantCurrencyId` = {recordsToInsert[1].participantCurrencyId};
+                                end hnote
+                                SETTLEMENT_DAO <-- DB: participantPosition record
+                                deactivate DB
+                                SETTLEMENT_DAO -> DB: Insert participantPositionChange records
+                                activate DB
+                                deactivate DB
+                                hnote over DB #lightyellow
+                                    insert into **`participantPositionChange`**
+                                    select `participantPositionId`, {transferStateChangeId}, `value`, `reservedValue`
+                                    from `participantPosition`
+                                    where `participantCurrencyId` = {transferParticipantRecord1.participantCurrencyId}
+                                    or `participantCurrencyId` = {transferParticipantRecord2.participantCurrencyId};
+                                end hnote
+                            else No records found
+                            SETTLEMENT_DAO <-> SETTLEMENT_DAO: <color #FF0000><b> Error </b></color>
                             end
-                            SETTLEMENT_DAO -> DB: Get transferStateChange record
-                            activate DB
-                            deactivate DB
-                            hnote over DB #lightyellow
-                                select `transferStateChangeId`
-                                from **`transferStateChange`**
-                                where `transferId` = {transferId}
-                                  and `transferStateId` = 'COMMITTED';
-                            end hnote
-                            SETTLEMENT_DAO -> DB: Insert participantPositionChange records
-                            activate DB
-                            deactivate DB
-                            hnote over DB #lightyellow
-                                insert into **`participantPositionChange`**
-                                select `participantPositionId`, {transferStateChangeId}, `value`, `reservedValue`
-                                from `participantPosition`
-                                where `participantCurrencyId` = {transferParticipantRecord1.participantCurrencyId}
-                                  or `participantCurrencyId` = {transferParticipantRecord2.participantCurrencyId};
-                            end hnote
+                            
                         end
                     else
-                        RULES_HANDLER <-> RULES_HANDLER: exit    
+                        RULES_HANDLER <-> RULES_HANDLER: No ledger entries   
                     end
+                    
+                    
         else
             RULES_HANDLER <-> RULES_HANDLER: exit    
         end
-    end
   end    
 end
 deactivate RULES_HANDLER
