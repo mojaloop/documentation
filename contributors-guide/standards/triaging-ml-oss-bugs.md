@@ -21,18 +21,13 @@ There is a bug [template](https://github.com/mojaloop/project/issues/new?assigne
 3. Based on the discussions, a final call on the priority and severity of the issue is made by the Program Manager.
 4. If you think you need a vote, please reach out to Kim or Sam.
 5. Here are the voting members [14] for triaging bugs to start with.
-    1. Adrian Hope-Bailie
-    1. James Bush
     1. Kim Walters
     1. Lewis Daly
     1. Miguel deBarros
-    1. Matt Bohan
-    1. Miller Abel
-    1. Neal Donnan
-    1. Nico Duvenage
-    1. Rajiv Mothilal
-    1. Rob Reeve
     1. Sam Kummary
     1. Sri Miryala
     1. Warren Carew
+    1. Vijay Guthi
+    1. Valentin Genev
+    1. Shashi Hirugade 
 6. The list and the process will be updated as it evolves, this is a proposal to start with do a Pilot on.
