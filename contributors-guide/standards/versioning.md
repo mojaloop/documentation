@@ -12,7 +12,7 @@ This document provides guidelines regarding the versioning strategy used for the
 2. At a high-level, we will still follow the vX.Y.Z format, but X represents ‘Major’ version, Y represents ‘Minor’ version and Z represents ‘patch’ version. Minor fixes, patches affect increments to ‘Z’, whereas non-breaking functionality changes affect changes to ‘Y; breaking changes affect the ‘X’ version.
 3. Along with these, suffixes such as “-snapshot”, “-patch”, “-hotfix” are used as relevant and on need basis (supported by CI config).
 4. So starting with 11.0.0 (primarily for Helm, but for individual services as well) for PI-11, the proposal is to move to pure [SemVer](https://semver.org/).
-5. This implies that for any new release of a package/service below X=11 will first be baselined to v11.0.0 and from then on follow standard SemVer guidelines as discussed above
+5. This implies that for any new release of a package/service below X=11 (for existing repositories and not new ones) will first be baselined to v11.0.0 and from then on follow standard SemVer guidelines as discussed above. For new projects or repositories, versioning can start from v1.0.0 (after they reach release status)
 
 
 #### Versioning Strategy used until PI-10
