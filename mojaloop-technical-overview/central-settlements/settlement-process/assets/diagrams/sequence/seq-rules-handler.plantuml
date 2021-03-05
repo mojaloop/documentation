@@ -202,10 +202,11 @@ group Rules Handler Consume (Success)
                             else No records found
                             SETTLEMENT_DAO <-> SETTLEMENT_DAO: <color #FF0000><b> Error </b></color>
                             end
-                            
+                            else
+                                SETTLEMENT_DAO <-> SETTLEMENT_DAO: <color #FF0000><b> Rollback on Error </b></color>
                         end
                     else
-                        RULES_HANDLER <-> RULES_HANDLER: No ledger entries   
+                        RULES_HANDLER <-> RULES_HANDLER: exit   
                     end
                     
                     
