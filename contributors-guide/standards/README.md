@@ -10,6 +10,20 @@ These style guides are chosen because they can be easily enforced and checked us
 
 The goal of these guides is to ensure an easy developer workflow and reduce code commits that contain changes for the sake of style over content. By reducing the noise in diffs we make the job of reviewers easier. 
 
+
+### Naming Conventions
+
+To avoid confusion and guarantee cross-language interoperation, follow these rules regarding naming conventions:
+- Do not use abbreviations or contractions as parts of identifier names. For example, use `SettlementWindow` instead of `SetWin`.
+- Do not use acronyms that are not generally accepted in the computing field.
+- Where appropriate, use well-known acronyms to replace lengthy phrase names. For example, use `UI` for `User Interface`.
+- Use Pascal case or camel case for names more than two characters long depending on context (e.g. class names vs variable names). For example, use `SettlementWindow` (Class) or `settlementWindow` (Variable). 
+- You should capitalize abbreviations that consist of only two characters, such as `ID` instead of `Id` when isolated. For example, use `/transfer/{{ID}}` instead of `/transfer/{{Id}}` when representing `ID` as a URI parameter.
+- Avoid abbreviations in identifiers or parameter names. If you must use abbreviations, use camel case for abbreviations that consist of more than two characters, even if this contradicts the standard abbreviation of the word.
+- Use screaming (capitalized) Snack case for Enumerations. For example, use `RECORD_FUNDS_OUT_PREPARE_RESERVE`. 
+
+Ref: [Microsoft - Design Guidelines for Class Library Developers](https://docs.microsoft.com/en-us/previous-versions/dotnet/netframework-1.1/141e06ef(v=vs.71)?redirectedfrom=MSDN)
+
 ### Code Style
 
 #### Javascript
