@@ -353,7 +353,9 @@ group Send notification to Participants
     activate NOTIFY_HANDLER_CMD
     deactivate TOPIC_NOTIFICATIONS_CMD
 
-    alt If transport.type && transport.content-type match handlers configuration
+    NOTIFY_HANDLER_CMD -> NOTIFY_HANDLER_CMD: Validate transport.type && transport.content-type match handlers configuration
+
+alt If transport.type && transport.content-type match handlers configuration
 
         NOTIFY_HANDLER_CMD -> NOTIFY_HANDLER_CMD: Construct Transport Message
 
@@ -376,9 +378,7 @@ group Send notification to Participants
         end
 
         NOTIFY_HANDLER_CMD -> NOTIFY_HANDLER_CMD: Prepare Delivery Report
-    else
-        NOTIFY_HANDLER_CMD -> NOTIFY_HANDLER_CMD: Ignore Notification
-    end
+    
 
     alt transport.options.deliver-report === true
         NOTIFY_HANDLER_CMD -> TOPIC_NOTIFICATIONS_EVT: Publish NotifyDeliveryReport event
@@ -396,6 +396,10 @@ group Send notification to Participants
         activate TOPIC_NOTIFICATIONS_EVT
         deactivate TOPIC_NOTIFICATIONS_EVT
     end
+
+else
+        NOTIFY_HANDLER_CMD -> NOTIFY_HANDLER_CMD: Ignore Notification
+end
 
     NOTIFY_HANDLER_CMD -> TOPIC_NOTIFICATIONS_CMD: Commit NotifyCmd event
     activate TOPIC_NOTIFICATIONS_CMD
