@@ -353,29 +353,32 @@ group Send notification to Participants
     activate NOTIFY_HANDLER_CMD
     deactivate TOPIC_NOTIFICATIONS_CMD
 
-    NOTIFY_HANDLER_CMD -> NOTIFY_HANDLER_CMD: Validate Transport-type && Transport-Content-Type
+    alt If transport.type && transport.content-type match handlers configuration
 
-    NOTIFY_HANDLER_CMD -> NOTIFY_HANDLER_CMD: Construct Transport Message
+        NOTIFY_HANDLER_CMD -> NOTIFY_HANDLER_CMD: Construct Transport Message
 
-    ' retry logic goes here
-    group Retry Transport Mechanism based on transport options
-        note right of NOTIFY_HANDLER_CMD #yellow
-            "transport": {
-                "options": {
-                    "deliveryReport": true,
-                    "retry": {
-                    "count": 3,
-                    "type": "noDelay|exponentialDelay",
-                    "condition": "isNetworkError|isSafeRequestError|isIdempotentRequestError|isNetworkOrIdempotentRequestError"
+        ' retry logic goes here
+        group Retry Transport Mechanism based on transport options
+            note right of NOTIFY_HANDLER_CMD #yellow
+                "transport": {
+                    "options": {
+                        "deliveryReport": true,
+                        "retry": {
+                        "count": 3,
+                        "type": "noDelay|exponentialDelay",
+                        "condition": "isNetworkError|isSafeRequestError|isIdempotentRequestError|isNetworkOrIdempotentRequestError"
+                        }
                     }
                 }
-            }
-        end note
-        NOTIFY_HANDLER_CMD -> PARTICIPANT: Notification with Prepare/fulfil result/error to \nPayer DFSP to specified Endpoint - PUT \n<color #FF0000><b>Error code:</b> 1001</color>
-        NOTIFY_HANDLER_CMD <-- PARTICIPANT: HTTP 200 OK 
-    end
+            end note
+            NOTIFY_HANDLER_CMD -> PARTICIPANT: Notification with Prepare/fulfil result/error to \nPayer DFSP to specified Endpoint - PUT \n<color #FF0000><b>Error code:</b> 1001</color>
+            NOTIFY_HANDLER_CMD <-- PARTICIPANT: HTTP 200 OK 
+        end
 
-    NOTIFY_HANDLER_CMD -> NOTIFY_HANDLER_CMD: Prepare Delivery Report
+        NOTIFY_HANDLER_CMD -> NOTIFY_HANDLER_CMD: Prepare Delivery Report
+    else
+        NOTIFY_HANDLER_CMD -> NOTIFY_HANDLER_CMD: Ignore Notification
+    end
 
     alt transport.options.deliver-report === true
         NOTIFY_HANDLER_CMD -> TOPIC_NOTIFICATIONS_EVT: Publish NotifyDeliveryReport event
