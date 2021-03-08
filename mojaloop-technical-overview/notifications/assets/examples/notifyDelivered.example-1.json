@@ -1,0 +1,39 @@
+{
+  "msgId": "18efb9ea-d29a-42b9-9b30-59e1e7cfe216",
+  "msgKey": "861b86e6-c3da-48b3-ba17-896710287d1f",
+  "msgName": "NotifyDelivered",
+  "msgType": "Domain",
+  "msgTopic": "NotificationCommands",
+  "msgPartition": null,
+  "msgTimestamp": 2007677081820,
+  "aggregateName": "Notifications",
+  "aggregateId": "861b86e6-c3da-48b3-ba17-896710287d1f",
+  "notifyId": "3920382d-f78c-4023-adf9-0d7a4a2a3a2f",
+  "report": {
+    "requestTimestamp": 1507677081120,
+    "deliveryTimestamp": 1607677081840,
+    "deliveryReqLatency": 100,
+    "retryAttempts": 1,
+    "response": {
+      "statusCode": "202",
+      "statusDescription": "Accepted",
+      "headers": {
+        "content-type": "application/vnd.interoperability.transfers+json;version=1.0",
+        "date": "2019-05-28T16:34:41.000Z"
+      },
+      "body": "{}"
+    },
+    "accepted": true,
+    "errorInformation": {
+      "errorCode": "408",
+      "errorDescription": "ECONNABORTED\ntimeout of 2ms exceeded\nError: timeout of 2ms exceeded\n    at createError (/node_modules/axios/lib/core/createError.js:16:15)\n    at Timeout.handleRequestTimeout (/node_modules/axios/lib/adapters/http.js:252:16)\n    at listOnTimeout (timers.js:324:15)\n    at processTimers (timers.js:268:5)"
+    }
+  },
+  "traceInfo": {
+      "traceParent": "00-8e540e87060d56a2d2e0be5d732791e7-d96a5971b7c5cac6-21",
+      "traceState": "acmevendor=eyJzcGFuSWQiOiJkOTZhNTk3MWI3YzVjYWM2IiwidGltZUFwaVByZXBhcmUiOiIxNjA3Njc3MDgxNzAwIiwidGltZUFwaUZ1bGZpbCI6IjE2MDc2NzcwODE4MTkifQ==",
+      "service": "notification-Cmd-handler",
+      "startTimestamp": 1607677081837,
+      "finishTimestamp": 2007677081838
+  }
+}

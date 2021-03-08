@@ -353,6 +353,8 @@ group Send notification to Participants
     activate NOTIFY_HANDLER_CMD
     deactivate TOPIC_NOTIFICATIONS_CMD
 
+    NOTIFY_HANDLER_CMD -> NOTIFY_HANDLER_CMD: Validate Transport-type && Transport-Content-Type
+
     NOTIFY_HANDLER_CMD -> NOTIFY_HANDLER_CMD: Construct Transport Message
 
     ' retry logic goes here
