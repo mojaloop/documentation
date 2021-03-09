@@ -242,8 +242,6 @@ workflows:
           filters:
             tags:
               only: /.*/
-            branches:
-              only: master
       - deploy:
           context: org-global
           requires:
