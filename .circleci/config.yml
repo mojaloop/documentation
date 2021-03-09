@@ -217,16 +217,17 @@ workflows:
     jobs:
       - pr-tools/pr-title-check:
           context: org-global
+          filters:
+            tags:
+              ignore: /.*/
+            branches:
+              ignore:
+                - master
       - setup:
           context: org-global
           filters:
             tags:
               only: /.*/
-            branches:
-              ignore:
-                - /feature.*/
-                - /bugfix.*/
-                - gh-pages
       - test-svg:
           context: org-global
           requires:
@@ -234,10 +235,6 @@ workflows:
           filters:
             tags:
               only: /.*/
-            branches:
-              ignore:
-                - /feature*/
-                - /bugfix*/
       - build:
           context: org-global
           requires:
@@ -246,10 +243,7 @@ workflows:
             tags:
               only: /.*/
             branches:
-              ignore:
-                - /feature.*/
-                - /bugfix.*/
-                - gh-pages
+              only: master
       - deploy:
           context: org-global
           requires:
