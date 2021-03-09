@@ -135,6 +135,7 @@ This design proposes the seperation of the current Notification capabilities (tr
     "transport": { // Transport information required by the notification-engine
       "type": "HTTP", // Transport type
       "method": "GET", // Optional method for the associated transport
+      "contentType": "application/vnd.interoperability.paries+json;version=1.0",
       "recipient": {
         "endpoint": "http://fsp.com/parties/{{partyIdType}}/{{partyId}}}?key={{value}}", // Templated endpoint. It can be a hardcoded string with all parameters pre-rendered into the string.
         "params": { // Optional template parameters
@@ -203,11 +204,11 @@ This design proposes the seperation of the current Notification capabilities (tr
           "content-type": "application/vnd.interoperability.transfers+json;version=1.0",
           "date": "2019-05-28T16:34:41.000Z"
         },
-        "body": "{}",
+        "body": "{}"
       },
       "accepted": true,
       "errorInformation": { // Only applicable if "accepted"=false, and expected to occur if we are not able to deliver the notification due to a transport issues: connectivity, timeout or certificate.
-        "errorCode": "408", // Internal error code - may be the same as statusCode
+        "errorCode": "408", // Internal error code
         "errorDescription": "ECONNABORTED\ntimeout of 2ms exceeded\nError: timeout of 2ms exceeded\n    at createError (/node_modules/axios/lib/core/createError.js:16:15)\n    at Timeout.handleRequestTimeout (/node_modules/axios/lib/adapters/http.js:252:16)\n    at listOnTimeout (timers.js:324:15)\n    at processTimers (timers.js:268:5)" // Can include a stringified stack trace.
       }
     },
@@ -223,8 +224,224 @@ This design proposes the seperation of the current Notification capabilities (tr
 
 ## 4. Example Scenarios
 
-### 4.1. Standard FSPIOP example
+### 4.1. Multiple Transports
 
-### 4.2. ISO-2022 example
+![example](assets/diagrams/Transfers-Arch-End-to-End-with-Notify-Engine-Multiple-Transport-Example-v1.0.svg)
+
+The above scenario depicts two FSPs each utilsing two different transports for FSPIOP Transfer interactions:
+- FSP1 (payer) is using HTTP transport
+- FSP2 (payee) is using gRCP transport
+
+Each of the FSPs in this example have had their associated callbacks registered which includes their transport preference (i.e. HTTP vs gRPC).
+
+```http
+POST /participants/FSP1/endpoints HTTP/1.1
+Host: central-ledger-admin-api.mojaloop.live
+Content-Type: application/json
+
+{
+  "type": "FSPIOP_CALLBACK_URL_TRANSFER_POST",
+  "value": "http://fsp2.com/transfers"
+}
+```
+
+```http
+POST /participants/FSP2/endpoints HTTP/1.1
+Host: central-ledger-admin-api.mojaloop.live
+Content-Type: application/json
+
+{
+  "type": "FSPIOP_CALLBACK_URL_TRANSFER_PUT",
+  "value": "grpc://fsp2.com/transfers"
+}
+```
+
+With this design it is possible to achieve this by introducing two different ML-API-Adapters for each of the different Transports (i.e. HTTP, gRPC), and similiarly two different Notification Engines for each of these transports handling callbacks.
+
+Each of the Notification Engines will only listen to event messages that match their intended transport types, and will thus discard non-applicable ones.
+
+This therefore allows the Central-Ledger components to be isolated from the transport specific logic (and transformations if applicable) for notification callbacks.
+
+The delivery-report for each of the POST/PUT interactions provides the assurance that the notifications results are recorded by the Central-Service Notification-Evt-Handler component. This component is able to raise alerts or alternatively handle any compensating actions independantly of the FSP's transport preferences.
+
+#### 4.1.a. gRPC Transport example for a POST Transfer Callback Notification Messages for FSP1 to FSP2
+
+NotifyCmd Command Event:
+```JSON
+{
+    "msgId": "66a2ec9a-9d4f-4439-8d38-19c3aa21d54e",
+    "msgKey": "861b86e6-c3da-48b3-ba17-896710287d1f",
+    "msgName": "NotifyCmd",
+    "msgType": "Command",
+    "msgTopic": "NotificationCommands",
+    "msgPartition": null,
+    "msgTimestamp": 1607677081837,
+    "aggregateName": "Notifications",
+    "aggregateId": "861b86e6-c3da-48b3-ba17-896710287d1f",
+    "notifyId": "b17b7125-a0fc-451f-98ee-7e4c870c7d13",
+    "transport": {
+      "type": "GRPC",
+      "method": "POST",
+      "contentType": "application/vnd.interoperability.transfers+json;version=1.0",
+      "recipient": {
+        "endpoint": "fsp2.com/transfers"
+      },
+      "options": {
+        "deliveryReport": true,
+        "retry": {
+          "count": 3,
+          "type": "exponentialDelay",
+          "condition": "isNetworkOrIdempotentRequestError"
+        }
+      }
+    },
+    "payload": {
+      "headers": {
+        "content-type": "application/vnd.interoperability.transfers+json;version=1.0",
+        "date": "2019-05-28T16:34:41.000Z",
+        "fspiop-source": "FSP1",
+        "fspiop-destination": "FSP2"
+      },
+      "body": "data:application/vnd.interoperability.transfers+json;version=1.0;base64,ENCODED-PREPARE-REQUEST"
+    },
+    "traceInfo": {
+        "traceParent": "00-8e540e87060d56a2d2e0be5d732791e7-d96a5971b7c5cac6-21",
+        "traceState": "acmevendor=eyJzcGFuSWQiOiJkOTZhNTk3MWI3YzVjYWM2IiwidGltZUFwaVByZXBhcmUiOiIxNjA3Njc3MDgxNzAwIiwidGltZUFwaUZ1bGZpbCI6IjE2MDc2NzcwODE4MTkifQ==",
+        "service": "notification-evt-handler",
+        "startTimestamp": 1607677081837,
+        "finishTimestamp": 2007677081838
+    }
+}
+```
+
+NotifyDelivered Domain Event:
+```JSON
+{
+    "msgId": "0ee9331a-1a71-4efc-a22d-868fcbf59658",
+    "msgKey": "861b86e6-c3da-48b3-ba17-896710287d1f",
+    "msgName": "NotifyDelivered",
+    "msgType": "Domain",
+    "msgTopic": "NotificationCommands",
+    "msgPartition": null,
+    "msgTimestamp": 2007677081820,
+    "aggregateName": "Notifications",
+    "aggregateId": "861b86e6-c3da-48b3-ba17-896710287d1f",
+    "notifyId": "b17b7125-a0fc-451f-98ee-7e4c870c7d13",
+    "report": {
+      "requestTimestamp": 1507677081120,
+      "deliveryTimestamp": 1607677081840,
+      "deliveryReqLatency": 100,
+      "retryAttempts": 0,
+      "response": {
+        "statusCode": "0",
+        "statusDescription": "OK",
+        "headers": {
+          "content-type": "application/vnd.interoperability.transfers+json;version=1.0",
+          "date": "2019-05-28T16:34:41.000Z"
+        },
+        "body": "{}",
+      },
+      "accepted": true
+    },
+    "traceInfo": {
+        "traceParent": "00-8e540e87060d56a2d2e0be5d732791e7-d96a5971b7c5cac6-21",
+        "traceState": "acmevendor=eyJzcGFuSWQiOiJkOTZhNTk3MWI3YzVjYWM2IiwidGltZUFwaVByZXBhcmUiOiIxNjA3Njc3MDgxNzAwIiwidGltZUFwaUZ1bGZpbCI6IjE2MDc2NzcwODE4MTkifQ==",
+        "service": "notification-Cmd-handler",
+        "startTimestamp": 1607677081837,
+        "finishTimestamp": 2007677081838
+    }
+}
+```
 
 
+#### 4.1.b. HTTP Transport example for a PUT Transfer Callback Notification Messages for FSP2 to FSP1
+
+NotifyCmd Command Event:
+```JSON
+{
+    "msgId": "6db168a3-61bd-485b-9921-b7012651243e",
+    "msgKey": "861b86e6-c3da-48b3-ba17-896710287d1f",
+    "msgName": "NotifyCmd",
+    "msgType": "Command",
+    "msgTopic": "NotificationCommands",
+    "msgPartition": null,
+    "msgTimestamp": 1607677081837,
+    "aggregateName": "Notifications",
+    "aggregateId": "861b86e6-c3da-48b3-ba17-896710287d1f",
+    "notifyId": "2c9f52ad-fa48-4a57-8794-b73729acf184",
+    "transport": {
+      "type": "HTTP",
+      "method": "PUT",
+      "contentType": "application/vnd.interoperability.transfers+json;version=1.0",
+      "recipient": {
+        "endpoint": "fsp2.com/transfers/{{transferId}}",
+        "params": {
+          "transferId": "861b86e6-c3da-48b3-ba17-896710287d1f"
+        }
+      },
+      "options": {
+        "deliveryReport": true,
+        "retry": {
+          "count": 3,
+          "type": "exponentialDelay",
+          "condition": "isNetworkOrIdempotentRequestError"
+        }
+      }
+    },
+    "payload": {
+      "headers": {
+        "content-type": "application/vnd.interoperability.transfers+json;version=1.0",
+        "date": "2019-05-28T16:34:41.000Z",
+        "fspiop-source": "FSP2",
+        "fspiop-destination": "FSP1"
+      },
+      "body": "data:application/vnd.interoperability.transfers+json;version=1.0;base64,ENCODED-FULFIL-REQUEST"
+    },
+    "traceInfo": {
+        "traceParent": "00-8e540e87060d56a2d2e0be5d732791e7-d96a5971b7c5cac6-21",
+        "traceState": "acmevendor=eyJzcGFuSWQiOiJkOTZhNTk3MWI3YzVjYWM2IiwidGltZUFwaVByZXBhcmUiOiIxNjA3Njc3MDgxNzAwIiwidGltZUFwaUZ1bGZpbCI6IjE2MDc2NzcwODE4MTkifQ==",
+        "service": "notification-evt-handler",
+        "startTimestamp": 1607677081837,
+        "finishTimestamp": 2007677081838
+    }
+}
+```
+
+NotifyDelivered Domain Event:
+```JSON
+{
+    "msgId": "cfa82358-7a92-42bd-8943-f37d22784b15",
+    "msgKey": "861b86e6-c3da-48b3-ba17-896710287d1f",
+    "msgName": "NotifyDelivered",
+    "msgType": "Domain",
+    "msgTopic": "NotificationCommands",
+    "msgPartition": null,
+    "msgTimestamp": 2007677081820,
+    "aggregateName": "Notifications",
+    "aggregateId": "861b86e6-c3da-48b3-ba17-896710287d1f",
+    "notifyId": "2c9f52ad-fa48-4a57-8794-b73729acf184",
+    "report": {
+      "requestTimestamp": 1507677081120,
+      "deliveryTimestamp": 1607677081840,
+      "deliveryReqLatency": 100,
+      "retryAttempts": 1,
+      "response": {
+        "statusCode": "200",
+        "statusDescription": "Ok",
+        "headers": {
+          "content-type": "application/vnd.interoperability.transfers+json;version=1.0",
+          "date": "2019-05-28T16:34:41.000Z"
+        },
+        "body": "{}",
+      },
+      "accepted": true
+    },
+    "traceInfo": {
+        "traceParent": "00-8e540e87060d56a2d2e0be5d732791e7-d96a5971b7c5cac6-21",
+        "traceState": "acmevendor=eyJzcGFuSWQiOiJkOTZhNTk3MWI3YzVjYWM2IiwidGltZUFwaVByZXBhcmUiOiIxNjA3Njc3MDgxNzAwIiwidGltZUFwaUZ1bGZpbCI6IjE2MDc2NzcwODE4MTkifQ==",
+        "service": "notification-Cmd-handler",
+        "startTimestamp": 1607677081837,
+        "finishTimestamp": 2007677081838
+    }
+}
+```
