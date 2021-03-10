@@ -8,7 +8,7 @@ version: 2.1
 ##
 orbs:
   slack: circleci/slack@3.4.2
-  pr-tools: mojaloop/pr-tools@0.1.10
+  pr-tools: mojaloop/pr-tools@0.1.8
 
 
 ##
@@ -217,16 +217,17 @@ workflows:
     jobs:
       - pr-tools/pr-title-check:
           context: org-global
+          filters:
+            tags:
+              ignore: /.*/
+            branches:
+              ignore:
+                - master
       - setup:
           context: org-global
           filters:
             tags:
               only: /.*/
-            branches:
-              ignore:
-                - /feature.*/
-                - /bugfix.*/
-                - gh-pages
       - test-svg:
           context: org-global
           requires:
@@ -234,10 +235,6 @@ workflows:
           filters:
             tags:
               only: /.*/
-            branches:
-              ignore:
-                - /feature*/
-                - /bugfix*/
       - build:
           context: org-global
           requires:
@@ -245,11 +242,6 @@ workflows:
           filters:
             tags:
               only: /.*/
-            branches:
-              ignore:
-                - /feature.*/
-                - /bugfix.*/
-                - gh-pages
       - deploy:
           context: org-global
           requires:
