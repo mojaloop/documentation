@@ -319,6 +319,7 @@ Before a contribution is to be considered for adoption, it:
 1. Make the project public on Mojaloop GitHub
 1. Announce on the slack `#announcements` channel
 1. Enable CI/CD Pipelines and publish any relevant artifacts, such as Docker Images or npm modules
+1. Review and recommend a module or course for the Mojaloop Training Program if needed and relevant for this contribution.
 
 ### Versioning
 
