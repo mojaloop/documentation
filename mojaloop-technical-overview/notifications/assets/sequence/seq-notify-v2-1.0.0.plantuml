@@ -45,12 +45,13 @@ actor "Participant" as PARTICIPANT
 control "Notification Event Handler" as NOTIFY_HANDLER_EVT
 control "Notification Cmd Handler" as NOTIFY_HANDLER_CMD
 boundary "Central Service API" as CSAPI
-collections "Notification-Topic" as TOPIC_NOTIFICATIONS
-collections "NotificationsCommand" as TOPIC_NOTIFICATIONS_CMD
-collections "NotificationsEvent" as TOPIC_NOTIFICATIONS_EVT
+control "FSPIOP Callback Handler" as MLCALLBACKHANDLER
+collections "notifications\n(Internal)\nTopic" as TOPIC_NOTIFICATIONS
+collections "notificationsCommand\n(Cmd Event)\nTopic" as TOPIC_NOTIFICATIONS_CMD
+collections "notificationsEvent\n(Domain Event)\nTopic" as TOPIC_NOTIFICATIONS_EVT
 ' entity "Participant DAO" as PARTICIPANT_DAO
 ' entity "Notifications DAO" as NOTIFICATIONS_DAO
-database "Persistent Store" as DB
+database "Notify Persistent Store" as NOTIFYDB
 
 ' box "Financial Service Provider (Payer)" #lightGray
 ' 	participant PAYER_DFSP
@@ -62,19 +63,33 @@ database "Persistent Store" as DB
 
 box "Central Service" #LightYellow
     participant TOPIC_NOTIFICATIONS
-    participant NOTIFY_HANDLER_EVT
+    
     participant CSAPI
     ' participant NOTIFICATIONS_DAO
-    participant DB
     participant TOPIC_NOTIFICATIONS_EVT
     ' participant PARTICIPANT_DAO
     ' participant DB
 end box
 
-box "Notification Engine" #LightCyan
-    participant TOPIC_NOTIFICATIONS_CMD
-    participant NOTIFY_HANDLER_CMD
+box "Mojaloop Adapter" #LightCyan
+    participant MLCALLBACKHANDLER
+    ' participant TOPIC_NOTIFICATIONS
+    
+    ' participant CSAPI
+    ' participant NOTIFICATIONS_DAO
+    ' participant DB
+    ' participant TOPIC_NOTIFICATIONS_EVT
+    ' participant PARTICIPANT_DAO
+    ' participant DB
+end box
+
+box "Notification Engine" #LightBlue
     participant TOPIC_NOTIFICATIONS_EVT
+    participant NOTIFY_HANDLER_EVT
+    participant TOPIC_NOTIFICATIONS_CMD
+    participant NOTIFYDB
+    participant NOTIFY_HANDLER_CMD
+    ' participant TOPIC_NOTIFICATIONS_EVT
 end box
 
 box "Financial Service Provider (Participant)" #lightGray
@@ -95,24 +110,22 @@ group Send notification to Participants
     '     }
     ' end note
 
-    TOPIC_NOTIFICATIONS <- NOTIFY_HANDLER_EVT: Consume Notification event
-    activate NOTIFY_HANDLER_EVT
+    TOPIC_NOTIFICATIONS <- MLCALLBACKHANDLER: Consume Notification event
+    activate MLCALLBACKHANDLER
     activate TOPIC_NOTIFICATIONS
     deactivate TOPIC_NOTIFICATIONS
 
-    alt transport.options.deliver-report === true
-        NOTIFY_HANDLER_EVT -> DB: Record Notification event
-    end
+
 
     ' put logic here to route command-type based on incoming events
     group Routing logic
         alt event.type === 'notification' && event.action === 'prepare' && event.status === 'success'
-            CSAPI <-> NOTIFY_HANDLER_EVT: Return Endpoint details for Payee-Participant\n<color #FF0000><b>Error codes:</b> 3202, 3203</color>
+            CSAPI <-> MLCALLBACKHANDLER: Return Endpoint details for Payee-Participant\n<color #FF0000><b>Error codes:</b> 3202, 3203</color>
             activate CSAPI
             deactivate CSAPI
 
-            NOTIFY_HANDLER_EVT -> NOTIFY_HANDLER_EVT: Construct NotifyCmd Command Message with enriched message & endpoint data
-            note right of NOTIFY_HANDLER_EVT #yellow
+            MLCALLBACKHANDLER -> TOPIC_NOTIFICATIONS_EVT: Construct NotificationReady Event Message with enriched message & endpoint data
+            note right of MLCALLBACKHANDLER #yellow
                 "transport": {
                     "type": "HTTP",
                     "method": "POST",
@@ -125,12 +138,12 @@ group Send notification to Participants
                 }
             end note
         else event.type === 'notification' && event.action === 'prepare.*|position-prepare' && event.status === 'error'
-            CSAPI <-> NOTIFY_HANDLER_EVT: Return Endpoint details for Payer-Participant\n<color #FF0000><b>Error codes:</b> 3202, 3203</color>
+            CSAPI <-> MLCALLBACKHANDLER: Return Endpoint details for Payer-Participant\n<color #FF0000><b>Error codes:</b> 3202, 3203</color>
             activate CSAPI
             deactivate CSAPI
 
-            NOTIFY_HANDLER_EVT -> NOTIFY_HANDLER_EVT: Construct NotifyCmd Command Message with enriched message & endpoint data
-            note right of NOTIFY_HANDLER_EVT #yellow
+            MLCALLBACKHANDLER -> MLCALLBACKHANDLER: Construct NotificationReady Event Message with enriched message & endpoint data
+            note right of MLCALLBACKHANDLER #yellow
                 "transport": {
                     "type": "HTTP",
                     "method": "PUT",
@@ -143,12 +156,12 @@ group Send notification to Participants
                 }
             end note
         else event.type === 'notification' && event.action === 'prepare-duplicate' && event.status === 'success'
-            CSAPI <-> NOTIFY_HANDLER_EVT: Return Endpoint details for Payer-Participant\n<color #FF0000><b>Error codes:</b> 3202, 3203</color>
+            CSAPI <-> MLCALLBACKHANDLER: Return Endpoint details for Payer-Participant\n<color #FF0000><b>Error codes:</b> 3202, 3203</color>
             activate CSAPI
             deactivate CSAPI
 
-            NOTIFY_HANDLER_EVT -> NOTIFY_HANDLER_EVT: Construct NotifyCmd Command Message with enriched message & endpoint data
-            note right of NOTIFY_HANDLER_EVT #yellow
+            MLCALLBACKHANDLER -> MLCALLBACKHANDLER: Construct NotificationReady Event Message with enriched message & endpoint data
+            note right of MLCALLBACKHANDLER #yellow
                 "transport": {
                     "type": "HTTP",
                     "method": "PUT",
@@ -161,12 +174,12 @@ group Send notification to Participants
                 }
             end note
        else event.type === 'notification' && event.action === 'commit|reserve' && event.status === 'success'
-            CSAPI <-> NOTIFY_HANDLER_EVT: Return Endpoint details for Payer-Participant\n<color #FF0000><b>Error codes:</b> 3202, 3203</color>
+            CSAPI <-> MLCALLBACKHANDLER: Return Endpoint details for Payer-Participant\n<color #FF0000><b>Error codes:</b> 3202, 3203</color>
             activate CSAPI
             deactivate CSAPI
 
-            NOTIFY_HANDLER_EVT -> NOTIFY_HANDLER_EVT: Construct NotifyCmd Command Message with enriched message & endpoint data
-            note right of NOTIFY_HANDLER_EVT #yellow
+            MLCALLBACKHANDLER -> MLCALLBACKHANDLER: Construct NotificationReady Event Message with enriched message & endpoint data
+            note right of MLCALLBACKHANDLER #yellow
                 "transport": {
                     "type": "HTTP",
                     "method": "PUT",
@@ -183,12 +196,12 @@ group Send notification to Participants
             '   - To confirm if action=reserve results in sending out a payee notification <-- I assume this is for FSPIOP v1.1 changes
             '   - This is also only applicabble for "off-us" transfers
             alt (Config.SEND_TRANSFER_CONFIRMATION_TO_PAYEE === true || event.action === 'reserve') && to!=from
-                CSAPI <-> NOTIFY_HANDLER_EVT: Return Endpoint details for Payee-Participant\n<color #FF0000><b>Error codes:</b> 3202, 3203</color>
+                CSAPI <-> MLCALLBACKHANDLER: Return Endpoint details for Payee-Participant\n<color #FF0000><b>Error codes:</b> 3202, 3203</color>
                 activate CSAPI
                 deactivate CSAPI
 
-                NOTIFY_HANDLER_EVT -> NOTIFY_HANDLER_EVT: Construct NotifyCmd Command Message with enriched message & endpoint data
-                note right of NOTIFY_HANDLER_EVT #yellow
+                MLCALLBACKHANDLER -> MLCALLBACKHANDLER: Construct NotificationReady Event Message with enriched message & endpoint data
+                note right of MLCALLBACKHANDLER #yellow
                     "transport": {
                         "type": "HTTP",
                         "method": "PUT",
@@ -202,12 +215,12 @@ group Send notification to Participants
                 end note
             end
         else event.type === 'notification' && event.action === 'reject|abort' && event.status === 'success'
-            CSAPI <-> NOTIFY_HANDLER_EVT: Return Endpoint details for Payee-Participant\n<color #FF0000><b>Error codes:</b> 3202, 3203</color>
+            CSAPI <-> MLCALLBACKHANDLER: Return Endpoint details for Payee-Participant\n<color #FF0000><b>Error codes:</b> 3202, 3203</color>
             activate CSAPI
             deactivate CSAPI
 
-            NOTIFY_HANDLER_EVT -> NOTIFY_HANDLER_EVT: Construct NotifyCmd Command Message with enriched message & endpoint data
-            note right of NOTIFY_HANDLER_EVT #yellow
+            MLCALLBACKHANDLER -> MLCALLBACKHANDLER: Construct NotificationReady Event Message with enriched message & endpoint data
+            note right of MLCALLBACKHANDLER #yellow
                 "transport": {
                     "type": "HTTP",
                     "method": "PUT",
@@ -220,12 +233,12 @@ group Send notification to Participants
                 }
             end note
         else event.type === 'notification' && event.action === 'commit|reserve' && event.status === 'error'
-            CSAPI <-> NOTIFY_HANDLER_EVT: Return Endpoint details for Payee-Participant\n<color #FF0000><b>Error codes:</b> 3202, 3203</color>
+            CSAPI <-> MLCALLBACKHANDLER: Return Endpoint details for Payee-Participant\n<color #FF0000><b>Error codes:</b> 3202, 3203</color>
             activate CSAPI
             deactivate CSAPI
 
-            NOTIFY_HANDLER_EVT -> NOTIFY_HANDLER_EVT: Construct NotifyCmd Command Message with enriched message & endpoint data
-            note right of NOTIFY_HANDLER_EVT #yellow
+            MLCALLBACKHANDLER -> MLCALLBACKHANDLER: Construct NotificationReady Event Message with enriched message & endpoint data
+            note right of MLCALLBACKHANDLER #yellow
                 "transport": {
                     "type": "HTTP",
                     "method": "PUT",
@@ -238,12 +251,12 @@ group Send notification to Participants
                 }
             end note
         else event.type === 'notification' && event.action === 'timeout-received' && event.status === 'error'
-            CSAPI <-> NOTIFY_HANDLER_EVT: Return Endpoint details for Payee-Participant\n<color #FF0000><b>Error codes:</b> 3202, 3203</color>
+            CSAPI <-> MLCALLBACKHANDLER: Return Endpoint details for Payee-Participant\n<color #FF0000><b>Error codes:</b> 3202, 3203</color>
             activate CSAPI
             deactivate CSAPI
 
-            NOTIFY_HANDLER_EVT -> NOTIFY_HANDLER_EVT: Construct NotifyCmd Command Message with enriched message & endpoint data
-            note right of NOTIFY_HANDLER_EVT #yellow
+            MLCALLBACKHANDLER -> MLCALLBACKHANDLER: Construct NotificationReady Event Message with enriched message & endpoint data
+            note right of MLCALLBACKHANDLER #yellow
                 "transport": {
                     "type": "HTTP",
                     "method": "PUT",
@@ -256,12 +269,12 @@ group Send notification to Participants
                 }
             end note
         else event.type === 'notification' && event.action === 'timeout-reserved' && event.status === 'success'
-            CSAPI <-> NOTIFY_HANDLER_EVT: Return Endpoint details for Payer-Participant\n<color #FF0000><b>Error codes:</b> 3202, 3203</color>
+            CSAPI <-> MLCALLBACKHANDLER: Return Endpoint details for Payer-Participant\n<color #FF0000><b>Error codes:</b> 3202, 3203</color>
             activate CSAPI
             deactivate CSAPI
 
-            NOTIFY_HANDLER_EVT -> NOTIFY_HANDLER_EVT: Construct NotifyCmd Command Message with enriched message & endpoint data
-            note right of NOTIFY_HANDLER_EVT #yellow
+            MLCALLBACKHANDLER -> MLCALLBACKHANDLER: Construct NotificationReady Event Message with enriched message & endpoint data
+            note right of MLCALLBACKHANDLER #yellow
                 "transport": {
                     "type": "HTTP",
                     "method": "PUT",
@@ -278,12 +291,12 @@ group Send notification to Participants
             '   - To confirm if action=reserve results in sending out a payee notification <-- I assume this is for FSPIOP v1.1 changes
             '   - This is also only applicabble for "off-us" transfers
             ' alt (Config.SEND_TRANSFER_CONFIRMATION_TO_PAYEE === true || event.action === 'reserve') && to!=from
-            CSAPI <-> NOTIFY_HANDLER_EVT: Return Endpoint details for Payee-Participant\n<color #FF0000><b>Error codes:</b> 3202, 3203</color>
+            CSAPI <-> MLCALLBACKHANDLER: Return Endpoint details for Payee-Participant\n<color #FF0000><b>Error codes:</b> 3202, 3203</color>
             activate CSAPI
             deactivate CSAPI
 
-            NOTIFY_HANDLER_EVT -> NOTIFY_HANDLER_EVT: Construct NotifyCmd Command Message with enriched message & endpoint data
-            note right of NOTIFY_HANDLER_EVT #yellow
+            MLCALLBACKHANDLER -> MLCALLBACKHANDLER: Construct NotificationReady Event Message with enriched message & endpoint data
+            note right of MLCALLBACKHANDLER #yellow
                 "transport": {
                     "type": "HTTP",
                     "method": "PUT",
@@ -297,12 +310,12 @@ group Send notification to Participants
             end note
             ' end
         else event.type === 'notification' && event.action === 'get' && event.status === 'success'
-            CSAPI <-> NOTIFY_HANDLER_EVT: Return Endpoint details for Requesting-Participant\n<color #FF0000><b>Error codes:</b> 3202, 3203</color>
+            CSAPI <-> MLCALLBACKHANDLER: Return Endpoint details for Requesting-Participant\n<color #FF0000><b>Error codes:</b> 3202, 3203</color>
             activate CSAPI
             deactivate CSAPI
 
-            NOTIFY_HANDLER_EVT -> NOTIFY_HANDLER_EVT: Construct NotifyCmd Command Message with enriched message & endpoint data
-            note right of NOTIFY_HANDLER_EVT #yellow
+            MLCALLBACKHANDLER -> MLCALLBACKHANDLER: Construct NotificationReady Event Message with enriched message & endpoint data
+            note right of MLCALLBACKHANDLER #yellow
                 "transport": {
                     "type": "HTTP",
                     "method": "PUT",
@@ -315,12 +328,12 @@ group Send notification to Participants
                 }
             end note
         else event.type === 'notification' && event.action === 'get' && event.status === 'error'
-            CSAPI <-> NOTIFY_HANDLER_EVT: Return Endpoint details for Requesting-Participant\n<color #FF0000><b>Error codes:</b> 3202, 3203</color>
+            CSAPI <-> MLCALLBACKHANDLER: Return Endpoint details for Requesting-Participant\n<color #FF0000><b>Error codes:</b> 3202, 3203</color>
             activate CSAPI
             deactivate CSAPI
 
-            NOTIFY_HANDLER_EVT -> NOTIFY_HANDLER_EVT: Construct NotifyCmd Command Message with enriched message & endpoint data
-            note right of NOTIFY_HANDLER_EVT #yellow
+            MLCALLBACKHANDLER -> MLCALLBACKHANDLER: Construct NotificationReady Event Message with enriched message & endpoint data
+            note right of MLCALLBACKHANDLER #yellow
                 "transport": {
                     "type": "HTTP",
                     "method": "PUT",
@@ -333,8 +346,14 @@ group Send notification to Participants
                 }
             end note
         end
+        MLCALLBACKHANDLER -> TOPIC_NOTIFICATIONS_EVT: Publish NotificationReady Event Message
     end
     
+    ' TODO1
+    TOPIC_NOTIFICATIONS_EVT <- NOTIFY_HANDLER_EVT: Consume NotificationReady Event
+    activate NOTIFY_HANDLER_EVT
+    activate TOPIC_NOTIFICATIONS_EVT
+    deactivate TOPIC_NOTIFICATIONS_EVT
 
     NOTIFY_HANDLER_EVT -> NOTIFY_HANDLER_EVT: Construct NotifyCmd Command Message with notficiation-payload & transport-data
     group For-each NotifyCmd Command Messages
@@ -343,15 +362,19 @@ group Send notification to Participants
     end
     
 
-    NOTIFY_HANDLER_EVT -> TOPIC_NOTIFICATIONS: Commit Notification event
-    activate TOPIC_NOTIFICATIONS
-    deactivate TOPIC_NOTIFICATIONS
+    NOTIFY_HANDLER_EVT -> TOPIC_NOTIFICATIONS_EVT: Commit Notification event
+    activate TOPIC_NOTIFICATIONS_EVT
+    deactivate TOPIC_NOTIFICATIONS_EVT
     deactivate NOTIFY_HANDLER_EVT
     
     
     TOPIC_NOTIFICATIONS_CMD <- NOTIFY_HANDLER_CMD: Consume NotifyCmd Command Message
     activate NOTIFY_HANDLER_CMD
     deactivate TOPIC_NOTIFICATIONS_CMD
+
+    alt transport.options.deliver-report === true
+        NOTIFY_HANDLER_CMD -> NOTIFYDB: Record Notification event
+    end
 
     NOTIFY_HANDLER_CMD -> NOTIFY_HANDLER_CMD: Validate transport.type && transport.content-type match handlers configuration
 
@@ -373,23 +396,21 @@ alt If transport.type && transport.content-type match handlers configuration
                     }
                 }
             end note
-            NOTIFY_HANDLER_CMD -> PARTICIPANT: Notification with Prepare/fulfil result/error to \nPayer DFSP to specified Endpoint - PUT \n<color #FF0000><b>Error code:</b> 1001</color>
-            NOTIFY_HANDLER_CMD <-- PARTICIPANT: HTTP 200 OK 
+            NOTIFY_HANDLER_CMD -> PARTICIPANT: Notification to \nPayer DFSP to specified Endpoint - PUT \n<color #FF0000><b>Error code:</b> 1001</color>
+            NOTIFY_HANDLER_CMD <-- PARTICIPANT: HTTP Response
         end
 
-        NOTIFY_HANDLER_CMD -> NOTIFY_HANDLER_CMD: Prepare Delivery Report
-    
-
     alt transport.options.deliver-report === true
+        NOTIFY_HANDLER_CMD -> NOTIFY_HANDLER_CMD: Prepare Delivery Report
+
+        NOTIFY_HANDLER_CMD -> NOTIFYDB: Record NotifyDeliveryReport results
+
         NOTIFY_HANDLER_CMD -> TOPIC_NOTIFICATIONS_EVT: Publish NotifyDeliveryReport event
         activate TOPIC_NOTIFICATIONS_EVT
 
         TOPIC_NOTIFICATIONS_EVT <- NOTIFY_HANDLER_EVT: Consume NotifyDeliveryReport event
         deactivate TOPIC_NOTIFICATIONS_EVT
         activate NOTIFY_HANDLER_EVT
-
-        NOTIFY_HANDLER_EVT -> DB: Record NotifyDeliveryReport event
-        
 
         NOTIFY_HANDLER_EVT -> TOPIC_NOTIFICATIONS_EVT: Commit NotifyDeliveryReport event
         deactivate NOTIFY_HANDLER_EVT

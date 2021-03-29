@@ -37,27 +37,40 @@ This design proposes the seperation of the current Notification capabilities (tr
 
 | Components | Description | APIs | Notes |
 | --- | --- | --- | --- |
-| Notification Evt Handler | Consumes existing Notification events, then interprates (in context of Mojaloop use-cases) those events into an appropriate NotifyCmd message to some explicit receipient. This component is stateful, and will store information of the notification events and delivery reports as required. | API operations to query stored deliveryReports | This component is a "Central-Service" |
+| ML-Adapter Callback Handler | This component understands the context and semantics of the FSPIOP Specification. Consumes existing Notification (internal) events, then interprates (in context of Mojaloop use-cases) those events into an appropriate event message to some explicit receipient. Also handles feedback loop and compensating actions (defined by configurable rules) from Delivery Reports. | N/A | This component is part of the "ML-API-Adapter" |
+| Notification Evt Handler | Consumes existing Notification events, then interprates (without contextual dependencies) those events into an appropriate NotifyCmd. This component is stateful, and will store information of the notification events and delivery reports as required. | API operations to request notifications (async & sync) and query stored deliveryReports | This component is a "Supporting-Service" |
 | Notification Cmd Handler | This is responsible for the "notification-engine" capabilities. This will consume and process Notification Command message produced by the NotificationEvt Handler. This component is stateless, and has no dependency on any persistence or caching stores. This allows for multiple pluggable Cmd Handlers to exist to handle different combinations of transports (transport.type) and content-types(transpport.contentType) as required. This component will also manage message and transport security aspects such as TLS (Transport Layer Security) and JWS Signing for HTTP transports. | API operations to send notifications synchronously | This component is a "Supporting-Service" |
 
 
 ...
-![example](assets/diagrams/Transfers-Arch-End-to-End-with-Notify-Engine-v1.0.svg)
+![example](assets/diagrams/Transfers-Arch-End-to-End-with-Notify-Engine-v2.0.svg)
 <!--
 ![example](assets/diagrams/architecture/example.svg)
 -->
 
-### 2.2. Sequence Diagram
+### 2.2. Sequence Diagrams
+
+#### 2.1.1. Golden path
 
 ![example](assets/sequence/seq-notify-v2-1.0.0.svg)
 
-### 2.3 Types of Notifications
+#### 2.1.2. Failure Scenarios
+
+##### 2.1.2.1. Notification Cmd Handler Failure mid-processing retries
+
+Notes:
+- Handle failure attempts 
+
+##### 2.1.2.2. Callback Handler / Notification Engine Unavailable
+
+### 2.3. Types of Notifications
 
 | Event | Description | Notes |
 | --- | --- | --- |
-| Notification | Existing Notification event currently produced by Central-Service components which is the result of some Mojaloop use-case. |  |
-| NotifyCmd | Notification Command message produced by the Notification Evt Handler, which is consumed and processed by the Notification Cmd Handler. This message is generic, and can be used for any notification purposes. It is not context aware, nor does it have any knowledge of a Mojaloop use-case. It contains only the transport specific information requires to delivery the notification. |  |
-| NotifyDelivered | Domain event message to broadcast Delivery reports to Central-Services. This event can be consumed by the Central-Services (currently the Notification Evt Handler) to persist this information to a store. |  |
+| Notification | Internal existing notification event currently produced by Central-Service components which is the result of some internal process (e.g. Transfer Prepared, Transfer Fulfiled, etc) |  |
+| NotificationReady | Domain Event produced by context aware Callback Handler. This message is generic and not contextual. It containts everything that is needed for the notification to be processed by the Notification Engine, which includes the transport specific information required for delivery, and reliability configuration (i.e. delivery report enabled, retry attempts, etc). |  |
+| NotifyCmd | Notification Command message produced by the Notification Evt Handler, which is consumed and processed by the Notification Cmd Handler as a result of the NotificationReady event. |  |
+| NotifyDelivered | Domain event message to broadcast Delivery reports within the Notification Engine and Callback Handlers (for compensating actions). This event is consumed by the Notification Evt Handler and persisted for reporting and compensating purposes. |  |
 
 ## 3. Models
 
@@ -222,8 +235,7 @@ This design proposes the seperation of the current Notification capabilities (tr
 }
 ```
 
-## 4. Example Scenarios
-
+## 4. Scenarios
 ### 4.1. Multiple Transports
 
 ![example](assets/diagrams/Transfers-Arch-End-to-End-with-Notify-Engine-Multiple-Transport-Example-v1.0.svg)
