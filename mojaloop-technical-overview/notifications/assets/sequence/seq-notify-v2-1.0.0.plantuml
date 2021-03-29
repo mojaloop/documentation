@@ -371,12 +371,14 @@ group Send notification to Participants
     TOPIC_NOTIFICATIONS_CMD <- NOTIFY_HANDLER_CMD: Consume NotifyCmd Command Message
     activate NOTIFY_HANDLER_CMD
     deactivate TOPIC_NOTIFICATIONS_CMD
+    
+    NOTIFY_HANDLER_CMD -> NOTIFY_HANDLER_CMD: Validate transport.type && transport.content-type match handlers configuration \n<color #FF0000><b>Error code:</b> 1001</color>
 
-    alt transport.options.deliver-report === true
-        NOTIFY_HANDLER_CMD -> NOTIFYDB: Record Notification event
+    NOTIFY_HANDLER_CMD <-> NOTIFYDB: Query Notification Attempt by notifyId, and attemot to re-load existing state into memory if it exists \n<color #FF0000><b>Note: this means that we are recovering a 'Notification' event from a mid-flight 'in-progress' Cmd Handler interupption if record found!</b></color>
+
+    alt if transport.options.deliver-report === true and state.status is undefined from in-memory state
+        NOTIFY_HANDLER_CMD -> NOTIFYDB: Record Notification event with state.status='received' and state.retry-attempt-count = 0
     end
-
-    NOTIFY_HANDLER_CMD -> NOTIFY_HANDLER_CMD: Validate transport.type && transport.content-type match handlers configuration
 
 alt If transport.type && transport.content-type match handlers configuration
 
@@ -396,36 +398,80 @@ alt If transport.type && transport.content-type match handlers configuration
                     }
                 }
             end note
-            NOTIFY_HANDLER_CMD -> PARTICIPANT: Notification to \nPayer DFSP to specified Endpoint - PUT \n<color #FF0000><b>Error code:</b> 1001</color>
-            NOTIFY_HANDLER_CMD <-- PARTICIPANT: HTTP Response
+
+            loop state.retry-attempt-count++; state.retry-attempt-count < transport.options.retry.count
+                alt if state.retry-attempt-count == 0 && state.status == 'received'
+                    NOTIFY_HANDLER_CMD -> NOTIFYDB: Update Notification state with state.status='in-progress'
+                else
+                    alt if transport.options.retry.type == 'exponentialDelay'
+                        NOTIFY_HANDLER_CMD -> NOTIFY_HANDLER_CMD: With state.retry-attempt-count - Calculate and wait for exponentialDelay to decay
+                    end
+                end
+
+                alt if state.retry-count < transport.options.retry.count
+                    group Delivery Success
+                        NOTIFY_HANDLER_CMD -> PARTICIPANT: Send Notification to \nPayer DFSP to specified Endpoint \n<color #FF0000><b>Error code:</b> 1001</color>
+                        NOTIFY_HANDLER_CMD <-- PARTICIPANT: HTTP Response
+                        break from loop
+                            NOTIFY_HANDLER_CMD -> NOTIFY_HANDLER_CMD: break from loop
+                        end
+                    else Handle Delivery Failure
+                        alt transport.options.deliver-report === true
+                            NOTIFY_HANDLER_CMD -> NOTIFYDB: Update Notification state with Failure.reason & state.retry-attempt-count
+                        end
+                        alt if Failure.type is NOT of type transport.options.retry.condition
+                            break from loop
+                                NOTIFY_HANDLER_CMD -> NOTIFY_HANDLER_CMD: break from loop
+                            end
+                        end
+                    end
+                else
+                    break from loop
+                        ' alt transport.options.deliver-report === true
+                        '     NOTIFY_HANDLER_CMD -> NOTIFYDB: Update Notification state with failure reason 'max retries-attempts exceeded'
+                        ' end
+                        NOTIFY_HANDLER_CMD -> NOTIFY_HANDLER_CMD: break from loop
+                    end
+                end 
+            end
         end
 
     alt transport.options.deliver-report === true
-        NOTIFY_HANDLER_CMD -> NOTIFY_HANDLER_CMD: Prepare Delivery Report
+        NOTIFY_HANDLER_CMD -> NOTIFY_HANDLER_CMD: Prepare Delivery Report (NotifyReport)
 
-        NOTIFY_HANDLER_CMD -> NOTIFYDB: Record NotifyDeliveryReport results
+        NOTIFY_HANDLER_CMD -> NOTIFYDB: Update Notification statewith delivery report details and state.status='success' || 'failure'
 
-        NOTIFY_HANDLER_CMD -> TOPIC_NOTIFICATIONS_EVT: Publish NotifyDeliveryReport event
+        NOTIFY_HANDLER_CMD -> TOPIC_NOTIFICATIONS_EVT: Publish NotifyReport event
         activate TOPIC_NOTIFICATIONS_EVT
+    
+        NOTIFY_HANDLER_CMD -> TOPIC_NOTIFICATIONS_CMD: Commit NotifyCmd event
+        deactivate TOPIC_NOTIFICATIONS_CMD
+        deactivate NOTIFY_HANDLER_CMD
 
-        TOPIC_NOTIFICATIONS_EVT <- NOTIFY_HANDLER_EVT: Consume NotifyDeliveryReport event
+        ' TOPIC_NOTIFICATIONS_EVT <- NOTIFY_HANDLER_EVT: Consume NotifyReport event
+        ' deactivate TOPIC_NOTIFICATIONS_EVT
+        ' activate NOTIFY_HANDLER_EVT
+
+        ' NOTIFY_HANDLER_EVT -> TOPIC_NOTIFICATIONS_EVT: Commit NotifyReport event
+        ' deactivate NOTIFY_HANDLER_EVT
+        ' activate TOPIC_NOTIFICATIONS_EVT
+        ' deactivate TOPIC_NOTIFICATIONS_EVT
+
+        TOPIC_NOTIFICATIONS_EVT <- MLCALLBACKHANDLER: Consume NotifyReport event
         deactivate TOPIC_NOTIFICATIONS_EVT
-        activate NOTIFY_HANDLER_EVT
+        activate MLCALLBACKHANDLER
 
-        NOTIFY_HANDLER_EVT -> TOPIC_NOTIFICATIONS_EVT: Commit NotifyDeliveryReport event
-        deactivate NOTIFY_HANDLER_EVT
+        MLCALLBACKHANDLER -> MLCALLBACKHANDLER: Handle compensating actions by Custom Rule process
+
+        MLCALLBACKHANDLER -> TOPIC_NOTIFICATIONS_EVT: Commit NotifyReport event
+        deactivate MLCALLBACKHANDLER
         activate TOPIC_NOTIFICATIONS_EVT
         deactivate TOPIC_NOTIFICATIONS_EVT
     end
 
 else
-        NOTIFY_HANDLER_CMD -> NOTIFY_HANDLER_CMD: Ignore Notification
+    NOTIFY_HANDLER_CMD -> NOTIFY_HANDLER_CMD: Ignore Notification
 end
-
-    NOTIFY_HANDLER_CMD -> TOPIC_NOTIFICATIONS_CMD: Commit NotifyCmd event
-    activate TOPIC_NOTIFICATIONS_CMD
-    deactivate TOPIC_NOTIFICATIONS_CMD
-    deactivate NOTIFY_HANDLER_CMD
 
 end
 @enduml
