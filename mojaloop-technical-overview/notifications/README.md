@@ -37,8 +37,8 @@ This design proposes the seperation of the current Notification capabilities (tr
 
 | Components | Description | APIs | Notes |
 | --- | --- | --- | --- |
-| ML-Adapter Callback Handler | This component understands the context and semantics of the FSPIOP Specification. Consumes existing Notification (internal) events, then interprates (in context of Mojaloop use-cases) those events into an appropriate event message to some explicit receipient. Also handles feedback loop and compensating actions (defined by configurable rules) from Delivery Reports. | N/A | This component is part of the "ML-API-Adapter" |
-| Notification Evt Handler | Consumes existing Notification events, then interprates (without contextual dependencies) those events into an appropriate NotifyCmd. This component is stateful, and will store information of the notification events and delivery reports as required. | API operations to request notifications (async & sync) and query stored deliveryReports | This component is a "Supporting-Service" |
+| ML-Adapter Callback Handler | This component understands the context and semantics of the FSPIOP Specification. Consumes existing Notification (internal) events, then interprates (in context of Mojaloop use-cases) those events into an appropriate event message to some explicit receipient. Also handles feedback loop and compensating actions (defined by configurable rules) from Delivery Reports. It must also resolve any notification details required (i.e. URLs, transport type, etc) by querying the Central-Service's Admin API. | N/A | This component is part of the "ML-API-Adapter" |
+| Notification Evt Handler | Consumes existing Notification events, then interprates (without contextual dependencies) those events into an appropriate NotifyCmd. | API operations to request notifications (async & sync) and query stored deliveryReports | This component is a "Supporting-Service" |
 | Notification Cmd Handler | This is responsible for the "notification-engine" capabilities. This will consume and process Notification Command message produced by the NotificationEvt Handler. This component is stateless, and has no dependency on any persistence or caching stores. This allows for multiple pluggable Cmd Handlers to exist to handle different combinations of transports (transport.type) and content-types(transpport.contentType) as required. This component will also manage message and transport security aspects such as TLS (Transport Layer Security) and JWS Signing for HTTP transports. | API operations to send notifications synchronously | This component is a "Supporting-Service" |
 
 
@@ -50,18 +50,7 @@ This design proposes the seperation of the current Notification capabilities (tr
 
 ### 2.2. Sequence Diagrams
 
-#### 2.1.1. Golden path
-
 ![example](assets/sequence/seq-notify-v2-1.0.0.svg)
-
-#### 2.1.2. Failure Scenarios
-
-##### 2.1.2.1. Notification Cmd Handler Failure mid-processing retries
-
-Notes:
-- Handle failure attempts 
-
-##### 2.1.2.2. Callback Handler / Notification Engine Unavailable
 
 ### 2.3. Types of Notifications
 
@@ -71,6 +60,16 @@ Notes:
 | NotifyReady | Domain Event produced by context aware Callback Handler. This message is generic and not contextual. It containts everything that is needed for the notification to be processed by the Notification Engine, which includes the transport specific information required for delivery, and reliability configuration (i.e. delivery report enabled, retry attempts, etc). |  |
 | NotifyCmd | Notification Command message produced by the Notification Evt Handler, which is consumed and processed by the Notification Cmd Handler as a result of the NotifyReady event. |  |
 | NotifyReport | Domain event message to broadcast Delivery reports within the Notification Engine and Callback Handlers (for compensating actions). This event is consumed by the Notification Evt Handler and persisted for reporting and compensating purposes. |  |
+
+### 2.4. Notification Aggregate internal States
+
+| State | Description | Notes |
+| --- | --- | --- |
+| received | Indicates that the NotifyCmd event has been receivd by the Notification Cmd Handler. |  |
+| in-progress | Indicates that the NotifyCmd event is being processed.  |  |
+| success | Indicates that the NotifyCmd event processing has completed successfully, and the Notification was delivered. |  |
+| failure | Indicates that the NotifyCmd event processing has failed, and the Notification was not delivered. |  |
+| expired | Indicates that the NotifyCmd event processing has expired, and the Notification was not delivered. |  |
 
 ## 3. Models
 
@@ -125,73 +124,31 @@ Notes:
 }
 ```
 
-#### 3.2.1.b. Notification Command produced by Notificant Evt Handler
+#### 3.2.1.b. Notification Ready produced by Mojaloop Adapter Callback Handler
 
 ##### 3.2.1.b.i. Schemas
 
-[eventNotifyCmd.schema.json](assets/schemas/eventNotifyCmd.schema.json)
+[eventNotifyReady.schema.json](assets/schemas/eventNotifyReady.schema.json)
 
 ##### 3.2.1.b.ii. Examples
 
 ```JSON
-{
-    "msgId": "18efb9ea-d29a-42b9-9b30-59e1e7cfe216", // Generated by the NotificationEvtHandler
-    "msgKey": "861b86e6-c3da-48b3-ba17-896710287d1f", // Mapped from the aggregateId, used by Kafka for Key-partitioning
-    "msgName": "NotifyCmd",
-    "msgType": "Command", // DomainEvents
-    "msgTopic": "NotificationCommands", // Topic that the message will be published too
-    "msgPartition": null, // Optional partition used for publishing the message to the msgTopic
-    "msgTimestamp": 1607677081837, // Time of message creation
-    "aggregateName": "Notifications",
-    "aggregateId": "861b86e6-c3da-48b3-ba17-896710287d1f", // Generated by the NotificationEvtHandler
-    "notifyId": "3920382d-f78c-4023-adf9-0d7a4a2a3a2f", // Mapped from the metadata.event.id by the NotificationEvtHandler, used to correlate multiple NotifyCmd.
-    "transport": { // Transport information required by the notification-engine
-      "type": "HTTP", // Transport type
-      "method": "GET", // Optional method for the associated transport
-      "contentType": "application/vnd.interoperability.paries+json;version=1.0",
-      "recipient": {
-        "endpoint": "http://fsp.com/parties/{{partyIdType}}/{{partyId}}}?key={{value}}", // Templated endpoint. It can be a hardcoded string with all parameters pre-rendered into the string.
-        "params": { // Optional template parameters
-          "partyIdType": "MSISDN",
-          "partyId": "12345",
-          "value": "ABCD"
-        }
-      },
-      "options": { // Run-time config options for the notification-engine
-        "deliveryReport": true, // Enable delivery-reporting
-        "retry": { //Retry config
-          "count": 3,
-          "type": "noDelay|exponentialDelay", // ref for exponentialDelay: https://developers.google.com/analytics/devguides/reporting/core/v3/errors#backoff
-          "condition": "isNetworkError|isIdempotentRequestError|isNetworkOrIdempotentRequestError" //  isNetworkOrIdempotentRequestError is default, it retries if it is a network error or (using HTTP as an example) 5xx error on an idempotent request (i.e GET, HEAD, OPTIONS, PUT or DELETE)
-        }
-      }
-    },
-    "payload": {
-      // Headers to be send in request. Note trace-headers (traceParent, traceState) will also included when sending out the request when provided in traceInfo section.
-      "headers": {
-        "content-type": "application/vnd.interoperability.transfers+json;version=1.0",
-        "date": "2019-05-28T16:34:41.000Z",
-        "fspiop-source": "payerfsp",
-        "fspiop-destination": "payerfsp"
-      },
-      // Body is optional and may be ignored depending on the transport.method
-      "body": "data:application/vnd.interoperability.transfers+json;version=1.0;base64,ewogICJmdWxmaWxtZW50IjogIlVObEo5OGhaVFlfZHN3MGNBcXc0aV9VTjN2NHV0dDdDWkZCNHlmTGJWRkEiLAogICJjb21wbGV0ZWRUaW1lc3RhbXAiOiAiMjAxOS0wNS0yOVQyMzoxODozMi44NTZaIiwKICAidHJhbnNmZXJTdGF0ZSI6ICJDT01NSVRURUQiCn0"
-    },
-    "traceInfo": { // Optional. Populate if trace-headers are to be be included in request headers.
-        "traceParent": "00-8e540e87060d56a2d2e0be5d732791e7-d96a5971b7c5cac6-21",
-        "traceState": "acmevendor=eyJzcGFuSWQiOiJkOTZhNTk3MWI3YzVjYWM2IiwidGltZUFwaVByZXBhcmUiOiIxNjA3Njc3MDgxNzAwIiwidGltZUFwaUZ1bGZpbCI6IjE2MDc2NzcwODE4MTkifQ==",
-        "service": "notification-evt-handler",
-        "startTimestamp": 1607677081837,
-        "finishTimestamp": 2007677081838
-    }
-}
+
 ```
 
-#### 3.2.1.c. Delivery-report Event produced by Notification Cmd Handler
+#### 3.2.1.c. Notification Command produced by Notificant Evt Handler
+
 ##### 3.2.1.c.i. Schemas
-[NotifyReport.schema.json](assets/schemas/notifyReport.schema.json)
+
+[eventNotifyCmd.schema.json](assets/schemas/eventNotifyCmd.schema.json)
 
 ##### 3.2.1.c.ii. Examples
+
+#### 3.2.1.d. Delivery-report Event produced by Notification Cmd Handler
+##### 3.2.1.d.i. Schemas
+[NotifyReport.schema.json](assets/schemas/notifyReport.schema.json)
+
+##### 3.2.1.d.ii. Examples
 
 ```JSON
 {
@@ -236,7 +193,37 @@ Notes:
 ```
 
 ## 4. Scenarios
-### 4.1. Multiple Transports
+
+#### 4.1. Failure Scenarios
+
+##### 4.1.1. Notification Cmd Handler Failure mid-processing
+
+Notification Cmd Handler uses either a cached or persistent repository (depending on requirements) to store the Notification state.
+
+Once the NotifyCmd is consumed by the Notification Cmd Handler, the managed state within the cached/persistent repository will ensure that the Handler will be able to recover from any mid-processing interruptions. The NotifyCmd event will then be re-loaded the state from the repository, and process the notification accordingly:
+
+- The Notification will be ignored if the state.status is either `success`, `failed` or `expired`.
+- The NotifyCmd will be processed from its last retry-attempt if the state.status = `in-progress`
+- The NotifyCmd will be processed normally if state.status = `received` as no retry-atempts have been observed
+
+The Notification Cmd Handler will only commit the Kafka message once a final state (i.e. `success`, `failed` or `expired`) has been persisted, thus ensuring the that the message will be re-processed as a result of any interupptions.
+
+##### 4.1.2. Compensating Actions
+
+The Mojaloop Adapter - FSPIOP Callback Handler (or any other Callback Handler) is able to action compensating actions by processing the NotifyReport domain event. Note that the NotifyReport will only be published by the Notification Engine if the transport.options.deliver-report field is set to true on the NotifyReady domain event.
+
+The capabilities for the rule processor must support the following operations:
+- Create a new (not a duplicate) NotifiyReady request event. This can be used by any Callback Handler to execute additional retry logic that is specific to its own context (i.e. FPSIOP, ISO20022, etc), or instead soley handle retry logic by disabling retries on the Notification Engine (i.e. transport.options.retry.count=).
+- Notify Central-Services of the NotifyReport results. This can be used by the Central-Services to inform the Timeout handler of the expiration.
+
+
+##### 4.1.2. Callback Handlers
+
+There are two approaches to handle unavailable/interruptions to Callback Handler processing:
+- the existing Mojaloop Timeout process will manage any transfers that are not in a final commited or aborted state. This could result in a notification being delivered while in parallel the associated transfer is timed-out by the Central-Services, and thus to consistency issues.
+- the existing Timeout process will ignore any transfers that are queued for notification, and instead wait for a compensating action from the FSPIOP Callback Handler. This will ensure consistency and is the recommended approach.
+
+### 4.2. Multiple Transports ( TO BE UPDATED! )
 
 ![example](assets/diagrams/Transfers-Arch-End-to-End-with-Notify-Engine-Multiple-Transport-Example-v1.0.svg)
 
@@ -275,185 +262,3 @@ Each of the Notification Engines will only listen to event messages that match t
 This therefore allows the Central-Ledger components to be isolated from the transport specific logic (and transformations if applicable) for notification callbacks.
 
 The delivery-report for each of the POST/PUT interactions provides the assurance that the notifications results are recorded by the Central-Service Notification-Evt-Handler component. This component is able to raise alerts or alternatively handle any compensating actions independantly of the FSP's transport preferences.
-
-#### 4.1.a. gRPC Transport example for a POST Transfer Callback Notification Messages for FSP1 to FSP2
-
-NotifyCmd Command Event:
-```JSON
-{
-    "msgId": "66a2ec9a-9d4f-4439-8d38-19c3aa21d54e",
-    "msgKey": "861b86e6-c3da-48b3-ba17-896710287d1f",
-    "msgName": "NotifyCmd",
-    "msgType": "Command",
-    "msgTopic": "NotificationCommands",
-    "msgPartition": null,
-    "msgTimestamp": 1607677081837,
-    "aggregateName": "Notifications",
-    "aggregateId": "861b86e6-c3da-48b3-ba17-896710287d1f",
-    "notifyId": "b17b7125-a0fc-451f-98ee-7e4c870c7d13",
-    "transport": {
-      "type": "GRPC",
-      "method": "POST",
-      "contentType": "application/vnd.interoperability.transfers+json;version=1.0",
-      "recipient": {
-        "endpoint": "fsp2.com/transfers"
-      },
-      "options": {
-        "deliveryReport": true,
-        "retry": {
-          "count": 3,
-          "type": "exponentialDelay",
-          "condition": "isNetworkOrIdempotentRequestError"
-        }
-      }
-    },
-    "payload": {
-      "headers": {
-        "content-type": "application/vnd.interoperability.transfers+json;version=1.0",
-        "date": "2019-05-28T16:34:41.000Z",
-        "fspiop-source": "FSP1",
-        "fspiop-destination": "FSP2"
-      },
-      "body": "data:application/vnd.interoperability.transfers+json;version=1.0;base64,ENCODED-PREPARE-REQUEST"
-    },
-    "traceInfo": {
-        "traceParent": "00-8e540e87060d56a2d2e0be5d732791e7-d96a5971b7c5cac6-21",
-        "traceState": "acmevendor=eyJzcGFuSWQiOiJkOTZhNTk3MWI3YzVjYWM2IiwidGltZUFwaVByZXBhcmUiOiIxNjA3Njc3MDgxNzAwIiwidGltZUFwaUZ1bGZpbCI6IjE2MDc2NzcwODE4MTkifQ==",
-        "service": "notification-evt-handler",
-        "startTimestamp": 1607677081837,
-        "finishTimestamp": 2007677081838
-    }
-}
-```
-
-NotifyReport Domain Event:
-```JSON
-{
-    "msgId": "0ee9331a-1a71-4efc-a22d-868fcbf59658",
-    "msgKey": "861b86e6-c3da-48b3-ba17-896710287d1f",
-    "msgName": "NotifyReport",
-    "msgType": "Domain",
-    "msgTopic": "NotificationCommands",
-    "msgPartition": null,
-    "msgTimestamp": 2007677081820,
-    "aggregateName": "Notifications",
-    "aggregateId": "861b86e6-c3da-48b3-ba17-896710287d1f",
-    "notifyId": "b17b7125-a0fc-451f-98ee-7e4c870c7d13",
-    "report": {
-      "requestTimestamp": 1507677081120,
-      "deliveryTimestamp": 1607677081840,
-      "deliveryReqLatency": 100,
-      "retryAttempts": 0,
-      "response": {
-        "statusCode": "0",
-        "statusDescription": "OK",
-        "headers": {
-          "content-type": "application/vnd.interoperability.transfers+json;version=1.0",
-          "date": "2019-05-28T16:34:41.000Z"
-        },
-        "body": "{}",
-      },
-      "accepted": true
-    },
-    "traceInfo": {
-        "traceParent": "00-8e540e87060d56a2d2e0be5d732791e7-d96a5971b7c5cac6-21",
-        "traceState": "acmevendor=eyJzcGFuSWQiOiJkOTZhNTk3MWI3YzVjYWM2IiwidGltZUFwaVByZXBhcmUiOiIxNjA3Njc3MDgxNzAwIiwidGltZUFwaUZ1bGZpbCI6IjE2MDc2NzcwODE4MTkifQ==",
-        "service": "notification-Cmd-handler",
-        "startTimestamp": 1607677081837,
-        "finishTimestamp": 2007677081838
-    }
-}
-```
-
-
-#### 4.1.b. HTTP Transport example for a PUT Transfer Callback Notification Messages for FSP2 to FSP1
-
-NotifyCmd Command Event:
-```JSON
-{
-    "msgId": "6db168a3-61bd-485b-9921-b7012651243e",
-    "msgKey": "861b86e6-c3da-48b3-ba17-896710287d1f",
-    "msgName": "NotifyCmd",
-    "msgType": "Command",
-    "msgTopic": "NotificationCommands",
-    "msgPartition": null,
-    "msgTimestamp": 1607677081837,
-    "aggregateName": "Notifications",
-    "aggregateId": "861b86e6-c3da-48b3-ba17-896710287d1f",
-    "notifyId": "2c9f52ad-fa48-4a57-8794-b73729acf184",
-    "transport": {
-      "type": "HTTP",
-      "method": "PUT",
-      "contentType": "application/vnd.interoperability.transfers+json;version=1.0",
-      "recipient": {
-        "endpoint": "fsp2.com/transfers/{{transferId}}",
-        "params": {
-          "transferId": "861b86e6-c3da-48b3-ba17-896710287d1f"
-        }
-      },
-      "options": {
-        "deliveryReport": true,
-        "retry": {
-          "count": 3,
-          "type": "exponentialDelay",
-          "condition": "isNetworkOrIdempotentRequestError"
-        }
-      }
-    },
-    "payload": {
-      "headers": {
-        "content-type": "application/vnd.interoperability.transfers+json;version=1.0",
-        "date": "2019-05-28T16:34:41.000Z",
-        "fspiop-source": "FSP2",
-        "fspiop-destination": "FSP1"
-      },
-      "body": "data:application/vnd.interoperability.transfers+json;version=1.0;base64,ENCODED-FULFIL-REQUEST"
-    },
-    "traceInfo": {
-        "traceParent": "00-8e540e87060d56a2d2e0be5d732791e7-d96a5971b7c5cac6-21",
-        "traceState": "acmevendor=eyJzcGFuSWQiOiJkOTZhNTk3MWI3YzVjYWM2IiwidGltZUFwaVByZXBhcmUiOiIxNjA3Njc3MDgxNzAwIiwidGltZUFwaUZ1bGZpbCI6IjE2MDc2NzcwODE4MTkifQ==",
-        "service": "notification-evt-handler",
-        "startTimestamp": 1607677081837,
-        "finishTimestamp": 2007677081838
-    }
-}
-```
-
-NotifyReport Domain Event:
-```JSON
-{
-    "msgId": "cfa82358-7a92-42bd-8943-f37d22784b15",
-    "msgKey": "861b86e6-c3da-48b3-ba17-896710287d1f",
-    "msgName": "NotifyReport",
-    "msgType": "Domain",
-    "msgTopic": "NotificationCommands",
-    "msgPartition": null,
-    "msgTimestamp": 2007677081820,
-    "aggregateName": "Notifications",
-    "aggregateId": "861b86e6-c3da-48b3-ba17-896710287d1f",
-    "notifyId": "2c9f52ad-fa48-4a57-8794-b73729acf184",
-    "report": {
-      "requestTimestamp": 1507677081120,
-      "deliveryTimestamp": 1607677081840,
-      "deliveryReqLatency": 100,
-      "retryAttempts": 1,
-      "response": {
-        "statusCode": "200",
-        "statusDescription": "Ok",
-        "headers": {
-          "content-type": "application/vnd.interoperability.transfers+json;version=1.0",
-          "date": "2019-05-28T16:34:41.000Z"
-        },
-        "body": "{}",
-      },
-      "accepted": true
-    },
-    "traceInfo": {
-        "traceParent": "00-8e540e87060d56a2d2e0be5d732791e7-d96a5971b7c5cac6-21",
-        "traceState": "acmevendor=eyJzcGFuSWQiOiJkOTZhNTk3MWI3YzVjYWM2IiwidGltZUFwaVByZXBhcmUiOiIxNjA3Njc3MDgxNzAwIiwidGltZUFwaUZ1bGZpbCI6IjE2MDc2NzcwODE4MTkifQ==",
-        "service": "notification-Cmd-handler",
-        "startTimestamp": 1607677081837,
-        "finishTimestamp": 2007677081838
-    }
-}
-```

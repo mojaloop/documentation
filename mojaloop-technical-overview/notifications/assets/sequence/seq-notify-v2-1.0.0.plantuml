@@ -374,13 +374,13 @@ group Send notification to Participants
     
     NOTIFY_HANDLER_CMD -> NOTIFY_HANDLER_CMD: Validate transport.type && transport.content-type match handlers configuration \n<color #FF0000><b>Error code:</b> 1001</color>
 
-    NOTIFY_HANDLER_CMD <-> NOTIFYDB: Query Notification Attempt by notifyId, and attemot to re-load existing state into memory if it exists \n<color #FF0000><b>Note: this means that we are recovering a 'Notification' event from a mid-flight 'in-progress' Cmd Handler interupption if record found!</b></color>
+    NOTIFY_HANDLER_CMD <-> NOTIFYDB: Query Notification Attempt by aggregateId, and attemot to re-load existing state into memory if it exists \n<color #FF0000><b>Note: this means that we are recovering a 'Notification' event from a mid-flight 'in-progress' Cmd Handler interupption if record found!</b></color>
 
     alt if transport.options.deliver-report === true and state.status is undefined from in-memory state
         NOTIFY_HANDLER_CMD -> NOTIFYDB: Record Notification event with state.status='received' and state.retry-attempt-count = 0
     end
 
-alt If transport.type && transport.content-type match handlers configuration
+alt If transport.type && transport.content-type match handlers configuration && state.status != 'success' || 'failed' || 'expired'
 
         NOTIFY_HANDLER_CMD -> NOTIFY_HANDLER_CMD: Construct Transport Message
 
@@ -408,11 +408,22 @@ alt If transport.type && transport.content-type match handlers configuration
                     end
                 end
 
+                NOTIFY_HANDLER_CMD -> NOTIFY_HANDLER_CMD: With transport.options.expiration Calculate isExpired
+                alt if transport.options.expiration > 0 && isExpired === true
+                    break from loop
+                        NOTIFY_HANDLER_CMD -> NOTIFYDB: Update Notification state with state.status='expired'
+                        NOTIFY_HANDLER_CMD -> NOTIFY_HANDLER_CMD: break from loop
+                    end
+                end
+
+                NOTIFY_HANDLER_CMD -> NOTIFY_HANDLER_CMD: Validate transport.type && transport.content-type match handlers configuration \n<color #FF0000><b>Error code:</b> 1001</color>
+
                 alt if state.retry-count < transport.options.retry.count
                     group Delivery Success
                         NOTIFY_HANDLER_CMD -> PARTICIPANT: Send Notification to \nPayer DFSP to specified Endpoint \n<color #FF0000><b>Error code:</b> 1001</color>
                         NOTIFY_HANDLER_CMD <-- PARTICIPANT: HTTP Response
                         break from loop
+                            NOTIFY_HANDLER_CMD -> NOTIFYDB: Update Notification state with Response.info & state.status='success'
                             NOTIFY_HANDLER_CMD -> NOTIFY_HANDLER_CMD: break from loop
                         end
                     else Handle Delivery Failure
@@ -421,6 +432,7 @@ alt If transport.type && transport.content-type match handlers configuration
                         end
                         alt if Failure.type is NOT of type transport.options.retry.condition
                             break from loop
+                                NOTIFY_HANDLER_CMD -> NOTIFYDB: Update Notification state with Failure.reason='retry-condition not met', and state.status='failed'
                                 NOTIFY_HANDLER_CMD -> NOTIFY_HANDLER_CMD: break from loop
                             end
                         end
@@ -430,6 +442,7 @@ alt If transport.type && transport.content-type match handlers configuration
                         ' alt transport.options.deliver-report === true
                         '     NOTIFY_HANDLER_CMD -> NOTIFYDB: Update Notification state with failure reason 'max retries-attempts exceeded'
                         ' end
+                        NOTIFY_HANDLER_CMD -> NOTIFYDB: Update Notification state with Failure.reason='max retry attempts' & state.status='failed'
                         NOTIFY_HANDLER_CMD -> NOTIFY_HANDLER_CMD: break from loop
                     end
                 end 
@@ -438,8 +451,8 @@ alt If transport.type && transport.content-type match handlers configuration
 
     alt transport.options.deliver-report === true
         NOTIFY_HANDLER_CMD -> NOTIFY_HANDLER_CMD: Prepare Delivery Report (NotifyReport)
-
-        NOTIFY_HANDLER_CMD -> NOTIFYDB: Update Notification statewith delivery report details and state.status='success' || 'failure'
+        
+        NOTIFY_HANDLER_CMD -> NOTIFYDB: Update Notification state with Delivery Report
 
         NOTIFY_HANDLER_CMD -> TOPIC_NOTIFICATIONS_EVT: Publish NotifyReport event
         activate TOPIC_NOTIFICATIONS_EVT
@@ -447,15 +460,6 @@ alt If transport.type && transport.content-type match handlers configuration
         NOTIFY_HANDLER_CMD -> TOPIC_NOTIFICATIONS_CMD: Commit NotifyCmd event
         deactivate TOPIC_NOTIFICATIONS_CMD
         deactivate NOTIFY_HANDLER_CMD
-
-        ' TOPIC_NOTIFICATIONS_EVT <- NOTIFY_HANDLER_EVT: Consume NotifyReport event
-        ' deactivate TOPIC_NOTIFICATIONS_EVT
-        ' activate NOTIFY_HANDLER_EVT
-
-        ' NOTIFY_HANDLER_EVT -> TOPIC_NOTIFICATIONS_EVT: Commit NotifyReport event
-        ' deactivate NOTIFY_HANDLER_EVT
-        ' activate TOPIC_NOTIFICATIONS_EVT
-        ' deactivate TOPIC_NOTIFICATIONS_EVT
 
         TOPIC_NOTIFICATIONS_EVT <- MLCALLBACKHANDLER: Consume NotifyReport event
         deactivate TOPIC_NOTIFICATIONS_EVT
@@ -471,6 +475,9 @@ alt If transport.type && transport.content-type match handlers configuration
 
 else
     NOTIFY_HANDLER_CMD -> NOTIFY_HANDLER_CMD: Ignore Notification
+    NOTIFY_HANDLER_CMD -> TOPIC_NOTIFICATIONS_CMD: Commit NotifyCmd event
+    deactivate TOPIC_NOTIFICATIONS_CMD
+    deactivate NOTIFY_HANDLER_CMD
 end
 
 end

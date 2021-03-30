@@ -35,7 +35,8 @@
                         "count": 3,
                         "type": "noDelay|exponentialDelay",
                         "condition": "isNetworkError|isIdempotentRequestError|isNetworkOrIdempotentRequestError"
-                    }
+                    },
+                    "expiration": 2000
                 }
             },
             "payload": {
@@ -368,6 +369,16 @@
                                 }
                             },
                             "additionalProperties": false
+                        },
+                        "expiration": {
+                            "$id": "#/properties/transport/properties/options/properties/expiration",
+                            "type": "integer",
+                            "title": "The expiration schema",
+                            "description": "The relative expiration value. 0 is indicates that there is no expiration.",
+                            "default": 0,
+                            "examples": [
+                                2000
+                            ]
                         }
                     },
                     "additionalProperties": false
