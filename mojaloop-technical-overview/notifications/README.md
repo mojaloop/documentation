@@ -61,7 +61,9 @@ This design proposes the seperation of the current Notification capabilities (tr
 | NotifyCmd | Notification Command message produced by the Notification Evt Handler, which is consumed and processed by the Notification Cmd Handler as a result of the NotifyReady event. |  |
 | NotifyReport | Domain event message to broadcast Delivery reports within the Notification Engine and Callback Handlers (for compensating actions). This event is consumed by the Notification Evt Handler and persisted for reporting and compensating purposes. |  |
 
-### 2.4. Notification Aggregate internal States
+### 2.4. Notification Aggregate
+
+The Notification aggregate manages the Notification Entity with the following states:
 
 | State | Description | Notes |
 | --- | --- | --- |
@@ -70,6 +72,8 @@ This design proposes the seperation of the current Notification capabilities (tr
 | success | Indicates that the NotifyCmd event processing has completed successfully, and the Notification was delivered. |  |
 | failure | Indicates that the NotifyCmd event processing has failed, and the Notification was not delivered. |  |
 | expired | Indicates that the NotifyCmd event processing has expired, and the Notification was not delivered. |  |
+
+The aggregate-id should be used as the Kafka message-key for NotifyCmd events. This will optmize the notification processing by ensuring that a consistent Notification Cmd Handler instance will always process that specific entity, thereby allowing us to reduce repository access by leveraging in-memory caching capabilties for queries.
 
 ## 3. Models
 
@@ -124,7 +128,7 @@ This design proposes the seperation of the current Notification capabilities (tr
 }
 ```
 
-#### 3.2.1.b. Notification Ready produced by Mojaloop Adapter Callback Handler
+#### 3.2.1.b. Notification Ready produced by Mojaloop Adapter Callback Handler ( TO BE UPDATED! )
 
 ##### 3.2.1.b.i. Schemas
 
@@ -213,7 +217,7 @@ The Notification Cmd Handler will only commit the Kafka message once a final sta
 The Mojaloop Adapter - FSPIOP Callback Handler (or any other Callback Handler) is able to action compensating actions by processing the NotifyReport domain event. Note that the NotifyReport will only be published by the Notification Engine if the transport.options.deliver-report field is set to true on the NotifyReady domain event.
 
 The capabilities for the rule processor must support the following operations:
-- Create a new (not a duplicate) NotifiyReady request event. This can be used by any Callback Handler to execute additional retry logic that is specific to its own context (i.e. FPSIOP, ISO20022, etc), or instead soley handle retry logic by disabling retries on the Notification Engine (i.e. transport.options.retry.count=).
+- Create a new (not a duplicate) NotifiyReady request event. This can be used by any Callback Handler to execute additional retry logic that is specific to its own context (i.e. FPSIOP, ISO20022, etc), or instead soley handle retry logic by disabling retries on the Notification Engine (i.e. transport.options.retry.count=0).
 - Notify Central-Services of the NotifyReport results. This can be used by the Central-Services to inform the Timeout handler of the expiration.
 
 
