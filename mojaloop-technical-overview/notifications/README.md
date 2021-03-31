@@ -2,18 +2,23 @@
 
 This document will discuss the architecture and design of Mojaloop's Notification-engine.
 
+| Versrion | Date | Name(s) | Description |
+| --- | --- | --- | --- |
+| v1.0-draft.0 | 2021-02-25 | Miguel de Barros | Initial version. |
+| v1.0-draft.1 | 2021-03-15 | Miguel de Barros | Incorporated comments from DA, and expanded on detailed design elements. |
+| v1.0-draft.2 | 2021-03-31 | Miguel de Barros | Re-aligned to the Reference Architecture Stream - updates to diagram, seq, etc. Added new NotifyReady domain event, and added expiration capability to the Notification Engine to ensure consistency. Updated scenarios to include failures, and added additional multiple context example. |
+|   |   |   |   |
+
+
 ## 1. Requirements
 
 ```
-1.1. Notification-engine must be stateless
-    a. Notification messages consumed by the Notification-engine contains everything needed to send notifications
-
-1.2. Notification messages must support
+1.1. Notification messages must support
     a. Config included to indicate that the message must be reliably delivered
     b. Notification transport (i.e. HTTP, gRPC, Email, etc)
     c. End-point details to deliver the notification
 
-1.3. Reliability
+1.2. Reliability
     a. Notification-engine must support retries based on a configuration
     b. HTTP keep-alive must be configured for HTTP transports
     c. A delivery-report must be published to a kafka event topic indicating the result of the notification:
@@ -21,7 +26,7 @@ This document will discuss the architecture and design of Mojaloop's Notificatio
         ii. meta-data: request-timestamp, delivery-timestamp, request-latency
     d. Delivery-reports events must be persisted into a data-store
     
-1.4. Notification-engine must be support the following ingress:
+1.3. Notification-engine must be support the following ingress:
     a. Consuming event messages from a Kafka topic
         i. Notification message JSON schema
     b. An API for sending notifications
@@ -37,7 +42,7 @@ This design proposes the seperation of the current Notification capabilities (tr
 
 | Components | Description | APIs | Notes |
 | --- | --- | --- | --- |
-| ML-Adapter Callback Handler | This component understands the context and semantics of the FSPIOP Specification. Consumes existing Notification (internal) events, then interprates (in context of Mojaloop use-cases) those events into an appropriate event message to some explicit receipient. Also handles feedback loop and compensating actions (defined by configurable rules) from Delivery Reports. It must also resolve any notification details required (i.e. URLs, transport type, etc) by querying the Central-Service's Admin API. | N/A | This component is part of the "ML-API-Adapter" |
+| ML-Adapter Callback Handler | This component understands the context and semantics of the FSPIOP Specification. Consumes existing Notification (internal) events, then interprates (in context of Mojaloop use-cases) those events into an appropriate event message to some explicit receipient. Also handles feedback loop and compensating actions (defined by configurable rules) from Delivery Reports. It must also resolve any notification details required (i.e. URLs, transport type, etc) by querying the Central-Service's Admin API. This component is pluggable, and the design supports the possibility of several Callback Handlers existing for several specific transports or alternatively to support different context languages like ISO 20022. | N/A | This component is part of the "ML-API-Adapter" |
 | Notification Evt Handler | Consumes existing Notification events, then interprates (without contextual dependencies) those events into an appropriate NotifyCmd. | API operations to request notifications (async & sync) and query stored deliveryReports | This component is a "Supporting-Service" |
 | Notification Cmd Handler | This is responsible for the "notification-engine" capabilities. This will consume and process Notification Command message produced by the NotificationEvt Handler. This component is stateless, and has no dependency on any persistence or caching stores. This allows for multiple pluggable Cmd Handlers to exist to handle different combinations of transports (transport.type) and content-types(transpport.contentType) as required. This component will also manage message and transport security aspects such as TLS (Transport Layer Security) and JWS Signing for HTTP transports. | API operations to send notifications synchronously | This component is a "Supporting-Service" |
 
@@ -79,7 +84,7 @@ The aggregate-id should be used as the Kafka message-key for NotifyCmd events. T
 
 #### 3.2.1. Events
 
-#### 3.2.1.a. Notification event produced by Central-Services (Existing)
+#### 3.2.1.a. Notification - Notification event produced by Central-Services (Existing)
 ##### 3.2.1.a.ii. Examples
 
 ```JSON
@@ -128,7 +133,7 @@ The aggregate-id should be used as the Kafka message-key for NotifyCmd events. T
 }
 ```
 
-#### 3.2.1.b. Notification Ready produced by Mojaloop Adapter Callback Handler ( TO BE UPDATED! )
+#### 3.2.1.b. NotifyReady - Notification Ready produced by Mojaloop Adapter Callback Handler
 
 ##### 3.2.1.b.i. Schemas
 
@@ -137,10 +142,60 @@ The aggregate-id should be used as the Kafka message-key for NotifyCmd events. T
 ##### 3.2.1.b.ii. Examples
 
 ```JSON
-
+{
+  "msgId": "18efb9ea-d29a-42b9-9b30-59e1e7cfe216",
+  "msgKey": "861b86e6-c3da-48b3-ba17-896710287d1f",
+  "msgName": "NotifyReady",
+  "msgType": "Domain",
+  "msgTopic": "NotificationEvents",
+  "msgPartition": null,
+  "msgTimestamp": 1607677081837,
+  "aggregateName": "Notifications",
+  "aggregateId": "861b86e6-c3da-48b3-ba17-896710287d1f",
+  "notifyId": "3920382d-f78c-4023-adf9-0d7a4a2a3a2f",
+  "notifyType": "transferFulfiled",
+  "transport": {
+      "type": "HTTP",
+      "method": "GET",
+      "contentType": "application/vnd.interoperability.transfers+json;version=1.0",
+      "recipient": {
+          "endpoint": "http://fsp.com/parties/{{partyIdType}}/{{partyId}}}?key={{value}}",
+          "params": {
+              "partyIdType": "MSISDN",
+              "partyId": "12345",
+              "value": "ABCD"
+          }
+      },
+      "options": {
+          "deliveryReport": true,
+          "retry": {
+              "count": 3,
+              "type": "noDelay|exponentialDelay",
+              "condition": "isNetworkError|isIdempotentRequestError|isNetworkOrIdempotentRequestError"
+          },
+          "expiration": 2000
+      }
+  },
+  "payload": {
+      "headers": {
+          "content-type": "application/vnd.interoperability.transfers+json;version=1.0",
+          "date": "2019-05-28T16:34:41.000Z",
+          "fspiop-source": "payeefsp",
+          "fspiop-destination": "payerfsp"
+      },
+      "body": "data:application/vnd.interoperability.transfers+json;version=1.0;base64,ewogICJmdWxmaWxtZW50IjogIlVObEo5OGhaVFlfZHN3MGNBcXc0aV9VTjN2NHV0dDdDWkZCNHlmTGJWRkEiLAogICJjb21wbGV0ZWRUaW1lc3RhbXAiOiAiMjAxOS0wNS0yOVQyMzoxODozMi44NTZaIiwKICAidHJhbnNmZXJTdGF0ZSI6ICJDT01NSVRURUQiCn0"
+  },
+  "traceInfo": {
+      "traceParent": "00-8e540e87060d56a2d2e0be5d732791e7-d96a5971b7c5cac6-21",
+      "traceState": "acmevendor=eyJzcGFuSWQiOiJkOTZhNTk3MWI3YzVjYWM2IiwidGltZUFwaVByZXBhcmUiOiIxNjA3Njc3MDgxNzAwIiwidGltZUFwaUZ1bGZpbCI6IjE2MDc2NzcwODE4MTkifQ==",
+      "service": "notification-evt-handler",
+      "startTimestamp": 1607677081837,
+      "finishTimestamp": 2007677081838
+  }
+}
 ```
 
-#### 3.2.1.c. Notification Command produced by Notificant Evt Handler
+#### 3.2.1.c. NotifyCmd - Notification Command produced by Notificant Evt Handler
 
 ##### 3.2.1.c.i. Schemas
 
@@ -148,9 +203,63 @@ The aggregate-id should be used as the Kafka message-key for NotifyCmd events. T
 
 ##### 3.2.1.c.ii. Examples
 
-#### 3.2.1.d. Delivery-report Event produced by Notification Cmd Handler
+```JSON
+{
+  "msgId": "18efb9ea-d29a-42b9-9b30-59e1e7cfe216",
+  "msgKey": "861b86e6-c3da-48b3-ba17-896710287d1f",
+  "msgName": "NotifyCmd",
+  "msgType": "Command",
+  "msgTopic": "NotificationCommands",
+  "msgPartition": null,
+  "msgTimestamp": 1607677081837,
+  "aggregateName": "Notifications",
+  "aggregateId": "861b86e6-c3da-48b3-ba17-896710287d1f",
+  "notifyId": "3920382d-f78c-4023-adf9-0d7a4a2a3a2f",
+  "notifyType": "transferFulfiled",
+  "transport": {
+      "type": "HTTP",
+      "method": "GET",
+      "contentType": "application/vnd.interoperability.transfers+json;version=1.0",
+      "recipient": {
+          "endpoint": "http://fsp.com/parties/{{partyIdType}}/{{partyId}}}?key={{value}}",
+          "params": {
+              "partyIdType": "MSISDN",
+              "partyId": "12345",
+              "value": "ABCD"
+          }
+      },
+      "options": {
+          "deliveryReport": true,
+          "retry": {
+              "count": 3,
+              "type": "noDelay|exponentialDelay",
+              "condition": "isNetworkError|isIdempotentRequestError|isNetworkOrIdempotentRequestError"
+          },
+          "expiration": 2000
+      }
+  },
+  "payload": {
+      "headers": {
+          "content-type": "application/vnd.interoperability.transfers+json;version=1.0",
+          "date": "2019-05-28T16:34:41.000Z",
+          "fspiop-source": "payeefsp",
+          "fspiop-destination": "payerfsp"
+      },
+      "body": "data:application/vnd.interoperability.transfers+json;version=1.0;base64,ewogICJmdWxmaWxtZW50IjogIlVObEo5OGhaVFlfZHN3MGNBcXc0aV9VTjN2NHV0dDdDWkZCNHlmTGJWRkEiLAogICJjb21wbGV0ZWRUaW1lc3RhbXAiOiAiMjAxOS0wNS0yOVQyMzoxODozMi44NTZaIiwKICAidHJhbnNmZXJTdGF0ZSI6ICJDT01NSVRURUQiCn0"
+  },
+  "traceInfo": {
+      "traceParent": "00-8e540e87060d56a2d2e0be5d732791e7-d96a5971b7c5cac6-21",
+      "traceState": "acmevendor=eyJzcGFuSWQiOiJkOTZhNTk3MWI3YzVjYWM2IiwidGltZUFwaVByZXBhcmUiOiIxNjA3Njc3MDgxNzAwIiwidGltZUFwaUZ1bGZpbCI6IjE2MDc2NzcwODE4MTkifQ==",
+      "service": "notification-evt-handler",
+      "startTimestamp": 1607677081837,
+      "finishTimestamp": 2007677081838
+  }
+}
+```
+
+#### 3.2.1.d. NotifyReport - Delivery-report Event produced by Notification Cmd Handler
 ##### 3.2.1.d.i. Schemas
-[NotifyReport.schema.json](assets/schemas/notifyReport.schema.json)
+[eventNotifyReport.schema.json](assets/schemas/eventNotifyReport.schema.json)
 
 ##### 3.2.1.d.ii. Examples
 
@@ -204,13 +313,15 @@ The aggregate-id should be used as the Kafka message-key for NotifyCmd events. T
 
 Notification Cmd Handler uses either a cached or persistent repository (depending on requirements) to store the Notification state.
 
-Once the NotifyCmd is consumed by the Notification Cmd Handler, the managed state within the cached/persistent repository will ensure that the Handler will be able to recover from any mid-processing interruptions. The NotifyCmd event will then be re-loaded the state from the repository, and process the notification accordingly:
+Once the NotifyCmd is consumed by the Notification Cmd Handler, the managed state within the cached/persistent repository will ensure that the Handler will be able to recover from any mid-processing interruptions. The NotifyCmd event will trigger a re-load of the Notification state from the repository, and process the notification accordingly:
 
 - The Notification will be ignored if the state.status is either `success`, `failed` or `expired`.
 - The NotifyCmd will be processed from its last retry-attempt if the state.status = `in-progress`
 - The NotifyCmd will be processed normally if state.status = `received` as no retry-atempts have been observed
 
 The Notification Cmd Handler will only commit the Kafka message once a final state (i.e. `success`, `failed` or `expired`) has been persisted, thus ensuring the that the message will be re-processed as a result of any interupptions.
+
+The expiration capability supported by the Notification Engine will ensure that a Notification Cmd Event will not be continously retried, and will instead end up in a final state of `expired` once the expiration lapses.
 
 ##### 4.1.2. Compensating Actions
 
@@ -227,9 +338,9 @@ There are two approaches to handle unavailable/interruptions to Callback Handler
 - the existing Mojaloop Timeout process will manage any transfers that are not in a final commited or aborted state. This could result in a notification being delivered while in parallel the associated transfer is timed-out by the Central-Services, and thus to consistency issues.
 - the existing Timeout process will ignore any transfers that are queued for notification, and instead wait for a compensating action from the FSPIOP Callback Handler. This will ensure consistency and is the recommended approach.
 
-### 4.2. Multiple Transports ( TO BE UPDATED! )
+### 4.2. Multiple Transports
 
-![example](assets/diagrams/Transfers-Arch-End-to-End-with-Notify-Engine-Multiple-Transport-Example-v1.0.svg)
+![example](assets/diagrams/Transfers-Arch-End-to-End-with-Notify-Engine-Multiple-Transport-Example-v2.0.svg)
 
 The above scenario depicts two FSPs each utilsing two different transports for FSPIOP Transfer interactions:
 - FSP1 (payer) is using HTTP transport
@@ -259,10 +370,309 @@ Content-Type: application/json
 }
 ```
 
-With this design it is possible to achieve this by introducing two different ML-API-Adapters for each of the different Transports (i.e. HTTP, gRPC), and similiarly two different Notification Engines for each of these transports handling callbacks.
+With this design it is possible to achieve this by introducing multiple Notification Cmd Handlers within the Notification Engine to handle different Transports (i.e. HTTP, gRPC). In addition, multiple matching ML-Adapters would need to similiar exist to support the associated inbound request.
 
-Each of the Notification Engines will only listen to event messages that match their intended transport types, and will thus discard non-applicable ones.
+Each of the Notification Cmd Handlers will only listen to event messages that match their intended transport types, and will thus discard non-applicable ones.
 
 This therefore allows the Central-Ledger components to be isolated from the transport specific logic (and transformations if applicable) for notification callbacks.
 
 The delivery-report for each of the POST/PUT interactions provides the assurance that the notifications results are recorded by the Central-Service Notification-Evt-Handler component. This component is able to raise alerts or alternatively handle any compensating actions independantly of the FSP's transport preferences.
+
+The transferId is mapped to the notifyId field below. This allows one to query a Notification resuls by correlating the notifyId with the transferId.
+
+#### 4.2.a. gRPC Transport example for a POST Transfer Callback Notification Messages for FSP1 to FSP2
+
+NotifyReady Domain Event:
+```JSON
+{
+    "msgId": "d9e5c681-8489-46ff-880f-8de822b3c521",
+    "msgKey": "861b86e6-c3da-48b3-ba17-896710287d1f",
+    "msgName": "NotifyReady",
+    "msgType": "Domain",
+    "msgTopic": "NotificationEvents",
+    "msgPartition": null,
+    "msgTimestamp": 1607677081837,
+    "aggregateName": "Notifications",
+    "aggregateId": "861b86e6-c3da-48b3-ba17-896710287d1f",
+    "notifyId": "b17b7125-a0fc-451f-98ee-7e4c870c7d13",
+    "notifyType": "transferPrepared",
+    "transport": {
+      "type": "GRPC",
+      "method": "POST",
+      "contentType": "application/vnd.interoperability.transfers+json;version=1.0",
+      "recipient": {
+        "endpoint": "fsp2.com/transfers"
+      },
+      "options": {
+        "deliveryReport": true,
+        "retry": {
+          "count": 3,
+          "type": "exponentialDelay",
+          "condition": "isNetworkOrIdempotentRequestError"
+        }
+      }
+    },
+    "payload": {
+      "headers": {
+        "content-type": "application/vnd.interoperability.transfers+json;version=1.0",
+        "date": "2019-05-28T16:34:41.000Z",
+        "fspiop-source": "FSP1",
+        "fspiop-destination": "FSP2"
+      },
+      "body": "data:application/vnd.interoperability.transfers+json;version=1.0;base64,ENCODED-PREPARE-REQUEST"
+    },
+    "traceInfo": {
+        "traceParent": "00-8e540e87060d56a2d2e0be5d732791e7-d96a5971b7c5cac6-21",
+        "traceState": "acmevendor=eyJzcGFuSWQiOiJkOTZhNTk3MWI3YzVjYWM2IiwidGltZUFwaVByZXBhcmUiOiIxNjA3Njc3MDgxNzAwIiwidGltZUFwaUZ1bGZpbCI6IjE2MDc2NzcwODE4MTkifQ==",
+        "service": "notification-evt-handler",
+        "startTimestamp": 1607677081837,
+        "finishTimestamp": 2007677081838
+    }
+}
+```
+
+NotifyCmd Command Event:
+```JSON
+{
+    "msgId": "66a2ec9a-9d4f-4439-8d38-19c3aa21d54e",
+    "msgKey": "861b86e6-c3da-48b3-ba17-896710287d1f",
+    "msgName": "NotifyCmd",
+    "msgType": "Command",
+    "msgTopic": "NotificationCommands",
+    "msgPartition": null,
+    "msgTimestamp": 1607677081837,
+    "aggregateName": "Notifications",
+    "aggregateId": "861b86e6-c3da-48b3-ba17-896710287d1f",
+    "notifyId": "b17b7125-a0fc-451f-98ee-7e4c870c7d13",
+    "notifyType": "transferPrepared",
+    "transport": {
+      "type": "GRPC",
+      "method": "POST",
+      "contentType": "application/vnd.interoperability.transfers+json;version=1.0",
+      "recipient": {
+        "endpoint": "fsp2.com/transfers"
+      },
+      "options": {
+        "deliveryReport": true,
+        "retry": {
+          "count": 3,
+          "type": "exponentialDelay",
+          "condition": "isNetworkOrIdempotentRequestError"
+        }
+      }
+    },
+    "payload": {
+      "headers": {
+        "content-type": "application/vnd.interoperability.transfers+json;version=1.0",
+        "date": "2019-05-28T16:34:41.000Z",
+        "fspiop-source": "FSP1",
+        "fspiop-destination": "FSP2"
+      },
+      "body": "data:application/vnd.interoperability.transfers+json;version=1.0;base64,ENCODED-PREPARE-REQUEST"
+    },
+    "traceInfo": {
+        "traceParent": "00-8e540e87060d56a2d2e0be5d732791e7-d96a5971b7c5cac6-21",
+        "traceState": "acmevendor=eyJzcGFuSWQiOiJkOTZhNTk3MWI3YzVjYWM2IiwidGltZUFwaVByZXBhcmUiOiIxNjA3Njc3MDgxNzAwIiwidGltZUFwaUZ1bGZpbCI6IjE2MDc2NzcwODE4MTkifQ==",
+        "service": "notification-evt-handler",
+        "startTimestamp": 1607677081837,
+        "finishTimestamp": 2007677081838
+    }
+}
+```
+
+NotifyReport Domain Event:
+```JSON
+{
+    "msgId": "0ee9331a-1a71-4efc-a22d-868fcbf59658",
+    "msgKey": "861b86e6-c3da-48b3-ba17-896710287d1f",
+    "msgName": "NotifyReport",
+    "msgType": "Domain",
+    "msgTopic": "NotificationEvents",
+    "msgPartition": null,
+    "msgTimestamp": 2007677081820,
+    "aggregateName": "Notifications",
+    "aggregateId": "861b86e6-c3da-48b3-ba17-896710287d1f",
+    "notifyId": "b17b7125-a0fc-451f-98ee-7e4c870c7d13",
+    "notifyType": "transferPrepared",
+    "report": {
+      "requestTimestamp": 1507677081120,
+      "deliveryTimestamp": 1607677081840,
+      "deliveryReqLatency": 100,
+      "retryAttempts": 0,
+      "response": {
+        "statusCode": "0",
+        "statusDescription": "OK",
+        "headers": {
+          "content-type": "application/vnd.interoperability.transfers+json;version=1.0",
+          "date": "2019-05-28T16:34:41.000Z"
+        },
+        "body": "{}",
+      },
+      "accepted": true
+    },
+    "traceInfo": {
+        "traceParent": "00-8e540e87060d56a2d2e0be5d732791e7-d96a5971b7c5cac6-21",
+        "traceState": "acmevendor=eyJzcGFuSWQiOiJkOTZhNTk3MWI3YzVjYWM2IiwidGltZUFwaVByZXBhcmUiOiIxNjA3Njc3MDgxNzAwIiwidGltZUFwaUZ1bGZpbCI6IjE2MDc2NzcwODE4MTkifQ==",
+        "service": "notification-Cmd-handler",
+        "startTimestamp": 1607677081837,
+        "finishTimestamp": 2007677081838
+    }
+}
+```
+
+
+#### 4.2.b. HTTP Transport example for a PUT Transfer Callback Notification Messages for FSP2 to FSP1
+
+NotifyReady Command Event:
+```JSON
+{
+    "msgId": "a553f7fd-6e4e-4799-b145-c469eca2da05",
+    "msgKey": "861b86e6-c3da-48b3-ba17-896710287d1f",
+    "msgName": "NotifyReady",
+    "msgType": "Domain",
+    "msgTopic": "NotificationEvents",
+    "msgPartition": null,
+    "msgTimestamp": 1607677081837,
+    "aggregateName": "Notifications",
+    "aggregateId": "861b86e6-c3da-48b3-ba17-896710287d1f",
+    "notifyId": "b17b7125-a0fc-451f-98ee-7e4c870c7d13",
+    "notifyType": "transferFulfilled",
+    "transport": {
+      "type": "HTTP",
+      "method": "PUT",
+      "contentType": "application/vnd.interoperability.transfers+json;version=1.0",
+      "recipient": {
+        "endpoint": "fsp2.com/transfers/{{transferId}}",
+        "params": {
+          "transferId": "861b86e6-c3da-48b3-ba17-896710287d1f"
+        }
+      },
+      "options": {
+        "deliveryReport": true,
+        "retry": {
+          "count": 3,
+          "type": "exponentialDelay",
+          "condition": "isNetworkOrIdempotentRequestError"
+        }
+      }
+    },
+    "payload": {
+      "headers": {
+        "content-type": "application/vnd.interoperability.transfers+json;version=1.0",
+        "date": "2019-05-28T16:34:41.000Z",
+        "fspiop-source": "FSP2",
+        "fspiop-destination": "FSP1"
+      },
+      "body": "data:application/vnd.interoperability.transfers+json;version=1.0;base64,ENCODED-FULFIL-REQUEST"
+    },
+    "traceInfo": {
+        "traceParent": "00-8e540e87060d56a2d2e0be5d732791e7-d96a5971b7c5cac6-21",
+        "traceState": "acmevendor=eyJzcGFuSWQiOiJkOTZhNTk3MWI3YzVjYWM2IiwidGltZUFwaVByZXBhcmUiOiIxNjA3Njc3MDgxNzAwIiwidGltZUFwaUZ1bGZpbCI6IjE2MDc2NzcwODE4MTkifQ==",
+        "service": "notification-evt-handler",
+        "startTimestamp": 1607677081837,
+        "finishTimestamp": 2007677081838
+    }
+}
+```
+
+NotifyCmd Command Event:
+```JSON
+{
+    "msgId": "6db168a3-61bd-485b-9921-b7012651243e",
+    "msgKey": "861b86e6-c3da-48b3-ba17-896710287d1f",
+    "msgName": "NotifyCmd",
+    "msgType": "Command",
+    "msgTopic": "NotificationCommands",
+    "msgPartition": null,
+    "msgTimestamp": 1607677081837,
+    "aggregateName": "Notifications",
+    "aggregateId": "861b86e6-c3da-48b3-ba17-896710287d1f",
+    "notifyId": "b17b7125-a0fc-451f-98ee-7e4c870c7d13",
+    "notifyType": "transferFulfilled",
+    "transport": {
+      "type": "HTTP",
+      "method": "PUT",
+      "contentType": "application/vnd.interoperability.transfers+json;version=1.0",
+      "recipient": {
+        "endpoint": "fsp2.com/transfers/{{transferId}}",
+        "params": {
+          "transferId": "861b86e6-c3da-48b3-ba17-896710287d1f"
+        }
+      },
+      "options": {
+        "deliveryReport": true,
+        "retry": {
+          "count": 3,
+          "type": "exponentialDelay",
+          "condition": "isNetworkOrIdempotentRequestError"
+        }
+      }
+    },
+    "payload": {
+      "headers": {
+        "content-type": "application/vnd.interoperability.transfers+json;version=1.0",
+        "date": "2019-05-28T16:34:41.000Z",
+        "fspiop-source": "FSP2",
+        "fspiop-destination": "FSP1"
+      },
+      "body": "data:application/vnd.interoperability.transfers+json;version=1.0;base64,ENCODED-FULFIL-REQUEST"
+    },
+    "traceInfo": {
+        "traceParent": "00-8e540e87060d56a2d2e0be5d732791e7-d96a5971b7c5cac6-21",
+        "traceState": "acmevendor=eyJzcGFuSWQiOiJkOTZhNTk3MWI3YzVjYWM2IiwidGltZUFwaVByZXBhcmUiOiIxNjA3Njc3MDgxNzAwIiwidGltZUFwaUZ1bGZpbCI6IjE2MDc2NzcwODE4MTkifQ==",
+        "service": "notification-evt-handler",
+        "startTimestamp": 1607677081837,
+        "finishTimestamp": 2007677081838
+    }
+}
+```
+
+NotifyReport Domain Event:
+```JSON
+{
+    "msgId": "cfa82358-7a92-42bd-8943-f37d22784b15",
+    "msgKey": "861b86e6-c3da-48b3-ba17-896710287d1f",
+    "msgName": "NotifyReport",
+    "msgType": "Domain",
+    "msgTopic": "NotificationEvents",
+    "msgPartition": null,
+    "msgTimestamp": 2007677081820,
+    "aggregateName": "Notifications",
+    "aggregateId": "861b86e6-c3da-48b3-ba17-896710287d1f",
+    "notifyId": "b17b7125-a0fc-451f-98ee-7e4c870c7d13",
+    "notifyType": "transferFulfilled",
+    "report": {
+      "requestTimestamp": 1507677081120,
+      "deliveryTimestamp": 1607677081840,
+      "deliveryReqLatency": 100,
+      "retryAttempts": 1,
+      "response": {
+        "statusCode": "200",
+        "statusDescription": "Ok",
+        "headers": {
+          "content-type": "application/vnd.interoperability.transfers+json;version=1.0",
+          "date": "2019-05-28T16:34:41.000Z"
+        },
+        "body": "{}",
+      },
+      "accepted": true
+    },
+    "traceInfo": {
+        "traceParent": "00-8e540e87060d56a2d2e0be5d732791e7-d96a5971b7c5cac6-21",
+        "traceState": "acmevendor=eyJzcGFuSWQiOiJkOTZhNTk3MWI3YzVjYWM2IiwidGltZUFwaVByZXBhcmUiOiIxNjA3Njc3MDgxNzAwIiwidGltZUFwaUZ1bGZpbCI6IjE2MDc2NzcwODE4MTkifQ==",
+        "service": "notification-Cmd-handler",
+        "startTimestamp": 1607677081837,
+        "finishTimestamp": 2007677081838
+    }
+}
+```
+
+### 4.3. Multiple Context Languages
+
+This is an example of how a synchronous ISO Payer FSP could be send a Transfer through a Mojaloop Switch. The Payee FSP in the example only supports FSPIOP for inbound requests and callbacks.
+
+A ML-Adapter would need to be developed to support the Inbound Synchronous ISO 20022 PAIN.013 request being received by the Payer FSP. As the Payer FSP expects a syncrhonous response, there is no need to utilise the Notification Engine for the response. The adapter instead will keep the request connection alive to the Payer FSP and correlate the fulfillment notification published by the Central-Services. The adapter will transporm the result into a PACS.008 message before responding synchronous to the Payer FSP.
+
+The ML-Adapter for ISO 20022 processing will however listen for NotifyReport events produced by the Notification Engine to handle any comepensating actions as a result of Transfer Prepare notification errors.
+
+![example](assets/diagrams/Transfers-Arch-End-to-End-with-Notify-Engine-Multiple-Context-Example-v2.0.svg)

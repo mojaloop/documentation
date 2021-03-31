@@ -1,17 +1,17 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema",
-    "$id": "http://mojaloop.io/events/notifications/NotifyCmd",
+    "$id": "http://mojaloop.io/events/notifications/NotifyReady",
     "type": "object",
-    "title": "NotifyCmd",
-    "description": "Notification Command produced by Notificant Evt Handler",
+    "title": "NotifyReady",
+    "description": "Notification Ready event produced by a Callback Handler",
     "default": {},
     "examples": [
         {
             "msgId": "18efb9ea-d29a-42b9-9b30-59e1e7cfe216",
             "msgKey": "861b86e6-c3da-48b3-ba17-896710287d1f",
-            "msgName": "NotifyCmd",
-            "msgType": "Command",
-            "msgTopic": "NotificationCommands",
+            "msgName": "NotifyReady",
+            "msgType": "Domain",
+            "msgTopic": "NotificationEvents",
             "msgPartition": null,
             "msgTimestamp": 1607677081837,
             "aggregateName": "Notifications",
@@ -98,7 +98,7 @@
             "type": "string",
             "title": "The msgName schema",
             "description": "Name of the message.",
-            "default": "NotifyCmd",
+            "default": "NotifyReady",
             "examples": [
                 "NotifyCmd",
                 "NotifyReady",
