@@ -523,7 +523,7 @@ NotifyReport Domain Event:
 
 #### 4.2.b. HTTP Transport example for a PUT Transfer Callback Notification Messages for FSP2 to FSP1
 
-NotifyReady Command Event:
+NotifyReady Domain Event:
 ```JSON
 {
     "msgId": "a553f7fd-6e4e-4799-b145-c469eca2da05",
