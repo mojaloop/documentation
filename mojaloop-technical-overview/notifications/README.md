@@ -2,7 +2,7 @@
 
 This document will discuss the architecture and design of Mojaloop's Notification-engine.
 
-| Versrion | Date | Name(s) | Description |
+| Version | Date | Name(s) | Description |
 | --- | --- | --- | --- |
 | v1.0-draft.0 | 2021-02-25 | Miguel de Barros | Initial version. |
 | v1.0-draft.1 | 2021-03-15 | Miguel de Barros | Incorporated comments from DA, and expanded on detailed design elements. |
