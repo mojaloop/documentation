@@ -38,13 +38,13 @@ This document will discuss the architecture and design of Mojaloop's Notificatio
 
 ### 2.1 Overview
 
-This design proposes the seperation of the current Notification capabilities (transport vs mojaloop-contextual processing) into the following components:
+This design proposes the separation of the current Notification capabilities (transport vs mojaloop-contextual processing) into the following components:
 
 | Components | Description | APIs | Notes |
 | --- | --- | --- | --- |
-| ML-Adapter Callback Handler | This component understands the context and semantics of the FSPIOP Specification. Consumes existing Notification (internal) events, then interprates (in context of Mojaloop use-cases) those events into an appropriate event message to some explicit receipient. Also handles feedback loop and compensating actions (defined by configurable rules) from Delivery Reports. It must also resolve any notification details required (i.e. URLs, transport type, etc) by querying the Central-Service's Admin API. This component is pluggable, and the design supports the possibility of several Callback Handlers existing for several specific transports or alternatively to support different context languages like ISO 20022. | N/A | This component is part of the "ML-API-Adapter" |
-| Notification Evt Handler | Consumes existing Notification events, then interprates (without contextual dependencies) those events into an appropriate NotifyCmd. | API operations to request notifications (async & sync) and query stored deliveryReports | This component is a "Supporting-Service" |
-| Notification Cmd Handler | This is responsible for the "notification-engine" capabilities. This will consume and process Notification Command message produced by the NotificationEvt Handler. This component is stateless, and has no dependency on any persistence or caching stores. This allows for multiple pluggable Cmd Handlers to exist to handle different combinations of transports (transport.type) and content-types(transpport.contentType) as required. This component will also manage message and transport security aspects such as TLS (Transport Layer Security) and JWS Signing for HTTP transports. | API operations to send notifications synchronously | This component is a "Supporting-Service" |
+| ML-Adapter Callback Handler | This component understands the context and semantics of the FSPIOP Specification. Consumes existing Notification (internal) events, then interprets (in context of Mojaloop use-cases) those events into an appropriate event message to some explicit recipient. Also handles feedback loop and compensating actions (defined by configurable rules) from Delivery Reports. It must also resolve any notification details required (i.e. URLs, transport type, etc) by querying the Central-Service's Admin API. This component is pluggable, and the design supports the possibility of several Callback Handlers existing for several specific transports or alternatively to support different context languages like ISO 20022. | N/A | This component is part of the "ML-API-Adapter" |
+| Notification Evt Handler | Consumes existing Notification events, then interprets (without contextual dependencies) those events into an appropriate NotifyCmd. | API operations to request notifications (async & sync) and query stored deliveryReports | This component is a "Supporting-Service" |
+| Notification Cmd Handler | This is responsible for the "notification-engine" capabilities. This will consume and process Notification Command message produced by the NotificationEvt Handler. This component is stateless, and has no dependency on any persistence or caching stores. This allows for multiple pluggable Cmd Handlers to exist to handle different combinations of transports (transport.type) and content-types(transport.contentType) as required. This component will also manage message and transport security aspects such as TLS (Transport Layer Security) and JWS Signing for HTTP transports. | API operations to send notifications synchronously | This component is a "Supporting-Service" |
 
 
 ...
@@ -61,8 +61,8 @@ This design proposes the seperation of the current Notification capabilities (tr
 
 | Event | Description | Notes |
 | --- | --- | --- |
-| Notification | Internal existing notification event currently produced by Central-Service components which is the result of some internal process (e.g. Transfer Prepared, Transfer Fulfiled, etc) |  |
-| NotifyReady | Domain Event produced by context aware Callback Handler. This message is generic and not contextual. It containts everything that is needed for the notification to be processed by the Notification Engine, which includes the transport specific information required for delivery, and reliability configuration (i.e. delivery report enabled, retry attempts, etc). |  |
+| Notification | Internal existing notification event currently produced by Central-Service components which is the result of some internal process (e.g. Transfer Prepared, Transfer Fulfilled, etc) |  |
+| NotifyReady | Domain Event produced by context aware Callback Handler. This message is generic and not contextual. It contains everything that is needed for the notification to be processed by the Notification Engine, which includes the transport specific information required for delivery, and reliability configuration (i.e. delivery report enabled, retry attempts, etc). |  |
 | NotifyCmd | Notification Command message produced by the Notification Evt Handler, which is consumed and processed by the Notification Cmd Handler as a result of the NotifyReady event. |  |
 | NotifyReport | Domain event message to broadcast Delivery reports within the Notification Engine and Callback Handlers (for compensating actions). This event is consumed by the Notification Evt Handler and persisted for reporting and compensating purposes. |  |
 
@@ -72,13 +72,13 @@ The Notification aggregate manages the Notification Entity with the following st
 
 | State | Description | Notes |
 | --- | --- | --- |
-| received | Indicates that the NotifyCmd event has been receivd by the Notification Cmd Handler. |  |
+| received | Indicates that the NotifyCmd event has been received by the Notification Cmd Handler. |  |
 | in-progress | Indicates that the NotifyCmd event is being processed.  |  |
 | success | Indicates that the NotifyCmd event processing has completed successfully, and the Notification was delivered. |  |
 | failure | Indicates that the NotifyCmd event processing has failed, and the Notification was not delivered. |  |
 | expired | Indicates that the NotifyCmd event processing has expired, and the Notification was not delivered. |  |
 
-The aggregate-id should be used as the Kafka message-key for NotifyCmd events. This will optmize the notification processing by ensuring that a consistent Notification Cmd Handler instance will always process that specific entity, thereby allowing us to reduce repository access by leveraging in-memory caching capabilties for queries.
+The aggregate-id should be used as the Kafka message-key for NotifyCmd events. This will optimize the notification processing by ensuring that a consistent Notification Cmd Handler instance will always process that specific entity, thereby allowing us to reduce repository access by leveraging in-memory caching capabilities for queries.
 
 ## 3. Models
 
@@ -195,7 +195,7 @@ The aggregate-id should be used as the Kafka message-key for NotifyCmd events. T
 }
 ```
 
-#### 3.2.1.c. NotifyCmd - Notification Command produced by Notificant Evt Handler
+#### 3.2.1.c. NotifyCmd - Notification Command produced by Notification Evt Handler
 
 ##### 3.2.1.c.i. Schemas
 
@@ -317,32 +317,32 @@ Once the NotifyCmd is consumed by the Notification Cmd Handler, the managed stat
 
 - The Notification will be ignored if the state.status is either `success`, `failed` or `expired`.
 - The NotifyCmd will be processed from its last retry-attempt if the state.status = `in-progress`
-- The NotifyCmd will be processed normally if state.status = `received` as no retry-atempts have been observed
+- The NotifyCmd will be processed normally if state.status = `received` as no retry-attempts have been observed
 
-The Notification Cmd Handler will only commit the Kafka message once a final state (i.e. `success`, `failed` or `expired`) has been persisted, thus ensuring the that the message will be re-processed as a result of any interupptions.
+The Notification Cmd Handler will only commit the Kafka message once a final state (i.e. `success`, `failed` or `expired`) has been persisted, thus ensuring the that the message will be re-processed as a result of any interruptions.
 
-The expiration capability supported by the Notification Engine will ensure that a Notification Cmd Event will not be continously retried, and will instead end up in a final state of `expired` once the expiration lapses.
+The expiration capability supported by the Notification Engine will ensure that a Notification Cmd Event will not be continuously retried, and will instead end up in a final state of `expired` once the expiration lapses.
 
 ##### 4.1.2. Compensating Actions
 
 The Mojaloop Adapter - FSPIOP Callback Handler (or any other Callback Handler) is able to action compensating actions by processing the NotifyReport domain event. Note that the NotifyReport will only be published by the Notification Engine if the transport.options.deliver-report field is set to true on the NotifyReady domain event.
 
 The capabilities for the rule processor must support the following operations:
-- Create a new (not a duplicate) NotifiyReady request event. This can be used by any Callback Handler to execute additional retry logic that is specific to its own context (i.e. FPSIOP, ISO20022, etc), or instead soley handle retry logic by disabling retries on the Notification Engine (i.e. transport.options.retry.count=0).
+- Create a new (not a duplicate) NotifyReady request event. This can be used by any Callback Handler to execute additional retry logic that is specific to its own context (i.e. FSPIOP, ISO20022, etc), or instead solely handle retry logic by disabling retries on the Notification Engine (i.e. transport.options.retry.count=0).
 - Notify Central-Services of the NotifyReport results. This can be used by the Central-Services to inform the Timeout handler of the expiration.
 
 
 ##### 4.1.2. Callback Handlers
 
 There are two approaches to handle unavailable/interruptions to Callback Handler processing:
-- the existing Mojaloop Timeout process will manage any transfers that are not in a final commited or aborted state. This could result in a notification being delivered while in parallel the associated transfer is timed-out by the Central-Services, and thus to consistency issues.
+- the existing Mojaloop Timeout process will manage any transfers that are not in a final committed or aborted state. This could result in a notification being delivered while in parallel the associated transfer is timed-out by the Central-Services, and thus to consistency issues.
 - the existing Timeout process will ignore any transfers that are queued for notification, and instead wait for a compensating action from the FSPIOP Callback Handler. This will ensure consistency and is the recommended approach.
 
 ### 4.2. Multiple Transports
 
 ![example](assets/diagrams/Transfers-Arch-End-to-End-with-Notify-Engine-Multiple-Transport-Example-v2.0.svg)
 
-The above scenario depicts two FSPs each utilsing two different transports for FSPIOP Transfer interactions:
+The above scenario depicts two FSPs each utilizing two different transports for FSPIOP Transfer interactions:
 - FSP1 (payer) is using HTTP transport
 - FSP2 (payee) is using gRCP transport
 
@@ -370,15 +370,15 @@ Content-Type: application/json
 }
 ```
 
-With this design it is possible to achieve this by introducing multiple Notification Cmd Handlers within the Notification Engine to handle different Transports (i.e. HTTP, gRPC). In addition, multiple matching ML-Adapters would need to similiar exist to support the associated inbound request.
+With this design it is possible to achieve this by introducing multiple Notification Cmd Handlers within the Notification Engine to handle different Transports (i.e. HTTP, gRPC). In addition, multiple matching ML-Adapters would need to similar exist to support the associated inbound request.
 
 Each of the Notification Cmd Handlers will only listen to event messages that match their intended transport types, and will thus discard non-applicable ones.
 
 This therefore allows the Central-Ledger components to be isolated from the transport specific logic (and transformations if applicable) for notification callbacks.
 
-The delivery-report for each of the POST/PUT interactions provides the assurance that the notifications results are recorded by the Central-Service Notification-Evt-Handler component. This component is able to raise alerts or alternatively handle any compensating actions independantly of the FSP's transport preferences.
+The delivery-report for each of the POST/PUT interactions provides the assurance that the notifications results are recorded by the Central-Service Notification-Evt-Handler component. This component is able to raise alerts or alternatively handle any compensating actions independently of the FSP's transport preferences.
 
-The transferId is mapped to the notifyId field below. This allows one to query a Notification resuls by correlating the notifyId with the transferId.
+The transferId is mapped to the notifyId field below. This allows one to query a Notification results by correlating the notifyId with the transferId.
 
 #### 4.2.a. gRPC Transport example for a POST Transfer Callback Notification Messages for FSP1 to FSP2
 
@@ -669,10 +669,10 @@ NotifyReport Domain Event:
 
 ### 4.3. Multiple Context Languages
 
-This is an example of how a synchronous ISO Payer FSP could be send a Transfer through a Mojaloop Switch. The Payee FSP in the example only supports FSPIOP for inbound requests and callbacks.
+This is an example of how a synchronous ISO Payer FSP could send a Transfer through a Mojaloop Switch. The Payee FSP in the example only supports FSPIOP for inbound requests and callbacks.
 
-A ML-Adapter would need to be developed to support the Inbound Synchronous ISO 20022 PAIN.013 request being received by the Payer FSP. As the Payer FSP expects a syncrhonous response, there is no need to utilise the Notification Engine for the response. The adapter instead will keep the request connection alive to the Payer FSP and correlate the fulfillment notification published by the Central-Services. The adapter will transporm the result into a PACS.008 message before responding synchronous to the Payer FSP.
+A ML-Adapter would need to be developed to support the Inbound Synchronous ISO 20022 PAIN.013 request being sent by the Payer FSP. As the Payer FSP expects a synchronous response, there is no need to utilise the Notification Engine for the response. The adapter instead will keep the request connection alive to the Payer FSP and correlate the fulfillment notification published by the Central-Services. The adapter will transform the result into a PACS.008 message before responding synchronous to the Payer FSP.
 
-The ML-Adapter for ISO 20022 processing will however listen for NotifyReport events produced by the Notification Engine to handle any comepensating actions as a result of Transfer Prepare notification errors.
+The ML-Adapter for ISO 20022 processing will however listen for NotifyReport events produced by the Notification Engine to handle any compensating actions as a result of Transfer Prepare notification errors.
 
 ![example](assets/diagrams/Transfers-Arch-End-to-End-with-Notify-Engine-Multiple-Context-Example-v2.0.svg)
