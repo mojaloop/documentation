@@ -9,9 +9,10 @@ This document provides guidelines regarding the versioning strategy used for the
 
 #### Standard for PI-11 and beyond
 1. Starting PI-11 (27th July, 2020) the Versioning guidance is to move to a versioning system that is closely aligned with Semantic versioning by removing the PI/Sprint dependency. So starting 11.x.x, the proposal is to move to pure [SemVer](https://semver.org/).
-2. At a high-level, we will still follow the vX.Y.Z format, but X represents ‘Major’ version, Y represents ‘Minor’ version and Z represents ‘patch’ version. Minor fixes, patches affect increments to ‘Z’, whereas non-breaking functionality changes affect changes to ‘Y’; breaking changes affect the ‘X’ version.
+2. At a high-level, we will still follow the vX.Y.Z format, but X represents ‘Major’ version, Y represents ‘Minor’ version and Z represents ‘patch’ version. Minor fixes, patches affect increments to ‘Z’, whereas non-breaking functionality changes affect changes to ‘Y; breaking changes affect the ‘X’ version.
 3. Along with these, suffixes such as “-snapshot”, “-patch”, “-hotfix” are used as relevant and on need basis (supported by CI config).
 4. So starting with 11.0.0 (primarily for Helm, but for individual services as well) for PI-11, the proposal is to move to pure [SemVer](https://semver.org/).
+5. This implies that for any new release of a package/service below X=11 (for existing repositories and not new ones) will first be baselined to v11.0.0 and from then on follow standard SemVer guidelines as discussed above. For new projects or repositories, versioning can start from v1.0.0 (after they reach release status)
 
 
 #### Versioning Strategy used until PI-10
@@ -25,9 +26,44 @@ This document provides guidelines regarding the versioning strategy used for the
 
 The currrent version information for Mojaloop can be found [here](../../deployment-guide/releases.md).
 
+### Sprint schedule for PI-13
+
+Below is the Sprint schedule for Program Increment 13 which ends with the PI-14 Community event in April 2021.
+
+|Phase/Milestone|Start|End|Weeks|Notes|
+|---|---|---|---|---|
+|**Phase-5 Kick-off On-site**|1/25/2021|1/29/2021|5 days| Virtual Zoom Webinars|
+|**Sprint 13.1**|02/01/2021|02/14/2021|2 weeks | |
+|**Sprint 13.2**|02/15/2021|02/28/2021|2 weeks | |
+|**Sprint 13.3**|03/01/2021|03/14/2021|2 weeks | |
+|**Sprint 13.4**|03/15/2021|03/28/2021|2 weeks | |
+|**Sprint 13.5**|03/29/2021|04/11/2021|2 weeks | |
+|**Sprint 13.6**|04/12/2021|04/25/2021|2 weeks | |
+|**Phase-5 PI-14**|04/26/2021|04/30/2021|5 days| Virtual meetings |
+
+### Sprint schedule for PI-12
+
+Below is the Sprint schedule for Program Increment 12 which ends with the PI-13 Community event in January 2021.
+
+|Phase/Milestone|Start|End|Weeks|Notes|
+|---|---|---|---|---|
+|**Phase-4 Kick-off On-site**|1/28/2020|1/30/2020|3 days| Johannesburg|
+|**Phase-4 PI-10 Virtual**|4/21/2020|4/24/2020|4 days| Virtual Zoom Webinars|
+|**Phase-4 PI-11 Virtual**|7/21/2020|7/24/2020|4 days| Virtual Zoom Webinars|
+|**Phase-4 PI-12 Virtual**|10/19/2020|10/23/2020|5 days| Virtual Zoom Webinars|
+|**Sprint 12.1**|10/26/2020|11/15/2020|3 weeks | |
+|**Sprint 12.2**|11/16/2020|11/29/2020|2 weeks | |
+|**Sprint 12.3**|11/30/2020|12/13/2020|2 weeks | |
+|**Sprint 12.4**|12/14/2020|12/27/2020|2 weeks | |
+|**Sprint 12.5**|12/28/2020|01/10/2021|2 weeks | |
+|**Sprint 12.6**|01/11/2020|01/24/2020|2 weeks | |
+|**Phase-5 Kick-off / PI-13**|01/25/2021|01/29/2021|5 days| TBD |
+
+### Previous Sprint Schedules:
+
 ### Sprint schedule for PI-11
 
-Below is the Sprint schedule for Program Increment 11 which ends with the PI 12 Event. Please use this as guidance during the versioning and release processes.
+Below is the Sprint schedule for Program Increment 11 which ends with the PI 12 Event.
 
 |Phase/Milestone|Start|End|Weeks|Notes|
 |---|---|---|---|---|
@@ -41,9 +77,6 @@ Below is the Sprint schedule for Program Increment 11 which ends with the PI 12 
 |**Sprint 11.5**|9/21/2020|10/4/2020|2 weeks| |
 |**Sprint 11.6**|10/5/2020|10/18/2020|2 weeks | |
 |**Phase-4 PI-12**|10/20/2020|10/23/2020|4 days| TBD |
-|**Phase-4 Wrap-Up / PI-13**|1/26/2021|1/29/2021|4 days| TBD |
-
-### Previous Sprint Schedules:
 
 #### Sprint schedule for PI-10
 
@@ -90,5 +123,4 @@ Below is the Sprint schedule for Program Increment 10 which ends with the PI 11 
 
 ### Notes
 
-1. A new release for **helm** repo is made whenver a configuration change is needed for any of the core Switch services based on the changes made \(features, bug-fixes\).
-2. However, if there is no release made to helm necessitated by a configuration change, then a release is done every Sprint anyway, to bring it up to date with the latest releases on the core Switch services.
+1. A new release for **helm** repo is made based on the feature and configuration changes made to core services and requirements from thhe Community.

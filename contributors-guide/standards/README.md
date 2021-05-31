@@ -319,6 +319,7 @@ Before a contribution is to be considered for adoption, it:
 1. Make the project public on Mojaloop GitHub
 1. Announce on the slack `#announcements` channel
 1. Enable CI/CD Pipelines and publish any relevant artifacts, such as Docker Images or npm modules
+1. Review and recommend a module or course for the Mojaloop Training Program if needed and relevant for this contribution.
 
 ### Versioning
 
@@ -336,7 +337,7 @@ Pull requests will be denied if they violate the [Level One Principles](https://
 
 ### Code of conduct 
 
-We use a [standard developer code of conduct](https://www.contributor-covenant.org/version/1/4/code-of-conduct.html)
+We use the [Mojaloop Foundation Code of Conduct](https://github.com/mojaloop/mojaloop/blob/master/CODE_OF_CONDUCT.md)
 
 ### Licensing
 

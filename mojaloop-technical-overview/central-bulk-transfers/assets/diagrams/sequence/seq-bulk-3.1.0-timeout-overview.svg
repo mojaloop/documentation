@@ -1,0 +1,406 @@
+<svg xmlns="http://www.w3.org/2000/svg" height="1352" preserveAspectRatio="none" style="width:1518px;height:1352px" width="1518">
+  <defs>
+    <filter height="300%" id="a" width="300%" x="-1" y="-1">
+      <feGaussianBlur result="blurOut" stdDeviation="2"/>
+      <feColorMatrix in="blurOut" result="blurOut2" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/>
+      <feOffset dx="4" dy="4" in="blurOut2" result="blurOut3"/>
+      <feBlend in="SourceGraphic" in2="blurOut3"/>
+    </filter>
+  </defs>
+  <text font-family="sans-serif" font-size="18" lengthAdjust="spacingAndGlyphs" textLength="391" x="561.5" y="28.708">
+    3.1.0. Transfer Timeout (incl. Bulk Transfer)
+  </text>
+  <path fill="#D3D3D3" stroke="#a80036" d="M1 40.953h204v1305.25H1z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="198" x="4" y="53.02">
+    Financial Service Providers
+  </text>
+  <path fill="#ADD8E6" stroke="#a80036" d="M207 40.953h250v1305.25H207z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="173" x="245.5" y="53.02">
+    ML API Adapter Service
+  </text>
+  <path fill="#FFFFE0" stroke="#a80036" d="M459 40.953h1013v1305.25H459z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="111" x="910" y="53.02">
+    Central Service
+  </text>
+  <path fill="#FFF" filter="url(#a)" stroke="#a80036" d="M383 169.68h10v1063.93h-10zM520 169.68h10v1063.93h-10zM916.5 169.68h10v1063.93h-10zM1230.5 169.68h10v1063.93h-10z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M26 176.68h1478v1049.93H26z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M443 286.211h1045v359.008H443z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M453 310.344h1025v90.203H453z"/>
+  <path fill="#FFF" d="M453 356.609h1025v43.938H453zM443 407.547h1045v237.672H443z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M859.5 548.016H1478v90.203H859.5z"/>
+  <path fill="#FFF" d="M859.5 594.281H1478v43.938H859.5z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M1020 659.219h474v160.797h-474zM36 859.016h1101v160.797H36zM98 1058.813h1039v160.797H98z"/>
+  <path stroke="#a80036" stroke-dasharray="5,5" d="M72 159.68v1083.929M134 159.68v1083.929M241 159.68v1083.929M388 159.68v1083.929M525 159.68v1083.929M681.5 159.68v1083.929M809.5 159.68v1083.929M921.5 159.68v1083.929M1078 159.68v1083.929M1235 159.68v1083.929M1401 159.68v1083.929"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="46" x="46" y="140.081">
+    DFSP1
+  </text>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="38" x="50" y="156.378">
+    Payer
+  </text>
+  <circle cx="72" cy="70.086" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="8"/>
+  <path d="M72 78.086v27m-13-19h26m-13 19l-13 15m13-15l13 15" fill="none" filter="url(#a)" stroke="#a80036" stroke-width="2"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="46" x="46" y="1255.604">
+    DFSP1
+  </text>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="38" x="50" y="1271.901">
+    Payer
+  </text>
+  <circle cx="72" cy="1285.203" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="8"/>
+  <path d="M72 1293.203v27m-13-19h26m-13 19l-13 15m13-15l13 15" fill="none" filter="url(#a)" stroke="#a80036" stroke-width="2"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="46" x="108" y="140.081">
+    DFSP2
+  </text>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="42" x="110" y="156.378">
+    Payee
+  </text>
+  <circle cx="134" cy="70.086" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="8"/>
+  <path d="M134 78.086v27m-13-19h26m-13 19l-13 15m13-15l13 15" fill="none" filter="url(#a)" stroke="#a80036" stroke-width="2"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="46" x="108" y="1255.604">
+    DFSP2
+  </text>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="42" x="110" y="1271.901">
+    Payee
+  </text>
+  <circle cx="134" cy="1285.203" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="8"/>
+  <path d="M134 1293.203v27m-13-19h26m-13 19l-13 15m13-15l13 15" fill="none" filter="url(#a)" stroke="#a80036" stroke-width="2"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="44" x="216" y="140.081">
+    ML API
+  </text>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="54" x="211" y="156.378">
+    Adapter
+  </text>
+  <path d="M220.5 99.086v24m0-12h17" fill="none" filter="url(#a)" stroke="#a80036" stroke-width="2"/>
+  <circle cx="249.5" cy="111.086" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="44" x="216" y="1255.604">
+    ML API
+  </text>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="54" x="211" y="1271.901">
+    Adapter
+  </text>
+  <path d="M220.5 1279.203v24m0-12h17" fill="none" filter="url(#a)" stroke="#a80036" stroke-width="2"/>
+  <circle cx="249.5" cy="1291.203" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="124" x="323" y="140.081">
+    ML API Notification
+  </text>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="96" x="337" y="156.378">
+    Event Handler
+  </text>
+  <circle cx="388" cy="111.086" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path fill="#A80036" stroke="#a80036" d="M384 99.086l6-5-2 5 2 5-6-5z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="124" x="323" y="1255.604">
+    ML API Notification
+  </text>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="96" x="337" y="1271.901">
+    Event Handler
+  </text>
+  <circle cx="388" cy="1291.203" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path fill="#A80036" stroke="#a80036" d="M384 1279.203l6-5-2 5 2 5-6-5z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="118" x="463" y="140.081">
+    Transfer Timeout
+  </text>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="53" x="495.5" y="156.378">
+    Handler
+  </text>
+  <circle cx="525" cy="111.086" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path fill="#A80036" stroke="#a80036" d="M521 99.086l6-5-2 5 2 5-6-5z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="118" x="463" y="1255.604">
+    Transfer Timeout
+  </text>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="53" x="495.5" y="1271.901">
+    Handler
+  </text>
+  <circle cx="525" cy="1291.203" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path fill="#A80036" stroke="#a80036" d="M521 1279.203l6-5-2 5 2 5-6-5z"/>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M618.5 104.086h127v46.594h-127z"/>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M614.5 108.086h127v46.594h-127z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="39" x="658.5" y="128.081">
+    topic-
+  </text>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="113" x="621.5" y="144.378">
+    transfer-position
+  </text>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M618.5 1242.609h127v46.594h-127z"/>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M614.5 1246.609h127v46.594h-127z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="39" x="658.5" y="1266.604">
+    topic-
+  </text>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="113" x="621.5" y="1282.901">
+    transfer-position
+  </text>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M763.5 120.383h92v30.297h-92z"/>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M759.5 124.383h92v30.297h-92z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="78" x="766.5" y="144.378">
+    topic-event
+  </text>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M763.5 1242.609h92v30.297h-92z"/>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M759.5 1246.609h92v30.297h-92z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="78" x="766.5" y="1266.604">
+    topic-event
+  </text>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="98" x="869.5" y="140.081">
+    Position Event
+  </text>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="53" x="892" y="156.378">
+    Handler
+  </text>
+  <circle cx="921.5" cy="111.086" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path fill="#A80036" stroke="#a80036" d="M917.5 99.086l6-5-2 5 2 5-6-5z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="98" x="869.5" y="1255.604">
+    Position Event
+  </text>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="53" x="892" y="1271.901">
+    Handler
+  </text>
+  <circle cx="921.5" cy="1291.203" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path fill="#A80036" stroke="#a80036" d="M917.5 1279.203l6-5-2 5 2 5-6-5z"/>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M1034 104.086h89v46.594h-89z"/>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M1030 108.086h89v46.594h-89z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="39" x="1055" y="128.081">
+    topic-
+  </text>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="75" x="1037" y="144.378">
+    notification
+  </text>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M1034 1242.609h89v46.594h-89z"/>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M1030 1246.609h89v46.594h-89z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="39" x="1055" y="1266.604">
+    topic-
+  </text>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="75" x="1037" y="1282.901">
+    notification
+  </text>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="111" x="1177" y="140.081">
+    Bulk Processing
+  </text>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="53" x="1206" y="156.378">
+    Handler
+  </text>
+  <circle cx="1235.5" cy="111.086" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path fill="#A80036" stroke="#a80036" d="M1231.5 99.086l6-5-2 5 2 5-6-5z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="111" x="1177" y="1255.604">
+    Bulk Processing
+  </text>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="53" x="1206" y="1271.901">
+    Handler
+  </text>
+  <circle cx="1235.5" cy="1291.203" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path fill="#A80036" stroke="#a80036" d="M1231.5 1279.203l6-5-2 5 2 5-6-5z"/>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M1339 104.086h125v46.594h-125z"/>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M1335 108.086h125v46.594h-125z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="39" x="1378" y="128.081">
+    topic-
+  </text>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="111" x="1342" y="144.378">
+    bulk-processing
+  </text>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M1339 1242.609h125v46.594h-125z"/>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M1335 1246.609h125v46.594h-125z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="39" x="1378" y="1266.604">
+    topic-
+  </text>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="111" x="1342" y="1282.901">
+    bulk-processing
+  </text>
+  <path fill="#FFF" filter="url(#a)" stroke="#a80036" d="M383 169.68h10v1063.93h-10zM520 169.68h10v1063.93h-10zM916.5 169.68h10v1063.93h-10zM1230.5 169.68h10v1063.93h-10z"/>
+  <path d="M26 176.68h156v7l-10 10H26v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M26 176.68h1478v1049.93H26z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="111" x="41" y="189.747">
+    Transfer Expiry
+  </text>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M460 218.813h398.5v55.398H460z"/>
+  <path fill="#EEE" stroke="#000" stroke-width="2" d="M460 218.813h66v7l-10 10h-56v-17z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="21" x="473" y="232.879">
+    ref
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="171" x="575.75" y="251.879">
+    Timeout Handler Consume
+  </text>
+  <path d="M443 286.21h64v7l-10 10h-54v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M443 286.211h1045v359.008H443z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19" x="458" y="299.278">
+    alt
+  </text>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="263" x="522" y="298.421">
+    [transferStateId == &apos;RECEIVED_PREPARE&apos;]
+  </text>
+  <path d="M453 310.344h64v7l-10 10h-54v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M453 310.344h1025v90.203H453z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19" x="468" y="323.411">
+    alt
+  </text>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="117" x="532" y="322.554">
+    [Regular Transfer]
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1066.5 344.61l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M530 348.609h542.5"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="537" y="343.543">
+    1
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="115" x="550" y="343.543">
+    Produce message
+  </text>
+  <path stroke="#000" stroke-dasharray="2,2" d="M453 357.609h1025"/>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="208" x="458" y="367.82">
+    [Individual Transfer from a Bulk]
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1389.5 388.547l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M530 392.547h865.5"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="537" y="387.481">
+    2
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="115" x="550" y="387.481">
+    Produce message
+  </text>
+  <path stroke="#000" stroke-dasharray="2,2" d="M443 408.547h1045"/>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="204" x="448" y="418.757">
+    [transferStateId == &apos;RESERVED&apos;]
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M670 439.484l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M530 443.484h146"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="537" y="438.418">
+    3
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="115" x="550" y="438.418">
+    Produce message
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M693 468.617l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" d="M687 472.617h228.5"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="699" y="467.551">
+    4
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="124" x="712" y="467.551">
+    Consume message
+  </text>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M611.5 480.617H1126v55.398H611.5z"/>
+  <path fill="#EEE" stroke="#000" stroke-width="2" d="M611.5 480.617h66v7l-10 10h-56v-17z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="21" x="624.5" y="494.684">
+    ref
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="232" x="754.75" y="513.684">
+    Position Hander Consume (Timeout)
+  </text>
+  <path d="M859.5 548.016h64v7l-10 10h-54v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M859.5 548.016H1478v90.203H859.5z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19" x="874.5" y="561.082">
+    alt
+  </text>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="117" x="938.5" y="560.226">
+    [Regular Transfer]
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1066.5 582.281l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M926.5 586.281h146"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="933.5" y="581.215">
+    5
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="115" x="946.5" y="581.215">
+    Produce message
+  </text>
+  <path stroke="#000" stroke-dasharray="2,2" d="M859.5 595.281H1478"/>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="208" x="864.5" y="605.492">
+    [Individual Transfer from a Bulk]
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1389.5 626.219l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M926.5 630.219h469"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="933.5" y="625.153">
+    6
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="115" x="946.5" y="625.153">
+    Produce message
+  </text>
+  <path d="M1020 659.219h70v7l-10 10h-60v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M1020 659.219h474v160.797h-474z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="25" x="1035" y="672.286">
+    opt
+  </text>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="384" x="1105" y="671.429">
+    [action IN [&apos;bulk-timeout-received&apos;, &apos;bulk-timeout-reserved&apos;]]
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1389.5 718.484l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M1240.5 722.484h155"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="1247.5" y="717.418">
+    7
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="124" x="1260.5" y="717.418">
+    Consume message
+  </text>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M1027 730.484h440v55.398h-440z"/>
+  <path fill="#EEE" stroke="#000" stroke-width="2" d="M1027 730.484h66v7l-10 10h-56v-17z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="21" x="1040" y="744.551">
+    ref
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="165" x="1166.5" y="763.551">
+    Bulk Processing Consume
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1089.5 808.016l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" d="M1083.5 812.016h146"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="1095.5" y="806.95">
+    8
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="115" x="1108.5" y="806.95">
+    Produce message
+  </text>
+  <path d="M36 859.016h70v7l-10 10H36v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M36 859.016h1101v160.797H36z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="25" x="51" y="872.082">
+    opt
+  </text>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="631" x="121" y="871.226">
+    [action IN [&apos;timeout-received&apos;, &apos;timeout-reserved&apos;, &apos;bulk-timeout-received&apos;, &apos;bulk-timeout-reserved&apos;]]
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1066.5 918.281l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M393 922.281h679.5"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="400" y="917.215">
+    9
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="124" x="413" y="917.215">
+    Consume message
+  </text>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M43 930.281h1083v55.398H43z"/>
+  <path fill="#EEE" stroke="#000" stroke-width="2" d="M43 930.281h66v7l-10 10H43v-17z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="21" x="56" y="944.348">
+    ref
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="246" x="463.5" y="963.348">
+    Send notification to Participant (Payer)
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M83 1007.813l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" d="M77 1011.813h305"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="89" y="1006.747">
+    10
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="162" x="111" y="1006.747">
+    Send callback notification
+  </text>
+  <path d="M98 1058.813h70v7l-10 10H98v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M98 1058.813h1039v160.797H98z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="25" x="113" y="1071.879">
+    opt
+  </text>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="353" x="183" y="1071.023">
+    [action IN [&apos;timeout-reserved&apos;, &apos;bulk-timeout-reserved&apos;]]
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1066.5 1118.078l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M393 1122.078h679.5"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="400" y="1117.012">
+    11
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="124" x="422" y="1117.012">
+    Consume message
+  </text>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M105 1130.078h1021v55.398H105z"/>
+  <path fill="#EEE" stroke="#000" stroke-width="2" d="M105 1130.078h66v7l-10 10h-56v-17z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="21" x="118" y="1144.145">
+    ref
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="249" x="493" y="1163.145">
+    Send notification to Participant (Payee)
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M145 1207.61l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" d="M139 1211.609h243"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="151" y="1206.543">
+    12
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="162" x="173" y="1206.543">
+    Send callback notification
+  </text>
+</svg>

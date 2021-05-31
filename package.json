@@ -1,6 +1,6 @@
 {
   "name": "documentation",
-  "version": "11.0.3",
+  "version": "11.3.2",
   "description": "Mojaloop Documentation GitBook Project",
   "dependencies": {
     "express": "4.17.1",
@@ -21,28 +21,43 @@
     "svgexport": "0.4.1"
   },
   "devDependencies": {
+    "directory-tree": "^2.2.5",
+    "got": "^11.8.0",
+    "husky": "^4.2.5",
     "license-checker": "25.0.1",
+    "node-plantuml": "^0.5.0",
     "npm-audit-resolver": "2.2.1",
-    "npm-check-updates": "7.0.2"
+    "npm-check-updates": "7.0.2",
+    "plantuml-encoder": "^1.4.0",
+    "strip-comments": "^2.0.1",
+    "svgo": "^1.3.2"
   },
   "scripts": {
-    "run": "npm run gitbook:serve",
-    "start": "npm run gitbook:serveNoReload",
-    "gitbook:install": "gitbook install",
-    "gitbook:build": "gitbook build",
-    "gitbook:serve": "gitbook serve --port 8989",
-    "gitbook:serveNoReload": "gitbook serve --no-live --port 8989",
-    "gitbook:export:pdf": "gitbook pdf ./",
+    "audit:check": "SHELL=sh check-audit",
+    "audit:resolve": "SHELL=sh resolve-audit",
+    "build:plantuml:all": "./scripts/_build_plantuml_all.sh",
+    "build:plantuml:diff": "./scripts/_build_plantuml_diff.sh",
+    "dep:check": "npx ncu -e 2",
+    "dep:update": "npx ncu -u",
     "docker:build": "docker build --no-cache -t mojaloop/documentation .",
     "docker:push": "docker push mojaloop/documentation",
     "docker:run": "docker run --rm -it --name mojadoc -p 8989:8989 mojaloop/documentation",
     "express:run": "node index.js",
-    "audit:resolve": "SHELL=sh resolve-audit",
-    "audit:check": "SHELL=sh check-audit",
-    "license:list": "license-checker . --excludePackages `cat .licenseignore | grep '^[^#;]' | awk 'BEGIN { ORS=\"\" } { print p$0\";\"; } END { print \n }'` --production --csv",
+    "gitbook:build": "gitbook build",
+    "gitbook:export:pdf": "gitbook pdf ./",
+    "gitbook:install": "gitbook install",
+    "gitbook:serve": "gitbook serve --port 8989",
+    "gitbook:serveNoReload": "gitbook serve --no-live --port 8989",
     "license:check": "npm run license:list -- --failOn `cat .licensebanned | grep '^[^#;]' | awk 'BEGIN { ORS=\"\" } { print p$0\";\"; } END { print \n }'`",
-    "dep:check": "npx ncu -e 2",
-    "dep:update": "npx ncu -u"
+    "license:list": "license-checker . --excludePackages `cat .licenseignore | grep '^[^#;]' | awk 'BEGIN { ORS=\"\" } { print p$0\";\"; } END { print \n }'` --production --csv",
+    "run": "npm run gitbook:serve",
+    "start": "npm run gitbook:serveNoReload"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run build:plantuml:diff",
+      "post-commit": "git update-index --again"
+    }
   },
   "repository": {
     "type": "git",

@@ -1,0 +1,1028 @@
+<svg xmlns="http://www.w3.org/2000/svg" height="4247" preserveAspectRatio="none" style="width:3651px;height:4247px" width="3651">
+  <defs>
+    <filter height="300%" id="a" width="300%" x="-1" y="-1">
+      <feGaussianBlur result="blurOut" stdDeviation="2"/>
+      <feColorMatrix in="blurOut" result="blurOut2" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/>
+      <feOffset dx="4" dy="4" in="blurOut2" result="blurOut3"/>
+      <feBlend in="SourceGraphic" in2="blurOut3"/>
+    </filter>
+  </defs>
+  <text font-family="sans-serif" font-size="18" lengthAdjust="spacingAndGlyphs" textLength="283" x="1682.25" y="28.708">
+    Event Streaming Processor flow
+  </text>
+  <path fill="#D3D3D3" stroke="#a80036" d="M19 40.953h144v4200.438H19z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="119" x="31.5" y="53.02">
+    Central Services
+  </text>
+  <path fill="#ADD8E6" stroke="#a80036" d="M223 40.953h2884v4200.438H223z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="177" x="1576.5" y="53.02">
+    Event Stream Processor
+  </text>
+  <path fill="#B0C4DE" stroke="#a80036" d="M3324.5 40.953h116v4200.438h-116z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="45" x="3360" y="53.02">
+    Cache
+  </text>
+  <path fill="#FFFFE0" stroke="#a80036" d="M3442.5 40.953h189v4200.438h-189z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="97" x="3488.5" y="53.02">
+    Elasticsearch
+  </text>
+  <path fill="#FFF" filter="url(#a)" stroke="#a80036" d="M86 177.648h10v30H86zM285 177.648h10V997.89h-10zM564 997.891h10v83.531h-10zM791 1081.422h10v1613.961h-10zM1535 2695.383h10v767.188h-10zM2075 3462.57h10v475.727h-10zM2654 3938.297h10v228.797h-10z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M9 139.383h3628.5v4019.711H9z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M489.5 1012.891h3026v1690.492h-3026z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M704 1406.813h2801.5v1245.305H704z"/>
+  <path fill="#FFF" d="M704 1524.344h2801.5v1127.773H704z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M714 1575.477h285v158.93H714zM714 1748.406h668v231.063H714zM2986 2514.586h460.5v130.531H2986zM1385.5 2717.383h2101v774.188h-2101z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M1395.5 2812.781h2081v671.789h-2081z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M1405.5 2836.914h2061v640.656h-2061z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M1415.5 2975.578h2041v494.992h-2041z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M2986 3028.844h460.5v130.531H2986z"/>
+  <path fill="#FFF" d="M1415.5 3166.375h2041v304.195h-2041z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M2986 3303.906h460.5v130.531H2986zM1951.5 3505.57h1495v454.727h-1495z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M1961.5 3558.836H2750v394.461h-788.5z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M1971.5 3667.234H2392v176.664h-420.5z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M1981.5 3733.5H2382v103.398h-400.5z"/>
+  <path fill="#FFF" d="M1981.5 3792.766H2382v44.133h-400.5z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M1981.5 3857.898H2740v88.398h-758.5zM2568 3974.297h947.5v177.797H2568z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M2578 3998.43h927.5v75.398H2578z"/>
+  <path stroke="#a80036" stroke-dasharray="5,5" d="M91 122.383v4053.711M290 122.383v4053.711M568.5 122.383v4053.711M796 122.383v4053.711M1539.5 122.383v4053.711M2079.5 122.383v4053.711M2659 122.383v4053.711M2917 122.383v4053.711M3049 122.383v4053.711M3382.5 122.383v4053.711M3470.5 122.383v4053.711M3566.5 122.383v4053.711"/>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M27 83.086h128v30.297H27z"/>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M23 87.086h128v30.297H23z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="114" x="30" y="107.081">
+    Notification topic
+  </text>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M27 4175.094h128v30.297H27z"/>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M23 4179.094h128v30.297H23z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="114" x="30" y="4199.089">
+    Notification topic
+  </text>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="120" x="227" y="119.081">
+    Topic Observable
+  </text>
+  <circle cx="290" cy="90.086" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path fill="#A80036" stroke="#a80036" d="M286 78.086l6-5-2 5 2 5-6-5z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="120" x="227" y="4188.089">
+    Topic Observable
+  </text>
+  <circle cx="290" cy="4207.391" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path fill="#A80036" stroke="#a80036" d="M286 4195.39l6-5-2 5 2 5-6-5z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="133" x="499.5" y="119.081">
+    Tracing Observable
+  </text>
+  <circle cx="569" cy="90.086" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path fill="#A80036" stroke="#a80036" d="M565 78.086l6-5-2 5 2 5-6-5z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="133" x="499.5" y="4188.089">
+    Tracing Observable
+  </text>
+  <circle cx="569" cy="4207.391" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path fill="#A80036" stroke="#a80036" d="M565 4195.39l6-5-2 5 2 5-6-5z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="138" x="724" y="119.081">
+    Caching Observable
+  </text>
+  <circle cx="796" cy="90.086" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path fill="#A80036" stroke="#a80036" d="M792 78.086l6-5-2 5 2 5-6-5z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="138" x="724" y="4188.089">
+    Caching Observable
+  </text>
+  <circle cx="796" cy="4207.391" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path fill="#A80036" stroke="#a80036" d="M792 4195.39l6-5-2 5 2 5-6-5z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="223" x="1425.5" y="119.081">
+    Check For Last Span Observable
+  </text>
+  <circle cx="1540" cy="90.086" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path fill="#A80036" stroke="#a80036" d="M1536 78.086l6-5-2 5 2 5-6-5z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="223" x="1425.5" y="4188.089">
+    Check For Last Span Observable
+  </text>
+  <circle cx="1540" cy="4207.391" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path fill="#A80036" stroke="#a80036" d="M1536 4195.39l6-5-2 5 2 5-6-5z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="171" x="1991.5" y="119.081">
+    Create Trace Observable
+  </text>
+  <circle cx="2080" cy="90.086" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path fill="#A80036" stroke="#a80036" d="M2076 78.086l6-5-2 5 2 5-6-5z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="171" x="1991.5" y="4188.089">
+    Create Trace Observable
+  </text>
+  <circle cx="2080" cy="4207.391" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path fill="#A80036" stroke="#a80036" d="M2076 4195.39l6-5-2 5 2 5-6-5z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="136" x="2588" y="119.081">
+    Send Trace Handler
+  </text>
+  <circle cx="2659" cy="90.086" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path fill="#A80036" stroke="#a80036" d="M2655 78.086l6-5-2 5 2 5-6-5z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="136" x="2588" y="4188.089">
+    Send Trace Handler
+  </text>
+  <circle cx="2659" cy="4207.391" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path fill="#A80036" stroke="#a80036" d="M2655 4195.39l6-5-2 5 2 5-6-5z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="132" x="2848" y="119.081">
+    Send Span Handler
+  </text>
+  <circle cx="2917" cy="90.086" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path fill="#A80036" stroke="#a80036" d="M2913 78.086l6-5-2 5 2 5-6-5z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="132" x="2848" y="4188.089">
+    Send Span Handler
+  </text>
+  <circle cx="2917" cy="4207.391" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path fill="#A80036" stroke="#a80036" d="M2913 4195.39l6-5-2 5 2 5-6-5z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="101" x="2996" y="119.081">
+    Cache Handler
+  </text>
+  <circle cx="3049.5" cy="90.086" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path fill="#A80036" stroke="#a80036" d="M3045.5 78.086l6-5-2 5 2 5-6-5z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="101" x="2996" y="4188.089">
+    Cache Handler
+  </text>
+  <circle cx="3049.5" cy="4207.391" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path fill="#A80036" stroke="#a80036" d="M3045.5 4195.39l6-5-2 5 2 5-6-5z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="102" x="3328.5" y="119.081">
+    Cache Storage
+  </text>
+  <path d="M3364.5 70.086c0-10 18-10 18-10s18 0 18 10v26c0 10-18 10-18 10s-18 0-18-10v-26" fill="#FEFECE" filter="url(#a)" stroke="#000" stroke-width="1.5"/>
+  <path d="M3364.5 70.086c0 10 18 10 18 10s18 0 18-10" fill="none" stroke="#000" stroke-width="1.5"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="102" x="3328.5" y="4188.089">
+    Cache Storage
+  </text>
+  <path d="M3364.5 4201.39c0-10 18-10 18-10s18 0 18 10v26c0 10-18 10-18 10s-18 0-18-10v-26" fill="#FEFECE" filter="url(#a)" stroke="#000" stroke-width="1.5"/>
+  <path d="M3364.5 4201.39c0 10 18 10 18 10s18 0 18-10" fill="none" stroke="#000" stroke-width="1.5"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="30" x="3453" y="119.081">
+    APM
+  </text>
+  <path d="M3450.5 78.086v24m0-12h17" fill="none" filter="url(#a)" stroke="#a80036" stroke-width="2"/>
+  <circle cx="3479.5" cy="90.086" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="30" x="3453" y="4188.089">
+    APM
+  </text>
+  <path d="M3450.5 4195.39v24m0-12h17" fill="none" filter="url(#a)" stroke="#a80036" stroke-width="2"/>
+  <circle cx="3479.5" cy="4207.391" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="116" x="3505.5" y="119.081">
+    Elasticsearch API
+  </text>
+  <path d="M3546 78.086v24m0-12h17" fill="none" filter="url(#a)" stroke="#a80036" stroke-width="2"/>
+  <circle cx="3575" cy="90.086" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="116" x="3505.5" y="4188.089">
+    Elasticsearch API
+  </text>
+  <path d="M3546 4195.39v24m0-12h17" fill="none" filter="url(#a)" stroke="#a80036" stroke-width="2"/>
+  <circle cx="3575" cy="4207.391" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#a80036" d="M86 177.648h10v30H86zM285 177.648h10V997.89h-10zM564 997.891h10v83.531h-10zM791 1081.422h10v1613.961h-10zM1535 2695.383h10v767.188h-10zM2075 3462.57h10v475.727h-10zM2654 3938.297h10v228.797h-10z"/>
+  <path d="M9 139.383h266v7l-10 10H9v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M9 139.383h3628.5v4019.711H9z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="221" x="24" y="152.45">
+    New Event Message Received
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M273 173.648l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M96 177.648h183"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="103" y="172.583">
+    1
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="162" x="116" y="172.583">
+    Consume Event Message
+  </text>
+  <path d="M19 220.648v675h537v-665l-10-10H19" fill="#FF0" filter="url(#a)" stroke="#a80036"/>
+  <path d="M546 220.648v10h10l-10-10" fill="#FF0" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="61" x="25" y="237.715">
+    Message:
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="33" y="252.848">
+    {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="120" x="41" y="267.981">
+    &quot;from&quot;: &quot;payeefsp&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="100" x="41" y="283.114">
+    &quot;to&quot;: &quot;payerfsp&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="303" x="41" y="298.247">
+    &quot;id&quot;: &quot;659ee338-c8f8-4c06-8aff-944e6c5cd694&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="75" x="41" y="313.379">
+    &quot;content&quot;: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="78" x="49" y="328.512">
+    &quot;headers&quot;: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="484" x="57" y="343.645">
+    &quot;content-type&quot;: &quot;applicationvnd.interoperability.transfers+json;version=1.0&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="236" x="57" y="358.778">
+    &quot;date&quot;: &quot;2019-05-28T16:34:41.000Z&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="176" x="57" y="373.911">
+    &quot;fspiop-source&quot;: &quot;payeefsp&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="197" x="57" y="389.043">
+    &quot;fspiop-destination&quot;: &quot;payerfsp&quot;
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="12" x="49" y="404.176">
+    },
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="140" x="49" y="419.309">
+    &quot;payload&quot;: &lt;payload&gt;
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="12" x="41" y="434.442">
+    },
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="159" x="41" y="449.575">
+    &quot;type&quot;: &quot;application/json&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="89" x="41" y="464.707">
+    &quot;metadata&quot;: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="62" x="49" y="479.84">
+    &quot;event&quot;: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="306" x="57" y="494.973">
+    &quot;id&quot;: &quot;3920382d-f78c-4023-adf9-0d7a4a2a3a2f&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="93" x="57" y="510.106">
+    &quot;type&quot;: &quot;trace&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="102" x="57" y="525.239">
+    &quot;action&quot;: &quot;span&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="270" x="57" y="540.372">
+    &quot;createdAt&quot;: &quot;2019-05-29T23:18:32.935Z&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="59" x="57" y="555.504">
+    &quot;state&quot;: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="123" x="65" y="570.637">
+    &quot;status&quot;: &quot;success&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="61" x="65" y="585.77">
+    &quot;code&quot;: 0,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="207" x="65" y="600.903">
+    &quot;description&quot;: &quot;action successful&quot;
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="12" x="57" y="616.036">
+    },
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="373" x="57" y="631.168">
+    &quot;responseTo&quot;: &quot;1a396c07-47ab-4d68-a7a0-7a1ea36f0012&quot;
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="12" x="49" y="646.301">
+    },
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="59" x="49" y="661.434">
+    &quot;trace&quot;: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="274" x="57" y="676.567">
+    &quot;service&quot;: &quot;central-ledger-prepare-handler&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="202" x="57" y="691.7">
+    &quot;traceId&quot;: &quot;bbd7b2c7bbd7b2c7&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="213" x="57" y="706.832">
+    &quot;parentSpanId&quot;: &quot;44ba9bbc5840&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="169" x="57" y="721.965">
+    &quot;spanId&quot;: &quot;2aa9cd0a7e87&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="333" x="57" y="737.098">
+    &quot;startTimestamp&quot;: &quot;2015-08-29T11:22:09.815479Z&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="336" x="57" y="752.231">
+    &quot;finishTimestamp&quot;: &quot;2015-08-29T11:22:09.815479Z&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="54" x="57" y="767.364">
+    &quot;tags&quot;: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="367" x="65" y="782.497">
+    &quot;transctionId&quot;: &quot;659ee338-c8f8-4c06-8aff-944e6c5cd694&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="176" x="65" y="797.629">
+    &quot;transctionType&quot;: &quot;transfer&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="221" x="65" y="812.762">
+    &quot;parentEventType&quot;: &quot;bulk-prepare&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="196" x="65" y="827.895">
+    &quot;parentEventAction&quot;: &quot;prepare&quot;
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="57" y="843.028">
+    }
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="49" y="858.161">
+    }
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="41" y="873.293">
+    }
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="33" y="888.426">
+    }
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M3554.5 922.625l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M295 926.625h3265.5"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="302" y="921.559">
+    2
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="310" x="315" y="921.559">
+    Send message for log purposes to custom index
+  </text>
+  <path stroke="#a80036" d="M295 955.758h42M337 955.758v13M296 968.758h41"/>
+  <path fill="#A80036" stroke="#a80036" d="M306 964.758l-10 4 10 4-4-4z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="302" y="950.692">
+    3
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="204" x="315" y="950.692">
+    Verify its tracing event Message
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M552 993.89l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M290 997.891h268"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="297" y="992.825">
+    4
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="237" x="310" y="992.825">
+    Send Message to Tracing Observable
+  </text>
+  <path d="M489.5 1012.89h132v7l-10 10h-122v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M489.5 1012.891h3026v1690.492h-3026z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="87" x="504.5" y="1025.957">
+    Cache Span
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M779 1077.422l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M569 1081.422h216"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="576" y="1061.223">
+    5
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="128" x="589" y="1046.09">
+    Send Span Context,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="185" x="589" y="1061.223">
+    metadata.State and Content
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="91" x="589" y="1076.356">
+    from Message
+  </text>
+  <path d="M574 1094.422v267h402v-257l-10-10H574" fill="#FF0" filter="url(#a)" stroke="#a80036"/>
+  <path d="M966 1094.422v10h10l-10-10" fill="#FF0" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="580" y="1111.489">
+    {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="97" x="588" y="1126.622">
+    spanContext: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="264" x="596" y="1141.754">
+    service: &quot;central-ledger-prepare-handler&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="192" x="596" y="1156.887">
+    traceId: &quot;bbd7b2c7bbd7b2c7&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="203" x="596" y="1172.02">
+    parentSpanId: &quot;44ba9bbc5840&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="159" x="596" y="1187.153">
+    spanId: &quot;2aa9cd0a7e87&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="323" x="596" y="1202.286">
+    startTimestamp: &quot;2015-08-29T11:22:09.815479Z&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="326" x="596" y="1217.418">
+    finishTimestamp: &quot;2015-08-29T11:22:09.815479Z&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="44" x="596" y="1232.551">
+    tags: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="357" x="604" y="1247.684">
+    transctionId: &quot;659ee338-c8f8-4c06-8aff-944e6c5cd694&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="166" x="604" y="1262.817">
+    transctionType: &quot;transfer&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="211" x="604" y="1277.95">
+    parentEventType: &quot;bulk-prepare&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="186" x="604" y="1293.082">
+    parentEventAction: &quot;prepare&quot;
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="12" x="596" y="1308.215">
+    },
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="145" x="588" y="1323.348">
+    state: metadata.state,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="49" x="588" y="1338.481">
+    content
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="580" y="1353.614">
+    }
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M812 1387.813l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" d="M806 1391.813h2575.5"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="818" y="1386.747">
+    6
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="175" x="831" y="1386.747">
+    Get cachedTrace by traceId
+  </text>
+  <path d="M704 1406.813h64v7l-10 10h-54v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M704 1406.813h2801.5v1245.305H704z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19" x="719" y="1419.879">
+    alt
+  </text>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="208" x="783" y="1419.023">
+    [the span should not be cached]
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M2905 1441.078l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M801 1445.078h2110"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="808" y="1440.012">
+    7
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="79" x="821" y="1440.012">
+    currentSpan
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M3459 1470.21l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M2917 1474.211h548"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="2924" y="1469.145">
+    8
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="82" x="2937" y="1469.145">
+    store to APM
+  </text>
+  <path stroke="#a80036" d="M801 1503.344h42M843 1503.344v13M802 1516.344h41"/>
+  <path fill="#A80036" stroke="#a80036" d="M812 1512.344l-10 4 10 4-4-4z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="808" y="1498.278">
+    9
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="62" x="821" y="1498.278">
+    Complete
+  </text>
+  <path stroke="#000" stroke-dasharray="2,2" d="M704 1525.344h2801.5"/>
+  <path stroke="#a80036" d="M801 1547.477h42M843 1547.477v13M802 1560.477h41"/>
+  <path fill="#A80036" stroke="#a80036" d="M812 1556.477l-10 4 10 4-4-4z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="808" y="1542.411">
+    10
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="698" x="830" y="1542.411">
+    Validate transactionType, TransactionAction and service to match Config.START_CRITERIA &amp;&amp; !parentSpandId
+  </text>
+  <path d="M714 1575.477h64v7l-10 10h-54v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M714 1575.477h285v158.93H714z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19" x="729" y="1588.543">
+    alt
+  </text>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="97" x="793" y="1587.687">
+    [!cachedTrace]
+  </text>
+  <path stroke="#a80036" d="M801 1613.742h42M843 1613.742v13M802 1626.742h41"/>
+  <path fill="#A80036" stroke="#a80036" d="M812 1622.742l-10 4 10 4-4-4z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="808" y="1608.676">
+    11
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="157" x="830" y="1608.676">
+    Create new cachedTrace
+  </text>
+  <path d="M806 1639.742v85h142v-75l-10-10H806" fill="#FF0" filter="url(#a)" stroke="#a80036"/>
+  <path d="M938 1639.742v10h10l-10-10" fill="#FF0" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="812" y="1656.809">
+    {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="66" x="820" y="1671.942">
+    spans: {},
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="113" x="820" y="1687.075">
+    masterSpan: null,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="86" x="820" y="1702.207">
+    lastSpan: null
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="812" y="1717.34">
+    }
+  </text>
+  <path d="M714 1748.406h64v7l-10 10h-54v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M714 1748.406h668v231.063H714z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19" x="729" y="1761.473">
+    alt
+  </text>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="89" x="793" y="1760.617">
+    [!parentSpan]
+  </text>
+  <path stroke="#a80036" d="M801 1786.672h42M843 1786.672v13M802 1799.672h41"/>
+  <path fill="#A80036" stroke="#a80036" d="M812 1795.672l-10 4 10 4-4-4z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="808" y="1781.606">
+    12
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="152" x="830" y="1781.606">
+    Generate MasterSpanId
+  </text>
+  <path stroke="#a80036" d="M801 1843.938h42M843 1843.938v13M802 1856.938h41"/>
+  <path fill="#A80036" stroke="#a80036" d="M812 1852.938l-10 4 10 4-4-4z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="808" y="1831.305">
+    13
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="259" x="830" y="1823.739">
+    Make received span child of masterSpan
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="383" x="830" y="1838.872">
+    merge({ parentSpanId: MasterSpanId }, { ...spanContext })
+  </text>
+  <path stroke="#a80036" d="M801 1916.336h42M843 1916.336v13M802 1929.336h41"/>
+  <path fill="#A80036" stroke="#a80036" d="M812 1925.336l-10 4 10 4-4-4z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="808" y="1896.137">
+    14
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="536" x="830" y="1881.004">
+    Create MasterSpanContext merge({ tags: { ...tags, masterSpan: MasterSpanId } },
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="121" x="830" y="1896.137">
+    { ...spanContext },
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="451" x="830" y="1911.27">
+    { spanId: MasterSpanId, service: `master-${tags.transactionType}` })
+  </text>
+  <path stroke="#a80036" d="M801 1958.469h42M843 1958.469v13M802 1971.469h41"/>
+  <path fill="#A80036" stroke="#a80036" d="M812 1967.469l-10 4 10 4-4-4z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="808" y="1953.403">
+    15
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="210" x="830" y="1953.403">
+    Add masterSpan to cachedTrace
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M812 2003.602l-10 4 10 4-4-4zM3037.5 2003.602l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M806 2007.602h2237.5"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="818" y="2002.536">
+    16
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="162" x="840" y="2002.536">
+    Add span to cachedTrace
+  </text>
+  <path d="M806 2020.602v448h420v-438l-10-10H806" fill="#FF0" filter="url(#a)" stroke="#a80036"/>
+  <path d="M1216 2020.602v10h10l-10-10" fill="#FF0" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="812" y="2037.668">
+    {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="54" x="820" y="2052.801">
+    spans: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="111" x="828" y="2067.934">
+    2aa9cd0a7e87: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="37" x="828" y="2083.067">
+    state,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="49" x="828" y="2098.2">
+    content
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="97" x="828" y="2113.332">
+    spanContext: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="274" x="836" y="2128.465">
+    &quot;service&quot;: &quot;central-ledger-prepare-handler&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="202" x="836" y="2143.598">
+    &quot;traceId&quot;: &quot;bbd7b2c7bbd7b2c7&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="100" x="836" y="2158.731">
+    &quot;parentSpanId&quot;:
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="102" x="940" y="2158.731">
+    MasterSpanId
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="4" x="1042" y="2158.731">
+    ,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="169" x="836" y="2173.864">
+    &quot;spanId&quot;: &quot;2aa9cd0a7e87&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="333" x="836" y="2188.997">
+    &quot;startTimestamp&quot;: &quot;2015-08-29T11:22:09.815479Z&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="336" x="836" y="2204.129">
+    &quot;finishTimestamp&quot;: &quot;2015-08-29T11:22:09.815479Z&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="54" x="836" y="2219.262">
+    &quot;tags&quot;: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="367" x="844" y="2234.395">
+    &quot;transctionId&quot;: &quot;659ee338-c8f8-4c06-8aff-944e6c5cd694&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="176" x="844" y="2249.528">
+    &quot;transctionType&quot;: &quot;transfer&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="221" x="844" y="2264.661">
+    &quot;parentEventType&quot;: &quot;bulk-prepare&quot;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="196" x="844" y="2279.794">
+    &quot;parentEventAction&quot;: &quot;prepare&quot;
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="836" y="2294.926">
+    }
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="828" y="2310.059">
+    }
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="12" x="820" y="2325.192">
+    },
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="107" x="820" y="2340.325">
+    MasterSpanId:
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="931" y="2340.325">
+    {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="37" x="828" y="2355.457">
+    state,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="53" x="828" y="2370.59">
+    content,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="127" x="828" y="2385.723">
+    MasterSpanContext
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="820" y="2400.856">
+    }
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="12" x="812" y="2415.989">
+    },
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="83" x="812" y="2431.122">
+    masterSpan:
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="145" x="899" y="2431.122">
+    MasterSpanContext
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="4" x="1044" y="2431.122">
+    ,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="86" x="812" y="2446.254">
+    lastSpan: null
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="812" y="2461.387">
+    }
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M3037.5 2495.586l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M801 2499.586h2242.5"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="808" y="2494.52">
+    17
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="193" x="830" y="2494.52">
+    Update cachedTrace to Cache
+  </text>
+  <path d="M2986 2514.586h64v7l-10 10h-54v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M2986 2514.586h460.5v130.531H2986z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19" x="3001" y="2527.653">
+    alt
+  </text>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="230" x="3065" y="2526.796">
+    [cachedTrace not staled or expired]
+  </text>
+  <path stroke="#a80036" d="M3049.5 2552.852h42M3091.5 2552.852v13M3050.5 2565.852h41"/>
+  <path fill="#A80036" stroke="#a80036" d="M3060.5 2561.852l-10 4 10 4-4-4z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="3056.5" y="2547.786">
+    18
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="179" x="3078.5" y="2547.786">
+    unsubscribe from Scheduler
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M3370.5 2590.984l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M3049.5 2594.984h327"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="3056.5" y="2589.919">
+    19
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="126" x="3078.5" y="2589.919">
+    record cachedTrace
+  </text>
+  <path stroke="#a80036" d="M3049.5 2624.117h42M3091.5 2624.117v13M3050.5 2637.117h41"/>
+  <path fill="#A80036" stroke="#a80036" d="M3060.5 2633.117l-10 4 10 4-4-4z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="3056.5" y="2619.051">
+    20
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="297" x="3078.5" y="2619.051">
+    Reschedule scheduler for handling stale traces
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1523 2691.383l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M796 2695.383h733"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="803" y="2682.751">
+    21
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="333" x="825" y="2675.184">
+    Send traceId to check if last span has been received
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="74" x="825" y="2690.317">
+    and cached
+  </text>
+  <path d="M1385.5 2717.383h189v7l-10 10h-179v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M1385.5 2717.383h2101v774.188h-2101z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="144" x="1400.5" y="2730.45">
+    Check for last span
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1556 2751.648l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" d="M1550 2755.648h1831.5"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1562" y="2750.582">
+    22
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="175" x="1584" y="2750.582">
+    Get cachedTrace by traceId
+  </text>
+  <path stroke="#a80036" d="M1545 2784.781h42M1587 2784.781v13M1546 2797.781h41"/>
+  <path fill="#A80036" stroke="#a80036" d="M1556 2793.781l-10 4 10 4-4-4z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1552" y="2779.715">
+    23
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="194" x="1574" y="2779.715">
+    Sort spans by startTimestamp
+  </text>
+  <path d="M1395.5 2812.781h77v7l-10 10h-67v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M1395.5 2812.781h2081v671.789h-2081z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="32" x="1410.5" y="2825.848">
+    loop
+  </text>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="212" x="1487.5" y="2824.992">
+    [for currentSpan of SortedSpans]
+  </text>
+  <path d="M1405.5 2836.914h64v7l-10 10h-54v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M1405.5 2836.914h2061v640.656h-2061z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19" x="1420.5" y="2849.981">
+    alt
+  </text>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="84" x="1484.5" y="2849.124">
+    [parentSpan]
+  </text>
+  <path stroke="#a80036" d="M1545 2905.445h42M1587 2905.445v13M1546 2918.445h41"/>
+  <path fill="#A80036" stroke="#a80036" d="M1556 2914.445l-10 4 10 4-4-4z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1552" y="2885.247">
+    24
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="223" x="1574" y="2870.114">
+    isError = (errorCode in parentSpan
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="216" x="1574" y="2885.247">
+    OR parentSpan status === failed
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="142" x="1574" y="2900.379">
+    OR status === failed)
+  </text>
+  <path stroke="#a80036" d="M1545 2947.578h42M1587 2947.578v13M1546 2960.578h41"/>
+  <path fill="#A80036" stroke="#a80036" d="M1556 2956.578l-10 4 10 4-4-4z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1552" y="2942.512">
+    25
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="494" x="1574" y="2942.512">
+    apply masterSpan and error tags from parent to current span in cachedTrace
+  </text>
+  <path d="M1415.5 2975.578h64v7l-10 10h-54v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M1415.5 2975.578h2041v494.992h-2041z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19" x="1430.5" y="2988.645">
+    alt
+  </text>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="85" x="1494.5" y="2987.789">
+    [!isLastSpan]
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M3037.5 3009.844l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M1545 3013.844h1498.5"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1552" y="3008.778">
+    26
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="193" x="1574" y="3008.778">
+    Update cachedTrace to Cache
+  </text>
+  <path d="M2986 3028.844h64v7l-10 10h-54v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M2986 3028.844h460.5v130.531H2986z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19" x="3001" y="3041.911">
+    alt
+  </text>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="230" x="3065" y="3041.054">
+    [cachedTrace not staled or expired]
+  </text>
+  <path stroke="#a80036" d="M3049.5 3067.109h42M3091.5 3067.109v13M3050.5 3080.109h41"/>
+  <path fill="#A80036" stroke="#a80036" d="M3060.5 3076.11l-10 4 10 4-4-4z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="3056.5" y="3062.044">
+    27
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="179" x="3078.5" y="3062.044">
+    unsubscribe from Scheduler
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M3370.5 3105.242l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M3049.5 3109.242h327"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="3056.5" y="3104.176">
+    28
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="126" x="3078.5" y="3104.176">
+    record cachedTrace
+  </text>
+  <path stroke="#a80036" d="M3049.5 3138.375h42M3091.5 3138.375v13M3050.5 3151.375h41"/>
+  <path fill="#A80036" stroke="#a80036" d="M3060.5 3147.375l-10 4 10 4-4-4z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="3056.5" y="3133.309">
+    29
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="297" x="3078.5" y="3133.309">
+    Reschedule scheduler for handling stale traces
+  </text>
+  <path stroke="#000" stroke-dasharray="2,2" d="M1415.5 3167.375h2041"/>
+  <path stroke="#a80036" d="M1545 3204.641h42M1587 3204.641v13M1546 3217.641h41"/>
+  <path fill="#A80036" stroke="#a80036" d="M1556 3213.64l-10 4 10 4-4-4z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1552" y="3192.008">
+    30
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="406" x="1574" y="3184.442">
+    Validate transactionType, TransactionAction, service and isError
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="337" x="1574" y="3199.575">
+    to match Config.START_CRITERIA &amp;&amp; !parentSpandId
+  </text>
+  <path stroke="#a80036" d="M1545 3246.773h42M1587 3246.773v13M1546 3259.773h41"/>
+  <path fill="#A80036" stroke="#a80036" d="M1556 3255.773l-10 4 10 4-4-4z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1552" y="3241.707">
+    31
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="324" x="1574" y="3241.707">
+    cachedTrace.lastSpan = currentSpan.spanContext
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M3037.5 3284.906l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M1545 3288.906h1498.5"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1552" y="3283.84">
+    32
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="193" x="1574" y="3283.84">
+    Update cachedTrace to Cache
+  </text>
+  <path d="M2986 3303.906h64v7l-10 10h-54v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M2986 3303.906h460.5v130.531H2986z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19" x="3001" y="3316.973">
+    alt
+  </text>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="230" x="3065" y="3316.117">
+    [cachedTrace not staled or expired]
+  </text>
+  <path stroke="#a80036" d="M3049.5 3342.172h42M3091.5 3342.172v13M3050.5 3355.172h41"/>
+  <path fill="#A80036" stroke="#a80036" d="M3060.5 3351.172l-10 4 10 4-4-4z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="3056.5" y="3337.106">
+    33
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="179" x="3078.5" y="3337.106">
+    unsubscribe from Scheduler
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M3370.5 3380.305l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M3049.5 3384.305h327"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="3056.5" y="3379.239">
+    34
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="126" x="3078.5" y="3379.239">
+    record cachedTrace
+  </text>
+  <path stroke="#a80036" d="M3049.5 3413.438h42M3091.5 3413.438v13M3050.5 3426.438h41"/>
+  <path fill="#A80036" stroke="#a80036" d="M3060.5 3422.438l-10 4 10 4-4-4z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="3056.5" y="3408.372">
+    35
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="297" x="3078.5" y="3408.372">
+    Reschedule scheduler for handling stale traces
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M2063 3458.57l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M1540 3462.57h529"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1547" y="3457.504">
+    36
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="81" x="1569" y="3457.504">
+    Send traceId
+  </text>
+  <path d="M1951.5 3505.57h301v7l-10 10h-291v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M1951.5 3505.57h1495v454.727h-1495z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="256" x="1966.5" y="3518.637">
+    Recreate Trace from Cached Trace
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M2096 3539.836l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" d="M2090 3543.836h1291.5"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="2102" y="3538.77">
+    37
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="175" x="2124" y="3538.77">
+    get cachedTrace by TraceId
+  </text>
+  <path d="M1961.5 3558.836h64v7l-10 10h-54v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M1961.5 3558.836H2750v394.461h-788.5z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19" x="1976.5" y="3571.903">
+    alt
+  </text>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="348" x="2040.5" y="3571.046">
+    [cachedTrace.lastSpan AND cachedTrace.masterSpan]
+  </text>
+  <path stroke="#a80036" d="M2085 3597.102h42M2127 3597.102v13M2086 3610.102h41"/>
+  <path fill="#A80036" stroke="#a80036" d="M2096 3606.102l-10 4 10 4-4-4z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="2092" y="3592.036">
+    38
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="154" x="2114" y="3592.036">
+    currentSpan = lastSpan
+  </text>
+  <path stroke="#a80036" d="M2085 3639.234h42M2127 3639.234v13M2086 3652.234h41"/>
+  <path fill="#A80036" stroke="#a80036" d="M2096 3648.234l-10 4 10 4-4-4z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="2092" y="3634.169">
+    39
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="156" x="2114" y="3634.169">
+    resultTrace = [lastSpan]
+  </text>
+  <path d="M1971.5 3667.234h77v7l-10 10h-67v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M1971.5 3667.234H2392v176.664h-420.5z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="32" x="1986.5" y="3680.301">
+    loop
+  </text>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="289" x="2063.5" y="3679.445">
+    [for i = 0; i &lt; cachedTrace.spans.length; i++]
+  </text>
+  <path stroke="#a80036" d="M2085 3705.5h42M2127 3705.5v13M2086 3718.5h41"/>
+  <path fill="#A80036" stroke="#a80036" d="M2096 3714.5l-10 4 10 4-4-4z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="2092" y="3700.434">
+    40
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="199" x="2114" y="3700.434">
+    get parentSpan of currentSpan
+  </text>
+  <path d="M1981.5 3733.5h64v7l-10 10h-54v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M1981.5 3733.5H2382v103.398h-400.5z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19" x="1996.5" y="3746.567">
+    alt
+  </text>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="84" x="2060.5" y="3745.71">
+    [parentSpan]
+  </text>
+  <path stroke="#a80036" d="M2085 3771.766h42M2127 3771.766v13M2086 3784.766h41"/>
+  <path fill="#A80036" stroke="#a80036" d="M2096 3780.766l-10 4 10 4-4-4z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="2092" y="3766.7">
+    41
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="256" x="2114" y="3766.7">
+    insert parent span in resultTrace in front
+  </text>
+  <path stroke="#000" stroke-dasharray="2,2" d="M1981.5 3793.766H2382"/>
+  <path stroke="#a80036" d="M2085 3815.898h42M2127 3815.898v13M2086 3828.898h41"/>
+  <path fill="#A80036" stroke="#a80036" d="M2096 3824.898l-10 4 10 4-4-4z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="2092" y="3810.832">
+    42
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="67" x="2114" y="3810.832">
+    break loop
+  </text>
+  <path d="M1981.5 3857.898h64v7l-10 10h-54v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M1981.5 3857.898H2740v88.398h-758.5z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19" x="1996.5" y="3870.965">
+    alt
+  </text>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="332" x="2060.5" y="3870.109">
+    [cachedTrace.masterSpan === currentSpan.spanId]
+  </text>
+  <path stroke="#a80036" d="M2085 3896.164h42M2127 3896.164v13M2086 3909.164h41"/>
+  <path fill="#A80036" stroke="#a80036" d="M2096 3905.164l-10 4 10 4-4-4z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="2092" y="3891.098">
+    43
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="533" x="2114" y="3891.098">
+    masterSpan.finishTimestamp = resultTrace[resultTrace.length - 1].finishTimestamp
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M2642 3934.297l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M2080 3938.297h568"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="2087" y="3933.231">
+    44
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="106" x="2109" y="3933.231">
+    send resultTrace
+  </text>
+  <path d="M2568 3974.297h126v7l-10 10h-116v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M2568 3974.297h947.5v177.797H2568z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="81" x="2583" y="3987.364">
+    send Trace
+  </text>
+  <path d="M2578 3998.43h77v7l-10 10h-67v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M2578 3998.43h927.5v75.398H2578z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="32" x="2593" y="4011.497">
+    loop
+  </text>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="106" x="2670" y="4010.64">
+    [trace elements]
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M2905 4032.695l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M2664 4036.695h247"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="2671" y="4031.629">
+    45
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="101" x="2693" y="4031.629">
+    send each span
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M3459 4061.828l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M2917 4065.828h548"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="2924" y="4060.762">
+    46
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="115" x="2946" y="4060.762">
+    send span to APM
+  </text>
+  <path stroke="#a80036" d="M2664 4101.961h42M2706 4101.961v13M2665 4114.961h41"/>
+  <path fill="#A80036" stroke="#a80036" d="M2675 4110.96l-10 4 10 4-4-4z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="2671" y="4096.895">
+    47
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="212" x="2693" y="4096.895">
+    unsubscribe scheduler for traceId
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M3370.5 4140.094l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M2664 4144.094h712.5"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="2671" y="4139.028">
+    48
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="114" x="2693" y="4139.028">
+    drop cachedTrace
+  </text>
+</svg>

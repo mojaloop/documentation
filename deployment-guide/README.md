@@ -152,16 +152,17 @@ Refer to the [Helm v2 to v3 Migration Guide](./helm-legacy-migration.md) if you 
 
 1. Add mojaloop repo to your Helm config:
    ```bash
-   helm repo add mojaloop http://mojaloop.io/helm/repo/
+   helm repo add mojaloop   https://mojaloop.io/helm/repo/
    ```
    If the repo already exists, substitute 'add' with 'apply' in the above command.
 
 2. Add the additional dependency Helm repositories. This is needed to resolve Helm Chart dependencies required by Mojaloop charts.
    ```bash
-   helm repo add incubator http://storage.googleapis.com/kubernetes-charts-incubator
-   helm repo add kiwigrid https://kiwigrid.github.io
-   helm repo add elastic https://helm.elastic.co
-   helm repo add bitnami https://charts.bitnami.com/bitnami 
+   helm repo add stable     https://charts.helm.sh/stable
+   helm repo add incubator  https://charts.helm.sh/incubator
+   helm repo add kiwigrid   https://kiwigrid.github.io
+   helm repo add elastic    https://helm.elastic.co
+   helm repo add bitnami    https://charts.bitnami.com/bitnami
    ```
 
 3. Update helm repositories:
