@@ -35,7 +35,7 @@ The following are Kubernetes concepts used within the project. An understanding 
 
 ### 1.1. Kubernetes Installation with Docker
 
-* **kubectl** Complete set of installation instruction are available [here](https://kubernetes.io/docs/tasks/tools/install-kubectl/) 
+* **kubectl** Complete set of installation instruction are available [here](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
 
   ```bash
   brew install kubernetes-cli
@@ -60,7 +60,7 @@ To install Kubernetes with Docker, follow the steps below;
   * Select **Enable Kubernetes** tick box
   * Make sure **Kubernetes** is selected
   * Click **Apply**
-  * Click **Install** on the confirmation tab. 
+  * Click **Install** on the confirmation tab.
   * The option is available to wait for completion or run as a background task.
 
 ![Kubernetes Install with Docker 2](./assets/diagrams/deployment/KubernetesInstallWithDocker-2.png)
@@ -86,11 +86,4 @@ To install Kubernetes with Docker, follow the steps below;
    kubectx docker-for-desktop
    ```
 
-3. Install an Ingress Controller
-
-Install nginx-ingress for load balancing & external access:
-   ```bash
-   helm --namespace kube-public install stable/nginx-ingress
-   ```
-
-4. Continue setup and configuration from the Kubernetes Dashboard section in the [Mojaloop's deployment guide](./README.md#31-kubernetes-dashboard) document.
+3. Continue setup and configuration from the Kubernetes Dashboard section in the [Mojaloop's deployment guide](./README.md#31-kubernetes-dashboard) document.
