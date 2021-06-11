@@ -14,10 +14,9 @@ The document is intended for an audience with a stable technical knowledge that 
       - [4.1. Helm configuration](#41-helm-configuration)
     - [5. Mojaloop](#5-mojaloop)
       - [5.1. Mojaloop Helm Deployment](#51-mojaloop-helm-deployment)
-      - [5.2. Verifying Mojaloop Deployment](#52-verifying-mojaloop-deployment)
-    - [6. Postman](#6-postman)
-      - [6.1. Installing Postman](#61-installing-postman)
-      - [6.2. Setup Postman](#62-setup-postman)
+      - [5.2. Verifying Ingress Rules](#52-verifying-ingress-rules)
+      - [5.3. Testing Mojaloop](#53-testing-mojaloop)
+      - [5.4. Testing Mojaloop with Postman](#54-testing-mojaloop-with-postman)
   
 ### 1. Pre-requisites
 
@@ -192,7 +191,7 @@ List of alternative Ingress Controllers: <https://kubernetes.io/docs/concepts/se
     ...                             ...             ...                         ...
    ```
 
-#### 5.2. Verifying Mojaloop Deployment
+#### 5.2. Verifying Ingress Rules
 
 1. Update your /etc/hosts for local deployment:
 
@@ -217,30 +216,90 @@ List of alternative Ingress Controllers: <https://kubernetes.io/docs/concepts/se
 
    _Note: The examples below are only applicable to a local deployment. The entries should match the DNS values or ingress rules as configured in the [values.yaml](https://github.com/mojaloop/helm/blob/master/mojaloop/values.yaml) or otherwise matching any custom ingress rules configured_.
 
-   **ml-api-adapter** health test:
+   **ml-api-adapter** health test: <http://ml-api-adapter.local/health>
 
-   ```text
-   http://ml-api-adapter.local/health
+   **central-ledger** health test: <http://central-ledger.local/health>
+
+#### 5.3. Testing Mojaloop
+
+1. Validating Mojaloop using Helm
+
+   ```bash
+   helm -n demo test moja
    ```
 
-   **central-ledger** health test:
+   Or with logs printed to console
 
-   ```text
-   http://central-ledger.local/health
+   ```bash
+   helm -n demo test moja --logs
    ```
 
-### 6. Postman
+   This will automatically execute the following [test cases](https://github.com/mojaloop/testing-toolkit-test-cases) using the [Mojaloop Testing Toolkit](../../documentation/mojaloop-technical-overview/ml-testing-toolkit/README.md) (**TTK**) CLI:
 
-Postman is used to send requests and receive responses.
+   - [TTK Hub setup and Simulator Provisioning Collection](https://github.com/mojaloop/testing-toolkit-test-cases/tree/master/collections/hub/provisioning).
 
-#### 6.1. Installing Postman
+   Use the following command to view the output logs:
 
-Please, follow these instructions: [Get Postman](https://www.getpostman.com/postman) and install the Postman application.
+   ```bash
+    kubectl -n demo logs pod/moja-ml-ttk-test-setup
+   ```
 
-#### 6.2. Setup Postman
+   - [TTK Golden Path Test Collection](https://github.com/mojaloop/testing-toolkit-test-cases/tree/master/collections/hub/golden_path).
 
-Grab the latest collections & environment files from [Mojaloop Postman Github repo](https://github.com/mojaloop/postman).
+   Use the following command to view the output logs:
 
-After an initial setup or new deployment, the [OSS New Deployment FSP Setup section](../contributors-guide/tools-and-technologies/automated-testing.md) needs to be completed. This will seed the Database with the required enumerations and static data to enable the sucessful execution of any manual or automation tests by the other collections.
+   ```bash
+    kubectl -n demo logs pod/moja-ml-ttk-test-validation
+   ```
 
-Refer to the [QA and Regression Testing in Mojaloop](../contributors-guide/tools-and-technologies/automated-testing.md) documentation for more complete information to complement your testing requirements.
+   Example of the finally summary being displayed from the Golden Path test collection log output:
+
+   ```text
+    Test Suite:GP Tests
+    Environment:Development
+    ┌───────────────────────────────────────────────────┐
+    │                      SUMMARY                      │
+    ├───────────────────┬───────────────────────────────┤
+    │ Total assertions  │ 1557                          │
+    ├───────────────────┼───────────────────────────────┤
+    │ Passed assertions │ 1557                          │
+    ├───────────────────┼───────────────────────────────┤
+    │ Failed assertions │ 0                             │
+    ├───────────────────┼───────────────────────────────┤
+    │ Total requests    │ 297                           │
+    ├───────────────────┼───────────────────────────────┤
+    │ Total test cases  │ 61                            │
+    ├───────────────────┼───────────────────────────────┤
+    │ Passed percentage │ 100.00%                       │
+    ├───────────────────┼───────────────────────────────┤
+    │ Started time      │ Fri, 11 Jun 2021 15:45:53 GMT │
+    ├───────────────────┼───────────────────────────────┤
+    │ Completed time    │ Fri, 11 Jun 2021 15:47:25 GMT │
+    ├───────────────────┼───────────────────────────────┤
+    │ Runtime duration  │ 91934 ms                      │
+    └───────────────────┴───────────────────────────────┘
+    TTK-Assertion-Report-multi-2021-06-11T15:47:25.656Z.html was generated
+   ```
+
+2. Accessing the Mojaloop Testing Toolkit UI
+
+   Open the following link in a browser: <http://testing-toolkit.local>.
+
+   One is able to manually load and execute the previously mentioned Testing Toolkit Collections using the UI which allows one to visually inspect the requests, responses and assertions in more detail. This is recommended if you wish to learn more about Mojaloop.
+
+   Refer to the [Mojaloop Testing Toolkit Documentation](../../documentation/mojaloop-technical-overview/ml-testing-toolkit/README.md) for more information and guides.
+
+#### 5.4. Testing Mojaloop with Postman
+
+   Postman can be used as an alternative to the [Mojaloop Testing Toolkit](../../documentation/mojaloop-technical-overview/ml-testing-toolkit/README.md). Refer to the [Automated Testing Guide](../contributors-guide/tools-and-technologies/automated-testing.md) for more information.
+
+   The available [Mojaloop Postman Collections](https://github.com/mojaloop/postman) are similar to the [Mojaloop Testing Toolkit's Test Cases](https://github.com/mojaloop/testing-toolkit-test-cases)'s as follows:
+
+| Postman Collection | Mojaloop Testing Toolkit | Description |
+|---------|----------|---------|
+[MojaloopHub_Setup Postman Collection](https://github.com/mojaloop/postman/blob/master/MojaloopHub_Setup.postman_collection.json) and [MojaloopSims_Onboarding](https://github.com/mojaloop/postman/blob/master/MojaloopSims_Onboarding.postman_collection.json) | [TTK Hub setup and Simulator Provisioning Collection](https://github.com/mojaloop/testing-toolkit-test-cases/tree/master/collections/hub/provisioning) | Hub Setup and Simulator Provisioning |
+[Golden_Path_Mojaloop](https://github.com/mojaloop/postman/blob/master/Golden_Path_Mojaloop.postman_collection.json) | [TTK Golden Path Test Collection](https://github.com/mojaloop/testing-toolkit-test-cases/tree/master/collections/hub/golden_path) | Golden Path Tests |
+
+Pre-requisites:
+- The following postman environment file should be imported or customized as required when running the above listed Postman collections: [Mojaloop-Local-MojaSims.postman_environment.json](https://github.com/mojaloop/postman/blob/master/environments/Mojaloop-Local-MojaSims.postman_environment.json).
+- Ensure you download the **latest patch release version** from the [Mojaloop Postman Git Repository Releases](https://github.com/mojaloop/postman/releases). For example if you install Mojaloop v12.0.**X**, ensure that you have the latest Postman collection patch version v12.0.**Y**.
