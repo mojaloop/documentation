@@ -301,5 +301,6 @@ List of alternative Ingress Controllers: <https://kubernetes.io/docs/concepts/se
 [Golden_Path_Mojaloop](https://github.com/mojaloop/postman/blob/master/Golden_Path_Mojaloop.postman_collection.json) | [TTK Golden Path Test Collection](https://github.com/mojaloop/testing-toolkit-test-cases/tree/master/collections/hub/golden_path) | Golden Path Tests |
 
 Pre-requisites:
+
 - The following postman environment file should be imported or customized as required when running the above listed Postman collections: [Mojaloop-Local-MojaSims.postman_environment.json](https://github.com/mojaloop/postman/blob/master/environments/Mojaloop-Local-MojaSims.postman_environment.json).
 - Ensure you download the **latest patch release version** from the [Mojaloop Postman Git Repository Releases](https://github.com/mojaloop/postman/releases). For example if you install Mojaloop v12.0.**X**, ensure that you have the latest Postman collection patch version v12.0.**Y**.
