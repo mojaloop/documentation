@@ -206,8 +206,8 @@ List of alternative Ingress Controllers: <https://kubernetes.io/docs/concepts/se
    The below required config is applicable to Helm release >= versions 6.2.2 for Mojaloop API Services;
 
    ```text
-   # Mojaloop Demo
-   127.0.0.1       central-ledger.local central-settlement.local ml-api-adapter.local account-lookup-service.local account-lookup-service-admin.local quoting-service.local moja-simulator.local central-ledger central-settlement ml-api-adapter account-lookup-service account-lookup-service-admin quoting-service simulator host.docker.internal transaction-request-service.local
+    # Mojaloop Demo
+    127.0.0.1   ml-api-adapter.local central-ledger.local account-lookup-service.local account-lookup-service-admin.local quoting-service.local central-settlement-service.local transaction-request-service.local central-settlement.local bulk-api-adapter.local moja-simulator.local sim-payerfsp.local sim-payeefsp.local sim-testfsp1.local sim-testfsp2.local sim-testfsp3.local sim-testfsp4.local mojaloop-simulators.local finance-portal.local operator-settlement.local settlement-management.local testing-toolkit.local testing-toolkit-specapi.local
    ```
 
 2. Test system health in your browser after installation. This will only work if you have an active helm chart deployment running.
