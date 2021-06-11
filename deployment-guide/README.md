@@ -161,33 +161,36 @@ List of alternative Ingress Controllers: <https://kubernetes.io/docs/concepts/se
 
 1. Install Mojaloop:
 
-   Default installation:
-
-   ```bash
-   helm --namespace demo install --create-namespace moja mojaloop/mojaloop
-   ```
-
-   _Note: The `--create-namespace` flag is only necessary if the `demo` namespace does not exist. You can alternatively create it using the following command: `kubectl create namespace demo`._
-
-   Version specific installation:
-
-   ```bash
-   helm --namespace demo install --create-namespace moja mojaloop/mojaloop --version {version}
-   ```
-
-   List of available versions:
-
-   ```bash
-   helm search repo -l mojaloop/mojaloop
-   ```
-
-   Custom configured installation:
+   1.1. Installing latest version:
 
    ```bash
    helm --namespace demo install --create-namespace moja mojaloop/mojaloop -f {custom-values.yaml}
    ```
 
-   _Note: Download and customize the [values.yaml](https://github.com/mojaloop/helm/blob/master/mojaloop/values.yaml). Also ensure that you are using the value.yaml from the correct version which can be found via [Helm Releases](https://github.com/mojaloop/helm/releases)._
+   _Note: Download and customize the [values.yaml](https://github.com/mojaloop/helm/blob/master/mojaloop/values.yaml). Also ensure that you are using the value.yaml from the correct version which can be found via [Helm Releases](https://github.com/mojaloop/helm/releases). You can confirm the installed version by using the following command: `helm --namespace demo list`. Under the **CHART** column, you should see something similar to 'mojaloop-**{version}**' with **{version}** being the deployed version._
+
+   ```bash
+    ❯ helm -n demo list
+    NAME            NAMESPACE       REVISION        UPDATED                                 STATUS          CHART
+    moja            demo            1               2021-06-11 15:06:04.533094 +0200 SAST   deployed        mojaloop-{version}
+   ```
+
+   _Note: The `--create-namespace` flag is only necessary if the `demo` namespace does not exist. You can alternatively create it using the following command: `kubectl create namespace demo`._
+
+   1.2. Version specific installation:
+
+   ```bash
+   helm --namespace demo install --create-namespace moja mojaloop/mojaloop --version {version}
+   ```
+
+   1.3. List of Mojaloop releases:
+
+   ```bash
+    ❯ helm search repo mojaloop/mojaloop -l
+    NAME                            CHART VERSION   APP VERSION                 DESCRIPTION                                      
+    mojaloop/mojaloop               {version}       {list of app-versions}      Mojaloop Helm chart for Kubernetes
+    ...                             ...             ...                         ...
+   ```
 
 #### 5.2. Verifying Mojaloop Deployment
 
