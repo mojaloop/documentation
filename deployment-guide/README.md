@@ -222,6 +222,8 @@ List of alternative Ingress Controllers: <https://kubernetes.io/docs/concepts/se
 
 #### 5.3. Testing Mojaloop
 
+The [Mojaloop Testing Toolkit](../../documentation/mojaloop-technical-overview/ml-testing-toolkit/README.md) (**TTK**) is used for testing deployments, and has been integrated into Helm utilizing its CLI to easily test any Mojaloop deployment.
+
 1. Validating Mojaloop using Helm
 
    ```bash
@@ -291,9 +293,9 @@ List of alternative Ingress Controllers: <https://kubernetes.io/docs/concepts/se
 
 #### 5.4. Testing Mojaloop with Postman
 
-   [Postman](https://www.postman.com/downloads) can be used as an alternative to the [Mojaloop Testing Toolkit](../../documentation/mojaloop-technical-overview/ml-testing-toolkit/README.md). Refer to the [Automated Testing Guide](../contributors-guide/tools-and-technologies/automated-testing.md) for more information.
+[Postman](https://www.postman.com/downloads) can be used as an alternative to the [Mojaloop Testing Toolkit](../../documentation/mojaloop-technical-overview/ml-testing-toolkit/README.md). Refer to the [Automated Testing Guide](../contributors-guide/tools-and-technologies/automated-testing.md) for more information.
 
-   The available [Mojaloop Postman Collections](https://github.com/mojaloop/postman) are similar to the [Mojaloop Testing Toolkit's Test Cases](https://github.com/mojaloop/testing-toolkit-test-cases)'s as follows:
+The available [Mojaloop Postman Collections](https://github.com/mojaloop/postman) are similar to the [Mojaloop Testing Toolkit's Test Cases](https://github.com/mojaloop/testing-toolkit-test-cases)'s as follows:
 
 | Postman Collection | Mojaloop Testing Toolkit | Description |
 |---------|----------|---------|
