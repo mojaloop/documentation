@@ -24,6 +24,7 @@ The document is intended for an audience with a stable technical knowledge that 
 Versions numbers below are hard requirements, not just recommendations (more recent versions are known not to work).
 
 A list of the pre-requisite tool set required for the deployment of Mojaloop:
+
 - **Kubernetes** An open-source system for automating deployment, scaling, and management of containerized applications. Find out more about [Kubernetes](https://kubernetes.io),
    <br>_Recommended Versions:_
    <br>&nbsp;&nbsp;&nbsp;&nbsp;_**Mojaloop Helm Chart release v11.x** supports **Kuberentes v1.13 - v1.17**, newer versions have not been tested._
@@ -38,9 +39,10 @@ A list of the pre-requisite tool set required for the deployment of Mojaloop:
 - **Helm** A package manager for Kubernetes. Find out more about [Helm](https://helm.sh),
    <br>_Recommended Versions:_
    <br>&nbsp;&nbsp;&nbsp;&nbsp;_**Helm v3.x** ([ref: Design Auth Issue #52](https://github.com/mojaloop/design-authority/issues/52))._
-- **Postman** Postman is a Google Chrome application for the interacting with HTTP API's. It presents you with a friendly GUI for the construction requests and reading responces.	https://www.getpostman.com/apps. Find out more about [Postman](https://postman.com).
+- **Postman** Postman is a Google Chrome application for the interacting with HTTP API's. It presents you with a friendly GUI for the construction requests and reading responces. <https://www.getpostman.com/apps>. Find out more about [Postman](https://postman.com).
 
 For **local guides** on how to setup the pre-requisites on your laptop or desktop, refer to the appropriate link document below;
+
 - [Local Setup for Mac](local-setup-mac.md)
 - [Local Setup for Linux](local-setup-linux.md)
 - [Local Setup for Windows](local-setup-windows.md)
@@ -51,24 +53,24 @@ This provides environment resource recommendations with a view of the infrastruc
 
 **Resources Requirements:**
 
-* Control Plane (i.e. Master Node)
+- Control Plane (i.e. Master Node)
   
   [https://kubernetes.io/docs/setup/cluster-large/#size-of-master-and-master-components](https://kubernetes.io/docs/setup/cluster-large/#size-of-master-and-master-components)
 
-  * 3x Master Nodes for future node scaling and HA (High Availability)
+  - 3x Master Nodes for future node scaling and HA (High Availability)
 
-* ETCd Plane:
+- ETCd Plane:
 
   [https://etcd.io/docs/v3.3.12/op-guide/hardware](https://etcd.io/docs/v3.3.12/op-guide/hardware)
 
-  * 3x ETCd nodes for HA (High Availability)
+  - 3x ETCd nodes for HA (High Availability)
 
-* Compute Plane (i.e. Worker Node):
+- Compute Plane (i.e. Worker Node):
 
   TBC once load testing has been concluded. However the current general recommended size:
 
-  * 3x Worker nodes, each being:
-    * 4x vCPUs, 16GB of RAM, and 40gb storage
+  - 3x Worker nodes, each being:
+    - 4x vCPUs, 16GB of RAM, and 40gb storage
 
   **Note** that this would also depend on your underlying infrastructure, and it does NOT include requirements for persistent volumes/storage.
 
@@ -82,16 +84,16 @@ If you are new to Kubernetes it is strongly recommended to familiarize yourself 
 
 The following are Kubernetes concepts used within the project. An understanding of these concepts is imperative before attempting the deployment;
 
-* Deployment
-* Pod
-* ReplicaSets
-* Service
-* Ingress
-* StatefulSet
-* DaemonSet
-* Ingress Controller
-* ConfigMap
-* Secret
+- Deployment
+- Pod
+- ReplicaSets
+- Service
+- Ingress
+- StatefulSet
+- DaemonSet
+- Ingress Controller
+- ConfigMap
+- Secret
 
 Insure **kubectl** is installed. A complete set of installation instruction are available [here](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
 
@@ -121,7 +123,7 @@ Insure **kubectl** is installed. A complete set of installation instruction are 
 
    Visit the following link for more information: <https://k8slens.dev/>.
 
-### 4. Helm 
+### 4. Helm
 
 Please review [Mojaloop Helm Chart](../repositories/helm.md) to understand the relationships between the deployed Mojaloop helm charts.
 
@@ -149,9 +151,9 @@ Refer to the [Helm v2 to v3 Migration Guide](./helm-legacy-migration.md) if you 
 
 3. Install your preferred Ingress Controller for load-balancing and external access:
 
-Refer to the following documentation to install the Nginx-Ingress Controller: https://kubernetes.github.io/ingress-nginx/deploy/#using-helm.
+Refer to the following documentation to install the Nginx-Ingress Controller: <https://kubernetes.github.io/ingress-nginx/deploy/#using-helm>.
 
-List of alternative Ingress Controllers: https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/.
+List of alternative Ingress Controllers: <https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/>.
 
 ### 5. Mojaloop
 
@@ -235,7 +237,7 @@ Please, follow these instructions: [Get Postman](https://www.getpostman.com/post
 #### 6.2. Setup Postman
 
 Grab the latest collections & environment files from [Mojaloop Postman Github repo](https://github.com/mojaloop/postman).
- 
+
 After an initial setup or new deployment, the [OSS New Deployment FSP Setup section](../contributors-guide/tools-and-technologies/automated-testing.md) needs to be completed. This will seed the Database with the required enumerations and static data to enable the sucessful execution of any manual or automation tests by the other collections.
 
 Refer to the [QA and Regression Testing in Mojaloop](../contributors-guide/tools-and-technologies/automated-testing.md) documentation for more complete information to complement your testing requirements.
