@@ -1,5 +1,6 @@
 const { description } = require('../../package')
 
+
 module.exports = {
   /**
    * Ref：https://v1.vuepress.vuejs.org/config/#title
@@ -20,6 +21,8 @@ module.exports = {
     ['meta', { name: 'apple-mobile-web-app-capable', content: 'yes' }],
     ['meta', { name: 'apple-mobile-web-app-status-bar-style', content: 'black' }]
   ],
+
+  theme: 'titanium',
 
   /**
    * Theme configuration, here is the default theme configuration for VuePress.
@@ -54,7 +57,7 @@ module.exports = {
       }
     ],
     sidebar: {
-      '/getting-started/': [
+      'getting-started/': [
         {
           title: 'Getting Started',
           collapsable: false,
@@ -88,7 +91,7 @@ module.exports = {
           sidebarDepth: 2
         },
       ],
-      '/community/': [
+      'community/': [
         {
           title: 'Community',
           collapsable: false,
@@ -141,5 +144,6 @@ module.exports = {
   plugins: [
     '@vuepress/plugin-back-to-top',
     '@vuepress/plugin-medium-zoom',
+    'versioning'
   ]
 }

@@ -1,0 +1,10 @@
+# Your First Action
+
+To help get you started with Mojaloop, select which of the options below best suits your needs:
+
+1. [View the documentation](/1-overview/)
+1. [Watch a demo](/99-demos/)
+1. [Contribute to Mojaloop](/99-demos/)
+1. [Test out Mojaloop APIs](/1-overview/#apis)
+1. [Take a training program](/3-guides/1_dfsp_setup/)
+1. [Join the community](https://docs.mojaloop.io/documentation/)
