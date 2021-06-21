@@ -107,7 +107,7 @@ module.exports = {
           title: 'Community Standards',
           collapsable: false,
           children: [
-            ['standards', 'Standards\'s Guide'],
+            ['standards', 'Standard\'s Guide'],
             ['versioning', 'Versioning'],
             ['creating-new-features', 'Creating new features'],
             ['triaging-bugs', 'Triaging bugs'],
