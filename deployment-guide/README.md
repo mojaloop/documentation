@@ -240,7 +240,7 @@ The [Mojaloop Testing Toolkit](../../documentation/mojaloop-technical-overview/m
 
    - [TTK Hub setup and Simulator Provisioning Collection](https://github.com/mojaloop/testing-toolkit-test-cases/tree/master/collections/hub/provisioning).
 
-   Use the following command to view the output logs:
+   Use the following command to view the provisioning Collection logs:
 
    ```bash
     kubectl -n demo logs pod/moja-ml-ttk-test-setup
@@ -248,7 +248,7 @@ The [Mojaloop Testing Toolkit](../../documentation/mojaloop-technical-overview/m
 
    - [TTK Golden Path Test Collection](https://github.com/mojaloop/testing-toolkit-test-cases/tree/master/collections/hub/golden_path).
 
-   Use the following command to view the output logs:
+   Use the following command to view the Golden Path Collection logs:
 
    ```bash
     kubectl -n demo logs pod/moja-ml-ttk-test-validation
@@ -287,7 +287,7 @@ The [Mojaloop Testing Toolkit](../../documentation/mojaloop-technical-overview/m
 
    Open the following link in a browser: <http://testing-toolkit.local>.
 
-   One is able to manually load and execute the previously mentioned Testing Toolkit Collections using the UI which allows one to visually inspect the requests, responses and assertions in more detail. This is recommended if you wish to learn more about Mojaloop.
+   One is able to manually load and execute the Testing Toolkit Collections using the UI which allows one to visually inspect the requests, responses and assertions in more detail. This is a great way to learn more about Mojaloop.
 
    Refer to the [Mojaloop Testing Toolkit Documentation](../../documentation/mojaloop-technical-overview/ml-testing-toolkit/README.md) for more information and guides.
 
