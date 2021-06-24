@@ -26,8 +26,9 @@ A list of the pre-requisite tool set required for the deployment of Mojaloop:
 
 - **Kubernetes** An open-source system for automating deployment, scaling, and management of containerized applications. Find out more about [Kubernetes](https://kubernetes.io),
    <br>_Recommended Versions:_
-   <br>&nbsp;&nbsp;&nbsp;&nbsp;_**Mojaloop Helm Chart release v11.x** supports **Kuberentes v1.13 - v1.17**, newer versions have not been tested._
-   <br>&nbsp;&nbsp;&nbsp;&nbsp;_**Mojaloop Helm Chart release v10.x** supports **Kuberentes v1.13 - v1.15**, it will fail on Kuberentes v1.16+ onwards due deprecated APIs ([ref: Helm Issue #219](https://github.com/mojaloop/helm/issues/219))._
+   <br>&nbsp;&nbsp;&nbsp;&nbsp;_**Mojaloop Helm Chart release v12.x** supports **Kubernetes v1.13 - v1.20.6** (newer versions have not been tested)._
+   <br>&nbsp;&nbsp;&nbsp;&nbsp;_**Mojaloop Helm Chart release v11.x** supports **Kubernetes v1.13 - v1.17** (newer versions have not been tested)._
+   <br>&nbsp;&nbsp;&nbsp;&nbsp;_**Mojaloop Helm Chart release v10.x** supports **Kubernetes v1.13 - v1.15**, it will fail on Kubernetes v1.16+ onwards due deprecated APIs ([ref: Helm Issue #219](https://github.com/mojaloop/helm/issues/219))._
   - kubectl - Kubernetes CLI for Kubernetes Management is required. Find out more about [kubectl](https://kubernetes.io/docs/reference/kubectl/overview/):
     - [Install-kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/),
   - microk8s - MicroK8s installs a barebones upstream Kubernetes for a single node deployment generally used for local development. We recommend this installation on Linux (ubuntu) OS. Find out more about [microk8s](https://microk8s.io/) and [microk8s documents](https://microk8s.io/docs/):
@@ -39,6 +40,21 @@ A list of the pre-requisite tool set required for the deployment of Mojaloop:
    <br>_Recommended Versions:_
    <br>&nbsp;&nbsp;&nbsp;&nbsp;_**Helm v3.x** ([ref: Design Auth Issue #52](https://github.com/mojaloop/design-authority/issues/52))._
 - **Postman** Postman is a Google Chrome application for the interacting with HTTP API's. It presents you with a friendly GUI for the construction requests and reading responces. <https://www.getpostman.com/apps>. Find out more about [Postman](https://postman.com).
+
+If you are new to Kubernetes it is strongly recommended to familiarize yourself with Kubernetes. [Kubernetes Concepts](https://kubernetes.io/docs/concepts/overview/) is a good place to start and will provide an overview.
+
+The following are Kubernetes concepts used within the project. An understanding of these concepts is imperative before attempting the deployment:
+
+- Deployment
+- Pod
+- ReplicaSets
+- Service
+- Ingress
+- StatefulSet
+- DaemonSet
+- Ingress Controller
+- ConfigMap
+- Secret
 
 For **local guides** on how to setup the pre-requisites on your laptop or desktop, refer to the appropriate link document below;
 

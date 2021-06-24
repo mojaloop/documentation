@@ -18,21 +18,6 @@ At this point the reader/implementer should be familiar with [Mojaloop's deploym
 
 This section will guide the reader through the deployment process to setup Kubernetes within Docker.
 
-If you are new to Kubernetes it is strongly recommended to familiarize yourself with Kubernetes. [Kubernetes Concepts](https://kubernetes.io/docs/concepts/overview/) is a good place to start and will provide an overview.
-
-The following are Kubernetes concepts used within the project. An understanding of these concepts is imperative before attempting the deployment;
-
-* Deployment
-* Pod
-* ReplicaSets
-* Service
-* Ingress
-* StatefulSet
-* DaemonSet
-* Ingress Controller
-* ConfigMap
-* Secret
-
 ### 1.1. Kubernetes Installation with Docker
 
 * **kubectl** Complete set of installation instruction are available [here](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
