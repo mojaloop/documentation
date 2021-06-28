@@ -1,0 +1,49 @@
+{
+    "msgId": "18efb9ea-d29a-42b9-9b30-59e1e7cfe216",
+    "msgKey": "861b86e6-c3da-48b3-ba17-896710287d1f",
+    "msgName": "NotifyCmd",
+    "msgType": "Command",
+    "msgTopic": "NotificationCommands",
+    "msgPartition": null, 
+    "msgTimestamp": 1607677081837, 
+    "aggregateName": "Notifications",
+    "aggregateId": "861b86e6-c3da-48b3-ba17-896710287d1f", 
+    "notifyId": "3920382d-f78c-4023-adf9-0d7a4a2a3a2f", 
+    "transport": { 
+        "type": "HTTP",
+        "method": "GET",
+        "contentType": "application/vnd.interoperability.transfers+json;version=1.0",
+        "recipient": {
+            "endpoint": "http://fsp.com/parties/{{partyIdType}}/{{partyId}}}?key={{value}}", 
+            "params": { 
+                "partyIdType": "MSISDN",
+                "partyId": "12345",
+                "value": "ABCD"
+            }
+        },
+        "options": { 
+            "deliveryReport": true, 
+            "retry": {
+                "count": 3,
+                "type": "noDelay|exponentialDelay", 
+                "condition": "isNetworkError|isIdempotentRequestError|isNetworkOrIdempotentRequestError" 
+            }
+        }
+    },
+    "payload": {
+        "headers": {
+            "content-type": "application/vnd.interoperability.transfers+json;version=1.0",
+            "date": "2019-05-28T16:34:41.000Z",
+            "fspiop-source": "payerfsp",
+            "fspiop-destination": "payerfsp"
+        },
+        "body": "data:application/vnd.interoperability.transfers+json;version=1.0;base64,ewogICJmdWxmaWxtZW50IjogIlVObEo5OGhaVFlfZHN3MGNBcXc0aV9VTjN2NHV0dDdDWkZCNHlmTGJWRkEiLAogICJjb21wbGV0ZWRUaW1lc3RhbXAiOiAiMjAxOS0wNS0yOVQyMzoxODozMi44NTZaIiwKICAidHJhbnNmZXJTdGF0ZSI6ICJDT01NSVRURUQiCn0"
+    },
+    "traceInfo": { 
+        "traceParent": "00-8e540e87060d56a2d2e0be5d732791e7-d96a5971b7c5cac6-21",
+        "traceState": "acmevendor=eyJzcGFuSWQiOiJkOTZhNTk3MWI3YzVjYWM2IiwidGltZUFwaVByZXBhcmUiOiIxNjA3Njc3MDgxNzAwIiwidGltZUFwaUZ1bGZpbCI6IjE2MDc2NzcwODE4MTkifQ==",
+        "service": "notification-evt-handler",
+        "startTimestamp": 1607677081837,
+        "finishTimestamp": 2007677081838
+    }
+}

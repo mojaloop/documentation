@@ -1,0 +1,484 @@
+/'*****
+ License
+ --------------
+ Copyright © 2017 Bill & Melinda Gates Foundation
+ The Mojaloop files are made available by the Bill & Melinda Gates Foundation under the Apache License, Version 2.0 (the "License") and you may not use these files except in compliance with the License. You may obtain a copy of the License at
+ http://www.apache.org/licenses/LICENSE-2.0
+ Unless required by applicable law or agreed to in writing, the Mojaloop files are distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+ Contributors
+ --------------
+ This is the official list of the Mojaloop project contributors for this file.
+ Names of the original copyright holders (individuals or organizations)
+ should be listed with a '*' in the first column. People who have
+ contributed from an organization can be listed under the organization
+ that actually holds the copyright for their contributions (see the
+ Gates Foundation organization for an example). Those individuals should have
+ their names indented and be marked with a '-'. Email address can be added
+ optionally within square brackets <email>.
+ * Gates Foundation
+ - Name Surname <name.surname@gatesfoundation.com>
+
+ * Georgi Georgiev <georgi.georgiev@modusbox.com>
+ * Miguel de Barros <miguel.debarros@modusbox.com>
+ * Shashikant Hirugade <shashikant.hirugade@modusbox.com>
+ * Valentin Genev <valentin.genev@modusbox.com>
+ --------------
+ ******'/
+
+@startuml
+' declate title
+title 1.0.0. Send Notification to Participant (Payer/Payee) (single message) v2.0
+
+autonumber
+
+' Actor Keys:
+'   actor - Payer DFSP, Payee DFSP
+'   boundary - APIs/Interfaces, etc
+'   collections - Kafka Topics
+'   control - Kafka Consumers
+'   entity - Database Access Objects
+'   database - Database Persistance Store
+
+' declare actors
+' actor "Payer DFSP\nParticipant" as PAYER_DFSP
+actor "Participant" as PARTICIPANT
+control "Notification Event Handler" as NOTIFY_HANDLER_EVT
+control "Notification Cmd Handler" as NOTIFY_HANDLER_CMD
+boundary "Central Service API" as CSAPI
+control "FSPIOP Callback Handler" as MLCALLBACKHANDLER
+collections "notifications\n(Internal)\nTopic" as TOPIC_NOTIFICATIONS
+collections "notificationsCommand\n(Cmd Event)\nTopic" as TOPIC_NOTIFICATIONS_CMD
+collections "notificationsEvent\n(Domain Event)\nTopic" as TOPIC_NOTIFICATIONS_EVT
+' entity "Participant DAO" as PARTICIPANT_DAO
+' entity "Notifications DAO" as NOTIFICATIONS_DAO
+database "Notify Persistent Store" as NOTIFYDB
+
+' box "Financial Service Provider (Payer)" #lightGray
+' 	participant PAYER_DFSP
+' end box
+
+' box "ML API Adapter Service" #LightBlue
+' 	participant NOTIFY_HANDLER
+' end box
+
+box "Central Service" #LightYellow
+    participant TOPIC_NOTIFICATIONS
+    
+    participant CSAPI
+    ' participant NOTIFICATIONS_DAO
+    participant TOPIC_NOTIFICATIONS_EVT
+    ' participant PARTICIPANT_DAO
+    ' participant DB
+end box
+
+box "Mojaloop Adapter" #LightCyan
+    participant MLCALLBACKHANDLER
+    ' participant TOPIC_NOTIFICATIONS
+    
+    ' participant CSAPI
+    ' participant NOTIFICATIONS_DAO
+    ' participant DB
+    ' participant TOPIC_NOTIFICATIONS_EVT
+    ' participant PARTICIPANT_DAO
+    ' participant DB
+end box
+
+box "Notification Engine" #LightBlue
+    participant TOPIC_NOTIFICATIONS_EVT
+    participant NOTIFY_HANDLER_EVT
+    participant TOPIC_NOTIFICATIONS_CMD
+    participant NOTIFYDB
+    participant NOTIFY_HANDLER_CMD
+    ' participant TOPIC_NOTIFICATIONS_EVT
+end box
+
+box "Financial Service Provider (Participant)" #lightGray
+	participant PARTICIPANT
+end box
+
+' start flow
+group Send notification to Participants
+    ' note left of NOTIFY_HANDLER_EVT #yellow
+    '     Message:
+    '     {
+    '         payload: {
+    '             endpoint: {
+    '                 type: <typeValue>,
+    '                 value: <endpointValue>
+    '            }
+    '         }
+    '     }
+    ' end note
+
+    TOPIC_NOTIFICATIONS <- MLCALLBACKHANDLER: Consume Notification event
+    activate MLCALLBACKHANDLER
+    activate TOPIC_NOTIFICATIONS
+    deactivate TOPIC_NOTIFICATIONS
+
+
+
+    ' put logic here to route command-type based on incoming events
+    group Routing logic
+        alt event.type === 'notification' && event.action === 'prepare' && event.status === 'success'
+            CSAPI <-> MLCALLBACKHANDLER: Return Endpoint details for Payee-Participant\n<color #FF0000><b>Error codes:</b> 3202, 3203</color>
+            activate CSAPI
+            deactivate CSAPI
+
+            MLCALLBACKHANDLER -> TOPIC_NOTIFICATIONS_EVT: Construct NotificationReady Event Message with enriched message & endpoint data
+            note right of MLCALLBACKHANDLER #yellow
+                "transport": {
+                    "type": "HTTP",
+                    "method": "POST",
+                    "recipient": {
+                        "endpoint": "http://Payee-Participant/transfers/{{transferId}}",
+                        "params": {
+                            "transferId": "{transferId}"
+                        }
+                    }
+                }
+            end note
+        else event.type === 'notification' && event.action === 'prepare.*|position-prepare' && event.status === 'error'
+            CSAPI <-> MLCALLBACKHANDLER: Return Endpoint details for Payer-Participant\n<color #FF0000><b>Error codes:</b> 3202, 3203</color>
+            activate CSAPI
+            deactivate CSAPI
+
+            MLCALLBACKHANDLER -> MLCALLBACKHANDLER: Construct NotificationReady Event Message with enriched message & endpoint data
+            note right of MLCALLBACKHANDLER #yellow
+                "transport": {
+                    "type": "HTTP",
+                    "method": "PUT",
+                    "recipient": {
+                        "endpoint": "http://Payer-Participant/transfers/{{transferId}}/error",
+                        "params": {
+                            "transferId": "{transferId}"
+                        }
+                    }
+                }
+            end note
+        else event.type === 'notification' && event.action === 'prepare-duplicate' && event.status === 'success'
+            CSAPI <-> MLCALLBACKHANDLER: Return Endpoint details for Payer-Participant\n<color #FF0000><b>Error codes:</b> 3202, 3203</color>
+            activate CSAPI
+            deactivate CSAPI
+
+            MLCALLBACKHANDLER -> MLCALLBACKHANDLER: Construct NotificationReady Event Message with enriched message & endpoint data
+            note right of MLCALLBACKHANDLER #yellow
+                "transport": {
+                    "type": "HTTP",
+                    "method": "PUT",
+                    "recipient": {
+                        "endpoint": "http://Payer-Participant/transfers/{{transferId}}/error",
+                        "params": {
+                            "transferId": "{transferId}"
+                        }
+                    }
+                }
+            end note
+       else event.type === 'notification' && event.action === 'commit|reserve' && event.status === 'success'
+            CSAPI <-> MLCALLBACKHANDLER: Return Endpoint details for Payer-Participant\n<color #FF0000><b>Error codes:</b> 3202, 3203</color>
+            activate CSAPI
+            deactivate CSAPI
+
+            MLCALLBACKHANDLER -> MLCALLBACKHANDLER: Construct NotificationReady Event Message with enriched message & endpoint data
+            note right of MLCALLBACKHANDLER #yellow
+                "transport": {
+                    "type": "HTTP",
+                    "method": "PUT",
+                    "recipient": {
+                        "endpoint": "http://Payer-Participant/transfers/{{transferId}}",
+                        "params": {
+                            "transferId": "{transferId}"
+                        }
+                    }
+                }
+            end note
+            
+            ' Notes:
+            '   - To confirm if action=reserve results in sending out a payee notification <-- I assume this is for FSPIOP v1.1 changes
+            '   - This is also only applicabble for "off-us" transfers
+            alt (Config.SEND_TRANSFER_CONFIRMATION_TO_PAYEE === true || event.action === 'reserve') && to!=from
+                CSAPI <-> MLCALLBACKHANDLER: Return Endpoint details for Payee-Participant\n<color #FF0000><b>Error codes:</b> 3202, 3203</color>
+                activate CSAPI
+                deactivate CSAPI
+
+                MLCALLBACKHANDLER -> MLCALLBACKHANDLER: Construct NotificationReady Event Message with enriched message & endpoint data
+                note right of MLCALLBACKHANDLER #yellow
+                    "transport": {
+                        "type": "HTTP",
+                        "method": "PUT",
+                        "recipient": {
+                            "endpoint": "http://Payee-Participant/transfers/{{transferId}}",
+                            "params": {
+                                "transferId": "{transferId}"
+                            }
+                        }
+                    }
+                end note
+            end
+        else event.type === 'notification' && event.action === 'reject|abort' && event.status === 'success'
+            CSAPI <-> MLCALLBACKHANDLER: Return Endpoint details for Payee-Participant\n<color #FF0000><b>Error codes:</b> 3202, 3203</color>
+            activate CSAPI
+            deactivate CSAPI
+
+            MLCALLBACKHANDLER -> MLCALLBACKHANDLER: Construct NotificationReady Event Message with enriched message & endpoint data
+            note right of MLCALLBACKHANDLER #yellow
+                "transport": {
+                    "type": "HTTP",
+                    "method": "PUT",
+                    "recipient": {
+                        "endpoint": "http://Payee-Participant/transfers/{{transferId}}/error",
+                        "params": {
+                            "transferId": "{transferId}"
+                        }
+                    }
+                }
+            end note
+        else event.type === 'notification' && event.action === 'commit|reserve' && event.status === 'error'
+            CSAPI <-> MLCALLBACKHANDLER: Return Endpoint details for Payee-Participant\n<color #FF0000><b>Error codes:</b> 3202, 3203</color>
+            activate CSAPI
+            deactivate CSAPI
+
+            MLCALLBACKHANDLER -> MLCALLBACKHANDLER: Construct NotificationReady Event Message with enriched message & endpoint data
+            note right of MLCALLBACKHANDLER #yellow
+                "transport": {
+                    "type": "HTTP",
+                    "method": "PUT",
+                    "recipient": {
+                        "endpoint": "http://Payee-Participant/transfers/{{transferId}}/error",
+                        "params": {
+                            "transferId": "{transferId}"
+                        }
+                    }
+                }
+            end note
+        else event.type === 'notification' && event.action === 'timeout-received' && event.status === 'error'
+            CSAPI <-> MLCALLBACKHANDLER: Return Endpoint details for Payee-Participant\n<color #FF0000><b>Error codes:</b> 3202, 3203</color>
+            activate CSAPI
+            deactivate CSAPI
+
+            MLCALLBACKHANDLER -> MLCALLBACKHANDLER: Construct NotificationReady Event Message with enriched message & endpoint data
+            note right of MLCALLBACKHANDLER #yellow
+                "transport": {
+                    "type": "HTTP",
+                    "method": "PUT",
+                    "recipient": {
+                        "endpoint": "http://Payee-Participant/transfers/{{transferId}}/error",
+                        "params": {
+                            "transferId": "{transferId}"
+                        }
+                    }
+                }
+            end note
+        else event.type === 'notification' && event.action === 'timeout-reserved' && event.status === 'success'
+            CSAPI <-> MLCALLBACKHANDLER: Return Endpoint details for Payer-Participant\n<color #FF0000><b>Error codes:</b> 3202, 3203</color>
+            activate CSAPI
+            deactivate CSAPI
+
+            MLCALLBACKHANDLER -> MLCALLBACKHANDLER: Construct NotificationReady Event Message with enriched message & endpoint data
+            note right of MLCALLBACKHANDLER #yellow
+                "transport": {
+                    "type": "HTTP",
+                    "method": "PUT",
+                    "recipient": {
+                        "endpoint": "http://Payer-Participant/transfers/{{transferId}}/error",
+                        "params": {
+                            "transferId": "{transferId}"
+                        }
+                    }
+                }
+            end note
+            
+            ' Notes:
+            '   - To confirm if action=reserve results in sending out a payee notification <-- I assume this is for FSPIOP v1.1 changes
+            '   - This is also only applicabble for "off-us" transfers
+            ' alt (Config.SEND_TRANSFER_CONFIRMATION_TO_PAYEE === true || event.action === 'reserve') && to!=from
+            CSAPI <-> MLCALLBACKHANDLER: Return Endpoint details for Payee-Participant\n<color #FF0000><b>Error codes:</b> 3202, 3203</color>
+            activate CSAPI
+            deactivate CSAPI
+
+            MLCALLBACKHANDLER -> MLCALLBACKHANDLER: Construct NotificationReady Event Message with enriched message & endpoint data
+            note right of MLCALLBACKHANDLER #yellow
+                "transport": {
+                    "type": "HTTP",
+                    "method": "PUT",
+                    "recipient": {
+                        "endpoint": "http://Payee-Participant/transfers/{{transferId}}/error",
+                        "params": {
+                            "transferId": "{transferId}"
+                        }
+                    }
+                }
+            end note
+            ' end
+        else event.type === 'notification' && event.action === 'get' && event.status === 'success'
+            CSAPI <-> MLCALLBACKHANDLER: Return Endpoint details for Requesting-Participant\n<color #FF0000><b>Error codes:</b> 3202, 3203</color>
+            activate CSAPI
+            deactivate CSAPI
+
+            MLCALLBACKHANDLER -> MLCALLBACKHANDLER: Construct NotificationReady Event Message with enriched message & endpoint data
+            note right of MLCALLBACKHANDLER #yellow
+                "transport": {
+                    "type": "HTTP",
+                    "method": "PUT",
+                    "recipient": {
+                        "endpoint": "http://Requesting-Participant/transfers/{{transferId}}",
+                        "params": {
+                            "transferId": "{transferId}"
+                        }
+                    }
+                }
+            end note
+        else event.type === 'notification' && event.action === 'get' && event.status === 'error'
+            CSAPI <-> MLCALLBACKHANDLER: Return Endpoint details for Requesting-Participant\n<color #FF0000><b>Error codes:</b> 3202, 3203</color>
+            activate CSAPI
+            deactivate CSAPI
+
+            MLCALLBACKHANDLER -> MLCALLBACKHANDLER: Construct NotificationReady Event Message with enriched message & endpoint data
+            note right of MLCALLBACKHANDLER #yellow
+                "transport": {
+                    "type": "HTTP",
+                    "method": "PUT",
+                    "recipient": {
+                        "endpoint": "http://Requesting-Participant/transfers/{{transferId}}/error",
+                        "params": {
+                            "transferId": "{transferId}"
+                        }
+                    }
+                }
+            end note
+        end
+        MLCALLBACKHANDLER -> TOPIC_NOTIFICATIONS_EVT: Publish NotificationReady Event Message
+    end
+    
+    ' TODO1
+    TOPIC_NOTIFICATIONS_EVT <- NOTIFY_HANDLER_EVT: Consume NotificationReady Event
+    activate NOTIFY_HANDLER_EVT
+    activate TOPIC_NOTIFICATIONS_EVT
+    deactivate TOPIC_NOTIFICATIONS_EVT
+
+    NOTIFY_HANDLER_EVT -> NOTIFY_HANDLER_EVT: Construct NotifyCmd Command Message with notficiation-payload & transport-data
+    group For-each NotifyCmd Command Messages
+        NOTIFY_HANDLER_EVT -> TOPIC_NOTIFICATIONS_CMD: Publish NotifyCmd Command Message
+        activate TOPIC_NOTIFICATIONS_CMD
+    end
+    
+
+    NOTIFY_HANDLER_EVT -> TOPIC_NOTIFICATIONS_EVT: Commit Notification event
+    activate TOPIC_NOTIFICATIONS_EVT
+    deactivate TOPIC_NOTIFICATIONS_EVT
+    deactivate NOTIFY_HANDLER_EVT
+    
+    
+    TOPIC_NOTIFICATIONS_CMD <- NOTIFY_HANDLER_CMD: Consume NotifyCmd Command Message
+    activate NOTIFY_HANDLER_CMD
+    deactivate TOPIC_NOTIFICATIONS_CMD
+    
+    NOTIFY_HANDLER_CMD -> NOTIFY_HANDLER_CMD: Validate transport.type && transport.content-type match handlers configuration \n<color #FF0000><b>Error code:</b> 1001</color>
+
+    NOTIFY_HANDLER_CMD <-> NOTIFYDB: Query Notification Attempt by aggregateId, and attemot to re-load existing state into memory if it exists \n<color #FF0000><b>Note: this means that we are recovering a 'Notification' event from a mid-flight 'in-progress' Cmd Handler interupption if record found!</b></color>
+
+    alt if transport.options.deliver-report === true and state.status is undefined from in-memory state
+        NOTIFY_HANDLER_CMD -> NOTIFYDB: Record Notification event with state.status='received' and state.retry-attempt-count = 0
+    end
+
+alt If transport.type && transport.content-type match handlers configuration && state.status != 'success' || 'failed' || 'expired'
+
+        NOTIFY_HANDLER_CMD -> NOTIFY_HANDLER_CMD: Construct Transport Message
+
+        ' retry logic goes here
+        group Retry Transport Mechanism based on transport options
+            note right of NOTIFY_HANDLER_CMD #yellow
+                "transport": {
+                    "options": {
+                        "deliveryReport": true,
+                        "retry": {
+                        "count": 3,
+                        "type": "noDelay|exponentialDelay",
+                        "condition": "isNetworkError|isSafeRequestError|isIdempotentRequestError|isNetworkOrIdempotentRequestError"
+                        }
+                    }
+                }
+            end note
+
+            loop state.retry-attempt-count++; state.retry-attempt-count < transport.options.retry.count
+                alt if state.retry-attempt-count == 0 && state.status == 'received'
+                    NOTIFY_HANDLER_CMD -> NOTIFYDB: Update Notification state with state.status='in-progress'
+                else
+                    alt if transport.options.retry.type == 'exponentialDelay'
+                        NOTIFY_HANDLER_CMD -> NOTIFY_HANDLER_CMD: With state.retry-attempt-count - Calculate and wait for exponentialDelay to decay
+                    end
+                end
+
+                NOTIFY_HANDLER_CMD -> NOTIFY_HANDLER_CMD: With transport.options.expiration Calculate isExpired
+                alt if transport.options.expiration > 0 && isExpired === true
+                    break from loop
+                        NOTIFY_HANDLER_CMD -> NOTIFYDB: Update Notification state with state.status='expired'
+                        NOTIFY_HANDLER_CMD -> NOTIFY_HANDLER_CMD: break from loop
+                    end
+                end
+
+                NOTIFY_HANDLER_CMD -> NOTIFY_HANDLER_CMD: Validate transport.type && transport.content-type match handlers configuration \n<color #FF0000><b>Error code:</b> 1001</color>
+
+                alt if state.retry-count < transport.options.retry.count
+                    group Delivery Success
+                        NOTIFY_HANDLER_CMD -> PARTICIPANT: Send Notification to \nPayer DFSP to specified Endpoint \n<color #FF0000><b>Error code:</b> 1001</color>
+                        NOTIFY_HANDLER_CMD <-- PARTICIPANT: HTTP Response
+                        break from loop
+                            NOTIFY_HANDLER_CMD -> NOTIFYDB: Update Notification state with Response.info & state.status='success'
+                            NOTIFY_HANDLER_CMD -> NOTIFY_HANDLER_CMD: break from loop
+                        end
+                    else Handle Delivery Failure
+                        alt transport.options.deliver-report === true
+                            NOTIFY_HANDLER_CMD -> NOTIFYDB: Update Notification state with Failure.reason & state.retry-attempt-count
+                        end
+                        alt if Failure.type is NOT of type transport.options.retry.condition
+                            break from loop
+                                NOTIFY_HANDLER_CMD -> NOTIFYDB: Update Notification state with Failure.reason='retry-condition not met', and state.status='failed'
+                                NOTIFY_HANDLER_CMD -> NOTIFY_HANDLER_CMD: break from loop
+                            end
+                        end
+                    end
+                else
+                    break from loop
+                        ' alt transport.options.deliver-report === true
+                        '     NOTIFY_HANDLER_CMD -> NOTIFYDB: Update Notification state with failure reason 'max retries-attempts exceeded'
+                        ' end
+                        NOTIFY_HANDLER_CMD -> NOTIFYDB: Update Notification state with Failure.reason='max retry attempts' & state.status='failed'
+                        NOTIFY_HANDLER_CMD -> NOTIFY_HANDLER_CMD: break from loop
+                    end
+                end 
+            end
+        end
+
+    alt transport.options.deliver-report === true
+        NOTIFY_HANDLER_CMD -> NOTIFY_HANDLER_CMD: Prepare Delivery Report (NotifyReport)
+        
+        NOTIFY_HANDLER_CMD -> NOTIFYDB: Update Notification state with Delivery Report
+
+        NOTIFY_HANDLER_CMD -> TOPIC_NOTIFICATIONS_EVT: Publish NotifyReport event
+        activate TOPIC_NOTIFICATIONS_EVT
+    
+        NOTIFY_HANDLER_CMD -> TOPIC_NOTIFICATIONS_CMD: Commit NotifyCmd event
+        deactivate TOPIC_NOTIFICATIONS_CMD
+        deactivate NOTIFY_HANDLER_CMD
+
+        TOPIC_NOTIFICATIONS_EVT <- MLCALLBACKHANDLER: Consume NotifyReport event
+        deactivate TOPIC_NOTIFICATIONS_EVT
+        activate MLCALLBACKHANDLER
+
+        MLCALLBACKHANDLER -> MLCALLBACKHANDLER: Handle compensating actions by Custom Rule process
+
+        MLCALLBACKHANDLER -> TOPIC_NOTIFICATIONS_EVT: Commit NotifyReport event
+        deactivate MLCALLBACKHANDLER
+        activate TOPIC_NOTIFICATIONS_EVT
+        deactivate TOPIC_NOTIFICATIONS_EVT
+    end
+
+else
+    NOTIFY_HANDLER_CMD -> NOTIFY_HANDLER_CMD: Ignore Notification
+    NOTIFY_HANDLER_CMD -> TOPIC_NOTIFICATIONS_CMD: Commit NotifyCmd event
+    deactivate TOPIC_NOTIFICATIONS_CMD
+    deactivate NOTIFY_HANDLER_CMD
+end
+
+end
+@enduml
