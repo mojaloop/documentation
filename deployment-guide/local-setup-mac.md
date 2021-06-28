@@ -63,12 +63,12 @@ To install Kubernetes with Docker, follow the steps below;
    ```
 2. Change your Contexts;
    ```bash
-   kubectl config use-context docker-for-desktop
+   kubectl config use-context docker-desktop
    ```
 
    **or**
    ```bash
-   kubectx docker-for-desktop
+   kubectx docker-desktop
    ```
 
 3. Continue setup and configuration from the Kubernetes Dashboard section in the [Mojaloop's deployment guide](./README.md#31-kubernetes-dashboard) document.
