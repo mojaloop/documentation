@@ -24,11 +24,11 @@ Versions numbers below are hard requirements, not just recommendations (more rec
 
 A list of the pre-requisite tool set required for the deployment of Mojaloop:
 
-- **Kubernetes** An open-source system for automating deployment, scaling, and management of containerized applications. Find out more about [Kubernetes](https://kubernetes.io),
-   <br>_Recommended Versions:_
-   <br>&nbsp;&nbsp;&nbsp;&nbsp;_**Mojaloop Helm Chart release v12.x** supports **Kubernetes v1.13 - v1.20.6** (newer versions have not been tested)._
-   <br>&nbsp;&nbsp;&nbsp;&nbsp;_**Mojaloop Helm Chart release v11.x** supports **Kubernetes v1.13 - v1.17** (newer versions have not been tested)._
-   <br>&nbsp;&nbsp;&nbsp;&nbsp;_**Mojaloop Helm Chart release v10.x** supports **Kubernetes v1.13 - v1.15**, it will fail on Kubernetes v1.16+ onwards due deprecated APIs ([ref: Helm Issue #219](https://github.com/mojaloop/helm/issues/219))._
+- **Kubernetes** An open-source system for automating deployment, scaling, and management of containerized applications. Find out more about [Kubernetes](https://kubernetes.io).
+  - Recommended Versions:
+   <br>&nbsp;&nbsp;&nbsp;&nbsp;**Mojaloop Helm Chart release v12.x** supports **Kubernetes v1.13 - v1.20.6**.
+   <br>&nbsp;&nbsp;&nbsp;&nbsp;**Mojaloop Helm Chart release v11.x** supports **Kubernetes v1.13 - v1.17**.
+   <br>&nbsp;&nbsp;&nbsp;&nbsp;**Mojaloop Helm Chart release v10.x** supports **Kubernetes v1.13 - v1.15**, it will fail on Kubernetes v1.16+ onwards due deprecated APIs ([ref: Helm Issue #219](https://github.com/mojaloop/helm/issues/219)).
   - kubectl - Kubernetes CLI for Kubernetes Management is required. Find out more about [kubectl](https://kubernetes.io/docs/reference/kubectl/overview/):
     - [Install-kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/),
   - microk8s - MicroK8s installs a barebones upstream Kubernetes for a single node deployment generally used for local development. We recommend this installation on Linux (ubuntu) OS. Find out more about [microk8s](https://microk8s.io/) and [microk8s documents](https://microk8s.io/docs/):
@@ -168,6 +168,23 @@ Refer to the [Helm v2 to v3 Migration Guide](./helm-legacy-migration.md) if you 
 
 Refer to the following documentation to install the Nginx-Ingress Controller: <https://kubernetes.github.io/ingress-nginx/deploy/#using-helm>.
 
+> **NOTE: If you are installing Mojaloop v12.x with an Nginx-Ingress controller version newer than v0.22.0, ensure you create a custom [Mojaloop values config](https://github.com/mojaloop/helm/blob/v12.0.0/mojaloop/values.yaml) with the following changes prior to install:**
+> ```YAML
+> ## **LOOK FOR THIS LINE IN mojaloop/values.yaml CONFIG FILE**
+> mojaloop-simulator:
+>   ingress:
+>    ## nginx ingress controller >= v0.22.0 <-- **COMMENT THE FOLLOWING THREE LINES BELOW:**
+>    # annotations: <-- COMMENTED
+>    #  nginx.ingress.kubernetes.io/rewrite-target: '/$2' <-- COMMENTED
+>    # ingressPathRewriteRegex: (/|$)(.*) <-- COMMENTED
+>
+>    ## nginx ingress controller < v0.22.0 <-- **UNCOMMENT THE FOLLOWING THREE LINES BELOW:**
+>    annotations:
+>      nginx.ingress.kubernetes.io/rewrite-target: '/'
+>    ingressPathRewriteRegex: "/"
+> ```
+> **This is NOT necessary if you are installing Mojaloop v13.x or newer.**
+
 List of alternative Ingress Controllers: <https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/>.
 
 ### 5. Mojaloop
@@ -185,7 +202,7 @@ List of alternative Ingress Controllers: <https://kubernetes.io/docs/concepts/se
    _Note: Download and customize the [values.yaml](https://github.com/mojaloop/helm/blob/master/mojaloop/values.yaml). Also ensure that you are using the value.yaml from the correct version which can be found via [Helm Releases](https://github.com/mojaloop/helm/releases). You can confirm the installed version by using the following command: `helm --namespace demo list`. Under the **CHART** column, you should see something similar to 'mojaloop-**{version}**' with **{version}** being the deployed version._
 
    ```bash
-    ❯ helm -n demo list
+    $ helm -n demo list
     NAME            NAMESPACE       REVISION        UPDATED                                 STATUS          CHART
     moja            demo            1               2021-06-11 15:06:04.533094 +0200 SAST   deployed        mojaloop-{version}
    ```
@@ -195,13 +212,13 @@ List of alternative Ingress Controllers: <https://kubernetes.io/docs/concepts/se
    1.2. Version specific installation:
 
    ```bash
-   helm --namespace demo install --create-namespace moja mojaloop/mojaloop --version {version}
+   helm --namespace demo install moja mojaloop/mojaloop --create-namespace --version {version}
    ```
 
    1.3. List of Mojaloop releases:
 
    ```bash
-    ❯ helm search repo mojaloop/mojaloop -l
+    $ helm search repo mojaloop/mojaloop -l
     NAME                            CHART VERSION   APP VERSION                 DESCRIPTION                                      
     mojaloop/mojaloop               {version}       {list of app-versions}      Mojaloop Helm chart for Kubernetes
     ...                             ...             ...                         ...
