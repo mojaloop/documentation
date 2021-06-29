@@ -209,7 +209,7 @@ workflows:
             branches:
               only:
                 # TODO: change this to `mojaloop-docs-2.0`
-                - mojaloop-docs-2.0-preview-2
+                - feat/2282-.*
       - test-svg:
           context: org-global
           requires:
@@ -218,7 +218,7 @@ workflows:
             branches:
               only:
                 # TODO: change this to `mojaloop-docs-2.0`
-                - mojaloop-docs-2.0-preview-2
+                - feat/2282-.*
       - build:
           context: org-global
           requires:
@@ -229,7 +229,7 @@ workflows:
             branches:
               only:
                 # TODO: change this to `mojaloop-docs-2.0`
-                - mojaloop-docs-2.0-preview-2
+                - feat/2282-.*
       - deploy:
           context: org-global
           requires:
@@ -238,4 +238,4 @@ workflows:
             branches:
               only:
                 # TODO: change this to `mojaloop-docs-2.0`
-                - mojaloop-docs-2.0-preview-2
+                - feat/2282-.*
