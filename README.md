@@ -18,7 +18,6 @@ yarn
 yarn run dev
 ```
 
-
 ## Building the project
 Run `yarn run build` to build the project to render the static vuepress site for a deployment.
 
@@ -29,6 +28,9 @@ We deploy these docs automatically with CircleCI upon merges to the `mojaloop-do
 Go to: http://docs-preview.moja-lab.live/ to see the live site!
 
 The deploy script does not currently take versioning into account, but will in the future.
+
+> Note: for this to work, we have temporarily disabled the "only build pull requests" setting on Circleci
+> Someone please remember to turn that back on!
 
 ### Deploying Manually
 
