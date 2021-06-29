@@ -16,59 +16,7 @@ orbs:
 #
 # YAML defaults templates, in alphabetical order
 ##
-defaults_Dependencies: &defaults_Dependencies
-  name: Install default dependencies
-  command: |
-    apk --no-cache add git
-    apk --no-cache add ca-certificates
-    apk --no-cache add curl
-    apk --no-cache add openssh-client
-    # for node 10.15-alpine, need to install from edge repo
-    apk --no-cache add openjdk11 --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community
-    apk --no-cache add graphviz
-    apk add --no-cache -t build-dependencies make gcc g++ python libtool autoconf automake
-    npm config set unsafe-perm true
-    npm install -g gitbook-cli
-defaults_slack_announcement: &defaults_slack_announcement
-  name: Slack announcement for tag releases
-  command: |
-    curl -X POST \
-      $SLACK_WEBHOOK_ANNOUNCEMENT \
-      -H 'Content-type: application/json' \
-      -H 'cache-control: no-cache' \
-      -d "{
-      \"text\": \"*${CIRCLE_PROJECT_REPONAME}* - Release \`${CIRCLE_TAG}\`: https://github.com/mojaloop/${CIRCLE_PROJECT_REPONAME}/releases/tag/${CIRCLE_TAG}\"
-    }"
-defaults_git_identity_setup: &defaults_git_identity_setup
-  name: Setup Git Identity
-  command: |
-    echo "Setting BASH_ENV..."
-    source $BASH_ENV
-    git config --global user.email "$GIT_CI_USER"
-    git config --global user.password "$GIT_CI_PASSWORD"
-    git config --global user.name "$GIT_CI_EMAIL"
-    git remote add $GITHUB_PROJECT_USERNAME https://$GIT_CI_USER:$GITHUB_TOKEN@github.com/$GITHUB_PROJECT_USERNAME/$GITHUB_PROJECT_REPONAME.git
-defaults_publish_to_gh_pages: &defaults_publish_to_gh_pages
-  name: Publish documentation
-  command: |
-    echo "Setting BASH_ENV..."
-    source $BASH_ENV
-    echo "Fetching info from remote $GITHUB_PROJECT_USERNAME"
-    git fetch -q $GITHUB_PROJECT_USERNAME &> git.log
-    echo "Checking out $GITBOOK_TARGET_BRANCH"
-    git checkout -b $GITBOOK_TARGET_BRANCH $GITHUB_PROJECT_USERNAME/$GITBOOK_TARGET_BRANCH  &> git.log
-    echo "Pulling latest code from $GITBOOK_TARGET_BRANCH branch..."
-    git pull -q $GITHUB_PROJECT_USERNAME $GITBOOK_TARGET_BRANCH --rebase &> git.log
-    echo "Copying contents of _book to root..."
-    cp -R _book/* .
-    echo "Staging general changes..."
-    git add .
-    echo "Staging generated UML..."
-    git add -f assets/images/uml/*.*
-    echo "Commiting changes..."
-    git commit -a -m "Updating release to $GITHUB_TAG"
-    echo "Publishing $GITHUB_TAG release to $GITBOOK_TARGET_BRANCH on github..."
-    git push -q $GITHUB_PROJECT_USERNAME $GITBOOK_TARGET_BRANCH &> git.log
+
 ##
 # Executors
 #
@@ -90,105 +38,33 @@ executors:
 # A map of CircleCI jobs
 ##
 jobs:
-  setup:
+  build_and_deploy_s3:
     executor: default-docker
     steps:
       - checkout
       - run:
-          <<: *defaults_Dependencies
-      - run:
-          name: Access npm folder as root
-          command: cd $(npm root -g)/npm
-      - run:
-          name: Update NPM install
-          command: npm ci
-      - run:
-          name: Delete build dependencies
-          command: apk del build-dependencies
-      - save_cache:
-          key: dependency-cache-{{ checksum "package-lock.json" }}
-          paths:
-            - node_modules
-
-  build:
-    executor: default-docker
-    steps:
-      - checkout
-      - run:
-          <<: *defaults_Dependencies
-      - run:
-          name: Installing build dependencies
+          name: Install default dependencies
           command: |
-            echo 'Installing build dependencies via APK'
-            apk add --no-cache -t gitbook-build-dependencies openjdk8-jre graphviz ttf-droid ttf-droid-nonlatin
-            echo 'Setting env vars'
-            echo 'export PLANTUML_VERSION=$PLANTUML_VERSION' >> $BASH_ENV
-            echo 'export LANG=$PLANTUML_LANG' >> $BASH_ENV
-            echo 'Downloading plantuml jar'
-            curl -L https://sourceforge.net/projects/plantuml/files/plantuml.${PLANTUML_VERSION}.jar/download -o plantuml.jar
-      - restore_cache:
-          keys:
-          - dependency-cache-{{ checksum "package-lock.json" }}
+            apk --no-cache add git
+            apk --no-cache add ca-certificates
+            apk --no-cache add curl
+            apk --no-cache add openssh-client
+            # for node 10.15-alpine, need to install from edge repo
+            apk --no-cache add openjdk11 --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community
+            apk --no-cache add graphviz
+            apk add --no-cache -t build-dependencies make gcc g++ python libtool autoconf automake
+            npm config set unsafe-perm true
       - run:
-          name: Build Gitbooks
+          name: test aws cli + permissions
           command: |
-            npm run gitbook:build
-      - save_cache:
-          key: build-cache-{{ checksum "package-lock.json" }}
-          paths:
-            - _book
-  
-  test-svg:
-    executor: default-machine
-    steps:
-      - checkout
+            aws s3 ls
       - run:
-          name: Set up NVM
-          command: |
-            echo ${NVM_DIR}
-            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-            nvm install v10.15.3
-            nvm alias default v10.15.3
-            node --version
-            npm ci
-      - run:
-          name: Check if plantuml has been updated correctly
-          command: |
-            set +o pipefail
-            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-            npm run build:plantuml:all
-            FILE_COUNT=$(git diff --name-only | grep .svg | wc -l)
-            if [ ${FILE_COUNT} -ne "0" ]; then
-              echo "${FILE_COUNT} plantuml files are out of sync. Please run npm run build:plantuml and try again.";
-              exit 1;
-            else
-              echo 'Plantuml files are up to date';
-            fi
-  deploy:
-    executor: default-docker
-    steps:
-      - checkout
-      - run:
-          <<: *defaults_Dependencies
-      - run:
-          name: setup environment vars
-          command: |
-            echo 'export GITBOOK_TARGET_BRANCH=$GITBOOK_TARGET_BRANCH' >> $BASH_ENV
-            echo 'export GITHUB_TOKEN=$GITHUB_TOKEN' >> $BASH_ENV
-            echo 'export GITHUB_PROJECT_USERNAME=$CIRCLE_PROJECT_USERNAME' >> $BASH_ENV
-            echo 'export GITHUB_PROJECT_REPONAME=$CIRCLE_PROJECT_REPONAME' >> $BASH_ENV
-            echo 'export GITHUB_TAG=$CIRCLE_TAG' >> $BASH_ENV
-            echo 'export GIT_CI_USER=$GIT_CI_USER' >> $BASH_ENV
-            echo 'export GIT_CI_EMAIL=$GIT_CI_EMAIL' >> $BASH_ENV
-      - restore_cache:
-          keys:
-          - build-cache-{{ checksum "package-lock.json" }}
-      - run:
-          <<: *defaults_git_identity_setup
-      - run:
-          <<: *defaults_publish_to_gh_pages
-      - run:
-          <<: *defaults_slack_announcement
+          name: run build and deploy script
+          command: ./scripts/_deploy_preview_s3.sh
+    
+      # TODO: announce preview docs are ready
+      # - run:
+      #     <<: *defaults_slack_announcement
 
 ##
 # Workflows
@@ -199,37 +75,8 @@ workflows:
   version: 2
   build_and_test:
     jobs:
-      - pr-tools/pr-title-check:
+      - build_and_deploy_s3:
           context: org-global
-      - setup:
-          context: org-global
-          filters:
-            branches:
-              only:
-                # TODO: change this to `mojaloop-docs-2.0`
-                - /feat\/2282-.*/
-      - test-svg:
-          context: org-global
-          requires:
-            - setup
-          filters:
-            branches:
-              only:
-                # TODO: change this to `mojaloop-docs-2.0`
-                - /feat\/2282-.*/
-      - build:
-          context: org-global
-          requires:
-            - setup
-          filters:
-            branches:
-              only:
-                # TODO: change this to `mojaloop-docs-2.0`
-                - /feat\/2282-.*/
-      - deploy:
-          context: org-global
-          requires:
-            - build
           filters:
             branches:
               only:
