@@ -6,9 +6,13 @@
 # in the eu-west-2 region
 # and followed the guide: https://docs.aws.amazon.com/AmazonS3/latest/userguide/EnableWebsiteHosting.html
 # to manually configure the bucket for website hosting
+# And this guide: https://aws.amazon.com/premiumsupport/knowledge-center/cloudfront-serve-static-website/
+# to set up Cloudfront and Route53
+# "Using a REST API endpoint as the origin, with access restricted by an OAI"
 
 # The website should be available at:
 # http://mojaloop-docs-preview.s3-website.eu-west-2.amazonaws.com
+# or http://docs-preview.moja-lab.live/
 
 # Required tools:
 # - aws-cli
@@ -25,11 +29,12 @@ set -u
 aws s3 ls
 
 # build
+rm -rf ${DIR}/../build
 cd ${DIR}/../vuepress
 yarn
 yarn build
 
-exit 0
+mv ${DIR}/../vuepress/docs/.vuepress/dist ${DIR}/../build
 
 # TODO: can we be smart about docs versions here? maybe every minor version we can keep...
 
@@ -37,4 +42,6 @@ exit 0
 aws s3 sync ${DIR}/../build s3://${BUCKET_NAME} \
   --acl public-read
 
-echo "go to: http://${BUCKET_NAME}.s3-website.${AWS_REGION}.amazonaws.com to see the live site!"
+echo "go to: "
+echo "http://${BUCKET_NAME}.s3-website.${AWS_REGION}.amazonaws.com"
+echo "or http://docs-preview.moja-lab.live/ to see the live site!"
