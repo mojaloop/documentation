@@ -204,12 +204,10 @@ workflows:
       - setup:
           context: org-global
           filters:
-            tags:
-              only: /.*/
             branches:
               only:
                 # TODO: change this to `mojaloop-docs-2.0`
-                - feat/2282-.*
+                - /feat\/2282-.*/
       - test-svg:
           context: org-global
           requires:
@@ -218,18 +216,16 @@ workflows:
             branches:
               only:
                 # TODO: change this to `mojaloop-docs-2.0`
-                - feat/2282-.*
+                - /feat\/2282-.*/
       - build:
           context: org-global
           requires:
             - setup
           filters:
-            tags:
-              only: /.*/
             branches:
               only:
                 # TODO: change this to `mojaloop-docs-2.0`
-                - feat/2282-.*
+                - /feat\/2282-.*/
       - deploy:
           context: org-global
           requires:
@@ -238,4 +234,4 @@ workflows:
             branches:
               only:
                 # TODO: change this to `mojaloop-docs-2.0`
-                - feat/2282-.*
+                - /feat\/2282-.*/
