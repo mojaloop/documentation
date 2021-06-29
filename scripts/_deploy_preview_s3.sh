@@ -26,7 +26,7 @@ set -e
 set -u
 
 # make sure we can actually list the s3 buckets
-aws s3 ls
+aws s3 ls s3://${BUCKET_NAME}
 
 # build
 rm -rf ${DIR}/../build

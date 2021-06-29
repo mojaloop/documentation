@@ -49,21 +49,16 @@ jobs:
               ca-certificates \
               curl \
               openssh-client \
-              build-dependencies make gcc g++ python libtool autoconf automake \
+              make gcc g++ python libtool autoconf automake \
               python3 \
-              py3-pip \
+              py3-pip
 
             pip3 install awscli
-
-            # for node 10.15-alpine, need to install from edge repo
-            # apk --no-cache add openjdk11 --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community
-            # apk --no-cache add graphviz
-            # npm config set unsafe-perm true
       - run:
           name: test aws cli + permissions
           command: |
             aws --version
-            aws s3 ls
+            aws s3 ls s3://mojaloop-docs-preview
       - run:
           name: run build and deploy script
           command: ./scripts/_deploy_preview_s3.sh
