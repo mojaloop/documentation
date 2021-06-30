@@ -1,9 +1,62 @@
-# Using Vue in Markdown
+# Contributors Guide
 
-## Browser API Access Restrictions
+## How do I contribute?
 
-Because VuePress applications are server-rendered in Node.js when generating static builds, any Vue usage must conform to the [universal code requirements](https://ssr.vuejs.org/en/universal.html). In short, make sure to only access Browser / DOM APIs in `beforeMount` or `mounted` hooks.
+* Review the [Mojaloop Deployment](../deployment-guide/) Guide and the [Onboarding Guide](https://github.com/mojaloop/mojaloop/blob/master/onboarding.md)
+* Browse through the [Repository Overview](../repositories/) to understand how the Mojaloop code is managed across multiple Github Repositories
+* Get familiar with our [Standards](standards/) on contributing to this project
+* Go through the [New Contributor Checklist](./new-contributor-checklist.md), and browse through the project board and work on your [good first issue](https://github.com/mojaloop/project/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22)
+* Review the [Roadmap](../mojaloop-roadmap.md) and contribute to future opportunities
+* Familiarize yourself with our Community [Code of Conduct](../code-of-conduct.md)
 
-If you are using or demoing components that are not SSR friendly (for example containing custom directives), you can wrap them inside the built-in `<ClientOnly>` component:
+## What work is needed?
 
-##
+Work is tracked as issues in the [mojaloop/project](https://github.com/mojaloop/project) repository GitHub. You'll see issues there that are open and marked as bugs, stories, or epics. An epic is larger work that contains multiple stories. Start with any stories that are marked with "[good first issue](https://github.com/mojaloop/project/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22)". In addition, anything that is in the backlog and not assigned to someone are things we could use help with. Stories that have owners are in someone's backlog already, though you can always ask about them in the issue or on Slack.
+
+There's a [roadmap](../mojaloop-roadmap.md) that shows larger work that people could do or are working on. It has some main initiatives and epics and the order, but lacks dates as this work is community driven. Work is broken down from there into issues in GitHub.
+
+In general, we are looking for example implementations and bug fixes, and project enhancements.
+
+### Where do I get help?
+
+Join the [Mojaloop Slack Discussions](https://mojaloop-slack.herokuapp.com/) to connect with other developers.
+
+Also checkout the [FAQ](https://github.com/mojaloop/documentation/blob/master/contributors-guide/frequently-asked-questions.md)
+
+### What is the current release?
+
+See the [Mojaloop Slack Announcements](https://mojaloop.slack.com/messages/CG3MAJZ5J) to find out information on the latest release.
+
+### What's here and what's not?
+
+This is free code provided under an [Apache 2.0 license](https://github.com/mojaloop/mojaloop/blob/master/LICENSE.md).
+
+The code is released with an Apache 2.0 license but the Specification documents under the 'mojaloop-specification' documents are published with CC BY-ND 4.0 License
+
+We don't provide production servers to run it on. That's up to you. You are free \(and encouraged!\) to clone these repositories, participate in the community of developers, and contribute back to the code.
+
+We are not trying to replace any mobile wallet or financial providers. We provide code to link together new and existing financial providers using a common scheme. There are central services for identifying a customer's provider, quoting, fulfillment, deferred net settlement, and shared fraud management. Each provider can take advantage of these services to send and receive money with others on the system and there's no cost to them to onboard new providers. We provide code for a simple example mobile money provider to show how integration can be done, but our example DFSP is not meant to be a production mobile money provider.
+
+## Where do I send bugs, questions, and feedback?
+
+For bugs, see [Reporting bugs](https://github.com/mojaloop/mojaloop/blob/master/contribute/Reporting-Bugs.md).
+
+### Related Projects
+
+The [Interledger Protocol Suite](https://interledger.org/) \(ILP\) is an open and secure standard that enables DFSPs to settle payments with minimal _counter-party risk_ \(the risk you incur when someone else is holding your money\). With ILP, you can transact across different systems with no chance that someone in the middle disappears with your money. Mojaloop uses the Interledger Protocol Suite for the clearing layer.
+
+## Types of Contributors
+
+There are three types of contributors that we are targeting for this phase of the Mojaloop project.
+
+### Developers or General Contributors
+
+These individuals are those that want to start contributing to the Mojaloop community. This could be a developer or quality assurance person that wants to write new code or fix a bug. This could also be a business, compliance or risk specialist that wants to help provide rules, write documentation or participate in requirements gathering.
+
+### Hub Operators
+
+Typically these or organizations or individuals or government agencies that are interested in setting up their own Mojaloop Switch to become part of the ecosystem.
+
+### Implementation Teams
+
+Implementation teams can assist banks, government offices, mobile operators or credit unions in deploying Mojaloop.
