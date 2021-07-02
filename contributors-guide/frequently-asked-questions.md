@@ -8,43 +8,46 @@ This document contains some of the most frequently asked questions from the comm
 
 ### Table of Content
 
-* [What is Mojaloop](#1-what-is-mojaloop)
-* [How does it work](#2-how-does-it-work)
-* [Who is it for](#3-who-is-it-for)
-* [Why does it exist](#4-why-does-it-exist)
-* [Who's behind it](#5-whos-behind-it)
-* [What platforms does Mojaloop run on](#6-what-platforms-does-mojaloop-run-on)
-* [Is it really open-source](#7-is-it-really-open-source)
-* [How can I contribute to Mojaloop](#8-how-can-i-contribute-to-mojaloop)
-* [What is supported](#9-what-is-supported)
-* [Can we connect directly to Pathfinder in a development environment](#10-can-we-connect-directly-to-pathfinder-in-a-development-environment)
-* [Should i register DFSP via url or update configuration in default.json](#11-should-i-register-dfsp-via-urlhttpcentral-directorycommandsregisteror-i-need-to-update-configuration-in-defaultjson)
-* [Status of the pod pi3-kafka-0 is still on CrashLoopBackOff](#12-status-of-the-pod-pi3-kafka-0-is-still-on-crashloopbackoff)
-* [Why am I getting an error when we try to create new DFSP using Admin](#13-why-am-i-getting-an-error-when-we-try-to-create-new-dfsp-using-admin)
-* [Using Mojaloop to do payment using crypto-currency](#14-using-mojaloop-to-do-payment-using-crypto-currency)
-* [Can I spread Mojaloop components over different physical machines and VM's](#15--can-i-spread-mojaloop-components-over-different-physical-machines-and-vms)
-* [Can we expect all the endpoints defined in the API document are implemented in Mojaloop](#16-can-we-expect-all-the-endpoints-defined-in-the-api-document-are-implemented-in-mojaloop)
-* [Does Mojaloop store the payment initiator FSP’s quote/status info](#17-does-mojaloop-store-the-payment-initiator-fsps-quotestatus-info)
-* [Does Mojaloop handle workflow validation](#18-does-mojaloop-handle-workflow-validation)
-* [How is the Mojaloop source accessible](#19-how-is-the-mojaloop-source-accessible)
-* [How to register a new party in Mojaloop](#20-how-to-register-a-new-party-in-mojaloop)
-* [Does the participant represent an account of a customer in a bank](#21-does-the-participant-represent-an-account-of-a-customer-in-a-bank)
-* [How to register _trusted_ payee to a payer, to skip OTP](#22-how-to-register-trusted-payee-to-a-payer-to-skip-otp)
-* [Receiving a 404 error when attempting to access or load kubernetes-dashboard.yaml file](#23-receiving-a-404-error-when-attempting-to-access-or-load-kubernetes-dashboardyaml-file)
-* [When installing nginx-ingress for load balancing & external access - Error: no available release name found](#24-when-installing-nginx-ingress-for-load-balancing--external-access---error-no-available-release-name-found)
-* [Received "ImportError: librdkafka.so.1: cannot open shared object file: No such file or directory" when running `npm start' command](#25-received-importerror-librdkafkaso1-cannot-open-shared-object-file-no-such-file-or-directory-when-running-npm-start-command)
-* [Can we use mojaloop as open-source mobile wallet software or mojaloop does interoperability only](#26-can-we-use-mojaloop-as-open-source-mobile-wallet-software-or-mojaloop-does-interoperability-only)
-* [Describe companies that helps to deploy & support for mojaloop](#27-describe-companies-that-helps-to-deploy--support-for-mojaloop)
-* [Can you say something about mojaloop & security](#28-can-you-say-something-about-mojaloop--security)
-* [What are the benefit(s) from using mojaloop as interoperabilty platform](#29-what-are-the-benefits-from-using-mojaloop-as-interoperabilty-platform)
-* [What are the main challenges that companies face using mojaloop](#30-what-are-the-main-challenges-that-companies-face-using-mojaloop)
-* [Is forensic logging/audit in mojaloop , is it related with securing the inter-operability platform](#31-is-forensic-loggingaudit-in-mojaloop--is-it-related-with-securing-the-inter-operability-platform)
-* [How do the financial service providers connect with mojaloop](#32-how-do-the-financial-service-providers-connect-with-mojaloop)
-* [Is there any open source ISO8583-OpenAPI converter/connector available](#33-is-there-any-open-source-iso8583-openapi-converterconnector-available)
-* [How do I know the end points to setup postman for testing the deployment](#34-how-do-i-know-the-end-points-to-setup-postman-for-testing-the-deployment)
-* [Why are there no reversals allowed on a Mojaloop](#35-why-are-there-no-reversals-allowed-on-a-mojaloop)
-* [ffg. error with microk8s installation "MountVolume.SetUp failed"](#36-ffg-error-with-microk8s-installation-mountvolumesetup-failed)
-* [Why am I getting this error when trying to create a participant: "Hub reconciliation account for the specified currency does not exist"?](#37-why-am-i-getting-this-error-when-trying-to-create-a-participant-hub-reconciliation-account-for-the-specified-currency-does-not-exist)
+- [Frequently Asked Questions](#frequently-asked-questions)
+    - [Table of Content](#table-of-content)
+      - [1. What is Mojaloop?](#1-what-is-mojaloop)
+      - [2. How does it work?](#2-how-does-it-work)
+      - [3. Who is it for?](#3-who-is-it-for)
+      - [4. Why does it exist?](#4-why-does-it-exist)
+      - [5. Who's behind it?](#5-whos-behind-it)
+      - [6. What platforms does Mojaloop run on?](#6-what-platforms-does-mojaloop-run-on)
+      - [7. Is it really open-source?](#7-is-it-really-open-source)
+      - [8. How can I contribute to Mojaloop?](#8-how-can-i-contribute-to-mojaloop)
+      - [9. What is supported?](#9-what-is-supported)
+      - [10. Can we connect directly to Pathfinder in a development environment?](#10-can-we-connect-directly-to-pathfinder-in-a-development-environment)
+      - [11. Should i register DFSP via url http://central-directory/commands/register or i need to update configuration in default.json?](#11-should-i-register-dfsp-via-urlhttpcentral-directorycommandsregisteror-i-need-to-update-configuration-in-defaultjson)
+      - [12. Status of the pod pi3-kafka-0 is still on CrashLoopBackOff?](#12-status-of-the-pod-pi3-kafka-0-is-still-on-crashloopbackoff)
+      - [13. Why am I getting an error when we try to create new DFSP using Admin?](#13-why-am-i-getting-an-error-when-we-try-to-create-new-dfsp-using-admin)
+      - [14. Using Mojaloop to do payment using crypto-currency?](#14-using-mojaloop-to-do-payment-using-crypto-currency)
+      - [15.  Can I spread Mojaloop components over different physical machines and VM's?](#15--can-i-spread-mojaloop-components-over-different-physical-machines-and-vms)
+      - [16. Can we expect all the endpoints defined in the API document are implemented in Mojaloop?](#16-can-we-expect-all-the-endpoints-defined-in-the-api-document-are-implemented-in-mojaloop)
+      - [17. Does Mojaloop store the payment initiator FSP’s quote/status info?](#17-does-mojaloop-store-the-payment-initiator-fsps-quotestatus-info)
+      - [18. Does Mojaloop handle workflow validation?](#18-does-mojaloop-handle-workflow-validation)
+      - [19. How is the Mojaloop source accessible?](#19-how-is-the-mojaloop-source-accessible)
+      - [20. How to register a new party in Mojaloop?](#20-how-to-register-a-new-party-in-mojaloop)
+      - [21. Does the participant represent an account of a customer in a bank?](#21-does-the-participant-represent-an-account-of-a-customer-in-a-bank)
+      - [22. How to register _trusted_ payee to a payer, to skip OTP?](#22-how-to-register-trusted-payee-to-a-payer-to-skip-otp)
+      - [23. Receiving a 404 error when attempting to access or load kubernetes-dashboard.yaml file?](#23-receiving-a-404-error-when-attempting-to-access-or-load-kubernetes-dashboardyaml-file)
+      - [24. When installing nginx-ingress for load balancing & external access - Error: no available release name found?](#24-when-installing-nginx-ingress-for-load-balancing--external-access---error-no-available-release-name-found)
+      - [25. Received "ImportError: librdkafka.so.1: cannot open shared object file: No such file or directory" when running `npm start' command.](#25-received-importerror-librdkafkaso1-cannot-open-shared-object-file-no-such-file-or-directory-when-running-npm-start-command)
+      - [26. Can we use mojaloop as open-source mobile wallet software or mojaloop does interoperability only?](#26-can-we-use-mojaloop-as-open-source-mobile-wallet-software-or-mojaloop-does-interoperability-only)
+      - [27. Describe companies that helps to deploy & support for mojaloop?](#27-describe-companies-that-helps-to-deploy--support-for-mojaloop)
+      - [28. Can you say something about mojaloop & security?](#28-can-you-say-something-about-mojaloop--security)
+      - [29. What are the benefit(s) from using mojaloop as interoperabilty platform?](#29-what-are-the-benefits-from-using-mojaloop-as-interoperabilty-platform)
+      - [30. What are the main challenges that companies face using mojaloop?](#30-what-are-the-main-challenges-that-companies-face-using-mojaloop)
+      - [31. Is forensic logging/audit in mojaloop , is it related with securing the inter-operability platform?](#31-is-forensic-loggingaudit-in-mojaloop--is-it-related-with-securing-the-inter-operability-platform)
+      - [32. How do the financial service providers connect with mojaloop?](#32-how-do-the-financial-service-providers-connect-with-mojaloop)
+      - [33. Is there any open source ISO8583-OpenAPI converter/connector available?](#33-is-there-any-open-source-iso8583-openapi-converterconnector-available)
+      - [34. How do I know the end points to setup postman for testing the deployment?](#34-how-do-i-know-the-end-points-to-setup-postman-for-testing-the-deployment)
+      - [35. Why are there no reversals allowed on a Mojaloop?](#35-why-are-there-no-reversals-allowed-on-a-mojaloop)
+      - [36. ffg. error with microk8s installation "MountVolume.SetUp failed"?](#36-ffg-error-with-microk8s-installation-mountvolumesetup-failed)
+      - [37. Why am I getting this error when trying to create a participant: "Hub reconciliation account for the specified currency does not exist"?](#37-why-am-i-getting-this-error-when-trying-to-create-a-participant-hub-reconciliation-account-for-the-specified-currency-does-not-exist)
+      - [38. Resolve problems with VSCode and kafka on ubuntu 18.04. To make the code work with VSCode debugger, added the following into the launch.json](#38-resolve-problems-with-vscode-and-kafka-on-ubuntu-1804-to-make-the-code-work-with-vscode-debugger-added-the-following-into-the-launchjson)
 
 #### 1. What is Mojaloop?
  
@@ -252,3 +255,12 @@ You need to create the corresponding Hub accounts (HUB_MULTILATERAL_SETTLEMENT a
 In this Postman collection you can find the requests to perform the operation in the "Hub Account" folder: https://github.com/mojaloop/postman/blob/master/OSS-New-Deployment-FSP-Setup.postman_collection.json
 
 Find also the related environments in the Postman repo: https://github.com/mojaloop/postman
+
+#### 38. Resolve problems with VSCode and kafka on ubuntu 18.04. To make the code work with VSCode debugger, added the following into the launch.json
+
+  ```json
+  "env": {
+          "LD_LIBRARY_PATH": "${workspaceFolder}/node_modules/node-rdkafka/build/deps",
+          "WITH_SASL": 0
+        }
+  ```

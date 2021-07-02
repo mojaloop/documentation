@@ -9,7 +9,8 @@ The document is intended for an audience with a stable technical knowledge that 
     - [1. Pre-requisites](#1-pre-requisites)
     - [2. Deployment Recommendations](#2-deployment-recommendations)
     - [3. Kubernetes](#3-kubernetes)
-      - [3.1. Kubernetes Admin Interfaces](#31-kubernetes-admin-interfaces)
+      - [3.1. Kubernetes Ingress Controller](#31-kubernetes-ingress-controller)
+      - [3.2. Kubernetes Admin Interfaces](#32-kubernetes-admin-interfaces)
     - [4. Helm](#4-helm)
       - [4.1. Helm configuration](#41-helm-configuration)
     - [5. Mojaloop](#5-mojaloop)
@@ -40,21 +41,6 @@ A list of the pre-requisite tool set required for the deployment of Mojaloop:
    <br>_Recommended Versions:_
    <br>&nbsp;&nbsp;&nbsp;&nbsp;_**Helm v3.x** ([ref: Design Auth Issue #52](https://github.com/mojaloop/design-authority/issues/52))._
 - **Postman** Postman is a Google Chrome application for the interacting with HTTP API's. It presents you with a friendly GUI for the construction requests and reading responces. <https://www.getpostman.com/apps>. Find out more about [Postman](https://postman.com).
-
-If you are new to Kubernetes it is strongly recommended to familiarize yourself with Kubernetes. [Kubernetes Concepts](https://kubernetes.io/docs/concepts/overview/) is a good place to start and will provide an overview.
-
-The following are Kubernetes concepts used within the project. An understanding of these concepts is imperative before attempting the deployment:
-
-- Deployment
-- Pod
-- ReplicaSets
-- Service
-- Ingress
-- StatefulSet
-- DaemonSet
-- Ingress Controller
-- ConfigMap
-- Secret
 
 For **local guides** on how to setup the pre-requisites on your laptop or desktop, refer to the appropriate link document below;
 
@@ -112,7 +98,34 @@ The following are Kubernetes concepts used within the project. An understanding 
 
 Insure **kubectl** is installed. A complete set of installation instruction are available [here](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
 
-#### 3.1. Kubernetes Admin Interfaces
+#### 3.1. Kubernetes Ingress Controller
+
+Install your preferred Ingress Controller for load-balancing and external access.
+
+Refer to the following documentation to install the Nginx-Ingress Controller used for this guide: <https://kubernetes.github.io/ingress-nginx/deploy/#using-helm>.
+
+> **NOTE: If you are installing Mojaloop v12.x with an Nginx-Ingress controller version newer than v0.22.0, ensure you create a custom [Mojaloop values config](https://github.com/mojaloop/helm/blob/v12.0.0/mojaloop/values.yaml) with the following changes prior to install:**
+>
+> ```YAML
+> ## **LOOK FOR THIS LINE IN mojaloop/values.yaml CONFIG FILE**
+> mojaloop-simulator:
+>   ingress:
+>    ## nginx ingress controller >= v0.22.0 <-- **COMMENT THE FOLLOWING THREE LINES BELOW:**
+>    # annotations: <-- COMMENTED
+>    #  nginx.ingress.kubernetes.io/rewrite-target: '/$2' <-- COMMENTED
+>    # ingressPathRewriteRegex: (/|$)(.*) <-- COMMENTED
+>
+>    ## nginx ingress controller < v0.22.0 <-- **UNCOMMENT THE FOLLOWING THREE LINES BELOW:**
+>    annotations:
+>      nginx.ingress.kubernetes.io/rewrite-target: '/'
+>    ingressPathRewriteRegex: "/"
+> ```
+>
+> **This is NOT necessary if you are installing Mojaloop v13.x or newer.**
+
+List of alternative Ingress Controllers: <https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/>.
+
+#### 3.2. Kubernetes Admin Interfaces
 
 1. Kubernetes Dashboards
 
@@ -142,9 +155,9 @@ Insure **kubectl** is installed. A complete set of installation instruction are 
 
 Please review [Mojaloop Helm Chart](../repositories/helm.md) to understand the relationships between the deployed Mojaloop helm charts.
 
-Refer to the official documentation on how to install the latest version of Helm v3: <https://helm.sh/docs/intro/install/>
+Refer to the official documentation on how to install the latest version of Helm: <https://helm.sh/docs/intro/install/>.
 
-Refer to the following document if are using Helm v2: [Deployment with (Deprecated) Helm v2](./helm-legacy-deployment.md)
+Refer to the following document if are using Helm v2: [Deployment with (Deprecated) Helm v2](./helm-legacy-deployment.md).
 
 Refer to the [Helm v2 to v3 Migration Guide](./helm-legacy-migration.md) if you wish to migrate an existing Helm v2 deployment to v3.
 
@@ -164,29 +177,6 @@ Refer to the [Helm v2 to v3 Migration Guide](./helm-legacy-migration.md) if you 
    helm repo update
    ```
 
-3. Install your preferred Ingress Controller for load-balancing and external access:
-
-Refer to the following documentation to install the Nginx-Ingress Controller: <https://kubernetes.github.io/ingress-nginx/deploy/#using-helm>.
-
-> **NOTE: If you are installing Mojaloop v12.x with an Nginx-Ingress controller version newer than v0.22.0, ensure you create a custom [Mojaloop values config](https://github.com/mojaloop/helm/blob/v12.0.0/mojaloop/values.yaml) with the following changes prior to install:**
-> ```YAML
-> ## **LOOK FOR THIS LINE IN mojaloop/values.yaml CONFIG FILE**
-> mojaloop-simulator:
->   ingress:
->    ## nginx ingress controller >= v0.22.0 <-- **COMMENT THE FOLLOWING THREE LINES BELOW:**
->    # annotations: <-- COMMENTED
->    #  nginx.ingress.kubernetes.io/rewrite-target: '/$2' <-- COMMENTED
->    # ingressPathRewriteRegex: (/|$)(.*) <-- COMMENTED
->
->    ## nginx ingress controller < v0.22.0 <-- **UNCOMMENT THE FOLLOWING THREE LINES BELOW:**
->    annotations:
->      nginx.ingress.kubernetes.io/rewrite-target: '/'
->    ingressPathRewriteRegex: "/"
-> ```
-> **This is NOT necessary if you are installing Mojaloop v13.x or newer.**
-
-List of alternative Ingress Controllers: <https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/>.
-
 ### 5. Mojaloop
 
 #### 5.1. Mojaloop Helm Deployment
@@ -196,7 +186,13 @@ List of alternative Ingress Controllers: <https://kubernetes.io/docs/concepts/se
    1.1. Installing latest version:
 
    ```bash
-   helm --namespace demo install --create-namespace moja mojaloop/mojaloop -f {custom-values.yaml}
+   helm --namespace demo install moja mojaloop/mojaloop --create-namespace 
+   ```
+
+   Or if you require a customized configuration:
+
+   ```bash
+   helm --namespace demo install moja mojaloop/mojaloop --create-namespace -f {custom-values.yaml}
    ```
 
    _Note: Download and customize the [values.yaml](https://github.com/mojaloop/helm/blob/master/mojaloop/values.yaml). Also ensure that you are using the value.yaml from the correct version which can be found via [Helm Releases](https://github.com/mojaloop/helm/releases). You can confirm the installed version by using the following command: `helm --namespace demo list`. Under the **CHART** column, you should see something similar to 'mojaloop-**{version}**' with **{version}** being the deployed version._
@@ -276,7 +272,7 @@ The [Mojaloop Testing Toolkit](../../documentation/mojaloop-technical-overview/m
    Use the following command to view the provisioning Collection logs:
 
    ```bash
-    kubectl -n demo logs pod/moja-ml-ttk-test-setup
+   kubectl -n demo logs pod/moja-ml-ttk-test-setup
    ```
 
    - [TTK Golden Path Test Collection](https://github.com/mojaloop/testing-toolkit-test-cases/tree/master/collections/hub/golden_path).
