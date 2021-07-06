@@ -8,64 +8,53 @@ This document will provide guidelines to a technical capable resources to setup,
 
 At this point the reader/implementer should be familiar with [Mojaloop's deployment guide](./README.md). Imported information is contained in that document and as such a prerequisite to this document.
 
-* [Kubernetes](#1-kubernetes)
-  * [Kubernetes Installation with Docker](#11-kubernetes-installation-with-docker)
-  * [Kubernetes environment setup](#12-kubernetes-environment-setup)
-
+- [Mojaloop local environment setup for Windows](#mojaloop-local-environment-setup-for-windows)
+  - [Setup Introduction](#setup-introduction)
+  - [1. Kubernetes](#1-kubernetes)
+    - [1.1 Kubernetes Installation with Docker](#11-kubernetes-installation-with-docker)
+    - [1.2 Kubernetes environment setup](#12-kubernetes-environment-setup)
 
 ## 1. Kubernetes
 
 This section will guide the reader through the deployment process to setup Kubernetes within Docker.
 
-If you are new to Kubernetes it is strongly recommended to familiarize yourself with Kubernetes. [Kubernetes Concepts](https://kubernetes.io/docs/concepts/overview/) is a good place to start and will provide an overview.
-
-The following are Kubernetes concepts used within the project. An understanding of these concepts is imperative before attempting the deployment;
-
-* Deployment
-* Pod
-* ReplicaSets
-* Service
-* Ingress
-* StatefulSet
-* DaemonSet
-* Ingress Controller
-* ConfigMap
-* Secret
-
 ### 1.1 Kubernetes Installation with Docker
 
-* **kubectl** is part of the installation package when installing Docker Desktop for Windows.
+- **kubectl** is part of the installation package when installing Docker Desktop for Windows.
 
    Please note the minimum system and operation requirements;
-     * Docker Desktop for Windows require Microsoft Hyper-V to run. Hyper-V will be enable as part of the installation process,
-     * Windows 10 64bit: Pro, Enterprise, Education (1607 Anneversary Update, Build 14393 or later),
-     * CPU SLAT-capable feature,
-     * At least 4GB of RAM. (At least 16GB will be required to run the Mojaloop project).
-    
+  - Docker Desktop for Windows require Microsoft Hyper-V to run. Hyper-V will be enable as part of the installation process,
+  - Windows 10 64bit: Pro, Enterprise, Education (1607 Anniversary Update, Build 14393 or later),
+  - CPU SLAT-capable feature,
+  - At least 4GB of RAM. (At least 16GB will be required to run the Mojaloop project).
+
 1. Installing Docker for Windows:
 
    You will require Docker Desktop for Windows 18.02 Edge (win50) and higher, or 18.06 Stable (win 70) and higher. Kubernetes on Docker Desktop for Windows is available on these versions and higher. They are downloadable from:
-   ```
+
+   ```url
    https://docs.docker.com/docker-for-windows/install/
-   ``` 
-  
+   ```
+
    Once download is completed, the downloaded file can normally be found in your Download folder. Installation is as per normal installations for windows. A restart will be required after this step.
   
 2. Enable visualization:  
 
    Docker Desktop for Windows requires Microsoft Hyper-V to run. The Docker Desktop installer enables Hyper-V for you.
-   
+
    If Hyper-V is not enabled, A pop-up messages will request if you would like to turn this on. Read the messages and select 'Ok' if appropriate.
   
    You need to insure that **VT-X/AMD-v** is enabled from `cmd.exe`:
+
    ```bash
    systeminfo
-   ```  
-  
+   ```
+
    If not, from `cmd.exe` run as Administrator and execute:
+
    ```bash
    bcdedit /set hypervisorlaunchtype auto
-   ```  
+   ```
 
    A reboot would be required again for the updates to take effect.
 
@@ -81,13 +70,13 @@ The following are Kubernetes concepts used within the project. An understanding 
 
 1. Setting up the Kubernetes runtime environment within Docker Desktop:
 
-   * Open the Docker Desktop for Windows menu by right-clicking the Docker icon. 
-     * Select **Settings** to open the settings dialog. 
-     * Under the **General** tab you can configure when to start and update Docker. 
-  
-   * Go to **Advanced** tab
-     * Increase the CPU allocation to at least 4
-     * Increase the Memory allocation to at least 8.0 GiB
+   - Open the Docker Desktop for Windows menu by right-clicking the Docker icon.
+     - Select **Settings** to open the settings dialog.
+     - Under the **General** tab you can configure when to start and update Docker.
+
+   - Go to **Advanced** tab
+     - Increase the CPU allocation to at least 4
+     - Increase the Memory allocation to at least 8.0 GiB
 
    (If your system resource allow, more can be allocated as indicated below.)
 
@@ -95,9 +84,9 @@ The following are Kubernetes concepts used within the project. An understanding 
 
    Kubernetes on Docker Desktop for Windows is available in 18.02 Edge (win50) and higher, and in 18.06 Stable (win 70) and higher.
   
-   * go to **Kubernetes** tab
-     * Select **Enable Kubernetes**
-     * Select **Show system container (advanced)**
+   - go to **Kubernetes** tab
+     - Select **Enable Kubernetes**
+     - Select **Show system container (advanced)**
 
    ![Enable Kubernetes](./assets/diagrams/deployment/EnableKubernetes.png)  
 
@@ -106,6 +95,7 @@ The following are Kubernetes concepts used within the project. An understanding 
    As mentioned, the Kubernetes client command, `kubectl` is included and configured to connect to the local Kubernetes server. If you have `kubectl` already installed, be sure to change context to point to **docker-for-desktop**;
   
    Through `cmd.exe`:
+
    ```bash
    kubectl config get-contexts
    kubectl config use-context docker-for-desktop
@@ -113,17 +103,18 @@ The following are Kubernetes concepts used within the project. An understanding 
 
    Or through the Docker Desktop for Windows menu:
   
-   * right-clicking the Docker icon
-     * Select **Kubernetes**
-     * Select **docker-for-desktop**
+   - right-clicking the Docker icon
+     - Select **Kubernetes**
+     - Select **docker-for-desktop**
 
-   ![Docker For Desktop](./assets/diagrams/deployment/DockerForDesktop.png)    
+   ![Docker For Desktop](./assets/diagrams/deployment/DockerForDesktop.png)
 
 3. Install an Ingress Controller
 
-Install nginx-ingress for load balancing & external access:
+   Install nginx-ingress for load balancing & external access:
+
    ```bash
    helm --namespace kube-public install stable/nginx-ingress
    ```
 
-4. Continue setup and configuration from the Kubernetes Dashboard section in the [Mojaloop's deployment guide](./README.md#31-kubernetes-dashboard) document.
+4. Continue setup and configuration from the Kubernetes Dashboard section in the [Mojaloop's deployment guide - 3.2. Kubernetes Admin Interfaces](./README.md#32-kubernetes-admin-interfaces) document.
