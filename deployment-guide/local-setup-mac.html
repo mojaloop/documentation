@@ -2725,31 +2725,17 @@
 </ul>
 <h2 id="1-kubernetes">1. Kubernetes</h2>
 <p>This section will guide the reader through the deployment process to setup Kubernetes within Docker.</p>
-<p>If you are new to Kubernetes it is strongly recommended to familiarize yourself with Kubernetes. <a href="https://kubernetes.io/docs/concepts/overview/" target="_blank">Kubernetes Concepts</a> is a good place to start and will provide an overview.</p>
-<p>The following are Kubernetes concepts used within the project. An understanding of these concepts is imperative before attempting the deployment;</p>
-<ul>
-<li>Deployment</li>
-<li>Pod</li>
-<li>ReplicaSets</li>
-<li>Service</li>
-<li>Ingress</li>
-<li>StatefulSet</li>
-<li>DaemonSet</li>
-<li>Ingress Controller</li>
-<li>ConfigMap</li>
-<li>Secret</li>
-</ul>
 <h3 id="11-kubernetes-installation-with-docker">1.1. Kubernetes Installation with Docker</h3>
-<ul>
-<li><p><strong>kubectl</strong> Complete set of installation instruction are available <a href="https://kubernetes.io/docs/tasks/tools/install-kubectl/" target="_blank">here</a> </p>
+<ol>
+<li><p>Kubectl</p>
+<p>Complete set of <strong>kubectl</strong> installation instruction are available <a href="https://kubernetes.io/docs/tasks/tools/install-kubectl/" target="_blank">here</a>.</p>
 <pre><code class="lang-bash">brew install kubernetes-cli
 </code></pre>
 <p>To verify if the installation was successful, check the version;</p>
 <pre><code class="lang-bash">kubectl version
 </code></pre>
 </li>
-</ul>
-<p>To install Kubernetes with Docker, follow the steps below;</p>
+<li><p>To install Kubernetes with Docker, follow the steps below;</p>
 <ul>
 <li>Click on the Docker icon on the status barr<ul>
 <li>Select <strong>Preferences</strong></li>
@@ -2767,36 +2753,26 @@
 <li>Select <strong>Enable Kubernetes</strong> tick box</li>
 <li>Make sure <strong>Kubernetes</strong> is selected</li>
 <li>Click <strong>Apply</strong></li>
-<li>Click <strong>Install</strong> on the confirmation tab. </li>
+<li>Click <strong>Install</strong> on the confirmation tab.</li>
 <li>The option is available to wait for completion or run as a background task.</li>
 </ul>
 </li>
 </ul>
 <p><img src="assets/diagrams/deployment/KubernetesInstallWithDocker-2.png" alt="Kubernetes Install with Docker 2"></p>
-<h3 id="12-kubernetes-environment-setup">1.2. Kubernetes environment setup:</h3>
+</li>
+</ol>
+<h3 id="12-kubernetes-environment-setup">1.2. Kubernetes environment setup</h3>
 <ol>
 <li><p>List the current Kubernetes context;</p>
 <pre><code class="lang-bash">kubectl config get-contexts
 </code></pre>
-<p><strong>or</strong></p>
-<pre><code class="lang-bash">kubectx
-</code></pre>
 </li>
 <li><p>Change your Contexts;</p>
-<pre><code class="lang-bash">kubectl config use-context docker-for-desktop
-</code></pre>
-<p><strong>or</strong></p>
-<pre><code class="lang-bash">kubectx docker-for-desktop
+<pre><code class="lang-bash">kubectl config use-context docker-desktop
 </code></pre>
 </li>
-<li><p>Install an Ingress Controller</p>
+<li><p>Continue setup and configuration from the Kubernetes Dashboard section in the <a href="./#32-kubernetes-admin-interfaces">Mojaloop&apos;s deployment guide - 3.2. Kubernetes Admin Interfaces</a> document.</p>
 </li>
-</ol>
-<p>Install nginx-ingress for load balancing &amp; external access:</p>
-<pre><code class="lang-bash">   helm --namespace kube-public install stable/nginx-ingress
-</code></pre>
-<ol>
-<li>Continue setup and configuration from the Kubernetes Dashboard section in the <a href="./#31-kubernetes-dashboard">Mojaloop&apos;s deployment guide</a> document.</li>
 </ol>
 
                                 
@@ -2831,7 +2807,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Local Setup Mac","level":"1.4.3","depth":2,"next":{"title":"Local Setup Windows","level":"1.4.4","depth":2,"path":"deployment-guide/local-setup-windows.md","ref":"deployment-guide/local-setup-windows.md","articles":[]},"previous":{"title":"Local Setup Linux","level":"1.4.2","depth":2,"path":"deployment-guide/local-setup-linux.md","ref":"deployment-guide/local-setup-linux.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"3.x.x","theme":"default","variables":{"importedVars":{"mojaloop":{"spec":{"version":"v1.0","uri":{"doc":"https://mojaloop.io/mojaloop-specification/","api":"https://github.com/mojaloop/mojaloop-specification/blob/master/fspiop-api/documents/v1.0-document-set/fspiop-rest-v1.0-OpenAPI-implementation.yaml"}}},"central_ledger":{"spec":{"version":"v2.0","uri":{"doc":"/mojaloop-technical-overview/central-ledger/README.md","api":"https://github.com/mojaloop/central-ledger/blob/master/src/api/interface/swagger.json"}}},"settlement":{"spec":{"version":"v1.1","uri":{"doc":"/mojaloop-technical-overview/central-settlements/README.md","api":"https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json"}}},"als":{"oracle":{"spec":{"version":"v1.2","uri":{"doc":"/mojaloop-technical-overview/account-lookup-service/README.md","api":"https://github.com/mojaloop/documentation/blob/master/api/assets/interface-contracts/oracle-service-swagger-v1.yaml"}}}}}},"plugins":["swagger","editlink","include","insert-logo","plantuml-svg","collapsible-chapters","back-to-top-button","theme-api","variables","changelog","page-toc"],"pluginsConfig":{"plantuml-svg":{},"editlink":{"label":"Edit This Page","multilingual":true,"base":"https://github.com/mojaloop/documentation/edit/master"},"theme-gestalt":{"logo":"https://mojaloop.io/images/logo.png","favicon":"https://mojaloop.io/images/logo.png","baseUrl":null,"excludeDefaultStyles":false,"doNotHideChildrenChapters":false},"include":{},"search":{},"collapsible-chapters":{},"page-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","position":"before-first","showByDefault":true},"swagger":{"file":""},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"uml":{"format":"png","nailgun":false},"changelog":{},"theme-api":{"languages":[],"split":true,"theme":"dark"},"back-to-top-button":{},"variables":{"files":{"importedVars":"book_variables.yml"}},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"insert-logo":{"url":"https://mojaloop.io/images/logo.png","style":"background: none; max-height: 140px; max-width: 140px;"}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"deployment-guide/local-setup-mac.md","mtime":"2021-01-27T12:03:51.800Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-01-27T12:05:38.551Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Local Setup Mac","level":"1.4.3","depth":2,"next":{"title":"Local Setup Windows","level":"1.4.4","depth":2,"path":"deployment-guide/local-setup-windows.md","ref":"deployment-guide/local-setup-windows.md","articles":[]},"previous":{"title":"Local Setup Linux","level":"1.4.2","depth":2,"path":"deployment-guide/local-setup-linux.md","ref":"deployment-guide/local-setup-linux.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"3.x.x","theme":"default","variables":{"importedVars":{"mojaloop":{"spec":{"version":"v1.0","uri":{"doc":"https://mojaloop.io/mojaloop-specification/","api":"https://github.com/mojaloop/mojaloop-specification/blob/master/fspiop-api/documents/v1.0-document-set/fspiop-rest-v1.0-OpenAPI-implementation.yaml"}}},"central_ledger":{"spec":{"version":"v2.0","uri":{"doc":"/mojaloop-technical-overview/central-ledger/README.md","api":"https://github.com/mojaloop/central-ledger/blob/master/src/api/interface/swagger.json"}}},"settlement":{"spec":{"version":"v1.1","uri":{"doc":"/mojaloop-technical-overview/central-settlements/README.md","api":"https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json"}}},"als":{"oracle":{"spec":{"version":"v1.2","uri":{"doc":"/mojaloop-technical-overview/account-lookup-service/README.md","api":"https://github.com/mojaloop/documentation/blob/master/api/assets/interface-contracts/oracle-service-swagger-v1.yaml"}}}}}},"plugins":["swagger","editlink","include","insert-logo","plantuml-svg","collapsible-chapters","back-to-top-button","theme-api","variables","changelog","page-toc"],"pluginsConfig":{"plantuml-svg":{},"editlink":{"label":"Edit This Page","multilingual":true,"base":"https://github.com/mojaloop/documentation/edit/master"},"theme-gestalt":{"logo":"https://mojaloop.io/images/logo.png","favicon":"https://mojaloop.io/images/logo.png","baseUrl":null,"excludeDefaultStyles":false,"doNotHideChildrenChapters":false},"include":{},"search":{},"collapsible-chapters":{},"page-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","position":"before-first","showByDefault":true},"swagger":{"file":""},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"uml":{"format":"png","nailgun":false},"changelog":{},"theme-api":{"languages":[],"split":true,"theme":"dark"},"back-to-top-button":{},"variables":{"files":{"importedVars":"book_variables.yml"}},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"insert-logo":{"url":"https://mojaloop.io/images/logo.png","style":"background: none; max-height: 140px; max-width: 140px;"}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"deployment-guide/local-setup-mac.md","mtime":"2021-07-06T17:39:01.172Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-07-06T17:39:58.041Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

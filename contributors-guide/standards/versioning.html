@@ -2715,9 +2715,10 @@
 <h4 id="standard-for-pi-11-and-beyond">Standard for PI-11 and beyond</h4>
 <ol>
 <li>Starting PI-11 (27th July, 2020) the Versioning guidance is to move to a versioning system that is closely aligned with Semantic versioning by removing the PI/Sprint dependency. So starting 11.x.x, the proposal is to move to pure <a href="https://semver.org/" target="_blank">SemVer</a>.</li>
-<li>At a high-level, we will still follow the vX.Y.Z format, but X represents &#x2018;Major&#x2019; version, Y represents &#x2018;Minor&#x2019; version and Z represents &#x2018;patch&#x2019; version. Minor fixes, patches affect increments to &#x2018;Z&#x2019;, whereas non-breaking functionality changes affect changes to &#x2018;Y&#x2019;; breaking changes affect the &#x2018;X&#x2019; version.</li>
+<li>At a high-level, we will still follow the vX.Y.Z format, but X represents &#x2018;Major&#x2019; version, Y represents &#x2018;Minor&#x2019; version and Z represents &#x2018;patch&#x2019; version. Minor fixes, patches affect increments to &#x2018;Z&#x2019;, whereas non-breaking functionality changes affect changes to &#x2018;Y; breaking changes affect the &#x2018;X&#x2019; version.</li>
 <li>Along with these, suffixes such as &#x201C;-snapshot&#x201D;, &#x201C;-patch&#x201D;, &#x201C;-hotfix&#x201D; are used as relevant and on need basis (supported by CI config).</li>
 <li>So starting with 11.0.0 (primarily for Helm, but for individual services as well) for PI-11, the proposal is to move to pure <a href="https://semver.org/" target="_blank">SemVer</a>.</li>
+<li>This implies that for any new release of a package/service below X=11 (for existing repositories and not new ones) will first be baselined to v11.0.0 and from then on follow standard SemVer guidelines as discussed above. For new projects or repositories, versioning can start from v1.0.0 (after they reach release status)</li>
 </ol>
 <h4 id="versioning-strategy-used-until-pi-10">Versioning Strategy used until PI-10</h4>
 <ol>
@@ -2727,6 +2728,77 @@
 </ol>
 <h3 id="current-version">Current Version</h3>
 <p>The currrent version information for Mojaloop can be found <a href="../../deployment-guide/releases.html">here</a>.</p>
+<h3 id="sprint-schedule-for-pi-13">Sprint schedule for PI-13</h3>
+<p>Below is the Sprint schedule for Program Increment 13 which ends with the PI-14 Community event in April 2021.</p>
+<table>
+<thead>
+<tr>
+<th>Phase/Milestone</th>
+<th>Start</th>
+<th>End</th>
+<th>Weeks</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Phase-5 Kick-off On-site</strong></td>
+<td>1/25/2021</td>
+<td>1/29/2021</td>
+<td>5 days</td>
+<td>Virtual Zoom Webinars</td>
+</tr>
+<tr>
+<td><strong>Sprint 13.1</strong></td>
+<td>02/01/2021</td>
+<td>02/14/2021</td>
+<td>2 weeks</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Sprint 13.2</strong></td>
+<td>02/15/2021</td>
+<td>02/28/2021</td>
+<td>2 weeks</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Sprint 13.3</strong></td>
+<td>03/01/2021</td>
+<td>03/14/2021</td>
+<td>2 weeks</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Sprint 13.4</strong></td>
+<td>03/15/2021</td>
+<td>03/28/2021</td>
+<td>2 weeks</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Sprint 13.5</strong></td>
+<td>03/29/2021</td>
+<td>04/11/2021</td>
+<td>2 weeks</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Sprint 13.6</strong></td>
+<td>04/12/2021</td>
+<td>04/25/2021</td>
+<td>2 weeks</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Phase-5 PI-14</strong></td>
+<td>04/26/2021</td>
+<td>04/30/2021</td>
+<td>5 days</td>
+<td>Virtual meetings</td>
+</tr>
+</tbody>
+</table>
 <h3 id="sprint-schedule-for-pi-12">Sprint schedule for PI-12</h3>
 <p>Below is the Sprint schedule for Program Increment 12 which ends with the PI-13 Community event in January 2021.</p>
 <table>
@@ -3181,7 +3253,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Versioning","level":"1.5.5.1","depth":3,"next":{"title":"Creating new Features","level":"1.5.5.2","depth":3,"path":"contributors-guide/standards/creating-new-features.md","ref":"contributors-guide/standards/creating-new-features.md","articles":[]},"previous":{"title":"Standards","level":"1.5.5","depth":2,"path":"contributors-guide/standards/README.md","ref":"contributors-guide/standards/README.md","articles":[{"title":"Versioning","level":"1.5.5.1","depth":3,"path":"contributors-guide/standards/versioning.md","ref":"contributors-guide/standards/versioning.md","articles":[]},{"title":"Creating new Features","level":"1.5.5.2","depth":3,"path":"contributors-guide/standards/creating-new-features.md","ref":"contributors-guide/standards/creating-new-features.md","articles":[]},{"title":"ML OSS Bug Triage","level":"1.5.5.3","depth":3,"path":"contributors-guide/standards/triaging-ml-oss-bugs.md","ref":"contributors-guide/standards/triaging-ml-oss-bugs.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"3.x.x","theme":"default","variables":{"importedVars":{"mojaloop":{"spec":{"version":"v1.0","uri":{"doc":"https://mojaloop.io/mojaloop-specification/","api":"https://github.com/mojaloop/mojaloop-specification/blob/master/fspiop-api/documents/v1.0-document-set/fspiop-rest-v1.0-OpenAPI-implementation.yaml"}}},"central_ledger":{"spec":{"version":"v2.0","uri":{"doc":"/mojaloop-technical-overview/central-ledger/README.md","api":"https://github.com/mojaloop/central-ledger/blob/master/src/api/interface/swagger.json"}}},"settlement":{"spec":{"version":"v1.1","uri":{"doc":"/mojaloop-technical-overview/central-settlements/README.md","api":"https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json"}}},"als":{"oracle":{"spec":{"version":"v1.2","uri":{"doc":"/mojaloop-technical-overview/account-lookup-service/README.md","api":"https://github.com/mojaloop/documentation/blob/master/api/assets/interface-contracts/oracle-service-swagger-v1.yaml"}}}}}},"plugins":["swagger","editlink","include","insert-logo","plantuml-svg","collapsible-chapters","back-to-top-button","theme-api","variables","changelog","page-toc"],"pluginsConfig":{"plantuml-svg":{},"editlink":{"label":"Edit This Page","multilingual":true,"base":"https://github.com/mojaloop/documentation/edit/master"},"theme-gestalt":{"logo":"https://mojaloop.io/images/logo.png","favicon":"https://mojaloop.io/images/logo.png","baseUrl":null,"excludeDefaultStyles":false,"doNotHideChildrenChapters":false},"include":{},"search":{},"collapsible-chapters":{},"page-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","position":"before-first","showByDefault":true},"swagger":{"file":""},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"uml":{"format":"png","nailgun":false},"changelog":{},"theme-api":{"languages":[],"split":true,"theme":"dark"},"back-to-top-button":{},"variables":{"files":{"importedVars":"book_variables.yml"}},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"insert-logo":{"url":"https://mojaloop.io/images/logo.png","style":"background: none; max-height: 140px; max-width: 140px;"}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"contributors-guide/standards/versioning.md","mtime":"2021-01-27T12:03:51.724Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-01-27T12:05:38.551Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Versioning","level":"1.5.5.1","depth":3,"next":{"title":"Creating new Features","level":"1.5.5.2","depth":3,"path":"contributors-guide/standards/creating-new-features.md","ref":"contributors-guide/standards/creating-new-features.md","articles":[]},"previous":{"title":"Standards","level":"1.5.5","depth":2,"path":"contributors-guide/standards/README.md","ref":"contributors-guide/standards/README.md","articles":[{"title":"Versioning","level":"1.5.5.1","depth":3,"path":"contributors-guide/standards/versioning.md","ref":"contributors-guide/standards/versioning.md","articles":[]},{"title":"Creating new Features","level":"1.5.5.2","depth":3,"path":"contributors-guide/standards/creating-new-features.md","ref":"contributors-guide/standards/creating-new-features.md","articles":[]},{"title":"ML OSS Bug Triage","level":"1.5.5.3","depth":3,"path":"contributors-guide/standards/triaging-ml-oss-bugs.md","ref":"contributors-guide/standards/triaging-ml-oss-bugs.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"3.x.x","theme":"default","variables":{"importedVars":{"mojaloop":{"spec":{"version":"v1.0","uri":{"doc":"https://mojaloop.io/mojaloop-specification/","api":"https://github.com/mojaloop/mojaloop-specification/blob/master/fspiop-api/documents/v1.0-document-set/fspiop-rest-v1.0-OpenAPI-implementation.yaml"}}},"central_ledger":{"spec":{"version":"v2.0","uri":{"doc":"/mojaloop-technical-overview/central-ledger/README.md","api":"https://github.com/mojaloop/central-ledger/blob/master/src/api/interface/swagger.json"}}},"settlement":{"spec":{"version":"v1.1","uri":{"doc":"/mojaloop-technical-overview/central-settlements/README.md","api":"https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json"}}},"als":{"oracle":{"spec":{"version":"v1.2","uri":{"doc":"/mojaloop-technical-overview/account-lookup-service/README.md","api":"https://github.com/mojaloop/documentation/blob/master/api/assets/interface-contracts/oracle-service-swagger-v1.yaml"}}}}}},"plugins":["swagger","editlink","include","insert-logo","plantuml-svg","collapsible-chapters","back-to-top-button","theme-api","variables","changelog","page-toc"],"pluginsConfig":{"plantuml-svg":{},"editlink":{"label":"Edit This Page","multilingual":true,"base":"https://github.com/mojaloop/documentation/edit/master"},"theme-gestalt":{"logo":"https://mojaloop.io/images/logo.png","favicon":"https://mojaloop.io/images/logo.png","baseUrl":null,"excludeDefaultStyles":false,"doNotHideChildrenChapters":false},"include":{},"search":{},"collapsible-chapters":{},"page-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","position":"before-first","showByDefault":true},"swagger":{"file":""},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"uml":{"format":"png","nailgun":false},"changelog":{},"theme-api":{"languages":[],"split":true,"theme":"dark"},"back-to-top-button":{},"variables":{"files":{"importedVars":"book_variables.yml"}},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"insert-logo":{"url":"https://mojaloop.io/images/logo.png","style":"background: none; max-height: 140px; max-width: 140px;"}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"contributors-guide/standards/versioning.md","mtime":"2021-07-06T17:39:01.132Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-07-06T17:39:58.041Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

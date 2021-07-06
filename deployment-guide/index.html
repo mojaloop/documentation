@@ -2712,18 +2712,28 @@
 <p>The document is intended for an audience with a stable technical knowledge that would like to setup an environment for development, testing and contributing to the Mojaloop project.</p>
 <h2 id="deployment-and-setup">Deployment and Setup</h2>
 <ul>
-<li><a href="#1-pre-requisites">Pre-requisites</a></li>
-<li><a href="#3-kubernetes">Kubernetes</a><ul>
-<li><a href="#31-kubernetes-dashboard">Kubernetes Dashboard</a></li>
+<li><a href="#mojaloop-deployment">Mojaloop Deployment</a><ul>
+<li><a href="#deployment-and-setup">Deployment and Setup</a><ul>
+<li><a href="#1-pre-requisites">1. Pre-requisites</a></li>
+<li><a href="#2-deployment-recommendations">2. Deployment Recommendations</a></li>
+<li><a href="#3-kubernetes">3. Kubernetes</a><ul>
+<li><a href="#31-kubernetes-ingress-controller">3.1. Kubernetes Ingress Controller</a></li>
+<li><a href="#32-kubernetes-admin-interfaces">3.2. Kubernetes Admin Interfaces</a></li>
 </ul>
 </li>
-<li><a href="#4-helm">Helm</a><ul>
-<li><a href="#41-helm-configuration">Helm configuration</a></li>
+<li><a href="#4-helm">4. Helm</a><ul>
+<li><a href="#41-helm-configuration">4.1. Helm configuration</a></li>
 </ul>
 </li>
-<li><a href="#6-postman">Postman</a><ul>
-<li><a href="#61-installing-postman">Installing Postman</a></li>
-<li><a href="#62-setup-postman">Setup Postman</a></li>
+<li><a href="#5-mojaloop">5. Mojaloop</a><ul>
+<li><a href="#51-mojaloop-helm-deployment">5.1. Mojaloop Helm Deployment</a></li>
+<li><a href="#52-verifying-ingress-rules">5.2. Verifying Ingress Rules</a></li>
+<li><a href="#53-testing-mojaloop">5.3. Testing Mojaloop</a></li>
+<li><a href="#54-testing-mojaloop-with-postman">5.4. Testing Mojaloop with Postman</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -2731,10 +2741,11 @@
 <p>Versions numbers below are hard requirements, not just recommendations (more recent versions are known not to work).</p>
 <p>A list of the pre-requisite tool set required for the deployment of Mojaloop:</p>
 <ul>
-<li><strong>Kubernetes</strong> An open-source system for automating deployment, scaling, and management of containerized applications. Find out more about <a href="https://kubernetes.io" target="_blank">Kubernetes</a>,
- <br><em>Recommended Versions:</em>
- <br>&#xA0;&#xA0;&#xA0;&#xA0;<em><strong>Mojaloop Helm Chart release v11.x</strong> supports <strong>Kuberentes v1.13 - v1.17</strong>, newer versions have not been tested.</em>
- <br>&#xA0;&#xA0;&#xA0;&#xA0;<em><strong>Mojaloop Helm Chart release v10.x</strong> supports <strong>Kuberentes v1.13 - v1.15</strong>, it will fail on Kuberentes v1.16+ onwards due deprecated APIs (<a href="https://github.com/mojaloop/helm/issues/219" target="_blank">ref: Helm Issue #219</a>).</em><ul>
+<li><strong>Kubernetes</strong> An open-source system for automating deployment, scaling, and management of containerized applications. Find out more about <a href="https://kubernetes.io" target="_blank">Kubernetes</a>.<ul>
+<li>Recommended Versions:
+<br>&#xA0;&#xA0;&#xA0;&#xA0;<strong>Mojaloop Helm Chart release v12.x</strong> supports <strong>Kubernetes v1.13 - v1.20.6</strong>.
+<br>&#xA0;&#xA0;&#xA0;&#xA0;<strong>Mojaloop Helm Chart release v11.x</strong> supports <strong>Kubernetes v1.13 - v1.17</strong>.
+<br>&#xA0;&#xA0;&#xA0;&#xA0;<strong>Mojaloop Helm Chart release v10.x</strong> supports <strong>Kubernetes v1.13 - v1.15</strong>, it will fail on Kubernetes v1.16+ onwards due deprecated APIs (<a href="https://github.com/mojaloop/helm/issues/219" target="_blank">ref: Helm Issue #219</a>).</li>
 <li>kubectl - Kubernetes CLI for Kubernetes Management is required. Find out more about <a href="https://kubernetes.io/docs/reference/kubectl/overview/" target="_blank">kubectl</a>:<ul>
 <li><a href="https://kubernetes.io/docs/tasks/tools/install-kubectl/" target="_blank">Install-kubectl</a>,</li>
 </ul>
@@ -2751,7 +2762,7 @@
 <li><strong>Helm</strong> A package manager for Kubernetes. Find out more about <a href="https://helm.sh" target="_blank">Helm</a>,
  <br><em>Recommended Versions:</em>
  <br>&#xA0;&#xA0;&#xA0;&#xA0;<em><strong>Helm v3.x</strong> (<a href="https://github.com/mojaloop/design-authority/issues/52" target="_blank">ref: Design Auth Issue #52</a>).</em></li>
-<li><strong>Postman</strong> Postman is a Google Chrome application for the interacting with HTTP API&apos;s. It presents you with a friendly GUI for the construction requests and reading responces.    <a href="https://www.getpostman.com/apps" target="_blank">https://www.getpostman.com/apps</a>. Find out more about <a href="https://postman.com" target="_blank">Postman</a>.</li>
+<li><strong>Postman</strong> Postman is a Google Chrome application for the interacting with HTTP API&apos;s. It presents you with a friendly GUI for the construction requests and reading responces. <a href="https://www.getpostman.com/apps" target="_blank">https://www.getpostman.com/apps</a>. Find out more about <a href="https://postman.com" target="_blank">Postman</a>.</li>
 </ul>
 <p>For <strong>local guides</strong> on how to setup the pre-requisites on your laptop or desktop, refer to the appropriate link document below;</p>
 <ul>
@@ -2804,63 +2815,58 @@
 <li>Secret</li>
 </ul>
 <p>Insure <strong>kubectl</strong> is installed. A complete set of installation instruction are available <a href="https://kubernetes.io/docs/tasks/tools/install-kubectl/" target="_blank">here</a>.</p>
-<h4 id="31-kubernetes-dashboard">3.1. Kubernetes Dashboard:</h4>
-<ol>
-<li><p>Kubernetes Dashboard roles, services &amp; deployment.</p>
-<p>Install for Dashboard using Helm (not needed if <strong>MicroK8s</strong> is installed): <a href="https://github.com/helm/charts/tree/master/stable/kubernetes-dashboard" target="_blank">kubernetes-dashboard</a></p>
-<p><strong>IMPORTANT:</strong> Always verify the current <a href="https://github.com/kubernetes/dashboard" target="_blank">kubernetes-dashboard</a> yaml file is still correct as used in the below command.</p>
-<pre><code class="lang-bash">kubectl create <span class="hljs-_">-f</span> https://raw.githubusercontent.com/kubernetes/dashboard/v1.10.1/src/deploy/recommended/kubernetes-dashboard.yaml
+<h4 id="31-kubernetes-ingress-controller">3.1. Kubernetes Ingress Controller</h4>
+<p>Install your preferred Ingress Controller for load-balancing and external access.</p>
+<p>Refer to the following documentation to install the Nginx-Ingress Controller used for this guide: <a href="https://kubernetes.github.io/ingress-nginx/deploy/#using-helm" target="_blank">https://kubernetes.github.io/ingress-nginx/deploy/#using-helm</a>.</p>
+<blockquote>
+<p><strong>NOTE: If you are installing Mojaloop v12.x with an Nginx-Ingress controller version newer than v0.22.0, ensure you create a custom <a href="https://github.com/mojaloop/helm/blob/v12.0.0/mojaloop/values.yaml" target="_blank">Mojaloop values config</a> with the following changes prior to install:</strong></p>
+<pre><code class="lang-YAML"><span class="hljs-comment">## **LOOK FOR THIS LINE IN mojaloop/values.yaml CONFIG FILE**</span>
+<span class="hljs-attr">mojaloop-simulator:</span>
+<span class="hljs-attr">  ingress:</span>
+   <span class="hljs-comment">## nginx ingress controller &gt;= v0.22.0 &lt;-- **COMMENT THE FOLLOWING THREE LINES BELOW:**</span>
+   <span class="hljs-comment"># annotations: &lt;-- COMMENTED</span>
+   <span class="hljs-comment">#  nginx.ingress.kubernetes.io/rewrite-target: &apos;/$2&apos; &lt;-- COMMENTED</span>
+   <span class="hljs-comment"># ingressPathRewriteRegex: (/|$)(.*) &lt;-- COMMENTED</span>
+
+   <span class="hljs-comment">## nginx ingress controller &lt; v0.22.0 &lt;-- **UNCOMMENT THE FOLLOWING THREE LINES BELOW:**</span>
+<span class="hljs-attr">   annotations:</span>
+     nginx.ingress.kubernetes.io/rewrite-target: <span class="hljs-string">&apos;/&apos;</span>
+<span class="hljs-attr">   ingressPathRewriteRegex:</span> <span class="hljs-string">&quot;/&quot;</span>
 </code></pre>
-<p>If you have installed MicroK8s, <strong>enable the MicroK8s</strong> dashboard;</p>
+<p><strong>This is NOT necessary if you are installing Mojaloop v13.x or newer.</strong></p>
+</blockquote>
+<p>List of alternative Ingress Controllers: <a href="https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/" target="_blank">https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/</a>.</p>
+<h4 id="32-kubernetes-admin-interfaces">3.2. Kubernetes Admin Interfaces</h4>
+<ol>
+<li><p>Kubernetes Dashboards</p>
+<p>The official Kubernetes Web UI Admin interface.</p>
+<p>Visit the following link for installation instructions (not needed if <strong>MicroK8s</strong> is installed): <a href="https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/" target="_blank">Web UI (Dashboard) Installation Instructions</a>.</p>
+<p><strong>IMPORTANT:</strong> Ensure (not needed if <strong>MicroK8s</strong> is installed) you configure RBAC roles and create an associated service account, refer to the following example on how to create a sample user for testing purposes only: <a href="https://github.com/kubernetes/dashboard/blob/master/docs/user/access-control/creating-sample-user.md" target="_blank">Creating sample user</a>.</p>
+<p>If you have installed MicroK8s, <strong>enable the MicroK8s</strong> dashboard:</p>
 <pre><code class="lang-bash">microk8s.enable dashboard
 </code></pre>
+<p>Refer to the following link for more information: <a href="https://microk8s.io/docs/addon-dashboard" target="_blank">Add-on: dashboard</a>.</p>
 <p><strong>Remember</strong> to prefix all <strong>kubectl</strong> commands with <strong>microk8s</strong> if you opted not to create an alias.</p>
 </li>
-<li><p>Verify Kubernetes Dashboard. <em>Windows replace <code>grep</code> with <code>findstr</code></em>;</p>
-<pre><code class="lang-bash">kubectl get pod --namespace=kube-system |grep dashboard
-</code></pre>
-</li>
-<li><p>Start proxy for local UI in new terminal;</p>
-<pre><code class="lang-bash">kubectl proxy ui
-</code></pre>
-</li>
-<li><p>Open URI in default browser:</p>
-<pre><code>http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/
-</code></pre><p>Select <strong>Token</strong>. Generate a token to use there by: <em>Windows replace <code>grep</code> with <code>findstr</code></em></p>
-<pre><code class="lang-bash">kubectl describe secret kubernetes-dashboard --namespace=kube-system
-</code></pre>
-<p>The token to use is shown on the last line of the output of that command;</p>
-<pre><code class="lang-bash">kubectl -n kube-system describe secrets/kubernetes-dashboard-token-btbwf
-</code></pre>
-<p>The <strong>{kubernetes-dashboard-token-btbwf}</strong> is retrieved from the output in the previous step. For more information on generating the token, follow the <strong>Authentication</strong> link in the window.</p>
+<li><p>k8sLens</p>
+<p>A local desktop GUI based kubectl alternative which is easy to install and setup.</p>
+<p>Visit the following link for more information: <a href="https://k8slens.dev/" target="_blank">https://k8slens.dev/</a>.</p>
 </li>
 </ol>
-<p><img src="assets/diagrams/deployment/kubernetesDashboard.png" alt="kubernetes-dashboard"></p>
 <h3 id="4-helm">4. Helm</h3>
 <p>Please review <a href="../repositories/helm.html">Mojaloop Helm Chart</a> to understand the relationships between the deployed Mojaloop helm charts.</p>
-<p>Refer to the official documentation on how to install the latest version of Helm v3: <a href="https://helm.sh/docs/intro/install/" target="_blank">https://helm.sh/docs/intro/install/</a></p>
-<p>Refer to the following document if are using Helm v2: <a href="helm-legacy-deployment.html">Deployment with (Deprecated) Helm v2</a></p>
+<p>Refer to the official documentation on how to install the latest version of Helm: <a href="https://helm.sh/docs/intro/install/" target="_blank">https://helm.sh/docs/intro/install/</a>.</p>
+<p>Refer to the following document if are using Helm v2: <a href="helm-legacy-deployment.html">Deployment with (Deprecated) Helm v2</a>.</p>
 <p>Refer to the <a href="helm-legacy-migration.html">Helm v2 to v3 Migration Guide</a> if you wish to migrate an existing Helm v2 deployment to v3.</p>
 <h4 id="41-helm-configuration">4.1. Helm configuration</h4>
 <ol>
 <li><p>Add mojaloop repo to your Helm config:</p>
-<pre><code class="lang-bash">helm repo add mojaloop https://mojaloop.io/helm/repo/
+<pre><code class="lang-bash">helm repo add mojaloop   https://mojaloop.io/helm/repo/
 </code></pre>
 <p>If the repo already exists, substitute &apos;add&apos; with &apos;apply&apos; in the above command.</p>
 </li>
-<li><p>Add the additional dependency Helm repositories. This is needed to resolve Helm Chart dependencies required by Mojaloop charts.</p>
-<pre><code class="lang-bash">helm repo add incubator http://storage.googleapis.com/kubernetes-charts-incubator
-helm repo add kiwigrid https://kiwigrid.github.io
-helm repo add elastic https://helm.elastic.co
-helm repo add bitnami https://charts.bitnami.com/bitnami
-</code></pre>
-</li>
 <li><p>Update helm repositories:</p>
 <pre><code class="lang-bash">helm repo update
-</code></pre>
-</li>
-<li><p>Optionally Install nginx-ingress for load balancing &amp; external access:</p>
-<pre><code class="lang-bash">helm --namespace kube-public install stable/nginx-ingress
 </code></pre>
 </li>
 </ol>
@@ -2868,22 +2874,30 @@ helm repo add bitnami https://charts.bitnami.com/bitnami
 <h4 id="51-mojaloop-helm-deployment">5.1. Mojaloop Helm Deployment</h4>
 <ol>
 <li><p>Install Mojaloop:</p>
-<p>Default installation:</p>
-<pre><code class="lang-bash">helm --namespace demo install moja mojaloop/mojaloop
+<p>1.1. Installing latest version:</p>
+<pre><code class="lang-bash">helm --namespace demo install moja mojaloop/mojaloop --create-namespace
 </code></pre>
-<p>Version specific installation:</p>
-<pre><code class="lang-bash">helm --namespace demo install moja mojaloop/mojaloop --version {version}
+<p>Or if you require a customized configuration:</p>
+<pre><code class="lang-bash">helm --namespace demo install moja mojaloop/mojaloop --create-namespace <span class="hljs-_">-f</span> {custom-values.yaml}
 </code></pre>
-<p>List of available versions:</p>
-<pre><code class="lang-bash">helm search repo <span class="hljs-_">-l</span> mojaloop/mojaloop
+<p><em>Note: Download and customize the <a href="https://github.com/mojaloop/helm/blob/master/mojaloop/values.yaml" target="_blank">values.yaml</a>. Also ensure that you are using the value.yaml from the correct version which can be found via <a href="https://github.com/mojaloop/helm/releases" target="_blank">Helm Releases</a>. You can confirm the installed version by using the following command: <code>helm --namespace demo list</code>. Under the <strong>CHART</strong> column, you should see something similar to &apos;mojaloop-<strong>{version}</strong>&apos; with <strong>{version}</strong> being the deployed version.</em></p>
+<pre><code class="lang-bash"> $ helm -n demo list
+ NAME            NAMESPACE       REVISION        UPDATED                                 STATUS          CHART
+ moja            demo            1               2021-06-11 15:06:04.533094 +0200 SAST   deployed        mojaloop-{version}
 </code></pre>
-<p>Custom configured installation:</p>
-<pre><code class="lang-bash">helm --namespace demo install moja mojaloop/mojaloop <span class="hljs-_">-f</span> {custom-values.yaml}
+<p><em>Note: The <code>--create-namespace</code> flag is only necessary if the <code>demo</code> namespace does not exist. You can alternatively create it using the following command: <code>kubectl create namespace demo</code>.</em></p>
+<p>1.2. Version specific installation:</p>
+<pre><code class="lang-bash">helm --namespace demo install moja mojaloop/mojaloop --create-namespace --version {version}
 </code></pre>
-<p><em>Note: Download and customize the <a href="https://github.com/mojaloop/helm/blob/master/mojaloop/values.yaml" target="_blank">values.yaml</a>. Also ensure that you are using the value.yaml from the correct version which can be found via <a href="https://github.com/mojaloop/helm/releases" target="_blank">Helm Releases</a>.</em></p>
+<p>1.3. List of Mojaloop releases:</p>
+<pre><code class="lang-bash"> $ helm search repo mojaloop/mojaloop <span class="hljs-_">-l</span>
+ NAME                            CHART VERSION   APP VERSION                 DESCRIPTION                                      
+ mojaloop/mojaloop               {version}       {list of app-versions}      Mojaloop Helm chart <span class="hljs-keyword">for</span> Kubernetes
+ ...                             ...             ...                         ...
+</code></pre>
 </li>
 </ol>
-<h4 id="52-verifying-mojaloop-deployment">5.2. Verifying Mojaloop Deployment</h4>
+<h4 id="52-verifying-ingress-rules">5.2. Verifying Ingress Rules</h4>
 <ol>
 <li><p>Update your /etc/hosts for local deployment:</p>
 <p><em>Note: This is only applicable for local deployments, and is not needed if custom DNS or ingress rules are configured in a customized <a href="https://github.com/mojaloop/helm/blob/master/mojaloop/values.yaml" target="_blank">values.yaml</a></em>.</p>
@@ -2892,31 +2906,95 @@ helm repo add bitnami https://charts.bitnami.com/bitnami
 <p><em>Windows the file can be updated in notepad - need to open with Administrative privileges. File location <code>C:\Windows\System32\drivers\etc\hosts</code></em>.</p>
 <p>Include the following lines (<em>or alternatively combine them</em>) to the host config.</p>
 <p>The below required config is applicable to Helm release &gt;= versions 6.2.2 for Mojaloop API Services;</p>
-<pre><code class="lang-text">127.0.0.1       central-ledger.local central-settlement.local ml-api-adapter.local account-lookup-service.local account-lookup-service-admin.local quoting-service.local moja-simulator.local central-ledger central-settlement ml-api-adapter account-lookup-service account-lookup-service-admin quoting-service simulator host.docker.internal transaction-request-service.local
-</code></pre>
-<p>The below optional config is applicable to Helm release &gt;= versions 6.2.2 for Internal components, please include the following in the host configuration.</p>
-<pre><code class="lang-text">127.0.0.1       forensic-logging-sidecar.local central-kms.local central-event-processor.local email-notifier.local
-</code></pre>
-<p>For Helm legacy releases prior to versions 6.2.2, please include the following in the host configuration.</p>
-<pre><code class="lang-text">127.0.0.1       interop-switch.local central-end-user-registry.local central-directory.local central-hub.local
+<pre><code class="lang-text"> # Mojaloop Demo
+ 127.0.0.1   ml-api-adapter.local central-ledger.local account-lookup-service.local account-lookup-service-admin.local quoting-service.local central-settlement-service.local transaction-request-service.local central-settlement.local bulk-api-adapter.local moja-simulator.local sim-payerfsp.local sim-payeefsp.local sim-testfsp1.local sim-testfsp2.local sim-testfsp3.local sim-testfsp4.local mojaloop-simulators.local finance-portal.local operator-settlement.local settlement-management.local testing-toolkit.local testing-toolkit-specapi.local
 </code></pre>
 </li>
 <li><p>Test system health in your browser after installation. This will only work if you have an active helm chart deployment running.</p>
 <p><em>Note: The examples below are only applicable to a local deployment. The entries should match the DNS values or ingress rules as configured in the <a href="https://github.com/mojaloop/helm/blob/master/mojaloop/values.yaml" target="_blank">values.yaml</a> or otherwise matching any custom ingress rules configured</em>.</p>
-<p><strong>ml-api-adapter</strong> health test:</p>
-<pre><code>http://ml-api-adapter.local/health
-</code></pre><p><strong>central-ledger</strong> health test:</p>
-<pre><code>http://central-ledger.local/health
-</code></pre></li>
+<p><strong>ml-api-adapter</strong> health test: <a href="http://ml-api-adapter.local/health" target="_blank">http://ml-api-adapter.local/health</a></p>
+<p><strong>central-ledger</strong> health test: <a href="http://central-ledger.local/health" target="_blank">http://central-ledger.local/health</a></p>
+</li>
 </ol>
-<h3 id="6-postman">6. Postman</h3>
-<p>Postman is used to send requests and receive responses.</p>
-<h4 id="61-installing-postman">6.1. Installing Postman</h4>
-<p>Please, follow these instructions: <a href="https://www.getpostman.com/postman" target="_blank">Get Postman</a> and install the Postman application.</p>
-<h4 id="62-setup-postman">6.2. Setup Postman</h4>
-<p>Grab the latest collections &amp; environment files from <a href="https://github.com/mojaloop/postman" target="_blank">Mojaloop Postman Github repo</a>.</p>
-<p>After an initial setup or new deployment, the <a href="../contributors-guide/tools-and-technologies/automated-testing.html">OSS New Deployment FSP Setup section</a> needs to be completed. This will seed the Database with the required enumerations and static data to enable the sucessful execution of any manual or automation tests by the other collections.</p>
-<p>Refer to the <a href="../contributors-guide/tools-and-technologies/automated-testing.html">QA and Regression Testing in Mojaloop</a> documentation for more complete information to complement your testing requirements. </p>
+<h4 id="53-testing-mojaloop">5.3. Testing Mojaloop</h4>
+<p>The <a href="../../documentation/mojaloop-technical-overview/ml-testing-toolkit/README.md">Mojaloop Testing Toolkit</a> (<strong>TTK</strong>) is used for testing deployments, and has been integrated into Helm utilizing its CLI to easily test any Mojaloop deployment.</p>
+<ol>
+<li><p>Validating Mojaloop using Helm</p>
+<pre><code class="lang-bash">helm -n demo <span class="hljs-built_in">test</span> moja
+</code></pre>
+<p>Or with logs printed to console</p>
+<pre><code class="lang-bash">helm -n demo <span class="hljs-built_in">test</span> moja --logs
+</code></pre>
+<p>This will automatically execute the following <a href="https://github.com/mojaloop/testing-toolkit-test-cases" target="_blank">test cases</a> using the <a href="../../documentation/mojaloop-technical-overview/ml-testing-toolkit/README.md">Mojaloop Testing Toolkit</a> (<strong>TTK</strong>) CLI:</p>
+<ul>
+<li><a href="https://github.com/mojaloop/testing-toolkit-test-cases/tree/master/collections/hub/provisioning" target="_blank">TTK Hub setup and Simulator Provisioning Collection</a>.</li>
+</ul>
+<p>Use the following command to view the provisioning Collection logs:</p>
+<pre><code class="lang-bash">kubectl -n demo logs pod/moja-ml-ttk-test-setup
+</code></pre>
+<ul>
+<li><a href="https://github.com/mojaloop/testing-toolkit-test-cases/tree/master/collections/hub/golden_path" target="_blank">TTK Golden Path Test Collection</a>.</li>
+</ul>
+<p>Use the following command to view the Golden Path Collection logs:</p>
+<pre><code class="lang-bash"> kubectl -n demo logs pod/moja-ml-ttk-test-validation
+</code></pre>
+<p>Example of the finally summary being displayed from the Golden Path test collection log output:</p>
+<pre><code class="lang-text"> Test Suite:GP Tests
+ Environment:Development
+ &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;
+ &#x2502;                      SUMMARY                      &#x2502;
+ &#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x252C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;
+ &#x2502; Total assertions  &#x2502; 1557                          &#x2502;
+ &#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x253C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;
+ &#x2502; Passed assertions &#x2502; 1557                          &#x2502;
+ &#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x253C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;
+ &#x2502; Failed assertions &#x2502; 0                             &#x2502;
+ &#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x253C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;
+ &#x2502; Total requests    &#x2502; 297                           &#x2502;
+ &#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x253C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;
+ &#x2502; Total test cases  &#x2502; 61                            &#x2502;
+ &#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x253C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;
+ &#x2502; Passed percentage &#x2502; 100.00%                       &#x2502;
+ &#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x253C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;
+ &#x2502; Started time      &#x2502; Fri, 11 Jun 2021 15:45:53 GMT &#x2502;
+ &#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x253C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;
+ &#x2502; Completed time    &#x2502; Fri, 11 Jun 2021 15:47:25 GMT &#x2502;
+ &#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x253C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;
+ &#x2502; Runtime duration  &#x2502; 91934 ms                      &#x2502;
+ &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2534;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518;
+ TTK-Assertion-Report-multi-2021-06-11T15:47:25.656Z.html was generated
+</code></pre>
+</li>
+<li><p>Accessing the Mojaloop Testing Toolkit UI</p>
+<p>Open the following link in a browser: <a href="http://testing-toolkit.local" target="_blank">http://testing-toolkit.local</a>.</p>
+<p>One is able to manually load and execute the Testing Toolkit Collections using the UI which allows one to visually inspect the requests, responses and assertions in more detail. This is a great way to learn more about Mojaloop.</p>
+<p>Refer to the <a href="../../documentation/mojaloop-technical-overview/ml-testing-toolkit/README.md">Mojaloop Testing Toolkit Documentation</a> for more information and guides.</p>
+</li>
+</ol>
+<h4 id="54-testing-mojaloop-with-postman">5.4. Testing Mojaloop with Postman</h4>
+<p><a href="https://www.postman.com/downloads" target="_blank">Postman</a> can be used as an alternative to the <a href="../../documentation/mojaloop-technical-overview/ml-testing-toolkit/README.md">Mojaloop Testing Toolkit</a>. Refer to the <a href="../contributors-guide/tools-and-technologies/automated-testing.html">Automated Testing Guide</a> for more information.</p>
+<p>The available <a href="https://github.com/mojaloop/postman" target="_blank">Mojaloop Postman Collections</a> are similar to the <a href="https://github.com/mojaloop/testing-toolkit-test-cases" target="_blank">Mojaloop Testing Toolkit&apos;s Test Cases</a>&apos;s as follows:</p>
+<table>
+<thead>
+<tr>
+<th>Postman Collection</th>
+<th>Mojaloop Testing Toolkit</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a href="https://github.com/mojaloop/postman/blob/master/MojaloopHub_Setup.postman_collection.json" target="_blank">MojaloopHub_Setup Postman Collection</a> and <a href="https://github.com/mojaloop/postman/blob/master/MojaloopSims_Onboarding.postman_collection.json" target="_blank">MojaloopSims_Onboarding</a> | <a href="https://github.com/mojaloop/testing-toolkit-test-cases/tree/master/collections/hub/provisioning" target="_blank">TTK Hub setup and Simulator Provisioning Collection</a> | Hub Setup and Simulator Provisioning |
+<a href="https://github.com/mojaloop/postman/blob/master/Golden_Path_Mojaloop.postman_collection.json" target="_blank">Golden_Path_Mojaloop</a> | <a href="https://github.com/mojaloop/testing-toolkit-test-cases/tree/master/collections/hub/golden_path" target="_blank">TTK Golden Path Test Collection</a> | Golden Path Tests |</p>
+<p>Pre-requisites:</p>
+<ul>
+<li>The following postman environment file should be imported or customized as required when running the above listed Postman collections: <a href="https://github.com/mojaloop/postman/blob/master/environments/Mojaloop-Local-MojaSims.postman_environment.json" target="_blank">Mojaloop-Local-MojaSims.postman_environment.json</a>.</li>
+<li>Ensure you download the <strong>latest patch release version</strong> from the <a href="https://github.com/mojaloop/postman/releases" target="_blank">Mojaloop Postman Git Repository Releases</a>. For example if you install Mojaloop v12.0.<strong>X</strong>, ensure that you have the latest Postman collection patch version v12.0.<strong>Y</strong>.</li>
+</ul>
 
                                 
                                 </section>
@@ -2950,7 +3028,7 @@ helm repo add bitnami https://charts.bitnami.com/bitnami
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Deployment Guide","level":"1.4","depth":1,"next":{"title":"Releases","level":"1.4.1","depth":2,"path":"deployment-guide/releases.md","ref":"deployment-guide/releases.md","articles":[]},"previous":{"title":"Onboarding","level":"1.3","depth":1,"path":"onboarding.md","ref":"onboarding.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"3.x.x","theme":"default","variables":{"importedVars":{"mojaloop":{"spec":{"version":"v1.0","uri":{"doc":"https://mojaloop.io/mojaloop-specification/","api":"https://github.com/mojaloop/mojaloop-specification/blob/master/fspiop-api/documents/v1.0-document-set/fspiop-rest-v1.0-OpenAPI-implementation.yaml"}}},"central_ledger":{"spec":{"version":"v2.0","uri":{"doc":"/mojaloop-technical-overview/central-ledger/README.md","api":"https://github.com/mojaloop/central-ledger/blob/master/src/api/interface/swagger.json"}}},"settlement":{"spec":{"version":"v1.1","uri":{"doc":"/mojaloop-technical-overview/central-settlements/README.md","api":"https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json"}}},"als":{"oracle":{"spec":{"version":"v1.2","uri":{"doc":"/mojaloop-technical-overview/account-lookup-service/README.md","api":"https://github.com/mojaloop/documentation/blob/master/api/assets/interface-contracts/oracle-service-swagger-v1.yaml"}}}}}},"plugins":["swagger","editlink","include","insert-logo","plantuml-svg","collapsible-chapters","back-to-top-button","theme-api","variables","changelog","page-toc"],"pluginsConfig":{"plantuml-svg":{},"editlink":{"label":"Edit This Page","multilingual":true,"base":"https://github.com/mojaloop/documentation/edit/master"},"theme-gestalt":{"logo":"https://mojaloop.io/images/logo.png","favicon":"https://mojaloop.io/images/logo.png","baseUrl":null,"excludeDefaultStyles":false,"doNotHideChildrenChapters":false},"include":{},"search":{},"collapsible-chapters":{},"page-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","position":"before-first","showByDefault":true},"swagger":{"file":""},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"uml":{"format":"png","nailgun":false},"changelog":{},"theme-api":{"languages":[],"split":true,"theme":"dark"},"back-to-top-button":{},"variables":{"files":{"importedVars":"book_variables.yml"}},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"insert-logo":{"url":"https://mojaloop.io/images/logo.png","style":"background: none; max-height: 140px; max-width: 140px;"}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"deployment-guide/README.md","mtime":"2021-01-27T12:03:51.752Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-01-27T12:05:38.551Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Deployment Guide","level":"1.4","depth":1,"next":{"title":"Releases","level":"1.4.1","depth":2,"path":"deployment-guide/releases.md","ref":"deployment-guide/releases.md","articles":[]},"previous":{"title":"Onboarding","level":"1.3","depth":1,"path":"onboarding.md","ref":"onboarding.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"3.x.x","theme":"default","variables":{"importedVars":{"mojaloop":{"spec":{"version":"v1.0","uri":{"doc":"https://mojaloop.io/mojaloop-specification/","api":"https://github.com/mojaloop/mojaloop-specification/blob/master/fspiop-api/documents/v1.0-document-set/fspiop-rest-v1.0-OpenAPI-implementation.yaml"}}},"central_ledger":{"spec":{"version":"v2.0","uri":{"doc":"/mojaloop-technical-overview/central-ledger/README.md","api":"https://github.com/mojaloop/central-ledger/blob/master/src/api/interface/swagger.json"}}},"settlement":{"spec":{"version":"v1.1","uri":{"doc":"/mojaloop-technical-overview/central-settlements/README.md","api":"https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json"}}},"als":{"oracle":{"spec":{"version":"v1.2","uri":{"doc":"/mojaloop-technical-overview/account-lookup-service/README.md","api":"https://github.com/mojaloop/documentation/blob/master/api/assets/interface-contracts/oracle-service-swagger-v1.yaml"}}}}}},"plugins":["swagger","editlink","include","insert-logo","plantuml-svg","collapsible-chapters","back-to-top-button","theme-api","variables","changelog","page-toc"],"pluginsConfig":{"plantuml-svg":{},"editlink":{"label":"Edit This Page","multilingual":true,"base":"https://github.com/mojaloop/documentation/edit/master"},"theme-gestalt":{"logo":"https://mojaloop.io/images/logo.png","favicon":"https://mojaloop.io/images/logo.png","baseUrl":null,"excludeDefaultStyles":false,"doNotHideChildrenChapters":false},"include":{},"search":{},"collapsible-chapters":{},"page-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","position":"before-first","showByDefault":true},"swagger":{"file":""},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"uml":{"format":"png","nailgun":false},"changelog":{},"theme-api":{"languages":[],"split":true,"theme":"dark"},"back-to-top-button":{},"variables":{"files":{"importedVars":"book_variables.yml"}},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"insert-logo":{"url":"https://mojaloop.io/images/logo.png","style":"background: none; max-height: 140px; max-width: 140px;"}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"deployment-guide/README.md","mtime":"2021-07-06T17:39:01.144Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-07-06T17:39:58.041Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

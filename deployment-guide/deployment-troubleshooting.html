@@ -2709,84 +2709,48 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="deployment-troubleshooting">Deployment Troubleshooting</h1>
-<h2 id="local-deployment-with-microk8s---suggestions">Local deployment with MicroK8s - suggestions:</h2>
-<ul>
-<li>use <strong>v1.15 of MicroK8s</strong> (higher version not yet supported) (details in &quot;Installation of mojaloop helm charts fail with validation failed&quot; section)</li>
-<li>try <code>microk8s.inspect</code> for hints (for example connectivity problems when ip forwarding is not enabled, more about it in &quot;MicroK8s - Connectivity Issues section&quot;)</li>
-<li>enable following microk8s add-ons (check with <code>sudo microk8s.status</code>):<ul>
-<li>storage</li>
-<li>ingress</li>
-<li>dns</li>
-<li>istio</li>
-<li>dashboard</li>
-</ul>
-</li>
-</ul>
 <h2 id="1-known-issues">1. Known issues</h2>
-<h3 id="11-mojaloop-helm-charts-does-not-support-kubernetes-v116-or-greater">1.1. Mojaloop Helm Charts does not support Kubernetes v1.16 or greater</h3>
+<h3 id="11-mojaloop-helm-release-v10x-or-less-does-not-support-kubernetes-v116-or-greater">1.1. Mojaloop Helm release v10.x or less does not support Kubernetes v1.16 or greater</h3>
 <h4 id="description">Description</h4>
+<p><em>Note: This is only applicable to Mojaloop Helm v10.x or less release.</em></p>
 <p>When installing mojaloop helm charts, the following error occurs:</p>
-<pre><code>   Error: validation failed: [unable to recognize &quot;&quot;: no matches for kind &quot;Deployment&quot; in version &quot;apps/v1beta2&quot;, unable to recognize &quot;&quot;: no matches for kind &quot;Deployment&quot; in version &quot;extensions/v1beta1&quot;, unable to recognize &quot;&quot;: no matches for kind &quot;StatefulSet&quot; in version &quot;apps/v1beta2&quot;, unable to recognize &quot;&quot;: no matches for kind &quot;StatefulSet&quot; in version &quot;apps/v1beta1&quot;]
-</code></pre><h4 id="reason">Reason</h4>
+<pre><code class="lang-log">Error: validation failed: [unable to recognize &quot;&quot;: no matches for kind &quot;Deployment&quot; in version &quot;apps/v1beta2&quot;, unable to recognize &quot;&quot;: no matches for kind &quot;Deployment&quot; in version &quot;extensions/v1beta1&quot;, unable to recognize &quot;&quot;: no matches for kind &quot;StatefulSet&quot; in version &quot;apps/v1beta2&quot;, unable to recognize &quot;&quot;: no matches for kind &quot;StatefulSet&quot; in version &quot;apps/v1beta1&quot;]
+</code></pre>
+<h4 id="reason">Reason</h4>
 <p>In version 1.16 of Kubernetes breaking change has been introduced (more about it <a href="https://kubernetes.io/docs/setup/release/notes/#deprecations-and-removals" target="_blank">in &quot;Deprecations and Removals&quot; of Kubernetes release notes</a>. The  Kubernetes API versions <code>apps/v1beta1</code> and <code>apps/v1beta2</code>are no longer supported and  and have been replaced by <code>apps/v1</code>.</p>
-<p>Currently Mojaloop helm charts (as of v8.4.x) refer to deprecated ids, therefore it&apos;s not possible to install current Mojaloop charts on Kubernetes version above 1.15 without manually changing charts.</p>
+<p>Mojaloop helm charts v10 or less refer to deprecated ids, therefore it&apos;s not possible to install v10- on Kubernetes version above 1.15 without manually modification.</p>
 <p>Refer to the following issue for more info: <a href="https://github.com/mojaloop/helm/issues/219" target="_blank">mojaloop/helm#219</a></p>
 <h4 id="fixes">Fixes</h4>
-<p>Ensure that you are deploying the Mojaloop Helm charts on v1.15 of Kubernetes (or microk8s when working locally).</p>
+<p>Ensure that you are deploying Mojaloop Helm charts v10.x or less on v1.15 of Kubernetes.</p>
 <h4 id="additional-details-for-microk8s-fix">Additional details for <code>microk8s</code> fix</h4>
-<p>To check version of <code>microk8s</code>:</p>
-<pre><code class="lang-bash">   snap info microk8s
-</code></pre>
-<p><em>Note: Look at the end of the output for a row starting with &quot;installed&quot;</em></p>
-<p>To install most recent supported version:</p>
-<pre><code class="lang-bash">   snap refresh microk8s --channel=1.15/stable --classic
-</code></pre>
+<p>Refer to the following section for more information on how to install the desired Kubernetes version: <a href="local-setup-linux.html#21-microk8s">Mojaloop Setup for Linux (Ubuntu) - 2.1. MicroK8S</a>.</p>
 <h2 id="2-deployment-issues">2. Deployment issues</h2>
-<h3 id="21-microk8s---helm-init-connection-refused">2.1. MicroK8s - helm init connection refused<a name="helm_init_connection_refused"></a></h3>
-<h4 id="description">Description</h4>
-<p>The helm init:</p>
-<pre><code class="lang-bash">   helm init
-</code></pre>
-<p>fails with error when installing locally on <code>microk8s</code>:</p>
-<pre><code>   Error: error installing: Post http://localhost:8080/apis/apps/v1/namespaces/kube-system/deployments: dial tcp 127.0.0.1:8080: connect: connection refused
-</code></pre><h4 id="reason">Reason</h4>
-<p>This may be a missing  <code>~/.kube/config</code> file, where helm looks for connection details.</p>
-<h4 id="fix---option-1">Fix - option #1</h4>
-<p>One of the solutions is to generate that file by issuing:</p>
-<pre><code class="lang-bash">   microk8s.kubectl config view --raw &gt; <span class="hljs-variable">$HOME</span>/.kube/config
-</code></pre>
-<h4 id="fix---option-2">Fix - option #2</h4>
-<p>Another option is to export the config to a new file:</p>
-<pre><code class="lang-bash">   microk8s.kubectl config view --raw &gt; <span class="hljs-variable">$HOME</span>/.kube/local.config
-</code></pre>
-<p>And then export the following env var:</p>
-<pre><code class="lang-bash">   <span class="hljs-built_in">export</span> KUBECONFIG=<span class="hljs-variable">$HOME</span>/.kube/local.config
-</code></pre>
-<h3 id="22-errnamenotresolved-error">2.2. <code>ERR_NAME_NOT_RESOLVED</code> Error</h3>
+<h3 id="21-errnamenotresolved-error">2.1. <code>ERR_NAME_NOT_RESOLVED</code> Error</h3>
 <h4 id="description">Description</h4>
 <p>The following error is displayed when attempting to access an end-point (e.g. central-ledger.local) via the Kubernetes Service directly in a browser: <code>ERR_NAME_NOT_RESOLVED</code></p>
 <h4 id="fixes">Fixes</h4>
-<ul>
+<ol>
 <li><p>Verify that that Mojaloop was deployed by checking that the helm chart(s) was installed by executing:</p>
-<pre><code class="lang-bash">  helm list
+<pre><code class="lang-bash">helm list
 </code></pre>
-<p>If the helm charts are not listed, see the <a href="./#4-helm">Helm Chart Installation</a> section to install a chart.</p>
+<p>If the helm charts are not listed, see the <a href="./#51-mojaloop-helm-deployment">Deployment Guide - 5.1. Mojaloop Helm Deployment</a> section to install a chart.</p>
 </li>
 <li><p>Ensure that all the Mojaloop Pods/Containers have started up correctly and are available through the Kubernetes dashboard.</p>
 </li>
 <li><p>Note that the Mojaloop deployment via Helm can take a few minutes to initially startup depending on the system&apos;s available resources and specification. It is recommended that you wait at least 10m for all Pods/Containers to self heal before troubleshooting.</p>
 </li>
-</ul>
+</ol>
 <h3 id="23-microk8s---connectivity-issues">2.3. MicroK8s - Connectivity Issues</h3>
 <h4 id="description">Description</h4>
-<p>My pods can&#x2019;t reach the internet or each other (but my MicroK8s host machine can). </p>
+<p>My pods can&#x2019;t reach the internet or each other (but my MicroK8s host machine can).</p>
 <p>An example of this is that the Central-Ledger logs indicate that there is an error with the Broker transport as per the following example:</p>
-<pre><code>2019-11-05T12:28:10.470Z - info: Server running at: 
+<pre><code class="lang-log">2019-11-05T12:28:10.470Z - info: Server running at: 
 2019-11-05T12:28:10.474Z - info: Handler Setup - Registering {&quot;type&quot;:&quot;prepare&quot;,&quot;enabled&quot;:true}!
 2019-11-05T12:28:10.476Z - info: CreateHandler::connect - creating Consumer for topics: [topic-transfer-prepare]
 2019-11-05T12:28:10.515Z - info: CreateHandler::connect - successfully connected to topics: [topic-transfer-prepare]
 2019-11-05T12:30:20.960Z - error: Consumer::onError()[topics=&apos;topic-transfer-prepare&apos;] - Error: Local: Broker transport failure)
-</code></pre><h4 id="fixes">Fixes</h4>
+</code></pre>
+<h4 id="fixes">Fixes</h4>
 <p>Make sure packets to/from the pod network interface can be forwarded to/from the default interface on the host via the iptables tool. Such changes can be made persistent by installing the iptables-persistent package:</p>
 <pre><code class="lang-bash">sudo iptables -P FORWARD ACCEPT
 sudo apt-get install iptables-persistent
@@ -2798,26 +2762,23 @@ sudo apt-get install iptables-persistent
 <pre><code class="lang-bash">microk8s.inspect
 </code></pre>
 <h2 id="3-ingress-issues">3. Ingress issues</h2>
-<h3 id="31-ingress-rules-are-not-resolving-for-nginx-ingress-v022-or-later">3.1. Ingress rules are not resolving for Nginx Ingress v0.22 or later</h3>
+<h3 id="31-ingress-rules-are-not-resolving-for-nginx-ingress-v022-or-later-when-installing-mojaloop-helm-v12x-or-less">3.1. Ingress rules are not resolving for Nginx Ingress v0.22 or later when installing Mojaloop Helm v12.x or less</h3>
 <h4 id="description">Description</h4>
-<p>Ingress rules are unable to resolve to the correct path based on the annotations specified in the values.yaml configuration files when using Nginx Ingress controllers v0.22 or later.</p>
+<p><em>Note: This is only applicable to Mojaloop Helm v12.x or less release.</em></p>
+<p>Ingress rules are unable to resolve to the correct path based on the annotations specified in the <a href="https://github.com/mojaloop/helm/blob/v12.0.0/mojaloop/values.yaml" target="_blank">values.yaml</a> configuration files when using Nginx Ingress controllers v0.22 or later.</p>
 <p>This is due to the changes introduced in Nginx Ingress controllers that are v0.22 or later as per the following link: <a href="https://kubernetes.github.io/ingress-nginx/examples/rewrite/#rewrite-target" target="_blank">https://kubernetes.github.io/ingress-nginx/examples/rewrite/#rewrite-target</a>.</p>
 <h4 id="fixes">Fixes</h4>
-<ul>
-<li><p>Make the following change to all Ingress annotations (from --&gt; to) in each of the values.yaml files:</p>
-<p><code>nginx.ingress.kubernetes.io/rewrite-target: &apos;/&apos;</code> --&gt; <code>nginx.ingress.kubernetes.io/rewrite-target: &apos;/$1&apos;</code></p>
-</li>
-</ul>
+<p>Make the following change to Ingress annotations (from --&gt; to) in the values.yaml files:</p>
+<pre><code class="lang-yaml">nginx.ingress.kubernetes.io/rewrite-target: <span class="hljs-string">&apos;/&apos;</span>` --&gt; `nginx.ingress.kubernetes.io/rewrite-target: <span class="hljs-string">&apos;/$1&apos;</span>
+</code></pre>
 <h3 id="32-ingress-rules-are-not-resolving-for-nginx-ingress-earlier-than-v022">3.2. Ingress rules are not resolving for Nginx Ingress earlier than v0.22</h3>
 <h4 id="description">Description</h4>
-<p>Ingress rules are unable to resolve to the correct path based on the annotations specified in the values.yaml configuration files when using Nginx Ingress controllers that are older than v0.22.</p>
+<p>Ingress rules are unable to resolve to the correct path based on the annotations specified in the <a href="https://github.com/mojaloop/helm/blob/master/mojaloop/values.yaml" target="_blank">values.yaml</a> configuration files when using Nginx Ingress controllers that are older than v0.22.</p>
 <p>This is due to the changes introduced in Nginx Ingress controllers that are v0.22 or later as per the following link: <a href="https://kubernetes.github.io/ingress-nginx/examples/rewrite/#rewrite-target" target="_blank">https://kubernetes.github.io/ingress-nginx/examples/rewrite/#rewrite-target</a>.</p>
 <h4 id="fixes">Fixes</h4>
-<ul>
-<li><p>Make the following change to all Ingress annotations (from --&gt; to) in each of the values.yaml files:</p>
-<p><code>nginx.ingress.kubernetes.io/rewrite-target: &apos;/$1&apos;</code> --&gt; <code>nginx.ingress.kubernetes.io/rewrite-target: &apos;/&apos;</code></p>
-</li>
-</ul>
+<p>Make the following change to all Ingress annotations (from --&gt; to) in each of the values.yaml files:</p>
+<pre><code class="lang-yaml">nginx.ingress.kubernetes.io/rewrite-target: <span class="hljs-string">&apos;/$1&apos;</span>` --&gt; `nginx.ingress.kubernetes.io/rewrite-target: <span class="hljs-string">&apos;/&apos;</span>
+</code></pre>
 
                                 
                                 </section>
@@ -2851,7 +2812,7 @@ sudo apt-get install iptables-persistent
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Troubleshooting","level":"1.4.5","depth":2,"next":{"title":"Helm v2 to v3 Migration Guide","level":"1.4.6","depth":2,"path":"deployment-guide/helm-legacy-migration.md","ref":"deployment-guide/helm-legacy-migration.md","articles":[]},"previous":{"title":"Local Setup Windows","level":"1.4.4","depth":2,"path":"deployment-guide/local-setup-windows.md","ref":"deployment-guide/local-setup-windows.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"3.x.x","theme":"default","variables":{"importedVars":{"mojaloop":{"spec":{"version":"v1.0","uri":{"doc":"https://mojaloop.io/mojaloop-specification/","api":"https://github.com/mojaloop/mojaloop-specification/blob/master/fspiop-api/documents/v1.0-document-set/fspiop-rest-v1.0-OpenAPI-implementation.yaml"}}},"central_ledger":{"spec":{"version":"v2.0","uri":{"doc":"/mojaloop-technical-overview/central-ledger/README.md","api":"https://github.com/mojaloop/central-ledger/blob/master/src/api/interface/swagger.json"}}},"settlement":{"spec":{"version":"v1.1","uri":{"doc":"/mojaloop-technical-overview/central-settlements/README.md","api":"https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json"}}},"als":{"oracle":{"spec":{"version":"v1.2","uri":{"doc":"/mojaloop-technical-overview/account-lookup-service/README.md","api":"https://github.com/mojaloop/documentation/blob/master/api/assets/interface-contracts/oracle-service-swagger-v1.yaml"}}}}}},"plugins":["swagger","editlink","include","insert-logo","plantuml-svg","collapsible-chapters","back-to-top-button","theme-api","variables","changelog","page-toc"],"pluginsConfig":{"plantuml-svg":{},"editlink":{"label":"Edit This Page","multilingual":true,"base":"https://github.com/mojaloop/documentation/edit/master"},"theme-gestalt":{"logo":"https://mojaloop.io/images/logo.png","favicon":"https://mojaloop.io/images/logo.png","baseUrl":null,"excludeDefaultStyles":false,"doNotHideChildrenChapters":false},"include":{},"search":{},"collapsible-chapters":{},"page-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","position":"before-first","showByDefault":true},"swagger":{"file":""},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"uml":{"format":"png","nailgun":false},"changelog":{},"theme-api":{"languages":[],"split":true,"theme":"dark"},"back-to-top-button":{},"variables":{"files":{"importedVars":"book_variables.yml"}},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"insert-logo":{"url":"https://mojaloop.io/images/logo.png","style":"background: none; max-height: 140px; max-width: 140px;"}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"deployment-guide/deployment-troubleshooting.md","mtime":"2021-01-27T12:03:51.796Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-01-27T12:05:38.551Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Troubleshooting","level":"1.4.5","depth":2,"next":{"title":"Helm v2 to v3 Migration Guide","level":"1.4.6","depth":2,"path":"deployment-guide/helm-legacy-migration.md","ref":"deployment-guide/helm-legacy-migration.md","articles":[]},"previous":{"title":"Local Setup Windows","level":"1.4.4","depth":2,"path":"deployment-guide/local-setup-windows.md","ref":"deployment-guide/local-setup-windows.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"3.x.x","theme":"default","variables":{"importedVars":{"mojaloop":{"spec":{"version":"v1.0","uri":{"doc":"https://mojaloop.io/mojaloop-specification/","api":"https://github.com/mojaloop/mojaloop-specification/blob/master/fspiop-api/documents/v1.0-document-set/fspiop-rest-v1.0-OpenAPI-implementation.yaml"}}},"central_ledger":{"spec":{"version":"v2.0","uri":{"doc":"/mojaloop-technical-overview/central-ledger/README.md","api":"https://github.com/mojaloop/central-ledger/blob/master/src/api/interface/swagger.json"}}},"settlement":{"spec":{"version":"v1.1","uri":{"doc":"/mojaloop-technical-overview/central-settlements/README.md","api":"https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json"}}},"als":{"oracle":{"spec":{"version":"v1.2","uri":{"doc":"/mojaloop-technical-overview/account-lookup-service/README.md","api":"https://github.com/mojaloop/documentation/blob/master/api/assets/interface-contracts/oracle-service-swagger-v1.yaml"}}}}}},"plugins":["swagger","editlink","include","insert-logo","plantuml-svg","collapsible-chapters","back-to-top-button","theme-api","variables","changelog","page-toc"],"pluginsConfig":{"plantuml-svg":{},"editlink":{"label":"Edit This Page","multilingual":true,"base":"https://github.com/mojaloop/documentation/edit/master"},"theme-gestalt":{"logo":"https://mojaloop.io/images/logo.png","favicon":"https://mojaloop.io/images/logo.png","baseUrl":null,"excludeDefaultStyles":false,"doNotHideChildrenChapters":false},"include":{},"search":{},"collapsible-chapters":{},"page-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","position":"before-first","showByDefault":true},"swagger":{"file":""},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"uml":{"format":"png","nailgun":false},"changelog":{},"theme-api":{"languages":[],"split":true,"theme":"dark"},"back-to-top-button":{},"variables":{"files":{"importedVars":"book_variables.yml"}},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"insert-logo":{"url":"https://mojaloop.io/images/logo.png","style":"background: none; max-height: 140px; max-width: 140px;"}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"deployment-guide/deployment-troubleshooting.md","mtime":"2021-07-06T17:39:01.172Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-07-06T17:39:58.041Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
