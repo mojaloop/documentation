@@ -13,6 +13,7 @@ At this point the reader/implementer should be familiar with [Mojaloop's deploym
   - [1. Kubernetes](#1-kubernetes)
     - [1.1 Kubernetes Installation with Docker](#11-kubernetes-installation-with-docker)
     - [1.2 Kubernetes environment setup](#12-kubernetes-environment-setup)
+  - [2. Continue with Deployment](#2-continue-with-deployment)
 
 ## 1. Kubernetes
 
@@ -109,12 +110,6 @@ This section will guide the reader through the deployment process to setup Kuber
 
    ![Docker For Desktop](./assets/diagrams/deployment/DockerForDesktop.png)
 
-3. Install an Ingress Controller
+## 2. Continue with Deployment
 
-   Install nginx-ingress for load balancing & external access:
-
-   ```bash
-   helm --namespace kube-public install stable/nginx-ingress
-   ```
-
-4. Continue setup and configuration from the Kubernetes Dashboard section in the [Mojaloop's deployment guide - 3.2. Kubernetes Admin Interfaces](./README.md#32-kubernetes-admin-interfaces) document.
+1. Continue setup and configuration from the [Mojaloop's deployment guide - 3.1. Kubernetes Ingress Controller](#31-kubernetes-ingress-controller) document.
