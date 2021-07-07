@@ -27,7 +27,8 @@ A list of the pre-requisite tool set required for the deployment of Mojaloop:
 
 - **Kubernetes** An open-source system for automating deployment, scaling, and management of containerized applications. Find out more about [Kubernetes](https://kubernetes.io).
   - Recommended Versions:
-   <br>&nbsp;&nbsp;&nbsp;&nbsp;**Mojaloop Helm Chart release v12.x** supports **Kubernetes v1.13 - v1.20.6**.
+   <br>&nbsp;&nbsp;&nbsp;&nbsp;**Mojaloop Helm Chart release v13.x** supports **Kubernetes v1.13 - v1.20**.
+   <br>&nbsp;&nbsp;&nbsp;&nbsp;**Mojaloop Helm Chart release v12.x** supports **Kubernetes v1.13 - v1.20**.
    <br>&nbsp;&nbsp;&nbsp;&nbsp;**Mojaloop Helm Chart release v11.x** supports **Kubernetes v1.13 - v1.17**.
    <br>&nbsp;&nbsp;&nbsp;&nbsp;**Mojaloop Helm Chart release v10.x** supports **Kubernetes v1.13 - v1.15**, it will fail on Kubernetes v1.16+ onwards due deprecated APIs ([ref: Helm Issue #219](https://github.com/mojaloop/helm/issues/219)).
   - kubectl - Kubernetes CLI for Kubernetes Management is required. Find out more about [kubectl](https://kubernetes.io/docs/reference/kubectl/overview/):
