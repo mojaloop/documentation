@@ -8,11 +8,12 @@ This document will provide guidelines to a technical capable resources to setup,
 
 At this point the reader/implementer should be familiar with [Mojaloop's deployment guide](./README.md). Imported information is contained in that document and as such a prerequisite to this document.
 
-* [Local Deployment](local-setup-mac.md#local-deployment)
-  * [Kubernetes](local-setup-mac.md#1-kubernetes)
-    * [Kubernetes Installation with Docker](local-setup-mac.md#11-kubernetes-installation-with-docker)
-    * [Kubernetes environment setup](local-setup-mac.md#12-kubernetes-environment-setup)
-
+- [Mojaloop local environment setup for Mac](#mojaloop-local-environment-setup-for-mac)
+  - [Setup Introduction](#setup-introduction)
+  - [1. Kubernetes](#1-kubernetes)
+    - [1.1. Kubernetes Installation with Docker](#11-kubernetes-installation-with-docker)
+  - [2. Continue with Deployment](#2-continue-with-deployment)
+  
 ## 1. Kubernetes
 
 This section will guide the reader through the deployment process to setup Kubernetes within Docker.
@@ -66,4 +67,6 @@ This section will guide the reader through the deployment process to setup Kuber
   kubectl config use-context docker-desktop
   ```
 
-3. Continue setup and configuration from the Kubernetes Dashboard section in the [Mojaloop's deployment guide - 3.2. Kubernetes Admin Interfaces](./README.md#32-kubernetes-admin-interfaces) document.
+## 2. Continue with Deployment
+
+1. Continue setup and configuration from the [Mojaloop's deployment guide - 3.1. Kubernetes Ingress Controller](#31-kubernetes-ingress-controller) document.

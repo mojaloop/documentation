@@ -14,6 +14,7 @@ At this point the reader/implementer should be familiar with [Mojaloop's deploym
   - [2. Kubernetes](#2-kubernetes)
     - [2.1. MicroK8S](#21-microk8s)
     - [2.2. Docker](#22-docker)
+  - [3. Continue with Deployment](#3-continue-with-deployment)
 
 ## 1. Environment recommendations
 
@@ -137,4 +138,6 @@ Docker is deployed as part of the MicroK8s installation. The docker daemon used 
    microk8s.docker ps
    ```
 
-3. Continue setup and configuration from the Kubernetes Dashboard section in the [Mojaloop's deployment guide - 3.2. Kubernetes Admin Interfaces](./README.md#32-kubernetes-admin-interfaces) document.
+## 3. Continue with Deployment
+
+1. Continue setup and configuration from the [Mojaloop's deployment guide - 3.2. Kubernetes Admin Interfaces](./README.md#32-kubernetes-admin-interfaces) document.
