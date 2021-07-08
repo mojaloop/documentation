@@ -69,4 +69,4 @@ This section will guide the reader through the deployment process to setup Kuber
 
 ## 2. Continue with Deployment
 
-1. Continue setup and configuration from the [Mojaloop's deployment guide - 3.1. Kubernetes Ingress Controller](#31-kubernetes-ingress-controller) document.
+1. Continue setup and configuration from the [Mojaloop's deployment guide - 3.1. Kubernetes Ingress Controller](./README.md#31-kubernetes-ingress-controller) document.
