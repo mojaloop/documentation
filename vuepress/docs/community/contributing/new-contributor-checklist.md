@@ -29,7 +29,7 @@ This guide summarizes the steps needed to get up and running as a contributor to
   - https://github.com/mojaloop/central-ledger/blob/master/Onboarding.md
   - https://github.com/mojaloop/ml-api-adapter/blob/master/Onboarding.md
 
-- (Optional:) Run an entire switch yourself with Kubernetes https://mojaloop.io/documentation/deployment-guide/ _(note: if running locally, your Kubernetes cluster will need 8gb or more of RAM)_
+- (Optional:) Run an entire switch yourself with Kubernetes https://mojaloop.io/documentation/deployment-guide/ _(note: if running locally, your Kubernetes cluster will need 8GB or more of RAM)_
 
 ## 2. Finding an Issue
 
@@ -38,12 +38,12 @@ This guide summarizes the steps needed to get up and running as a contributor to
 - Leave a comment on the issue asking for it to be assigned to you -- this helps make sure we don't duplicate work. As always, reach out to us on Slack if you have any questions or concerns.
 
 - Fork the relevant repos for the issue, clone and create a new branch for the issue
-  - Refer to our [git user guide](https://mojaloop.io/documentation/contributors-guide/standards/creating-new-features.html) if you get lost
+  - Refer to our [Git User Guide](https://mojaloop.io/documentation/contributors-guide/standards/creating-new-features.html) if you get lost
 
 
 ## 3. Opening your First PR 
 
-> _Complete this part of the guide once you have been added to the Mojaloop GitHub organization. If you don't have access, reach out to us on the `#general` or `#help-mojaloop`
+> Complete this part of the guide once you have been added to the Mojaloop GitHub organization. If you don't have access, reach out to us on the `#general` or `#help-mojaloop`
 
 - Sign up for [Zenhub](https://www.zenhub.com/), and connect it to the Mojaloop Organisation, Search for the _'project'_ workspace
 - Install the [Zenhub Browser extension](https://www.zenhub.com/extension) for Chrome or Firefox, and browse the (Mojaloop Project Kanban board](https://github.com/mojaloop/project#zenhub)
@@ -60,4 +60,4 @@ This guide summarizes the steps needed to get up and running as a contributor to
 
 ## 4. Signing the CLA
 
-After you open your first PR, our CI/CD pipelines will ask you to sign the CLA. For more information on what the CLA is and how to sign it, see [signing the cla](./signing-the-cla.html)
+After you open your first PR, our CI/CD pipelines will ask you to sign the CLA. For more information on what the CLA is and how to sign it, see [Signing the CLA](./signing-the-cla.md)

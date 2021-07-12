@@ -96,10 +96,10 @@ module.exports = {
           title: 'Community',
           collapsable: false,
           children: [
-            ['contributors-guide', 'Contributor\'s Guide'],
-            ['new-contributor-checklist', 'New Contributor Checklist'],
-            ['code-of-conduct', 'Code of Conduct'],
-            ['signing-the-cla', 'Signing the CLA'],
+            ['contributing/contributors-guide', 'Contributors\' Guide'],
+            ['contributing/new-contributor-checklist', 'New Contributor Checklist'],
+            ['contributing/code-of-conduct', 'Code of Conduct'],
+            ['contributing/signing-the-cla', 'Signing the CLA'],
           ],
           sidebarDepth: 2
         },
@@ -107,10 +107,10 @@ module.exports = {
           title: 'Community Standards',
           collapsable: false,
           children: [
-            ['standards', 'Standard\'s Guide'],
-            ['versioning', 'Versioning'],
-            ['creating-new-features', 'Creating new features'],
-            ['triaging-bugs', 'Triaging bugs'],
+            ['standards/guide', 'Our Standards'],
+            ['standards/versioning', 'Versioning'],
+            ['standards/creating-new-features', 'Creating New Features'],
+            ['standards/triaging-bugs', 'Triaging Bugs'],
           ],
           sidebarDepth: 2
         },
@@ -118,10 +118,10 @@ module.exports = {
           title: 'Tools and Technologies',
           collapsable: false,
           children: [
-            ['tools-and-technologies', 'Tools'],
-            ['pragmatic-rest', 'Pragmatic Rest'],
-            ['code-quality-metrics', 'Code Quality Metrics'],
-            ['automated-testing', 'Automated Testing'],
+            ['tools/tools-and-technologies', 'Tools'],
+            ['tools/pragmatic-rest', 'Pragmatic Rest'],
+            ['tools/code-quality-metrics', 'Code Quality Metrics'],
+            ['tools/automated-testing', 'Automated Testing'],
           ],
           sidebarDepth: 2
         },
@@ -129,10 +129,76 @@ module.exports = {
           title: 'Documentation',
           collapsable: false,
           children: [
-            ['documentation', 'Documentation'],
-            ['api-documentation', 'API Documentation'],
-            ['documentation-style-guide', 'Documentation Style Guide'],
+            ['documentation/standards', 'Standards'],
+            ['documentation/api-documentation', 'API Documentation'],
+            ['documentation/style-guide', 'Style Guide'],
           ]
+        },
+        {
+          title: 'Community Resources',
+          collapsable: false,
+          children: [
+            {
+              title: 'Resources',
+              collapsable: false,
+              children: [
+                ['mojaloop-roadmap', 'Product Roadmap'],
+                ['mojaloop-publications', 'Mojaloop Publications'],
+              ]
+            },
+            {
+              title: 'Notes Archive',
+              collapsable: true,
+              path: 'archive/notes/',
+              children: [
+                ['archive/notes/ccb-notes', 'CCB Notes'],
+                ['archive/notes/da-notes', 'Meeting Notes'],
+                ['archive/notes/scrum-of-scrum-notes', 'Scrum Notes']
+              ]
+            },
+            {
+              title: 'Discussion Docs Archive',
+              collapsable: true,
+              path: 'archive/discussion-docs/',
+              children: [
+                {
+                  title: 'PI 10',
+                  collapsable: true,
+                  children: [
+                    ['archive/discussion-docs/performance-project', 'Performance Project'],
+                    ['archive/discussion-docs/code-improvement', 'Code Improvement Project'],
+                    ['archive/discussion-docs/cross-border', 'Cross Border Project'],
+                    ['archive/discussion-docs/psip-project', 'PSIP Project']
+                  ]
+                },
+                {
+                  title: 'PI 9',
+                  collapsable: true,
+                  children: [
+                    ['archive/discussion-docs/versioning-draft-proposal', 'Versioning Draft Proposal'],
+                  ]
+                },
+                {
+                  title: 'PI 8',
+                  collapsable: true,
+                  children: [
+                    ['archive/discussion-docs/cross-border-day-1', 'CB Day 1 Meeting Notes'],
+                    ['archive/discussion-docs/cross-border-day-2', 'CB Day 2 Meeting Notes'],
+                    ['archive/discussion-docs/iso-integration', 'ISO Integration Overview'],
+                    ['archive/discussion-docs/mojaloop-decimal', 'Mojaloop Decimal Type']
+                  ]
+                },
+                {
+                  title: 'PI 7',
+                  collapsable: true,
+                  children: [
+                    ['archive/discussion-docs/workbench', 'Workbench Workstream'],
+                  ]
+                }
+              ]
+            },
+          ],
+          sidebarDepth: 4
         }
       ]
     }

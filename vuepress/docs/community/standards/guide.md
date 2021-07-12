@@ -10,9 +10,9 @@ These style guides are chosen because they can be easily enforced and checked us
 
 The goal of these guides is to ensure an easy developer workflow and reduce code commits that contain changes for the sake of style over content. By reducing the noise in diffs we make the job of reviewers easier. 
 
-### Code Style
+## Code Style
 
-#### Javascript
+### Javascript
 
 Mojaloop uses the Javascript code style dictated by [StandardJS](https://standardjs.com/). For a full set of rules, refer to the [Standard Rules](https://standardjs.com/rules.html), but as a brief set of highlights:
 
@@ -39,18 +39,18 @@ window.alert('hi')   // ✓ ok
 window.alert('hi');  // ✗ avoid
 ```
 
-#### Typescript
+### Typescript
 
 >*Note: Standard and Typescript*  
 >
 >As we start to introduce more Typescript into the codebase, Standard becomes less useful, and can even be detrimental
 >to our development workflow if we try to run standard across the Javascript compiled from Typescript.
->We need to evaluate other options for Standard in Typescript, such as a combination of Prettier + ESLint
+>We need to evaluate other options for Standard in Typescript, such as a combination of Prettier + ESLint.
 
 Refer to the [template-typescript-public](https://github.com/mojaloop/template-typescript-public) for the standard typescript configuration.
 
 
-#### YAML
+### YAML
 
 While YAML deserializers can vary from one to another, we follow the following rules when writing YAML:
 > Credit: these examples were taken from the [flathub style guide](https://github.com/flathub/flathub/wiki/YAML-Style-Guide)
@@ -82,7 +82,7 @@ modules:
     sources:
       - type: git
 ```
-#### sh + bash
+### sh + bash
 
 - The Shebang should respect the user's local environment:
 
@@ -107,13 +107,13 @@ cat ${DIR}/../Dockerfile | wc -l
 
 For other recommended bash conventions, refer to this blog post: [Best Practices for Writing Shell Scripts](https://kvz.io/bash-best-practices.html)
 
-### Documentation
+## Documentation
 
-Documentation should be written in Mark Down format.  
-All discusison documents should be placed in /documentation/discussions
-The use of Google Docs and other tools should not be used.
+- Documentation should be written in Mark Down format.  
+- All discussion documents should be placed in /community/archive/discussion-docs.
+- The use of Google Docs and other tools should not be used.
 
-### Directory Structure
+## Directory Structure
 
 Along with guidelines for coding styles, the Mojaloop Community recommends the following directory structure. This ensures that developers can easily switch from one project to another, and also ensures that our tools and configs (such as `.circleci/config.yml` and `Dockerfile`s) can be ported easily from one project to another with minor changes.
 
@@ -130,12 +130,12 @@ The directory structure guide requires:
     └── default.json   # RC config file 
 ```
 
-### Config Files
+## Config Files
 
 The following Config files help to enforce the code styles outlined above:
 
 
-#### EditorConfig
+### EditorConfig
 > EditorConfig is supported out of the box in many IDEs and Text editors. For more information, refer to the [EditorConfig guide](https://editorconfig.org/).
 
 `.editorconfig`
@@ -156,7 +156,7 @@ indent_size = 2
 trim_trailing_whitespace = false
 ```
 
-#### NYC (code coverage tool)
+### NYC (code coverage tool)
 
 `.nycrc.yml`
 ```yml
@@ -264,15 +264,15 @@ module.exports = {
 };
 ```
 
-For a more detailed list of the recommended typescript configuration, including `package.json`, `jest.config.js` and more, refer to the [Typescript Template Project](https://github.com/mojaloop/template-typescript-public)
+For a more detailed list of the recommended typescript configuration, including `package.json`, `jest.config.js` and more, refer to the [Typescript Template Project](https://github.com/mojaloop/template-typescript-public).
 
-### Design + Implementation Guidelines
+## Design + Implementation Guidelines
 
 These guidelines are meant as recommendations for writing code in the Mojaloop community (or code that will be adopted into the community). If you are writing code that you wish to donate code to the community, we ask that you follow these guidelines as much as possible to aid with the consistency and maintainability of the codebase. Donations that adhere to these guidelines will be adopted more easily and swiftly.
 
 For more information, refer to the FAQ [below](#faqs).
 
-#### Tools + Frameworks
+## Tools + Frameworks
 
 In the Mojaloop OSS Community, we are prefer the following tools and frameworks:
 
@@ -288,62 +288,62 @@ In the Mojaloop OSS Community, we are prefer the following tools and frameworks:
 
 By using these tools and frameworks, we maintain a high level of consistency and maintainability across the codebase, which keeps our developers productive and happy. While we don't mandate that donated codebases use these same tools and frameworks, we would like to stress that adoptions that use different tools could create an undue maintenance burden on the Community.
 
-### Adopting Open Source Contributions into Mojaloop
+## Adopting Open Source Contributions into Mojaloop
 
 This section provides guidelines regarding the adoption of a contribution to the Mojaloop Open Source repositories. Adoption is the process where we as the community work with a contributor to bring a contribution into alignment with our standards and guidelines to be a part of the Mojaloop OSS Codebase.
 
 >*Note:* Code Contributions are evaluated on a **case-by-case** basis. Contributions that don't align to these guidelines will need to go through the incubation phase as described below. Other misalignments to these standards (for example, framework choices) may be added to a roadmap for further improvement and OSS Standardization in the future.
 
-#### Step 0: Prerequisites
+### Step 0: Prerequisites
 
 Before a contribution is to be considered for adoption, it:
 
-1. Should be in-line with the [Level One Project Principles](https://leveloneproject.org/)
-1. Should adhere to the above Style and Design + Implementation Guides
-1. Should contain documentation to get started: the more, the better
+1. Should be in-line with the [Level One Project Principles](https://leveloneproject.org/).
+1. Should adhere to the above Style and Design + Implementation Guides.
+1. Should contain documentation to get started: the more, the better.
 1. Contain tests with a high level of coverage. At a minimum, a contribution should contain unit tests, but a test suite with unit, integration and functional tests is preferred. Refer to the [contributors guide](./tools-and-technologies/automated-testing) for more information.
 
-#### Step 1: Incubation
+### Step 1: Incubation
 
-1. Create a private repo within the Mojaloop GitHub organization for the adopted code
-1. Have a sub-team of the DA take a look to make sure its portable \(to OSS\) - aligns with L1P principles, etc, and ensure design is in line with standards
-1. Check Licensing of the contribution and any new dependencies it requires, and add the standard Mojaloop License with attribution to donor/contributors
-1. Assess the current state of the codebase, including documentation, tests, code quality, and address any shortfalls
-1. Assess Performance impact
+1. Create a private repo within the Mojaloop GitHub organization for the adopted code.
+1. Have a sub-team of the DA take a look to make sure its portable \(to OSS\) - aligns with L1P principles, etc, and ensure design is in line with standards.
+1. Check Licensing of the contribution and any new dependencies it requires, and add the standard Mojaloop License with attribution to donor/contributors.
+1. Assess the current state of the codebase, including documentation, tests, code quality, and address any shortfalls.
+1. Assess Performance impact.
 1. Create action items \(stories\) to update naming, remove/sanitize any items that are not generic
 1. Inspect and discuss any framework and tooling choices. 
-  - If a decision is made to make any changes, add them to the roadmap
+  - If a decision is made to make any changes, add them to the roadmap.
 
-#### Step 2: Public Adoption
+### Step 2: Public Adoption
 
-1. Make the project public on Mojaloop GitHub
-1. Announce on the slack `#announcements` channel
-1. Enable CI/CD Pipelines and publish any relevant artifacts, such as Docker Images or npm modules
+1. Make the project public on Mojaloop GitHub.
+1. Announce on the slack [`#announcements`](https://mojaloop.slack.com/archives/CG3MAJZ5J) channel.
+1. Enable CI/CD Pipelines and publish any relevant artifacts, such as Docker Images or npm modules.
 1. Review and recommend a module or course for the Mojaloop Training Program if needed and relevant for this contribution.
 
-### Versioning
+## Versioning
 
-Review the information on [versioning](versioning.md) for Mojaloop.
+Review the information on [versioning](./versioning.md) for Mojaloop.
 
-### Creating new Features
+## Creating new Features
 
-Process for creating new [features and branches](creating-new-features.md) in Mojaloop.
+Process for creating new [features and branches](./creating-new-features.md) in Mojaloop.
 
-### Pull Request Process
+## Pull Request Process
 
 It's a good idea to ask about major changes on [Slack](https://mojaloop.slack.com). Submit pull requests which include both the change and the reason for the change. Feel free to use GitHub's "Draft Pull Request" feature to open up your changes for comments and review from the community.
 
-Pull requests will be denied if they violate the [Level One Principles](https://leveloneproject.org/wp-content/uploads/2016/03/L1P_Level-One-Principles-and-Perspective.pdf)
+Pull requests will be denied if they violate the [Level One Principles](https://leveloneproject.org/wp-content/uploads/2016/03/L1P_Level-One-Principles-and-Perspective.pdf).
 
-### Code of conduct 
+## Code of conduct 
 
 We use the [Mojaloop Foundation Code of Conduct](https://github.com/mojaloop/mojaloop/blob/master/CODE_OF_CONDUCT.md)
 
-### Licensing
+## Licensing
 
-See [License](https://github.com/mojaloop/mojaloop/blob/master/contribute/License.md) policy
+See [License](https://github.com/mojaloop/mojaloop/blob/master/contribute/License.md) policy.
 
-### FAQs
+## FAQs
 
 __1. What if I want to contribute code, but it doesn't align with the code style and framework/tool recommendations in this guide?__
 
