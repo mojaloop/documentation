@@ -86,8 +86,14 @@ group Gross Settlement Handler Consume (Success)
                     SETTLEMENT_DAO <-- DB: Gross settlement model result
                     SETTLEMENT_SERVICE <-- SETTLEMENT_DAO: Gross settlement model result
                     group Validate settlement model
-                        SETTLEMENT_SERVICE <-> SETTLEMENT_SERVICE: Valid Gross settlement model does not exist
-                        SETTLEMENT_HANDLER <- SETTLEMENT_SERVICE: Return true
+                        SETTLEMENT_SERVICE <-> SETTLEMENT_SERVICE: Valid Gross settlement model with given currency does not exist
+                        SETTLEMENT_SERVICE <-> DB: Get all settlement models
+                        alt Check if NET settlement model with the transfer currency exists
+                            SETTLEMENT_SERVICE <-> SETTLEMENT_SERVICE: Return true
+                        else 
+                            SETTLEMENT_SERVICE <-> SETTLEMENT_SERVICE: filter all settlement models by currencyId === null and granularityType === GROSS
+                            SETTLEMENT_SERVICE <-> SETTLEMENT_SERVICE: Return default GROSS settlement model
+                        end
                     end
                     SETTLEMENT_SERVICE -> SETTLEMENT_DAO: Settle transfer if CGS
                     SETTLEMENT_DAO -> DB: Insert transferParticipant entries
