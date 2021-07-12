@@ -4,24 +4,33 @@ The document is intended for an audience with a stable technical knowledge that 
 
 ## Deployment and Setup
 
-- [Pre-requisites](#1-pre-requisites)
-- [Kubernetes](#3-kubernetes)
-  - [Kubernetes Dashboard](#31-kubernetes-dashboard)
-- [Helm](#4-helm)
-  - [Helm configuration](#41-helm-configuration)
-- [Postman](#6-postman)
-  - [Installing Postman](#61-installing-postman)
-  - [Setup Postman](#62-setup-postman)
+- [Mojaloop Deployment](#mojaloop-deployment)
+  - [Deployment and Setup](#deployment-and-setup)
+    - [1. Pre-requisites](#1-pre-requisites)
+    - [2. Deployment Recommendations](#2-deployment-recommendations)
+    - [3. Kubernetes](#3-kubernetes)
+      - [3.1. Kubernetes Ingress Controller](#31-kubernetes-ingress-controller)
+      - [3.2. Kubernetes Admin Interfaces](#32-kubernetes-admin-interfaces)
+    - [4. Helm](#4-helm)
+      - [4.1. Helm configuration](#41-helm-configuration)
+    - [5. Mojaloop](#5-mojaloop)
+      - [5.1. Mojaloop Helm Deployment](#51-mojaloop-helm-deployment)
+      - [5.2. Verifying Ingress Rules](#52-verifying-ingress-rules)
+      - [5.3. Testing Mojaloop](#53-testing-mojaloop)
+      - [5.4. Testing Mojaloop with Postman](#54-testing-mojaloop-with-postman)
   
 ### 1. Pre-requisites
 
 Versions numbers below are hard requirements, not just recommendations (more recent versions are known not to work).
 
 A list of the pre-requisite tool set required for the deployment of Mojaloop:
-- **Kubernetes** An open-source system for automating deployment, scaling, and management of containerized applications. Find out more about [Kubernetes](https://kubernetes.io),
-   <br>_Recommended Versions:_
-   <br>&nbsp;&nbsp;&nbsp;&nbsp;_**Mojaloop Helm Chart release v11.x** supports **Kubernetes v1.13 - v1.17**, newer versions have not been tested._
-   <br>&nbsp;&nbsp;&nbsp;&nbsp;_**Mojaloop Helm Chart release v10.x** supports **Kubernetes v1.13 - v1.15**, it will fail on Kubernetes v1.16+ onwards due deprecated APIs ([ref: Helm Issue #219](https://github.com/mojaloop/helm/issues/219))._
+
+- **Kubernetes** An open-source system for automating deployment, scaling, and management of containerized applications. Find out more about [Kubernetes](https://kubernetes.io).
+  - Recommended Versions:
+   <br>&nbsp;&nbsp;&nbsp;&nbsp;**Mojaloop Helm Chart release v13.x** supports **Kubernetes v1.13 - v1.20**.
+   <br>&nbsp;&nbsp;&nbsp;&nbsp;**Mojaloop Helm Chart release v12.x** supports **Kubernetes v1.13 - v1.20**.
+   <br>&nbsp;&nbsp;&nbsp;&nbsp;**Mojaloop Helm Chart release v11.x** supports **Kubernetes v1.13 - v1.17**.
+   <br>&nbsp;&nbsp;&nbsp;&nbsp;**Mojaloop Helm Chart release v10.x** supports **Kubernetes v1.13 - v1.15**, it will fail on Kubernetes v1.16+ onwards due deprecated APIs ([ref: Helm Issue #219](https://github.com/mojaloop/helm/issues/219)).
   - kubectl - Kubernetes CLI for Kubernetes Management is required. Find out more about [kubectl](https://kubernetes.io/docs/reference/kubectl/overview/):
     - [Install-kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/),
   - microk8s - MicroK8s installs a barebones upstream Kubernetes for a single node deployment generally used for local development. We recommend this installation on Linux (ubuntu) OS. Find out more about [microk8s](https://microk8s.io/) and [microk8s documents](https://microk8s.io/docs/):
@@ -32,9 +41,10 @@ A list of the pre-requisite tool set required for the deployment of Mojaloop:
 - **Helm** A package manager for Kubernetes. Find out more about [Helm](https://helm.sh),
    <br>_Recommended Versions:_
    <br>&nbsp;&nbsp;&nbsp;&nbsp;_**Helm v3.x** ([ref: Design Auth Issue #52](https://github.com/mojaloop/design-authority/issues/52))._
-- **Postman** Postman is a Google Chrome application for the interacting with HTTP API's. It presents you with a friendly GUI for the construction requests and reading responces.	https://www.getpostman.com/apps. Find out more about [Postman](https://postman.com).
+- **Postman** Postman is a Google Chrome application for the interacting with HTTP API's. It presents you with a friendly GUI for the construction requests and reading responces. <https://www.getpostman.com/apps>. Find out more about [Postman](https://postman.com).
 
 For **local guides** on how to setup the pre-requisites on your laptop or desktop, refer to the appropriate link document below;
+
 - [Local Setup for Mac](local-setup-mac.md)
 - [Local Setup for Linux](local-setup-linux.md)
 - [Local Setup for Windows](local-setup-windows.md)
@@ -45,24 +55,24 @@ This provides environment resource recommendations with a view of the infrastruc
 
 **Resources Requirements:**
 
-* Control Plane (i.e. Master Node)
+- Control Plane (i.e. Master Node)
   
   [https://kubernetes.io/docs/setup/cluster-large/#size-of-master-and-master-components](https://kubernetes.io/docs/setup/cluster-large/#size-of-master-and-master-components)
 
-  * 3x Master Nodes for future node scaling and HA (High Availability)
+  - 3x Master Nodes for future node scaling and HA (High Availability)
 
-* ETCd Plane:
+- ETCd Plane:
 
   [https://etcd.io/docs/v3.3.12/op-guide/hardware](https://etcd.io/docs/v3.3.12/op-guide/hardware)
 
-  * 3x ETCd nodes for HA (High Availability)
+  - 3x ETCd nodes for HA (High Availability)
 
-* Compute Plane (i.e. Worker Node):
+- Compute Plane (i.e. Worker Node):
 
   TBC once load testing has been concluded. However the current general recommended size:
 
-  * 3x Worker nodes, each being:
-    * 4x vCPUs, 16GB of RAM, and 40gb storage
+  - 3x Worker nodes, each being:
+    - 4x vCPUs, 16GB of RAM, and 40gb storage
 
   **Note** that this would also depend on your underlying infrastructure, and it does NOT include requirements for persistent volumes/storage.
 
@@ -76,103 +86,96 @@ If you are new to Kubernetes it is strongly recommended to familiarize yourself 
 
 The following are Kubernetes concepts used within the project. An understanding of these concepts is imperative before attempting the deployment;
 
-* Deployment
-* Pod
-* ReplicaSets
-* Service
-* Ingress
-* StatefulSet
-* DaemonSet
-* Ingress Controller
-* ConfigMap
-* Secret
+- Deployment
+- Pod
+- ReplicaSets
+- Service
+- Ingress
+- StatefulSet
+- DaemonSet
+- Ingress Controller
+- ConfigMap
+- Secret
 
 Insure **kubectl** is installed. A complete set of installation instruction are available [here](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
 
-#### 3.1. Kubernetes Dashboard:
+#### 3.1. Kubernetes Ingress Controller
 
-1. Kubernetes Dashboard roles, services & deployment.
+Install your preferred Ingress Controller for load-balancing and external access.
 
-   Install for Dashboard using Helm (not needed if **MicroK8s** is installed): [kubernetes-dashboard](https://github.com/helm/charts/tree/master/stable/kubernetes-dashboard)
+Refer to the following documentation to install the Nginx-Ingress Controller used for this guide: <https://kubernetes.github.io/ingress-nginx/deploy/#using-helm>.
 
-   **IMPORTANT:** Always verify the current [kubernetes-dashboard](https://github.com/kubernetes/dashboard) yaml file is still correct as used in the below command.
-   ```bash
-   kubectl create -f https://raw.githubusercontent.com/kubernetes/dashboard/v1.10.1/src/deploy/recommended/kubernetes-dashboard.yaml
-   ```
-   
-   If you have installed MicroK8s, **enable the MicroK8s** dashboard;
+> **NOTE: If you are installing Mojaloop v12.x with an Nginx-Ingress controller version newer than v0.22.0, ensure you create a custom [Mojaloop values config](https://github.com/mojaloop/helm/blob/v12.0.0/mojaloop/values.yaml) with the following changes prior to install:**
+>
+> ```YAML
+> ## **LOOK FOR THIS LINE IN mojaloop/values.yaml CONFIG FILE**
+> mojaloop-simulator:
+>   ingress:
+>    ## nginx ingress controller >= v0.22.0 <-- **COMMENT THE FOLLOWING THREE LINES BELOW:**
+>    # annotations: <-- COMMENTED
+>    #  nginx.ingress.kubernetes.io/rewrite-target: '/$2' <-- COMMENTED
+>    # ingressPathRewriteRegex: (/|$)(.*) <-- COMMENTED
+>
+>    ## nginx ingress controller < v0.22.0 <-- **UNCOMMENT THE FOLLOWING THREE LINES BELOW:**
+>    annotations:
+>      nginx.ingress.kubernetes.io/rewrite-target: '/'
+>    ingressPathRewriteRegex: "/"
+> ```
+>
+> **This is NOT necessary if you are installing Mojaloop v13.x or newer.**
+
+List of alternative Ingress Controllers: <https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/>.
+
+#### 3.2. Kubernetes Admin Interfaces
+
+1. Kubernetes Dashboards
+
+   The official Kubernetes Web UI Admin interface.
+
+   Visit the following link for installation instructions (not needed if **MicroK8s** is installed): [Web UI (Dashboard) Installation Instructions](https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/).
+
+   **IMPORTANT:** Ensure (not needed if **MicroK8s** is installed) you configure RBAC roles and create an associated service account, refer to the following example on how to create a sample user for testing purposes only: [Creating sample user](https://github.com/kubernetes/dashboard/blob/master/docs/user/access-control/creating-sample-user.md).
+
+   If you have installed MicroK8s, **enable the MicroK8s** dashboard:
+
    ```bash
    microk8s.enable dashboard
    ```
+
+   Refer to the following link for more information: [Add-on: dashboard](https://microk8s.io/docs/addon-dashboard).
+
    **Remember** to prefix all **kubectl** commands with **microk8s** if you opted not to create an alias.
 
-2. Verify Kubernetes Dashboard. _Windows replace `grep` with `findstr`_;
-   ```bash
-   kubectl get pod --namespace=kube-system |grep dashboard
-   ```
+2. k8sLens
 
-3. Start proxy for local UI in new terminal;
-   ```bash
-   kubectl proxy ui
-   ```
+   A local desktop GUI based kubectl alternative which is easy to install and setup.
 
-4. Open URI in default browser:
-    
-   ```
-   http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/
-   ```
+   Visit the following link for more information: <https://k8slens.dev/>.
 
-   Select **Token**. Generate a token to use there by: _Windows replace `grep` with `findstr`_
-   
-   ```bash
-   kubectl describe secret kubernetes-dashboard --namespace=kube-system
-   ```
-
-   The token to use is shown on the last line of the output of that command;
-   
-   ```bash
-   kubectl -n kube-system describe secrets/kubernetes-dashboard-token-btbwf
-   ```
-
-   The **{kubernetes-dashboard-token-btbwf}** is retrieved from the output in the previous step. For more information on generating the token, follow the **Authentication** link in the window.
-
-![kubernetes-dashboard](./assets/diagrams/deployment/kubernetesDashboard.png)
-
-### 4. Helm 
+### 4. Helm
 
 Please review [Mojaloop Helm Chart](../repositories/helm.md) to understand the relationships between the deployed Mojaloop helm charts.
 
-Refer to the official documentation on how to install the latest version of Helm v3: https://helm.sh/docs/intro/install/
+Refer to the official documentation on how to install the latest version of Helm: <https://helm.sh/docs/intro/install/>.
 
-Refer to the following document if are using Helm v2: [Deployment with (Deprecated) Helm v2](./helm-legacy-deployment.md)
+Refer to the following document if are using Helm v2: [Deployment with (Deprecated) Helm v2](./helm-legacy-deployment.md).
 
 Refer to the [Helm v2 to v3 Migration Guide](./helm-legacy-migration.md) if you wish to migrate an existing Helm v2 deployment to v3.
 
 #### 4.1. Helm configuration
 
 1. Add mojaloop repo to your Helm config:
+
    ```bash
    helm repo add mojaloop   https://mojaloop.io/helm/repo/
    ```
+
    If the repo already exists, substitute 'add' with 'apply' in the above command.
 
-2. Add the additional dependency Helm repositories. This is needed to resolve Helm Chart dependencies required by Mojaloop charts.
-   ```bash
-   helm repo add stable     https://charts.helm.sh/stable
-   helm repo add incubator  https://charts.helm.sh/incubator
-   helm repo add kiwigrid   https://kiwigrid.github.io
-   helm repo add elastic    https://helm.elastic.co
-   helm repo add bitnami    https://charts.bitnami.com/bitnami
-   ```
+2. Update helm repositories:
 
-3. Update helm repositories:
    ```bash
    helm repo update
-   ```
-
-4. Optionally Install nginx-ingress for load balancing & external access:
-   ```bash
-   helm --namespace kube-public install stable/nginx-ingress
    ```
 
 ### 5. Mojaloop
@@ -181,82 +184,155 @@ Refer to the [Helm v2 to v3 Migration Guide](./helm-legacy-migration.md) if you 
 
 1. Install Mojaloop:
 
-   Default installation:
+   1.1. Installing latest version:
+
    ```bash
-   helm --namespace demo install moja mojaloop/mojaloop
+   helm --namespace demo install moja mojaloop/mojaloop --create-namespace 
    ```
 
-   Version specific installation:
+   Or if you require a customized configuration:
+
    ```bash
-   helm --namespace demo install moja mojaloop/mojaloop --version {version}
-   ```
-   
-   List of available versions:
-   ```bash
-   helm search repo -l mojaloop/mojaloop
-   ```
-   
-   Custom configured installation:
-   ```bash
-   helm --namespace demo install moja mojaloop/mojaloop -f {custom-values.yaml}
+   helm --namespace demo install moja mojaloop/mojaloop --create-namespace -f {custom-values.yaml}
    ```
 
-   _Note: Download and customize the [values.yaml](https://github.com/mojaloop/helm/blob/master/mojaloop/values.yaml). Also ensure that you are using the value.yaml from the correct version which can be found via [Helm Releases](https://github.com/mojaloop/helm/releases)._
+   _Note: Download and customize the [values.yaml](https://github.com/mojaloop/helm/blob/master/mojaloop/values.yaml). Also ensure that you are using the value.yaml from the correct version which can be found via [Helm Releases](https://github.com/mojaloop/helm/releases). You can confirm the installed version by using the following command: `helm --namespace demo list`. Under the **CHART** column, you should see something similar to 'mojaloop-**{version}**' with **{version}** being the deployed version._
 
-#### 5.2. Verifying Mojaloop Deployment
+   ```bash
+    $ helm -n demo list
+    NAME            NAMESPACE       REVISION        UPDATED                                 STATUS          CHART
+    moja            demo            1               2021-06-11 15:06:04.533094 +0200 SAST   deployed        mojaloop-{version}
+   ```
+
+   _Note: The `--create-namespace` flag is only necessary if the `demo` namespace does not exist. You can alternatively create it using the following command: `kubectl create namespace demo`._
+
+   1.2. Version specific installation:
+
+   ```bash
+   helm --namespace demo install moja mojaloop/mojaloop --create-namespace --version {version}
+   ```
+
+   1.3. List of Mojaloop releases:
+
+   ```bash
+    $ helm search repo mojaloop/mojaloop -l
+    NAME                            CHART VERSION   APP VERSION                 DESCRIPTION                                      
+    mojaloop/mojaloop               {version}       {list of app-versions}      Mojaloop Helm chart for Kubernetes
+    ...                             ...             ...                         ...
+   ```
+
+#### 5.2. Verifying Ingress Rules
 
 1. Update your /etc/hosts for local deployment:
 
    _Note: This is only applicable for local deployments, and is not needed if custom DNS or ingress rules are configured in a customized [values.yaml](https://github.com/mojaloop/helm/blob/master/mojaloop/values.yaml)_.
-   
+
    ```bash
    vi /etc/hosts
    ```
+
    _Windows the file can be updated in notepad - need to open with Administrative privileges. File location `C:\Windows\System32\drivers\etc\hosts`_.
-   
+
    Include the following lines (_or alternatively combine them_) to the host config.
 
    The below required config is applicable to Helm release >= versions 6.2.2 for Mojaloop API Services;
+
    ```text
-   127.0.0.1       central-ledger.local central-settlement.local ml-api-adapter.local account-lookup-service.local account-lookup-service-admin.local quoting-service.local moja-simulator.local central-ledger central-settlement ml-api-adapter account-lookup-service account-lookup-service-admin quoting-service simulator host.docker.internal transaction-request-service.local
+    # Mojaloop Demo
+    127.0.0.1   ml-api-adapter.local central-ledger.local account-lookup-service.local account-lookup-service-admin.local quoting-service.local central-settlement-service.local transaction-request-service.local central-settlement.local bulk-api-adapter.local moja-simulator.local sim-payerfsp.local sim-payeefsp.local sim-testfsp1.local sim-testfsp2.local sim-testfsp3.local sim-testfsp4.local mojaloop-simulators.local finance-portal.local operator-settlement.local settlement-management.local testing-toolkit.local testing-toolkit-specapi.local
    ```
-      
-   The below optional config is applicable to Helm release >= versions 6.2.2 for Internal components, please include the following in the host configuration.
-   ```text
-   127.0.0.1       forensic-logging-sidecar.local central-kms.local central-event-processor.local email-notifier.local
-   ```
-      
-   For Helm legacy releases prior to versions 6.2.2, please include the following in the host configuration.
-   ```text
-   127.0.0.1       interop-switch.local central-end-user-registry.local central-directory.local central-hub.local
-   ```
-   
+
 2. Test system health in your browser after installation. This will only work if you have an active helm chart deployment running.
-   
+
    _Note: The examples below are only applicable to a local deployment. The entries should match the DNS values or ingress rules as configured in the [values.yaml](https://github.com/mojaloop/helm/blob/master/mojaloop/values.yaml) or otherwise matching any custom ingress rules configured_.
-   
-   **ml-api-adapter** health test:
+
+   **ml-api-adapter** health test: <http://ml-api-adapter.local/health>
+
+   **central-ledger** health test: <http://central-ledger.local/health>
+
+#### 5.3. Testing Mojaloop
+
+The [Mojaloop Testing Toolkit](../../documentation/mojaloop-technical-overview/ml-testing-toolkit/README.md) (**TTK**) is used for testing deployments, and has been integrated into Helm utilizing its CLI to easily test any Mojaloop deployment.
+
+1. Validating Mojaloop using Helm
+
+   ```bash
+   helm -n demo test moja
    ```
-   http://ml-api-adapter.local/health
+
+   Or with logs printed to console
+
+   ```bash
+   helm -n demo test moja --logs
    ```
 
-   **central-ledger** health test:
+   This will automatically execute the following [test cases](https://github.com/mojaloop/testing-toolkit-test-cases) using the [Mojaloop Testing Toolkit](../../documentation/mojaloop-technical-overview/ml-testing-toolkit/README.md) (**TTK**) CLI:
+
+   - [TTK Hub setup and Simulator Provisioning Collection](https://github.com/mojaloop/testing-toolkit-test-cases/tree/master/collections/hub/provisioning).
+
+   Use the following command to view the provisioning Collection logs:
+
+   ```bash
+   kubectl -n demo logs pod/moja-ml-ttk-test-setup
    ```
-   http://central-ledger.local/health
-   ``` 
 
-### 6. Postman
+   - [TTK Golden Path Test Collection](https://github.com/mojaloop/testing-toolkit-test-cases/tree/master/collections/hub/golden_path).
 
-Postman is used to send requests and receive responses.
+   Use the following command to view the Golden Path Collection logs:
 
-#### 6.1. Installing Postman
+   ```bash
+    kubectl -n demo logs pod/moja-ml-ttk-test-validation
+   ```
 
-Please, follow these instructions: [Get Postman](https://www.getpostman.com/postman) and install the Postman application.
+   Example of the finally summary being displayed from the Golden Path test collection log output:
 
-#### 6.2. Setup Postman
+   ```text
+    Test Suite:GP Tests
+    Environment:Development
+    ┌───────────────────────────────────────────────────┐
+    │                      SUMMARY                      │
+    ├───────────────────┬───────────────────────────────┤
+    │ Total assertions  │ 1557                          │
+    ├───────────────────┼───────────────────────────────┤
+    │ Passed assertions │ 1557                          │
+    ├───────────────────┼───────────────────────────────┤
+    │ Failed assertions │ 0                             │
+    ├───────────────────┼───────────────────────────────┤
+    │ Total requests    │ 297                           │
+    ├───────────────────┼───────────────────────────────┤
+    │ Total test cases  │ 61                            │
+    ├───────────────────┼───────────────────────────────┤
+    │ Passed percentage │ 100.00%                       │
+    ├───────────────────┼───────────────────────────────┤
+    │ Started time      │ Fri, 11 Jun 2021 15:45:53 GMT │
+    ├───────────────────┼───────────────────────────────┤
+    │ Completed time    │ Fri, 11 Jun 2021 15:47:25 GMT │
+    ├───────────────────┼───────────────────────────────┤
+    │ Runtime duration  │ 91934 ms                      │
+    └───────────────────┴───────────────────────────────┘
+    TTK-Assertion-Report-multi-2021-06-11T15:47:25.656Z.html was generated
+   ```
 
-Grab the latest collections & environment files from [Mojaloop Postman Github repo](https://github.com/mojaloop/postman).
- 
-After an initial setup or new deployment, the [OSS New Deployment FSP Setup section](../contributors-guide/tools-and-technologies/automated-testing.md) needs to be completed. This will seed the Database with the required enumerations and static data to enable the sucessful execution of any manual or automation tests by the other collections.
+2. Accessing the Mojaloop Testing Toolkit UI
 
-Refer to the [QA and Regression Testing in Mojaloop](../contributors-guide/tools-and-technologies/automated-testing.md) documentation for more complete information to complement your testing requirements. 
+   Open the following link in a browser: <http://testing-toolkit.local>.
+
+   One is able to manually load and execute the Testing Toolkit Collections using the UI which allows one to visually inspect the requests, responses and assertions in more detail. This is a great way to learn more about Mojaloop.
+
+   Refer to the [Mojaloop Testing Toolkit Documentation](../../documentation/mojaloop-technical-overview/ml-testing-toolkit/README.md) for more information and guides.
+
+#### 5.4. Testing Mojaloop with Postman
+
+[Postman](https://www.postman.com/downloads) can be used as an alternative to the [Mojaloop Testing Toolkit](../../documentation/mojaloop-technical-overview/ml-testing-toolkit/README.md). Refer to the [Automated Testing Guide](../contributors-guide/tools-and-technologies/automated-testing.md) for more information.
+
+The available [Mojaloop Postman Collections](https://github.com/mojaloop/postman) are similar to the [Mojaloop Testing Toolkit's Test Cases](https://github.com/mojaloop/testing-toolkit-test-cases)'s as follows:
+
+| Postman Collection | Mojaloop Testing Toolkit | Description |
+|---------|----------|---------|
+| [MojaloopHub_Setup Postman Collection](https://github.com/mojaloop/postman/blob/master/MojaloopHub_Setup.postman_collection.json) and [MojaloopSims_Onboarding](https://github.com/mojaloop/postman/blob/master/MojaloopSims_Onboarding.postman_collection.json) | [TTK Hub setup and Simulator Provisioning Collection](https://github.com/mojaloop/testing-toolkit-test-cases/tree/master/collections/hub/provisioning) | Hub Setup and Simulator Provisioning |
+| [Golden_Path_Mojaloop](https://github.com/mojaloop/postman/blob/master/Golden_Path_Mojaloop.postman_collection.json) | [TTK Golden Path Test Collection](https://github.com/mojaloop/testing-toolkit-test-cases/tree/master/collections/hub/golden_path) | Golden Path Tests |
+
+Pre-requisites:
+
+- The following postman environment file should be imported or customized as required when running the above listed Postman collections: [Mojaloop-Local-MojaSims.postman_environment.json](https://github.com/mojaloop/postman/blob/master/environments/Mojaloop-Local-MojaSims.postman_environment.json).
+- Ensure you download the **latest patch release version** from the [Mojaloop Postman Git Repository Releases](https://github.com/mojaloop/postman/releases). For example if you install Mojaloop v12.0.**X**, ensure that you have the latest Postman collection patch version v12.0.**Y**.
