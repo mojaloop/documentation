@@ -85,14 +85,14 @@ group Prepare Position Handler Consume
             **reservedPosition** = participantPosition.{original}reservedValue
             **effectivePosition** = currentPosition + reservedPosition
             **heldPosition** = effectivePosition + sumTransfersInBatch
-            **availablePosition** = participantLimit(NetDebitCap) - effectivePosition
+            **availablePosition** = //if settlement model delay is IMMEDIATE then:// settlementBalance + participantLimit(NetDebitCap) - effectivePosition, //otherwise:// participantLimit(NetDebitCap) - effectivePosition
             **sumReserved** = SUM of transfers that have met rule criteria and processed
         end note
         note over POS_MGMT,DB
             Going to reserve the sum of the valid transfers in the batch against the Participants Positon in the Currency of this batch
             and calculate the available position for the Participant to use
         end note
-        POS_MGMT -> DB: Select effectivePosition FOR UPDATE from DB for Payer 
+        POS_MGMT -> DB: Select effectivePosition FOR UPDATE from DB for Payer
         activate DB
         hnote over DB #lightyellow
             participantPosition
@@ -108,8 +108,8 @@ group Prepare Position Handler Consume
         end note
         deactivate DB
         ' DB Trans: This is where 1st DB Transaction would end in 2 DB transacation future model for horizontal scaling
-        
-        
+
+
         POS_MGMT -> DB: Request position limits for Payer Participant
         activate DB
         hnote over DB #lightyellow
@@ -120,14 +120,14 @@ group Prepare Position Handler Consume
         end note
         DB --> POS_MGMT: Return position limits
         deactivate DB
-        POS_MGMT <-> POS_MGMT: **availablePosition** = participantLimit(netDebitCap) - effectivePosition (same as = netDebitCap - currentPosition - reservedPosition)
+        POS_MGMT <-> POS_MGMT: **availablePosition** = //if settlement model delay is IMMEDIATE then://\n settlementBalance + participantLimit(NetDebitCap) - effectivePosition\n //otherwise://\n participantLimit(NetDebitCap) - effectivePosition\n(same as = (settlementBalance?) + netDebitCap - currentPosition - reservedPosition)
         note over POS_MGMT,DB
             For each transfer in the batch, validate the availablility of position to meet the transfer amount
             this will be as per the position algorithm documented below
         end note
         POS_MGMT <-> POS_MGMT: Validate availablePosition for each tranfser (see algorithm below)\n<color #FF0000><b>Error code:</b> 4001</color>
         note right of POS_MGMT #lightgray
-            01: sumReserved = 0 // Record the sum of the transfers we allow to progress to RESERVED 
+            01: sumReserved = 0 // Record the sum of the transfers we allow to progress to RESERVED
             02: sumProcessed =0 // Record the sum of the transfers already processed in this batch
             03: processedTransfers = {} // The list of processed transfers - so that we can store the additional information around the decision. Most importantly the "running" position
             04: foreach transfer in reservedTransfers
@@ -151,7 +151,7 @@ group Prepare Position Handler Consume
             Do a bulk insert of the trasnferStateChanges associated with processing, using the result to complete the participantPositionChange and bulk insert of these to persist the running position
         end note
         POS_MGMT->POS_MGMT: Assess any limit thresholds on the final position\nadding to alarm list if triggered
-        
+
         ' DB Trans: This is where 2nd DB Transaction would start in 2 DB transacation future model for horizontal scaling
         POS_MGMT->DB: Persist latest position **value** and **reservedValue** to DB for Payer
             hnote over DB #lightyellow
@@ -167,15 +167,15 @@ group Prepare Position Handler Consume
                 batch INSERT **transferStateChange**
                 select for update from transfer table where transferId in ([transferBatch.transferId,...])
                 build list of transferStateChanges from transferBatch
-                
+
         end note
         activate DB
         deactivate DB
-        
+
         POS_MGMT->POS_MGMT: Populate batchParticipantPositionChange from the resultant transferStateChange and the earlier processedTransfer list
 
         note right of POS_MGMT #lightgray
-            Effectively:  
+            Effectively:
                 SET transferStateChangeId = processedTransfer.transferStateChangeId,
                 participantPositionId = preparedTransfer.participantPositionId,
                 value = preparedTransfer.positionValue,
@@ -183,7 +183,7 @@ group Prepare Position Handler Consume
         end note
         POS_MGMT -> DB: Bulk persist the participant position change for all processedTransfers
         hnote over DB #lightyellow
-                batch INSERT **participantPositionChange**            
+                batch INSERT **participantPositionChange**
         end note
         activate DB
         deactivate DB

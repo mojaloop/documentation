@@ -60,6 +60,9 @@ end box
 ' start flow
 activate POS_HANDLER
 group Position Handler Consume
+    note over TOPIC_TRANSFER_POSITION #LightSalmon
+        This flow has not been implemented
+    end note
     TOPIC_TRANSFER_POSITION <- POS_HANDLER: Consume Position event batch of messages for Payer
     activate TOPIC_TRANSFER_POSITION
     deactivate TOPIC_TRANSFER_POSITION

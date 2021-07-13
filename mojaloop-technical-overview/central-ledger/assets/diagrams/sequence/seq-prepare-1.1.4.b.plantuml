@@ -65,6 +65,10 @@ end box
 ' start flow
 activate NOTIFY_HANDLER
 group Send notification to Participant
+    note over DFSP #LightSalmon
+        This flow has not been implemented
+    end note
+
     TOPIC_NOTIFICATIONS <- NOTIFY_HANDLER: <color #FF0000>**Consume Notifications event batch of messages for Participant**</color>
     activate TOPIC_NOTIFICATIONS
     deactivate TOPIC_NOTIFICATIONS

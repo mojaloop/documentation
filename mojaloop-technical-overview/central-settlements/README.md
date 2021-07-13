@@ -18,3 +18,7 @@ Record Funds In and Record Funds Out operations are used respectively to deposit
 ## 3. API Specification
 
 Refer to **Central Settlements API** in the [API Specifications](../../api/README.md#central-settlements-api) section.
+
+## 4. Rules Engine
+
+The rules engine is separate handler within the Central-Settlement handler, that can be deployed if needed. Rules format and way of operation can be found on [Rules Handler . Interchange fees example. File format.](./settlement-process/rules-handler-consume.md)
