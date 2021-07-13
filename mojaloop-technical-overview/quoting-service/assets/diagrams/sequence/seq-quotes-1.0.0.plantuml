@@ -9,7 +9,9 @@ note over "Payer DFSP", Switch: Payer DFSP requests quote from Payee DFSP
 "Payer DFSP" -\ Switch: POST /quotes
 Switch --/ "Payer DFSP": 202 Accepted
 Switch -> Switch: Validate Quote Request
+
 alt quote is valid
+    
     Switch -> Switch: Persist Quote Data
     note over Switch, "Payee DFSP": Switch forwards quote request to Payee DFSP\n<Payer based Rules> 
     Switch -\ "Payee DFSP": POST /quotes
@@ -20,7 +22,7 @@ alt quote is valid
     
         note over "Payee DFSP", Switch: Payee DFSP responds to quote request
         "Payee DFSP" -\ Switch: PUT /quotes/{ID}
-        Switch --/ "Payee DFSP": 202 Accepted
+        Switch --/ "Payee DFSP": 200 Ok
         
         Switch -> Switch: Validate Quote Response
         
@@ -31,7 +33,7 @@ alt quote is valid
             note over Switch, "Payer DFSP": Switch forwards quote response to Payer DFSP\n<Payee \ whole request Rule>
             
             Switch -\ "Payer DFSP": PUT /quotes/{ID}
-            "Payer DFSP" --/ Switch: 202 Accepted
+            "Payer DFSP" --/ Switch: 200 Ok
             
             note over "Payer DFSP" #3498db: Payer DFSP continues\nwith transfer if quote\nis acceptable...
         else response invalid
@@ -39,7 +41,7 @@ alt quote is valid
             note over Switch, "Payee DFSP": Switch returns error to Payee DFSP
         
             Switch -\ "Payee DFSP": PUT /quotes/{ID}/error
-            "Payee DFSP" --/ Switch : 202 Accepted
+            "Payee DFSP" --/ Switch : 200 Ok
             
             note over Switch, "Payee DFSP" #ec7063: Note that under this\nscenario the Payer DFSP\nmay not receive a response
         
@@ -48,19 +50,19 @@ alt quote is valid
     
         note over "Payee DFSP", Switch: Payee DFSP returns error to Switch
     
-        "Payee DFSP" -\ Switch: POST quotes/{ID}/error
-        Switch --/ "Payee DFSP": 202 Accepted
+        "Payee DFSP" -\ Switch: PUT quotes/{ID}/error
+        Switch --/ "Payee DFSP": 200 OK
         Switch -> Switch: Persist error data
         
         note over "Payer DFSP", Switch: Switch returns error to Payer DFSP
         
-        Switch -\ "Payer DFSP": POST quotes/{ID}/error
-        "Payer DFSP" --/ Switch: 202 Accepted
+        Switch -\ "Payer DFSP": PUT quotes/{ID}/error
+        "Payer DFSP" --/ Switch: 200 OK
     
     end
 else quote invalid
     note over "Payer DFSP", Switch: Switch returns error to Payer DFSP
-    Switch -\ "Payer DFSP": POST quotes/{ID}/error
-    "Payer DFSP" --/ Switch: 202 Accepted
+    Switch -\ "Payer DFSP": PUT quotes/{ID}/error
+    "Payer DFSP" --/ Switch: 200 OK
 end
 @enduml

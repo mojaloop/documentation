@@ -3,13 +3,15 @@
 ## How do I contribute?
 
 * Review the [Mojaloop Deployment](../deployment-guide/) Guide and the [Onboarding Guide](https://github.com/mojaloop/mojaloop/blob/master/onboarding.md)
+* Browse through the [Repository Overview](../repositories/) to understand how the Mojaloop code is managed across multiple Github Repositories
 * Get familiar with our [Standards](standards/) on contributing to this project
-* View the project board and work on your [good first issue](https://github.com/mojaloop/project/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22)
+* Go through the [New Contributor Checklist](./new-contributor-checklist.md), and browse through the project board and work on your [good first issue](https://github.com/mojaloop/project/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22)
 * Review the [Roadmap](../mojaloop-roadmap.md) and contribute to future opportunities
+* Familiarize yourself with our Community [Code of Conduct](../code-of-conduct.md)
 
 ## What work is needed?
 
-Work is tracked as issues in GitHub. You'll see issues there that are open and marked as bugs, stories, or epics. An epic is larger work that contains multiple stories. Start with any stories that are marked with "[good first issue](https://github.com/mojaloop/project/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22)". In addition, anything that is in the backlog and not assigned to someone are things we could use help with. Stories that have owners are in someone's backlog already, though you can always ask about them in the issue or on Slack.
+Work is tracked as issues in the [mojaloop/project](https://github.com/mojaloop/project) repository GitHub. You'll see issues there that are open and marked as bugs, stories, or epics. An epic is larger work that contains multiple stories. Start with any stories that are marked with "[good first issue](https://github.com/mojaloop/project/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22)". In addition, anything that is in the backlog and not assigned to someone are things we could use help with. Stories that have owners are in someone's backlog already, though you can always ask about them in the issue or on Slack.
 
 There's a [roadmap](../mojaloop-roadmap.md) that shows larger work that people could do or are working on. It has some main initiatives and epics and the order, but lacks dates as this work is community driven. Work is broken down from there into issues in GitHub.
 

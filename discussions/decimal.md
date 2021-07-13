@@ -1,8 +1,8 @@
-# Moajoop Decimal Type; Based on XML Schema Decimal Type
+# Mojaloop Decimal Type; Based on XML Schema Decimal Type
 
 ## Decimal value type
 
- Definition: decimal represents a subset of the real numbers, which can be represented by decimal numerals. The value space of decimal is the set of numbers that can be obtained by multiplying an integer by a non-positive power of ten, i.e., expressible as i × 10-n where i and n are integers and n ≥ 0. Precision is not reflected in this value space; the number 2.0 is not distinct from the number 2.00. The order relation on decimal is the order relation on real numbers, restricted to this subset.
+ Definition: decimal represents a subset of the real numbers, which can be represented by decimal numerals. The value space of decimal is the set of numbers that can be obtained by multiplying an integer by a non-positive power of ten, i.e., expressible as _i_ × 10<sup>-n</sup> where _i_ and _n_ are integers and _n_ ≥ 0. Precision is not reflected in this value space; the number 2.0 is not distinct from the number 2.00. The order relation on decimal is the order relation on real numbers, restricted to this subset.
  Req: All Level One processors must support decimal numbers with a minimum of 18 decimal digits. However, Level One processors may conform to a scheme-defined limit on the maximum number of decimal digits they are prepared to support, which must be 18 or more digits, in which case that scheme-defined maximum number must be clearly documented.
 
 ## Lexical representation
@@ -23,15 +23,15 @@ decimal has a lexical representation consisting of a finite-length sequence of d
 
  Decimal Lexical Validator (what our message receivers accept):
 
-^[-+]?(([0-9]+[.]?[0-9]*)|([.]?[0-9]+))$
+```^[-+]?(([0-9]+[.]?[0-9]*)|([.]?[0-9]+))$```
 
 Decimal Canonical Validator (the form we store and compare; this pattern could be used to assert canonical form in generated messages):
 
-^([0]|([-]?[1-9][0-9]*))[.]([0]|([0-9]*[1-9]))$
+```^([0]|([-]?[1-9][0-9]*))[.]([0]|([0-9]*[1-9]))$```
 
 ## Translating Between External and Internal Forms
 
- When converting from lexical or canonical form to a binary internal representation, the value space of the internal representation must be large enough to hold the scheme-specific range of decimal values, with a significand defined as the signed integer range –(10m–1)..(10m–1), and a non-positive integer exponent in the range –m..0, where m is the maximum number of decimal digits, at least 18, and as defined by the specific Level One scheme.
+ When converting from lexical or canonical form to a binary internal representation, the value space of the internal representation must be large enough to hold the scheme-specific range of decimal values, with a significand defined as the signed integer range –10<sup>_m_–1</sup>..10<sup>_m_–1</sup>, and a non-positive integer exponent in the range –_m_..0, where _m_ is the maximum number of decimal digits, at least 18, and as defined by the specific Level One scheme.
 
 An implementation must not translate between decimal external representations and any floating-point binary internal representation. And all calculations on internal representations of decimal values must produce results as if they were performed in decimal long hand on the external representation.
 

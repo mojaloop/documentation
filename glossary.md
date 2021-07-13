@@ -6,3 +6,7 @@
 | FSP | Financial Service Provider |  |
 | K8s | Short name for [Kubernetes](https://kubernetes.io/) | Read more here [https://kubernetes.io](https://kubernetes.io) |
 | ALS | [Account-Lookup Service](mojaloop-technical-overview/account-lookup-service/README.md) | Refer to [Documentation](mojaloop-technical-overview/account-lookup-service/README.md) |
+| CS | Central Services |  |
+| ALS | Account Lookup Services |  |
+| QS | Quoting Service |  |
+| SIM | Simulator |  |
