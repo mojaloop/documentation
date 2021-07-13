@@ -221,11 +221,23 @@ workflows:
           context: org-global
           filters:
             tags:
-              ignore: /.*/
+              only: /.*/
             branches:
               ignore:
-                - master
-      - setup:
+                - /feature.*/
+                - /bugfix.*/
+                - gh-pages
+      - test-svg:
+          context: org-global
+          requires:
+            - setup
+          filters:
+            tags:
+              only: /.*/
+            branches:
+              ignore:
+                - /feature*/
+                - /bugfix*/
       - build:
           context: org-global
           requires:
@@ -233,6 +245,11 @@ workflows:
           filters:
             tags:
               only: /.*/
+            branches:
+              ignore:
+                - /feature.*/
+                - /bugfix.*/
+                - gh-pages
       - deploy:
           context: org-global
           requires:
