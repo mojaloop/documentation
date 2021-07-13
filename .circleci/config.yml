@@ -217,6 +217,8 @@ workflows:
     jobs:
       - pr-tools/pr-title-check:
           context: org-global
+      - setup:
+          context: org-global
           filters:
             tags:
               ignore: /.*/
@@ -224,17 +226,6 @@ workflows:
               ignore:
                 - master
       - setup:
-          context: org-global
-          filters:
-            tags:
-              only: /.*/
-      - test-svg:
-          context: org-global
-          requires:
-            - setup
-          filters:
-            tags:
-              only: /.*/
       - build:
           context: org-global
           requires:

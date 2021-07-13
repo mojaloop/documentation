@@ -24,7 +24,7 @@ docker run -d --rm \
 
 for i in $(git diff --staged --name-only `find ${DIR}/.. -name '*.p*uml'`); do 
   echo "rendering .puml -> .svg for diagram diagram: $i"
-  ${DIR}/_render_svg.js $i
+  ${DIR}/_render_svg.js $1
 done
 
 docker stop puml-local
