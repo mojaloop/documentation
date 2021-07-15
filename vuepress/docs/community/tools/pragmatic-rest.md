@@ -6,7 +6,7 @@ With the emergence of API strategy as a scaling tool for Internet service busine
 
 ### The Richardson Maturity Model
 
-Martin Fowler has referenced1 a structured model of RESTful adoption developed by Leonard Richardson and [explained](http://www.crummy.com/writing/speaking/2008-QCon/act3.html) at a QCon talk. Fowler refers to this as the Richardson Maturity Model of RESTful design.
+Martin Fowler has referenced a structured model of RESTful adoption developed by Leonard Richardson and [explained](http://www.crummy.com/writing/speaking/2008-QCon/act3.html) at a QCon talk. Fowler refers to this as the Richardson Maturity Model of RESTful design.
 
 <!-- ![](./assets/diagrams/rest/glory-of-rest.png) -->
 

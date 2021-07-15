@@ -16,7 +16,7 @@ Mojaloop has set forward several standards to ensure that documentation througho
 
 ### Documentation Style Guide
 
-All new documentation should confirm to the documentation and styles as discussed [here](documentation-style-guide.md).
+All new documentation should confirm to the documentation and styles as discussed [here](style-guide.md).
 
 ### Code Style Guide
 
