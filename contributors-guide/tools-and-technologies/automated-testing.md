@@ -31,7 +31,9 @@ Contents:
 
  When the code has passed all of the above and is deployed as part of the CI/CD processes implemented by our workflow, the new component(s) are accepted onto the various hosts, cloud-based or on-premise implementations. These hosts ranges from development platforms through to production environments.
 
-### Postman and Newman Testing
+### The section below is deprecated. Mojaloop Releases now use test collections that run on the Mojaloop Testing Toolkit (TTK). Please use the readme page on the https://github.com/mojaloop/testing-toolkit-test-cases repository until this document is properly updated
+
+### [DEPRECATED] Postman and Newman Testing
  Parallel to the deployment process is the upkeep and maintenance of the [Postman](https://github.com/mojaloop/postman.git "Postman") Collection testing Framework. When a new release is done, as part of the workflow, Release Notes are published listing all of the new and/or enhanced functionality implemented as part of the release. These notes are used by the QA team to extend and enhance the existing Postman Collections where tests are written behind the request/response scripts to test both positive as well as negative scenarios agains the intended behaviour. These tests are then run in the following manner:
  + Manually to determine if the tests cover all aspects and angles of the functionality, positive to assert intended behaviour and negative tests to determine if the correct alternate flows work as intended when something unexpected goes wrong
  + Scheduled - as part of the Regression regime, to do exactly the same as the manual intent, but fully automated (with the *Newman Package*) with reports and logs produced to highlight any unintended behaviour and to also warn where known behaviour changed from a previous run.
