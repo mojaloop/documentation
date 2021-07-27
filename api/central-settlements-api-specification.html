@@ -558,7 +558,20 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.6.1.1" data-path="../mojaloop-technical-overview/overview/components-PI12.html">
+        <li class="chapter " data-level="1.6.1.1" data-path="../mojaloop-technical-overview/overview/components-PI14.html">
+            
+                <a href="../mojaloop-technical-overview/overview/components-PI14.html">
+            
+                    
+                    Current Architecture - PI14
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.1.2" data-path="../mojaloop-technical-overview/overview/components-PI12.html">
             
                 <a href="../mojaloop-technical-overview/overview/components-PI12.html">
             
@@ -571,7 +584,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.1.2" data-path="../mojaloop-technical-overview/overview/components-PI11.html">
+        <li class="chapter " data-level="1.6.1.3" data-path="../mojaloop-technical-overview/overview/components-PI11.html">
             
                 <a href="../mojaloop-technical-overview/overview/components-PI11.html">
             
@@ -584,7 +597,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.1.3" data-path="../mojaloop-technical-overview/overview/components-PI8.html">
+        <li class="chapter " data-level="1.6.1.4" data-path="../mojaloop-technical-overview/overview/components-PI8.html">
             
                 <a href="../mojaloop-technical-overview/overview/components-PI8.html">
             
@@ -597,7 +610,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.1.4" data-path="../mojaloop-technical-overview/overview/components-PI7.html">
+        <li class="chapter " data-level="1.6.1.5" data-path="../mojaloop-technical-overview/overview/components-PI7.html">
             
                 <a href="../mojaloop-technical-overview/overview/components-PI7.html">
             
@@ -610,7 +623,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.1.5" data-path="../mojaloop-technical-overview/overview/components-PI6.html">
+        <li class="chapter " data-level="1.6.1.6" data-path="../mojaloop-technical-overview/overview/components-PI6.html">
             
                 <a href="../mojaloop-technical-overview/overview/components-PI6.html">
             
@@ -623,7 +636,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.1.6" data-path="../mojaloop-technical-overview/overview/components-PI5.html">
+        <li class="chapter " data-level="1.6.1.7" data-path="../mojaloop-technical-overview/overview/components-PI5.html">
             
                 <a href="../mojaloop-technical-overview/overview/components-PI5.html">
             
@@ -636,7 +649,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.1.7" data-path="../mojaloop-technical-overview/overview/components-PI3.html">
+        <li class="chapter " data-level="1.6.1.8" data-path="../mojaloop-technical-overview/overview/components-PI3.html">
             
                 <a href="../mojaloop-technical-overview/overview/components-PI3.html">
             
@@ -2760,6 +2773,24 @@
                     </tr>
                 </tbody>
             </table>
+            <h3 id="tag-updateSettlementBySettlementParticipant" class="swagger-summary-tag">Tag: updateSettlementBySettlementParticipant</h3>
+            
+        
+            <table class="table table-bordered table-condensed swagger--summary">
+                <thead>
+                <tr>
+                    <th>Operation</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><a href="#operation--settlements--sid--participants--pid--put">PUT /settlements/{sid}/participants/{pid}</a></td>
+                        <td><p>updateSettlementBySettlementParticipant</p>
+        </td>
+                    </tr>
+                </tbody>
+            </table>
             <h3 id="tag-getSettlementBySettlementParticipantAccount" class="swagger-summary-tag">Tag: getSettlementBySettlementParticipantAccount</h3>
             
         
@@ -2789,6 +2820,74 @@
                 </tr>
                 </thead>
                 <tbody>
+                    <tr>
+                        <td><a href="#operation--settlements--sid--participants--pid--accounts--aid--put">PUT /settlements/{sid}/participants/{pid}/accounts/{aid}</a></td>
+                        <td><p>updateSettlementBySettlementParticipantAccount</p>
+        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <h3 id="tag-sampled" class="swagger-summary-tag">Tag: sampled</h3>
+            
+        
+            <table class="table table-bordered table-condensed swagger--summary">
+                <thead>
+                <tr>
+                    <th>Operation</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><a href="#operation--settlementWindows--id--get">GET /settlementWindows/{id}</a></td>
+                        <td><p>getSettlementWindowById</p>
+        </td>
+                    </tr>
+                    <tr>
+                        <td><a href="#operation--settlementWindows--id--post">POST /settlementWindows/{id}</a></td>
+                        <td><p>closeSettlementWindow</p>
+        </td>
+                    </tr>
+                    <tr>
+                        <td><a href="#operation--settlementWindows-get">GET /settlementWindows</a></td>
+                        <td><p>getSettlementWindowsByParams</p>
+        </td>
+                    </tr>
+                    <tr>
+                        <td><a href="#operation--settlements-get">GET /settlements</a></td>
+                        <td><p>getSettlementsByParams</p>
+        </td>
+                    </tr>
+                    <tr>
+                        <td><a href="#operation--settlements-post">POST /settlements</a></td>
+                        <td><p>createSettlement</p>
+        </td>
+                    </tr>
+                    <tr>
+                        <td><a href="#operation--settlements--id--get">GET /settlements/{id}</a></td>
+                        <td><p>getSettlementById</p>
+        </td>
+                    </tr>
+                    <tr>
+                        <td><a href="#operation--settlements--id--put">PUT /settlements/{id}</a></td>
+                        <td><p>updateSettlementById</p>
+        </td>
+                    </tr>
+                    <tr>
+                        <td><a href="#operation--settlements--sid--participants--pid--get">GET /settlements/{sid}/participants/{pid}</a></td>
+                        <td><p>getSettlementBySettlementParticipant</p>
+        </td>
+                    </tr>
+                    <tr>
+                        <td><a href="#operation--settlements--sid--participants--pid--put">PUT /settlements/{sid}/participants/{pid}</a></td>
+                        <td><p>updateSettlementBySettlementParticipant</p>
+        </td>
+                    </tr>
+                    <tr>
+                        <td><a href="#operation--settlements--sid--participants--pid--accounts--aid--get">GET /settlements/{sid}/participants/{pid}/accounts/{aid}</a></td>
+                        <td><p>getSettlementBySettlementParticipantAccount</p>
+        </td>
+                    </tr>
                     <tr>
                         <td><a href="#operation--settlements--sid--participants--pid--accounts--aid--put">PUT /settlements/{sid}/participants/{pid}/accounts/{aid}</a></td>
                         <td><p>updateSettlementBySettlementParticipantAccount</p>
@@ -2922,24 +3021,6 @@
                     </tr>
                 </tbody>
             </table>
-            <h3 id="tag-updateSettlementBySettlementParticipant" class="swagger-summary-tag">Tag: updateSettlementBySettlementParticipant</h3>
-            
-        
-            <table class="table table-bordered table-condensed swagger--summary">
-                <thead>
-                <tr>
-                    <th>Operation</th>
-                    <th>Description</th>
-                </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><a href="#operation--settlements--sid--participants--pid--put">PUT /settlements/{sid}/participants/{pid}</a></td>
-                        <td><p>updateSettlementBySettlementParticipant</p>
-        </td>
-                    </tr>
-                </tbody>
-            </table>
         
     
     
@@ -3011,6 +3092,7 @@
                     <div class="operation-summary">getSettlementsByParams</div>
                     <h3 class="panel-title" id="get-settlements"><span class="operation-name">GET</span> <strong>/settlements</strong></h3>
                         Tags:
+                            <a href="#tag-sampled">sampled</a>, 
                             <a href="#tag-getSettlementsByParams">getSettlementsByParams</a>
                 </div>
                 <div class="panel-body">
@@ -3316,6 +3398,7 @@
                     <div class="operation-summary">createSettlement</div>
                     <h3 class="panel-title" id="post-settlements"><span class="operation-name">POST</span> <strong>/settlements</strong></h3>
                         Tags:
+                            <a href="#tag-sampled">sampled</a>, 
                             <a href="#tag-createSettlement">createSettlement</a>
                 </div>
                 <div class="panel-body">
@@ -3483,6 +3566,7 @@
                     <div class="operation-summary">getSettlementById</div>
                     <h3 class="panel-title" id="get-settlementsid"><span class="operation-name">GET</span> <strong>/settlements/{id}</strong></h3>
                         Tags:
+                            <a href="#tag-sampled">sampled</a>, 
                             <a href="#tag-getSettlementById">getSettlementById</a>
                 </div>
                 <div class="panel-body">
@@ -3661,6 +3745,7 @@
                     <div class="operation-summary">updateSettlementById</div>
                     <h3 class="panel-title" id="put-settlementsid"><span class="operation-name">PUT</span> <strong>/settlements/{id}</strong></h3>
                         Tags:
+                            <a href="#tag-sampled">sampled</a>, 
                             <a href="#tag-updateSettlementById">updateSettlementById</a>
                 </div>
                 <div class="panel-body">
@@ -3858,6 +3943,7 @@
                     <div class="operation-summary">getSettlementBySettlementParticipant</div>
                     <h3 class="panel-title" id="get-settlementssidparticipantspid"><span class="operation-name">GET</span> <strong>/settlements/{sid}/participants/{pid}</strong></h3>
                         Tags:
+                            <a href="#tag-sampled">sampled</a>, 
                             <a href="#tag-getSettlementBySettlementParticipant">getSettlementBySettlementParticipant</a>
                 </div>
                 <div class="panel-body">
@@ -4051,6 +4137,7 @@
                     <div class="operation-summary">updateSettlementBySettlementParticipant</div>
                     <h3 class="panel-title" id="put-settlementssidparticipantspid"><span class="operation-name">PUT</span> <strong>/settlements/{sid}/participants/{pid}</strong></h3>
                         Tags:
+                            <a href="#tag-sampled">sampled</a>, 
                             <a href="#tag-updateSettlementBySettlementParticipant">updateSettlementBySettlementParticipant</a>
                 </div>
                 <div class="panel-body">
@@ -4263,6 +4350,7 @@
                     <div class="operation-summary">getSettlementBySettlementParticipantAccount</div>
                     <h3 class="panel-title" id="get-settlementssidparticipantspidaccountsaid"><span class="operation-name">GET</span> <strong>/settlements/{sid}/participants/{pid}/accounts/{aid}</strong></h3>
                         Tags:
+                            <a href="#tag-sampled">sampled</a>, 
                             <a href="#tag-getSettlementBySettlementParticipantAccount">getSettlementBySettlementParticipantAccount</a>
                 </div>
                 <div class="panel-body">
@@ -4471,6 +4559,7 @@
                     <div class="operation-summary">updateSettlementBySettlementParticipantAccount</div>
                     <h3 class="panel-title" id="put-settlementssidparticipantspidaccountsaid"><span class="operation-name">PUT</span> <strong>/settlements/{sid}/participants/{pid}/accounts/{aid}</strong></h3>
                         Tags:
+                            <a href="#tag-sampled">sampled</a>, 
                             <a href="#tag-updateSettlementBySettlementParticipantAccount">updateSettlementBySettlementParticipantAccount</a>
                 </div>
                 <div class="panel-body">
@@ -4698,6 +4787,7 @@
                     <div class="operation-summary">getSettlementWindowsByParams</div>
                     <h3 class="panel-title" id="get-settlementwindows"><span class="operation-name">GET</span> <strong>/settlementWindows</strong></h3>
                         Tags:
+                            <a href="#tag-sampled">sampled</a>, 
                             <a href="#tag-getSettlementWindowsByParams">getSettlementWindowsByParams</a>
                 </div>
                 <div class="panel-body">
@@ -4945,7 +5035,8 @@
                     <div class="operation-summary">getSettlementWindowById</div>
                     <h3 class="panel-title" id="get-settlementwindowsid"><span class="operation-name">GET</span> <strong>/settlementWindows/{id}</strong></h3>
                         Tags:
-                            <a href="#tag-getSettlementWindowById">getSettlementWindowById</a>
+                            <a href="#tag-getSettlementWindowById">getSettlementWindowById</a>, 
+                            <a href="#tag-sampled">sampled</a>
                 </div>
                 <div class="panel-body">
                     <section class="sw-operation-description">
@@ -5123,6 +5214,7 @@
                     <div class="operation-summary">closeSettlementWindow</div>
                     <h3 class="panel-title" id="post-settlementwindowsid"><span class="operation-name">POST</span> <strong>/settlementWindows/{id}</strong></h3>
                         Tags:
+                            <a href="#tag-sampled">sampled</a>, 
                             <a href="#tag-closeSettlementWindow">closeSettlementWindow</a>
                 </div>
                 <div class="panel-body">
@@ -6748,7 +6840,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"showToc":false,"title":"Central Settlements","level":"1.7.3","depth":2,"next":{"title":"ALS Oracle","level":"1.7.4","depth":2,"path":"api/als-oracle-api-specification.md","ref":"api/als-oracle-api-specification.md","articles":[]},"previous":{"title":"Central Ledger API","level":"1.7.2","depth":2,"path":"api/central-ledger-api-specification.md","ref":"api/central-ledger-api-specification.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"3.x.x","theme":"default","variables":{"importedVars":{"mojaloop":{"spec":{"version":"v1.0","uri":{"doc":"https://mojaloop.io/mojaloop-specification/","api":"https://github.com/mojaloop/mojaloop-specification/blob/master/fspiop-api/documents/v1.0-document-set/fspiop-rest-v1.0-OpenAPI-implementation.yaml"}}},"central_ledger":{"spec":{"version":"v2.0","uri":{"doc":"/mojaloop-technical-overview/central-ledger/README.md","api":"https://github.com/mojaloop/central-ledger/blob/master/src/api/interface/swagger.json"}}},"settlement":{"spec":{"version":"v1.1","uri":{"doc":"/mojaloop-technical-overview/central-settlements/README.md","api":"https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json"}}},"als":{"oracle":{"spec":{"version":"v1.2","uri":{"doc":"/mojaloop-technical-overview/account-lookup-service/README.md","api":"https://github.com/mojaloop/documentation/blob/master/api/assets/interface-contracts/oracle-service-swagger-v1.yaml"}}}}}},"plugins":["swagger","editlink","include","insert-logo","plantuml-svg","collapsible-chapters","back-to-top-button","theme-api","variables","changelog","page-toc"],"pluginsConfig":{"plantuml-svg":{},"editlink":{"label":"Edit This Page","multilingual":true,"base":"https://github.com/mojaloop/documentation/edit/master"},"theme-gestalt":{"logo":"https://mojaloop.io/images/logo.png","favicon":"https://mojaloop.io/images/logo.png","baseUrl":null,"excludeDefaultStyles":false,"doNotHideChildrenChapters":false},"include":{},"search":{},"collapsible-chapters":{},"page-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","position":"before-first","showByDefault":true},"swagger":{"file":""},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"uml":{"format":"png","nailgun":false},"changelog":{},"theme-api":{"languages":[],"split":true,"theme":"dark"},"back-to-top-button":{},"variables":{"files":{"importedVars":"book_variables.yml"}},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"insert-logo":{"url":"https://mojaloop.io/images/logo.png","style":"background: none; max-height: 140px; max-width: 140px;"}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"api/central-settlements-api-specification.md","mtime":"2021-07-08T11:27:21.682Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-07-08T11:28:13.637Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"showToc":false,"title":"Central Settlements","level":"1.7.3","depth":2,"next":{"title":"ALS Oracle","level":"1.7.4","depth":2,"path":"api/als-oracle-api-specification.md","ref":"api/als-oracle-api-specification.md","articles":[]},"previous":{"title":"Central Ledger API","level":"1.7.2","depth":2,"path":"api/central-ledger-api-specification.md","ref":"api/central-ledger-api-specification.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"3.x.x","theme":"default","variables":{"importedVars":{"mojaloop":{"spec":{"version":"v1.0","uri":{"doc":"https://mojaloop.io/mojaloop-specification/","api":"https://github.com/mojaloop/mojaloop-specification/blob/master/fspiop-api/documents/v1.0-document-set/fspiop-rest-v1.0-OpenAPI-implementation.yaml"}}},"central_ledger":{"spec":{"version":"v2.0","uri":{"doc":"/mojaloop-technical-overview/central-ledger/README.md","api":"https://github.com/mojaloop/central-ledger/blob/master/src/api/interface/swagger.json"}}},"settlement":{"spec":{"version":"v1.1","uri":{"doc":"/mojaloop-technical-overview/central-settlements/README.md","api":"https://github.com/mojaloop/central-settlement/blob/master/src/interface/swagger.json"}}},"als":{"oracle":{"spec":{"version":"v1.2","uri":{"doc":"/mojaloop-technical-overview/account-lookup-service/README.md","api":"https://github.com/mojaloop/documentation/blob/master/api/assets/interface-contracts/oracle-service-swagger-v1.yaml"}}}}}},"plugins":["swagger","editlink","include","insert-logo","plantuml-svg","collapsible-chapters","back-to-top-button","theme-api","variables","changelog","page-toc"],"pluginsConfig":{"plantuml-svg":{},"editlink":{"label":"Edit This Page","multilingual":true,"base":"https://github.com/mojaloop/documentation/edit/master"},"theme-gestalt":{"logo":"https://mojaloop.io/images/logo.png","favicon":"https://mojaloop.io/images/logo.png","baseUrl":null,"excludeDefaultStyles":false,"doNotHideChildrenChapters":false},"include":{},"search":{},"collapsible-chapters":{},"page-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","position":"before-first","showByDefault":true},"swagger":{"file":""},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"uml":{"format":"png","nailgun":false},"changelog":{},"theme-api":{"languages":[],"split":true,"theme":"dark"},"back-to-top-button":{},"variables":{"files":{"importedVars":"book_variables.yml"}},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"insert-logo":{"url":"https://mojaloop.io/images/logo.png","style":"background: none; max-height: 140px; max-width: 140px;"}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"api/central-settlements-api-specification.md","mtime":"2021-07-27T13:28:28.194Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-07-27T13:29:19.530Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
