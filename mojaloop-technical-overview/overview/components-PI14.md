@@ -1,4 +1,4 @@
-# Mojaloop Hub Current Components - PI12
+# Mojaloop Hub Current Components - PI14
 
 The following component diagram shows the break-down of the Mojaloop services and its micro-service architecture for pre PI14:
 
