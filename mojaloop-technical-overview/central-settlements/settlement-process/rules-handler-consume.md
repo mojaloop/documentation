@@ -75,7 +75,7 @@ This might appear in the rule evaluation function as:
 
 ```js
 myAction.addLedgerEntry(transaction.transactionId,
-    transaction.transactionId,
+    "INTERCHANGE_FEE“,
     "INTERCHANGE_FEE“,
     transaction.currency,
     transaction.amount\*0.006,
@@ -84,7 +84,21 @@ myAction.addLedgerEntry(transaction.transactionId,
 ```
 ### Providing rules
 The files should be placed in a scripts directory, configured by the value of the environmental variable `SETTINGS__SCRIPTS_FOLDER`  
-Each rule file should be valid JS with the following header content:
+Each rule file should be valid JS with the specified headers content. The required headers should be in the exact order and format as they are in the example below the table.
+
+| Header | Description | Required |
+| :- | :- | :-: |
+| Name |  Rule name | no |
+| Type | Message event type. Corresponds to Kafka topic | yes |
+| Action | Message event action. ex. Commit, Prepare, Log, etc | yes |
+| Status | Status of the operation: success or failure | yes |
+| Start | Time to start abiding the rule | yes |
+| End |  Until when the rule is valid | yes |
+| Description | Rule description | no |
+
+Based on the headers the rule is evaluated to be triggered or not.
+
+In the below example rule script, a message on the `notification` topic with action `commit` and status `success` will trigger the code.
 
 ```js
 /* eslint-disable no-undef */
@@ -104,7 +118,7 @@ Each rule file should be valid JS with the following header content:
 
 // # Functions:
 // ## Data retrieval functions:
-// getTransfer(transferId): Retrieves a mojaloop transfer from the central-ledger API.
+// getTransferFromCentralLedger(transferId): Retrieves a mojaloop transfer from the central-ledger API.
 
 // ## Helper functions:
 // getExtensionValue(list, key): Gets a value from an extension list
@@ -121,6 +135,10 @@ const payerFspId = transfer.payer.partyIdInfo.fspId
 const payeeFspId = transfer.payee.partyIdInfo.fspId
 
 if ((payeeFspId !== payerFspId) &&
+  (transfer.payee.partyIdInfo.extensionList && // WORKAROUND for issue #2149
+    transfer.payer.partyIdInfo.extensionList && // WORKAROUND for issue #2149
+    transfer.payee.partyIdInfo.extensionList.extension && // WORKAROUND for issue #2149
+    transfer.payer.partyIdInfo.extensionList.extension) && // WORKAROUND for issue #2149
   (getExtensionValue(transfer.payee.partyIdInfo.extensionList.extension, 'accountType') === 'Wallet' &&
     getExtensionValue(transfer.payer.partyIdInfo.extensionList.extension, 'accountType') === 'Wallet') &&
   (transfer.transactionType.scenario === 'TRANSFER' &&
@@ -134,15 +152,18 @@ if ((payeeFspId !== payerFspId) &&
     payerFspId,
     payeeFspId)
 }
-
 ```
 
-| Header | Description | Required |
-| :- | :- | :-: |
-| Name |  Rule name | true |
-| Type | Message event type. Corresponds to Kafka topic | true |
-| Action | Message event action. ex. Commit, Prepare, Log, etc | true |
-| Status | Status of the operation: success or failure | true |
-| Start | Time to start abiding the rule | true |
-| End |  Until when the rule is valid | true |
-| Description | Rule description | false |
+### Rules script API
+
+#### Globals
+
+* `payload` - The contents of the message from the Kafka topic that has the rules script triggered
+* `transfer` - The transfer object
+#### Functions
+
+* `getTransferFromCentralLedger(transferId: uuid)` - Retrieves a mojaloop transfer from the central-ledger API.
+* `getExtensionValue(list: array, key: string)` - Gets a value from an extension list
+* `log(message: string)`: allows the script to log to configured logger with level *INFO* for debugging purposes
+* `multiply(number1: number, number2: number, decimalPlaces: number)`: Uses ml-number to handle multiplication of money values
+* `addLedgerEntry(transferId: uuid, ledgerAccountTypeId: string, ledgerEntryTypeId: string, amount: number, currency: string, payerFspId: string, payeeFspId: string)`: Adds a debit and credit ledger entries with given legdger account type, amount and currency to the accounts of the specified DFSPs
