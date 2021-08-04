@@ -40,7 +40,7 @@ Used for acquiring settlement window information when ID is present.
 
 ### 2.3. Close Settlement Window
 
-There is always one open settlement window which groups all ongoing transfers. This functionality is used to close the currently opened window and create the next one.
+There is always one open settlement window which groups all ongoing transfers. This functionality is used to close the currently opened window and create the next one. The operations starts on the API and then the Deferred handler consumes a message after the validations are passed and prepares the Settlement Window Content and Settlement Content Aggregation records for the settlement process.
 - [Sequence Diagram for Close Settlement Window](post-close-settlement-window.md)
 
 ### 2.4. Create Settlement
@@ -86,7 +86,7 @@ This endpoint enables advanced reporting capabilities.
 ### 2.10 Gross Settlement Handler
 
 This handler executes after each transfer is committed and performs the following operations on success:
- Handle the updating of the POSITION and SETTLEMENT accounts for participants involved in a transfer where there is a settlement model defined as immeditate and gross on the POSITION account to facilitate RTCGS (Rel-Time Continuous Gross Settlement) per transfer.
+  Handle the updating of the POSITION and SETTLEMENT accounts for participants involved in a transfer where there is a settlement model defined as immediate and gross on the POSITION account to facilitate RTCGS (Real-Time Continuous Gross Settlement) per transfer.
 
 This is done by consuming events of the notification topic.
 
@@ -100,3 +100,12 @@ This handler executes after each transfer is committed and performs the followin
 This is done by consuming events of the notification topic.
 
 - [Sequence Diagram for Rules Handler](rules-handler-consume.md)
+
+### 2.12 Deferred Handler
+
+This handler executes after close settlement window operation has been received and validated:
+
+   Handle the updating of the participant accounts involved in the transfers for the settlement window that is closed. The process then continues with settlement event trigger.
+
+This is done by consuming events of the notification topic, that are emitted by the service after close settlement window command has been sent and validated. 
+- [Sequence Diagram for Close Settlement Window](post-close-settlement-window.md)

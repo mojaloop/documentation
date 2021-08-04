@@ -199,7 +199,7 @@ group Close Settlement Window
         deactivate SSAPI
         deactivate OPERATOR
 
-        group Close settlement window (SettlementWindowHandler)
+        group Close settlement window (Deferred Handler)
             TOPIC_SET_WIN <- SET_WIN_HANDLER: Consume Settlement Window\nevent message
             activate TOPIC_SET_WIN
             deactivate TOPIC_SET_WIN

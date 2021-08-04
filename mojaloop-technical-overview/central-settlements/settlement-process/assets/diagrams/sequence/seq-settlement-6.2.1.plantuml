@@ -169,7 +169,7 @@ activate OPERATOR
             activate DB
             SETTLE_DAO -> DB: Retrieve SettlementWindowContent id List
             opt Settlement Model is Default
-                SETTLE_DAO -> SETTLE_DAO: filter out the SettlementWindowContent id List\n to exclude content that is not settlemed by default settlement model
+                SETTLE_DAO -> SETTLE_DAO: filter out the SettlementWindowContent id List\n to exclude content that is not settled by default settlement model
             end
             hnote over DB #lightyellow
                 INSERT INTO **settlementSettlementWindow** (settlementId, settlementWindowId, createdDate)

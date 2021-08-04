@@ -109,7 +109,7 @@ transfer. The current values are:
     [Section 7.4.17](https://mojaloop.io/mojaloop-specification/documents/API%20Definition%20v1.0.html#7317-ilpcondition) of the Interoperability API specification<sub>[1](https://mojaloop.io/mojaloop-specification/documents/API%20Definition%20v1.0.html)</sup>.) It should be
     spelt “principal.”
 
-2.  INTERCHANGE_FEE. This designates fees paid between participants in the
+2.  INTERCHANGE_FEE. This designates fees paid between participants in thereeadme
     system. (Not implemented)
 
 3.  HUB_FEE. This designates fees paid between participants and the scheme. (Not
