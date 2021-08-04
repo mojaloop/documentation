@@ -31,6 +31,7 @@
     * [Documentation Style Guide](contributors-guide/documentation/documentation-style-guide.md)
 * [Mojaloop Technical Overview](mojaloop-technical-overview/README.md)
   * [Mojaloop Hub](mojaloop-technical-overview/overview/README.md)
+    * [Current Architecture - PI14](mojaloop-technical-overview/overview/components-PI14.md)
     * [Current Architecture - PI12](mojaloop-technical-overview/overview/components-PI12.md)
     * [Legacy Architecture - PI11](mojaloop-technical-overview/overview/components-PI11.md)
     * [Legacy Architecture - PI8](mojaloop-technical-overview/overview/components-PI8.md)
