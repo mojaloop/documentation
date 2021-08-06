@@ -199,7 +199,7 @@ group Close Settlement Window
         deactivate SSAPI
         deactivate OPERATOR
 
-        group Close settlement window (SettlementWindowHandler)
+        group Close settlement window (Deferred Handler)
             TOPIC_SET_WIN <- SET_WIN_HANDLER: Consume Settlement Window\nevent message
             activate TOPIC_SET_WIN
             deactivate TOPIC_SET_WIN
@@ -252,18 +252,25 @@ group Close Settlement Window
 
                         SETTLE_DAO -> DB: Determine window content and insert
                         activate DB
+                        SETTLE_DAO -> DB: Get all Settlement Models
+                        SETTLE_DAO -> SETTLE_DAO: create Settlement Models <-> currencyId map
+                        SETTLE_DAO -> SETTLE_DAO: create list of currencies with Settlement Models
+                        SETTLE_DAO -> DB: Get Settlement Window Content list
                         hnote over DB #lightyellow
-                            INSERT INTO **settlementWindowContent** (settlementWindowId, ledgerAccountTypeId,
-                                currencyId,  createdDate)
                             SELECT DISTINCT {id} settlementWindowId, pc.ledgerAccountTypeId,
-                                pc.currencyId, transactionTimestamp
+                                pc.currencyId, m.settlementModelId 
                             FROM **transferFulfilment** tf
                             JOIN **transferParticipant** tp
                             ON tp.transferId = tf.transferId
                             JOIN **participantCurrency** pc
                             ON pc.participantCurrencyId = tp.participantCurrencyId
+                            JOIN **settlementModel** m
+                            ON m.ledgerAccountTypeId = pc.ledgerAccountTypeId
                             WHERE tf.settlementWindowId = {id}
+                            AND m.settlementGranularityId = 'NET'
                         end hnote
+                        SETTLE_DAO -> SETTLE_DAO: filter swcList to add currency to each record based on model
+                        SETTLE_DAO -> DB: Insert filtered list 
                         deactivate DB
 
                         SETTLE_DAO -> DB: Aggregate window data and insert
@@ -282,6 +289,8 @@ group Close Settlement Window
                             ON swc.settlementWindowId = tf.settlementWindowId
                             AND swc.ledgerAccountTypeId = pc.ledgerAccountTypeId
                             AND swc.currencyId = pc.currencyId
+                            JOIN **settlementModel** m
+                            ON m.settlementModelId = swc.settlementModelId
                             WHERE ttf.settlementWindowId = {id}
                             GROUP BY swc.settlementWindowContentId, pc.participantCurrencyId, 
                                 tp.transferParticipantRoleTypeId, tp.ledgerEntryTypeId
