@@ -110,7 +110,6 @@ transfer. The current values are:
     spelt “principal.”
 
 2.  INTERCHANGE_FEE. This designates fees paid between participants in the
-
     system. (Not implemented)
 
 3.  HUB_FEE. This designates fees paid between participants and the scheme. (Not
