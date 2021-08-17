@@ -3,7 +3,7 @@
 ## How do I get started?
 
 * A good first place to get started is the [Contributors' Guide](./contributing/contributors-guide.md), which provides information on how you can contribute to the project.
-* If you are would like an overview of the technologies used in the project, head over to the [Tools and Technologies](./tools/tools-and-technologies.md) section.
+* If you would like an overview of the technologies used in the project, head over to the [Tools and Technologies](./tools/tools-and-technologies.md) section.
 * To get a sense of the features we are building, view the [Product Roadmap](./mojaloop-roadmap.md).
 * The [Project board](https://github.com/mojaloop/project#zenhub) showcases what is currently being worked on; you can start with a [good first issue](https://github.com/mojaloop/project/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22).
 
