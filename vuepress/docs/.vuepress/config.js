@@ -290,12 +290,12 @@ module.exports = {
               path: 'fspiop/pki-best-practices',
             },
             {
-              title: 'Security',
-              collapsable: false,
-              children: [
-                ['fspiop/security/signature-v1.1', 'Signature (v1.1)'],
-                ['fspiop/security/encryption-v1.1', 'Encryption (v1.1)'],
-              ]
+              title: 'Signature (v1.1)',
+              path: 'fspiop/signature-v1.1',
+            },
+            {
+              title: 'Encryption (v1.1)',
+              path: 'fspiop/encryption-v1.1',
             },
           ],
           sidebarDepth: 4
