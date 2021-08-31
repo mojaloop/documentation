@@ -48,6 +48,10 @@ module.exports = {
         link: '/community/'
       },
       {
+        text: 'API',
+        link: '/api/'
+      },
+      {
         text: 'Technical',
         link: '/technical/'
       },
@@ -200,7 +204,135 @@ module.exports = {
           ],
           sidebarDepth: 4
         }
-      ]
+      ],
+      'api/': [
+        {
+          title: 'Mojaloop APIs',
+          collapsable: false,
+          children: ['']
+        },
+        {
+          title: 'FSPIOP API',
+          collapsable: false,
+          children: [
+            {
+              title: 'Overview',
+              path: 'fspiop/',
+            },
+            {
+              title: 'API Definitions',
+              collapsable: false,
+              path: 'fspiop/definitions',
+              children: [
+                {
+                  title: 'v1.1 (Current)',
+                  path: 'archive/discussion-docs/performance-project' //TODO: Update this with the right path
+                },
+                {
+                  title: 'Older versions',
+                  path: 'archive/discussion-docs/performance-project', //TODO: Update this with the right path
+                  children: [
+                    ['mojaloop-roadmap', 'v1.0'], //TODO: Update this with the right path
+                  ]
+                }
+              ]
+            },
+            {
+              title: 'Logical Data Model',
+              collapsable: false,
+              path: 'fspiop/logical-data-model',
+              children: [
+                {
+                  title: 'v1.1 (Current)',
+                  path: 'archive/discussion-docs/performance-project' //TODO: Update this with the right path
+                },
+                {
+                  title: 'Older versions',
+                  path: 'archive/discussion-docs/performance-project', //TODO: Update this with the right path
+                  children: [
+                    ['mojaloop-roadmap', 'v1.0'], //TODO: Update this with the right path
+                  ]
+                }
+              ]
+            },
+            {
+              title: 'Generic Transaction Patterns',
+              path: 'fspiop/generic-transaction-patterns',
+            },
+            {
+              title: 'Use Cases',
+              collapsable: false,
+              path: 'fspiop/use-cases',
+              children: [
+                {
+                  title: 'v1.1 (Current)',
+                  path: 'archive/discussion-docs/performance-project' //TODO: Update this with the right path
+                },
+                {
+                  title: 'Older versions',
+                  path: 'archive/discussion-docs/performance-project', //TODO: Update this with the right path
+                  children: [
+                    ['fspiop/v1.0-document-set/use-cases', 'v1.0'], //TODO: Update this with the right path
+                  ]
+                }
+              ]
+            },
+            {
+              title: 'JSON Binding Rules',
+              path: 'fspiop/json-binding-rules'
+            },
+            {
+              title: 'Scheme Rules',
+              path: 'fspiop/scheme-rules',
+            },
+            {
+              title: 'PKI Best Practices',
+              path: 'fspiop/pki-best-practices',
+            },
+            {
+              title: 'Signature (v1.1)',
+              path: 'fspiop/signature-v1.1',
+            },
+            {
+              title: 'Encryption (v1.1)',
+              path: 'fspiop/encryption-v1.1',
+            },
+          ],
+          sidebarDepth: 4
+        },
+        {
+          title: 'Administration API',
+          collapsable: false,
+          children: [
+            ['administration/', 'Overview'],
+          ],
+          sidebarDepth: 2
+        },
+        {
+          title: 'Settlement API',
+          collapsable: false,
+          children: [
+            ['settlement/', 'Overview'],
+          ],
+          sidebarDepth: 2
+        },
+        {
+          title: '3PPI/ISP API',
+          collapsable: false,
+          children: [
+            ['3ppi-pisp/', 'Overview'],
+          ],
+          sidebarDepth: 2
+        },
+        {
+          title: 'Glossary',
+          collapsable: false,
+          children: [
+            ['3ppi-pisp/', 'Overview'],
+          ],
+          sidebarDepth: 2
+        },
+      ],
     }
   },
 
