@@ -103,7 +103,13 @@ Insure **kubectl** is installed. A complete set of installation instruction are 
 
 Install your preferred Ingress Controller for load-balancing and external access.
 
-Refer to the following documentation to install the Nginx-Ingress Controller used for this guide: <https://kubernetes.github.io/ingress-nginx/deploy/#using-helm>.
+Refer to the following documentation to install the Nginx-Ingress Controller used for this guide: <https://kubernetes.github.io/ingress-nginx/deploy/#using-helm>. It is recommended that you install **v0.47.0** of the Nginx-Ingress Controller due to recent changes being made to support Kubernetes v1.22.
+
+If you are using helm, this can be done as follows:
+
+```bash
+$ helm install ingress-nginx ingress-nginx/ingress-nginx --version="3.33.0"
+```
 
 > **NOTE: If you are installing Mojaloop v12.x with an Nginx-Ingress controller version newer than v0.22.0, ensure you create a custom [Mojaloop values config](https://github.com/mojaloop/helm/blob/v12.0.0/mojaloop/values.yaml) with the following changes prior to install:**
 >
