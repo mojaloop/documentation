@@ -1,5 +1,28 @@
 # Encryption
 
+## Preface
+
+This section contains information about how to use this document.
+
+### Conventions Used in This Document
+
+The following conventions are used in this document to identify the specified types of information
+
+| **Type of Information** | **Convention** | **Example** |
+| :--- | :--- | :--- |
+| **Elements of the API, such as resources** | Boldface | **/authorization** |
+| **Variables** | Italics within curly brackets | _{ID}_ |
+| **Glossary terms** | Italics on first occurrence; defined in _Glossary_ | The purpose of the API is to enable interoperable financial transactions between a _Payer_ (a payer of electronic funds in a payment transaction) located in one _FSP_ (an entity that provides a digital financial service to an end user) and a _Payee_ (a recipient of electronic funds in a payment transaction) located in another FSP. |
+| **Library documents** | Italics | User information should, in general, not be used by API deployments; the security measures detailed in _API Signature_ and _API Encryption_ should be used instead. |
+
+### Document Version Information
+
+| **Version** | **Date** | **Change Description** |
+| :--- | :--- | :--- |
+|**1.1**|2020-05-19|This version contains these changes: 1. ExstensionList elements in Section 4 have been updated based on the issue [Interpretation of the Data Model for the ExtensionList element](https://github.com/mojaloop/mojaloop-specification/issues/51), to fix the data model of the extensionList Object.|
+| **1.0** | 2018-03-13 | Initial version |
+
+<br />
 
 ## Introduction
 
@@ -12,7 +35,7 @@ JSON Web Encryption (JWE, defined in RFC 7516<sup>[JSON Web Encryption (JWE)](ht
 
 To support encryption for multiple fields of an API message, JWE is extended in this document to adapt to the requirements of the API.
 
-
+<br />
 
 ## API Encryption Definition
 
@@ -569,3 +592,9 @@ WBQN5nLDGK26EiM
 ```
 
 12. Verify that the plain text is a valid **partyIdentifier** value.
+
+
+### Table of Tables
+- [Table 1 -- Data model of HTTP Header Field FSPIOP-Encryption](#table-1)
+- [Table 2 -- Data model of complex type EncryptedFields](#table-2)
+- [Table 3 -- Data model of complex type EncryptedField](#table-3)

@@ -1,8 +1,29 @@
 # Public Key Infrastructure Best Practices
 
+## Preface
+
+This section contains information about how to use this document.
+
+### Conventions Used in This Document
+
+The following conventions are used in this document to identify the specified types of information
+
+|Type of Information|Convention|Example|
+|---|---|---|
+|**Elements of the API, such as resources**|Boldface|**/authorization**|
+|**Variables**|Italics within curly brackets|_{ID}_|
+|**Glossary terms**|Italics on first occurrence; defined in _Glossary_|The purpose of the API is to enable interoperable financial transactions between a _Payer_ (a payer of electronic funds in a payment transaction) located in one _FSP_ (an entity that provides a digital financial service to an end user) and a _Payee_ (a recipient of electronic funds in a payment transaction) located in another FSP.|
+|**Library documents**|Italics|User information should, in general, not be used by API deployments; the security measures detailed in _API Signature_ and _API Encryption_ should be used instead.|
+
+### Document Version Information
+
+|Version|Date|Change Description|
+|---|---|---|
+|**1.0**|2018-03-13|Initial version|
+
 ## Introduction
 
-This document explains _Public Key Infrastructure_ (PKI)<sup>1</sup> best practices to apply in an _Open API for FSP Interoperability_ (hereafter cited as “the API”) deployment. See [PKI Background](#pki-background), PKI Background, for more information about PKI.
+This document explains _Public Key Infrastructure_ (PKI)<sup>1</sup> best practices to apply in an _Open API for FSP Interoperability_ (hereafter cited as “the API”) deployment. See [Section 3](#3-pki-background), PKI Background, for more information about PKI.
 
 The API should be implemented in an environment that consists of either:
 
@@ -10,12 +31,11 @@ The API should be implemented in an environment that consists of either:
 
 - A _Switch_ that acts as an intermediary platform between FSP platforms. There is also an _Account Lookup System_ (ALS) available to identify in which FSP an account holder is located.
 
-For more information about the environment, see [Network Topology](#network-topology). 
+For more information about the environment, see [Section 4](#4-network-topology), Network Topology. 
 
-[Certificate Authority PKI Management Strategy](#certificate-authority-pki-management-strategy) and [Platform PKI Management Strategy](#platform-pki-management-strategy) identify management strategies for the CA and for the platform. 
+[Sections 5](#5-certificate-authority-pki-management-strategy) and [Section 6](#6-platform-pki-management-strategy) identify management strategies for the CA and for the platform. 
 
 Communication between platforms is performed using a REST (REpresentational State Transfer)-based HTTP protocol (for more information, see _API Definition_). Because this protocol does not provide a means for ensuring either integrity or confidentiality between platforms, extra security layers must be added to protect sensitive information from alteration or exposure to unauthorized parties.
-
 
 ## PKI Background
 
@@ -632,3 +652,14 @@ A good example is found at the following link:
 <sup>3</sup> [https://tools.ietf.org/html/rfc7515](#https://tools.ietf.org/html/rfc7515) - JSON Web Signature (JWS)
 
 <sup>4</sup> [https://tools.ietf.org/html/rfc7516](#https://tools.ietf.org/html/rfc7516) - JSON Web Encryption (JWE)
+
+
+### Table of Figures
+
+- [Figure 1 - Platforms layout](#platforms-point-to-point-layout)
+
+### Table of Tables
+
+- [Table 1 – Certificate type and key usage](#Table-1–Certificate-type-and-key-usage)
+
+- [Table 2 – Key lengths and algorithms](#Table-2-Key-lengths-and-algorithms)
