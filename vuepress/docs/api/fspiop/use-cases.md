@@ -1,3 +1,82 @@
+---
+showToc: true
+---
+# Use Cases
+
+## _Open API for FSP Interoperability Specification_
+
+
+## 1. Preface
+
+This section contains information about how to use this document.
+
+### 1.1 Conventions Used in This Document
+
+The following conventions are used in this document to identify the specified types of information.
+
+|Type of Information|Convention|Example|
+|---|---|---|
+|**Elements of the API, such as resources**|Boldface|**/authorization**|
+|**Variables**|Italics within curly brackets|_{ID}_|
+|**Glossary terms**|Italics on first occurrence; defined in _Glossary_|The purpose of the API is to enable interoperable financial transactions between a _Payer_ (a payer of electronic funds in a payment transaction) located in one _FSP_ (an entity that provides a digital financial service to an end user) and a _Payee_ (a recipient of electronic funds in a payment transaction) located in another FSP.|
+|**Library documents**|Italics|User information should, in general, not be used by API deployments; the security measures detailed in _API Signature_ and _API Encryption_ should be used instead.|
+
+### 1.2 Document Version Information
+
+|Version|Date|Change Description|
+|---|---|---|
+|**1.0**|2018-03-13|Initial version|
+
+## 2. Introduction
+
+The purpose of this document is to define a set of use cases that can be implemented using the Open API for FSP interoperability (hereafter cited as the API). The use cases referenced within this document provide an overview of transaction processing flows and business rules of each transaction step as well as relevant error conditions.
+
+The primary purpose of the API is to support the movement of financial transactions between one _Financial Services Provider_ (FSP) and another.
+
+It should be noted that the API is only responsible for message exchange between FSPs and a Switch when a cross-FSP transaction is initiated by an _End User_ in one of the FSPs. This can occur in either of two scenarios:
+
+- A bilateral scenario in which FSPs communicate with each other
+
+- A Switch based scenario in which all communication goes through a Switch
+
+Reconciliation, clearing and settlement after real time transactions is out of scope for the API. Additionally, account lookup is supported by the API, but it relies on the implementation in a local market in which a third party or Switch would provide such services. Therefore, the need for effective on-boarding processes and appropriate scheme rules must be considered when implementing use cases.
+
+### 2.1 Open API for FSP Interoperability Specification
+
+The Open API for FSP Interoperability Specification includes the following documents.
+
+### 2.1 Open API for FSP Interoperability Specification
+
+The Open API for FSP Interoperability Specification includes the following documents.
+
+#### 2.1.1 General Documents
+
+- _Glossary_
+
+#### 2.1.2 Logical Documents
+
+- _Logical Data Model_
+
+- _Generic Transaction Patterns_
+
+- _Use Cases_
+
+#### 2.1.3 Asynchronous REST Binding Documents
+
+- _API Definition_
+
+- _JSON Binding Rules_
+
+- _Scheme Rules_
+
+#### 2.1.4 Data Integrity, Confidentiality, and Non-Repudiation
+
+- _PKI Best Practices_
+
+- _Signature_
+
+- _Encryption_
+
 ## 3. Use Case Summaries
 
 The following generic transaction patterns are introduced in _Generic Transaction Patterns_ to reduce duplication of each use case description. These patterns summarize the common transaction process flows and shared function of the relevant use cases.
@@ -910,3 +989,52 @@ Table 23 describes relevant errors and recommended follow-up actions for this us
 | 22 | Funds reservation timeout | Funds reservation at Payer FSP timed out and the transaction fails at Payer FSP but succeeds at Payee FSP | Reconcile according to the scheme rules |
 
 **Table 23 – Refund: Relevant Error Conditions**
+<br />
+
+## Table of Tables
+
+[Table 1](#3-use-case-summaries) – Use Case Summary
+
+[Table 2](#413-actors-and-roles) – P2P Actors and Roles
+
+[Table 3](#415-relevant-error-conditions) – P2P Relevant Error Conditions
+
+[Table 4](#423-actors-and-roles) – Agent-Initiated Cash-In: Actors and Roles
+
+[Table 5](#425-relevant-error-conditions) – Agent-Initiated Cash-In: Relevant Error Conditions
+
+[Table 6](#433-actors-and-roles) – Agent-Initiated Cash-Out: Actors and Roles
+
+[Table 7](#435-relevant-error-conditions) – Agent-Initiated Cash-Out: Relevant Error Conditions
+
+[Table 8](#443-actors-and-roles) – Agent-Initiated Cash-Out Authorized on POS: Actors and Roles
+
+[Table 9](#4447-relevant-error-conditions) – Agent-Initiated Cash-Out Authorized on POS: Relevant Error Conditions
+
+[Table 10](#453-actors-and-roles) – Customer-Initiated Cash-Out: Actors and Roles
+
+[Table 11](#455-relevant-error-conditions) – Customer-Initiated Cash-Out: Relevant Error Conditions
+
+[Table 12](#463-actors-and-roles) – Customer-Initiated Merchant Payment: Actors and Roles
+
+[Table 13](#465-relevant-error-conditions) – Customer-Initiated Merchant Payment: Relevant Error Conditions
+
+[Table 14](#473-actors-and-roles) – Merchant-Initiated Merchant Payment: Actors and Roles
+
+[Table 15](#475-relevant-error-conditions) – Merchant-Initiated Merchant Payment: Relevant Error Conditions
+
+[Table 16](#483-actors-and-roles) – Merchant-Initiated Merchant Payment Authorized on POS: Actors and Roles
+
+[Table 17](#485-relevant-error-conditions) – Merchant-Initiated Merchant Payment Authorized on POS: Relevant Error Conditions
+
+[Table 18](#493-actors-and-roles) – ATM-Initiated Cash-Out: Actors and Roles
+
+[Table 19](#495-relevant-error-conditions) – ATM-Initiated Cash-Out: Relevant Error Conditions
+
+[Table 20](#4103-actors-and-roles) – Bulk Payments: Actors and Roles
+
+[Table 21](#4105-relevant-error-conditions) – Bulk Payments: Relevant Error Conditions
+
+[Table 22](#4112-actors-and-roles) – Refund: Actors and Roles
+
+[Table 23](#4114-relevant-error-conditions) – Refund: Relevant Error Conditions

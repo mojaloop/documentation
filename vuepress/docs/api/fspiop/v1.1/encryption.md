@@ -47,7 +47,7 @@ This section introduces the technology used by API encryption, including:
 
 ### Encryption Data Model
 
-The API uses the customized HTTP header parameter **FSPIOP-Encryption** to represent the encrypted fields of an API message; its value is a JSON object serialization. The data model of this parameter is described in Table 1, Table 2 and Table 3.
+The API uses the customized HTTP header parameter **FSPIOP-Encryption** to represent the encrypted fields of an API message; its value is a JSON object serialization. The data model of this parameter is described in [Table 1](#table-1), [Table 2](#table-2) and [Table 3](#table-3).
 
 **Note**: If **FSPIOP-Encryption** is present in an API message, then it must also be protected by the API signature. That means **FSPIOP-Encryption** must be included in the JWS Protected Header of the signature.
 
@@ -95,7 +95,7 @@ This section describes the encryption process for message fields. The order of t
 13. Compute the encoded cipher text value BASE64URL(JWE Cipher Text). 
 14. Compute the encoded Authentication Tag value BASE64URL(JWE Authentication Tag). 
 15. Compute the **encryptedField** element (see Table 3) for the HTTP header parameter **FSPIOP-Encryption**. 
-16. Compute the value for the HTTP Header parameter **FSPIOP-Encryption** as described in [FSPIOP API](/fspiop#21-open-api-for-fsp-interoperability-specification) documentation. The value for this **FSPIOP-Encryption** is JSON Object Serialization string.
+16. Compute the value for the HTTP Header parameter **FSPIOP-Encryption** as described in [FSPIOP API](/fspiop) documentation. The value for this **FSPIOP-Encryption** is JSON Object Serialization string.
 
 **Note**: If JWE is used to encrypt some fields of the payload, then the API client should:
 
@@ -593,8 +593,9 @@ WBQN5nLDGK26EiM
 
 12. Verify that the plain text is a valid **partyIdentifier** value.
 
+<br />
 
-### Table of Tables
+## Table of Tables
 - [Table 1 -- Data model of HTTP Header Field FSPIOP-Encryption](#table-1)
 - [Table 2 -- Data model of complex type EncryptedFields](#table-2)
 - [Table 3 -- Data model of complex type EncryptedField](#table-3)

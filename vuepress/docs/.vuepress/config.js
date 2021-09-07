@@ -260,22 +260,8 @@ module.exports = {
               path: 'fspiop/generic-transaction-patterns',
             },
             {
-              title: 'Use Cases',
-              collapsable: false,
+              title: 'Use Cases (v1.1)',
               path: 'fspiop/use-cases',
-              children: [
-                {
-                  title: 'v1.1 (Current)',
-                  path: 'archive/discussion-docs/performance-project' //TODO: Update this with the right path
-                },
-                {
-                  title: 'Older versions',
-                  path: 'archive/discussion-docs/performance-project', //TODO: Update this with the right path
-                  children: [
-                    ['fspiop/v1.0-document-set/use-cases', 'v1.0'], //TODO: Update this with the right path
-                  ]
-                }
-              ]
             },
             {
               title: 'JSON Binding Rules',
@@ -291,11 +277,11 @@ module.exports = {
             },
             {
               title: 'Signature (v1.1)',
-              path: 'fspiop/signature-v1.1',
+              path: 'fspiop/v1.1/signature',
             },
             {
               title: 'Encryption (v1.1)',
-              path: 'fspiop/encryption-v1.1',
+              path: 'fspiop/v1.1/encryption',
             },
           ],
           sidebarDepth: 4
