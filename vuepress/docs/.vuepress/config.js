@@ -277,11 +277,11 @@ module.exports = {
             },
             {
               title: 'Signature (v1.1)',
-              path: 'fspiop/signature-v1.1',
+              path: 'fspiop/v1.1/signature',
             },
             {
               title: 'Encryption (v1.1)',
-              path: 'fspiop/encryption-v1.1',
+              path: 'fspiop/v1.1/encryption',
             },
           ],
           sidebarDepth: 4

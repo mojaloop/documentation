@@ -23,7 +23,7 @@ The following conventions are used in this document to identify the specified ty
 
 ## Introduction
 
-This document explains _Public Key Infrastructure_ (PKI)<sup>1</sup> best practices to apply in an _Open API for FSP Interoperability_ (hereafter cited as “the API”) deployment. See [Section 3](#3-pki-background), PKI Background, for more information about PKI.
+This document explains _Public Key Infrastructure_ (PKI)<sup>1</sup> best practices to apply in an _Open API for FSP Interoperability_ (hereafter cited as “the API”) deployment. See [PKI Background](#pki-background) section for more information about PKI.
 
 The API should be implemented in an environment that consists of either:
 
@@ -31,11 +31,44 @@ The API should be implemented in an environment that consists of either:
 
 - A _Switch_ that acts as an intermediary platform between FSP platforms. There is also an _Account Lookup System_ (ALS) available to identify in which FSP an account holder is located.
 
-For more information about the environment, see [Section 4](#4-network-topology), Network Topology. 
-
-[Sections 5](#5-certificate-authority-pki-management-strategy) and [Section 6](#6-platform-pki-management-strategy) identify management strategies for the CA and for the platform. 
+For more information about the environment, see [Network Topology](#network-topology) section. [Certificate Authority PKI Management Strategy](#certificate-authority-pki-management-strategy) and [Platform PKI Management Strategy](#platform-pki-management-strategy) identify management strategies for the CA and for the platform. 
 
 Communication between platforms is performed using a REST (REpresentational State Transfer)-based HTTP protocol (for more information, see _API Definition_). Because this protocol does not provide a means for ensuring either integrity or confidentiality between platforms, extra security layers must be added to protect sensitive information from alteration or exposure to unauthorized parties.
+
+### Open API for FSP Interoperability Specification
+
+The Open API for FSP Interoperability Specification includes the following documents.
+
+#### General Documents
+
+- _Glossary_
+
+#### Logical Documents
+
+- _Logical Data Model_
+
+- _Generic Transaction Patterns_
+
+- _Use Cases_
+
+#### Asynchronous REST Binding Documents
+
+- _API Definition_
+
+- _JSON Binding Rules_
+
+- _Scheme Rules_
+
+#### Data Integrity, Confidentiality, and Non-Repudiation
+
+- _PKI Best Practices_
+
+- _Signature_
+
+- _Encryption_
+
+<br />
+
 
 ## PKI Background
 
@@ -653,12 +686,15 @@ A good example is found at the following link:
 
 <sup>4</sup> [https://tools.ietf.org/html/rfc7516](#https://tools.ietf.org/html/rfc7516) - JSON Web Encryption (JWE)
 
+<br />
 
-### Table of Figures
+## Table of Figures
 
 - [Figure 1 - Platforms layout](#platforms-point-to-point-layout)
 
-### Table of Tables
+<br />
+
+## Table of Tables
 
 - [Table 1 – Certificate type and key usage](#Table-1–Certificate-type-and-key-usage)
 
