@@ -260,8 +260,8 @@ module.exports = {
               path: 'fspiop/generic-transaction-patterns',
             },
             {
-              title: 'Use Cases (v1.1)',
-              path: 'fspiop/use-cases',
+              title: 'Use Cases',
+              path: 'fspiop/use-cases'
             },
             {
               title: 'JSON Binding Rules',
