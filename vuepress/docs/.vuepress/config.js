@@ -261,21 +261,7 @@ module.exports = {
             },
             {
               title: 'Use Cases',
-              collapsable: false,
-              path: 'fspiop/use-cases',
-              children: [
-                {
-                  title: 'v1.1 (Current)',
-                  path: 'archive/discussion-docs/performance-project' //TODO: Update this with the right path
-                },
-                {
-                  title: 'Older versions',
-                  path: 'archive/discussion-docs/performance-project', //TODO: Update this with the right path
-                  children: [
-                    ['fspiop/v1.0-document-set/use-cases', 'v1.0'], //TODO: Update this with the right path
-                  ]
-                }
-              ]
+              path: 'fspiop/use-cases'
             },
             {
               title: 'JSON Binding Rules',
