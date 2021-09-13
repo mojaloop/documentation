@@ -40,6 +40,39 @@ The types used in the PDP API fall primarily into three categories:
 
 The various types used in _API Definition_, _Data Model_ and the _Open API Specification_, as well as the JSON transformation rules to which their instances must adhere, are identified in the following sections.
 
+### Open API for FSP Interoperability Specification
+
+The Open API for FSP Interoperability Specification includes the following documents.
+
+#### General Documents
+
+- _Glossary_
+
+#### Logical Documents
+
+- _Logical Data Model_
+
+- _Generic Transaction Patterns_
+
+- _Use Cases_
+
+#### Asynchronous REST Binding Documents
+
+- _API Definition_
+
+- _JSON Binding Rules_
+
+- _Scheme Rules_
+
+#### Data Integrity, Confidentiality, and Non-Repudiation
+
+- _PKI Best Practices_
+
+- _Signature_
+
+- _Encryption_
+
+<br />
 
 ## Keywords and Usage
 

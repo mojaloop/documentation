@@ -41,6 +41,39 @@ This document defines scheme rules for Open API for FSP Interoperability (hereaf
 
     a. Security and non-functional scheme rules should be determined and identified in the implementation policy of a scheme. 
 
+### Open API for FSP Interoperability Specification
+
+The Open API for FSP Interoperability Specification includes the following documents.
+
+#### General Documents
+
+- _Glossary_
+
+#### Logical Documents
+
+- _Logical Data Model_
+
+- _Generic Transaction Patterns_
+
+- _Use Cases_
+
+#### Asynchronous REST Binding Documents
+
+- _API Definition_
+
+- _JSON Binding Rules_
+
+- _Scheme Rules_
+
+#### Data Integrity, Confidentiality, and Non-Repudiation
+
+- _PKI Best Practices_
+
+- _Signature_
+
+- _Encryption_
+
+<br />
 
 ## Business Scheme Rules
 

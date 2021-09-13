@@ -35,6 +35,41 @@ For more information about the environment, see [Network Topology](#network-topo
 
 Communication between platforms is performed using a REST (REpresentational State Transfer)-based HTTP protocol (for more information, see _API Definition_). Because this protocol does not provide a means for ensuring either integrity or confidentiality between platforms, extra security layers must be added to protect sensitive information from alteration or exposure to unauthorized parties.
 
+### Open API for FSP Interoperability Specification
+
+The Open API for FSP Interoperability Specification includes the following documents.
+
+#### General Documents
+
+- _Glossary_
+
+#### Logical Documents
+
+- _Logical Data Model_
+
+- _Generic Transaction Patterns_
+
+- _Use Cases_
+
+#### Asynchronous REST Binding Documents
+
+- _API Definition_
+
+- _JSON Binding Rules_
+
+- _Scheme Rules_
+
+#### Data Integrity, Confidentiality, and Non-Repudiation
+
+- _PKI Best Practices_
+
+- _Signature_
+
+- _Encryption_
+
+<br />
+
+
 ## PKI Background
 
 Public Key Infrastructure (PKI) is a set of standards, procedures, and software for implementing authentication using public key cryptography. PKI is used to request, install, configure, manage and revoke digital certificates. PKI offers authentication using digital certificates; these digital certificates are signed and provided by _Certificate Authorities_ (CA).
