@@ -40,6 +40,40 @@ Reconciliation, clearing and settlement after real time transactions is out of s
 
 <br />
 
+### Open API for FSP Interoperability Specification
+
+The Open API for FSP Interoperability Specification includes the following documents.
+
+#### General Documents
+
+- _Glossary_
+
+#### Logical Documents
+
+- _Logical Data Model_
+
+- _Generic Transaction Patterns_
+
+- _Use Cases_
+
+#### Asynchronous REST Binding Documents
+
+- _API Definition_
+
+- _JSON Binding Rules_
+
+- _Scheme Rules_
+
+#### Data Integrity, Confidentiality, and Non-Repudiation
+
+- _PKI Best Practices_
+
+- _Signature_
+
+- _Encryption_
+
+<br />
+
 ## Use Case Summaries
 
 The following generic transaction patterns are introduced in [Generic Transaction Patterns]() to reduce duplication of each use case description. These patterns summarize the common transaction process flows and shared function of the relevant use cases.
