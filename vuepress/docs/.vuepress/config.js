@@ -239,22 +239,10 @@ module.exports = {
             },
             {
               title: 'Logical Data Model',
-              collapsable: false,
               path: 'fspiop/logical-data-model',
-              children: [
-                {
-                  title: 'v1.1 (Current)',
-                  path: 'archive/discussion-docs/performance-project' //TODO: Update this with the right path
-                },
-                {
-                  title: 'Older versions',
-                  path: 'archive/discussion-docs/performance-project', //TODO: Update this with the right path
-                  children: [
-                    ['mojaloop-roadmap', 'v1.0'], //TODO: Update this with the right path
-                  ]
-                }
-              ]
+              collapsable: true
             },
+
             {
               title: 'Generic Transaction Patterns',
               path: 'fspiop/generic-transaction-patterns',
