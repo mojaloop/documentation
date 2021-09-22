@@ -14,13 +14,13 @@ We have a suite of tools bundled under the [license-scanner](https://github.com/
 For more information, refer to the [readme](https://github.com/mojaloop/license-scanner) in the license-scanner repository.
 
 
-## Blacklisting and Whitelisting
+## Blocking and Allowing Licenses
 
-The license-scanner works by blacklisting unwanted licenses, and whitelisting packages which have been manually audited, and we are comfortable with using. 
+The license-scanner works by blocklisting unwanted licenses, and allowlisting packages which have been manually audited, and we are comfortable with using. 
 
 In the [`config.toml`](https://github.com/mojaloop/license-scanner/blob/master/config.toml) file, we configure two arrays of strings.
 
-__Adding a new License identifier to the blacklist:__
+__Adding a new License identifier to the blocklist:__
 
 Edit `config.tml`, and add the license string into the `failList` array:
 ```toml
@@ -33,14 +33,14 @@ failList = [
 ]
 ```
 
-The license-scanner will pick out licenses that it finds in the `node_modules` folder, and if the license string is in the `failList` (using a fuzzy string search), the license-scanner will fail, unless the package is found in the whitelist.
+The license-scanner will pick out licenses that it finds in the `node_modules` folder, and if the license string is in the `failList` (using a fuzzy string search), the license-scanner will fail, unless the package is found in the allowlist.
 
-__Adding a new package to the whitelist:__
+__Adding a new package to the allowlist:__
 
-In addition to maintaining a blacklist of licenses, we whitelist packages that we have manually audited and are happy to include.
+In addition to maintaining a blocklist of licenses, we allowlist packages that we have manually audited and are happy to include.
 The most common case for this is packages that don't have a license entry in the `package.json` file, which the npm license scan tool lists as `UNKNOWN`.
 
-To add a package to the whitelist, simply add an entry to the `excludeList` in `config.toml`. For example:
+To add a package to the allowlist, simply add an entry to the `excludeList` in `config.toml`. For example:
 ```toml
 excludeList = [
   "taffydb@2.6.2",
@@ -51,11 +51,11 @@ excludeList = [
 ]
 ```
 
->___FAQ:__ Why keep a whitelist?_
+>___FAQ:__ Why keep a allowlist?_
 >
 >The license-scanner is not perfect, and sometimes there are packages that have been incorrectly identified, or contain no license entry in the `package.json` file, but do contain a valid license in the package's git repository.
 >
->By maintaining a whitelist of packages we have manually audited, we can get around incorrectly labelled packages.
+>By maintaining a allowlist of packages we have manually audited, we can get around incorrectly labelled packages.
 
 
 ## Running Inside CI/CD
@@ -78,7 +78,7 @@ The license-scanner does the following:
   * 4. Uploads the results as a `.csv` artifact
 
 
-Should the license scanner pass (i.e. find no licenses that are blacklisted), the build will succeed.
+Should the license scanner pass (i.e. find no licenses that are blocklisted), the build will succeed.
 
 <img src="./assets/diagrams/automated-license-scanning/audit-licenses-pr.svg" alt="CircleCI license scanning for PR" width=900>
 
