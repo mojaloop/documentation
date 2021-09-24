@@ -17,7 +17,7 @@ built from the [mojaloop/helm](https://github.com/mojaloop/helm)
 
 ### Pull Request (PR) Flow:
 
-The PR flow runs on pull requests, and during the PR review process, these checks must be satisfied
+The PR flow runs on pull requests, and during the [PR review process](https://github.com/mojaloop/documentation/blob/master/contributors-guide/standards/creating-new-features.md#creating-new-features), these checks must be satisfied
 for the code to be merged in.
 
 ![](./assets/images/ci_cd_lib_pr.png)
