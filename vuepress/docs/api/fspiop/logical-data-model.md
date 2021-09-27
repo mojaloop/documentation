@@ -36,33 +36,33 @@ Section 4 describes the data model in terms of basic elements, simple data types
 
 The Open API for FSP Interoperability Specification includes the following documents.
 
-#### General Documents
-
-- _Glossary_
-
 #### Logical Documents
 
-- _Logical Data Model_
+- [Logical Data Model](#)
 
-- _Generic Transaction Patterns_
+- [Generic Transaction Patterns](./generic-transaction-patterns)
 
-- _Use Cases_
+- [Use Cases](./use-cases)
 
 #### Asynchronous REST Binding Documents
 
-- _API Definition_
+- [API Definition](./api-definition)
 
-- _JSON Binding Rules_
+- [JSON Binding Rules](./json-binding-rules)
 
-- _Scheme Rules_
+- [Scheme Rules](./sheme-rules)
 
 #### Data Integrity, Confidentiality, and Non-Repudiation
 
-- _PKI Best Practices_
+- [PKI Best Practices](./pki-best-practices)
 
-- _Signature_
+- [Signature](./v1.1/signature)
 
-- _Encryption_
+- [Encryption](./v1.1/encryption)
+
+#### General Documents
+
+- [Glossary](./glossary)
 
 <br />
 
@@ -1284,169 +1284,118 @@ QmlsbCAmIE1lbGluZGEgR2F0ZXMgRm91bmRhdGlvbiE
 
 This section contains the definition of the elements types that are used by the API.
 
-#### 4.3.1 AmountType
+#### AmountType element
 
-Table 39 contains the data model for the element **AmountType**.
+Table 39 below contains the data model for the element `AmountType`.
 
 | Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **AmountType** | 1 | **Error! Reference source not found.** of String(1..32) | This element contains the amount type. See [Section 4.5.1](#451-amounttype) (AmountType) for more information on allowed values. |
+| **AmountType** | 1 | **Error! Reference source not found.** of `String(1..32`) | This element contains the amount type. See [AmountType](#amounttype-enum) enumeration for more information on allowed values. |
 
 **Table 39 – Element AmountType**
 
-#### 4.3.2 AuthenticationType
+<br />
 
-Table 40 contains the data model for the element **AuthenticationType**.
+#### AuthenticationType element
+
+Table 40 below contains the data model for the element `AuthenticationType`.
 
 | Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **Authentication** | 1 | **Error! Reference source not found.** of String(1..32) | This element contains the authentication type. See [Section 4.5.2](#452-authenticationtype) (AuthenticationType) for possible enumeration values. |
+| **Authentication** | 1 | **Error! Reference source not found.** of `String(1..32)` | This element contains the authentication type. See [AuthenticationType](#authenticationtyype-enum) enumeration for possible enumeration values. |
 
 **Table 40 – Element AuthenticationType**
 
-#### 4.3.3 AuthenticationValue
+<br />
 
-Table 41 contains the data model for the element **AuthenticationValue**.
+#### AuthenticationValue element
+
+Table 41 below contains the data model for the element `AuthenticationValue`.
 
 | Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **AuthenticationValue** | 1 | Depending on AuthenticationType. If OTP: Example <br>An example of **Integer(1..6)** appears below:</br><br>**123456**</br><br>OtpValue</br>If QRCODE: String(1..64) | This element contains the authentication value. The format depends on the authentication type used in the AuthenticationInfo complex type. |
+| **AuthenticationValue** | 1 | Depends on `AuthenticationType`. <br><br> If `OTP`: type is `Integer(1..6)`. For example:**123456**<br><br>OtpValue</br>If `QRCODE`: type is `String(1..64)` | This element contains the authentication value. The format depends on the authentication type used in the `AuthenticationInfo` complex type. |
 
 **Table 41 – Element AuthenticationValue**
 
-#### 4.3.4 AuthorizationResponse
+<br />
 
-Table 42 contains the data model for the element **AuthorizationResponse**.
+#### AuthorizationResponse element
+
+Table 42 below contains the data model for the element `AuthorizationResponse`.
 
 | Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **AuthorizationResponse** | 1 | **Error! Reference source not found.** of String(1..32) | This element contains the authorization response. See [Section 4.5.3](#453-authorizationresponse) (AuthorizationResponse) for possible enumeration values. |
+| **AuthorizationResponse** | 1 | **Error! Reference source not found.** of `String(1..32)` | This element contains the authorization response. See [AuthorizationResponse](#authorizationresponse-enum) enumeration for possible enumeration values. |
 
 **Table 42 – Element AuthorizationResponse**
 
-#### 4.3.5 BalanceOfPayments
+<br />
 
-Table 43 contains the data model for the element **BalanceOfPayment**.
+#### BalanceOfPayments element
+
+Table 43 below contains the data model for the element `BalanceOfPayment`.
 
 | Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **BalanceOfPayments** | 1 | BopCode | The possible values and meaning are defined in [https://www.imf.org/external/np/sta/bopcode/](https://www.imf.org/external/np/sta/bopcode/) |
+| **BalanceOfPayments** | 1 | `BopCode` | The possible values and meaning are defined in [https://www.imf.org/external/np/sta/bopcode/](https://www.imf.org/external/np/sta/bopcode/) |
 
 **Table 43 – Element BalanceOfPayments**
 
-#### 4.3.6 BulkTransferState
+<br />
 
-Table 44 contains the data model for the element **BulkTransferState**.
+#### BulkTransferState element
 
-<table>
-  <tr>
-    <th>Name</th><th>Cardinality</th><th>Type</th><th>Description</th>
-  </tr>
-  <tr>
-    <td valign="top"><b>BulkTransferState</b></td>
-    <td valign="top">1</td>
-    <td valign="top"><b>Error! Reference source not found.</b> of String(1..32)</td>
-    <td>See <a href="#453-authorizationresponse">Section 4.5.3</a> (AuthorizationResponse<p>Table 95 contains the allowed values for the enumeration <b>AuthorizationResponse.</b>
-      <table border="1">
-        <tr>
-          <th>Name</th>
-          <th>Description</th>
-       </tr>
-       <tr>
-         <td><b>ENTERED</b></td>
-         <td>Consumer entered the authentication value.</td>
-       </tr>
-       <tr>
-         <td><b>REJECT</b></td>
-         <td>Consumer rejected the transaction.</td>
-       </tr>
-       <tr>
-         <td><b>RESEND</b></td>
-         <td>Consumer requested to resend the authentication value.</td>
-        </tr>
-      </table>
-    <b>Table 95 - Enumeration AuthorizationResponse</b></p>
-    <p>) for more information on allowed values.</p>
-    </td>
-  </tr>
-</table>
+Table 44 below contains the data model for the element `BulkTransferState`.
+
+| Name | Cardinality | Type | Description |
+| --- | --- | --- | --- |
+| **BulkTransferState** | 1 | **Error! Reference source not found** of `String(1..32)` | See [BulkTransferState](#bulktransferstate-enum) enumeration for information on allowed values|
 
 **Table 44 – Element BulkTransferState**
 
-#### 4.3.7 Code
+<br />
 
-Table 45 contains the data model for the element **Code**.
+#### Code element
+
+Table 45 below contains the data model for the element `Code`.
 
 | Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **Code** | 1 | TokenCode | Any code/token returned by the Payee FSP. |
+| **Code** | 1 | `TokenCode` | Any code/token returned by the Payee FSP. |
 
 **Table 45 – Element Code**
 
-#### 4.3.8 CorrelationId
+<br />
 
-Table 46 contains the data model for the element **CorrelationId**.
+#### CorrelationId element
+
+Table 46 below contains the data model for the element `CorrelationId`.
 
 | Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **CorrelationId** | 1 | Examples <p>Two examples of the <b>Date</b> type appear below: </p><b>1982-05-23</b><p><b>1987-08-05</b></p>UUID | Identifier that correlates all messages of the same sequence. |
+| **CorrelationId** | 1 |`UUID` | Identifier that correlates all messages of the same sequence. |
+
 
 **Table 46 – Element CorrelationId**
 
-#### 4.3.9 Currency
+<br />
 
-Table 47 contains the data model for the element **Currency**.
+#### Currency element
 
-<!-- <table>
-  <tr>
-    <th>Name</th><th>Cardinality</th><th>Type</th><th>Description</th>
-  </tr>
-  <tr>
-    <td valign="top"><b>Currency</b></td>
-    <td valign="top">1</td>
-    <td valign="top"><b>Error! Reference source not found.</b> of String(3)</td>
-    <td>See <a href="#454-bulktransferstate">Section 4.5.4</a> (BulkTransferState<br>Table 96 contains the allowed values for the enumeration <b>BulkTransferState</b>
-      <table border="1">
-        <tr>
-          <th>Name</th>
-          <th>Description</th>
-        </tr>
-        <tr>
-          <td><b>RECIEVED</br></td>
-          <td>Payee FSP has received the bulk transfer from the Payer FSP.</td>
-        </tr>
-        <tr>
-          <td><b>PENDING</b></td>
-          <td>Payee FSP has validated the bulk transfer.</td>
-        </tr>
-        <tr>
-          <td><b>ACCEPTED</b></td>
-          <td>Payee FSP has accepted to process the bulk transfer.</td>
-        </tr>
-        <tr>
-          <td><b>PROCESSING</b></td>
-          <td>Payee FSP has started to transfer fund to the Payees.</td>
-        </tr>
-        <tr>
-          <td><b>COMPLETED</b></td>
-          <td>Payee FSP has completed transfer of funds to the Payees.</td>
-        </tr>
-        <tr>
-          <td><b>REJECTED</b></td>
-          <td>Payee FSP has rejected to process the transfer.</td>
-        </tr>
-      </table>
-        <p><b>Table 96 – Enumeration BulkTransferState</b></p>
-        <p>CurrencyCode) for more information on allowed values.</p>
-    </td>
-  </tr>
-</table> -->
+Table 47 below contains the data model for the element `Currency`.
+
+| Name | Cardinality | Type | Description |
+| --- | --- | --- | --- |
+| **Currency** | 1 | **Error! Reference source not found** of `String(3)` | See [Currency](#currency-enum) enumeration for information on allowed values |
 
 **Table 47 – Element Currency**
 
-#### 4.3.10 DateOfBirth
+<br />
 
-Table 48 contains the data model for the element **DateOfBirth**.
+#### DateOfBirth element
+
+Table 48 below contains the data model for the element `DateOfBirth`.
 
 | Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
@@ -1454,78 +1403,94 @@ Table 48 contains the data model for the element **DateOfBirth**.
 
 **Table 48 – Element DateOfBirth**
 
-#### 4.3.11 ErrorCode
+<br />
 
-Table 49 contains the data model for the element **ErrorCode**.
+#### ErrorCode element
+
+Table 49 below contains the data model for the element `ErrorCode`.
 
 | Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **ErrorCode** | 1 | ErrorCode | Four digit error code, see [Section 4.6](#46-error-codes) for more information. |
+| **ErrorCode** | 1 | `ErrorCode` | Four digit error code, see section on [Error Codes](#error-codes) for more information. |
 
 **Table 49 – Element ErrorCode**
 
-#### 4.3.12 ErrorDescription
+<br />
 
-Table 50 contains the data model for the element **ErrorDescription**.
+#### ErrorDescription element
+
+Table 50 below contains the data model for the element `ErrorDescription`.
 
 | Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **ErrorDescription** | 1 | String(1..128) | Error description string. |
+| **ErrorDescription** | 1 | `String(1..128)` | Error description string. |
 
 **Table 50 – Element ErrorDescription**
 
-#### 4.3.13 ExtensionKey
+<br />
 
-Table 51 contains the data model for the element **ExtensionKey**.
+#### ExtensionKey element
+
+Table 51 below contains the data model for the element `ExtensionKey`.
 
 | Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **ExtensionKey** | 1 | String(1..32) | The extension key. |
+| **ExtensionKey** | 1 | `String(1..32)` | The extension key. |
 
 **Table 51 – Element ExtensionKey**
 
-#### 4.3.14 ExtensionValue
+<br />
 
-Table 52 contains the data model for the element **ExtensionValue**.
+#### ExtensionValue element
+
+Table 52 below contains the data model for the element `ExtensionValue`.
 
 | Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **ExtensionValue** | 1 | String(1..128) | The extension value. |
+| **ExtensionValue** | 1 | `String(1..128)` | The extension value. |
 
 **Table 52 – Element ExtensionValue**
 
-#### 4.3.15 FirstName
-Table 53 contains the data model for the element **FirstName**.
+<br />
+
+#### FirstName element
+Table 53 below contains the data model for the element `FirstName`.
 
 | Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **FirstName** | 1 | Name | First name of the Party |
+| **FirstName** | 1 | `Name` | First name of the Party |
 
 **Table 53 – Element FirstName**
 
-#### 4.3.16 FspId
+<br />
 
-Table 54 contains the data model for the element **FspId**.
+#### FspId element
+
+Table 54 below contains the data model for the element `FspId`.
 
 | Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **FspId** | 1 | String(1..32) | The FSP identifier. |
+| **FspId** | 1 | `String(1..32)`| The FSP identifier. |
 
 **Table 54 – Element FspId**
 
-#### 4.3.17 IlpCondition
+<br />
 
-Table 55 contains the data model for the element **IlpCondition**.
+#### IlpCondition element
+
+Table 55 below contains the data model for the element `IlpCondition`.
 
 | Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **IlpCondition** | 1 | BinaryString32 | The condition that must be attached to the transfer by the Payer. |
+| **IlpCondition** | 1 | `BinaryString32` | The condition that must be attached to the transfer by the Payer. |
 
 **Table 55 – Element IlpCondition**
 
-#### 4.3.18 IlpFulfilment
+<br />
 
-Table 56 contains the data model for the element **IlpFulfilment**.
+####  IlpFulfilment element
+
+Table 56 below contains the data model for the element `IlpFulfilment`.
 
 | Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
@@ -1533,9 +1498,11 @@ Table 56 contains the data model for the element **IlpFulfilment**.
 
 **Table 56 – Element IlpFulfilment**
 
-#### 4.3.19 IlpPacket
+<br />
 
-Table 57 contains the data model for the element **IlpPacket**.
+#### IlpPacket element
+
+Table 57 below cntains the data model for the element `IlpPacket`.
 
 | Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
@@ -1543,498 +1510,489 @@ Table 57 contains the data model for the element **IlpPacket**.
 
 **Table 57 – Element IlpPacket**
 
-#### 4.3.20 LastName
+<br />
 
-Table 58 contains the data model for the element **LastName**.
+#### LastName element
+
+Table 58 below contains the data model for the element `LastName`.
 
 | Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **LastName** | 1 | Name | Last name of the Party (ISO 20022 definition). |
+| **LastName** | 1 | `Name` | Last name of the Party (ISO 20022 definition). |
 
 **Table 58 – Element LastName**
 
-#### 4.3.21 MerchantClassificationCode
+<br />
 
-Table 59 contains the data model for the element **MechantClassificationCode**.
+#### MerchantClassificationCode element
+
+Table 59 below contains the data model for the element `MerchantClassificationCode`.
 
 | Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **MerchantClassificationCode** | 1 | MerchantClassificationCode | A limited set of pre-defined numbers. This list would be a limited set of numbers identifying a set of popular merchant types like School Fees, Pubs and Restaurants, Groceries, and so on. |
+| **MerchantClassificationCode** | 1 | `MerchantClassificationCode` | A limited set of pre-defined numbers. This list would be a limited set of numbers identifying a set of popular merchant types like School Fees, Pubs and Restaurants, Groceries, and so on. |
 
 **Table 59 – Element MerchantClassificationCode**
 
-#### 4.3.22 MiddleName
+<br />
 
-Table 60 contains the data model for the element **MiddleName**.
+#### MiddleName element
+
+Table 60 below contains the data model for the element `MiddleName`.
 
 | Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **MiddleName** | 1 | Name | Middle name of the Party (ISO 20022 definition). |
+| **MiddleName** | 1 | `Name` | Middle name of the Party (ISO 20022 definition). |
 
 **Table 60 – Element MiddleName**
 
-#### 4.3.23 Note
+<br />
 
-Table 61 contains the data model for the element **Note**.
+#### Note element
+
+Table 61 below contains the data model for the element `Note`.
 
 | Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **Note** | 1 | String(1..128) | Memo assigned to transaction. |
+| **Note** | 1 | `String(1..128)` | Memo assigned to transaction. |
 
 **Table 61 – Element Note**
 
-#### 4.3.24 NrOfRetries
+<br />
 
-Table 62 contains the data model for the element **NrOfRetries**.
+
+#### NrOfRetries element
+
+Table 62 below contains the data model for the element `NrOfRetries`.
 
 | Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **NrOfRetries** | 1 | Integer(1..2) | Number of retries. |
+| **NrOfRetries** | 1 | `Integer(1..2)` | Number of retries. |
 
 **Table 62 – Element NrOfRetries**
 
-#### 4.3.25 PartyIdentifier
+<br />
 
-Table 63 contains the data model for the element **PartyIdentifier**.
+#### PartyIdentifier element
+
+Table 63 below contains the data model for the element `PartyIdentifier`.
 
 | Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **PartyIdentifier** | 1 | String(1..128) | Identifier of the Party.|
+| **PartyIdentifier** | 1 | `String(1..128)` | Identifier of the Party.|
 
 **Table 63 – Element PartyIdentifier**
 
-#### 4.3.26 PartyIdType
+<br />
 
-Table 64 contains the data model for the element **PartyIdType**.
+#### PartyIdType element
+
+Table 64 below contains the data model for the element `PartyIdType`.
 
 | Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **PartyIdType** | 1 | **Error! Reference source not found.** of String(1..32) | See [Section 4.5.6](#456-partyidtype) (PartyIdType) for more information on allowed values. |
+| **PartyIdType** | 1 | **Error! Reference source not found.** of `String(1..32)` | See [PartyIdType](#partyidtype-enum) enumeration for more information on allowed values. |
 
 **Table 64 – Element PartyIdType**
 
-#### 4.3.27 PartyName
+<br />
 
-Table 65 contains the data model for the element **PartyName**.
+#### PartyName element
 
-| Name | Cardinality | Type | Description |
-| --- | --- | --- | --- |
-| **PartyName** | 1 | Name | Name of the Party. Could be a real name or a nickname. |
-
-** Table 65 – Element PartyName**
-
-#### 4.3.28 PartySubIdOrType
-
-Table 66 contains the data model for the element **PartySubIdOrType**.
+Table 65 below contains the data model for the element `PartyName`.
 
 | Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **PartySubIdOrType** | 1 | String(1..128) | Either a sub-identifier of a PartyIdentifier, or a sub-type of the PartyIdType, normally a PersonalIdentifierType. |
+| **PartyName** | 1 | `Name` | Name of the Party. Could be a real name or a nickname. |
+
+**Table 65 – Element PartyName**
+
+<br />
+
+#### PartySubIdOrType element
+
+Table 66 below contains the data model for the element `PartySubIdOrType`.
+
+| Name | Cardinality | Type | Description |
+| --- | --- | --- | --- |
+| **PartySubIdOrType** | 1 | `String(1..128)` | Either a sub-identifier of a `PartyIdentifier`, or a sub-type of the `PartyIdType`, normally a `PersonalIdentifierType`. |
 
 **Table 66 – Element PartySubIdOrType**
 
-#### 4.3.29 RefundReason
+<br />
 
-Table 67 contains the data model for the element **RefundReason**.
+#### RefundReason element
+
+Table 67 below contains the data model for the element `RefundReason`.
 
 | Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **RefundReason** | 1 | String(1..128) | Reason for the refund. |
+| **RefundReason** | 1 | `String(1..128)` | Reason for the refund. |
 
 **Table 67 – Element RefundReason**
 
-#### 4.3.30 TransactionInitiator
+<br />
 
-Table 68 contains the data model for the element **TransactionInitiator**.
+#### TransactionInitiator element
+
+Table 68 below contains the data model for the element `TransactionInitiator`.
 
 | Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **TransactionInitiator** | 1 | **Error! Reference source not found.** of String(1..32) | See [Section 4.5.8](#458-transactioninitiator) (TransactionInitiator) for more information on allowed values. |
+| **TransactionInitiator** | 1 | **Error! Reference source not found.** of `String(1..32)` | See [TransactionInitiator](#transactioninitiator-enum) enumeration for more information on allowed values. |
 
 **Table 68 – Element TransactionInitiator**
 
-#### 4.3.31 TransactionInitiatorType
+<br />
 
-Table 69 contains the data model for the element **TransactionInitiatorType**.
+#### TransactionInitiatorType element
+
+Table 69 below contains the data model for the element `TransactionInitiatorType`.
 
 | Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **TransactionInitiatorType** | 1 | **Error! Reference source not found.** of String(1..32)| See [Section 4.5.9](#459-transactioninitiatortype) (TransactionInitiatorType) for more information on allowed values. |
+| **TransactionInitiatorType** | 1 | **Error! Reference source not found.** of `String(1..32`)| See [TransactionInitiatorType](#transactioninitiatortype-enum) enumeration for more information on allowed values. |
 
 **Table 69 – Element TransactionInitiatorType**
 
-#### 4.3.32 TransactionRequestState
+<br />
 
-Table 70 contains the data model for the element **TransactionRequestState**.
+#### TransactionRequestState element
 
-<table>
-  <tr><th>Name</th><th>Cardinality</th><th>Type</th><th>Description</th></tr>
-  <tr>
-    <td valign="top"><b>TransactionRequestState</b></td>
-    <td valign="top">1</td>
-    <td valign="top"><b>Error! Reference source not found.</b> of String(1..32)</td>
-    <td>See <a href="#4510-transactioninitiator">Section 4.5.10</a> (TransactionInitiator<p>Table 99 contains the allowed values for the enumeration <b>TransactionInitiator</b>.</p>
-      <table border="1">
-        <tr>
-          <th>Name</th>
-          <th>Description</th>
-        </tr>
-        <tr>
-          <td valign="top"><b>PAYER</b></td>
-          <td>The sender of funds is initiating the transaction. The account to send from is either owned by the Payer or is connected to the Payer in some way.</td>
-        </tr>
-        <tr>
-          <td valign="top"><b>PAYEE</b></td>
-          <td>The recipient of the funds is also initiating the transaction by sending a transaction request. The Payer must approve the transaction, either automatically by a pre-generated OTP, pre-approval of the Payee, or by manually approving in his or her own Device.</td>
-        </tr>
-      </table>
-      <b>Table 99 – Enumeration TransactionInitiator</b><p><h4>4.3.33 TransactionInitiatorType</h4></p><b>Table 100 contains the allowed values for the enumeration TransactionInitiatorType.</b>
-      <table border="1">
-        <tr>
-          <th>Name</th>
-          <th>Description</th>
-        </tr>
-        <tr>
-          <td valign="top"><b>CONSUMER</b></td>
-          <td>Consumer is the initiator of the transaction.</td>
-        </tr>
-        <tr>
-          <td valign="top"><b>AGENT</b></td> 
-          <td>Agent is the initiator of the transaction.</td>
-        </tr>
-        <tr>  
-          <td valign="top"><b>BUSINESS</b></td>
-          <td>Business is the initiator of the transaction.</td>
-        </tr>
-        <tr>  
-          <td valign="top"><b>DEVICE</b></td>
-          <td>Device is the initiator of the transaction.</td>
-        </tr>
-      </table>
-      <b>Table 100 – Enumeration TransactionInitiatorType</b><p>TransactionRequestState) for more information on allowed values.</p>
-    </td>
-  </tr>
-</table>
+Table 70 below contains the data model for the element `TransactionRequestState`.
+
+| Name | Cardinality | Type | Description |
+| --- | --- | --- | --- |
+| **TransactionRequestState** | 1 | **Error! Reference source not found.** of `String(1..32`)| See [TransactionRequestState](#transactionrequeststate-enum) enumeration for more information on allowed values. |
+
 
 **Table 70 – Element TransactionRequestState**
 
-#### 4.3.34 TransactionScenario
+<br />
 
-Table 71 contains the data model for the element **TransactionScenario**.
+#### TransactionScenario element
+
+Table 71 below contains the data model for the element `TransactionScenario`.
 
 | Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **TransactionScenario** | 1 | **Error! Reference source not found.** of String(1..32) | See [Section 4.5.11](#4511-transactionscenario) (TransactionScenario) for more information on allowed values. |
+| **TransactionScenario** | 1 | **Error! Reference source not found.** of `String(1..32)` | See [TransactionScenario](#transactionscenario-enum) enumeration for more information on allowed values. |
 
 **Table 71 – Element TransactionScenario**
 
-#### 4.3.35 TransactionState
+<br />
 
-Table 72 contains the data model for the element **TransactionState**.
+#### TransactionState element
+
+Table 72 below contains the data model for the element `TransactionState`.
 
 |Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **TransactionState** | 1 | **Error! Reference source not found.** of String(1..32) | See [Section 4.5.12](#4512-transactionstate) (TransactionState) for more information on allowed values. |
+| **TransactionState** | 1 | **Error! Reference source not found.** of `String (1..32)` | See [TransactionState](#transactionstate-enum) enumeration for more information on allowed values. |
 
 **Table 72 – Element TransactionState**
 
+<br />
 
-#### 4.3.36 TransferState
+#### TransferState element
 
-Table 73 contains the data model for the element **TransferState**.
+Table 73 below contains the data model for the element `TransferState`.
 
-<!-- <table>
-  <tr>
-    <th>Name</th>
-    <th>Cardinality</th>
-    <th>Type</th>
-    <th>Description</th>
-  <tr>
-    <td valign="top"><b>TransferState</></td>
-    <td valign="top">1</td>
-    <td valign="top"><b>Error! Reference source not found.</b> of String(1..32)</td>
-    <td>See <a href="#4512-transactionstate">Section 4.5.12</a> (TransactionState<p>Table 103 contains the allowed values for the enumeration <b>TransactionState</b>.</p>
-  <table border="1">
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-    <tr>
-    <tr>
-      <td><b>RECEIVED</b></td>
-      <td>Payee FSP has received the transaction from the Payer FSP.</td>
-    </tr>
-    <tr>
-      <td><b>PENDING</b></td>
-      <td>Payee FSP has validated the transaction.</td>
-    </tr>
-    <tr>
-      <td><b>COMPLETED</b></td>
-      <td>Payee FSP has successfully performed the transaction.</td>
-    </tr>
-    <tr>
-      <td><b>REJECTED</b></td>
-      <td>Payee FSP has failed to perform the transaction.</td>
-    </tr>
-  </table>
-  <b>Table 103 – Enumeration TransactionState</b><p>TransferState) for more information on allowed values.</p>
-  </td>
-</table> -->
+|Name | Cardinality | Type | Description |
+| --- | --- | --- | --- |
+| **TransactionState** | 1 | **Error! Reference source not found.** of `String (1..32)` | See [TransactionState](#transferstate-enum) enumeration for more information on allowed values. |
 
 **Table 73 – Element TransferState**
 
-#### 4.3.37 TransactionSubScenario
+<br />
 
-Table 74 contains the data model for the element **TransactionSubScenario**.
+#### TransactionSubScenario element
+
+Table 74 below contains the data model for the element `TransactionSubScenario`.
 
 | Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **TransactionSubScenario** | 1 | UndefinedEnum | Possible sub-scenario, defined locally within the scheme.|
+| **TransactionSubScenario** | 1 | `UndefinedEnum` | Possible sub-scenario, defined locally within the scheme.|
 
 **Table 74 – Element TransactionSubScenario**
 
-### 4.4 Complex Types
+<br />
+
+### Complex Types
 
 This section contains the complex types that are used by the API.
 
-#### 4.4.1 AuthenticationInfo
+#### AuthenticationInfo
 
-Table 75 contains the data model for the complex type **AuthenticationInfo**.
+Table 75 below contains the data model for the complex type `AuthenticationInfo`.
 
 |Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **authentication** | 1 | AuthenticationType | The type of authentication. |
-| **authenticationValue** | 1 | AuthenticationValue | The authentication value. |
+| **authentication** | 1 | `AuthenticationType` | The type of authentication. |
+| **authenticationValue** | 1 | `AuthenticationValue` | The authentication value. |
 
 **Table 75 – Complex type AuthenticationInfo**
 
-#### 4.4.2 ErrorInformation
+<br />
 
-Table 76 contains the data model for the complex type **ErrorInformation**.
+#### ErrorInformation
+
+Table 76 below contains the data model for the complex type `ErrorInformation`.
 
 |Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **errorCode** | 1 | ErrorCode | Specific error number. |
-| **errorDescription** | 1 | ErrorDescription | Error description string. |
-| **extensionList** | 0..1 | ExtensionList | Optional list of extensions, specific to deployment. |
+| **errorCode** | 1 | `ErrorCode` | Specific error number. |
+| **errorDescription** | 1 | `ErrorDescription` | Error description string. |
+| **extensionList** | 0..1 | `ExtensionList` | Optional list of extensions, specific to deployment. |
 
 **Table 76 – Complex type ErrorInformation**
 
-#### 4.4.3 Extension
+<br />
 
-Table 77 contains the data model for the complex type **Extension**.
+#### Extension
+
+Table 77 below contains the data model for the complex type `Extension`.
 
 |Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **key** | 1 | ExtensionKey | The extension key. |
-| **value** | 1 | ExtensionValue | The extension value. |
+| **key** | 1 | `ExtensionKey` | The extension key. |
+| **value** | 1 | `ExtensionValue` | The extension value. |
 
 **Table 77 – Complex type Extension**
 
-#### 4.4.4 ExtensionList
+<br />
 
-Table 78 contains the data model for the complex type **ExtensionList**.
+#### ExtensionList
+
+Table 78 below contains the data model for the complex type `ExtensionList`.
 
 |Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **extension** | 1..16 | Extension | A number of Extension elements. |
+| **extension** | 1..16 | `Extension` | A number of Extension elements. |
 
 **Table 78 – Complex type ExtensionList**
 
-#### 4.4.5 IndividualQuote
+<br />
 
-Table 79 contains the data model for the complex type **IndividualQuote**.
+#### IndividualQuote
+
+Table 79 below contains the data model for the complex type  `IndividualQuote`.
 
 |Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **quoteId** | 1 | CorrelationId | Identifies quote message. |
-| **transactionId** | 1 | CorrelationId | Identifies transaction message. |
-| **payee** | 1 | Party | Information about the Payee in the proposed financial transaction. |
-| **amountType** | 1 | AmountType | SEND_AMOUNT for sendAmount,<p>RECEIVE_AMOUNT for receiveAmount.</p>
-| **amount** | 1 | Money | Depending on amountType:<p>If SEND: The amount the Payer would like to send, that is, the amount that should be withdrawn from the Payer account including any fees. The amount is updated by each participating entity in the transaction.</p>If RECEIVE: The amount the Payee should receive, that is, the amount that should be sent to the receiver exclusive any fees. The amount is not updated by any of the participating entities. |
-| **fees** | 0..1 | Money | The fees in the transaction.<ul><li>The fees element should be empty if fees should be non-disclosed.</li><li>The fees element should be non-empty if fees should be disclosed.</li></ul>
-| **transactionType** | 1 | TransactionType | The type of transaction that the quote is requested for. |
-| **note** | 0..1 | Note | A memo that will be attached to the transaction. This is sent in the quote so it can be included in the ILP Packet. |
-| **extensionList** | 0..1 | ExtensionList | Optional extension, specific to deployment. |
+| **quoteId** | 1 | `CorrelationId` | Identifies quote message. |
+| **transactionId** | 1 | `CorrelationId` | Identifies transaction message. |
+| **payee** | 1 | `Party` | Information about the Payee in the proposed financial transaction. |
+| **amountType** | 1 | `AmountType` | `SEND_AMOUNT` for _sendAmount_,<p>`RECEIVE_AMOUNT` for _receiveAmount_.</p>
+| **amount** | 1 | `Money` | Depending on amountType:<p>If `SEND`: The amount the Payer would like to send, that is, the amount that should be withdrawn from the Payer account including any fees. The amount is updated by each participating entity in the transaction.</p>If `RECEIVE`: The amount the Payee should receive, that is, the amount that should be sent to the receiver exclusive any fees. The amount is not updated by any of the participating entities. |
+| **fees** | 0..1 | `Money` | The fees in the transaction.<ul><li>The fees element should be empty if fees should be non-disclosed.</li><li>The fees element should be non-empty if fees should be disclosed.</li></ul>
+| **transactionType** | 1 | `TransactionType` | The type of transaction that the quote is requested for. |
+| **note** | 0..1 | `Note` | A memo that will be attached to the transaction. This is sent in the quote so it can be included in the ILP Packet. |
+| **extensionList** | 0..1 | `ExtensionList` | Optional extension, specific to deployment. |
 
 **Table 79 – Complex type IndividualQuote**
 
-#### 4.4.6 IndividualQuoteResult
+<br />
 
-Table 80 contains the data model for the complex type **IndividualQuoteResult**.
+#### IndividualQuoteResult
+
+Table 80 below contains the data model for the complex type `IndividualQuoteResult`.
 
 | Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **quoteId** | 1 | CorrelationId | Identifies the quote message. |
-| **payeeReceiveAmount** | 0..1 | Money | Amount that the Payee should receive in the end-toend transaction. Optional as the Payee FSP might not want to disclose any optional Payee fees. |
-| **payeeFspFee** | 0..1 | Money | Payee FSP’s part of the transaction fee. |
-| **payeeFspCommission** | 0..1 | Money | Transaction commission from the Payee FSP. |
-| **ilpPacket** | 0..1 | IlpPacket | The ILP Packet that must be attached to the transfer by the payer. |
-| **condition** | 0..1 | IlpCondition | The condition that must be attached to the transfer by the payer. |
-| **errorInformation** | 0..1 | ErrorInformation | Error code, category description. <p><b>Note:</b> If errorInformation is set, the following are not set:</p><ul><li>receiveAmount</li><li>payeeFspFee</li><li>payeeFspCommission</li><li>ilpPacket</li><li>condtion</li></ul> |
-| **extensionList** | 0..1 | ExtensionList | Optional extension, specific to deployment |
+| **quoteId** | 1 | `CorrelationId` | Identifies the quote message. |
+| **payeeReceiveAmount** | 0..1 | `Money` | Amount that the Payee should receive in the end-toend transaction. Optional as the Payee FSP might not want to disclose any optional Payee fees. |
+| **payeeFspFee** | 0..1 | `Money` | Payee FSP’s part of the transaction fee. |
+| **payeeFspCommission** | 0..1 | `Money` | Transaction commission from the Payee FSP. |
+| **ilpPacket** | 0..1 | `IlpPacket` | The ILP Packet that must be attached to the transfer by the payer. |
+| **condition** | 0..1 | `IlpCondition` | The condition that must be attached to the transfer by the payer. |
+| **errorInformation** | 0..1 | `ErrorInformation` | Error code, category description. <p><b>Note:</b> If errorInformation is set, the following are not set:</p><ul><li>receiveAmount</li><li>payeeFspFee</li><li>payeeFspCommission</li><li>ilpPacket</li><li>condtion</li></ul> |
+| **extensionList** | 0..1 | `ExtensionList` | Optional extension, specific to deployment |
 
 **Table 80 – Complex type IndividualQuoteResult**
 
-#### 4.4.7 IndividualTransfer
+<br />
 
-Table 81 contains the data model for the complex type **IndividualTransfer**.
+#### IndividualTransfer
+
+Table 81 below contains the data model for the complex type `IndividualTransfer`.
 
 | Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **transferId** | 1 | CorrelationId | Identifies messages related to the same /transfers sequence. |
-| **transferAmount** | 1 | Money | The transaction amount to be sent. |
-| **ilpPacket** | 1 | IlpPacket | The ILP Packet containing the amount delivered to the payee and the ILP Address of the payee and any other end-to-end data. |
-| **condition** | 1 | IlpCondition | The condition that must be fulfilled to commit the transfer.
-| **extensionList** | 0..1 | ExtensionList | Optional extension, specific to deployment. |
+| **transferId** | 1 | `CorrelationId` | Identifies messages related to the same /transfers sequence. |
+| **transferAmount** | 1 | `Money` | The transaction amount to be sent. |
+| **ilpPacket** | 1 | `IlpPacket` | The ILP Packet containing the amount delivered to the payee and the ILP Address of the payee and any other end-to-end data. |
+| **condition** | 1 | `IlpCondition` | The condition that must be fulfilled to commit the transfer.
+| **extensionList** | 0..1 | `ExtensionList` | Optional extension, specific to deployment. |
 
 **Table 81 – Complex type IndividualTransfer**
 
-#### 4.4.8 IndividualTransferResult
+<br />
 
-Table 82 contains the data model for the complex type **IndividualTransferResult**.
+#### IndividualTransferResult
+
+Table 82 below contains the data model for the complex type `IndividualTransferResult`.
 
 | Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **transferId** | 1 | CorrelationId | Identifies messages related to the same /transfers sequence. |
-| **fulfilment** | 0..1 | IlpFulfilmentMoney | The fulfilment of the condition specified with the transaction.<p> <b>Note:</b> Either fulfilment is set or errorInformation is set, not both.</p>
-| **errorInformation** | 0..1 | ErrorInformation | If transactionState is REJECTED, error information may be provided.<p><b>Note:</b> Either fulfilment is set or errorInformation is set, not both.</p>
-| **extensionList** | 0..1 | ExtensionList | Optional extension, specific to deployment. |
+| **transferId** | 1 | `CorrelationId` | Identifies messages related to the same /transfers sequence. |
+| **fulfilment** | 0..1 | `IlpFulfilmentMoney` | The fulfilment of the condition specified with the transaction.<p> <b>Note:</b> Either fulfilment is set or errorInformation is set, not both.</p>
+| **errorInformation** | 0..1 | `ErrorInformation` | If transactionState is `REJECTED`, error information may be provided.<p><b>Note:</b> Either fulfilment is set or errorInformation is set, not both.</p>
+| **extensionList** | 0..1 | `ExtensionList` | Optional extension, specific to deployment. |
 
 **Table 82 – Complex type IndividualTransferResult**
 
-#### 4.4.9 GeoCode
+#### GeoCode
 
-Table 83 contains the data model for the complex type **GeoCode**.
+Table 83 below contains the data model for the complex type `GeoCode`.
 
 | Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **latitude** | 1 | Latitude | The Latitude of the service initiating Party. |
-| **longitude** | 1 | Longitude | The Longitude of the service initiating Party. |
+| **latitude** | 1 | `Latitude` | The Latitude of the service initiating Party. |
+| **longitude** | 1 | `Longitude` | The Longitude of the service initiating Party. |
 
 **Table 83 – Complex type GeoCode**
 
-#### 4.4.10 Money
+<br />
 
-Table 84 contains the data model for the complex type **Money**.
+#### Money
+
+Table 84 below contains the data model for the complex type `Money`.
 
 | Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **currency** | 1 | Currency | The currency of the Amount. |
-| **amount** | 1 | Amount | The amount of Money. |
+| **currency** | 1 | `Currency` | The currency of the Amount. |
+| **amount** | 1 | `Amount` | The amount of Money. |
 
 **Table 84 – Complex type Money**
 
-#### 4.4.11 Party
+<br />
 
-Table 85 contains the data model for the complex type **Party**.
+#### Party
+
+Table 85 below contains the data model for the complex type `Party`.
 
 | Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **partyIdInfo** | 1 | PartyIdInfo | Party Id type, id, sub ID or type, and FSP Id. |
-| **merchantClassificationCode** | 0..1 | MerchantClassificationCode | Optional: Used in the context of Payee Information, where the Payee happens to be a merchant accepting merchant payments. |
-| **name** | 0..1 | PartyName | The name of the party, could be a real name or a nick name. |
-| **personalInfo** | 0..1 | PartyPersonalInfo | Personal information used to verify identity of Party such as first, middle, last name and date of birth. |
+| **partyIdInfo** | 1 | `PartyIdInfo` | Party Id type, id, sub ID or type, and FSP Id. |
+| **merchantClassificationCode** | 0..1 | `MerchantClassificationCode` | Optional: Used in the context of Payee Information, where the Payee happens to be a merchant accepting merchant payments. |
+| **name** | 0..1 | `PartyName` | The name of the party, could be a real name or a nick name. |
+| **personalInfo** | 0..1 | `PartyPersonalInfo` | Personal information used to verify identity of Party such as first, middle, last name and date of birth. |
 
 **Table 85 – Complex type Party**
 
-#### 4.4.12 PartyComplexName
+<br />
 
-Table 86 contains the data model for the complex type **PartyComplextype**.
+#### PartyComplexName
+
+Table 86 below contains the data model for the complex type `PartyComplextype`.
 
 | Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **firstName** | 0..1 | FirstName | First name. |
-| **middleName** | 0..1 | MiddleName | Middle name. |
-| **lastName** | 0..1 | LastName | Last name. |
+| **firstName** | 0..1 | `FirstName` | First name. |
+| **middleName** | 0..1 | `MiddleName` | Middle name. |
+| **lastName** | 0..1 | `LastName` | Last name. |
 
 **Table 86 – Complex type PartyComplexName**
 
-#### 4.4.13 PartyIdInfo
+<br />
 
-Table 87 – Complex type PartyIdInfo contains the data model for the complex type **PartyIdInfo**.
+#### PartyIdInfo
+
+Table 87 below contains the data model for the complex type `PartyIdInfo`.
 
 | Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **partyIdType** | 1 | PartyIdType | The type of the identifier. |
-| **partyIdentifier** | 1 | PartyIdentifier | An identifier for the Party. |
-| **partySubIdOrType** | 0..1 | PartySubIdOrType | A sub-identifier or sub-type for the Party. |
-| **fspId** | 0..1 | FspId | The FSP ID (if known) |
+| **partyIdType** | 1 | `PartyIdType` | The type of the identifier. |
+| **partyIdentifier** | 1 | `PartyIdentifier` | An identifier for the Party. |
+| **partySubIdOrType** | 0..1 | `PartySubIdOrType` | A sub-identifier or sub-type for the Party. |
+| **fspId** | 0..1 | `FspId` | The FSP ID (if known) |
 
 **Table 87 – Complex type PartyIdInfo**
 
-#### 4.4.14 PartyPersonalInfo
+<br />
 
-Table 88 contains the data model for the complex type **PartyPersonalInfo**.
+#### PartyPersonalInfo
+
+Table 88 below contains the data model for the complex type `PartyPersonalInfo`.
 
 | Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **complexName** | 0..1 | PartyComplexName | First, middle and last name. |
-| **dateOfBirth** | 0..1 | DateOfBirth | Date of birth. |
+| **complexName** | 0..1 | `PartyComplexName` | First, middle and last name. |
+| **dateOfBirth** | 0..1 | `DateOfBirth` | Date of birth. |
 
 **Table 88 – Complex type PartyPersonalInfo**
 
-#### 4.4.15 PartyResult
+<br />
 
-Table 89 contains the data model for the complex type **PartyResult**.
+#### PartyResult
+
+Table 89 below contains the data model for the complex type `PartyResult`.
 
 | Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **partyId** | 1 | PartyIdInfo | Party Id type, id, sub ID or type, and FSP Id. |
-| **errorInformation** | 0..1 | ErrorInformation | If the Party failed to be added, error information should be provided. Otherwise, this parameter should be empty to indicate success. |
+| **partyId** | 1 | `PartyIdInfo` | Party Id type, id, sub ID or type, and FSP Id. |
+| **errorInformation** | 0..1 | `ErrorInformation` | If the Party failed to be added, error information should be provided. Otherwise, this parameter should be empty to indicate success. |
 
 **Table 89 – Complex type PartyPersonalInfo**
 
-#### 4.4.16 Refund
+<br />
 
-Table 90 contains the data model for the complex type **Refund**.
+#### Refund
+
+Table 90 below contains the data model for the complex type `Refund`.
 
 | Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **originalTransactionId** | 1 | CorrelationId | Reference to the original transaction ID that is requested to be refunded.| 
-| **refundReason** | 0..1 | RefundReason | Free text indicating the reason for the refund. |
+| **originalTransactionId** | 1 | `CorrelationId` | Reference to the original transaction ID that is requested to be refunded.| 
+| **refundReason** | 0..1 | `RefundReason` | Free text indicating the reason for the refund. |
 
 **Table 90 – Complex type Refund**
 
-#### 4.4.17 Transaction
+<br />
 
-Table 91 contains the data model for the complex type **Transaction**.
+#### Transaction
+
+Table 91 below contains the data model for the complex type `Transaction`.
 
 | Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **transactionId** | 1 | CorrelationId | ID of the transaction, the ID is determined by the Payer FSP during the creation of the quote. |
-| **quoteId** | 1 | CorrelationId | ID of the quote, the ID is determined by the Payer FSP during the creation of the quote. |
-| **payee** | 1 | Party | Information about the Payee in the proposed financial transaction. |
-| **payer** | 1 | Party | Information about the Payer in the proposed financial transaction. |
-| **amount** | 1 | Money | The transaction amount to be sent. |
-| **transactionType** | 1 | TransactionType | The type of the transaction. |
+| **transactionId** | 1 | `CorrelationId` | ID of the transaction, the ID is determined by the Payer FSP during the creation of the quote. |
+| **quoteId** | 1 | `CorrelationId` | ID of the quote, the ID is determined by the Payer FSP during the creation of the quote. |
+| **payee** | 1 | `Party` | Information about the Payee in the proposed financial transaction. |
+| **payer** | 1 | `Party` | Information about the Payer in the proposed financial transaction. |
+| **amount** | 1 | `Money` | The transaction amount to be sent. |
+| **transactionType** | 1 | `TransactionType` | The type of the transaction. |
 | **note** | 0..1 | Note | Memo associated to the transaction,intended to the Payee. |
-| **extensionList** | 0..1 | ExtensionList | Optional extension, specific to deployment. |
+| **extensionList** | 0..1 | `ExtensionList` | Optional extension, specific to deployment. |
 
 **Table 91 – Complex type Transaction**
 
-#### 4.4.18 TransactionType
+#### TransactionType
 
-Table 92 contains the data model for the complex type **TransactionType**.
+Table 92 below contains the data model for the complex type `TransactionType`.
 
 | Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **scenario** | 1 | TransactionScenario | Deposit, withdrawal, refund, … |
-| **subScenario** | 0..1 | TransactionSubScenario | Possible sub-scenario, defined locally within the scheme. |
-| **initiator** | 1 | TransactionInitiator | Who is initiating the transaction: payer or payee |
-| **initiatorType** | 1 | TransactionInitiatorType | Consumer, agent, business, … |
-| **refundInfo** | 0..1 | Refund | Extra information specific to a refund scenario. Should only be populated if scenario is REFUND. |
-| **balanceOfPayments** | 0..1 | BalanceOfPayments | Balance of Payments code. |
+| **scenario** | 1 | `TransactionScenario` | Deposit, withdrawal, refund, … |
+| **subScenario** | 0..1 | `TransactionSubScenario` | Possible sub-scenario, defined locally within the scheme. |
+| **initiator** | 1 | `TransactionInitiator` | Who is initiating the transaction: payer or payee |
+| **initiatorType** | 1 | `TransactionInitiatorType` | Consumer, agent, business, … |
+| **refundInfo** | 0..1 | `Refund` | Extra information specific to a refund scenario. Should only be populated if scenario is `REFUND`. |
+| **balanceOfPayments** | 0..1 | `BalanceOfPayments` | Balance of Payments code. |
 
 **Table 92 – Complex type TransactionType**
 
+<br />
 
-### 4.5 Enumerations
+
+### Enumerations
 
 This section contains the enumerations used by the API.
 
-#### 4.5.1 AmountType
+#### AmountType enum
 
-Table 93 contains the allowed values for the enumeration **AmountType**.
+Table 93 below contains the allowed values for the enumeration `AmountType`.
 
 | Name | Description |
 | --- | --- |
@@ -2043,9 +2001,11 @@ Table 93 contains the allowed values for the enumeration **AmountType**.
 
 **Table 93 – Enumeration AmountType**
 
-#### 4.5.2 AuthenticationType
+<br />
 
-Table 94 contains the allowed values for the enumeration **AuthenticationType**.
+#### AuthenticationType enum
+
+Table 94 below contains the allowed values for the enumeration `AuthenticationType`.
 
 | Name | Description |
 | --- | ---|
@@ -2054,9 +2014,11 @@ Table 94 contains the allowed values for the enumeration **AuthenticationType**.
 
 **Table 94 – Enumeration AuthenticationType**
 
-#### 4.5.3 AuthorizationResponse
+<br />
 
-Table 95 contains the allowed values for the enumeration **AuthorizationResponse**.
+#### AuthorizationResponse enum
+
+Table 95 below contains the allowed values for the enumeration `AuthorizationResponse`.
 
 | Name | Description |
 | --- | --- |
@@ -2066,9 +2028,11 @@ Table 95 contains the allowed values for the enumeration **AuthorizationResponse
 
 **Table 95 – Enumeration AuthorizationResponse**
 
-#### 4.5.4 BulkTransferState
+<br />
 
-Table 96 contains the allowed values for the enumeration **BulkTransferState**.
+#### BulkTransferState
+
+Table 96 below contains the allowed values for the enumeration `BulkTransferState`.
 
 | Name | Description |
 | --- | --- |
@@ -2081,13 +2045,17 @@ Table 96 contains the allowed values for the enumeration **BulkTransferState**.
 
 **Table 96 – Enumeration BulkTransferState**
 
-#### 4.5.5 CurrencyCode
+<br />
+
+#### CurrencyCode enum
 
 The currency codes defined in ISO 4217<sup>[7](https://www.iso.org/iso-4217-currency-codes.html)</sup> as three-letter alphabetic codes are used as the standard naming representation for currencies. The currency codes from ISO 4217 are not is shown in this document, implementers are instead encouraged to use the information provided by the ISO 4217 standard directly.
 
-#### 4.5.6 PartyIdType
+<br />
 
-Table 97 contains the allowed values for the enumeration **PartyIdType**.
+#### PartyIdType enum
+
+Table 97 below contains the allowed values for the enumeration `PartyIdType`.
 
 | Name | Description |
 | --- | ---| 
@@ -2096,15 +2064,17 @@ Table 97 contains the allowed values for the enumeration **PartyIdType**.
 | **PERSONAL_ID** | Used when some kind of personal identifier should be used as reference to a participant. Examples of personal identification can be passport number, birth certificate number, national registration number or similar. The identifier number shall be added in the PartyIdentifier element. The personal identifier type shall be added in the PartySubIdOrType element. |
 | **BUSINESS** | Used when a specific Business (for example, an Organization or a Company) should be used as reference to a participant. The Business identifier can be in any format. To make a transaction connected to a specific username or bill number in a Business, the PartySubIdOrType element should be used. |
 | **DEVICE** | Used when a specific Device (for example, a POS or ATM) ID connected to a specific Business or Organization should be used as reference to a Party. To use a specific device under a specific Business or Organization, the PartySubIdOrType element should be used. |
-| **ACCOUNT_ID** | Used when a bank account number or FSP account ID should be used as reference to a participant. The  ACCOUNT_ID identifier can be in any format, as formats can greatly differ depending on country and FSP. |
+| **ACCOUNT_ID** | Used when a bank account number or FSP account ID should be used as reference to a participant. The  `ACCOUNT_ID` identifier can be in any format, as formats can greatly differ depending on country and FSP. |
 | **IBAN** | Used when a bank account number or FSP account ID should be used as reference to a participant. The IBAN identifier can consist of up to 34 alphanumeric characters and should be entered without any whitespace. | 
-| **ALIAS** | Used when an alias should be used as reference to a participant. The alias should be created in the FSP as an alternative reference to an account owner. Another example of an alias can be username in the FSP system. The _ALIAS_ identifier can be in any format. It is also possible to use the PartySubIdOrType element for identifying an account under an Alias defined by the PartyIdentifier. |
+| **ALIAS** | Used when an alias should be used as reference to a participant. The alias should be created in the FSP as an alternative reference to an account owner. Another example of an alias can be username in the FSP system. The `ALIAS` identifier can be in any format. It is also possible to use the PartySubIdOrType element for identifying an account under an Alias defined by the PartyIdentifier. |
 
 **Table 97 – Enumeration PartyIdType**
 
-#### 4.5.7 PersonalIdentifierType
+<br />
 
-Table 98 contains the allowed values for the enumeration **PersonalIdentifierType**.
+#### PersonalIdentifierType enum
+
+Table 98 below contains the allowed values for the enumeration `PersonalIdentifierType`.
 
 | Name | Description |
 | --- | --- |
@@ -2124,9 +2094,11 @@ Table 98 contains the allowed values for the enumeration **PersonalIdentifierTyp
 
 **Table 98 – Enumeration PersonalIdentifierType**
 
-#### 4.5.8 TransactionInitiator
+<br />
 
-Table 99 contains the allowed values for the enumeration **TransactionInitiator**.
+#### TransactionInitiator enum
+
+Table 99 below contains the allowed values for the enumeration `TransactionInitiator`.
 
 | Name | Description |
 | --- | --- |
@@ -2135,10 +2107,11 @@ Table 99 contains the allowed values for the enumeration **TransactionInitiator*
 
 **Table 99 – Enumeration TransactionInitiator**
 
+<br />
 
-#### 4.5.9 TransactionInitiatorType
+#### TransactionInitiatorType enum
 
-Table 100 contains the allowed values for the enumeration **TransactionInitiatorType**.
+Table 100 below contains the allowed values for the enumeration `TransactionInitiatorType`.
 
 | Name | Description |
 | --- | --- |
@@ -2149,9 +2122,11 @@ Table 100 contains the allowed values for the enumeration **TransactionInitiator
 
 **Table 100 – Enumeration TransactionInitiatorType**
 
-#### 4.5.10 TransactionRequestState
+<br />
 
-Table 101 contains the allowed values for the enumeration **TransactionRequestState**.
+#### TransactionRequestState enum
+
+Table 101 below contains the allowed values for the enumeration `TransactionRequestState`.
 
 | Name | Description |
 | --- | --- |
@@ -2162,9 +2137,11 @@ Table 101 contains the allowed values for the enumeration **TransactionRequestSt
 
 **Table 101 – Enumeration TransactionRequestState**
 
-#### 4.5.11 TransactionScenario
+<br />
 
-Table 102 contains the allowed values for the enumeration **TransactionScenario**.
+#### TransactionScenario enum
+
+Table 102 below contains the allowed values for the enumeration `TransactionScenario`.
 
 | Name | Description |
 | --- | --- |
@@ -2176,9 +2153,11 @@ Table 102 contains the allowed values for the enumeration **TransactionScenario*
 
 **Table 102 – Enumeration TransactionScenario**
 
-#### 4.5.12 TransactionState
+<br />
 
-Table 103 contains the allowed values for the enumeration **TransactionState**.
+#### TransactionState enum
+
+Table 103 below contains the allowed values for the enumeration `TransactionState`.
 
 | Name | Description |
 | --- | --- |
@@ -2189,9 +2168,11 @@ Table 103 contains the allowed values for the enumeration **TransactionState**.
 
 **Table 103 – Enumeration TransactionState**
 
-#### 4.5.13 TransferState
+<br />
 
-Table 104 contains the allowed values for the enumeration **TransferState**.
+#### TransferState enum
+
+Table 104 below contains the allowed values for the enumeration `TransferState`.
 
 | Name | Description |
 | --- | --- |
@@ -2202,12 +2183,13 @@ Table 104 contains the allowed values for the enumeration **TransferState**.
 
 **Table 104 – Enumeration TransferState**
 
+<br />
 
-### 4.6 Error Codes
+### Error Codes
 
 Each error code in the API is a four-digit number, such as **1234**, where the first number (**1** in the example) represents the highlevel error category, the second number (**2** in the example) represents the low-level error category, and the last two numbers (**34** in the example) represents the specific error. Figure 1 shows the structure of an error code. The following sub-sections contains information and defined error codes per high-level error category.
 
-![Figure 1 - Error code structure](/assets/diagrams/images/figure62.svg)
+![Figure 1 - Error code structure](../assets/sequence-diagram-figure-1.png)
 
 **Figure 1 – Error code structure**
 
@@ -2215,7 +2197,7 @@ Each defined high- and low-level category combination contains a generic error (
 
 All specific errors below _xx_**40**, that is, _xx_**00** to _xx_**39**, are reserved for future use by the API. All specific errors above and including _xx40_, can be used for scheme-specific errors. If a client receives an unknown scheme-specific error, the unknown scheme-specific error should be interpreted as a generic error for the high- and low-level category combination instead (_xx_**00**).
 
-#### 4.6.1 Communication Errors – 1xxx
+#### Communication Errors – 1xxx
 
 All possible communication or network errors that could arise that cannot be represented by an HTTP status code should use
 the high-level error code 1 (error codes **1**_xxx_). Because all services in the API are asynchronous, these error codes should generally be used by a Switch in the Callback to the client FSP if the Peer FSP could not be reached, or if a callback is not received from the Peer FSP within an agreed timeout.
@@ -2224,7 +2206,7 @@ Low level categories defined under Communication Errors:
 
 - **Generic Communication Error – 10**_xx_
 
-See Table 105 for all communication errors defined in the API.
+See Table 105 below for all communication errors defined in the API.
 
 | Error Code | Name | Description | /participants | /parties | /transactionRequests | /quotes | /authorizations | /transfers | /transactions | /bulkQuotes | /bulkTransfers |
 | --- | --- | --- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
@@ -2233,7 +2215,9 @@ See Table 105 for all communication errors defined in the API.
 
 **Table 105 – Communication errors – 1xxx**
 
-#### 4.6.2 Server Errors – 2xxx
+<br />
+
+#### Server Errors – 2xxx
 
 All errors occurring in the server in which the server failed to fulfil an apparently valid request from the client should use the high-level error code 2 (error codes **2**_xxx_). These error codes should indicate that the server is aware that it has encountered an error or is otherwise incapable of performing the requested service.
 
@@ -2241,7 +2225,7 @@ Low-level categories defined under server Errors:
 
 - **Generic server Error – 20**_xx_
 
-See Table 106 for all server errors defined in the API.
+See Table 106 below for all server errors defined in the API.
 
 | Error Code | Name | Description | /participants | /parties | /transactionRequests | /quotes | /authorizations | /transfers | /transactions | /bulkQuotes | /bulkTransfers |
 | --- | --- | --- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
@@ -2254,7 +2238,9 @@ See Table 106 for all server errors defined in the API.
 
 **Table 106 – Server errors – 2xxx**
 
-**Client Errors – 3xxx**
+<br />
+
+#### Client Errors – 3xxx**
 
 All possible errors occurring in the server where the server’s opinion is that the client have sent one or more erroneous parameters should use the high-level error code 3 (error codes **3**_xxx_). These error codes should indicate that the server could not perform the service according to the request from the client. The server should provide an explanation why the service could not be performed.
 
@@ -2315,7 +2301,9 @@ Low level categories defined under client Errors:
 
 **Table 110 – Expired Errors – 33xx**
 
-#### 4.6.3 Payer Errors – 4xxx
+<br />
+
+#### Payer Errors – 4xxx
 
 All possible errors occurring in the server when the Payer or the Payer FSP is the cause of an error should use the high-level error code 4 (error codes **4**_xxx_). These error codes should indicate that there was no error in the server or in the request from the client, but the request failed for some reason due to the Payer or the Payer FSP. The server should provide an explanation why the service could not be performed.
 
@@ -2326,7 +2314,7 @@ Low level categories defined under Payer Errors:
 - **Payer Permission Error – 43**_xx_
 - **Payer Blocked Error – 44**_xx_
 
-See Table 111 for all Payer errors defined in the API.
+See Table 111 below for all Payer errors defined in the API.
 
 | Error Code | Name | Description | /participants | /parties | /transactionRequests | /quotes | /authorizations | /transfers | /transactions | /bulkQuotes | /bulkTransfers |
 | --- | --- | --- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
@@ -2342,7 +2330,10 @@ See Table 111 for all Payer errors defined in the API.
 
 **Table 111 – Payer errors – 4xxx**
 
-#### 4.6.4 Payee Errors – 5xxx
+
+<br />
+
+#### Payee Errors – 5xxx
 
 All possible errors occurring in the server when the Payee or the Payee FSP is the cause of an error should use the high-level error code 5 (error codes **5**_xxx_). These error codes should indicate that there was no error in the server or in the request from the client, but the request failed for some reason due to the Payee or the Payee FSP. The server should provide an explanation for why the service could not be performed.
 
@@ -2354,7 +2345,7 @@ Low level categories defined under Payee Errors:
 - **Payee Permission Error – 53**_xx_
 - **Payee Blocked Error – 54**_xx_
 
-See Table 112 for all Payee errors defined in the API.
+See Table 112 below for all Payee errors defined in the API.
 
 | Error Code | Name | Description | /participants | /parties | /transactionRequests | /quotes | /authorizations | /transfers | /transactions | /bulkQuotes | /bulkTransfers |
 | --- | --- | --- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
@@ -2373,7 +2364,10 @@ See Table 112 for all Payee errors defined in the API.
 
 **Table 112 – Payee errors – 5xxx**
 
-## 5. References
+
+<br />
+
+## References
 
 <sup>1</sup> [https://perldoc.perl.org/perlre.html#Regular-Expressions](https://perldoc.perl.org/perlre.html#Regular-Expressions) - perlre - Perl regular expressions
 
@@ -2395,7 +2389,7 @@ and Filename Safe Alphabet
 
 ## List of Figures
 
-- [Figure 1](#46-error-codes) – Error code structure
+- [Figure 1](#error-codes) – Error code structure
 
 ## List of Tables
 
@@ -2437,72 +2431,72 @@ and Filename Safe Alphabet
 - [Table 36](#return-bulk-transfer-information) – Return Bulk Transfer Information data model
 - [Table 37](#return-bulk-transfer-information-error) – Return Bulk Transfer Information Error data model
 - [Table 38](#results-for-validated-amount-values) – Example results for different values for Amount type
-- [Table 39](#431-amounttype) – Element AmountType
-- [Table 40](#432-authenticationtype) – Element AuthenticationType
-- [Table 41](#433-authenticationvalue) – Element AuthenticationValue
-- [Table 42](#434-authorizationresponse) – Element AuthorizationResponse
-- [Table 43](#435-balanceofpayments) – Element BalanceOfPayments
-- [Table 44](#436-bulktransferstate) – Element BulkTransferState
-- [Table 45](#437-code) – Element Code
-- [Table 46](#438-correlationid) – Element CorrelationId
-- [Table 47](#439-currency) – Element Currency
-- [Table 48](#4310-dateofbirth) – Element DateOfBirth
-- [Table 49](#4311-errorcode) – Element ErrorCode
-- [Table 50](#4312-errordescription) – Element ErrorDescription
-- [Table 51](#4313-extensionkey) – Element ExtensionKey
-- [Table 52](#4314-extensionvalue) – Element ExtensionValue
-- [Table 53](#4315-firstname) – Element FirstName
-- [Table 54](#4316-fspid) – Element FspId
-- [Table 55](#4317-ilpcondition) – Element IlpCondition
-- [Table 56](#4318-ilpfulfilment) – Element IlpFulfilment
-- [Table 57](#4319-ilppacket) – Element IlpPacket
-- [Table 58](#4320-lastname) – Element LastName
-- [Table 59](#4321-merchantclassificationcode) – Element MerchantClassificationCode
-- [Table 60](#4322-middlename) – Element MiddleName
-- [Table 61](#4323-note) – Element Note
-- [Table 62](#4324-nrofretries) – Element NrOfRetries
-- [Table 63](#4325-partyidentifier) – Element PartyIdentifier
-- [Table 64](#4326-partyidtype) – Element PartyIdType
-- [Table 65](#4327-partyname) – Element PartyName
-- [Table 66](#4328-partysubidortype) – Element PartySubIdOrType
-- [Table 67](#4329-refundreason) – Element RefundReason
-- [Table 68](#4330-transactioninitiator) – Element TransactionInitiator
-- [Table 69](#4331-transactioninitiatortype) – Element TransactionInitiatorType
-- [Table 70](#4332-transactionrequeststate) – Element TransactionRequestState
-- [Table 71](#4334-transactionscenario) – Element TransactionScenario
-- [Table 72](#4335-transactionstate) – Element TransactionState
-- [Table 73](#4336-transferstate) – Element TransferState
-- [Table 74](#4337-transactionsubscenario) – Element TransactionSubScenario
-- [Table 75](#441-authenticationinfo) – Complex type AuthenticationInfo
-- [Table 76](#442-errorinformation) – Complex type ErrorInformation
-- [Table 77](#443-extension) – Complex type Extension
-- [Table 78](#444-extensionlist) – Complex type ExtensionList
-- [Table 79](#445-individualquote) – Complex type IndividualQuote
-- [Table 80](#446-individualquoteresult) – Complex type IndividualQuoteResult
-- [Table 81](#447-individualtransfer) – Complex type IndividualTransfer
-- [Table 82](#448-individualtransferresult) – Complex type IndividualTransferResult
-- [Table 83](#449-geocode) – Complex type GeoCode
-- [Table 84](#4410-money) – Complex type Money
-- [Table 85](#4411-party) – Complex type Party
-- [Table 86](#4412-partycomplexname) – Complex type PartyComplexName
-- [Table 87](#4413-partyidinfo) – Complex type PartyIdInfo
-- [Table 88](#4414-partypersonalinfo) – Complex type PartyPersonalInfo
-- [Table 89](#4415-partyresult) – Complex type PartyPersonalInfo
-- [Table 90](#4416-refund) – Complex type Refund
-- [Table 91](#4417-transaction) – Complex type Transaction
-- [Table 92](#4418-transactiontype) – Complex type TransactionType
-- [Table 93](#451-amounttype) – Enumeration AmountType
-- [Table 94](#452-authenticationtype) – Enumeration AuthenticationType
-- [Table 95](#453-authorizationresponse) – Enumeration AuthorizationResponse
-- [Table 96](#454-bulktransferstate) – Enumeration BulkTransferState
-- [Table 97](#456-partyIdtype) – Enumeration PartyIdType
-- [Table 98](#457-personalidentifiertype) – Enumeration PersonalIdentifierType
-- [Table 99](#458-transactioninitiator) – Enumeration TransactionInitiator
-- [Table 100](#459-transactioninitiatortype) – Enumeration TransactionInitiatorType
-- [Table 101](#4510-transactionrequeststate) – Enumeration TransactionRequestState
-- [Table 102](#4511-transactionscenario) – Enumeration TransactionScenario
-- [Table 103](#4512-transactionstate) – Enumeration TransactionState
-- [Table 104](#4513-transferstate) – Enumeration TransferState
+- [Table 39](#amounttype-element) – Element AmountType
+- [Table 40](#authenticationtype-element) – Element AuthenticationType
+- [Table 41](#authenticationvalue-element) – Element AuthenticationValue
+- [Table 42](#authorizationresponse-element) – Element AuthorizationResponse
+- [Table 43](#balanceofpayments-element) – Element BalanceOfPayments
+- [Table 44](#bulktransferstate-element) – Element BulkTransferState
+- [Table 45](#code-element) – Element Code
+- [Table 46](#correlationid-element) – Element CorrelationId
+- [Table 47](#currency-element) – Element Currency
+- [Table 48](#dateofbirth-element) – Element DateOfBirth
+- [Table 49](#errorcode-element) – Element ErrorCode
+- [Table 50](#errordescription-element) – Element ErrorDescription
+- [Table 51](#extensionkey-element) – Element ExtensionKey
+- [Table 52](#extensionvalue-element) – Element ExtensionValue
+- [Table 53](#firstname-element) – Element FirstName
+- [Table 54](#fspid-element) – Element FspId
+- [Table 55](#ilpcondition-element) – Element IlpCondition
+- [Table 56](#ilpfulfilment-element) – Element IlpFulfilment
+- [Table 57](#ilppacket-element) – Element IlpPacket
+- [Table 58](#lastname-element) – Element LastName
+- [Table 59](#merchantclassificationcode-element) – Element MerchantClassificationCode
+- [Table 60](#middlename-element) – Element MiddleName
+- [Table 61](#note-element) – Element Note
+- [Table 62](#nrofretries-element) – Element NrOfRetries
+- [Table 63](#partyidentifier-element) – Element PartyIdentifier
+- [Table 64](#partyidtype-element) – Element PartyIdType
+- [Table 65](#partyname-element) – Element PartyName
+- [Table 66](#partysubidortype-element) – Element PartySubIdOrType
+- [Table 67](#refundreason-element) – Element RefundReason
+- [Table 68](#transactioninitiator-element) – Element TransactionInitiator
+- [Table 69](#transactioninitiatortype-element) – Element TransactionInitiatorType
+- [Table 70](#transactionrequeststate-element) – Element TransactionRequestState
+- [Table 71](#transactionscenario-element) – Element TransactionScenario
+- [Table 72](#transactionstate-element) – Element TransactionState
+- [Table 73](#transferstate-element) – Element TransferState
+- [Table 74](#transactionsubscenario-element) – Element TransactionSubScenario
+- [Table 75](#authenticationinfo) – Complex type AuthenticationInfo
+- [Table 76](#errorinformation) – Complex type ErrorInformation
+- [Table 77](#extension) – Complex type Extension
+- [Table 78](#extensionlist) – Complex type ExtensionList
+- [Table 79](#individualquote) – Complex type IndividualQuote
+- [Table 80](#individualquoteresult) – Complex type IndividualQuoteResult
+- [Table 81](#individualtransfer) – Complex type IndividualTransfer
+- [Table 82](#individualtransferresult) – Complex type IndividualTransferResult
+- [Table 83](#geocode) – Complex type GeoCode
+- [Table 84](#money) – Complex type Money
+- [Table 85](#party) – Complex type Party
+- [Table 86](#partycomplexname) – Complex type PartyComplexName
+- [Table 87](#partyidinfo) – Complex type PartyIdInfo
+- [Table 88](#partypersonalinfo) – Complex type PartyPersonalInfo
+- [Table 89](#partyresult) – Complex type PartyPersonalInfo
+- [Table 90](#refund) – Complex type Refund
+- [Table 91](#transaction) – Complex type Transaction
+- [Table 92](#transactiontype) – Complex type TransactionType
+- [Table 93](#amounttype-enum) – Enumeration AmountType
+- [Table 94](#authenticationtype-enum) – Enumeration AuthenticationType
+- [Table 95](#authorizationresponse-enum) – Enumeration AuthorizationResponse
+- [Table 96](#bulktransferstate-enum) – Enumeration BulkTransferState
+- [Table 97](#partyIdtype-enum) – Enumeration PartyIdType
+- [Table 98](#personalidentifiertype-enum) – Enumeration PersonalIdentifierType
+- [Table 99](#transactioninitiator-enum) – Enumeration TransactionInitiator
+- [Table 100](#transactioninitiatortype-enum) – Enumeration TransactionInitiatorType
+- [Table 101](#transactionrequeststate-enum) – Enumeration TransactionRequestState
+- [Table 102](#transactionscenario-enum) – Enumeration TransactionScenario
+- [Table 103](#transactionstate-enum) – Enumeration TransactionState
+- [Table 104](#transferstate-enum) – Enumeration TransferState
 - [Table 105](#461-communication-errors-–-1xxx) – Communication errors – 1xxx
 - [Table 106](#462-server-errors-–-2xxx) – Server errors – 2xxx
 - [Table 107](#client-errors-–-3xxx) – Generic client errors – 30xx
