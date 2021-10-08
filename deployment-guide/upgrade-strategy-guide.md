@@ -14,6 +14,10 @@ This document provides instructions on how to upgrade existing Mojaloop installa
 
 ## Helm Upgrades
 
+This section discusses the strategies of how upgrades could be applied to an existing Mojaloop Helm deployment that uses the [Mojaloop Helm Charts](https://github.com/mojaloop/helm).
+
+The scope of the breaking changes described below are applicable to the Switch Operator's Helm deployment with no direct impact (i.e. no functional changes such as a new Mojaloop API Specification version) to Participants (e.g. Financial Services Providers). Such functional changes may be part of a Helm release, but are out of scope for this section.
+
 Recommendations:
 
 1. all upgrades should be tested and verified in a pre-production environment
