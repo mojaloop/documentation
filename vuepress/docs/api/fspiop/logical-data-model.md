@@ -50,7 +50,7 @@ The Open API for FSP Interoperability Specification includes the following docum
 
 - [JSON Binding Rules](./json-binding-rules)
 
-- [Scheme Rules](./sheme-rules)
+- [Scheme Rules](./scheme-rules)
 
 #### Data Integrity, Confidentiality, and Non-Repudiation
 
