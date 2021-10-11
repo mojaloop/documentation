@@ -108,8 +108,8 @@ Manual data migrating from the existing datastores to the new target backend dep
 3. Create Migration process to sync and transform data into target deployed Backend datastore dependencies from Green to Blue
 4. Schedule cut-over window
 5. Execute cut-over during window
-   1. Set current Backend datastore dependencies to read-only (where possible)
-   2. Drain any remaining connections on Green
+   1. Set current Green Backend datastore dependencies to read-only (where possible)
+   2. Drain any remaining connections from Green
    3. Ensure Migration process is fully in-sync from Green to Blue
    4. Execute sanity tests on the Blue Target deployment environment
    5. Cut-over API Gateway (or upgrade target Ingress rules) to from Green Current to Blue Target deployment environment
