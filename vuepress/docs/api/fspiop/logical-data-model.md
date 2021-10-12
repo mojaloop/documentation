@@ -28,9 +28,9 @@ The following conventions are used in this document to identify the specified ty
 
 This document specifies the logical data model used by Open API (Application Programming Interface) for FSP (Financial Service Provider) Interoperability (hereafter cited as “the API”).
 
-Section 3 lists elements used by each service.
+The [Services Elements](#api-services-elements) section lists elements used by each service.
 
-Section 4 describes the data model in terms of basic elements, simple data types and complex data types.
+The [Supporting Data Model](#api-supporting-data-model) section describes the data model in terms of basic elements, simple data types and complex data types.
 
 ### Open API for FSP Interoperability Specification
 
@@ -233,62 +233,16 @@ This section describes the data model of responses used by the server in the API
 
 Table 10 below contains the data model for _Return Party Information_.
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Cardinality</th>
-    <th>Type</th>
-    <th>Description</th>
-  </tr>
-  <tr>
-    <td><b>partyIdType</b></td>
-    <td>1</td>
-    <td>PartyIdType</td>
-    <td>The type of identifier</td>
-  </tr>
-  <tr>
-    <td valign="top"><b>partyIdentifier</b></td>
-    <td valign="top">1</td>
-    <td><b>NrOfRetries</b>
-      <p>Table 62 contains the data module for element <b>NrOfRetries.</b></p>
-      <table border="1">
-        <tr>
-          <th>Name</th>
-          <th>Cardinality</th>
-          <th>Type</th>
-          <th>Description</th>
-        </tr>
-        <tr>
-          <td><b>NrOfRetries</b></td><td>1</td><td>Integer(1..2)</td><td>Number of retries.</td>
-        </tr>
-      </table>
-      <p><b>Table 62 - Element NrOfRetries</b></p>
-      <p>PartyIdentifier</p>
-  <td valign="top">An identifier for the Party</td>
-  </tr>
-  <tr>
-    <td><b>partySubIdOrType</b></td>
-    <td>0..1</td>
-    <td>PartySubIdOrType</td>
-    <td>A sub-identifier or sub-type for the Party</td>
-  </tr>
-  <tr>
-    <td><b>party</b></td>
-    <td>1</td>
-    <td>Party</td>
-    <td>Information regarding the requested Party.</td>
-  </tr>
-</table>
-
-**Table 10 – Return Party Information data model**
- 
-Table 62 contains the data model for the element _NrOfRetries_.
-    
 | Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **NrOfRetries** | 1 | `Integer(1..2)` | Number of retries. | 
+| **partyIdType** | 1 | `PartyIdType` | The type of the identifier. |
+| **partyIdentifier** | 1 | `PartyIdentifier` | An identifier for the Party. |
+| **partySubIdOrType** | 0..1 | `PartySubIdOrType` | A sub-identifier or sub-type for the Party. |
+| **party** | 1 | `Party` | Information regarding the requested Party. |
 
-**Table 62 – Element NrOfRetries** 
+
+**Table 10 – Return Party Information data model**
+
 
 <br />
 
@@ -298,55 +252,12 @@ Table 62 contains the data model for the element _NrOfRetries_.
 
 Table 11 below contains the data model for _Return Party Information Error_.
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Cardinality</th>
-    <th>Type</th>
-    <th>Description</th>
-  </tr>
-  <tr>
-    <td><b>partyIdType</b></td>
-    <td>1</td>
-    <td>PartyIdType</td>
-    <td>The type of identifier</td>
-  </tr>
-  <tr>
-    <td valign="top"><b>partyIdentifier</b></td>
-    <td valign="top">1</td>
-    <td><b>NrOfRetries</b>
-      <p>Table 62 contains the data module for element <b>NrOfRetries.</b></p>
-      <table border="1">
-        <tr>
-          <th>Name</th>
-          <th>Cardinality</th>
-          <th>Type</th>
-          <th>Description</th>
-        </tr>
-        <tr>
-          <td><b>NrOfRetries</b></td>
-          <td>1</td>
-          <td>Integer(1..2)</td>
-          <td>Number of retries.</td>
-        </tr>
-      </table>
-      <p><b>Table 62 - Element NrOfRetries</b></p>
-      <p>PartyIdentifier</p>
-    <td valign="top">An identifier for the Party</td>
-  </tr>
-  <tr>
-    <td><b>partySubIdOrType</b></td>
-    <td>0..1</td>
-    <td>PartySubIdOrType</td>
-    <td>A sub-identifier or sub-type for the Party</td>
-  </tr>
-  <tr>
-    <td><b>errorInformation</b></td>
-    <td>1</td>
-    <td>ErrorInformation</td>
-    <td>Error code, category description.</td>
-  </tr>
-</table>
+| Name | Cardinality | Type | Description |
+| --- | --- | --- | --- |
+| **partyIdType** | 1 | `PartyIdType` | The type of the identifier. |
+| **partyIdentifier** | 1 | `PartyIdentifier` | An identifier for the Party. |
+| **partySubIdOrType** | 0..1 | `PartySubIdOrType` | A sub-identifier or sub-type for the Party. |
+| **errorInformation** | 1 | `ErrorInformation` | Error code, category description. |
 
 **Table 11 – Return Party Information Error data model**
 
