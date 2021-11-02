@@ -1213,7 +1213,7 @@ Table 40 below contains the data model for the element `AuthenticationType`.
 
 | Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **Authentication** | 1 | [Enum](#enum) of [String(1..32)](#string) | This element contains the authentication type. See [AuthenticationType](#authenticationtyype-enum) enumeration for possible enumeration values. |
+| **Authentication** | 1 | [Enum](#enum) of [String(1..32)](#string) | This element contains the authentication type. See [AuthenticationType](#authenticationtype-enum) enumeration for possible enumeration values. |
 
 **Table 40 – Element AuthenticationType**
 
