@@ -171,7 +171,7 @@ The FSPs and the Switch should configure callback timeouts. The callback timeout
 
 ###### Figure-2
 
-![Figure 1 Callback Timeout](../assets/scheme-rules-figure-2-calback-timeout.png)
+![Figure 1 Callback Timeout](../assets/scheme-rules-figure-2-callback-timeout.png)
 
 
 **Figure 2 – Callback Timeout**
