@@ -248,6 +248,7 @@ module.exports = {
             {
               title: 'Generic Transaction Patterns',
               path: 'fspiop/generic-transaction-patterns',
+              collapsable: true
             },
             {
               title: 'Use Cases',
