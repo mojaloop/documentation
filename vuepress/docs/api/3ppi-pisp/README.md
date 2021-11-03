@@ -1,1 +1,1 @@
-API specifications goes here
+Refer to the Third-party API documentation [here](https://github.com/mojaloop/pisp/tree/master/docs) and [here](https://github.com/mojaloop/api-snippets/tree/master/thirdparty/openapi3).
