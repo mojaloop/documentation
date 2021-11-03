@@ -30,9 +30,11 @@ module.exports = {
    * ref：https://v1.vuepress.vuejs.org/theme/default-theme-config.html
    */
   themeConfig: {
-    repo: '',
-    editLinks: false,
-    docsDir: '',
+    repo: 'https://github.com/mojaloop/documentation/',
+    // TODO: change this to master once we have merged in the new docs!
+    docsBranch: 'mojaloop-docs-2.0',
+    editLinks: true,
+    docsDir: 'vuepress/docs',
     editLinkText: 'Edit this page on GitHub',
     smoothScroll: true,
     logo: '/mojaloop_logo_med.png',
