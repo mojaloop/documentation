@@ -348,7 +348,7 @@ Pre-requisites:
 
 ### <a id='overlay-services'></a>6. Overlay Services/3PPI
 
-As of release v13.1.0 of [mojaloop/helm](https://github.com/mojaloop/helm), Mojaloop supports the Third Party API,
+As of [R.C. v13.1.0](https://github.com/mojaloop/helm/tree/release/v13.1.0) of Mojaloop, Third Party API is supported and will be published with the official release of Mojaloop v13.1.0.
 which allows Third Party Payment Initiators (3PPIs) the ability to request an account link from a DFSP and initiate
 payments on behalf of users.
 
