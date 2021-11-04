@@ -18,6 +18,8 @@ The document is intended for an audience with a stable technical knowledge that 
       - [5.2. Verifying Ingress Rules](#52-verifying-ingress-rules)
       - [5.3. Testing Mojaloop](#53-testing-mojaloop)
       - [5.4. Testing Mojaloop with Postman](#54-testing-mojaloop-with-postman)
+      <!-- TODO: update -->
+    - [6. Overlay Services (3PPI) Support](#6-overlay-services)
   
 ### 1. Pre-requisites
 
@@ -342,3 +344,159 @@ Pre-requisites:
 
 - The following postman environment file should be imported or customized as required when running the above listed Postman collections: [Mojaloop-Local-MojaSims.postman_environment.json](https://github.com/mojaloop/postman/blob/master/environments/Mojaloop-Local-MojaSims.postman_environment.json).
 - Ensure you download the **latest patch release version** from the [Mojaloop Postman Git Repository Releases](https://github.com/mojaloop/postman/releases). For example if you install Mojaloop v12.0.**X**, ensure that you have the latest Postman collection patch version v12.0.**Y**.
+
+
+### 6. Overlay Services/3PPI
+
+
+As of release v13.1.0 of [mojaloop/helm](https://github.com/mojaloop/helm), Mojaloop supports the Third Party API,
+which allows Third Party Payment Initiators (3PPIs) the ability to request an account link from a DFSP and initiate
+payments on behalf of users.
+
+Learn more about 3PPI:
+- Mojaloop's [Third Party API](https://github.com/mojaloop/mojaloop-specification/tree/master/thirdparty-api)
+- 3rd Party Use Cases: 
+  - [3rd Party Account Linking](https://sandbox.mojaloop.io/usecases/3ppi-account-linking.html)
+  - [3rd Party Initiated Payments](https://sandbox.mojaloop.io/usecases/3ppi-transfer.html)
+
+
+#### 6.1 Configuring a deployment for Third Party API support
+
+Third Party API support is **off** by default on the Mojaloop deployment. You can enable it by editing your `values.yaml`
+file with the following settings:
+
+```yaml
+...
+account-lookup-service:
+  account-lookup-service:
+    config:
+      featureEnableExtendedPartyIdType: true # allows the ALS to support newer THIRD_PARTY_LINK PartyIdType
+
+  account-lookup-service-admin:
+    config:
+      featureEnableExtendedPartyIdType: true # allows the ALS to support newer THIRD_PARTY_LINK PartyIdType
+
+...
+
+thirdparty:
+  enabled: true
+...
+```
+
+In addition, the Third Party API has a number of dependencies that must be deployed manually for the thirdparty services
+to run. [mojaloop/helm/thirdparty](https://github.com/mojaloop/helm/tree/master/thirdparty) contains details of these
+dependencies, and also provides example k8s config files that install these dependencies for you.
+
+
+
+
+```bash
+# install redis and mysql for the auth-service
+kubectl apply --namespace demo -f https://raw.githubusercontent.com/mojaloop/helm/master/thirdparty/chart-auth-svc/example_dependencies.yaml
+# install mysql for the consent oracle
+kubectl apply --namespace demo -f https://raw.githubusercontent.com/mojaloop/helm/master/thirdparty/chart-consent-oracle/example_dependencies.yaml
+
+# apply the above changes to your values.yaml file, and update your mojaloop installation to deploy thirdparty services:
+helm upgrade --install --namespace demo moja mojaloop/mojaloop -f values.yaml
+```
+
+Once the helm upgrade has completed, you can verify that the third party services are up and running:
+
+
+```bash
+kubectl get po | grep tp-api 
+# tp-api-svc-b9bf78564-4g59d                                        1/1     Running   0          7m17s
+
+kubectl get po | grep auth-svc
+#auth-svc-b75c954d4-9vq7w                                          1/1     Running   0          8m5s
+
+kubectl get po | grep consent-oracle
+# consent-oracle-849cb69769-vq4rk                                   1/1     Running   0          8m31s
+
+
+# and also make sure the ingress is exposed correctly
+curl -H "Host: tp-api-svc.local" <ingress ip address>/health
+# {"status":"OK","uptime":3545.77290063,"startTime":"2021-11-04T05:41:32.861Z","versionNumber":"11.21.0","services":[]}
+
+curl -H "Host: auth-service.local" <ingress ip address>/health
+
+# {"status":"OK","uptime":3682.48869561,"startTime":"2021-11-04T05:43:19.056Z","versionNumber":"11.10.1","services":[]}
+
+curl -H "Host: consent-oracle.local" <ingress ip address>/health
+# {"status":"OK","uptime":3721.520096665,"startTime":"2021-11-04T05:43:48.382Z","versionNumber":"0.0.8","services":[]}
+```
+
+> You can also add the following entries to your `/etc/hosts` file to make it easy to talk to the thirdparty services
+> ```
+> <ingress ip address> tp-api-svc.local auth-service.local consent-oracle.local
+> ```
+
+#### 6.2 Validating and Testing the Third Party API
+
+Once you have deployed the Third Party services, you need to deploy some simulators that are capable of simulating
+the Third Party scenarios.
+
+
+##### 6.2.1 Deploying the Simulators
+
+Once again, you can do this by modifying your `values.yaml` file, this time under the `mojaloop-simulator` entry:
+
+```yaml
+...
+
+mojaloop-simulator:
+  simulators:
+  ...
+    pisp:
+      config:
+        thirdpartysdk:
+          enabled: true
+    dfspa:
+      config:
+        thirdpartysdk:
+          enabled: true
+    dfspb: {}
+...
+```
+
+The above entry will create 3 new sets of mojaloop simulators:
+
+1. `pisp` - a PISP
+2. `dfspa` - a DFSP that supports the Third Party API
+3. `dfspb` - a normal DFSP simulator that doesn't support the Third Party API, but can receive payments
+
+
+##### 6.2.2 Provisioning the Environment
+
+Once the above simulators have been deployed and are up and running, it's time to configure the Mojaloop Hub
+and simulators so we can test the Third Party API.
+
+<!-- TODO - how do we run the ttk cli easily?-->
+
+
+```bash
+# log into the ttk backend:
+kubectl get po | grep testing-testing-toolkit-backend
+
+# get the name of the pod - this will change depending on your release name
+# log into the pod
+kubectl exec -it tp-ml-testing-toolkit-backend-0 -- sh
+
+# Clone the testing toolkit cases
+apk add git
+git clone https://github.com/mojaloop/testing-toolkit-test-cases.git /tmp/testing-toolkit-test-cases
+
+npm run cli -- -m outbound \
+  -i /tmp/testing-toolkit-test-cases/collections/hub/provisioning_thirdparty \
+  -e /tmp/testing-toolkit-test-cases/environments/hub.json \
+  -u http://localhost:5050 \
+  --report-target file:///opt/mojaloop-testing-toolkit/results.json \
+  --report-format json \
+  --report-auto-filename-enable false
+```
+
+
+##### 6.2.3 Run the Third Party API Test Collection
+
+
+
