@@ -14,3 +14,8 @@ variable "tags" {
   default     = {}
   type        = map(string)
 }
+
+variable "region" {
+  description = "AWS Region to deploy in"
+  type = string
+}
