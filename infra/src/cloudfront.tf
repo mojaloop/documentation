@@ -5,7 +5,8 @@ resource "aws_cloudfront_distribution" "website_cdn_root" {
   enabled     = true
   price_class = "PriceClass_All"
   # Select the correct PriceClass depending on who the CDN is supposed to serve (https://docs.aws.amazon.com/AmazonCloudFront/ladev/DeveloperGuide/PriceClass.html)
-  aliases = [var.website-domain-main]
+  # TODO: enable this - or do it manually? need to figure out how to BYO domain
+  # aliases = [var.website-domain-main]
 
   origin {
     origin_id   = "origin-bucket-${aws_s3_bucket.website_root.id}"
