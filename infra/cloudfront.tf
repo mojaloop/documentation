@@ -35,7 +35,9 @@ resource "aws_cloudfront_distribution" "website_cdn_root" {
     default_ttl      = "300"
     max_ttl          = "1200"
 
-    viewer_protocol_policy = "redirect-to-https" # Redirects any HTTP request to HTTPS
+    # TODO: change this once we have https supported
+    # viewer_protocol_policy = "redirect-to-https" # Redirects any HTTP request to HTTPS
+    viewer_protocol_policy = "allow-all" # Redirects any HTTP request to HTTPS
     compress               = true
 
     forwarded_values {
@@ -53,9 +55,16 @@ resource "aws_cloudfront_distribution" "website_cdn_root" {
     }
   }
 
+
+  # change to custom cert if we end up issuing the cert through TF
+  # or at least referencing the cert from TF
+  # viewer_certificate {
+  #   acm_certificate_arn = data.aws_acm_certificate.wildcard_website.arn
+  #   ssl_support_method  = "sni-only"
+  # }
+
   viewer_certificate {
-    acm_certificate_arn = data.aws_acm_certificate.wildcard_website.arn
-    ssl_support_method  = "sni-only"
+    cloudfront_default_certificate = true
   }
 
   custom_error_response {
