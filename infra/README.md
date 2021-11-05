@@ -11,6 +11,8 @@ of the site.
 # first time only 
 terraform init
 
+# sign in with MFA
+aws-mfa
 
 terraform plan
 ```
