@@ -57,3 +57,44 @@ resource "aws_dynamodb_table" "terraform_locks" {
     ignore_changes = [tags["Changed"]]
   }
 }
+
+
+resource "aws_iam_group_policy" "infa_group_policy" {
+  provider = aws.custom
+  name = "${var.website-domain-main}-state"
+  group = aws_iam_group.infra_group.name
+  policy = <<POLICY
+{
+  "Version": "2012-10-17",
+  "Id": "PolicyForWebsiteEndpointsPublicContent",
+  "Statement": [
+    {
+      "Sid": "RelevantBucketAccess",
+      "Effect": "Allow",
+      "Action": [
+        "s3:*"
+      ],
+      "Resource": [
+        "${aws_s3_bucket.terraform_state.arn}/*",
+        "${aws_s3_bucket.terraform_state.arn}"
+      ]
+    },
+    {
+      "Sid": "RelevantDynamoDBAccess",
+      "Effect": "Allow",
+      "Action": [
+        "dynamodb:GetItem",
+        "dynamodb:PutItem",
+        "dynamodb:DeleteItem"
+      ],
+      "Resource": "${aws_dynamodb_table.terraform_locks.arn}"
+    }
+  ]
+}
+POLICY
+}
+
+resource "aws_iam_group" "infra_group" {
+  provider = aws.custom
+  name = "${var.website-domain-main}-state"
+}

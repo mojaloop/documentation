@@ -58,6 +58,10 @@ Additionally, domains are slow moving and tend to often need manual intervention
 - Value: `d1n6mdji42j0gb.cloudfront.net` - value from terraform output: `website_cdn_root_domain_name`
 3. "Create Records"
 
+### Attach the CI user to the IAM group
+
+In order to use this tooling in CI/CD, you need to manually attach a CI user to the group
+created by terraform, in this case `docs-preview2.moja-lab.live-infra-group`
 
 ### Upload your site!
 
