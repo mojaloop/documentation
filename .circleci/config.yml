@@ -162,9 +162,7 @@ workflows:
           filters:
             branches:
               only:
-                # TODO: change this back
-                # - mojaloop-docs-2.0
-                - feat/2572-automate-cdn
+                - mojaloop-docs-2.0
           
       - s3_upload:
           context: org-global
@@ -173,6 +171,5 @@ workflows:
           filters:
             branches:
               only:
-                # TODO: change this back
-                # - mojaloop-docs-2.0
-                - feat/2572-automate-cdn
+                # TODO: change this back - once we are happy to deploy this to                 
+                - mojaloop-docs-2.0
