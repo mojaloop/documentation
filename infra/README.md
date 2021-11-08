@@ -59,6 +59,14 @@ Additionally, domains are slow moving and tend to often need manual intervention
 - Value: `d1n6mdji42j0gb.cloudfront.net` - value from terraform output: `website_cdn_root_domain_name`
 3. "Create Records"
 
+
+### Upload your site!
+
+Build and upload the site to your terraform-managed s3 bucket:
+
+```bash
+AWS_REGION=us-east-1 BUCKET_NAME=docs-preview2.moja-lab.live-root DOMAIN=docs-preview2.moja-lab.live ../scripts/_deploy_preview_s3.sh
+```
 ## TODO:
 - load in custom code to redirects
 - automatically deploy the docs with a simple script

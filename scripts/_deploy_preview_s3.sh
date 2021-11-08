@@ -19,8 +19,9 @@
 # - aws-mfa (if running as user, not CI)
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-export AWS_REGION=eu-west-2
-export BUCKET_NAME=mojaloop-docs-preview
+export AWS_REGION="${AWS_REGION:-eu-west-2}"
+export BUCKET_NAME="${BUCKET_NAME:-mojaloop-docs-preview}"
+export DOMAIN="${DOMAIN:-docs-preview.moja-lab.live}"
 
 set -e
 set -u
@@ -44,4 +45,4 @@ aws s3 sync ${DIR}/../build s3://${BUCKET_NAME} \
 
 echo "go to: "
 echo "http://${BUCKET_NAME}.s3-website.${AWS_REGION}.amazonaws.com"
-echo "or http://docs-preview.moja-lab.live/ to see the live site!"
+echo "or http://${DOMAIN}/ to see the live site!"
