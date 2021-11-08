@@ -11,43 +11,39 @@ resource "aws_iam_group_policy" "infa_group_policy" {
     {
       "Sid": "RelevantBucketAccess",
       "Effect": "Allow",
-      "Principal": "*",
       "Action": [
         "s3:*"
       ],
       "Resource": [
         "${aws_s3_bucket.website_root.arn}/*",
         "${aws_s3_bucket.website_root.arn}",
-        "TODO"
+        "${aws_s3_bucket.website_logs.arn}/*",
+        "${aws_s3_bucket.website_logs.arn}"
       ]
     },
     {
-      "Version": "2012-10-17",
-      "Statement": [
-        {
-          "Effect": "Allow",
-          "Action": [
-            "dynamodb:GetItem",
-            "dynamodb:PutItem",
-            "dynamodb:DeleteItem"
-          ],
-          # TODO
-          "Resource": "arn:aws:dynamodb:*:*:table/mytable"
-        }
+      "Sid": "VisualEditor1",
+      "Effect": "Allow",
+      "Action": "cloudfront:*",
+      "Resource": [
+        "${aws_cloudfront_distribution.website_cdn_root.arn}",
+        "${aws_cloudfront_function.docs-redirects.arn}"
+
       ]
+    },
+    {
+      "Sid": "VisualEditor2",
+      "Effect": "Allow",
+      "Action": [
+        "iam:GetGroupPolicy",
+        "iam:GetGroup"
+      ],
+      "Resource": "*"
     }
   ]
 }
 POLICY
 
-  tags = merge(var.tags, {
-    ManagedBy = "mojaloop/documentation"
-    Changed   = formatdate("YYYY-MM-DD hh:mm ZZZ", timestamp())
-  })
-
-  lifecycle {
-    ignore_changes = [tags["Changed"]]
-  }
 }
 
 resource "aws_iam_group" "infra_group" {
