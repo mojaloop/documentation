@@ -123,7 +123,7 @@ jobs:
           name: Install general dependencies
           command: *defaults_Dependencies
       - restore_cache:
-        keys:
+          keys:
             - build-legacy-cache-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
       - run:
           name: test aws cli + permissions
