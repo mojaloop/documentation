@@ -6,7 +6,7 @@ resource "aws_cloudfront_distribution" "website_cdn_root" {
   price_class = "PriceClass_All"
   # Select the correct PriceClass depending on who the CDN is supposed to serve (https://docs.aws.amazon.com/AmazonCloudFront/ladev/DeveloperGuide/PriceClass.html)
   # TODO: enable this - or do it manually? need to figure out how to BYO domain
-  # aliases = [var.website-domain-main]
+  aliases = [var.website-domain-main]
 
   origin {
     origin_id   = "origin-bucket-${aws_s3_bucket.website_root.id}"
@@ -55,19 +55,10 @@ resource "aws_cloudfront_distribution" "website_cdn_root" {
       restriction_type = "none"
     }
   }
-
-
-  # change to custom cert if we end up issuing the cert through TF
-  # or at least referencing the cert from TF
-  # viewer_certificate {
-  #   acm_certificate_arn = data.aws_acm_certificate.wildcard_website.arn
-  #   ssl_support_method  = "sni-only"
-  # }
-
   viewer_certificate {
-    cloudfront_default_certificate = true
+    acm_certificate_arn = var.cloudfront-certificate-arn
+    ssl_support_method  = "sni-only"
   }
-
   custom_error_response {
     error_caching_min_ttl = 300
     error_code            = 404

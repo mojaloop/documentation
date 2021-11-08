@@ -41,6 +41,24 @@ terraform plan
 terraform apply
 ```
 
+## Manual Steps:
+
+It's up to you to configure the DNS and SSL Certificates. I didn't want to add this here 
+because the `docs.mojaloop.io` domain is not configured by us, so there is no point in 
+automating it.
+
+Additionally, domains are slow moving and tend to often need manual intervention at some point.
+
+
+### Configure the DNS:
+
+1. Log in to Route53 > Hosted Zones > select your domain (for example `moja-lab.live`)
+2. "Create Record" with the following details:
+- Record Name: `docs-preview2`
+- Type: `CNAME`
+- Value: `d1n6mdji42j0gb.cloudfront.net` - value from terraform output: `website_cdn_root_domain_name`
+3. "Create Records"
+
 ## TODO:
 - load in custom code to redirects
 - automatically deploy the docs with a simple script

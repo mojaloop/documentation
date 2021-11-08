@@ -19,3 +19,8 @@ variable "region" {
   description = "AWS Region to deploy in"
   type = string
 }
+
+variable "cloudfront-certificate-arn" {
+  description = "The arn of the manually configured certificate for the configured domain"
+  type = string
+}
