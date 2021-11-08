@@ -50,7 +50,6 @@ mv ${DIR}/../vuepress/docs/.vuepress/dist ${DIR}/../build
 mv ${DIR}/../gitbooks/_book ${DIR}/../build/legacy
 
 
-
 # TODO: can we be smart about docs versions here? maybe every minor version we can keep...
 
 # upload built files to s3 

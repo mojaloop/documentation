@@ -108,9 +108,9 @@ jobs:
           command: |
             cd ./infra/src
             terraform init \
-              -backend-config="bucket=docs-preview2.moja-lab.live-state" \
-              -backend-config="region=eu-west-1" \
-              -backend-config="dynamodb_table=docs-preview2.moja-lab.live-lock"
+              -backend-config="bucket=docs-preview.moja-lab.live-state" \
+              -backend-config="region=eu-west-2" \
+              -backend-config="dynamodb_table=docs-preview.moja-lab.live-lock"
             terraform refresh
             terraform apply --auto-approve
 
@@ -133,6 +133,8 @@ jobs:
       - run:
           name: run build and deploy script
           command: ./scripts/_deploy_preview_s3.sh
+          environment:
+            BUCKET_NAME: docs-preview.moja-lab.live-root
     
       # TODO: announce preview docs are ready
       # - run:
@@ -170,6 +172,5 @@ workflows:
             - infra
           filters:
             branches:
-              only:
-                # TODO: change this back - once we are happy to deploy this to                 
+              only:  
                 - mojaloop-docs-2.0
