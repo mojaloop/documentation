@@ -1,5 +1,15 @@
 // a list of from, to redirects
-var redirectMapping = require('./redirects')
+// var redirectMapping = require('./redirects')
+var redirectMapping = [
+  {
+    from: '/documentation/contributors-guide/frequently-asked-questions.html',
+    to: '/getting-started/general-faqs.html'
+  },
+  {
+    from: '/documentation/contributors-guide/standards/triaging-ml-oss-bugs.html',
+    to: '/community/triaging-bugs.html'
+  }
+]
 
 function handler(event) {
   var request = event.request;

@@ -48,8 +48,13 @@ resource "aws_cloudfront_distribution" "website_cdn_root" {
       }
     }
 
+    # A custom cloudfront function that lets us dynamically
+    # configure redirects
+    function_association {
+      event_type = "viewer-request"
+      function_arn = aws_cloudfront_function.docs-redirects.arn
+    }
   }
-
   restrictions {
     geo_restriction {
       restriction_type = "none"
@@ -77,4 +82,12 @@ resource "aws_cloudfront_distribution" "website_cdn_root" {
       viewer_certificate,
     ]
   }
+}
+
+resource "aws_cloudfront_function" "docs-redirects" {
+  name    = "docs-redirects"
+  runtime = "cloudfront-js-1.0"
+  comment = "main"
+  publish = true
+  code    = file("${path.module}/redirect/index.js")
 }
