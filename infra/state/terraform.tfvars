@@ -3,4 +3,5 @@ tags = {
   "mojaloop/cost_center" = "oss-qa"
   "mojaloop/owner" = "lewis"
 }
-region = "us-east-1"
+# ireland
+region = "eu-west-1"

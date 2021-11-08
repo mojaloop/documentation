@@ -1,6 +1,17 @@
+
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 3.64.2"
+    }
+  }
+}
 provider "aws" {
   alias  = "custom"
   region = var.region
+  # shared_credentials_file = "~/.aws/credentials"
+  # profile                 = "mojaloop"
 }
 
 resource "aws_s3_bucket" "terraform_state" {
