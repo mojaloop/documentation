@@ -4,14 +4,14 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 3.34.0"
+      version = "~> 3.64.2"
     }
   }
   backend "s3" {
-    bucket         = "${var.website-domain-main}-state"
+    # bucket         = "${var.website-domain-main}-state"
     key            = "global/s3/terraform.tfstate"
-    region         = var.region
-    dynamodb_table = "${var.website-domain-main}-lock"
+    # region         = var.region
+    # dynamodb_table = "${var.website-domain-main}-lock"
     encrypt        = true
   }
 }

@@ -28,7 +28,10 @@ terraform apply
 
 cd ../src
 # first time only 
-terraform init
+terraform init \
+  -backend-config="bucket=docs-preview2.moja-lab.live-state" \
+  -backend-config="region=eu-west-1" \
+  -backend-config="dynamodb_table=docs-preview2.moja-lab.live-lock"
 
 
 # see what changes are needed
