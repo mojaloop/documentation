@@ -16,6 +16,16 @@ orbs:
 #
 # YAML defaults templates, in alphabetical order
 ##
+defaults_Dependencies: &defaults_Dependencies |
+  apk --no-cache add git \
+            ca-certificates \
+            curl \
+            openssh-client \
+            make gcc g++ python libtool autoconf automake \
+            python3 \
+            py3-pip
+
+  pip3 install awscli
 
 ##
 # Executors
@@ -43,17 +53,8 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Install default dependencies
-          command: |
-            apk --no-cache add git \
-              ca-certificates \
-              curl \
-              openssh-client \
-              make gcc g++ python libtool autoconf automake \
-              python3 \
-              py3-pip
-
-            pip3 install awscli
+          name: Install general dependencies
+          command: *defaults_Dependencies
       - run:
           name: install node dependencies
           command: cd ./vuepress && yarn
@@ -61,22 +62,37 @@ jobs:
           name: build
           command: cd ./vuepress && yarn build
 
-  build_and_deploy_s3:
+  infra:
     executor: default-docker
     steps:
       - checkout
       - run:
-          name: Install default dependencies
+          name: Install general dependencies
+          command: *defaults_Dependencies
+      - run:
+          name: Install terraform
           command: |
-            apk --no-cache add git \
-              ca-certificates \
-              curl \
-              openssh-client \
-              make gcc g++ python libtool autoconf automake \
-              python3 \
-              py3-pip
+            cd /usr/local/bin
+            curl https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip -o terraform_${TERRAFORM_VERSION}_linux_amd64.zip && \
+            unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zip && \
+            rm terraform_${TERRAFORM_VERSION}_linux_amd64.zip
+          environment:
+            TERRAFORM_VERSION: 0.14.3
+      - run:
+          name: Update infrastructure
+          command: |
+            cd ./infra
+            terraform refresh
+            terraform apply --auto-approve
 
-            pip3 install awscli
+
+  s3_upload:
+    executor: default-docker
+    steps:
+      - checkout
+      - run:
+          name: Install general dependencies
+          command: *defaults_Dependencies
       - run:
           name: test aws cli + permissions
           command: |
@@ -101,12 +117,26 @@ workflows:
     jobs:
       - build:
           context: org-global
-          
-      - build_and_deploy_s3:
+
+      - infra:
           context: org-global
-          requires:
-            - build
+          # TODO: build is currently broken!
+          # requires:
+          #   - build
           filters:
             branches:
               only:
-                - mojaloop-docs-2.0
+                # TODO: change this back
+                # - mojaloop-docs-2.0
+                - feat/2572-automate-cdn
+          
+      - s3_upload:
+          context: org-global
+          requires:
+            - infra
+          filters:
+            branches:
+              only:
+                # TODO: change this back
+                # - mojaloop-docs-2.0
+                - feat/2572-automate-cdn

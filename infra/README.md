@@ -78,3 +78,4 @@ links to updated pages in order to avoid broken links once we switch over to doc
 For this, we use cloudfront functions, which are lightweight Javascript functions that allow you 
 to control the behaviour of requests and responses of the CDN.
 
+The redirect behaviour can be configured in `./src/redirect/index.js`

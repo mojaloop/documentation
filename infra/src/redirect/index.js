@@ -1,7 +1,9 @@
 // a list of from, to redirects
 var redirectMapping = [
   {
+    // an existing url on the docs 1.0 site
     from: '/documentation/contributors-guide/frequently-asked-questions.html',
+    // the new destination url to use - where this page has been moved to
     to: '/getting-started/general-faqs.html'
   },
   {
