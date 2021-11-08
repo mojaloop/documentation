@@ -41,6 +41,7 @@ mv ${DIR}/../vuepress/docs/.vuepress/dist ${DIR}/../build
 # build legacy docs - will be removed once all docs are migrated to v2.0
 cd ${DIR}/../gitbooks
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+nvm install 10.15.1
 nvm use 10.15.1
 npm i
 npm run gitbook:build
