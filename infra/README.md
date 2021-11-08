@@ -5,14 +5,31 @@ of the site.
 
 ## Requirements
 
+- `terraform`
+- AWS credentials and necessary IAM permissions to create, update destroy s3 buckets, dynamodb tables, CloudFront CDNs
+
 ## Deploy
 
 ```bash
+# sign in with MFA
+aws-mfa
+
+# initialize the shared terraform state (if not done already)
+cd ./state
+
+terraform init
+
+# for some reason I need to set this env var for tf 0.14+
+AWS_SHARED_CREDENTIALS_FILE=$HOME/.aws/credentials     
+terraform plan
+terraform apply
+
+
+
+cd ../src
 # first time only 
 terraform init
 
-# sign in with MFA
-aws-mfa
 
 # see what changes are needed
 terraform plan

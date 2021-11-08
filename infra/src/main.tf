@@ -7,6 +7,13 @@ terraform {
       version = "~> 3.34.0"
     }
   }
+  backend "s3" {
+    bucket         = "${var.website-domain-main}-state"
+    key            = "global/s3/terraform.tfstate"
+    region         = var.region
+    dynamodb_table = "${var.website-domain-main}-lock"
+    encrypt        = true
+  }
 }
 
 provider "aws" {
