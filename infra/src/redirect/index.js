@@ -1,5 +1,4 @@
 // a list of from, to redirects
-// var redirectMapping = require('./redirects')
 var redirectMapping = [
   {
     from: '/documentation/contributors-guide/frequently-asked-questions.html',
