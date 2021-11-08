@@ -38,6 +38,11 @@ executors:
     docker:
       - image: node:12.16.1-alpine
 
+  legacy-docker:
+    working_directory: /home/circleci/project
+    docker:
+      - image: node:10.15.2-alpine
+
   default-machine:
     machine:
       image: ubuntu-1604:201903-01
@@ -61,6 +66,27 @@ jobs:
       - run:
           name: build
           command: cd ./vuepress && yarn build
+  
+  build-legacy:
+    executor: legacy-docker
+    steps:
+      - checkout
+      - run:
+          name: Install general dependencies
+          command: *defaults_Dependencies
+      - run:
+          name: install node dependencies
+          command: |
+            cd ./gitbooks
+            npm ci
+      - run:
+          name: build
+          command: cd ./gitbooks && npm run gitbook:build
+      - save_cache:
+          name: Save legacy build cache
+          key: build-legacy-cache-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - /home/circleci/project/gitbooks/_book
 
   infra:
     executor: default-docker
@@ -69,6 +95,9 @@ jobs:
       - run:
           name: Install general dependencies
           command: *defaults_Dependencies
+      - restore_cache:
+          keys:
+            - asset-cache-v1-{{ arch }}-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
       - run:
           name: Install terraform
           command: |
@@ -121,12 +150,16 @@ workflows:
     jobs:
       - build:
           context: org-global
+          
+      - build-legacy:
+          context: org-global
 
       - infra:
           context: org-global
           # TODO: build is currently broken!
-          # requires:
-          #   - build
+          requires:
+            # - build
+            - build-legacy
           filters:
             branches:
               only:
