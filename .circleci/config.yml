@@ -38,6 +38,29 @@ executors:
 # A map of CircleCI jobs
 ##
 jobs:
+  build:
+    executor: default-docker
+    steps:
+      - checkout
+      - run:
+          name: Install default dependencies
+          command: |
+            apk --no-cache add git \
+              ca-certificates \
+              curl \
+              openssh-client \
+              make gcc g++ python libtool autoconf automake \
+              python3 \
+              py3-pip
+
+            pip3 install awscli
+      - run:
+          name: install node dependencies
+          command: cd ./vuepress && yarn
+      - run:
+          name: build
+          command: cd ./vuepress && yarn build
+
   build_and_deploy_s3:
     executor: default-docker
     steps:
@@ -76,8 +99,13 @@ workflows:
   version: 2
   build_and_test:
     jobs:
+      - build:
+          context: org-global
+          
       - build_and_deploy_s3:
           context: org-global
+          requires:
+            - build
           filters:
             branches:
               only:

@@ -49,7 +49,6 @@ automating it.
 
 Additionally, domains are slow moving and tend to often need manual intervention at some point.
 
-
 ### Configure the DNS:
 
 1. Log in to Route53 > Hosted Zones > select your domain (for example `moja-lab.live`)
@@ -67,9 +66,15 @@ Build and upload the site to your terraform-managed s3 bucket:
 ```bash
 AWS_REGION=us-east-1 BUCKET_NAME=docs-preview2.moja-lab.live-root DOMAIN=docs-preview2.moja-lab.live ../scripts/_deploy_preview_s3.sh
 ```
-## TODO:
-- load in custom code to redirects
-- automatically deploy the docs with a simple script
-- do all of this in CI/CD? Or is it ok to just do it manually... we're not going to be changing this often
-  - apart from website redirect rules... so 
-- figure out where to keep TF state? In this repo? Or elsewhere?
+
+
+## Configure Redirects
+
+In order to support the gradual migration to docs 2.0, we need to be able to configure the CDN 
+to fall back to legacy docs that haven't yet been migrated, also be able to redirect legacy
+links to updated pages in order to avoid broken links once we switch over to docs 2.0.
+
+
+For this, we use cloudfront functions, which are lightweight Javascript functions that allow you 
+to control the behaviour of requests and responses of the CDN.
+
