@@ -32,9 +32,9 @@ terraform apply
 cd ../src
 # first time only 
 terraform init \
-  -backend-config="bucket=docs-preview2.moja-lab.live-state" \
-  -backend-config="region=eu-west-1" \
-  -backend-config="dynamodb_table=docs-preview2.moja-lab.live-lock"
+  -backend-config="bucket=docs-preview.moja-lab.live-state" \
+  -backend-config="region=eu-west-2" \
+  -backend-config="dynamodb_table=docs-preview.moja-lab.live-lock"
 
 
 # see what changes are needed
@@ -61,13 +61,18 @@ Additionally, domains are slow moving and tend to often need manual intervention
 - Value: `d1n6mdji42j0gb.cloudfront.net` - value from terraform output: `website_cdn_root_domain_name`
 3. "Create Records"
 
+### Attach the CI user to the IAM groups
+
+In order to use this tooling in CI/CD, you need to manually attach a CI user to the groups
+created by terraform, in this case `docs-preview2.moja-lab.live-infra-group` and
+`docs-preview2.moja-lab.live-infra-infra`
 
 ### Upload your site!
 
 Build and upload the site to your terraform-managed s3 bucket:
 
 ```bash
-AWS_REGION=us-east-1 BUCKET_NAME=docs-preview2.moja-lab.live-root DOMAIN=docs-preview2.moja-lab.live ../scripts/_deploy_preview_s3.sh
+AWS_REGION=us-east-2 BUCKET_NAME=docs-preview.moja-lab.live-root DOMAIN=docs-preview.moja-lab.live ../scripts/_deploy_preview_s3.sh
 ```
 
 
