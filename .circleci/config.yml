@@ -16,6 +16,15 @@ orbs:
 #
 # YAML defaults templates, in alphabetical order
 ##
+defaults_Dependencies: &defaults_Dependencies |
+  apk --no-cache add git \
+            ca-certificates \
+            curl \
+            openssh-client \
+            make gcc g++ python libtool autoconf automake \
+            python3 \
+            py3-pip
+  pip3 install awscli
 
 ##
 # Executors
@@ -28,6 +37,11 @@ executors:
     docker:
       - image: node:12.16.1-alpine
 
+  legacy-docker:
+    working_directory: /home/circleci/project
+    docker:
+      - image: node:10.15.2-alpine
+
   default-machine:
     machine:
       image: ubuntu-1604:201903-01
@@ -38,22 +52,79 @@ executors:
 # A map of CircleCI jobs
 ##
 jobs:
-  build_and_deploy_s3:
+  build:
     executor: default-docker
     steps:
       - checkout
       - run:
-          name: Install default dependencies
+          name: Install general dependencies
+          command: *defaults_Dependencies
+      - run:
+          name: install node dependencies
+          command: cd ./vuepress && yarn
+      - run:
+          name: build
+          command: cd ./vuepress && yarn build
+  
+  build-legacy:
+    executor: legacy-docker
+    steps:
+      - checkout
+      - run:
+          name: Install general dependencies
+          command: *defaults_Dependencies
+      - run:
+          name: install node dependencies
           command: |
-            apk --no-cache add git \
-              ca-certificates \
-              curl \
-              openssh-client \
-              make gcc g++ python libtool autoconf automake \
-              python3 \
-              py3-pip
+            cd ./gitbooks
+            npm ci
+      - run:
+          name: build
+          command: cd ./gitbooks && npm run gitbook:build
+      - save_cache:
+          name: Save legacy build cache
+          key: build-legacy-cache-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - /home/circleci/project/gitbooks/_book
 
-            pip3 install awscli
+  infra:
+    executor: default-docker
+    steps:
+      - checkout
+      - run:
+          name: Install general dependencies
+          command: *defaults_Dependencies
+      - run:
+          name: Install terraform
+          command: |
+            cd /usr/local/bin
+            curl https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip -o terraform_${TERRAFORM_VERSION}_linux_amd64.zip && \
+            unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zip && \
+            rm terraform_${TERRAFORM_VERSION}_linux_amd64.zip
+          environment:
+            TERRAFORM_VERSION: 0.14.3
+      - run:
+          name: Update infrastructure
+          command: |
+            cd ./infra/src
+            terraform init \
+              -backend-config="bucket=docs-preview.moja-lab.live-state" \
+              -backend-config="region=eu-west-2" \
+              -backend-config="dynamodb_table=docs-preview.moja-lab.live-lock"
+            terraform refresh
+            terraform apply --auto-approve
+
+
+  s3_upload:
+    executor: default-docker
+    steps:
+      - checkout
+      - run:
+          name: Install general dependencies
+          command: *defaults_Dependencies
+      - restore_cache:
+          keys:
+            - build-legacy-cache-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
       - run:
           name: test aws cli + permissions
           command: |
@@ -62,6 +133,8 @@ jobs:
       - run:
           name: run build and deploy script
           command: ./scripts/_deploy_preview_s3.sh
+          environment:
+            BUCKET_NAME: docs-preview.moja-lab.live-root
     
       # TODO: announce preview docs are ready
       # - run:
@@ -76,9 +149,28 @@ workflows:
   version: 2
   build_and_test:
     jobs:
-      - build_and_deploy_s3:
+      - build:
           context: org-global
+          
+      - build-legacy:
+          context: org-global
+
+      - infra:
+          context: org-global
+          # TODO: build is currently broken!
+          requires:
+            # - build
+            - build-legacy
           filters:
             branches:
               only:
+                - mojaloop-docs-2.0
+          
+      - s3_upload:
+          context: org-global
+          requires:
+            - infra
+          filters:
+            branches:
+              only:  
                 - mojaloop-docs-2.0
