@@ -244,7 +244,6 @@ module.exports = {
               path: 'fspiop/logical-data-model',
               collapsable: true
             },
-
             {
               title: 'Generic Transaction Patterns',
               path: 'fspiop/generic-transaction-patterns',
@@ -281,7 +280,14 @@ module.exports = {
           title: 'Administration API',
           collapsable: false,
           children: [
-            ['administration/', 'Overview'],
+            {
+              title: 'Overview',
+              path: 'administration/'
+            },
+            {
+              title: 'Central Ledger API',
+              path: 'administration/central-ledger-api',
+            },
           ],
           sidebarDepth: 2
         },

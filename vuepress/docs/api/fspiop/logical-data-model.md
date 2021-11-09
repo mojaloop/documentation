@@ -165,7 +165,7 @@ Table 6 below contains the data model for _Return Bulk Participant Information_.
 | --- | --- | --- | --- |
 | **requestId** | 1 | [CorrelationId](#correlationid-element) | The ID of the request, determined by the client. Used for identification of the callback from the server. |
 | **partyList** | 1..10000 | [PartyResult](#partyresult) | List of PartyResult elements for which creation was attempted (and either succeeded or failed). |
-| **Currency** | 0..1 | Currency](#currency-enum) | Indicates that the provided Currency was set to be supported by each successfully added PartyIdInfo. |
+| **Currency** | 0..1 | [Currency](#currency-element) | Indicates that the provided Currency was set to be supported by each successfully added PartyIdInfo. |
 
 **Table 6 – Return Bulk Participant Information data model**
 
@@ -1298,7 +1298,7 @@ Table 47 below contains the data model for the element `Currency`.
 
 | Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **Currency** | 1 | [Enum](#enum) of [String(3)](#string) | See [Currency](#currency-enum) enumeration for information on allowed values |
+| **Currency** | 1 | [Enum](#enum) of [String(3)](#string) | See [Currency](#currencycode-enum) enumeration for information on allowed values |
 
 **Table 47 – Element Currency**
 
@@ -1796,7 +1796,7 @@ Table 85 below contains the data model for the complex type `Party`.
 
 #### PartyComplexName
 
-Table 86 below contains the data model for the complex type `PartyComplextype`.
+Table 86 below contains the data model for the complex type `PartyComplexName`.
 
 | Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
