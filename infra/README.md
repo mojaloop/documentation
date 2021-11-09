@@ -1,7 +1,10 @@
 # infra
 
-The Documentation Site is hosted on AWS CloudFront, with Terraform to automate the creation and management
+Mojaloop Documentation Site is hosted on AWS CloudFront, with Terraform to automate the creation and management
 of the site.
+
+This document is for maintainers of Mojaloop's documentation site, but this repo can also serve as a good template
+ for automating the deployment of static hosting with cloudfront functions.
 
 ## Requirements
 
