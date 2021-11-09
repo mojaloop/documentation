@@ -42,6 +42,9 @@ You can also deploy them manually, by running:
 
 Note that you need to have the `aws` cli, AWS access, and `aws-mfa` set up on your machine for this to work.
 
+## Contributing to the project
+Please refer to the [Contributing Guide](./contributing-guide.md) for details on how to contribute to Mojaloop Docs 2.0.
+
 ## License
 
 Apache License. Version 2.0
