@@ -273,6 +273,10 @@ module.exports = {
               title: 'Encryption (v1.1)',
               path: 'fspiop/v1.1/encryption',
             },
+            {
+              title: 'Glossary',
+              path: 'fspiop/glossary',
+            },
           ],
           sidebarDepth: 4
         },
@@ -311,9 +315,8 @@ module.exports = {
           title: 'Glossary',
           collapsable: false,
           children: [
-            ['3ppi-pisp/', 'Overview'],
+            ['glossary/', 'Overview'],
           ],
-          sidebarDepth: 2
         },
       ],
     }
