@@ -35,37 +35,39 @@ For more information about the environment, see [Network Topology](#network-topo
 
 Communication between platforms is performed using a REST (REpresentational State Transfer)-based HTTP protocol (for more information, see _API Definition_). Because this protocol does not provide a means for ensuring either integrity or confidentiality between platforms, extra security layers must be added to protect sensitive information from alteration or exposure to unauthorized parties.
 
+<br />
+
 ### Open API for FSP Interoperability Specification
 
 The Open API for FSP Interoperability Specification includes the following documents.
 
-#### General Documents
-
-- _Glossary_
-
 #### Logical Documents
 
-- _Logical Data Model_
+- [Logical Data Model](./logical-data-model)
 
-- _Generic Transaction Patterns_
+- [Generic Transaction Patterns](./generic-transaction-patterns)
 
-- _Use Cases_
+- [Use Cases](./use-cases)
 
 #### Asynchronous REST Binding Documents
 
-- _API Definition_
+- [API Definition](./api-definition)
 
-- _JSON Binding Rules_
+- [JSON Binding Rules](./json-binding-rules)
 
-- _Scheme Rules_
+- [Scheme Rules](./scheme-rules)
 
 #### Data Integrity, Confidentiality, and Non-Repudiation
 
-- _PKI Best Practices_
+- [PKI Best Practices](#)
 
-- _Signature_
+- [Signature](./v1.1/signature)
 
-- _Encryption_
+- [Encryption](./v1.1/encryption)
+
+#### General Documents
+
+- [Glossary](./glossary)
 
 <br />
 
