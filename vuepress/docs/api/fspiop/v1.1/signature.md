@@ -44,6 +44,40 @@ Because intermediary fees are not supported in the current version of the API, i
 
 <br />
 
+### Open API for FSP Interoperability Specification
+
+The Open API for FSP Interoperability Specification includes the following documents.
+
+#### Logical Documents
+
+- [Logical Data Model](./logical-data-model)
+
+- [Generic Transaction Patterns](./generic-transaction-patterns)
+
+- [Use Cases](./use-cases)
+
+#### Asynchronous REST Binding Documents
+
+- [API Definition](./definitions)
+
+- [JSON Binding Rules](./json-binding-rules)
+
+- [Scheme Rules](./scheme-rules)
+
+#### Data Integrity, Confidentiality, and Non-Repudiation
+
+- [PKI Best Practices](./pki-best-practices)
+
+- [Signature](#)
+
+- [Encryption](./v1.1/encryption)
+
+#### General Documents
+
+- [Glossary](../glossary)
+
+<br />
+
 ## API Signature Definition
 
 This section introduces the technology used by the API signature, including the data exchange format for the signature of an API message and the mechanism used to generate and verify a signature.
