@@ -192,7 +192,7 @@ The API uses JSON (JavaScript Object Notation), defined in RFC 7159<sup>8</sup>,
 
 <br />
 
-### 3.2 HTTP Details
+### HTTP Details
 
 This section contains detailed information regarding the use of the application-level protocol HTTP in the API.
 
@@ -2024,7 +2024,7 @@ If the server is unable to find or create a quote, or some other processing erro
 
 <br />
 
-### 6.6 API Resource /authorizations
+### API Resource /authorizations
 
 This section defines the logical API resource **Authorizations**, described in [Generic Transaction Patterns](../gerneric-transaction-patterns#api-resource-authorizations).
 
@@ -2590,15 +2590,15 @@ Callback and data model information for **POST /bulkQuotes**:
 
 **Table 38 -- POST /bulkQuotes data model**
 
-#### 6.9.4 Callbacks
+#### Callbacks
 
 This section describes the callbacks that are used by the server under the resource **/bulkQuotes**.
 
-#### 6.9.4.1 PUT /bulkQuotes/_{ID}_
+##### PUT /bulkQuotes/_{ID}_
 
 Alternative URI: N/A
 
-Logical API service: **Return Bulk Quote Information**
+Logical API service: [Return Bulk Quote Information](../generic-transaction-patterns#return-bulk-quote-information)
 
 The callback **PUT /bulkQuotes/**_{ID}_ is used to inform the client of a requested or created bulk quote. The _{ID}_ in the URI should contain the **bulkQuoteId** (see [Table 38](#table-38)) that was used for the creation of the bulk quote, or the _{ID}_ that was used in the [**GET /bulkQuotes/**_{ID}_](#6931-get-bulkquotesid). See [Table 39](#table-39) for data model.
 
@@ -2612,15 +2612,15 @@ The callback **PUT /bulkQuotes/**_{ID}_ is used to inform the client of a reques
 
 **Table 39 -- PUT /bulkQuotes/_{ID}_ data model**
 
-#### 6.9.5 Error Callbacks
+#### Error Callbacks
 
 This section describes the error callbacks that are used by the server under the resource **/bulkQuotes**.
 
-#### 6.9.5.1 PUT /bulkQuotes/_{ID}_/error
+##### PUT /bulkQuotes/_{ID}_/error
 
 Alternative URI: N/A
 
-Logical API service: **Return Bulk Quote Information Error**
+Logical API service: [Retrieve Bulk Quote Information Error](../generic-transaction-patterns#retrieve-bulk-quote-information-error)
 
 If the server is unable to find or create a bulk quote, or another processing error occurs, the error callback **PUT** **/bulkQuotes/**_{ID}_**/error** is used. The _{ID}_ in the URI should contain the **bulkQuoteId** (see [Table 38](#table-38)) that was used for the creation of the bulk quote, or the _{ID}_ that was used in the [**GET /bulkQuotes/**_{ID}_](#6931-get-bulkquotesid). See [Table 40](#table-40) for data model.
 
@@ -2632,7 +2632,7 @@ If the server is unable to find or create a bulk quote, or another processing er
 
 **Table 40 -- PUT /bulkQuotes/_{ID}_/error data model**
 
-#### 6.9.6 States
+#### States
 
 ###### Figure 60
 
@@ -2644,15 +2644,17 @@ The possible states of a bulk quote can be seen in [Figure 60](#figure-60).
 
 **Figure 60 -- Possible states of a bulk quote**
 
-### 6.10 API Resource /bulkTransfers
+<br />
 
-This section defines the logical API resource **Bulk Transfers**, described in _Generic Transaction Patterns_.
+### API Resource /bulkTransfers
 
-The services provided by the API resource **/bulkTransfers** are used for requesting the creation of a bulk transfer or for retrieving information about a previously-requested bulk transfer. For more information about a single transfer, see API Resource **/transfers** ([Section 6.7](#67-api-resource-transfers)). Before a bulk transfer can be requested, a bulk quote needs to be performed. See API Resource **/bulkQuotes**, [Section 6.9](#69-api-resource-bulkquotes), for more information.
+This section defines the logical API resource **Bulk Transfers**, described in [Generic Transaction Patterns](../generic-transaction-patterns#api-resource-bulk-transfers).
+
+The services provided by the API resource **/bulkTransfers** are used for requesting the creation of a bulk transfer or for retrieving information about a previously-requested bulk transfer. For more information about a single transfer, see API Resource [/transfers](#api-resource-transfers). Before a bulk transfer can be requested, a bulk quote needs to be performed. See API Resource [/bulkQuotes](#api-resource-bulkquotes), for more information.
 
 A bulk transfer is irrevocable; it cannot be changed, cancelled, or reversed after it has been sent from the Payer FSP.
 
-#### 6.10.1 Resource Version History
+#### Resource Version History
 
 Table 41 contains a description of each different version of the **/bulkTransfers** resource.
 
@@ -2663,7 +2665,7 @@ Table 41 contains a description of each different version of the **/bulkTransfer
 
 **Table 41 –- Version history for resource /bulkTransfers**
 
-#### 6.10.2 Service Details
+#### Service Details
 
 [Figure 61](#figure-61) shows how the bulk transfer process works, using the **POST /bulkTransfers** service. When receiving the bulk transactions from the Payer, the Payer FSP should perform the following:
 
@@ -2678,34 +2680,34 @@ Table 41 contains a description of each different version of the **/bulkTransfer
 
 **Figure 61 -- Example bulk transfer process**
 
-#### 6.10.3 Requests
+#### Requests
 
 This section describes the services that can a client can request on the resource **/bulkTransfers**.
 
-#### 6.10.3.1 GET /bulkTransfers/_{ID}_
+##### GET /bulkTransfers/_{ID}_
 
 Alternative URI: N/A
 
-Logical API service: **Retrieve Bulk Transfer Information**
+Logical API service: [Retrieve Bulk Transfer Information](../generic-transaction-patterns#retrieve-bulk-transfer-information)
 
 The HTTP request **GET /bulkTransfers/**_{ID}_ is used to get information regarding a previously-created or requested bulk transfer. The _{ID}_ in the URI should contain the **bulkTransferId** (see [Table 42](#table-42)) that was used for the creation of the bulk transfer.
 
 Callback and data model information for **GET /bulkTransfers/**_{ID}_:
 
-- Callback -- [**PUT /bulkTransfers/**_{ID}_](#61041-put-bulktransfersid)
-- Error Callback -- [**PUT /bulkTransfers/**_{ID}_**/error**](#61051-put-bulktransfersiderror)
+- Callback -- [PUT /bulkTransfers/_{ID}_](#put-bulktransfersid)
+- Error Callback -- [PUT /bulkTransfers/_{ID}_/error](#put-bulktransfersiderror)
 - Data Model -- Empty body
 
-#### 6.10.3.2 POST /bulkTransfers
+##### POST /bulkTransfers
 
 Alternative URI: N/A
 
-Logical API service: **Perform Bulk Transfer**
+Logical API service: [Perform Bulk Transfer](../generic-transaction-patterns#perform-bulk-transfer)
 
 The HTTP request **POST /bulkTransfers** is used to request the creation of a bulk transfer on the server.
 
-- Callback - [**PUT /bulkTransfers/**_{ID}_](#61041-put-bulktransfersid)
-- Error Callback - [**PUT /bulkTransfers/**_{ID}_**/error**](#61051-put-bulktransfersiderror)
+- Callback - [PUT /bulkTransfers/_{ID}_](#put-bulktransfersid)
+- Error Callback - [PUT /bulkTransfers/_{ID}_/error](#put-bulktransfersiderror)
 - Data Model -- See [Table 42](#table-42)
 
 ###### Table 42
@@ -2722,17 +2724,17 @@ The HTTP request **POST /bulkTransfers** is used to request the creation of a bu
 
 **Table 42 -- POST /bulkTransfers data model**
 
-#### 6.10.4 Callbacks
+#### Callbacks
 
 This section describes the callbacks that are used by the server under the resource **/bulkTransfers**.
 
-#### 6.10.4.1 PUT /bulkTransfers/_{ID}_
+##### PUT /bulkTransfers/_{ID}_
 
 Alternative URI: N/A
 
-Logical API service: **Return Bulk Transfer Information**
+Logical API service: [Retrieve Bulk Transfer Information](../generic-transaction-patterns#retrieve-bulk-transfer-information)
 
-The callback **PUT /bulkTransfers/**_{ID}_ is used to inform the client of a requested or created bulk transfer. The _{ID}_ in the URI should contain the **bulkTransferId** (see [Table 42](#table-42)) that was used for the creation of the bulk transfer ([**POST /bulkTransfers**](#61032-post-bulktransfers)), or the _{ID}_ that was used in the [**GET /bulkTransfers/**_{ID}_](#61031-get-bulktransfersid). See [Table 43](#table-43) for data model.
+The callback **PUT /bulkTransfers/**_{ID}_ is used to inform the client of a requested or created bulk transfer. The _{ID}_ in the URI should contain the **bulkTransferId** (see [Table 42](#table-42)) that was used for the creation of the bulk transfer ([POST /bulkTransfers](#post-bulktransfers)), or the _{ID}_ that was used in the [GET /bulkTransfers/_{ID}_](#get-bulktransfersid). See [Table 43](#table-43) for data model.
 
 ###### Table 43
 
@@ -2745,17 +2747,17 @@ The callback **PUT /bulkTransfers/**_{ID}_ is used to inform the client of a req
 
 **Table 43 -- PUT /bulkTransfers/_{ID}_ data model**
 
-#### 6.10.5 Error Callbacks
+#### Error Callbacks
 
 This section describes the error callbacks that are used by the server under the resource **/bulkTransfers**.
 
-#### 6.10.5.1 PUT /bulkTransfers/_{ID}_/error
+##### PUT /bulkTransfers/_{ID}_/error
 
 Alternative URI: N/A
 
-Logical API service: **Return Bulk Transfer Information Error**
+Logical API service: [Retrieve Bulk Transfer Information Eerror](../generic-transaction-patterns#retrieve-bulk-transfer-information-error)
 
-If the server is unable to find or create a bulk transfer, or another processing error occurs, the error callback **PUT** **/bulkTransfers/**_{ID}_**/error** is used. The _{ID}_ in the URI should contain the **bulkTransferId** (see [Table 42](#table-42)) that was used for the creation of the bulk transfer ([**POST /bulkTransfers**](#61032-post-bulktransfers)), or the _{ID}_ that was used in the [**GET /bulkTransfers/**_{ID}_](#61031-get-bulktransfersid). See [Table 44](#table-44) for data model.
+If the server is unable to find or create a bulk transfer, or another processing error occurs, the error callback **PUT** **/bulkTransfers/**_{ID}_**/error** is used. The _{ID}_ in the URI should contain the **bulkTransferId** (see [Table 42](#table-42)) that was used for the creation of the bulk transfer ([POST /bulkTransfers](#post-bulktransfers)), or the _{ID}_ that was used in the [GET /bulkTransfers/_{ID}_](#get-bulktransfersid). See [Table 44](#table-44) for data model.
 
 ###### Table 44
 
@@ -2765,7 +2767,7 @@ If the server is unable to find or create a bulk transfer, or another processing
 
 **Table 44 -- PUT /bulkTransfers/_{ID}_/error data model**
 
-#### 6.10.6 States
+#### States
 
 ###### Figure 62
 
@@ -2777,83 +2779,87 @@ The possible states of a bulk transfer can be seen in [Figure 62](#figure-62).
 
 **Figure 62 -- Possible states of a bulk transfer**
 
-## 7. API Supporting Data Models
+<br />
+
+## API Supporting Data Models
 
 This section provides information about additional supporting data models used by the API.
 
-### 7.1 Format Introduction
+### Format Introduction
 
 This section introduces formats used for element data types used by the API.
 
-All element data types have both a minimum and maximum length. The length is indicated by a minimum and maximum length, an exact length, or a regular expression limiting the element in a way that only a specific length or lengths can be used.
+All element data types have both a minimum and maximum length. These lengths are indicated by one of the following:
 
-#### 7.1.1 Minimum and Maximum Length
+- A minimum and maximum length
+- An exact length
+- A regular expression limiting the element such that only a specific length or lengths can be used.
 
-If a minimum and maximum length is required, it is indicated after the
-data type in parentheses, first minimum (inclusive) value, followed by
-"**..**", and then maximum (inclusive) value.
+#### Minimum and Maximum Length
 
-Examples:
-
-- **String(1..32)** -- [String](#721-string) **that** is minimum one character and maximum 32 characters long
-
-- **Integer(3..10)** -- [Integer](#725-integer) **that** is minimum 3 digits, maximum 10 digits long
-
-#### 7.1.2 Exact Length
-
-If an exact length is used, it is indicated after the data type, in parentheses. One value is allowed only.
+If a minimum and maximum length is used, this will be indicated after the data type in parentheses: First the minimum value (inclusive value), followed by two period characters (..), and then the maximum value (inclusive value).
 
 Examples:
 
-- **String(3)** -- [String](#721-string) **that** is exactly three characters long
+- `String(1..32)` – A String that is minimum one character and maximum 32 characters long.
+- `Integer(3..10)` - An Integerr that is minimum 3 digits, but maximum 10 digits long.
 
-- **Integer(4)** -- [Integer](#725-integer) **that** is exactly 4 digits long
+#### Exact Length
 
-#### 7.1.3 Regular Expressions
+If an exact length is used, this will be indicated after the data type in parentheses containing only one exact value. Other lengths are not allowed.
 
-Some element data types are restricted using regular expressions. The regular expressions in this document are using the standard for syntax and character classes used in the Perl programming language<sup>30</sup>.
+Examples:
 
-### 7.2 Element Data Type Formats
+- `String(3)` – A String that is exactly three characters long.
+- `Integer(4)` – An Integer that is exactly four digits long.
+
+#### Regular Expressions
+
+Some element data types are restricted using regular expressions. The regular expressions in this document use the standard for syntax and character classes established by the programming language Perl<sup>[30](https://perldoc.perl.org/perlre.html#Regular-Expressions)</sup>.
+
+### Element Data Type Formats
 
 This section defines element data types used by the API.
 
-#### 7.2.1 String
 
-The API data type **String** is a normal JSON String<sup>31</sup>, always limited by a minimum and maximum number of characters.
 
-##### 7.2.1.1 Example Format
+#### String
 
-**String(1..32)** -- A String that is minimum one character and maximum 32 characters long.
+The API data type `String` is a normal JSON String<sup>[31](https://tools.ietf.org/html/rfc7159#section-7)</sup>, limited by a minimum and maximum number of characters.
 
-##### 7.2.1.1.1 Example
+##### Example Format I
 
-An example of **String(1..32)** appears below:
+`String(1..32)` – A String that is minimum *1* character and maximum *32* characters long.
 
-**This String is 28 characters**
+An example of `String(1..32)` appears below:
 
-##### 7.2.1.2 Example Format
+- _This String is 28 characters_
 
-**String(1..128)** -- A String that is minimum one character and maximum 128 characters long.
+##### Example Format II
 
-##### 7.2.1.2.1 Example
+`String(1..128)` – A String that is minimum *1* character and maximum *128* characters long.
 
-An example of **String(1..128)** appears below:
+An example of `String(32..128)` appears below:
 
-**This String is longer than 32 characters, but less than 128**
+- _This String is longer than 32 characters, but less than 128_
 
-#### 7.2.2 Enum
+<br />
 
-The API data type **Enum** is a restricted list of allowed JSON String (see [Section 7.2.1](#721-string)) values; an enumeration of values. Other values than the ones defined in the list are not allowed.
+#### Enum
 
-##### 7.2.2.1 Example Format
+The API data type `Enum` is a restricted list of allowed JSON [String](#string)) values; an enumeration of values. Other values than the ones defined in the list are not allowed.
 
-**Enum of String(1..32)** -- A [String](#721-string) that is minimum one character and maximum 32 characters long and restricted by the allowed list of values. The description of the element contains a link to the enumeration.
+##### Example Format
 
-#### 7.2.3 UndefinedEnum
+`Enum of String(1..32)` – A String that is minimum one character and maximum 32 characters long and restricted by the allowed list of values. The description of the element contains a link to the enumeration.
+
+<br />
+
+#### UndefinedEnum
 
 The API data type **UndefinedEnum** is a JSON String consisting of 1 to 32 uppercase characters including an underscore character (**\_**).
 
-##### 7.2.3.1 Regular Expression
+##### Regular Expression
 
 The regular expression for restricting the **UndefinedEnum** type appears in [Listing 13](#listing-13).
 
@@ -2865,15 +2871,17 @@ The regular expression for restricting the **UndefinedEnum** type appears in [Li
 
 **Listing 13 -- Regular expression for data type UndefinedEnum**
 
-#### 7.2.4 Name
+<br />
 
-The API data type **Name** is a JSON String, restricted by a regular expression to avoid characters that are generally not used in a name.
+#### Name
 
-##### 7.2.4.1 Regular Expression
+The API data type `Name` is a JSON String, restricted by a regular expression to avoid characters which are generally not used in a name.
 
-The regular expression for restricting the **Name** type appears in [Listing 14](#listing-14). The restriction does not allow a string consisting of whitespace only, all Unicode32 characters are allowed, as well as the period (**.**), apostrophe (**'**), dash (**-**), comma (**,**) and space characters ( ). The maximum number of characters in the **Name** is 128.
+##### Regular Expression
 
-**Note:** In some programming languages, Unicode support must be specifically enabled. For example, if Java is used, the flag UNICODE\_CHARACTER\_CLASS must be enabled to allow Unicode characters.
+The regular expression for restricting the `Name` type appears in [Listing 14](#listing-14) below. The restriction does not allow a string consisting of whitespace only, all Unicode32 characters are allowed, as well as the period (**.**), apostrophe (**'**), dash (**-**), comma (**,**) and space characters ( ). The maximum number of characters in the **Name** is 128.
+
+**Note:** In some programming languages, Unicode support needs to be specifically enabled. As an example, if Java is used the flag `UNICODE_CHARACTER_CLASS` needs to be enabled to allow Unicode characters.
 
 ###### Listing 14
 
@@ -2883,13 +2891,15 @@ The regular expression for restricting the **Name** type appears in [Listing 14]
 
 **Listing 14 -- Regular expression for data type Name**
 
-#### 7.2.5 Integer
+<br />
 
-The API data type **Integer** is a JSON String consisting of digits only. Negative numbers and leading zeroes are not allowed. The data type is always limited to a specific number of digits.
+#### Integer
+
+The API data type `Integer` is a JSON String consisting of digits only. Negative numbers and leading zeroes are not allowed. The data type is always limited by a number of digits.
 
 ##### 7.2.5.1 Regular Expression
 
-The regular expression for restricting an Integer appears in [Listing 15](#listing-15).
+The regular expression for restricting an `Integer` appears in [Listing 15](#listing-15).
 
 ###### Listing 15
 
@@ -2899,23 +2909,24 @@ The regular expression for restricting an Integer appears in [Listing 15](#listi
 
 **Listing 15 -- Regular expression for data type Integer**
 
-#### 7.2.5.2 Example Format
 
-**Integer(1..6)** -- An **Integer** that is at minimum one digit long, maximum six digits.
+##### Example Format
 
-##### 7.2.5.2.1 Example
+`Integer(1..6)` – An `Integer` that is at minimum one digit long, maximum six digits.
 
-An example of **Integer(1..6)** appears below:
+An example of `Integer(1..6)` appears below:
 
-**123456**
+- _123456_
 
-#### 7.2.6 OtpValue
+<br />
 
-The API data type **OtpValue** is a JSON String of three to ten characters, consisting of digits only. Negative numbers are not allowed. One or more leading zeros are allowed.
+#### OtpValue
 
-##### 7.2.6.1 Regular Expression
+The API data type `OtpValue` is a JSON String of three to 10 characters, consisting of digits only. Negative numbers are not allowed. One or more leading zeros are allowed.
 
-The regular expression for restricting the **OtpValue** type appears in [Listing 16](#listing-16).
+##### Regular Expression
+
+The regular expression for restricting the `OtpValue` type appears in [Listing 16](#listing-16).
 
 ###### Listing 16
 
@@ -2925,13 +2936,15 @@ The regular expression for restricting the **OtpValue** type appears in [Listing
 
 **Listing 16 -- Regular expression for data type OtpValue**
 
-#### 7.2.7 BopCode
+<br />
 
-The API data type **BopCode** is a JSON String of three characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed.
+#### BopCode
 
-##### 7.2.7.1 Regular Expression
+The API data type `BopCode` is a JSON String of three characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed.
 
-The regular expression for restricting the **BopCode** type appears in [Listing 17](#listing-17).
+##### Regular Expression
+
+The regular expression for restricting the `BopCode` type appears in [Listing 17](#listing-17).
 
 ###### Listing 17
 
@@ -2941,13 +2954,15 @@ The regular expression for restricting the **BopCode** type appears in [Listing 
 
 **Listing 17 -- Regular expression for data type BopCode**
 
-#### 7.2.8 ErrorCode
+<br />
 
-The API data type **ErrorCode** is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed.
+#### ErrorCode
 
-##### 7.2.8.1 Regular Expression
+The API data type `ErrorCode` is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed.
 
-The regular expression for restricting the **ErrorCode** type appears in [Listing 18](#listing-18).
+##### Regular Expression
+
+The regular expression for restricting the `ErrorCode` type appears in [Listing 18](#listing-18).
 
 ###### Listing 18
 
@@ -2957,13 +2972,15 @@ The regular expression for restricting the **ErrorCode** type appears in [Listin
 
 **Listing 18 -- Regular expression for data type ErrorCode**
 
-#### 7.2.9 TokenCode
+<br />
 
-The API data type **TokenCode** is a JSON String between four and 32 characters. It can consist of either digits, uppercase characters from **A** to **Z**, lowercase characters from **a** to **z**, or a combination of the three.
+#### TokenCode
+
+The API data type `TokenCode` is a JSON String between four and 32 characters. It can consist of either digits, uppercase characters from **A** to **Z**, lowercase characters from **a** to **z**, or a combination of the three.
 
 ##### 7.2.9.1 Regular Expression
 
-The regular expression for restricting the **TokenCode** appears in [Listing 19](#listing-19).
+The regular expression for restricting the `TokenCode` appears in [Listing 19](#listing-19).
 
 ###### Listing 19
 
@@ -2973,13 +2990,15 @@ The regular expression for restricting the **TokenCode** appears in [Listing 19]
 
 **Listing 19 -- Regular expression for data type TokenCode**
 
-#### 7.2.10 MerchantClassificationCode
+<br />
 
-The API data type **MerchantClassificationCode** is a JSON String consisting of one to four digits.
+#### MerchantClassificationCode
+
+The API data type `MerchantClassificationCode` is a JSON String consisting of one to four digits.
 
 ##### 7.2.10.1 Regular Expression
 
-The regular expression for restricting the **MerchantClassificationCode** type appears in [Listing 20](#listing-20).
+The regular expression for restricting the `MerchantClassificationCode` type appears in [Listing 20](#listing-20).
 
 ###### Listing 20
 
@@ -2989,13 +3008,15 @@ The regular expression for restricting the **MerchantClassificationCode** type a
 
 **Listing 20 -- Regular expression for data type MerchantClassificationCode**
 
-#### 7.2.11 Latitude
+<br />
 
-The API data type **Latitude** is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons.
+#### Latitude
+
+The API data type `Latitude` is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons.
 
 ##### 7.2.11.1 Regular Expression
 
-The regular expression for restricting the **Latitude** type appears in [Listing 21](#listing-21).
+The regular expression for restricting the `Latitude` type appears in [Listing 21](#listing-21).
 
 ###### Listing 21
 
@@ -3005,13 +3026,15 @@ The regular expression for restricting the **Latitude** type appears in [Listing
 
 **Listing 21 -- Regular expression for data type Latitude**
 
-#### 7.2.12 Longitude
+<br />
 
-The API data type **Longitude** is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons.
+#### Longitude
+
+The API data type `Longitude` is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons.
 
 ##### 7.2.12.1 Regular Expression
 
-The regular expression for restricting the **Longitude** type appears in [Listing 22](#listing-22).
+The regular expression for restricting the `Longitude` type appears in [Listing 22](#listing-22).
 
 ###### Listing 22
 
@@ -3021,13 +3044,15 @@ The regular expression for restricting the **Longitude** type appears in [Listin
 
 **Listing 22 -- Regular expression for data type Longitude**
 
-#### 7.2.13 Amount
+<br />
 
-The API data type **Amount** is a JSON String in a canonical format that is restricted by a regular expression for interoperability reasons.
+#### Amount
 
-##### 7.2.13.1 Regular Expression
+The API data type `Amount` is a JSON String in a canonical format that is restricted by a regular expression for interoperability reasons.
 
-The regular expression for restricting the **Amount** type appears in [Listing 23](#listing-23). This pattern does not allow any trailing zeroes at all, but allows an amount without a minor currency unit. It also only allows four digits in the minor currency unit; a negative value is not allowed. Using more than 18 digits in the major currency unit is not allowed.
+##### Regular Expression
+
+The regular expression for restricting the `Amount` type appears in [Listing 23](#listing-23). This pattern does not allow any trailing zeroes at all, but allows an amount without a minor currency unit. It also only allows four digits in the minor currency unit; a negative value is not allowed. Using more than 18 digits in the major currency unit is not allowed.
 
 ###### Listing 23
 
@@ -3037,9 +3062,9 @@ The regular expression for restricting the **Amount** type appears in [Listing 2
 
 **Listing 23 -- Regular expression for data type Amount**
 
-##### 7.2.13.2 Example Values
+##### Example Values
 
-See [Table 45](#table-45) for validation results for some example **Amount** values using the regular expression in [Section 7.2.13.1](#72131-regular-expression).
+See [Table 45](#table-45) for validation results for some example **Amount** values using the [regular expression](#regular-expression-6).
 
 ###### Table 45
 
@@ -3063,13 +3088,15 @@ See [Table 45](#table-45) for validation results for some example **Amount** val
 
 **Table 45 -- Example results for different values for Amount type**
 
-#### 7.2.14 DateTime
+<br />
 
-The API data type **DateTime** is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons.
+#### DateTime
+
+The API data type `DateTime` is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons.
 
 ##### 7.2.14.1 Regular Expression
 
-The regular expression for restricting the **DateTime** type appears in [Listing 24](#listing-24). The format is according to ISO 860133, expressed in a combined date, time and time zone format. A more readable version of the format is
+The regular expression for restricting the `DateTime` type appears in [Listing 24](#listing-24). The format is according to ISO 860133, expressed in a combined date, time and time zone format. A more readable version of the format is
 
 _yyyy_**-**_MM_**-**_dd_**T**_HH_**:**_mm_**:**_ss_**.**_SSS_[**-**_HH_**:**_MM_]
 
@@ -3081,19 +3108,21 @@ _yyyy_**-**_MM_**-**_dd_**T**_HH_**:**_mm_**:**_ss_**.**_SSS_[**-**_HH_**:**_MM_
 
 **Listing 24 -- Regular expression for data type DateTime**
 
-##### 7.2.14.2 Examples
+##### Examples
 
-Two examples of the **DateTime** type appear below:
+Two examples of the `DateTime` type appear below:
 
 **2016-05-24T08:38:08.699-04:00**
 
 **2016-05-24T08:38:08.699Z** (where **Z** indicates Zulu time zone, which is the same as UTC).
 
-#### 7.2.15 Date
+<br />
 
-The API data type **Date** is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons.
+#### Date
 
-##### 7.2.15.1 Regular Expression
+The API data type `Date` is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons.
+
+##### Regular Expression
 
 The regular expression for restricting the **Date** type appears in [Listing 25](#listing-25). This format, as specified in ISO 8601, contains a date only. A more readable version of the format is _yyyy_**-**_MM_**-**_dd_.
 
@@ -3105,20 +3134,23 @@ The regular expression for restricting the **Date** type appears in [Listing 25]
 
 **Listing 25 -- Regular expression for data type Date**
 
-##### 7.2.15.2 Examples
+##### Examples
 
-Two examples of the **Date** type appear below:
+Two examples of the `Date` type appear below:
 
-**1982-05-23**<br>
-**1987-08-05**
+- _1982-05-23_
 
-#### 7.2.16 UUID
+- _1987-08-05_
 
-The API data type **UUID** (Universally Unique Identifier) is a JSON String in canonical format, conforming to RFC 412234, that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and four dashes ('**-**').
+<br />
+
+#### UUID
+
+The API data type `UUID` (Universally Unique Identifier) is a JSON String in canonical format, conforming to RFC 412234, that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and four dashes ('**-**').
 
 ##### 7.2.16.1 Regular Expression
 
-The regular expression for restricting the **UUID** type appears in [Listing 26](#listing-26).
+The regular expression for restricting the `UUID` type appears in [Listing 26](#listing-26).
 
 ###### Listing 26
 
@@ -3128,19 +3160,21 @@ The regular expression for restricting the **UUID** type appears in [Listing 26]
 
 **Listing 26 -- Regular expression for data type UUID**
 
-##### 7.2.16.2 Example
+##### Example
 
-An example of a **UUID** type appears below:
+An example of a `UUID` type appears below:
 
-**a8323bc6-c228-4df2-ae82-e5a997baf898**
+- _a8323bc6-c228-4df2-ae82-e5a997baf898_
 
-#### 7.2.17 BinaryString
+<br />
 
-The API data type **BinaryString** is a JSON String. The string is a base64url35 encoding of a string of raw bytes, where a padding (character '**=**') is added at the end of the data if needed to ensure that the string is a multiple of four characters. The length restriction indicates the allowed number of characters.
+#### BinaryString
 
-##### 7.2.17.1 Regular Expression
+The API data type `BinaryString` is a JSON String. The string is a base64url35 encoding of a string of raw bytes, where a padding (character '**=**') is added at the end of the data if needed to ensure that the string is a multiple of four characters. The length restriction indicates the allowed number of characters.
 
-The regular expression for restricting the **BinaryString** type appears in [Listing 27](#listing-27).
+##### Regular Expression
+
+The regular expression for restricting the `BinaryString` type appears in [Listing 27](#listing-27).
 
 ###### Listing 27
 
@@ -3150,23 +3184,23 @@ The regular expression for restricting the **BinaryString** type appears in [Lis
 
 **Listing 27 -- Regular expression for data type BinaryString**
 
-##### 7.2.17.2 Example Format
+##### Example Format
 
-**BinaryString(32..256)** -- Between 32 and 256 characters of data base64url encoded.
+`BinaryString(32)` –32 bytes of data base64url encoded.
 
-##### 7.2.17.2.1 Example
+An example of a `BinaryString(32..256)` appears below. Note that a padding character, `'='` has been added to ensure that the string is a multiple of four characters.
 
-An example of a **BinaryString(32..256)** appears below. Note that a padding character ('**=**') has been added to ensure that the string is a multiple of four characters.
+- _QmlsbCAmIE1lbGluZGEgR2F0ZXMgRm91bmRhdGlvbiE=_
 
-**QmlsbCAmIE1lbGluZGEgR2F0ZXMgRm91bmRhdGlvbiE=**
+<br />
 
-#### 7.2.18 BinaryString32
+#### BinaryString32
 
-The API data type **BinaryString32** is a fixed size version of the API data type **BinaryString** in [Section 7.2.17](#7217-binarystring), where the raw underlying data is always of 32 bytes. The data type **BinaryString32** should not use a padding character as the size of the underlying data is fixed.
+The API data type `BinaryString32` is a fixed size version of the API data type `BinaryString` defined [here](#binarystring), where the raw underlying data is always of 32 bytes. The data type **BinaryString32** should not use a padding character as the size of the underlying data is fixed.
 
-##### 7.2.18.1 Regular Expression
+##### Regular Expression
 
-The regular expression for restricting the **BinaryString32** type appears in [Listing 28](#listing-28).
+The regular expression for restricting the `BinaryString32` type appears in [Listing 28](#listing-28).
 
 ###### Listing 28
 
@@ -3176,435 +3210,518 @@ The regular expression for restricting the **BinaryString32** type appears in [L
 
 **Listing 28 -- Regular expression for data type BinaryString32**
 
-##### 7.2.18.2 Example
+##### Example Format
+`BinaryString(32)` – 32 bytes of data base64url encoded.
 
-An example of a **BinaryString32** appears below. Note that this is the same binary data as the example in [Section 7.2.17.2.1](#721721-example), but due to the underlying data being fixed size, the padding character '**=**' is excluded.
+An example of a `BinaryString32` appears below. Note that this is the same binary data as the example shown in the [Example Format](#example-format-4) of the `BinaryString` type, but due to the underlying data being fixed size, the padding character `'='` is excluded.
 
-**QmlsbCAmIE1lbGluZGEgR2F0ZXMgRm91bmRhdGlvbiE**
+```
+QmlsbCAmIE1lbGluZGEgR2F0ZXMgRm91bmRhdGlvbiE
+```
 
-### 7.3 Element Definitions
+<br />
+
+### Element Definitions
 
 This section defines elements types used by the API.
 
-#### 7.3.1 AmountType
+#### AmountType element
 
-[Table 46](#table-46) contains the data model for the element **AmountType**.
+[Table 46](#table-46) below contains the data model for the element `AmountType`.
 
 ###### Table 46
 
-| **Name** | **Cardinality** | **Format** | **Description** |
+| Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **AmountType** | 1 | Enum of String(1..32) | Contains the amount type. See [Section 7.5.1](#751-amounttype) (AmountType) for possible enumeration values. |
+| **AmountType** | 1 | [Enum](#enum) of [String(1..32)](#string) | This element contains the amount type. See [AmountType](#amounttype-enum) enumeration for more information on allowed values. |
 
-**Table 46 -- Element AmountType**
+**Table 46 – Element AmountType**
 
-#### 7.3.2 AuthenticationType
+<br />
 
-[Table 47](#table-47) contains the data model for the element **AuthenticationType**.
+#### AuthenticationType element
+
+[Table 47](#table-47) below contains the data model for the element `AuthenticationType`.
 
 ###### Table 47
 
-| **Name** | **Cardinality** | **Format** | **Description** |
+| Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **Authentication** | 1 | Enum of String(1..32) | Contains the authentication type. See [Section 7.5.2](#752-authenticationtype) (AuthenticationType) for possible enumeration values. |
+| **Authentication** | 1 | [Enum](#enum) of [String(1..32)](#string) | This element contains the authentication type. See [AuthenticationType](#authenticationtype-enum) enumeration for possible enumeration values. |
 
-**Table 47 -- Element AuthenticationType**
+**Table 47 – Element AuthenticationType**
 
-#### 7.3.3 AuthenticationValue
+<br />
 
-[Table 48](#table-48) contains the data model for the element **AuthenticationValue**.
+#### AuthenticationValue element
+
+[Table 48](#table-48) below contains the data model for the element `AuthenticationValue`.
 
 ###### Table 48
 
-| **Name** | **Cardinality** | **Format** | **Description** |
+| Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **AuthenticationValues** | 1 | Depending on AuthenticationType:<br>If OTP: OtpValue<br>If QRCODE: String(1..64) | Contains the authentication value. The format depends on the authentication type used in the AuthenticationInfo complex type. |
+| **AuthenticationValue** | 1 | Depends on [AuthenticationType](#authenticationtype-element). <br><br> If `OTP`: type is [Integer(1..6)](#integer). For example:**123456**<br><br>OtpValue</br>If `QRCODE`: type is [String(1..64)](#string) | This element contains the authentication value. The format depends on the authentication type used in the [AuthenticationInfo](#authenticationinfo) complex type. |
 
-**Table 48  -- Element AuthenticationValue**
+**Table 48 – Element AuthenticationValue**
 
-#### 7.3.4 AuthorizationResponse
+<br />
 
-[Table 49](#table-49) contains the data model for the element **AuthorizationResponse**.
+#### AuthorizationResponse element
+
+[Table 49](#table-49) below contains the data model for the element `AuthorizationResponse`.
 
 ###### Table 49
 
-| **Name** | **Cardinality** | **Format** | **Description** |
+| Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **AuthorizationResponse** | 1 | Enum of String(1..32) | Contains the authorization response. See [Section 7.5.3](#753-authorizationresponse) (AuthorizationResponse) for possible enumeration values. |
+| **AuthorizationResponse** | 1 | [Enum](#enum) of [String(1..32)](#string) | This element contains the authorization response. See [AuthorizationResponse](#authorizationresponse-enum) enumeration for possible enumeration values. |
 
-**Table 49 -- Element AuthorizationResponse**
+**Table 49 – Element AuthorizationResponse**
 
-#### 7.3.5 BalanceOfPayments
+<br />
 
-[Table 50](#table-50) contains the data model for the element **BalanceOfPayment**.
+#### BalanceOfPayments element
+
+[Table 50](#table-50) below contains the data model for the element `BalanceOfPayment`.
 
 ###### Table 50
 
-| **Name** | **Cardinality** | **Format** | **Description** |
+| Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| BalanceOfPayments | 1 | BopCode | Possible values and meaning are defined in https://www.imf.org/external/np/sta/bopcode/. |
+| **BalanceOfPayments** | 1 | [BopCode](#bopcode) | The possible values and meaning are defined in [https://www.imf.org/external/np/sta/bopcode/](https://www.imf.org/external/np/sta/bopcode/) |
 
-**Table 50 -- Element BalanceOfPayments**
+**Table 50 – Element BalanceOfPayments**
 
-#### 7.3.6 BulkTransferState
+<br />
 
-[Table 51](#table-51) contains the data model for the element **BulkTransferState**.
+#### BulkTransferState element
+
+[Table 51](#table-51)  below contains the data model for the element `BulkTransferState`.
 
 ###### Table 51
 
-| **Name** | **Cardinality** | **Format** | **Description** |
+| Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| BulkTransferState | 1 | Enum of String(1..32) | See [Section 7.5.4](#754-bulktransferstate) (BulkTransferState) for more information on allowed values. |
+| **BulkTransferState** | 1 | [Enum](#enum) of [String(1..32)](#string) | See [BulkTransferState](#bulktransferstate-enum) enumeration for information on allowed values|
 
-**Table 51 -- Element BulkTransferState**
+**Table 51 – Element BulkTransferState**
 
-#### 7.3.7 Code
+<br />
 
-[Table 52](#table-52) contains the data model for the element **Code**.
+#### Code element
+
+[Table 52](#table-52) below contains the data model for the element `Code`.
 
 ###### Table 52
 
-| **Name** | **Cardinality** | **Format** | **Description** |
+| Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **Code** | 1 | TokenCode | Any code or token returned by the Payee FSP. |
+| **Code** | 1 | [TokenCode](#tokencode) | Any code/token returned by the Payee FSP. |
 
-**Table 52 -- Element Code**
+**Table 52 – Element Code**
 
-#### 7.3.8 CorrelationId
+<br />
 
-[Table 53](#table-53) contains the data model for the element **CorrelationId**.
+#### CorrelationId element
+
+[Table 53](#table-53) below contains the data model for the element `CorrelationId`.
 
 ###### Table 53
 
-| **Name** | **Cardinality** | **Format** | **Description** |
+| Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **CorrelationId** | 1 | UUID | Identifier that correlates all messages of the same sequence. |
+| **CorrelationId** | 1 |[UUID](#uuid) | Identifier that correlates all messages of the same sequence. |
 
-**Table 53 -- Element Correlation Id**
 
-#### 7.3.9 Currency
+**Table 53 – Element CorrelationId**
 
-[Table 54](#table-54) contains the data model for the element **Currency**.
+<br />
+
+#### Currency element
+
+[Table 54](#table-54) below contains the data model for the element `Currency`.
 
 ###### Table 54
 
-| **Name** | **Cardinality** | **Format** | **Description** |
+| Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **Currency** | 1 | Enum of String(3) | See [Section 7.5.5](#755-currencycode) (CurrencyCode) for more information on allowed values. |
+| **Currency** | 1 | [Enum](#enum) of [String(3)](#string) | See [Currency](#currencycode-enum) enumeration for information on allowed values |
 
-**Table 54 -- Element Currency**
+**Table 54 – Element Currency**
 
-#### 7.3.10 DateOfBirth
+<br />
 
-[Table 55](#table-55) contains the data model for the element **DateOfBirth**.
+#### DateOfBirth element
+
+[Table 55](#table-55) below contains the data model for the element `DateOfBirth`.
 
 ###### Table 55
 
-| **Name** | **Cardinality** | **Format** | **Description** |
+| Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **DateOfBirth** | 1 | Date | Date of Birth of the Party.|
+| **DateOfBirth** | 1 | Examples<p>Two examples of the [DateTime](#datetime) type appear below:</p><p><b>2016-05-24T08:38:08.699-04:00</b></p><p><b>2016-05-24T08:38:08.699Z</b> (where <b>Z</b> indicates Zulu time zone, which is the same as UTC).</p> <p>Date</p> | Date of Birth of the Party.|
 
-**Table 55 -- Element DateOfBirth**
+**Table 55 – Element DateOfBirth**
 
-#### 7.3.11 ErrorCode
+<br />
 
-[Table 56](#table-56) contains the data model for the element **ErrorCode**.
+#### ErrorCode element
+
+[Table 56](#table-56) below contains the data model for the element `ErrorCode`.
 
 ###### Table 56
 
-| **Name** | **Cardinality** | **Format** | **Description** |
+| Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **ErrorCode** | 1 | ErrorCode | Four-digit error code; see [Section 7.6](#76-error-codes) for more information.|
+| **ErrorCode** | 1 | [ErrorCode](#errorcode) | Four digit error code, see section on [Error Codes](#error-codes) for more information. |
 
-**Table 56 -- Element ErrorCode**
+**Table 56 – Element ErrorCode**
 
-#### 7.3.12 ErrorDescription
+<br />
 
-[Table 57](#table-57) contains the data model for the element **ErrorDescription**.
+#### ErrorDescription element
+
+[Table 57](#table-57] below contains the data model for the element `ErrorDescription`.
 
 ###### Table 57
 
-| **Name** | **Cardinality** | **Format** | **Description** |
+
+| Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **ErrorDescription** | 1 | String(1..128) | Error description string. |
+| **ErrorDescription** | 1 | [String(1..128)](#string) | Error description string. |
 
-**Table 57 -- Element ErrorDescription**
+**Table 57 – Element ErrorDescription**
 
-#### 7.3.13 ExtensionKey
+<br />
 
-[Table 58](#table-58) contains the data model for the element **ExtensionKey**.
+#### ExtensionKey element
+
+[Table 58](#table-58) below contains the data model for the element `ExtensionKey`.
 
 ###### Table 58
 
-| **Name** | **Cardinality** | **Format** | **Description** |
+
+| Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **ExtensionKey** | 1 | String(1..32) | Extension Key |
+| **ExtensionKey** | 1 | [String(1..32)](#string) | The extension key. |
 
-**Table 58 -- Element ExtensionKey**
+**Table 58 – Element ExtensionKey**
 
-#### 7.3.14 ExtensionValue
+<br />
 
-[Table 59](#table-59) contains the data model for the element **ExtensionValue**.
+#### ExtensionValue element
+
+[Table 59](#table-59) below contains the data model for the element `ExtensionValue`.
 
 ###### Table 59
 
-| **Name** | **Cardinality** | **Format** | **Description** |
+| Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **ExtensionValue** | 1 | String(1..128) | Extension Value |
+| **ExtensionValue** | 1 | [String(1..128)](#string) | The extension value. |
 
-**Table 59 -- Element ExtensionValue**
+**Table 59 – Element ExtensionValue**
 
-#### 7.3.15 FirstName
+<br />
 
-[Table 60](#table-60) contains the data model for the element **FirstName**.
+#### FirstName element
+[Table 60](#table-60) below contains the data model for the element `FirstName`.
 
 ###### Table 60
 
-| **Name** | **Cardinality** | **Format** | **Description** |
+| Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **FirstName** | 1 | Name | First name of Party |
+| **FirstName** | 1 | [Name](#name) | First name of the Party |
 
-**Table 60 -- Element FirstName**
+**Table 60 – Element FirstName**
 
-#### 7.3.16 FspId
+<br />
 
-[Table 61](#table-61) contains the data model for the element **FspId**.
+#### FspId element
+
+[Table 61](#table-61) below contains the data model for the element `FspId`.
 
 ###### Table 61
 
-| **Name** | **Cardinality** | **Format** | **Description** |
+| Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **FspId** | 1 | String(1..32) | FSP identifier |
+| **FspId** | 1 | [String(1..32)](#string)| The FSP identifier. |
 
-**Table 61 -- Element FspId**
+**Table 61 – Element FspId**
 
-#### 7.3.17 IlpCondition
+<br />
 
-[Table 62](#table-62) contains the data model for the element **IlpCondition**.
+#### IlpCondition element
+
+[Table 62](#table-62) below contains the data model for the element `IlpCondition`.
 
 ###### Table 62
 
-| **Name** | **Cardinality** | **Format** | **Description** |
+| Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **IlpCondition** | 1 | BinaryString32 |  Condition that must be attached to the transfer by the Payer. |
+| **IlpCondition** | 1 | [BinaryString32](#binarystring32) | The condition that must be attached to the transfer by the Payer. |
 
-**Table 62 -- Element IlpCondition**
+**Table 62 – Element IlpCondition**
 
-#### 7.3.18 IlpFulfilment
+<br />
 
-[Table 63](#table-63) contains the data model for the element **IlpFulfilment**.
+####  IlpFulfilment element
+
+[Table 63](#table-63) below contains the data model for the element `IlpFulfilment`.
 
 ###### Table 63
 
-| **Name** | **Cardinality** | **Format** | **Description** |
+| Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **IlpFulfilment** | 1 | BinaryString(1..32) | Fulfilment that must be attached to the transfer by the Payee.|
+| **IlpFulfilment** | 1 | [BinaryString32](#binarystring32) | The fulfilment that must be attached to the transfer by the Payee. |
 
-**Table 63 -- Element IlpFulfilment**
+**Table 63 – Element IlpFulfilment**
 
-#### 7.3.19 IlpPacket
+<br />
 
-[Table 64](#table-64) contains the data model for the element **IlpPacket**.
+#### IlpPacket element
+
+[Table 64](#table-64) below cntains the data model for the element `IlpPacket`.
 
 ###### Table 64
 
-| **Name** | **Cardinality** | **Format** | **Description** |
+| Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **IlpPacket** | 1 | BinaryString(1..32768) | Information for recipient (transport layer information). |
+| **IlpPacket** | 1 | Example<p>An example of a [UUID](#uuid) type appears below:</p> <p><b>a8323bc6-c228-4df2-ae82-e5a997baf898</b></p><p>[BinaryString(1..32768)](#binarystring)</p> | Information for recipient (transport layer information). |
 
-**Table 64 -- Element IlpPacket**
+**Table 64 – Element IlpPacket**
 
-#### 7.3.20 LastName
+<br />
 
-[Table 65](#table-65) contains the data model for the element **LastName**.
+#### LastName element
+
+[Table 65](#table-65) below contains the data model for the element `LastName`.
 
 ###### Table 65
 
-| **Name** | **Cardinality** | **Format** | **Description** |
+| Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **LastName** | 1 | Name | Last name of the Party |
+| **LastName** | 1 | [Name](#name) | Last name of the Party (ISO 20022 definition). |
 
-**Table 65 -- Element LastName**
+**Table 65 – Element LastName**
 
-#### 7.3.21 MerchantClassificationCode
+<br />
 
-[Table 66](#table-66) contains the data model for the element **MechantClassificationCode**.
+#### MerchantClassificationCode element
+
+[Table 66](#table-66) below contains the data model for the element `MerchantClassificationCode`.
 
 ###### Table 66
 
-| **Name** | **Cardinality** | **Format** | **Description** |
+| Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **MerchantClassificationCode** | 1 | MerchantClassificationCode | A limited set of pre-defined numbers. This list would identify a set of popular merchant types like School Fees, Pubs and Restaurants, Groceries, and so on. |
+| **MerchantClassificationCode** | 1 | [MerchantClassificationCode](#merchantclassificationcode) | A limited set of pre-defined numbers. This list would be a limited set of numbers identifying a set of popular merchant types like School Fees, Pubs and Restaurants, Groceries, and so on. |
 
-**Table 66 -- Element MerchantClassificationCode**
+**Table 66 – Element MerchantClassificationCode**
 
-#### 7.3.22 MiddleName
+<br />
 
-[Table 67](#table-67) contains the data model for the element **MiddleName**.
+#### MiddleName element
+
+[Table 67](#table-67) below contains the data model for the element `MiddleName`.
 
 ###### Table 67
 
-| **Name** | **Cardinality** | **Format** | **Description** |
+
+| Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **MiddleName** | 1 | Name | Middle name of the Party |
+| **MiddleName** | 1 | [Name](#name) | Middle name of the Party (ISO 20022 definition). |
 
-**Table 67 -- Element MiddleName**
+**Table 67 – Element MiddleName**
 
-#### 7.3.23 Note
+<br />
 
-[Table 68](#table-68) contains the data model for the element **Note**.
+#### Note element
+
+[Table 68](#table-68) below contains the data model for the element `Note`.
 
 ###### Table 68
 
-| **Name** | **Cardinality** | **Format** | **Description** |
+| Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **Note** | 1 | String(1..128) | Memo assigned to Transaction. |
+| **Note** | 1 | [String(1..128)](#string) | Memo assigned to transaction. |
 
-**Table 68 -- Element Note**
+**Table 68 – Element Note**
 
-#### 7.3.24 PartyIdentifier
+<br />
 
-[Table 69](#table-69) contains the data model for the element **PartyIdentifier**.
+
+#### PartyIdentifier element
+
+[Table 69](#table-69) below contains the data model for the element `PartyIdentifier`.
 
 ###### Table 69
 
-| **Name** | **Cardinality** | **Format** | **Description** |
+| Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **PartyIdentifier** | 1 | String(1..128) | Identifier of the Party. |
+| **PartyIdentifier** | 1 | [String(1..128)](#string) | Identifier of the Party.|
 
-**Table 69 -- Element PartyIdentifier**
+**Table 69 – Element PartyIdentifier**
 
-#### 7.3.25 PartyIdType
+<br />
 
-[Table 70](#table-70) contains the data model for the element **PartyIdType**.
+#### PartyIdType element
+
+[Table 70](#table-70) below contains the data model for the element `PartyIdType`.
 
 ###### Table 70
 
-| **Name** | **Cardinality** | **Format** | **Description** |
+| Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **PartyIdType** | 1 | Enum of String(1..32) | See [Section 7.5.6](#756-partyidtype) (PartyIdType) for more information on allowed values.|
+| **PartyIdType** | 1 | Enum of [String(1..32)](#string) | See [PartyIdType](#partyidtype-enum) enumeration for more information on allowed values. |
 
-**Table 70 -- Element PartyIdType**
+**Table 70 – Element PartyIdType**
 
-#### 7.3.26 PartyName
+<br />
 
-[Table 71](#table-71) contains the data model for the element **PartyName**.
+#### PartyName element
+
+[Table 71](#table-71) below contains the data model for the element `PartyName`.
 
 ###### Table 71
 
-| **Name** | **Cardinality** | **Format** | **Description** |
+| Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **PartyName** | 1 | Name | Name of the Party. Could be a real name or a nickname.|
+| **PartyName** | 1 | `Name` | Name of the Party. Could be a real name or a nickname. |
 
-**Table 71 -- Element PartyName**
+**Table 71 – Element PartyName**
 
-#### 7.3.27 PartySubIdOrType
+<br />
 
-[Table 72](#table-72) contains the data model for the element **PartySubIdOrType**.
+#### PartySubIdOrType element
+
+[Table 72](#table-72) below contains the data model for the element `PartySubIdOrType`.
 
 ###### Table 72
 
-| **Name** | **Cardinality** | **Format** | **Description** |
+| Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **PartySubIdOrType** | 1 | String(1..128) | Either a sub-identifier of a PartyIdentifier, or a sub- type of the PartyIdType, normally a PersonalIdentifierType. |
+| **PartySubIdOrType** | 1 | [String(1..128)](#string) | Either a sub-identifier of a [PartyIdentifier](#partyidentifier-element), or a sub-type of the [PartyIdType](#partyidtype-element), normally a `PersonalIdentifierType`. |
 
-**Table 72 -- Element PartySubIdOrType**
+**Table 72 – Element PartySubIdOrType**
 
-#### 7.3.28 RefundReason
+<br />
 
-[Table 73](#table-73) contains the data model for the element **RefundReason**.
+#### RefundReason element
+
+[Table 73](#table-73) below contains the data model for the element `RefundReason`.
 
 ###### Table 73
 
-| **Name** | **Cardinality** | **Format** | **Description** |
+| Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **RefundReason** | 1 | String(1..128) | Reason for the refund |
+| **RefundReason** | 1 | [String(1..128)](#string) | Reason for the refund. |
 
-**Table 73 -- Element RefundReason**
+**Table 73 – Element RefundReason**
 
-#### 7.3.29 TransactionInitiator
+<br />
 
-[Table 74](#table-74) contains the data model for the element **TransactionInitiator**.
+#### TransactionInitiator element
+
+[Table 74](#table-74) below contains the data model for the element `TransactionInitiator`.
 
 ###### Table 74
 
-| **Name** | **Cardinality** | **Format** | **Description** |
+| Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **TransactionInitiator** | 1 | Enum of String(1..32) | |
+| **TransactionInitiator** | 1 | [Enum](#enum) of [String(1..32)](#string) | See [TransactionInitiator](#transactioninitiator-enum) enumeration for more information on allowed values. |
 
-**Table 74 -- Element Transaction Initiator**
+**Table 74 – Element TransactionInitiator**
 
-#### 7.3.30 TransactionInitiatorType
+<br />
 
-[Table 75](#table-75) contains the data model for the element **TransactionInitiatorType**.
+#### TransactionInitiatorType element
+
+[Table 75](#table-75) below contains the data model for the element `TransactionInitiatorType`.
 
 ###### Table 75
 
-| **Name** | **Cardinality** | **Format** | **Description** |
+| Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **TransactionInitiatorType** | 1 | Enum of String(1..32) | See [Section 7.5.9](#759-transactioninitiatortype) (TransactionInitiatorType) for more information on allowed values. |
+| **TransactionInitiatorType** | 1 | [Enum](#enum) of [String(1..32)](#string) | See [TransactionInitiatorType](#transactioninitiatortype-enum) enumeration for more information on allowed values. |
 
-**Table 75 -- Element Transaction InitiatorType**
+**Table 75 – Element TransactionInitiatorType**
 
-#### 7.3.31 TransactionRequestState
+<br />
 
-[Table 76](#table-76) contains the data model for the element **TransactionRequestState**.
+#### TransactionRequestState element
+
+[Table 76](#table-76) below contains the data model for the element `TransactionRequestState`.
 
 ###### Table 76
 
-| **Name** | **Cardinality** | **Format** | **Description** |
+| Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **TransactionRequestState** | 1 | Enum of String(1..32) | See [Section 7.5.10](#7510-transactionrequeststate) (TransactionRequestState) for more information on allowed values. |
+| **TransactionRequestState** | 1 | [Enum](#enum) of [String(1..32)](#string) | See [TransactionRequestState](#transactionrequeststate-enum) enumeration for more information on allowed values. |
 
-**Table 76 -- Element TransactionRequestState**
 
-#### 7.3.32 TransactionScenario
+**Table 76 – Element TransactionRequestState**
 
-[Table 77](#table-77) contains the data model for the element **TransactionScenario**.
+<br />
+
+#### TransactionScenario element
+
+[Table 77](#table-77) below contains the data model for the element `TransactionScenario`.
 
 ###### Table 77
 
-| **Name** | **Cardinality** | **Format** | **Description** |
+| Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **TransactionScenario** | 1 | Enum of String(1..32) | See [Section 7.5.11](#7511-transactionscenario) (TransactionScenario) for more information on allowed values. |
+| **TransactionScenario** | 1 | [Enum](#enum) of [String(1..32)](#string) | See [TransactionScenario](#transactionscenario-enum) enumeration for more information on allowed values. |
 
-**Table 77 -- Element TransactionScenario**
+**Table 77 – Element TransactionScenario**
 
-#### 7.3.33 TransactionState
+<br />
 
-[Table 78](#table-78) contains the data model for the element **TransactionState**.
+#### TransactionState element
+
+[Table 78](#table-78) below contains the data model for the element `TransactionState`.
 
 ###### Table 78
 
-| **Name** | **Cardinality** | **Format** | **Description** |
+|Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **TransactionState** | 1 | Enum of String(1..32) | See [Section 7.5.12](#7512-transactionstate) (TransactionState) for more information on allowed values. |
+| **TransactionState** | 1 | [Enum](#enum) of [String(1..32)](#string) | See [TransactionState](#transactionstate-enum) enumeration for more information on allowed values. |
 
-**Table 78 -- Element TransactionState**
+**Table 78 – Element TransactionState**
 
-#### 7.3.34 TransactionSubScenario
+<br />
 
-[Table 79](#table-79) contains the data model for the element **TransactionSubScenario**.
+
+#### TransactionSubScenario element
+
+[Table 79](#table-79) below contains the data model for the element `TransactionSubScenario`.
 
 ###### Table 79
 
-| **Name** | **Cardinality** | **Format** | **Description** |
+| Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **TransactionSubScenario** | 1 | UndefinedEnum | Possible sub-scenario, defined locally within the scheme. |
+| **TransactionSubScenario** | 1 | [UndefinedEnum](#undefinedenum) | Possible sub-scenario, defined locally within the scheme.|
 
-**Table 79 -- Element TransactionSubScenario**
+**Table 79 – Element TransactionSubScenario**
 
-#### 7.3.35 TransferState
+<br />
 
-[Table 80](#table-80) contains the data model for the element **TransferState**.
+#### TransferState element
+
+[Table 80](#table-80) below contains the data model for the element `TransferState`.
 
 ###### Table 80
 
-| **Name** | **Cardinality** | **Format** | **Description** |
+|Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **TransferState** | 1 | Enum of String(1..32) | See [Section 7.5.13](#7513-transferstate) (TransferState) for more information on allowed values. |
+| **TransactionState** | 1 | [Enum](#enum) of [String(1..32)](#string) | See [TransferState](#transferstate-enum) enumeration for more information on allowed values. |
 
-**Table 80 -- Element TransferState**
+**Table 80 – Element TransferState**
+
+
+<br />
+
 
 ### 7.4 Complex Types
 
@@ -4504,15 +4621,15 @@ The following list provides a detailed description of all the steps in the seque
 6. The server sends the callback to the client containing the requested information, and an **OK** HTTP response is received from the client, which completes the process.
 
 
-## 10. End-to-End Example
+## End-to-End Example
 
-This section contains an end-to-end example in which an account holder is provisioned, and then a P2P Transfer from a Payer located in one FSP to a Payee located in another FSP is performed. The example includes both HTTP requests and responses, HTTP headers, and data models in JSON, but without additional security features of using JWS (see [_Signature_](./Signature_v1.1.md)) and field level encryption using JWE (see [_Encryption_](./Encryption_v1.1.md)).
+This section contains an end-to-end example in which an account holder is provisioned, and then a P2P Transfer from a Payer located in one FSP to a Payee located in another FSP is performed. The example includes both HTTP requests and responses, HTTP headers, and data models in JSON, but without additional security features of using JWS (see [_Signature_](./signature.md)) and field level encryption using JWE (see [_Encryption_](./encryption.md)).
 
-### 10.1 Example Setup
+### Example Setup
 
 This section explains the setup of the example.
 
-#### 10.1.1 Nodes
+#### Nodes
 
 ###### Figure 73
 
@@ -4522,7 +4639,7 @@ The nodes in the end-to-end example in this section are simplified by having onl
 
 **Figure 73 -- Nodes in end-to-end example**
 
-#### 10.1.2 Account Holders
+#### Account Holders
 
 The account holders in the example are:
 
@@ -4530,17 +4647,17 @@ The account holders in the example are:
 
 - One account holder in the FSP **MobileMoney** named Henrik Karlsson. Henrik Karlsson has a mobile money account that is identified by his phone number **123456789**. The currency of the account is USD.
 
-#### 10.1.3 Scenario
+#### Scenario
 
 The scenario in the example is that Mats Hagman in FSP **BankNrOne** wants to transfer 100 USD to Henrik Karlsson in the FSP **MobileMoney**. Before Henrik Karlsson can be found by FSP **BankNrOne**, Henrik's FSP **MobileMoney** should provide information to the Switch specifying in which FSP Henrik Karlsson can be found in. The end-to-end flow including all used services can be found in [Section 10.1.4](#1014-other-notes).
 
-#### 10.1.4 Other Notes
+#### Other Notes
 
 The JSON messages used in the examples are formatted with color coding, indentations, and line breaks for very long lines to simplify the read of the examples.
 
 Both FSPs are assumed to have a pre-funded Switch account in their respective FSPs.
 
-### 10.2 End-to-End Flow
+### End-to-End Flow
 
 [Figure 74](#figure-74) shows the end-to-end flow of the entire example, from provisioning of FSP information to the actual transaction.
 
@@ -4551,16 +4668,16 @@ Both FSPs are assumed to have a pre-funded Switch account in their respective FS
 
 **Figure 74 -- End-to-end flow, from provision of account holder FSP information to a successful transaction**
 
-### 10.3 Provision Account Holder
+### Provision Account Holder
 
-Before the Payee Henrik Karlsson can be found by the Payer FSP **BankNrOne**, Henrik Karlsson should be provisioned to the ALS, which is also the Switch in this simplified example, by Henrik's FSP (**MobileMoney**). This is performed through either one of the services [**POST /participants**](#6232-post-participants) (bulk version) or [**POST /participants/**_{Type}_**/**_{ID}_](#6233-post-participantstypeid) (single version). As the Payee in this example is only one (Henrik Karlsson), the single [**POST /participants/**_{Type}_**/**_{ID}_](#6233-post-participantstypeid) version is used by FSP **MobileMoney**. The provision could happen anytime, for example when Henrik Karlsson signed up for the financial account, or when the FSP **MobileMoney** connected to the Switch for the first time.
+Before the Payee Henrik Karlsson can be found by the Payer FSP **BankNrOne**, Henrik Karlsson should be provisioned to the ALS, which is also the Switch in this simplified example, by Henrik's FSP (**MobileMoney**). This is performed through either one of the services [**POST /participants**](#6232-post-participants) (bulk version) or [POST /participants/_{Type}_/_{ID}_](#post-participantstypeid) (single version). As the Payee in this example is only one (Henrik Karlsson), the single [**POST /participants/_{Type}_/_{ID}_](#post-participantstypeid) version is used by FSP **MobileMoney**. The provision could happen anytime, for example when Henrik Karlsson signed up for the financial account, or when the FSP **MobileMoney** connected to the Switch for the first time.
 
-#### 10.3.1 FSP MobileMoney Provisions Henrik Karlsson -- Step 1 in End-to-End Flow
+#### FSP MobileMoney Provisions Henrik Karlsson -- Step 1 in End-to-End Flow
 
-[Listing 29](#listing-29) shows the HTTP request where the FSP **MobileMoney** provisions FSP information for account holder Henrik Karlsson, identified by **MSISDN** and **123456789** (see [Section 5.2](#52-party-addressing) for more information about [Party Addressing](#52-party-addressing)). The JSON element **fspId** is set to the FSP identifier (MobileMoney), and JSON element **currency** is set to the currency of the account (USD).
+[Listing 29](#listing-29) shows the HTTP request where the FSP **MobileMoney** provisions FSP information for account holder Henrik Karlsson, identified by **MSISDN** and **123456789** (see [Party Addressing](#52-party-addressing) for more information). The JSON element **fspId** is set to the FSP identifier (MobileMoney), and JSON element **currency** is set to the currency of the account (USD).
 
 See [Table 1](#table-1) for the required HTTP headers in a HTTP request,
-and [Section 6.2.3.3](#6233-post-participantstypeid) for more information about the service [**POST /participants/**_{Type}_**/**_{ID}_](#6233-post-participantstypeid). **More** information regarding routing of requests using **FSPIOP-Destination** and **FSPIOP-Source** can be found in [Section 3.2.3.6](#3236-call-flow-routing-using-fspiop-destination-and-fspiop-source). Information about API version negotiation can be found in [Section 3.3.4](#334-version-negotiation-between-client-and-server).
+and [POST /participants/_{Type}_/_{ID}_](#post-participantstypeid) for more information about the service ). **More** information regarding routing of requests using **FSPIOP-Destination** and **FSPIOP-Source** can be found in [Call Flow Routing using FSPIOP Destination and FSPIOP Source](#call-flow-routing-using-fspiop-destination-and-fspiop-source). Information about API version negotiation can be found in [Version Negotiatoin between Client and Server](#version-negotiation-between-client-and-server).
 
 ###### Listing 29
 
