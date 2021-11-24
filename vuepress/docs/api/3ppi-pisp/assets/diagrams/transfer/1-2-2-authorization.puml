@@ -1,0 +1,150 @@
+@startuml
+
+' declaring skinparam
+skinparam sequenceMessageAlign center
+skinparam shadowing false
+skinparam defaultFontName Verdana
+skinparam monochrome true
+skinparam SequenceLifeLineBackgroundColor WhiteSmoke
+skinparam SequenceLifeLineBorderColor Black
+skinparam ParticipantFontStyle Bold
+skinparam ParticipantFontSize 20
+skinparam ParticipantBackgroundColor WhiteSmoke
+skinparam ArrowColor Black
+
+hide footbox
+
+title Transfer: 1.2.2 Authorization
+
+
+box "PISP"
+participant "PISP Server" as D1
+end box
+box "Mojaloop"
+    participant Switch as S
+end box
+box "DFSP A"
+    participant "DFSP A\n(Payer)" as D2
+end box
+box "DFSP B"
+    participant "DFSP B\n(Payee)" as D3
+end box
+
+rnote left of D2 #Light
+**""POST /quotes""**
+""FSPIOP-Source: dfspa""
+""FSPIOP-Destination: dfspb""
+{
+  "quoteId": "22222222-0000-0000-0000-000000000000",
+  "transactionId": "11111111-0000-0000-0000-000000000000",
+  "transactionRequestId": "00000000-0000-0000-0000-000000000000",
+  "payee": {
+    "partyIdInfo": {
+      "partyIdType": "MSISDN",
+      "partyIdentifier": "+4412345678",
+      "fspId": "dfspb"
+    }
+  },
+  "payer": {
+    "personalInfo": {
+      "complexName": {
+        "firstName": "Ayesha",
+        "lastName": "Takia"
+      }
+    },
+    "partyIdInfo": {
+      "partyIdType": "MSISDN",
+      "partyIdentifier": "123456789",
+      "fspId": "dfspa"
+    },
+  },
+  "amountType": "SEND",
+  "amount": {
+    "amount": "100",
+    "currency": "USD"
+  },
+  "transactionType": {
+    "scenario": "TRANSFER",
+    "initiator": "PAYER",
+    "initiatorType": "CONSUMER"
+  },
+  "note": "quote note"
+}
+end note
+D2 -> S: ""POST /quotes""
+S --> D2: ""202 Accepted""
+S -> D3: ""POST /quotes""
+D3 --> S: ""202 Accepted""
+
+rnote left of D2 #Light
+**""PUT /quotes/22222222-0000-0000-0000-000000000000""**
+""FSPIOP-Source: dfspb""
+""FSPIOP-Destination: dfspa""
+{
+  "transferAmount": {
+    "amount": "100",
+    "currency": "USD"
+  },
+  "payeeReceiveAmount": {
+    "amount": "99",
+    "currency": "USD"
+  },
+  "payeeFspFee": {
+    "amount": "1",
+    "currency": "USD"
+  },
+  "expiration": "2020-06-15T12:00:00.000",
+  "ilpPacket": "...",
+  "condition": "...",
+}
+end note
+D3 -> S: ""PUT /quotes/22222222-0000-0000-0000-000000000000""
+S --> D3: ""200 OK""
+S -> D2: ""PUT /quotes/22222222-0000-0000-0000-000000000000""
+D2 --> S: ""200 OK""
+
+note left of D2
+  DFSP A has the quote, they can now ask
+  the PISP for authorization
+end note
+
+D2 -> D2: Generate a UUID for the authorization Request:\n""33333333-0000-0000-0000-000000000000""
+D2 -> D2: Derive the challenge based \non ""PUT /quotes/{ID}""
+
+rnote left of D2 #Light
+**""POST /thirdpartyRequests/authorizations""**
+""FSPIOP-Source: dfspa""
+""FSPIOP-Destination: pispa""
+{
+  "authorizationRequestId": "33333333-0000-0000-0000-000000000000",
+  "transactionRequestId": "00000000-0000-0000-0000-000000000000",
+  "challenge": ""<base64 encoded binary - the encoded challenge>"",
+  "transferAmount": {"amount": "100", "currency": "USD"},
+  "payeeReceiveAmount": {"amount": "99", "currency": "USD"},
+  "fees": {"amount": "1", "currency": "USD"},
+  "payer": {
+    "partyIdType": "THIRD_PARTY_LINK",
+    "partyIdentifier": "qwerty-56789",
+    "fspId": "dfspa"
+  },
+  "payee": {
+    "partyIdInfo": {
+      "partyIdType": "MSISDN",
+      "partyIdentifier": "+4412345678",
+      "fspId": "dfspb"
+    }
+  },
+  "transactionType": {
+    "scenario": "TRANSFER",
+    "initiator": "PAYER",
+    "initiatorType": "CONSUMER"
+  },
+  "expiration": "2020-06-15T12:00:00.000",
+}
+end note
+D2 -> S: ""POST /thirdpartyRequests/authorizations""
+S --> D2: ""202 Accepted""
+S -> D1: ""POST /thirdpartyRequests/authorizations""
+D1 --> S: ""202 Accepted""
+
+@enduml
