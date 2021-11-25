@@ -40,14 +40,14 @@ mv ${DIR}/../vuepress/docs/.vuepress/dist ${DIR}/../build
 
 # build legacy docs - will be removed once all docs are migrated to v2.0
 # Removing from here! multiple node versions in CI/CD are really hard!
-# cd ${DIR}/../gitbooks
+# cd ${DIR}/../legacy
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 # nvm install 10.15.1
 # nvm use 10.15.1
 # npm i
 # npm run gitbook:build
 # copy to a legacy subfolder
-mv ${DIR}/../gitbooks/_book ${DIR}/../build/legacy
+mv ${DIR}/../legacy/_book ${DIR}/../build/legacy
 
 
 # TODO: can we be smart about docs versions here? maybe every minor version we can keep...

@@ -76,16 +76,16 @@ jobs:
       - run:
           name: install node dependencies
           command: |
-            cd ./gitbooks
+            cd ./legacy
             npm ci
       - run:
           name: build
-          command: cd ./gitbooks && npm run gitbook:build
+          command: cd ./legacy && npm run gitbook:build
       - save_cache:
           name: Save legacy build cache
           key: build-legacy-cache-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
           paths:
-            - /home/circleci/project/gitbooks/_book
+            - /home/circleci/project/legacy/_book
 
   infra:
     executor: default-docker
