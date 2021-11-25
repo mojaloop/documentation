@@ -244,7 +244,6 @@ module.exports = {
               path: 'fspiop/logical-data-model',
               collapsable: true
             },
-
             {
               title: 'Generic Transaction Patterns',
               path: 'fspiop/generic-transaction-patterns',
@@ -274,6 +273,10 @@ module.exports = {
               title: 'Encryption (v1.1)',
               path: 'fspiop/v1.1/encryption',
             },
+            {
+              title: 'Glossary',
+              path: 'fspiop/glossary',
+            },
           ],
           sidebarDepth: 4
         },
@@ -281,7 +284,14 @@ module.exports = {
           title: 'Administration API',
           collapsable: false,
           children: [
-            ['administration/', 'Overview'],
+            {
+              title: 'Overview',
+              path: 'administration/'
+            },
+            {
+              title: 'Central Ledger API',
+              path: 'administration/central-ledger-api',
+            },
           ],
           sidebarDepth: 2
         },
@@ -305,9 +315,8 @@ module.exports = {
           title: 'Glossary',
           collapsable: false,
           children: [
-            ['3ppi-pisp/', 'Overview'],
+            ['glossary/', 'Overview'],
           ],
-          sidebarDepth: 2
         },
       ],
     }
