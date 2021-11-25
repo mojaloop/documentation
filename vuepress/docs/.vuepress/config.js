@@ -304,10 +304,35 @@ module.exports = {
           sidebarDepth: 2
         },
         {
-          title: '3PPI/ISP API',
+          title: 'Thirdparty API',
           collapsable: false,
+          path: 'thirdparty/',
           children: [
-            ['3ppi-pisp/', 'Overview'],
+            {
+              title: 'API Definitions',
+              path: 'fspiop/logical-data-model',
+              collapsable: true
+            },
+            {
+              title: 'Transaction Patterns',
+              path: 'thirdparty/transaction-patterns',
+              collapsable: true,
+              children: [
+                {
+                  title: 'Transaction Patterns Linking',
+                  path: 'thirdparty/transaction-patterns-linking'
+                },
+                {
+                  title: 'Transaction Patterns Transfer',
+                  path: 'thirdparty/transaction-patterns-transfer'
+                }
+              ]
+            },
+            {
+              title: 'Data Models',
+              path: 'thirdparty/data-models',
+              collapsable: true
+            },
           ],
           sidebarDepth: 2
         },
