@@ -30,11 +30,11 @@ aws s3 ls s3://${BUCKET_NAME}
 
 # build
 rm -rf ${DIR}/../build
-cd ${DIR}/../vuepress
+cd ${DIR}/..
 yarn
 yarn build
 
-mv ${DIR}/../vuepress/docs/.vuepress/dist ${DIR}/../build
+mv ${DIR}/../docs/.vuepress/dist ${DIR}/../build
 
 # TODO: can we be smart about docs versions here? maybe every minor version we can keep...
 
