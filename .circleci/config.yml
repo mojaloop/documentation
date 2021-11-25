@@ -164,6 +164,8 @@ workflows:
           filters:
             branches:
               only:
+                - master
+                # todo: remove  
                 - mojaloop-docs-2.0
           
       - s3_upload:
@@ -173,4 +175,6 @@ workflows:
           filters:
             branches:
               only:  
+                - master
+                # todo: remove  
                 - mojaloop-docs-2.0
