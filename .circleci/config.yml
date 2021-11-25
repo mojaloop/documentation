@@ -164,6 +164,7 @@ workflows:
           filters:
             branches:
               only:
+                - master
                 - mojaloop-docs-2.0
           
       - s3_upload:
@@ -172,5 +173,6 @@ workflows:
             - infra
           filters:
             branches:
-              only:  
+              only:
+                - master  
                 - mojaloop-docs-2.0
