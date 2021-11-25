@@ -61,10 +61,10 @@ jobs:
           command: *defaults_Dependencies
       - run:
           name: install node dependencies
-          command: cd ./vuepress && yarn
+          command: yarn
       - run:
           name: build
-          command: cd ./vuepress && yarn build
+          command: yarn build
   
   build-legacy:
     executor: legacy-docker

@@ -32,10 +32,10 @@ aws s3 ls s3://${BUCKET_NAME}
 
 # build new vuepress site
 rm -rf ${DIR}/../build
-cd ${DIR}/../vuepress
+cd ${DIR}/../
 yarn
 yarn build || echo 'WARNING: yarn build failed! Please fix this - just a temporary workaround'
-mv ${DIR}/../vuepress/docs/.vuepress/dist ${DIR}/../build
+mv ${DIR}/../docs/.vuepress/dist ${DIR}/../build
 
 
 # build legacy docs - will be removed once all docs are migrated to v2.0

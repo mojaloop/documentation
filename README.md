@@ -7,10 +7,7 @@ __Live Preview: [docs-preview.moja-lab.live](http://docs-preview.moja-lab.live/)
 
 ## Building and testing locally
 
-Our updated docs currently live in the `./vuepress` directory
-
 ```bash
-cd ./vuepress
 
 # install npm dependencies
 yarn 
