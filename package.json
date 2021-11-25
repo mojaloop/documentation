@@ -1,72 +1,23 @@
 {
-  "name": "documentation",
-  "version": "12.0.0",
-  "description": "Mojaloop Documentation GitBook Project",
-  "dependencies": {
-    "express": "4.17.1",
-    "gitbook-cli": "2.3.2",
-    "gitbook-plugin-back-to-top-button": "0.1.4",
-    "gitbook-plugin-changelog": "1.0.1",
-    "gitbook-plugin-collapsible-chapters": "0.1.8",
-    "gitbook-plugin-editlink": "1.0.2",
-    "gitbook-plugin-fontsettings": "2.0.0",
-    "gitbook-plugin-include": "0.1.0",
-    "gitbook-plugin-insert-logo": "0.1.5",
-    "gitbook-plugin-page-toc": "1.1.1",
-    "gitbook-plugin-plantuml-svg": "1.0.1",
-    "gitbook-plugin-swagger": "0.2.0",
-    "gitbook-plugin-theme-api": "1.1.2",
-    "gitbook-plugin-uml": "1.0.1",
-    "gitbook-plugin-variables": "1.1.0",
-    "svgexport": "0.4.1"
+  "name": "mojaloop-docs-vuepress",
+  "version": "0.0.1",
+  "description": "Mojaloop Documentation 2.0",
+  "main": "index.js",
+  "authors": {
+    "name": "Uduak Obong-Eren",
+    "email": "uobong-eren@mojaloop.io"
   },
-  "devDependencies": {
-    "directory-tree": "^2.2.5",
-    "got": "^11.8.0",
-    "husky": "^4.2.5",
-    "license-checker": "25.0.1",
-    "node-plantuml": "^0.5.0",
-    "npm-audit-resolver": "2.2.1",
-    "npm-check-updates": "7.0.2",
-    "plantuml-encoder": "^1.4.0",
-    "strip-comments": "^2.0.1",
-    "svgo": "^1.3.2"
-  },
+  "repository": "https://www.github.com/mojaloop//mojaloop-docs-vuepress",
   "scripts": {
-    "audit:check": "SHELL=sh check-audit",
-    "audit:resolve": "SHELL=sh resolve-audit",
-    "build:plantuml:all": "./scripts/_build_plantuml_all.sh",
-    "build:plantuml:diff": "./scripts/_build_plantuml_diff.sh",
-    "dep:check": "npx ncu -e 2",
-    "dep:update": "npx ncu -u",
-    "docker:build": "docker build --no-cache -t mojaloop/documentation .",
-    "docker:push": "docker push mojaloop/documentation",
-    "docker:run": "docker run --rm -it --name mojadoc -p 8989:8989 mojaloop/documentation",
-    "express:run": "node index.js",
-    "gitbook:build": "gitbook build",
-    "gitbook:export:pdf": "gitbook pdf ./",
-    "gitbook:install": "gitbook install",
-    "gitbook:serve": "gitbook serve --port 8989",
-    "gitbook:serveNoReload": "gitbook serve --no-live --port 8989",
-    "license:check": "npm run license:list -- --failOn `cat .licensebanned | grep '^[^#;]' | awk 'BEGIN { ORS=\"\" } { print p$0\";\"; } END { print \n }'`",
-    "license:list": "license-checker . --excludePackages `cat .licenseignore | grep '^[^#;]' | awk 'BEGIN { ORS=\"\" } { print p$0\";\"; } END { print \n }'` --production --csv",
-    "run": "npm run gitbook:serve",
-    "start": "npm run gitbook:serveNoReload"
+    "dev": "vuepress dev docs",
+    "build": "vuepress build docs"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run build:plantuml:diff",
-      "post-commit": "git update-index --again"
-    }
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/mojaloop/documentation.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/mojaloop/documentation/issues"
-  },
-  "homepage": "https://github.com/mojaloop/documentation#readme"
+  "license": "MIT",
+  "devDependencies": {
+    "@vuepress/plugin-back-to-top": "^1.8.2",
+    "@vuepress/plugin-medium-zoom": "^1.8.2",
+    "vuepress": "^1.5.3",
+    "vuepress-plugin-versioning": "^4.10.2",
+    "vuepress-theme-titanium": "^4.9.0"
+  }
 }

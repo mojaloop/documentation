@@ -16,72 +16,16 @@ orbs:
 #
 # YAML defaults templates, in alphabetical order
 ##
-defaults_Dependencies: &defaults_Dependencies
-  name: Install default dependencies
-  command: |
-    apk --no-cache add git
-    apk --no-cache add ca-certificates
-    apk --no-cache add curl
-    apk --no-cache add openssh-client
-    # for node 10.15-alpine, need to install from edge repo
-    apk --no-cache add openjdk11 --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community
-    apk --no-cache add graphviz
-    apk add --no-cache -t build-dependencies make gcc g++ python libtool autoconf automake
-    npm config set unsafe-perm true
-    npm install -g gitbook-cli
+defaults_Dependencies: &defaults_Dependencies |
+  apk --no-cache add git \
+            ca-certificates \
+            curl \
+            openssh-client \
+            make gcc g++ python libtool autoconf automake \
+            python3 \
+            py3-pip
+  pip3 install awscli
 
-
-defaults_slack_announcement: &defaults_slack_announcement
-  name: Slack announcement for tag releases
-  command: |
-    curl -X POST \
-      $SLACK_WEBHOOK_ANNOUNCEMENT \
-      -H 'Content-type: application/json' \
-      -H 'cache-control: no-cache' \
-      -d "{
-      \"text\": \"*${CIRCLE_PROJECT_REPONAME}* - Release \`${CIRCLE_TAG}\`: https://github.com/mojaloop/${CIRCLE_PROJECT_REPONAME}/releases/tag/${CIRCLE_TAG}\"
-    }"
-
-defaults_git_identity_setup: &defaults_git_identity_setup
-  name: Setup Git Identity
-  command: |
-    echo "Setting BASH_ENV..."
-    source $BASH_ENV
-
-    git config --global user.email "$GIT_CI_USER"
-    git config --global user.password "$GIT_CI_PASSWORD"
-    git config --global user.name "$GIT_CI_EMAIL"
-    git remote add $GITHUB_PROJECT_USERNAME https://$GIT_CI_USER:$GITHUB_TOKEN@github.com/$GITHUB_PROJECT_USERNAME/$GITHUB_PROJECT_REPONAME.git
-
-defaults_publish_to_gh_pages: &defaults_publish_to_gh_pages
-  name: Publish documentation
-  command: |
-    echo "Setting BASH_ENV..."
-    source $BASH_ENV
-
-    echo "Fetching info from remote $GITHUB_PROJECT_USERNAME"
-    git fetch -q $GITHUB_PROJECT_USERNAME &> git.log
-
-    echo "Checking out $GITBOOK_TARGET_BRANCH"
-    git checkout -b $GITBOOK_TARGET_BRANCH $GITHUB_PROJECT_USERNAME/$GITBOOK_TARGET_BRANCH  &> git.log
-
-    echo "Pulling latest code from $GITBOOK_TARGET_BRANCH branch..."
-    git pull -q $GITHUB_PROJECT_USERNAME $GITBOOK_TARGET_BRANCH --rebase &> git.log
-
-    echo "Copying contents of _book to root..."
-    cp -R _book/* .
-
-    echo "Staging general changes..."
-    git add .
-
-    echo "Staging generated UML..."
-    git add -f assets/images/uml/*.*
-
-    echo "Commiting changes..."
-    git commit -a -m "Updating release to $GITHUB_TAG"
-
-    echo "Publishing $GITHUB_TAG release to $GITBOOK_TARGET_BRANCH on github..."
-    git push -q $GITHUB_PROJECT_USERNAME $GITBOOK_TARGET_BRANCH &> git.log
 ##
 # Executors
 #
@@ -91,7 +35,12 @@ executors:
   default-docker:
     working_directory: /home/circleci/project
     docker:
-      - image: node:10.15-alpine
+      - image: node:12.16.1-alpine
+
+  legacy-docker:
+    working_directory: /home/circleci/project
+    docker:
+      - image: node:10.15.2-alpine
 
   default-machine:
     machine:
@@ -103,108 +52,93 @@ executors:
 # A map of CircleCI jobs
 ##
 jobs:
-  setup:
-    executor: default-docker
-    steps:
-      - checkout
-      - run:
-          <<: *defaults_Dependencies
-      - run:
-          name: Access npm folder as root
-          command: cd $(npm root -g)/npm
-      - run:
-          name: Update NPM install
-          command: npm ci
-      - run:
-          name: Delete build dependencies
-          command: apk del build-dependencies
-      - save_cache:
-          key: dependency-cache-{{ checksum "package-lock.json" }}
-          paths:
-            - node_modules
-
   build:
     executor: default-docker
     steps:
       - checkout
       - run:
-          <<: *defaults_Dependencies
+          name: Install general dependencies
+          command: *defaults_Dependencies
       - run:
-          name: Installing build dependencies
-          command: |
-            echo 'Installing build dependencies via APK'
-            apk add --no-cache -t gitbook-build-dependencies openjdk8-jre graphviz ttf-droid ttf-droid-nonlatin
-
-            echo 'Setting env vars'
-            echo 'export PLANTUML_VERSION=$PLANTUML_VERSION' >> $BASH_ENV
-            echo 'export LANG=$PLANTUML_LANG' >> $BASH_ENV
-
-            echo 'Downloading plantuml jar'
-            curl -L https://sourceforge.net/projects/plantuml/files/plantuml.${PLANTUML_VERSION}.jar/download -o plantuml.jar
-      - restore_cache:
-          keys:
-          - dependency-cache-{{ checksum "package-lock.json" }}
+          name: install node dependencies
+          command: yarn
       - run:
-          name: Build Gitbooks
-          command: |
-            npm run gitbook:build
-      - save_cache:
-          key: build-cache-{{ .Revision }}
-          paths:
-            - _book
+          name: build
+          command: yarn build
   
-  test-svg:
-    executor: default-machine
+  build-legacy:
+    executor: legacy-docker
     steps:
       - checkout
       - run:
-          name: Set up NVM
+          name: Install general dependencies
+          command: *defaults_Dependencies
+      - run:
+          name: install node dependencies
           command: |
-            echo ${NVM_DIR}
-            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-            nvm install v10.15.3
-            nvm alias default v10.15.3
-            node --version
+            cd ./legacy
             npm ci
       - run:
-          name: Check if plantuml has been updated correctly
-          command: |
-            set +o pipefail
-            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-            npm run build:plantuml:all
-            FILE_COUNT=$(git diff --name-only | grep .svg | wc -l)
-            if [ ${FILE_COUNT} -ne "0" ]; then
-              echo "${FILE_COUNT} plantuml files are out of sync. Please run npm run build:plantuml and try again.";
-              exit 1;
-            else
-              echo 'Plantuml files are up to date';
-            fi
+          name: build
+          command: cd ./legacy && npm run gitbook:build
+      - save_cache:
+          name: Save legacy build cache
+          key: build-legacy-cache-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - /home/circleci/project/legacy/_book
 
-  deploy:
+  infra:
     executor: default-docker
     steps:
       - checkout
       - run:
-          <<: *defaults_Dependencies
+          name: Install general dependencies
+          command: *defaults_Dependencies
       - run:
-          name: setup environment vars
+          name: Install terraform
           command: |
-            echo 'export GITBOOK_TARGET_BRANCH=$GITBOOK_TARGET_BRANCH' >> $BASH_ENV
-            echo 'export GITHUB_TOKEN=$GITHUB_TOKEN' >> $BASH_ENV
-            echo 'export GITHUB_PROJECT_USERNAME=$CIRCLE_PROJECT_USERNAME' >> $BASH_ENV
-            echo 'export GITHUB_PROJECT_REPONAME=$CIRCLE_PROJECT_REPONAME' >> $BASH_ENV
-            echo 'export GITHUB_TAG=$CIRCLE_TAG' >> $BASH_ENV
-            echo 'export GIT_CI_USER=$GIT_CI_USER' >> $BASH_ENV
-            echo 'export GIT_CI_EMAIL=$GIT_CI_EMAIL' >> $BASH_ENV
+            cd /usr/local/bin
+            curl https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip -o terraform_${TERRAFORM_VERSION}_linux_amd64.zip && \
+            unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zip && \
+            rm terraform_${TERRAFORM_VERSION}_linux_amd64.zip
+          environment:
+            TERRAFORM_VERSION: 0.14.3
+      - run:
+          name: Update infrastructure
+          command: |
+            cd ./infra/src
+            terraform init \
+              -backend-config="bucket=docs-preview.moja-lab.live-state" \
+              -backend-config="region=eu-west-2" \
+              -backend-config="dynamodb_table=docs-preview.moja-lab.live-lock"
+            terraform refresh
+            terraform apply --auto-approve
+
+
+  s3_upload:
+    executor: default-docker
+    steps:
+      - checkout
+      - run:
+          name: Install general dependencies
+          command: *defaults_Dependencies
       - restore_cache:
           keys:
-          - build-cache-{{ .Revision }}
+            - build-legacy-cache-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
       - run:
-          <<: *defaults_git_identity_setup
+          name: test aws cli + permissions
+          command: |
+            aws --version
+            aws s3 ls s3://mojaloop-docs-preview
       - run:
-          <<: *defaults_publish_to_gh_pages
-      - run:
-          <<: *defaults_slack_announcement
+          name: run build and deploy script
+          command: ./scripts/_deploy_preview_s3.sh
+          environment:
+            BUCKET_NAME: docs-preview.moja-lab.live-root
+    
+      # TODO: announce preview docs are ready
+      # - run:
+      #     <<: *defaults_slack_announcement
 
 ##
 # Workflows
@@ -215,48 +149,30 @@ workflows:
   version: 2
   build_and_test:
     jobs:
-      - pr-tools/pr-title-check:
-          context: org-global
-      - setup:
-          context: org-global
-          filters:
-            tags:
-              only: /.*/
-            branches:
-              ignore:
-                - /feature.*/
-                - /bugfix.*/
-                - gh-pages
-      - test-svg:
-          context: org-global
-          requires:
-            - setup
-          filters:
-            tags:
-              only: /.*/
-            branches:
-              ignore:
-                - /feature*/
-                - /bugfix*/
       - build:
           context: org-global
+          
+      - build-legacy:
+          context: org-global
+
+      - infra:
+          context: org-global
+          # TODO: build is currently broken!
           requires:
-            - setup
+            # - build
+            - build-legacy
           filters:
-            tags:
-              only: /.*/
             branches:
-              ignore:
-                - /feature.*/
-                - /bugfix.*/
-                - gh-pages
-      - deploy:
+              only:
+                - master
+                - mojaloop-docs-2.0
+          
+      - s3_upload:
           context: org-global
           requires:
-            - build
+            - infra
           filters:
-            tags:
-              only: /v[0-9]+(\.[0-9]+)*/
             branches:
-              ignore:
-                - /.*/
+              only:
+                - master  
+                - mojaloop-docs-2.0

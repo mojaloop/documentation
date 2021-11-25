@@ -1,18 +1,48 @@
-# Mojaloop Overview
-[![Git Commit](https://img.shields.io/github/last-commit/mojaloop/documentation.svg?style=flat)](https://github.com/mojaloop/documentation/commits/master)
-[![Git Releases](https://img.shields.io/github/release/mojaloop/documentation.svg?style=flat)](https://github.com/mojaloop/documentation/releases)
-[![CircleCI](https://circleci.com/gh/mojaloop/documentation.svg?style=svg)](https://circleci.com/gh/mojaloop/documentation)
+# mojaloop-docs-2.0
 
-Mojaloop is open source software for creating digital payments platforms that connect all customers, merchants, banks, and other financial providers in a country's economy. Rather than a financial product or application in itself, Mojaloop establishes a blueprint for technology that bridges all the financial products and applications in any given market.
+> This is the official documentation for the Mojaloop project.
 
-The basic idea behind Mojaloop is that we need to connect multiple Digital Financial Services Providers \(DFSPs\) together into a competitive and interoperable network in order to maximize opportunities for poor people to get access to financial services with low or no fees. We don't want a single monopoly power in control of all payments in a country, or a system that shuts out new players. It also doesn't help if there are too many isolated subnetworks.
+__Live Preview: [docs-preview.moja-lab.live](http://docs-preview.moja-lab.live/)__
 
-![Mojaloop Solution](./mojaloop-technical-overview/assets/diagrams/architecture/Arch-Mojaloop-end-to-end-simple.svg)
 
-Our model addresses these issues in several key ways:
+## Building and testing locally
 
-* A set of central services provides a hub through which money can flow from one DFSP to another. This is similar to how money moves through a central bank or clearing house in developed countries. Besides a central ledger, central services can provide identity lookup, fraud management, and enforce scheme rules.
-* A standard set of interfaces a DFSP can implement to connect to the system, and example code that shows how to use the system. A DFSP that wants to connect up can adapt our example code or implement the standard interfaces into their own software. The goal is for it to be as straightforward as possible for a DFSP to connect to the interoperable network.
-* Complete working open-source implementations of both sides of the interfaces - an example DFSP that can send and receive payments and the client that an existing DFSP could host to connect to the network.
+```bash
 
-The intention for the Mojaloop project is for financial institutions and commercial providers to use the open-source software to help build digital, interoperable payments platforms that drive financial inclusion on a national scale. Specifically, the platforms will enable seamless, low-cost transactions between individual users, merchants, banks, providers, and even government offices - helping connect poor customers with everyone else in the digital economy.
+# install npm dependencies
+yarn 
+
+# run the local server
+yarn run dev
+```
+
+## Building the project
+Run `yarn run build` to build the project to render the static vuepress site for a deployment.
+
+## Deploying the v2.0 Docs Preview
+
+We deploy these docs automatically with CircleCI upon merges to the `mojaloop-docs-2.0` branch.
+
+Go to: http://docs-preview.moja-lab.live/ to see the live site!
+
+The deploy script does not currently take versioning into account, but will in the future.
+
+> Note: for this to work, we have temporarily disabled the "only build pull requests" setting on Circleci
+> Someone please remember to turn that back on!
+
+### Deploying Manually
+
+You can also deploy them manually, by running:
+```bash
+./scripts/_deploy_preview_s3.sh
+``` 
+
+Note that you need to have the `aws` cli, AWS access, and `aws-mfa` set up on your machine for this to work.
+
+## Contributing to the project
+Please refer to the [Contributing Guide](./contributing-guide.md) for details on how to contribute to Mojaloop Docs 2.0.
+
+## License
+
+Apache License. Version 2.0
+See [`./license`](./LICENSE.md) for more information.

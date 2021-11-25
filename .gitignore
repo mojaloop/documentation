@@ -1,24 +1,14 @@
-# --------------- #
-# IntelliJ #
-# --------------- #
-.idea/
-**/*.iml
-
-# VSCode directory
-.vscode
-
-# Node
+build
+.terraform
+pids
+logs
 node_modules
-
-# Gitbook
-_book
-
-# Gitbook UML
-**/uml
-
-# MacOs
+npm-debug.log
+coverage/
+run
+dist
 .DS_Store
-
-*.log
-
-*.jar
+.nyc_output
+.basement
+config.local.js
+basement_dist
