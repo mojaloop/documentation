@@ -228,13 +228,13 @@ module.exports = {
               children: [
                 {
                   title: 'v1.1 (Current)',
-                  path: 'archive/discussion-docs/performance-project' //TODO: Update this with the right path
+                  path: 'fspiop/v1.1/api-definition'
                 },
                 {
                   title: 'Older versions',
-                  path: 'archive/discussion-docs/performance-project', //TODO: Update this with the right path
+                  path: 'fspiop/v1.0/',
                   children: [
-                    ['mojaloop-roadmap', 'v1.0'], //TODO: Update this with the right path
+                    ['fspiop/v1.0/api-definition', 'v1.0'],
                   ]
                 }
               ]
@@ -340,7 +340,7 @@ module.exports = {
           title: 'Glossary',
           collapsable: false,
           children: [
-            ['glossary/', 'Overview'],
+            ['fspiop/glossary', 'Overview'],
           ],
         },
       ],

@@ -152,9 +152,15 @@ workflows:
     jobs:
       - build:
           context: org-global
+          filters:
+            tags:
+              only: /.*/
           
       - build-legacy:
           context: org-global
+          filters:
+            tags:
+              only: /.*/
 
       - infra:
           context: org-global
