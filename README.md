@@ -33,6 +33,10 @@ We are working to automate this process, but for now, you can make a new version
 ./node_modules/.bin/vuepress version docs <version number>
 ```
 
+> Known issue: sidebar not appearing in older versions
+> Go to `./website/versioned_docs/<version number>/sidebar.config.json`
+> And remove the `/next` at the start of each entry
+
 ### Deploying Manually
 
 You can also deploy them manually, by running:
