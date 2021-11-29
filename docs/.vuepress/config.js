@@ -340,7 +340,7 @@ module.exports = {
           title: 'Glossary',
           collapsable: false,
           children: [
-            ['glossary/', 'Overview'],
+            ['fspiop/glossary', 'Overview'],
           ],
         },
       ],
