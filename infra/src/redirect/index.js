@@ -23,6 +23,10 @@ var redirectMapping = [
   { from: "/mojaloop-specification/ccb-meetings/Issue-and-Decision-Log.html", to: "https://github.com/mojaloop/mojaloop-specification/issues" }
 ]
 
+var redirectMapping = [
+  
+]
+
 function handler(event) {
   var request = event.request;
   var uri = request.uri;
