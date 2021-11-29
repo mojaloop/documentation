@@ -1,0 +1,67 @@
+@startuml
+
+' declaring skinparam
+skinparam sequenceMessageAlign center
+skinparam shadowing false
+skinparam defaultFontName Verdana
+skinparam monochrome true
+skinparam SequenceLifeLineBackgroundColor WhiteSmoke
+skinparam SequenceLifeLineBorderColor Black
+skinparam ParticipantFontStyle Bold
+skinparam ParticipantFontSize 20
+skinparam ParticipantBackgroundColor WhiteSmoke
+skinparam ArrowColor Black
+
+hide footbox
+
+title PISPGetTransactionRequest
+
+box "PISP"
+participant "PISP Server" as D1
+end box
+box "Mojaloop"
+    participant Switch as S
+end box
+box "DFSP A"
+    participant "DFSP A\n(Payer)" as D2
+end box
+
+autonumber 1 "<b>GTR-#</b>"
+
+note over S
+  Assuming a previously created thirdparty transaction request with id: ""00000000-0000-0000-0000-000000000000""
+
+end note
+
+
+
+rnote right of D1 #Light
+**""GET /thirdpartyRequests/transactions/00000000-0000-0000-0000-000000000000""**
+""FSPIOP-Source: pispa""
+""FSPIOP-Destination: dfspa""
+end note
+
+D1 -> S: ""GET /thirdpartyRequests/transactions/00000000-0000-0000-0000-000000000000""
+S --> D1: ""202 Accepted""
+
+S -> D2: ""GET /thirdpartyRequests/transactions/00000000-0000-0000-0000-000000000000""
+D2 --> S: ""202 Accepted""
+
+D2 -> D2: DFSP looks up already created \nthirdparty transaction request
+D2 -> D2: DFSP ensures that the FSPIOP-Source (pisp)\nis the same as the original sender of \n""POST /thirdpartyRequests/transactions/00000000-0000-0000-0000-000000000000""
+
+rnote left of D2 #Light
+**""PUT /thirdpartyRequests/transactions/00000000-0000-0000-0000-000000000000""**
+""FSPIOP-Source: dfspa""
+""FSPIOP-Destination: pispa""
+{
+  "transactionRequestState": "ACCEPTED",
+}
+end note
+D2 -> S: ""PUT /thirdpartyRequests/transactions/00000000-0000-0000-0000-000000000000""
+S --> D2: ""200 OK""
+
+S -> D1: ""PUT /thirdpartyRequests/transactions/00000000-0000-0000-0000-000000000000""
+D1 --> S: ""200 OK""
+
+@enduml

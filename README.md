@@ -19,16 +19,23 @@ yarn run dev
 ## Building the project
 Run `yarn run build` to build the project to render the static vuepress site for a deployment.
 
-## Deploying the v2.0 Docs Preview
+## Versioning
 
-We deploy these docs automatically with CircleCI upon merges to the `mojaloop-docs-2.0` branch.
+We use `vuepress-plugin-versioning` to help us keep older versions of our docs for posterity. By default, when you browse
+the docs, you see the _latest published version_. Pending changes in the main/master branch are viewable under the versioning
+tab in the top navigation bar.
 
-Go to: http://docs-preview.moja-lab.live/ to see the live site!
+See [https://titanium-docs-devkit.netlify.app/guide/versioning.html](https://titanium-docs-devkit.netlify.app/guide/versioning.html) for more information on the plugin.
 
-The deploy script does not currently take versioning into account, but will in the future.
+We are working to automate this process, but for now, you can make a new version of the docs with the following:
 
-> Note: for this to work, we have temporarily disabled the "only build pull requests" setting on Circleci
-> Someone please remember to turn that back on!
+```bash
+./node_modules/.bin/vuepress version docs <version number>
+```
+
+> Known issue: sidebar not appearing in older versions
+> Go to `./website/versioned_docs/<version number>/sidebar.config.json`
+> And remove the `/next` at the start of each entry
 
 ### Deploying Manually
 

@@ -1,7 +1,10 @@
-website-domain-main = "docs-preview.moja-lab.live"
+website-domain-main = "docs.mojaloop.io"
 tags = {
   "mojaloop/cost_center" = "oss-qa"
   "mojaloop/owner" = "lewis"
 }
+# uk
 region = "eu-west-2"
-cloudfront-certificate-arn = "arn:aws:acm:us-east-1:886403637725:certificate/5f432e00-b1ff-4802-99dd-3ba40f3c66a6"
+
+# docs.mojaloop.io certificate - must be in us-east-1
+cloudfront-certificate-arn = "arn:aws:acm:us-east-1:886403637725:certificate/062e8dfe-3419-4966-a581-146f5ce8abdd"

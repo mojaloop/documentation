@@ -1,0 +1,196 @@
+<svg xmlns="http://www.w3.org/2000/svg" height="1090" preserveAspectRatio="none" style="width:1159px;height:1090px" width="1159">
+  <text font-family="Verdana" font-size="18" lengthAdjust="spacingAndGlyphs" textLength="314" x="422.75" y="28.708">
+    Transfer: 1.2.4 Verify Authorization
+  </text>
+  <path fill="#DDD" stroke="#383838" d="M1 40.953h484v1036.539H1z"/>
+  <text font-family="Verdana" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="67" x="209.5" y="53.02">
+    Mojaloop
+  </text>
+  <path fill="#DDD" stroke="#383838" d="M718.5 40.953h106v1036.539h-106z"/>
+  <text font-family="Verdana" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="54" x="744.5" y="53.02">
+    DFSP A
+  </text>
+  <path stroke="#000" stroke-dasharray="5,5" d="M49 121.648v961.844M401 121.648v961.844M771.5 121.648v961.844"/>
+  <path fill="#F4F4F4" stroke="#383838" stroke-width="1.5" d="M5 83.367h89v37.281H5z"/>
+  <text font-family="Verdana" font-size="20" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="75" x="12" y="108.932">
+    Switch
+  </text>
+  <path fill="#F4F4F4" stroke="#383838" stroke-width="1.5" d="M322 83.367h159v37.281H322z"/>
+  <text font-family="Verdana" font-size="20" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="145" x="329" y="108.932">
+    Auth-Service
+  </text>
+  <path fill="#F4F4F4" stroke="#383838" stroke-width="1.5" d="M722.5 60.086h98v60.563h-98z"/>
+  <text font-family="Verdana" font-size="20" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="82" x="730.5" y="85.65">
+    DFSP A
+  </text>
+  <text font-family="Verdana" font-size="20" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="84" x="729.5" y="108.932">
+    (Payer)
+  </text>
+  <path stroke="#000" d="M771.5 167.914h42M813.5 167.914v13M772.5 180.914h41M782.5 176.914l-10 4 10 4-4-4z"/>
+  <text font-family="Verdana" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="101" x="778.5" y="147.715">
+    Generate a new
+  </text>
+  <text font-family="monospace" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="168" x="883.5" y="147.715">
+    verificationRequestId
+  </text>
+  <text font-family="Verdana" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="97" x="1051.5" y="147.715">
+    , and associate
+  </text>
+  <text font-family="Verdana" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="62" x="782.5" y="162.848">
+    it with the
+  </text>
+  <text font-family="monospace" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="240" x="848.5" y="162.848">
+    thirdpartyTransactionRequestId
+  </text>
+  <path fill="#FFF" stroke="#383838" d="M291 193.914h475v310H291z"/>
+  <text font-family="monospace" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="304" x="295" y="209.981">
+    POST /thirdpartyRequests/verifications
+  </text>
+  <text font-family="monospace" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="160" x="295" y="225.114">
+    FSPIOP-Source: dfspa
+  </text>
+  <text font-family="monospace" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="256" x="295" y="240.247">
+    FSPIOP-Destination: central-auth
+  </text>
+  <text font-family="Verdana" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="295" y="255.379">
+    {
+  </text>
+  <text font-family="Verdana" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="440" x="303" y="270.512">
+    &quot;verificationRequestId&quot;: &quot;44444444-0000-0000-0000-000000000000&quot;,
+  </text>
+  <text font-family="Verdana" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="75" x="303" y="285.645">
+    &quot;challenge&quot;:
+  </text>
+  <text font-family="monospace" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="376" x="382" y="285.645">
+    &lt;base64 encoded binary - the encoded challenge&gt;
+  </text>
+  <text font-family="Verdana" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="4" x="758" y="285.645">
+    ,
+  </text>
+  <text font-family="Verdana" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="118" x="303" y="300.778">
+    &quot;consentId&quot;: &quot;123&quot;,
+  </text>
+  <text font-family="Verdana" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="184" x="303" y="315.911">
+    &quot;signedPayloadType&quot;: &quot;FIDO&quot;,
+  </text>
+  <text font-family="Verdana" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="85" x="303" y="331.043">
+    &quot;fidoValue&quot;: {
+  </text>
+  <text font-family="Verdana" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="79" x="311" y="346.176">
+    &quot;id&quot;: &quot;string&quot;,
+  </text>
+  <text font-family="Verdana" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="254" x="311" y="361.309">
+    &quot;rawId&quot;: &quot;string - base64 encoded utf-8&quot;,
+  </text>
+  <text font-family="Verdana" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="85" x="311" y="376.442">
+    &quot;response&quot;: {
+  </text>
+  <text font-family="Verdana" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="338" x="319" y="391.575">
+    &quot;authenticatorData&quot;: &quot;string - base64 encoded utf-8&quot;,
+  </text>
+  <text font-family="Verdana" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="318" x="319" y="406.707">
+    &quot;clientDataJSON&quot;: &quot;string - base64 encoded utf-8&quot;,
+  </text>
+  <text font-family="Verdana" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="281" x="319" y="421.84">
+    &quot;signature&quot;: &quot;string - base64 encoded utf-8&quot;,
+  </text>
+  <text font-family="Verdana" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="294" x="319" y="436.973">
+    &quot;userHandle&quot;: &quot;string - base64 encoded utf-8&quot;,
+  </text>
+  <text font-family="Verdana" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="12" x="311" y="452.106">
+    },
+  </text>
+  <text font-family="Verdana" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="120" x="311" y="467.239">
+    &quot;type&quot;: &quot;public-key&quot;
+  </text>
+  <text font-family="Verdana" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="303" y="482.372">
+    }
+  </text>
+  <text font-family="Verdana" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="295" y="497.504">
+    }
+  </text>
+  <path stroke="#000" d="M60.5 526.703l-10 4 10 4-4-4zM54.5 530.703h716"/>
+  <text font-family="monospace" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="304" x="258.5" y="525.637">
+    POST /thirdpartyRequests/verifications
+  </text>
+  <path stroke="#000" d="M759.5 555.836l10 4-10 4 4-4z"/>
+  <path stroke="#000" stroke-dasharray="2,2" d="M49.5 559.836h716"/>
+  <text font-family="monospace" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="96" x="362.5" y="554.77">
+    202 Accepted
+  </text>
+  <path stroke="#000" d="M389.5 584.969l10 4-10 4 4-4zM49.5 588.969h346"/>
+  <text font-family="monospace" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="304" x="73.5" y="583.903">
+    POST /thirdpartyRequests/verifications
+  </text>
+  <path stroke="#000" d="M60.5 614.102l-10 4 10 4-4-4z"/>
+  <path stroke="#000" stroke-dasharray="2,2" d="M54.5 618.102h346"/>
+  <text font-family="monospace" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="96" x="177.5" y="613.036">
+    202 Accepted
+  </text>
+  <path stroke="#000" d="M401.5 647.234h42M443.5 647.234v13M402.5 660.234h41M412.5 656.234l-10 4 10 4-4-4z"/>
+  <text font-family="Verdana" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="257" x="408.5" y="642.168">
+    Lookup this consent based on consentId
+  </text>
+  <path stroke="#000" d="M401.5 689.367h42M443.5 689.367v13M402.5 702.367h41M412.5 698.367l-10 4 10 4-4-4z"/>
+  <text font-family="Verdana" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="356" x="408.5" y="684.301">
+    Ensure the accountAddress matches what is in Consent
+  </text>
+  <path stroke="#000" d="M401.5 746.633h42M443.5 746.633v13M402.5 759.633h41M412.5 755.633l-10 4 10 4-4-4z"/>
+  <text font-family="Verdana" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="249" x="408.5" y="726.434">
+    Check that the signed bytes match the
+  </text>
+  <text font-family="Verdana" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="261" x="408.5" y="741.567">
+    publickey we have stored for the consent
+  </text>
+  <path fill="#FFF" stroke="#383838" d="M406 772.633h600v98H406z"/>
+  <text font-family="monospace" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="592" x="410" y="788.7">
+    PUT /thirdpartyRequests/verifications/44444444-0000-0000-0000-000000000000
+  </text>
+  <text font-family="monospace" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="216" x="410" y="803.832">
+    FSPIOP-Source: central-auth
+  </text>
+  <text font-family="monospace" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="200" x="410" y="818.965">
+    FSPIOP-Destination: dfspa
+  </text>
+  <text font-family="Verdana" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="410" y="834.098">
+    {
+  </text>
+  <text font-family="Verdana" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="238" x="418" y="849.231">
+    &quot;authenticationResponse&quot;: &quot;VERIFIED&quot;
+  </text>
+  <text font-family="Verdana" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="410" y="864.364">
+    }
+  </text>
+  <path stroke="#000" d="M60.5 908.695l-10 4 10 4-4-4zM54.5 912.695h346"/>
+  <text font-family="monospace" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="296" x="77.5" y="892.497">
+    PUT /thirdpartyRequests/verifications
+  </text>
+  <text font-family="monospace" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="296" x="93.5" y="907.629">
+    /44444444-0000-0000-0000-000000000000
+  </text>
+  <path stroke="#000" d="M389.5 937.828l10 4-10 4 4-4z"/>
+  <path stroke="#000" stroke-dasharray="2,2" d="M49.5 941.828h346"/>
+  <text font-family="monospace" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="48" x="201.5" y="936.762">
+    200 OK
+  </text>
+  <path stroke="#000" d="M759.5 982.094l10 4-10 4 4-4zM49.5 986.094h716"/>
+  <text font-family="monospace" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="296" x="262.5" y="965.895">
+    PUT /thirdpartyRequests/verifications
+  </text>
+  <text font-family="monospace" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="296" x="278.5" y="981.028">
+    /44444444-0000-0000-0000-000000000000
+  </text>
+  <path stroke="#000" d="M60.5 1011.227l-10 4 10 4-4-4z"/>
+  <path stroke="#000" stroke-dasharray="2,2" d="M54.5 1015.227h716"/>
+  <text font-family="monospace" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="48" x="386.5" y="1010.161">
+    200 OK
+  </text>
+  <path d="M585 1028.227v40h372v-30l-10-10H585" fill="#ECECEC" stroke="#383838"/>
+  <path d="M947 1028.227v10h10l-10-10" fill="#ECECEC" stroke="#383838"/>
+  <text font-family="Verdana" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="351" x="591" y="1045.293">
+    DFSPA now knows that the user signed this transaction
+  </text>
+  <text font-family="Verdana" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="269" x="591" y="1060.426">
+    and can go ahead and initiate the transfer
+  </text>
+</svg>

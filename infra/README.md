@@ -32,9 +32,9 @@ terraform apply
 cd ../src
 # first time only 
 terraform init \
-  -backend-config="bucket=docs-preview.moja-lab.live-state" \
+  -backend-config="bucket=docs.mojaloop.io-state" \
   -backend-config="region=eu-west-2" \
-  -backend-config="dynamodb_table=docs-preview.moja-lab.live-lock"
+  -backend-config="dynamodb_table=docs.mojaloop.io-lock"
 
 
 # see what changes are needed

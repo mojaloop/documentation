@@ -1,0 +1,85 @@
+@startuml
+
+' declaring skinparam
+skinparam shadowing false
+skinparam defaultFontName Verdana
+skinparam monochrome true
+skinparam SequenceLifeLineBackgroundColor WhiteSmoke
+skinparam SequenceLifeLineBorderColor Black
+skinparam ParticipantFontStyle Bold
+skinparam ParticipantFontSize 20
+skinparam ParticipantBackgroundColor WhiteSmoke
+skinparam ArrowColor Black
+
+hide footbox
+
+
+title PISP Linking: Discovery
+
+box "Mobile device"
+    participant App
+end box
+
+box "PISP"
+    participant PISP
+end box
+
+box "Mojaloop"
+    participant Switch
+end box
+
+participant DFSP
+
+autonumber 1 "<b>DISC-#</b>"
+activate PISP
+
+...
+
+note over App, DFSP
+  The user will be prompted in the PISP App for the unique ID they use with their DFSP, and the type of identifier they use. This could be a an account ALIAS, MSISDN, email address, etc.
+end note
+
+...
+
+PISP -> Switch ++: ""GET /accounts/username1234""\n\
+  ""  FSIOP-Source: pispa""\n\
+  ""  FSIOP-Destination: dfspa""
+Switch --> PISP: ""202 Accepted""
+deactivate PISP
+
+Switch -> DFSP ++: ""GET /accounts/username1234""\n\
+  ""  FSIOP-Source: pispa""\n\
+  ""  FSIOP-Destination: dfspa""
+DFSP --> Switch: ""202 Accepted""
+deactivate Switch
+
+DFSP -> Switch ++: ""PUT /accounts/username1234""\n\
+  ""  FSIOP-Source: dfspa""\n\
+  ""  FSIOP-Destination: pispa""\n\
+  ""[""\n\
+  ""  { accountNickname: "Chequing Account", id: "dfspa.username.1234", currency: "ZAR" },""\n\
+  ""  { accountNickname: "Everyday Spend", id: "dfspa.username.5678", currency: "USD" }""\n\
+  ""]""
+Switch --> DFSP: ""200 OK""
+deactivate DFSP
+
+Switch -> PISP ++: ""PUT /accounts/username1234""\n\
+  ""  FSIOP-Source: dfspa""\n\
+  ""  FSIOP-Destination: pispa""\n\
+  ""[""\n\
+  ""  { accountNickname: "Chequing Account", id: "dfspa.username.1234", currency: "ZAR" },""\n\
+  ""  { accountNickname: "Everyday Spend", id: "dfspa.username.5678", currency: "USD" }""\n\
+  ""]""
+PISP --> Switch: ""200 OK""
+deactivate Switch
+deactivate PISP
+
+...
+
+note over App, DFSP
+  The PISP can now present a list of possible accounts to the user for pairing.
+end note
+
+...
+
+@enduml
