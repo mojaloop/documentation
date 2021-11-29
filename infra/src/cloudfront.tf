@@ -8,13 +8,26 @@ resource "aws_cloudfront_distribution" "website_cdn_root" {
   # TODO: enable this - or do it manually? need to figure out how to BYO domain
   aliases = [var.website-domain-main]
 
+
+  // base docs.mojaloop.io origin
   origin {
     origin_id   = "origin-bucket-${aws_s3_bucket.website_root.id}"
     domain_name = aws_s3_bucket.website_root.website_endpoint
 
     custom_origin_config {
       origin_protocol_policy = "http-only"
-      # The protocol policy that you want CloudFront to use when fetching objects from the origin server (a.k.a S3 in our situation). HTTP Only is the default setting when the origin is an Amazon S3 static website hosting endpoint, because Amazon S3 doesn’t support HTTPS connections for static website hosting endpoints.
+      http_port            = 80
+      https_port           = 443
+      origin_ssl_protocols = ["TLSv1.2", "TLSv1.1", "TLSv1"]
+    }
+  }
+
+  // other origins for sites hosted at docs.mojaloop.io/<PATH>
+  origin {
+    origin_id = "mojaloop.github.io"
+    domain_name = "mojaloop.github.io"
+    custom_origin_config {
+      origin_protocol_policy = "match-viewer"
       http_port            = 80
       https_port           = 443
       origin_ssl_protocols = ["TLSv1.2", "TLSv1.1", "TLSv1"]
@@ -28,6 +41,87 @@ resource "aws_cloudfront_distribution" "website_cdn_root" {
     prefix = "${var.website-domain-main}/"
   }
 
+  // List of cache behaviours - path redirects must be first, wildcard last
+  ordered_cache_behavior {
+    path_pattern = "/business-operations-framework-docs/*"
+    target_origin_id = "mojaloop.github.io"
+    allowed_methods  = ["GET", "HEAD", "OPTIONS"]
+    cached_methods   = ["GET", "HEAD", "OPTIONS"]
+    viewer_protocol_policy = "allow-all"
+    forwarded_values {
+      query_string = false
+      cookies {
+        forward = "none"
+      }
+    }
+  }
+  ordered_cache_behavior {
+    path_pattern = "/business-operations-framework-docs"
+    target_origin_id = "mojaloop.github.io"
+    allowed_methods  = ["GET", "HEAD", "OPTIONS"]
+    cached_methods   = ["GET", "HEAD", "OPTIONS"]
+    viewer_protocol_policy = "allow-all"
+    forwarded_values {
+      query_string = false
+      cookies {
+        forward = "none"
+      }
+    }
+  }
+  ordered_cache_behavior {
+    path_pattern = "/mojaloop-business-docs/*"
+    target_origin_id = "mojaloop.github.io"
+    allowed_methods  = ["GET", "HEAD", "OPTIONS"]
+    cached_methods   = ["GET", "HEAD", "OPTIONS"]
+    viewer_protocol_policy = "allow-all"
+    forwarded_values {
+      query_string = false
+      cookies {
+        forward = "none"
+      }
+    }
+  }
+  ordered_cache_behavior {
+    path_pattern = "/mojaloop-business-docs"
+    target_origin_id = "mojaloop.github.io"
+    allowed_methods  = ["GET", "HEAD", "OPTIONS"]
+    cached_methods   = ["GET", "HEAD", "OPTIONS"]
+    viewer_protocol_policy = "allow-all"
+    forwarded_values {
+      query_string = false
+      cookies {
+        forward = "none"
+      }
+    }
+  }
+  ordered_cache_behavior {
+    path_pattern = "/reference-architecture-doc/*"
+    target_origin_id = "mojaloop.github.io"
+    allowed_methods  = ["GET", "HEAD", "OPTIONS"]
+    cached_methods   = ["GET", "HEAD", "OPTIONS"]
+    viewer_protocol_policy = "allow-all"
+    forwarded_values {
+      query_string = false
+      cookies {
+        forward = "none"
+      }
+    }
+  }
+  ordered_cache_behavior {
+    path_pattern = "/reference-architecture-doc"
+    target_origin_id = "mojaloop.github.io"
+    allowed_methods  = ["GET", "HEAD", "OPTIONS"]
+    cached_methods   = ["GET", "HEAD", "OPTIONS"]
+    viewer_protocol_policy = "allow-all"
+
+    forwarded_values {
+      query_string = false
+      cookies {
+        forward = "none"
+      }
+    }
+  }
+
   default_cache_behavior {
     allowed_methods  = ["GET", "HEAD", "OPTIONS"]
     cached_methods   = ["GET", "HEAD", "OPTIONS"]
@@ -38,9 +132,8 @@ resource "aws_cloudfront_distribution" "website_cdn_root" {
 
     # TODO: change this once we have https supported
     # viewer_protocol_policy = "redirect-to-https" # Redirects any HTTP request to HTTPS
-    viewer_protocol_policy = "allow-all" # Redirects any HTTP request to HTTPS
+    viewer_protocol_policy = "allow-all"
     compress               = true
-
     forwarded_values {
       query_string = false
       cookies {
@@ -55,6 +148,7 @@ resource "aws_cloudfront_distribution" "website_cdn_root" {
       function_arn = aws_cloudfront_function.docs-redirects.arn
     }
   }
+
   restrictions {
     geo_restriction {
       restriction_type = "none"

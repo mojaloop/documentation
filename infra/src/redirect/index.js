@@ -82,10 +82,6 @@ var redirectMapping = [
     { from: "/documentation/glossary.html", to: "/legacy/glossary.html" },
   ]
 
-var redirectMapping = [
-  
-]
-
 function handler(event) {
   var request = event.request;
   var uri = request.uri;
@@ -93,9 +89,8 @@ function handler(event) {
 
   redirectMapping.forEach(m => {
     if (uri.endsWith(m.from)) {
-      // request.uri = request.uri.replace(m.from, m.to)
       var newurl = uri.replace(m.from, m.to)
-      console.log(`redirecting: ${m.from} ----> ${m.to}`)
+      // console.log(`redirecting: ${m.from} ----> ${m.to}`)
 
       response = {
         statusCode: 301,
