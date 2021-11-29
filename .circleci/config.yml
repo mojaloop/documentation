@@ -134,7 +134,8 @@ jobs:
           name: run build and deploy script
           command: ./scripts/_deploy_preview_s3.sh
           environment:
-            BUCKET_NAME: docs-preview.moja-lab.live-root
+            BUCKET_NAME: docs.mojaloop.io-root
+            DOMAIN: docs.mojaloop.io
     
       # TODO: announce preview docs are ready
       # - run:
