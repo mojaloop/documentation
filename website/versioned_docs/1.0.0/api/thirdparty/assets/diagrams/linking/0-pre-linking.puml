@@ -1,0 +1,49 @@
+@startuml
+
+' declaring skinparam
+skinparam shadowing false
+skinparam defaultFontName Verdana
+skinparam monochrome true
+skinparam SequenceLifeLineBackgroundColor WhiteSmoke
+skinparam SequenceLifeLineBorderColor Black
+skinparam ParticipantFontStyle Bold
+skinparam ParticipantFontSize 20
+skinparam ParticipantBackgroundColor WhiteSmoke
+skinparam ArrowColor Black
+
+hide footbox
+
+title PISP Linking: Pre-linking
+
+box "Mobile device"
+    participant App
+end box
+
+box "PISP"
+    participant PISP
+end box
+
+box "Mojaloop"
+    participant Switch
+end box
+
+autonumber 1 "<b>PRE-#</b>"
+activate App
+App -> PISP ++: What DFSPs are available to link with?
+
+
+PISP -> Switch ++: ""GET /services/THIRD_PARTY_DFSP""\n""FSPIOP-Source: pispa""\n""FSPIOP-Destination: switch""
+Switch --> PISP: ""202 Accepted""
+deactivate PISP
+
+Switch -> PISP ++: ""PUT /services/THIRD_PARTY_DFSP""\n""FSPIOP-Source: switch""\n""FSPIOP-Destination: pispa""\n\
+ ""{""\n\
+  ""  "serviceProviders": ["" \n\
+  ""    "dfspa", "dfspb""" \n\
+  ""  ]"" \n\
+ ""}""
+PISP --> Switch: ""200 OK""
+
+PISP --> App --: We have dfspa and dfspb\n
+
+@enduml
