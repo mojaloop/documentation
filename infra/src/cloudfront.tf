@@ -86,7 +86,7 @@ resource "aws_cloudfront_distribution" "website_cdn_root" {
 
 resource "aws_cloudfront_function" "docs-redirects" {
   provider = aws.custom
-  name    = "docs-redirects"
+  name    = "${replace(var.website-domain-main, ".", "-")}-docs-redirects"
   runtime = "cloudfront-js-1.0"
   comment = "main"
   publish = true
