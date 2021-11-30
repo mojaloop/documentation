@@ -173,6 +173,7 @@ jobs:
       - run:
           name: Commit and push the release
           command: |
+            git add .
             git commit -anm "chore(ci): release $CIRCLE_TAG"
             git push -u origin master
 
