@@ -148,14 +148,14 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Install general dependencies
+          command: *defaults_Dependencies
+      - run:
           name: Configure git
           command: |
             git config user.email ${GIT_CI_EMAIL}
             git config user.name ${GIT_CI_USER}
             git checkout master
-      - run:
-          name: Install general dependencies
-          command: *defaults_Dependencies
       - restore_cache:
           keys:
             - build-legacy-cache-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
