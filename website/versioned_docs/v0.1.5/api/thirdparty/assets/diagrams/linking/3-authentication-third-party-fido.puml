@@ -1,0 +1,45 @@
+@startuml
+
+' declaring skinparam
+skinparam shadowing false
+skinparam defaultFontName Verdana
+skinparam monochrome true
+skinparam SequenceLifeLineBackgroundColor WhiteSmoke
+skinparam SequenceLifeLineBorderColor Black
+skinparam ParticipantFontStyle Bold
+skinparam ParticipantFontSize 20
+skinparam ParticipantBackgroundColor WhiteSmoke
+skinparam ArrowColor Black
+
+hide footbox
+
+title PISP Linking: Authentication (Third-party FIDO registration)
+
+participant "PISP" as PISP
+
+box "Mojaloop"
+    participant Switch
+end box
+
+participant "DFSP" as DFSP
+
+autonumber 1 "<b>3P-FIDO-AUTH-#</b>"
+
+...
+
+note over PISP, DFSP
+  Here the user goes through the web authentication process with their DFSP.
+  The end result is a redirect back to the PISP with a special URL parameter indicating to the PISP that it should wait to be notified about a credential.
+end note
+
+...
+
+autonumber 1 "<b>AUTH-#</b>"
+
+note over PISP, DFSP
+  At this point, the DFSP believes that the User is their customer and that User trusts the PISP. This means that the DFSP can continue by granting consent.
+
+  Note that the DFSP never "responds" to the Consent Request itself. Instead, it will create a Consent resource in the Grant phase.
+end note
+
+@enduml

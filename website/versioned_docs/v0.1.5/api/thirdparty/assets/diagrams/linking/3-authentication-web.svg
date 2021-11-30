@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" height="607" preserveAspectRatio="none" style="width:1425px;height:607px" width="1425">
+  <text font-family="Verdana" font-size="18" lengthAdjust="spacingAndGlyphs" textLength="309" x="560.75" y="28.708">
+    PISP Linking: Authentication (Web)
+  </text>
+  <path fill="#DDD" stroke="#383838" d="M542 40.953h97v553.07h-97z"/>
+  <text font-family="Verdana" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="67" x="557" y="53.02">
+    Mojaloop
+  </text>
+  <path fill="#F4F4F4" stroke="#000" d="M585.5 311.43h10v163.063h-10zM1143.5 445.359h10v145.664h-10z"/>
+  <path stroke="#000" d="M37 98.367v10"/>
+  <path stroke="#000" stroke-dasharray="1,4" d="M37 108.367v28"/>
+  <path stroke="#000" d="M37 136.367v50.266"/>
+  <path stroke="#000" stroke-dasharray="1,4" d="M37 186.633v28"/>
+  <path stroke="#000" d="M37 214.633v385.39M590 98.367v10"/>
+  <path stroke="#000" stroke-dasharray="1,4" d="M590 108.367v28"/>
+  <path stroke="#000" d="M590 136.367v50.266"/>
+  <path stroke="#000" stroke-dasharray="1,4" d="M590 186.633v28"/>
+  <path stroke="#000" d="M590 214.633v385.39M1148.5 98.367v10"/>
+  <path stroke="#000" stroke-dasharray="1,4" d="M1148.5 108.367v28"/>
+  <path stroke="#000" d="M1148.5 136.367v50.266"/>
+  <path stroke="#000" stroke-dasharray="1,4" d="M1148.5 186.633v28"/>
+  <path stroke="#000" d="M1148.5 214.633v385.39"/>
+  <path fill="#F4F4F4" stroke="#383838" stroke-width="1.5" d="M5 60.086h65v37.281H5z"/>
+  <text font-family="Verdana" font-size="20" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="51" x="12" y="85.65">
+    PISP
+  </text>
+  <path fill="#F4F4F4" stroke="#383838" stroke-width="1.5" d="M546 60.086h89v37.281h-89z"/>
+  <text font-family="Verdana" font-size="20" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="75" x="553" y="85.65">
+    Switch
+  </text>
+  <path fill="#F4F4F4" stroke="#383838" stroke-width="1.5" d="M1111.5 60.086h74v37.281h-74z"/>
+  <text font-family="Verdana" font-size="20" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="60" x="1118.5" y="85.65">
+    DFSP
+  </text>
+  <path fill="#F4F4F4" stroke="#000" d="M585.5 311.43h10v163.063h-10zM1143.5 445.359h10v145.664h-10z"/>
+  <path d="M5 141.367v40h1175v-30l-10-10H5" fill="#ECECEC" stroke="#383838"/>
+  <path d="M1170 141.367v10h10l-10-10" fill="#ECECEC" stroke="#383838"/>
+  <text font-family="Verdana" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="485" x="239.25" y="158.434">
+    Here the user goes through the web authentication process with their DFSP.
+  </text>
+  <text font-family="Verdana" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="698" x="239.25" y="173.567">
+    The end result is a redirect back to the PISP with a special URL parameter with a secret provided by the DFSP.
+  </text>
+  <path stroke="#000" d="M573.5 307.43l10 4-10 4 4-4zM37.5 311.43h542"/>
+  <text font-family="Verdana" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="53" x="44.5" y="268.532">
+    AUTH-1
+  </text>
+  <text font-family="monospace" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="472" x="101.5" y="230.7">
+    PATCH /consentRequests/11111111-0000-0000-0000-000000000000
+  </text>
+  <text font-family="monospace" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="152" x="133.5" y="245.833">
+    FSIOP-Source: pispa
+  </text>
+  <text font-family="monospace" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="192" x="133.5" y="260.965">
+    FSIOP-Destination: dfspa
+  </text>
+  <text font-family="monospace" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="117.5" y="276.098">
+    {
+  </text>
+  <text font-family="monospace" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="168" x="133.5" y="291.231">
+    authToken: &quot;&lt;SECRET&gt;&quot;
+  </text>
+  <text font-family="monospace" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="117.5" y="306.364">
+    }
+  </text>
+  <path stroke="#000" d="M48.5 336.563l-10 4 10 4-4-4z"/>
+  <path stroke="#000" stroke-dasharray="2,2" d="M42.5 340.563h542"/>
+  <text font-family="Verdana" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="53" x="54.5" y="335.497">
+    AUTH-2
+  </text>
+  <text font-family="monospace" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="96" x="111.5" y="335.497">
+    202 Accepted
+  </text>
+  <path stroke="#000" d="M1131.5 441.36l10 4-10 4 4-4zM595.5 445.359h542"/>
+  <text font-family="Verdana" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="53" x="602.5" y="402.461">
+    AUTH-3
+  </text>
+  <text font-family="monospace" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="472" x="659.5" y="364.629">
+    PATCH /consentRequests/11111111-0000-0000-0000-000000000000
+  </text>
+  <text font-family="monospace" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="152" x="691.5" y="379.762">
+    FSIOP-Source: pispa
+  </text>
+  <text font-family="monospace" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="192" x="691.5" y="394.895">
+    FSIOP-Destination: dfspa
+  </text>
+  <text font-family="monospace" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="675.5" y="410.028">
+    {
+  </text>
+  <text font-family="monospace" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="168" x="691.5" y="425.161">
+    authToken: &quot;&lt;SECRET&gt;&quot;
+  </text>
+  <text font-family="monospace" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="675.5" y="440.293">
+    }
+  </text>
+  <path stroke="#000" d="M601.5 470.492l-10 4 10 4-4-4z"/>
+  <path stroke="#000" stroke-dasharray="2,2" d="M595.5 474.492h547"/>
+  <text font-family="Verdana" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="53" x="607.5" y="469.426">
+    AUTH-4
+  </text>
+  <text font-family="monospace" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="96" x="664.5" y="469.426">
+    202 Accepted
+  </text>
+  <path stroke="#000" d="M1153.5 503.625h42M1195.5 503.625v13M1154.5 516.625h41M1164.5 512.625l-10 4 10 4-4-4z"/>
+  <text font-family="Verdana" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="53" x="1160.5" y="498.559">
+    AUTH-5
+  </text>
+  <text font-family="Verdana" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="201" x="1217.5" y="498.559">
+    Verify the auth token is correct.
+  </text>
+  <path d="M5 529.625v55h1175v-45l-10-10H5" fill="#ECECEC" stroke="#383838"/>
+  <path d="M1170 529.625v10h10l-10-10" fill="#ECECEC" stroke="#383838"/>
+  <text font-family="Verdana" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="986" x="95.25" y="546.692">
+    At this point, the DFSP believes that the User is their customer and that User trusts the PISP. This means that the DFSP can continue by granting consent.
+  </text>
+  <text font-family="Verdana" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="820" x="95.25" y="576.957">
+    Note that the DFSP never &quot;responds&quot; to the Consent Request itself. Instead, it will create a Consent resource in the Grant phase.
+  </text>
+</svg>
