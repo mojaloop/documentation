@@ -156,6 +156,7 @@ jobs:
       - run:
           name: create a new version in website/versioned_docs
           command: |
+            yarn
             ./node_modules/.bin/vuepress version docs $CIRCLE_TAG
       - run:
           name: Configure git
@@ -169,9 +170,6 @@ jobs:
             mkdir -p ~/.ssh
             ssh-keyscan -p 443 ssh.github.com >> ~/.ssh/known_hosts
             ssh-keyscan github.com >> ~/.ssh/known_hosts
-      - run:
-          name: Generate changelog and bump package version
-          command: npm run release
       - run:
           name: Push the release
           command: git push -u origin master
