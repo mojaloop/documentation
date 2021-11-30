@@ -171,8 +171,10 @@ jobs:
             ssh-keyscan -p 443 ssh.github.com >> ~/.ssh/known_hosts
             ssh-keyscan github.com >> ~/.ssh/known_hosts
       - run:
-          name: Push the release
-          command: git push -u origin master
+          name: Commit and push the release
+          command: |
+            git commit -anm "chore(ci): release $CIRCLE_TAG"
+            git push -u origin master
 
 
 ##
