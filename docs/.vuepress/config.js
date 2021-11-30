@@ -33,7 +33,7 @@ module.exports = {
     repo: 'https://github.com/mojaloop/documentation/',
     docsBranch: 'master',
     editLinks: true,
-    docsDir: 'vuepress/docs',
+    docsDir: 'docs',
     editLinkText: 'Edit this page on GitHub',
     smoothScroll: true,
     logo: '/mojaloop_logo_med.png',
