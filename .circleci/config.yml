@@ -141,6 +141,42 @@ jobs:
       # - run:
       #     <<: *defaults_slack_announcement
 
+  # When a new tag is pushed, create a new version of docs
+  # and push it to master to be uploaded
+  bump_version:
+    executor: default-docker
+    steps:
+      - checkout
+      - run:
+          name: Install general dependencies
+          command: *defaults_Dependencies
+      - restore_cache:
+          keys:
+            - build-legacy-cache-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
+      - run:
+          name: create a new version in website/versioned_docs
+          command: |
+            ./node_modules/.bin/vuepress version docs $CIRCLE_TAG
+      - run:
+          name: Configure git
+          command: |
+            git config user.email ${GIT_CI_EMAIL}
+            git config user.name ${GIT_CI_USER}
+            git checkout master
+      - run:
+          name: Configure ssh
+          command: |
+            mkdir -p ~/.ssh
+            ssh-keyscan -p 443 ssh.github.com >> ~/.ssh/known_hosts
+            ssh-keyscan github.com >> ~/.ssh/known_hosts
+      - run:
+          name: Generate changelog and bump package version
+          command: npm run release
+      - run:
+          name: Push the release
+          command: git push -u origin master
+
+
 ##
 # Workflows
 #
@@ -164,15 +200,13 @@ workflows:
 
       - infra:
           context: org-global
-          # TODO: build is currently broken!
           requires:
-            # - build
+            - build
             - build-legacy
           filters:
             branches:
               only:
                 - master
-                - mojaloop-docs-2.0
           
       - s3_upload:
           context: org-global
@@ -181,5 +215,16 @@ workflows:
           filters:
             branches:
               only:
-                - master  
-                - mojaloop-docs-2.0
+                - master
+      
+      - bump_version:
+          context: org-global
+          requires:
+            - build
+            - build-legacy
+          filters:
+            branches:
+              ignore:
+                - /.*/
+            tags:
+              only: /v[0-9]+(\.[0-9]+)*(\-snapshot)?(\-hotfix(\.[0-9]+))?/
