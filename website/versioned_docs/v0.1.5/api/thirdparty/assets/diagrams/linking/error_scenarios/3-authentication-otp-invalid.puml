@@ -1,0 +1,87 @@
+@startuml
+
+' declaring skinparam
+skinparam shadowing false
+skinparam defaultFontName Verdana
+skinparam monochrome true
+skinparam SequenceLifeLineBackgroundColor WhiteSmoke
+skinparam SequenceLifeLineBorderColor Black
+skinparam ParticipantFontStyle Bold
+skinparam ParticipantFontSize 20
+skinparam ParticipantBackgroundColor WhiteSmoke
+skinparam ArrowColor Black
+
+hide footbox
+
+title PISP Linking: Authentication Invalid authToken
+
+participant "PISP" as PISP
+
+box "Mojaloop"
+    participant Switch
+end box
+
+participant "DFSP" as DFSP
+
+autonumber 1 "<b>AUTH-#</b>"
+
+== Failure case ==
+
+...
+
+note over PISP, DFSP
+  The user enters an incorrect OTP for authentication.
+end note
+
+...
+
+PISP -> Switch ++: ""PATCH /consentRequests/11111111-0000-0000-0000-000000000000""\n\
+    ""  FSIOP-Source: pispa""\n\
+    ""  FSIOP-Destination: dfspa""\n\
+"" {""\n\
+    ""  authToken: "<OTP>" ""\n\
+    ""}""
+Switch --> PISP: ""202 Accepted""
+deactivate PISP
+
+Switch -> DFSP ++: ""PATCH /consentRequests/11111111-0000-0000-0000-000000000000""\n\
+    ""  FSIOP-Source: pispa""\n\
+    ""  FSIOP-Destination: dfspa""\n\
+"" {""\n\
+    ""  authToken: "<OTP>" ""\n\
+    ""}""
+DFSP --> Switch: ""202 Accepted""
+deactivate Switch
+
+DFSP -> DFSP: The OTP is incorrect.
+
+note over PISP, DFSP
+  We respond with an error that the OTP is incorrect so the PISP can inform the user.
+end note
+
+DFSP -> Switch ++: ""PUT /consentRequests/11111111-0000-0000-0000-000000000000/error""\n\
+  ""  FSIOP-Source: dfspa""\n\
+  ""  FSIOP-Destination: pispa""\n\
+  ""{""\n\
+  ""  errorInformation : { ""\n\
+  ""    errorCode: "6203", ""\n\
+  ""    errorDescription: "Invalid authentication token" ""\n\
+  ""  } ""\n\
+  ""}""
+Switch --> DFSP: ""200 OK""
+deactivate DFSP
+
+Switch -> PISP ++: ""PUT /consentRequests/11111111-0000-0000-0000-000000000000/error""\n\
+  ""  FSIOP-Source: dfspa""\n\
+  ""  FSIOP-Destination: pispa""\n\
+  ""{""\n\
+  ""  errorInformation : { ""\n\
+  ""    errorCode: "6203", ""\n\
+  ""    errorDescription: "Invalid authentication token" ""\n\
+  ""  } ""\n\
+  ""}""
+PISP --> Switch: ""200 OK""
+deactivate Switch
+deactivate PISP
+
+@enduml

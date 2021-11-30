@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" height="297" preserveAspectRatio="none" style="width:1019px;height:297px" width="1019">
+  <text font-family="Verdana" font-size="18" lengthAdjust="spacingAndGlyphs" textLength="527" x="245" y="28.708">
+    PISP Linking: Authentication (Third-party FIDO registration)
+  </text>
+  <path fill="#DDD" stroke="#383838" d="M457 40.953h97v243.078h-97z"/>
+  <text font-family="Verdana" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="67" x="472" y="53.02">
+    Mojaloop
+  </text>
+  <path stroke="#000" d="M418 98.367v10"/>
+  <path stroke="#000" stroke-dasharray="1,4" d="M418 108.367v28"/>
+  <path stroke="#000" d="M418 136.367v50.266"/>
+  <path stroke="#000" stroke-dasharray="1,4" d="M418 186.633v28"/>
+  <path stroke="#000" d="M418 214.633v75.398M505 98.367v10"/>
+  <path stroke="#000" stroke-dasharray="1,4" d="M505 108.367v28"/>
+  <path stroke="#000" d="M505 136.367v50.266"/>
+  <path stroke="#000" stroke-dasharray="1,4" d="M505 186.633v28"/>
+  <path stroke="#000" d="M505 214.633v75.398M597 98.367v10"/>
+  <path stroke="#000" stroke-dasharray="1,4" d="M597 108.367v28"/>
+  <path stroke="#000" d="M597 136.367v50.266"/>
+  <path stroke="#000" stroke-dasharray="1,4" d="M597 186.633v28"/>
+  <path stroke="#000" d="M597 214.633v75.398"/>
+  <path fill="#F4F4F4" stroke="#383838" stroke-width="1.5" d="M386 60.086h65v37.281h-65z"/>
+  <text font-family="Verdana" font-size="20" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="51" x="393" y="85.65">
+    PISP
+  </text>
+  <path fill="#F4F4F4" stroke="#383838" stroke-width="1.5" d="M461 60.086h89v37.281h-89z"/>
+  <text font-family="Verdana" font-size="20" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="75" x="468" y="85.65">
+    Switch
+  </text>
+  <path fill="#F4F4F4" stroke="#383838" stroke-width="1.5" d="M560 60.086h74v37.281h-74z"/>
+  <text font-family="Verdana" font-size="20" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="60" x="567" y="85.65">
+    DFSP
+  </text>
+  <path d="M29 141.367v40h957v-30l-10-10H29" fill="#ECECEC" stroke="#383838"/>
+  <path d="M976 141.367v10h10l-10-10" fill="#ECECEC" stroke="#383838"/>
+  <text font-family="Verdana" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="485" x="35" y="158.434">
+    Here the user goes through the web authentication process with their DFSP.
+  </text>
+  <text font-family="Verdana" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="936" x="35" y="173.567">
+    The end result is a redirect back to the PISP with a special URL parameter indicating to the PISP that it should wait to be notified about a credential.
+  </text>
+  <path d="M5 219.633v55h1007v-45l-10-10H5" fill="#ECECEC" stroke="#383838"/>
+  <path d="M1002 219.633v10h10l-10-10" fill="#ECECEC" stroke="#383838"/>
+  <text font-family="Verdana" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="986" x="11" y="236.7">
+    At this point, the DFSP believes that the User is their customer and that User trusts the PISP. This means that the DFSP can continue by granting consent.
+  </text>
+  <text font-family="Verdana" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="820" x="11" y="266.965">
+    Note that the DFSP never &quot;responds&quot; to the Consent Request itself. Instead, it will create a Consent resource in the Grant phase.
+  </text>
+</svg>
