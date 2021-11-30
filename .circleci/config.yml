@@ -148,6 +148,12 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Configure git
+          command: |
+            git config user.email ${GIT_CI_EMAIL}
+            git config user.name ${GIT_CI_USER}
+            git checkout master
+      - run:
           name: Install general dependencies
           command: *defaults_Dependencies
       - restore_cache:
@@ -158,12 +164,6 @@ jobs:
           command: |
             yarn
             ./node_modules/.bin/vuepress version docs $CIRCLE_TAG
-      - run:
-          name: Configure git
-          command: |
-            git config user.email ${GIT_CI_EMAIL}
-            git config user.name ${GIT_CI_USER}
-            git checkout master
       - run:
           name: Configure ssh
           command: |
