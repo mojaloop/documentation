@@ -45,11 +45,11 @@
 <script>
 import AlgoliaSearchBox from '@AlgoliaSearchBox'
 
-import ContentSidebarButton from '@theme/components/ContentSidebarButton'
-import DropdownLink from '@theme/components/DropdownLink.vue'
-import NavLinks from '@theme/components/NavLinks.vue'
-import SearchBoxWrapper from '@theme/components/SearchBoxWrapper'
-import SidebarButton from '@theme/components/SidebarButton.vue'
+import ContentSidebarButton from '@parent-theme/components/ContentSidebarButton'
+import DropdownLink from '@parent-theme/components/DropdownLink.vue'
+import NavLinks from '@parent-theme/components/NavLinks.vue'
+import SearchBoxWrapper from '@parent-theme/components/SearchBoxWrapper'
+import SidebarButton from '@parent-theme/components/SidebarButton.vue'
 
 export default {
   components: {
