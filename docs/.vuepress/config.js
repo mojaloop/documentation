@@ -52,9 +52,10 @@ module.exports = {
         text: 'API',
         link: '/api/'
       },
+      // temporary redirect as we migrate to the new docs
       {
         text: 'Technical',
-        link: '/technical/'
+        link: '/legacy/'
       },
       {
         text: 'Training Program',

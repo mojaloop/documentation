@@ -3,7 +3,7 @@ home: true
 heroImage: /mojaloop_logo_med.png
 tagline: This is the official documentation of the Mojaloop project.
 actionText: Getting Started →
-actionLink: /next/getting-started/
+actionLink: /getting-started/
 features:
 - title: Commmunity
   details: Feature 1 Description
@@ -13,4 +13,6 @@ features:
   details: Feature 3 Description
 footer: Made by Mojaloop with ❤️
 ---
+
+<PreviewBanner/>
 
