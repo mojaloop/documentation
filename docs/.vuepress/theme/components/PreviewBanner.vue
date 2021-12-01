@@ -1,10 +1,10 @@
 <template>
   <div id="banner">
-    <div id="banner-content">
+    <!-- <div id="banner-content"> -->
       <p>
         We're currently migrating our old docs over to this new format.  <a href="/legacy/">Browse the legacy docs.</a> 
       </p>
-    </div>
+    <!-- </div> -->
   </div>
   
 </template>
@@ -21,9 +21,6 @@
        left: 0; 
        background-color: #f37349; 
        width: 100%; 
-     }
-     div#banner-content { 
-       width: 800px; 
        margin: 0 auto; 
        padding: 2px; 
        font-size: 14px;
