@@ -1,5 +1,5 @@
 <template>
-  <div id="banner">
+  <div id="banner" class='can-hide'>
       <p>
         We're currently migrating our old docs over to this new format.  <a href="/legacy/">Browse the legacy docs.</a> 
       </p>

@@ -84,10 +84,10 @@ body
 
 .content:not(.custom)
   @extend $wrapper
-  padding-top 6rem
+  padding-top 6rem + $navbarBannerHeight
 
   @media (min-width: $MQMobile)
-    padding-top 7rem
+    padding-top 7rem + $navbarBannerHeight
 
   > *:first-child
     margin-top 0

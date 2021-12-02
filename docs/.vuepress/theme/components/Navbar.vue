@@ -3,7 +3,7 @@
 
   <!-- <PreviewBanner /> -->
   <header class="navbar">
-    <div class="banner-content can-hide">
+    <div class="banner-content">
       <PreviewBanner />
     </div>
     <div class="navbar-content">
@@ -19,12 +19,6 @@
         :src="$withBase($site.themeConfig.logo)"
         :alt="$siteTitle"
       >
-      <span
-        v-if="$siteTitle"
-        ref="siteName"
-        class="site-name"
-        :class="{ 'can-hide': $site.themeConfig.logo }"
-      >{{ $siteTitle }}</span>
     </RouterLink>
 
     <div v-if="hasVersions && isVersionedPage" class="versions-dropdown can-hide">
@@ -158,7 +152,7 @@ function css (el, property) {
 </script>
 
 <style lang="stylus">
-$navbar-banner-height = 3.5rem
+$navbar-banner-height = $navbarBannerHeight
 $navbar-vertical-padding = 0.7rem
 $navbar-horizontal-padding = 1.5rem
 
@@ -219,6 +213,9 @@ $navbar-horizontal-padding = 1.5rem
 @media (max-width: $MQMobile)
   .navbar
     padding-left 4rem
+    .banner-content
+      .can-hide
+        display none
     .navbar-content
       .can-hide
         display none
