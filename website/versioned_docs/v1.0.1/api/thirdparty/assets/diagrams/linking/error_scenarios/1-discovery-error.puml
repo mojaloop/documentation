@@ -1,0 +1,79 @@
+@startuml
+
+' declaring skinparam
+skinparam shadowing false
+skinparam defaultFontName Verdana
+skinparam monochrome true
+skinparam SequenceLifeLineBackgroundColor WhiteSmoke
+skinparam SequenceLifeLineBorderColor Black
+skinparam ParticipantFontStyle Bold
+skinparam ParticipantFontSize 20
+skinparam ParticipantBackgroundColor WhiteSmoke
+skinparam ArrowColor Black
+
+hide footbox
+
+title PISP Linking: Discovery error case
+
+box "PISP"
+    participant PISP
+end box
+
+box "Mojaloop"
+    participant Switch
+end box
+
+participant DFSP
+
+autonumber 1 "<b>DISC-#</b>"
+activate PISP
+
+PISP -> Switch ++: ""GET /accounts/username1234""\n\
+  ""  FSIOP-Source: pispa""\n\
+  ""  FSIOP-Destination: dfspa""
+Switch --> PISP: ""202 Accepted""
+deactivate PISP
+
+Switch -> DFSP ++: ""GET /accounts/username1234""\n\
+  ""  FSIOP-Source: pispa""\n\
+  ""  FSIOP-Destination: dfspa""
+DFSP --> Switch: ""202 Accepted""
+deactivate Switch
+
+DFSP -> DFSP: Lookup a user for **username1234**
+DFSP -> DFSP: No user found
+
+DFSP -> Switch ++: ""PUT /accounts/username1234/error""\n\
+  ""  FSIOP-Source: dfspa""\n\
+  ""  FSIOP-Destination: pispa""\n\
+  ""{""\n\
+  ""  errorInformation : { ""\n\
+  ""    errorCode: "6205", ""\n\
+  ""    errorDescription: "No accounts found" ""\n\
+  ""  } ""\n\
+  ""}""
+Switch --> DFSP: ""200 OK""
+deactivate DFSP
+
+Switch -> PISP ++: ""PUT /accounts/username1234/error""\n\
+  ""  FSIOP-Source: dfspa""\n\
+  ""  FSIOP-Destination: pispa""\n\
+  ""{""\n\
+  ""  errorInformation : { ""\n\
+  ""    errorCode: "6205", ""\n\
+  ""    errorDescription: "No accounts found" ""\n\
+  ""  } ""\n\
+  ""}""
+PISP --> Switch: ""200 OK""
+deactivate Switch
+deactivate PISP
+
+...
+
+note over Switch
+  The PISP can now show error message and user can try again with another username or different DFSP.
+end note
+
+...
+
+@enduml

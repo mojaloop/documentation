@@ -1,0 +1,134 @@
+<svg xmlns="http://www.w3.org/2000/svg" height="638" preserveAspectRatio="none" style="width:1255px;height:638px" width="1255">
+  <path fill="#DDD" stroke="#383838" d="M579 40.953h97v591.398h-97z"/>
+  <text font-family="Verdana" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="67" x="594" y="53.02">
+    Mojaloop
+  </text>
+  <text font-family="Verdana" font-size="18" lengthAdjust="spacingAndGlyphs" textLength="244" x="505.25" y="28.708">
+    PISP Linking: Grant consent
+  </text>
+  <path stroke="#000" stroke-dasharray="5,5" d="M37.5 98.367v527.985"/>
+  <path fill="#F4F4F4" stroke="#000" d="M32.5 579.219h10v47.133h-10z"/>
+  <path stroke="#000" stroke-dasharray="5,5" d="M627.5 98.367v527.985"/>
+  <path fill="#F4F4F4" stroke="#000" d="M622.5 324.227h10v302.125h-10z"/>
+  <path stroke="#000" stroke-dasharray="5,5" d="M1212.5 98.367v527.985"/>
+  <path fill="#F4F4F4" stroke="#383838" stroke-width="1.5" d="M5 60.086h65v37.281H5z"/>
+  <text font-family="Verdana" font-size="20" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="51" x="12" y="85.65">
+    PISP
+  </text>
+  <path fill="#F4F4F4" stroke="#383838" stroke-width="1.5" d="M583 60.086h89v37.281h-89z"/>
+  <text font-family="Verdana" font-size="20" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="75" x="590" y="85.65">
+    Switch
+  </text>
+  <path fill="#F4F4F4" stroke="#383838" stroke-width="1.5" d="M1175.5 60.086h74v37.281h-74z"/>
+  <text font-family="Verdana" font-size="20" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="60" x="1182.5" y="85.65">
+    DFSP
+  </text>
+  <path stroke="#000" d="M643.5 320.227l-10 4 10 4-4-4zM637.5 324.227h574"/>
+  <text font-family="Verdana" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="64" x="649.5" y="220.797">
+    GRANT-1
+  </text>
+  <text font-family="monospace" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="112" x="717.5" y="122.434">
+    POST /consents
+  </text>
+  <text font-family="monospace" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="152" x="733.5" y="137.567">
+    FSIOP-Source: dfspa
+  </text>
+  <text font-family="monospace" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="192" x="733.5" y="152.7">
+    FSIOP-Destination: pispa
+  </text>
+  <text font-family="monospace" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="733.5" y="167.833">
+    {
+  </text>
+  <text font-family="monospace" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="400" x="749.5" y="182.965">
+    consentId: &quot;22222222-0000-0000-0000-000000000000&quot;,
+  </text>
+  <text font-family="monospace" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="456" x="749.5" y="198.098">
+    consentRequestId: &quot;11111111-0000-0000-0000-000000000000&quot;,
+  </text>
+  <text font-family="monospace" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="136" x="749.5" y="213.231">
+    status: &quot;ISSUED&quot;,
+  </text>
+  <text font-family="monospace" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="72" x="749.5" y="228.364">
+    scopes: [
+  </text>
+  <text font-family="monospace" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="272" x="765.5" y="243.497">
+    { accountId: &quot;dfsp.username.1234&quot;,
+  </text>
+  <text font-family="monospace" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="280" x="781.5" y="258.629">
+    actions: [ &quot;ACCOUNTS_TRANSFER&quot; ] },
+  </text>
+  <text font-family="monospace" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="272" x="765.5" y="273.762">
+    { accountId: &quot;dfsp.username.5678&quot;,
+  </text>
+  <text font-family="monospace" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="280" x="781.5" y="288.895">
+    actions: [ &quot;ACCOUNTS_TRANSFER&quot; ] },
+  </text>
+  <text font-family="monospace" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="16" x="749.5" y="304.028">
+    ],
+  </text>
+  <text font-family="monospace" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="733.5" y="319.161">
+    }
+  </text>
+  <path stroke="#000" d="M1200.5 349.36l10 4-10 4 4-4z"/>
+  <path stroke="#000" stroke-dasharray="2,2" d="M632.5 353.359h574"/>
+  <text font-family="Verdana" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="64" x="639.5" y="348.293">
+    GRANT-2
+  </text>
+  <text font-family="monospace" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="96" x="707.5" y="348.293">
+    202 Accepted
+  </text>
+  <path stroke="#000" d="M53.5 575.219l-10 4 10 4-4-4zM47.5 579.219h574"/>
+  <text font-family="Verdana" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="64" x="59.5" y="475.79">
+    GRANT-3
+  </text>
+  <text font-family="monospace" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="112" x="127.5" y="377.426">
+    POST /consents
+  </text>
+  <text font-family="monospace" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="152" x="143.5" y="392.559">
+    FSIOP-Source: dfspa
+  </text>
+  <text font-family="monospace" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="192" x="143.5" y="407.692">
+    FSIOP-Destination: pispa
+  </text>
+  <text font-family="monospace" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="151.5" y="422.825">
+    {
+  </text>
+  <text font-family="monospace" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="400" x="159.5" y="437.957">
+    consentId: &quot;22222222-0000-0000-0000-000000000000&quot;,
+  </text>
+  <text font-family="monospace" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="456" x="159.5" y="453.09">
+    consentRequestId: &quot;11111111-0000-0000-0000-000000000000&quot;,
+  </text>
+  <text font-family="monospace" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="136" x="159.5" y="468.223">
+    status: &quot;ISSUED&quot;,
+  </text>
+  <text font-family="monospace" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="72" x="159.5" y="483.356">
+    scopes: [
+  </text>
+  <text font-family="monospace" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="272" x="175.5" y="498.489">
+    { accountId: &quot;dfsp.username.1234&quot;,
+  </text>
+  <text font-family="monospace" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="280" x="191.5" y="513.622">
+    actions: [ &quot;ACCOUNTS_TRANSFER&quot; ] },
+  </text>
+  <text font-family="monospace" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="272" x="175.5" y="528.754">
+    { accountId: &quot;dfsp.username.5678&quot;,
+  </text>
+  <text font-family="monospace" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="280" x="191.5" y="543.887">
+    actions: [ &quot;ACCOUNTS_TRANSFER&quot; ] },
+  </text>
+  <text font-family="monospace" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="16" x="159.5" y="559.02">
+    ],
+  </text>
+  <text font-family="monospace" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="143.5" y="574.153">
+    }
+  </text>
+  <path stroke="#000" d="M610.5 604.352l10 4-10 4 4-4z"/>
+  <path stroke="#000" stroke-dasharray="2,2" d="M42.5 608.352h574"/>
+  <text font-family="Verdana" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="64" x="49.5" y="603.286">
+    GRANT-4
+  </text>
+  <text font-family="monospace" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="96" x="117.5" y="603.286">
+    202 Accepted
+  </text>
+</svg>
