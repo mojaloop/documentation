@@ -135,6 +135,20 @@ resource "aws_cloudfront_distribution" "website_cdn_root" {
       }
     }
   }
+  ordered_cache_behavior {
+    path_pattern = "/helm/*"
+    target_origin_id = "mojaloop.github.io"
+    allowed_methods  = ["GET", "HEAD", "OPTIONS"]
+    cached_methods   = ["GET", "HEAD", "OPTIONS"]
+    viewer_protocol_policy = "allow-all"
+
+    forwarded_values {
+      query_string = false
+      cookies {
+        forward = "none"
+      }
+    }
+  }
 
   default_cache_behavior {
     allowed_methods  = ["GET", "HEAD", "OPTIONS"]
