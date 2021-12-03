@@ -1,0 +1,45 @@
+.custom-block
+  .custom-block-title
+    font-weight 600
+    margin-bottom -0.4rem
+  &.tip, &.warning, &.danger
+    padding .1rem 1.5rem
+    border-left-width .5rem
+    border-left-style solid
+    margin 1rem 0
+  &.tip
+    background-color $success-ltr 
+    border-color $succcess
+  &.warning
+    background-color $warning-ltr
+    border-color $warning
+    .custom-block-title
+      color $warning
+    a
+      color $warning-dk
+  &.danger
+    background-color $danger-ltr
+    border-color $danger
+    .custom-block-title
+      color $danger
+    a
+      color $danger-dk
+
+pre.vue-container
+  border-left-width: .5rem;
+  border-left-style: solid;
+  border-color: $success;
+  border-radius: 0px;
+  & > code
+    font-size: 14px !important;
+    & > p
+      margin: -5px 0 -20px 0;
+    code
+      background-color: $success !important;
+      padding: 3px 5px;
+      border-radius: 3px;
+      color $black
+    em
+      color $gray-dk
+      font-weight light
+
