@@ -1,8 +1,8 @@
-# mojaloop-docs-2.0
+# Mojaloop Documentation
 
 > This is the official documentation for the Mojaloop project.
 
-__Live Preview: [docs-preview.moja-lab.live](http://docs-preview.moja-lab.live/)__
+__Published at: [docs.mojaloop.io](https://docs.mojaloop.io)__
 
 
 ## Building and testing locally
