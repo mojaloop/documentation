@@ -17,7 +17,7 @@
 2.4 - FX support - DOCUMENTATION ONLY, NO CODING
 
 ## Adjacent Marketplace Teams
-3.1 OSS FRMS Solution (“Actio”)
+3.1 OSS FRMS Solution 
 
 ## SUPPORTING Workstreams
 * API “front of house” & Sandbox - this will become our re-use of Mojaloop Sandbox towards MAS re-use for next quarter, and launch of the 3PPI api into it.  The work is focused to that outcome.
@@ -28,6 +28,4 @@
 
 * Community
 
-* Documentation - this is Uduak’s mission, separately to the API front of house “stripe-style simplicity” mission above with Lewis.  Which requires *new content*.
-
-* Other - we have some clear ideas of how to split reference architecture into a set of parallel initiatives/missions if there is the team resources in play to achieve it.  WE also eg have a business-focused team who are looking at the glenbrook spreadsheet and trying to make it more of a “case for OSS & Mojaloop”.  Glenbrook leading.  Its not managed by workstream processes as such.
+* Documentation
