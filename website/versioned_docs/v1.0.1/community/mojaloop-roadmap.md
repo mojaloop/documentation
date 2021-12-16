@@ -97,7 +97,7 @@ Here are some "big bets" we're currently thinking about in the community in 2022
 - **vNext Build** - converting the existing codebase to the modular structure designed in the reference architecture.
 
 Each big bet has its own roadmap of what it is working on now, next and later.
-This google doc holds a working space for the missions and current goals of the teams below: [Workstream Goals]
+This google doc holds a working space for the missions and current goals of the teams below: [Workstream Goals](https://docs.google.com/presentation/d/1CSNYZFD94qy4mh6baRPYLKYjo8N09baGQGxdZ424cWY/edit?usp=sharing)
 
 ## How teams are structured around product improvement
 
