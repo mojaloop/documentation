@@ -96,13 +96,12 @@ Here are some "big bets" we're currently thinking about in the community in 2022
 - **Settlement Batch Improvements:**  In order to better support cross network models, settlement processing also needs some work.
 - **vNext Build** - converting the existing codebase to the modular structure designed in the reference architecture.
 
+Each big bet has its own roadmap of what it is working on now, next and later.
+This google doc holds a working space for the missions and current goals of the teams below: [Workstream Goals]
 
 ## How teams are structured around product improvement
 
 This framework is used to describe the various activites ongoing in the community.  They are at different development stages from ideation to design to code development to maintenance mode.  Some projects are on ice due to resourcing needs... all contributions welcome!
-
-This google doc holds a working space for the missions and current goals of the teams below: [Workstream Goals](https://docs.google.com/presentation/d/1CSNYZFD94qy4mh6baRPYLKYjo8N09baGQGxdZ424cWY/edit?usp=sharing)
-
 
 **Core Clearing System Capabilities**
 
@@ -140,8 +139,7 @@ This google doc holds a working space for the missions and current goals of the 
 2.1 Overlay Services (3PPI Enablement & 3rd party participant lifecycle management / adapters)
 
 2.2 Merchant Scheme Extension (inc ALS enhancement & QR Support)
-
-	2.2.1 A reference persistent Merchant Oracle & Merchant Blocklisting capability
+ - 2.2.1 A reference persistent Merchant Oracle & Merchant Blocklisting capability
 	
 2.3 Bulk Payments Enhancement 
 
