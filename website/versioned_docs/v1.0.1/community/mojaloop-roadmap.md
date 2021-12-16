@@ -136,6 +136,7 @@ This framework is used to describe the various activites ongoing in the communit
 
 
 **Core Clearing System Use Case Propositions, API Change & extensions into market:**
+
 2.1 Overlay Services (3PPI Enablement & 3rd party participant lifecycle management / adapters)
 
 2.2 Merchant Scheme Extension (inc ALS enhancement & QR Support)
