@@ -44,7 +44,7 @@ The journey to the big vision starts with getting running hubs.  So our 2021 pro
 -   Consolidate & Productise what we have for Advocacy efforts (demos, sandbox, better get-started material to ensure the product adaptation in-the-field is minimised & effective)
 - Keep Innovating with Valuable Extensions to the Core Hub such as 3PPI & merchant extensions to help impact & decision making
 
-## **Our key initiatives this year that have delivered on the above:**
+## **Our key initiatives in 2021 that have delivered on the above:**
 
 - **Better Business Process Support**:  
 	- A business process team have created a foundational framework for a roadmap of business process improvement work. 
@@ -97,9 +97,11 @@ Here are some "big bets" we're currently thinking about in the community in 2022
 - **vNext Build** - converting the existing codebase to the modular structure designed in the reference architecture.
 
 
-# **How teams are structured around product improvement**
+## How teams are structured around product improvement
 
-This framework is used to describe the various activites ongoing in the community.  They are at different development stages, and some are not actively creating updates today.
+This framework is used to describe the various activites ongoing in the community.  They are at different development stages from ideation to design to code development to maintenance mode.  Some projects are on ice due to resourcing needs... all contributions welcome!
+
+This google doc holds a working space for the missions and current goals of the teams below: [Workstream Goals](https://docs.google.com/presentation/d/1CSNYZFD94qy4mh6baRPYLKYjo8N09baGQGxdZ424cWY/edit?usp=sharing)
 
 
 **Core Clearing System Capabilities**
@@ -126,28 +128,45 @@ This framework is used to describe the various activites ongoing in the communit
 - at payment manager tool for DFSPs
 
 1.6 Deployments, Patches & Upgrades made Simple
+
 1.7 Deployments on Azure made Simple (Microsoft led)
+
 1.8 Provide Event Data to FRMS Solutions
 
-1.9 Deliver the Alpha release of V2
+1.9 Deliver the Alpha release of vNext
+
 
 **Core Clearing System Use Case Propositions, API Change & extensions into market:**
 2.1 Overlay Services (3PPI Enablement & 3rd party participant lifecycle management / adapters)
+
 2.2 Merchant Scheme Extension (inc ALS enhancement & QR Support)
+
 	2.2.1 A reference persistent Merchant Oracle & Merchant Blocklisting capability
+	
 2.3 Bulk Payments Enhancement 
+
 
 **Adjacent tools & Marketplace:**
 
 3.1 Mojaloop Hosted OSS DFSP Support Tools: TTK
+
 3.2 Mojaloop Hosted OSS DFSP Support Tools: Payment Manager
+
 3.3 Mojaloop Hosted OSS DFSP Support Tools: SDKs
+
 3.4 Mojaloop Hosted OSS Hub Support Tools: Connection Manager
+
 3.5 Improvement on Reference UI (“Finance Portal 2.0”)
 
 
+
 **SUPPORTING Workstreams**
+
 4.1 Improve our “front of house”: API Documentation, Developer Portal, & Sandbox
+
 4.2 Ensure QA/UAT/Release Quality / Test Case Peer Review for Mission Critical Functionality
+
 4.3 Improve Hub Detailed Documentation for new adopters and contributors to hub software to get started more simply
+
 4.4 Add more Training Program content
+
