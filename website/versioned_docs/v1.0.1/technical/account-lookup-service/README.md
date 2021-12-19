@@ -1,13 +1,11 @@
 ---
 version: 1.1
-lang: en-US
-spec: /api
 ---
 
 
 # Account Lookup Service
 
-The **Account Lookup Service** (**ALS**) _(refer to section `6.2.1.2`)_ as per the [Mojaloop {{ $page.frontmatter.version }} Specification]({{ $page.frontmatter.spec }}) implements the following use-cases:
+The **Account Lookup Service** (**ALS**) _(refer to section `6.2.1.2`)_ as per the [Mojaloop {{ $page.frontmatter.version }} Specification](/api) implements the following use-cases:
 
 * Participant Look-up 
 * Party Look-up
@@ -110,7 +108,7 @@ _Note: The Participant Lookup use-case similarly applies to for a Payee Initiate
 ### 5.1. ALS Database Schema
 
 #### Notes
-- `partyIdType` - Values are currently seeded as per section _`7.5.6`_ [Mojaloop {{ $page.frontmatter.version }} Specification]({{ $page.frontmatter.spec }}).
+- `partyIdType` - Values are currently seeded as per section _`7.5.6`_ [Mojaloop {{ $page.frontmatter.version }} Specification](./api).
 - `currency` - See section `7.5.5` of the Mojaloop Specification. Currency code defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic string. This will be optional, and must provide a "default" config if no Currency is either provided or provide a default if the Currency is provided, but only the "default" End-point config exists.
 - `endPointType` - Type identifier for the end-point (e.g. `URL`) which provides flexibility for future transport support.
 - `migration*` - Meta-data tables used by Knex Framework engine.
