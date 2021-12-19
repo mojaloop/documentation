@@ -55,7 +55,7 @@ module.exports = {
       // temporary redirect as we migrate to the new docs
       {
         text: 'Technical',
-        link: '/legacy/'
+        link: '/technical/'
       },
       {
         text: 'Training Program',
