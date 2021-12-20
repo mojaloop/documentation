@@ -1,0 +1,92 @@
+/'*****
+ License
+ --------------
+ Copyright © 2017 Bill & Melinda Gates Foundation
+ The Mojaloop files are made available by the Bill & Melinda Gates Foundation under the Apache License, Version 2.0 (the "License") and you may not use these files except in compliance with the License. You may obtain a copy of the License at
+ http://www.apache.org/licenses/LICENSE-2.0
+ Unless required by applicable law or agreed to in writing, the Mojaloop files are distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+ Contributors
+ --------------
+ This is the official list of the Mojaloop project contributors for this file.
+ Names of the original copyright holders (individuals or organizations)
+ should be listed with a '*' in the first column. People who have
+ contributed from an organization can be listed under the organization
+ that actually holds the copyright for their contributions (see the
+ Gates Foundation organization for an example). Those individuals should have
+ their names indented and be marked with a '-'. Email address can be added
+ optionally within square brackets <email>.
+ * Gates Foundation
+ - Name Surname <name.surname@gatesfoundation.com>
+
+ * Rajiv Mothilal <rajiv.mothilal@modusbox.com>
+ --------------
+ ******'/
+
+
+@startuml
+' declare title
+title 7.3.4 Delete Oracle Endpoint
+
+autonumber
+
+
+' Actor Keys:
+' boundary - APIs/Interfaces, etc
+' control - ALS Admin Handler
+' database - Database Persistent Store
+
+' declare actors
+entity "HUB OPERATOR" as OPERATOR
+boundary "Account Lookup Service Admin API" as ALSADM
+control "DELETE Oracle Handler" as ORC_HANDLER
+database "ALS Store" as DB
+
+box "Account Lookup Service" #LightYellow
+participant ALSADM
+participant ORC_HANDLER
+participant DB
+end box
+
+' start flow
+
+activate OPERATOR
+group Get Oracle Endpoint
+  OPERATOR -> ALSADM: Request to Delete Oracle Endpoint -\nDELETE /oracles/{ID}
+  activate ALSADM
+
+  ALSADM -> ORC_HANDLER: Delete Oracle Endpoint
+
+  activate ORC_HANDLER
+  ORC_HANDLER -> DB: Update existing Oracle Endpoint By ID
+  hnote over DB #lightyellow
+      Update isActive = false
+  end note
+  alt Delete existing Oracle Endpoint (success)
+      activate DB
+      DB -> ORC_HANDLER: Return Success
+      deactivate DB
+
+      ORC_HANDLER -> ALSADM: Return success response
+      deactivate ORC_HANDLER
+      ALSADM --> OPERATOR: Return <color #000000><b>HTTP Status:</b> 204</color>
+
+      deactivate ALSADM
+      deactivate OPERATOR
+  end
+  alt Delete existing Oracle Endpoint (failure)
+    DB -> ORC_HANDLER: Throws Error (Not Found)
+    ORC_HANDLER -> ALSADM: Throw Error
+    note left of ALSADM #yellow
+        Message:
+        {
+            "errorInformation": {
+                "errorCode": <Error Code>,
+                "errorDescription": <Msg>,
+            }
+        }
+    end note
+    ALSADM --> OPERATOR: Return <color #FF0000><b>HTTP Status:</b> 502</color>
+  end
+end
+
+@enduml
