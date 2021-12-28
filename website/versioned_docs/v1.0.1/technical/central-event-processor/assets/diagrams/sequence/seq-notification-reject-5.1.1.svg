@@ -1,0 +1,288 @@
+<svg xmlns="http://www.w3.org/2000/svg" height="1305" preserveAspectRatio="none" style="width:1490px;height:1305px" width="1490">
+  <defs>
+    <filter height="300%" id="a" width="300%" x="-1" y="-1">
+      <feGaussianBlur result="blurOut" stdDeviation="2"/>
+      <feColorMatrix in="blurOut" result="blurOut2" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/>
+      <feOffset dx="4" dy="4" in="blurOut2" result="blurOut3"/>
+      <feBlend in="SourceGraphic" in2="blurOut3"/>
+    </filter>
+  </defs>
+  <text font-family="sans-serif" font-size="18" lengthAdjust="spacingAndGlyphs" textLength="362" x="562" y="28.708">
+    5.1.1. Notification Handler for Rejections
+  </text>
+  <path fill="#D3D3D3" stroke="#a80036" d="M1 40.953h204v1258.57H1z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="198" x="4" y="53.02">
+    Financial Service Providers
+  </text>
+  <path fill="#ADD8E6" stroke="#a80036" d="M304 40.953h238v1258.57H304z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="173" x="336.5" y="53.02">
+    ML API Adapter Service
+  </text>
+  <path fill="#FFFFE0" stroke="#a80036" d="M1063 40.953h407v1258.57h-407z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="111" x="1211" y="53.02">
+    Central Service
+  </text>
+  <path fill="#FFF" filter="url(#a)" stroke="#a80036" d="M418 169.68h10v1018.25h-10zM1258 328.477h10v30h-10zM1258 1035.398h10v30h-10zM1390.5 230.078h10v30h-10z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M57 176.68h1419v1003.25H57z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M298 275.078h1027v136.664H298zM67 425.742h1258v747.188H67z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M298 449.875h836v59.266H298z"/>
+  <path fill="#FFF" d="M67 854.398h1258v318.531H67z"/>
+  <path stroke="#a80036" stroke-dasharray="5,5" d="M103 159.68v1037.25M423 159.68v1037.25M1134 159.68v1037.25M1263 159.68v1037.25M1395 159.68v1037.25"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="46" x="77" y="140.081">
+    DFSP1
+  </text>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="38" x="81" y="156.378">
+    Payer
+  </text>
+  <circle cx="103" cy="70.086" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="8"/>
+  <path d="M103 78.086v27m-13-19h26m-13 19l-13 15m13-15l13 15" fill="none" filter="url(#a)" stroke="#a80036" stroke-width="2"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="46" x="77" y="1208.925">
+    DFSP1
+  </text>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="38" x="81" y="1225.222">
+    Payer
+  </text>
+  <circle cx="103" cy="1238.523" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="8"/>
+  <path d="M103 1246.523v27m-13-19h26m-13 19l-13 15m13-15l13 15" fill="none" filter="url(#a)" stroke="#a80036" stroke-width="2"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="224" x="308" y="156.378">
+    ML API Notification Event Handler
+  </text>
+  <circle cx="423" cy="127.383" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path fill="#A80036" stroke="#a80036" d="M419 115.383l6-5-2 5 2 5-6-5z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="224" x="308" y="1208.925">
+    ML API Notification Event Handler
+  </text>
+  <circle cx="423" cy="1228.227" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path fill="#A80036" stroke="#a80036" d="M419 1216.227l6-5-2 5 2 5-6-5z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="128" x="1067" y="156.378">
+    Central Service API
+  </text>
+  <path d="M1113.5 115.383v24m0-12h17" fill="none" filter="url(#a)" stroke="#a80036" stroke-width="2"/>
+  <circle cx="1142.5" cy="127.383" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="128" x="1067" y="1208.925">
+    Central Service API
+  </text>
+  <path d="M1113.5 1216.227v24m0-12h17" fill="none" filter="url(#a)" stroke="#a80036" stroke-width="2"/>
+  <circle cx="1142.5" cy="1228.227" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M1215 120.383h96v30.297h-96z"/>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M1211 124.383h96v30.297h-96z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="82" x="1218" y="144.378">
+    Event-Topic
+  </text>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M1215 1195.93h96v30.297h-96z"/>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M1211 1199.93h96v30.297h-96z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="82" x="1218" y="1219.925">
+    Event-Topic
+  </text>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M1329 120.383h133v30.297h-133z"/>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M1325 124.383h133v30.297h-133z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="119" x="1332" y="144.378">
+    Notification-Topic
+  </text>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M1329 1195.93h133v30.297h-133z"/>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M1325 1199.93h133v30.297h-133z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="119" x="1332" y="1219.925">
+    Notification-Topic
+  </text>
+  <path fill="#FFF" filter="url(#a)" stroke="#a80036" d="M418 169.68h10v1018.25h-10zM1258 328.477h10v30h-10zM1258 1035.398h10v30h-10zM1390.5 230.078h10v30h-10z"/>
+  <path d="M57 176.68h241v7l-10 10H57v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M57 176.68h1419v1003.25H57z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="196" x="72" y="189.747">
+    DFSP Notified of Rejection
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1378.5 226.078l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M428 230.078h956.5"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="435" y="217.446">
+    1
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="240" x="448" y="209.879">
+    Consume Notification event message
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="82" x="452" y="225.012">
+    Error code:
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="32" x="538" y="225.012">
+    2001
+  </text>
+  <path d="M298 275.078h232v7l-10 10H298v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M298 275.078h1027v136.664H298z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="187" x="313" y="288.145">
+    Persist Event Information
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1246 324.477l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M428 328.477h824"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="435" y="315.844">
+    2
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="162" x="448" y="308.278">
+    Publish event information
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="82" x="452" y="323.411">
+    Error code:
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="32" x="538" y="323.411">
+    3201
+  </text>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M1208 366.477h106v40.266h-106z"/>
+  <path fill="#EEE" stroke="#000" stroke-width="2" d="M1208 366.477h66v7l-10 10h-56v-17z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="21" x="1221" y="380.543">
+    ref
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="90" x="1218" y="399.543">
+    Event Handler
+  </text>
+  <path d="M67 425.742h64v7l-10 10H67v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M67 425.742h1258v747.188H67z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19" x="82" y="438.809">
+    alt
+  </text>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="190" x="146" y="437.953">
+    [consume a single messages]
+  </text>
+  <path d="M298 449.875h152v7l-10 10H298v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M298 449.875h836v59.266H298z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="107" x="313" y="462.942">
+    Validate Event
+  </text>
+  <path stroke="#a80036" d="M428 488.141h42M470 488.141v13M429 501.141h41"/>
+  <path fill="#A80036" stroke="#a80036" d="M439 497.14l-10 4 10 4-4-4z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="435" y="483.075">
+    3
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="674" x="448" y="483.075">
+    Validate event - Rule: type == &apos;notification&apos; &amp;&amp; [action IN [&apos;reject&apos;, &apos;timeout-received&apos;, &apos;timeout-reserved&apos;]]
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1122 548.406l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M428 552.406h700"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="435" y="539.774">
+    4
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="227" x="448" y="532.207">
+    Request Participant Callback details
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="82" x="452" y="547.34">
+    Error code:
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="32" x="538" y="547.34">
+    3201
+  </text>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M305 560.406h895v40.266H305z"/>
+  <path fill="#EEE" stroke="#000" stroke-width="2" d="M305 560.406h66v7l-10 10h-56v-17z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="21" x="318" y="574.473">
+    ref
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="200" x="654.5" y="593.473">
+    Get Participant Callback Details
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M439 622.805l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M433 626.805h700"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="445" y="621.739">
+    5
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="217" x="458" y="621.739">
+    Return Participant Callback details
+  </text>
+  <path d="M94 639.805v161h315v-151l-10-10H94" fill="#FF0" filter="url(#a)" stroke="#a80036"/>
+  <path d="M399 639.805v10h10l-10-10" fill="#FF0" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="61" x="100" y="656.872">
+    Message:
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="100" y="672.004">
+    {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="58" x="116" y="687.137">
+    id: &lt;ID&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="267" x="116" y="702.27">
+    from: &lt;transferHeaders.FSPIOP-Source&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="278" x="116" y="717.403">
+    to: &lt;transferHeaders.FSPIOP-Destination&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="139" x="116" y="732.536">
+    type: application/json,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="65" x="116" y="747.668">
+    content: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="187" x="132" y="762.801">
+    payload: &lt;transferMessage&gt;
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="12" x="116" y="777.934">
+    },
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="100" y="793.067">
+    }
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M114 842.398l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M108 846.398h309"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="120" y="833.766">
+    6
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="166" x="133" y="826.2">
+    Send Callback Notification
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="82" x="137" y="841.332">
+    Error code:
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="112" x="223" y="841.332">
+    1000, 1001, 3002
+  </text>
+  <path stroke="#000" stroke-dasharray="2,2" d="M67 855.398h1258"/>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="269" x="72" y="865.609">
+    [Validate rule type != &apos;notification&apos; / Error]
+  </text>
+  <path d="M433 874.203v115h288v-105l-10-10H433" fill="#FF0" filter="url(#a)" stroke="#a80036"/>
+  <path d="M711 874.203v10h10l-10-10" fill="#FF0" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="61" x="439" y="891.27">
+    Message:
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="439" y="906.403">
+    {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="130" x="455" y="921.536">
+    &quot;errorInformation&quot;: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="172" x="471" y="936.668">
+    &quot;errorCode&quot;: &lt;errorCode&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="235" x="471" y="951.801">
+    &quot;errorDescription&quot;: &lt;ErrorMessage&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="455" y="966.934">
+    }
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="439" y="982.067">
+    }
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1246 1031.398l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M428 1035.398h824"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="435" y="1022.766">
+    7
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="343" x="448" y="1015.2">
+    Invalid messages retrieved from the Notification Topic
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="82" x="452" y="1030.332">
+    Error code:
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="32" x="538" y="1030.332">
+    3201
+  </text>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M1208 1073.398h106v40.266h-106z"/>
+  <path fill="#EEE" stroke="#000" stroke-width="2" d="M1208 1073.398h66v7l-10 10h-56v-17z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="21" x="1221" y="1087.465">
+    ref
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="90" x="1218" y="1106.465">
+    Event Handler
+  </text>
+  <path d="M433 1123.664v40h287v-30l-10-10H433" fill="#ADD8E6" filter="url(#a)" stroke="#a80036"/>
+  <path d="M710 1123.664v10h10l-10-10" fill="#ADD8E6" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="137" x="439" y="1140.731">
+    Log ERROR Messages
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="266" x="439" y="1155.864">
+    Update Event log upon ERROR notification
+  </text>
+</svg>
