@@ -52,6 +52,7 @@ module.exports = {
         text: 'API',
         link: '/api/'
       },
+      // temporary redirect as we migrate to the new docs
       {
         text: 'Technical',
         link: '/technical/'
@@ -81,8 +82,13 @@ module.exports = {
           title: 'Demos',
           collapsable: false,
           children: [
-            'demo',
-            'demo-one'
+            'demos/mojaloop-overview',
+            'demos/why-mojaloop',
+            'demos/working-with-mojaloop',
+            'demos/financial-inclusion-101',
+            'demos/what-is-rtp',
+            'demos/what-makes-a-successful-financial-ecosystem',
+            'demos/inside-the-loop'
           ]
         },
         {
