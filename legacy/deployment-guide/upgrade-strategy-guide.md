@@ -36,7 +36,7 @@ Non-breaking changes will require no additional or special actions (unless other
 
 Be aware of the following optional parameter flag(s) that will be useful when upgrading:
 
-```text
+```
    -i, --install                      if a release by this name doesn't already exist, run an install
    --reuse-values                 when upgrading, reuse the last release's values and merge in any overrides from the command line via --set and -f. If '--reset-values' is specified, this is ignored
    --version string               specify a version constraint for the chart version to use. This constraint can be a specific tag (e.g. 1.1.1) or it may reference a valid range (e.g. ^2.0.0). If this is not specified, the latest version is used
