@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# TODO: replace this with a call to _build_plantul_all!!!
+
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 PUML_PORT=9999
 export PUML_BASE_URL=http://localhost:${PUML_PORT}
