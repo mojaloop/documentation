@@ -41,7 +41,7 @@ for i in $(find ${DIR}/../docs -name ${PUML_MATCH}); do
   echo "rendering .puml -> .svg for diagram diagram: $i"
   
   # add the .svg file alongside the original
-  ${DIR}/_render_svg.js $i $(echo $i | sed 's/p.*uml/svg/g')
+  ${DIR}/_render_svg.js $i
 done
 
 docker stop puml-local
