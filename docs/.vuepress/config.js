@@ -33,7 +33,7 @@ module.exports = {
     repo: 'https://github.com/mojaloop/documentation/',
     docsBranch: 'master',
     editLinks: true,
-    docsDir: 'vuepress/docs',
+    docsDir: 'docs',
     editLinkText: 'Edit this page on GitHub',
     smoothScroll: true,
     logo: '/mojaloop_logo_med.png',
@@ -55,7 +55,7 @@ module.exports = {
       // temporary redirect as we migrate to the new docs
       {
         text: 'Technical',
-        link: '/legacy/'
+        link: '/technical/'
       },
       {
         text: 'Training Program',
@@ -82,8 +82,13 @@ module.exports = {
           title: 'Demos',
           collapsable: false,
           children: [
-            'demo',
-            'demo-one'
+            'demos/mojaloop-overview',
+            'demos/why-mojaloop',
+            'demos/working-with-mojaloop',
+            'demos/financial-inclusion-101',
+            'demos/what-is-rtp',
+            'demos/what-makes-a-successful-financial-ecosystem',
+            'demos/inside-the-loop'
           ]
         },
         {

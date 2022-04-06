@@ -190,9 +190,8 @@ resource "aws_cloudfront_distribution" "website_cdn_root" {
     default_ttl      = "300"
     max_ttl          = "1200"
 
-    # TODO: change this once we have https supported
-    # viewer_protocol_policy = "redirect-to-https" # Redirects any HTTP request to HTTPS
-    viewer_protocol_policy = "allow-all"
+    # Redirects any HTTP request to HTTPS
+    viewer_protocol_policy = "redirect-to-https"
     compress               = true
     forwarded_values {
       query_string = false
