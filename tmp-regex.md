@@ -1,8 +1,12 @@
 
 replace the uml line with just the path
-^\{.*(".*").*\n
+find: ^\{%.*(".*").*\n
+replace: $1\n
 
 
+Find all uml end tags:
+find (plain): {% enduml %}
+replace: 
 
 Replace string with image ref:
 

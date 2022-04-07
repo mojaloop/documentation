@@ -16,5 +16,5 @@ Please, ensure that you have created the `mojatemplate` as it is described into 
 
 
 ### 2.2 Trace processing flow sequence diagram
-{% uml src="./mojaloop-technical-overview/event-stream-processor/assets/diagrams/sequence/process-flow.plantuml" %}
-{% enduml %}
+![]("./mojaloop-technical-overview/event-stream-processor/assets/diagrams/sequence/process-flow.plantuml")
+

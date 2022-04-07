@@ -100,8 +100,8 @@ Following the requirements and instructions as set out in the detail in [QA and 
 
 ## Process flow of a typical Scheduled Test
 
-{% uml src="contributors-guide/tools-and-technologies/assets/diagrams/automated-testing/QARegressionTestingMojaloop-Complete.plantuml" %}
-{% enduml %}
+![]("contributors-guide/tools-and-technologies/assets/diagrams/automated-testing/QARegressionTestingMojaloop-Complete.plantuml")
+
 
 ## Newman Commands
 The following section is a reference, obtained from the Newman Package site itself, highlighting the different commands that may be used in order to have access to the Postman environment by specifying some commands via the CLI.

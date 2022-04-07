@@ -4,5 +4,5 @@ POST /transactionRequests and PUT /transacionRequests to suppport "Merchant Requ
 
 ## Sequence Diagram
 
-{% uml src="mojaloop-technical-overview/transaction-requests-service/assets/diagrams/sequence/seq-trx-req-service-1.0.0.plantuml" %}
-{% enduml %}
+![]("mojaloop-technical-overview/transaction-requests-service/assets/diagrams/sequence/seq-trx-req-service-1.0.0.plantuml")
+
