@@ -99,7 +99,7 @@ export default {
       const routes = this.$router.options.routes
       return {
         text: this.$page.version,
-        items: ['latest', ...this.$versions].map(version => {
+        items: ['latest', ...this.$versions, 'legacy'].map(version => {
           console.log('version', version)
           console.log('this.$page.version', this.$page.version)
           const text = version
@@ -120,13 +120,19 @@ export default {
             }
           }
           console.log('setting link to', link)
-          const item = { text, link }
           if (version === currentVersion) {
             // item.subText = 'current'
           } else if (version === 'latest') {
-            item.text = themeConfig && themeConfig.nextVersionTitle || 'master'
+            text = themeConfig && themeConfig.nextVersionTitle || 'master'
             // item.subText = 'latest'
           }
+
+          // link through to older version of docs!
+          if (version === 'legacy') {
+            // TODO: how to make sure this does a full reload?
+            link = `https://docs.mojaloop.io/legacy/`
+          }
+          const item = { text, link }
           return item
         })
       }

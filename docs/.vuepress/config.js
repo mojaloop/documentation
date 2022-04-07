@@ -62,7 +62,7 @@ module.exports = {
       }
     ],
     sidebar: {
-      'getting-started/': [
+      '/getting-started/': [
         {
           title: 'Getting Started',
           collapsable: false,
@@ -101,7 +101,7 @@ module.exports = {
           sidebarDepth: 2
         },
       ],
-      'community/': [
+      '/community/': [
         {
           title: 'Community',
           collapsable: false,
@@ -211,7 +211,7 @@ module.exports = {
           sidebarDepth: 4
         }
       ],
-      'api/': [
+      '/api/': [
         {
           title: 'Mojaloop APIs',
           collapsable: false,
@@ -345,7 +345,7 @@ module.exports = {
           ],
         },
       ],
-      "technical/": [
+      "/technical/": [
         {
           "title": "Mojaloop Hub",
           "collapsable": true,
