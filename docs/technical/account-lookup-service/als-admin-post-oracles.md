@@ -4,5 +4,5 @@ Design for the creation of an Oracle Endpoint by a Hub Operator.
     
 ## Sequence Diagram
 
-![]("mojaloop-technical-overview/account-lookup-service/assets/diagrams/sequence/seq-acct-lookup-admin-post-oracle-7.3.2.puml")
+![](./assets/diagrams/sequence/seq-acct-lookup-admin-post-oracle-7.3.2.svg)
 
