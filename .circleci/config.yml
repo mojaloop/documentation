@@ -44,8 +44,8 @@ executors:
 
   default-machine:
     machine:
-      image: ubuntu-1604:201903-01
-
+      image: ubuntu-2004:202201-02
+      
 ##
 # Jobs
 #
@@ -86,6 +86,33 @@ jobs:
           key: build-legacy-cache-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
           paths:
             - /home/circleci/project/legacy/_book
+
+  test-puml:
+    executor: default-machine
+    steps:
+      - checkout
+      - run:
+          name: Set up NVM
+          command: |
+            echo ${NVM_DIR}
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+            nvm install v12.16.1
+            nvm alias default v12.16.1
+            node --version
+            npm ci
+      - run:
+          name: Check if plantuml has been updated correctly
+          command: |
+            set +o pipefail
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+            npm run build:plantuml:all
+            FILE_COUNT=$(git diff --cached --name-only | grep .svg | wc -l)
+            if [ ${FILE_COUNT} -ne "0" ]; then
+              echo 'Plantuml files are out of sync. Please run npm run build:plantuml:all and try again.';
+              exit 1;
+            else
+              echo 'Plantuml files are up to date';
+            fi
 
   infra:
     executor: default-docker
@@ -199,11 +226,18 @@ workflows:
             tags:
               only: /.*/
 
+      - test-puml:
+          context: org-global
+          filters:
+            tags:
+              only: /.*/
+
       - infra:
           context: org-global
           requires:
             - build
             - build-legacy
+            - test-puml
           filters:
             branches:
               only:
