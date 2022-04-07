@@ -61,10 +61,10 @@ jobs:
           command: *defaults_Dependencies
       - run:
           name: install node dependencies
-          command: yarn
+          command: npm ci
       - run:
           name: build
-          command: yarn build
+          command: npm run build
   
   build-legacy:
     executor: legacy-docker
@@ -162,7 +162,7 @@ jobs:
       - run:
           name: create a new version in website/versioned_docs
           command: |
-            yarn
+            npm ci
             ./node_modules/.bin/vuepress version docs $CIRCLE_TAG
       - run:
           name: Configure ssh

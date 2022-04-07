@@ -10,14 +10,14 @@ __Published at: [docs.mojaloop.io](https://docs.mojaloop.io)__
 ```bash
 
 # install npm dependencies
-yarn 
+npm ci 
 
 # run the local server
-yarn run dev
+npm run dev
 ```
 
 ## Building the project
-Run `yarn run build` to build the project to render the static vuepress site for a deployment.
+Run `npm run build` to build the project to render the static vuepress site for a deployment.
 
 
 ## Rebuild all Puml -> svg
