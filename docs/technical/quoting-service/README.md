@@ -9,5 +9,5 @@ _Note: In addition to individual quotes, the quoting service supports bulk quote
 
 ## Sequence Diagram
 
-![](.assets/diagrams/sequence/seq-quotes-1.0.0.svg)
+![](./assets/diagrams/sequence/seq-quotes-1.0.0.svg)
 

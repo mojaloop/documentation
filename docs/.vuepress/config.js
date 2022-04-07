@@ -5,7 +5,7 @@ module.exports = {
   /**
    * Ref：https://v1.vuepress.vuejs.org/config/#title
    */
-  title: 'Mojaloop Documentation 2.0',
+  title: 'Mojaloop Documentation',
   /**
    * Ref：https://v1.vuepress.vuejs.org/config/#description
    */
@@ -52,7 +52,6 @@ module.exports = {
         text: 'API',
         link: '/api/'
       },
-      // temporary redirect as we migrate to the new docs
       {
         text: 'Technical',
         link: '/technical/'
@@ -229,7 +228,6 @@ module.exports = {
             {
               title: 'API Definitions',
               collapsable: false,
-              path: 'fspiop/definitions',
               children: [
                 {
                   title: 'v1.1 (Current)',
@@ -311,12 +309,10 @@ module.exports = {
         {
           title: 'Thirdparty API',
           collapsable: false,
-          path: 'thirdparty/',
           children: [
             {
-              title: 'API Definitions',
-              path: 'fspiop/logical-data-model',
-              collapsable: true
+              title: 'Overview',
+              path: 'thirdparty/',
             },
             {
               title: 'Transaction Patterns',
