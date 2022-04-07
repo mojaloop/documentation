@@ -9,5 +9,5 @@ _Note: In addition to individual quotes, the quoting service supports bulk quote
 
 ## Sequence Diagram
 
-![]("mojaloop-technical-overview/quoting-service/assets/diagrams/sequence/seq-quotes-1.0.0.plantuml")
+![](.assets/diagrams/sequence/seq-quotes-1.0.0.svg)
 

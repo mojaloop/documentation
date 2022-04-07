@@ -7,5 +7,5 @@ Design for the deletion of a Participant by a DFSP.
 
 ## Sequence Diagram
 
-![]("mojaloop-technical-overview/account-lookup-service/assets/diagrams/sequence/seq-acct-lookup-del-participants-7.1.2.plantuml")
+![](./assets/diagrams/sequence/seq-acct-lookup-del-participants-7.1.2.svg)
 

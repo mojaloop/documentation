@@ -10,5 +10,5 @@ Design for the creation of a Participant by a DFSP via a batch request.
 
 ## Sequence Diagram
 
-![]("mojaloop-technical-overview/account-lookup-service/assets/diagrams/sequence/seq-acct-lookup-post-participants-batch-7.1.1.plantuml")
+![](./assets/diagrams/sequence/seq-acct-lookup-post-participants-batch-7.1.1.svg)
 
