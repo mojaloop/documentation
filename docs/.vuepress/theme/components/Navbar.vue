@@ -1,11 +1,10 @@
 <template>
-  <!-- <div> -->
 
-  <!-- <PreviewBanner /> -->
   <header class="navbar">
-    <div class="banner-content">
+    <!-- Add a banner here when we want  -->
+    <!-- <div class="banner-content">
       <PreviewBanner />
-    </div>
+    </div> -->
     <div class="navbar-content">
     <SidebarButton @toggle-sidebar="$emit('toggle-sidebar')"/>
 
