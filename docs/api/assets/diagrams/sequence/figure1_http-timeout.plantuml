@@ -48,7 +48,7 @@ participant "Optional\nSwitch" as Switch
 participant "Peer\nFSP" as PEERFSP
 
 ' start flow
-FSP ->> Switch: **POST /service**\n(Service information, ID)
+FSP ->> Switch: **POST /service**\n(Service information, ID) HELLO WORLD
 activate FSP
 activate Switch
 FSP <<[#Red]-- Switch : **HTTP 202** (Accepted)
