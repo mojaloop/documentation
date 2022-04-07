@@ -97,8 +97,10 @@ export default {
       const routes = this.$router.options.routes
       return {
         text: this.$page.version,
-        items: ['next', ...this.$versions].map(version => {
+        items: ['latest', ...this.$versions].map(version => {
           const text = version
+          console.log('this.$page.version', this.$page.version)
+
           let link = this.$page.path
           if (version !== this.$page.version) {
             link = link.replace(new RegExp(`^${this.$localePath.substring(0, this.$localePath.length - 1)}`), '')
@@ -117,9 +119,9 @@ export default {
           const item = { text, link }
           if (version === currentVersion) {
             item.subText = 'current'
-          } else if (version === 'next') {
+          } else if (version === 'latest') {
             item.text = themeConfig && themeConfig.nextVersionTitle || 'master'
-            item.subText = 'next'
+            item.subText = 'latest'
           }
           return item
         })
