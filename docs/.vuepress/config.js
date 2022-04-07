@@ -68,15 +68,15 @@ module.exports = {
           collapsable: false,
           children: ['']
         },
-        {
-          title: 'Quickstarts',
-          collapsable: false,
-          children: [
-            ['quickstart', 'Quickstarts'],
-            ['quickstart-one', 'Quickstart One'],
-            ['quickstart-two', 'Quickstart Two']
-          ]
-        },
+        // {
+        //   title: 'Quickstarts',
+        //   collapsable: false,
+        //   children: [
+        //     ['quickstart', 'Quickstarts'],
+        //     ['quickstart-one', 'Quickstart One'],
+        //     ['quickstart-two', 'Quickstart Two']
+        //   ]
+        // },
         {
           title: 'Demos',
           collapsable: false,

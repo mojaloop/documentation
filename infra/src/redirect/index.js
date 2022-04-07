@@ -9,8 +9,6 @@ var redirectMapping = [
     // the new destination url to use - where this page has been moved to
     to: '/getting-started/general-faqs.html'
   },
-  { from: "/technical/", to: "/legacy/" },
-  { from: "/next/technical/", to: "/legacy/" },
   { from: "/mojaloop-specification/", to: "/api/" },
   { from: "/mojaloop-specification/fspiop-api/documents/Logical-Data-Model.html", to: "/api/fspiop/logical-data-model.html" },
   { from: "/mojaloop-specification/fspiop-api/documents/Generic-Transaction-Patterns.html", to: "/api/fspiop/generic-transaction-patterns.html" },
