@@ -16,7 +16,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run build:plantuml:diff && lint-staged && npm run test:unit",
+      "pre-commit": "npm run build:plantuml:diff",
       "post-commit": "git update-index --again"
     }
   },
