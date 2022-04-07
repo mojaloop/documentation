@@ -93,15 +93,18 @@ export default {
 
     versionsDropdown () {
       const themeConfig = this.$site.themeConfig
-      const currentVersion = this.$versions[0]
+      // consider what is on master to always be the latest
+      // to change next to latest
+      const currentVersion = 'latest'
       const routes = this.$router.options.routes
       return {
         text: this.$page.version,
         items: ['latest', ...this.$versions].map(version => {
-          const text = version
+          console.log('version', version)
           console.log('this.$page.version', this.$page.version)
-
+          const text = version
           let link = this.$page.path
+          
           if (version !== this.$page.version) {
             link = link.replace(new RegExp(`^${this.$localePath.substring(0, this.$localePath.length - 1)}`), '')
             link = link.replace(new RegExp(`^/${this.$page.version}`), '')
@@ -116,12 +119,13 @@ export default {
               link = version === currentVersion ? this.$localePath : `${this.$localePath}${version}/`
             }
           }
+          console.log('setting link to', link)
           const item = { text, link }
           if (version === currentVersion) {
-            item.subText = 'current'
+            // item.subText = 'current'
           } else if (version === 'latest') {
             item.text = themeConfig && themeConfig.nextVersionTitle || 'master'
-            item.subText = 'latest'
+            // item.subText = 'latest'
           }
           return item
         })
