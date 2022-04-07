@@ -92,8 +92,6 @@ function handler(event) {
   redirectMapping.forEach(m => {
     if (uri.endsWith(m.from)) {
       var newurl = uri.replace(m.from, m.to)
-      // console.log(`redirecting: ${m.from} ----> ${m.to}`)
-
       response = {
         statusCode: 301,
         statusDescription: 'Moved Permanently',

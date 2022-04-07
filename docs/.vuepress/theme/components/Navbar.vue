@@ -92,7 +92,6 @@ export default {
     },
 
     versionsDropdown () {
-      const themeConfig = this.$site.themeConfig
       // consider what is on master to always be the latest
       // to change next to latest
       const currentVersion = 'latest'
@@ -100,8 +99,6 @@ export default {
       return {
         text: this.$page.version,
         items: ['latest', ...this.$versions, 'legacy'].map(version => {
-          console.log('version', version)
-          console.log('this.$page.version', this.$page.version)
           const text = version
           let link = this.$page.path
           
@@ -119,15 +116,8 @@ export default {
               link = version === currentVersion ? this.$localePath : `${this.$localePath}${version}/`
             }
           }
-          console.log('setting link to', link)
-          if (version === currentVersion) {
-            // item.subText = 'current'
-          } else if (version === 'latest') {
-            text = themeConfig && themeConfig.nextVersionTitle || 'master'
-            // item.subText = 'latest'
-          }
 
-          // link through to older version of docs!
+          // add a link through to older version of docs!
           if (version === 'legacy') {
             // TODO: how to make sure this does a full reload?
             link = `https://docs.mojaloop.io/legacy/`
