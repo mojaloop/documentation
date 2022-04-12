@@ -53,6 +53,11 @@ export default {
         return
       }
 
+      // Don't display on old versions
+      if (this.$page.version !== 'latest') {
+        return
+      }
+
       if (!isNil(this.$page.frontmatter.editUrl)) {
         return this.$page.frontmatter.editUrl
       }

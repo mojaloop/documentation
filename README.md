@@ -10,15 +10,37 @@ __Published at: [docs.mojaloop.io](https://docs.mojaloop.io)__
 ```bash
 
 # install npm dependencies
-yarn 
+npm ci 
 
 # run the local server
-yarn run dev
+npm run dev
 ```
 
 ## Building the project
-Run `yarn run build` to build the project to render the static vuepress site for a deployment.
+Run `npm run build` to build the project to render the static vuepress site for a deployment.
 
+
+## Rebuild all Puml -> svg
+
+For consistent rending of sequence diagrams, we build the .puml sources to .svgs using the following script.
+
+This script requires docker to be installed and running, since it uses a docker container to run the plantuml server.
+
+```bash
+# render all plantuml sources to svg files deterministically
+./scripts/_build_plantuml.sh
+
+# render just one file at a time, e.g. `figure1.plantuml`
+PUML_MATCH="figure1.plantuml"  
+./scripts/_build_plantuml.sh
+```
+
+This also ensures that the sequence diagrams are easily readable inline in markdown documents.
+
+This script also runs as a git commit hook, so any changes added to puml sources are automatically
+rendered to svg without you having to do anything!
+
+If you want to skip the commit hook, you can always run `git commit -n`
 ## Versioning
 
 We use `vuepress-plugin-versioning` to help us keep older versions of our docs for posterity. By default, when you browse

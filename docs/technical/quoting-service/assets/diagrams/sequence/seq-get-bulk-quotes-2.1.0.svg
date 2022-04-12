@@ -1,0 +1,369 @@
+<svg xmlns="http://www.w3.org/2000/svg" height="1699" preserveAspectRatio="none" style="width:982px;height:1699px" width="982">
+  <defs>
+    <filter height="300%" id="a" width="300%" x="-1" y="-1">
+      <feGaussianBlur result="blurOut" stdDeviation="2"/>
+      <feColorMatrix in="blurOut" result="blurOut2" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/>
+      <feOffset dx="4" dy="4" in="blurOut2" result="blurOut3"/>
+      <feBlend in="SourceGraphic" in2="blurOut3"/>
+    </filter>
+  </defs>
+  <text font-family="sans-serif" font-size="18" lengthAdjust="spacingAndGlyphs" textLength="290" x="344" y="28.708">
+    Retrieve Bulk Quote Information
+  </text>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M10 389.875h958v1232.531H10z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M20 553.539h791.5v934.531H20z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M30 759.602h771.5v481.602H30z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M40 825.867h753v226.734H40z"/>
+  <path fill="#FFF" d="M40 940.398h753v112.203H40zM30 1059.602h771.5v181.602H30zM20 1248.203h791.5v239.867H20zM10 1495.07h958v127.336H10z"/>
+  <path stroke="#a80036" stroke-dasharray="5,5" d="M179 91.547v1547.859M397.5 91.547v1547.859M738 91.547v1547.859"/>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M136 56.25h82v30.297h-82z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="68" x="143" y="76.245">
+    Payer FSP
+  </text>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M136 1638.406h82v30.297h-82z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="68" x="143" y="1658.401">
+    Payer FSP
+  </text>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M329.5 39.953h133v46.594h-133z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="45" x="373.5" y="59.948">
+    Switch
+  </text>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="119" x="336.5" y="76.245">
+    [Quoting Service]
+  </text>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M329.5 1638.406h133V1685h-133z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="45" x="373.5" y="1658.401">
+    Switch
+  </text>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="119" x="336.5" y="1674.698">
+    [Quoting Service]
+  </text>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M693 56.25h86v30.297h-86z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="72" x="700" y="76.245">
+    Payee FSP
+  </text>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M693 1638.406h86v30.297h-86z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="72" x="700" y="1658.401">
+    Payee FSP
+  </text>
+  <path d="M184 106.547v40h343v-30l-10-10H184" fill="#FBFB77" filter="url(#a)" stroke="#a80036"/>
+  <path d="M517 106.547v10h10l-10-10" fill="#FBFB77" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="318" x="190" y="123.614">
+    Payer FSP sends request to get bulk quote details
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="176" x="190" y="138.747">
+    to Payee FSP via the Switch
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M386 172.945l10 4h-10z"/>
+  <path stroke="#a80036" d="M179 176.945h218"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="186" y="171.879">
+    1
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="138" x="199" y="171.879">
+    GET /bulkQuotes/{ID}
+  </text>
+  <path d="M403 189.945v70h248v-60l-10-10H403" fill="#AAA" filter="url(#a)" stroke="#a80036"/>
+  <path d="M641 189.945v10h10l-10-10" fill="#AAA" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="156" x="409" y="207.012">
+    Validate request against
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="200" x="409" y="222.145">
+    Mojaloop interface specification
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="167" x="409" y="237.278">
+    Error code: 300x, 310x
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="227" x="409" y="252.411">
+    HTTP error response code: 4xx
+  </text>
+  <path stroke="#a80036" d="M398 290.609h42M440 290.609v13M399 303.609h41"/>
+  <path fill="#A80036" stroke="#a80036" d="M409 299.61l-10 4 10 4-4-4z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="405" y="285.543">
+    2
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="118" x="418" y="285.543">
+    Schema validation
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M190 333.742h-10l10 4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M179 332.742h218"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="196" y="327.676">
+    3
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="88" x="209" y="327.676">
+    202 Accepted
+  </text>
+  <path stroke="#a80036" d="M398 361.875h42M440 361.875v13M399 374.875h41"/>
+  <path fill="#A80036" stroke="#a80036" d="M409 370.875l-10 4 10 4-4-4z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="405" y="356.809">
+    4
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="282" x="418" y="356.809">
+    Retrieve bulk quotes endpoint for Payee FSP
+  </text>
+  <path d="M10 389.875h64v7l-10 10H10v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M10 389.875h958v1232.531H10z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19" x="25" y="402.942">
+    alt
+  </text>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="242" x="89" y="402.085">
+    [Payee FSP quotes endpoint is found]
+  </text>
+  <path d="M403 412.008v25h401v-15l-10-10H403" fill="#FBFB77" filter="url(#a)" stroke="#a80036"/>
+  <path d="M794 412.008v10h10l-10-10" fill="#FBFB77" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="380" x="409" y="429.075">
+    Switch forwards request to Payee FSP (pass-through mode)
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M726 463.273l10 4h-10z"/>
+  <path stroke="#a80036" d="M398 467.273h339"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="405" y="462.207">
+    5
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="138" x="418" y="462.207">
+    GET /bulkQuotes/{ID}
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M409 497.406h-10l10 4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M398 496.406h339"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="415" y="491.34">
+    6
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="88" x="428" y="491.34">
+    202 Accepted
+  </text>
+  <path stroke="#a80036" d="M738 525.539h42M780 525.539v13M739 538.539h41"/>
+  <path fill="#A80036" stroke="#a80036" d="M749 534.54l-10 4 10 4-4-4z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="745" y="520.473">
+    7
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="198" x="758" y="520.473">
+    Payee FSP retireves bulk quote
+  </text>
+  <path d="M20 553.54h64v7l-10 10H20v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M20 553.539h791.5v934.531H20z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19" x="35" y="566.606">
+    alt
+  </text>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="257" x="99" y="565.75">
+    [Payee FSP successfully retieves quote]
+  </text>
+  <path d="M467 575.672v25h262v-15l-10-10H467" fill="#FBFB77" filter="url(#a)" stroke="#a80036"/>
+  <path d="M719 575.672v10h10l-10-10" fill="#FBFB77" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="241" x="473" y="592.739">
+    Payee FSP responds to quote request
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M409 626.938l-10 4h10z"/>
+  <path stroke="#a80036" d="M398 630.938h339"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="415" y="625.872">
+    8
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="110" x="428" y="625.872">
+    PUT /quotes/{ID}
+  </text>
+  <path d="M403 643.938v70h248v-60l-10-10H403" fill="#AAA" filter="url(#a)" stroke="#a80036"/>
+  <path d="M641 643.938v10h10l-10-10" fill="#AAA" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="156" x="409" y="661.004">
+    Validate request against
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="200" x="409" y="676.137">
+    Mojaloop interface specification
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="167" x="409" y="691.27">
+    Error code: 300x, 310x
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="227" x="409" y="706.403">
+    HTTP error response code: 4xx
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M726 745.602h10l-10 4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M398 744.602h339"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="405" y="739.536">
+    9
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="45" x="418" y="739.536">
+    200 Ok
+  </text>
+  <path d="M30 759.602h64v7l-10 10H30v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M30 759.602h771.5v481.602H30z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19" x="45" y="772.668">
+    alt
+  </text>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="106" x="109" y="771.812">
+    [Response is ok]
+  </text>
+  <path stroke="#a80036" d="M398 797.867h42M440 797.867v13M399 810.867h41"/>
+  <path fill="#A80036" stroke="#a80036" d="M409 806.867l-10 4 10 4-4-4z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="405" y="792.801">
+    10
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="304" x="427" y="792.801">
+    Retrieve bulk quotes endpoint for the Payer FSP
+  </text>
+  <path d="M40 825.867h64v7l-10 10H40v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M40 825.867h753v226.734H40z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19" x="55" y="838.934">
+    alt
+  </text>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="247" x="119" y="838.078">
+    [Bulk Quotes callback endpoint found]
+  </text>
+  <path d="M50 848v25h339v-15l-10-10H50" fill="#FBFB77" filter="url(#a)" stroke="#a80036"/>
+  <path d="M379 848v10h10l-10-10" fill="#FBFB77" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="318" x="56" y="865.067">
+    Switch forwards bulk quote response to Payer FSP
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M190 899.266l-10 4h10z"/>
+  <path stroke="#a80036" d="M179 903.266h218"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="196" y="898.2">
+    11
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="138" x="218" y="898.2">
+    PUT /bulkQuotes/{ID}
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M386 933.398h10l-10 4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M179 932.398h218"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="186" y="927.332">
+    12
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="45" x="208" y="927.332">
+    200 Ok
+  </text>
+  <path stroke="#000" stroke-dasharray="2,2" d="M40 941.398h753"/>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="272" x="45" y="951.609">
+    [Bulk Quotes callback endpoint not found]
+  </text>
+  <path d="M403 960.203v25h235v-15l-10-10H403" fill="#FBFB77" filter="url(#a)" stroke="#a80036"/>
+  <path d="M628 960.203v10h10l-10-10" fill="#FBFB77" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="214" x="409" y="977.27">
+    Switch returns error to Payee FSP
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M726 1011.469l10 4h-10z"/>
+  <path stroke="#a80036" d="M398 1015.469h339"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="405" y="1010.403">
+    13
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="173" x="427" y="1010.403">
+    PUT /bulkQuotes/{ID}/error
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M409 1045.602h-10l10 4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M398 1044.602h339"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="415" y="1039.536">
+    14
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="45" x="437" y="1039.536">
+    200 Ok
+  </text>
+  <path stroke="#000" stroke-dasharray="2,2" d="M30 1060.602h771.5"/>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="134" x="35" y="1070.812">
+    [Response is invalid]
+  </text>
+  <path d="M403 1079.406v25h235v-15l-10-10H403" fill="#FBFB77" filter="url(#a)" stroke="#a80036"/>
+  <path d="M628 1079.406v10h10l-10-10" fill="#FBFB77" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="214" x="409" y="1096.473">
+    Switch returns error to Payee FSP
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M726 1130.672l10 4h-10z"/>
+  <path stroke="#a80036" d="M398 1134.672h339"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="405" y="1129.606">
+    15
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="173" x="427" y="1129.606">
+    PUT /bulkQuotes/{ID}/error
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M409 1164.805h-10l10 4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M398 1163.805h339"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="415" y="1158.739">
+    16
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="45" x="437" y="1158.739">
+    200 Ok
+  </text>
+  <path d="M343 1176.805v55h448v-45l-10-10H343" fill="#EC7063" filter="url(#a)" stroke="#a80036"/>
+  <path d="M781 1176.805v10h10l-10-10" fill="#EC7063" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="129" x="471.75" y="1193.872">
+    Note that under this
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="147" x="471.75" y="1209.004">
+    scenario the Payer FSP
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="178" x="471.75" y="1224.137">
+    may not receive a response
+  </text>
+  <path stroke="#000" stroke-dasharray="2,2" d="M20 1249.203h791.5"/>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="142" x="25" y="1259.414">
+    [bulkQuote not found]
+  </text>
+  <path d="M494 1268.008v40h235v-30l-10-10H494" fill="#FBFB77" filter="url(#a)" stroke="#a80036"/>
+  <path d="M719 1268.008v10h10l-10-10" fill="#FBFB77" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="214" x="500" y="1285.075">
+    Payee FSP returns error to Switch
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="123" x="504" y="1300.207">
+    Error code: 3205
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M409 1334.406l-10 4h10z"/>
+  <path stroke="#a80036" d="M398 1338.406h339"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="415" y="1333.34">
+    17
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="173" x="437" y="1333.34">
+    PUT /bulkQuotes/{ID}/error
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M726 1368.54h10l-10 4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M398 1367.539h339"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="405" y="1362.473">
+    18
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="46" x="427" y="1362.473">
+    200 OK
+  </text>
+  <path d="M157 1380.54v40h232v-30l-10-10H157" fill="#FBFB77" filter="url(#a)" stroke="#a80036"/>
+  <path d="M379 1380.54v10h10l-10-10" fill="#FBFB77" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="211" x="163" y="1397.606">
+    Switch returns error to Payer FSP
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="123" x="167" y="1412.739">
+    Error code: 3205
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M190 1446.938l-10 4h10z"/>
+  <path stroke="#a80036" d="M179 1450.938h218"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="196" y="1445.872">
+    19
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="173" x="218" y="1445.872">
+    PUT /bulkQuotes/{ID}/error
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M386 1481.07h10l-10 4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M179 1480.07h218"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="186" y="1475.004">
+    20
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="46" x="208" y="1475.004">
+    200 OK
+  </text>
+  <path stroke="#000" stroke-dasharray="2,2" d="M10 1496.07h958"/>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="299" x="15" y="1506.281">
+    [Payee FSP Bulk quotes endpoint is not found]
+  </text>
+  <path d="M157 1514.875v40h232v-30l-10-10H157" fill="#FBFB77" filter="url(#a)" stroke="#a80036"/>
+  <path d="M379 1514.875v10h10l-10-10" fill="#FBFB77" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="211" x="163" y="1531.942">
+    Switch returns error to Payer FSP
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="123" x="163" y="1547.075">
+    Error code: 3201
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M190 1581.273l-10 4h10z"/>
+  <path stroke="#a80036" d="M179 1585.273h218"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="196" y="1580.207">
+    21
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="169" x="218" y="1580.207">
+    PUT /bulkQuotes/{ID}error
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M386 1615.406h10l-10 4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M179 1614.406h218"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="186" y="1609.34">
+    22
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="46" x="208" y="1609.34">
+    200 OK
+  </text>
+</svg>

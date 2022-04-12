@@ -2,7 +2,6 @@
 
 To help get you started with Mojaloop, select which of the options below best suits your needs:
 
-1. [View the quickstarts](/getting-started/quickstart/)
 1. [Watch a demo](/getting-started/demo/)
 1. [Read the documentation](/technical/)
 1. [Test out Mojaloop APIs](/technical/)
