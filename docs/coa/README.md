@@ -93,12 +93,12 @@ The Scheme receives a notification of the payment and the necessary accounts are
 #### Participant A Deposits Collateral (Bank to Scheme, then Scheme to Participant):
 When the Scheme receives a notification that assets have been deposited at the bank, the Scheme records entries into the deposit and collateral general ledger accounts for Participant A.
 
-<img alt="T-accounts: Participant A deposits collateral" src="diagrams/1-scheme%20deposit.png" title="Participant A deposits collateral"/>
+![Participant A deposits collateral](./diagrams/1-scheme_deposit.png)
 
 The Scheme makes it possible to set the extent to which a participant can access their available collateral.
 So, the Scheme or the participant allocates a maximum of _N units_ to the liquidity account, which is smaller or equal to the collateral. In this example, all `110` units will be available to the participant for liquidity.
 
-<img alt="T-accounts: Allocate collateral backed liquidity to Participant A" src="diagrams/2-collateral%20to%20liquidity.png" title="Allocate collateral backed liquidity to Participant A"/>
+![Allocate collateral backed liquidity to Participant A](./diagrams/2-collateral_to_liquidity.png)
 
 At this point, the Participant A CR liquidity balance is `110` units, with initial general ledger accounts created.
 
@@ -113,7 +113,7 @@ The applicable fees are typically determined by the Scheme rules. Therefore, fee
 For this scenario, fees are applied to the participant `Liquidity` accounts. 
 To illustrate, we charge deposit fees as a function of the collateral deposit amount (i.e. 110 * 18% = 20) and we charge Transfer fees as a fixed-fee per transaction. 
 
-<img alt="T-accounts: Scheme charges fees on deposit" src="diagrams/3-deposit%20fee.png" title="Scheme charges fees on deposit"/>
+![Scheme charges fees on deposit](./diagrams/3-deposit_fee.png)
 
 At this point, the Participant A liquidity CR balance is `110 - 20 = 90` units.
 The Scheme Participant Fee account has been credited with `20` units.
@@ -123,7 +123,7 @@ The Scheme provides a 9.1% bonus on liquidity for a first time deposit. In this 
 
 The Scheme enforces rules to ensure that participants enjoy the extension of liquidity, as a benefit, without being able to withdraw the bonus as funds from the Scheme.
 
-<img alt="T-accounts: Scheme extends liquidity as sign-up bonus" src="diagrams/4-signup%20bonus.png" title="Scheme extends liquidity as sign-up bonus"/>
+![Scheme extends liquidity as sign-up bonus](./diagrams/4-signup_bonus.png)
 
 At this point, the Participant A liquidity CR balance is `90 + 10 = 100` units.
 The Scheme Signup Bonus DR balance is `10` units.
@@ -198,14 +198,14 @@ For this context, linked events are applicable to accounts and transfers.
 #### Scheme Charges Fees on Transfer of Liquidity:
 The Scheme charges a `10` unit Fee for the Transfer from A to B. Participant A *(Payer)* is liable for the charges.
 
-<img alt="T-accounts: Scheme charges transfer fee" src="diagrams/5-fee%20for%20transfer%201%20from%20a%20to%20b.png" title="Scheme charges transfer fee"/>
+![Scheme charges transfer fee](./diagrams/5-fee_for_transfer_1_from_a_to_b.png)
 
 At this point, the Participant A CR liquidity balance is `90` units *(keeping in mind that the charge and transfer are linked)*.
 
 #### Participant A Transfers Units to Participant B (Payer to Payee Direct):
 Scheme allows for direct liquidity to Payee.
 
-<img alt="T-accounts: Immediate transfer & clearing of liquidity from A to B" src="diagrams/6-transfer%201%20from%20a%20to%20b.png" title="Immediate transfer & clearing of liquidity from A to B"/>
+![Immediate transfer & clearing of liquidity from A to B](./diagrams/6-transfer_1_from_a_to_b.png)
 
 At this point, the Participant A CR liquidity balance is `20` units, while Participant B liquidity balance is `170` units as a result of the transfer.
 The clearing and fee are part of a linked transfer that succeeds or fails together.
@@ -234,13 +234,13 @@ Let's add Participant C into the mix. We will **exclude** any transfer fees for 
 
 **Transfer 2**: Participant B pays Participant C `170` units.
 
-<img alt="T-accounts: Immediate transfer & clearing of liquidity from B to C" src="diagrams/7-transfer%202%20from%20b%20to%20c.png" title="Immediate transfer & clearing of liquidity from B to C"/>
+![Immediate transfer & clearing of liquidity from B to C](./diagrams/7-transfer_2_from_b_to_c.png)
 
 At this point, the Participant B CR liquidity balance is `0` units, while Participant C liquidity balance is `270` units.
 
 **Transfer 3**: Participant C decides to pay Participant A `60` units.
 
-<img alt="T-accounts: Immediate transfer & clearing of liquidity from C to A" src="diagrams/8-transfer%203%20from%20c%20to%20a.png" title="Immediate transfer & clearing of liquidity from C to A"/>
+![Immediate transfer & clearing of liquidity from C to A](./diagrams/8-transfer_3_from_c_to_a.png)
 
 At this point, the Participant A CR liquidity balance is `80` units, 
 Participant B CR liquidity balance is `0` units, while Participant C liquidity balance is `210` units.
@@ -271,7 +271,7 @@ Transfer 3 is for `60` units from Participant C to Participant A.
 
 
 ### Summary
-<img alt="Transfer Summary" src="diagrams/transfer-t-summary.png" width="55%" title="Transfer Summary - A to B and C to A"/>
+![Transfer Summary - A to B and C to A](./diagrams/transfer-t-summary.png)
 
 * A's Liquidity has a CR balance of  `100 - 10 - 70 + 60 = 80`
   * Opening balance of `100` units 

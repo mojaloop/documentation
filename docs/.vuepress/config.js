@@ -552,7 +552,14 @@ module.exports = {
             }
           ]
         }
-      ]
+      ],
+      '/coa/': [
+        {
+          title: 'Chart of Accounts',
+          collapsable: false,
+          children: ['']
+        },
+      ],
     }
   },
 

@@ -17,6 +17,7 @@ npm run dev
 ```
 
 ## Building the project
+`export NODE_OPTIONS=--openssl-legacy-provider`
 Run `npm run build` to build the project to render the static vuepress site for a deployment.
 
 
