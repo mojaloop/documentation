@@ -57,6 +57,10 @@ module.exports = {
         link: '/technical/'
       },
       {
+        text: 'Chart of Accounts',
+        link: '/coa/'
+      },
+      {
         text: 'Training Program',
         link: 'https://mojaloop.io/mojaloop-training-program/'
       }
