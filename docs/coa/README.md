@@ -63,8 +63,8 @@ All the necessary KYC requirements will be captured and completed by the DFSP fo
 
 ### Entities
 The following entities are present for a participant joining the Scheme: 
-* Scheme
-* Participant A - a DFSP on the Scheme, this may be a Payer/Payee
+* **Scheme** - administration by the Mojaloop Hub operator
+* **Participant A** - a DFSP on the Scheme, this may be a Payer/Payee
 
 ### Events
 Participant with relevant KYC information is captured, **but no financial accounts** have been created for the participant.
@@ -369,25 +369,33 @@ An existing participant A would like to withdraw the units that it had deposited
 
 ### Entities
 The following entities are present when a participant withdraws from the Scheme:
-* Bank (External)
-* Scheme Collateral - Scheme operator collateral
-* Participant Liquidity A - The participant's liquidity on the Scheme
+* Bank (External) - The bank account of the Scheme operator is external to the Hub
+* Collateral - The collateral that had been deposited by the exiting participant
+* Deposit - The deposit account of the exiting participant
+* Liquidity - The exiting participant's liquidity on the Scheme
+* Signup Bonus - The Scheme ensures that Participants cannot withdraw the sign-on bonus from their liquidity balance
 
 ### Events
 Participant A would like to withdraw all collateral from the Scheme.
-The transfer of funds are:
-- Liquidity to Collateral, and then;
-- Collateral to Deposit 
+The transactions are processed as follows:
+- Deduct the sign-on bonus from the liquidity account;
+- Transfer the remaining Liquidity to Collateral;
+- Transfer the Collateral back to the Deposit account; and then
+- The Scheme notifies the bank that assets can be withdrawn from the bank.
+
+#### Scheme Deducts The Sign-on Bonus From Participant Liquidity:
+The Scheme ensures that the sign-on bonus, which had been granted to Participant A as liquidity extension upon joining the Scheme, gets deducted **before** Participant A can withdraw from the Scheme.
+![Scheme deducts sign-on bonus from liquidity of Participant A](./diagrams/9-1-withdraw_signup_bonus.png)
 
 #### Transfer The Participant Liquidity To The Scheme Deposit Account:
-```
-DR Participant A Liquidity                      110
-    CR Participant A Collateral                        110
-DR Participant A Collateral                     110
-    CR Participant A Deposit                           110
-```
-At this point, the Participant A CR liquidity and collateral balance is `0` units.
-The Participant Deposit account CR balance is now recovered back to a balance of `110` units. 
+At this point, the Participant A CR liquidity balance is `100` units, and it can be withdrawn from the Scheme.
+![Transfer from Participant A Liquidity to Collateral](./diagrams/9-2-withdraw_a_liquidity_to_collateral.png)
+The Participant A liquidity and collateral balances are now `0` units.
+
+Participant A is able to withdraw the remaining `100` units of collateral at a bank that supports withdrawal from the Scheme.
+
+![Transfer from Participant A Collateral to Deposit](./diagrams/9-3-withdraw_a_collateral_to_deposit.png)
+
 
 ### Account Balances Statement
 The table below depicts the events for withdrawing collateral from the Scheme.
@@ -416,8 +424,8 @@ The positive Participant Deposit CR balance indicates the collateral is now out 
 
 ### Entities
 The following entities are present when a participant closes their account (inactive):
-* Scheme
-* Participant A - Participant on the Scheme that may be a Payer/Payee
+* **Scheme** - administration by the Mojaloop Hub operator
+* **Participant A** - a DFSP on the Scheme, this may be a Payer/Payee
 
 ### Events
 Participant account state has been updated to `[closed]`.
