@@ -56,6 +56,11 @@ There are 6 scenarios or user stories that are covered:
 | 5      | A participant withdraws collateral from the Mojaloop Scheme.             |
 | 6      | A participant exits the Mojaloop Scheme.                                 |
 
+### Assumptions
+* Transactions are cleared in real-time and settlement is deferred.
+* A transfer fully succeeds as a 2-phase commit transaction, or it fails. This makes it possible to show a simplified view of the general ledger entries for transfers, without an intermediate fund reservation entry. 
+* The system of record for accounts and balances is the authority on timeouts. This eliminates duplicate or inaccurate  transaction timeout processing.
+
 ## Participant Joins Scheme
 A new participant joins the scheme and the necessary participant and configuration data is provisioned in the system.
 At this time the participant has no liquidity _(a current position of zero and a net debit cap of zero)_. 
@@ -175,8 +180,6 @@ The following transfers are created atomically and succeed or fail, as a unit:
 * Participant A initiates a transfer of `70` units to Participant B. 
 * Real-time clearing immediately makes liquidity available to Participant B.
 * The Scheme records an outstanding obligation for settlement from DFSP A to B. 
-
-The settlement reservation and commit are processed at a later stage, as actions from DFSP A to Scheme, and from Scheme to DFSP B.
 
 ### Entities
 The following entities are present for a participant transferring liquidity to another participant:
@@ -369,11 +372,11 @@ An existing participant A would like to withdraw the units that it had deposited
 
 ### Entities
 The following entities are present when a participant withdraws from the Scheme:
-* Bank (External) - The bank account of the Scheme operator is external to the Hub
-* Collateral - The collateral that had been deposited by the exiting participant
-* Deposit - The deposit account of the exiting participant
-* Liquidity - The exiting participant's liquidity on the Scheme
-* Signup Bonus - The Scheme ensures that Participants cannot withdraw the sign-on bonus from their liquidity balance
+* **Bank (External)** - The bank account of the Scheme operator is external to the Hub
+* **Collateral** - The collateral that had been deposited by the exiting participant
+* **Deposit** - The deposit account of the exiting participant
+* **Liquidity** - The exiting participant's liquidity on the Scheme
+* **Signup Bonus** - The Scheme ensures that Participants cannot withdraw the sign-on bonus from their liquidity balance
 
 ### Events
 Participant A would like to withdraw all collateral from the Scheme.
@@ -388,13 +391,13 @@ The Scheme ensures that the sign-on bonus, which had been granted to Participant
 ![Scheme deducts sign-on bonus from liquidity of Participant A](./diagrams/9-1-withdraw_signup_bonus.png)
 
 #### Transfer The Participant Liquidity To The Scheme Deposit Account:
-At this point, the Participant A CR liquidity balance is `100` units, and it can be withdrawn from the Scheme.
+At this point, the Participant A CR liquidity balance is `100` units, and it can be withdrawn.
 ![Transfer from Participant A Liquidity to Collateral](./diagrams/9-2-withdraw_a_liquidity_to_collateral.png)
-The Participant A liquidity and collateral balances are now `0` units.
-
-Participant A is able to withdraw the remaining `100` units of collateral at a bank that supports withdrawal from the Scheme.
+The Participant A liquidity balance is now `0` units, and the Participant A CR collateral balance is `100` units. 
+Participant A withdraws the remaining `100` units of collateral from a bank that supports withdrawal from the Scheme.
 
 ![Transfer from Participant A Collateral to Deposit](./diagrams/9-3-withdraw_a_collateral_to_deposit.png)
+The Participant A liquidity and collateral balances are now `0` units.
 
 
 ### Account Balances Statement
@@ -406,21 +409,29 @@ The Participant A Deposit account has a DR balance of `110` units, due to the CR
 | Participant A Liquidity    | `0`         | `0`          | `CR 110` |------> Opening Balance <-------
 | Participant A Collateral   | `0`         | `0`          | `0`      |------> Opening Balance <-------
 | Participant A Deposit      | `0`         | `0`          | `DR 110` |------> Opening Balance <-------
-| **Settlement 2 & 3**       |             |              |          |------> Settlement 2 & 3 <-------
-| Participant A Liquidity    | `110`       |              | `0`      |--> A Settlement to B
-| Participant A Collateral   | `110`       | `110`        | `0`      |--> Recording Collateral withdraw
-| Participant A Deposit      |             | `110`        | `0`      |--> Deposit is recovered
+| Participant A Signup Bonus | `0`         | `0`          | `DR 10`  |------> Opening Balance <-------
+| **Deduct Sign-on Bonus**   |             |              |          |------> Remove liquidity extension <-------
+| Participant A Liquidity    | `10`        |              | `CR 100` |------> Remove the sign-on bonus <-------
+| Participant A Signup Bonus |             | `10`         | `0`      |------> Reduce liquidity by the sign-on bonus <-------
+| **Transfer Liquidity**     |             |              |          |------> Transfer liquidity <-------
+| Participant A Liquidity    | `100`       |              | `0`      |------> Move the liquidity balance to collateral 
+| Participant A Collateral   |             | `100`        | `CR 100` |------> The collateral available for withdrawal
+| **Withdraw Collateral**    |             |              |          |------> Withdraw the collateral <-------
+| Participant A Collateral   | `100`       |              | `0`      |------> Deduct from collateral <-------
+| Participant A Deposit      |             | `100`        | `DR 10`  |------> Deposit is recovered <-------
 
 ### Summary
-* A's Liquidity has a net CR balance of  `110 - 110 = 0`
-    * `110` units debited to the bank where A will receive 'cash'
-* A's Collateral has a net CR balance of  `0 + 110 - 110 = 0`
-    * `110` units from A, then `110` units to bank
+* A's Signup Bonus has a net balance of  `10 - 10 = 0`
+  * `10` units credited by the Scheme, to recover the sign-on bonus
+* A's Liquidity has a net balance of  `110 - 10 - 100 = 0`
+    * `10` units debited to deduct the sign-on bonus
+    * `100` units debited to the bank where A will receive 'cash'
+* A's Collateral has a net balance of  `0 + 100 - 100 = 0`
+    * `100` units from A's liquidity, then `100` units to bank
 * Bank settles with Participant A outside of the Scheme
 
 ## Participant Closes Account
-An account may only be closed when the DR/CR Liquidity and Collateral balance for a participant is `0` units.
-The positive Participant Deposit CR balance indicates the collateral is now out of the scheme.
+An account may only be closed when the DR/CR Liquidity and Collateral balances for a participant are `0` units.
 
 ### Entities
 The following entities are present when a participant closes their account (inactive):
