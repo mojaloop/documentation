@@ -1,0 +1,201 @@
+@startuml Payee DFSP Integration Bulk Transactional Flow
+/'*****
+--------------
+******'/
+
+skinparam activityFontSize 4
+skinparam activityDiamondFontSize 30
+skinparam activityArrowFontSize 22
+skinparam defaultFontSize 22
+skinparam noteFontSize 22
+skinparam monochrome true
+' declare title
+' title Core-Connector transactional flow patterns
+' declare actors
+participant "Mojaloop\nSwitch" as Switch
+box "Payment Manager\nPayee DFSP" #LightGrey
+participant "Mojaloop\nConnector" as MC 
+participant "Core\nConnector" as CC 
+end box
+participant "Core banking solution" as CBS
+autonumber 1 1 "<b>[0]"
+
+== Payee DFSP integration - Discovery ==
+
+Switch->MC: **GET** /getParty
+MC-->Switch: HTTP 202 Response
+MC->CC: **GET** /getParty
+activate MC
+CC->CBS: **GET** [account lookup]
+CBS-->CC: Response
+CC-->MC: Response
+deactivate MC
+alt If Success response
+MC-->Switch: **PUT** /parties/{Type}/{Id} (or /parties/{Type}/{Id}/{SubId})
+else if Error response
+MC-->Switch: **PUT** /parties/{Type}/{Id}/error (or /parties/{Type}/{Id}/{SubId}/error)
+end
+
+== Payee DFSP integration - Quote and Transfer - 2 phase commit with prior AML check ==
+
+Switch->MC: **POST** /bulkquotes
+MC-->Switch: HTTP 202 Response
+loop X times for each transfer in bulk message
+    MC->CC: **POST** /quoterequest
+    activate MC
+    CC->CBS: **AML** checks
+    CBS-->CC: Response
+    CC->CBS: **Calculate Fees**
+    CBS-->CC: Response
+    CC-->MC: Response
+    deactivate MC
+  MC->MC: Update transaction status \nand attach quote response
+end Loop
+MC-->Switch: **PUT** /bulkquotes/{Id} 
+Switch->Switch: Pass Quote to Payer
+note left
+Obtain consent to 
+proceed with the transfer
+Via **POST** /bulktransfers
+end note
+    Switch-> Switch: Perform liquidity(NDC)check
+    Switch->Switch: Reserve Funds at indivial transfer level
+    Switch->MC: **POST** /bulktransfers
+    loop X times for each transfer in bulk message
+        MC->CC: Create & Reserve Transfer\n **POST** /transfers 
+        activate MC
+        CC->CBS: Reserve funds 
+        CBS-->CC: response (homeTransactionId)
+        CC-->MC: response (homeTransactionId)
+        deactivate MC
+        MC->MC: Generate Fulfilment
+        MC -> MC:Update transaction status \nand attach transfer response
+    end Loop
+    MC-->Switch: **PUT** /bulktransfers/{id} (BulkStatus='PROCESSING') 
+    Switch-->Switch: Commit funds at indivial transfer level in DFSP ledgers
+    Switch -> MC: **PATCH** /bulktransfers/{id} (BulkStatus='COMPLETED')
+    loop X times for each transfer in bulk message
+        MC->CC: Commit Transfer\n **PATCH** /transfers/{id} \n(TransferStatus='COMMITTED', homeTransactionId) 
+        activate MC
+        CC->CBS: Commit funds 
+        CBS->CBS: Release funds to Payee 
+        CBS-->CC: response
+        CC-->MC: response
+        deactivate MC
+    end loop    
+
+== Payee DFSP integration - Quote and Transfer - single AML check & transfer during PATCH ==
+
+Switch->MC: **POST** /bulkquotes
+MC-->Switch: HTTP 202 Response
+loop X times for each transfer in bulk message
+  MC->CC: **POST** /quoterequest
+    activate MC
+      CC->CC: Do nothing
+      CC-->MC: Response
+    deactivate MC
+  MC->MC: Update transaction status \nand attach quote response
+end Loop
+MC-->Switch: **PUT** /bulkquotes/{Id} 
+
+Switch->Switch: Pass Quote to Payer DFSP
+note left
+Obtain consent to 
+proceed with the transfer
+Via **POST** /bulktransfers
+end note
+    Switch-> Switch: Perform liquidity(NDC)check
+    Switch->Switch: Reserve Funds at indivial transfer level
+    Switch->MC: **POST** /bulktransfers
+    loop X times for each transfer in bulk message
+        MC->CC: **POST** /transfers 
+        activate MC
+        CC->CC: Do Nothing 
+        CC-->MC: response
+        deactivate MC
+        MC->MC: Generate Fulfilment
+        MC -> MC:Update transaction status \nand attach transfer response
+    end Loop
+    MC-->Switch: **PUT** /bulktransfers/{id} (BulkStatus='PROCESSING') 
+    Switch-->Switch: Commit funds at indivial transfer level in DFSP ledgers
+    Switch -> MC: **PATCH** /bulktransfers/{id} (BulkStatus='COMPLETED')
+    loop X times for each transfer in bulk message
+      MC->CC: Commit Transfer\n **PATCH** /transfers/{id} (TransferStatus='COMMITTED') 
+      activate MC
+      CC->CBS: Performn AML checks and transfer funds
+      alt if (AML checks pass)
+      CBS->CBS: Release funds to Payee 
+      CBS-->CC: response
+      CC-->MC: response
+      else if (AML checks fail)
+      CBS->CBS: Do nothing
+      CBS-->CC: response
+      CC-->MC: response
+      deactivate MC
+        rnote left MC 
+    Payee DFSP AML checks / other errors result in:
+    
+    **Reconciliation Error**
+       Payer has sent funds
+       Payer DFSP has sent funds
+       Hub considers that the Payee DFSP has received funds
+       Payee DFSP has rejected the transaction
+       Payee has not received funds
+        endrnote
+      end
+    end Loop
+ 
+== Payee DFSP integration - Quote and Transfer - single AML check & transfer during POST transfer ==
+
+Switch->MC: **POST** /bulkquotes 
+MC-->Switch: HTTP 202 Response
+loop X times for each transfer in bulk message
+    MC->CC: **POST** /quoterequests  
+    activate MC
+      CC->CC: Do nothing
+      CC-->MC: Response
+    deactivate MC
+    MC->MC: Update transaction status \nand attach quote response
+end Loop
+MC-->Switch: **PUT** /bulkquotes/{id} 
+
+Switch->Switch: Pass Quote to Payer
+note left
+Obtain consent to 
+proceed with the transfer
+Via **POST** /bulktransfers
+end note
+    Switch-> Switch: Perform liquidity(NDC)check
+    Switch->Switch: Reserve Funds at indivial transfer level
+    Switch->MC: **POST** /transfers
+    loop X times for each transfer in bulk message
+        MC->CC: **POST** /transfers 
+        activate MC
+        CC->CBS: Performn AML checks and transfer funds
+        CBS->CBS: Release of funds to Payee 
+        CBS-->CC: response (homeTransactionId)
+        CC-->MC: response (homeTransactionId)
+        deactivate MC
+        MC->MC: Generate Fulfilment
+        MC -> MC:Update transaction status \nand attach transfer response
+    end Loop
+    MC-->Switch: **PUT** /bulktransfers/{id} (bulkStatus == 'PROCESSING')
+    Switch->Switch: Commit funds in DFSP ledgers
+    Switch->MC: **PATCH** /bulktransfers/{bulkTransferId}  
+    loop X times for each transfer in bulk message
+      alt if (Individual Transfer Status == 'ABORTED')
+        MC->CC: Abort Transfer\n **PATCH** /transfers/{HomeTransactionId}  
+        activate MC
+        CC->CBS: Abort Transfer
+        CBS->CBS: Compensate action for abort
+        CBS-->CC: response
+        CC-->MC: response
+        deactivate MC
+      else else      
+        MC->MC: Do nothing
+      end
+    end Loop
+ 
+
+
+@enduml

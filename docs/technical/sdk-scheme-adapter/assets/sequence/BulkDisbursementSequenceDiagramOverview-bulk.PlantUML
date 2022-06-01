@@ -1,0 +1,502 @@
+@startuml
+/'*****
+--------------
+******'/
+
+skinparam activityFontSize 4
+skinparam activityDiamondFontSize 30
+skinparam activityArrowFontSize 22
+skinparam defaultFontSize 22
+skinparam noteFontSize 22
+skinparam monochrome true
+' declare title
+' title Bulk Transactions pattern using the Mojaloop Connector
+' declare actors
+actor "MFI Staff" as MStaff
+participant "MFI CBS" as MFI
+box "Payment Manager" #LightGrey
+participant "Core\nConnector" as MFICC 
+participant "Mojaloop\nConnector" as MFIMC 
+end box
+participant "Mojaloop\nSwitch" as MJW 
+participant "Oracle" as Oracle
+box "Payment Manager" #LightGrey
+participant "Payee\nMojaloop\nConnector" as PayeeFSPMC 
+participant "Payee\nCore\nConnector" as PayeeFSPCC 
+end box
+
+== Bulk Transfers implemented using Mojaloop bulk transfers ==
+
+autonumber 1 1 "<b>[0]"
+MStaff -> MFI: Make bulk disbursement 
+MFI -> MFICC: Disburse funds \n **POST** bulkTransfers/
+note left
+{
+   "bulkHomeTransactionID": "string", # external identifier
+   "options": {
+      "onlyValidateParty": "fase", # (boolean) 
+      "autoAcceptParty": {
+          "enabled": "true" # boolean
+      },
+      "autoAcceptQuote": {
+        "enabled": "true", # (boolean)
+        "transferFeeLimit": { "currency": "AED", "amount": "88054601147.69" }, # mandatory if enabled is true
+      }
+      "skipPartyLookup": "fase", # (boolean)
+      "synchronous": "fase", # (boolean)
+      "bulkExpiration": DateTime, # expiration date time (string)
+    },
+   "from": { "partyIdInfo": {} # (partyIdInfo type)
+           },                        
+   "individualtransfers": [
+          {
+            "homeTransactionId": "string", # Payer DFSP CBS Transaction identifier
+            "reference": "string", # Payer Loan reference
+            "to": {
+              "partyIdInfo": {
+                "partyIdType": "MSISDN",
+                "partyIdentifier": "string",
+                "partySubIdOrType": "string",
+                "fspId": "string",
+                "extensionList": {"extension": [{"key": "string","value": "string"}]}
+              },
+            "amountType": "RECEIVE" # SEND, RECEIVE (Enum)
+            "currency" : "XXX" # (Enum)
+            "amount": "100.0", # money (string)
+            "note": "string"
+            "quoteRequestExtensions": [{ "key": "string", "value": "string"}],
+            "transferRequestExtensions": [{ "key": "string", "value": "string"}]
+            }, ...
+          ],
+   "extensions": [{ "key": "string", "value": "string"}],
+}
+end note
+
+Loop n times  (in parallel)
+    hnote left of MFICC
+        For each transfer
+        in bulk message
+    end hnote
+    MFICC -> MFICC: validate MSISDN & Prefix
+    alt MSISDN Failed Validation
+    MFICC->MFICC:  Add Last Error to Transfer
+    end
+end Loop
+MFICC-->MFIMC: **POST** /bulkTransfers
+note left
+**BulkTransferType**
+{
+   "bulkHomeTransactionID": "string", # external identifier
+   "options": {
+      "onlyValidateParty": "fase", # (boolean) 
+      "autoAcceptParty": {
+          "enabled": "true" # boolean
+      },
+      "autoAcceptQuote": {
+        "enabled": "true", # (boolean)
+        "transferFeeLimit": { "currency": "AED", "amount": "88054601147.69" }, # mandatory if enabled is true
+      }
+      "skipPartyLookup": "fase", # (boolean)
+      "synchronous": "fase", # (boolean)
+      "bulkExpiration": DateTime, # expiration date time (string)
+    },
+   "from": { "partyIdInfo": {} # (partyIdInfo type)
+           },                        
+   "individualtransfers": [
+          {
+            "homeTransactionId": "string", # Payer DFSP CBS Transaction identifier
+            "reference": "string", # Payer Loan reference
+            "to": {
+              "partyIdInfo": {
+                "partyIdType": "MSISDN",
+                "partyIdentifier": "string",
+                "partySubIdOrType": "string",
+                "fspId": "string",
+                "extensionList": {"extension": [{"key": "string","value": "string"}]}
+              },
+            "amountType": "RECEIVE" # SEND, RECEIVE (Enum)
+            "currency" : "XXX" # (Enum)
+            "amount": "100.0", # money (string)
+            "note": "string"
+            "quoteRequestExtensions": [{ "key": "string", "value": "string"}],
+            "transferRequestExtensions": [{ "key": "string", "value": "string"}]
+            "lastError": {
+              "httpStatusCode": 0,
+              "mojaloopError": {
+                "errorInformation": {
+                  "errorCode": "8812",
+                  "errorDescription": "string",
+                  "extensionList": {"extension": [{"key": "string","value": "string"}]}
+                }
+              }
+            }, ...
+          ],
+   "extensions": [{ "key": "string", "value": "string"}],
+}
+end note
+alt if (!synchronous)
+MFIMC-->MFICC: Receive HTTP 202 response
+MFI <-- MFICC: Receive HTTP 202 response
+end
+
+alt if (!skipPartyLookup)
+loop N times & within bulkExpiration timelimit  (in parallel)
+hnote left of MFIMC
+        For each transfer
+        in bulk message
+end hnote
+  alt if (validTransfer)
+    MFIMC -> MFIMC: Create TransactionId
+    MFIMC -> MJW: **GET** /parties/*\n<i><PartyIdType>**/**</i><i><PartyId>
+    activate MFIMC
+    MJW -> Oracle: Lookup DFSP for \nrequested Type/ID
+    Oracle-> Oracle: Lookup Party for \nrequested Type/ID
+    Oracle->MJW: Return DFSP ID
+    MJW->MJW: **GET** /parties/{type}/{id}/{subid}\nMake call to payee DFSP to confirm Party information
+    MJW->MFIMC: **PUT** /parties/{type}/{id}
+    deactivate MFIMC
+    
+    MFIMC -> MFIMC: Update transaction status and\n attach get parties response
+    MFIMC -> MFIMC: Add to next phase FSP bulk call
+  else if (!validTransfer)
+    MFIMC->MFIMC: Skip
+  end
+end Loop
+else if (skipPartyLookup)
+  loop N times & within bulkExpiration timelimit 
+    MFIMC->MFIMC: Validate party info \n Add to next phase FSP bulk call
+  end loop
+end
+MFIMC->MFIMC: if(transferStatusValid) Group into M Payee DFSPs
+
+alt if (!autoAcceptParty)
+  alt if (synchronous)
+    MFIMC-->MFICC: Response <bulkPartyLookupResponse>
+    MFI <-- MFICC: Response <bulkPartyLookupResponse>
+    MFI->MStaff: Present Party Response
+    MStaff->MFI: Accept Party
+    MFI->MFICC: **PUT** /bulkTransfers/{bulkTransferId}
+    MFICC->MFIMC: **PUT** /bulkTransfers/{bulkTransferId}
+  else if (!synchronous)
+    MFIMC->MFICC: **PUT** /bulkTransfers/{bulkTransferId}
+    note right
+      **bulkPartyLookupResponse**
+      {
+        "bulkHomeTransactionID": "string", # external identifier
+        "options": {
+            "onlyValidateParty": "fase", # (boolean) 
+            "autoAcceptParty": {
+                "enabled": "true" # boolean
+            },
+            "autoAcceptQuote": {
+                "enabled": "true", # (boolean)
+                "transferFeeLimit": { "currency": "AED", "amount": "88054601147.69" }, # mandatory if enabled is true
+            }
+            "skipPartyLookup": "fase", # (boolean)
+            "synchronous": "fase", # (boolean)
+            "bulkExpiration": DateTime, # expiration date time (string)
+        },
+        "from": { "partyIdInfo": {} # (partyIdInfo type)
+                },                        
+        "individualtransfers": [
+                {
+                  "homeTransactionId": "string", # Payer DFSP CBS Transaction identifier
+                  "transactionId": "UUID", # Created by ML connector
+                  "reference": "string", # Payer Loan reference
+                  "to": {
+                    "partyIdInfo": {
+                      "partyIdType": "MSISDN",
+                      "partyIdentifier": "string",
+                      "partySubIdOrType": "string",
+                      "fspId": "string",
+                      "extensionList": {"extension": [{"key": "string","value": "string"}]}
+                    },
+                  "amountType": "RECEIVE" # SEND, RECEIVE (Enum)
+                  "currency" : "XXX" # (Enum)
+                  "amount": "100.0", # money (string)
+                  "note": "string"
+                  "quoteRequestExtensions": [{ "key": "string", "value": "string"}],
+                  "transferRequestExtensions": [{ "key": "string", "value": "string"}]
+                  "lastError": {
+                    "httpStatusCode": 0,
+                    "mojaloopError": {
+                      "errorInformation": {
+                        "errorCode": "8812",1
+                        "errorDescription": "string",
+                        "extensionList": {"extension": [{"key": "string","value": "string"}]}
+                      }
+                    }
+                  }
+                }
+        ],
+        "extensions": [{ "key": "string", "value": "string"}],
+      }
+    end note
+    MFICC-->MFIMC: Receive HTTP 202 response
+    MFICC->MFI: **PUT** /bulkTransfers/{bulkTransferId}
+    MFI-->MFICC: Receive HTTP 202 response
+    MFI->MStaff: Present Party Response
+    MStaff->MFI: Accept Party
+    MFI->MFICC: **PUT** /bulkTransfers/{bulkTransferId}
+    MFICC->MFIMC: **PUT** /bulkTransfers/{bulkTransferId}
+    note left
+      **bulkTransferContinuationAcceptParty**
+      {
+        "bulkHomeTransactionID": "string", # external identifier                    
+        "individualtransfers": [
+                {
+                  "homeTransactionId": "string", # Payer DFSP CBS Transaction identifier
+                  "transactionId": "UUID", # Created by ML connector
+                  "acceptParty": "true" # (boolean)
+                }
+        ],
+      }
+    end note    
+    MFIMC-->MFICC: Receive HTTP 202 response
+    MFI <-- MFICC: Receive HTTP 202 response
+  end
+end
+
+loop Quote Processing (M times & within bulkExpiration timelimit in parallel)
+hnote left of MFIMC
+        For each payee DFSP
+        in bulk message
+end hnote
+    MFIMC->MFIMC: Check bulkExpiration
+    MFIMC->MFIMC: Create bulkTransactionId
+    MFIMC ->> MFIMC: Calculate bulk expiry \nbased on both expirySeconds config and \nbulkExpiration
+    MFIMC ->> MJW: **POST** /bulkquotes
+    activate MFIMC
+    MJW->PayeeFSPMC: **POST** /bulkquotes 
+    PayeeFSPMC->PayeeFSPCC: **GET** /functionSupport?HasSupportForBulkQuotes \n # check to see if the core connector supports bulk quotes
+    PayeeFSPCC-->PayeeFSPMC: Reponse HasSupportForBulkQuotes 
+    alt if (HasSupportForBulkQuotes)
+      PayeeFSPMC->PayeeFSPCC: **POST** /bulkquotes  
+      PayeeFSPCC-->PayeeFSPMC: Reponse bulkquotes Response
+      PayeeFSPMC -> PayeeFSPMC: Update transaction statuses \nand attach quote responses
+    else if (!HasSupportForBulkQuotes)
+      loop X times for each transfer in bulk message
+        PayeeFSPMC->PayeeFSPCC: **POST** /quoterequests  
+        PayeeFSPCC-->PayeeFSPMC: response
+        PayeeFSPMC -> PayeeFSPMC: Update transaction status \nand attach quote response
+      end Loop
+    end
+    PayeeFSPMC->MJW: **PUT** /bulkquotes/{id)
+    MJW->MFIMC: **PUT** /bulkquotes/{id)
+    deactivate  MFIMC
+    MFIMC -> MFIMC: Update transaction status \nand attach quote response
+end loop
+
+alt if (!autoAcceptQuote)
+  alt if (synchronous)
+    MFIMC-->MFICC: Response <bulkQuoteRequestResponse>
+    MFI <-- MFICC: Response <bulkQuoteRequestResponse>
+    MFI->MStaff: Present Quote Response
+    MStaff->MFI: Accept Quote
+    MFI->MFICC: **PUT** /bulkTransfers/{bulkTransferId}
+    MFICC->MFIMC: **PUT** /bulkTransfers/{bulkTransferId}
+  else if (!synchronous)
+    MFIMC->MFICC: **PUT** /bulkTransfers/{bulkTransferId}
+    note right
+      **bulkQuoteRequestResponse**
+      {
+        "bulkHomeTransactionID": "string", # external identifier
+        "options": {
+            "onlyValidateParty": "fase", # (boolean) 
+            "autoAcceptParty": {
+                "enabled": "true" # boolean
+            },
+            "autoAcceptQuote": {
+                "enabled": "true", # (boolean)
+                "transferFeeLimit": { "currency": "AED", "amount": "88054601147.69" }, # mandatory if enabled is true
+            }
+            "skipPartyLookup": "fase", # (boolean)
+            "synchronous": "fase", # (boolean)
+            "bulkExpiration": DateTime, # expiration date time (string)
+        },
+        "from": { "partyIdInfo": {} # (partyIdInfo type)
+                },                        
+        "individualtransfers": [
+                {
+                  "homeTransactionId": "string", # Payer DFSP CBS Transaction identifier
+                  "transactionId": "UUID", # Created by ML connector
+                  "reference": "string", # Payer Loan reference
+                  "to": {
+                    "partyIdInfo": {
+                      "partyIdType": "MSISDN",
+                      "partyIdentifier": "string",
+                      "partySubIdOrType": "string",
+                      "fspId": "string",
+                      "extensionList": {"extension": [{"key": "string","value": "string"}]}
+                    },
+                  "amountType": "RECEIVE" # SEND, RECEIVE (Enum)
+                  "currency" : "XXX" # (Enum)
+                  "amount": "100.0", # money (string)
+                  "note": "string"
+                  "quoteRequestExtensions": [{ "key": "string", "value": "string"}],
+                  "transferRequestExtensions": [{ "key": "string", "value": "string"}],
+                  "quoteResponse": {
+                    "transferAmount": {"currency": "AED","amount": "0.7"},
+                    "payeeReceiveAmount": {"currency": "AED","amount": "0.922"},
+                    "payeeFspFee": {"currency": "AED","amount": "67247160"},
+                    "payeeFspCommission": {"currency": "AED","amount": "829358883"},
+                    "expiration": "6286-11-29T16:19:08.300+06:14",
+                    "geoCode": {"latitude": "5.9","longitude": "180.0000"},
+                    "ilpPacket": "XqOB5HUGEifQ-ebr0TAVAgD3...",
+                    "condition": "gZI4iD9u_Yc...",
+                    "extensionList": {"extension": [{"key": "string","value": "string"}]}
+                  },
+                  "lastError": {
+                    "httpStatusCode": 0,
+                    "mojaloopError": {
+                      "errorInformation": {
+                        "errorCode": "8812",
+                        "errorDescription": "string",
+                        "extensionList": {"extension": [{"key": "string","value": "string"}]}
+                      }
+                    }
+                  }
+                }
+        ],
+        "extensions": [{ "key": "string", "value": "string"}],
+      }
+    end note
+    MFICC-->MFIMC: Receive HTTP 202 response
+    MFICC->MFI: **PUT** /bulkTransfers/{bulkTransferId}
+    MFI-->MFICC: Receive HTTP 202 response
+    MFI->MStaff: Present Quote Response
+    MStaff->MFI: Accept Quote
+    MFI->MFICC: **PUT** /bulkTransfers/{bulkTransferId}
+    MFICC->MFIMC: **PUT** /bulkTransfers/{bulkTransferId}
+    note left
+      **bulkAcceptQuote**
+      {
+        "bulkHomeTransactionID": "string", # external identifier
+        "individualtransfers": [
+                {
+                  "homeTransactionId": "string", # Payer DFSP CBS Transaction identifier
+                  "transactionId": "UUID", # Created by ML connector
+                  "acceptQuote": "true" #boolean
+                }                  
+        ],
+      }
+    end note    
+
+    MFIMC-->MFICC: Receive HTTP 202 response
+    MFI <-- MFICC: Receive HTTP 202 response
+  end
+end
+
+
+loop Transfer Processing (M times & within bulkExpiration timelimit  in parallel)
+  hnote left of MFIMC
+        For each payee DFSP
+        in bulk message
+  end hnote
+    alt if (AutoAcceptQuote)
+      MFIMC -> MFIMC: Confirm Fees meets auto accept levels\n and bulkExpiration timelimit not reached \n-> Update Transfer Status
+    end
+ 
+    alt if (AcceptedQuote)
+    MFIMC ->> MFIMC: Calculate bulk expiry \nbased on both expirySeconds config and \nbulkExpiration
+    MFIMC ->> MJW: **POST** /bulktransfers
+    activate MFIMC
+    MJW-> MJW: Perform liquidity(NDC)check at indivial transfer level
+    MJW->MJW: Reserve Funds at indivial transfer level
+    MJW ->> PayeeFSPMC: **POST** /bulktransfers
+    PayeeFSPMC->PayeeFSPCC: **GET** /functionSupport?HasSupportForBulkTransfers \n # check to see if the core connector supports bulk transfers
+    alt if (HasSupportForBulkTransfers)
+      PayeeFSPMC->PayeeFSPCC: **POST** /bulktransfers  
+      PayeeFSPCC-->PayeeFSPMC: response
+      PayeeFSPMC -> PayeeFSPMC:Update transaction statuses \nand attach transfer responses
+    else if (!HasSupportForBulkTransfers)
+      loop X times for each transfer in bulk message
+        PayeeFSPMC->PayeeFSPCC: **POST** /transfers  
+        PayeeFSPCC-->PayeeFSPMC: response
+        PayeeFSPMC -> PayeeFSPMC:Update transaction status \nand attach transfer response
+      end Loop
+    end
+    PayeeFSPMC ->> MJW: **PUT** /bulktransfers/{id} (BulkStatus)
+    MJW-->MJW: Commit funds at indivial transfer level
+    alt if (bulkStatus == 'Processing')
+    MJW -> PayeeFSPMC: **PATCH** /bulktransfers/{id} (BulkStatus)
+    PayeeFSPMC->PayeeFSPCC: **GET** /functionSupport?HasSupportForBulkTransfers \n # check to see if the core connector supports bulk transfers
+    alt if (HasSupportForBulkTransfers)
+      PayeeFSPMC->PayeeFSPCC: **PATCH** /bulktransfers/{bulkTransferId}  
+    else if (!HasSupportForBulkTransfers)
+      loop X times for each transfer in bulk message
+        PayeeFSPMC->PayeeFSPCC: **PATCH** /transfers/{TransferId}  
+      end Loop
+    end
+    end
+    MJW->MFIMC:**PUT** /bulktransfers/{id}
+   
+    deactivate MFIMC 
+    MFIMC -> MFIMC: Update transaction status \nand attach bulk transfers response
+    end
+end loop
+hnote right MFIMC
+**bulkTransferResponse**
+{
+ "homeBulkTransactionID": "string", # external identifier
+ "bulkExpiration": DateTime, # expiration date time (string)
+ "individualTransferResults": [
+    {
+      "transferId": "310e5c51-e4fd-30bc-96ae-6dffee2c54cb",
+      "homeTransactionId": "string", # Payer DFSP CBS Transaction identifier
+      "transactionId": "string", # Mojaloop bulk transaction Id used to make the bulk transfer
+      "to": {
+        "partyIdInfo": {
+          "partyIdType": "MSISDN",
+          "partyIdentifier": "string",
+          "partySubIdOrType": "string",
+          "fspId": "string",
+          "extensionList": {"extension": [{"key": "string","value": "string"}]}
+        }
+      },
+      "amountType": "SEND",
+      "currency": "AED",
+      "amount": "0",
+      "transactionType": "TRANSFER",
+      "note": "string",
+      "quoteId": "4932beab-423e-37b6-8587-49c016d2f5ef",
+      "quoteResponse": {
+        "transferAmount": {"currency": "AED","amount": "0.7"},
+        "payeeReceiveAmount": {"currency": "AED","amount": "0.922"},
+        "payeeFspFee": {"currency": "AED","amount": "67247160"},
+        "payeeFspCommission": {"currency": "AED","amount": "829358883"},
+        "expiration": "6286-11-29T16:19:08.300+06:14",
+        "geoCode": {"latitude": "5.9","longitude": "180.0000"},
+        "ilpPacket": "XqOB5HUGEifQ-ebr0TAVAgD3...",
+        "condition": "gZI4iD9u_Yc...",
+        "extensionList": {"extension": [{"key": "string","value": "string"}]}
+      },
+      "fulfil": {
+        "fulfilment": "UXgB0280lbHM...",
+        "completedTimestamp": "5138-01-31T21:10:42.484Z",
+        "transferState": "COMMITTED",
+        "extensionList": {"extension": [{"key": "string","value": "string"}]}
+      }
+      "lastError": {
+        "httpStatusCode": 0,
+        "mojaloopError": {
+          "errorInformation": {
+            "errorCode": "8812",
+            "errorDescription": "string",
+            "extensionList": {"extension": [{"key": "string","value": "string"}]}
+        }
+  }}}]]
+} 
+end hnote    
+alt if (synchronous)
+    MFIMC->MFICC: Response <bulkTransferResponse>
+    MFICC->MFI: Response <bulkTransferResponse>
+    MFI->MStaff: Transafer response(success & fail)
+else if (!synchronous)
+    MFIMC->MFICC:Callback Response \n**PUT** /bulkTransfers/{bulkTransferId}\nTransfer Response(success & fail)
+    MFICC-->MFIMC: Receive HTTP 202 response
+    MFICC->MFI: **PUT** /bulkTransfers/{bulkTransferId}\nTransfer Status Update (success & fail)
+    MFI-->MFICC: Receive HTTP 202 response
+    MFI->MStaff: Transafer response(success & fail)
+end
+@enduml
