@@ -440,6 +440,7 @@ hnote right MFIMC
 {
  "homeBulkTransactionID": "string", # external identifier
  "bulkExpiration": DateTime, # expiration date time (string)
+ "currentState": "COMPLETED", # status of the bulk transfer request
  "individualTransferResults": [
     {
       "transferId": "310e5c51-e4fd-30bc-96ae-6dffee2c54cb",
@@ -460,6 +461,8 @@ hnote right MFIMC
       "transactionType": "TRANSFER",
       "note": "string",
       "quoteId": "4932beab-423e-37b6-8587-49c016d2f5ef",
+      "quoteRequestExtensions": [{ "key": "string", "value": "string"}],
+      "transferRequestExtensions": [{ "key": "string", "value": "string"}]
       "quoteResponse": {
         "transferAmount": {"currency": "AED","amount": "0.7"},
         "payeeReceiveAmount": {"currency": "AED","amount": "0.922"},
@@ -485,7 +488,8 @@ hnote right MFIMC
             "errorDescription": "string",
             "extensionList": {"extension": [{"key": "string","value": "string"}]}
         }
-  }}}]]
+  }}}],
+  "extensions": [{ "key": "string", "value": "string"}]
 } 
 end hnote    
 alt if (synchronous)
