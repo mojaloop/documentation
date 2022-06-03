@@ -158,6 +158,7 @@ end hnote
     
     MFIMC -> MFIMC: Update transaction status and\n attach get parties response
     MFIMC -> MFIMC: Add to next phase FSP bulk call
+    MFIMC -> MFIMC: Any Error, save the error state in lastError object to be returned to the caller later
   else if (!validTransfer)
     MFIMC->MFIMC: Skip
   end
@@ -180,7 +181,8 @@ alt if (!autoAcceptParty)
   else if (!synchronous)
     MFIMC->MFICC: **PUT** /bulkTransfers/{bulkTransferId}
     note right
-      **bulkPartyLookupResponse**
+      **bulkPartyLookupResponse** \n
+      Refer **Party Lookup Error Codes** table for lastError details
       {
         "bulkHomeTransactionID": "string", # external identifier
         "options": {
