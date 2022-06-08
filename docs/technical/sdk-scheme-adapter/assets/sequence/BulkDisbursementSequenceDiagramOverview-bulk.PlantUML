@@ -16,12 +16,12 @@ actor "MFI Staff" as MStaff
 participant "MFI CBS" as MFI
 box "Payment Manager" #LightGrey
 participant "Core\nConnector" as MFICC 
-participant "Mojaloop\nConnector" as MFIMC 
+participant "sdk-scheme-adapter" as MFIMC 
 end box
 participant "Mojaloop\nSwitch" as MJW 
 participant "Oracle" as Oracle
 box "Payment Manager" #LightGrey
-participant "Payee\nMojaloop\nConnector" as PayeeFSPMC 
+participant "Payee\nsdk-scheme-adapter" as PayeeFSPMC 
 participant "Payee\nCore\nConnector" as PayeeFSPCC 
 end box
 
@@ -420,7 +420,7 @@ loop Transfer Processing (M times & within bulkExpiration timelimit  in parallel
     end
     PayeeFSPMC ->> MJW: **PUT** /bulktransfers/{id} (BulkStatus)
     MJW-->MJW: Commit funds at indivial transfer level
-    alt if (bulkStatus == 'Processing')
+    alt if (bulkStatus == 'ACCEPTED')
     MJW -> PayeeFSPMC: **PATCH** /bulktransfers/{id} (BulkStatus)
     PayeeFSPMC->PayeeFSPCC: **GET** /functionSupport?HasSupportForBulkTransfers \n # check to see if the core connector supports bulk transfers
     alt if (HasSupportForBulkTransfers)

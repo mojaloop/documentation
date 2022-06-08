@@ -13,7 +13,7 @@ skinparam monochrome true
 ' title Core-Connector transactional flow patterns
 ' declare actors
 participant "Core banking solution" as CBS
-box "Payment Manager" #LightGrey
+box "Payment Manager\nPayer DFSP" #LightGrey
 participant "Core\nConnector" as CC 
 participant "Mojaloop\nConnector" as MC 
 end box

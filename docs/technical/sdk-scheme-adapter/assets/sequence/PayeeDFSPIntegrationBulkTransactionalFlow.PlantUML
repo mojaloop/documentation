@@ -22,9 +22,9 @@ autonumber 1 1 "<b>[0]"
 
 == Payee DFSP integration - Discovery ==
 
-Switch->MC: **GET** /getParty
+Switch->MC: **GET** /parties/{Type}/{Id}
 MC-->Switch: HTTP 202 Response
-MC->CC: **GET** /getParty
+MC->CC: **GET** /parties/{Type}/{Id}
 activate MC
 CC->CBS: **GET** [account lookup]
 CBS-->CC: Response
