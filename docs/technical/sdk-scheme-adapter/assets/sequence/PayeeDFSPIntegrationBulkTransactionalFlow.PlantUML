@@ -128,7 +128,7 @@ end note
       CBS-->CC: response
       CC-->MC: response
       else if (AML checks fail)
-      CBS->CBS: Do nothing
+      CBS->CBS: Compensation action for AML failure. \n Return error response.
       CBS-->CC: response
       CC-->MC: response
       deactivate MC
