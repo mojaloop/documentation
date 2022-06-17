@@ -74,8 +74,8 @@ mojaloop-connector will act as a pass-through for all the errors returned by the
 | Payee FSP ID not found       	                                         | 3203        | 404              |  Not Found Error                                          |
 | Quote ID not found          	                                         | 3205        | 404              |  Not Found Error                                          |
 | Bulk quote ID not found          	                                     | 3209        | 404              |  Not Found Error                                          |
-| Generic expired error (Move to transfer phase)                         | 3300        | 503              |  Processing Error                                         |
-| Quote expired (Move to transfer phase)                                 | 3302        | 503              |  Processing Error                                         |
+| Generic expired error                                                  | 3300        | 503              |  Processing Error                                         |
+| Quote expired                                                          | 3302        | 503              |  Processing Error                                         |
 | Generic Payer error                                                    | 4000        | 400              |  Request Validation Error                                 |
 | Generic Payer rejection                                                | 4100        | 403              |  Forbidden Error                                          |
 | Payer limit error                                                      | 4200        | 400              |  Request Validation Error                                 |
