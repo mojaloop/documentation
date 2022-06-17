@@ -64,8 +64,8 @@ note left
             "currency" : "XXX" # (Enum)
             "amount": "100.0", # money (string)
             "note": "string"
-            "quoteRequestExtensions": [{ "key": "string", "value": "string"}],
-            "transferRequestExtensions": [{ "key": "string", "value": "string"}]
+            "quoteExtensions": [{ "key": "string", "value": "string"}],
+            "transferExtensions": [{ "key": "string", "value": "string"}]
             }, ...
           ],
    "extensions": [{ "key": "string", "value": "string"}],
@@ -118,8 +118,8 @@ note left
             "currency" : "XXX" # (Enum)
             "amount": "100.0", # money (string)
             "note": "string"
-            "quoteRequestExtensions": [{ "key": "string", "value": "string"}],
-            "transferRequestExtensions": [{ "key": "string", "value": "string"}]
+            "quoteExtensions": [{ "key": "string", "value": "string"}],
+            "transferExtensions": [{ "key": "string", "value": "string"}]
             "lastError": {
               "httpStatusCode": 503,
               "mojaloopError": {
@@ -218,8 +218,8 @@ alt if (!autoAcceptParty)
                   "currency" : "XXX" # (Enum)
                   "amount": "100.0", # money (string)
                   "note": "string"
-                  "quoteRequestExtensions": [{ "key": "string", "value": "string"}],
-                  "transferRequestExtensions": [{ "key": "string", "value": "string"}]
+                  "quoteExtensions": [{ "key": "string", "value": "string"}],
+                  "transferExtensions": [{ "key": "string", "value": "string"}]
                   "lastError": {
                     "httpStatusCode": 503,
                     "mojaloopError": {
@@ -335,8 +335,8 @@ alt if (!autoAcceptQuote)
                   "currency" : "XXX" # (Enum)
                   "amount": "100.0", # money (string)
                   "note": "string"
-                  "quoteRequestExtensions": [{ "key": "string", "value": "string"}],
-                  "transferRequestExtensions": [{ "key": "string", "value": "string"}],
+                  "quoteExtensions": [{ "key": "string", "value": "string"}],
+                  "transferExtensions": [{ "key": "string", "value": "string"}],
                   "quoteResponse": {
                     "transferAmount": {"currency": "AED","amount": "0.7"},
                     "payeeReceiveAmount": {"currency": "AED","amount": "0.922"},
@@ -461,8 +461,8 @@ hnote right MFIMC
       "transactionType": "TRANSFER",
       "note": "string",
       "quoteId": "4932beab-423e-37b6-8587-49c016d2f5ef",
-      "quoteRequestExtensions": [{ "key": "string", "value": "string"}],
-      "transferRequestExtensions": [{ "key": "string", "value": "string"}]
+      "quoteExtensions": [{ "key": "string", "value": "string"}],
+      "transferExtensions": [{ "key": "string", "value": "string"}]
       "quoteResponse": {
         "transferAmount": {"currency": "AED","amount": "0.7"},
         "payeeReceiveAmount": {"currency": "AED","amount": "0.922"},
