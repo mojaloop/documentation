@@ -27,6 +27,7 @@ mojaloop-connector will act as a pass-through for all the errors returned by the
 | Destination communication error	                                       | 1001        | 503              |  Technical Error                                          |
 | Generic server error                                                   | 2000        | 503              |  Processing Error                                         |
 | Internal server error	                                                 | 2001        | 503              |  Processing Error                                         |
+| Timeout Resolving Party	                                               | 2004        | 503              |  Processing Error                                         |
 | Generic validation error                                               | 3100        | 400              |  Request Validation Error                                 |
 | Party not found	                                                       | 3204        | 202              |  Processing Error                                         |
 
