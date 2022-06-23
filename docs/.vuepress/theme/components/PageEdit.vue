@@ -73,7 +73,7 @@ export default {
       let { docsDir = '' } = this.$site.themeConfig
       const path = this.$page.relativePath
       if (this.$page.version) {
-        if (this.$page.version !== 'next') {
+        if (this.$page.version !== 'latest') {
           docsDir = docsDirVersioned
         }
       } else if (this.$page.unversioned === true) {
@@ -114,6 +114,8 @@ export default {
           `?mode=edit&spa=0&at=${docsBranch}&fileviewer=file-view-default`
         )
       }
+
+      console.log('createEditLink', docsDir, path)
 
       const base = outboundRE.test(docsRepo)
         ? docsRepo
