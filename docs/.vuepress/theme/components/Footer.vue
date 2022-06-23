@@ -21,11 +21,15 @@
 export default {
   computed: {
     shouldShowFooter () {
-      console.log('should show footer?', this.copyright)
       const { themeConfig } = this.$site
       return this.copyright || this.logo || themeConfig.footerSitemap
     },
     copyright () {
+      // use frontmatter if it exists
+      if (this.$page.frontmatter && this.$page.frontmatter.footerCopyright) {
+        return this.$page.frontmatter.footerCopyright
+      }
+
       const { themeConfig } = this.$site
       return themeConfig && themeConfig.footerCopyright
     },
