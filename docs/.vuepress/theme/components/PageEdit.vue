@@ -115,8 +115,6 @@ export default {
         )
       }
 
-      console.log('createEditLink', docsDir, path)
-
       const base = outboundRE.test(docsRepo)
         ? docsRepo
         : `https://github.com/${docsRepo}`

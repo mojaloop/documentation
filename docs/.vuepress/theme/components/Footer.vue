@@ -21,6 +21,7 @@
 export default {
   computed: {
     shouldShowFooter () {
+      console.log('should show footer?', this.copyright)
       const { themeConfig } = this.$site
       return this.copyright || this.logo || themeConfig.footerSitemap
     },
@@ -55,7 +56,6 @@ export default {
 .footer
   background $secondary-dk
   padding-bottom 2rem
-  padding-top 2rem
   >.sitemap
     display flex
     justify-content space-around
