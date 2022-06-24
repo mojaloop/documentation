@@ -73,7 +73,7 @@ export default {
       let { docsDir = '' } = this.$site.themeConfig
       const path = this.$page.relativePath
       if (this.$page.version) {
-        if (this.$page.version !== 'next') {
+        if (this.$page.version !== 'latest') {
           docsDir = docsDirVersioned
         }
       } else if (this.$page.unversioned === true) {

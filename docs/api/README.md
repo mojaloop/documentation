@@ -1,3 +1,7 @@
+---
+footerCopyright: Attribution-NoDerivatives 4.0 International (CC BY-ND 4.0) | Ericsson, Huawei, Mahindra-Comviva, Telepin, and the Bill & Melinda Gates Foundation
+---
+
 # API Catalog
 
 The Mojaloop Family of APIs is a set of several different APIs that cater for several business or transactional functions. So far, the well defined and adopted APIs are:

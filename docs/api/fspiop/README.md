@@ -1,3 +1,7 @@
+---
+footerCopyright: Attribution-NoDerivatives 4.0 International (CC BY-ND 4.0) | Ericsson, Huawei, Mahindra-Comviva, Telepin, and the Bill & Melinda Gates Foundation
+---
+
 # FSPIOP API
 
 The Open API for FSP Interoperability Specification includes the following documents:
