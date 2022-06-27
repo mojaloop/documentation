@@ -532,7 +532,19 @@ module.exports = {
               "path": "sdk-scheme-adapter/"
             },
             {
-              "title": "Usage",
+              "title": "Integration Flow Patterns",
+              "path": "sdk-scheme-adapter/IntegrationFlowPatterns"
+            },
+            {
+              "title": "SDK Design implementation for Bulk",
+              "path": "sdk-scheme-adapter/SDKBulk"
+            },
+            {
+              "title": "Bulk Integration Flow Patterns",
+              "path": "sdk-scheme-adapter/IntegrationBulkFlowPatterns"
+            },
+            {
+              "title": "Usage tests",
               "path": "sdk-scheme-adapter/usage/"
             }
           ],
