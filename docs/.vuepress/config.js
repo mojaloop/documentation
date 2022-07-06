@@ -483,7 +483,7 @@ module.exports = {
               "path": "central-event-processor/event-handler-placeholder"
             },
             {
-              "title": "Notiification Handler for Rejections",
+              "title": "Notification Handler for Rejections",
               "path": "central-event-processor/notification-handler-for-rejections"
             },
             {
@@ -536,12 +536,16 @@ module.exports = {
               "path": "sdk-scheme-adapter/IntegrationFlowPatterns"
             },
             {
-              "title": "SDK Design implementation for Bulk",
-              "path": "sdk-scheme-adapter/SDKBulk"
-            },
-            {
               "title": "Bulk Integration Flow Patterns",
               "path": "sdk-scheme-adapter/IntegrationBulkFlowPatterns"
+            },
+            {
+              "title": "Support for Bulk Transfers - API Design",
+              "path": "sdk-scheme-adapter/SDKBulk-API-Design"
+            },
+            {
+              "title": "Support for Bulk Transfers - CQRS Design",
+              "path": "sdk-scheme-adapter/SDKBulk-CQRS-Design"
             },
             {
               "title": "Usage tests",

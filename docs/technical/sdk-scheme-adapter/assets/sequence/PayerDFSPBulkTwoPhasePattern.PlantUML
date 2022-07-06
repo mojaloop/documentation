@@ -22,7 +22,7 @@ autonumber 1 1 "<b>[0]"
 
 == Payer DFSP integration - 2 phase commit - with user confirmation ==
 
-CBS->CC: **POST** /bulkDisbursement \n(AUTO_ACCEPT_PARTY = true, AUTO_ACCEPT_QUOTES = **false**, synchronous = false)
+CBS->CC: **POST** /bulkTransactions \n(AUTO_ACCEPT_PARTY = true, AUTO_ACCEPT_QUOTES = **false**, synchronous = false)
 Loop n times  (in parallel)
     hnote left of CC
         For each individual transfer
@@ -30,7 +30,7 @@ Loop n times  (in parallel)
     end hnote
     CC -> CC: validate MSISDN & Prefix
 end Loop
-CC->MC: **POST** /bulkTransfers \n(AUTO_ACCEPT_PARTY = true, AUTO_ACCEPT_QUOTES = **false**, synchronous = false)
+CC->MC: **POST** /bulkTransactions \n(AUTO_ACCEPT_PARTY = true, AUTO_ACCEPT_QUOTES = **false**, synchronous = false)
 activate MC
 loop N times & within bulkExpiration timelimit  (in parallel)
 hnote left of MC
@@ -64,16 +64,16 @@ loop Quote Processing (M times & within bulkExpiration timelimit in parallel)
   Switch->MC: **PUT** /bulkquotes/{Id}
   MC-->Switch: HTTP 200 Response
 end loop
-  MC->CC: **PUT** /bulktransfers/{Id}
+  MC->CC: **PUT** /bulkTransactions/{Id}
 
   deactivate MC
-  CC->CBS: **PUT** /bulkdisbursement/{Id}
+  CC->CBS: **PUT** /bulkTransactions/{Id}
 
 
 CBS->CBS: Obtain concent from Payer on Fees and Payee Info
 CBS->CBS: Reserve funds
-CBS->CC: **PATCH** /bulkdisbursement/{bulkhometransferId}
-CC->MC: **PATCH** /bulktransfers/{bulktransactionId}
+CBS->CC: **PUT** /bulkTransactions/{bulkhometransferId}
+CC->MC: **PUT** /bulkTransactions/{bulktransactionId}
 
 loop Transfer Processing (M times & within bulkExpiration timelimit  in parallel)
   hnote left of MC
@@ -91,10 +91,10 @@ loop Transfer Processing (M times & within bulkExpiration timelimit  in parallel
   MC-->Switch: HTTP 200 Response
 end loop  
 
-MC->CC: **PUT** /bulktransfers/{Id}
+MC->CC: **PUT** /bulkTransactions/{Id}
 
 deactivate MC
-CC->CBS: **PUT** /bulkdisbursement/{Id}
+CC->CBS: **PUT** /bulkTransactions/{Id}
 CBS->CBS: Commit funds
 
 @enduml

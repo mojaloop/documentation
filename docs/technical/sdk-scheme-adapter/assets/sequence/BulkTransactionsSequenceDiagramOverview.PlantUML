@@ -28,7 +28,7 @@ end box
 == Bulk Transfers implemented using Mojaloop bulk transfers ==
 
 autonumber 1 1 "<b>[0]"
-MStaff -> MFI: Make bulk disbursement 
+MStaff -> MFI: Initiate bulk transaction call 
 MFI -> MFICC: Disburse funds \n **POST** outbound/bulkTransfers/
 note left
 {
