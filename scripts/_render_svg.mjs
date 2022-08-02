@@ -73,7 +73,7 @@ async function main() {
           name: 'removeComments',
           params: {
             overrides: {
-              active: false
+              active: true
             }
           }
         }

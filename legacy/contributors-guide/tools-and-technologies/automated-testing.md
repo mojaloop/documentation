@@ -121,8 +121,7 @@ Following the requirements and instructions as set out in the detail in [QA and 
 
 ## Process flow of a typical Scheduled Test
 
-{% uml src="contributors-guide/tools-and-technologies/assets/diagrams/automated-testing/QARegressionTestingMojaloop-Complete.plantuml" %}
-{% enduml %}
+![QARegressionTestingMojaloop-Complete.svg](./assets/diagrams/automated-testing/QARegressionTestingMojaloop-Complete.svg)
 
 ## Newman Commands
 
