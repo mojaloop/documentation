@@ -80,7 +80,7 @@ async function main() {
       ]
     }
   )
-  // fs.writeFileSync(outputPath, formatted.data)
+  fs.writeFileSync(outputPath, formatted.data)
 }
 
 main()
