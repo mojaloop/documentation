@@ -74,6 +74,8 @@ jobs:
           name: Install general dependencies
           command: *defaults_Dependencies
       - run:
+          <<: *defaults_configure_nvm
+      - run:
           name: install node dependencies
           command: npm ci
       - run:
@@ -150,7 +152,6 @@ jobs:
             terraform refresh
             terraform apply --auto-approve
 
-
   s3_upload:
     executor: default-docker
     steps:
@@ -187,6 +188,8 @@ jobs:
           name: Install general dependencies
           command: *defaults_Dependencies
       - run:
+          <<: *defaults_configure_nvm
+      - run:
           name: Configure git
           command: |
             git config user.email ${GIT_CI_EMAIL}
@@ -212,7 +215,6 @@ jobs:
             git add .
             git commit -anm "chore(ci): release $CIRCLE_TAG"
             git push -u origin master
-
 
 ##
 # Workflows
