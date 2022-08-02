@@ -12,13 +12,13 @@ The following runtime standards are utilizes for Mojaloop.
 
     NodeJS is the standard Runtime for all Mojaloop services and components for the execution of Javascript source-code files.
 
-    Our goal is to ensure that all NodeJS based services run against the latest LTS (*Long Time Support*) version of NodeJS following the official [NodeJS Release Cycle](https://nodejs.org/en/about/releases/).
+    Our goal is to ensure that all NodeJS based services run against the latest `Active LTS` (*Long Time Support*) version of NodeJS following the official [NodeJS Release Cycle](https://nodejs.org/en/about/releases/).
 
-2. Docker Operating System (*OS*)
+2. Container (Docker) Operating System (*OS*)
 
-    Mojaloop's Micro-services are built on top of the `node:<NODE_LTS_VERSION>-alpine` base image, where `NODE_LTS_VERSION` is the current NodeJS LTS following the official [NodeJS Release Cycle](https://nodejs.org/en/about/releases/). Refer to [DockerHub](https://hub.docker.com/_/node?tab=tags&page=1&name=alpine) for a full list of official NodeJS Alpine Docker images.
+    Mojaloop's Micro-services are built on top of the `node:<NODE_ACTIVE_LTS_VERSION>-alpine` base image, where `NODE_ACTIVE_LTS_VERSION` is the current NodeJS LTS following the official [NodeJS Release Cycle](https://nodejs.org/en/about/releases/). Refer to [DockerHub](https://hub.docker.com/_/node?tab=tags&page=1&name=alpine) for a full list of official NodeJS Alpine Docker images.
 
-    > NOTE: When specifying the `NODE_LTS_VERSION`, use the full semantic version such as `<MAJOR>-<MINOR>-<PATCH>`.
+    > NOTE: When specifying the `NODE_ACTIVE_LTS_VERSION`, use the full semantic version such as `<MAJOR>-<MINOR>-<PATCH>`.
     >
     > `node:16.15.0-alpine ` <-- This is OK
     >
@@ -28,7 +28,7 @@ The following runtime standards are utilizes for Mojaloop.
     1. Standard **Javascript** `Dockerfile` example:
 
         ```docker
-        FROM node:<NODE_LTS_VERSION>-alpine as builder
+        FROM node:<NODE_ACTIVE_LTS_VERSION>-alpine as builder
         WORKDIR /opt/app
 
         RUN apk --no-cache add git
@@ -41,7 +41,7 @@ The following runtime standards are utilizes for Mojaloop.
 
         RUN npm ci --production
 
-        FROM node:<NODE_LTS_VERSION>-alpine
+        FROM node:<NODE_ACTIVE_LTS_VERSION>-alpine
         WORKDIR /opt/app
 
         # Create empty log file & link stdout to the application log file
@@ -68,7 +68,7 @@ The following runtime standards are utilizes for Mojaloop.
     2. Standard **Typescript** `Dockerfile` example:
 
         ```docker
-        FROM node:<NODE_LTS_VERSION>-alpine as builder
+        FROM node:<NODE_ACTIVE_LTS_VERSION>-alpine as builder
         USER root
         WORKDIR /opt/app
 
@@ -82,7 +82,7 @@ The following runtime standards are utilizes for Mojaloop.
 
         RUN npm ci
 
-        FROM node:<NODE_LTS_VERSION>-alpine
+        FROM node:<NODE_ACTIVE_LTS_VERSION>-alpine
         WORKDIR /opt/app
 
         # Create empty log file & link stdout to the application log file
@@ -256,7 +256,7 @@ The directory structure guide requires:
 ├── LICENSE.md         # Standard Mojaloop License descriptor.
 ├── package.json       # Project package descriptor.
 ├── package-lock.json  # Project package descriptor describing an exact dependency tree in time.
-├── nvmrc.json         # NVMRC containing NodeJS runtime. This should preferably reflect the current NodeJS LTS version.
+├── nvmrc.json         # NVMRC containing NodeJS runtime. This should preferably reflect the current NodeJS Active LTS version.
 ├── .ncurc.yaml        # Ignore file for dep:check script (npm-check-updates).
 ├── Dockerfile         # Optional - Dockerfile descriptor.
 ├── docker-compose.yml # Optional - Docker Compose descriptor, inc containing backend dependencies.
