@@ -8,6 +8,10 @@
     "email": "uobong-eren@mojaloop.io"
   },
   "repository": "https://www.github.com/mojaloop/documentation",
+  "type": "module",
+  "engines": {
+    "node": "=16.x"
+  },
   "scripts": {
     "dev": "vuepress dev docs",
     "build": "vuepress build docs",

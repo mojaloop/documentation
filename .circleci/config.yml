@@ -26,6 +26,19 @@ defaults_Dependencies: &defaults_Dependencies |
             py3-pip
   pip3 install awscli
 
+
+defaults_configure_nvm: &defaults_configure_nvm
+  name: Configure NVM
+  command: |
+    touch $HOME/.profile
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+    echo "Installing Node version: $(cat .nvmrc)"
+    nvm install $(cat .nvmrc)
+    nvm alias default $(cat .nvmrc)
+    nvm use $(cat .nvmrc)
+
 ##
 # Executors
 #
@@ -33,18 +46,19 @@ defaults_Dependencies: &defaults_Dependencies |
 ##
 executors:
   default-docker:
-    working_directory: /home/circleci/project
+    working_directory: &WORKING_DIR /home/circleci/project
     docker:
-      - image: node:12.16.1-alpine
+      - image: node:16.15.0-alpine # Ref: https://hub.docker.com/_/node?tab=tags&page=1&name=alpine
 
   legacy-docker:
-    working_directory: /home/circleci/project
+    working_directory: *WORKING_DIR
     docker:
       - image: node:10.15.2-alpine
 
   default-machine:
+    working_directory: *WORKING_DIR
     machine:
-      image: ubuntu-2004:202201-02
+      image: ubuntu-2004:current # Ref: https://circleci.com/developer/machine/image/ubuntu-2004
       
 ##
 # Jobs
@@ -92,19 +106,14 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Set up NVM
-          command: |
-            echo ${NVM_DIR}
-            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-            nvm install v12.16.1
-            nvm alias default v12.16.1
-            node --version
-            npm ci
+          <<: *defaults_configure_nvm
+      - run:
+          name: Update NPM install
+          command: npm ci
       - run:
           name: Check if plantuml has been updated correctly
           command: |
             set +o pipefail
-            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
             npm run build:plantuml:all
             FILE_COUNT=$(git diff --cached --name-only | grep .svg | wc -l)
             if [ ${FILE_COUNT} -ne "0" ]; then

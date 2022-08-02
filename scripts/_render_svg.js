@@ -5,23 +5,17 @@
  * Uses plantuml server to render a puml to svg
  */
 
-const fs = require('fs')
-const path = require('path')
-const util = require('util')
-const got = require('got')
-const SVGO = require('svgo')
-const plantumlEncoder = require('plantuml-encoder')
+import fs from 'fs'
+import path from 'path'
+import util from 'util'
+import got from 'got'
+import * as SVGO from 'svgo'
+import * as plantumlEncoder from 'plantuml-encoder'
 
 const rendererBaseUrl = process.env.PUML_BASE_URL || 'http://www.plantuml.com/plantuml'
 
-svgo = new SVGO({
-  js2svg: { pretty: true, indent: 2 },
-  plugins: [
-    { removeComments: true },
-  ]
-});
-
 async function main() {
+
   let [_, _script, inputPath, outputPath] = process.argv
 
   if (!inputPath) {
@@ -56,9 +50,36 @@ async function main() {
   }
 
   // Strip comments and prettify svg
-  // This makes sure that our .svg files are deterministic and diffable
-  const formatted = await svgo.optimize(result.body)
-  fs.writeFileSync(outputPath, formatted.data)
+  // This makes sure that our .svg files are deterministic and diff'able
+  const formatted = await SVGO.optimize(
+    result.body,
+    {
+      path: outputPath,
+      multipass: true,
+      js2svg: { pretty: true, indent: 2 },
+      plugins: [
+        //// preset-defaults plugin override
+        // {
+        //   name: 'preset-default',
+        //   params: {
+        //     overrides: {
+                // Insert overrides here.
+        //     }
+        //   }
+        // },
+        // removeComments plugin
+        { 
+          name: 'removeComments',
+          params: {
+            overrides: {
+              active: false
+            }
+          }
+        }
+      ]
+    }
+  )
+  // fs.writeFileSync(outputPath, formatted.data)
 }
 
 main()
