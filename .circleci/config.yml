@@ -51,7 +51,7 @@ executors:
       - image: node:16.15.0-alpine # Ref: https://hub.docker.com/_/node?tab=tags&page=1&name=alpine
 
   legacy-docker:
-    working_directory: *WORKING_DIR
+    working_directory: /home/circleci/project/legacy
     docker:
       - image: node:10.15.2-alpine
 
@@ -83,7 +83,7 @@ jobs:
           command: npm run build
   
   build-legacy:
-    executor: default-docker
+    executor: legacy-docker
     steps:
       - checkout
       - run:
