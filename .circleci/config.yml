@@ -21,7 +21,7 @@ defaults_Dependencies: &defaults_Dependencies |
             ca-certificates \
             curl \
             openssh-client \
-            make gcc g++ python libtool autoconf automake \
+            make gcc g++ python3 libtool autoconf automake \
             python3 \
             py3-pip
   pip3 install awscli
