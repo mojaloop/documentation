@@ -27,7 +27,7 @@ sleep 2
 
 for i in $(find ${DIR}/diagrams -name '*.puml'); do
   echo "rendering .puml -> .svg for diagram diagram: $i"
-  ${DIR}/_render_svg.js $i $(echo $i | sed 's/puml/svg/g')
+  ${DIR}/_render_svg.mjs $i $(echo $i | sed 's/puml/svg/g')
 done
 
 docker stop puml-local

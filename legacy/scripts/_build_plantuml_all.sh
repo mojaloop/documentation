@@ -26,7 +26,7 @@ docker run -d --rm \
 for i in $(find ${DIR}/.. -name '*.p*uml' | grep -v node_modules); do
   echo "rendering .puml -> .svg for diagram diagram: $i"
   
-  ${DIR}/_render_svg.js $i
+  ${DIR}/_render_svg.mjs $i
 done
 
 

@@ -25,7 +25,7 @@ async function main() {
   let [_, _script, inputPath, outputPath] = process.argv
 
   if (!inputPath) {
-    console.log("usage: ./_render_svg.js <input path> [<output path>]")
+    console.log("usage: ./_render_svg.mjs <input path> [<output path>]")
     process.exit(1)
   }
 

@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 
-
 /**
- * Uses plantuml server to render a puml to svg
+ * NOTES: 
+ * - This file is an ESM Module (thus the extension `.mjs`). This is required for the `got` dependency which only supports ESM!
+ * - Uses PlantUml server to render a PUML to SVG
  */
 
 import fs from 'fs'
@@ -19,7 +20,7 @@ async function main() {
   let [_, _script, inputPath, outputPath] = process.argv
 
   if (!inputPath) {
-    console.log("usage: ./_render_svg.js <input path> [<output path>]")
+    console.log("usage: ./_render_svg.mjs <input path> [<output path>]")
     process.exit(1)
   }
 

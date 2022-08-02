@@ -8,20 +8,19 @@
     "email": "uobong-eren@mojaloop.io"
   },
   "repository": "https://www.github.com/mojaloop/documentation",
-  "type": "module",
   "engines": {
     "node": "=16.x"
   },
   "scripts": {
-    "dev": "vuepress dev docs",
-    "build": "vuepress build docs",
+    "dev": "npx vuepress dev docs",
+    "build": "npx vuepress build docs",
     "build:plantuml:all": "./scripts/_build_plantuml.sh",
     "build:plantuml:diff": "MODE=STAGED_GIT ./scripts/_build_plantuml.sh",
     "lint": "npx markdownlint './docs/**/*.md' --ignore node_modules --config markdownlint.yaml",
     "lint:fix": "npm run lint -- --fix",
     "dep:check": "npx ncu -e 2",
     "dep:update": "npx ncu -u",
-    "prepare": "husky install"
+    "prepare": "npx husky install"
   },
   "devDependencies": {
     "@vuepress/plugin-back-to-top": "^1.9.7",
