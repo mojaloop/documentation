@@ -242,7 +242,8 @@ For other recommended bash conventions, refer to this blog post: [Best Practices
 ## Documentation
 
 - Documentation should be written in Markdown format.  
-- Hand drawn diagrams should use SVG format (example - architecture / component / block / state transition diagrams)
+- Hand drawn diagrams should use an editable SVG format (example - architecture / component / block / state transition diagrams) exported from [diagrams.net](https://app.diagrams.net)
+  > NOTE: Please ensure that you have imbedded the editable diagram when exporting the SVG from [diagrams.net](https://app.diagrams.net)!
 - Sequence diagrams should use PlantUML
 - All discussion documents should be placed in /community/archive/discussion-docs.
 - The use of Google Docs and other private tools is not advised for community wide collaboration
