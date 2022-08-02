@@ -95,9 +95,6 @@ jobs:
             cd ./legacy
             npm ci
       - run:
-          name: install plugins
-          command: cd ./legacy && npm run gitbook:install
-      - run:
           name: build
           command: cd ./legacy && npm run gitbook:build
       - save_cache:
