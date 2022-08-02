@@ -53,7 +53,7 @@ executors:
   legacy-docker:
     working_directory: *WORKING_DIR
     docker:
-      - image: node:10.15.2-alpine
+      - image: node:12.16.1-alpine
 
   default-machine:
     working_directory: *WORKING_DIR
