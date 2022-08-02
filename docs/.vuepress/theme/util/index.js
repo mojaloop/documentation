@@ -141,7 +141,7 @@ export function resolveSidebarItems (page, regularPath, site, localePath, versio
   let localeConfig = localePath && themeConfig.locales
     ? themeConfig.locales[localePath] || themeConfig
     : themeConfig
-  if (page.version && page.version !== 'next') {
+  if (page.version && page.version !== 'latest') {
     const versionedConfig = site.themeConfig.versionedSidebar && site.themeConfig.versionedSidebar[page.version]
     localeConfig = localePath && versionedConfig.locales
       ? versionedConfig.locales[localePath] || versionedConfig

@@ -5,7 +5,7 @@ module.exports = {
   /**
    * Ref：https://v1.vuepress.vuejs.org/config/#title
    */
-  title: 'Mojaloop Documentation 2.0',
+  title: 'Mojaloop Documentation',
   /**
    * Ref：https://v1.vuepress.vuejs.org/config/#description
    */
@@ -39,6 +39,7 @@ module.exports = {
     logo: '/mojaloop_logo_med.png',
     sidebarDepth: 2,
     lastUpdated: true,
+    footerCopyright: 'Apache 2.0 Licensed | Copyright © 2022 Mojaloop Foundation',
     nav: [
       {
         text: 'Getting Started',
@@ -52,7 +53,6 @@ module.exports = {
         text: 'API',
         link: '/api/'
       },
-      // temporary redirect as we migrate to the new docs
       {
         text: 'Technical',
         link: '/technical/'
@@ -63,20 +63,11 @@ module.exports = {
       }
     ],
     sidebar: {
-      'getting-started/': [
+      '/getting-started/': [
         {
           title: 'Getting Started',
           collapsable: false,
           children: ['']
-        },
-        {
-          title: 'Quickstarts',
-          collapsable: false,
-          children: [
-            ['quickstart', 'Quickstarts'],
-            ['quickstart-one', 'Quickstart One'],
-            ['quickstart-two', 'Quickstart Two']
-          ]
         },
         {
           title: 'Demos',
@@ -97,12 +88,13 @@ module.exports = {
           children: [
             ['faqs', 'Frequently Asked Questions'],
             ['general-faqs', 'General FAQs'],
-            ['technical-faqs', 'Technical FAQs']
+            ['technical-faqs', 'Technical FAQs'],
+            ['license', 'License'],
           ],
           sidebarDepth: 2
-        },
+        }
       ],
-      'community/': [
+      '/community/': [
         {
           title: 'Community',
           collapsable: false,
@@ -212,7 +204,7 @@ module.exports = {
           sidebarDepth: 4
         }
       ],
-      'api/': [
+      '/api/': [
         {
           title: 'Mojaloop APIs',
           collapsable: false,
@@ -229,7 +221,6 @@ module.exports = {
             {
               title: 'API Definitions',
               collapsable: false,
-              path: 'fspiop/definitions',
               children: [
                 {
                   title: 'v1.1 (Current)',
@@ -311,12 +302,10 @@ module.exports = {
         {
           title: 'Thirdparty API',
           collapsable: false,
-          path: 'thirdparty/',
           children: [
             {
-              title: 'API Definitions',
-              path: 'fspiop/logical-data-model',
-              collapsable: true
+              title: 'Overview',
+              path: 'thirdparty/',
             },
             {
               title: 'Transaction Patterns',
@@ -342,13 +331,218 @@ module.exports = {
           sidebarDepth: 2
         },
         {
-          title: 'Glossary',
+          title: 'Misc',
           collapsable: false,
           children: [
-            ['fspiop/glossary', 'Overview'],
+            ['fspiop/glossary', 'Glossary'],
+            ['license', 'License'],
           ],
         },
       ],
+      "/technical/": [
+        {
+          "title": "Mojaloop Hub",
+          "collapsable": true,
+          "children": [
+            {
+              "title": "Overview",
+              "path": "overview/"
+            },
+            {
+              "title": "Current Architecture - PI 14",
+              "path": "overview/components-PI14"
+            },
+            {
+              "title": "Current Architecture - PI 12",
+              "path": "overview/components-PI12"
+            },
+            {
+              "title": "Current Architecture - PI 11",
+              "path": "overview/components-PI11"
+            },
+            {
+              "title": "Current Architecture - PI 8",
+              "path": "overview/components-PI8"
+            },
+            {
+              "title": "Current Architecture - PI 7",
+              "path": "overview/components-PI7"
+            },
+            {
+              "title": "Current Architecture - PI 6",
+              "path": "overview/components-PI6"
+            },
+            {
+              "title": "Current Architecture - PI 5",
+              "path": "overview/components-PI5"
+            },
+            {
+              "title": "Current Architecture - PI 3",
+              "path": "overview/components-PI3"
+            }
+          ],
+          "sidebarDepth": 2
+        },
+        {
+          "title": "Account Lookup Service",
+          "collapsable": true,
+          "children": [
+            {
+              "title": "Overview",
+              "path": "account-lookup-service/"
+            },
+            {
+              "title": "GET Participants",
+              "path": "account-lookup-service/als-get-participants"
+            },
+            {
+              "title": "POST Participants",
+              "path": "account-lookup-service/als-post-participants"
+            },
+            {
+              "title": "POST Participants (Batch)",
+              "path": "account-lookup-service/als-post-participants-batch"
+            },
+            {
+              "title": "DEL Participants",
+              "path": "account-lookup-service/als-del-participants"
+            },
+            {
+              "title": "GET Parties",
+              "path": "account-lookup-service/als-get-parties"
+            }
+          ],
+          "sidebarDepth": 2
+        },
+        {
+          "title": "Quoting Service",
+          "collapsable": true,
+          "children": [
+            {
+              "title": "Overview",
+              "path": "quoting-service/"
+            },
+            {
+              "title": "GET Quote",
+              "path": "quoting-service/qs-get-quotes"
+            },
+            {
+              "title": "POST Quote",
+              "path": "quoting-service/qs-post-quotes"
+            },
+            {
+              "title": "GET Bulk Quote",
+              "path": "quoting-service/qs-get-bulk-quotes"
+            },
+            {
+              "title": "POST Bulk Quote",
+              "path": "quoting-service/qs-post-bulk-quotes"
+            }
+          ],
+          "sidebarDepth": 2
+        },
+        {
+          "title": "Transaction Requests Service",
+          "collapsable": true,
+          "children": [
+            {
+              "title": "Overview",
+              "path": "transaction-requests-service/"
+            },
+            {
+              "title": "GET Transaction Requests",
+              "path": "transaction-requests-service/transaction-requests-get"
+            },
+            {
+              "title": "POST Transaction Requests",
+              "path": "transaction-requests-service/transaction-requests-post"
+            },
+            {
+              "title": "Authorizations",
+              "path": "transaction-requests-service/authorizations"
+            }
+          ],
+          "sidebarDepth": 2
+        },
+        {
+          "title": "Central Event Processor Service",
+          "collapsable": true,
+          "children": [
+            {
+              "title": "Overview",
+              "path": "central-event-processor/"
+            },
+            {
+              "title": "Event Handler (Placeholder)",
+              "path": "central-event-processor/event-handler-placeholder"
+            },
+            {
+              "title": "Notiification Handler for Rejections",
+              "path": "central-event-processor/notification-handler-for-rejections"
+            },
+            {
+              "title": "Signature Validation",
+              "path": "central-event-processor/signature-validation"
+            }
+          ],
+          "sidebarDepth": 2
+        },
+        {
+          "title": "Event Framework",
+          "collapsable": true,
+          "children": [
+            {
+              "title": "Overview",
+              "path": "event-framework/"
+            },
+            {
+              "title": "Event Stream Processor",
+              "path": "event-stream-processor/"
+            }
+          ],
+          "sidebarDepth": 2
+        },
+        {
+          "title": "Fraud Services",
+          "collapsable": true,
+          "children": [
+            {
+              "title": "Overview",
+              "path": "fraud-services/"
+            },
+            {
+              "title": "Usage",
+              "path": "fraud-services/related-documents/documentation"
+            }
+          ],
+          "sidebarDepth": 2
+        },
+        {
+          "title": "SDK Scheme Adapter",
+          "collapsable": true,
+          "children": [
+            {
+              "title": "Overview",
+              "path": "sdk-scheme-adapter/"
+            },
+            {
+              "title": "Usage",
+              "path": "sdk-scheme-adapter/usage/"
+            }
+          ],
+          "sidebarDepth": 2
+        },
+        {
+          "title": "ML Testing Toolkit",
+          "collapsable": true,
+          "children": [
+            {
+              "title": "Overview",
+              "path": "ml-testing-toolkit/"
+            }
+          ]
+        }
+      ]
     }
   },
 

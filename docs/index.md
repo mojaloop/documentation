@@ -6,10 +6,9 @@ actionText: Getting Started →
 actionLink: /getting-started/
 features:
 - title: Commmunity
-  details: Feature 1 Description
+  details: Learn about the community behind the tech
 - title: Technical
-  details: Feature 2 Description
+  details: See inside the different components, and deploy Mojaloop for yourself!
 - title: API Specification
-  details: Feature 3 Description
-footer: Made by Mojaloop with ❤️
+  details: Learn the different APIs that Mojaloop speaks so you can build your integration
 ---

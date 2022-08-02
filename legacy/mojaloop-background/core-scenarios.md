@@ -18,7 +18,7 @@ Mojaloop addresses a number of scenarios in which this software might help the p
 
 Hamim is working on his farm in Northern Uganda when he receives an urgent phone call from his brother, Kani. Kani is low on money and will not get paid until next week. Kani has no money to pay for food for his family and asks Hamim to help him out. Hamim and Kani have no means of transportation and it would take several days for Hamim to get to his Kani's home in Southern Uganda. While they both have mobile flip phones, they use different financial service providers. Kani tells Hamim that he needs 5,000 shillings to buy food until he gets paid next week for his job working in a local field. Hamin agrees to send Kani the money.
 
-```text
+```
         *** Mojaloop technology does its job ***
 ```
 
@@ -28,7 +28,7 @@ Because Hamim has sent money to Kani before he has his information on his phone.
 
 Venya is waiting in line to buy plantains at her local market. She is corralling her elder child with one hand and has her baby in a sling. She often comes to this seller and she knows he has a good price. She also knows that even though she carries no money and he is not on her financial network, she can buy from him. As she approaches the head of the line she juggles the children and pulls out a simple flip phone. She tells him 1.5 kilograms and he tells her the price, which she agrees to.
 
-```text
+```
         *** Mojaloop technology does its job ***
 ```
 
@@ -38,7 +38,7 @@ Because she's been here before the merchant already has her information on his p
 
 Nikisha is the accountant for one of the largest manufacturing companies in Johannesburg and employs over 250 workers. Their company uses a time and attendance system to track the number of hours that each employee works along with their hourly rate and employee ID. On a weekly basis Nikisha gets an update on her bulk payment system that shows all the employees, their user ID along and amount to be paid. Since the companies employees all have different financial service providers this system makes it really easy for Nikisha to confirm and distribute their pay with a couple of clicks. The company has a high turnover rate so new employees who get their first paycheck are automatically prompted to open an account as long as they provided a valid mobile number when they started. As Nikisha gets ready to send out this week's payments she opens up a bulk payment report.
 
-```text
+```
 *** Mojaloop technology does its job ***
 ```
 
@@ -48,7 +48,7 @@ The bulk report for payments comes up by date range and, since Nikisha does this
 
 Salem works as an auditor for a large bank in Kampala, Uganda. His job is to monitor, manage and reduce risk for the company. order to do so each new user ID in the system is assigned a default tier level which means they can only transfer a small number and amount of funds in and out of the system over specific periods of time. As users acquire greater balances in their accounts and hold their accounts for longer periods of time their tier levels improve. Tier levels are handled automatically by the system so Salem does not need to worry about assigning or changing these levels under normal circumstances. Part of Salem's job as an auditor is to review the daily reports to ensure that everyone's funds are safe and secure and he kicks off his daily report to review the accounts.
 
-```text
+```
 *** Mojaloop technology does its job ***
 ```
 
@@ -58,7 +58,7 @@ This morning when Salem reviews these reports he notices that one specific user 
 
 Salem works as an auditor for a large bank in Kampala, Uganda. His job is to monitor and stop any fraudulent activity for the company. While the company has a set of rules that might flag individuals for Salem to investigate, he also has the authority to screen any user ID for fraudulent activities at any time. Each time Salem performs a fraud check on a user ID, the system records the date of the last check along with any comments that Salem might have made. This makes it very easy for Salem to search for IDs that might have never been checked for fraud or have not been checked in a very long time. Salem has been monitoring one particular ID that seems to have had an increased amount of incoming funds deposited into their account on a daily basis. Today he does a search of the user ID to investigate further.
 
-```text
+```
 *** Mojaloop technology does its job ***
 ```
 
@@ -68,7 +68,7 @@ When the user ID is retrieved Salem is able to see the customer's name, birthdat
 
 Tadeo just bought his first mobile flip phone for him and his family to share. He is happy that he finally has a phone that he can use in emergencies, but he can also finally keep his money secure by opening up a bank account. Tadeo has never had a bank account since he lives in a very remote part of Africa with no personal means of transportation. Tadeo and his family have to rely on bartering or cash to buy any goods they need at the market. Although Tadeo is not proficient in reading, he is able to easily use his phone to setup and account for him and his family by following a couple of easy to read menu steps.
 
-```text
+```
 *** Mojaloop technology does its job ***
 ```
 
@@ -78,13 +78,13 @@ Tadeo was able to use his phone to create an mWallet account using his National 
 
 Jahari has a flip phone that all the family uses and he has setup different user numbers for each family member. Jahari is at the local market and needs to buy some meat for his family. Before he does, he wants to make sure he has enough funds in his account to purchase the goods and still have enough left over to set aside for future medical expenses and education. Jahari is happy that his money is secure and he is able to check his account balance anytime he needs to by simply entering his secure pin on his phone. Once he confirms his balance he will buy some goat and cow meat at the market.
 
-```text
+```
     *** Mojaloop technology does its job ***
 ```
 
 After Jahari has entered his pin on his phone he is able to see his account balance. He is also able to see any of his recent transactions as well as any fees that were associated with these transactions. After confirming his available funds he picks out his meat and brings it up to the merchant for payment. The merchant does a lot of business in this market and has a point of sales device. This is very helpful for Jahari and his family since they only have one phone and many times his wife or his children go to the market and do not have the phone with them. Jahari can generate a one time pin for family to use in these cases. The merchant is able to enter the purchase amount on the POS device and Jahari or any of his family members securely enters their user number and reviews the transaction. He confirms that the amount on the POS machine matches what the merchant verbally told him and he enters his one-time pin to approve the transaction.
 
-```text
+```
 *** Mojaloop technology does its job ***
 ```
 

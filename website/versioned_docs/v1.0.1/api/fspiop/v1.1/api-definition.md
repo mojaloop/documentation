@@ -116,7 +116,7 @@ _{resource}_.
 
 ###### Listing 1
 
-```text
+```
 scheme:[//[user:password@]host[:port]][/]path[?query][#fragment]
 ```
 
@@ -168,7 +168,7 @@ If more than one key-value pair is used in the query string, the pairs should be
 
 ###### Listing 2
 
-```text
+```
 /authorization/3d492671-b7af-4f3f-88de-76169b1bdf88?authenticationType=OTP&retriesLeft=2&amount=102&currency=USD
 ```
 

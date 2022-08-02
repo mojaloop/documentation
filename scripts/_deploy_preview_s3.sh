@@ -33,8 +33,8 @@ aws s3 ls s3://${BUCKET_NAME}
 # build new vuepress site
 rm -rf ${DIR}/../build
 cd ${DIR}/../
-yarn
-yarn build || echo 'WARNING: yarn build failed! Please fix this - just a temporary workaround'
+npm ci
+npm run build
 mv ${DIR}/../docs/.vuepress/dist ${DIR}/../build
 
 

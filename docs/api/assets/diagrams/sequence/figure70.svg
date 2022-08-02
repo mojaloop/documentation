@@ -1,0 +1,169 @@
+<svg xmlns="http://www.w3.org/2000/svg" height="793" preserveAspectRatio="none" style="width:856px;height:793px" width="856">
+  <path fill="#F4F4F4" stroke="#000" d="M40 76.563h10v691.852H40zM319 200.359h10v481.656h-10zM598 361.289h10v174.93h-10z"/>
+  <path stroke="#000" stroke-dasharray="5,5" d="M45 66.563v719.851M323.5 66.563v719.851M602.5 66.563v719.851"/>
+  <path fill="#F4F4F4" stroke="#383838" stroke-width="1.5" d="M5 5h80v60.563H5z"/>
+  <text font-family="Verdana" font-size="20" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="66" x="12" y="30.564">
+    Payer
+  </text>
+  <text font-family="Verdana" font-size="20" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="43" x="23.5" y="53.846">
+    FSP
+  </text>
+  <path fill="#F4F4F4" stroke="#383838" stroke-width="1.5" d="M268.5 5h111v60.563h-111z"/>
+  <text font-family="Verdana" font-size="20" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="97" x="275.5" y="30.564">
+    Optional
+  </text>
+  <text font-family="Verdana" font-size="20" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="75" x="286.5" y="53.846">
+    Switch
+  </text>
+  <path fill="#F4F4F4" stroke="#383838" stroke-width="1.5" d="M559.5 5h87v60.563h-87z"/>
+  <text font-family="Verdana" font-size="20" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="70" x="568" y="30.564">
+    Payee
+  </text>
+  <text font-family="Verdana" font-size="20" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="73" x="566.5" y="53.846">
+    FSP(s)
+  </text>
+  <path fill="#F4F4F4" stroke="#000" d="M40 76.563h10v691.852H40zM319 200.359h10v481.656h-10zM598 361.289h10v174.93h-10z"/>
+  <path stroke="#000" d="M50 127.961h42M92 127.961v13M51 140.961h41M61 136.96l-10 4 10 4-4-4z"/>
+  <text font-family="Verdana" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="21" x="57" y="107.762">
+    [1]
+  </text>
+  <text font-family="Verdana" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="149" x="82" y="92.629">
+    Reserve each individual
+  </text>
+  <text font-family="Verdana" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="124" x="82" y="107.762">
+    transfer from Payer
+  </text>
+  <text font-family="Verdana" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="194" x="82" y="122.895">
+    account to Payee FSP account
+  </text>
+  <path stroke="#000" d="M317 200.359l-10-4M317 200.359l-10 4M50 200.359h268"/>
+  <text font-family="Verdana" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="21" x="62" y="180.161">
+    [2]
+  </text>
+  <text font-family="Verdana" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="149" x="122.5" y="165.028">
+    POST /bulkTransfers
+  </text>
+  <text font-family="Verdana" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="167" x="113.5" y="180.161">
+    (List of individual transfers
+  </text>
+  <text font-family="Verdana" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="220" x="87" y="195.293">
+    including ILP packet and condition)
+  </text>
+  <path stroke="#000" d="M50 229.492l10-4M50 229.492l10 4"/>
+  <path stroke="#000" stroke-dasharray="2,2" d="M50 229.492h268"/>
+  <text font-family="Verdana" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="69" x="113" y="224.426">
+    HTTP 202
+  </text>
+  <text font-family="Verdana" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="70" x="186" y="224.426">
+    (Accepted)
+  </text>
+  <path stroke="#000" d="M329 288.891h42M371 288.891v13M330 301.891h41M340 297.89l-10 4 10 4-4-4z"/>
+  <text font-family="Verdana" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="149" x="336" y="253.559">
+    Reserve each individual
+  </text>
+  <text font-family="Verdana" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="152" x="336" y="268.692">
+    transfer from Payer FSP
+  </text>
+  <text font-family="Verdana" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="84" x="336" y="283.825">
+    to Payee FSP
+  </text>
+  <path stroke="#000" d="M596 361.289l-10-4M596 361.289l-10 4M329 361.289h268"/>
+  <text font-family="Verdana" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="21" x="341" y="341.09">
+    [3]
+  </text>
+  <text font-family="Verdana" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="149" x="401.5" y="325.957">
+    POST /bulkTransfers
+  </text>
+  <text font-family="Verdana" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="167" x="392.5" y="341.09">
+    (List of individual transfers
+  </text>
+  <text font-family="Verdana" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="220" x="366" y="356.223">
+    including ILP packet and condition)
+  </text>
+  <path stroke="#000" d="M329 390.422l10-4M329 390.422l10 4"/>
+  <path stroke="#000" stroke-dasharray="2,2" d="M329 390.422h268"/>
+  <text font-family="Verdana" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="69" x="392" y="385.356">
+    HTTP 202
+  </text>
+  <text font-family="Verdana" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="70" x="465" y="385.356">
+    (Accepted)
+  </text>
+  <path stroke="#000" d="M608 449.82h42M650 449.82v13M609 462.82h41M619 458.82l-10 4 10 4-4-4z"/>
+  <text font-family="Verdana" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="196" x="615" y="414.489">
+    Some processing error occurs,
+  </text>
+  <text font-family="Verdana" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="234" x="615" y="429.622">
+    e.g. a validation failure that prevents
+  </text>
+  <text font-family="Verdana" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="213" x="615" y="444.754">
+    the bulk transfer to be performed
+  </text>
+  <path stroke="#000" d="M329 507.086l10-4M329 507.086l10 4M329 507.086h268"/>
+  <text font-family="Verdana" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="21" x="341" y="494.454">
+    [4]
+  </text>
+  <text font-family="Verdana" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="144" x="366" y="486.887">
+    PUT /bulkTransfers/
+  </text>
+  <text font-family="Verdana" font-size="13" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="35" x="510" y="486.887">
+    &lt;ID&gt;
+  </text>
+  <text font-family="Verdana" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="41" x="545" y="486.887">
+    /error
+  </text>
+  <text font-family="Verdana" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="118" x="417" y="502.02">
+    (Error information)
+  </text>
+  <path stroke="#000" d="M601 536.219l-10-4M601 536.219l-10 4"/>
+  <path stroke="#000" stroke-dasharray="2,2" d="M329 536.219h273"/>
+  <text font-family="Verdana" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="69" x="415.5" y="531.153">
+    HTTP 200
+  </text>
+  <text font-family="Verdana" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="28" x="488.5" y="531.153">
+    (OK)
+  </text>
+  <path stroke="#000" d="M329 595.617h42M371 595.617v13M330 608.617h41M340 604.617l-10 4 10 4-4-4z"/>
+  <text font-family="Verdana" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="138" x="336" y="560.286">
+    Cancel each reserved
+  </text>
+  <text font-family="Verdana" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="124" x="336" y="575.418">
+    transfer from Payer
+  </text>
+  <text font-family="Verdana" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="112" x="336" y="590.551">
+    FSP to Payee FSP
+  </text>
+  <path stroke="#000" d="M50 652.883l10-4M50 652.883l10 4M50 652.883h268"/>
+  <text font-family="Verdana" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="21" x="62" y="640.25">
+    [5]
+  </text>
+  <text font-family="Verdana" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="144" x="87" y="632.684">
+    PUT /bulkTransfers/
+  </text>
+  <text font-family="Verdana" font-size="13" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="35" x="231" y="632.684">
+    &lt;ID&gt;
+  </text>
+  <text font-family="Verdana" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="41" x="266" y="632.684">
+    /error
+  </text>
+  <text font-family="Verdana" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="118" x="138" y="647.817">
+    (Error information)
+  </text>
+  <path stroke="#000" d="M322 682.016l-10-4M322 682.016l-10 4"/>
+  <path stroke="#000" stroke-dasharray="2,2" d="M50 682.016h273"/>
+  <text font-family="Verdana" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="69" x="136.5" y="676.95">
+    HTTP 200
+  </text>
+  <text font-family="Verdana" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="28" x="209.5" y="676.95">
+    (OK)
+  </text>
+  <path stroke="#000" d="M50 741.414h42M92 741.414v13M51 754.414h41M61 750.414l-10 4 10 4-4-4z"/>
+  <text font-family="Verdana" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="132" x="57" y="706.082">
+    Cancel each transfer
+  </text>
+  <text font-family="Verdana" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="125" x="57" y="721.215">
+    from Payer account
+  </text>
+  <text font-family="Verdana" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="139" x="57" y="736.348">
+    to Payee FSP account
+  </text>
+</svg>

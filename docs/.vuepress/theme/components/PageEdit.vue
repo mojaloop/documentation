@@ -53,6 +53,11 @@ export default {
         return
       }
 
+      // Don't display on old versions
+      if (this.$page.version !== 'latest') {
+        return
+      }
+
       if (!isNil(this.$page.frontmatter.editUrl)) {
         return this.$page.frontmatter.editUrl
       }
@@ -68,7 +73,7 @@ export default {
       let { docsDir = '' } = this.$site.themeConfig
       const path = this.$page.relativePath
       if (this.$page.version) {
-        if (this.$page.version !== 'next') {
+        if (this.$page.version !== 'latest') {
           docsDir = docsDirVersioned
         }
       } else if (this.$page.unversioned === true) {

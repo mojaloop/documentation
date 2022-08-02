@@ -52,7 +52,7 @@ export default {
         return versionifyUserNav(
           this.$themeLocaleConfig.nav || this.$site.themeConfig.nav || [],
           this.$page,
-          this.$versions[0],
+          'latest',
           this.$localePath,
           this.$router.options.routes
         )

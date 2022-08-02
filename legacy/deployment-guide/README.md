@@ -245,7 +245,7 @@ Refer to the [Helm v2 to v3 Migration Guide](./helm-legacy-migration.md) if you 
 
    The below required config is applicable to Helm release >= versions 6.2.2 for Mojaloop API Services;
 
-   ```text
+   ```
     # Mojaloop Demo
     127.0.0.1   ml-api-adapter.local central-ledger.local account-lookup-service.local account-lookup-service-admin.local quoting-service.local central-settlement-service.local transaction-request-service.local central-settlement.local bulk-api-adapter.local moja-simulator.local sim-payerfsp.local sim-payeefsp.local sim-testfsp1.local sim-testfsp2.local sim-testfsp3.local sim-testfsp4.local mojaloop-simulators.local finance-portal.local operator-settlement.local settlement-management.local testing-toolkit.local testing-toolkit-specapi.local
    ```
@@ -294,7 +294,7 @@ The [Mojaloop Testing Toolkit](../../documentation/mojaloop-technical-overview/m
 
    Example of the finally summary being displayed from the Golden Path test collection log output:
 
-   ```text
+   ```
     Test Suite:GP Tests
     Environment:Development
     ┌───────────────────────────────────────────────────┐

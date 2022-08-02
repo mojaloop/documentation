@@ -44,8 +44,8 @@ executors:
 
   default-machine:
     machine:
-      image: ubuntu-1604:201903-01
-
+      image: ubuntu-2004:202201-02
+      
 ##
 # Jobs
 #
@@ -61,10 +61,10 @@ jobs:
           command: *defaults_Dependencies
       - run:
           name: install node dependencies
-          command: yarn
+          command: npm ci
       - run:
           name: build
-          command: yarn build
+          command: npm run build
   
   build-legacy:
     executor: legacy-docker
@@ -86,6 +86,33 @@ jobs:
           key: build-legacy-cache-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
           paths:
             - /home/circleci/project/legacy/_book
+
+  test-puml:
+    executor: default-machine
+    steps:
+      - checkout
+      - run:
+          name: Set up NVM
+          command: |
+            echo ${NVM_DIR}
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+            nvm install v12.16.1
+            nvm alias default v12.16.1
+            node --version
+            npm ci
+      - run:
+          name: Check if plantuml has been updated correctly
+          command: |
+            set +o pipefail
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+            npm run build:plantuml:all
+            FILE_COUNT=$(git diff --cached --name-only | grep .svg | wc -l)
+            if [ ${FILE_COUNT} -ne "0" ]; then
+              echo 'Plantuml files are out of sync. Please run npm run build:plantuml:all and try again.';
+              exit 1;
+            else
+              echo 'Plantuml files are up to date';
+            fi
 
   infra:
     executor: default-docker
@@ -141,6 +168,43 @@ jobs:
       # - run:
       #     <<: *defaults_slack_announcement
 
+  # When a new tag is pushed, create a new version of docs
+  # and push it to master to be uploaded
+  bump_version:
+    executor: default-docker
+    steps:
+      - checkout
+      - run:
+          name: Install general dependencies
+          command: *defaults_Dependencies
+      - run:
+          name: Configure git
+          command: |
+            git config user.email ${GIT_CI_EMAIL}
+            git config user.name ${GIT_CI_USER}
+            git checkout master
+      - restore_cache:
+          keys:
+            - build-legacy-cache-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
+      - run:
+          name: create a new version in website/versioned_docs
+          command: |
+            npm ci
+            ./node_modules/.bin/vuepress version docs $CIRCLE_TAG
+      - run:
+          name: Configure ssh
+          command: |
+            mkdir -p ~/.ssh
+            ssh-keyscan -p 443 ssh.github.com >> ~/.ssh/known_hosts
+            ssh-keyscan github.com >> ~/.ssh/known_hosts
+      - run:
+          name: Commit and push the release
+          command: |
+            git add .
+            git commit -anm "chore(ci): release $CIRCLE_TAG"
+            git push -u origin master
+
+
 ##
 # Workflows
 #
@@ -162,17 +226,22 @@ workflows:
             tags:
               only: /.*/
 
+      - test-puml:
+          context: org-global
+          filters:
+            tags:
+              only: /.*/
+
       - infra:
           context: org-global
-          # TODO: build is currently broken!
           requires:
-            # - build
+            - build
             - build-legacy
+            - test-puml
           filters:
             branches:
               only:
                 - master
-                - mojaloop-docs-2.0
           
       - s3_upload:
           context: org-global
@@ -181,5 +250,16 @@ workflows:
           filters:
             branches:
               only:
-                - master  
-                - mojaloop-docs-2.0
+                - master
+      
+      - bump_version:
+          context: org-global
+          requires:
+            - build
+            - build-legacy
+          filters:
+            branches:
+              ignore:
+                - /.*/
+            tags:
+              only: /v[0-9]+(\.[0-9]+)*(\-snapshot)?(\-hotfix(\.[0-9]+))?/

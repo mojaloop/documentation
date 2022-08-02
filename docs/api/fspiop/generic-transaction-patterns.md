@@ -1,3 +1,6 @@
+---
+footerCopyright: Attribution-NoDerivatives 4.0 International (CC BY-ND 4.0) | Ericsson, Huawei, Mahindra-Comviva, Telepin, and the Bill & Melinda Gates Foundation
+---
 # Generic Transaction Patterns
 
 ## Preface
@@ -576,8 +579,8 @@ The intermediary objects used in a _Payer-Initiated Transaction_ to perform the 
 
 Figure 1 shows the UML sequence diagram for a _Payer-Initiated Transaction_.
 
-{% uml src="assets/diagrams/sequence/figure64a.plantuml" %}
-{% enduml %}
+![](../assets/diagrams/sequence/figure64a.svg)
+
 **Figure 1 -- Payer-Initiated Transaction**
 
 #### Internal Processing Steps
@@ -874,8 +877,8 @@ The intermediary objects used in a _Payee-Initiated Transaction_ to perform the 
 
 Figure 2 shows the UML sequence diagram for a _Payee-Initiated Transaction_.
 
-{% uml src="assets/diagrams/sequence/figure65a.plantuml" %}
-{% enduml %}
+![](../assets/diagrams/sequence/figure65a.svg)
+
 **Figure 2 -- Payee-Initiated Transaction**
 
 #### Internal Processing Steps
@@ -1208,8 +1211,8 @@ The intermediary objects used in a _Payee-Initiated Transaction using OTP_ to pe
 
 Figure 3 shows the UML sequence diagram for a _Payee-Initiated Transaction using OTP_.
 
-{% uml src="assets/diagrams/sequence/figure66a.plantuml" %}
-{% enduml %}
+![](../assets/diagrams/sequence/figure66a.svg)
+
 **Figure 3 -- Payee-Initiated Transaction using OTP**
 
 #### Internal Processing Steps
@@ -1634,8 +1637,8 @@ The intermediary objects used in a _Bulk Transaction_ to perform the transaction
 
 Figure 4 below shows the UML sequence diagram for a _Bulk Transaction_.
 
-{% uml src="assets/diagrams/sequence/figure67a.plantuml" %}
-{% enduml %}
+![](../assets/diagrams/sequence/figure67a.svg)
+
 **Figure 4 -- Bulk Transaction**
 
 #### Internal Processing Steps
