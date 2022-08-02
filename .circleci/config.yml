@@ -83,12 +83,14 @@ jobs:
           command: npm run build
   
   build-legacy:
-    executor: legacy-docker
+    executor: default-docker
     steps:
       - checkout
       - run:
           name: Install general dependencies
           command: *defaults_Dependencies
+      - run:
+          <<: *defaults_configure_nvm
       - run:
           name: install node dependencies
           command: |
