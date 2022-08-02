@@ -51,7 +51,7 @@ executors:
       - image: node:16.15.0-alpine # Ref: https://hub.docker.com/_/node?tab=tags&page=1&name=alpine
 
   legacy-docker:
-    working_directory: /home/circleci/project/legacy
+    working_directory: *WORKING_DIR
     docker:
       - image: node:10.15.2-alpine
 
@@ -89,8 +89,6 @@ jobs:
       - run:
           name: Install general dependencies
           command: *defaults_Dependencies
-      - run:
-          <<: *defaults_configure_nvm
       - run:
           name: install node dependencies
           command: |
