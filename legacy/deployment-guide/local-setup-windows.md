@@ -31,6 +31,14 @@ This section will guide the reader through the deployment process to setup Kuber
 
 1. Installing Docker for Windows:
 
+   >
+   > UPDATE: August 2022
+   >
+   > You will need a specific version of Docker-desktop that includes a supported target Kubernetes version as specified in the [Deployment Guide (1. Pre-requisites)](README.md#1-pre-requisites).
+   >
+   > For Windows/MacOS, version [Docker Desktop v4.2.0](https://docs.docker.com/desktop/release-notes/#docker-desktop-420) comes packaged with Kubernetes v1.21.5 which meets the current requirements.
+   >
+
    You will require Docker Desktop for Windows 18.02 Edge (win50) and higher, or 18.06 Stable (win 70) and higher. Kubernetes on Docker Desktop for Windows is available on these versions and higher. They are downloadable from:
 
    ```url

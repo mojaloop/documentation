@@ -2,15 +2,147 @@
 
 > *Note:* These standards are by no means set in stone, and as a community, we always want to be iterating and improving Mojaloop. If you want to propose a change to these standards, or suggest further improvements, please reach out to the Design Authority Channel on the Mojaloop Slack (#design-authority)
 
+## Runtime Environment
+
+The following runtime standards are utilizes for Mojaloop.
+
+### Micro-services & Libraries
+
+1. Javascript
+
+    NodeJS is the standard Runtime for all Mojaloop services and components for the execution of Javascript source-code files.
+
+    Our goal is to ensure that all NodeJS based services run against the latest LTS (*Long Time Support*) version of NodeJS following the official [NodeJS Release Cycle](https://nodejs.org/en/about/releases/).
+
+2. Docker Operating System (*OS*)
+
+    Mojaloop's Micro-services are built on top of the `node:<NODE_LTS_VERSION>-alpine` base image, where `NODE_LTS_VERSION` is the current NodeJS LTS following the official [NodeJS Release Cycle](https://nodejs.org/en/about/releases/). Refer to [DockerHub](https://hub.docker.com/_/node?tab=tags&page=1&name=alpine) for a full list of official NodeJS Alpine Docker images.
+
+    > NOTE: When specifying the `NODE_LTS_VERSION`, use the full semantic version such as `<MAJOR>-<MINOR>-<PATCH>`.
+    >
+    > `node:16.15.0-alpine ` <-- This is OK
+    >
+    > `lts-alpine3.16` <-- This is NOT OK
+    >
+
+    1. Standard **Javascript** `Dockerfile` example:
+
+        ```docker
+        FROM node:<NODE_LTS_VERSION>-alpine as builder
+        WORKDIR /opt/app
+
+        RUN apk --no-cache add git
+        RUN apk add --no-cache -t build-dependencies make gcc g++ python3 libtool libressl-dev openssl-dev autoconf automake \
+            && cd $(npm root -g)/npm \
+            && npm config set unsafe-perm true \
+            && npm install -g node-gyp
+
+        COPY package*.json /opt/app/
+
+        RUN npm ci --production
+
+        FROM node:<NODE_LTS_VERSION>-alpine
+        WORKDIR /opt/app
+
+        # Create empty log file & link stdout to the application log file
+        RUN mkdir ./logs && touch ./logs/combined.log
+        RUN ln -sf /dev/stdout ./logs/combined.log
+
+        # Create a non-root user: ml-user
+        RUN adduser -D ml-user 
+        USER ml-user
+
+        # Copy builder artefact
+        COPY --chown=ml-user --from=builder /opt/app .
+
+        # Copy source files
+        COPY src /opt/app/src
+
+        # Copy default config
+        COPY config /opt/app/config
+
+        EXPOSE <PORT>
+        CMD ["npm", "run", "start"]
+        ```
+
+    2. Standard **Typescript** `Dockerfile` example:
+
+        ```docker
+        FROM node:<NODE_LTS_VERSION>-alpine as builder
+        USER root
+        WORKDIR /opt/app
+
+        RUN apk update \
+            && apk add --no-cache -t build-dependencies git make gcc g++ python3 libtool autoconf automake openssh \
+            && cd $(npm root -g)/npm \
+            && npm config set unsafe-perm true \
+            && npm install -g node-gyp
+
+        COPY package.json package-lock.json* ./
+
+        RUN npm ci
+
+        FROM node:<NODE_LTS_VERSION>-alpine
+        WORKDIR /opt/app
+
+        # Create empty log file & link stdout to the application log file
+        RUN mkdir ./logs && touch ./logs/combined.log
+        RUN ln -sf /dev/stdout ./logs/combined.log
+
+        # Create a non-root user: ml-user
+        RUN adduser -D ml-user
+        USER ml-user
+        
+        # Copy builder artefact
+        COPY --chown=ml-user --from=builder /opt/app ./
+
+        COPY src /opt/app/src
+        COPY config /opt/app/config
+
+        # NPM script to build source (./src) to destination (./dist)
+        RUN npm run build
+
+        # Prune devDependencies
+        RUN npm prune --production
+
+        # Prune source files
+        RUN rm -rf src
+
+        EXPOSE <PORT>
+        CMD ["npm", "run", "start"]
+        ```
+
+### CI (*Continuos Integration*) Pipelines
+
+Mojaloop's CI Jobs are executed against the current Ubuntu LTS version following the official [Ubuntu Release Cycle](https://ubuntu.com/about/release-cycle).
+
+### Kubernetes
+
+Mojaloop's Helm Charts ([mojaloop/helm](https://github.com/mojaloop/helm) [mojaloop/charts](https://github.com/mojaloop/charts)) are deployed and verified against the current Kubernetes LTS version following the official [Kubernetes Release Cycle](https://kubernetes.io/releases/).
+
 ## Style Guide
 
 The Mojaloop Community provides a set of guidelines for the style of code we write. These standards help ensure that the Mojaloop codebase remains high quality, maintainable and consistent.
 
-These style guides are chosen because they can be easily enforced and checked using popular tools with minimal customisation. While we recognise that developers will have personal preferences that may conflict with these guidelines we favour consistency over [bike-shedding](https://en.wikipedia.org/wiki/Law_of_triviality) these rules.
+These style guides are chosen because they can be easily enforced and checked using popular tools with minimal customization. While we recognise that developers will have personal preferences that may conflict with these guidelines we favour consistency over [bike-shedding](https://en.wikipedia.org/wiki/Law_of_triviality) these rules.
 
-The goal of these guides is to ensure an easy developer workflow and reduce code commits that contain changes for the sake of style over content. By reducing the noise in diffs we make the job of reviewers easier. 
+The goal of these guides is to ensure an easy developer workflow and reduce code commits that contain changes for the sake of style over content. By reducing the noise in diffs we make the job of reviewers easier.
 
 ## Code Style
+
+### Naming Conventions
+
+To avoid confusion and guarantee cross-language interpolation, follow these rules regarding naming conventions:
+
+- Do not use abbreviations or contractions as parts of identifier names. For example, use `SettlementWindow` instead of `SetWin`.
+- Do not use acronyms that are not generally accepted in the computing field.
+- Where appropriate, use well-known acronyms to replace lengthy phrase names. For example, use `UI` for `User Interface`.
+- Use Pascal case or camel case for names more than two characters long depending on context (e.g. class names vs variable names). For example, use `SettlementWindow` (Class) or `settlementWindow` (Variable).
+- You should capitalize abbreviations that consist of only two characters, such as `ID` instead of `Id` when isolated. For example, use `/transfer/{{ID}}` instead of `/transfer/{{Id}}` when representing `ID` as a URI parameter.
+- Avoid abbreviations in identifiers or parameter names. If you must use abbreviations, use camel case for abbreviations that consist of more than two characters, even if this contradicts the standard abbreviation of the word.
+- Use screaming (capitalized) Snack case for Enumerations. For example, use `RECORD_FUNDS_OUT_PREPARE_RESERVE`.
+
+Ref: [Microsoft - Design Guidelines for Class Library Developers](https://docs.microsoft.com/en-us/previous-versions/dotnet/netframework-1.1/141e06ef(v=vs.71)?redirectedfrom=MSDN)
 
 ### Javascript
 
@@ -41,14 +173,13 @@ window.alert('hi');  // ✗ avoid
 
 ### Typescript
 
->*Note: Standard and Typescript*  
+> *Note: Standard and Typescript*  
 >
->As we start to introduce more Typescript into the codebase, Standard becomes less useful, and can even be detrimental
->to our development workflow if we try to run standard across the Javascript compiled from Typescript.
->We need to evaluate other options for Standard in Typescript, such as a combination of Prettier + ESLint.
+> As we start to introduce more Typescript into the codebase, Standard becomes less useful, and can even be detrimental
+> to our development workflow if we try to run standard across the Javascript compiled from Typescript.
+> We need to evaluate other options for Standard in Typescript, such as a combination of Prettier + ESLint.
 
 Refer to the [template-typescript-public](https://github.com/mojaloop/template-typescript-public) for the standard typescript configuration.
-
 
 ### YAML
 
@@ -82,6 +213,7 @@ modules:
     sources:
       - type: git
 ```
+
 ### sh + bash
 
 - The Shebang should respect the user's local environment:
@@ -90,7 +222,7 @@ modules:
 #!/usr/bin/env bash
 ```
 
-This ensures that the script will match the `bash` that is defined in the user's environment, instead of hardcoding to a specific bash at `/usr/bin/bash`. 
+This ensures that the script will match the `bash` that is defined in the user's environment, instead of hardcoding to a specific bash at `/usr/bin/bash`.
 
 - When referring to other files, don't use relative paths:
 
@@ -109,7 +241,7 @@ For other recommended bash conventions, refer to this blog post: [Best Practices
 
 ## Documentation
 
-- Documentation should be written in Mark Down format.  
+- Documentation should be written in Markdown format.  
 - All discussion documents should be placed in /community/archive/discussion-docs.
 - The use of Google Docs and other tools should not be used.
 
@@ -120,25 +252,42 @@ Along with guidelines for coding styles, the Mojaloop Community recommends the f
 The directory structure guide requires:
 
 ```bash
-├── package.json       # at the root of the project
-├── src                # directory containing project source files 
-├── dist               # directory containing compiled javascript files (see tsconfig below)
-├── test               # directory for tests, containing at least:
-│   ├── unit           # unit tests, matching the directory structure in `./src`
-│   └── integration    # integration tests, matching the directory structure in `./src`
+├── README.md          # README containing general information about components such as pre-requisites, testing, etc.
+├── LICENSE.md         # Standard Mojaloop License descriptor.
+├── package.json       # Project package descriptor.
+├── package-lock.json  # Project package descriptor describing an exact dependency tree in time.
+├── nvmrc.json         # NVMRC containing NodeJS runtime. This should preferably reflect the current NodeJS LTS version.
+├── .ncurc.yaml        # Ignore file for dep:check script (npm-check-updates).
+├── Dockerfile         # Optional - Dockerfile descriptor.
+├── docker-compose.yml # Optional - Docker Compose descriptor, inc containing backend dependencies.
+├── .npmignore         # Optional - NPM ignore file for publishing libraries.
+├── .gitignore         # Github ignore file.
+├── src                # Directory containing project source files.
+│   ├── index.<js/ts>    # Main entry point for component.
+│   ├── <filename>.<js/ts> # Source file format.
+│   └── ...            # Other source files and sub-directories
+├── dist               # Directory containing compiled javascript files (see tsconfig below).
+├── test               # Directory for tests, containing at least:
+│   ├── unit           # Unit tests, matching the directory structure in `./src`.
+│   │   ├── <filename>.test.<js/ts> # Tests file format.
+│   │   └── ...        # Other test files and sub-directories
+│   ├── integration    # Integration tests, matching the directory structure in `./src`.
+│   ├── functional     # Functional tests, matching the directory structure in `./src`.
+│   └── util           # Generic testing scripts and NodeJS helpers.
 └── config 
-    └── default.json   # RC config file 
+    └── default.json   # Default config file.
 ```
 
 ## Config Files
 
 The following Config files help to enforce the code styles outlined above:
 
-
 ### EditorConfig
+
 > EditorConfig is supported out of the box in many IDEs and Text editors. For more information, refer to the [EditorConfig guide](https://editorconfig.org/).
 
 `.editorconfig`
+
 ```ini
 root = true
 
@@ -159,6 +308,7 @@ trim_trailing_whitespace = false
 ### NYC (code coverage tool)
 
 `.nycrc.yml`
+
 ```yml
 temp-directory: "./.nyc_output"
 check-coverage: true
@@ -184,6 +334,7 @@ exclude: [
 ### Typescript
 
 `.tsconfig.json`
+
 ```json
 {
   "include": [
@@ -232,6 +383,7 @@ exclude: [
 ```
 
 `.eslintrc.js`
+
 ```js
 module.exports = {
   parser: '@typescript-eslint/parser',  // Specifies the ESLint parser
@@ -265,6 +417,65 @@ module.exports = {
 ```
 
 For a more detailed list of the recommended typescript configuration, including `package.json`, `jest.config.js` and more, refer to the [Typescript Template Project](https://github.com/mojaloop/template-typescript-public).
+
+## Dependency Management & Upgrades
+
+It is important to ensure that the latest Dependencies are used to mitigate security issues.
+
+### NodeJS
+
+NodeJS projects should install [npm-check-updates](https://www.npmjs.com/package/npm-check-updates) using the following command:
+
+```bash
+npm install -D npm-check-updates
+```
+
+And add the following scripts to `package.json`:
+
+```json
+"scripts": {
+    "dep:check": "npx ncu -e 2",
+    "dep:update": "npx ncu -u",
+}
+```
+
+Run the following script to check for any dependencies that need upgrading:
+
+`npm run dep:check`
+
+If required, one can execute the following command to install the latest dependencies:
+
+`npm run dep:update && npm i`
+
+If a dependency cannot be upgraded for a valid reason, then `.ncurc.yaml` file should added to the project root with said dependency added to the `reject` list with an appropriate `TODO` comment as follows:
+
+```yaml
+## Add a TODO comment indicating the reason for each rejected dependency upgrade added to this list, and what should be done to resolve it (i.e. handle it through a story, etc).
+reject: [
+  # TODO: <Insert detailed information as to why this dependency should be ignored.>
+  "<DEPENDENCY_TO_IGNORE>",
+]
+```
+
+The following approaches are utilized to enforce that dependencies are kept up-to-date:
+
+#### Git Pre-Commit Hook
+
+This will ensure that a validation check will occur on a Developer's local machine when making any Git Commits.
+
+The `dep:check` should be added as a git commit pre-hook using [Husky](https://www.npmjs.com/package/husky) as follows:
+
+```bash
+npx husky add .husky/pre-commit "npm run dep:check"
+```
+
+> Note: It is possible to circumvent this by using `-n` parameter when committing using `git commit -nm <message>`. A CI (*Continuous Integration*) `test-dependencies` Validation Check (*see next section*) is thus required to ensure enforcement.
+
+#### Automated CI Validations
+
+This will ensure that a validation check occur during reviews and releases, and also ensure that Git Pre-Commit Hook are not circumvented.
+
+CI Configs (i.e. `.circleci/config.yml`)  must contain a `test-dependencies` Validation Check CI Job (i.e. `npm run dep:check`) for all Pull-Request, merges to Main branch, and Tagged Releases.
 
 ## Design + Implementation Guidelines
 
@@ -311,8 +522,9 @@ Before a contribution is to be considered for adoption, it:
 1. Assess the current state of the codebase, including documentation, tests, code quality, and address any shortfalls.
 1. Assess Performance impact.
 1. Create action items \(stories\) to update naming, remove/sanitize any items that are not generic
-1. Inspect and discuss any framework and tooling choices. 
-  - If a decision is made to make any changes, add them to the roadmap.
+1. Inspect and discuss any framework and tooling choices.
+
+- If a decision is made to make any changes, add them to the roadmap.
 
 ### Step 2: Public Adoption
 
@@ -335,7 +547,7 @@ It's a good idea to ask about major changes on [Slack](https://mojaloop.slack.co
 
 Pull requests will be denied if they violate the [Level One Principles](https://leveloneproject.org/wp-content/uploads/2016/03/L1P_Level-One-Principles-and-Perspective.pdf).
 
-## Code of conduct 
+## Code of conduct
 
 We use the [Mojaloop Foundation Code of Conduct](https://github.com/mojaloop/mojaloop/blob/master/CODE_OF_CONDUCT.md)
 
@@ -345,11 +557,10 @@ See [License](https://github.com/mojaloop/mojaloop/blob/master/contribute/Licens
 
 ## FAQs
 
-__1. What if I want to contribute code, but it doesn't align with the code style and framework/tool recommendations in this guide?__
+**1. What if I want to contribute code, but it doesn't align with the code style and framework/tool recommendations in this guide?**
 
-Contributions are accepted on a _case by case_ basis. If your contribution is not yet ready to be fully adopted, we can go through the incubation phase described above, where the code is refactored with our help and brought into alignment with the code and documentation requirements.
+  Contributions are accepted on a *case by case* basis. If your contribution is not yet ready to be fully adopted, we can go through the incubation phase described above, where the code is refactored with our help and brought into alignment with the code and documentation requirements.
 
+**2. These standards are outdated, and a newer, cooler tool (or framework, method or language) has come along that will solve problem *x* for us. How can I update the standards?**
 
-__2. These standards are outdated, and a newer, cooler tool (or framework, method or language) has come along that will solve problem _x_ for us. How can I update the standards?__
-
-Writing high quality, functional code is a moving target, and we always want to be on the lookout for new tools that will improve the Mojaloop OSS codebase. So please talk to us in the design authority slack channel (`#design-authority`) if you have a recommendation.
+  Writing high quality, functional code is a moving target, and we always want to be on the lookout for new tools that will improve the Mojaloop OSS codebase. So please talk to us in the design authority slack channel (`#design-authority`) if you have a recommendation.

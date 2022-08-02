@@ -13,6 +13,8 @@
     "build": "vuepress build docs",
     "build:plantuml:all": "./scripts/_build_plantuml.sh",
     "build:plantuml:diff": "MODE=STAGED_GIT ./scripts/_build_plantuml.sh",
+    "lint": "npx markdownlint './docs/**/*.md' --ignore node_modules --config markdownlint.yaml",
+    "lint:fix": "npm run lint -- --fix",
     "dep:check": "npx ncu -e 2",
     "dep:update": "npx ncu -u",
     "prepare": "husky install"
@@ -22,6 +24,7 @@
     "@vuepress/plugin-medium-zoom": "^1.9.7",
     "got": "^12.3.0",
     "husky": "^8.0.1",
+    "markdownlint-cli": "^0.32.1",
     "npm-check-updates": "^16.0.5",
     "plantuml-encoder": "^1.4.0",
     "svgo": "^2.8.0",
