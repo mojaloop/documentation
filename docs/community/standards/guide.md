@@ -421,11 +421,13 @@ module.exports = {
 
 For a more detailed list of the recommended typescript configuration, including `package.json`, `jest.config.js` and more, refer to the [Typescript Template Project](https://github.com/mojaloop/template-typescript-public).
 
-## Dependency Management & Upgrades
+## Dependency Management
+
+### Dependency Upgrades
 
 It is important to ensure that the latest Dependencies are used to mitigate security issues.
 
-### NodeJS
+#### NodeJS
 
 NodeJS projects should install [npm-check-updates](https://www.npmjs.com/package/npm-check-updates) using the following command:
 
@@ -438,19 +440,23 @@ And add the following scripts to `package.json`:
 ```json
 "scripts": {
     "dep:check": "npx ncu -e 2",
-    "dep:update": "npx ncu -u",
+    "dep:update": "npx ncu -u"
 }
 ```
 
 Run the following script to check for any dependencies that need upgrading:
 
-`npm run dep:check`
+```bash
+npm run dep:check
+```
 
 If required, one can execute the following command to install the latest dependencies:
 
-`npm run dep:update && npm i`
+```bash
+npm run dep:update && npm i
+```
 
-If a dependency cannot be upgraded for a valid reason, then `.ncurc.yaml` file should added to the project root with said dependency added to the `reject` list with an appropriate `TODO` comment as follows:
+If a dependency cannot be upgraded for a valid reason, then `.ncurc.yaml` file should added to the project root with said dependency added to the `reject` list with an appropriate `comment` as follows:
 
 ```yaml
 ## Add a TODO comment indicating the reason for each rejected dependency upgrade added to this list, and what should be done to resolve it (i.e. handle it through a story, etc).
@@ -462,7 +468,7 @@ reject: [
 
 The following approaches are utilized to enforce that dependencies are kept up-to-date:
 
-#### Git Pre-Commit Hook
+##### Git Pre-Commit Hook
 
 This will ensure that a validation check will occur on a Developer's local machine when making any Git Commits.
 
@@ -474,11 +480,81 @@ npx husky add .husky/pre-commit "npm run dep:check"
 
 > Note: It is possible to circumvent this by using `-n` parameter when committing using `git commit -nm <message>`. A CI (*Continuous Integration*) `test-dependencies` Validation Check (*see next section*) is thus required to ensure enforcement.
 
-#### Automated CI Validations
+##### Automated CI Validations
 
 This will ensure that a validation check occur during reviews and releases, and also ensure that Git Pre-Commit Hook are not circumvented.
 
 CI Configs (i.e. `.circleci/config.yml`)  must contain a `test-dependencies` Validation Check CI Job (i.e. `npm run dep:check`) for all Pull-Request, merges to Main branch, and Tagged Releases.
+
+### Dependency Auditing
+
+#### NodeJS
+
+NodeJS projects should install [audit-ci](https://www.npmjs.com/package/audit-ci) using the following command:
+
+```bash
+npm install -D audit-ci
+```
+
+And add the following scripts to `package.json`:
+
+```json
+"scripts": {
+    "audit:check": "npx audit-ci --config ./audit-ci.jsonc"
+}
+```
+
+Run the following script to check for any dependencies that need upgrading:
+
+```bash
+npm run audit:check
+```
+
+If required, one can execute [npm audit](https://docs.npmjs.com/cli/v8/commands/npm-audit) to apply any known available fixes:
+
+```bash
+npm audit fix --package-lock-only
+```
+
+>
+> NOTES
+>
+> 1. Ensure to commit any fixes applied by the above command to the `package-lock.json`.
+> 2. Ensure that all tests pass after applying any fixes as they may result in a dependency version change which could introduce breaking changes.
+>
+
+If there is no fix, then `audit-ci.jsonc` file should added to the project root with said `vulnerability advisories ID` added to the `allowlist` with an appropriate `comment` as follows:
+
+```json
+{
+  "$schema": "https://github.com/IBM/audit-ci/raw/main/docs/schema.json",
+  // audit-ci supports reading JSON, JSONC, and JSON5 config files.
+  // Only use one of ["low": true, "moderate": true, "high": true, "critical": true]
+  "moderate": true,
+  "allowlist": [ // NOTE: Please add as much information as possible to any items added to the allowList
+    // Currently no fixes available for the following advisory ID
+    "<VULNERABILITY_ADVISORY_ID>"
+  ]
+}
+```
+
+##### Git Pre-Commit Hook
+
+This will ensure that a vulnerability checks will occur on a Developer's local machine when making any Git Commits.
+
+The `audit:check` should be added as a git commit pre-hook using [Husky](https://www.npmjs.com/package/husky) as follows:
+
+```bash
+npx husky add .husky/pre-commit "npm run audit:check"
+```
+
+> Note: It is possible to circumvent this by using `-n` parameter when committing using `git commit -nm <message>`. A CI (*Continuous Integration*) `vulnerability-check` vulnerability Check (*see next section*) is thus required to ensure enforcement.
+
+##### Automated CI Validations
+
+This will ensure that a auditing checks occur during reviews and releases, and also ensure that Git Pre-Commit Hook are not circumvented.
+
+CI Configs (i.e. `.circleci/config.yml`)  must contain a `vulnerability-check` vulnerability Check CI Job (i.e. `npm run dep:check`) for all Pull-Request, merges to Main branch, and Tagged Releases.
 
 ## Design + Implementation Guidelines
 
