@@ -9,5 +9,4 @@ Sequence design diagram for the Notification Handler for Rejections process.
 
 ## Sequence Diagram
 
-{% uml src="mojaloop-technical-overview/central-event-processor/assets/diagrams/sequence/seq-notification-reject-5.1.1.plantuml" %}
-{% enduml %}
+![seq-notification-reject-5.1.1.svg](./assets/diagrams/sequence/seq-notification-reject-5.1.1.svg)
