@@ -58,7 +58,7 @@ It is recommended that `npm test` is executed after each of these steps to ensur
    >
    > Take note of any Dependencies that have Major Version upgrades, as they may introduce a BREAKING CHANGE. This may require some code-refactoring to accommodate the change.
    >
-   > Refer to [Dependency Management & Upgrade Guide](./guide.md#dependency-management--upgrades) on how dependency upgrades can be ignored if/when required.
+   > Refer to [Dependency Management](./guide#dependency-upgrades) on how dependency upgrades can be ignored if/when required.
    >
 
    Run the following to update and install the dependencies
@@ -67,13 +67,27 @@ It is recommended that `npm test` is executed after each of these steps to ensur
    npm run dep:update && npm i
    ```
 
-2. REQUIRED - Audit Checks
+2. REQUIRED - Vulnerability Checks
 
    ```bash
    npm run audit:check
    ```
 
-   If there is no available working fix for the audit issue, you will need to do one of the following:
+   If required, one can execute [npm audit](https://docs.npmjs.com/cli/v8/commands/npm-audit) to apply any known available fixes:
+
+   ```bash
+   npm audit fix --package-lock-only
+   ```
+
+   >
+   > IMPORTANT
+   >
+   > Take note of any Dependencies that have Version changes, as they may introduce a BREAKING CHANGE.
+   >
+   > Refer to [Dependency Management](./guide#dependency-auditing) for more information.
+   >
+
+   If there is no available working fix for the vulnerability issue, you will need to do one of the following:
 
    1. If the repo is using [audit-ci](https://www.npmjs.com/package/audit-ci) - update `audit-ci.jsonc` with the issue by adding it to the `allowlist`, and ensure that you add a comment indicating the reason.
    2. If the repo is using [npm-audit-resolver](https://www.npmjs.com/package/npm-audit-resolver) - Run `npm run audit:resolve` and follow the CLI prompts to try fix or ignore the issue (if there is no fix available)
