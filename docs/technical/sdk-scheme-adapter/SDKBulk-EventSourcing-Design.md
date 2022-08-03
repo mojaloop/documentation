@@ -1,4 +1,4 @@
-# Support for Bulk Transfers - CQRS Design
+# Support for Bulk Transfers - DDD and Event Sourcing Design
 ## Design overview
 This diagram summarizes the design role the SDK is performing.
 
@@ -6,18 +6,18 @@ This diagram summarizes the design role the SDK is performing.
 
 An http 202 response when posting a asynchronous request means that the the SDK has accepted the request, and that the request will be processed and a response provided. Because of the potential long delay's involved in processing large numbers of bulk payments in an asynchronous way. A new design approach in the SDK was necessary to meet the 202 response expectations.
 
-## Event sourcing and CQRS design
-An event sourcing and CQRS design was chosen, as this solves all requirements of reliability and scalability while takeing advantage of the lib's and tools that have been built for the Mojaloop vNext architecture.
+## DDD and Event sourcing design
+An event sourcing and domain driven was chosen, as this solves all requirements of reliability and scalability while takeing advantage of the lib's and tools that have been built for the Mojaloop vNext architecture.
 
 ## Bulk Payer DFSP SDK-Scheme-Adapter
-### Outbound CQRS event sourcing sequence diagram
+### Outbound event sourcing sequence diagram
 ![Outbound sequence diagram](./assets/sequence/outbound-sequence.svg)
 
 ## Payee DFSP SDK-Scheme-Adapter
-### Inbound bulk quotes CQRS event sourcing sequence diagram
+### Inbound bulk quotes event sourcing sequence diagram
 ![Inbound bulk quotes sequence](./assets/sequence/inbound-bulk-quotes-sequence.svg)
 
-### Inbound bulk transfers CQRS event sourcing sequence diagram
+### Inbound bulk transfers event sourcing sequence diagram
 ![Inbound bulk transfers sequence](./assets/sequence/inbound-bulk-transfers-sequence.svg)
 
 

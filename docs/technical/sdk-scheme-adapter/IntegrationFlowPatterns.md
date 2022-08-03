@@ -6,10 +6,10 @@ When integrating core banking system into a modern, real-time, push based transa
 
 There are three patterns that can be used when building the Payer DFSP integrations
 1. **Three phase** transfer integration. This aligns with the three Mojaloop transaction phases. I.e. Discovery, Agreement and Transfer.
-1. **Two phase** integration. This pattern is described in detail in the sequence diagram below. It involves combining the Discovery and Agreement phases; as the first phase; the results are presented to the Payer for confirmation; following which the Transfer phase is executed as the second phase.
-![Payer DFSP Integration Two Phase Transactional Flow Pattern](./assets/sequence/PayerDFSPTwoPhasePattern.svg)
-1. **Single phase** integrations. This pattern is described in detail in the sequence diagram below. Here all three phases are combined to produce a single synchronous transfer call.
-![Payer DFSP Integration Single Phase Transactional Flow Pattern](./assets/sequence/PayerDFSPSinglePhasePattern.svg)
+1. **Double API Integration** integration. This pattern is described in detail in the sequence diagram below. It involves combining the Discovery and Agreement phases; as the first phase; the results are presented to the Payer for confirmation; following which the Transfer phase is executed as the second phase.
+![Payer DFSP Double Integration API Flow Pattern](./assets/sequence/PayerDFSPDoubleIntegrationApiPattern.svg)
+1. **Single API Integration** integrations. This pattern is described in detail in the sequence diagram below. Here all three phases are combined to produce a single synchronous transfer call.
+![Payer DFSP Single Integration API Flow Pattern](./assets/sequence/PayerDFSPSingleIntegrationApiPattern.svg)
 
 ::: tip 2-Phased Commit
 All Payer DFSP Integration Patterns support a 2 phased (reservation and commit phase) commit.
@@ -36,8 +36,8 @@ A common limitation in Vendor API's is that all these functions are combined int
 ## Vendor API only supports Single API call
 If the Core Banking Systems only support a single API call to perform all transfer related checks and phases, there there are two patterns that should be considered.
 1. Call Transfer on the Patch Notification
-![Payee DFSP Integration during Patch Notification](./assets/sequence/PayeeDFSPSinglePhaseOnPatch.svg)
+![Payee DFSP Integration during Patch Notification](./assets/sequence/PayeeDFSPSingleIntegrationApiOnPatchPattern.svg)
 A failure at anytime after the PATCH notification **[Step 17]** will result in a reconciliation error. This can be catered for by building in recompensation methods. E.g. initiate a refund transfer if an error occurs after step 17.
 1. Call Transfer in the Transfer phase.
-![Payee DFSP Integration during transfer phase](./assets/sequence/PayeeDFSPSinglePhaseOnTransfer.svg)
+![Payee DFSP Integration during transfer phase](./assets/sequence/PayeeDFSPSingleIntegrationApiOnTransferPattern.svg)
 This pattern is usually not recommended as aborting a transfer is not normally possible. If the transfer is against an internal account e.g. for a loan repayment, then this pattern becomes favorable.

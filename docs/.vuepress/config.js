@@ -544,8 +544,8 @@ module.exports = {
               "path": "sdk-scheme-adapter/SDKBulk-API-Design"
             },
             {
-              "title": "Support for Bulk Transfers - CQRS Design",
-              "path": "sdk-scheme-adapter/SDKBulk-CQRS-Design"
+              "title": "Support for Bulk Transfers - Event Sourcing Design",
+              "path": "sdk-scheme-adapter/SDKBulk-EventSourcing-Design"
             },
             {
               "title": "Usage tests",

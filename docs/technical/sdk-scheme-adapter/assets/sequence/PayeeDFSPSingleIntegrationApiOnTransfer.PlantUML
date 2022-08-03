@@ -1,4 +1,4 @@
-@startuml PayeeDFSPSinglePhaseOnPatch
+@startuml PayeeDFSPSingleIntegrationApiOnTransferPattern
 /'*****
 --------------
 ******'/
@@ -10,7 +10,7 @@ skinparam defaultFontSize 22
 skinparam noteFontSize 22
 skinparam monochrome true
 ' declare title
-' title PayeeDFSPSinglePhaseOnPatch
+' title PayeeDFSPSingleIntegrationApiOnTransfer
 ' declare actors
 participant "Mojaloop\nSwitch" as Switch
 box "Payment Manager\nPayee DFSP" #LightGrey
@@ -19,7 +19,8 @@ participant "Core\nConnector" as CC
 end box
 participant "Core banking solution" as CBS
 autonumber 1 1 "<b>[0]"
-== Payee DFSP integration - Quote and Transfer - single AML check & transfer during PATCH ==
+
+== Payee DFSP integration - Quote and Transfer - single AML check & transfer during POST transfer ==
 
 Switch->MC: **POST** /quotes
 MC-->Switch: HTTP 202 Response
@@ -41,36 +42,26 @@ end note
     Switch->MC: **POST** /transfers
     MC->CC: **POST** /transfers 
     activate MC
-    CC->CC: Do Nothing 
-    CC-->MC: response
+    CC->CBS: Perform AML checks and transfer funds
+    CBS->CBS: Release of funds to Payee 
+    CBS-->CC: response (homeTransactionId)
+    CC-->MC: response (homeTransactionId)
     deactivate MC
     MC->MC: Generate Fulfilment
     MC-->Switch: **PUT** /transfers/{id} (TransferStatus='RESERVED', fulfullment)
-    Switch-->Switch: Commit funds in DFSP ledgers
-
-    Switch->MC: **PATCH** /transfers/{id} (TransferStatus='COMMITTED')
-    MC->CC: Commit Transfer\n **PATCH** /transfers/{id} (TransferStatus='COMMITTED') 
-    activate MC
-    CC->CBS: Perform AML checks and transfer funds
-    alt if (AML checks pass)
-    CBS->CBS: Release funds to Payee 
+    Switch->Switch: Commit funds in DFSP ledgers
+    alt if (Transfer status == 'ABORTED')
+    Switch->MC: **PATCH** /transfers/{id} (TransferStatus='ABORTED', homeTransactionId)
+    MC->CC: Abort Transfer\n **PATCH** /transfers/{id} (TransferStatus='ABORTED')     
+    CC->CBS: Abort Transfer
+    CBS->CBS: Compensate action for abort
     CBS-->CC: response
+    else if (Transfer status == 'COMMITTED')
+    Switch->MC: **PATCH** /transfers/{id} (TransferStatus='COMMITTED', homeTransactionId)
+    MC->CC: **PATCH** /transfers/{id} (TransferStatus='COMMITTED') 
+    CC->CC: Do nothing
     CC-->MC: response
-    else if (AML checks fail)
-    CBS->CBS: Compensation action for AML failure. \n Return error response.
-    CBS-->CC: response
-    CC-->MC: response
-    rnote left MC 
-    Payee DFSP AML error checks (and other errors) result in:
-    
-    **Reconciliation Error**
-       Payer has sent funds
-       Payer DFSP has sent funds
-       Hub considers that the Payee DFSP has received funds
-       Payee DFSP has rejected the transaction
-       Payee has not received funds
-    endrnote
     end
-    deactivate MC
+
 
 @enduml
