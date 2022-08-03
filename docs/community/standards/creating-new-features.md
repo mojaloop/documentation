@@ -73,7 +73,7 @@ It is recommended that `npm test` is executed after each of these steps to ensur
    npm run audit:check
    ```
 
-   If required, one can execute [npm audit](https://docs.npmjs.com/cli/v8/commands/npm-audit) to apply any known available fixes:
+[npm audit](https://docs.npmjs.com/cli/v8/commands/npm-audit) can be used to apply any known available fixes:
 
    ```bash
    npm audit fix --package-lock-only
