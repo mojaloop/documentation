@@ -14,7 +14,5 @@ Please, ensure that you have created the `mojatemplate` as it is described into 
 ### 2.1. Flow overview
 ![Event Stream Processor flow overview](./assets/diagrams/architecture/event-stream-processor-overview.svg)
 
-
 ### 2.2 Trace processing flow sequence diagram
-{% uml src="./mojaloop-technical-overview/event-stream-processor/assets/diagrams/sequence/process-flow.plantuml" %}
-{% enduml %}
+![process-flow.svg](./assets/diagrams/sequence/process-flow.svg)

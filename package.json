@@ -2,34 +2,37 @@
   "name": "mojaloop-docs-vuepress",
   "version": "0.0.1",
   "description": "Mojaloop Documentation 2.0",
-  "main": "index.js",
+  "license": "Apache-2.0",
   "authors": {
     "name": "Uduak Obong-Eren",
     "email": "uobong-eren@mojaloop.io"
   },
   "repository": "https://www.github.com/mojaloop/documentation",
+  "engines": {
+    "node": "=16.x"
+  },
   "scripts": {
-    "dev": "vuepress dev docs",
-    "build": "vuepress build docs",
+    "dev": "npx vuepress dev docs",
+    "build": "npx vuepress build docs",
     "build:plantuml:all": "./scripts/_build_plantuml.sh",
-    "build:plantuml:diff": "MODE=STAGED_GIT ./scripts/_build_plantuml.sh"
+    "build:plantuml:diff": "MODE=STAGED_GIT ./scripts/_build_plantuml.sh",
+    "lint": "npx markdownlint './docs/**/*.md' --ignore node_modules --config markdownlint.yaml",
+    "lint:fix": "npm run lint -- --fix",
+    "dep:check": "npx ncu -e 2",
+    "dep:update": "npx ncu -u",
+    "prepare": "npx husky install"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run build:plantuml:diff",
-      "post-commit": "git update-index --again"
-    }
-  },
-  "license": "Apache-2.0",
   "devDependencies": {
-    "@vuepress/plugin-back-to-top": "^1.8.2",
-    "@vuepress/plugin-medium-zoom": "^1.8.2",
-    "got": "^11.8.0",
-    "husky": "^4.2.5",
-    "svgo": "^1.3.2",
+    "@vuepress/plugin-back-to-top": "^1.9.7",
+    "@vuepress/plugin-medium-zoom": "^1.9.7",
+    "got": "^12.3.0",
+    "husky": "^8.0.1",
+    "markdownlint-cli": "^0.32.1",
+    "npm-check-updates": "^16.0.5",
     "plantuml-encoder": "^1.4.0",
-    "vuepress": "^1.5.3",
+    "svgo": "^2.8.0",
+    "vuepress": "^1.9.7",
     "vuepress-plugin-versioning": "git+https://github.com/mojaloop/vuepress-plugin-versioning.git#dcb14962a69b8e5aaf184d2d1a31ae4f43870bc1",
-    "vuepress-theme-titanium": "^4.9.0"
+    "vuepress-theme-titanium": "^4.9.1"
   }
 }

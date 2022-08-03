@@ -49,7 +49,7 @@ case ${MODE} in
       echo "rendering .puml -> .svg for diagram diagram: $i"
       
       # add the .svg file alongside the original
-      ${DIR}/_render_svg.js $i
+      ${DIR}/_render_svg.mjs $i
     done
   ;;
 
@@ -59,7 +59,7 @@ case ${MODE} in
       echo "rendering .puml -> .svg for diagram diagram: $i"
       
       # add the .svg file alongside the original
-      ${DIR}/_render_svg.js $i
+      ${DIR}/_render_svg.mjs $i
     done
   ;;
 
