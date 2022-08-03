@@ -1,334 +1,193 @@
-<svg xmlns="http://www.w3.org/2000/svg" height="1542" preserveAspectRatio="none" style="width:702px;height:1542px" width="702">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="1542px" preserveAspectRatio="none" style="width:702px;height:1542px" version="1.1" viewBox="0 0 702 1542" width="702px" zoomAndPan="magnify">
   <defs>
-    <filter height="300%" id="a" width="300%" x="-1" y="-1">
-      <feGaussianBlur result="blurOut" stdDeviation="2"/>
-      <feColorMatrix in="blurOut" result="blurOut2" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/>
-      <feOffset dx="4" dy="4" in="blurOut2" result="blurOut3"/>
-      <feBlend in="SourceGraphic" in2="blurOut3"/>
+    <filter height="300%" id="fxy718lr9dgwd" width="300%" x="-1" y="-1">
+      <feGaussianBlur result="blurOut" stdDeviation="2.0"/>
+      <feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/>
+      <feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/>
+      <feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/>
     </filter>
   </defs>
-  <text font-family="sans-serif" font-size="18" lengthAdjust="spacingAndGlyphs" textLength="242" x="228.25" y="28.708">
-    Quoting Service Sequences
-  </text>
-  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M10 264.375h678.5v1185.328H10z"/>
-  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M20 485.305h557V1330.5H20z"/>
-  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M30 648.969h537v422.797H30z"/>
-  <path fill="#FFF" d="M30 890.164h537v181.602H30zM20 1078.766h557V1330.5H20zM10 1337.5h678.5v112.203H10z"/>
-  <path stroke="#a80036" stroke-dasharray="5,5" d="M122 107.844v1358.859M309 107.844v1358.859M506 107.844v1358.859"/>
-  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M74 72.547h93v30.297H74z"/>
-  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="79" x="81" y="92.542">
-    Payer DFSP
-  </text>
-  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M74 1465.703h93V1496H74z"/>
-  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="79" x="81" y="1485.698">
-    Payer DFSP
-  </text>
-  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M273 39.953h69v62.891h-69z"/>
-  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="45" x="285" y="59.948">
-    Switch
-  </text>
-  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="55" x="280" y="76.245">
-    Quoting
-  </text>
-  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="50" x="282.5" y="92.542">
-    Service
-  </text>
-  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M273 1465.703h69v62.891h-69z"/>
-  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="45" x="285" y="1485.698">
-    Switch
-  </text>
-  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="55" x="280" y="1501.995">
-    Quoting
-  </text>
-  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="50" x="282.5" y="1518.292">
-    Service
-  </text>
-  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M456 72.547h97v30.297h-97z"/>
-  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="83" x="463" y="92.542">
-    Payee DFSP
-  </text>
-  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M456 1465.703h97V1496h-97z"/>
-  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="83" x="463" y="1485.698">
-    Payee DFSP
-  </text>
-  <path d="M58 122.844v25h311v-15l-10-10H58" fill="#FBFB77" filter="url(#a)" stroke="#a80036"/>
-  <path d="M359 122.844v10h10l-10-10" fill="#FBFB77" stroke="#a80036"/>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="290" x="64" y="139.911">
-    Payer DFSP requests quote from Payee DFSP
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M297.5 174.11l10 4h-10z"/>
-  <path stroke="#a80036" d="M122.5 178.109h186"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="129.5" y="173.043">
-    1
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="86" x="142.5" y="173.043">
-    POST /quotes
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M133.5 208.242h-10l10 4z"/>
-  <path stroke="#a80036" stroke-dasharray="2,2" d="M122.5 207.242h186"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="139.5" y="202.176">
-    2
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="88" x="152.5" y="202.176">
-    202 Accepted
-  </text>
-  <path stroke="#a80036" d="M309.5 236.375h42M351.5 236.375v13M310.5 249.375h41"/>
-  <path fill="#A80036" stroke="#a80036" d="M320.5 245.375l-10 4 10 4-4-4z"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="316.5" y="231.309">
-    3
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="151" x="329.5" y="231.309">
-    Validate Quote Request
-  </text>
-  <path d="M10 264.375h64v7l-10 10H10v-17" fill="#EEE" stroke="#000"/>
-  <path fill="none" stroke="#000" stroke-width="2" d="M10 264.375h678.5v1185.328H10z"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19" x="25" y="277.442">
-    alt
-  </text>
-  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="97" x="89" y="276.585">
-    [quote is valid]
-  </text>
-  <path stroke="#a80036" d="M309.5 302.641h42M351.5 302.641v13M310.5 315.641h41"/>
-  <path fill="#A80036" stroke="#a80036" d="M320.5 311.64l-10 4 10 4-4-4z"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="316.5" y="297.575">
-    4
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="121" x="329.5" y="297.575">
-    Persist Quote Data
-  </text>
-  <path d="M250 328.64v40h312v-30l-10-10H250" fill="#FBFB77" filter="url(#a)" stroke="#a80036"/>
-  <path d="M552 328.64v10h10l-10-10" fill="#FBFB77" stroke="#a80036"/>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="291" x="256" y="345.707">
-    Switch forwards quote request to Payee DFSP
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="139" x="256" y="360.84">
-    &lt;Payer based Rules&gt;
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M494.5 395.04l10 4h-10z"/>
-  <path stroke="#a80036" d="M309.5 399.039h196"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="316.5" y="393.973">
-    5
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="86" x="329.5" y="393.973">
-    POST /quotes
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M320.5 429.172h-10l10 4z"/>
-  <path stroke="#a80036" stroke-dasharray="2,2" d="M309.5 428.172h196"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="326.5" y="423.106">
-    6
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="88" x="339.5" y="423.106">
-    202 Accepted
-  </text>
-  <path stroke="#a80036" d="M506.5 457.305h42M548.5 457.305v13M507.5 470.305h41"/>
-  <path fill="#A80036" stroke="#a80036" d="M517.5 466.305l-10 4 10 4-4-4z"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="513.5" y="452.239">
-    7
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="150" x="526.5" y="452.239">
-    Calculate Fees/Charges
-  </text>
-  <path d="M20 485.305h64v7l-10 10H20v-17" fill="#EEE" stroke="#000"/>
-  <path fill="none" stroke="#000" stroke-width="2" d="M20 485.305h557V1330.5H20z"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19" x="35" y="498.372">
-    alt
-  </text>
-  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="280" x="99" y="497.515">
-    [Payee DFSP successfully calculates quote]
-  </text>
-  <path d="M268 507.438v25h279v-15l-10-10H268" fill="#FBFB77" filter="url(#a)" stroke="#a80036"/>
-  <path d="M537 507.438v10h10l-10-10" fill="#FBFB77" stroke="#a80036"/>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="251" x="275.5" y="524.504">
-    Payee DFSP responds to quote request
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M320.5 558.703l-10 4h10z"/>
-  <path stroke="#a80036" d="M309.5 562.703h196"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="326.5" y="557.637">
-    8
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="110" x="339.5" y="557.637">
-    PUT /quotes/{ID}
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M494.5 592.836h10l-10 4z"/>
-  <path stroke="#a80036" stroke-dasharray="2,2" d="M309.5 591.836h196"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="316.5" y="586.77">
-    9
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="45" x="329.5" y="586.77">
-    200 Ok
-  </text>
-  <path stroke="#a80036" d="M309.5 620.969h42M351.5 620.969v13M310.5 633.969h41"/>
-  <path fill="#A80036" stroke="#a80036" d="M320.5 629.969l-10 4 10 4-4-4z"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="316.5" y="615.903">
-    10
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="161" x="338.5" y="615.903">
-    Validate Quote Response
-  </text>
-  <path d="M30 648.969h64v7l-10 10H30v-17" fill="#EEE" stroke="#000"/>
-  <path fill="none" stroke="#000" stroke-width="2" d="M30 648.969h537v422.797H30z"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19" x="45" y="662.036">
-    alt
-  </text>
-  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="103" x="109" y="661.179">
-    [response is ok]
-  </text>
-  <path stroke="#a80036" d="M309.5 687.234h42M351.5 687.234v13M310.5 700.234h41"/>
-  <path fill="#A80036" stroke="#a80036" d="M320.5 696.234l-10 4 10 4-4-4z"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="316.5" y="682.168">
-    11
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="144" x="338.5" y="682.168">
-    Persist Response Data
-  </text>
-  <path d="M54 713.234v40h319v-30l-10-10H54" fill="#FBFB77" filter="url(#a)" stroke="#a80036"/>
-  <path d="M363 713.234v10h10l-10-10" fill="#FBFB77" stroke="#a80036"/>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="298" x="60" y="730.301">
-    Switch forwards quote response to Payer DFSP
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="185" x="60" y="745.434">
-    &lt;Payee whole request Rule&gt;
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M133.5 779.633l-10 4h10z"/>
-  <path stroke="#a80036" d="M122.5 783.633h186"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="139.5" y="778.567">
-    12
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="110" x="161.5" y="778.567">
-    PUT /quotes/{ID}
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M297.5 813.766h10l-10 4z"/>
-  <path stroke="#a80036" stroke-dasharray="2,2" d="M122.5 812.766h186"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="129.5" y="807.7">
-    13
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="45" x="151.5" y="807.7">
-    200 Ok
-  </text>
-  <path d="M40 825.766v55h161v-45l-10-10H40" fill="#3498DB" filter="url(#a)" stroke="#a80036"/>
-  <path d="M191 825.766v10h10l-10-10" fill="#3498DB" stroke="#a80036"/>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="140" x="46" y="842.832">
-    Payer DFSP continues
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="131" x="46" y="857.965">
-    with transfer if quote
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="96" x="46" y="873.098">
-    is acceptable...
-  </text>
-  <path stroke="#000" stroke-dasharray="2,2" d="M30 891.164h537"/>
-  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="116" x="35" y="901.375">
-    [response invalid]
-  </text>
-  <path d="M268 909.969v25h279v-15l-10-10H268" fill="#FBFB77" filter="url(#a)" stroke="#a80036"/>
-  <path d="M537 909.969v10h10l-10-10" fill="#FBFB77" stroke="#a80036"/>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="224" x="289" y="927.036">
-    Switch returns error to Payee DFSP
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M494.5 961.234l10 4h-10z"/>
-  <path stroke="#a80036" d="M309.5 965.234h196"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="316.5" y="960.168">
-    14
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="145" x="338.5" y="960.168">
-    PUT /quotes/{ID}/error
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M320.5 995.367h-10l10 4z"/>
-  <path stroke="#a80036" stroke-dasharray="2,2" d="M309.5 994.367h196"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="326.5" y="989.301">
-    15
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="45" x="348.5" y="989.301">
-    200 Ok
-  </text>
-  <path d="M268 1007.367v55h279v-45l-10-10H268" fill="#EC7063" filter="url(#a)" stroke="#a80036"/>
-  <path d="M537 1007.367v10h10l-10-10" fill="#EC7063" stroke="#a80036"/>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="129" x="312" y="1024.434">
-    Note that under this
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="157" x="312" y="1039.567">
-    scenario the Payer DFSP
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="178" x="312" y="1054.7">
-    may not receive a response
-  </text>
-  <path stroke="#000" stroke-dasharray="2,2" d="M20 1079.766h557"/>
-  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="336" x="25" y="1089.976">
-    [Payee DFSP calculation fails or rejects the request]
-  </text>
-  <path d="M268 1098.57v25h279v-15l-10-10H268" fill="#FBFB77" filter="url(#a)" stroke="#a80036"/>
-  <path d="M537 1098.57v10h10l-10-10" fill="#FBFB77" stroke="#a80036"/>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="224" x="289" y="1115.637">
-    Payee DFSP returns error to Switch
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M320.5 1149.836l-10 4h10z"/>
-  <path stroke="#a80036" d="M309.5 1153.836h196"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="326.5" y="1148.77">
-    16
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="141" x="348.5" y="1148.77">
-    PUT quotes/{ID}/error
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M494.5 1183.969h10l-10 4z"/>
-  <path stroke="#a80036" stroke-dasharray="2,2" d="M309.5 1182.969h196"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="316.5" y="1177.903">
-    17
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="46" x="338.5" y="1177.903">
-    200 OK
-  </text>
-  <path stroke="#a80036" d="M309.5 1212.102h42M351.5 1212.102v13M310.5 1225.102h41"/>
-  <path fill="#A80036" stroke="#a80036" d="M320.5 1221.102l-10 4 10 4-4-4z"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="316.5" y="1207.036">
-    18
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="111" x="338.5" y="1207.036">
-    Persist error data
-  </text>
-  <path d="M82 1238.102v25h267v-15l-10-10H82" fill="#FBFB77" filter="url(#a)" stroke="#a80036"/>
-  <path d="M339 1238.102v10h10l-10-10" fill="#FBFB77" stroke="#a80036"/>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="221" x="98.5" y="1255.168">
-    Switch returns error to Payer DFSP
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M133.5 1289.367l-10 4h10z"/>
-  <path stroke="#a80036" d="M122.5 1293.367h186"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="139.5" y="1288.301">
-    19
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="141" x="161.5" y="1288.301">
-    PUT quotes/{ID}/error
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M297.5 1323.5h10l-10 4z"/>
-  <path stroke="#a80036" stroke-dasharray="2,2" d="M122.5 1322.5h186"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="129.5" y="1317.434">
-    20
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="46" x="151.5" y="1317.434">
-    200 OK
-  </text>
-  <path stroke="#000" stroke-dasharray="2,2" d="M10 1338.5h678.5"/>
-  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="94" x="15" y="1348.71">
-    [quote invalid]
-  </text>
-  <path d="M82 1357.305v25h267v-15l-10-10H82" fill="#FBFB77" filter="url(#a)" stroke="#a80036"/>
-  <path d="M339 1357.305v10h10l-10-10" fill="#FBFB77" stroke="#a80036"/>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="221" x="98.5" y="1374.372">
-    Switch returns error to Payer DFSP
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M133.5 1408.57l-10 4h10z"/>
-  <path stroke="#a80036" d="M122.5 1412.57h186"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="139.5" y="1407.504">
-    21
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="141" x="161.5" y="1407.504">
-    PUT quotes/{ID}/error
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M297.5 1442.703h10l-10 4z"/>
-  <path stroke="#a80036" stroke-dasharray="2,2" d="M122.5 1441.703h186"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="129.5" y="1436.637">
-    22
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="46" x="151.5" y="1436.637">
-    200 OK
-  </text>
+  <g>
+    <text fill="#000000" font-family="sans-serif" font-size="18" lengthAdjust="spacingAndGlyphs" textLength="242" x="228.25" y="28.708">Quoting Service Sequences</text>
+    <rect fill="#FFFFFF" filter="url(#fxy718lr9dgwd)" height="1185.3281" style="stroke:#000000;stroke-width:2.0" width="678.5" x="10" y="264.375"/>
+    <rect fill="#FFFFFF" filter="url(#fxy718lr9dgwd)" height="845.1953" style="stroke:#000000;stroke-width:2.0" width="557" x="20" y="485.3047"/>
+    <rect fill="#FFFFFF" filter="url(#fxy718lr9dgwd)" height="422.7969" style="stroke:#000000;stroke-width:2.0" width="537" x="30" y="648.9688"/>
+    <rect fill="#FFFFFF" height="181.6016" style="stroke:none;stroke-width:1.0" width="537" x="30" y="890.1641"/>
+    <rect fill="#FFFFFF" height="251.7344" style="stroke:none;stroke-width:1.0" width="557" x="20" y="1078.7656"/>
+    <rect fill="#FFFFFF" height="112.2031" style="stroke:none;stroke-width:1.0" width="678.5" x="10" y="1337.5"/>
+    <line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0" x1="122" x2="122" y1="107.8438" y2="1466.7031"/>
+    <line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0" x1="309" x2="309" y1="107.8438" y2="1466.7031"/>
+    <line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0" x1="506" x2="506" y1="107.8438" y2="1466.7031"/>
+    <rect fill="#FEFECE" filter="url(#fxy718lr9dgwd)" height="30.2969" style="stroke:#A80036;stroke-width:1.5" width="93" x="74" y="72.5469"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="79" x="81" y="92.542">Payer DFSP</text>
+    <rect fill="#FEFECE" filter="url(#fxy718lr9dgwd)" height="30.2969" style="stroke:#A80036;stroke-width:1.5" width="93" x="74" y="1465.7031"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="79" x="81" y="1485.6982">Payer DFSP</text>
+    <rect fill="#FEFECE" filter="url(#fxy718lr9dgwd)" height="62.8906" style="stroke:#A80036;stroke-width:1.5" width="69" x="273" y="39.9531"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="45" x="285" y="59.9482">Switch</text>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="55" x="280" y="76.2451">Quoting</text>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="50" x="282.5" y="92.542">Service</text>
+    <rect fill="#FEFECE" filter="url(#fxy718lr9dgwd)" height="62.8906" style="stroke:#A80036;stroke-width:1.5" width="69" x="273" y="1465.7031"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="45" x="285" y="1485.6982">Switch</text>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="55" x="280" y="1501.9951">Quoting</text>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="50" x="282.5" y="1518.292">Service</text>
+    <rect fill="#FEFECE" filter="url(#fxy718lr9dgwd)" height="30.2969" style="stroke:#A80036;stroke-width:1.5" width="97" x="456" y="72.5469"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="83" x="463" y="92.542">Payee DFSP</text>
+    <rect fill="#FEFECE" filter="url(#fxy718lr9dgwd)" height="30.2969" style="stroke:#A80036;stroke-width:1.5" width="97" x="456" y="1465.7031"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="83" x="463" y="1485.6982">Payee DFSP</text>
+    <path d="M58,122.8438 L58,147.8438 L369,147.8438 L369,132.8438 L359,122.8438 L58,122.8438 " fill="#FBFB77" filter="url(#fxy718lr9dgwd)" style="stroke:#A80036;stroke-width:1.0"/>
+    <path d="M359,122.8438 L359,132.8438 L369,132.8438 L359,122.8438 " fill="#FBFB77" style="stroke:#A80036;stroke-width:1.0"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="290" x="64" y="139.9106">Payer DFSP requests quote from Payee DFSP</text>
+    <polygon fill="#A80036" points="297.5,174.1094,307.5,178.1094,297.5,178.1094" style="stroke:#A80036;stroke-width:1.0"/>
+    <line style="stroke:#A80036;stroke-width:1.0" x1="122.5" x2="308.5" y1="178.1094" y2="178.1094"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="129.5" y="173.0435">1</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="86" x="142.5" y="173.0435">POST /quotes</text>
+    <polygon fill="#A80036" points="133.5,208.2422,123.5,208.2422,133.5,212.2422" style="stroke:#A80036;stroke-width:1.0"/>
+    <line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0" x1="122.5" x2="308.5" y1="207.2422" y2="207.2422"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="139.5" y="202.1763">2</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="88" x="152.5" y="202.1763">202 Accepted</text>
+    <line style="stroke:#A80036;stroke-width:1.0" x1="309.5" x2="351.5" y1="236.375" y2="236.375"/>
+    <line style="stroke:#A80036;stroke-width:1.0" x1="351.5" x2="351.5" y1="236.375" y2="249.375"/>
+    <line style="stroke:#A80036;stroke-width:1.0" x1="310.5" x2="351.5" y1="249.375" y2="249.375"/>
+    <polygon fill="#A80036" points="320.5,245.375,310.5,249.375,320.5,253.375,316.5,249.375" style="stroke:#A80036;stroke-width:1.0"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="316.5" y="231.3091">3</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="151" x="329.5" y="231.3091">Validate Quote Request</text>
+    <path d="M10,264.375 L74,264.375 L74,271.375 L64,281.375 L10,281.375 L10,264.375 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.0"/>
+    <rect fill="none" height="1185.3281" style="stroke:#000000;stroke-width:2.0" width="678.5" x="10" y="264.375"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19" x="25" y="277.4419">alt</text>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="97" x="89" y="276.5854">[quote is valid]</text>
+    <line style="stroke:#A80036;stroke-width:1.0" x1="309.5" x2="351.5" y1="302.6406" y2="302.6406"/>
+    <line style="stroke:#A80036;stroke-width:1.0" x1="351.5" x2="351.5" y1="302.6406" y2="315.6406"/>
+    <line style="stroke:#A80036;stroke-width:1.0" x1="310.5" x2="351.5" y1="315.6406" y2="315.6406"/>
+    <polygon fill="#A80036" points="320.5,311.6406,310.5,315.6406,320.5,319.6406,316.5,315.6406" style="stroke:#A80036;stroke-width:1.0"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="316.5" y="297.5747">4</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="121" x="329.5" y="297.5747">Persist Quote Data</text>
+    <path d="M250,328.6406 L250,368.6406 L562,368.6406 L562,338.6406 L552,328.6406 L250,328.6406 " fill="#FBFB77" filter="url(#fxy718lr9dgwd)" style="stroke:#A80036;stroke-width:1.0"/>
+    <path d="M552,328.6406 L552,338.6406 L562,338.6406 L552,328.6406 " fill="#FBFB77" style="stroke:#A80036;stroke-width:1.0"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="291" x="256" y="345.7075">Switch forwards quote request to Payee DFSP</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="139" x="256" y="360.8403">&lt;Payer based Rules&gt;</text>
+    <polygon fill="#A80036" points="494.5,395.0391,504.5,399.0391,494.5,399.0391" style="stroke:#A80036;stroke-width:1.0"/>
+    <line style="stroke:#A80036;stroke-width:1.0" x1="309.5" x2="505.5" y1="399.0391" y2="399.0391"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="316.5" y="393.9731">5</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="86" x="329.5" y="393.9731">POST /quotes</text>
+    <polygon fill="#A80036" points="320.5,429.1719,310.5,429.1719,320.5,433.1719" style="stroke:#A80036;stroke-width:1.0"/>
+    <line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0" x1="309.5" x2="505.5" y1="428.1719" y2="428.1719"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="326.5" y="423.106">6</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="88" x="339.5" y="423.106">202 Accepted</text>
+    <line style="stroke:#A80036;stroke-width:1.0" x1="506.5" x2="548.5" y1="457.3047" y2="457.3047"/>
+    <line style="stroke:#A80036;stroke-width:1.0" x1="548.5" x2="548.5" y1="457.3047" y2="470.3047"/>
+    <line style="stroke:#A80036;stroke-width:1.0" x1="507.5" x2="548.5" y1="470.3047" y2="470.3047"/>
+    <polygon fill="#A80036" points="517.5,466.3047,507.5,470.3047,517.5,474.3047,513.5,470.3047" style="stroke:#A80036;stroke-width:1.0"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="513.5" y="452.2388">7</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="150" x="526.5" y="452.2388">Calculate Fees/Charges</text>
+    <path d="M20,485.3047 L84,485.3047 L84,492.3047 L74,502.3047 L20,502.3047 L20,485.3047 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.0"/>
+    <rect fill="none" height="845.1953" style="stroke:#000000;stroke-width:2.0" width="557" x="20" y="485.3047"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19" x="35" y="498.3716">alt</text>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="280" x="99" y="497.5151">[Payee DFSP successfully calculates quote]</text>
+    <path d="M268,507.4375 L268,532.4375 L547,532.4375 L547,517.4375 L537,507.4375 L268,507.4375 " fill="#FBFB77" filter="url(#fxy718lr9dgwd)" style="stroke:#A80036;stroke-width:1.0"/>
+    <path d="M537,507.4375 L537,517.4375 L547,517.4375 L537,507.4375 " fill="#FBFB77" style="stroke:#A80036;stroke-width:1.0"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="251" x="275.5" y="524.5044">Payee DFSP responds to quote request</text>
+    <polygon fill="#A80036" points="320.5,558.7031,310.5,562.7031,320.5,562.7031" style="stroke:#A80036;stroke-width:1.0"/>
+    <line style="stroke:#A80036;stroke-width:1.0" x1="309.5" x2="505.5" y1="562.7031" y2="562.7031"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="326.5" y="557.6372">8</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="110" x="339.5" y="557.6372">PUT /quotes/{ID}</text>
+    <polygon fill="#A80036" points="494.5,592.8359,504.5,592.8359,494.5,596.8359" style="stroke:#A80036;stroke-width:1.0"/>
+    <line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0" x1="309.5" x2="505.5" y1="591.8359" y2="591.8359"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="316.5" y="586.77">9</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="45" x="329.5" y="586.77">200 Ok</text>
+    <line style="stroke:#A80036;stroke-width:1.0" x1="309.5" x2="351.5" y1="620.9688" y2="620.9688"/>
+    <line style="stroke:#A80036;stroke-width:1.0" x1="351.5" x2="351.5" y1="620.9688" y2="633.9688"/>
+    <line style="stroke:#A80036;stroke-width:1.0" x1="310.5" x2="351.5" y1="633.9688" y2="633.9688"/>
+    <polygon fill="#A80036" points="320.5,629.9688,310.5,633.9688,320.5,637.9688,316.5,633.9688" style="stroke:#A80036;stroke-width:1.0"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="316.5" y="615.9028">10</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="161" x="338.5" y="615.9028">Validate Quote Response</text>
+    <path d="M30,648.9688 L94,648.9688 L94,655.9688 L84,665.9688 L30,665.9688 L30,648.9688 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.0"/>
+    <rect fill="none" height="422.7969" style="stroke:#000000;stroke-width:2.0" width="537" x="30" y="648.9688"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19" x="45" y="662.0356">alt</text>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="103" x="109" y="661.1792">[response is ok]</text>
+    <line style="stroke:#A80036;stroke-width:1.0" x1="309.5" x2="351.5" y1="687.2344" y2="687.2344"/>
+    <line style="stroke:#A80036;stroke-width:1.0" x1="351.5" x2="351.5" y1="687.2344" y2="700.2344"/>
+    <line style="stroke:#A80036;stroke-width:1.0" x1="310.5" x2="351.5" y1="700.2344" y2="700.2344"/>
+    <polygon fill="#A80036" points="320.5,696.2344,310.5,700.2344,320.5,704.2344,316.5,700.2344" style="stroke:#A80036;stroke-width:1.0"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="316.5" y="682.1685">11</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="144" x="338.5" y="682.1685">Persist Response Data</text>
+    <path d="M54,713.2344 L54,753.2344 L373,753.2344 L373,723.2344 L363,713.2344 L54,713.2344 " fill="#FBFB77" filter="url(#fxy718lr9dgwd)" style="stroke:#A80036;stroke-width:1.0"/>
+    <path d="M363,713.2344 L363,723.2344 L373,723.2344 L363,713.2344 " fill="#FBFB77" style="stroke:#A80036;stroke-width:1.0"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="298" x="60" y="730.3013">Switch forwards quote response to Payer DFSP</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="185" x="60" y="745.4341">&lt;Payee whole request Rule&gt;</text>
+    <polygon fill="#A80036" points="133.5,779.6328,123.5,783.6328,133.5,783.6328" style="stroke:#A80036;stroke-width:1.0"/>
+    <line style="stroke:#A80036;stroke-width:1.0" x1="122.5" x2="308.5" y1="783.6328" y2="783.6328"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="139.5" y="778.5669">12</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="110" x="161.5" y="778.5669">PUT /quotes/{ID}</text>
+    <polygon fill="#A80036" points="297.5,813.7656,307.5,813.7656,297.5,817.7656" style="stroke:#A80036;stroke-width:1.0"/>
+    <line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0" x1="122.5" x2="308.5" y1="812.7656" y2="812.7656"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="129.5" y="807.6997">13</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="45" x="151.5" y="807.6997">200 Ok</text>
+    <path d="M40,825.7656 L40,880.7656 L201,880.7656 L201,835.7656 L191,825.7656 L40,825.7656 " fill="#3498DB" filter="url(#fxy718lr9dgwd)" style="stroke:#A80036;stroke-width:1.0"/>
+    <path d="M191,825.7656 L191,835.7656 L201,835.7656 L191,825.7656 " fill="#3498DB" style="stroke:#A80036;stroke-width:1.0"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="140" x="46" y="842.8325">Payer DFSP continues</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="131" x="46" y="857.9653">with transfer if quote</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="96" x="46" y="873.0981">is acceptable...</text>
+    <line style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0" x1="30" x2="567" y1="891.1641" y2="891.1641"/>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="116" x="35" y="901.3745">[response invalid]</text>
+    <path d="M268,909.9688 L268,934.9688 L547,934.9688 L547,919.9688 L537,909.9688 L268,909.9688 " fill="#FBFB77" filter="url(#fxy718lr9dgwd)" style="stroke:#A80036;stroke-width:1.0"/>
+    <path d="M537,909.9688 L537,919.9688 L547,919.9688 L537,909.9688 " fill="#FBFB77" style="stroke:#A80036;stroke-width:1.0"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="224" x="289" y="927.0356">Switch returns error to Payee DFSP</text>
+    <polygon fill="#A80036" points="494.5,961.2344,504.5,965.2344,494.5,965.2344" style="stroke:#A80036;stroke-width:1.0"/>
+    <line style="stroke:#A80036;stroke-width:1.0" x1="309.5" x2="505.5" y1="965.2344" y2="965.2344"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="316.5" y="960.1685">14</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="145" x="338.5" y="960.1685">PUT /quotes/{ID}/error</text>
+    <polygon fill="#A80036" points="320.5,995.3672,310.5,995.3672,320.5,999.3672" style="stroke:#A80036;stroke-width:1.0"/>
+    <line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0" x1="309.5" x2="505.5" y1="994.3672" y2="994.3672"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="326.5" y="989.3013">15</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="45" x="348.5" y="989.3013">200 Ok</text>
+    <path d="M268,1007.3672 L268,1062.3672 L547,1062.3672 L547,1017.3672 L537,1007.3672 L268,1007.3672 " fill="#EC7063" filter="url(#fxy718lr9dgwd)" style="stroke:#A80036;stroke-width:1.0"/>
+    <path d="M537,1007.3672 L537,1017.3672 L547,1017.3672 L537,1007.3672 " fill="#EC7063" style="stroke:#A80036;stroke-width:1.0"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="129" x="312" y="1024.4341">Note that under this</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="157" x="312" y="1039.5669">scenario the Payer DFSP</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="178" x="312" y="1054.6997">may not receive a response</text>
+    <line style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0" x1="20" x2="577" y1="1079.7656" y2="1079.7656"/>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="336" x="25" y="1089.9761">[Payee DFSP calculation fails or rejects the request]</text>
+    <path d="M268,1098.5703 L268,1123.5703 L547,1123.5703 L547,1108.5703 L537,1098.5703 L268,1098.5703 " fill="#FBFB77" filter="url(#fxy718lr9dgwd)" style="stroke:#A80036;stroke-width:1.0"/>
+    <path d="M537,1098.5703 L537,1108.5703 L547,1108.5703 L537,1098.5703 " fill="#FBFB77" style="stroke:#A80036;stroke-width:1.0"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="224" x="289" y="1115.6372">Payee DFSP returns error to Switch</text>
+    <polygon fill="#A80036" points="320.5,1149.8359,310.5,1153.8359,320.5,1153.8359" style="stroke:#A80036;stroke-width:1.0"/>
+    <line style="stroke:#A80036;stroke-width:1.0" x1="309.5" x2="505.5" y1="1153.8359" y2="1153.8359"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="326.5" y="1148.77">16</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="141" x="348.5" y="1148.77">PUT quotes/{ID}/error</text>
+    <polygon fill="#A80036" points="494.5,1183.9688,504.5,1183.9688,494.5,1187.9688" style="stroke:#A80036;stroke-width:1.0"/>
+    <line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0" x1="309.5" x2="505.5" y1="1182.9688" y2="1182.9688"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="316.5" y="1177.9028">17</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="46" x="338.5" y="1177.9028">200 OK</text>
+    <line style="stroke:#A80036;stroke-width:1.0" x1="309.5" x2="351.5" y1="1212.1016" y2="1212.1016"/>
+    <line style="stroke:#A80036;stroke-width:1.0" x1="351.5" x2="351.5" y1="1212.1016" y2="1225.1016"/>
+    <line style="stroke:#A80036;stroke-width:1.0" x1="310.5" x2="351.5" y1="1225.1016" y2="1225.1016"/>
+    <polygon fill="#A80036" points="320.5,1221.1016,310.5,1225.1016,320.5,1229.1016,316.5,1225.1016" style="stroke:#A80036;stroke-width:1.0"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="316.5" y="1207.0356">18</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="111" x="338.5" y="1207.0356">Persist error data</text>
+    <path d="M82,1238.1016 L82,1263.1016 L349,1263.1016 L349,1248.1016 L339,1238.1016 L82,1238.1016 " fill="#FBFB77" filter="url(#fxy718lr9dgwd)" style="stroke:#A80036;stroke-width:1.0"/>
+    <path d="M339,1238.1016 L339,1248.1016 L349,1248.1016 L339,1238.1016 " fill="#FBFB77" style="stroke:#A80036;stroke-width:1.0"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="221" x="98.5" y="1255.1685">Switch returns error to Payer DFSP</text>
+    <polygon fill="#A80036" points="133.5,1289.3672,123.5,1293.3672,133.5,1293.3672" style="stroke:#A80036;stroke-width:1.0"/>
+    <line style="stroke:#A80036;stroke-width:1.0" x1="122.5" x2="308.5" y1="1293.3672" y2="1293.3672"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="139.5" y="1288.3013">19</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="141" x="161.5" y="1288.3013">PUT quotes/{ID}/error</text>
+    <polygon fill="#A80036" points="297.5,1323.5,307.5,1323.5,297.5,1327.5" style="stroke:#A80036;stroke-width:1.0"/>
+    <line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0" x1="122.5" x2="308.5" y1="1322.5" y2="1322.5"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="129.5" y="1317.4341">20</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="46" x="151.5" y="1317.4341">200 OK</text>
+    <line style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0" x1="10" x2="688.5" y1="1338.5" y2="1338.5"/>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="94" x="15" y="1348.7104">[quote invalid]</text>
+    <path d="M82,1357.3047 L82,1382.3047 L349,1382.3047 L349,1367.3047 L339,1357.3047 L82,1357.3047 " fill="#FBFB77" filter="url(#fxy718lr9dgwd)" style="stroke:#A80036;stroke-width:1.0"/>
+    <path d="M339,1357.3047 L339,1367.3047 L349,1367.3047 L339,1357.3047 " fill="#FBFB77" style="stroke:#A80036;stroke-width:1.0"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="221" x="98.5" y="1374.3716">Switch returns error to Payer DFSP</text>
+    <polygon fill="#A80036" points="133.5,1408.5703,123.5,1412.5703,133.5,1412.5703" style="stroke:#A80036;stroke-width:1.0"/>
+    <line style="stroke:#A80036;stroke-width:1.0" x1="122.5" x2="308.5" y1="1412.5703" y2="1412.5703"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="139.5" y="1407.5044">21</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="141" x="161.5" y="1407.5044">PUT quotes/{ID}/error</text>
+    <polygon fill="#A80036" points="297.5,1442.7031,307.5,1442.7031,297.5,1446.7031" style="stroke:#A80036;stroke-width:1.0"/>
+    <line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0" x1="122.5" x2="308.5" y1="1441.7031" y2="1441.7031"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="129.5" y="1436.6372">22</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="46" x="151.5" y="1436.6372">200 OK</text>
+  </g>
 </svg>

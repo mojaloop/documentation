@@ -1,3 +1,7 @@
+---
+footerCopyright: Attribution-NoDerivatives 4.0 International (CC BY-ND 4.0) | Ericsson, Huawei, Mahindra-Comviva, Telepin, and the Bill & Melinda Gates Foundation
+---
+
 ## Preface
 
 This section contains information about how to use this document.
@@ -642,7 +646,7 @@ For send amount (see [Non-Disclosing Send Amount](#non-disclosing-send-amount) f
 
 ###### Figure 7
 
-![Figure 7](/assets/diagrams/images/figure7.svg)
+![Figure 7](../../assets/diagrams/images/figure7.svg)
 
 **Figure 7 -- Fees and commission related to interoperability when fees are not disclosed**
 
@@ -663,7 +667,7 @@ In this example, the Payee FSP decides to give commission to the Payer FSP since
 
 ###### Figure 9
 
-![Figure 9](/assets/diagrams/images/figure9.svg)
+![Figure 9](../../assets/diagrams/images/figure9.svg)
 
 **Figure 9 -- Simplified view of money movement for non-disclosing receive amount example**
 
@@ -694,7 +698,7 @@ In the example, the Payer FSP and the Payee FSP would like to have 1 USD each in
 
 [Figure 11](#figure-11) shows a simplified view of the movement of money for the non-disclosing send amount example.
 
-![Figure 11](/assets/diagrams/images/figure11.svg)
+![Figure 11](../../assets/diagrams/images/figure11.svg)
 
 **Figure 11 -- Simplified view of money movement for non-disclosing send amount example**
 
@@ -718,7 +722,7 @@ When disclosing of fees are used, the FSP commission that the Payee FSP sends sh
 
 ###### Figure 12
 
-![Figure 12](/assets/diagrams/images/figure12.svg)
+![Figure 12](../../assets/diagrams/images/figure12.svg)
 
 **Figure 12 -- Fees and commission related to interoperability when fees
 are disclosed**
@@ -740,7 +744,7 @@ See [Fee Types](#fee-types) for more information on the fee types sent in the In
 
 ###### Figure 14
 
-![Figure 14](/assets/diagrams/images/figure14.svg)
+![Figure 14](../../assets/diagrams/images/figure14.svg)
 
 **Figure 14 -- Simplified view of money movement for disclosing receive amount example**
 
@@ -768,7 +772,7 @@ Transfer amount = Quote Amount + Payee FSP Fee -- Payee FSP Commission
 ###### Figure 16
 
 [Figure 16](#figure-16) shows a simplified view of the movement of money for the disclosing send amount example.
-![Figure 16](/assets/diagrams/images/figure16.svg)
+![Figure 16](../../assets/diagrams/images/figure16.svg)
 
 **Figure 16 -- Simplified view of money movement for disclosing send amount example**
 
@@ -802,7 +806,7 @@ The reason for a Payee FSP fee to be absent in the equation, is that the Payer w
 
 [Figure 18](#figure-18) shows a simplified view of the movement of money for the excess commission using disclosing send amount example.
 
-![Figure 18](/assets/diagrams/images/figure18.svg)
+![Figure 18](../../assets/diagrams/images/figure18.svg)
 
 **Figure 18 -- Simplified view of money movement for excess commission using disclosing send amount example**
 
@@ -894,7 +898,7 @@ A P2P Transfer is typically a receive amount, where the Payer FSP is not disclos
 
 See [Figure 20](#figure-20) for a highly simplified view of the movement of money for the P2P Transfer example.
 
-![Figure 20](/assets/diagrams/images/figure20.svg)
+![Figure 20](../../assets/diagrams/images/figure20.svg)
 
 **Figure 20 -- Simplified view of the movement of money for the P2P Transfer example**
 
@@ -915,7 +919,7 @@ See [Figure 22](#figure-22) for a highly simplified view of the movement of mone
 
 ###### Figure 22
 
-![Figure 22](/assets/diagrams/images/figure22.svg)
+![Figure 22](../../assets/diagrams/images/figure22.svg)
 
 **Figure 22 -- Simplified view of the movement of money for the Agent-initiated Cash-In with send amount example**
 
@@ -936,7 +940,7 @@ See [Figure 22](#figure-22) for a highly simplified view of the movement of mone
 
 See [Figure 24](#figure-24) for a highly simplified view of the movement of money for the Agent-initiated Cash-In example with receive amount.
 
-![Figure 24](/assets/diagrams/images/figure24.svg)
+![Figure 24](../../assets/diagrams/images/figure24.svg)
 
 **Figure 24 -- Simplified view of the movement of money for the Agent-initiated Cash-In with receive amount example**
 
@@ -957,7 +961,7 @@ See [Figure 26](#figure-26) for a highly simplified view of the movement of mone
 
 ###### Figure 26
 
-![Figure 26](/assets/diagrams/images/figure26.svg)
+![Figure 26](../../assets/diagrams/images/figure26.svg)
 
 **Figure 26 -- Simplified view of the movement of money for the Customer-Initiated Merchant Payment example**
 
@@ -978,7 +982,7 @@ See [Figure 28](#figure-28) for a highly simplified view of the movement of mone
 
 ###### Figure 28
 
-![Figure 28](/assets/diagrams/images/figure28.svg)
+![Figure 28](../../assets/diagrams/images/figure28.svg)
 
 **Figure 28 -- Simplified view of the movement of money for the Customer-Initiated Cash-Out with receive amount example**
 
@@ -1000,7 +1004,7 @@ See [Figure 30](#figure-30) for a highly simplified view of the movement of mone
 
 ###### Figure 30
 
-![Figure 30](/assets/diagrams/images/figure30.svg)
+![Figure 30](../../assets/diagrams/images/figure30.svg)
 
 **Figure 30 -- Simplified view of the movement of money for the Customer-Initiated Cash-Out with send amount example**
 
@@ -1021,7 +1025,7 @@ See [Figure 32](#figure-32) for a highly simplified view of the movement of mone
 
 ###### Figure 32
 
-![Figure 32](/assets/diagrams/images/figure32.svg)
+![Figure 32](../../assets/diagrams/images/figure32.svg)
 
 **Figure 32 -- Simplified view of the movement of money for the Agent-Initiated Cash-Out example**
 
@@ -1042,7 +1046,7 @@ See [Figure 34](#figure-34) for a highly simplified view of the movement of mone
 
 ###### Figure 34
 
-![Figure 34](/assets/diagrams/images/figure34.svg)
+![Figure 34](../../assets/diagrams/images/figure34.svg)
 
 **Figure 34 -- Simplified view of the movement of money for the Merchant-Initiated Merchant Payment example**
 
@@ -1063,7 +1067,7 @@ See [Figure 36](#figure-36) for a highly simplified view of the movement of mone
 
 ###### Figure 36
 
-![Figure 36](/assets/diagrams/images/figure36.svg)
+![Figure 36](../../assets/diagrams/images/figure36.svg)
 
 **Figure 36 -- Simplified view of the movement of money for the ATM-Initiated Cash-Out example**
 
@@ -1084,7 +1088,7 @@ See [Figure 38](#figure-38) for a highly simplified view of the movement of mone
 
 ###### Figure 38
 
-![Figure 38](/assets/diagrams/images/figure38.svg)
+![Figure 38](../../assets/diagrams/images/figure38.svg)
 
 **Figure 38 -- Simplified view of the movement of money for the
 Merchant-Initiated Merchant Payment authorized on POS example**
@@ -1106,7 +1110,7 @@ See [Figure 40](#figure-40) for a highly simplified view of the movement of mone
 
 ###### Figure 40
 
-![Figure 40](/assets/diagrams/images/figure40.svg)
+![Figure 40](../../assets/diagrams/images/figure40.svg)
 
 **Figure 40 -- Simplified view of the movement of money for the Refund example**
 
@@ -1813,7 +1817,7 @@ The possible states of a transaction request can be seen in [Figure 46](#figure-
 
 ###### Figure 46
 
-![Figure 46](/assets/diagrams/images/figure46.svg)
+![Figure 46](../../assets/diagrams/images/figure46.svg)
 
 **Figure 46 -- Possible states of a transaction request**
 
@@ -2017,7 +2021,7 @@ If the server is unable to find or create a quote, or some other processing erro
 
 **Note:** A server does not need to keep quote objects that have been either rejected or expired in their database. This means that a client should expect that an error callback could be received for an expired or rejected quote.
 
-![Figure 48](/assets/diagrams/images/figure48.svg)
+![Figure 48](../../assets/diagrams/images/figure48.svg)
 
 **Figure 48 -- Possible states of a quote**
 
@@ -2393,7 +2397,7 @@ If the server is unable to find or create a transfer, or another processing erro
 
 The possible states of a transfer can be seen in [Figure 56](#figure-56).
 
-![Figure 56](/assets/diagrams/images/figure56.svg)
+![Figure 56](../../assets/diagrams/images/figure56.svg)
 
 **Figure 56 -- Possible states of a transfer**
 
@@ -2500,7 +2504,7 @@ The possible states of a transaction can be seen in [Figure 58](#figure-58).
 
 **Note:** For reconciliation purposes, a server must keep transaction objects that have been rejected in its database for a scheme-agreed time period. This means that a client should expect a proper callback about a transaction (if it has been received by the server) when requesting information regarding the same.
 
-![Figure 58](/assets/diagrams/images/figure58.svg)
+![Figure 58](../../assets/diagrams/images/figure58.svg)
 
 **Figure 58 -- Possible states of a transaction**
 
@@ -2639,7 +2643,7 @@ The possible states of a bulk quote can be seen in [Figure 60](#figure-60).
 
 **Note:** A server does not need to keep bulk quote objects that have been either rejected or expired in their database. This means that a client should expect that an error callback could be received for a rejected or expired bulk quote.
 
-![Figure 60](/assets/diagrams/images/figure60.svg)
+![Figure 60](../../assets/diagrams/images/figure60.svg)
 
 **Figure 60 -- Possible states of a bulk quote**
 
@@ -2774,7 +2778,7 @@ The possible states of a bulk transfer can be seen in [Figure 62](#figure-62).
 
 **Note:** A server must keep bulk transfer objects that have been rejected in their database during a market agreed time-period for reconciliation purposes. This means that a client should expect a proper callback about a bulk transfer (if it has been received by the server) when requesting information regarding the same.
 
-![Figure 62](/assets/diagrams/images/figure62.svg)
+![Figure 62](../../assets/diagrams/images/figure62.svg)
 
 **Figure 62 -- Possible states of a bulk transfer**
 
@@ -4261,7 +4265,7 @@ The currency codes defined in ISO 421736 as three-letter alphabetic codes are us
 
 Each error code in the API is a four-digit number, for example, **1234**, where the first number (**1** in the example) represents the high-level error category, the second number (**2** in the example) represents the low-level error category, and the last two numbers (**34** in the example) represents the specific error. [Figure 63](#figure-63) shows the structure of an error code. The following sections contain information about defined error codes for each high-level error category.
 
-![Figure 63](/assets/diagrams/images/figure63.svg)
+![Figure 63](../../assets/diagrams/images/figure63.svg)
 
 **Figure 63 -- Error code structure**
 
@@ -4707,7 +4711,7 @@ This section explains the setup of the example.
 
 The nodes in the end-to-end example in this section are simplified by having only two FSPs, where one FSP is a bank (identifier **BankNrOne**) and the other FSP is a mobile money operator (identifier **MobileMoney**), and one Switch (identifier **Switch**). The Switch also acts as the Account Lookup System (ALS) in this simplified setup (see [Figure 73](#figure-73)).
 
-![Figure 73](/assets/diagrams/images/figure73.svg)
+![Figure 73](../../assets/diagrams/images/figure73.svg)
 
 **Figure 73 -- Nodes in end-to-end example**
 

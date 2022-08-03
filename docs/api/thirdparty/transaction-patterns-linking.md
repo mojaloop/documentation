@@ -1,3 +1,6 @@
+---
+footerCopyright: Attribution-NoDerivatives 4.0 International (CC BY-ND 4.0) | Ericsson, Huawei, Mahindra-Comviva, Telepin, and the Bill & Melinda Gates Foundation
+---
 
 # Transaction Patterns - Linking
 

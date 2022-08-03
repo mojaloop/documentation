@@ -1,4 +1,4 @@
-# Mojaloop Transfer operations.
+# Mojaloop Transfer operations
 
 Operational processes that is the core of the transfer operational process;
 

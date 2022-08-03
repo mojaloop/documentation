@@ -4,5 +4,4 @@ GET /authorizations/{TransactionRequestID} and PUT /authorizations/{TransactionR
 
 ## Sequence Diagram
 
-{% uml src="mojaloop-technical-overview/transaction-requests-service/assets/diagrams/sequence/seq-trx-req-authorizations-3.0.0.plantuml" %}
-{% enduml %}
+![seq-trx-req-authorizations-3.0.0.svg](./assets/diagrams/sequence/seq-trx-req-authorizations-3.0.0.svg)

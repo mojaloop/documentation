@@ -39,6 +39,7 @@ module.exports = {
     logo: '/mojaloop_logo_med.png',
     sidebarDepth: 2,
     lastUpdated: true,
+    footerCopyright: 'Apache 2.0 Licensed | Copyright © 2022 Mojaloop Foundation',
     nav: [
       {
         text: 'Getting Started',
@@ -68,15 +69,6 @@ module.exports = {
           collapsable: false,
           children: ['']
         },
-        // {
-        //   title: 'Quickstarts',
-        //   collapsable: false,
-        //   children: [
-        //     ['quickstart', 'Quickstarts'],
-        //     ['quickstart-one', 'Quickstart One'],
-        //     ['quickstart-two', 'Quickstart Two']
-        //   ]
-        // },
         {
           title: 'Demos',
           collapsable: false,
@@ -96,10 +88,11 @@ module.exports = {
           children: [
             ['faqs', 'Frequently Asked Questions'],
             ['general-faqs', 'General FAQs'],
-            ['technical-faqs', 'Technical FAQs']
+            ['technical-faqs', 'Technical FAQs'],
+            ['license', 'License'],
           ],
           sidebarDepth: 2
-        },
+        }
       ],
       '/community/': [
         {
@@ -338,10 +331,11 @@ module.exports = {
           sidebarDepth: 2
         },
         {
-          title: 'Glossary',
+          title: 'Misc',
           collapsable: false,
           children: [
-            ['fspiop/glossary', 'Overview'],
+            ['fspiop/glossary', 'Glossary'],
+            ['license', 'License'],
           ],
         },
       ],

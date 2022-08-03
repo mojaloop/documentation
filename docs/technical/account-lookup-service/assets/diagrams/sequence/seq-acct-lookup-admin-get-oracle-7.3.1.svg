@@ -1,240 +1,133 @@
-<svg xmlns="http://www.w3.org/2000/svg" height="965" preserveAspectRatio="none" style="width:889px;height:965px" width="889">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="965px" preserveAspectRatio="none" style="width:889px;height:965px" version="1.1" viewBox="0 0 889 965" width="889px" zoomAndPan="magnify">
   <defs>
-    <filter height="300%" id="a" width="300%" x="-1" y="-1">
-      <feGaussianBlur result="blurOut" stdDeviation="2"/>
-      <feColorMatrix in="blurOut" result="blurOut2" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/>
-      <feOffset dx="4" dy="4" in="blurOut2" result="blurOut3"/>
-      <feBlend in="SourceGraphic" in2="blurOut3"/>
+    <filter height="300%" id="f168xqsua5atet" width="300%" x="-1" y="-1">
+      <feGaussianBlur result="blurOut" stdDeviation="2.0"/>
+      <feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/>
+      <feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/>
+      <feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/>
     </filter>
   </defs>
-  <text font-family="sans-serif" font-size="18" lengthAdjust="spacingAndGlyphs" textLength="266" x="309.5" y="28.708">
-    7.3.1 Get All Oracle Endpoints
-  </text>
-  <path fill="#FFFFE0" stroke="#a80036" d="M288 40.953h571v918.375H288z"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="176" x="485.5" y="53.02">
-    Account Lookup Service
-  </text>
-  <path fill="#FFF" filter="url(#a)" stroke="#a80036" d="M84 132.383h10v481.188H84zM409 192.781h10V613.57h-10zM613 221.914h10v111.531h-10zM814 251.047h10v53.266h-10z"/>
-  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M10 139.383h865v737.648H10z"/>
-  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M20 266.047h845V621.57H20zM20 635.57h845v234.461H20z"/>
-  <path stroke="#a80036" stroke-dasharray="5,5" d="M89 122.383v771.648M414 122.383v771.648M618 122.383v771.648M819 122.383v771.648"/>
-  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="112" x="30" y="119.081">
-    HUB OPERATOR
-  </text>
-  <circle cx="89" cy="90.086" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
-  <path stroke="#a80036" stroke-width="2" d="M77 104.086h24"/>
-  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="112" x="30" y="906.026">
-    HUB OPERATOR
-  </text>
-  <circle cx="89" cy="925.328" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
-  <path stroke="#a80036" stroke-width="2" d="M77 939.328h24"/>
-  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="238" x="292" y="119.081">
-    Account Lookup Service Admin API
-  </text>
-  <path d="M393.5 78.086v24m0-12h17" fill="none" filter="url(#a)" stroke="#a80036" stroke-width="2"/>
-  <circle cx="422.5" cy="90.086" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
-  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="238" x="292" y="906.026">
-    Account Lookup Service Admin API
-  </text>
-  <path d="M393.5 913.328v24m0-12h17" fill="none" filter="url(#a)" stroke="#a80036" stroke-width="2"/>
-  <circle cx="422.5" cy="925.328" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
-  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="138" x="546" y="119.081">
-    Get Oracles Handler
-  </text>
-  <circle cx="618" cy="90.086" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
-  <path fill="#A80036" stroke="#a80036" d="M614 78.086l6-5-2 5 2 5-6-5z"/>
-  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="138" x="546" y="906.026">
-    Get Oracles Handler
-  </text>
-  <circle cx="618" cy="925.328" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
-  <path fill="#A80036" stroke="#a80036" d="M614 913.328l6-5-2 5 2 5-6-5z"/>
-  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="66" x="783" y="119.081">
-    ALS Store
-  </text>
-  <path d="M801 70.086c0-10 18-10 18-10s18 0 18 10v26c0 10-18 10-18 10s-18 0-18-10v-26" fill="#FEFECE" filter="url(#a)" stroke="#000" stroke-width="1.5"/>
-  <path d="M801 70.086c0 10 18 10 18 10s18 0 18-10" fill="none" stroke="#000" stroke-width="1.5"/>
-  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="66" x="783" y="906.026">
-    ALS Store
-  </text>
-  <path d="M801 919.328c0-10 18-10 18-10s18 0 18 10v26c0 10-18 10-18 10s-18 0-18-10v-26" fill="#FEFECE" filter="url(#a)" stroke="#000" stroke-width="1.5"/>
-  <path d="M801 919.328c0 10 18 10 18 10s18 0 18-10" fill="none" stroke="#000" stroke-width="1.5"/>
-  <path fill="#FFF" filter="url(#a)" stroke="#a80036" d="M84 132.383h10v481.188H84zM409 192.781h10V613.57h-10zM613 221.914h10v111.531h-10zM814 251.047h10v53.266h-10z"/>
-  <path d="M10 139.383h202v7l-10 10H10v-17" fill="#EEE" stroke="#000"/>
-  <path fill="none" stroke="#000" stroke-width="2" d="M10 139.383h865v737.648H10z"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="157" x="25" y="152.45">
-    Get Oracle Endpoints
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M397 188.781l10 4-10 4 4-4z"/>
-  <path stroke="#a80036" d="M94 192.781h309"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="101" y="180.149">
-    1
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="237" x="114" y="172.583">
-    Request to GET all Oracle Endpoints -
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="283" x="114" y="187.715">
-    GET /oracles?currency=USD&amp;type=MSISDN
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M601 217.914l10 4-10 4 4-4z"/>
-  <path stroke="#a80036" d="M419 221.914h188"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="426" y="216.848">
-    2
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="135" x="439" y="216.848">
-    Get Oracle Endpoints
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M802 247.047l10 4-10 4 4-4z"/>
-  <path stroke="#a80036" d="M623 251.047h185"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="630" y="245.981">
-    3
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="133" x="643" y="245.981">
-    Get oracle endpoints
-  </text>
-  <path d="M20 266.047h64v7l-10 10H20v-17" fill="#EEE" stroke="#000"/>
-  <path fill="none" stroke="#000" stroke-width="2" d="M20 266.047h845V621.57H20z"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19" x="35" y="279.114">
-    alt
-  </text>
-  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="211" x="99" y="278.257">
-    [Get Oracle Endpoints (success)]
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M634 300.313l-10 4 10 4-4-4z"/>
-  <path stroke="#a80036" stroke-dasharray="2,2" d="M628 304.313h190"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="640" y="299.247">
-    4
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="154" x="653" y="299.247">
-    Return Oracle Endpoints
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M430 329.445l-10 4 10 4-4-4z"/>
-  <path stroke="#a80036" d="M424 333.445h193"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="436" y="328.379">
-    5
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="154" x="449" y="328.379">
-    Return Oracle Endpoints
-  </text>
-  <path d="M103 346.445v236h297v-226l-10-10H103" fill="#FF0" filter="url(#a)" stroke="#a80036"/>
-  <path d="M390 346.445v10h10l-10-10" fill="#FF0" stroke="#a80036"/>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="61" x="109" y="363.512">
-    Message:
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="109" y="378.645">
-    {
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="5" x="125" y="393.778">
-    [
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="141" y="408.911">
-    {
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="130" x="157" y="424.043">
-    &quot;oracleId&quot;: &lt;string&gt;,
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="198" x="157" y="439.176">
-    &quot;oracleIdType&quot;: &lt;PartyIdType&gt;,
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="82" x="157" y="454.309">
-    &quot;endpoint&quot;: {
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="114" x="173" y="469.442">
-    &quot;value&quot;: &lt;string&gt;,
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="212" x="173" y="484.575">
-    &quot;endpointType&quot;: &lt;EndpointType&gt;
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="12" x="157" y="499.707">
-    },
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="156" x="157" y="514.84">
-    &quot;currency&quot;: &lt;Currency&gt;,
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="147" x="157" y="529.973">
-    &quot;isDefault&quot;: &lt;boolean&gt;
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="141" y="545.106">
-    }
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="5" x="125" y="560.239">
-    ]
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="109" y="575.372">
-    }
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M100 609.57l-10 4 10 4-4-4z"/>
-  <path stroke="#a80036" stroke-dasharray="2,2" d="M94 613.57h319"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="106" y="608.504">
-    6
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="42" x="119" y="608.504">
-    Return
-  </text>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="94" x="165" y="608.504">
-    HTTP Status:
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="24" x="263" y="608.504">
-    200
-  </text>
-  <path d="M20 635.57h64v7l-10 10H20v-17" fill="#EEE" stroke="#000"/>
-  <path fill="none" stroke="#000" stroke-width="2" d="M20 635.57h845v234.461H20z"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19" x="35" y="648.637">
-    alt
-  </text>
-  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="202" x="99" y="647.781">
-    [Get Oracle Endpoints (failure)]
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M629 669.836l-10 4 10 4-4-4z"/>
-  <path stroke="#a80036" stroke-dasharray="2,2" d="M623 673.836h195"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="635" y="668.77">
-    7
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="72" x="648" y="668.77">
-    Throw Error
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M425 698.969l-10 4 10 4-4-4z"/>
-  <path stroke="#a80036" d="M419 702.969h198"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="431" y="697.903">
-    8
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="72" x="444" y="697.903">
-    Throw Error
-  </text>
-  <path d="M176 715.969v115h229v-105l-10-10H176" fill="#FF0" filter="url(#a)" stroke="#a80036"/>
-  <path d="M395 715.969v10h10l-10-10" fill="#FF0" stroke="#a80036"/>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="61" x="182" y="733.036">
-    Message:
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="182" y="748.168">
-    {
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="130" x="198" y="763.301">
-    &quot;errorInformation&quot;: {
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="176" x="214" y="778.434">
-    &quot;errorCode&quot;: &lt;Error Code&gt;,
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="173" x="214" y="793.567">
-    &quot;errorDescription&quot;: &lt;Msg&gt;,
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="198" y="808.7">
-    }
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="182" y="823.832">
-    }
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M100 858.031l-10 4 10 4-4-4z"/>
-  <path stroke="#a80036" stroke-dasharray="2,2" d="M94 862.031h319"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="106" y="856.965">
-    9
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="42" x="119" y="856.965">
-    Return
-  </text>
-  <text fill="red" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="94" x="165" y="856.965">
-    HTTP Status:
-  </text>
-  <text fill="red" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="24" x="263" y="856.965">
-    502
-  </text>
+  <g>
+    <text fill="#000000" font-family="sans-serif" font-size="18" lengthAdjust="spacingAndGlyphs" textLength="266" x="309.5" y="28.708">7.3.1 Get All Oracle Endpoints</text>
+    <rect fill="#FFFFE0" height="918.375" style="stroke:#A80036;stroke-width:1.0" width="571" x="288" y="40.9531"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="176" x="485.5" y="53.02">Account Lookup Service</text>
+    <rect fill="#FFFFFF" filter="url(#f168xqsua5atet)" height="481.1875" style="stroke:#A80036;stroke-width:1.0" width="10" x="84" y="132.3828"/>
+    <rect fill="#FFFFFF" filter="url(#f168xqsua5atet)" height="420.7891" style="stroke:#A80036;stroke-width:1.0" width="10" x="409" y="192.7813"/>
+    <rect fill="#FFFFFF" filter="url(#f168xqsua5atet)" height="111.5313" style="stroke:#A80036;stroke-width:1.0" width="10" x="613" y="221.9141"/>
+    <rect fill="#FFFFFF" filter="url(#f168xqsua5atet)" height="53.2656" style="stroke:#A80036;stroke-width:1.0" width="10" x="814" y="251.0469"/>
+    <rect fill="#FFFFFF" filter="url(#f168xqsua5atet)" height="737.6484" style="stroke:#000000;stroke-width:2.0" width="865" x="10" y="139.3828"/>
+    <rect fill="#FFFFFF" filter="url(#f168xqsua5atet)" height="355.5234" style="stroke:#000000;stroke-width:2.0" width="845" x="20" y="266.0469"/>
+    <rect fill="#FFFFFF" filter="url(#f168xqsua5atet)" height="234.4609" style="stroke:#000000;stroke-width:2.0" width="845" x="20" y="635.5703"/>
+    <line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0" x1="89" x2="89" y1="122.3828" y2="894.0313"/>
+    <line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0" x1="414" x2="414" y1="122.3828" y2="894.0313"/>
+    <line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0" x1="618" x2="618" y1="122.3828" y2="894.0313"/>
+    <line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0" x1="819" x2="819" y1="122.3828" y2="894.0313"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="112" x="30" y="119.0811">HUB OPERATOR</text>
+    <ellipse cx="89" cy="90.0859" fill="#FEFECE" filter="url(#f168xqsua5atet)" rx="12" ry="12" style="stroke:#A80036;stroke-width:2.0"/>
+    <line style="stroke:#A80036;stroke-width:2.0" x1="77" x2="101" y1="104.0859" y2="104.0859"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="112" x="30" y="906.0264">HUB OPERATOR</text>
+    <ellipse cx="89" cy="925.3281" fill="#FEFECE" filter="url(#f168xqsua5atet)" rx="12" ry="12" style="stroke:#A80036;stroke-width:2.0"/>
+    <line style="stroke:#A80036;stroke-width:2.0" x1="77" x2="101" y1="939.3281" y2="939.3281"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="238" x="292" y="119.0811">Account Lookup Service Admin API</text>
+    <path d="M393.5,78.0859 L393.5,102.0859 M393.5,90.0859 L410.5,90.0859 " fill="none" filter="url(#f168xqsua5atet)" style="stroke:#A80036;stroke-width:2.0"/>
+    <ellipse cx="422.5" cy="90.0859" fill="#FEFECE" filter="url(#f168xqsua5atet)" rx="12" ry="12" style="stroke:#A80036;stroke-width:2.0"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="238" x="292" y="906.0264">Account Lookup Service Admin API</text>
+    <path d="M393.5,913.3281 L393.5,937.3281 M393.5,925.3281 L410.5,925.3281 " fill="none" filter="url(#f168xqsua5atet)" style="stroke:#A80036;stroke-width:2.0"/>
+    <ellipse cx="422.5" cy="925.3281" fill="#FEFECE" filter="url(#f168xqsua5atet)" rx="12" ry="12" style="stroke:#A80036;stroke-width:2.0"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="138" x="546" y="119.0811">Get Oracles Handler</text>
+    <ellipse cx="618" cy="90.0859" fill="#FEFECE" filter="url(#f168xqsua5atet)" rx="12" ry="12" style="stroke:#A80036;stroke-width:2.0"/>
+    <polygon fill="#A80036" points="614,78.0859,620,73.0859,618,78.0859,620,83.0859,614,78.0859" style="stroke:#A80036;stroke-width:1.0"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="138" x="546" y="906.0264">Get Oracles Handler</text>
+    <ellipse cx="618" cy="925.3281" fill="#FEFECE" filter="url(#f168xqsua5atet)" rx="12" ry="12" style="stroke:#A80036;stroke-width:2.0"/>
+    <polygon fill="#A80036" points="614,913.3281,620,908.3281,618,913.3281,620,918.3281,614,913.3281" style="stroke:#A80036;stroke-width:1.0"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="66" x="783" y="119.0811">ALS Store</text>
+    <path d="M801,70.0859 C801,60.0859 819,60.0859 819,60.0859 C819,60.0859 837,60.0859 837,70.0859 L837,96.0859 C837,106.0859 819,106.0859 819,106.0859 C819,106.0859 801,106.0859 801,96.0859 L801,70.0859 " fill="#FEFECE" filter="url(#f168xqsua5atet)" style="stroke:#000000;stroke-width:1.5"/>
+    <path d="M801,70.0859 C801,80.0859 819,80.0859 819,80.0859 C819,80.0859 837,80.0859 837,70.0859 " fill="none" style="stroke:#000000;stroke-width:1.5"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="66" x="783" y="906.0264">ALS Store</text>
+    <path d="M801,919.3281 C801,909.3281 819,909.3281 819,909.3281 C819,909.3281 837,909.3281 837,919.3281 L837,945.3281 C837,955.3281 819,955.3281 819,955.3281 C819,955.3281 801,955.3281 801,945.3281 L801,919.3281 " fill="#FEFECE" filter="url(#f168xqsua5atet)" style="stroke:#000000;stroke-width:1.5"/>
+    <path d="M801,919.3281 C801,929.3281 819,929.3281 819,929.3281 C819,929.3281 837,929.3281 837,919.3281 " fill="none" style="stroke:#000000;stroke-width:1.5"/>
+    <rect fill="#FFFFFF" filter="url(#f168xqsua5atet)" height="481.1875" style="stroke:#A80036;stroke-width:1.0" width="10" x="84" y="132.3828"/>
+    <rect fill="#FFFFFF" filter="url(#f168xqsua5atet)" height="420.7891" style="stroke:#A80036;stroke-width:1.0" width="10" x="409" y="192.7813"/>
+    <rect fill="#FFFFFF" filter="url(#f168xqsua5atet)" height="111.5313" style="stroke:#A80036;stroke-width:1.0" width="10" x="613" y="221.9141"/>
+    <rect fill="#FFFFFF" filter="url(#f168xqsua5atet)" height="53.2656" style="stroke:#A80036;stroke-width:1.0" width="10" x="814" y="251.0469"/>
+    <path d="M10,139.3828 L212,139.3828 L212,146.3828 L202,156.3828 L10,156.3828 L10,139.3828 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.0"/>
+    <rect fill="none" height="737.6484" style="stroke:#000000;stroke-width:2.0" width="865" x="10" y="139.3828"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="157" x="25" y="152.4497">Get Oracle Endpoints</text>
+    <polygon fill="#A80036" points="397,188.7813,407,192.7813,397,196.7813,401,192.7813" style="stroke:#A80036;stroke-width:1.0"/>
+    <line style="stroke:#A80036;stroke-width:1.0" x1="94" x2="403" y1="192.7813" y2="192.7813"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="101" y="180.1489">1</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="237" x="114" y="172.5825">Request to GET all Oracle Endpoints -</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="283" x="114" y="187.7153">GET /oracles?currency=USD&amp;type=MSISDN</text>
+    <polygon fill="#A80036" points="601,217.9141,611,221.9141,601,225.9141,605,221.9141" style="stroke:#A80036;stroke-width:1.0"/>
+    <line style="stroke:#A80036;stroke-width:1.0" x1="419" x2="607" y1="221.9141" y2="221.9141"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="426" y="216.8481">2</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="135" x="439" y="216.8481">Get Oracle Endpoints</text>
+    <polygon fill="#A80036" points="802,247.0469,812,251.0469,802,255.0469,806,251.0469" style="stroke:#A80036;stroke-width:1.0"/>
+    <line style="stroke:#A80036;stroke-width:1.0" x1="623" x2="808" y1="251.0469" y2="251.0469"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="630" y="245.981">3</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="133" x="643" y="245.981">Get oracle endpoints</text>
+    <path d="M20,266.0469 L84,266.0469 L84,273.0469 L74,283.0469 L20,283.0469 L20,266.0469 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.0"/>
+    <rect fill="none" height="355.5234" style="stroke:#000000;stroke-width:2.0" width="845" x="20" y="266.0469"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19" x="35" y="279.1138">alt</text>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="211" x="99" y="278.2573">[Get Oracle Endpoints (success)]</text>
+    <polygon fill="#A80036" points="634,300.3125,624,304.3125,634,308.3125,630,304.3125" style="stroke:#A80036;stroke-width:1.0"/>
+    <line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0" x1="628" x2="818" y1="304.3125" y2="304.3125"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="640" y="299.2466">4</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="154" x="653" y="299.2466">Return Oracle Endpoints</text>
+    <polygon fill="#A80036" points="430,329.4453,420,333.4453,430,337.4453,426,333.4453" style="stroke:#A80036;stroke-width:1.0"/>
+    <line style="stroke:#A80036;stroke-width:1.0" x1="424" x2="617" y1="333.4453" y2="333.4453"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="436" y="328.3794">5</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="154" x="449" y="328.3794">Return Oracle Endpoints</text>
+    <path d="M103,346.4453 L103,582.4453 L400,582.4453 L400,356.4453 L390,346.4453 L103,346.4453 " fill="#FFFF00" filter="url(#f168xqsua5atet)" style="stroke:#A80036;stroke-width:1.0"/>
+    <path d="M390,346.4453 L390,356.4453 L400,356.4453 L390,346.4453 " fill="#FFFF00" style="stroke:#A80036;stroke-width:1.0"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="61" x="109" y="363.5122">Message:</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="109" y="378.645">{</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="5" x="125" y="393.7778">[</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="141" y="408.9106">{</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="130" x="157" y="424.0435">&quot;oracleId&quot;: &lt;string&gt;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="198" x="157" y="439.1763">&quot;oracleIdType&quot;: &lt;PartyIdType&gt;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="82" x="157" y="454.3091">&quot;endpoint&quot;: {</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="114" x="173" y="469.4419">&quot;value&quot;: &lt;string&gt;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="212" x="173" y="484.5747">&quot;endpointType&quot;: &lt;EndpointType&gt;</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="12" x="157" y="499.7075">},</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="156" x="157" y="514.8403">&quot;currency&quot;: &lt;Currency&gt;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="147" x="157" y="529.9731">&quot;isDefault&quot;: &lt;boolean&gt;</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="141" y="545.106">}</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="5" x="125" y="560.2388">]</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="109" y="575.3716">}</text>
+    <polygon fill="#A80036" points="100,609.5703,90,613.5703,100,617.5703,96,613.5703" style="stroke:#A80036;stroke-width:1.0"/>
+    <line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0" x1="94" x2="413" y1="613.5703" y2="613.5703"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="106" y="608.5044">6</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="42" x="119" y="608.5044">Return</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="94" x="165" y="608.5044">HTTP Status:</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="24" x="263" y="608.5044">200</text>
+    <path d="M20,635.5703 L84,635.5703 L84,642.5703 L74,652.5703 L20,652.5703 L20,635.5703 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.0"/>
+    <rect fill="none" height="234.4609" style="stroke:#000000;stroke-width:2.0" width="845" x="20" y="635.5703"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19" x="35" y="648.6372">alt</text>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="202" x="99" y="647.7808">[Get Oracle Endpoints (failure)]</text>
+    <polygon fill="#A80036" points="629,669.8359,619,673.8359,629,677.8359,625,673.8359" style="stroke:#A80036;stroke-width:1.0"/>
+    <line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0" x1="623" x2="818" y1="673.8359" y2="673.8359"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="635" y="668.77">7</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="72" x="648" y="668.77">Throw Error</text>
+    <polygon fill="#A80036" points="425,698.9688,415,702.9688,425,706.9688,421,702.9688" style="stroke:#A80036;stroke-width:1.0"/>
+    <line style="stroke:#A80036;stroke-width:1.0" x1="419" x2="617" y1="702.9688" y2="702.9688"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="431" y="697.9028">8</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="72" x="444" y="697.9028">Throw Error</text>
+    <path d="M176,715.9688 L176,830.9688 L405,830.9688 L405,725.9688 L395,715.9688 L176,715.9688 " fill="#FFFF00" filter="url(#f168xqsua5atet)" style="stroke:#A80036;stroke-width:1.0"/>
+    <path d="M395,715.9688 L395,725.9688 L405,725.9688 L395,715.9688 " fill="#FFFF00" style="stroke:#A80036;stroke-width:1.0"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="61" x="182" y="733.0356">Message:</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="182" y="748.1685">{</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="130" x="198" y="763.3013">&quot;errorInformation&quot;: {</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="176" x="214" y="778.4341">&quot;errorCode&quot;: &lt;Error Code&gt;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="173" x="214" y="793.5669">&quot;errorDescription&quot;: &lt;Msg&gt;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="198" y="808.6997">}</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="182" y="823.8325">}</text>
+    <polygon fill="#A80036" points="100,858.0313,90,862.0313,100,866.0313,96,862.0313" style="stroke:#A80036;stroke-width:1.0"/>
+    <line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0" x1="94" x2="413" y1="862.0313" y2="862.0313"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="106" y="856.9653">9</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="42" x="119" y="856.9653">Return</text>
+    <text fill="#FF0000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="94" x="165" y="856.9653">HTTP Status:</text>
+    <text fill="#FF0000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="24" x="263" y="856.9653">502</text>
+  </g>
 </svg>
