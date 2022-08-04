@@ -444,10 +444,12 @@ module.exports = {
           "sidebarDepth": 2
         },
         {
+          // TODO: Placeholder and temporary link for this section until it can be migrated from for legacy docs.
           title: 'Central Ledger Services',
           path: 'https://docs.mojaloop.io/legacy/mojaloop-technical-overview/central-ledger/'
         },
         {
+          // TODO: Placeholder and temporary link for this section until it can be migrated from for legacy docs.
           title: 'Central Settlement Services',
           path: 'https://docs.mojaloop.io/legacy/mojaloop-technical-overview/central-settlements/'
         },
