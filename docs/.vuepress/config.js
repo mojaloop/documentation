@@ -40,6 +40,7 @@ module.exports = {
     sidebarDepth: 2,
     lastUpdated: true,
     footerCopyright: 'Apache 2.0 Licensed | Copyright © 2022 Mojaloop Foundation',
+    // Ref: https://vuepress.vuejs.org/theme/default-theme-config.html#navbar
     nav: [
       {
         text: 'Getting Started',
@@ -62,6 +63,7 @@ module.exports = {
         link: 'https://mojaloop.io/mojaloop-training-program/'
       }
     ],
+    // Ref: https://vuepress.vuejs.org/theme/default-theme-config.html#sidebar
     sidebar: {
       '/getting-started/': [
         {
@@ -440,6 +442,16 @@ module.exports = {
             }
           ],
           "sidebarDepth": 2
+        },
+        {
+          // TODO: Placeholder and temporary link for this section until it can be migrated from legacy docs.
+          title: 'Central Ledger Services',
+          path: 'https://docs.mojaloop.io/legacy/mojaloop-technical-overview/central-ledger/'
+        },
+        {
+          // TODO: Placeholder and temporary link for this section until it can be migrated from legacy docs.
+          title: 'Central Settlement Services',
+          path: 'https://docs.mojaloop.io/legacy/mojaloop-technical-overview/central-settlements/'
         },
         {
           "title": "Transaction Requests Service",
