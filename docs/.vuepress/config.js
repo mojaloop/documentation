@@ -442,12 +442,12 @@ module.exports = {
           "sidebarDepth": 2
         },
         {
-          text: 'Central Ledger Services',
-          link: 'https://docs.mojaloop.io/legacy/mojaloop-technical-overview/central-ledger/'
+          title: 'Central Ledger Services',
+          path: 'https://docs.mojaloop.io/legacy/mojaloop-technical-overview/central-ledger/'
         },
         {
-          text: 'Central Settlement Services',
-          link: 'https://docs.mojaloop.io/legacy/mojaloop-technical-overview/central-settlements/'
+          title: 'Central Settlement Services',
+          path: 'https://docs.mojaloop.io/legacy/mojaloop-technical-overview/central-settlements/'
         },
         {
           "title": "Transaction Requests Service",
