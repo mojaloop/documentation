@@ -417,6 +417,33 @@ module.exports = {
           "sidebarDepth": 2
         },
         {
+          "title": "Quoting Service",
+          "collapsable": true,
+          "children": [
+            {
+              "title": "Overview",
+              "path": "quoting-service/"
+            },
+            {
+              "title": "GET Quote",
+              "path": "quoting-service/qs-get-quotes"
+            },
+            {
+              "title": "POST Quote",
+              "path": "quoting-service/qs-post-quotes"
+            },
+            {
+              "title": "GET Bulk Quote",
+              "path": "quoting-service/qs-get-bulk-quotes"
+            },
+            {
+              "title": "POST Bulk Quote",
+              "path": "quoting-service/qs-post-bulk-quotes"
+            }
+          ],
+          "sidebarDepth": 2
+        },
+        {
           "title": "Central Ledger",
           "collapsable": true,
           "children": [
@@ -746,33 +773,6 @@ module.exports = {
                   "path": "central-bulk-transfers/transfers/5.1.0-transfer-get-overview-for-bulk"
                 }
               ]
-            }
-          ],
-          "sidebarDepth": 2
-        },
-        {
-          "title": "Quoting Service",
-          "collapsable": true,
-          "children": [
-            {
-              "title": "Overview",
-              "path": "quoting-service/"
-            },
-            {
-              "title": "GET Quote",
-              "path": "quoting-service/qs-get-quotes"
-            },
-            {
-              "title": "POST Quote",
-              "path": "quoting-service/qs-post-quotes"
-            },
-            {
-              "title": "GET Bulk Quote",
-              "path": "quoting-service/qs-get-bulk-quotes"
-            },
-            {
-              "title": "POST Bulk Quote",
-              "path": "quoting-service/qs-post-bulk-quotes"
             }
           ],
           "sidebarDepth": 2
