@@ -1,0 +1,321 @@
+<svg xmlns="http://www.w3.org/2000/svg" height="1382" preserveAspectRatio="none" style="width:1490px;height:1382px" width="1490">
+  <defs>
+    <filter height="300%" id="a" width="300%" x="-1" y="-1">
+      <feGaussianBlur result="blurOut" stdDeviation="2"/>
+      <feColorMatrix in="blurOut" result="blurOut2" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/>
+      <feOffset dx="4" dy="4" in="blurOut2" result="blurOut3"/>
+      <feBlend in="SourceGraphic" in2="blurOut3"/>
+    </filter>
+  </defs>
+  <text font-family="sans-serif" font-size="18" lengthAdjust="spacingAndGlyphs" textLength="323" x="581.5" y="28.708">
+    4.2.0 Get Positions of all Participants
+  </text>
+  <path fill="#ADD8E6" stroke="#a80036" d="M1 40.953h179v1335.492H1z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="173" x="4" y="53.02">
+    ML API Adapter Service
+  </text>
+  <path fill="#FFFFE0" stroke="#a80036" d="M432 40.953h1012v1335.492H432z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="111" x="882.5" y="53.02">
+    Central Service
+  </text>
+  <path fill="#FFF" filter="url(#a)" stroke="#a80036" d="M85.5 132.383h10v1168.766h-10zM498 177.648h10v1123.5h-10zM754 206.781h10v1050.234h-10zM1056 251.047h10V432.11h-10zM1387 310.445h10v92.531h-10z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M19.5 139.383H1476v1154.766H19.5z"/>
+  <path stroke="#a80036" stroke-dasharray="5,5" d="M90.5 122.383v1188.765M503 122.383v1188.765M758.5 122.383v1188.765M1060.5 122.383v1188.765M1392 122.383v1188.765"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="116" x="29.5" y="119.081">
+    ML-API-ADAPTER
+  </text>
+  <circle cx="90.5" cy="90.086" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path stroke="#a80036" stroke-width="2" d="M78.5 104.086h24"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="116" x="29.5" y="1323.144">
+    ML-API-ADAPTER
+  </text>
+  <circle cx="90.5" cy="1342.445" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path stroke="#a80036" stroke-width="2" d="M78.5 1356.445h24"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="128" x="436" y="119.081">
+    Central Service API
+  </text>
+  <path d="M482.5 78.086v24m0-12h17" fill="none" filter="url(#a)" stroke="#a80036" stroke-width="2"/>
+  <circle cx="511.5" cy="90.086" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="128" x="436" y="1323.144">
+    Central Service API
+  </text>
+  <path d="M482.5 1330.445v24m0-12h17" fill="none" filter="url(#a)" stroke="#a80036" stroke-width="2"/>
+  <circle cx="511.5" cy="1342.445" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="129" x="691.5" y="119.081">
+    Participant Handler
+  </text>
+  <circle cx="759" cy="90.086" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path fill="#A80036" stroke="#a80036" d="M755 78.086l6-5-2 5 2 5-6-5z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="129" x="691.5" y="1323.144">
+    Participant Handler
+  </text>
+  <circle cx="759" cy="1342.445" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path fill="#A80036" stroke="#a80036" d="M755 1330.445l6-5-2 5 2 5-6-5z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="107" x="1004.5" y="119.081">
+    Participant DAO
+  </text>
+  <circle cx="1061" cy="90.086" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path stroke="#a80036" stroke-width="2" d="M1049 104.086h24"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="107" x="1004.5" y="1323.144">
+    Participant DAO
+  </text>
+  <circle cx="1061" cy="1342.445" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path stroke="#a80036" stroke-width="2" d="M1049 1356.445h24"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="90" x="1344" y="119.081">
+    Central Store
+  </text>
+  <path d="M1374 70.086c0-10 18-10 18-10s18 0 18 10v26c0 10-18 10-18 10s-18 0-18-10v-26" fill="#FEFECE" filter="url(#a)" stroke="#000" stroke-width="1.5"/>
+  <path d="M1374 70.086c0 10 18 10 18 10s18 0 18-10" fill="none" stroke="#000" stroke-width="1.5"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="90" x="1344" y="1323.144">
+    Central Store
+  </text>
+  <path d="M1374 1336.445c0-10 18-10 18-10s18 0 18 10v26c0 10-18 10-18 10s-18 0-18-10v-26" fill="#FEFECE" filter="url(#a)" stroke="#000" stroke-width="1.5"/>
+  <path d="M1374 1336.445c0 10 18 10 18 10s18 0 18-10" fill="none" stroke="#000" stroke-width="1.5"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#a80036" d="M85.5 132.383h10v1168.766h-10zM498 177.648h10v1123.5h-10zM754 206.781h10v1050.234h-10zM1056 251.047h10V432.11h-10zM1387 310.445h10v92.531h-10z"/>
+  <path d="M19.5 139.383h191v7l-10 10h-181v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M19.5 139.383H1476v1154.766H19.5z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="146" x="34.5" y="152.45">
+    Get Position Details
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M486 173.648l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M95.5 177.648H492"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="102.5" y="172.583">
+    1
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="346" x="115.5" y="172.583">
+    Request to get positions - GET - /participants/positions
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M742 202.781l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M508 206.781h240"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="515" y="201.715">
+    2
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="214" x="528" y="201.715">
+    Fetch Positions for all Participants
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1044 247.047l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M764 251.047h286"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="771" y="238.415">
+    3
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="256" x="784" y="230.848">
+    Fetch Positions for all active Participants
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="82" x="784" y="245.981">
+    Error code:
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="68" x="870" y="245.981">
+    2003,3200
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1375 306.445l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M1066 310.445h315"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="1073" y="290.247">
+    4
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="121" x="1086" y="275.114">
+    Fetch Positions for:
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="135" x="1090" y="290.247">
+    all active Participants
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="285" x="1090" y="305.379">
+    with all active Currencies for each Participant
+  </text>
+  <path fill="#FFFFE0" filter="url(#a)" stroke="#a80036" d="M1327 323.445h129l10 26-10 27h-129l-10-27 10-26z"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="68" x="1329" y="339.512">
+    participant
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="118" x="1329" y="354.645">
+    participantPosition
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="125" x="1329" y="369.778">
+    participantCurrency
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1077 398.977l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M1071 402.977h320"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="1083" y="397.911">
+    5
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="221" x="1096" y="397.911">
+    Retrieved Positions for Participants
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M775 428.11l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M769 432.109h291"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="781" y="427.043">
+    6
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="203" x="794" y="427.043">
+    Return Positions for Participants
+  </text>
+  <path d="M769 445.11v781h305v-771l-10-10H769" fill="#FF0" filter="url(#a)" stroke="#a80036"/>
+  <path d="M1064 445.11v10h10l-10-10" fill="#FF0" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="61" x="775" y="462.176">
+    Message:
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="775" y="477.309">
+    {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="185" x="791" y="492.442">
+    snapshotAt: &lt;timestamp0&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="61" x="791" y="507.575">
+    positions:
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="5" x="791" y="522.707">
+    [
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="807" y="537.84">
+    {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="148" x="823" y="552.973">
+    participantId: &lt;dfsp1&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="129" x="823" y="568.106">
+    participantPositions:
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="5" x="823" y="583.239">
+    [
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="839" y="598.372">
+    {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="112" x="855" y="613.504">
+    currentPosition: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="152" x="871" y="628.637">
+    currency: &lt;currency1&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="126" x="871" y="643.77">
+    value: &lt;amount1&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="184" x="871" y="658.903">
+    reservedValue: &lt;amount2&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="188" x="871" y="674.036">
+    lastUpdated: &lt;timeStamp1&gt;
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="855" y="689.168">
+    }
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="12" x="839" y="704.301">
+    },
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="839" y="719.434">
+    {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="112" x="855" y="734.567">
+    currentPosition: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="152" x="871" y="749.7">
+    currency: &lt;currency2&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="126" x="871" y="764.832">
+    value: &lt;amount3&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="184" x="871" y="779.965">
+    reservedValue: &lt;amount4&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="188" x="871" y="795.098">
+    lastUpdated: &lt;timeStamp2&gt;
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="855" y="810.231">
+    }
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="839" y="825.364">
+    }
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="5" x="823" y="840.497">
+    ]
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="12" x="807" y="855.629">
+    },
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="807" y="870.762">
+    {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="148" x="823" y="885.895">
+    participantId: &lt;dfsp2&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="129" x="823" y="901.028">
+    participantPositions:
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="5" x="823" y="916.161">
+    [
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="839" y="931.293">
+    {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="112" x="855" y="946.426">
+    currentPosition: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="152" x="871" y="961.559">
+    currency: &lt;currency1&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="126" x="871" y="976.692">
+    value: &lt;amount1&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="184" x="871" y="991.825">
+    reservedValue: &lt;amount2&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="188" x="871" y="1006.957">
+    lastUpdated: &lt;timeStamp1&gt;
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="855" y="1022.09">
+    }
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="12" x="839" y="1037.223">
+    },
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="839" y="1052.356">
+    {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="112" x="855" y="1067.489">
+    currentPosition: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="152" x="871" y="1082.622">
+    currency: &lt;currency2&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="126" x="871" y="1097.754">
+    value: &lt;amount3&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="184" x="871" y="1112.887">
+    reservedValue: &lt;amount4&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="188" x="871" y="1128.02">
+    lastUpdated: &lt;timeStamp2&gt;
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="855" y="1143.153">
+    }
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="839" y="1158.286">
+    }
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="5" x="823" y="1173.418">
+    ]
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="807" y="1188.551">
+    }
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="5" x="791" y="1203.684">
+    ]
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="775" y="1218.817">
+    }
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M519 1253.016l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M513 1257.016h245"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="525" y="1251.95">
+    7
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="203" x="538" y="1251.95">
+    Return Positions for Participants
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M106.5 1282.148l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M100.5 1286.148H497"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="112.5" y="1281.082">
+    8
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="203" x="125.5" y="1281.082">
+    Return Positions for Participants
+  </text>
+</svg>

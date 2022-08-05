@@ -1,0 +1,317 @@
+<svg xmlns="http://www.w3.org/2000/svg" height="1162" preserveAspectRatio="none" style="width:2032px;height:1162px" width="2032">
+  <defs>
+    <filter height="300%" id="a" width="300%" x="-1" y="-1">
+      <feGaussianBlur result="blurOut" stdDeviation="2"/>
+      <feColorMatrix in="blurOut" result="blurOut2" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/>
+      <feOffset dx="4" dy="4" in="blurOut2" result="blurOut3"/>
+      <feBlend in="SourceGraphic" in2="blurOut3"/>
+    </filter>
+  </defs>
+  <text font-family="sans-serif" font-size="18" lengthAdjust="spacingAndGlyphs" textLength="629" x="699" y="28.708">
+    1.1.4.a. Send notification to Participant (Payer/Payee) (single message)
+  </text>
+  <path fill="#D3D3D3" stroke="#a80036" d="M1 40.953h255v1115.305H1z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="249" x="4" y="53.02">
+    Financial Service Provider (Payer)
+  </text>
+  <path fill="#ADD8E6" stroke="#a80036" d="M421.5 40.953h238v1115.305h-238z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="173" x="454" y="53.02">
+    ML API Adapter Service
+  </text>
+  <path fill="#FFFFE0" stroke="#a80036" d="M685 40.953h1081v1115.305H685z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="111" x="1170" y="53.02">
+    Central Service
+  </text>
+  <path fill="#D3D3D3" stroke="#a80036" d="M1768 40.953h258v1115.305h-258z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="252" x="1771" y="53.02">
+    Financial Service Provider (Payee)
+  </text>
+  <path fill="#FFF" filter="url(#a)" stroke="#a80036" d="M535.5 169.68h10v873.984h-10zM754.5 214.945h10v30h-10zM1080.5 298.211h10v197.797h-10zM1080.5 601.539h10v209.063h-10zM1284.5 327.344h10v139.531h-10zM1403 645.805h10v120.531h-10zM1709 674.938h10v62.266h-10z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M76 176.68h1885.5v859.984H76z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M415.5 259.945h936v244.063h-936zM415.5 914.133h1536v115.531h-1536z"/>
+  <path stroke="#a80036" stroke-dasharray="5,5" d="M128 159.68v893.984M540.5 159.68v893.984M759 159.68v893.984M1085.5 159.68v893.984M1289.5 159.68v893.984M1407.5 159.68v893.984M1714 159.68v893.984M1896.5 159.68v893.984"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="79" x="86" y="140.081">
+    Payer DFSP
+  </text>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="72" x="89.5" y="156.378">
+    Participant
+  </text>
+  <circle cx="128.5" cy="70.086" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="8"/>
+  <path d="M128.5 78.086v27m-13-19h26m-13 19l-13 15m13-15l13 15" fill="none" filter="url(#a)" stroke="#a80036" stroke-width="2"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="79" x="86" y="1065.659">
+    Payer DFSP
+  </text>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="72" x="89.5" y="1081.956">
+    Participant
+  </text>
+  <circle cx="128.5" cy="1095.258" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="8"/>
+  <path d="M128.5 1103.258v27m-13-19h26m-13 19l-13 15m13-15l13 15" fill="none" filter="url(#a)" stroke="#a80036" stroke-width="2"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="224" x="425.5" y="156.378">
+    ML API Notification Event Handler
+  </text>
+  <circle cx="540.5" cy="127.383" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path fill="#A80036" stroke="#a80036" d="M536.5 115.383l6-5-2 5 2 5-6-5z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="224" x="425.5" y="1065.659">
+    ML API Notification Event Handler
+  </text>
+  <circle cx="540.5" cy="1084.961" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path fill="#A80036" stroke="#a80036" d="M536.5 1072.96l6-5-2 5 2 5-6-5z"/>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M693 120.383h133v30.297H693z"/>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M689 124.383h133v30.297H689z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="119" x="696" y="144.378">
+    Notification-Topic
+  </text>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M693 1052.664h133v30.297H693z"/>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M689 1056.664h133v30.297H689z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="119" x="696" y="1076.659">
+    Notification-Topic
+  </text>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="128" x="1018.5" y="156.378">
+    Central Service API
+  </text>
+  <path d="M1065 115.383v24m0-12h17" fill="none" filter="url(#a)" stroke="#a80036" stroke-width="2"/>
+  <circle cx="1094" cy="127.383" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="128" x="1018.5" y="1065.659">
+    Central Service API
+  </text>
+  <path d="M1065 1072.96v24m0-12h17" fill="none" filter="url(#a)" stroke="#a80036" stroke-width="2"/>
+  <circle cx="1094" cy="1084.961" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M1241.5 120.383h96v30.297h-96z"/>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M1237.5 124.383h96v30.297h-96z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="82" x="1244.5" y="144.378">
+    Event-Topic
+  </text>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M1241.5 1052.664h96v30.297h-96z"/>
+  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M1237.5 1056.664h96v30.297h-96z"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="82" x="1244.5" y="1076.659">
+    Event-Topic
+  </text>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="107" x="1351.5" y="156.378">
+    Participant DAO
+  </text>
+  <circle cx="1408" cy="127.383" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path stroke="#a80036" stroke-width="2" d="M1396 141.383h24"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="107" x="1351.5" y="1065.659">
+    Participant DAO
+  </text>
+  <circle cx="1408" cy="1084.961" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path stroke="#a80036" stroke-width="2" d="M1396 1098.961h24"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="90" x="1666" y="156.378">
+    Central Store
+  </text>
+  <path d="M1696 107.383c0-10 18-10 18-10s18 0 18 10v26c0 10-18 10-18 10s-18 0-18-10v-26" fill="#FEFECE" filter="url(#a)" stroke="#000" stroke-width="1.5"/>
+  <path d="M1696 107.383c0 10 18 10 18 10s18 0 18-10" fill="none" stroke="#000" stroke-width="1.5"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="90" x="1666" y="1065.659">
+    Central Store
+  </text>
+  <path d="M1696 1078.96c0-10 18-10 18-10s18 0 18 10v26c0 10-18 10-18 10s-18 0-18-10v-26" fill="#FEFECE" filter="url(#a)" stroke="#000" stroke-width="1.5"/>
+  <path d="M1696 1078.96c0 10 18 10 18 10s18 0 18-10" fill="none" stroke="#000" stroke-width="1.5"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="83" x="1852.5" y="140.081">
+    Payee DFSP
+  </text>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="72" x="1858" y="156.378">
+    Participant
+  </text>
+  <circle cx="1897" cy="70.086" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="8"/>
+  <path d="M1897 78.086v27m-13-19h26m-13 19l-13 15m13-15l13 15" fill="none" filter="url(#a)" stroke="#a80036" stroke-width="2"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="83" x="1852.5" y="1065.659">
+    Payee DFSP
+  </text>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="72" x="1858" y="1081.956">
+    Participant
+  </text>
+  <circle cx="1897" cy="1095.258" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="8"/>
+  <path d="M1897 1103.258v27m-13-19h26m-13 19l-13 15m13-15l13 15" fill="none" filter="url(#a)" stroke="#a80036" stroke-width="2"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#a80036" d="M535.5 169.68h10v873.984h-10zM754.5 214.945h10v30h-10zM1080.5 298.211h10v197.797h-10zM1080.5 601.539h10v209.063h-10zM1284.5 327.344h10v139.531h-10zM1403 645.805h10v120.531h-10zM1709 674.938h10v62.266h-10z"/>
+  <path d="M76 176.68h284v7l-10 10H76v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M76 176.68h1885.5v859.984H76z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="239" x="91" y="189.747">
+    Send notification to Participants
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M742.5 210.945l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M545.5 214.945h203"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="552.5" y="209.879">
+    1
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="177" x="565.5" y="209.879">
+    Consume Notification event
+  </text>
+  <path d="M415.5 259.945h232v7l-10 10h-222v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M415.5 259.945h936v244.063h-936z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="187" x="430.5" y="273.012">
+    Persist Event Information
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1068.5 294.21l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M545.5 298.211h529"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="552.5" y="293.145">
+    2
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="340" x="565.5" y="293.145">
+    Request to persist event information - POST - /events
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1272.5 323.344l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M1090.5 327.344h188"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="1097.5" y="322.278">
+    3
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="162" x="1110.5" y="322.278">
+    Publish event information
+  </text>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M1234.5 360.344h163v55.398h-163z"/>
+  <path fill="#EEE" stroke="#000" stroke-width="2" d="M1234.5 360.344h66v7l-10 10h-56v-17z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="21" x="1247.5" y="374.411">
+    ref
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="155" x="1240.5" y="393.411">
+    Event Handler Consume
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1101.5 462.875l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M1095.5 466.875h193"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="1107.5" y="461.809">
+    4
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="97" x="1120.5" y="461.809">
+    Return success
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M556.5 492.008l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M550.5 496.008h534"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="562.5" y="490.942">
+    5
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="97" x="575.5" y="490.942">
+    Return success
+  </text>
+  <path d="M550 516.008v40h333v-30l-10-10H550" fill="#D3D3D3" filter="url(#a)" stroke="#a80036"/>
+  <path d="M873 516.008v10h10l-10-10" fill="#D3D3D3" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="312" x="556" y="533.075">
+    The endpoint details are cached, when the cache
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="237" x="556" y="548.207">
+    expires, the details are fetched again
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1068.5 597.54l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M545.5 601.539h529"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="552.5" y="588.907">
+    6
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="503" x="565.5" y="581.34">
+    Request Endpoint details for Participant - GET - /participants/{{fsp}}/endpoints
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="82" x="565.5" y="596.473">
+    Error code:
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="32" x="651.5" y="596.473">
+    2003
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1391 641.805l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M1090.5 645.805H1397"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="1097.5" y="633.172">
+    7
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="234" x="1110.5" y="625.606">
+    Fetch Endpoint details for Participant
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="82" x="1110.5" y="640.739">
+    Error code:
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="32" x="1196.5" y="640.739">
+    2003
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1697 670.938l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M1413 674.938h290"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="1420" y="669.872">
+    8
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="234" x="1433" y="669.872">
+    Fetch Endpoint details for Participant
+  </text>
+  <path fill="#FFFFE0" filter="url(#a)" stroke="#a80036" d="M1650 687.938h128l10 11-10 12h-128l-10-12 10-11z"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="124" x="1652" y="704.004">
+    participantEndpoint
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1424 733.203l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" d="M1418 737.203h295"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="1430" y="732.137">
+    9
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="259" x="1443" y="732.137">
+    Retrieved Endpoint details for Participant
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1101.5 762.336l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M1095.5 766.336H1407"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1107.5" y="761.27">
+    10
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="241" x="1129.5" y="761.27">
+    Return Endpoint details for Participant
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M556.5 806.602l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M550.5 810.602h534"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="562.5" y="797.969">
+    11
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="241" x="584.5" y="790.403">
+    Return Endpoint details for Participant
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="90" x="584.5" y="805.536">
+    Error codes:
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="72" x="678.5" y="805.536">
+    3202, 3203
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M139.5 866l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" d="M133.5 870h401"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="145.5" y="849.801">
+    12
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="276" x="167.5" y="834.668">
+    Notification with Prepare/fulfil result/error to
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="249" x="167.5" y="849.801">
+    Payer DFSP to specified Endpoint - PUT
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="82" x="167.5" y="864.934">
+    Error code:
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="32" x="253.5" y="864.934">
+    1001
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M523.5 895.133l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M128.5 899.133h401"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="135.5" y="894.067">
+    13
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="82" x="157.5" y="894.067">
+    HTTP 200 OK
+  </text>
+  <path d="M415.5 914.133h64v7l-10 10h-54v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M415.5 914.133h1536v115.531h-1536z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19" x="430.5" y="927.2">
+    alt
+  </text>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="396" x="494.5" y="926.343">
+    [Config.SEND_TRANSFER_CONFIRMATION_TO_PAYEE === true]
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M1885 963.531l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M545.5 967.531H1891"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="552.5" y="954.899">
+    14
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="654" x="574.5" y="947.332">
+    Notification to with fulfil result (committed/aborted/rejected) to Payee DFSP to specified Endpoint - PUT
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="82" x="574.5" y="962.465">
+    Error code:
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="32" x="660.5" y="962.465">
+    1001
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M556.5 1017.664l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M550.5 1021.664H1896"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="562.5" y="1016.598">
+    15
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="82" x="584.5" y="1016.598">
+    HTTP 200 OK
+  </text>
+</svg>
