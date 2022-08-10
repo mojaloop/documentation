@@ -6,7 +6,7 @@ To help get you started with Mojaloop, select which of the options below best su
 2. [Read the documentation](/technical/)
 3. [Review Mojaloop APIs](/api/)
 4. [Take a training program](https://mojaloop.io/mojaloop-training-program/)
-5. [Install Mojaloop](./installation/installing-mojaloop)
-6. [Contribute to Mojaloop](https://docs.mojaloop.io/documentation/)
+5. [Contribute to Mojaloop](https://docs.mojaloop.io/documentation/)
+6. [Install Mojaloop](./installation/installing-mojaloop)
 
 
