@@ -1,0 +1,160 @@
+/'*****
+ License
+ --------------
+ Copyright © 2017 Bill & Melinda Gates Foundation
+ The Mojaloop files are made available by the Bill & Melinda Gates Foundation under the Apache License, Version 2.0 (the "License") and you may not use these files except in compliance with the License. You may obtain a copy of the License at
+ http://www.apache.org/licenses/LICENSE-2.0
+ Unless required by applicable law or agreed to in writing, the Mojaloop files are distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+ Contributors
+ --------------
+ This is the official list of the Mojaloop project contributors for this file.
+ Names of the original copyright holders (individuals or organizations)
+ should be listed with a '*' in the first column. People who have
+ contributed from an organization can be listed under the organization
+ that actually holds the copyright for their contributions (see the
+ Gates Foundation organization for an example). Those individuals should have
+ their names indented and be marked with a '-'. Email address can be added
+ optionally within square brackets <email>.
+ * Gates Foundation
+ - Name Surname <name.surname@gatesfoundation.com>
+
+ * Shashikant Hirugade <shashikant.hirugade@modusbox.com>
+ --------------
+ ******'/
+
+@startuml
+' declate title
+title 3.1.0 Get Participant Callback Details
+
+autonumber
+' Actor Keys:
+' boundary - APIs/Interfaces, etc
+' collections - Kafka Topics
+' control - Kafka Consumers
+' entity - Database Access Objects
+' database - Database Persistance Store
+
+' declare actors
+entity "ML-API-ADAPTER" as MLAPI
+boundary "Central Service API" as CSAPI
+control "Participant Handler" as PARTICIPANT_HANDLER
+entity "Central Service API" as CSAPI
+entity "Participant DAO" as PARTICIPANT_DAO
+database "Central Store" as DB
+box "ML API Adapter Service" #LightBlue
+participant MLAPI
+end box
+
+box "Central Services" #LightYellow
+participant CSAPI
+participant PARTICIPANT_HANDLER
+participant PARTICIPANT_DAO
+participant DB
+end box
+
+' start flow
+
+activate MLAPI
+group Get Callback Details
+    MLAPI -> CSAPI: Request to get callback details - GET - /participants/{name}/endpoints?type={typeValue}
+    activate CSAPI
+    CSAPI -> PARTICIPANT_HANDLER: Fetch Callback details for Participant
+    activate PARTICIPANT_HANDLER
+    PARTICIPANT_HANDLER ->PARTICIPANT_DAO: Fetch Participant \n<color #FF0000><b>Error code:</b> 3200</color>
+
+    activate PARTICIPANT_DAO
+    PARTICIPANT_DAO ->DB: Fetch Participant
+    activate DB
+    hnote over DB #lightyellow
+        participant
+    end note
+    DB --> PARTICIPANT_DAO: Retrieved Participant
+    deactivate DB
+    PARTICIPANT_DAO -->PARTICIPANT_HANDLER: Return Participant
+    deactivate PARTICIPANT_DAO
+    PARTICIPANT_HANDLER ->PARTICIPANT_HANDLER: Validate DFSP
+    alt Validate participant (success)
+        PARTICIPANT_HANDLER -> PARTICIPANT_HANDLER: check if "type" parameter is sent
+        alt Check if "type" parameter is sent (Sent)
+            PARTICIPANT_HANDLER ->PARTICIPANT_DAO: Fetch Callback details for Participant and type \n<color #FF0000><b>Error code:</b> 3000</color>
+            activate PARTICIPANT_DAO
+            PARTICIPANT_DAO ->DB: Fetch Callback details for Participant and type
+            note right of PARTICIPANT_DAO #lightgrey
+                Condition:
+                    isActive = 1
+                    [endpointTypeId = <type>]
+            end note
+
+            activate DB
+            hnote over DB #lightyellow
+                participantEndpoint
+            end note
+            DB --> PARTICIPANT_DAO: Retrieved Callback details for Participant and type
+            deactivate DB
+            PARTICIPANT_DAO -->PARTICIPANT_HANDLER: Return Callback details for Participant and type
+            deactivate PARTICIPANT_DAO
+            note right of PARTICIPANT_HANDLER #yellow
+                Message:
+                {
+                    endpoints: {type: <type>, value: <value>}
+                }
+            end note
+            PARTICIPANT_HANDLER -->CSAPI: Return Callback details for Participant
+            deactivate PARTICIPANT_HANDLER
+            CSAPI -->MLAPI: Return Callback details for Participant
+        else Check if "type" parameter is sent (Not Sent)
+            activate PARTICIPANT_HANDLER
+            PARTICIPANT_HANDLER ->PARTICIPANT_DAO: Fetch Callback details for Participant \n<color #FF0000><b>Error code:</b> 3000</color>
+            activate PARTICIPANT_DAO
+            PARTICIPANT_DAO ->DB: Fetch Callback details for Participant
+            note right of PARTICIPANT_DAO #lightgrey
+                Condition:
+                    isActive = 1
+            end note
+
+            activate DB
+            hnote over DB #lightyellow
+                participantEndpoint
+            end note
+            DB --> PARTICIPANT_DAO: Retrieved Callback details for Participant
+            deactivate DB
+            PARTICIPANT_DAO -->PARTICIPANT_HANDLER: Return Callback details for Participant
+            deactivate PARTICIPANT_DAO
+            note right of PARTICIPANT_HANDLER #yellow
+                Message:
+                {
+                    endpoints: [
+                        {type: <type>, value: <value>},
+                        {type: <type>, value: <value>}
+                    ]
+                }
+            end note
+            PARTICIPANT_HANDLER -->CSAPI: Return Callback details for Participant
+            ' deactivate PARTICIPANT_HANDLER
+            CSAPI -->MLAPI: Return Callback details for Participant
+        end
+
+
+    else Validate participant (failure)/ Error
+        activate PARTICIPANT_HANDLER
+        note right of PARTICIPANT_HANDLER #red: Validation failure/ Error!
+        activate PARTICIPANT_HANDLER
+        note right of PARTICIPANT_HANDLER #yellow
+            Message:
+            {
+                "errorInformation": {
+                    "errorCode": <errorCode>,
+                    "errorDescription": <ErrorMessage>,
+                }
+            }
+        end note
+        PARTICIPANT_HANDLER -->CSAPI: Return <color #FF0000><b>Error code:</b> 3000, 3200</color>
+        deactivate PARTICIPANT_HANDLER
+        CSAPI -->MLAPI: Return <color #FF0000><b>Error code:</b> 3000, 3200</color>
+
+    end
+    deactivate CSAPI
+    deactivate MLAPI
+end
+
+@enduml
