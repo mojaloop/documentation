@@ -212,7 +212,7 @@ group Bulk Processing Handler Consume
             else bulkTransferInfo.bulkTransferState IN ['ABORTING']
                 alt action == 'bulk-abort'
                     note right of BULK_PROC_HANDLER #lightgrey
-                        criteriaState = 'PROCESSING'
+                        criteriaState = 'ABORTING'
                         processingState = 'FULFIL_INVALID'
                         completedBulkState = 'REJECTED'
                         incompleteBulkState = 'ABORTING'
