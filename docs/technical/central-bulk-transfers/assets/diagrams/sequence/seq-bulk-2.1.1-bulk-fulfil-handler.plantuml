@@ -213,7 +213,7 @@ group Bulk Fulfil Handler Consume
                     deactivate BULK_DAO
                 end
             else Validate Bulk Transfer Fulfil (failure)
-                group Persist Bulk Transfer State (with bulkTransferState='INVALID/REJECTED')
+                group Persist Bulk Transfer State (with bulkTransferState='ABORTING')
                     BULK_FULF_HANDLER -> BULK_DAO: Request to persist bulk\ntransfer fulfil failure\n<color #FF0000><b>Error codes:</b> 2003</color>
                     activate BULK_DAO
                     BULK_DAO -> DB: Persist transfer
