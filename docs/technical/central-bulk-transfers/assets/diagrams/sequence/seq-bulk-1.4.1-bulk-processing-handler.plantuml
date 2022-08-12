@@ -216,6 +216,8 @@ group Bulk Processing Handler Consume
                         processingState = 'FULFIL_INVALID'
                         completedBulkState = 'REJECTED'
                         incompleteBulkState = 'ABORTING'
+                        errorCode = payload.errorInformation.errorCode
+                        errorDescription = payload.errorInformation.errorDescription
                     end note
                 else all other actions
                     note right of BULK_PROC_HANDLER #lightgrey
