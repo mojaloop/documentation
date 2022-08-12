@@ -100,24 +100,23 @@ group DFSP2 sends a Bulk Fulfil Success Transfer request to DFSP1
         {
             bulkTransferState: <bulkTransferState>,
             completedTimestamp: <completedTimeStamp>,
-            individualTransferResults: 
+            individualTransferResults:
             [
                 {
-                    transferId: <uuid>, 
+                    transferId: <uuid>,
                     fulfilment: <ilpCondition>,
-                    extensionList: { extension: [ 
+                    extensionList: { extension: [
                         { key: <string>, value: <string> }
                     ] }
                 }
             ],
-            extensionList: { extension: [ 
+            extensionList: { extension: [
                 { key: <string>, value: <string> }
             ] }
         }
     end note
     DFSP2 ->> MLAPI: PUT - /bulkTransfers/<ID>
     activate MLAPI
-    MLAPI -> MLAPI: Validate incoming message\n<color #FF0000><b>Error codes:</b> 3000-3002, 3100-3107</color>
     MLAPI -> OBJECT_STORE: Persist incoming bulk message to\nobject store: **MLOS.individualTransferFulfils**
     activate OBJECT_STORE
     OBJECT_STORE --> MLAPI: Return messageId reference to the stored object(s)
@@ -135,8 +134,8 @@ group DFSP2 sends a Bulk Fulfil Success Transfer request to DFSP1
                     bulkTransferId: <uuid>,
                     bulkTransferState: "COMPLETED",
                     completedTimestamp: <timestamp>,
-                    extensionList: { extension: [ 
-                        { key: <string>, value: <string> } 
+                    extensionList: { extension: [
+                        { key: <string>, value: <string> }
                     ] },
                     count: <int>,
                     hash: <string>

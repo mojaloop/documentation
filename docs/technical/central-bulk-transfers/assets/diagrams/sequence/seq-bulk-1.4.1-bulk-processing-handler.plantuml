@@ -209,6 +209,19 @@ group Bulk Processing Handler Consume
                         <color #red>throw</color> ErrorHandler.Factory.createFSPIOPError(INTERNAL_SERVER_ERROR)
                     end note
                 end
+            else bulkTransferInfo.bulkTransferState IN ['ABORTING']
+                alt action == 'bulk-abort'
+                    note right of BULK_PROC_HANDLER #lightgrey
+                        criteriaState = 'PROCESSING'
+                        processingState = 'FULFIL_INVALID'
+                        completedBulkState = 'REJECTED'
+                        incompleteBulkState = 'ABORTING'
+                    end note
+                else all other actions
+                    note right of BULK_PROC_HANDLER #lightgrey
+                        <color #red>throw</color> ErrorHandler.Factory.createFSPIOPError(INTERNAL_SERVER_ERROR)
+                    end note
+                end
             else all other ['PENDING_INVALID', 'COMPLETED', 'REJECTED', 'INVALID']
                 note right of BULK_PROC_HANDLER #lightgrey
                     <color #red>throw</color> ErrorHandler.Factory.createFSPIOPError(INTERNAL_SERVER_ERROR)
