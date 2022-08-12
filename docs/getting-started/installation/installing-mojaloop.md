@@ -1,0 +1,6 @@
+# Installing Mojaloop 
+
+Mojaloop is packaged and released as a set of [Helm Charts](https://github.com/mojaloop/helm) with various options for deployment and customization.  
+1. The Mojaloop [Deployment Guide](https://docs.mojaloop.io/legacy/deployment-guide/) is intended for those familiar with [Kubernetes](https://kubernetes.io) and [Helm](https://helm.sh) or those interested in the deployment details of the Mojaloop Helm Charts [Deployment Guide](https://docs.mojaloop.io/legacy/deployment-guide/).
+
+2. If you are new to Mojaloop and unfamiliar with [Helm](https://helm.sh) / [Kubernetes](https://kubernetes.io) or if you just want to get the software up and running quickly and simply then the [Mini-Loop](https://github.com/tdaly61/mini-loop) install utilities for Mojaloop are an efficient way to get started. The [Mini-Loop](https://github.com/tdaly61/mini-loop) scripts enable you to deploy Mojaloop in the cloud or on your laptop / server with just a couple of commands. You can then easily run the [Mojaloop Testing Toolkit](https://github.com/mojaloop/ml-testing-toolkit#mojaloop-testing-toolkit) to interact and test your deployment.
