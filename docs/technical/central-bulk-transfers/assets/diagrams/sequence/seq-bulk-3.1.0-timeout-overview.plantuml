@@ -105,11 +105,12 @@ group Transfer Expiry
         ref over DFSP1, TOPIC_NOTIFICATIONS : Send notification to Participant (Payer)\n
         alt Timeout before any processing
             note left of NOTIFY_HANDLER #yellow
-                PUT /bulkTransfers/<uuid>
+                PUT /bulkTransfers/<ID>
                 {
                     headers: <bulkTransferHeaders>,
                     body: {
                         "bulkTransferState": "COMPLETED",
+                        "completedTimestamp": "2022-08-18T01:00:24.407Z",
                         "individualTransferResults": [
                             {
                                 "errorInformation": {
@@ -117,7 +118,7 @@ group Transfer Expiry
                                     "errorDescription": "Transfer expired",
                                     "extensionList": <transferMessage.extensionList>
                                 }
-                                "transferId": <uuid>
+                                "transferId": <ID>
                             },
                             {
                                 "errorInformation": {
@@ -125,7 +126,7 @@ group Transfer Expiry
                                     "errorDescription": "Transfer expired",
                                     "extensionList": <transferMessage.extensionList>
                                 }
-                                "transferId": <uuid>
+                                "transferId": <ID>
                             },
                         ]
                     }
@@ -133,14 +134,15 @@ group Transfer Expiry
             end note
         else Timeout in middle of processing
             note left of NOTIFY_HANDLER #yellow
-                PUT /bulkTransfers/<uuid>
+                PUT /bulkTransfers/<ID>
                 {
                     headers: <bulkTransferHeaders>,
                     body: {
                         "bulkTransferState": "COMPLETED",
+                        "completedTimestamp": "2022-08-18T01:00:24.407Z",
                         "individualTransferResults": [
                             {
-                                "transferId": <uuid>,
+                                "transferId": <ID>,
                                 "fulfilment": <fulfilment>
                             },
                             {
@@ -149,7 +151,7 @@ group Transfer Expiry
                                     "errorDescription": "Transfer expired",
                                     "extensionList": <transferMessage.extensionList>
                                 }
-                                "transferId": <uuid>
+                                "transferId": <ID>
                             },
                         ]
                     }
@@ -165,11 +167,12 @@ group Transfer Expiry
         ref over DFSP2, TOPIC_NOTIFICATIONS : Send notification to Participant (Payee)\n
         alt Timeout before any processing
             note left of NOTIFY_HANDLER #yellow
-                PUT /bulkTransfers/<uuid>
+                PUT /bulkTransfers/<ID>
                 {
                     headers: <bulkTransferHeaders>,
                     body: {
                         "bulkTransferState": "COMPLETED",
+                        "completedTimestamp": "2022-08-18T01:00:24.407Z",
                         "individualTransferResults": [
                             {
                                 "errorInformation": {
@@ -177,7 +180,7 @@ group Transfer Expiry
                                     "errorDescription": "Transfer expired",
                                     "extensionList": <transferMessage.extensionList>
                                 }
-                                "transferId": <uuid>
+                                "transferId": <ID>
                             },
                             {
                                 "errorInformation": {
@@ -185,7 +188,7 @@ group Transfer Expiry
                                     "errorDescription": "Transfer expired",
                                     "extensionList": <transferMessage.extensionList>
                                 }
-                                "transferId": <uuid>
+                                "transferId": <ID>
                             },
                         ]
                     }
@@ -193,14 +196,15 @@ group Transfer Expiry
             end note
         else Timeout in middle of processing
             note left of NOTIFY_HANDLER #yellow
-                PUT /bulkTransfers/<uuid>
+                PUT /bulkTransfers/<ID>
                 {
                     headers: <bulkTransferHeaders>,
                     body: {
                         "bulkTransferState": "COMPLETED",
+                        "completedTimestamp": "2022-08-18T01:00:24.407Z",
                         "individualTransferResults": [
                             {
-                                "transferId": <uuid>,
+                                "transferId": <ID>,
                                 "fulfilment": <fulfilment>
                             },
                             {
@@ -209,7 +213,7 @@ group Transfer Expiry
                                     "errorDescription": "Transfer expired",
                                     "extensionList": <transferMessage.extensionList>
                                 }
-                                "transferId": <uuid>
+                                "transferId": <ID>
                             },
                         ]
                     }
