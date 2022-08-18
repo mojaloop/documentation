@@ -126,7 +126,7 @@ group Timeout Handler Consume
         deactivate POS_DAO
     end
 
-    
+
     group Prepare data and return the list for expiration
         TIMEOUT_HANDLER -> POS_DAO: Prepare data and get transfers to be expired
         activate POS_DAO
@@ -208,7 +208,7 @@ group Timeout Handler Consume
 
         POS_DAO -> DB: Get list of transfers to be expired with current state
         hnote over DB #lightyellow
-            SELECT tt.*, tsc.transferStateId, tp1.participantCurrencyId payerParticipantId, 
+            SELECT tt.*, tsc.transferStateId, tp1.participantCurrencyId payerParticipantId,
                     tp2.participantCurrencyId payeeParticipantId, bta.bulkTransferId
             FROM **transferTimeout** tt
             JOIN (SELECT tsc1.transferId, MAX(tsc1.transferStateChangeId) maxTransferStateChangeId
@@ -264,8 +264,8 @@ group Timeout Handler Consume
                             },
                             payload: {
                                 "errorInformation": {
-                                    "errorCode": 3300,
-                                    "errorDescription": "Generic expired error",
+                                    "errorCode": 3303,
+                                    "errorDescription": "Transfer expired",
                                     "extensionList": <transferMessage.extensionList>
                                 }
                             }
@@ -311,8 +311,8 @@ group Timeout Handler Consume
                             },
                             payload: {
                                 "errorInformation": {
-                                    "errorCode": 3300,
-                                    "errorDescription": "Generic expired error",
+                                    "errorCode": 3303,
+                                    "errorDescription": "Transfer expired",
                                     "extensionList": <transferMessage.extensionList>
                                 }
                             }
@@ -350,8 +350,8 @@ group Timeout Handler Consume
                             headers: <bulkTransferHeaders>,
                             payload: {
                                 "errorInformation": {
-                                    "errorCode": 3300,
-                                    "errorDescription": "Generic expired error",
+                                    "errorCode": 3303,
+                                    "errorDescription": "Transfer expired",
                                     "extensionList": <transferMessage.extensionList>
                                 }
                             }
@@ -387,8 +387,8 @@ group Timeout Handler Consume
                             headers: <bulkTransferHeaders>,,
                             payload: {
                                 "errorInformation": {
-                                    "errorCode": 3300,
-                                    "errorDescription": "Generic expired error",
+                                    "errorCode": 3303,
+                                    "errorDescription": "Transfer expired",
                                     "extensionList": <transferMessage.extensionList>
                                 }
                             }
