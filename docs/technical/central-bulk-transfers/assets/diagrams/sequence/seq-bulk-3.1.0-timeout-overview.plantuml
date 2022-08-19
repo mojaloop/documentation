@@ -103,6 +103,61 @@ group Transfer Expiry
         |||
         TOPIC_NOTIFICATIONS <- NOTIFY_HANDLER: Consume message
         ref over DFSP1, TOPIC_NOTIFICATIONS : Send notification to Participant (Payer)\n
+        alt Timeout before any processing
+            note left of NOTIFY_HANDLER #yellow
+                PUT /bulkTransfers/<ID>
+                {
+                    headers: <bulkTransferHeaders>,
+                    body: {
+                        "bulkTransferState": "COMPLETED",
+                        "completedTimestamp": "2022-08-18T01:00:24.407Z",
+                        "individualTransferResults": [
+                            {
+                                "errorInformation": {
+                                    "errorCode": "3303",
+                                    "errorDescription": "Transfer expired",
+                                    "extensionList": <transferMessage.extensionList>
+                                }
+                                "transferId": <ID>
+                            },
+                            {
+                                "errorInformation": {
+                                    "errorCode": "3303",
+                                    "errorDescription": "Transfer expired",
+                                    "extensionList": <transferMessage.extensionList>
+                                }
+                                "transferId": <ID>
+                            },
+                        ]
+                    }
+                }
+            end note
+        else Timeout in middle of processing
+            note left of NOTIFY_HANDLER #yellow
+                PUT /bulkTransfers/<ID>
+                {
+                    headers: <bulkTransferHeaders>,
+                    body: {
+                        "bulkTransferState": "COMPLETED",
+                        "completedTimestamp": "2022-08-18T01:00:24.407Z",
+                        "individualTransferResults": [
+                            {
+                                "transferId": <ID>,
+                                "fulfilment": <fulfilment>
+                            },
+                            {
+                                "errorInformation": {
+                                    "errorCode": "3303",
+                                    "errorDescription": "Transfer expired",
+                                    "extensionList": <transferMessage.extensionList>
+                                }
+                                "transferId": <ID>
+                            },
+                        ]
+                    }
+                }
+            end note
+        end
         NOTIFY_HANDLER -> DFSP1: Send callback notification
     end
     |||
@@ -110,6 +165,61 @@ group Transfer Expiry
         |||
         TOPIC_NOTIFICATIONS <- NOTIFY_HANDLER: Consume message
         ref over DFSP2, TOPIC_NOTIFICATIONS : Send notification to Participant (Payee)\n
+        alt Timeout before any processing
+            note left of NOTIFY_HANDLER #yellow
+                PUT /bulkTransfers/<ID>
+                {
+                    headers: <bulkTransferHeaders>,
+                    body: {
+                        "bulkTransferState": "COMPLETED",
+                        "completedTimestamp": "2022-08-18T01:00:24.407Z",
+                        "individualTransferResults": [
+                            {
+                                "errorInformation": {
+                                    "errorCode": "3303",
+                                    "errorDescription": "Transfer expired",
+                                    "extensionList": <transferMessage.extensionList>
+                                }
+                                "transferId": <ID>
+                            },
+                            {
+                                "errorInformation": {
+                                    "errorCode": "3303",
+                                    "errorDescription": "Transfer expired",
+                                    "extensionList": <transferMessage.extensionList>
+                                }
+                                "transferId": <ID>
+                            },
+                        ]
+                    }
+                }
+            end note
+        else Timeout in middle of processing
+            note left of NOTIFY_HANDLER #yellow
+                PUT /bulkTransfers/<ID>
+                {
+                    headers: <bulkTransferHeaders>,
+                    body: {
+                        "bulkTransferState": "COMPLETED",
+                        "completedTimestamp": "2022-08-18T01:00:24.407Z",
+                        "individualTransferResults": [
+                            {
+                                "transferId": <ID>,
+                                "fulfilment": <fulfilment>
+                            },
+                            {
+                                "errorInformation": {
+                                    "errorCode": "3303",
+                                    "errorDescription": "Transfer expired",
+                                    "extensionList": <transferMessage.extensionList>
+                                }
+                                "transferId": <ID>
+                            },
+                        ]
+                    }
+                }
+            end note
+        end
         NOTIFY_HANDLER -> DFSP2: Send callback notification
     end
 end
