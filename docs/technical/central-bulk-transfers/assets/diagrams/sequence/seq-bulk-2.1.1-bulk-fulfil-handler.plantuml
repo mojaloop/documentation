@@ -213,7 +213,7 @@ group Bulk Fulfil Handler Consume
                     deactivate BULK_DAO
                 end
             else Validate Bulk Transfer Fulfil (failure)
-                group Persist Bulk Transfer State (with bulkTransferState='INVALID/REJECTED')
+                group Persist Bulk Transfer State (with bulkTransferState='ABORTING')
                     BULK_FULF_HANDLER -> BULK_DAO: Request to persist bulk\ntransfer fulfil failure\n<color #FF0000><b>Error codes:</b> 2003</color>
                     activate BULK_DAO
                     BULK_DAO -> DB: Persist transfer
@@ -235,7 +235,12 @@ group Bulk Fulfil Handler Consume
         loop for every individual transfer in the bulk fulfil list
             BULK_FULF_HANDLER -> OBJECT_STORE: Retrieve individual transfers from the bulk using\nreference: **MLOS.individualTransferFulfils.messageId**
             activate OBJECT_STORE
-            OBJECT_STORE --> BULK_FULF_HANDLER: Stream bulk's individual transfer fulfils
+            OBJECT_STORE --> BULK_FULF_HANDLER: Return stored bulk transfer containing individual transfers
+            deactivate OBJECT_STORE
+
+            BULK_FULF_HANDLER --> OBJECT_STORE: Update bulk transfer association record to bulk transfer processing state 'PROCESSING'
+            activate OBJECT_STORE
+            OBJECT_STORE --> BULK_FULF_HANDLER: Bulk transfer association record commited
             deactivate OBJECT_STORE
 
             note right of BULK_FULF_HANDLER #yellow
@@ -264,46 +269,54 @@ group Bulk Fulfil Handler Consume
                     }
                 }
             end note
-            BULK_FULF_HANDLER -> TOPIC_TRANSFER_FULFIL: Route & Publish Prepare event to the Payer for the Individual Transfer\n<color #FF0000><b>Error codes:</b> 2003</color>
+            BULK_FULF_HANDLER -> TOPIC_TRANSFER_FULFIL: Route & Publish fulfil bulk commit events to the Payer for the Individual Transfer\n<color #FF0000><b>Error codes:</b> 2003</color>
             activate TOPIC_TRANSFER_FULFIL
             deactivate TOPIC_TRANSFER_FULFIL
         end
     else Validate Bulk Transfer Fulfil (failure)
-        note right of BULK_FULF_HANDLER #yellow
-            Message:
-            {
-                id: <messageId>
-                from: <ledgerName>,
-                to: <payerFspName>,
-                type: "application/json"
-                content: {
-                    headers: <bulkTransferHeaders>,
-                    payload: {
-                        "errorInformation": {
-                            "errorCode": <possible codes: [2003, 3100, 3105, 3106, 3202, 3203, 3300, 3301]>
-                            "errorDescription": "<refer to section 35.1.3 for description>",
-                            "extensionList": <transferMessage.extensionList>
-                    }
-                },
-                metadata: {
-                    event: {
-                        id: <uuid>,
-                        responseTo: <previous.uuid>,
-                        type: "notification",
-                        action: "bulk-abort",
-                        createdAt: <timestamp>,
-                        state: {
-                            status: 'error',
-                            code: <errorInformation.errorCode>
-                            description: <errorInformation.errorDescription>
+        loop for every individual transfer in the bulk fulfil list
+            BULK_FULF_HANDLER -> OBJECT_STORE: Retrieve individual transfers from the bulk using\nreference: **MLOS.individualTransferFulfils.messageId**
+            activate OBJECT_STORE
+            OBJECT_STORE --> BULK_FULF_HANDLER: Stream bulk's individual transfer fulfils
+            deactivate OBJECT_STORE
+
+            BULK_FULF_HANDLER --> OBJECT_STORE: Update bulk transfer association record to bulk transfer processing state 'ABORTING'
+            activate OBJECT_STORE
+            OBJECT_STORE --> BULK_FULF_HANDLER: Bulk transfer association record commited
+            deactivate OBJECT_STORE
+
+            note right of BULK_FULF_HANDLER #yellow
+                Message:
+                {
+                    id: <messageId>
+                    from: <payeeFspName>,
+                    to: <payerFspName>,
+                    type: "application/json"
+                    content: {
+                        headers: <transferHeaders>,
+                        payload: "errorInformation": {
+                            "errorCode": <possible codes: [3100]>
+                            "errorDescription": "<description>",
+                        }
+                    },
+                    metadata: {
+                        event: {
+                            id: <uuid>,
+                            responseTo: <previous.uuid>,
+                            type: "fulfil",
+                            action: "bulk-abort",
+                            createdAt: <timestamp>,
+                            state: {
+                                status: "success",
+                                code: 0
+                            }
                         }
                     }
                 }
-            }
-        end note
-        BULK_FULF_HANDLER -> TOPIC_NOTIFICATION: Publish Notification (failure) event for Payer\n<color #FF0000><b>Error codes:</b> 2003</color>
-        activate TOPIC_NOTIFICATION
-        deactivate TOPIC_NOTIFICATION
+            end note
+            BULK_FULF_HANDLER -> TOPIC_TRANSFER_FULFIL: Route & Publish fulfil bulk abort events to the Payer for the Individual Transfer\n<color #FF0000><b>Error codes:</b> 2003</color>
+            activate TOPIC_TRANSFER_FULFIL
+            deactivate TOPIC_TRANSFER_FULFIL
     end
 end
 deactivate BULK_FULF_HANDLER
