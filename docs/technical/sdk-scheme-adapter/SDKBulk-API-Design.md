@@ -27,7 +27,7 @@ The design caters for:
 ## Sequence Diagram
 Here is a sequence diagram that outlines the role that the SDK Scheme Adapter will play in a bulk call, both for a Payer DFSP and a Payee DFSP.
 
-![Bulk Transfer Sequence Diagram Overview](./assets/sequence/BulkTransactionsSequenceDiagramOverview.svg)
+![Bulk Transfer Sequence Diagram Overview](https://raw.githubusercontent.com/mojaloop/sdk-scheme-adapter/mvp/bulk-sdk/docs/design-bulk-transfers/assets/api-sequence-diagram.svg)
 
 ## Error Tables for bulk transfers
 [Table of Error Codes](./assets/sequence/BULK-ERRORCODES.md)
