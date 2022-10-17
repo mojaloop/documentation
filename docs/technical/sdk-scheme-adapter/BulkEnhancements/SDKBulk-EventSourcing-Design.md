@@ -1,8 +1,8 @@
-# Support for Bulk Transfers - DDD and Event Sourcing Design
+# SDK Support for Bulk Transfers - DDD and Event Sourcing Design
 ## Design overview
 This diagram summarizes the design role the SDK is performing.
 
-![Design Overview](./assets/overview-drawio.png)
+![Design Overview](../assets/overview-drawio.png)
 
 An http 202 response when posting a asynchronous request means that the the SDK has accepted the request, and that the request will be processed and a response provided. Because of the potential long delay's involved in processing large numbers of bulk payments in an asynchronous way. A new design approach in the SDK was necessary to meet the 202 response expectations.
 
@@ -11,14 +11,14 @@ An event sourcing and domain driven was chosen, as this solves all requirements 
 
 ## Bulk Payer DFSP SDK-Scheme-Adapter
 ### Outbound event sourcing sequence diagram
-![Outbound sequence diagram](./assets/sequence/outbound-sequence.svg)
+![Outbound sequence diagram](../assets/sequence/outbound-sequence.svg)
 
 ## Payee DFSP SDK-Scheme-Adapter
 ### Inbound bulk quotes event sourcing sequence diagram
-![Inbound bulk quotes sequence](./assets/sequence/inbound-bulk-quotes-sequence.svg)
+![Inbound bulk quotes sequence](../assets/sequence/inbound-bulk-quotes-sequence.svg)
 
 ### Inbound bulk transfers event sourcing sequence diagram
-![Inbound bulk transfers sequence](./assets/sequence/inbound-bulk-transfers-sequence.svg)
+![Inbound bulk transfers sequence](../assets/sequence/inbound-bulk-transfers-sequence.svg)
 
 
 ## Redis Store Data mapping for outbound bulk transfer
