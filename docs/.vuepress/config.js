@@ -547,7 +547,7 @@ module.exports = {
                 },
                 {
                   "title": "API",
-                  "path": "sdk-scheme-adapter/BulkEnhancements/API-Design"
+                  "path": "sdk-scheme-adapter/BulkEnhancements/SDKBulk-API-Design"
                 }, {
                   "title": "DDD & Event Sourcing Design",
                   "path": "sdk-scheme-adapter/BulkEnhancements/SDKBulk-EventSourcing-Design"
