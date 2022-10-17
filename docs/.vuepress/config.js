@@ -62,6 +62,7 @@ module.exports = {
         link: 'https://mojaloop.io/mojaloop-training-program/'
       }
     ],
+    // Ref: https://vuepress.vuejs.org/theme/default-theme-config.html#sidebar
     sidebar: {
       '/getting-started/': [
         {
@@ -440,6 +441,345 @@ module.exports = {
             }
           ],
           "sidebarDepth": 2
+        },
+        {
+          "title": "Central Ledger",
+          "collapsable": true,
+          "children": [
+            {
+              "title": "Overview",
+              "path": "central-ledger/"
+            },
+            {
+              "title": "Admin Operations",
+              "collapsable": true,
+              "children": [
+                {
+                  "title": "Overview",
+                  "path": "central-ledger/admin-operations/",
+                },
+                {
+                  "title": "POST Participant Limit",
+                  "path": "central-ledger/admin-operations/1.0.0-post-participant-position-limit"
+                },
+                {
+                  "title": "GET Participant Limit Details",
+                  "path": "central-ledger/admin-operations/1.1.0-get-participant-limit-details"
+                },
+                {
+                  "title": "GET All Participant Limits",
+                  "path": "central-ledger/admin-operations/1.0.0-get-limits-for-all-participants"
+                },
+                {
+                  "title": "POST Participant limits",
+                  "path": "central-ledger/admin-operations/1.1.0-post-participant-limits"
+                },
+                {
+                  "title": "GET Transfer Status",
+                  "path": "central-ledger/admin-operations/1.1.5-get-transfer-status"
+                },
+                {
+                  "title": "POST Participant Callback",
+                  "path": "central-ledger/admin-operations/3.1.0-post-participant-callback-details"
+                },
+                {
+                  "title": "GET Participant Callback",
+                  "path": "central-ledger/admin-operations/3.1.0-get-participant-callback-details"
+                },
+                {
+                  "title": "GET Participant Position",
+                  "path": "central-ledger/admin-operations/4.1.0-get-participant-position-details"
+                },
+                {
+                  "title": "GET All Participants Positions",
+                  "path": "central-ledger/admin-operations/4.2.0-get-positions-of-all-participants"
+                }
+              ]
+            },
+            {
+              "title": "Transfers Operations",
+              "collapsable": true,
+              "children": [
+                {
+                  "title": "Overview",
+                  "path": "central-ledger/transfers/"
+                },
+                {
+                  "title": "Prepare Handler",
+                  "collapsable": true,
+                  "children": [
+                    {
+                      "title": "Overview",
+                      "path": "central-ledger/transfers/1.1.0-prepare-transfer-request"
+                    },
+                    {
+                      "title": "Prepare Handler Consume",
+                      "path": "central-ledger/transfers/1.1.1.a-prepare-handler-consume"
+                    }
+                  ]
+                },
+                {
+                  "title": "Prepare Position Handler",
+                  "path": "central-ledger/transfers/1.3.0-position-handler-consume"
+                },
+                {
+                  "title": "Prepare Position Handler v1.1",
+                  "collapsable": true,
+                  "children": [
+                    {
+                      "title": "Overview",
+                      "path": "central-ledger/transfers/1.3.0-position-handler-consume-v1.1"
+                    },
+                    {
+                      "title": "Prepare Position Handler",
+                      "path": "central-ledger/transfers/1.3.1-prepare-position-handler-consume"
+                    },
+                    {
+                      "title": "Position Handler Consume",
+                      "path": "central-ledger/transfers/1.1.2.a-position-handler-consume"
+                    }
+                  ]
+                },
+                {
+                  "title": "Fulfil Handler",
+                  "path": "central-ledger/transfers/2.1.0-fulfil-transfer-request"
+                },
+                {
+                  "title": "Fulfil Handler v1.1",
+                  "collapsable": true,
+                  "children": [
+                    {
+                      "title": "Overview",
+                      "path": "central-ledger/transfers/2.1.0-fulfil-transfer-request-v1.1"
+                    },
+                    {
+                      "title": "Fulfil Handler Consume",
+                      "path": "central-ledger/transfers/2.1.1-fulfil-handler-consume"
+                    },
+                    {
+                      "title": "Fulfil Handler Consume v1.1",
+                      "path": "central-ledger/transfers/2.1.1-fulfil-handler-consume-v1.1"
+                    }
+                  ]
+                },
+                {
+                  "title": "Fulfil Position Handler",
+                  "collapsable": true,
+                  "children": [
+                    {
+                      "title": "Overview",
+                      "path": "central-ledger/transfers/1.3.0-position-handler-consume"
+                    },
+                    {
+                      "title": "Fulfil Position Handler",
+                      "path": "central-ledger/transfers/1.3.2-fulfil-position-handler-consume"
+                    },
+                    {
+                      "title": "Fulfil Position Handler v1.1",
+                      "path": "central-ledger/transfers/1.3.2-fulfil-position-handler-consume-v1.1"
+                    }
+                  ]
+                },
+                {
+                  "title": "Fulfil Reject Transfer",
+                  "collapsable": true,
+                  "children": [
+                    {
+                      "title": "Overview",
+                      "path": "central-ledger/transfers/2.2.0-fulfil-reject-transfer"
+                    },
+                    {
+                      "title": "Fulfil Reject Transfer (a)",
+                      "path": "central-ledger/transfers/2.2.0.a-fulfil-abort-transfer"
+                    },
+                    {
+                      "title": "Fulfil Handler (Reject-Abort)",
+                      "path": "central-ledger/transfers/2.2.1-fulfil-reject-handler"
+                    }
+                  ]
+                },
+                {
+                  "title": "Fulfil Reject Transfer v1.1",
+                  "collapsable": true,
+                  "children": [
+                    {
+                      "title": "Overview",
+                      "path": "central-ledger/transfers/2.2.0-fulfil-reject-transfer-v1.1"
+                    },
+                    {
+                      "title": "Fulfil Reject Transfer (a) v1.1",
+                      "path": "central-ledger/transfers/2.2.0.a-fulfil-abort-transfer-v1.1"
+                    },
+                    {
+                      "title": "Fulfil Handler (Reject-Abort) v1.1",
+                      "path": "central-ledger/transfers/2.2.1-fulfil-reject-handler-v1.1"
+                    }
+                  ]
+                },
+                {
+                  "title": "Notifications",
+                  "collapsable": true,
+                  "children": [
+                    {
+                      "title": "Notification to Participant (a)",
+                      "path": "central-ledger/transfers/1.1.4.a-send-notification-to-participant"
+                    },
+                    {
+                      "title": "Notification to Participant (a) - v1.1",
+                      "path": "central-ledger/transfers/1.1.4.a-send-notification-to-participant-v1.1"
+                    },
+                    {
+                      "title": "Notification to Participant (b)",
+                      "path": "central-ledger/transfers/1.1.4.b-send-notification-to-participant"
+                    }
+                  ]
+                },
+                {
+                  "title": "Reject/Abort",
+                  "collapsable": true,
+                  "children": [
+                    {
+                      "title": "Abort Position Handler",
+                      "path": "central-ledger/transfers/1.3.3-abort-position-handler-consume"
+                    }
+                  ]
+                },
+                {
+                  "title": "Timeout",
+                  "collapsable": true,
+                  "children": [
+                    {
+                      "title": "Transfer Timeout",
+                      "path": "central-ledger/transfers/2.3.0-transfer-timeout"
+                    },
+                    {
+                      "title": "Timeout Handler Consume",
+                      "path": "central-ledger/transfers/2.3.1-timeout-handler-consume"
+                    }
+                  ]
+                },
+              ]
+            },
+            {
+              "title": "Bulk Transfers Operations",
+              "collapsable": true,
+              "children": [
+                {
+                  "title": "Overview",
+                  "path": "central-bulk-transfers/"
+                },
+                {
+                  "title": "Bulk Prepare",
+                  "collapsable": true,
+                  "children": [
+                    {
+                      "title": "Overview",
+                      "path": "central-bulk-transfers/transfers/1.1.0-bulk-prepare-transfer-request-overview"
+                    },
+                    {
+                      "title": "Bulk Prepare Handler",
+                      "path": "central-bulk-transfers/transfers/1.1.1-bulk-prepare-handler-consume"
+                    }
+                  ]
+                },
+                {
+                  "title": "Prepare Handler",
+                  "collapsable": true,
+                  "path": "central-bulk-transfers/transfers/1.2.1-prepare-handler-consume-for-bulk"
+                },
+                {
+                  "title": "Position Handler",
+                  "collapsable": true,
+                  "children": [
+                    {
+                      "title": "Overview",
+                      "path": "central-bulk-transfers/transfers/1.3.0-position-handler-consume-overview"
+                    },
+                    {
+                      "title": "Prepare Position Handler Consume",
+                      "path": "central-bulk-transfers/transfers/1.3.1-prepare-position-handler-consume"
+                    },
+                    {
+                      "title": "Fulfil Position Handler Consume",
+                      "path": "central-bulk-transfers/transfers/2.3.1-fulfil-position-handler-consume"
+                    },
+                    {
+                      "title": "Fulfil Abort Position Handler Consume",
+                      "path": "central-bulk-transfers/transfers/2.3.2-position-consume-abort"
+                    }
+                  ]
+                },
+                {
+                  "title": "Bulk Fulfil Handler",
+                  "collapsable": true,
+                  "children": [
+                    {
+                      "title": "Overview",
+                      "path": "central-bulk-transfers/transfers/2.1.0-bulk-fulfil-transfer-request-overview"
+                    },
+                    {
+                      "title": "Bulk Fulfil Handler Consume",
+                      "path": "central-bulk-transfers/transfers/2.1.1-bulk-fulfil-handler-consume"
+                    },
+                    {
+                      "title": "Fulfil Handler - Commit",
+                      "path": "central-bulk-transfers/transfers/2.2.1-fulfil-commit-for-bulk"
+                    },
+                    {
+                      "title": "Fulfil Handler - Reject/Abort",
+                      "path": "central-bulk-transfers/transfers/2.2.2-fulfil-abort-for-bulk"
+                    }
+                  ]
+                },
+                {
+                  "title": "Bulk Processing Handler",
+                  "path": "central-bulk-transfers/transfers/1.4.1-bulk-processing-handler"
+                },
+                {
+                  "title": "Notifications",
+                  "collapsable": true,
+                  "children": [
+                    {
+                      "title": "Notification to Participant (a)",
+                      "path": "central-ledger/transfers/1.1.4.a-send-notification-to-participant"
+                    },
+                    {
+                      "title": "Notification to Participant (b)",
+                      "path": "central-ledger/transfers/1.1.4.b-send-notification-to-participant"
+                    }
+                  ]
+                },
+                {
+                  "title": "Timeout",
+                  "collapsable": true,
+                  "children": [
+                    {
+                      "title": "Overview",
+                      "path": "central-bulk-transfers/transfers/3.1.0-transfer-timeout-overview-for-bulk"
+                    },
+                    {
+                      "title": "Timeout Handler Consume",
+                      "path": "central-bulk-transfers/transfers/3.1.1-transfer-timeout-handler-consume"
+                    }
+                  ]
+                },
+                {
+                  "title": "Bulk Abort Overview",
+                  "path": "central-bulk-transfers/transfers/4.1.0-transfer-abort-overview-for-bulk"
+                },
+                {
+                  "title": "Get Bulk Transfer Overview",
+                  "path": "central-bulk-transfers/transfers/5.1.0-transfer-get-overview-for-bulk"
+                }
+              ]
+            }
+          ],
+          "sidebarDepth": 2
+        },
+        {
+          // TODO: Placeholder and temporary link for this section until it can be migrated from legacy docs.
+          title: 'Central Settlement Services',
+          path: 'https://docs.mojaloop.io/legacy/mojaloop-technical-overview/central-settlements/'
         },
         {
           "title": "Transaction Requests Service",
