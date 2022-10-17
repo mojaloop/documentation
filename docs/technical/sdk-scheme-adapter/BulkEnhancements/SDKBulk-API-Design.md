@@ -1,33 +1,13 @@
-# Support for Bulk Transfers - API Design
-This design document describes how the SDK Scheme Adapter has been designed to support the bulk transfers use case.
+# SDK Support for Bulk Transfers - API
+The Payer SDK Scheme Adapter enhancements have been added to the API under the \BulkTransactions endpoint. 
+- **POST** \BulkTransactions 
+- **PUT** \BulkTransactions 
+- **PUT** \BulkTransaction callback
 
-## Mojaloop bulk transfer limitations overcome
-The implementation of bulk transfers within Mojaloop have the following limitations that this SDK bulk design is designed to overcome.
-1. Only individual transfers that are addressed to the same Payer DFSP may be included in a bulk quotes and bulk transfers call.
-1. The bulk quotes and bulk transfers messages is limited to a maximum of 1000 individual transfers.
-1. In order to allow a bulk transfers, all potential Payee DFSP's need to create integration support for bulk messaging. I.e. If the bulk use case were to be introduced into an existing scheme, then all connecting DFSPs would need to upgrade their connections and integrations into their core banking systems.
-1. There is currently no bulk discovery call.
+The Open API definition can be found [here](https://github.com/mojaloop/sdk-scheme-adapter/blob/mvp/bulk-sdk/test/func/config/ml-testing-toolkit/spec_files/api_definitions/mojaloop_simulator_sim_1.4/api_spec.yaml).
 
-## SDK Scheme Adapter bulk design requirements
-The design caters for:
-1. Transfers where the discovery has not yet been called.
-1. No limit on number of transfers
-1. Payee integration support for bulk being optional
-1. Optionally support 
-   - a single call that performs Discovery, Agreement and Transfer
-   - independently accepting of party lookups
-   - independently accepting of quotes
-   - setting a fee limit on the auto acceptance of quotes
-   - the skipping of the discovery phase
-   - running only the discovery phase
-   - setting an expiration for the bulk message
-   - home transaction Id's for both the bulk message and the individual transfers.
-   - both synchronous API calls and asynchronous API calls
-
-## Sequence Diagram
-Here is a sequence diagram that outlines the role that the SDK Scheme Adapter will play in a bulk call, both for a Payer DFSP and a Payee DFSP.
-
-![Bulk Transfer Sequence Diagram Overview](https://raw.githubusercontent.com/mojaloop/sdk-scheme-adapter/mvp/bulk-sdk/docs/design-bulk-transfers/assets/api-sequence-diagram.svg)
+## Technical Sequence Diagram
+![Technical Bulk Transfer Sequence Diagram](https://raw.githubusercontent.com/mojaloop/sdk-scheme-adapter/mvp/bulk-sdk/docs/design-bulk-transfers/assets/api-sequence-diagram.svg)
 
 ## Error Tables for bulk transfers
 [Table of Error Codes](./assets/sequence/BULK-ERRORCODES.md)

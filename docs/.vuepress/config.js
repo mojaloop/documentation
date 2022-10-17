@@ -534,16 +534,29 @@ module.exports = {
               "path": "sdk-scheme-adapter/IntegrationBulkFlowPatterns"
             },
             {
-              "title": "Support for Bulk Transfers - API Design",
-              "path": "sdk-scheme-adapter/SDKBulk-API-Design"
-            },
-            {
-              "title": "Support for Bulk Transfers - Event Sourcing Design",
-              "path": "sdk-scheme-adapter/SDKBulk-EventSourcing-Design"
-            },
-            {
               "title": "Usage tests",
               "path": "sdk-scheme-adapter/usage/"
+            },
+            {
+              "title": "Support for Bulk Transfers",
+              "collapsable": true,
+              "children": [
+                {
+                  "title": "Overview",
+                  "path": "sdk-scheme-adapter/BulkEnhancements/"
+                },
+                {
+                  "title": "API",
+                  "path": "sdk-scheme-adapter/BulkEnhancements/API-Design"
+                }, {
+                  "title": "DDD & Event Sourcing Design",
+                  "path": "sdk-scheme-adapter/BulkEnhancements/SDKBulk-EventSourcing-Design"
+                }, {
+                  "title": "Tests",
+                  "path": "sdk-scheme-adapter/BulkEnhancements/SDKBulk-Tests"
+                }
+              ],
+              "sidebarDepth": 2
             }
           ],
           "sidebarDepth": 2
