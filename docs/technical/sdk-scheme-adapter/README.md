@@ -48,7 +48,8 @@ There is no standard Connection used and the DFSP chooses to develop their own c
 - Developed using Open Source design documentation
 - Mojaloop Community Support
 - Operated by DFSP Tech Ops
-- SDK Scheme Adapter is used only as a reference
+- SDK Scheme Adapter is possibly used as a reference
+- This implementation directly interacts with Mojaloop's asynchronous APIs
 
 
 
