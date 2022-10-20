@@ -11,7 +11,7 @@ The implementation of bulk transfers within Mojaloop have the following limitati
 ## SDK Scheme Adapter bulk enhancement requirements
 The enhancements enable:
 1. Transfers where the discovery has not yet been called.
-1. No limit on number of transfers
+1. No limit on number of transfers (limited by infrastructure, network capabilities but > 1k that ML FSPIOP specifies)
 1. Payee integration support for bulk being optional
 1. Optionally support 
    - a single call that performs Discovery, Agreement and Transfer
