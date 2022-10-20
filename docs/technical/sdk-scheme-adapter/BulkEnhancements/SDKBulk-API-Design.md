@@ -2,7 +2,7 @@
 The Payer SDK Scheme Adapter enhancements have been added to the API under the \BulkTransactions endpoint. 
 - **POST** /bulkTransactions 
 - **PUT** \BulkTransactions 
-- **PUT** \BulkTransaction callback
+- **PUT** /bulkTransactions callback
 
 The Open API definition can be found [here](https://github.com/mojaloop/sdk-scheme-adapter/blob/mvp/bulk-sdk/test/func/config/ml-testing-toolkit/spec_files/api_definitions/mojaloop_simulator_sim_1.4/api_spec.yaml).
 
