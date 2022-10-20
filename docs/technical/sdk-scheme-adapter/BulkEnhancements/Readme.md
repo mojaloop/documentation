@@ -45,7 +45,7 @@ These are the features that are currently implemented:
 The Event Sourcing architecture has split the implementation into four components
 1. **Backend API** : 
 The backend API receives API call and produces corresponding domain events, and monitors domain events to produce API callbacks.
-1. Domain Event Handler
+1. **Domain Event Handler**:
 The Domain Event Handler consumes Domain Events and produces Command events.
 1. Command Event Handler
 The Command Event Handler consumes command events and produces domain events
