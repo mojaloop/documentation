@@ -26,7 +26,7 @@ The enhancements enable:
 
 ## Features Implemented
 The current implementation does not include all the features. All the features that have been completed are functional and can be used. The additional features will be added to the existing functionality as priority determines. This aligns with the MVP (Minimal Viable Product) agile concept.
-These are the features that are currently implented
+These are the features that are currently implemented:
 
 |Feature|Implementation Status|Release Version|
 |---|---|---|
