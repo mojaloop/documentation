@@ -10,7 +10,9 @@ Depending on the Scheme Rules, there are four common modes in which DFSPs intera
 
 ### 1. DFSP using third party solution e.g. Payment Manager that makes use of the SDK Scheme Adapter 
 
-There are a number of third party solutions that provide support, tooling and integrations into backend systems that makes use of the SDK-Scheme-Adapter in order to provide support for synchronous integration using the Mojaloop best practice means to connect to the Mojaloop API. Payment Manager is an open sourced* tool is an example of this. Payement manager provides addtional benefits to this, more information can be found [here](https://rtplex.io/). Payment Maanger deployments can be either Saas or self hosted.
+There are a number of third party solutions that provide support, tooling and integrations into backend systems that makes use of the SDK-Scheme-Adapter in order to provide support for synchronous integration (using the Mojaloop best practice means) to connect to the Mojaloop API.
+
+Payment Manager an open sourced* tool is an example of this. Payment manager provides additional benefits to this, more information can be found [here](https://rtplex.io/). Payment Manager deployments can be either Saas or self hosted.
 
 ![SDK-Scheme-Adapter Mode 1](./assets/SDKSchemeAdapterMode1.png)
 
