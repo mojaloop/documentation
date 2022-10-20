@@ -30,7 +30,7 @@ These are the features that are currently implemented:
 
 |Feature|Implementation Status|Release Version|
 |---|---|---|
-|Asynchronous Mode| released | vxxx|
+|Asynchronous Mode| released | v14.1.0 RC|
 |Synchronous Mode| not started | |
 |Auto Accept Party| not started | |
 |Auto Accept Quote (with fee limit)| not started | |
