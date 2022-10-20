@@ -1,6 +1,6 @@
 # SDK Support for Bulk Transfers - API
 The Payer SDK Scheme Adapter enhancements have been added to the API under the \BulkTransactions endpoint. 
-- **POST** \BulkTransactions 
+- **POST** /bulkTransactions 
 - **PUT** \BulkTransactions 
 - **PUT** \BulkTransaction callback
 
