@@ -5,7 +5,7 @@ This design document describes how the SDK Scheme Adapter has been enhanced to s
 The implementation of bulk transfers within Mojaloop have the following limitations that this SDK bulk enhancement is designed to overcome.
 1. Only individual transfers that are addressed to the same Payer DFSP may be included in a bulk quotes and bulk transfers call.
 1. The number of individual quotes and transfers in each bulkQuotes and bulkTransfers respectively are limited to a maximum of 1000.
-1. In order to allow a bulk transfers, all potential Payee DFSP's need to create integration support for bulk messaging. I.e. If the bulk use case were to be introduced into an existing scheme, then all connecting DFSPs would need to upgrade their connections and integrations into their core banking systems.
+1. In order to allow bulk functionality, all Payee DFSP's need to create integration support for bulk messaging. I.e. If the bulk use case were to be introduced into an existing scheme, then all connecting DFSPs would need to upgrade their connections and integrations into their core banking systems.
 1. There is currently no bulk discovery call.
 
 ## SDK Scheme Adapter bulk enhancement requirements
