@@ -29,7 +29,7 @@ These are all Apache License v2.0. This was especially chosen as it would not vi
 
 ### 2. DFSP using their own Core Connector with SDK Scheme Adapter
 
-In this case the DFSP chooses to develop a customer Core Connector between their back-end and the Mojaloop SDK Scheme Adaptor. They are able to use the open source guidelines to develop the Core Connector .
+In this case the DFSP chooses to develop a custom Core Connector between their back-end and the Mojaloop SDK Scheme Adaptor. They are able to use the open source guidelines to develop the Core Connector .
 
 ![SDK-Scheme-Adapter Mode 2](./assets/SDKSchemeAdapterMode2.png)
 
