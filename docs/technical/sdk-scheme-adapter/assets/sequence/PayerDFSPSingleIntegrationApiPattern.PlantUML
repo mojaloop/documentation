@@ -1,0 +1,63 @@
+@startuml PayerDFSPSingleIntegrationApiPattern
+/'*****
+--------------
+******'/
+
+skinparam activityFontSize 4
+skinparam activityDiamondFontSize 30
+skinparam activityArrowFontSize 22
+skinparam defaultFontSize 22
+skinparam noteFontSize 22
+skinparam monochrome true
+' declare title
+' title Payer DFSP Single Phase Integration Pattern
+' declare actors
+participant "Core banking solution" as CBS
+box "Payment Manager" #LightGrey
+participant "Core\nConnector" as CC 
+participant "SDK Scheme Adapter" as MC 
+end box
+participant "Mojaloop\nSwitch" as Switch
+autonumber 1 1 "<b>[0]"
+
+== Payer DFSP integration - 2 phase commit - single phase ==
+
+CBS->CBS: Reserve funds
+CBS->CC: **POST** /sendMoney \n(AUTO_ACCEPT_PARTY = true, AUTO_ACCEPT_QUOTES = true)
+CC->MC: **POST** /transfers
+activate MC
+MC->Switch: **GET** /parties/{Type}/{ID}/{SubId}
+Switch-->MC: HTTP 202 response
+Switch->Switch: Determine Payee DFSP using oracle
+Switch->Switch: Lookup Payee Information from Payee DFSP\n using **GET** /parties
+Switch->MC: **PUT** /parties/{Type}/{ID}/{SubId}
+MC-->Switch: HTTP 200 Response
+rnote left MC
+  Accept Party
+endrnote
+MC->Switch: **POST** /quotes
+Switch-->MC: HTTP 202 response
+Switch->Switch: Pass on quote to Payee DFSP\n using **POST** /quotes
+Switch->MC: **PUT** /quotes/{Id}
+MC-->Switch: HTTP 200 Response
+rnote left MC
+  Accept Quote
+endrnote
+MC->Switch: **POST** /transfers
+Switch-->MC: HTTP 202 response
+Switch->Switch: Reserve Payer DFSP funds
+Switch->Switch: Pass on transfer to Payee DFSP\n using **POST** /transfers
+Switch->Switch: Calculate fees
+Switch->Switch: Commit Payer DFSP funds
+Switch->MC: **PUT** /transfers/{Id}
+MC-->Switch: HTTP 200 Response
+MC-->CC: response
+deactivate MC
+CC-->CBS: response
+alt if (transferStatus== 'COMMITTED')
+CBS->CBS: Finalise transfer
+else else
+CBS->CBS: Rollback transfer
+end 
+
+@enduml

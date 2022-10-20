@@ -40,7 +40,6 @@ module.exports = {
     sidebarDepth: 2,
     lastUpdated: true,
     footerCopyright: 'Apache 2.0 Licensed | Copyright © 2022 Mojaloop Foundation',
-    // Ref: https://vuepress.vuejs.org/theme/default-theme-config.html#navbar
     nav: [
       {
         text: 'Getting Started',
@@ -818,7 +817,7 @@ module.exports = {
               "path": "central-event-processor/event-handler-placeholder"
             },
             {
-              "title": "Notiification Handler for Rejections",
+              "title": "Notification Handler for Rejections",
               "path": "central-event-processor/notification-handler-for-rejections"
             },
             {
@@ -867,8 +866,37 @@ module.exports = {
               "path": "sdk-scheme-adapter/"
             },
             {
-              "title": "Usage",
+              "title": "Integration Flow Patterns",
+              "path": "sdk-scheme-adapter/IntegrationFlowPatterns"
+            },
+            {
+              "title": "Bulk Integration Flow Patterns",
+              "path": "sdk-scheme-adapter/IntegrationBulkFlowPatterns"
+            },
+            {
+              "title": "Usage tests",
               "path": "sdk-scheme-adapter/usage/"
+            },
+            {
+              "title": "Support for Bulk Transfers",
+              "collapsable": true,
+              "children": [
+                {
+                  "title": "Overview",
+                  "path": "sdk-scheme-adapter/BulkEnhancements/"
+                },
+                {
+                  "title": "API",
+                  "path": "sdk-scheme-adapter/BulkEnhancements/SDKBulk-API-Design"
+                }, {
+                  "title": "DDD & Event Sourcing Design",
+                  "path": "sdk-scheme-adapter/BulkEnhancements/SDKBulk-EventSourcing-Design"
+                }, {
+                  "title": "Tests",
+                  "path": "sdk-scheme-adapter/BulkEnhancements/SDKBulk-Tests"
+                }
+              ],
+              "sidebarDepth": 2
             }
           ],
           "sidebarDepth": 2

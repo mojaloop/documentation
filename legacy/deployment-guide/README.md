@@ -24,7 +24,6 @@ The document is intended for an audience with a stable technical knowledge that 
         - [6.2.1 Deploying the Simulators](#621-deploying-the-simulators)
         - [6.2.2 Provisioning the Environment](#622-provisioning-the-environment)
         - [6.2.3 Run the Third Party API Test Collection](#623-run-the-third-party-api-test-collection)
-
 ### 1. Pre-requisites
 
 Versions numbers below are hard requirements, not just recommendations (more recent versions are known not to work).
@@ -33,7 +32,7 @@ A list of the pre-requisite tool set required for the deployment of Mojaloop:
 
 - **Kubernetes** An open-source system for automating deployment, scaling, and management of containerized applications. Find out more about [Kubernetes](https://kubernetes.io).
   - Recommended Versions:
-
+    >
     > **Mojaloop Helm Chart release v14.x** supports **Kubernetes v1.20 - v1.21**.
     >
     > **Mojaloop Helm Chart release v13.x** supports **Kubernetes v1.13 - v1.21**.
