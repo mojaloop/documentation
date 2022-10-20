@@ -21,7 +21,7 @@ The enhancements enable:
    - the skipping of the discovery phase
    - running only the discovery phase
    - setting an expiration for the bulk message
-   - home transaction Id's for both the bulk message and the individual transfers.
+   - home transaction IDs for both the bulk message and the individual transfers.
    - both synchronous API calls and asynchronous API calls
 
 ## Features Implemented
