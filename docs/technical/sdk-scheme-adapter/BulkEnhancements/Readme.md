@@ -47,7 +47,7 @@ The Event Sourcing architecture has split the implementation into four component
 The backend API receives API call and produces corresponding domain events, and monitors domain events to produce API callbacks.
 1. **Domain Event Handler**:
 The Domain Event Handler consumes Domain Events and produces Command events.
-1. Command Event Handler
+1. **Command Event Handler**:
 The Command Event Handler consumes command events and produces domain events
 1. FSPIOP API
 The FSPIOP API monitors domain events and produces corresponding FSPIOP calls, and monitors API Callbacks to produce corresponding domain events.
