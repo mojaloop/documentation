@@ -32,7 +32,7 @@ mojaloop-connector will act as a pass-through for all the errors returned by the
 | Party not found	                                                       | 3204        | 202              |  Processing Error                                         |
 
 ### Agreement Phase
-All the errors encountered during this phase will be accumulated in the mojaloop-connector and will be added to the `lastError` object and returned to the payer along with all other successful or failed transfers involved in the bulk transfer request.
+All the errors encountered during this phase will be accumulated in the mojaloop-connector and will be added to the `lastError` object and returned to the Payer FSP along with all other successful or failed transfers involved in the bulk transfer request.
 
 mojaloop-connector will act as a pass-through for all the errors returned by the switch
 
