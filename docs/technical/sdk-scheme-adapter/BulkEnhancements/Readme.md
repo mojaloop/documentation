@@ -49,7 +49,7 @@ The backend API receives API call and produces corresponding domain events, and 
 The Domain Event Handler consumes Domain Events and produces Command events.
 1. **Command Event Handler**:
 The Command Event Handler consumes command events and produces domain events
-1. FSPIOP API
+1. **FSPIOP API**:
 The FSPIOP API monitors domain events and produces corresponding FSPIOP calls, and monitors API Callbacks to produce corresponding domain events.
 
 ![Architectural Diagram](../assets/BulkSDKEnhancements-Architecture.drawio.svg)
