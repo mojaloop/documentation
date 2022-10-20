@@ -1,6 +1,6 @@
 # SDK Support for Bulk Transfers - DDD and Event Sourcing Design
 ## Design overview
-This diagram summarizes the design role the SDK is performing.
+This diagram gives an overview of the SDK design.
 
 ![Design Overview](../assets/overview-drawio.png)
 
