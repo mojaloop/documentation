@@ -3,7 +3,7 @@ A scheme adapter is a service that interfaces between a Mojaloop API compliant s
 
 The API between the scheme adapter and the DFSP backend is synchronous HTTP while the interface between the scheme adapter and the switch is native Mojaloop API. There is one exception to this, and that is the bulk integrations that can be configured to either be synchronous or asynchronous.
 
-The SDK-Scheme-Adapter is supported by the Mojaloop Community, and is retarded as a reference for the best practice method for a DFSP to connect to a Mojaloop API. More commonly the SDK-Scheme-Adapter is used and deployed directly into the solution. Below is a summary of the different ways in which this can be done.
+The SDK-Scheme-Adapter is supported by the Mojaloop Community, and is regarded as a reference for the best practice method for a DFSP to connect to a Mojaloop API. More commonly the SDK-Scheme-Adapter is used and deployed directly into the solution. Below is a summary of the different ways in which this can be done.
 
 ## SDK Adoption Models
 Depending on the Scheme Rules, there are a common 4 modes in which DFSPs interact with the central Mojaloop Hub. This summary highlights the role that the SDK-Scheme-Adpater plays in each of the modes and provides A brief overview of each mode and highlights how the DFSPs benefit.
