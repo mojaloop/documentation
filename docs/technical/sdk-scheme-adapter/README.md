@@ -6,7 +6,7 @@ The API between the scheme adapter and the DFSP backend is synchronous HTTP whil
 The SDK-Scheme-Adapter is supported by the Mojaloop Community, and is regarded as a reference for the best practice method for a DFSP to connect to a Mojaloop API. More commonly the SDK-Scheme-Adapter is used and deployed directly into the solution. Below is a summary of the different ways in which this can be done.
 
 ## SDK Adoption Models
-Depending on the Scheme Rules, there are a common 4 modes in which DFSPs interact with the central Mojaloop Hub. This summary highlights the role that the SDK-Scheme-Adpater plays in each of the modes and provides A brief overview of each mode and highlights how the DFSPs benefit.
+Depending on the Scheme Rules, there are four common modes in which DFSPs interact with the central Mojaloop Hub. This summary highlights the role that the SDK-Scheme-Adpater plays in each of the modes and provides a brief overview of each mode and highlights how the DFSPs benefit.
 
 ### 1. DFSP using third party solution e.g. Payment Manager that makes use of the SDK Scheme Adapter 
 
