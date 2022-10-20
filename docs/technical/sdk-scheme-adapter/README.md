@@ -23,7 +23,7 @@ Payment Manager an open sourced* tool is an example of this. Payment manager pro
 - Payment Manager UX has supporting Bussiness Operations and Security Onboarding and Maintenance automation
 
 :::tip Open Source Components
-These are all Apache License v2.0. This was especially chosen as it would not violate many organisations' policies. Apache License v2.0 has no “copy-left” constraints, so adapters can customise elements, such as core connectors without having to share those private details back to the community.  
+These are all Apache License v2.0. This was especially chosen as it would not violate many organizations' policies. Apache License v2.0 has no “copy-left” constraints, so adopters can customize elements, such as core connectors without having to share those private details back to the community.  
 :::
 
 
