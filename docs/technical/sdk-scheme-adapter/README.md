@@ -14,7 +14,7 @@ There are a number of third party solutions that provide support, tooling and in
 
 Payment Manager an open sourced* tool is an example of this. Payment manager provides additional benefits to this, more information can be found [here](https://rtplex.io/). Payment Manager deployments can be either Saas or self hosted.
 
-![SDK-Scheme-Adapter Mode 1](./assets/SDKSchemeAdapterMode1.png)
+![SDK-Scheme-Adapter Mode 1](./assets/SDKSchemeAdapterMode1.svg)
 
 - SDK Scheme Adapter is used directly in their custom integration implementation.
 - As the SDK-Scheme-Adapter is maintained by the community, this tool provides an upgrade path for using new Mojaloop API versions.
@@ -31,7 +31,7 @@ These are all Apache License v2.0. This was especially chosen as it would not vi
 
 In this case the DFSP chooses to develop a custom Core Connector between their back-end and the Mojaloop SDK Scheme Adaptor. They are able to use the open source guidelines to develop the Core Connector .
 
-![SDK-Scheme-Adapter Mode 2](./assets/SDKSchemeAdapterMode2.png)
+![SDK-Scheme-Adapter Mode 2](./assets/SDKSchemeAdapterMode2.svg)
 
 - SDK Scheme Adapter is used directly in their custom integration implementation.
 - As the SDK-Scheme-Adapter is maintained by the community, this tool provides an upgrade path for using new Mojaloop API versions.
@@ -43,7 +43,7 @@ In this case the DFSP chooses to develop a custom Core Connector between their b
 
 There is no standard Connection used and the DFSP chooses to develop their own connection to the Mojaloop Hub.
 
-![SDK-Scheme-Adapter Mode 3](./assets/SDKSchemeAdapterMode3.png)
+![SDK-Scheme-Adapter Mode 3](./assets/SDKSchemeAdapterMode3.svg)
 
 - Developed using Open Source design documentation
 - Mojaloop Community Support

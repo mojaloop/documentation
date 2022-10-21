@@ -71,7 +71,6 @@ These test can be run on the local checked out monorepo, and are run in the CI p
 |TC-BQ9|x|x|x|||x|x||x|x|x||||x|x|x|x|x|x|x|x|x|x|x||||||||||x|x|x|x|x|x||||||
 |TC-BQ10|x|x|x|||x|x||x||x||||x|x|x|x|x|x|x|x|x|x|||||||||||x|x|x|x|x|x|||||x|x|
 |TC-BQ11|x|x|x|||x|x||x|x|||||x|x|x|x|x|x|x|x|x|x|x||||||||||x|x|x|x|x|x|||||||
-|TC-BQ12|x|x|x|||x|x||x|x|||||x|x|x|x|x|x|x|x|x|x|x||||||||||x|x|x|x|x|x|||||||
 |TC-BQ13|x|x|x|||x|x||x|x|||||x|x|x|x|x|x|x|x|x|x|x||||||||||x|x|x|x|x|x|||||||
 |TC-BT1|x|x|x|x|x|x|x||x|x||x||x|x|x|x|x|x|x|x|x|x|x|x|x|x|||x|x||||x|x|x|x|x|x|x||x|x|x|x|
 |TC-BT2|x|x|x|x|x|x|x||x|x||x||x|x|x|x|x|x|x|x|x|x|x|x|x|x|||x|x||||x|x|x|x|x|x|x||x|x|x|x|
@@ -169,32 +168,30 @@ These test can be run on the local checked out monorepo, and are run in the CI p
 |**Quotes Errors:** (bulk-quotes-error-cases.json)|||||
 |- 2 transfers having the same receiver fsp id |||||
 |- acceptParty for all transfers|||||
-||TC-BQ1|Functional|FAIL|Receiver fsp fails the entire batch - FAIL - Bug 2946|
-||TC-BQ2|Functional|Pass|Receiver fsp times out the entire batch - PASS|
-||TC-BQ3|Functional|Pass|Receiver fsp sends only one response and skips the other - PASS|
-||TC-BQ4|Functional|FAIL|Receiver fsp sends one success response and one failure response - FAIL - Bug 2974 - failing in payeefsp because of missing transfer, but is this something we need to worry about?|
+||TC-BQ1|Functional|Pass|Receiver fsp fails the entire batch - current state in the final PUT is not correct - no bug|
+||TC-BQ2|Functional|Pass|Receiver fsp times out the entire batch - current state in the final PUT is not correct - response not coming in TTK.s|
+||TC-BQ3|Functional|Pass|Receiver fsp sends only one response and skips the other|
+||TC-BQ4|Functional|Pass|Receiver fsp sends one success response and one failure response|
 |- acceptParty varying|||||
-||TC-BQ5|Functional|FAIL|One true, one false - FAIL - not getting final transfers response in TTK - PASS|
-||TC-BQ6|Functional|FAIL|All false - TBD - what should be the expected behavior?|
+||TC-BQ5|Functional|Pass|One true, one false|
+||TC-BQ6|Functional|FAIL|getting 2 PUT callbacks instead of 1 - final state should be AGREEMENT_COMPLETED, but not getting any PUT response back - missing implementation - #2982 all other asserts passing|
 ||TC-BQ7|Functional|Pass|True is sent only for one quote in PUT /bulkTxn acceptParty, ignoring second one - PASS|
-||TC-BQ8|Functional|FAIL|false is sent only for one quote in PUT /bulkTxn acceptParty, ignoring second one - TBD - what should be the expected behavior?|
+||TC-BQ8|Functional|FAIL|false is sent only for one quote in PUT /bulkTxn acceptParty, ignoring second one - FAIL -[ need to add a story on validation in CC of the no.of request vs response tranfers.]|
 |- 2 transfers having different receiver fsp ids - acceptParty for all transfers|||||
-||TC-BQ9|Functional|FAIL|One batch sends an error - FAIL - no final PUT response|
-||TC-BQ10|Functional|FAIL|Both batches sends error - FAIL - no final PUT response|
+||TC-BQ9|Functional|FAIL|One batch sends an error - FAIL - getting details of only success transfers but not failures in PUT callbacks|
+||TC-BQ10|Functional|Pass|Both batches sends error|
 ||TC-BQ11|Functional|FAIL|One batch times out - FAIL - no final PUT response|
-||TC-BQ12|Functional|FAIL|Both batches times out - FAIL - no final PUT response|
 |- 3 transfers with 2 transfers having 1 receiver fsp id and the other having a different one|||||
 ||TC-BQ13|Functional||- The batch with 2 transfers sends only 1 transfer response and the other batch sends the success response|
 |**Transfers Errors:** (bulk-transfer-errors.json)|||||
 |- One bulkTransfer with 2 transfers |||||
 |- acceptQuote for all transfers|||||
-||TC-BT1|Functional|FAIL|Receiver fails the entire batch - Bug 2972. Also TTK rule for bulkQuotes not working as expected|
-||TC-BT2|Functional|FAIL|Receiver times out for the entire batch|
+||TC-BT1|Functional|Pass|Receiver fails the entire batch - Bug 2972. Also TTK rule for bulkQuotes not working as expected|
+||TC-BT2|Functional|Pass|Receiver times out for the entire batch|
 ||TC-BT3|Functional|FAIL|Receiver fsp sends only one response and skips the other|
-||TC-BT4|Functional|FAIL|Receiver fsp sends one success response and one failure  - Bug 2974 Also TTK rule for bulkQuotes not working as expected|
+||TC-BT4|Functional|Pass|Receiver fsp sends one success response and one failure  - Bug 2974 Also TTK rule for bulkQuotes not working as expected|
 |- acceptQuote varying|||||
 ||TC-BT5|Functional|FAIL|One true one false - TC2 - Bug 2958|
 ||TC-BT6|Functional|FAIL|All false - TC1|
-||TC-BT7|Functional|FAIL|True is sent only for one transfer in PUT /bulkTxn acceptParty, ignoring second one working|
-||TC-BT8|Functional|FAIL|false is sent only for one transfer in PUT /bulkTxn acceptParty, ignoring second one|
-
+||TC-BT7|Functional|Pass|True is sent only for one transfer in PUT /bulkTxn acceptParty, ignoring second one - working (if we can't send a different num than the no.of transfers in the POST, this is not a valid test case until we have the validation failure implemented)|
+||TC-BT8|Functional|FAIL|false is sent only for one transfer in PUT /bulkTxn acceptParty, ignoring second one  (if we can't send a different num than the no.of transfers in the POST, this is not a valid test case until we have the validation failure implemented)|
