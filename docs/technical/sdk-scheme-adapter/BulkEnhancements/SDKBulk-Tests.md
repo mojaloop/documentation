@@ -71,7 +71,6 @@ These test can be run on the local checked out monorepo, and are run in the CI p
 |TC-BQ9|x|x|x|||x|x||x|x|x||||x|x|x|x|x|x|x|x|x|x|x||||||||||x|x|x|x|x|x||||||
 |TC-BQ10|x|x|x|||x|x||x||x||||x|x|x|x|x|x|x|x|x|x|||||||||||x|x|x|x|x|x|||||x|x|
 |TC-BQ11|x|x|x|||x|x||x|x|||||x|x|x|x|x|x|x|x|x|x|x||||||||||x|x|x|x|x|x|||||||
-|TC-BQ12|x|x|x|||x|x||x|x|||||x|x|x|x|x|x|x|x|x|x|x||||||||||x|x|x|x|x|x|||||||
 |TC-BQ13|x|x|x|||x|x||x|x|||||x|x|x|x|x|x|x|x|x|x|x||||||||||x|x|x|x|x|x|||||||
 |TC-BT1|x|x|x|x|x|x|x||x|x||x||x|x|x|x|x|x|x|x|x|x|x|x|x|x|||x|x||||x|x|x|x|x|x|x||x|x|x|x|
 |TC-BT2|x|x|x|x|x|x|x||x|x||x||x|x|x|x|x|x|x|x|x|x|x|x|x|x|||x|x||||x|x|x|x|x|x|x||x|x|x|x|
@@ -138,63 +137,44 @@ These test can be run on the local checked out monorepo, and are run in the CI p
 
 |Group|# test case|Test Type|Status|Detail|
 |--- |--- |--- |--- |--- |
-|**Discovery** - Comand Handler Integration Tests|||||
-|(process_bulk_accept_party_info.test.ts)|INT D-1|Integration|Pass|Given inbound command event ProcessSDKOutboundBulkAcceptPartyInfo is received Then the logic should loop through individual transfer in the bulk request And update the individual transfer state to DISCOVERY_ACCEPTED or DISCOVERY_REJECTED based on the value in the incoming event And update the overall global state to DISCOVERY_ACCEPTANCE_COMPLETED And outbound event SDKOutboundBulkAcceptPartyInfoProcessed should be published|
-|(process_bulk_party_info_request.test.ts)|INT D-2|Integration|Pass|Given Party info does not already exist for none of the individual transfers. And Party Lookup is not skipped When inbound command event ProcessSDKOutboundBulkPartyInfoRequest is received Then the global state should be updated to DISCOVERY_PROCESSING And PartyInfoRequested kafka event should be published for each individual transfer. And State for individual transfer should be updated to DISCOVERY_PROCESSING|
-|(process_bulk_party_info_request.test.ts)|INT D-3|Integration|Pass|Given Party info exists for individual transfers. And Party Lookup is not skipped When inbound command event ProcessSDKOutboundBulkPartyInfoRequest is received Then the global state should be updated to DISCOVERY_PROCESSING. And PartyInfoRequested outbound event should not be published for each individual transfer. And State for individual transfer should be updated to RECEIVED.|
-|(process_bulk_request.test.ts)|INT D-4|Integration|Pass|When inbound command event ProcessSDKOutboundBulkRequest is received Then outbound event SDKOutboundBulkPartyInfoRequested should be published And Global state should be updated to RECEIVED.|
-|(process_party_info_callback.test.ts)|INT D-5|Integration|Pass|Given receiving party info does not exist And receiving party lookup was successful When inbound command event ProcessPartyInfoCallback is received Then the state for individual successful party lookups should be updated to DISCOVERY_SUCCESS And the data in redis for individual transfer should be updated with received party info And outbound event PartyInfoCallbackProcessed event should be published And if all lookups are incomplete, outbound event ProcessSDKOutboundBulkPartyInfoRequestProcessed should not be published And neither outbound event SDKOutboundBulkAutoAcceptPartyInfoRequested/SDKOutboundBulkAutoAcceptPartyInfoRequested should be published|
-|(process_party_info_callback.test.ts)|INT D-6|Integration|Pass|Given receiving party info does not exist And receiving party lookup was successful When inbound command event ProcessPartyInfoCallback is received Then the state for individual successful party lookups should be updated to DISCOVERY_SUCCESS And the data in redis for individual transfer should be updated with received party info And outbound event PartyInfoCallbackProcessed event should be published And if all lookups are complete, outbound event ProcessSDKOutboundBulkPartyInfoRequestProcessed should be published And if auto accept party is false, outbound event SDKOutboundBulkAcceptPartyInfoRequested should be published.|
-|**Agreement** - Comand Handler Integration Tests|||||
-|(process_bulk_quotes_callback.test.ts)|INT A-1|Integration|Pass|Given the BulkTransaction with Options { synchronous: false, onlyValidateParty: true, skipPartyLookup: false, autoAcceptParty: false, autoAcceptQuote: false } And callback for quote batch is successful And the callback has a combination of success and failed responses for individual quotes When Inbound command event ProcessBulkQuotesCallback is received Then the logic should update the individual batch state to AGREEMENT_COMPLETED or AGREEMENT_FAILED, And for each individual transfers in the batch, the state could be AGREEMENT_SUCCESS or AGREEMENT_FAILED accordingly And the individual quote data in redis should be updated with the response And the global BulkTransaction state should be AGREEMENT_ACCEPTANCE_PENDING And domain event BulkQuotesCallbackProcessed should be published And domain event SDKOutboundBulkQuotesRequestProcessed should be published|
-|(process_bulk_quotes_callback.test.ts)|INT A-2|Integration|Pass|When Inbound command event ProcessSDKOutboundBulkQuotesRequest is received Then the logic should update the global state to AGREEMENT_PROCESSING, And create batches based on FSP that has DISCOVERY_ACCEPTED state And also has config maxEntryConfigPerBatch And publish BulkQuotesRequested per each batch And update the state of each batch to AGREEMENT_PROCESSING.|
-|**Transfers** - Comand Handler Integration Tests|||||
-|(prepare_sdk_outbound_bulk_response.test.ts)|INT T-1|Integration|Pass|Given the BulkTransaction with Options { synchronous: false, onlyValidateParty: true, skipPartyLookup: false, autoAcceptParty: false, autoAcceptQuote: false } When inbound command event PrepareSDKOutboundBulkResponseCmdEvt is received And SDKOutboundBulkResponsePreparedDmEvt should be published for each transfer batch And the Bulk Transaction global state should be updated to RESPONSE_PROCESSING|
-|(process_bulk_transfers_callback.test.ts )|INT T-2|Integration|Pass|Given the BulkTransaction with Options { synchronous: false, onlyValidateParty: true, skipPartyLookup: false, autoAcceptParty: false, autoAcceptQuote: false } When inbound command event ProcessBulkTransfersCallbackCmdEvt is received Then the transfer batch state should be updated to TRANSFERS_COMPLETED States of failed quotes should remain AGREEMENT_FAILED And the logic should loop through individual transfers in the batch and update the state to TRANSFER_SUCCESS or TRANSFER_FAILED And BulkTransferProcessedDmEvt should be published for each transfer batch And domain event BulkQuotesCallbackProcessed should be published And domain event SDKOutboundBulkQuotesRequestProcessed should be published And domain event SDKOutboundBulkAutoAcceptQuoteProcessedDmEvt should be published And domain event BulkTransfersRequestedDmEvt should be published And domain event BulkTransfersCallbackProcessed should be published And domain event SDKOutboundBulkTransfersRequestProcessed should be published|
-|(process_bulk_transfers_request.test.ts)|INT T-3|Integration|Pass|Given the BulkTransaction with Options { synchronous: false, onlyValidateParty: true, skipPartyLookup: false, autoAcceptParty: false, autoAcceptQuote: false } And callback for quote batch is successful And the callback has a combination of success and failed responses for individual quotes When Inbound command event ProcessSDKOutboundBulkTransfersRequestCmdEvt is received Then the global Bulk Transaction State should be updated to TRANSFERS_PROCESSING And the individual batch state should be equal to either TRANSFERS_PROCESSING or TRANSFERS_FAILED, And for each individual transfers in the batch, the state AGREEMENT_ACCEPTED or AGREEMENT_REJECTED depending on the acceptQuotes = TRUE/FALSE, And for each individual transfers in an AGREEMENT_FAILED state should not be altered, And the individual quote data in redis should be updated with the response And domain event BulkQuotesCallbackProcessed should be published And domain event SDKOutboundBulkQuotesRequestProcessed should be published And domain event SDKOutboundBulkAutoAcceptQuoteProcessedDmEvt should be published And domain event BulkTransfersRequestedDmEvt should be published|
-|(process_prepare_bulk_response.test.ts)|INT T-4|Integration|Pass|When inbound command event PrepareSDKOutboundBulkResponseCmdEvt is received Then SDKOutboundBulkResponsePreparedDmEvnt should be published|
-|(process_sdk_outbound_bulk_accept_quote.test.ts)|INT T-5|Integration|Pass|Given the BulkTransaction with Options { synchronous: false, onlyValidateParty: true, skipPartyLookup: false, autoAcceptParty: false, autoAcceptQuote: false } And callback for quote batch is successful And the callback has a combination of success and failed responses for individual quotes When Inbound command event ProcessSDKOutboundBulkAcceptQuote is received Then the global Bulk Transaction State should be updated to AGREEMENT_ACCEPTANCE_COMPLETED And the individual batch state should be equal to either AGREEMENT_COMPLETED or AGREEMENT_FAILED, And for each individual transfers in the batch, the state AGREEMENT_ACCEPTED or AGREEMENT_REJECTED depending on the acceptQuotes = TRUE/FALSE, And the individual quote data in redis should be updated with the response And domain event BulkQuotesCallbackProcessed should be published And domain event SDKOutboundBulkQuotesRequestProcessed should be published And domain event SDKOutboundBulkAutoAcceptQuoteProcessedDmEvt should be published And domain event BulkTransfersRequestedDmEvt should be published|
-|(process_sdk_outbound_bulk_response_sent.test.ts)#|INT T-6|Integration|Pass|Given the BulkTransaction with Options { synchronous: false, onlyValidateParty: true, skipPartyLookup: false, autoAcceptParty: false, autoAcceptQuote: false } When inbound command event ProcessSDKOutboundBulkResponseSentCmdEvt is received And SDKOutboundBulkResponseSentProcessedDmEvt should be published for each transfer batch And the Bulk Transaction global state should be updated to RESPONSE_SENT |
 |**Happy Path:** (bulk-happy-path.json)|||||
 |- 1 transfer with acceptParty and acceptQuote set to true|||||
-||FUNC 1|Functional|Pass|Bulk transaction having a format error|
+||Func 1|Functional|Pass|Bulk transaction having a format error|
 |**Parties Errors:** (bulk-parties-error-cases.json)|||||
 |- 1 transfer in the request|||||
-||FUNC 2|Functional|Pass|Receiver sends error for in parties response|
-||FUNC 3|Functional|Pass|Senderfsp sends acceptParty: false|
+||Func 2|Functional|Pass|Receiver sends error for in parties response|
+||Func 3|Functional|Pass|Senderfsp sends acceptParty: false|
 |- 2 transfers in the request|||||
-||FUNC 4|Functional|Pass|Receiver sends an error response for one of the transfers|
-||FUNC 5|Functional|Pass|Receiver times out sending response for one of the transfers|
-||FUNC 6|Functional|Pass|Do not get any response from the receiver for both the transfers|
+||Func 4|Functional|Pass|Receiver sends an error response for one of the transfers|
+||Func 5|Functional|Pass|Receiver times out sending response for one of the transfers|
+||Func 6|Functional|Pass|Do not get any response from the receiver for both the transfers|
 |**Quotes Errors:** (bulk-quotes-error-cases.json)|||||
 |- 2 transfers having the same receiver fsp id |||||
 |- acceptParty for all transfers|||||
-||TC-BQ1|Functional|FAIL|Receiver fsp fails the entire batch - FAIL - Bug 2946|
-||TC-BQ2|Functional|Pass|Receiver fsp times out the entire batch - PASS|
-||TC-BQ3|Functional|Pass|Receiver fsp sends only one response and skips the other - PASS|
-||TC-BQ4|Functional|FAIL|Receiver fsp sends one success response and one failure response - FAIL - Bug 2974 - failing in payeefsp because of missing transfer, but is this something we need to worry about?|
+||TC-BQ1|Functional|Pass|Receiver fsp fails the entire batch - current state in the final PUT is not correct - no bug|
+||TC-BQ2|Functional|Pass|Receiver fsp times out the entire batch - current state in the final PUT is not correct - response not coming in TTK.s|
+||TC-BQ3|Functional|Pass|Receiver fsp sends only one response and skips the other|
+||TC-BQ4|Functional|Pass|Receiver fsp sends one success response and one failure response|
 |- acceptParty varying|||||
-||TC-BQ5|Functional|FAIL|One true, one false - FAIL - not getting final transfers response in TTK - PASS|
-||TC-BQ6|Functional|FAIL|All false - TBD - what should be the expected behavior?|
+||TC-BQ5|Functional|Pass|One true, one false|
+||TC-BQ6|Functional|FAIL|getting 2 PUT callbacks instead of 1 - final state should be AGREEMENT_COMPLETED, but not getting any PUT response back - missing implementation - #2982 all other asserts passing|
 ||TC-BQ7|Functional|Pass|True is sent only for one quote in PUT /bulkTxn acceptParty, ignoring second one - PASS|
-||TC-BQ8|Functional|FAIL|false is sent only for one quote in PUT /bulkTxn acceptParty, ignoring second one - TBD - what should be the expected behavior?|
+||TC-BQ8|Functional|FAIL|false is sent only for one quote in PUT /bulkTxn acceptParty, ignoring second one - FAIL -[ need to add a story on validation in CC of the no.of request vs response tranfers.]|
 |- 2 transfers having different receiver fsp ids - acceptParty for all transfers|||||
-||TC-BQ9|Functional|FAIL|One batch sends an error - FAIL - no final PUT response|
-||TC-BQ10|Functional|FAIL|Both batches sends error - FAIL - no final PUT response|
+||TC-BQ9|Functional|FAIL|One batch sends an error - FAIL - getting details of only success transfers but not failures in PUT callbacks|
+||TC-BQ10|Functional|Pass|Both batches sends error|
 ||TC-BQ11|Functional|FAIL|One batch times out - FAIL - no final PUT response|
-||TC-BQ12|Functional|FAIL|Both batches times out - FAIL - no final PUT response|
 |- 3 transfers with 2 transfers having 1 receiver fsp id and the other having a different one|||||
 ||TC-BQ13|Functional||- The batch with 2 transfers sends only 1 transfer response and the other batch sends the success response|
 |**Transfers Errors:** (bulk-transfer-errors.json)|||||
 |- One bulkTransfer with 2 transfers |||||
 |- acceptQuote for all transfers|||||
-||TC-BT1|Functional|FAIL|Receiver fails the entire batch - Bug 2972. Also TTK rule for bulkQuotes not working as expected|
-||TC-BT2|Functional|FAIL|Receiver times out for the entire batch|
+||TC-BT1|Functional|Pass|Receiver fails the entire batch - Bug 2972. Also TTK rule for bulkQuotes not working as expected|
+||TC-BT2|Functional|Pass|Receiver times out for the entire batch|
 ||TC-BT3|Functional|FAIL|Receiver fsp sends only one response and skips the other|
-||TC-BT4|Functional|FAIL|Receiver fsp sends one success response and one failure  - Bug 2974 Also TTK rule for bulkQuotes not working as expected|
+||TC-BT4|Functional|Pass|Receiver fsp sends one success response and one failure  - Bug 2974 Also TTK rule for bulkQuotes not working as expected|
 |- acceptQuote varying|||||
 ||TC-BT5|Functional|FAIL|One true one false - TC2 - Bug 2958|
 ||TC-BT6|Functional|FAIL|All false - TC1|
-||TC-BT7|Functional|FAIL|True is sent only for one transfer in PUT /bulkTxn acceptParty, ignoring second one working|
-||TC-BT8|Functional|FAIL|false is sent only for one transfer in PUT /bulkTxn acceptParty, ignoring second one|
-
+||TC-BT7|Functional|Pass|True is sent only for one transfer in PUT /bulkTxn acceptParty, ignoring second one - working (if we can't send a different num than the no.of transfers in the POST, this is not a valid test case until we have the validation failure implemented)|
+||TC-BT8|Functional|FAIL|false is sent only for one transfer in PUT /bulkTxn acceptParty, ignoring second one  (if we can't send a different num than the no.of transfers in the POST, this is not a valid test case until we have the validation failure implemented)|
