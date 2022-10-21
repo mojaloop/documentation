@@ -37,6 +37,10 @@ These are the features that are currently implemented:
 |Only Validate Party| not started | |
 |Skip Party Lookup| not started | |
 |Bulk Expiration| not started | |
+|Payee SDK - Demultiplexing bulk quotes| not started | |
+|Payee SDK - Demultiplexing bulk transfers| not started | |
+|Mojaloop - Bulk Patch Notification| not started | |
+|Payee SDK - Demultiplexing bulk patch notification| not started | |
 
 ### Functional Diagram
 ![Functional Diagram](../assets/BulkSDKEnhancements.drawio.svg)
