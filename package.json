@@ -11,19 +11,11 @@
   "engines": {
     "node": "=16.x"
   },
-  "engines": {
-    "node": "=16.x"
-  },
   "scripts": {
     "dev": "npx npx vuepress dev docs",
     "build": "npx npx vuepress build docs",
     "build:plantuml:all": "./scripts/_build_plantuml.sh",
     "build:plantuml:diff": "MODE=STAGED_GIT ./scripts/_build_plantuml.sh",
-    "lint": "npx markdownlint './docs/**/*.md' --ignore node_modules --config markdownlint.yaml",
-    "lint:fix": "npm run lint -- --fix",
-    "dep:check": "npx ncu -e 2",
-    "dep:update": "npx ncu -u",
-    "prepare": "npx husky install",
     "lint": "npx markdownlint './docs/**/*.md' --ignore node_modules --config markdownlint.yaml",
     "lint:fix": "npm run lint -- --fix",
     "dep:check": "npx ncu -e 2",
@@ -34,11 +26,11 @@
     "@vuepress/plugin-back-to-top": "^1.9.7",
     "@vuepress/plugin-medium-zoom": "^1.9.7",
     "got": "^12.5.2",
-    "husky": "^8.0.1",
+    "husky": "^8.0.2",
     "markdownlint-cli": "^0.32.2",
-    "npm-check-updates": "^16.3.14",
+    "npm-check-updates": "^16.4.1",
     "plantuml-encoder": "^1.4.0",
-    "svgo": "^2.8.0",
+    "svgo": "^3.0.1",
     "vuepress": "^1.9.7",
     "vuepress-plugin-versioning": "git+https://github.com/mojaloop/vuepress-plugin-versioning.git#dcb14962a69b8e5aaf184d2d1a31ae4f43870bc1",
     "vuepress-theme-titanium": "^4.11.0"
