@@ -1,13 +1,13 @@
 # SDK Support for Bulk Transfers - API
-The Payer SDK Scheme Adapter enhancements have been added to the API under the \BulkTransactions endpoint. 
-- **POST** /bulkTransactions 
-- **PUT** /bulkTransactions 
+The Payer SDK Scheme Adapter enhancements have been added to the API under the \BulkTransactions endpoint.
+- **POST** /bulkTransactions
+- **PUT** /bulkTransactions
 - **PUT** /bulkTransactions callback
 
-The Open API definition can be found [here](https://github.com/mojaloop/sdk-scheme-adapter/blob/mvp/bulk-sdk/test/func/config/ml-testing-toolkit/spec_files/api_definitions/mojaloop_simulator_sim_1.4/api_spec.yaml).
+The Open API definition can be found [here](https://github.com/mojaloop/sdk-scheme-adapter/blob/master/test/func/config/ttk-ttksim1/spec_files/api_definitions/mojaloop_simulator_sim_1.4/api_spec.yaml).
 
 ## Technical Sequence Diagram
-![Technical Bulk Transfer Sequence Diagram](https://raw.githubusercontent.com/mojaloop/sdk-scheme-adapter/mvp/bulk-sdk/docs/design-bulk-transfers/assets/api-sequence-diagram.svg)
+![Technical Bulk Transfer Sequence Diagram](https://raw.githubusercontent.com/mojaloop/sdk-scheme-adapter/master/docs/design-bulk-transfers/assets/api-sequence-diagram.svg)
 
 ## Error Tables for bulk transfers
 [Table of Error Codes](./assets/sequence/BULK-ERRORCODES.md)
