@@ -156,42 +156,46 @@ These test can be run on the local checked out monorepo, and are run in the CI p
 |(process_sdk_outbound_bulk_response_sent.test.ts)#|INT T-6|Integration|Pass|Given the BulkTransaction with Options { synchronous: false, onlyValidateParty: true, skipPartyLookup: false, autoAcceptParty: false, autoAcceptQuote: false } When inbound command event ProcessSDKOutboundBulkResponseSentCmdEvt is received And SDKOutboundBulkResponseSentProcessedDmEvt should be published for each transfer batch And the Bulk Transaction global state should be updated to RESPONSE_SENT |
 |**Happy Path:** (bulk-happy-path.json)|||||
 |- 1 transfer with acceptParty and acceptQuote set to true|||||
-||FUNC 1|Functional|Pass|Bulk transaction having a format error|
+||TC-BHP1|Functional|Pass|4 transfers to 2 dfsps, with acceptParty and acceptQuote set to true|
+||TC-BHP2|Validation|Pass|Bulk transaction having a format error|
 |**Parties Errors:** (bulk-parties-error-cases.json)|||||
 |- 1 transfer in the request|||||
-||FUNC 2|Functional|Pass|Receiver sends error for in parties response|
-||FUNC 3|Functional|Pass|Senderfsp sends acceptParty: false|
+||TC-BP1|Functional|Pass|Receiver sends error for in parties response|
+||TC-BP2|Functional|Pass|Receiver timesout|
+||TC-BP3|Functional|Pass|skipPartyLookup is false and receiver ifo exists in the request.|
 |- 2 transfers in the request|||||
-||FUNC 4|Functional|Pass|Receiver sends an error response for one of the transfers|
-||FUNC 5|Functional|Pass|Receiver times out sending response for one of the transfers|
-||FUNC 6|Functional|Pass|Do not get any response from the receiver for both the transfers|
+||TC-BP4|Functional|Pass|Receiver sends an error response for one of the transfers|
+||TC-BP5|Functional|Pass|Receiver times out sending response for one of the transfers|
+||TC-BP6|Functional|Pass|Do not get any response from the receiver for both the transfers|
 |**Quotes Errors:** (bulk-quotes-error-cases.json)|||||
 |- 2 transfers having the same receiver fsp id |||||
 |- acceptParty for all transfers|||||
-||TC-BQ1|Functional|Pass|Receiver fsp fails the entire batch - current state in the final PUT is not correct - no bug|
-||TC-BQ2|Functional|Pass|Receiver fsp times out the entire batch - current state in the final PUT is not correct - response not coming in TTK.s|
+||TC-BQ1|Functional|Pass|Receiver fsp fails the entire batch |
+||TC-BQ2|Functional|Pass|Receiver fsp times out the entire batch|
 ||TC-BQ3|Functional|Pass|Receiver fsp sends only one response and skips the other|
-||TC-BQ4|Functional|Pass|Receiver fsp sends one success response and one failure response|
+||TC-BQ4|Functional|Out of scope for MVP|Receiver fsp sends one success response and one failure response (Not Implemented - Issue 3015)|
 |- acceptParty varying|||||
 ||TC-BQ5|Functional|Pass|One true, one false|
-||TC-BQ6|Functional|FAIL|getting 2 PUT callbacks instead of 1 - final state should be AGREEMENT_COMPLETED, but not getting any PUT response back - missing implementation - #2982 all other asserts passing|
-||TC-BQ7|Functional|Pass|True is sent only for one quote in PUT /bulkTxn acceptParty, ignoring second one - PASS|
-||TC-BQ8|Functional|FAIL|false is sent only for one quote in PUT /bulkTxn acceptParty, ignoring second one - FAIL -[ need to add a story on validation in CC of the no.of request vs response tranfers.]|
+||TC-BQ6|Functional|Out of scope for MVP| Accept party false for all responses - Then only party details and no quote respone, final state to be COMPLETED (Not Implemented - Issue 3015)|
+||TC-BQ7|Functional|Out of scope for MVP|True is sent only for one quote in PUT /bulkTxn acceptParty, ignoring second one (Not Implemented - Issue 3015)|
+||TC-BQ8|Functional|Out of scope for MVP|false is sent only for one quote in PUT /bulkTxn acceptParty, ignoring second one - (Not Implemented - Issue 3015)|
 |- 2 transfers having different receiver fsp ids - acceptParty for all transfers|||||
-||TC-BQ9|Functional|FAIL|One batch sends an error - FAIL - getting details of only success transfers but not failures in PUT callbacks|
+||TC-BQ9|Functional|Pass|One batch sends an error |
 ||TC-BQ10|Functional|Pass|Both batches sends error|
-||TC-BQ11|Functional|FAIL|One batch times out - FAIL - no final PUT response|
+||TC-BQ11|Functional|Pass|One batch times out|
 |- 3 transfers with 2 transfers having 1 receiver fsp id and the other having a different one|||||
-||TC-BQ13|Functional||- The batch with 2 transfers sends only 1 transfer response and the other batch sends the success response|
+||TC-BQ12|Functional|Out of scope for MVP|- The batch with 2 transfers sends only 1 transfer response and the other batch sends the success response (Not implemented - issue 3015)|
+||TC-BQ13|Functional|Out of scope for MVP|Error in switch for unsupported currency - (issue - |
 |**Transfers Errors:** (bulk-transfer-errors.json)|||||
 |- One bulkTransfer with 2 transfers |||||
 |- acceptQuote for all transfers|||||
-||TC-BT1|Functional|Pass|Receiver fails the entire batch - Bug 2972. Also TTK rule for bulkQuotes not working as expected|
+||TC-BT1|Functional|Pass|Receiver fails the entire batch |
 ||TC-BT2|Functional|Pass|Receiver times out for the entire batch|
-||TC-BT3|Functional|FAIL|Receiver fsp sends only one response and skips the other|
-||TC-BT4|Functional|Pass|Receiver fsp sends one success response and one failure  - Bug 2974 Also TTK rule for bulkQuotes not working as expected|
+||TC-BT3|Functional|Out of scope for MVP|Receiver fsp sends only one response and skips the other (Not Implemented - Issue 3015)|
+||TC-BT4|Functional|Intermittent Failures|Receiver fsp sends one success response and one failure  - ( Issue: 3019 )|
 |- acceptQuote varying|||||
-||TC-BT5|Functional|FAIL|One true one false - TC2 - Bug 2958|
-||TC-BT6|Functional|FAIL|All false - TC1|
-||TC-BT7|Functional|Pass|True is sent only for one transfer in PUT /bulkTxn acceptParty, ignoring second one - working (if we can't send a different num than the no.of transfers in the POST, this is not a valid test case until we have the validation failure implemented)|
-||TC-BT8|Functional|FAIL|false is sent only for one transfer in PUT /bulkTxn acceptParty, ignoring second one  (if we can't send a different num than the no.of transfers in the POST, this is not a valid test case until we have the validation failure implemented)|
+||TC-BT5|Functional|Out of scope for MVP|One true one false - TC2 - Bug 2958|
+||TC-BT6|Functional|Out of scope for MVP|Accept quote - All false (Not Implemented - Issue 3015)|
+||TC-BT7|Functional|Out of scope for MVP|True is sent only for one transfer in PUT /bulkTxn acceptParty, ignoring second one - (Not Implemented - Issue 3015)|
+||TC-BT8|Functional|Out of scope for MVP|false is sent only for one transfer in PUT /bulkTxn acceptParty, ignoring second one - (Not Implemented - Issue 3015)|
+
