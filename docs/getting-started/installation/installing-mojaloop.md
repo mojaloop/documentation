@@ -1,4 +1,4 @@
-# Installing Mojaloop 
+# Installing Mojaloop
 
 Mojaloop is packaged and released as a set of [Helm Charts](https://github.com/mojaloop/helm) with various options for deployment and customization.  
 1. The Mojaloop [Deployment Guide](https://docs.mojaloop.io/legacy/deployment-guide/) is intended for those familiar with [Kubernetes](https://kubernetes.io) and [Helm](https://helm.sh) or those interested in the deployment details of the Mojaloop Helm Charts [Deployment Guide](https://docs.mojaloop.io/legacy/deployment-guide/).
