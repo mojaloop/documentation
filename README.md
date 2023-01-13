@@ -17,7 +17,17 @@ npm run dev
 ```
 
 ## Building the project
+`export NODE_OPTIONS=--openssl-legacy-provider`
 Run `npm run build` to build the project to render the static vuepress site for a deployment.
+
+## Force Node `12.16.1` on `package.json`
+Due to later versions deprecating SHA-256, you may need to force your node to run `12.16.1`.
+```
+  },
+  "dependencies": {
+    "node": "^12.16.1"
+  }
+```
 
 
 ## Rebuild all Puml -> svg

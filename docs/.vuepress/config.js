@@ -58,6 +58,10 @@ module.exports = {
         link: '/technical/'
       },
       {
+        text: 'Chart of Accounts',
+        link: '/coa/'
+      },
+      {
         text: 'Training Program',
         link: 'https://mojaloop.io/mojaloop-training-program/'
       }
@@ -911,7 +915,14 @@ module.exports = {
             }
           ]
         }
-      ]
+      ],
+      '/coa/': [
+        {
+          title: 'Chart of Accounts',
+          collapsable: false,
+          children: ['']
+        },
+      ],
     }
   },
 
