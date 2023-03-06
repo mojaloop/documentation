@@ -8,10 +8,6 @@ The roadmap is built around the concept of three pillars, which are:
 
 These three pillars are underpinned by a fourth workstream, that of continuous development of a quality
 product.
-* Make Adoption Easier
-* Achieve Scale
-* Connect to Other Systems
-* Quality Product
 
 ## Make Adoption Easier
 (Promote a better understanding of Mojaloop)
