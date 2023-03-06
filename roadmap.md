@@ -1,31 +1,75 @@
-# PI-15 and Beyond Roadmap
+# Mojaloop Roadmap
 
-## Core Clearing System
-1.1 - Reference Architecture - Phase 1  - DOCUMENTATION ONLY, NO CODING CHANGES
+The roadmap is built around the concept of three pillars, which are:
 
-1.2 - Business Operations Framework - Phase 1 - ONLY CODING ON ORY/RBAC, DOCUMENTATION
+1. Make it easier to deploy Mojaloop
+2. Make sure deployments have every opportunity to make themselves profitable
+3. Connect to other payments services in the ecosystem
 
-1.3 - Best Practice National RTP ISO20022 Messaging - DOCUMENTATION ONLY, NO CODING?
+These three pillars are underpinned by a fourth workstream, that of continuous development of a quality
+product.
+* Make Adoption Easier
+* Achieve Scale
+* Connect to Other Systems
+* Quality Product
 
-## Core Clearing System Extensions
-2.1 - 3PPI Enablement - CONSOLIDATION TOWARDS “MVP-READY”
+## Make Adoption Easier
+(Promote a better understanding of Mojaloop)
+* Develop “Mojaloop Journey” – a manual to take adopters from concept to live service
+* Better portals for both Hub and Payment Manager
+    * Develop Configuration support
+    * Showcase extensions using Biz Ops Framework
+        * Bootcamp
+* Easier Deployment
+  * Make IaC more accessible
+    * Pre-configs for different deployment types
+  * On-Prem
+  * Azure
+* Better Showcase
+* Capitalise on MiniLoop
+  * Demos etc as part of deployment
+  * Testing support (Quality Product)
+* Fintech sandbox 
+* Integration with FRMS, demonstrate with a live deployment (PoC)
 
-2.2 - Merchant Scheme Extensions inc QR Support - DOCUMENTATION ONLY, NO CODING
+## Achieve Scale
+Drive scale through:
+* Merchant Payments
+  * QR-based Push
+  * Merchant acquiring
+    * Mobile wallets, MFIs
+* PISP
+  * MRTP
+  * Bill Payments
+    * Aggregators
+  * Salaries etc
+    * Support for bulk through PISP interface
+* Bulk
+  * Partially complete – needs completing for older CBS
 
-2.3 - Bulk Payments Enhancement - DOCUMENTATION ONLY, NO CODING
+## Connect to Other Systems
+* Cross-Border
+  * Next Generation Settlement (part of TigerBeetle, vNext, “Quality Product”)
+  * Integrated Forex services & API
+  * Payments addressing solutions for international transactions
+* Integrations into emerging DPG ecosystem
+  * Payments addressing using MOSIP national ID
+  * Integration with MOSIP, Mifos, OpenG2P
+    * Oracle/ALS development
+  * Opportunity for thought leadership on the integration of DPGs
+* Working within international ecosystems
+* Wholesale CBDC
+* Compatibility with Interledger developments
+* Development of an Interledger Cross Network Provider (CNP)
 
-2.4 - FX support - DOCUMENTATION ONLY, NO CODING
+## Maintain and Develop the Ecosystem
+Continuous:
+* Ongoing maintenance
+* Adopt MiniLoop for testing etc
 
-## Adjacent Marketplace Teams
-3.1 OSS FRMS Solution 
+In order to support the scale we want to achieve under Pillar 2:
+* Continue the development of vNext, work towards a migration
+* Adoption of TigerBeetle for vNext
 
-## SUPPORTING Workstreams
-* API “front of house” & Sandbox - this will become our re-use of Mojaloop Sandbox towards MAS re-use for next quarter, and launch of the 3PPI api into it.  The work is focused to that outcome.
-
-* “Core” - repos, bug fix, maintenance, ttk etc - can we rebrand this workstream as part of setting the mission up??? Core work is done above.
-
-* Code Quality and Security - the current team itself currently are doing work in above workstreams.  Can we ensure this mission is focused on reporting work not already covered by above teams objectives?
-
-* Community
-
-* Documentation
+In order to support the interconnections we want to achieve under Pillar 3:
+* Accelerate TigerBeetle, vNext for agile deployment of next gen settlement engine
