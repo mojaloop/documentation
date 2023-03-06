@@ -568,7 +568,7 @@ In the Mojaloop OSS Community, we are prefer the following tools and frameworks:
 
 - **Web Server:** [`HapiJS`](https://github.com/hapijs/hapi)
 - **Web UI Framework:** [`ReactJS`](https://reactjs.org/)
-- **Runtime Configuration:** [`convict`](https://www.npmjs.com/package/convict) (both from env variables and config files)
+- **Runtime Configuration:** [`convict`](https://www.npmjs.com/package/convict), with [`rc`](https://www.npmjs.com/package/rc) for legacy. (both for env variables and config files)
 - **Package Management:** `npm`
 - **Logging:** [`@mojaloop/central-services-logger`](https://github.com/mojaloop/central-services-logger#readme) library, built on top of Winston
 - **Containers and Orchestration:** [`docker`](https://www.docker.com/) and [`kubernetes`](https://kubernetes.io/)
