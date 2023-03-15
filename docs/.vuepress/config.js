@@ -346,6 +346,10 @@ module.exports = {
           "collapsable": true,
           "children": [
             {
+              "title": "Overview",
+              "path": "deployment-guide/"
+            },
+            {
               "title": "Releases",
               "path": "deployment-guide/releases"
             },

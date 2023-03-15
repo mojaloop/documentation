@@ -2,9 +2,8 @@
 
 Below you will find more information on the current and historical releases for Mojaloop.
 
-Refer to [Versioning Documentation](../contributors-guide/standards/versioning.md) for more information on the release strategy and standards.
-
 ## Current Releases
+
 * Helm: [![Git Releases](https://img.shields.io/github/release/mojaloop/helm.svg?style=flat)](https://github.com/mojaloop/helm/releases)
 * Central-Ledger: [![Git Releases](https://img.shields.io/github/release/mojaloop/central-ledger.svg?style=flat)](https://github.com/mojaloop/central-ledger/releases)
 * Ml-API-Adapter: [![Git Releases](https://img.shields.io/github/release/mojaloop/ml-api-adapter.svg?style=flat)](https://github.com/mojaloop/ml-api-adapter/releases)
@@ -14,13 +13,25 @@ Refer to [Versioning Documentation](../contributors-guide/standards/versioning.m
 * Account-Lookup-Service: [![Git Releases](https://img.shields.io/github/release/mojaloop/account-lookup-service.svg?style=flat)](https://github.com/mojaloop/account-lookup-service/releases)
 * Quoting-Service: [![Git Releases](https://img.shields.io/github/release/mojaloop/quoting-service.svg?style=flat)](https://github.com/mojaloop/quoting-service/releases)
 
-
 ## Helm Charts Packaged Releases
 
-Refer to [Mojaloop Helm Repository](../repositories/helm.md) documentation to find out more information about Helm. Below are some of the Helm releases made and timelines. Please note that this is not an exhaustive list. For an exhaustive list, please visit the [Helm releases page](https://github.com/mojaloop/helm/releases).
+ Below are some of the Helm releases made and timelines. Please note that this is not an exhaustive list. For an exhaustive list, please visit the [Helm releases page](https://github.com/mojaloop/helm/releases).
 
 | Version | Release Date | Tested | Notes |
 | --- | :---: | :---: | --- |
+| [15.0.0](https://github.com/mojaloop/helm/releases/tag/v15.0.0) | 2023/03/XX | &check; | Sprint release |
+| [14.1.1](https://github.com/mojaloop/helm/releases/tag/v14.1.1) | 2023/02/20 | &check; | Sprint release |
+| [14.1.0](https://github.com/mojaloop/helm/releases/tag/v14.1.0) | 2022/11/23 | &check; | Sprint release |
+| [14.0.0](https://github.com/mojaloop/helm/releases/tag/v14.0.0) | 2022/09/12 | &check; | Sprint release |
+| [13.1.1](https://github.com/mojaloop/helm/releases/tag/v13.1.1) | 2022/03/30 | &check; | Sprint release |
+| [13.1.0](https://github.com/mojaloop/helm/releases/tag/v13.1.0) | 2022/03/14 | &check; | Sprint release |
+| [13.0.2](https://github.com/mojaloop/helm/releases/tag/v13.0.2) | 2021/09/17 | &check; | Sprint release |
+| [13.0.1](https://github.com/mojaloop/helm/releases/tag/v13.0.1) | 2021/08/05 | &check; | Sprint release |
+| [13.0.0](https://github.com/mojaloop/helm/releases/tag/v13.0.0) | 2021/07/02 | &check; | Sprint release |
+| [12.0.0](https://github.com/mojaloop/helm/releases/tag/v12.0.0) | 2021/02/26 | &check; | Sprint release |
+| [11.0.0](https://github.com/mojaloop/helm/releases/tag/v11.0.0) | 2021/01/07 | &check; | Sprint release |
+| [10.4.0](https://github.com/mojaloop/helm/releases/tag/v10.4.0) | 2020/07/03 | &check; | Sprint release |
+| [10.1.0](https://github.com/mojaloop/helm/releases/tag/v10.1.0) | 2020/05/15 | &check; | Sprint release |
 | [9.2.0](https://github.com/mojaloop/helm/releases/tag/v9.2.0) | 2019/03/04 | &check; | Sprint release |
 | [8.8.0](https://github.com/mojaloop/helm/releases/tag/v8.8.0) | 2020/02/12 | &check; | Sprint release |
 | [8.7.0](https://github.com/mojaloop/helm/releases/tag/v8.7.0) | 2019/12/12 | &check; | Sprint release |

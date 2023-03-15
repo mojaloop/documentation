@@ -24,6 +24,7 @@ The document is intended for an audience with a stable technical knowledge that 
         - [6.2.1 Deploying the Simulators](#621-deploying-the-simulators)
         - [6.2.2 Provisioning the Environment](#622-provisioning-the-environment)
         - [6.2.3 Run the Third Party API Test Collection](#623-run-the-third-party-api-test-collection)
+
 ### 1. Pre-requisites
 
 Versions numbers below are hard requirements, not just recommendations (more recent versions are known not to work).
@@ -32,6 +33,8 @@ A list of the pre-requisite tool set required for the deployment of Mojaloop:
 
 - **Kubernetes** An open-source system for automating deployment, scaling, and management of containerized applications. Find out more about [Kubernetes](https://kubernetes.io).
   - Recommended Versions:
+    >
+    > **Mojaloop Helm Chart release v15.0.x** supports **Kubernetes v1.20 - v1.2  4**.
     >
     > **Mojaloop Helm Chart release v14.1.x** supports **Kubernetes v1.20 - v1.24**.
     >
@@ -57,6 +60,7 @@ A list of the pre-requisite tool set required for the deployment of Mojaloop:
    <br>_Recommended Versions:_
    <br>&nbsp;&nbsp;&nbsp;&nbsp;_**Helm v3.x** ([ref: Design Auth Issue #52](https://github.com/mojaloop/design-authority/issues/52))._
 - **Postman** Postman is a Google Chrome application for the interacting with HTTP API's. It presents you with a friendly GUI for the construction requests and reading responces. <https://www.getpostman.com/apps>. Find out more about [Postman](https://postman.com).
+- **Backend** Mojaloop Helm Charts maintains separation from from externalized backend dependencies like databases, kafka, etc. You will need to deploy external backend dependencies alongside Mojaloop. Example backend charts are provided in the Mojaloop Helm repository. Instructions found [here](https://github.com/mojaloop/helm#deploying-backends-best-practice).
 
 For **local guides** on how to setup the pre-requisites on your laptop or desktop, refer to the appropriate link document below;
 
@@ -71,7 +75,7 @@ This provides environment resource recommendations with a view of the infrastruc
 **Resources Requirements:**
 
 - Control Plane (i.e. Master Node)
-  
+
   [https://kubernetes.io/docs/setup/cluster-large/#size-of-master-and-master-components](https://kubernetes.io/docs/setup/cluster-large/#size-of-master-and-master-components)
 
   - 3x Master Nodes for future node scaling and HA (High Availability)
@@ -208,7 +212,7 @@ Refer to the [Helm v2 to v3 Migration Guide](./helm-legacy-migration.md) if you 
    1.1. Installing latest version:
 
    ```bash
-   helm --namespace demo install moja mojaloop/mojaloop --create-namespace 
+   helm --namespace demo install moja mojaloop/mojaloop --create-namespace
    ```
 
    Or if you require a customized configuration:
@@ -237,7 +241,7 @@ Refer to the [Helm v2 to v3 Migration Guide](./helm-legacy-migration.md) if you 
 
    ```bash
     $ helm search repo mojaloop/mojaloop -l
-    NAME                            CHART VERSION   APP VERSION                 DESCRIPTION                                      
+    NAME                            CHART VERSION   APP VERSION                 DESCRIPTION
     mojaloop/mojaloop               {version}       {list of app-versions}      Mojaloop Helm chart for Kubernetes
     ...                             ...             ...                         ...
    ```
@@ -258,7 +262,7 @@ Refer to the [Helm v2 to v3 Migration Guide](./helm-legacy-migration.md) if you 
 
    The below required config is applicable to Helm release >= versions 6.2.2 for Mojaloop API Services;
 
-   ```
+   ```bash
     # Mojaloop Demo
     127.0.0.1   ml-api-adapter.local central-ledger.local account-lookup-service.local account-lookup-service-admin.local quoting-service.local central-settlement-service.local transaction-request-service.local central-settlement.local bulk-api-adapter.local moja-simulator.local sim-payerfsp.local sim-payeefsp.local sim-testfsp1.local sim-testfsp2.local sim-testfsp3.local sim-testfsp4.local mojaloop-simulators.local finance-portal.local operator-settlement.local settlement-management.local testing-toolkit.local testing-toolkit-specapi.local
    ```
@@ -307,7 +311,7 @@ The [Mojaloop Testing Toolkit](../../documentation/mojaloop-technical-overview/m
 
    Example of the finally summary being displayed from the Golden Path test collection log output:
 
-   ```
+   ```bash
     Test Suite:GP Tests
     Environment:Development
     ┌───────────────────────────────────────────────────┐
@@ -358,7 +362,6 @@ Pre-requisites:
 - The following postman environment file should be imported or customized as required when running the above listed Postman collections: [Mojaloop-Local-MojaSims.postman_environment.json](https://github.com/mojaloop/postman/blob/master/environments/Mojaloop-Local-MojaSims.postman_environment.json).
 - Ensure you download the **latest patch release version** from the [Mojaloop Postman Git Repository Releases](https://github.com/mojaloop/postman/releases). For example if you install Mojaloop v12.0.**X**, ensure that you have the latest Postman collection patch version v12.0.**Y**.
 
-
 ### <a id='overlay-services'></a>6. Overlay Services/3PPI
 
 As of [R.C. v13.1.0](https://github.com/mojaloop/helm/tree/release/v13.1.0) of Mojaloop, Third Party API is supported and will be published with the official release of Mojaloop v13.1.0.
@@ -367,7 +370,7 @@ payments on behalf of users.
 
 > Learn more about 3PPI:
 > - Mojaloop's [Third Party API](https://github.com/mojaloop/mojaloop-specification/tree/master/thirdparty-api)
-> - 3rd Party Use Cases: 
+> - 3rd Party Use Cases:
 >   - [3rd Party Account Linking](https://sandbox.mojaloop.io/usecases/3ppi-account-linking.html)
 >   - [3rd Party Initiated Payments](https://sandbox.mojaloop.io/usecases/3ppi-transfer.html)
 
@@ -399,9 +402,6 @@ In addition, the Third Party API has a number of dependencies that must be deplo
 to run. [mojaloop/helm/thirdparty](https://github.com/mojaloop/helm/tree/master/thirdparty) contains details of these
 dependencies, and also provides example k8s config files that install these dependencies for you.
 
-
-
-
 ```bash
 # install redis and mysql for the auth-service
 kubectl apply --namespace demo -f https://raw.githubusercontent.com/mojaloop/helm/master/thirdparty/chart-auth-svc/example_dependencies.yaml
@@ -414,9 +414,8 @@ helm upgrade --install --namespace demo moja mojaloop/mojaloop -f values.yaml
 
 Once the helm upgrade has completed, you can verify that the third party services are up and running:
 
-
 ```bash
-kubectl get po | grep tp-api 
+kubectl get po | grep tp-api
 # tp-api-svc-b9bf78564-4g59d                                        1/1     Running   0          7m17s
 
 kubectl get po | grep auth-svc
@@ -439,7 +438,8 @@ curl -H "Host: consent-oracle.local" <ingress ip address>/health
 ```
 
 > You can also add the following entries to your `/etc/hosts` file to make it easy to talk to the thirdparty services
-> ```
+>
+> ```bash
 > <ingress ip address> tp-api-svc.local auth-service.local consent-oracle.local
 > ```
 
@@ -447,7 +447,6 @@ curl -H "Host: consent-oracle.local" <ingress ip address>/health
 
 Once you have deployed the Third Party services, you need to deploy some simulators that are capable of simulating
 the Third Party scenarios.
-
 
 ##### 6.2.1 Deploying the Simulators
 
@@ -476,7 +475,6 @@ The above entry will create 3 new sets of mojaloop simulators:
 1. `pisp` - a PISP
 2. `dfspa` - a DFSP that supports the Third Party API
 3. `dfspb` - a normal DFSP simulator that doesn't support the Third Party API, but can receive payments
-
 
 ##### 6.2.2 Provisioning the Environment
 
