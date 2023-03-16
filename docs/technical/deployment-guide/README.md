@@ -6,24 +6,25 @@ The document is intended for an audience with a stable technical knowledge that 
 
 - [Mojaloop Deployment](#mojaloop-deployment)
   - [Deployment and Setup](#deployment-and-setup)
-    - [1. Pre-requisites](#1-pre-requisites)
-    - [2. Deployment Recommendations](#2-deployment-recommendations)
-    - [3. Kubernetes](#3-kubernetes)
-      - [3.1. Kubernetes Ingress Controller](#31-kubernetes-ingress-controller)
-      - [3.2. Kubernetes Admin Interfaces](#32-kubernetes-admin-interfaces)
-    - [4. Helm](#4-helm)
-      - [4.1. Helm configuration](#41-helm-configuration)
-    - [5. Mojaloop](#5-mojaloop)
-      - [5.1. Mojaloop Helm Deployment](#51-mojaloop-helm-deployment)
-      - [5.2. Verifying Ingress Rules](#52-verifying-ingress-rules)
-      - [5.3. Testing Mojaloop](#53-testing-mojaloop)
-      - [5.4. Testing Mojaloop with Postman](#54-testing-mojaloop-with-postman)
-    - [<a id='overlay-services'></a>6. Overlay Services/3PPI](#6-overlay-services3ppi)
-      - [<a id='configuring-a-deployment'></a>6.1 Configuring a deployment for Third Party API support](#61-configuring-a-deployment-for-third-party-api-support)
-      - [<a id='validating-and-testing'></a>6.2 Validating and Testing the Third Party API](#62-validating-and-testing-the-third-party-api)
-        - [6.2.1 Deploying the Simulators](#621-deploying-the-simulators)
-        - [6.2.2 Provisioning the Environment](#622-provisioning-the-environment)
-        - [6.2.3 Run the Third Party API Test Collection](#623-run-the-third-party-api-test-collection)
+    - [1. Pre-requisites](#_1-pre-requisites)
+    - [2. Deployment Recommendations](#_2-deployment-recommendations)
+    - [3. Kubernetes](#_3-kubernetes)
+      - [3.1. Kubernetes Ingress Controller](#_3-1-kubernetes-ingress-controller)
+      - [3.2. Kubernetes Admin Interfaces](#_3-2-kubernetes-admin-interfaces)
+    - [4. Helm](#_4-helm)
+      - [4.1. Helm configuration](#_4-1-helm-configuration)
+    - [5. Mojaloop](#_5-mojaloop)
+      - [5.1. Backend Helm Deployment](#_5-1-prerequisite-backend-helm-deployment)
+      - [5.2. Mojaloop Helm Deployment](#_5-2-mojaloop-helm-deployment)
+      - [5.3. Verifying Ingress Rules](#_5-3-verifying-ingress-rules)
+      - [5.4. Testing Mojaloop](#_5-4-testing-mojaloop)
+      - [5.5. Testing Mojaloop with Postman](#_5-5-testing-mojaloop-with-postman)
+    - [<a id='overlay-services'></a>6. Overlay Services/3PPI](#_6-overlay-services3ppi)
+      - [<a id='configuring-a-deployment'></a>6.1 Configuring a deployment for Third Party API support](#_6-1-configuring-a-deployment-for-third-party-api-support)
+      - [<a id='validating-and-testing'></a>6.2 Validating and Testing the Third Party API](#_6-2-validating-and-testing-the-third-party-api)
+        - [6.2.1 Deploying the Simulators](#_6-2-1-deploying-the-simulators)
+        - [6.2.2 Provisioning the Environment](#_6-2-2-provisioning-the-environment)
+        - [6.2.3 Run the Third Party API Test Collection](#_6-2-3-run-the-third-party-api-test-collection)
 
 ### 1. Pre-requisites
 
@@ -34,7 +35,7 @@ A list of the pre-requisite tool set required for the deployment of Mojaloop:
 - **Kubernetes** An open-source system for automating deployment, scaling, and management of containerized applications. Find out more about [Kubernetes](https://kubernetes.io).
   - Recommended Versions:
     >
-    > **Mojaloop Helm Chart release v15.0.x** supports **Kubernetes v1.20 - v1.2  4**.
+    > **Mojaloop Helm Chart release v15.0.x** supports **Kubernetes v1.20 - v1.24**.
     >
     > **Mojaloop Helm Chart release v14.1.x** supports **Kubernetes v1.20 - v1.24**.
     >
@@ -60,7 +61,6 @@ A list of the pre-requisite tool set required for the deployment of Mojaloop:
    <br>_Recommended Versions:_
    <br>&nbsp;&nbsp;&nbsp;&nbsp;_**Helm v3.x** ([ref: Design Auth Issue #52](https://github.com/mojaloop/design-authority/issues/52))._
 - **Postman** Postman is a Google Chrome application for the interacting with HTTP API's. It presents you with a friendly GUI for the construction requests and reading responces. <https://www.getpostman.com/apps>. Find out more about [Postman](https://postman.com).
-- **Backend** Mojaloop Helm Charts maintains separation from from externalized backend dependencies like databases, kafka, etc. You will need to deploy external backend dependencies alongside Mojaloop. Example backend charts are provided in the Mojaloop Helm repository. Instructions found [here](https://github.com/mojaloop/helm#deploying-backends-best-practice).
 
 For **local guides** on how to setup the pre-requisites on your laptop or desktop, refer to the appropriate link document below;
 
@@ -205,7 +205,23 @@ Refer to the [Helm v2 to v3 Migration Guide](./helm-legacy-migration.md) if you 
 
 ### 5. Mojaloop
 
-#### 5.1. Mojaloop Helm Deployment
+#### 5.1. (Prerequisite) Backend Helm Deployment
+
+Mojaloop has several external backend dependencies.
+
+We recommend deploying these dependencies in a separate named deployment.
+
+This example backend chart is provided purely as an example and should only be used for PoC environments and testing purposes.
+
+Further reading can be foundd [here](https://github.com/mojaloop/helm#deploying-backends-best-practice)
+
+1. Deploy backend
+
+   ```bash
+   helm ---namespace demo install backend mojaloop/example-mojaloop-backend --create-namespace
+   ```
+
+#### 5.2. Mojaloop Helm Deployment
 
 1. Install Mojaloop:
 
@@ -246,7 +262,7 @@ Refer to the [Helm v2 to v3 Migration Guide](./helm-legacy-migration.md) if you 
     ...                             ...             ...                         ...
    ```
 
-#### 5.2. Verifying Ingress Rules
+#### 5.3. Verifying Ingress Rules
 
 1. Update your /etc/hosts for local deployment:
 
@@ -275,7 +291,7 @@ Refer to the [Helm v2 to v3 Migration Guide](./helm-legacy-migration.md) if you 
 
    **central-ledger** health test: <http://central-ledger.local/health>
 
-#### 5.3. Testing Mojaloop
+#### 5.4. Testing Mojaloop
 
 The [Mojaloop Testing Toolkit](../../documentation/mojaloop-technical-overview/ml-testing-toolkit/README.md) (**TTK**) is used for testing deployments, and has been integrated into Helm utilizing its CLI to easily test any Mojaloop deployment.
 
@@ -346,7 +362,7 @@ The [Mojaloop Testing Toolkit](../../documentation/mojaloop-technical-overview/m
 
    Refer to the [Mojaloop Testing Toolkit Documentation](../../documentation/mojaloop-technical-overview/ml-testing-toolkit/README.md) for more information and guides.
 
-#### 5.4. Testing Mojaloop with Postman
+#### 5.5. Testing Mojaloop with Postman
 
 [Postman](https://www.postman.com/downloads) can be used as an alternative to the [Mojaloop Testing Toolkit](../../documentation/mojaloop-technical-overview/ml-testing-toolkit/README.md). Refer to the [Automated Testing Guide](../contributors-guide/tools-and-technologies/automated-testing.md) for more information.
 
