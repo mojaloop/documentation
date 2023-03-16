@@ -35,7 +35,7 @@ A list of the pre-requisite tool set required for the deployment of Mojaloop:
 - **Kubernetes** An open-source system for automating deployment, scaling, and management of containerized applications. Find out more about [Kubernetes](https://kubernetes.io).
   - Recommended Versions:
     >
-    > **Mojaloop Helm Chart release v15.0.x** supports **Kubernetes v1.20 - v1.24**.
+    > **Mojaloop Helm Chart release v15.0.x** supports **Kubernetes v1.24**.
     >
     > **Mojaloop Helm Chart release v14.1.x** supports **Kubernetes v1.20 - v1.24**.
     >
@@ -192,7 +192,7 @@ Refer to the [Helm v2 to v3 Migration Guide](./helm-legacy-migration.md) if you 
 1. Add mojaloop repo to your Helm config:
 
    ```bash
-   helm repo add mojaloop   https://mojaloop.io/helm/repo/
+   helm repo add mojaloop https://mojaloop.io/helm/repo/
    ```
 
    If the repo already exists, substitute 'add' with 'apply' in the above command.
@@ -213,7 +213,7 @@ We recommend deploying these dependencies in a separate named deployment.
 
 This example backend chart is provided purely as an example and should only be used for PoC environments and testing purposes.
 
-Further reading can be foundd [here](https://github.com/mojaloop/helm#deploying-backends-best-practice)
+Further reading can be found [here](https://github.com/mojaloop/helm#deploying-backends-best-practice).
 
 1. Deploy backend
 
