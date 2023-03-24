@@ -4,6 +4,8 @@ Below you will find more information on the current and historical releases for 
 
 ## Current Releases
 
+> *Note: The versions below are the latest published version for each distinct release artifact. Consult the release notes for the respective Helm release to see which versions are included in the [Helm Charts Packaged Release](#helm-charts-packaged-releases) version.*
+
 * Helm: [![Git Releases](https://img.shields.io/github/release/mojaloop/helm.svg?style=flat)](https://github.com/mojaloop/helm/releases)
 * Central-Ledger: [![Git Releases](https://img.shields.io/github/release/mojaloop/central-ledger.svg?style=flat)](https://github.com/mojaloop/central-ledger/releases)
 * Ml-API-Adapter: [![Git Releases](https://img.shields.io/github/release/mojaloop/ml-api-adapter.svg?style=flat)](https://github.com/mojaloop/ml-api-adapter/releases)
@@ -19,6 +21,7 @@ Below you will find more information on the current and historical releases for 
 * Thirdparty-Api-Svc: [![Git Releases](https://img.shields.io/github/release/mojaloop/thirdparty-api-svc.svg?style=flat)](https://github.com/mojaloop/thirdparty-api-svc/releases)
 * Auth-Svc: [![Git Releases](https://img.shields.io/github/release/mojaloop/auth-service.svg?style=flat)](https://github.com/mojaloop/auth-service/releases)
 * ML-Testing-Toolkit: [![Git Releases](https://img.shields.io/github/release/mojaloop/ml-testing-toolkit.svg?style=flat)](https://github.com/mojaloop/ml-testing-toolkit/releases)
+* ML-Testing-Toolkit-Ui: [![Git Releases](https://img.shields.io/github/release/mojaloop/ml-testing-toolkit-ui.svg?style=flat)](https://github.com/mojaloop/ml-testing-toolkit-ui/releases)
 
 
 ## Helm Charts Packaged Releases
