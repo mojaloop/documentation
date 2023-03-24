@@ -26,7 +26,7 @@ Below you will find more information on the current and historical releases for 
 
 ## Helm Charts Packaged Releases
 
- Below are some of the Helm releases made and timelines. Please note that this is not an exhaustive list. For an exhaustive list, please visit the [Helm releases page](https://github.com/mojaloop/helm/releases).
+ Below are some of the Helm releases made and timelines. Please note that this is not an exhaustive list. For an exhaustive list, please visit the [Helm release page](https://github.com/mojaloop/helm/releases).
 
 | Version | Release Date | Tested | Notes |
 | --- | :---: | :---: | --- |
