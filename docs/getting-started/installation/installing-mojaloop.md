@@ -5,7 +5,9 @@ Even if you are new to Mojaloop and unfamiliar with [Helm](https://helm.sh) / [K
 
 1. **Manual Deployment** - The Mojaloop [Deployment Guide](../../technical/deployment-guide/) is intended for those familiar with [Kubernetes](https://kubernetes.io) and [Helm](https://helm.sh). This is a great place to start if you are thinking of deploying Mojaloop on an existing Kubernetes environment, or if you are interested in setting one up yourself.
 
-2. **IaC (Infrastructure as Code)** - A comprehensive Mojaloop deployment aimed at giving users a starting point for production. IaC is highly automated ([Terraform](https://www.terraform.io), [Ansible](https://www.ansible.com)) and is extensible. To learn more about an the IaC review the [IaC Deployment blog](https://infitx.com/deploying-mojaloop-using-iac). IaC currently supports the following modular configurations:
+2. **IaC (Infrastructure as Code)** - A comprehensive Mojaloop deployment aimed at giving users a starting point for production. IaC is highly automated ([Terraform](https://www.terraform.io), [Ansible](https://www.ansible.com)) and is extensible. To learn more about an the IaC review the [IaC Deployment blog](https://infitx.com/deploying-mojaloop-using-iac).
+
+   IaC currently supports the following modular configurations:
    - [IaC AWS (Amazon Web Services) Platform](https://github.com/mojaloop/iac-aws-platform)
    - On-Prem (Coming Soon)
 
