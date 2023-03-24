@@ -5,7 +5,9 @@ Even if you are new to Mojaloop and unfamiliar with [Helm](https://helm.sh) / [K
 
 1. **Manual Deployment** - The Mojaloop [Deployment Guide](../../technical/deployment-guide/) is intended for those familiar with [Kubernetes](https://kubernetes.io) and [Helm](https://helm.sh).
 
-2. **IaC (Infrastructure as Code)** - A comprehensive Mojaloop deployment aimed at giving users a starting point for production. IaC is highly automated (terraform, ansible).  To learn more about an [IaC Deployment](https://infitx.com/deploying-mojaloop-using-iac/) review the blog.   IaC currently supports the following configurations: Amazon Web Services (AWS): [IaC AWS Github](https://github.com/mojaloop/iac-aws-platform), Azure and is working on On-Premise.
+2. **IaC (Infrastructure as Code)** - A comprehensive Mojaloop deployment aimed at giving users a starting point for production. IaC is highly automated (terraform, ansible) and modular.  To learn more about an [IaC Deployment](https://infitx.com/deploying-mojaloop-using-iac) review the blog. IaC currently supports the following configurations:
+   - [IaC AWS (Amazon Web Services) Platform](https://github.com/mojaloop/iac-aws-platform)
+   - On-Prem (Coming Soon)
 
 3. **Mini-Loop** - Install utilities for Mojaloop and offer an easy and efficient way to get started. The [mini-Loop](https://github.com/tdaly61/mini-loop) scripts enable you to deploy Mojaloop in the cloud or on your laptop / server with just a couple of commands. You can then easily run the [Mojaloop Testing Toolkit](https://github.com/mojaloop/ml-testing-toolkit#mojaloop-testing-toolkit) to interact and test your deployment.
 
