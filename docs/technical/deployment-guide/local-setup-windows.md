@@ -19,6 +19,8 @@ At this point the reader/implementer should be familiar with [Mojaloop's deploym
 
 This section will guide the reader through the deployment process to setup Kubernetes within Docker.
 
+<!-- TODO: Install the applicable version of minikube for the Mojaloop release (link to supported version) -->
+
 >
 > RECOMMENDATIONS - Aug 2022
 >
@@ -38,6 +40,8 @@ This section will guide the reader through the deployment process to setup Kuber
   - At least 4GB of RAM. (At least 16GB will be required to run the Mojaloop project).
 
 1. Installing Docker for Windows:
+
+<!-- TODO: Install the applicable version of Docker Desktop for the Mojaloop release (link to supported version) -->
 
    >
    > RECOMMENDATIONS - Aug 2022

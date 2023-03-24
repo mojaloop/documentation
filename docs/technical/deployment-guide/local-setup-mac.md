@@ -18,6 +18,8 @@ At this point the reader/implementer should be familiar with [Mojaloop's deploym
 
 This section will guide the reader through the deployment process to setup Kubernetes within Docker.
 
+<!-- TODO: Install the applicable version of minikube for the Mojaloop release (link to supported version) -->
+
 > RECOMMENDATIONS - Aug 2022
 >
 > We recommend installing Kubernetes using either [minikube](https://minikube.sigs.k8s.io/docs/start) or [microk8s](https://microk8s.io/docs/install-alternatives) instead, as this will allow you to easily specify your desired Kubernetes version (i.e. either v1.20 or v1.21).
@@ -42,6 +44,8 @@ This section will guide the reader through the deployment process to setup Kuber
     ```
 
 2. To install Kubernetes with Docker, follow the steps below;
+
+<!-- TODO: Install the applicable version of Docker Desktop for the Mojaloop release (link to supported version) -->
 
    > RECOMMENDATIONS - Aug 2022
    >

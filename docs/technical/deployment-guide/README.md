@@ -120,6 +120,8 @@ Insure **kubectl** is installed. A complete set of installation instruction are 
 
 #### 3.1. Kubernetes Ingress Controller
 
+<!-- TODO: Update this to be more generic!!! -->
+
 Install your preferred Ingress Controller for load-balancing and external access.
 
 Refer to the following documentation to install the Nginx-Ingress Controller used for this guide: <https://kubernetes.github.io/ingress-nginx/deploy/#using-helm>. It is recommended that you install **v0.47.0** of the Nginx-Ingress Controller due to recent changes being made to support Kubernetes v1.22.
@@ -213,7 +215,7 @@ We recommend deploying these dependencies in a separate named deployment.
 
 This example backend chart is provided purely as an example and should only be used for PoC environments and testing purposes.
 
-Further reading can be found [here](https://github.com/mojaloop/helm#deploying-backend-dependencies).
+Further reading can be found [here](https://github.com/mojaloop/helm/blob/master/README.md#deploying-backend-dependencies).
 
 1. Deploy backend
 
