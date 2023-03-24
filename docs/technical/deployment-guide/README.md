@@ -6,25 +6,25 @@ The document is intended for an audience with a stable technical knowledge that 
 
 - [Mojaloop Deployment](#mojaloop-deployment)
   - [Deployment and Setup](#deployment-and-setup)
-    - [1. Pre-requisites](#_1-pre-requisites)
-    - [2. Deployment Recommendations](#_2-deployment-recommendations)
-    - [3. Kubernetes](#_3-kubernetes)
-      - [3.1. Kubernetes Ingress Controller](#_3-1-kubernetes-ingress-controller)
-      - [3.2. Kubernetes Admin Interfaces](#_3-2-kubernetes-admin-interfaces)
-    - [4. Helm](#_4-helm)
-      - [4.1. Helm configuration](#_4-1-helm-configuration)
-    - [5. Mojaloop](#_5-mojaloop)
-      - [5.1. Backend Helm Deployment](#_5-1-prerequisite-backend-helm-deployment)
-      - [5.2. Mojaloop Helm Deployment](#_5-2-mojaloop-helm-deployment)
-      - [5.3. Verifying Ingress Rules](#_5-3-verifying-ingress-rules)
-      - [5.4. Testing Mojaloop](#_5-4-testing-mojaloop)
-      - [5.5. Testing Mojaloop with Postman](#_5-5-testing-mojaloop-with-postman)
-    - [<a id='overlay-services'></a>6. Overlay Services/3PPI](#_6-overlay-services3ppi)
-      - [<a id='configuring-a-deployment'></a>6.1 Configuring a deployment for Third Party API support](#_6-1-configuring-a-deployment-for-third-party-api-support)
-      - [<a id='validating-and-testing'></a>6.2 Validating and Testing the Third Party API](#_6-2-validating-and-testing-the-third-party-api)
-        - [6.2.1 Deploying the Simulators](#_6-2-1-deploying-the-simulators)
-        - [6.2.2 Provisioning the Environment](#_6-2-2-provisioning-the-environment)
-        - [6.2.3 Run the Third Party API Test Collection](#_6-2-3-run-the-third-party-api-test-collection)
+    - [1. Pre-requisites](#1-pre-requisites)
+    - [2. Deployment Recommendations](#2-deployment-recommendations)
+    - [3. Kubernetes](#3-kubernetes)
+      - [3.1. Kubernetes Ingress Controller](#31-kubernetes-ingress-controller)
+      - [3.2. Kubernetes Admin Interfaces](#32-kubernetes-admin-interfaces)
+    - [4. Helm](#4-helm)
+      - [4.1. Helm configuration](#41-helm-configuration)
+    - [5. Mojaloop](#5-mojaloop)
+      - [5.1. (Prerequisite) Backend Helm Deployment](#51-prerequisite-backend-helm-deployment)
+      - [5.2. Mojaloop Helm Deployment](#52-mojaloop-helm-deployment)
+      - [5.3. Verifying Ingress Rules](#53-verifying-ingress-rules)
+      - [5.4. Testing Mojaloop](#54-testing-mojaloop)
+      - [5.5. Testing Mojaloop with Postman](#55-testing-mojaloop-with-postman)
+    - [6. Overlay Services/3PPI](#6-overlay-services3ppi)
+      - [6.1 Configuring a deployment for Third Party API support](#61-configuring-a-deployment-for-third-party-api-support)
+      - [6.2 Validating and Testing the Third Party API](#62-validating-and-testing-the-third-party-api)
+        - [6.2.1 Deploying the Simulators](#621-deploying-the-simulators)
+        - [6.2.2 Provisioning the Environment](#622-provisioning-the-environment)
+        - [6.2.3 Run the Third Party API Test Collection](#623-run-the-third-party-api-test-collection)
 
 ### 1. Pre-requisites
 
@@ -213,7 +213,7 @@ We recommend deploying these dependencies in a separate named deployment.
 
 This example backend chart is provided purely as an example and should only be used for PoC environments and testing purposes.
 
-Further reading can be found [here](https://github.com/mojaloop/helm#deploying-backends-best-practice).
+Further reading can be found [here](https://github.com/mojaloop/helm#deploying-backend-dependencies).
 
 1. Deploy backend
 
