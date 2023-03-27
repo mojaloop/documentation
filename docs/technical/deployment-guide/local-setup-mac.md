@@ -18,13 +18,13 @@ At this point the reader/implementer should be familiar with [Mojaloop's deploym
 
 This section will guide the reader through the deployment process to setup Kubernetes within Docker.
 
-<!-- TODO: Install the applicable version of minikube for the Mojaloop release (link to supported version) -->
-
-> RECOMMENDATIONS - Aug 2022
+> **RECOMMENDATIONS - March 2023**
 >
-> We recommend installing Kubernetes using either [minikube](https://minikube.sigs.k8s.io/docs/start) or [microk8s](https://microk8s.io/docs/install-alternatives) instead, as this will allow you to easily specify your desired Kubernetes version (i.e. either v1.20 or v1.21).
+> We recommend installing Kubernetes using either [Minikube](https://minikube.sigs.k8s.io/docs/start) or [Microk8s](https://microk8s.io/docs/install-alternatives) instead, as this will allow you to easily specify your desired Kubernetes version.
 >
-> Alternatively, a specific version of Docker-desktop that includes a supported target Kubernetes version as specified in the [Deployment Guide (1. Pre-requisites)](README.md#1-pre-requisites) can be installed. See [Installing Docker for Windows](#11-kubernetes-installation-with-docker) section for more information.
+> Refer to the desired matching version as specified in the [Deployment Guide (1. Pre-requisites)](README.md#1-pre-requisites).
+>
+> Alternatively, a specific version of [Docker-desktop](https://www.docker.com/products/docker-desktop/) that includes a supported target Kubernetes version as specified in the [Deployment Guide (1. Pre-requisites)](README.md#1-pre-requisites) can be installed. See [Installing Docker for Windows](#11-kubernetes-installation-with-docker) section for more information.
 >
 
 ### 1.1. Kubernetes Installation with Docker
@@ -41,31 +41,35 @@ This section will guide the reader through the deployment process to setup Kuber
 
   ```bash
   kubectl version
-    ```
+  ```
 
 2. To install Kubernetes with Docker, follow the steps below;
 
-<!-- TODO: Install the applicable version of Docker Desktop for the Mojaloop release (link to supported version) -->
+  > **RECOMMENDATIONS - March 2023**
+  >
+  > We recommend installing Kubernetes using either [Minikube](https://minikube.sigs.k8s.io/docs/start) or  [Microk8s](https://microk8s.io/docs/install-alternatives) instead, as this will allow you to easily specify  your desired Kubernetes version.
+  >
+  > Refer to the desired matching version as specified in the [Deployment Guide (1. Pre-requisites)](README. md#1-pre-requisites).
+  >
+  > Alternatively, a specific version of [Docker-desktop](https://www.docker.com/products/docker-desktop/)  that includes a supported target Kubernetes version as specified in the [Deployment Guide (1.  Pre-requisites)](README.md#1-pre-requisites) can be installed. See [Installing Docker for Windows] (#11-kubernetes-installation-with-docker) section for more information.
+  >
+  > For Windows/MacOS, version [Docker Desktop v4.2.0](https://docs.docker.com/desktop/release-notes/#docker-desktop-420) comes packaged with Kubernetes v1.21.5 which meets Mojaloop `v13.x` - `v14.0.x` version requirements.
+  >
 
-   > RECOMMENDATIONS - Aug 2022
-   >
-   > For Windows/MacOS, version [Docker Desktop v4.2.0](https://docs.docker.com/desktop/release-notes/#docker-desktop-420) comes packaged with Kubernetes v1.21.5 which meets the current requirements.
-   >
-
-  * Click on the Docker icon on the status barr
-    * Select **Preferences**
-    * Go to **Advanced**
-      * Increase the CPU allocation to at least 4
-      * Increase the Memory allocation to at least 8.0 GiB
+- Click on the Docker icon on the status bar
+  - Select **Preferences**
+  - Go to **Advanced**
+    - Increase the CPU allocation to at least 4
+    - Increase the Memory allocation to at least 8.0 GiB
 
   ![Kubernetes Install with Docker 1](./assets/diagrams/deployment/KubernetesInstallWithDocker-1.png)
 
-  * Go to **Kubernetes**
-    * Select **Enable Kubernetes** tick box
-    * Make sure **Kubernetes** is selected
-    * Click **Apply**
-    * Click **Install** on the confirmation tab.
-    * The option is available to wait for completion or run as a background task.
+- Go to **Kubernetes**
+  - Select **Enable Kubernetes** tick box
+  - Make sure **Kubernetes** is selected
+  - Click **Apply**
+  - Click **Install** on the confirmation tab.
+  - The option is available to wait for completion or run as a background task.
 
   ![Kubernetes Install with Docker 2](./assets/diagrams/deployment/KubernetesInstallWithDocker-2.png)
 
