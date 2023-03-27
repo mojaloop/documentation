@@ -120,38 +120,22 @@ Insure **kubectl** is installed. A complete set of installation instruction are 
 
 #### 3.1. Kubernetes Ingress Controller
 
-<!-- TODO: Update this to be more generic!!! -->
-
 Install your preferred Ingress Controller for load-balancing and external access.
 
-Refer to the following documentation to install the Nginx-Ingress Controller used for this guide: <https://kubernetes.github.io/ingress-nginx/deploy/#using-helm>. It is recommended that you install **v0.47.0** of the Nginx-Ingress Controller due to recent changes being made to support Kubernetes v1.22.
-
-If you are using helm, this can be done as follows:
-
-```bash
-helm install ingress-nginx ingress-nginx --version="3.33.0" --repo https://kubernetes.github.io/ingress-nginx
-```
-
-> **NOTE: If you are installing Mojaloop v12.x with an Nginx-Ingress controller version newer than v0.22.0, ensure you create a custom [Mojaloop values config](https://github.com/mojaloop/helm/blob/v12.0.0/mojaloop/values.yaml) with the following changes prior to install:**
->
-> ```YAML
-> ## **LOOK FOR THIS LINE IN mojaloop/values.yaml CONFIG FILE**
-> mojaloop-simulator:
->   ingress:
->    ## nginx ingress controller >= v0.22.0 <-- **COMMENT THE FOLLOWING THREE LINES BELOW:**
->    # annotations: <-- COMMENTED
->    #  nginx.ingress.kubernetes.io/rewrite-target: '/$2' <-- COMMENTED
->    # ingressPathRewriteRegex: (/|$)(.*) <-- COMMENTED
->
->    ## nginx ingress controller < v0.22.0 <-- **UNCOMMENT THE FOLLOWING THREE LINES BELOW:**
->    annotations:
->      nginx.ingress.kubernetes.io/rewrite-target: '/'
->    ingressPathRewriteRegex: "/"
-> ```
->
-> **This is NOT necessary if you are installing Mojaloop v13.x or newer.**
+Refer to the following documentation to install the Nginx-Ingress Controller used for this guide: <https://kubernetes.github.io/ingress-nginx/deploy/#using-helm>.
 
 List of alternative Ingress Controllers: <https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/>.
+
+Insure you install a supported `Ingress Controller` version that matches your target `Kubernetes` version.
+
+> **DEPLOYMENT TROUBLESHOOTING - Updated March 2023**
+>
+> - If you are using Mojaloop `v13.x` - `v14.0.x`, see [Deployment Troubleshooting - 1.1. Nginx-Ingress Controller support for Mojaloop Helm release v13.x - v14.0x.x support for Kubernetes v1.20 - v1.21](./depoyment/../deployment-troubleshooting.md#11-nginx-ingress-controller-support-for-mojaloop-helm-release-v13x---v140xx-support-for-kubernetes-v120---v121).
+>
+> - If you are using Mojaloop `v12.x`, see [Deployment Troubleshooting - 1.2. Nginx-Ingress Controller support for Mojaloop Helm release v12.x](./depoyment/../deployment-troubleshooting.md#12-nginx-ingress-controller-support-for-mojaloop-helm-release-v12x).
+>
+> - If you are using Mojaloop `v10.x`, see [Deployment Troubleshooting - 1.4.Mojaloop Helm release v10.x or less does not support Kubernetes v1.16 or greater](./depoyment/../deployment-troubleshooting.md#14-mojaloop-helm-release-v10x-or-less-does-not-support-kubernetes-v116-or-greater).
+>
 
 #### 3.2. Kubernetes Admin Interfaces
 

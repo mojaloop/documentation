@@ -18,13 +18,17 @@ At this point the reader/implementer should be familiar with [Mojaloop's deploym
 
 This section will guide the reader through the deployment process to setup Kubernetes within Docker.
 
-> **RECOMMENDATIONS - March 2023**
+> **RECOMMENDATIONS - Updated March 2023**
 >
 > We recommend installing Kubernetes using either [Minikube](https://minikube.sigs.k8s.io/docs/start) or [Microk8s](https://microk8s.io/docs/install-alternatives) instead, as this will allow you to easily specify your desired Kubernetes version.
 >
 > Refer to the desired matching version as specified in the [Deployment Guide (1. Pre-requisites)](README.md#1-pre-requisites).
 >
-> Alternatively, a specific version of [Docker-desktop](https://www.docker.com/products/docker-desktop/) that includes a supported target Kubernetes version as specified in the [Deployment Guide (1. Pre-requisites)](README.md#1-pre-requisites) can be installed. See [Installing Docker for Windows](#11-kubernetes-installation-with-docker) section for more information.
+> Otherwise determine the specific version of Docker Desktop with the desired target Kubernetes version by examining the [Docker Desktop release-notes](https://docs.docker.com/desktop/release-notes).
+>
+> **DEPLOYMENT TROUBLESHOOTING - Updated March 2023**
+>
+> If you plan to install Mojaloop `v13.x` - `v14.0.x` using Docker Desktop, then refer to the [Deployment Troubleshooting - Docker Desktop Kubernetes support for Mojaloop v13.x - v14.0.x](./deployment-troubleshooting.md#13-docker-desktop-kubernetes-support-for-mojaloop-v13x---v140x) known issue for guidance.
 >
 
 ### 1.1. Kubernetes Installation with Docker
@@ -44,17 +48,6 @@ This section will guide the reader through the deployment process to setup Kuber
   ```
 
 2. To install Kubernetes with Docker, follow the steps below;
-
-  > **RECOMMENDATIONS - March 2023**
-  >
-  > We recommend installing Kubernetes using either [Minikube](https://minikube.sigs.k8s.io/docs/start) or  [Microk8s](https://microk8s.io/docs/install-alternatives) instead, as this will allow you to easily specify  your desired Kubernetes version.
-  >
-  > Refer to the desired matching version as specified in the [Deployment Guide (1. Pre-requisites)](README. md#1-pre-requisites).
-  >
-  > Alternatively, a specific version of [Docker-desktop](https://www.docker.com/products/docker-desktop/)  that includes a supported target Kubernetes version as specified in the [Deployment Guide (1.  Pre-requisites)](README.md#1-pre-requisites) can be installed. See [Installing Docker for Windows] (#11-kubernetes-installation-with-docker) section for more information.
-  >
-  > For Windows/MacOS, version [Docker Desktop v4.2.0](https://docs.docker.com/desktop/release-notes/#docker-desktop-420) comes packaged with Kubernetes v1.21.5 which meets Mojaloop `v13.x` - `v14.0.x` version requirements.
-  >
 
 - Click on the Docker icon on the status bar
   - Select **Preferences**

@@ -25,6 +25,8 @@ This section will guide the reader through the deployment process to setup Kuber
 >
 > Refer to the desired matching version as specified in the [Deployment Guide (1. Pre-requisites)](README.md#1-pre-requisites).
 >
+> Otherwise determine the specific version of Docker Desktop with the desired target Kubernetes version by examining the [Docker Desktop release-notes](https://docs.docker.com/desktop/release-notes).
+> 
 > Alternatively, a specific version of [Docker-desktop](https://www.docker.com/products/docker-desktop/) that includes a supported target Kubernetes version as specified in the [Deployment Guide (1. Pre-requisites)](README.md#1-pre-requisites) can be installed. See [Installing Docker for Windows](#11-kubernetes-installation-with-docker) section for more information.
 >
 
@@ -36,20 +38,20 @@ This section will guide the reader through the deployment process to setup Kuber
   - Docker Desktop for Windows require Microsoft Hyper-V to run. Hyper-V will be enable as part of the installation process,
   - Windows 10 64bit: Pro, Enterprise, Education (1607 Anniversary Update, Build 14393 or later),
   - CPU SLAT-capable feature,
-  - At least 4GB of RAM. (At least 16GB will be required to run the Mojaloop project).
+  - At least 4GB of RAM. (At least 16GB will be required to run Mojaloop).
 
 1. Installing Docker for Windows:
 
-  > **RECOMMENDATIONS - March 2023**
-  >
-  > We recommend installing Kubernetes using either [Minikube](https://minikube.sigs.k8s.io/docs/start) or  [Microk8s](https://microk8s.io/docs/install-alternatives) instead, as this will allow you to easily specify  your desired Kubernetes version.
-  >
-  > Refer to the desired matching version as specified in the [Deployment Guide (1. Pre-requisites)](README. md#1-pre-requisites).
-  >
-  > Alternatively, a specific version of [Docker-desktop](https://www.docker.com/products/docker-desktop/)  that includes a supported target Kubernetes version as specified in the [Deployment Guide (1.  Pre-requisites)](README.md#1-pre-requisites) can be installed. See [Installing Docker for Windows] (#11-kubernetes-installation-with-docker) section for more information.
-  >
-  > For Windows/MacOS, version [Docker Desktop v4.2.0](https://docs.docker.com/desktop/release-notes/#docker-desktop-420) comes packaged with Kubernetes v1.21.5 which meets Mojaloop `v13.x` - `v14.0.x` version requirements.
-  >
+   > **RECOMMENDATIONS - Updated March 2023**
+   >
+   > We recommend installing Kubernetes using either [Minikube](https://minikube.sigs.k8s.io/docs/start) or [Microk8s](https://microk8s.io/docs/install-alternatives) instead, as this will allow you to easily specify your desired Kubernetes version.
+   >
+   > Refer to the desired matching version as specified in the [Deployment Guide (1. Pre-requisites)](README.md#1-pre-requisites).
+   >
+   > **DEPLOYMENT TROUBLESHOOTING - Updated March 2023**
+   >
+   > If you plan to install Mojaloop `v13.x` - `v14.0.x` using Docker Desktop, then refer to the [Deployment Troubleshooting - Docker Desktop Kubernetes support for Mojaloop v13.x - v14.0.x](./deployment-troubleshooting.md#13-docker-desktop-kubernetes-support-for-mojaloop-v13x---v140x) known issue for guidance.
+   >
 
    You will require Docker Desktop for Windows 18.02 Edge (win50) and higher, or 18.06 Stable (win 70) and higher. Kubernetes on Docker Desktop for Windows is available on these versions and higher. They are downloadable from:
 
