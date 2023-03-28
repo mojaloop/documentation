@@ -357,32 +357,12 @@ module.exports = {
               path: "deployment-guide/releases"
             },
             {
-              title: "Local Setup Linux",
-              path: "deployment-guide/local-setup-linux"
-            },
-            {
-              title: "Local Setup Mac",
-              path: "deployment-guide/local-setup-mac"
-            },
-            {
-              title: "Local Setup Windows",
-              path: "deployment-guide/local-setup-windows"
-            },
-            {
               title: "Troubleshooting",
               path: "deployment-guide/deployment-troubleshooting"
             },
             {
               title: "Upgrade Strategy Guide",
               path: "deployment-guide/upgrade-strategy-guide"
-            },
-            {
-              title: "Helm v2 to v3 Migration Guide",
-              path: "deployment-guide/helm-legacy-migration"
-            },
-            {
-              title: "Mojaloop Deployment with (Deprecated) Helm v2",
-              path: "deployment-guide/helm-legacy-deployment"
             }
           ]
         },

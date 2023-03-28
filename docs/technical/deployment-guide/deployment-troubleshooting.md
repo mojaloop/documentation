@@ -2,6 +2,8 @@
 
 ## 1. Known issues
 
+Refer to the **Mojaloop Helm Chart Release** notes for more information on known issues: [https://github.com/mojaloop/helm/releases](https://github.com/mojaloop/helm/releases).
+
 ### 1.1. Nginx-Ingress Controller support for Mojaloop Helm release v13.x - v14.0x.x support for Kubernetes v1.20 - v1.21
 
 If you are using Mojaloop `v13.x` - `v14.0.x`, and want to install the `Nginx-Ingress` controller, then it is recommended that you install `Nginx-Ingress Controller v0.47.0` along with `Kubernetes v1.20 - v1.21` due to breaking changes introduce in `Kubernetes v1.22`.
@@ -59,10 +61,6 @@ Refer to the following issue for more info: [mojaloop/helm#219](https://github.c
 #### 1.4.3 Fixes
   
 Ensure that you are deploying Mojaloop Helm charts v10.x or less on v1.15 of Kubernetes.
-
-#### 1.4.4 Additional details for `microk8s` fix
-
-Refer to the following section for more information on how to install the desired Kubernetes version: [Mojaloop Setup for Linux (Ubuntu) - 2.1. MicroK8S](./local-setup-linux.md#21-microk8s).
 
 ## 2. Deployment issues
 
