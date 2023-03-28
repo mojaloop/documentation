@@ -11,5 +11,4 @@ features:
   details: See inside the different components, and deploy Mojaloop for yourself!
 - title: API Specification
   details: Learn the different APIs that Mojaloop speaks so you can build your integration
-footer: Apache 2.0 Licensed | Copyright © 2021 Mojaloop Foundation
 ---

@@ -39,7 +39,7 @@ module.exports = {
     logo: '/mojaloop_logo_med.png',
     sidebarDepth: 2,
     lastUpdated: true,
-    footerCopyright: 'Apache 2.0 Licensed | Copyright © 2022 Mojaloop Foundation',
+    footerCopyright: 'Apache 2.0 Licensed | Copyright © 2021 Mojaloop Foundation',
     nav: [
       {
         text: 'Getting Started',
