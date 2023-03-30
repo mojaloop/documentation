@@ -82,7 +82,7 @@ The following error is displayed when attempting to access an end-point (e.g. ce
 
 2. Ensure that all the Mojaloop Pods/Containers have started up correctly and are available through the Kubernetes dashboard.
 
-3. Note that the Mojaloop deployment via Helm can take a few minutes to initially startup depending on the system's available resources and specification. It is recommended that you wait at least 10m for all Pods/Containers to self heal before troubleshooting.
+3. Note that the Mojaloop deployment via Helm can take a few minutes to initially startup depending on the system's available resources and specification. Expect this to take anything between 2-10 minutes.
   
 ### 2.3. MicroK8s - Connectivity Issues
 
