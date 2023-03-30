@@ -4,7 +4,6 @@
 
 __Published at: [docs.mojaloop.io](https://docs.mojaloop.io)__
 
-
 ## Building and testing locally
 
 ```bash
@@ -17,8 +16,8 @@ npm run dev
 ```
 
 ## Building the project
-Run `npm run build` to build the project to render the static vuepress site for a deployment.
 
+Run `npm run build` to build the project to render the static vuepress site for a deployment.
 
 ## Rebuild all Puml -> svg
 
@@ -41,6 +40,7 @@ This script also runs as a git commit hook, so any changes added to puml sources
 rendered to svg without you having to do anything!
 
 If you want to skip the commit hook, you can always run `git commit -n`
+
 ## Versioning
 
 We use `vuepress-plugin-versioning` to help us keep older versions of our docs for posterity. By default, when you browse
@@ -62,13 +62,15 @@ We are working to automate this process, but for now, you can make a new version
 ### Deploying Manually
 
 You can also deploy them manually, by running:
+
 ```bash
 ./scripts/_deploy_preview_s3.sh
-``` 
+```
 
 Note that you need to have the `aws` cli, AWS access, and `aws-mfa` set up on your machine for this to work.
 
 ## Contributing to the project
+
 Please refer to the [Contributing Guide](./contributing-guide.md) for details on how to contribute to Mojaloop Docs 2.0.
 
 ## License
