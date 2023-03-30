@@ -1,6 +1,6 @@
 # Upgrade Strategy Guide
 
-This document provides instructions on how to upgrade existing Mojaloop installations. It assumes that Mojaloop is currently installed using Helm, but these strategies can be applied in general.
+This document provides instructions on how to upgrade existing Mojaloop installations. It assumes that Mojaloop is already installed using Helm, but these strategies can be applied in general.
 
 ## Table of Contents
 
