@@ -26,7 +26,7 @@ Recommendations:
 
 1. All upgrades should be tested and verified in a pre-production (Test or QA) environment
 2. Always consult the release notes as there may be some known issues, or useful notes that are applicable when upgrading
-3. the [migrate:list command](https://knexjs.org/#Migrations) can be used to list pending datastore changes in the following repositories:
+3. The [migrate:list command](https://knexjs.org/#Migrations) can be used to list pending datastore changes in the following repositories:
     - <https://github.com/mojaloop/central-ledger>
     - <https://github.com/mojaloop/account-lookup-service>
 
