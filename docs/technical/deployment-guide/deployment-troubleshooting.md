@@ -72,7 +72,7 @@ The following error is displayed when attempting to access an end-point (e.g. ce
 
 #### 2.1.2 Fixes
 
-1. Verify that that Mojaloop was deployed by checking that the helm chart(s) was installed by executing:
+1. Verify that Mojaloop was deployed correctly (by checking that the helm chart(s) was installed) by executing:
 
    ```bash
    helm list
