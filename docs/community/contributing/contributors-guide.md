@@ -20,7 +20,7 @@ Based on the current phase of the Mojaloop project, we are looking for one of th
 
 ## How do I contribute?
 
-* Review the [Mojaloop Deployment](https://docs.mojaloop.io/documentation/deployment-guide/) Guide and the [Onboarding Guide](https://github.com/mojaloop/mojaloop/blob/master/onboarding.md).
+* Review the [Mojaloop Deployment](../../technical/deployment-guide/README.md) Guide and the [Onboarding Guide](https://github.com/mojaloop/mojaloop/blob/master/onboarding.md).
 * Browse through the [Repository Overview](https://docs.mojaloop.io/documentation/repositories/) to understand how the Mojaloop code is managed across multiple Github Repositories.
 * Get familiar with our [Standards](../standards/guide.md) for contributing to this project.
 * Go through the [New Contributor Checklist](./new-contributor-checklist.md), and browse through the project board and work on your [good first issue](https://github.com/mojaloop/project/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22)
