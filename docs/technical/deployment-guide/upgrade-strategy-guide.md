@@ -58,6 +58,9 @@ There are several strategies that can be employed when upgrading between breakin
 
 2. Mojaloop installed with backend dependencies, with backend dependencies tightly coupled to the Helm installation
 
+    > *NOTE: This process will be deprecated from Mojaloop v15.0.0 onwards (including v15) though example backend deployment support is provided for testing, QA. Refer to section [5. BREAKING CHANGES](https://github.com/mojaloop/helm/blob/master/.changelog/release-v15.0.0.md#5-breaking-changes) section in the [v15.0.0 Release Notes](https://github.com/mojaloop/helm/blob/master/.changelog/release-v15.0.0.md).*
+
+
 #### Mojaloop installed without backend dependencies
 
 This is the preferred deployment topology as it will provide the most flexibility when upgrading. By separating out the backend dependencies, it will enable one to deploy the target version of Mojaloop as a new deployment.
