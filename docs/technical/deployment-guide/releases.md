@@ -30,7 +30,7 @@ Below you will find more information on the current and historical releases for 
 
 | Version | Release Date | Tested | Notes |
 | --- | :---: | :---: | --- |
-| [15.0.0](https://github.com/mojaloop/helm/releases/tag/v15.0.0) | 2023/03/23 | &check; | Sprint release |
+| [15.0.0](https://github.com/mojaloop/helm/releases/tag/v15.0.0) | 2023/03/23 | &check; | PI release |
 | [14.1.1](https://github.com/mojaloop/helm/releases/tag/v14.1.1) | 2023/02/20 | &check; | Sprint release |
 | [14.1.0](https://github.com/mojaloop/helm/releases/tag/v14.1.0) | 2022/11/23 | &check; | Sprint release |
 | [14.0.0](https://github.com/mojaloop/helm/releases/tag/v14.0.0) | 2022/09/12 | &check; | Sprint release |
