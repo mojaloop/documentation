@@ -7,7 +7,7 @@ This guide summarizes the steps needed to get up and running as a contributor to
 
 - Make sure you have a GitHub account already, or sign up for an account [here](https://github.com/join)
 
-- Join the slack community at the [self-invite link](https://mojaloop-slack.herokuapp.com/), and join the following channels:
+- Join the slack community at the [self-invite link](https://join.slack.com/t/mojaloop/shared_invite/zt-1qy6f3fs0-xYfqfIHJ6zFfNXb0XRpiHw), and join the following channels:
   - `#announcements` - Announcements for new Releases and QA Status
   - `#design-authority` - Questions + Discussion around Mojaloop Design
   - `#general` - General discussion about Mojaloop
