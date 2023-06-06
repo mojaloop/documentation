@@ -1,0 +1,192 @@
+@startuml
+
+actor "Payer" as Payer
+box Payer DFSP
+participant "Core Banking System" as PayerDFSP
+participant "SDK" as PayerSDK
+end box
+participant "Mojaloop" as Mojaloop  #d4f2f9
+
+box Payee DFSP
+participant "SDK" as PayeeSDK
+participant "Core Banking System" as PayeeDFSP
+end box
+actor "Payee" as Payee
+autonumber 1 "<b>[0]"
+
+alt if (OTP)
+Payer->PayerDFSP: Generate an OTP for me
+PayerDFSP->PayerDFSP:Generate
+PayerDFSP-->Payer: Here is your OTP
+end
+=== Payee initiated request to pay (R2P) ==
+Payee->PayeeDFSP: I would like \nto receive 1000 TZS\n from +1234567890
+PayeeDFSP->PayeeDFSP: Payer not within Payee System
+
+PayeeDFSP->PayeeSDK: **POST** /requestToPayTransfer
+note right
+{
+  "requestToPayTransactionId": "string",
+  "from": {    
+    "type": "CONSUMER",
+    "idType": "MSISDN",
+    "idValue": "+1234567890",
+    "idSubValue": "string"
+  },
+  "to": {...},
+  "amountType": "RECEIVE",
+  "currency": "TZS",
+  "amount": "1000.0",
+  "scenario": {...},
+  "initiator": "PAYEE",
+  "initiatorType": "CONSUMER",
+  "note": "Note sent to Payee."
+}
+end note
+activate PayeeSDK
+
+PayeeSDK->>Mojaloop: **GET** /parties
+Mojaloop->>PayerSDK: **GET** /parties
+PayerSDK->PayerDFSP: **GET** /parties
+PayerDFSP->PayerDFSP: Lookup Validate Payer Account
+PayerDFSP-->PayerSDK: return Payer information
+note left
+Payer information
+end note
+PayerSDK->>Mojaloop: **PUT** /parties
+Mojaloop->>PayeeSDK: **PUT** /parties
+
+alt If AutoAcceptParty = false
+  PayeeSDK-->PayeeDFSP: **POST**\n /requestToPayTransfer \n(synchronous return)
+  note left
+{
+  "requestToPayTransactionId": "string",
+  "from": {
+    "type": "CONSUMER",
+    "idType": "MSISDN",
+    "idValue": "1234567890",
+    "idSubValue": "string",
+    "displayName": "ryZ037pWP'lHu,Tu9,Tjl MRMbdMSpRGAHt4m6 2jk5L4'ePRWT",
+    "firstName": "Henrik",
+    "middleName": "Johannes",
+    "lastName": "Karlsson",
+    "dateOfBirth": "1966-06-16",
+    "fspId": "string",
+    "extensionList": []
+  },
+  "to": {...},
+  "amountType": "RECEIVE",
+  "currency": "TZS",
+  "amount": "1000.0",
+  "transactionType": "TRANSFER",
+  "note": "Note sent to Payee.",
+  "currentState": "WAITING_FOR_PARTY_ACCEPTANCE",
+}
+  end note
+PayeeDFSP->PayeeSDK: **PUT** /requestToPay/\n{requestToPayId}
+note right
+  {
+    acceptParty: true
+  }
+end note
+else
+PayeeSDK->PayeeSDK: Automatically \nAcceptParty by updating\n status
+end
+
+PayeeSDK->>Mojaloop: **POST** /transactionRequests
+Mojaloop->>PayerSDK: **POST** /transactionRequests
+PayerSDK->PayerDFSP: **POST** /transactionRequests
+PayerDFSP->PayerDFSP: Validate request\n to pay request
+PayerDFSP-->PayerSDK: return
+PayerSDK->>Mojaloop: **PUT** /transactionRequests/{ID}
+note left
+{
+  "transactionId": "b51ec534-ee48-4575-b6a9-ead2955b8069",
+  "transactionRequestState": "RECEIVED",
+  "AuthenticationType": {}
+  "extensionList": {extension:[]}
+}
+end note
+Mojaloop->>PayeeSDK: **PUT** /transactionRequests
+PayeeSDK-->PayeeDFSP: return 
+deactivate PayeeSDK
+
+=== Payer DFSP executes R2P request ==
+
+PayerDFSP->PayerSDK: **POST** /RequestToPayTransfer
+note left
+Initiate R2P with AuthType
+end note
+activate PayerSDK
+PayerSDK->>Mojaloop:  **POST** /quotes
+Mojaloop->>PayeeSDK:  **POST** /quotes
+PayeeSDK->PayeeDFSP:  **POST** /quoterequest
+PayeeDFSP->PayeeSDK:  return quote
+PayeeSDK->>Mojaloop: **PUT** /quotes
+Mojaloop->>PayerSDK: **PUT** /quotes
+
+PayerSDK-->PayerDFSP: return \n(**POST** /RequestToPayTransfer)
+deactivate PayerSDK
+
+alt if AuthenticateType is null
+PayerDFSP->Payer: Present payment terms\n to Payer for acceptance
+Payer->PayerDFSP: I accept the payment terms
+else if AuthenticateType is OTP
+PayerDFSP->PayerDFSP: Generate OTP (optional)
+PayerDFSP->Payer: Present OTP to Payer (optional)
+
+loop x retries
+PayerDFSP->PayerSDK: **PUT** /RequestToPayTransfer
+note left
+  accept quote = true
+  retries left = x
+end note
+
+PayerSDK->>Mojaloop: **GET** \n/authorizations/\n{transactionRequestID}
+Mojaloop->>PayeeSDK: **GET** \n/authorizations/\n{transactionRequestID}
+PayeeSDK->PayeeDFSP: **GET** \n/auth/{authtype}/{requestToPayId}
+PayeeDFSP->Payee: Get Payee to get\n Payer to enter OTP\n on POS
+Payer->PayeeDFSP: Enter OTP
+PayeeDFSP-->PayeeSDK: return OTP
+note right
+{
+  "otpValue": "string"
+}
+end note
+PayeeSDK->>Mojaloop: **PUT** /authorizations/{ID}
+Mojaloop->>PayerSDK: **PUT** /authorizations/{ID}
+PayerSDK-->PayerDFSP: synchronous return \n **POST** /requestToPayTransfer/\n{requestToPayTransactionId}
+PayerDFSP->PayerDFSP: Validate OTP
+
+end loop
+
+end
+
+
+
+alt if can proceed with transfer
+PayerDFSP->PayerDFSP: Reserve funds against \nPayer's account
+PayerDFSP-->PayerSDK:  **PUT** \n/requestToPayTransfer/\n{requestToPayTransactionId}
+
+PayerSDK->>Mojaloop: **POST** /transfers
+activate PayerSDK
+Mojaloop->>PayeeSDK: **POST** /transfers
+PayeeSDK-->PayeeDFSP: **PUT** / **POST**\n /requestToPayTransfer/\n{requestToPayTransactionId}\n return
+PayeeDFSP->Payee: Notify user
+PayeeSDK->>Mojaloop: **PUT** /transfers \nreturn fulfilment
+Mojaloop->>PayerSDK: **PUT** /transfers
+deactivate PayerSDK
+PayerSDK->PayerDFSP: **POST** \n/newAPI  \nNotify payer of transfer
+PayerDFSP->PayerDFSP: Commit transfer \nto Payer's account
+PayerDFSP->Payer: Notify Payer
+
+else if rejected
+
+PayerDFSP-->PayerSDK: return
+PayerSDK->>Mojaloop: **PUT** \n/requestToPayTransfer/\n{requestToPayTransactionId}\n rejected
+Mojaloop->>PayeeSDK: **PUT**\n /requestToPayTransfer/\n{requestToPayTransactionId}\n rejected
+PayeeSDK-->X PayeeDFSP: return rejected
+end 
+
+
+@enduml
