@@ -133,7 +133,8 @@ PayerDFSP->Payer: Present payment terms\n to Payer for acceptance
 Payer->PayerDFSP: I accept the payment terms
 else if AuthenticateType is OTP
 PayerDFSP->PayerDFSP: Generate OTP (optional)
-PayerDFSP->Payer: Present OTP to Payer (optional)
+PayerDFSP->Payer: Present OTP to Payer
+end
 
 loop x retries
 PayerDFSP->PayerSDK: **PUT** /RequestToPayTransfer
