@@ -14,7 +14,7 @@ end box
 actor "Payee" as Payee
 autonumber 1 "<b>[0]"
 
-alt if (OTP)
+alt if (User Initiated OTP)
 Payer->PayerDFSP: Generate an OTP for me
 PayerDFSP->PayerDFSP:Generate
 PayerDFSP-->Payer: Here is your OTP
