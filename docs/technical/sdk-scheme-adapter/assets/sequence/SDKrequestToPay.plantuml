@@ -132,7 +132,9 @@ alt if AuthenticateType is null
 PayerDFSP->Payer: Present payment terms\n to Payer for acceptance
 Payer->PayerDFSP: I accept the payment terms
 else if AuthenticateType is OTP
-PayerDFSP->PayerDFSP: Generate OTP (optional)
+alt if (Automatic generated OTP)
+
+PayerDFSP->PayerDFSP: Generate OTP
 PayerDFSP->Payer: Present OTP to Payer
 end
 
