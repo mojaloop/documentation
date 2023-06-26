@@ -896,6 +896,10 @@ module.exports = {
               path: "sdk-scheme-adapter/IntegrationFlowPatterns"
             },
             {
+              title: "Request To Pay - support",
+              path: "sdk-scheme-adapter/RequestToPay"
+            },
+            {
               title: "Bulk Integration Flow Patterns",
               path: "sdk-scheme-adapter/IntegrationBulkFlowPatterns"
             },
