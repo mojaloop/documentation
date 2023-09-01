@@ -1,0 +1,301 @@
+/'*****
+ License
+ --------------
+ Copyright © 2017 Bill & Melinda Gates Foundation
+ The Mojaloop files are made available by the Bill & Melinda Gates Foundation under the Apache License, Version 2.0 (the "License") and you may not use these files except in compliance with the License. You may obtain a copy of the License at
+ http://www.apache.org/licenses/LICENSE-2.0
+ Unless required by applicable law or agreed to in writing, the Mojaloop files are distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+ Contributors
+ --------------
+ This is the official list of the Mojaloop project contributors for this file.
+ Names of the original copyright holders (individuals or organizations)
+ should be listed with a '*' in the first column. People who have
+ contributed from an organization can be listed under the organization
+ that actually holds the copyright for their contributions (see the
+ Gates Foundation organization for an example). Those individuals should have
+ their names indented and be marked with a '-'. Email address can be added
+ optionally within square brackets <email>.
+ * Gates Foundation
+ - Name Surname <name.surname@gatesfoundation.com>
+
+ * Rajiv Mothilal <rajiv.mothilal@modusbox.com>
+ * Georgi Georgiev <georgi.georgiev@modusbox.com>
+ * Sam Kummary <sam@modusbox.com>
+ * Vijay Kumar <vijaya.guthi@infitx.com>
+ -------------
+ ******'/
+
+@startuml
+' declate title
+title 1.3.3. Position Abort Facade
+
+autonumber
+
+' Actor Keys:
+'   boundary - APIs/Interfaces, etc
+'   collections - Kafka Topics
+'   control - Kafka Consumers
+'   entity - Database Access Objects
+'   database - Database Persistence Store
+
+' declare actors
+control "Position Abort Facade" as FACADE_POSITION_ABORT
+collections "Notification-Topic" as TOPIC_NOTIFICATIONS
+database "Central Store" as DB
+
+box "Central Service" #LightYellow
+    participant FACADE_POSITION_ABORT
+    participant DB
+    participant TOPIC_NOTIFICATIONS
+end box
+
+' start flow
+activate FACADE_POSITION_ABORT
+group Abort Position Batch Processing
+    opt type == 'position' && action == 'timeout-reserved'
+        FACADE_POSITION_ABORT -> DB: Retrieve current state of transfer from DB
+        activate DB
+        hnote over DB #lightyellow
+            transferStateChange
+            transferParticipant
+        end note
+        DB --> FACADE_POSITION_ABORT: Return current state of transfer from DB
+        deactivate DB
+        FACADE_POSITION_ABORT <-> FACADE_POSITION_ABORT: Validate current state (transferStateChange.transferStateId == 'RESERVED_TIMEOUT')\n<color #FF0000><b>Error code:</b> 2001</color>
+
+        group Persist Position change and Transfer state
+            FACADE_POSITION_ABORT -> FACADE_POSITION_ABORT: **transferStateId** = 'EXPIRED_RESERVED'
+            FACADE_POSITION_ABORT -> FACADE_POSITION_ABORT: Request to persist latest position and state to DB\n<color #FF0000><b>Error code:</b> 2003</color>
+            group <color #blue>DB TRANSACTION IMPLEMENTATION</color>
+                activate FACADE_POSITION_ABORT
+                FACADE_POSITION_ABORT -> DB: Select participantPosition.value FOR UPDATE for payerCurrencyId
+                activate DB
+                hnote over DB #lightyellow
+                    participantPosition
+                end note
+                DB --> FACADE_POSITION_ABORT: Return participantPosition
+                deactivate DB
+                FACADE_POSITION_ABORT <-> FACADE_POSITION_ABORT: **latestPosition** = participantPosition - payload.amount.amount
+                FACADE_POSITION_ABORT->DB: Persist latestPosition to DB for Payer
+                hnote over DB #lightyellow
+                    UPDATE **participantPosition**
+                    SET value = latestPosition
+                end note
+                activate DB
+                deactivate DB
+                FACADE_POSITION_ABORT -> DB: Persist participant position change and state change
+                hnote over DB #lightyellow
+                        INSERT **transferStateChange** 
+                        VALUES (transferStateId)
+
+                        INSERT **participantPositionChange**
+                        SET participantPositionId = participantPosition.participantPositionId,
+                        transferStateChangeId = transferStateChange.transferStateChangeId,
+                        value = latestPosition,
+                        reservedValue = participantPosition.reservedValue
+                        createdDate = new Date()
+                end note
+                activate DB
+                deactivate DB
+            end
+            FACADE_POSITION_ABORT --> FACADE_POSITION_ABORT: Return success
+            deactivate FACADE_POSITION_ABORT
+        end
+        note right of FACADE_POSITION_ABORT #yellow
+            Message: {
+                id: <transferMessage.transferId>
+                from: <transferMessage.payerFsp>,
+                to: <transferMessage.payeeFsp>,
+                type: application/json
+                content: {
+                    headers: <transferHeaders>,
+                    payload: {
+                         "errorInformation": {
+                             "errorCode": 3300,
+                             "errorDescription": "Transfer expired",
+                             "extensionList": <transferMessage.extensionList>
+                         }
+                    }
+                },
+                metadata: {
+                    event: {
+                        id: <uuid>,
+                        responseTo: <previous.uuid>,
+                        type: notification,
+                        action: abort,
+                        createdAt: <timestamp>,
+                        state: {
+                            status: 'error',
+                            code: <errorInformation.errorCode>
+                            description: <errorInformation.errorDescription>
+                        }
+                    }
+                }
+            }
+        end note
+        FACADE_POSITION_ABORT -> TOPIC_NOTIFICATIONS: Publish Notification event\n<color #FF0000><b>Error code:</b> 2003</color>
+        activate TOPIC_NOTIFICATIONS
+        deactivate TOPIC_NOTIFICATIONS
+    end
+    opt type == 'position' && (action IN ['reject', 'abort'])
+        FACADE_POSITION_ABORT -> FACADE_POSITION_ABORT: Request current state of transfer from DB\n<color #FF0000><b>Error code:</b> 2003</color>
+        activate FACADE_POSITION_ABORT
+        FACADE_POSITION_ABORT -> DB: Retrieve current state of transfer from DB
+        activate DB
+        hnote over DB #lightyellow
+            transferStateChange
+        end note
+        DB --> FACADE_POSITION_ABORT: Return current state of transfer from DB
+        deactivate DB
+        FACADE_POSITION_ABORT --> FACADE_POSITION_ABORT: Return current state of transfer from DB
+        deactivate FACADE_POSITION_ABORT
+        FACADE_POSITION_ABORT <-> FACADE_POSITION_ABORT: Validate current state (transferStateChange.transferStateId IN ['RECEIVED_REJECT', 'RECEIVED_ERROR'])\n<color #FF0000><b>Error code:</b> 2001</color>
+
+        group Persist Position change and Transfer state
+            FACADE_POSITION_ABORT -> FACADE_POSITION_ABORT: **transferStateId** = (action == 'reject' ? 'ABORTED_REJECTED' : 'ABORTED_ERROR' )
+            FACADE_POSITION_ABORT -> FACADE_POSITION_ABORT: Request to persist latest position and state to DB\n<color #FF0000><b>Error code:</b> 2003</color>
+            group Refer to <color #blue>DB TRANSACTION IMPLEMENTATION</color> above
+                activate FACADE_POSITION_ABORT
+                FACADE_POSITION_ABORT -> DB: Persist to database
+                activate DB
+                deactivate DB
+                hnote over DB #lightyellow
+                    participantPosition
+                    transferStateChange
+                    participantPositionChange
+                end note
+            end
+            FACADE_POSITION_ABORT --> FACADE_POSITION_ABORT: Return success
+            deactivate FACADE_POSITION_ABORT
+        end
+        alt action == 'reject'
+            note right of FACADE_POSITION_ABORT #yellow
+                Message: {
+                    id: <transferMessage.transferId>
+                    from: <transferMessage.payerFsp>,
+                    to: <transferMessage.payeeFsp>,
+                    type: application/json
+                    content: {
+                        headers: <transferHeaders>,
+                        payload: <transferMessage>
+                    },
+                    metadata: {
+                        event: {
+                            id: <uuid>,
+                            responseTo: <previous.uuid>,
+                            type: notification,
+                            action: reject,
+                            createdAt: <timestamp>,
+                            state: {
+                                status: "success",
+                                code: 0,
+                                description: "action successful"
+                            }
+                        }
+                    }
+                }
+            end note
+        else action == 'abort'
+            note right of FACADE_POSITION_ABORT #yellow
+                Message: {
+                    id: <transferMessage.transferId>
+                    from: <transferMessage.payerFsp>,
+                    to: <transferMessage.payeeFsp>,
+                    type: application/json
+                    content: {
+                        headers: <transferHeaders>,
+                        payload: <transferMessage>
+                    },
+                    metadata: {
+                        event: {
+                            id: <uuid>,
+                            responseTo: <previous.uuid>,
+                            type: notification,
+                            action: abort,
+                            createdAt: <timestamp>,
+                            state: {
+                                status: 'error',
+                                code: <payload.errorInformation.errorCode || 5000>
+                                description: <payload.errorInformation.errorDescription>
+                            }
+                        }
+                    }
+                }
+            end note
+        end
+        FACADE_POSITION_ABORT -> TOPIC_NOTIFICATIONS: Publish Notification event\n<color #FF0000><b>Error code:</b> 2003</color>
+        activate TOPIC_NOTIFICATIONS
+        deactivate TOPIC_NOTIFICATIONS
+    end
+
+    ' TODO: We do not see how this scenario will be triggered
+    opt type == 'position' && action == 'fail' (Unable to currently trigger this scenario)
+        FACADE_POSITION_ABORT -> FACADE_POSITION_ABORT: Request current state of transfer from DB\n<color #FF0000><b>Error code:</b> 2003</color>
+        activate FACADE_POSITION_ABORT
+        FACADE_POSITION_ABORT -> DB: Retrieve current state of transfer from DB
+        activate DB
+        hnote over DB #lightyellow
+            transferStateChange
+        end note
+        DB --> FACADE_POSITION_ABORT: Return current state of transfer from DB
+        deactivate DB
+        FACADE_POSITION_ABORT --> FACADE_POSITION_ABORT: Return current state of transfer from DB
+        deactivate FACADE_POSITION_ABORT
+        FACADE_POSITION_ABORT <-> FACADE_POSITION_ABORT: Validate current state (transferStateChange.transferStateId == 'FAILED')
+
+        group Persist Position change and Transfer state
+            FACADE_POSITION_ABORT -> FACADE_POSITION_ABORT: **transferStateId** = 'FAILED'
+            FACADE_POSITION_ABORT -> FACADE_POSITION_ABORT: Request to persist latest position and state to DB\n<color #FF0000><b>Error code:</b> 2003</color>
+            group Refer to <color #blue>DB TRANSACTION IMPLEMENTATION</color> above
+                activate FACADE_POSITION_ABORT
+                FACADE_POSITION_ABORT -> DB: Persist to database
+                activate DB
+                deactivate DB
+                hnote over DB #lightyellow
+                    participantPosition
+                    transferStateChange
+                    participantPositionChange
+                end note
+            end
+            FACADE_POSITION_ABORT --> FACADE_POSITION_ABORT: Return success
+            deactivate FACADE_POSITION_ABORT
+        end
+        note right of FACADE_POSITION_ABORT #yellow
+            Message: {
+                id: <transferMessage.transferId>
+                from: <transferMessage.payerFsp>,
+                to: <transferMessage.payeeFsp>,
+                type: application/json
+                content: {
+                    headers: <transferHeaders>,
+                    payload: {
+                         "errorInformation": {
+                             "errorCode": 3100,
+                             "errorDescription": "Transfer failed",
+                             "extensionList": <transferMessage.extensionList>
+                         }
+                     }
+                },
+                metadata: {
+                    event: {
+                        id: <uuid>,
+                        responseTo: <previous.uuid>,
+                        type: notification,
+                        action: abort,
+                        createdAt: <timestamp>,
+                        state: {
+                            status: 'error',
+                            code: <errorInformation.errorCode>
+                            description: <errorInformation.errorDescription>
+                        }
+                    }
+                }
+            }
+        end note
+        FACADE_POSITION_ABORT -> TOPIC_NOTIFICATIONS: Publish Notification event\n<color #FF0000><b>Error code:</b> 2003</color>
+        activate TOPIC_NOTIFICATIONS
+        deactivate TOPIC_NOTIFICATIONS
+    end
+end
+deactivate FACADE_POSITION_ABORT
+@enduml
