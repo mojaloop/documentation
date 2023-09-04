@@ -62,6 +62,7 @@ group Prepare Position Batch Processing
     end note
     DB --> FACADE_POSITION_PREPARE: Return current state of all selected transfers from DB
     deactivate DB
+
     FACADE_POSITION_PREPARE <-> FACADE_POSITION_PREPARE: Validate current state (transferStateChange.transferStateId == 'RECEIVED_PREPARE')\n<color #FF0000><b>Error code:</b> 2001</color> against failing transfers\nBatch is not rejected as a whole.
 
     note right of FACADE_POSITION_PREPARE #lightgray

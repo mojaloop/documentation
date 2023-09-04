@@ -39,11 +39,11 @@ autonumber
 ' declare actors
 control "Position Handler" as POS_HANDLER
 
-entity "Bin Processor" as BIN_PROCESSOR
+entity "Domain Bin Processor" as BIN_PROCESSOR
 entity "Prepare Facade" as FACADE_PREPARE
-entity "Prepare Fulfil Facade" as FACADE_FULFIL
-entity "Prepare Abort Facade" as FACADE_ABORT
-entity "Prepare Timeout Facade" as FACADE_TIMEOUT
+entity "Fulfil Facade" as FACADE_FULFIL
+entity "Abort Facade" as FACADE_ABORT
+entity "Timeout Facade" as FACADE_TIMEOUT
 collections "Notification-Topic" as TOPIC_NOTIFICATIONS
 ' database "Central Store" as DB
 
@@ -62,36 +62,63 @@ end box
 activate POS_HANDLER
 group Position Handler Consume
     POS_HANDLER -> POS_HANDLER: Consumes messages from the Position topic \nand stores them in memory
+    loop for each message in the list
+        POS_HANDLER -> POS_HANDLER: Assign message to account-bin by accountID and child action-bin by event-action\n (References to the messagses to be stored in bins, no duplication of messages)
+        POS_HANDLER -> POS_HANDLER: Audit message
+    end
     group <color #blue>DB TRANSACTION</color>
-        POS_HANDLER -> POS_HANDLER: Iterate though messages and bin them by accountID and action \n (References to the messagses to be stored in bins, no duplication of messages)
-        POS_HANDLER -> BIN_PROCESSOR: Process Bin for accountID
-        BIN_PROCESSOR -> BIN_PROCESSOR: For each bin, iterate through the batches based on the action
+        POS_HANDLER -> BIN_PROCESSOR: Call Bin Processor with the list of account-bins
+
+        note right of BIN_PROCESSOR #orange
+            **TODO**: Further future enhancements
+            1. Pre fetch all transferStateChanges for all the transferIds in the account-bin
+            2. Pre fetch position and settlement account balances for the account-bin
+            3. Aquire lock on position
+            4. Modify facade functions to return resultant changes in position and transferStateChanges
+            which will then be accumulated after processing each action-bin
+            5. Apply the accumulated changes to the position and transferStateChanges
+        end note
+        loop for each account-bin in the list
+            note right of BIN_PROCESSOR #lightblue
+                **Note**: Order of processing for various actions
+                1. Fulfil - Work in progress is first priority
+                2. Abort & Timeout - Freeing funds for future transfers is priority before tackling new requests
+                3. Prepare - Processing new requests is last priority
+            end note
+
+            BIN_PROCESSOR -> FACADE_FULFIL: Process Fulfil Batch
+            activate FACADE_FULFIL
+            FACADE_FULFIL --> BIN_PROCESSOR: Result
+            deactivate FACADE_FULFIL
+
+            BIN_PROCESSOR -> FACADE_ABORT: Process Abort Batch
+            activate FACADE_ABORT
+            FACADE_ABORT --> BIN_PROCESSOR: Result
+            deactivate FACADE_ABORT
+
+            BIN_PROCESSOR -> FACADE_TIMEOUT: Process Timeout Batch
+            activate FACADE_TIMEOUT
+            FACADE_TIMEOUT --> BIN_PROCESSOR: Result
+            deactivate FACADE_TIMEOUT
+
+            BIN_PROCESSOR -> FACADE_PREPARE: Process Prepare Batch
+            activate FACADE_PREPARE
+            FACADE_PREPARE --> BIN_PROCESSOR: Result
+            deactivate FACADE_PREPARE
+        end
         
-        BIN_PROCESSOR -> BIN_PROCESSOR: Audit
-
-        BIN_PROCESSOR -> FACADE_FULFIL: Process Fulfil Batch
-        activate FACADE_FULFIL
-        FACADE_FULFIL --> BIN_PROCESSOR: Result
-        deactivate FACADE_FULFIL
-
-        BIN_PROCESSOR -> FACADE_ABORT: Process Abort Batch
-        activate FACADE_ABORT
-        FACADE_ABORT --> BIN_PROCESSOR: Result
-        deactivate FACADE_ABORT
-
-        BIN_PROCESSOR -> FACADE_TIMEOUT: Process Timeout Batch
-        activate FACADE_TIMEOUT
-        FACADE_TIMEOUT --> BIN_PROCESSOR: Result
-        deactivate FACADE_TIMEOUT
-
-        BIN_PROCESSOR -> FACADE_PREPARE: Process Prepare Batch
-        activate FACADE_PREPARE
-        FACADE_PREPARE --> BIN_PROCESSOR: Result
-        deactivate FACADE_PREPARE
-
-        ' BIN_PROCESSOR -> TOPIC_NOTIFICATIONS: Publish Notification events ???
-        BIN_PROCESSOR --> POS_HANDLER: Return
-        POS_HANDLER -> POS_HANDLER: Commit Kafka Offset
+        BIN_PROCESSOR --> POS_HANDLER: Return bins with results
+        alt return is true
+            POS_HANDLER -> POS_HANDLER: Commit Kafka Offset
+            POS_HANDLER -> POS_HANDLER: Commit DB Transaction
+            loop for each result in the account-bin
+                POS_HANDLER -> POS_HANDLER: Produce notification message
+                POS_HANDLER -> POS_HANDLER: Audit notification
+            end
+        else return is false or unhandled exception
+            POS_HANDLER -> POS_HANDLER: Rollback DB Transaction
+            POS_HANDLER -> POS_HANDLER: Audit error
+        end
     end
 end
 deactivate POS_HANDLER
