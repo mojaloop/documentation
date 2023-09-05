@@ -40,20 +40,24 @@ autonumber
 control "Position Handler" as POS_HANDLER
 
 entity "Domain Bin Processor" as BIN_PROCESSOR
-entity "Prepare Facade" as FACADE_PREPARE
-entity "Fulfil Facade" as FACADE_FULFIL
-entity "Abort Facade" as FACADE_ABORT
-entity "Timeout Facade" as FACADE_TIMEOUT
+entity "Prepare Domain" as DOMAIN_PREPARE
+entity "Fulfil Domain" as DOMAIN_FULFIL
+entity "Abort Domain" as DOMAIN_ABORT
+entity "Timeout Domain" as DOMAIN_TIMEOUT
+entity "Transfer Facade" as FACADE_TRANSFER
+entity "Account Facade" as FACADE_ACCOUNT
 collections "Notification-Topic" as TOPIC_NOTIFICATIONS
 ' database "Central Store" as DB
 
 box "Central Service" #LightYellow
     participant POS_HANDLER
     participant BIN_PROCESSOR
-    participant FACADE_FULFIL
-    participant FACADE_ABORT
-    participant FACADE_TIMEOUT
-    participant FACADE_PREPARE
+    participant DOMAIN_FULFIL
+    participant DOMAIN_ABORT
+    participant DOMAIN_TIMEOUT
+    participant DOMAIN_PREPARE
+    participant FACADE_TRANSFER
+    participant FACADE_ACCOUNT
     ' participant DB
     participant TOPIC_NOTIFICATIONS
 end box
@@ -68,16 +72,10 @@ group Position Handler Consume
     end
     group <color #blue>DB TRANSACTION</color>
         POS_HANDLER -> BIN_PROCESSOR: Call Bin Processor with the list of account-bins
+        
+        BIN_PROCESSOR -> FACADE_TRANSFER: Pre fetch all transferStateChanges for all the transferIds in the account-bin
+        BIN_PROCESSOR -> FACADE_ACCOUNT: Pre fetch all position and settlement account balances for the account-bin\nAquire lock on position
 
-        note right of BIN_PROCESSOR #orange
-            **TODO**: Further future enhancements
-            1. Pre fetch all transferStateChanges for all the transferIds in the account-bin
-            2. Pre fetch position and settlement account balances for the account-bin
-            3. Aquire lock on position
-            4. Modify facade functions to return resultant changes in position and transferStateChanges
-            which will then be accumulated after processing each action-bin
-            5. Apply the accumulated changes to the position and transferStateChanges
-        end note
         loop for each account-bin in the list
             note right of BIN_PROCESSOR #lightblue
                 **Note**: Order of processing for various actions
@@ -86,25 +84,43 @@ group Position Handler Consume
                 3. Prepare - Processing new requests is last priority
             end note
 
-            BIN_PROCESSOR -> FACADE_FULFIL: Process Fulfil Batch
-            activate FACADE_FULFIL
-            FACADE_FULFIL --> BIN_PROCESSOR: Result
-            deactivate FACADE_FULFIL
+            BIN_PROCESSOR -> DOMAIN_FULFIL: Process Fulfil Bin
+            note right of BIN_PROCESSOR
+                Input: Bin, Pre-fetched account balances and transferStateChanges
+                Output: Accumulated changes in position and transferStateChanges
+            end note
+            activate DOMAIN_FULFIL
+            DOMAIN_FULFIL --> BIN_PROCESSOR: Result
+            deactivate DOMAIN_FULFIL
 
-            BIN_PROCESSOR -> FACADE_ABORT: Process Abort Batch
-            activate FACADE_ABORT
-            FACADE_ABORT --> BIN_PROCESSOR: Result
-            deactivate FACADE_ABORT
+            BIN_PROCESSOR -> DOMAIN_ABORT: Process Abort Bin
+            note right of BIN_PROCESSOR
+                Input: Bin, previously accumulated account balances and transferStateChanges
+                Output: Accumulated changes in position and transferStateChanges
+            end note
+            activate DOMAIN_ABORT
+            DOMAIN_ABORT --> BIN_PROCESSOR: Result
+            deactivate DOMAIN_ABORT
 
-            BIN_PROCESSOR -> FACADE_TIMEOUT: Process Timeout Batch
-            activate FACADE_TIMEOUT
-            FACADE_TIMEOUT --> BIN_PROCESSOR: Result
-            deactivate FACADE_TIMEOUT
+            BIN_PROCESSOR -> DOMAIN_TIMEOUT: Process Timeout Bin
+            note right of BIN_PROCESSOR
+                Input: Bin, previously accumulated account balances and transferStateChanges
+                Output: Accumulated changes in position and transferStateChanges
+            end note
+            activate DOMAIN_TIMEOUT
+            DOMAIN_TIMEOUT --> BIN_PROCESSOR: Result
+            deactivate DOMAIN_TIMEOUT
 
-            BIN_PROCESSOR -> FACADE_PREPARE: Process Prepare Batch
-            activate FACADE_PREPARE
-            FACADE_PREPARE --> BIN_PROCESSOR: Result
-            deactivate FACADE_PREPARE
+            BIN_PROCESSOR -> DOMAIN_PREPARE: Process Prepare Batch
+            note right of BIN_PROCESSOR
+                Input: Bin, previously accumulated account balances and transferStateChanges
+                Output: Accumulated changes in position and transferStateChanges
+            end note
+            activate DOMAIN_PREPARE
+            DOMAIN_PREPARE --> BIN_PROCESSOR: Result
+            deactivate DOMAIN_PREPARE
+            BIN_PROCESSOR -> FACADE_TRANSFER: Insert accumulated transferStateChanges
+            BIN_PROCESSOR -> FACADE_ACCOUNT: Update accumulated position
         end
         
         BIN_PROCESSOR --> POS_HANDLER: Return bins with results

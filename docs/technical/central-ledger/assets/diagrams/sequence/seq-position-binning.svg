@@ -1,155 +1,248 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="780px" preserveAspectRatio="none" style="width:1769px;height:780px;" version="1.1" viewBox="0 0 1769 780" width="1769px" zoomAndPan="magnify">
-  <defs>
-    <filter height="300%" id="f11a4q7tqw99mx" width="300%" x="-1" y="-1">
-      <feGaussianBlur result="blurOut" stdDeviation="2.0"/>
-      <feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/>
-      <feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/>
-      <feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/>
-    </filter>
-  </defs>
+<?xml version="1.0" encoding="us-ascii" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="1503px" preserveAspectRatio="none" style="width:1675px;height:1503px;background:#FFFFFF;" version="1.1" viewBox="0 0 1675 1503" width="1675px" zoomAndPan="magnify">
+  <defs/>
   <g>
-    <text fill="#000000" font-family="sans-serif" font-size="18" lengthAdjust="spacingAndGlyphs" textLength="287" x="738.5" y="28.708">1.3.0. Position Messages Binning</text>
-    <rect fill="#FFFFE0" height="733.25" style="stroke:#A80036;stroke-width:1.0;" width="1737" x="26" y="40.9531"/>
-    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="111" x="839" y="53.02">Central Service</text>
-    <rect fill="#FFFFFF" filter="url(#f11a4q7tqw99mx)" height="594.5234" style="stroke:#A80036;stroke-width:1.0;" width="10" x="84" y="118.3828"/>
-    <rect fill="#FFFFFF" filter="url(#f11a4q7tqw99mx)" height="29.1328" style="stroke:#A80036;stroke-width:1.0;" width="10" x="1055" y="415.7109"/>
-    <rect fill="#FFFFFF" filter="url(#f11a4q7tqw99mx)" height="29.1328" style="stroke:#A80036;stroke-width:1.0;" width="10" x="1216.5" y="473.9766"/>
-    <rect fill="#FFFFFF" filter="url(#f11a4q7tqw99mx)" height="29.1328" style="stroke:#A80036;stroke-width:1.0;" width="10" x="1391.5" y="532.2422"/>
-    <rect fill="#FFFFFF" filter="url(#f11a4q7tqw99mx)" height="29.1328" style="stroke:#A80036;stroke-width:1.0;" width="10" x="1546" y="590.5078"/>
-    <rect fill="#FFFFFF" filter="url(#f11a4q7tqw99mx)" height="580.5234" style="stroke:#000000;stroke-width:2.0;" width="1618" x="10" y="125.3828"/>
-    <rect fill="#FFFFFF" filter="url(#f11a4q7tqw99mx)" height="492.125" style="stroke:#000000;stroke-width:2.0;" width="1598" x="20" y="206.7813"/>
-    <line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="89" x2="89" y1="108.3828" y2="722.9063"/>
-    <line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="640" x2="640" y1="108.3828" y2="722.9063"/>
-    <line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="1060" x2="1060" y1="108.3828" y2="722.9063"/>
-    <line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="1221" x2="1221" y1="108.3828" y2="722.9063"/>
-    <line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="1396" x2="1396" y1="108.3828" y2="722.9063"/>
-    <line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="1551" x2="1551" y1="108.3828" y2="722.9063"/>
-    <line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="1688" x2="1688" y1="108.3828" y2="722.9063"/>
-    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="112" x="30" y="105.0811">Position Handler</text>
-    <ellipse cx="89" cy="76.0859" fill="#FEFECE" filter="url(#f11a4q7tqw99mx)" rx="12" ry="12" style="stroke:#A80036;stroke-width:2.0;"/>
-    <polygon fill="#A80036" points="85,64.0859,91,59.0859,89,64.0859,91,69.0859,85,64.0859" style="stroke:#A80036;stroke-width:1.0;"/>
-    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="112" x="30" y="734.9014">Position Handler</text>
-    <ellipse cx="89" cy="754.2031" fill="#FEFECE" filter="url(#f11a4q7tqw99mx)" rx="12" ry="12" style="stroke:#A80036;stroke-width:2.0;"/>
-    <polygon fill="#A80036" points="85,742.2031,91,737.2031,89,742.2031,91,747.2031,85,742.2031" style="stroke:#A80036;stroke-width:1.0;"/>
-    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="96" x="589" y="105.0811">Bin Processor</text>
-    <ellipse cx="640" cy="76.0859" fill="#FEFECE" filter="url(#f11a4q7tqw99mx)" rx="12" ry="12" style="stroke:#A80036;stroke-width:2.0;"/>
-    <line style="stroke:#A80036;stroke-width:2.0;" x1="628" x2="652" y1="90.0859" y2="90.0859"/>
-    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="96" x="589" y="734.9014">Bin Processor</text>
-    <ellipse cx="640" cy="754.2031" fill="#FEFECE" filter="url(#f11a4q7tqw99mx)" rx="12" ry="12" style="stroke:#A80036;stroke-width:2.0;"/>
-    <line style="stroke:#A80036;stroke-width:2.0;" x1="628" x2="652" y1="768.2031" y2="768.2031"/>
-    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="142" x="986" y="105.0811">Prepare Fulfil Facade</text>
-    <ellipse cx="1060" cy="76.0859" fill="#FEFECE" filter="url(#f11a4q7tqw99mx)" rx="12" ry="12" style="stroke:#A80036;stroke-width:2.0;"/>
-    <line style="stroke:#A80036;stroke-width:2.0;" x1="1048" x2="1072" y1="90.0859" y2="90.0859"/>
-    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="142" x="986" y="734.9014">Prepare Fulfil Facade</text>
-    <ellipse cx="1060" cy="754.2031" fill="#FEFECE" filter="url(#f11a4q7tqw99mx)" rx="12" ry="12" style="stroke:#A80036;stroke-width:2.0;"/>
-    <line style="stroke:#A80036;stroke-width:2.0;" x1="1048" x2="1072" y1="768.2031" y2="768.2031"/>
-    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="149" x="1144" y="105.0811">Prepare Abort Facade</text>
-    <ellipse cx="1221.5" cy="76.0859" fill="#FEFECE" filter="url(#f11a4q7tqw99mx)" rx="12" ry="12" style="stroke:#A80036;stroke-width:2.0;"/>
-    <line style="stroke:#A80036;stroke-width:2.0;" x1="1209.5" x2="1233.5" y1="90.0859" y2="90.0859"/>
-    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="149" x="1144" y="734.9014">Prepare Abort Facade</text>
-    <ellipse cx="1221.5" cy="754.2031" fill="#FEFECE" filter="url(#f11a4q7tqw99mx)" rx="12" ry="12" style="stroke:#A80036;stroke-width:2.0;"/>
-    <line style="stroke:#A80036;stroke-width:2.0;" x1="1209.5" x2="1233.5" y1="768.2031" y2="768.2031"/>
-    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="169" x="1309" y="105.0811">Prepare Timeout Facade</text>
-    <ellipse cx="1396.5" cy="76.0859" fill="#FEFECE" filter="url(#f11a4q7tqw99mx)" rx="12" ry="12" style="stroke:#A80036;stroke-width:2.0;"/>
-    <line style="stroke:#A80036;stroke-width:2.0;" x1="1384.5" x2="1408.5" y1="90.0859" y2="90.0859"/>
-    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="169" x="1309" y="734.9014">Prepare Timeout Facade</text>
-    <ellipse cx="1396.5" cy="754.2031" fill="#FEFECE" filter="url(#f11a4q7tqw99mx)" rx="12" ry="12" style="stroke:#A80036;stroke-width:2.0;"/>
-    <line style="stroke:#A80036;stroke-width:2.0;" x1="1384.5" x2="1408.5" y1="768.2031" y2="768.2031"/>
-    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="108" x="1494" y="105.0811">Prepare Facade</text>
-    <ellipse cx="1551" cy="76.0859" fill="#FEFECE" filter="url(#f11a4q7tqw99mx)" rx="12" ry="12" style="stroke:#A80036;stroke-width:2.0;"/>
-    <line style="stroke:#A80036;stroke-width:2.0;" x1="1539" x2="1563" y1="90.0859" y2="90.0859"/>
-    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="108" x="1494" y="734.9014">Prepare Facade</text>
-    <ellipse cx="1551" cy="754.2031" fill="#FEFECE" filter="url(#f11a4q7tqw99mx)" rx="12" ry="12" style="stroke:#A80036;stroke-width:2.0;"/>
-    <line style="stroke:#A80036;stroke-width:2.0;" x1="1539" x2="1563" y1="768.2031" y2="768.2031"/>
-    <rect fill="#FEFECE" filter="url(#f11a4q7tqw99mx)" height="30.2969" style="stroke:#A80036;stroke-width:1.5;" width="133" x="1622" y="69.0859"/>
-    <rect fill="#FEFECE" filter="url(#f11a4q7tqw99mx)" height="30.2969" style="stroke:#A80036;stroke-width:1.5;" width="133" x="1618" y="73.0859"/>
-    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="119" x="1625" y="93.0811">Notification-Topic</text>
-    <rect fill="#FEFECE" filter="url(#f11a4q7tqw99mx)" height="30.2969" style="stroke:#A80036;stroke-width:1.5;" width="133" x="1622" y="721.9063"/>
-    <rect fill="#FEFECE" filter="url(#f11a4q7tqw99mx)" height="30.2969" style="stroke:#A80036;stroke-width:1.5;" width="133" x="1618" y="725.9063"/>
-    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="119" x="1625" y="745.9014">Notification-Topic</text>
-    <rect fill="#FFFFFF" filter="url(#f11a4q7tqw99mx)" height="594.5234" style="stroke:#A80036;stroke-width:1.0;" width="10" x="84" y="118.3828"/>
-    <rect fill="#FFFFFF" filter="url(#f11a4q7tqw99mx)" height="29.1328" style="stroke:#A80036;stroke-width:1.0;" width="10" x="1055" y="415.7109"/>
-    <rect fill="#FFFFFF" filter="url(#f11a4q7tqw99mx)" height="29.1328" style="stroke:#A80036;stroke-width:1.0;" width="10" x="1216.5" y="473.9766"/>
-    <rect fill="#FFFFFF" filter="url(#f11a4q7tqw99mx)" height="29.1328" style="stroke:#A80036;stroke-width:1.0;" width="10" x="1391.5" y="532.2422"/>
-    <rect fill="#FFFFFF" filter="url(#f11a4q7tqw99mx)" height="29.1328" style="stroke:#A80036;stroke-width:1.0;" width="10" x="1546" y="590.5078"/>
-    <path d="M10,125.3828 L250,125.3828 L250,132.3828 L240,142.3828 L10,142.3828 L10,125.3828 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.0;"/>
-    <rect fill="none" height="580.5234" style="stroke:#000000;stroke-width:2.0;" width="1618" x="10" y="125.3828"/>
-    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="195" x="25" y="138.4497">Position Handler Consume</text>
-    <line style="stroke:#A80036;stroke-width:1.0;" x1="94" x2="136" y1="178.7813" y2="178.7813"/>
-    <line style="stroke:#A80036;stroke-width:1.0;" x1="136" x2="136" y1="178.7813" y2="191.7813"/>
-    <line style="stroke:#A80036;stroke-width:1.0;" x1="95" x2="136" y1="191.7813" y2="191.7813"/>
-    <polygon fill="#A80036" points="105,187.7813,95,191.7813,105,195.7813,101,191.7813" style="stroke:#A80036;stroke-width:1.0;"/>
-    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="101" y="166.1489">1</text>
-    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="286" x="114" y="158.5825">Consumes messages from the Position topic</text>
-    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="179" x="114" y="173.7153">and stores them in memory</text>
-    <path d="M20,206.7813 L193,206.7813 L193,213.7813 L183,223.7813 L20,223.7813 L20,206.7813 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.0;"/>
-    <rect fill="none" height="492.125" style="stroke:#000000;stroke-width:2.0;" width="1598" x="20" y="206.7813"/>
-    <text fill="#0000FF" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="128" x="35" y="219.8481">DB TRANSACTION</text>
-    <line style="stroke:#A80036;stroke-width:1.0;" x1="94" x2="136" y1="260.1797" y2="260.1797"/>
-    <line style="stroke:#A80036;stroke-width:1.0;" x1="136" x2="136" y1="260.1797" y2="273.1797"/>
-    <line style="stroke:#A80036;stroke-width:1.0;" x1="95" x2="136" y1="273.1797" y2="273.1797"/>
-    <polygon fill="#A80036" points="105,269.1797,95,273.1797,105,277.1797,101,273.1797" style="stroke:#A80036;stroke-width:1.0;"/>
-    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="101" y="247.5474">2</text>
-    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="408" x="114" y="239.981">Iterate though messages and bin them by accountID and action</text>
-    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="510" x="118" y="255.1138">(References to the messagses to be stored in bins, no duplication of messages)</text>
-    <polygon fill="#A80036" points="628,298.3125,638,302.3125,628,306.3125,632,302.3125" style="stroke:#A80036;stroke-width:1.0;"/>
-    <line style="stroke:#A80036;stroke-width:1.0;" x1="94" x2="634" y1="302.3125" y2="302.3125"/>
-    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="101" y="297.2466">3</text>
-    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="163" x="114" y="297.2466">Process Bin for accountID</text>
-    <line style="stroke:#A80036;stroke-width:1.0;" x1="640" x2="682" y1="331.4453" y2="331.4453"/>
-    <line style="stroke:#A80036;stroke-width:1.0;" x1="682" x2="682" y1="331.4453" y2="344.4453"/>
-    <line style="stroke:#A80036;stroke-width:1.0;" x1="641" x2="682" y1="344.4453" y2="344.4453"/>
-    <polygon fill="#A80036" points="651,340.4453,641,344.4453,651,348.4453,647,344.4453" style="stroke:#A80036;stroke-width:1.0;"/>
-    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="647" y="326.3794">4</text>
-    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="393" x="660" y="326.3794">For each bin, iterate through the batches based on the action</text>
-    <line style="stroke:#A80036;stroke-width:1.0;" x1="640" x2="682" y1="373.5781" y2="373.5781"/>
-    <line style="stroke:#A80036;stroke-width:1.0;" x1="682" x2="682" y1="373.5781" y2="386.5781"/>
-    <line style="stroke:#A80036;stroke-width:1.0;" x1="641" x2="682" y1="386.5781" y2="386.5781"/>
-    <polygon fill="#A80036" points="651,382.5781,641,386.5781,651,390.5781,647,386.5781" style="stroke:#A80036;stroke-width:1.0;"/>
-    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="647" y="368.5122">5</text>
-    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="33" x="660" y="368.5122">Audit</text>
-    <polygon fill="#A80036" points="1043,411.7109,1053,415.7109,1043,419.7109,1047,415.7109" style="stroke:#A80036;stroke-width:1.0;"/>
-    <line style="stroke:#A80036;stroke-width:1.0;" x1="640" x2="1049" y1="415.7109" y2="415.7109"/>
-    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="647" y="410.645">6</text>
-    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="123" x="660" y="410.645">Process Fulfil Batch</text>
-    <polygon fill="#A80036" points="651,440.8438,641,444.8438,651,448.8438,647,444.8438" style="stroke:#A80036;stroke-width:1.0;"/>
-    <line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="645" x2="1059" y1="444.8438" y2="444.8438"/>
-    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="657" y="439.7778">7</text>
-    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="39" x="670" y="439.7778">Result</text>
-    <polygon fill="#A80036" points="1204.5,469.9766,1214.5,473.9766,1204.5,477.9766,1208.5,473.9766" style="stroke:#A80036;stroke-width:1.0;"/>
-    <line style="stroke:#A80036;stroke-width:1.0;" x1="640" x2="1210.5" y1="473.9766" y2="473.9766"/>
-    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="647" y="468.9106">8</text>
-    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="130" x="660" y="468.9106">Process Abort Batch</text>
-    <polygon fill="#A80036" points="651,499.1094,641,503.1094,651,507.1094,647,503.1094" style="stroke:#A80036;stroke-width:1.0;"/>
-    <line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="645" x2="1220.5" y1="503.1094" y2="503.1094"/>
-    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="657" y="498.0435">9</text>
-    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="39" x="670" y="498.0435">Result</text>
-    <polygon fill="#A80036" points="1379.5,528.2422,1389.5,532.2422,1379.5,536.2422,1383.5,532.2422" style="stroke:#A80036;stroke-width:1.0;"/>
-    <line style="stroke:#A80036;stroke-width:1.0;" x1="640" x2="1385.5" y1="532.2422" y2="532.2422"/>
-    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="647" y="527.1763">10</text>
-    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="147" x="669" y="527.1763">Process Timeout Batch</text>
-    <polygon fill="#A80036" points="651,557.375,641,561.375,651,565.375,647,561.375" style="stroke:#A80036;stroke-width:1.0;"/>
-    <line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="645" x2="1395.5" y1="561.375" y2="561.375"/>
-    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="657" y="556.3091">11</text>
-    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="39" x="679" y="556.3091">Result</text>
-    <polygon fill="#A80036" points="1534,586.5078,1544,590.5078,1534,594.5078,1538,590.5078" style="stroke:#A80036;stroke-width:1.0;"/>
-    <line style="stroke:#A80036;stroke-width:1.0;" x1="640" x2="1540" y1="590.5078" y2="590.5078"/>
-    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="647" y="585.4419">12</text>
-    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="145" x="669" y="585.4419">Process Prepare Batch</text>
-    <polygon fill="#A80036" points="651,615.6406,641,619.6406,651,623.6406,647,619.6406" style="stroke:#A80036;stroke-width:1.0;"/>
-    <line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="645" x2="1550" y1="619.6406" y2="619.6406"/>
-    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="657" y="614.5747">13</text>
-    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="39" x="679" y="614.5747">Result</text>
-    <polygon fill="#A80036" points="105,644.7734,95,648.7734,105,652.7734,101,648.7734" style="stroke:#A80036;stroke-width:1.0;"/>
-    <line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="99" x2="639" y1="648.7734" y2="648.7734"/>
-    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="111" y="643.7075">14</text>
-    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="42" x="133" y="643.7075">Return</text>
-    <line style="stroke:#A80036;stroke-width:1.0;" x1="94" x2="136" y1="677.9063" y2="677.9063"/>
-    <line style="stroke:#A80036;stroke-width:1.0;" x1="136" x2="136" y1="677.9063" y2="690.9063"/>
-    <line style="stroke:#A80036;stroke-width:1.0;" x1="95" x2="136" y1="690.9063" y2="690.9063"/>
-    <polygon fill="#A80036" points="105,686.9063,95,690.9063,105,694.9063,101,690.9063" style="stroke:#A80036;stroke-width:1.0;"/>
-    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="101" y="672.8403">15</text>
-    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="132" x="123" y="672.8403">Commit Kafka Offset</text>
+    <text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="267" x="701" y="27.9951">1.3.0. Position Messages Binning</text>
+    <rect fill="#FFFFE0" height="1454.375" style="stroke:#181818;stroke-width:0.5;" width="1623" x="46" y="43.2969"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="115" x="800" y="55.3638">Central Service</text>
+    <rect fill="#FFFFFF" height="1315.6484" style="stroke:#181818;stroke-width:1.0;" width="10" x="106.5" y="120.7266"/>
+    <rect fill="#FFFFFF" height="79.3984" style="stroke:#181818;stroke-width:1.0;" width="10" x="808.5" y="585.1172"/>
+    <rect fill="#FFFFFF" height="79.3984" style="stroke:#181818;stroke-width:1.0;" width="10" x="921.5" y="693.6484"/>
+    <rect fill="#FFFFFF" height="79.3984" style="stroke:#181818;stroke-width:1.0;" width="10" x="1047.5" y="802.1797"/>
+    <rect fill="#FFFFFF" height="79.3984" style="stroke:#181818;stroke-width:1.0;" width="10" x="1181" y="910.7109"/>
+    <rect fill="none" height="1301.6484" style="stroke:#000000;stroke-width:1.5;" width="1526" x="10" y="127.7266"/>
+    <rect fill="none" height="116.5313" style="stroke:#000000;stroke-width:1.5;" width="630.5" x="40" y="209.125"/>
+    <rect fill="none" height="1082.7188" style="stroke:#000000;stroke-width:1.5;" width="1506" x="20" y="339.6563"/>
+    <rect fill="none" height="590.0547" style="stroke:#000000;stroke-width:1.5;" width="936.5" x="579.5" y="466.3203"/>
+    <rect fill="none" height="315.8672" style="stroke:#000000;stroke-width:1.5;" width="355" x="30" y="1099.5078"/>
+    <rect fill="none" height="101.3984" style="stroke:#000000;stroke-width:1.5;" width="335" x="40" y="1207.9063"/>
+    <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="111" x2="111" y1="110.7266" y2="1446.375"/>
+    <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="670.5" x2="670.5" y1="110.7266" y2="1446.375"/>
+    <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="813" x2="813" y1="110.7266" y2="1446.375"/>
+    <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="926" x2="926" y1="110.7266" y2="1446.375"/>
+    <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="1052" x2="1052" y1="110.7266" y2="1446.375"/>
+    <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="1186" x2="1186" y1="110.7266" y2="1446.375"/>
+    <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="1317" x2="1317" y1="110.7266" y2="1446.375"/>
+    <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="1446" x2="1446" y1="110.7266" y2="1446.375"/>
+    <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="1590" x2="1590" y1="110.7266" y2="1446.375"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="117" x="50" y="107.4248">Position Handler</text>
+    <ellipse cx="111.5" cy="78.4297" fill="#E2E2F0" rx="12" ry="12" style="stroke:#181818;stroke-width:0.5;"/>
+    <polygon fill="#181818" points="107.5,66.4297,113.5,61.4297,111.5,66.4297,113.5,71.4297,107.5,66.4297" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="117" x="50" y="1458.3701">Position Handler</text>
+    <ellipse cx="111.5" cy="1477.6719" fill="#E2E2F0" rx="12" ry="12" style="stroke:#181818;stroke-width:0.5;"/>
+    <polygon fill="#181818" points="107.5,1465.6719,113.5,1460.6719,111.5,1465.6719,113.5,1470.6719,107.5,1465.6719" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="156" x="589.5" y="107.4248">Domain Bin Processor</text>
+    <ellipse cx="670.5" cy="78.4297" fill="#E2E2F0" rx="12" ry="12" style="stroke:#181818;stroke-width:0.5;"/>
+    <line style="stroke:#181818;stroke-width:0.5;" x1="658.5" x2="682.5" y1="92.4297" y2="92.4297"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="156" x="589.5" y="1458.3701">Domain Bin Processor</text>
+    <ellipse cx="670.5" cy="1477.6719" fill="#E2E2F0" rx="12" ry="12" style="stroke:#181818;stroke-width:0.5;"/>
+    <line style="stroke:#181818;stroke-width:0.5;" x1="658.5" x2="682.5" y1="1491.6719" y2="1491.6719"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="93" x="764" y="107.4248">Fulfil Domain</text>
+    <ellipse cx="813.5" cy="78.4297" fill="#E2E2F0" rx="12" ry="12" style="stroke:#181818;stroke-width:0.5;"/>
+    <line style="stroke:#181818;stroke-width:0.5;" x1="801.5" x2="825.5" y1="92.4297" y2="92.4297"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="93" x="764" y="1458.3701">Fulfil Domain</text>
+    <ellipse cx="813.5" cy="1477.6719" fill="#E2E2F0" rx="12" ry="12" style="stroke:#181818;stroke-width:0.5;"/>
+    <line style="stroke:#181818;stroke-width:0.5;" x1="801.5" x2="825.5" y1="1491.6719" y2="1491.6719"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="101" x="873" y="107.4248">Abort Domain</text>
+    <ellipse cx="926.5" cy="78.4297" fill="#E2E2F0" rx="12" ry="12" style="stroke:#181818;stroke-width:0.5;"/>
+    <line style="stroke:#181818;stroke-width:0.5;" x1="914.5" x2="938.5" y1="92.4297" y2="92.4297"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="101" x="873" y="1458.3701">Abort Domain</text>
+    <ellipse cx="926.5" cy="1477.6719" fill="#E2E2F0" rx="12" ry="12" style="stroke:#181818;stroke-width:0.5;"/>
+    <line style="stroke:#181818;stroke-width:0.5;" x1="914.5" x2="938.5" y1="1491.6719" y2="1491.6719"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="119" x="990" y="107.4248">Timeout Domain</text>
+    <ellipse cx="1052.5" cy="78.4297" fill="#E2E2F0" rx="12" ry="12" style="stroke:#181818;stroke-width:0.5;"/>
+    <line style="stroke:#181818;stroke-width:0.5;" x1="1040.5" x2="1064.5" y1="92.4297" y2="92.4297"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="119" x="990" y="1458.3701">Timeout Domain</text>
+    <ellipse cx="1052.5" cy="1477.6719" fill="#E2E2F0" rx="12" ry="12" style="stroke:#181818;stroke-width:0.5;"/>
+    <line style="stroke:#181818;stroke-width:0.5;" x1="1040.5" x2="1064.5" y1="1491.6719" y2="1491.6719"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="116" x="1125" y="107.4248">Prepare Domain</text>
+    <ellipse cx="1186" cy="78.4297" fill="#E2E2F0" rx="12" ry="12" style="stroke:#181818;stroke-width:0.5;"/>
+    <line style="stroke:#181818;stroke-width:0.5;" x1="1174" x2="1198" y1="92.4297" y2="92.4297"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="116" x="1125" y="1458.3701">Prepare Domain</text>
+    <ellipse cx="1186" cy="1477.6719" fill="#E2E2F0" rx="12" ry="12" style="stroke:#181818;stroke-width:0.5;"/>
+    <line style="stroke:#181818;stroke-width:0.5;" x1="1174" x2="1198" y1="1491.6719" y2="1491.6719"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="114" x="1257" y="107.4248">Transfer Facade</text>
+    <ellipse cx="1317" cy="78.4297" fill="#E2E2F0" rx="12" ry="12" style="stroke:#181818;stroke-width:0.5;"/>
+    <line style="stroke:#181818;stroke-width:0.5;" x1="1305" x2="1329" y1="92.4297" y2="92.4297"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="114" x="1257" y="1458.3701">Transfer Facade</text>
+    <ellipse cx="1317" cy="1477.6719" fill="#E2E2F0" rx="12" ry="12" style="stroke:#181818;stroke-width:0.5;"/>
+    <line style="stroke:#181818;stroke-width:0.5;" x1="1305" x2="1329" y1="1491.6719" y2="1491.6719"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="113" x="1387" y="107.4248">Account Facade</text>
+    <ellipse cx="1446.5" cy="78.4297" fill="#E2E2F0" rx="12" ry="12" style="stroke:#181818;stroke-width:0.5;"/>
+    <line style="stroke:#181818;stroke-width:0.5;" x1="1434.5" x2="1458.5" y1="92.4297" y2="92.4297"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="113" x="1387" y="1458.3701">Account Facade</text>
+    <ellipse cx="1446.5" cy="1477.6719" fill="#E2E2F0" rx="12" ry="12" style="stroke:#181818;stroke-width:0.5;"/>
+    <line style="stroke:#181818;stroke-width:0.5;" x1="1434.5" x2="1458.5" y1="1491.6719" y2="1491.6719"/>
+    <rect fill="#E2E2F0" height="30.2969" style="stroke:#181818;stroke-width:0.5;" width="145" x="1520" y="75.4297"/>
+    <rect fill="#E2E2F0" height="30.2969" style="stroke:#181818;stroke-width:0.5;" width="145" x="1516" y="79.4297"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="131" x="1523" y="99.4248">Notification-Topic</text>
+    <rect fill="#E2E2F0" height="30.2969" style="stroke:#181818;stroke-width:0.5;" width="145" x="1520" y="1445.375"/>
+    <rect fill="#E2E2F0" height="30.2969" style="stroke:#181818;stroke-width:0.5;" width="145" x="1516" y="1449.375"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="131" x="1523" y="1469.3701">Notification-Topic</text>
+    <rect fill="#FFFFFF" height="1315.6484" style="stroke:#181818;stroke-width:1.0;" width="10" x="106.5" y="120.7266"/>
+    <rect fill="#FFFFFF" height="79.3984" style="stroke:#181818;stroke-width:1.0;" width="10" x="808.5" y="585.1172"/>
+    <rect fill="#FFFFFF" height="79.3984" style="stroke:#181818;stroke-width:1.0;" width="10" x="921.5" y="693.6484"/>
+    <rect fill="#FFFFFF" height="79.3984" style="stroke:#181818;stroke-width:1.0;" width="10" x="1047.5" y="802.1797"/>
+    <rect fill="#FFFFFF" height="79.3984" style="stroke:#181818;stroke-width:1.0;" width="10" x="1181" y="910.7109"/>
+    <path d="M10,127.7266 L255,127.7266 L255,134.8594 L245,144.8594 L10,144.8594 L10,127.7266 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="1301.6484" style="stroke:#000000;stroke-width:1.5;" width="1526" x="10" y="127.7266"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="200" x="25" y="140.7935">Position Handler Consume</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="116.5" x2="158.5" y1="181.125" y2="181.125"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="158.5" x2="158.5" y1="181.125" y2="194.125"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="117.5" x2="158.5" y1="194.125" y2="194.125"/>
+    <polygon fill="#181818" points="127.5,190.125,117.5,194.125,127.5,198.125,123.5,194.125" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9" x="123.5" y="168.4927">1</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="287" x="136.5" y="160.9263">Consumes messages from the Position topic</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="180" x="136.5" y="176.0591">and stores them in memory</text>
+    <path d="M40,209.125 L118,209.125 L118,216.2578 L108,226.2578 L40,226.2578 L40,209.125 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="116.5313" style="stroke:#000000;stroke-width:1.5;" width="630.5" x="40" y="209.125"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="33" x="55" y="222.1919">loop</text>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="198" x="133" y="221.3354">[for each message in the list]</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="116.5" x2="158.5" y1="262.5234" y2="262.5234"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="158.5" x2="158.5" y1="262.5234" y2="275.5234"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="117.5" x2="158.5" y1="275.5234" y2="275.5234"/>
+    <polygon fill="#181818" points="127.5,271.5234,117.5,275.5234,127.5,279.5234,123.5,275.5234" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9" x="123.5" y="249.8911">2</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="522" x="136.5" y="242.3247">Assign message to account-bin by accountID and child action-bin by event-action</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="513" x="140.5" y="257.4575">(References to the messagses to be stored in bins, no duplication of messages)</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="116.5" x2="158.5" y1="304.6563" y2="304.6563"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="158.5" x2="158.5" y1="304.6563" y2="317.6563"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="117.5" x2="158.5" y1="317.6563" y2="317.6563"/>
+    <polygon fill="#181818" points="127.5,313.6563,117.5,317.6563,127.5,321.6563,123.5,317.6563" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="8" x="123.5" y="299.5903">3</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="96" x="135.5" y="299.5903">Audit message</text>
+    <path d="M20,339.6563 L200,339.6563 L200,346.7891 L190,356.7891 L20,356.7891 L20,339.6563 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="1082.7188" style="stroke:#000000;stroke-width:1.5;" width="1506" x="20" y="339.6563"/>
+    <text fill="#0000FF" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="135" x="35" y="352.7231">DB TRANSACTION</text>
+    <polygon fill="#181818" points="658.5,373.9219,668.5,377.9219,658.5,381.9219,662.5,377.9219" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="116.5" x2="664.5" y1="377.9219" y2="377.9219"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9" x="123.5" y="372.856">4</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="294" x="136.5" y="372.856">Call Bin Processor with the list of account-bins</text>
+    <polygon fill="#181818" points="1305,403.0547,1315,407.0547,1305,411.0547,1309,407.0547" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="670.5" x2="1311" y1="407.0547" y2="407.0547"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9" x="677.5" y="401.9888">5</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="478" x="690.5" y="401.9888">Pre fetch all transferStateChanges for all the transferIds in the account-bin</text>
+    <polygon fill="#181818" points="1434.5,447.3203,1444.5,451.3203,1434.5,455.3203,1438.5,451.3203" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="670.5" x2="1440.5" y1="451.3203" y2="451.3203"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9" x="677.5" y="438.688">6</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="474" x="690.5" y="431.1216">Pre fetch all position and settlement account balances for the account-bin</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="144" x="690.5" y="446.2544">Aquire lock on position</text>
+    <path d="M579.5,466.3203 L657.5,466.3203 L657.5,473.4531 L647.5,483.4531 L579.5,483.4531 L579.5,466.3203 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="590.0547" style="stroke:#000000;stroke-width:1.5;" width="936.5" x="579.5" y="466.3203"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="33" x="594.5" y="479.3872">loop</text>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="219" x="672.5" y="478.5308">[for each account-bin in the list]</text>
+    <path d="M675,488.4531 L675,558.4531 L1298,558.4531 L1298,498.4531 L1288,488.4531 L675,488.4531 " fill="#ADD8E6" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M1288,488.4531 L1288,498.4531 L1298,498.4531 L1288,488.4531 " fill="#ADD8E6" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="38" x="681" y="505.52">Note</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="258" x="719" y="505.52">: Order of processing for various actions</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="258" x="681" y="520.6528">1. Fulfil - Work in progress is first priority</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="602" x="681" y="535.7856">2. Abort &amp; Timeout - Freeing funds for future transfers is priority before tackling new requests</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="329" x="681" y="550.9185">3. Prepare - Processing new requests is last priority</text>
+    <polygon fill="#181818" points="796.5,581.1172,806.5,585.1172,796.5,589.1172,800.5,585.1172" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="670.5" x2="802.5" y1="585.1172" y2="585.1172"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9" x="677.5" y="580.0513">7</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="106" x="690.5" y="580.0513">Process Fulfil Bin</text>
+    <path d="M675,598.1172 L675,638.1172 L1133,638.1172 L1133,608.1172 L1123,598.1172 L675,598.1172 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M1123,598.1172 L1123,608.1172 L1133,608.1172 L1123,598.1172 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="432" x="681" y="615.1841">Input: Bin, Pre-fetched account balances and transferStateChanges</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="437" x="681" y="630.3169">Output: Accumulated changes in position and transferStateChanges</text>
+    <polygon fill="#181818" points="681.5,660.5156,671.5,664.5156,681.5,668.5156,677.5,664.5156" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="675.5" x2="812.5" y1="664.5156" y2="664.5156"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9" x="687.5" y="659.4497">8</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="40" x="700.5" y="659.4497">Result</text>
+    <polygon fill="#181818" points="909.5,689.6484,919.5,693.6484,909.5,697.6484,913.5,693.6484" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="670.5" x2="915.5" y1="693.6484" y2="693.6484"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9" x="677.5" y="688.5825">9</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="112" x="690.5" y="688.5825">Process Abort Bin</text>
+    <path d="M675,706.6484 L675,746.6484 L1206,746.6484 L1206,716.6484 L1196,706.6484 L675,706.6484 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M1196,706.6484 L1196,716.6484 L1206,716.6484 L1196,706.6484 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="510" x="681" y="723.7153">Input: Bin, previously accumulated account balances and transferStateChanges</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="437" x="681" y="738.8481">Output: Accumulated changes in position and transferStateChanges</text>
+    <polygon fill="#181818" points="681.5,769.0469,671.5,773.0469,681.5,777.0469,677.5,773.0469" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="675.5" x2="925.5" y1="773.0469" y2="773.0469"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="19" x="687.5" y="767.981">10</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="40" x="710.5" y="767.981">Result</text>
+    <polygon fill="#181818" points="1035.5,798.1797,1045.5,802.1797,1035.5,806.1797,1039.5,802.1797" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="670.5" x2="1041.5" y1="802.1797" y2="802.1797"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18" x="677.5" y="797.1138">11</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="130" x="699.5" y="797.1138">Process Timeout Bin</text>
+    <path d="M675,815.1797 L675,855.1797 L1206,855.1797 L1206,825.1797 L1196,815.1797 L675,815.1797 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M1196,815.1797 L1196,825.1797 L1206,825.1797 L1196,815.1797 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="510" x="681" y="832.2466">Input: Bin, previously accumulated account balances and transferStateChanges</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="437" x="681" y="847.3794">Output: Accumulated changes in position and transferStateChanges</text>
+    <polygon fill="#181818" points="681.5,877.5781,671.5,881.5781,681.5,885.5781,677.5,881.5781" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="675.5" x2="1051.5" y1="881.5781" y2="881.5781"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18" x="687.5" y="876.5122">12</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="40" x="709.5" y="876.5122">Result</text>
+    <polygon fill="#181818" points="1169,906.7109,1179,910.7109,1169,914.7109,1173,910.7109" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="670.5" x2="1175" y1="910.7109" y2="910.7109"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="17" x="677.5" y="905.645">13</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="144" x="698.5" y="905.645">Process Prepare Batch</text>
+    <path d="M675,923.7109 L675,963.7109 L1206,963.7109 L1206,933.7109 L1196,923.7109 L675,923.7109 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M1196,923.7109 L1196,933.7109 L1206,933.7109 L1196,923.7109 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="510" x="681" y="940.7778">Input: Bin, previously accumulated account balances and transferStateChanges</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="437" x="681" y="955.9106">Output: Accumulated changes in position and transferStateChanges</text>
+    <polygon fill="#181818" points="681.5,986.1094,671.5,990.1094,681.5,994.1094,677.5,990.1094" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="675.5" x2="1185" y1="990.1094" y2="990.1094"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18" x="687.5" y="985.0435">14</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="40" x="709.5" y="985.0435">Result</text>
+    <polygon fill="#181818" points="1305,1015.2422,1315,1019.2422,1305,1023.2422,1309,1019.2422" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="670.5" x2="1311" y1="1019.2422" y2="1019.2422"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18" x="677.5" y="1014.1763">15</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="268" x="699.5" y="1014.1763">Insert accumulated transferStateChanges</text>
+    <polygon fill="#181818" points="1434.5,1044.375,1444.5,1048.375,1434.5,1052.375,1438.5,1048.375" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="670.5" x2="1440.5" y1="1048.375" y2="1048.375"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18" x="677.5" y="1043.3091">16</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="187" x="699.5" y="1043.3091">Update accumulated position</text>
+    <polygon fill="#181818" points="127.5,1080.5078,117.5,1084.5078,127.5,1088.5078,123.5,1084.5078" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="121.5" x2="669.5" y1="1084.5078" y2="1084.5078"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18" x="133.5" y="1079.4419">17</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="151" x="155.5" y="1079.4419">Return bins with results</text>
+    <path d="M30,1099.5078 L96,1099.5078 L96,1106.6406 L86,1116.6406 L30,1116.6406 L30,1099.5078 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="315.8672" style="stroke:#000000;stroke-width:1.5;" width="355" x="30" y="1099.5078"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="21" x="45" y="1112.5747">alt</text>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="101" x="111" y="1111.7183">[return is true]</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="116.5" x2="158.5" y1="1137.7734" y2="1137.7734"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="158.5" x2="158.5" y1="1137.7734" y2="1150.7734"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="117.5" x2="158.5" y1="1150.7734" y2="1150.7734"/>
+    <polygon fill="#181818" points="127.5,1146.7734,117.5,1150.7734,127.5,1154.7734,123.5,1150.7734" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18" x="123.5" y="1132.7075">18</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="135" x="145.5" y="1132.7075">Commit Kafka Offset</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="116.5" x2="158.5" y1="1179.9063" y2="1179.9063"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="158.5" x2="158.5" y1="1179.9063" y2="1192.9063"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="117.5" x2="158.5" y1="1192.9063" y2="1192.9063"/>
+    <polygon fill="#181818" points="127.5,1188.9063,117.5,1192.9063,127.5,1196.9063,123.5,1192.9063" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18" x="123.5" y="1174.8403">19</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="152" x="145.5" y="1174.8403">Commit DB Transaction</text>
+    <path d="M40,1207.9063 L118,1207.9063 L118,1215.0391 L108,1225.0391 L40,1225.0391 L40,1207.9063 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="101.3984" style="stroke:#000000;stroke-width:1.5;" width="335" x="40" y="1207.9063"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="33" x="55" y="1220.9731">loop</text>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="237" x="133" y="1220.1167">[for each result in the account-bin]</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="116.5" x2="158.5" y1="1246.1719" y2="1246.1719"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="158.5" x2="158.5" y1="1246.1719" y2="1259.1719"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="117.5" x2="158.5" y1="1259.1719" y2="1259.1719"/>
+    <polygon fill="#181818" points="127.5,1255.1719,117.5,1259.1719,127.5,1263.1719,123.5,1259.1719" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="19" x="123.5" y="1241.106">20</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="190" x="146.5" y="1241.106">Produce notification message</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="116.5" x2="158.5" y1="1288.3047" y2="1288.3047"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="158.5" x2="158.5" y1="1288.3047" y2="1301.3047"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="117.5" x2="158.5" y1="1301.3047" y2="1301.3047"/>
+    <polygon fill="#181818" points="127.5,1297.3047,117.5,1301.3047,127.5,1305.3047,123.5,1301.3047" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18" x="123.5" y="1283.2388">21</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="108" x="145.5" y="1283.2388">Audit notification</text>
+    <line style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="30" x2="385" y1="1317.3047" y2="1317.3047"/>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="267" x="35" y="1327.5151">[return is false or unhandled exception]</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="116.5" x2="158.5" y1="1352.2422" y2="1352.2422"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="158.5" x2="158.5" y1="1352.2422" y2="1365.2422"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="117.5" x2="158.5" y1="1365.2422" y2="1365.2422"/>
+    <polygon fill="#181818" points="127.5,1361.2422,117.5,1365.2422,127.5,1369.2422,123.5,1365.2422" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18" x="123.5" y="1347.1763">22</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="154" x="145.5" y="1347.1763">Rollback DB Transaction</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="116.5" x2="158.5" y1="1394.375" y2="1394.375"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="158.5" x2="158.5" y1="1394.375" y2="1407.375"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="117.5" x2="158.5" y1="1407.375" y2="1407.375"/>
+    <polygon fill="#181818" points="127.5,1403.375,117.5,1407.375,127.5,1411.375,123.5,1407.375" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="17" x="123.5" y="1389.3091">23</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="68" x="144.5" y="1389.3091">Audit error</text>
   </g>
 </svg>
