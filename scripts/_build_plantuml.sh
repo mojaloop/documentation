@@ -38,7 +38,7 @@ docker run -d --rm \
   plantuml/plantuml-server:jetty-v1.2020.21
 
 # Wait for docker to be up
-sleep 2
+sleep 10
 
 echo "Searching for ${MODE} files matching pattern: ${PUML_MATCH}"
 
