@@ -685,8 +685,8 @@ module.exports = {
                   ]
                 },
                 {
-                  title: "Position Handler v2",
-                  path: "central-ledger/transfers/1.3.4-position-handler-consume-v2"
+                  title: "Position Handler Bin Support",
+                  path: "central-ledger/transfers/1.3.4-position-handler-consume-binning"
                 },
               ]
             },
