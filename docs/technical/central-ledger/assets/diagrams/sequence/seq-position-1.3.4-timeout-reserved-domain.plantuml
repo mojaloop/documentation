@@ -66,6 +66,39 @@ group Timeout Reserved Position Batch Processing
                 createdDate = new Date() (Get time here or while executing the query in handler ???)
             }
         end note
+        DOMAIN_POSITION_TIMEOUT_RESERVED -> DOMAIN_POSITION_TIMEOUT_RESERVED: resultMessage should be populated and add to **resultMessages**
+        note right of DOMAIN_POSITION_TIMEOUT_RESERVED #yellow
+            **resultMessage**: {
+                id: <transferMessage.transferId>
+                from: <transferMessage.payerFsp>,
+                to: <transferMessage.payeeFsp>,
+                type: application/json
+                content: {
+                    headers: <transferHeaders>,
+                    payload: {
+                            "errorInformation": {
+                                "errorCode": 3300,
+                                "errorDescription": "Transfer expired",
+                                "extensionList": <transferMessage.extensionList>
+                            }
+                    }
+                },
+                metadata: {
+                    event: {
+                        id: <uuid>,
+                        responseTo: <previous.uuid>,
+                        type: notification,
+                        action: abort,
+                        createdAt: <timestamp>,
+                        state: {
+                            status: 'error',
+                            code: <errorInformation.errorCode>
+                            description: <errorInformation.errorDescription>
+                        }
+                    }
+                }
+            }
+        end note
     end
     DOMAIN_POSITION_TIMEOUT_RESERVED -> DOMAIN_POSITION_TIMEOUT_RESERVED: Return the following
     rnote right of DOMAIN_POSITION_TIMEOUT_RESERVED #lightblue
@@ -73,37 +106,7 @@ group Timeout Reserved Position Batch Processing
         **accumulatedPosition**: runningPosition,
         **transferStateChanges**,
         **participantPositionChanges**,
-
-        Message: {
-            id: <transferMessage.transferId>
-            from: <transferMessage.payerFsp>,
-            to: <transferMessage.payeeFsp>,
-            type: application/json
-            content: {
-                headers: <transferHeaders>,
-                payload: {
-                        "errorInformation": {
-                            "errorCode": 3300,
-                            "errorDescription": "Transfer expired",
-                            "extensionList": <transferMessage.extensionList>
-                        }
-                }
-            },
-            metadata: {
-                event: {
-                    id: <uuid>,
-                    responseTo: <previous.uuid>,
-                    type: notification,
-                    action: abort,
-                    createdAt: <timestamp>,
-                    state: {
-                        status: 'error',
-                        code: <errorInformation.errorCode>
-                        description: <errorInformation.errorDescription>
-                    }
-                }
-            }
-        }
+        **resultMessages**, (The list of messages to be sent to the kafka topic)
     }   
     end note
 end

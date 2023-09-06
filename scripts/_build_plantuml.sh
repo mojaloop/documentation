@@ -35,10 +35,10 @@ function ctrl_c() {
 docker run -d --rm \
   --name puml-local \
   -p ${PUML_PORT}:8080 \
-  plantuml/plantuml-server:jetty-v1.2020.21
+  plantuml/plantuml-server:jetty-v1.2023.10
 
 # Wait for docker to be up
-sleep 10
+sleep 5
 
 echo "Searching for ${MODE} files matching pattern: ${PUML_MATCH}"
 

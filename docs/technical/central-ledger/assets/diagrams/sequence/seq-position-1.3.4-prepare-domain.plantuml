@@ -27,7 +27,7 @@
 
 @startuml
 ' declate title
-title 1.3.1. Position Prepare Facade
+title 1.3.1. Position Prepare Domain
 
 autonumber
 
@@ -39,234 +39,142 @@ autonumber
 '   database - Database Persistence Store
 
 ' declare actors
-control "Position Prepare Facade" as FACADE_POSITION_PREPARE
-collections "Notification-Topic" as TOPIC_NOTIFICATIONS
-database "Central Store" as DB
-
-box "Central Service" #LightYellow
-    participant FACADE_POSITION_PREPARE
-    participant DB
-    participant TOPIC_NOTIFICATIONS
-end box
+control "Position Prepare Domain" as DOMAIN_POSITION_PREPARE
 
 ' start flow
-activate FACADE_POSITION_PREPARE
+activate DOMAIN_POSITION_PREPARE
+rnote right of DOMAIN_POSITION_PREPARE #lightblue
+    INPUT:
+        messages,
+        accumulatedPositionValue,
+        accumulatedPositionReservedValue,
+        settlementPositionValue,
+        participantLimitValue,
+        accumulatedTransferStateChanges
+end note
 group Prepare Position Batch Processing
-    ' DB Trans: This is where 1st DB Transaction would start in 2 DB transacation future model for horizontal scaling
-    FACADE_POSITION_PREPARE -> FACADE_POSITION_PREPARE: Loop through batch and build list of transferIds and calculate sumTransfersInBatch,\nchecking all in Batch are for the correct Paricipant and Currency\n<color #FF0000><b>Error code:</b> 2001, 3100</color>
-    FACADE_POSITION_PREPARE -> DB: Retrieve current state of all transfers in array from DB with select whereIn\n(FYI: The two DB transaction model needs to add a mini-state step here (RECEIVED_PREPARE => RECEIVDED_PREPARE_PROCESSING) so that the transfers are left alone if processing has started)
-    activate DB
-    hnote over DB #lightyellow
-        transferStateChange
-        transferParticipant
+    DOMAIN_POSITION_PREPARE -> DOMAIN_POSITION_PREPARE: **effectivePosition** = accumulatedPosition + accumulatedPositionReservedValue
+    DOMAIN_POSITION_PREPARE -> DOMAIN_POSITION_PREPARE: **availablePosition**
+    note right of DOMAIN_POSITION_PREPARE #lightgray
+        **availablePosition**
+        if settlement model delay is IMMEDIATE
+        then:
+            settlementPositionValue + participantLimitValue - effectivePosition
+        otherwise:
+            participantLimitValue - effectivePosition
     end note
-    DB --> FACADE_POSITION_PREPARE: Return current state of all selected transfers from DB
-    deactivate DB
+    DOMAIN_POSITION_PREPARE -> DOMAIN_POSITION_PREPARE: **processedTransfers** = {} (The list of processed transfers - so that we can store the additional information around the decision.)
+    loop for each message in the bin
+        DOMAIN_POSITION_PREPARE -> DOMAIN_POSITION_PREPARE: Validate current state (transferStateChange.transferStateId == 'RECEIVED_PREPARE')\n<color #FF0000><b>Error code:</b> 2001</color> against failing transfers\nBatch is not rejected as a whole.
+        DOMAIN_POSITION_PREPARE -> DOMAIN_POSITION_PREPARE: transferStateChange should be populated and add to **transferStateChanges**, build list of transferStateChanges from transferBatch
+        DOMAIN_POSITION_PREPARE -> DOMAIN_POSITION_PREPARE: Validate availablePosition for each tranfser (see algorithm below)\n<color #FF0000><b>Error code:</b> 4001</color>
 
-    FACADE_POSITION_PREPARE <-> FACADE_POSITION_PREPARE: Validate current state (transferStateChange.transferStateId == 'RECEIVED_PREPARE')\n<color #FF0000><b>Error code:</b> 2001</color> against failing transfers\nBatch is not rejected as a whole.
-
-    note right of FACADE_POSITION_PREPARE #lightgray
-        List of transfers used during processing
-        **reservedTransfers** is list of transfers to be processed in the batch
-        **abortedTransfers** is the list of transfers in the incorrect state going into the process. Currently the transferStateChange is set to ABORTED - this should only be done if not already in a final state (idempotency)
-        **processedTransfers** is the list of transfers that have gone through the position management algorithm. Both successful and failed trasnfers appear here as the order and "running position" against each is necessary for reconciliation
-
-        Scalar intermidate values used in the algorithm
-        **transferAmount** = payload.amount.amount
-        **sumTransfersInBatch** = SUM amount against each Transfer in batch
-        **currentPosition** = participantPosition.value
-        **reservedPosition** = participantPosition.{original}reservedValue
-        **effectivePosition** = currentPosition + reservedPosition
-        **heldPosition** = effectivePosition + sumTransfersInBatch
-        **availablePosition** = //if settlement model delay is IMMEDIATE then:// settlementBalance + participantLimit(NetDebitCap) - effectivePosition, //otherwise:// participantLimit(NetDebitCap) - effectivePosition
-        **sumReserved** = SUM of transfers that have met rule criteria and processed
-    end note
-    note over FACADE_POSITION_PREPARE,DB
-        Going to reserve the sum of the valid transfers in the batch against the Participants Positon in the Currency of this batch
-        and calculate the available position for the Participant to use
-    end note
-    FACADE_POSITION_PREPARE -> DB: Select effectivePosition FOR UPDATE from DB for Payer
-    activate DB
-    hnote over DB #lightyellow
-        participantPosition
-    end note
-    DB --> FACADE_POSITION_PREPARE: Return effectivePosition (currentPosition and reservedPosition) from DB for Payer
-    deactivate DB
-    FACADE_POSITION_PREPARE -> FACADE_POSITION_PREPARE: Increment reservedValue to heldPosition\n(reservedValue = reservedPosition + sumTransfersInBatch)
-    FACADE_POSITION_PREPARE -> DB: Persist reservedValue
-    activate DB
-    hnote over DB #lightyellow
-        UPDATE **participantPosition**
-        SET reservedValue += sumTransfersInBatch
-    end note
-    deactivate DB
-    ' DB Trans: This is where 1st DB Transaction would end in 2 DB transacation future model for horizontal scaling
-
-
-    FACADE_POSITION_PREPARE -> DB: Request position limits for Payer Participant
-    activate DB
-    hnote over DB #lightyellow
-        FROM **participantLimit**
-        WHERE participantLimit.limitTypeId = 'NET-DEBIT-CAP'
-        AND participantLimit.participantId = payload.payerFsp
-        AND participantLimit.currencyId = payload.amount.currency
-    end note
-    DB --> FACADE_POSITION_PREPARE: Return position limits
-    deactivate DB
-    FACADE_POSITION_PREPARE <-> FACADE_POSITION_PREPARE: **availablePosition** = //if settlement model delay is IMMEDIATE then://\n settlementBalance + participantLimit(NetDebitCap) - effectivePosition\n //otherwise://\n participantLimit(NetDebitCap) - effectivePosition\n(same as = (settlementBalance?) + netDebitCap - currentPosition - reservedPosition)
-    note over FACADE_POSITION_PREPARE,DB
-        For each transfer in the batch, validate the availablility of position to meet the transfer amount
-        this will be as per the position algorithm documented below
-    end note
-    FACADE_POSITION_PREPARE <-> FACADE_POSITION_PREPARE: Validate availablePosition for each tranfser (see algorithm below)\n<color #FF0000><b>Error code:</b> 4001</color>
-    note right of FACADE_POSITION_PREPARE #lightgray
-        01: sumReserved = 0 // Record the sum of the transfers we allow to progress to RESERVED
-        02: sumProcessed =0 // Record the sum of the transfers already processed in this batch
-        03: processedTransfers = {} // The list of processed transfers - so that we can store the additional information around the decision. Most importantly the "running" position
-        04: foreach transfer in reservedTransfers
-            05: sumProcessed += transfer.amount // the total processed so far **(NEED TO UPDATE IN CODE)**
-            06: if availablePosition >= transfer.amount
-                07: transfer.state = "RESERVED"
-                08: availablePosition -= preparedTransfer.amount
-                09: sumRESERVED += preparedTransfer.amount
-            10: else
-                11: preparedTransfer.state = "ABORTED"
-                12: preparedTransfer.reason = "Net Debit Cap exceeded by this request at this time, please try again later"
-            13: end if
-            14: runningPosition = currentPosition + sumReserved // the initial value of the Participants position plus the total value that has been accepted in the batch so far
-            15: runningReservedValue = sumTransfersInBatch - sumProcessed + reservedPosition **(NEED TO UPDATE IN CODE)** // the running down of the total reserved value at the begining of the batch.
-            16: Add transfer to the processedTransfer list recording the transfer state and running position and reserved values { transferState, transfer, rawMessage, transferAmount,  runningPosition, runningReservedValue }
-        16: end foreach
-    end note
-    note over FACADE_POSITION_PREPARE,DB
-        Once the outcome for all transfers is known,update the Participant's position and remove the reserved amount associated with the batch
-        (If there are any alarm limits, process those returning limits in which the threshold has been breached)
-        Do a bulk insert of the trasnferStateChanges associated with processing, using the result to complete the participantPositionChange and bulk insert of these to persist the running position
-    end note
-    FACADE_POSITION_PREPARE->FACADE_POSITION_PREPARE: Assess any limit thresholds on the final position\nadding to alarm list if triggered
-
-    ' DB Trans: This is where 2nd DB Transaction would start in 2 DB transacation future model for horizontal scaling
-    FACADE_POSITION_PREPARE->DB: Persist latest position **value** and **reservedValue** to DB for Payer
-        hnote over DB #lightyellow
-            UPDATE **participantPosition**
-            SET value += sumRESERVED,
-            reservedValue -= sumTransfersInBatch
-        end note
-        activate DB
-        deactivate DB
-
-    FACADE_POSITION_PREPARE -> DB: Bulk persist transferStateChange for all processedTransfers
-    hnote over DB #lightyellow
-            batch INSERT **transferStateChange**
-            select for update from transfer table where transferId in ([transferBatch.transferId,...])
-            build list of transferStateChanges from transferBatch
-
-    end note
-    activate DB
-    deactivate DB
-
-    FACADE_POSITION_PREPARE->FACADE_POSITION_PREPARE: Populate batchParticipantPositionChange from the resultant transferStateChange and the earlier processedTransfer list
-
-    note right of FACADE_POSITION_PREPARE #lightgray
-        Effectively:
-            SET transferStateChangeId = processedTransfer.transferStateChangeId,
-            participantPositionId = preparedTransfer.participantPositionId,
-            value = preparedTransfer.positionValue,
-            reservedValue = preparedTransfer.positionReservedValue
-    end note
-    FACADE_POSITION_PREPARE -> DB: Bulk persist the participant position change for all processedTransfers
-    hnote over DB #lightyellow
-            batch INSERT **participantPositionChange**
-    end note
-    activate DB
-    deactivate DB
-    ' DB Trans: This is where 2nd DB Transaction would end in 2 DB transacation future model for horizontal scaling
-
-    deactivate FACADE_POSITION_PREPARE
-    alt Calculate & Validate Latest Position Prepare (success)
-        note right of FACADE_POSITION_PREPARE #yellow
-            Message:
-            {
-                id: <transferMessage.transferId>
-                from: <transferMessage.payerFsp>,
-                to: <transferMessage.payeeFsp>,
-                type: application/json
-                content: {
-                    headers: <transferHeaders>,
-                    payload: <transferMessage>
-                },
-                metadata: {
-                    event: {
-                        id: <uuid>,
-                        responseTo: <previous.uuid>,
-                        type: transfer,
-                        action: prepare,
-                        createdAt: <timestamp>,
-                        state: {
-                            status: "success",
-                            code: 0
+        alt if availablePosition >= payload.amount.amount
+            note right of DOMAIN_POSITION_PREPARE #lightgray
+                transferStateId = **"RESERVED"**
+                availablePosition = availablePosition - preparedTransfer.amount
+            end note
+            note right of DOMAIN_POSITION_PREPARE #yellow
+                resultMessage:
+                {
+                    id: <transferMessage.transferId>
+                    from: <transferMessage.payerFsp>,
+                    to: <transferMessage.payeeFsp>,
+                    type: application/json
+                    content: {
+                        headers: <transferHeaders>,
+                        payload: <transferMessage>
+                    },
+                    metadata: {
+                        event: {
+                            id: <uuid>,
+                            responseTo: <previous.uuid>,
+                            type: transfer,
+                            action: prepare,
+                            createdAt: <timestamp>,
+                            state: {
+                                status: "success",
+                                code: 0
+                            }
                         }
                     }
                 }
-            }
-        end note
-        FACADE_POSITION_PREPARE -> TOPIC_NOTIFICATIONS: Publish Notification event\n<color #FF0000><b>Error code:</b> 2003</color>
-        activate TOPIC_NOTIFICATIONS
-        deactivate TOPIC_NOTIFICATIONS
-    else Calculate & Validate Latest Position Prepare (failure)
-        note right of FACADE_POSITION_PREPARE #red: Validation failure!
-
-        group Persist Transfer State (with transferState='ABORTED' on position check fail)
-            FACADE_POSITION_PREPARE -> DB: Request to persist transfer\n<color #FF0000><b>Error code:</b> 2003</color>
-            activate DB
-            note right of FACADE_POSITION_PREPARE #lightgray
-                transferStateChange.state = "ABORTED",
-                transferStateChange.reason = "Net Debit Cap exceeded by this request at this time, please try again later"
             end note
-            hnote over DB #lightyellow
-                transferStateChange
+        else
+            note right of DOMAIN_POSITION_PREPARE #red: Validation failure!
+            note right of DOMAIN_POSITION_PREPARE #lightgray
+                transferStateId = **"ABORTED"** (This should only be done if not already in a final state (idempotency) ???)
+                reason = "Net Debit Cap exceeded by this request at this time, please try again later"
             end note
-            DB --> FACADE_POSITION_PREPARE: Return success
-            deactivate DB
+            note right of DOMAIN_POSITION_PREPARE #yellow
+                resultMessage:
+                {
+                    id: <transferMessage.transferId>
+                    from: <ledgerName>,
+                    to: <transferMessage.payerFsp>,
+                    type: application/json
+                    content: {
+                        headers: <transferHeaders>,
+                        payload: {
+                            "errorInformation": {
+                                "errorCode": 4001,
+                                "errorDescription": "Payer FSP insufficient liquidity",
+                                "extensionList": <transferMessage.extensionList>
+                        }
+                    },
+                    metadata: {
+                        event: {
+                            id: <uuid>,
+                            responseTo: <previous.uuid>,
+                            type: notification,
+                            action: prepare,
+                            createdAt: <timestamp>,
+                            state: {
+                                status: 'error',
+                                code: <errorInformation.errorCode>
+                                description: <errorInformation.errorDescription>
+                            }
+                        }
+                    }
+                }
+            end note
         end
-
-        note right of FACADE_POSITION_PREPARE #yellow
-            Message:
-            {
-                id: <transferMessage.transferId>
-                from: <ledgerName>,
-                to: <transferMessage.payerFsp>,
-                type: application/json
-                content: {
-                    headers: <transferHeaders>,
-                    payload: {
-                        "errorInformation": {
-                            "errorCode": 4001,
-                            "errorDescription": "Payer FSP insufficient liquidity",
-                            "extensionList": <transferMessage.extensionList>
-                    }
-                },
-                metadata: {
-                    event: {
-                        id: <uuid>,
-                        responseTo: <previous.uuid>,
-                        type: notification,
-                        action: prepare,
-                        createdAt: <timestamp>,
-                        state: {
-                            status: 'error',
-                            code: <errorInformation.errorCode>
-                            description: <errorInformation.errorDescription>
-                        }
-                    }
-                }
+        DOMAIN_POSITION_PREPARE -> DOMAIN_POSITION_PREPARE: resultMessage should be added to **resultMessages**
+        DOMAIN_POSITION_PREPARE -> DOMAIN_POSITION_PREPARE: transferStateChange should be populated and add to **transferStateChanges**
+        hnote right of DOMAIN_POSITION_PREPARE #lightyellow
+            **transferStateChange**: {
+                **transferStateId**,
+                reason
             }
         end note
-        FACADE_POSITION_PREPARE -> TOPIC_NOTIFICATIONS: Publish Notification (failure) event for Payer\n<color #FF0000><b>Error code:</b> 2003</color>
-        activate TOPIC_NOTIFICATIONS
-        deactivate TOPIC_NOTIFICATIONS
-        deactivate FACADE_POSITION_PREPARE
+        DOMAIN_POSITION_PREPARE -> DOMAIN_POSITION_PREPARE: participantPositionChange should be populated and add to **participantPositionChanges**
+        hnote right of DOMAIN_POSITION_PREPARE #lightyellow
+            **participantPositionChange**: {
+                transferStateChangeId: We need this, may be need to update in the handler (???)
+                value = availablePosition,
+                reservedValue = accumulatedPositionReservedValue
+                createdDate = new Date() (Get time here or while executing the query in handler ???)
+            }
+        end note
+
+        DOMAIN_POSITION_PREPARE->DOMAIN_POSITION_PREPARE: Assess any limit thresholds on the position\nadding to alarm list if triggered (???)
+        note right of DOMAIN_POSITION_PREPARE
+            If there are any alarm limits, process those returning limits in which the threshold has been breached
+        end note
+        
     end
+
+    DOMAIN_POSITION_PREPARE -> DOMAIN_POSITION_PREPARE: Return the following
+    rnote right of DOMAIN_POSITION_PREPARE #lightblue
+    {
+        **accumulatedPosition**: availablePosition,
+        **transferStateChanges**,
+        **participantPositionChanges**,
+        **resultMessages**, (The list of messages to be sent to the kafka topic)
+    }
+    end note
+    deactivate DOMAIN_POSITION_PREPARE
+
 end
 
 @enduml

@@ -65,78 +65,73 @@ group Abort Position Batch Processing
                 createdDate = new Date() (Get time here or while executing the query in handler ???)
             }
         end note
+        DOMAIN_POSITION_ABORT -> DOMAIN_POSITION_ABORT: resultMessage should be populated and add to **resultMessages**
+        alt action == 'reject'
+            rnote right of DOMAIN_POSITION_ABORT #yellow
+                **resultMessage**: {
+                    id: <transferMessage.transferId>
+                    from: <transferMessage.payerFsp>,
+                    to: <transferMessage.payeeFsp>,
+                    type: application/json
+                    content: {
+                        headers: <transferHeaders>,
+                        payload: <transferMessage>
+                    },
+                    metadata: {
+                        event: {
+                            id: <uuid>,
+                            responseTo: <previous.uuid>,
+                            type: notification,
+                            action: reject,
+                            createdAt: <timestamp>,
+                            state: {
+                                status: "success",
+                                code: 0,
+                                description: "action successful"
+                            }
+                        }
+                    }
+                }
+            end note
+        else action == 'abort'
+            rnote right of DOMAIN_POSITION_ABORT #yellow
+                **resultMessage**: {
+                    id: <transferMessage.transferId>
+                    from: <transferMessage.payerFsp>,
+                    to: <transferMessage.payeeFsp>,
+                    type: application/json
+                    content: {
+                        headers: <transferHeaders>,
+                        payload: <transferMessage>
+                    },
+                    metadata: {
+                        event: {
+                            id: <uuid>,
+                            responseTo: <previous.uuid>,
+                            type: notification,
+                            action: abort,
+                            createdAt: <timestamp>,
+                            state: {
+                                status: 'error',
+                                code: <payload.errorInformation.errorCode || 5000>
+                                description: <payload.errorInformation.errorDescription>
+                            }
+                        }
+                    }
+                }
+            end note
+        end
     end
    
     DOMAIN_POSITION_ABORT -> DOMAIN_POSITION_ABORT: Return the following
-
-
-    alt action == 'reject'
-        rnote right of DOMAIN_POSITION_ABORT #lightblue
-        {
-            **accumulatedPosition**: runningPosition,
-            **transferStateChanges**,
-            **participantPositionChanges**,
-
-            Message: {
-                id: <transferMessage.transferId>
-                from: <transferMessage.payerFsp>,
-                to: <transferMessage.payeeFsp>,
-                type: application/json
-                content: {
-                    headers: <transferHeaders>,
-                    payload: <transferMessage>
-                },
-                metadata: {
-                    event: {
-                        id: <uuid>,
-                        responseTo: <previous.uuid>,
-                        type: notification,
-                        action: reject,
-                        createdAt: <timestamp>,
-                        state: {
-                            status: "success",
-                            code: 0,
-                            description: "action successful"
-                        }
-                    }
-                }
-            }
-        }
-        end note
-    else action == 'abort'
-        rnote right of DOMAIN_POSITION_ABORT #lightblue
-        {
-            **accumulatedPosition**: runningPosition,
-            **transferStateChanges**,
-            **participantPositionChanges**,
-
-            Message: {
-                id: <transferMessage.transferId>
-                from: <transferMessage.payerFsp>,
-                to: <transferMessage.payeeFsp>,
-                type: application/json
-                content: {
-                    headers: <transferHeaders>,
-                    payload: <transferMessage>
-                },
-                metadata: {
-                    event: {
-                        id: <uuid>,
-                        responseTo: <previous.uuid>,
-                        type: notification,
-                        action: abort,
-                        createdAt: <timestamp>,
-                        state: {
-                            status: 'error',
-                            code: <payload.errorInformation.errorCode || 5000>
-                            description: <payload.errorInformation.errorDescription>
-                        }
-                    }
-                }
-            }
-        }
-        end note
-    end
+    rnote right of DOMAIN_POSITION_ABORT #lightblue
+    {
+        **accumulatedPosition**: runningPosition,
+        **transferStateChanges**,
+        **participantPositionChanges**,
+        **resultMessages**, (The list of messages to be sent to the kafka topic)
+    }
+    end note
 end
 deactivate DOMAIN_POSITION_ABORT
 @enduml

@@ -67,6 +67,32 @@ group Fulfil Position Batch Processing
                 createdDate = new Date() (Get time here or while executing the query in handler ???)
             }
         end note
+        DOMAIN_POSITION_FULFIL -> DOMAIN_POSITION_FULFIL: resultMessage should be populated and add to **resultMessages**
+        rnote right of DOMAIN_POSITION_FULFIL #yellow
+            **resultMessage**:
+            {
+                id: <transferMessage.transferId>
+                from: <transferMessage.payerFsp>,
+                to: <transferMessage.payeeFsp>,
+                type: application/json
+                content: {
+                    headers: <transferHeaders>,
+                    payload: <transferMessage>
+                },
+                metadata: {
+                    event: {
+                        id: <uuid>,
+                        responseTo: <previous.uuid>,
+                        type: transfer,
+                        action: commit || reserve,
+                        createdAt: <timestamp>,
+                        state: {
+                            status: "success",
+                            code: 0
+                        }
+                    }
+                }
+            end note
     end
     DOMAIN_POSITION_FULFIL -> DOMAIN_POSITION_FULFIL: Return the following
     rnote right of DOMAIN_POSITION_FULFIL #lightblue
@@ -74,31 +100,8 @@ group Fulfil Position Batch Processing
         **accumulatedPosition**: runningPosition,
         **transferStateChanges**,
         **participantPositionChanges**,
-
-        Message:
-        {
-            id: <transferMessage.transferId>
-            from: <transferMessage.payerFsp>,
-            to: <transferMessage.payeeFsp>,
-            type: application/json
-            content: {
-                headers: <transferHeaders>,
-                payload: <transferMessage>
-            },
-            metadata: {
-                event: {
-                    id: <uuid>,
-                    responseTo: <previous.uuid>,
-                    type: transfer,
-                    action: commit || reserve,
-                    createdAt: <timestamp>,
-                    state: {
-                        status: "success",
-                        code: 0
-                    }
-                }
-            }
-        }
+        **resultMessages**, (The list of messages to be sent to the kafka topic)
+    }
     end note
 end
 deactivate DOMAIN_POSITION_FULFIL

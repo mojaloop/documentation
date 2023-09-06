@@ -74,7 +74,7 @@ group Position Handler Consume
         POS_HANDLER -> BIN_PROCESSOR: Call Bin Processor with the list of account-bins
         
         BIN_PROCESSOR -> FACADE_TRANSFER: Pre fetch all transferStateChanges for all the transferIds in the account-bin
-        BIN_PROCESSOR -> FACADE_ACCOUNT: Pre fetch all position and settlement account balances for the account-bin\nAquire lock on position
+        BIN_PROCESSOR -> FACADE_ACCOUNT: Pre fetch all position and settlement account balances for the account-bin\nAcquire lock on position
 
         loop for each account-bin in the list
             note right of BIN_PROCESSOR #lightblue
