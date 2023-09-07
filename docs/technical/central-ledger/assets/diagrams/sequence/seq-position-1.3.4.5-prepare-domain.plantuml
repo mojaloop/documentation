@@ -27,7 +27,7 @@
 
 @startuml
 ' declate title
-title 1.3.1. Position Prepare Domain
+title 1.3.4.5. Position Prepare Domain
 
 autonumber
 
@@ -53,8 +53,12 @@ rnote right of DOMAIN_POSITION_PREPARE #lightblue
         accumulatedTransferStateChanges
 end note
 group Prepare Position Batch Processing
+    note right of DOMAIN_POSITION_PREPARE #lightgray
+       **Note:** The **reservedValue** field in database was used in previous position-prepare batching algorithm.
+       That seems unneccesary here as we are doing only calculation and update the position in a database transaction.
+    end note
     DOMAIN_POSITION_PREPARE -> DOMAIN_POSITION_PREPARE: **effectivePosition** = accumulatedPosition + accumulatedPositionReservedValue
-    DOMAIN_POSITION_PREPARE -> DOMAIN_POSITION_PREPARE: **availablePosition**
+    DOMAIN_POSITION_PREPARE -> DOMAIN_POSITION_PREPARE: Calculate **availablePosition**
     note right of DOMAIN_POSITION_PREPARE #lightgray
         **availablePosition**
         if settlement model delay is IMMEDIATE
@@ -63,11 +67,9 @@ group Prepare Position Batch Processing
         otherwise:
             participantLimitValue - effectivePosition
     end note
-    DOMAIN_POSITION_PREPARE -> DOMAIN_POSITION_PREPARE: **processedTransfers** = {} (The list of processed transfers - so that we can store the additional information around the decision.)
     loop for each message in the bin
         DOMAIN_POSITION_PREPARE -> DOMAIN_POSITION_PREPARE: Validate current state (transferStateChange.transferStateId == 'RECEIVED_PREPARE')\n<color #FF0000><b>Error code:</b> 2001</color> against failing transfers\nBatch is not rejected as a whole.
-        DOMAIN_POSITION_PREPARE -> DOMAIN_POSITION_PREPARE: transferStateChange should be populated and add to **transferStateChanges**, build list of transferStateChanges from transferBatch
-        DOMAIN_POSITION_PREPARE -> DOMAIN_POSITION_PREPARE: Validate availablePosition for each tranfser (see algorithm below)\n<color #FF0000><b>Error code:</b> 4001</color>
+        DOMAIN_POSITION_PREPARE -> DOMAIN_POSITION_PREPARE: **Liquidity Check** - Validate availablePosition for each tranfser (see algorithm below)\n<color #FF0000><b>Error code:</b> 4001</color>
 
         alt if availablePosition >= payload.amount.amount
             note right of DOMAIN_POSITION_PREPARE #lightgray
