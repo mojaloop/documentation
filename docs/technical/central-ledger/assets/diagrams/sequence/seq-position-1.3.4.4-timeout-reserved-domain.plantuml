@@ -47,10 +47,10 @@ rnote right of DOMAIN_POSITION_TIMEOUT_RESERVED #lightblue
     INPUT: bin, accumulatedPosition, transferStateChanges
 end note
 group Timeout Reserved Position Batch Processing
-    DOMAIN_POSITION_TIMEOUT_RESERVED -> DOMAIN_POSITION_TIMEOUT_RESERVED: **runningPosition** = accumulatedPosition
+    DOMAIN_POSITION_TIMEOUT_RESERVED -> DOMAIN_POSITION_TIMEOUT_RESERVED: **runningPosition** = accumulatedPosition \n(runningPosition is the current accumulated position of payer)
     loop for each message in the bin
         DOMAIN_POSITION_TIMEOUT_RESERVED -> DOMAIN_POSITION_TIMEOUT_RESERVED: Validate current state of transfer (transferStateChange.transferStateId == 'RESERVED_TIMEOUT')\n<color #FF0000><b>Error code:</b> 2001</color>
-        DOMAIN_POSITION_TIMEOUT_RESERVED -> DOMAIN_POSITION_TIMEOUT_RESERVED: **runningPosition** = runningPosition - payload.amount.amount
+        DOMAIN_POSITION_TIMEOUT_RESERVED -> DOMAIN_POSITION_TIMEOUT_RESERVED: **runningPosition** = runningPosition + payload.amount.amount
         DOMAIN_POSITION_TIMEOUT_RESERVED -> DOMAIN_POSITION_TIMEOUT_RESERVED: transferStateChange should be populated and add to **transferStateChanges**
         hnote right of DOMAIN_POSITION_TIMEOUT_RESERVED #lightyellow
             **transferStateChange**: {
@@ -60,10 +60,9 @@ group Timeout Reserved Position Batch Processing
         DOMAIN_POSITION_TIMEOUT_RESERVED -> DOMAIN_POSITION_TIMEOUT_RESERVED: participantPositionChange should be populated and add to **participantPositionChanges**
         hnote right of DOMAIN_POSITION_TIMEOUT_RESERVED #lightyellow
             **participantPositionChange**: {
-                transferStateChangeId: We need this, may be need to update in the handler (???)
+                transferStateChangeId: null, // Need to update this in bin processor while executing queries
                 value = runningPosition,
-                reservedValue = participantPosition.reservedValue (???)
-                createdDate = new Date() (Get time here or while executing the query in handler ???)
+                reservedValue = participantPosition.reservedValue
             }
         end note
         DOMAIN_POSITION_TIMEOUT_RESERVED -> DOMAIN_POSITION_TIMEOUT_RESERVED: resultMessage should be populated and add to **resultMessages**

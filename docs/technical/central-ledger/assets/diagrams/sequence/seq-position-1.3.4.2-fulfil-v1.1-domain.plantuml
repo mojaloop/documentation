@@ -48,10 +48,10 @@ rnote right of DOMAIN_POSITION_FULFIL #lightblue
     INPUT: bin, accumulatedPosition, transferStateChanges
 end note
 group Fulfil Position Batch Processing
-    DOMAIN_POSITION_FULFIL -> DOMAIN_POSITION_FULFIL: **runningPosition** = accumulatedPosition
+    DOMAIN_POSITION_FULFIL -> DOMAIN_POSITION_FULFIL: **runningPosition** = accumulatedPosition\n(runningPosition is the current accumulated position of payee)
     loop for each message in the bin
         DOMAIN_POSITION_FULFIL -> DOMAIN_POSITION_FULFIL: Validate current state (transferState is 'RECEIVED-FULFIL')\n<color #FF0000><b>Error code:</b> 2001</color> against failing transfers\nBatch is not rejected as a whole
-        DOMAIN_POSITION_FULFIL -> DOMAIN_POSITION_FULFIL: **runningPosition** = runningPosition - payload.amount.amount
+        DOMAIN_POSITION_FULFIL -> DOMAIN_POSITION_FULFIL: **runningPosition** = runningPosition + payload.amount.amount
         DOMAIN_POSITION_FULFIL -> DOMAIN_POSITION_FULFIL: transferStateChange should be populated and add to **transferStateChanges**
         hnote right of DOMAIN_POSITION_FULFIL #lightyellow
             **transferStateChange**: {
@@ -61,10 +61,9 @@ group Fulfil Position Batch Processing
         DOMAIN_POSITION_FULFIL -> DOMAIN_POSITION_FULFIL: participantPositionChange should be populated and add to **participantPositionChanges**
         hnote right of DOMAIN_POSITION_FULFIL #lightyellow
             **participantPositionChange**: {
-                transferStateChangeId: We need this, may be need to update in the handler (???)
+                transferStateChangeId: null, // Need to update this in bin processor while executing queries
                 value = runningPosition,
-                reservedValue = participantPosition.reservedValue (???)
-                createdDate = new Date() (Get time here or while executing the query in handler ???)
+                reservedValue = participantPosition.reservedValue
             }
         end note
         DOMAIN_POSITION_FULFIL -> DOMAIN_POSITION_FULFIL: resultMessage should be populated and add to **resultMessages**

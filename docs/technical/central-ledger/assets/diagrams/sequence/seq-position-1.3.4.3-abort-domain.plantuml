@@ -47,9 +47,10 @@ rnote right of DOMAIN_POSITION_ABORT #lightblue
     INPUT: bin, accumulatedPosition, transferStateChanges
 end note
 group Abort Position Batch Processing
-    DOMAIN_POSITION_ABORT -> DOMAIN_POSITION_ABORT: **runningPosition** = accumulatedPosition
+    DOMAIN_POSITION_ABORT -> DOMAIN_POSITION_ABORT: **runningPosition** = accumulatedPosition \n(runningPosition is the current accumulated position of payer)
     loop for each message in the bin
         DOMAIN_POSITION_ABORT -> DOMAIN_POSITION_ABORT: Validate current state (transferStateChange.transferStateId IN ['RECEIVED_REJECT', 'RECEIVED_ERROR'])\n<color #FF0000><b>Error code:</b> 2001</color>        DOMAIN_POSITION_ABORT -> DOMAIN_POSITION_ABORT: **runningPosition** = runningPosition - payload.amount.amount
+        DOMAIN_POSITION_ABORT -> DOMAIN_POSITION_ABORT: **runningPosition** = runningPosition + payload.amount.amount
         DOMAIN_POSITION_ABORT -> DOMAIN_POSITION_ABORT: transferStateChange should be populated and add to **transferStateChanges**
         hnote right of DOMAIN_POSITION_ABORT #lightyellow
             **transferStateChange**: {
@@ -59,10 +60,9 @@ group Abort Position Batch Processing
         DOMAIN_POSITION_ABORT -> DOMAIN_POSITION_ABORT: participantPositionChange should be populated and add to **participantPositionChanges**
         hnote right of DOMAIN_POSITION_ABORT #lightyellow
             **participantPositionChange**: {
-                transferStateChangeId: We need this, may be need to update in the handler (???)
+                transferStateChangeId: null, // Need to update this in bin processor while executing queries
                 value = runningPosition,
-                reservedValue = participantPosition.reservedValue (???)
-                createdDate = new Date() (Get time here or while executing the query in handler ???)
+                reservedValue = participantPosition.reservedValue
             }
         end note
         DOMAIN_POSITION_ABORT -> DOMAIN_POSITION_ABORT: resultMessage should be populated and add to **resultMessages**

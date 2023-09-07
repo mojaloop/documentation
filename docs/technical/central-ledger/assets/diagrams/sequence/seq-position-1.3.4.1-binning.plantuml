@@ -73,8 +73,8 @@ group Position Handler Consume
     group <color #blue>DB TRANSACTION</color>
         POS_HANDLER -> BIN_PROCESSOR: Call Bin Processor with the list of account-bins
         
-        BIN_PROCESSOR -> FACADE_TRANSFER: Pre fetch all transferStateChanges for all the transferIds in the account-bin
-        BIN_PROCESSOR -> FACADE_ACCOUNT: Pre fetch all position and settlement account balances for the account-bin\nAcquire lock on position
+        BIN_PROCESSOR -> FACADE_TRANSFER: Pre Bulk fetch all transferStateChanges for all the transferIds in the account-bin
+        BIN_PROCESSOR -> FACADE_ACCOUNT: Pre Bulk fetch all position and settlement account balances for the account-bin\nAcquire lock on position
 
         loop for each account-bin in the list
             note right of BIN_PROCESSOR #lightblue
@@ -119,8 +119,10 @@ group Position Handler Consume
             activate DOMAIN_PREPARE
             DOMAIN_PREPARE --> BIN_PROCESSOR: Result
             deactivate DOMAIN_PREPARE
-            BIN_PROCESSOR -> FACADE_TRANSFER: Insert accumulated transferStateChanges
-            BIN_PROCESSOR -> FACADE_ACCOUNT: Update accumulated position
+            BIN_PROCESSOR -> FACADE_TRANSFER: Bulk insert accumulated transferStateChanges
+            BIN_PROCESSOR -> FACADE_TRANSFER: Bulk get the transferStateChangeIds for transferids using select whereIn
+            BIN_PROCESSOR -> BIN_PROCESSOR: Mutate accumulated positionChanges with transferStateChangeIds
+            BIN_PROCESSOR -> FACADE_ACCOUNT: Bulk insert accumulated positionChanges
         end
         
         BIN_PROCESSOR --> POS_HANDLER: Return bins with results

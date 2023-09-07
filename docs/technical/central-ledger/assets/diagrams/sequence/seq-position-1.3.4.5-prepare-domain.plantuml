@@ -58,7 +58,7 @@ group Prepare Position Batch Processing
        That seems unneccesary here as we are doing only calculation and update the position in a database transaction.
     end note
     DOMAIN_POSITION_PREPARE -> DOMAIN_POSITION_PREPARE: **effectivePosition** = accumulatedPosition + accumulatedPositionReservedValue
-    DOMAIN_POSITION_PREPARE -> DOMAIN_POSITION_PREPARE: Calculate **availablePosition**
+    DOMAIN_POSITION_PREPARE -> DOMAIN_POSITION_PREPARE: Calculate **availablePosition** \n(availablePosition is the current accumulated position of payer)
     note right of DOMAIN_POSITION_PREPARE #lightgray
         **availablePosition**
         if settlement model delay is IMMEDIATE
@@ -152,10 +152,9 @@ group Prepare Position Batch Processing
         DOMAIN_POSITION_PREPARE -> DOMAIN_POSITION_PREPARE: participantPositionChange should be populated and add to **participantPositionChanges**
         hnote right of DOMAIN_POSITION_PREPARE #lightyellow
             **participantPositionChange**: {
-                transferStateChangeId: We need this, may be need to update in the handler (???)
+                transferStateChangeId: null, // Need to update this in bin processor while executing queries
                 value = availablePosition,
                 reservedValue = accumulatedPositionReservedValue
-                createdDate = new Date() (Get time here or while executing the query in handler ???)
             }
         end note
 
