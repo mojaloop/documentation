@@ -69,7 +69,7 @@ group Prepare Position Batch Processing
     end note
     loop for each message in the bin
         DOMAIN_POSITION_PREPARE -> DOMAIN_POSITION_PREPARE: Validate current state (transferStateChange.transferStateId == 'RECEIVED_PREPARE')\n<color #FF0000><b>Error code:</b> 2001</color> against failing transfers\nBatch is not rejected as a whole.
-        DOMAIN_POSITION_PREPARE -> DOMAIN_POSITION_PREPARE: **Liquidity Check** - Validate availablePosition for each tranfser (see algorithm below)\n<color #FF0000><b>Error code:</b> 4001</color>
+        DOMAIN_POSITION_PREPARE -> DOMAIN_POSITION_PREPARE: **Liquidity Check** - Validate availablePosition for each transfer (see algorithm below)\n<color #FF0000><b>Error code:</b> 4001</color>
 
         alt if availablePosition >= payload.amount.amount
             note right of DOMAIN_POSITION_PREPARE #lightgray
