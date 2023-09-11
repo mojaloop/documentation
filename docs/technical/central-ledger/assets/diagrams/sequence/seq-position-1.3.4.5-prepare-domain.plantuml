@@ -106,7 +106,7 @@ group Prepare Position Batch Processing
             note right of DOMAIN_POSITION_PREPARE #red: Validation failure!
             note right of DOMAIN_POSITION_PREPARE #lightgray
                 transferStateId = **"ABORTED"** (This should only be done if not already in a final state (idempotency) ???)
-                reason = "Net Debit Cap exceeded by this request at this time, please try again later"
+                reason = "4001 - Payer FSP insufficient liquidity"
             end note
             note right of DOMAIN_POSITION_PREPARE #yellow
                 resultMessage:
