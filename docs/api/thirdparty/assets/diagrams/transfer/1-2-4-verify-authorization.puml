@@ -28,7 +28,7 @@ end box
 
 D2 -> D2: Generate a new ""verificationRequestId"", and associate \n it with the ""thirdpartyTransactionRequestId""
 
-rnote left of D2 #Light
+rnote left of D2 #LightYellow
 **""POST /thirdpartyRequests/verifications""**
 ""FSPIOP-Source: dfspa""
 ""FSPIOP-Destination: central-auth""
@@ -59,7 +59,7 @@ AUTHS -> AUTHS: Lookup this consent based on consentId
 AUTHS -> AUTHS: Ensure the accountAddress matches what is in Consent
 AUTHS -> AUTHS: Check that the signed bytes match the \npublickey we have stored for the consent
 
-rnote right of AUTHS #Light
+rnote right of AUTHS #LightYellow
 **""PUT /thirdpartyRequests/verifications/44444444-0000-0000-0000-000000000000""**
 ""FSPIOP-Source: central-auth""
 ""FSPIOP-Destination: dfspa""

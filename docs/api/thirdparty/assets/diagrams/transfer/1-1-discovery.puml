@@ -28,7 +28,7 @@ end box
 
 
 == Discovery (Lookup) ==
-rnote right of D1 #Light
+rnote right of D1 #LightYellow
 **""GET /parties/MSISDN/+4412345678""**
 ""FSPIOP-Source: pispa""
 end note
@@ -37,7 +37,7 @@ S --> D1: ""202 Accepted""
 
 ... ALS lookup flow not shown here ...
 
-rnote over S #Light
+rnote over S #LightYellow
 **""GET /parties/MSISDN/+4412345678""**
 ""FSPIOP-Source: pispa""
 ""FSPIOP-Destination: dfspb""
@@ -45,7 +45,7 @@ end note
 S -> D3: ""GET /parties/MSISDN/+4412345678""
 D3 --> S: ""202 Accepted""
 
-rnote left of D3 #Light
+rnote left of D3 #LightYellow
 **""PUT /parties/MSISDN/+4412345678""**
 ""FSPIOP-Source: dfspb""
 ""FSPIOP-Destination: pispa""

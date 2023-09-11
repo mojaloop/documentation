@@ -30,7 +30,7 @@ box "DFSP B"
     participant "DFSP B\n(Payee)" as D3
 end box
 
-rnote left of D2 #Light
+rnote left of D2 #LightYellow
 **""POST /quotes""**
 ""FSPIOP-Source: dfspa""
 ""FSPIOP-Destination: dfspb""
@@ -76,7 +76,7 @@ S --> D2: ""202 Accepted""
 S -> D3: ""POST /quotes""
 D3 --> S: ""202 Accepted""
 
-rnote left of D2 #Light
+rnote left of D2 #LightYellow
 **""PUT /quotes/22222222-0000-0000-0000-000000000000""**
 ""FSPIOP-Source: dfspb""
 ""FSPIOP-Destination: dfspa""
@@ -111,7 +111,7 @@ end note
 D2 -> D2: Generate a UUID for the authorization Request:\n""33333333-0000-0000-0000-000000000000""
 D2 -> D2: Derive the challenge based \non ""PUT /quotes/{ID}""
 
-rnote left of D2 #Light
+rnote left of D2 #LightYellow
 **""POST /thirdpartyRequests/authorizations""**
 ""FSPIOP-Source: dfspa""
 ""FSPIOP-Destination: pispa""
