@@ -24,6 +24,7 @@ defaults_Dependencies: &defaults_Dependencies |
             make gcc g++ python3 libtool autoconf automake \
             python3 \
             py3-pip
+  pip3 install --upgrade pip
   pip3 install awscli
 
 
