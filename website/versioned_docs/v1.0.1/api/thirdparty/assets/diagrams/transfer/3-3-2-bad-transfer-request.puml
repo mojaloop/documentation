@@ -40,7 +40,7 @@ end box
 
 D2 -> D2: Generate a new ""transferId"", and associate \n it with the ""transactionRequestId""
 
-rnote over D2 #Light
+rnote over D2 #LightYellow
 **""POST /transfers""**
 ""FSPIOP-Source: dfspa""
 ""FSPIOP-Destination: dfspb""
@@ -60,7 +60,7 @@ end note
 D2 -> S: ""POST /transfers""
 S --> D2: ""202 Accepted""
 
-rnote over S #Light
+rnote over S #LightYellow
 **""POST /transfers""**
 ""FSPIOP-Source: dfspa""
 ""FSPIOP-Destination: dfspb""
@@ -80,7 +80,7 @@ end note
 S -> D3: ""POST /transfers""
 D3 --> S: ""202 Accepted""
 
-rnote left of D3 #Light
+rnote left of D3 #LightYellow
 **""PUT /transfers/55555555-0000-0000-0000-000000000000/error""**
 ""FSPIOP-Source: dfspb""
 ""FSPIOP-Destination: dfspa""
@@ -101,7 +101,7 @@ note left of D2
   Transfer failed, DFSP needs to inform PISP
 end note
 
-rnote left of D2 #Light
+rnote left of D2 #LightYellow
 **""PUT /thirdpartyRequests/transactions""**
 **""    /00000000-0000-0000-0000-000000000000/error""**
 ""FSPIOP-Source: dfspa""

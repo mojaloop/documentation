@@ -29,7 +29,7 @@ end box
 
 
 == Agreement Phase ==
-rnote right of D1 #Light
+rnote right of D1 #LightYellow
 **""POST /thirdpartyRequests/transactions""**
 ""FSPIOP-Source: pispa""
 ""FSPIOP-Destination: dfspa""
@@ -68,7 +68,7 @@ D2 --> S: ""202 Accepted""
 D2 -> D2: DFSP finds something wrong with this transaction request.
 
 
-rnote left of D2 #Light
+rnote left of D2 #LightYellow
 **""PUT /thirdpartyRequests/transactions""**
 **""    /00000000-0000-0000-0000-000000000000/error""**
 ""FSPIOP-Source: dfspa""

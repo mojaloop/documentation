@@ -684,6 +684,10 @@ module.exports = {
                     }
                   ]
                 },
+                {
+                  title: "Position Handler Batch Support",
+                  path: "central-ledger/transfers/1.3.4-position-handler-consume-binning"
+                },
               ]
             },
             {

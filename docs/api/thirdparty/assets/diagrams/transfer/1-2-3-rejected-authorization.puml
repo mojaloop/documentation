@@ -34,7 +34,7 @@ note right of D1
   User rejects the terms of the transcationRequest
 end note
 
-rnote right of D1 #Light
+rnote right of D1 #LightYellow
 **""PUT /thirdpartyRequests/authorizations/33333333-0000-0000-0000-000000000000""**
 ""FSPIOP-Source: pispa""
 ""FSPIOP-Destination: dfspa""
@@ -53,7 +53,7 @@ note over D2
   User has rejected the transaction request. 
 end note
 
-rnote over D2 #Light
+rnote over D2 #LightYellow
 **""PATCH /thirdpartyRequests/transactions/00000000-0000-0000-0000-000000000000""**
 ""FSPIOP-Source: dfspa""
 ""FSPIOP-Destination: pispa""
