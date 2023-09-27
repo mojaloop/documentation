@@ -230,7 +230,6 @@ module.exports = {
                 },
                 {
                   title: 'Older versions',
-                  path: 'fspiop/v1.0/',
                   children: [
                     ['fspiop/v1.0/api-definition', 'v1.0'],
                   ]
@@ -311,7 +310,6 @@ module.exports = {
             },
             {
               title: 'Transaction Patterns',
-              path: 'thirdparty/transaction-patterns',
               collapsable: true,
               children: [
                 {
