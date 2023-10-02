@@ -140,7 +140,7 @@ To avoid confusion and guarantee cross-language interpolation, follow these rule
 - Use Pascal case or camel case for names more than two characters long depending on context (e.g. class names vs variable names). For example, use `SettlementWindow` (Class) or `settlementWindow` (Variable).
 - You should capitalize abbreviations that consist of only two characters, such as `ID` instead of `Id` when isolated. For example, use `/transfer/{{ID}}` instead of `/transfer/{{Id}}` when representing `ID` as a URI parameter.
 - Avoid abbreviations in identifiers or parameter names. If you must use abbreviations, use camel case for abbreviations that consist of more than two characters, even if this contradicts the standard abbreviation of the word.
-- Use screaming (capitalized) Snack case for Enumerations. For example, use `RECORD_FUNDS_OUT_PREPARE_RESERVE`.
+- Use screaming (capitalized) Snake case for Enumerations. For example, use `RECORD_FUNDS_OUT_PREPARE_RESERVE`.
 
 Ref: [Microsoft - Design Guidelines for Class Library Developers](https://docs.microsoft.com/en-us/previous-versions/dotnet/netframework-1.1/141e06ef(v=vs.71)?redirectedfrom=MSDN)
 
@@ -552,7 +552,7 @@ npx husky add .husky/pre-commit "npm run audit:check"
 
 ##### Automated CI Validations
 
-This will ensure that a auditing checks occur during reviews and releases, and also ensure that Git Pre-Commit Hook are not circumvented.
+This will ensure that auditing checks occur during reviews and releases, and also ensure that Git Pre-Commit Hook are not circumvented.
 
 CI Configs (i.e. `.circleci/config.yml`)  must contain a `vulnerability-check` vulnerability Check CI Job (i.e. `npm run dep:check`) for all Pull-Request, merges to Main branch, and Tagged Releases.
 
