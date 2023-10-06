@@ -9,7 +9,7 @@ The Mojaloop Family of APIs is a set of several different APIs that cater for se
 - [FSP Interoperability (FSPIOP) APIs](./fspiop/)
 - [Administration API](./administration/)
 - [Settlement API](./settlement/)
-- [Third-party Payment Initiaion (3PPI/PISP) API](./thirdparty/)
+- [Third-party Payment Initiation (3PPI/PISP) API](./thirdparty/)
 
 There are other APIs that are either in active development and design or on the roadmap:
 

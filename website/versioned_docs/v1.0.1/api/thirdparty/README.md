@@ -20,14 +20,14 @@ The following terms are commonly used across the Third Party API Documentation
 
 The Third Party API is defined across the following OpenAPI 3.0 files:
 
-- [Third Party API - PISP](./thirdparty-pisp-v1.0.yaml)
-- [Third Party API - DFSP](./thirdparty-dfsp-v1.0.yaml)
+- [Third Party API - PISP](https://github.com/mojaloop/mojaloop-specification/blob/master/thirdparty-api/thirdparty-pisp-v1.0.yaml)
+- [Third Party API - DFSP](https://github.com/mojaloop/mojaloop-specification/blob/master/thirdparty-api/thirdparty-dfsp-v1.0.yaml)
 
-The implementation of these APIs will depend on the role of the participant. PISPs should implement the [Third Party API - PISP](./thirdparty-pisp-v1.0.yaml)
+The implementation of these APIs will depend on the role of the participant. PISPs should implement the [Third Party API - PISP](https://github.com/mojaloop/mojaloop-specification/blob/master/thirdparty-api/thirdparty-pisp-v1.0.yaml)
 interface in order to request and manage Account Linking operations, and initiate Third Party Transaction Requests.
 
 DFSPs who wish to support Account Linking operations, and be able to respond to and verify Third Party Transaction Requests should
-implement the [Third Party API - DFSP](./thirdparty-dfsp-v1.0.yaml).
+implement the [Third Party API - DFSP](https://github.com/mojaloop/mojaloop-specification/blob/master/thirdparty-api/thirdparty-dfsp-v1.0.yaml).
 
 ## Transaction Patterns
 

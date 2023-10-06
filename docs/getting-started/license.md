@@ -1,9 +1,9 @@
 # LICENSE
 
-Copyright © 2022 Mojaloop Foundation
+Copyright © 2021 Mojaloop Foundation
 
 The Mojaloop files are made available by the Mojaloop Foundation under the Apache License, Version 2.0
-(the "License") and you may not use these files except in compliance with the [License](http://www.apache.org/licenses/LICENSE-2.0). 
+(the "License") and you may not use these files except in compliance with the [License](http://www.apache.org/licenses/LICENSE-2.0).
 
 You may obtain a copy of the License at [http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)
 
