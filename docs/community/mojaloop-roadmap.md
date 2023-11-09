@@ -2,7 +2,7 @@
 
 The Mojaloop Roadmap is developed and maintained by the Mojaloop foundation, in collaboration with the wider Community. It is reviewed and updated at each Community Meeting, and was last updated at the PI 23 Community meeting in Lusaka, Zambia.
 
-The roadmap is built around the concept of [three pillars]( https://raw.githubusercontent.com/mojaloop/product-council/a0cf73a8fb4921a3bf03aab42416a0ae6c8aa94e/Mojaloop%20Pillars.png).
+The roadmap is built around the concept of three pillars ![alt text](https://raw.githubusercontent.com/mojaloop/product-council/a0cf73a8fb4921a3bf03aab42416a0ae6c8aa94e/Mojaloop%20Pillars.png).
 
 The Pillars are:
 
@@ -12,7 +12,7 @@ The Pillars are:
 
 The Pillars are themselves supported by a foundational **Quality Product** set of workstreams, which together support the continuing maintenance and enhancement of the Core Mojaloop solution.
 
-The full roadmap can be [viewed here](https://github.com/mojaloop/product-council/blob/main/PI%2023%20Mojaloop%20Roadmap.png?raw=true).
+The full roadmap for PI-23 is below: ![alt text](https://github.com/mojaloop/product-council/blob/main/PI%2023%20Mojaloop%20Roadmap.png?raw=true).
 
 This revision of the Roadmap extends from the release of Mojaloop 15.1 at the end of PI 22, to the end of PI 26 (February 2025). Mojaloop releases moved from numbering to names during PI 22, so we have Mojaloop Acacia about to be released; this will be followed by Mojaloop Zambezi, at the end of PI 23, building on Acacia and incorporating the outputs of workstreams including Merchant Payments and Foreign Exchange (international transfers).
 
@@ -50,6 +50,4 @@ All of the Pillars have their own workstreams. For PI 23, the following technica
     * Assessment, maintenance and enhancement of the cybersecurity of the Mojaloop platform, encompassing connectivity to participating DFSPs (including transactions) and the security of hub operator portals.
 
 In addition to these technical workstreams, we have a number of **Strategic Workstreams**, which are intended to address long term, strategic issues, such as a migration to supporting ISO 20022, or monitoring developments in cross-border transactions. It is expected that the outputs of strategic workstreams will include the periodic specification of candidate technical workstreams, for potential adoption in future PIs.
-
-![image](https://github.com/mojaloop/documentation/assets/111573912/fe6b0f9c-9832-4fcb-ad79-fb7aaaf3f443)
 
