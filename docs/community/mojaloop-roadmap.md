@@ -1,5 +1,7 @@
 # The Mojaloop Roadmap
 
+The Mojaloop Foundation, in collaboration with the Community, maintains a Roadmap for the development and enhancement of the Mojaloop platform.
+
 The roadmap is built around the concept of three pillars, which are:
 
 1. Make it easier to deploy Mojaloop
