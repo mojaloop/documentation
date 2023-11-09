@@ -2,7 +2,7 @@
 
 The Mojaloop Roadmap is developed and maintained by the Mojaloop foundation, in collaboration with the wider Community. It is reviewed and updated at each Community Meeting, and was last updated at the PI 23 Community meeting in Lusaka, Zambia.
 
-The roadmap is built around the concept of three pillars ![alt text](https://raw.githubusercontent.com/mojaloop/product-council/a0cf73a8fb4921a3bf03aab42416a0ae6c8aa94e/Mojaloop%20Pillars.png).
+The roadmap is built around the concept of three pillars.<P> <img src="https://raw.githubusercontent.com/mojaloop/product-council/a0cf73a8fb4921a3bf03aab42416a0ae6c8aa94e/Mojaloop%20Pillars.png" align="right" width="350"></a>
 
 The Pillars are:
 
@@ -12,9 +12,9 @@ The Pillars are:
 
 The Pillars are themselves supported by a foundational **Quality Product** set of workstreams, which together support the continuing maintenance and enhancement of the Core Mojaloop solution.
 
-The full roadmap for PI-23 is below: ![alt text](https://github.com/mojaloop/product-council/blob/main/PI%2023%20Mojaloop%20Roadmap.png?raw=true).
+This is the full roadmap for PI-23: ![Mojaloop Roadmap](https://github.com/mojaloop/product-council/blob/main/PI%2023%20Mojaloop%20Roadmap.png?raw=true).
 
-This revision of the Roadmap extends from the release of Mojaloop 15.1 at the end of PI 22, to the end of PI 26 (February 2025). Mojaloop releases moved from numbering to names during PI 22, so we have Mojaloop Acacia about to be released; this will be followed by Mojaloop Zambezi, at the end of PI 23, building on Acacia and incorporating the outputs of workstreams including Merchant Payments and Foreign Exchange (international transfers).
+This revision of the Roadmap extends from the release of Mojaloop 15.1 at the end of PI 21 (June 2023), to the end of PI 26 (February 2025). Mojaloop releases moved from numbering to names during PI 22, so we have Mojaloop Acacia about to be released; this will be followed by Mojaloop Zambezi, at the end of PI 23, building on Acacia and incorporating the outputs of workstreams including Merchant Payments and Foreign Exchange (international transfers).
 
 We currently anticipate releasing Mojaloop Baobab, based on the vNext development effort and the Reference architecture, at the end of PI 24, the end of June 2024 (though this remains subject to achieving the necessary level of quality and functionality, to be achieved through a transition process which has its own roadmap). In turn, this will be replaced by Mojaloop Meerkat at the end of October 2024, which builds on Baobab by adding the outputs of workstreams that are as yet undefined. Further releases will follow the same process.
 
