@@ -39,7 +39,7 @@ All of the Pillars have their own workstreams. For PI 23, the following technica
     * This workstream is enhancing the Mojaloop Hub to support multi-currency transactions, through integration with an external FX Provider (FXP). The initial version will support one model (sender converts) and one FXP; future versions will support multiple models, multiple FXPs, and the use of a reserve currency as intermediary.
 * MOSIP Integration
     * In order to better support social payments and national payments programs, this workstream is developing a solution which will allow payments to be routed to a MOSIP digital identity, instead of for example a mobile phone number. This workstream also works towards greater integration with other open source DPG projects, including Mifos, PHEE and OpenG2P, in support of using MOSIP IDs to generate payments lists for bulk delivery of social payments.
-## Make Adoption Easier
+## Quality Product
 * Performance Characterisation
     * Identify and implement changes to the Mojaloop Hub core software that can improve performance, as we move towards a number of national deployments.
 * Adopt Tigerbeetle
