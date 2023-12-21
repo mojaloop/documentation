@@ -2,6 +2,14 @@
 
 > *Note:* These standards are by no means set in stone, and as a community, we always want to be iterating and improving Mojaloop. If you want to propose a change to these standards, or suggest further improvements, please reach out to the Design Authority Channel on the Mojaloop Slack (#design-authority)
 
+## Mojaloop Invariants
+
+Mojaloop has some [invariants](invariants.md) that are important to understand and adhere to when contributing to the codebase.
+
+These invariants are derived from [The Level One Principles](https://www.leveloneproject.org/wp-content/uploads/2020/07/L1P_Guide_2019_Final.pdf) and other business requirements. They are intended to ensure the platform retains certain characteristics important for national infrastructure grade operation.
+
+Please ensure you are familiar with the invariants before contributing to the codebase.
+
 ## Runtime Environment
 
 The following runtime standards are utilizes for Mojaloop.
