@@ -85,6 +85,7 @@ TODO: Explain rationale
 #### Rationale
 1. In some messaging flows e.g. party lookup, it may be desirable for participants to have a single point of contact for routing of scheme related messages, even when the messages are not intended for the hub, nor require any inspection or other processing.
 
+
 ## Security ([※j](#j)) and Safety of APIs
 
 ### 13. API messages are confidential, tamper-evident, and non-repudiable.
@@ -108,11 +109,17 @@ TODO: Explain rationale
 
 ### 15. Authenticated Messages are not acknowledged as accepted until safely recorded to permanent store.
 #### Rationale
-1. The Mojaloop API assigns semantic meaning to 
-2. The Mojaloop API is designed to operate over imperfect network conditions and as such has built in mechanisms for retries. 
+1. The Mojaloop API assigns significant scheme related business meaning to certain HTTP response codes at various points in transaction flows:
+    1. Certain HTTP responses, e.g. "202 Accepted", are intended to provide financial guarantees to participants and as such must only be sent once the receiving entity is confident it has made safe, permanent record(s) in support of:
+        1. Facilitating system wide recovery to a consistent state after failure(s) in one or more distributed components/entities.
+        2. Accurate settlement processes
+        3. Audit and dispute resolution processes
+    2. For example a "202 Accepted" from the hub to the payee participant upon receipt of a transfer fulfilment message indicates a guarantee of transaction settlement to the payee.
+2. The Mojaloop API is designed to operate safely under imperfect network conditions and as such has built in support for retries and state synchronisation between participants.
 
 
 ### 16. Three levels of communication security to ensure integrity, confidentiality, and non-repudiation of messages between an API server and API client.
+#### Rationale
 1. Secure Connections: mTLS required for all communications between the scheme and authorized participants.
     1. Ensures communications are confidential, between known correspondents, and communications are protected against tampering.
 2. Secure Messages: JSON message content is cryptographically signed according to the JWS specification.
@@ -123,17 +130,40 @@ TODO: Explain rationale
 
 
 ### 17. To ensure system is arithmetically consistent, only fixed point arithmetic is used.
+#### Rationale
 1. For the avoidance of doubt, floating point calculations may lose accuracy and must not be used in any financial calculation
 2. See [Level One Decimal Type](https://docs.mojaloop.io/documentation/discussions/decimal.html) representation and forms
     1. This specification enables seamless interchange with XML-based financial systems without loss of precision or accuracy
 
-### 18. Performance Requirements
-1. Baseline system demonstrated on minimal hardware supports 1,000 FTPS, sustained for one hour, with not more than 1% of transfers exceeding 1 sec through the hub.
-2. Lower unit cost to scale than to initially provisioned.
-
 
 ## Operational Characteristics
 
+### 1. Baseline system demonstrated on minimal hardware supports clearing 1,000 transfers per second, sustained for one hour, with not more than 1% of transfer stages (clearing) taking more than 1 second through the hub.
+1. This measurement includes all necessary hardware and software components with production grade security and data persistence in place.
+2. This measurement includes all three transfer stages: discovery, agreement, and transfer.
+3. This measurement does not include any participant introduced latency.
+4. A lower unit cost to scale than to initially provisioned.
+
+#### Rationale
+1. 1000 transfers (clearing) per second is a reasonable starting point for a national payment system.
+2. 1% of transfers (clearing) taking more than 1 second is a reasonable starting point for a national payment system.
+3. The system should be able to start at a reasonable cost point, for national financial infrastructure, and scale economically as demand grows. 
+
+
+### 2. The system is highly available and resilient to failure.
+#### Rationale
+1. Given that Mojaloop schemes are intended to form parts of national financial infrastructure they must have as close to zero downtime as possible, given reasonable cost constraints.
+2. Failures in hardware and software components are to be expected, even in the highest quality components available. Best practice suggests these failures should be anticipated and planned for in the design of the system.
+3. The system must have no single point of failure; meaning that it continues to operate with minimum degradation of service in the event of a failure of any single component.
+4. Multiple active instances of each component are deployed in a distributed manner behind load balancers.
+5. Each active component instance can handle requests from any client/participant meaning no single participant loses the ability to transact in the event of a failure of any single component.
+6. For the avoidance of doubt this means the tradeoffs chosen favour overall service availability over performance. I.e. All participants can continue to transact at a reduced rate rather than some participants being unable to transact at all.
+
+
+3. The system should be able to scale to meet demand.
+    1. The system should be able to scale to meet demand without loss of data.
+    2. The system should be able to scale to meet demand without loss of service.
+    3. The system should be able to scale to meet demand without loss of performance.
 
 
 ## Design Decisions
@@ -143,14 +173,18 @@ TODO: Explain rationale
     3. Has a massive global portfolio of libraries
     4. Utilizes only the ECMAScript family of architecture-neutral languages and libraries known by millions of skilled web programmers
 
+
 2. Use a micro-service distributed architecture.
     1. [Law of Demeter](https://en.wikipedia.org/wiki/Law_of_Demeter) or Principle of Least Knowledge
     2. [Separation of concerns](https://en.wikipedia.org/wiki/Separation_of_concerns) secured by inter-module contracts
     3. [Modular architecture](https://en.wikipedia.org/wiki/Modular_programming) enables distributed development in a community environment and improvement of components with minimal disruption to adjacent components
 
+
 3. [Apache Kafka](https://kafka.apache.org/intro) distributed [Publish–Subscribe](https://en.wikipedia.org/wiki/Publish–subscribe_pattern) for inter-module [Command–Query Separation (CQS)](https://en.wikipedia.org/wiki/Command–query_separation)
 
+
 4. [Apache Kafka](https://kafka.apache.org/intro) for persistent handling of participant API messages
+
 
 5. Mojaloop uses APIs based on Open API 3.0
     1. Exposes resources that are mapped to functionality to support the defined API use-cases.
@@ -198,7 +232,7 @@ need to explain why necessary to achieve non-repudiation
 
 Added additional description text around general confidentiality, integrity and non-repudiation
 
-Agreed, this is about high throughput concurrency and accuracy not pure speed and latency. And the constraint should be recorded somewhere - it goes something like this- the switch would never allow a participant to exceed their position cap on the collateral made available to the system
+Agreed, this is about high throughput concurrency and accuracy not pure speed and latency. And the constraint should be recorded somewhere - it goes something like this- the hub would never allow a participant to exceed their position cap on the collateral made available to the system
 
 The records need to explain the deterministic manner any decisions were arrived and have the accounting records that show both successful, declined transfer request and errors
 
