@@ -9,11 +9,11 @@ These invariants should guide any product and technical design discussions relat
 #### Rationale
 1. The platform allows participants to clear funds immediately to their customers while keeping the risks and costs associated with this to a minimum
 2. The platform supports per-transfer checks on available liquidity where these are required in support of the first objective
-3. The system is optimized for critical path
+3. The hub is optimized for critical path
 4. Intra-day Automated Settlement; configured by scheme and implementation using recommended settlement models for financial market infrastructure
 
 
-### 2. The system supports fully automatic straight-through processing.
+### 2. The hub supports fully automatic straight-through processing.
 #### Rationale
 1. Straight through processing helps reduce human errors in the transfer process which ultimately reduces costs.
 2. The automated nature of straight through processing leads to faster value transfers between end customers.
@@ -21,10 +21,10 @@ These invariants should guide any product and technical design discussions relat
 More information here: [https://www.investopedia.com/terms/s/straightthroughprocessing.asp]()
 
 
-### 3. The system requires no manual reconciliation as the protocol for interacting with the system guarantees deterministic ([※g](#g)) outcomes.
+### 3. The hub requires no manual reconciliation as the protocol for interacting with the hub guarantees deterministic ([※g](#g)) outcomes.
 #### Rationale
 1. When a transfer is finalized, there can be no doubt about the status of that transfer (alternatively, it is not finalized and active notice provided to participants)
-2. The system guarantees deterministic outcomes for transfers and is accepted by all participants as the final authority on the status of transfers
+2. The hub guarantees deterministic outcomes for transfers and is accepted by all participants as the final authority on the status of transfers
 3. Determinism means individual transfers are traceable, auditable (based on limits, constraints), with final result provided within guaranteed time limit
 4. For the avoidance of doubt, batch transfers are processed line-by-line with potentially differing deterministic outcomes for each
 
@@ -37,7 +37,7 @@ More information here: [https://www.investopedia.com/terms/s/straightthroughproc
 4. No additional transaction-specific processing during the transfer phase.
 
 
-### 5. The system doesn’t parse or act on end-to-end transaction details; transfer messages contain only the values required to complete clearing and settlement.
+### 5. The hub doesn’t parse or act on end-to-end transaction details; transfer messages contain only the values required to complete clearing and settlement.
 #### Rationale
 1. Checks & validations during the transfer step are only for conformance to scheme rules, limit checks, signature authentication, and validation of payment condition and fulfillment.
 2. Transfers that are committed for settlement are final and are guaranteed to settle under the scheme rules.
@@ -56,7 +56,7 @@ TODO: Explain rationale
 3. All messages are validated for conformance to the API specification; non-conforming messages are actively rejected with a standardized machine-interpretable reason code.
 
 
-### 8. The system exposes asynchronous interfaces
+### 8. The hub exposes asynchronous interfaces
 #### Rationale
 1. To maximize system throughput
 2. To isolate leaf-node connectivity issues so they don't impact other end-users
@@ -91,7 +91,7 @@ TODO: Explain rationale
 ### 13. API messages are confidential, tamper-evident, and non-repudiable.
 #### Rationale
 1. Confidentiality is required to protect the privacy of the participants and their customers.
-    1. There are legal requirements in many regulatory domains where Mojaloop is expected to operate and as such, the system must employ best practices to ensure that the privacy of the participants and their customers is protected.
+    1. There are legal requirements in many regulatory domains where Mojaloop is expected to operate and as such, the hub must employ best practices to ensure that the privacy of the participants and their customers is protected.
 2. Tamper-evident integrity mechanisms are required to ensure that messages cannot be altered in transit.
     1. To ensure the integrity of the overall system, each recipient of a message should be able to independently tell, with a high degree of confidence, that the message was not altered in transit.
     2. Public key cryptography (digital signing) provides the current best known mechanism for tamper-evident messaging
@@ -138,32 +138,56 @@ TODO: Explain rationale
 
 ## Operational Characteristics
 
-### 1. Baseline system demonstrated on minimal hardware supports clearing 1,000 transfers per second, sustained for one hour, with not more than 1% of transfer stages (clearing) taking more than 1 second through the hub.
+### 1. Baseline system demonstrated on minimal hardware supports clearing 1,000 transfers per second, sustained for one hour, with not more than 1% (of transfer stage) taking more than 1 second through the hub.
+#### Notes
 1. This measurement includes all necessary hardware and software components with production grade security and data persistence in place.
 2. This measurement includes all three transfer stages: discovery, agreement, and transfer.
 3. This measurement does not include any participant introduced latency.
-4. A lower unit cost to scale than to initially provisioned.
+4. A one hour period is a reasonable approximation of a demand peak for a national payment system.
+5. A lower unit cost to scale than to initially provisioned.
 
 #### Rationale
 1. 1000 transfers (clearing) per second is a reasonable starting point for a national payment system.
 2. 1% of transfers (clearing) taking more than 1 second is a reasonable starting point for a national payment system.
-3. The system should be able to start at a reasonable cost point, for national financial infrastructure, and scale economically as demand grows. 
+3. Mojaloop schemes should be able to start at a reasonable cost point, for national financial infrastructure, and scale economically as demand grows.
 
 
-### 2. The system is highly available and resilient to failure.
+### 2. The hub is highly available and resilient to failures.
+#### Notes
+1. Definition of "highly available":
+   1. In this instance we define the term "_highly available_" as meaning "_the ability to provide and maintain an acceptable level of service in the face of faults and challenges to normal operation._"
+   2. Although schemes may determine their own definition of what constitutes an "_acceptable level of service_", Mojaloop makes certain contributing tradeoff choices:
+      1. When fault modes permit, service is degraded across the entire participant population rather than individual participants suffering total outages while others remain serviceable.
+2. The hub has no single point of failure; meaning that it continues to operate with minimum degradation of service in the event of a failure of any single component.
+   1. Multiple active instances of each component are deployed in a distributed manner behind load balancers.
+   2. Each active component instance can handle requests from any client/participant meaning no single participant loses the ability to transact in the event of a failure of any single component.
+3. Given appropriate infrastructure to operate upon, the Mojaloop software can be deployed in configurations which deliver 99.999% uptime (five nines).
+   1. This includes active:active and active:passive multiple, geographically distributed data center configurations
+4. Should multiple component failures occur which have not been mitigated either in the Mojaloop software, deployment configuration or infrastructure, the Mojaloop API provides mechanisms for each entity in the scheme to recover to a consistent state, with the hub being the ultimate source of truth upon full restoration of service.
+5. _See further points relating to resistance to data loss in the event of failures._
+
 #### Rationale
 1. Given that Mojaloop schemes are intended to form parts of national financial infrastructure they must have as close to zero downtime as possible, given reasonable cost constraints.
-2. Failures in hardware and software components are to be expected, even in the highest quality components available. Best practice suggests these failures should be anticipated and planned for in the design of the system.
-3. The system must have no single point of failure; meaning that it continues to operate with minimum degradation of service in the event of a failure of any single component.
-4. Multiple active instances of each component are deployed in a distributed manner behind load balancers.
-5. Each active component instance can handle requests from any client/participant meaning no single participant loses the ability to transact in the event of a failure of any single component.
-6. For the avoidance of doubt this means the tradeoffs chosen favour overall service availability over performance. I.e. All participants can continue to transact at a reduced rate rather than some participants being unable to transact at all.
+2. Failures in hardware and software components are to be expected, even in the highest quality components available. Best practice suggests these failures should be anticipated and planned for as much as possible in the design of the hub with a view to minimising loss or degradation of service and/or data.
+3. For the avoidance of doubt this means the tradeoffs chosen favour overall service availability and state consistency over performance. I.e:
+   1. All participants can continue to transact at a reduced rate rather than some participants being unable to transact at all.
+   2. Inconsistencies in state between scheme entities are resolvable post service restoration via the Mojaloop API, with minimal manual reconciliation necessary; the hub being the ultimate source of truth.
 
 
-3. The system should be able to scale to meet demand.
-    1. The system should be able to scale to meet demand without loss of data.
-    2. The system should be able to scale to meet demand without loss of service.
-    3. The system should be able to scale to meet demand without loss of performance.
+### 3. The hub is resistant to loss of data in the event of failures.
+#### Notes
+1. Given appropriate infrastructure to operate upon, the Mojaloop software can be deployed in configurations which reliably replicate data across multiple, redundant physical storage nodes before processing.
+   1. Database engine components which are provided by the Mojaloop deployment mechanisms support either:
+      1. primary:secondary asynchronous replicaor primary:primary synchronous replication.
+   2. The replication mechanisms available are dependant on the particular storage layer and database technologies employed.
+
+
+#### Rationale
+1. Given that Mojaloop schemes are intended to form parts of national financial infrastructure they must do as much as possible, given reasonable cost constraints, to avoid loss of data in the event of a failure.
+2. Failures in hardware and software components are to be expected, even in the highest quality components available. Best practice suggests these failures should be anticipated and planned for in the design of the hub with a view to avoiding data loss.
+
+
+
 
 
 ## Design Decisions
@@ -232,7 +256,7 @@ need to explain why necessary to achieve non-repudiation
 
 Added additional description text around general confidentiality, integrity and non-repudiation
 
-Agreed, this is about high throughput concurrency and accuracy not pure speed and latency. And the constraint should be recorded somewhere - it goes something like this- the hub would never allow a participant to exceed their position cap on the collateral made available to the system
+Agreed, this is about high throughput concurrency and accuracy not pure speed and latency. And the constraint should be recorded somewhere - it goes something like this- the hub would never allow a participant to exceed their position cap on the collateral made available to the hub
 
 The records need to explain the deterministic manner any decisions were arrived and have the accounting records that show both successful, declined transfer request and errors
 
