@@ -7,7 +7,7 @@ This guide summarizes the steps needed to get up and running as a contributor to
 
 - Make sure you have a GitHub account already, or sign up for an account [here](https://github.com/join)
 
-- Join the slack community at the [self-invite link](https://mojaloop-slack.herokuapp.com/), and join the following channels:
+- Join the slack community at the [self-invite link](https://join.slack.com/t/mojaloop/shared_invite/zt-1qy6f3fs0-xYfqfIHJ6zFfNXb0XRpiHw), and join the following channels:
   - `#announcements` - Announcements for new Releases and QA Status
   - `#design-authority` - Questions + Discussion around Mojaloop Design
   - `#general` - General discussion about Mojaloop
@@ -16,7 +16,7 @@ This guide summarizes the steps needed to get up and running as a contributor to
 
 - Say hi! Feel free to give a short introduction of yourself to the community on the `#general` channel.
 
-- Review the [Git workflow guide](https://mojaloop.io/documentation/contributors-guide/standards/creating-new-features.html) and ensure you are familiar with git.
+- Review the [Git workflow guide](https://docs.mojaloop.io/community/standards/creating-new-features.html) and ensure you are familiar with git.
   - Further reading: [Introduction to Github workflow](https://www.atlassian.com/git/tutorials/comparing-workflows)
 
 - Familiarize yourself with our standard coding style: https://standardjs.com/
@@ -38,7 +38,7 @@ This guide summarizes the steps needed to get up and running as a contributor to
 - Leave a comment on the issue asking for it to be assigned to you -- this helps make sure we don't duplicate work. As always, reach out to us on Slack if you have any questions or concerns.
 
 - Fork the relevant repos for the issue, clone and create a new branch for the issue
-  - Refer to our [Git User Guide](https://mojaloop.io/documentation/contributors-guide/standards/creating-new-features.html) if you get lost
+  - Refer to our [Git User Guide](https://docs.mojaloop.io/community/standards/creating-new-features.html) if you get lost
 
 
 ## 3. Opening your First PR 

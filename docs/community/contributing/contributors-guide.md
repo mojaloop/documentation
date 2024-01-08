@@ -37,7 +37,7 @@ In general, we are looking for example implementations and bug fixes, and projec
 
 ## Where do I get help?
 
-Join the [Mojaloop Slack Discussions](https://mojaloop-slack.herokuapp.com/) to connect with other developers.
+Join the [Mojaloop Slack Discussions](https://join.slack.com/t/mojaloop/shared_invite/zt-1qy6f3fs0-xYfqfIHJ6zFfNXb0XRpiHw) to connect with other developers.
 
 Also checkout the [FAQ](https://github.com/mojaloop/documentation/blob/master/contributors-guide/frequently-asked-questions.md)
 
