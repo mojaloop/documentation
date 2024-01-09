@@ -1,20 +1,20 @@
 # Mojaloop Invariants
 
-The following invariants have been established during the course of the platform’s development and based upon the technical requirements inferred from the [Level One Project Principles](https://www.leveloneproject.org/project_guide/level-one-project-design-principles/) ([※a](#a))
+The following invariants have been established during the course of the platform’s development and based upon the technical requirements inferred from the [Level One Project Principles](https://www.leveloneproject.org/project_guide/level-one-project-design-principles/) ([※a](#a)) and applicable industry best practice.
 These invariants should guide any product and technical design discussions related to the architecture of the platform.
 
 ## General Principles
 
 ### 1. The primary ([※d](#d)) function of the platform is to clear payments in real-time and facilitate regular settlement, by the end of the value day.
-#### Rationale
-1. The platform allows participants to clear funds immediately to their customers while keeping the risks and costs associated with this to a minimum
-2. The platform supports per-transfer checks on available liquidity where these are required in support of the first objective
-3. The hub is optimized for critical path
-4. Intra-day Automated Settlement; configured by scheme and implementation using recommended settlement models for financial market infrastructure
+#### Notes:
+1. The platform allows participants to clear funds immediately to their customers while keeping the risks and costs associated with this to a minimum.
+2. The platform supports per-transfer checks on available liquidity where these are required in support of the first objective.
+3. The hub is optimized for critical path.
+4. Intra-day Automated Settlement; configured by scheme and implementation using recommended settlement models for financial market infrastructure.
 
 
 ### 2. The hub supports fully automatic straight-through processing.
-#### Rationale
+#### Notes:
 1. Straight through processing helps reduce human errors in the transfer process which ultimately reduces costs.
 2. The automated nature of straight through processing leads to faster value transfers between end customers.
 
@@ -22,15 +22,15 @@ More information here: [https://www.investopedia.com/terms/s/straightthroughproc
 
 
 ### 3. The hub requires no manual reconciliation as the protocol for interacting with the hub guarantees deterministic ([※g](#g)) outcomes.
-#### Rationale
-1. When a transfer is finalized, there can be no doubt about the status of that transfer (alternatively, it is not finalized and active notice provided to participants)
-2. The hub guarantees deterministic outcomes for transfers and is accepted by all participants as the final authority on the status of transfers
-3. Determinism means individual transfers are traceable, auditable (based on limits, constraints), with final result provided within guaranteed time limit
-4. For the avoidance of doubt, batch transfers are processed line-by-line with potentially differing deterministic outcomes for each
+#### Notes:
+1. When a transfer is finalized, there can be no doubt about the status of that transfer (alternatively, it is not finalized and active notice provided to participants).
+2. The hub guarantees deterministic outcomes for transfers and is accepted by all participants as the final authority on the status of transfers.
+3. Determinism means individual transfers are traceable, auditable (based on limits, constraints), with final result provided within guaranteed time limit.
+4. For the avoidance of doubt, batch transfers are processed line-by-line with potentially differing deterministic outcomes for each.
 
 
 ### 4. Transaction setup logic, which is use case-specific, is separated from the policy-free transfer of money.
-#### Rationale
+#### Notes:
 1. Transaction details and business rules should be captured and applied between counterparties prior to the quoting phase and is out of scope for Mojaloop.
 2. The agreement phase establishes a signed use-case specific transaction object which incorporates all transaction-specific details.
 3. The transfer phase orchestrates the transfer of retail value between institutions for the benefit of the counterparties (i.e only system limit checks are applied) and without reference to transaction details.
@@ -38,58 +38,59 @@ More information here: [https://www.investopedia.com/terms/s/straightthroughproc
 
 
 ### 5. The hub doesn’t parse or act on end-to-end transaction details; transfer messages contain only the values required to complete clearing and settlement.
-#### Rationale
+#### Notes:
 1. Checks & validations during the transfer step are only for conformance to scheme rules, limit checks, signature authentication, and validation of payment condition and fulfillment.
 2. Transfers that are committed for settlement are final and are guaranteed to settle under the scheme rules.
 
 
 ### 6. Credit-push transfer semantics are reduced to their simplest form and standardized for all transaction types.
-#### Rationale
-TODO: Explain rationale
+#### Notes:
+1. Simplifies implementation and participant integration as many transaction types and use-cases can reuse the same underlying value transfer message flow.
+2. Abstracts use-case complexity away from the critical path.
 
 
 ### 7. Internet-based API service hub is not a “message switch.”
-#### Rationale
-1. The service hub provides real-time API services for participants to support retail credit-push instant transfers
+#### Notes:
+1. The service hub provides real-time API services for participants to support retail credit-push instant transfers.
     1.  API services such as ID-to-participant look-up, transaction agreement between participants, submission of prepared transfers, and submission of fulfillment advice.
 2. Auxiliary API services for participants are provided to support onboarding, position management, reporting for reconciliation, and other non-realtime functions not associated with transfer processing.
 3. All messages are validated for conformance to the API specification; non-conforming messages are actively rejected with a standardized machine-interpretable reason code.
 
 
 ### 8. The hub exposes asynchronous interfaces
-#### Rationale
-1. To maximize system throughput
-2. To isolate leaf-node connectivity issues so they don't impact other end-users
-3. To enable the hub system to process requests in its own priority order and without holding an active connection-per-transfer
-4. To handle numerous concurrent long-running processes through internal batching and load balancing
+#### Notes:
+1. To maximize system throughput.
+2. To isolate leaf-node connectivity issues so they don't impact other end-users.
+3. To enable the hub system to process requests in its own priority order and without holding an active connection-per-transfer.
+4. To handle numerous concurrent long-running processes through internal batching and load balancing.
 5. To have a single mechanism for handling requests (Examples are transactions such as bulk or those needing end user input or that span multiple hops).
-6. To better support real world networking as issues with connection speed and reliability for one participant should have minimal impact on other participants or system availability more generally
+6. To better support real world networking as issues with connection speed and reliability for one participant should have minimal impact on other participants or system availability more generally.
 
 ### 9. The transfer API is [idempotent](https://docs.mojaloop.io/api/fspiop/v1.1/api-definition.html#idempotent-services-in-server)
-#### Rationale
+#### Notes:
 1. This ensures duplicate requests may be made safely by message originators in conditions of degraded network connectivity.
     1. Duplicate requests are recognized and result in the same outcome (valid duplicates) or are rejected as duplicate (when not allowed by specification) with reference to the original.
 
 
 ### 10. **_Finalized_** Transfer records are held for a scheme-configurable period to support scheme processes such as reconciliation, billing, and for forensic purposes
-#### Rationale
+#### Notes:
 1. It is not possible to query the "sub-status" of an in-process Transfer; the API provides a deterministic outcome with active notice provided within the guaranteed service time.
 
 
 ### 11. Transfer records for finalized transfers are held indefinitely in long-term storage to support business analysis by the scheme operator and by participants (through appropriate interfaces)
-#### Rationale
-1. Availability of Transfer records may lag online process finality to accommodate separation of record-keeping from real-time processing of Transfer requests
+#### Notes:
+1. Availability of Transfer records may lag online process finality to accommodate separation of record-keeping from real-time processing of Transfer requests.
 
 
 ### 12. Hub may serve as a proxy for some inter-participant messages (e.g. during the Agreement phase) to simplify interconnection but without parsing, storing (other than to support forwarding), or further processing the messages.
-#### Rationale
+#### Notes:
 1. In some messaging flows e.g. party lookup, it may be desirable for participants to have a single point of contact for routing of scheme related messages, even when the messages are not intended for the hub, nor require any inspection or other processing.
 
 
 ## Security ([※j](#j)) and Safety of APIs
 
 ### 13. API messages are confidential, tamper-evident, and non-repudiable.
-#### Rationale
+#### Notes:
 1. Confidentiality is required to protect the privacy of the participants and their customers.
     1. There are legal requirements in many regulatory domains where Mojaloop is expected to operate and as such, the hub must employ best practices to ensure that the privacy of the participants and their customers is protected.
 2. Tamper-evident integrity mechanisms are required to ensure that messages cannot be altered in transit.
@@ -102,13 +103,13 @@ TODO: Explain rationale
 
 
 ### 14. API messages are Authenticated upon receipt prior to acceptance or further processing
-#### Rationale
+#### Notes:
 1. Authentication gives a degree of confidence that the message was sent by the party which purported to send it.
 2. Authentication gives a degree of confidence that the message was not sent by an unauthorized party.
 
 
 ### 15. Authenticated Messages are not acknowledged as accepted until safely recorded to permanent store.
-#### Rationale
+#### Notes:
 1. The Mojaloop API assigns significant scheme related business meaning to certain HTTP response codes at various points in transaction flows:
     1. Certain HTTP responses, e.g. "202 Accepted", are intended to provide financial guarantees to participants and as such must only be sent once the receiving entity is confident it has made safe, permanent record(s) in support of:
         1. Facilitating system wide recovery to a consistent state after failure(s) in one or more distributed components/entities.
@@ -119,7 +120,7 @@ TODO: Explain rationale
 
 
 ### 16. Three levels of communication security to ensure integrity, confidentiality, and non-repudiation of messages between an API server and API client.
-#### Rationale
+#### Notes:
 1. Secure Connections: mTLS required for all communications between the scheme and authorized participants.
     1. Ensures communications are confidential, between known correspondents, and communications are protected against tampering.
 2. Secure Messages: JSON message content is cryptographically signed according to the JWS specification.
@@ -130,30 +131,28 @@ TODO: Explain rationale
 
 
 ### 17. To ensure system is arithmetically consistent, only fixed point arithmetic is used.
-#### Rationale
-1. For the avoidance of doubt, floating point calculations may lose accuracy and must not be used in any financial calculation
-2. See [Level One Decimal Type](https://docs.mojaloop.io/documentation/discussions/decimal.html) representation and forms
+#### Notes:
+1. For the avoidance of doubt, floating point calculations may lose accuracy and must not be used in any financial calculation.
+2. See [Level One Decimal Type](https://docs.mojaloop.io/documentation/discussions/decimal.html) representation and forms.
     1. This specification enables seamless interchange with XML-based financial systems without loss of precision or accuracy
 
 
 ## Operational Characteristics
 
 ### 1. Baseline system demonstrated on minimal hardware supports clearing 1,000 transfers per second, sustained for one hour, with not more than 1% (of transfer stage) taking more than 1 second through the hub.
-#### Notes
+#### Notes:
 1. This measurement includes all necessary hardware and software components with production grade security and data persistence in place.
 2. This measurement includes all three transfer stages: discovery, agreement, and transfer.
 3. This measurement does not include any participant introduced latency.
 4. A one hour period is a reasonable approximation of a demand peak for a national payment system.
 5. A lower unit cost to scale than to initially provisioned.
-
-#### Rationale
-1. 1000 transfers (clearing) per second is a reasonable starting point for a national payment system.
-2. 1% of transfers (clearing) taking more than 1 second is a reasonable starting point for a national payment system.
-3. Mojaloop schemes should be able to start at a reasonable cost point, for national financial infrastructure, and scale economically as demand grows.
+6. 1000 transfers (clearing) per second is a reasonable starting point for a national payment system.
+7. 1% of transfers (clearing) taking more than 1 second is a reasonable starting point for a national payment system.
+8. Mojaloop schemes should be able to start at a reasonable cost point, for national financial infrastructure, and scale economically as demand grows.
 
 
 ### 2. The hub is highly available and resilient to failures.
-#### Notes
+#### Notes:
 1. Definition of "highly available":
    1. In this instance we define the term "_highly available_" as meaning "_the ability to provide and maintain an acceptable level of service in the face of faults and challenges to normal operation._"
    2. Although schemes may determine their own definition of what constitutes an "_acceptable level of service_", Mojaloop makes certain contributing tradeoff choices:
@@ -166,17 +165,15 @@ TODO: Explain rationale
       1. Note that it is expected that nodes in replication groups (and/or clusters) will be located in diverse physical locations (racks and/or data centres) with independent power supplies and network interconnects.
 4. Should multiple component failures occur which have not been mitigated either in the Mojaloop software, deployment configuration or infrastructure, the Mojaloop API provides mechanisms for each entity in the scheme to recover to a consistent state, with the hub being the ultimate source of truth upon full restoration of service.
 5. _Also see further points relating to resistance to data loss in the event of failures._
-
-#### Rationale
-1. Given that Mojaloop schemes are intended to form parts of national financial infrastructure they must have as close to zero downtime as possible, given reasonable cost constraints.
-2. Failures in hardware and software components are to be expected, even in the highest quality components available. Best practice suggests these failures should be anticipated and planned for as much as possible in the design of the hub with a view to minimising loss or degradation of service and/or data.
-3. For the avoidance of doubt this means the tradeoffs chosen favour overall service availability and state consistency over performance. I.e:
+6. Given that Mojaloop schemes are intended to form parts of national financial infrastructure they must have as close to zero downtime as possible, given reasonable cost constraints.
+7. Failures in hardware and software components are to be expected, even in the highest quality components available. Best practice suggests these failures should be anticipated and planned for as much as possible in the design of the hub with a view to minimising loss or degradation of service and/or data.
+8. For the avoidance of doubt this means the tradeoffs chosen favour overall service availability and state consistency over performance. I.e:
    1. All participants can continue to transact at a reduced rate rather than some participants being unable to transact at all.
    2. Inconsistencies in state between scheme entities are resolvable post service restoration via the Mojaloop API, with minimal manual reconciliation necessary; the hub being the ultimate source of truth.
 
 
 ### 3. The hub is resistant to loss of data in the event of failures.
-#### Notes
+#### Notes:
 1. Given appropriate infrastructure to operate upon, the Mojaloop software can be deployed in configurations which reliably replicate data across multiple, redundant physical storage nodes prior to processing.
    1. Database engine components which are provided by the Mojaloop deployment mechanisms support the following:
       1. Primary:secondary asynchronous replication
@@ -186,11 +183,9 @@ TODO: Explain rationale
 2. Should multiple component failures occur which have not been mitigated either in the Mojaloop software, deployment configuration or infrastructure, the Mojaloop API provides mechanisms for each entity in the scheme to recover to a consistent state with minimal financial exposure risk.
    1. Transfers become financially binding only when the hub has successfully responded to a transfer fulfilment message from the payee participant. This response is only sent when the hub has persisted the fulfilment message and its outcome to its ledger database.
    2. Expiration timestamps on all financially significant API messages facilitate timely and deterministic failure path outcomes for all participants via automated retry mechanisms.
-
-#### Rationale
-1. Given that Mojaloop schemes are intended to form parts of national financial infrastructure they must do as much as possible, given reasonable cost constraints, to avoid loss of data in the event of a failure.
-2. Failures in hardware and software components are to be expected, even in the highest quality components available. Best practice suggests these failures should be anticipated and planned for in the design of the hub with a view to avoiding data loss.
-3. Participants need timely confidence in the status of financial transactions across the scheme in order to minimise exposure risk and deliver excellent customer experiences.
+3. Given that Mojaloop schemes are intended to form parts of national financial infrastructure they must do as much as possible, given reasonable cost constraints, to avoid loss of data in the event of a failure.
+4. Failures in hardware and software components are to be expected, even in the highest quality components available. Best practice suggests these failures should be anticipated and planned for in the design of the hub with a view to avoiding data loss.
+5. Participants need timely confidence in the status of financial transactions across the scheme in order to minimise exposure risk and deliver excellent customer experiences.
 
 
 ## Design Decisions
@@ -213,7 +208,7 @@ TODO: Explain rationale
 4. [Apache Kafka](https://kafka.apache.org/intro) for persistent handling of participant API messages
 
 
-5. Mojaloop uses APIs based on Open API 3.0
+5. Mojaloop uses APIs based on Open API 3.0.
     1. Exposes resources that are mapped to functionality to support the defined API use-cases.
     2. Common practice for web API specification
 
@@ -232,7 +227,7 @@ By utilizing an open, digital approach to transactions, and partnering with orga
 ## Editorial Notes
 
 ### ※a
-If we don't capture the rationale, the reason why these principles are important, future generations of Mojaloopers will not understand the context that drove the selection of the principles and might happily discard without appreciating the potential impact.
+If we don't capture the Notes, the reason why these principles are important, future generations of Mojaloopers will not understand the context that drove the selection of the principles and might happily discard without appreciating the potential impact.
 
 Noted — we will re-open this and provide additional context as suggested.
 
