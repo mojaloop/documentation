@@ -97,7 +97,7 @@ TODO: Explain rationale
     2. Public key cryptography (digital signing) provides the current best known mechanism for tamper-evident messaging
         1. The security of the senders private key is critical.
         2. Scheme rules must be established to clarify the responsibilities for key management and the potential for financial liability upon compromise of a private key.
-4. Non-repudiation is required to ensure that the message was sent by the party which purported to send it and that provenance can not be repudiated by the sender.
+3. Non-repudiation is required to ensure that the message was sent by the party which purported to send it and that provenance can not be repudiated by the sender.
     1. This is important for determining the liable party during audit and dispute resolution processes.
 
 
@@ -161,10 +161,11 @@ TODO: Explain rationale
 2. The hub has no single point of failure; meaning that it continues to operate with minimum degradation of service in the event of a failure of any single component.
    1. Multiple active instances of each component are deployed in a distributed manner behind load balancers.
    2. Each active component instance can handle requests from any client/participant meaning no single participant loses the ability to transact in the event of a failure of any single component.
-3. Given appropriate infrastructure to operate upon, the Mojaloop software can be deployed in configurations which deliver 99.999% uptime (five nines).
-   1. This includes active:active and active:passive multiple, geographically distributed data center configurations
+3. Given appropriate infrastructure to operate upon, the Mojaloop software can be deployed in configurations which deliver 99.999% uptime (five nines) overall.
+   1. This includes active:active and active:passive multiple, geographically distributed data center configurations where both services and data are replicated across multiple physical nodes which are expected to fail independently.
+      1. Note that it is expected that nodes in replication groups (and/or clusters) will be located in diverse physical locations (racks and/or data centres) with independent power supplies and network interconnects.
 4. Should multiple component failures occur which have not been mitigated either in the Mojaloop software, deployment configuration or infrastructure, the Mojaloop API provides mechanisms for each entity in the scheme to recover to a consistent state, with the hub being the ultimate source of truth upon full restoration of service.
-5. _See further points relating to resistance to data loss in the event of failures._
+5. _Also see further points relating to resistance to data loss in the event of failures._
 
 #### Rationale
 1. Given that Mojaloop schemes are intended to form parts of national financial infrastructure they must have as close to zero downtime as possible, given reasonable cost constraints.
@@ -176,18 +177,20 @@ TODO: Explain rationale
 
 ### 3. The hub is resistant to loss of data in the event of failures.
 #### Notes
-1. Given appropriate infrastructure to operate upon, the Mojaloop software can be deployed in configurations which reliably replicate data across multiple, redundant physical storage nodes before processing.
-   1. Database engine components which are provided by the Mojaloop deployment mechanisms support either:
-      1. primary:secondary asynchronous replicaor primary:primary synchronous replication.
+1. Given appropriate infrastructure to operate upon, the Mojaloop software can be deployed in configurations which reliably replicate data across multiple, redundant physical storage nodes prior to processing.
+   1. Database engine components which are provided by the Mojaloop deployment mechanisms support the following:
+      1. Primary:secondary asynchronous replication
+      2. Primary:primary synchronous replication.
+      3. Synchronous quorum consensus algorithm based replication.
    2. The replication mechanisms available are dependant on the particular storage layer and database technologies employed.
-
+2. Should multiple component failures occur which have not been mitigated either in the Mojaloop software, deployment configuration or infrastructure, the Mojaloop API provides mechanisms for each entity in the scheme to recover to a consistent state with minimal financial exposure risk.
+   1. Transfers become financially binding only when the hub has successfully responded to a transfer fulfilment message from the payee participant. This response is only sent when the hub has persisted the fulfilment message and its outcome to its ledger database.
+   2. Expiration timestamps on all financially significant API messages facilitate timely and deterministic failure path outcomes for all participants via automated retry mechanisms.
 
 #### Rationale
 1. Given that Mojaloop schemes are intended to form parts of national financial infrastructure they must do as much as possible, given reasonable cost constraints, to avoid loss of data in the event of a failure.
 2. Failures in hardware and software components are to be expected, even in the highest quality components available. Best practice suggests these failures should be anticipated and planned for in the design of the hub with a view to avoiding data loss.
-
-
-
+3. Participants need timely confidence in the status of financial transactions across the scheme in order to minimise exposure risk and deliver excellent customer experiences.
 
 
 ## Design Decisions
