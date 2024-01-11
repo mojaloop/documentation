@@ -4,7 +4,7 @@
 
 ## Mojaloop Invariants
 
-Mojaloop has some [invariants](invariants.md) that are important to understand and adhere to when contributing to the codebase.
+Mojaloop has some [invariants](./invariants.md) that are important to understand and adhere to when contributing to the codebase.
 
 These invariants are derived from [The Level One Principles](https://www.leveloneproject.org/wp-content/uploads/2020/07/L1P_Guide_2019_Final.pdf) and other business requirements. They are intended to ensure the platform retains certain characteristics important for national infrastructure grade operation.
 
