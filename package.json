@@ -12,7 +12,7 @@
     "node": "=16.x"
   },
   "scripts": {
-    "dev": "npx npx vuepress dev docs",
+    "dev": "NODE_OPTIONS=--openssl-legacy-provider npx npx vuepress dev docs",
     "build": "npx npx vuepress build docs",
     "build:plantuml:all": "./scripts/_build_plantuml.sh",
     "build:plantuml:diff": "MODE=STAGED_GIT ./scripts/_build_plantuml.sh",
