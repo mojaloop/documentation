@@ -104,8 +104,8 @@ Reporters MUST adhere to the following guidelines.
 
 * Reporters SHOULD submit high quality reports.
 
-* Reporters SHOULD include sufficient descriptive details to permit The Mojaloop Foundation and/or the affected vendor(
-  s) to accurately reproduce the vulnerable behavior.
+* Reporters SHOULD include sufficient descriptive details to permit The Mojaloop Foundation and/or the affected
+  vendor(s) to accurately reproduce the vulnerable behavior.
 
 * Reporters SHOULD NOT report unanalyzed crash dumps or fuzzer output unless accompanied by a sufficiently detailed
   explanation of how they represent a security vulnerability.
@@ -126,8 +126,8 @@ Reporters MUST adhere to the following guidelines.
 
 * Reporters MUST NOT submit a high-volume of low-quality reports.
 
-* Reporters MUST NOT require The Mojaloop Foundation to enter into a customer relationship, non-disclosure agreement (
-  NDA) or any other contractual or financial obligation as a condition of receiving or coordinating vulnerability
+* Reporters MUST NOT require The Mojaloop Foundation to enter into a customer relationship, non-disclosure agreement
+  (NDA) or any other contractual or financial obligation as a condition of receiving or coordinating vulnerability
   reports.
 
 * Reporters MUST NOT demand compensation in return for reporting vulnerability information reported outside of an
@@ -222,15 +222,15 @@ indicators of vulnerabilities in accordance with these guidelines.
   than an acceleration of the publication schedule. Examples include delaying publication to coincide with conference
   presentations.
 
-* The Mojaloop Foundation SHALL NOT require Reporters to enter into a customer relationship, non-disclosure agreement (
-  NDA) or any other contractual or financial obligation as a condition of receiving or coordinating vulnerability
+* The Mojaloop Foundation SHALL NOT require Reporters to enter into a customer relationship, non-disclosure agreement
+  (NDA) or any other contractual or financial obligation as a condition of receiving or coordinating vulnerability
   reports.
 
 #### Coordination with vendors
 
 * In the event that The Mojaloop Foundation determines the reported vulnerability is consequent to a vulnerability in a
-  generally available product or service, The Mojaloop Foundation MAY report the vulnerability to the affected vendor(
-  s), service provider(s), or third party vulnerability coordination service(s) in order to enable the product or
+  generally available product or service, The Mojaloop Foundation MAY report the vulnerability to the affected
+  vendor(s), service provider(s), or third party vulnerability coordination service(s) in order to enable the product or
   service to be fixed.
 
 * The Mojaloop Foundation SHALL make a good faith effort to inform vendors of reported vulnerabilities prior to public
