@@ -269,7 +269,7 @@ indicators of vulnerabilities in accordance with these guidelines.
 
 * The Mojaloop Foundation SHALL determine the type and schedule of our public disclosure of the vulnerability.
 
-* The Mojaloop Foundation MAY disclose reported vulnerabilities reported to the public 7 days days after the initial
+* The Mojaloop Foundation MAY disclose reported vulnerabilities to the public 7 days days after the initial
   report, regardless of the existence or availability of patches or workarounds from affected vendors.
 
 * The Mojaloop Foundation MAY disclose vulnerabilities to the public earlier or later than 7 days due to extenuating
