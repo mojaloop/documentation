@@ -5,10 +5,10 @@ processes intended to ensure Mojaloop is a secure platform for conducting busine
 our [documentation on cybersecurity architecture](../tools/cybersecurity.md) for more information.
 
 The Mojaloop Foundation operates
-a ["Coordinated Vulnerability Disclose"](https://en.wikipedia.org/wiki/Coordinated_vulnerability_disclosure) process
-which is a model whereby a discovered vulnerability or issue is disclosed publicly only after responsible and effected
-parties have been given sufficient time to patch or remedy the problem. By operating this model, the Mojaloop Foundation
-and community aim to minimise the potential impact of such issues on our adopters.
+a ["Coordinated Vulnerability Disclose"](https://github.com/ossf/oss-vulnerability-guide/blob/main/finder-guide.md#what-is-coordinated-vulnerability-disclosure)
+process which is a model whereby a discovered vulnerability or issue is disclosed publicly only after responsible and
+effected parties have been given sufficient time to patch or remedy the problem. By operating this model, the Mojaloop
+Foundation and community aim to minimise the potential impact of such issues on our adopters.
 
 ## Mojaloop Foundation Coordinated Vulnerability Disclosure Policy
 
