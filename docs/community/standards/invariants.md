@@ -82,7 +82,7 @@ More information here: [https://www.investopedia.com/terms/s/straightthroughproc
 1. Availability of Transfer records may lag online process finality to accommodate separation of record-keeping from real-time processing of Transfer requests.
 
 
-### 12. Hub may serve as a proxy for some inter-participant messages (e.g. during the Agreement phase) to simplify interconnection but without parsing, storing (other than to support forwarding), or further processing the messages.
+### 12. The hub should do the minimum parsing, storing and processing of messages required to execute the services that it provides to the scheme as a whole.
 #### Notes:
 1. In some messaging flows e.g. party lookup, it may be desirable for participants to have a single point of contact for routing of scheme related messages, even when the messages are not intended for the hub, nor require any inspection or other processing.
 
