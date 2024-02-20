@@ -49,7 +49,7 @@ The following runtime standards are utilizes for Mojaloop.
         RUN ln -sf /dev/stdout ./logs/combined.log
 
         # Create a non-root user: ml-user
-        RUN adduser -D ml-user 
+        RUN adduser -D ml-user
         USER ml-user
 
         # Copy builder artefact
@@ -92,7 +92,7 @@ The following runtime standards are utilizes for Mojaloop.
         # Create a non-root user: ml-user
         RUN adduser -D ml-user
         USER ml-user
-        
+
         # Copy builder artefact
         COPY --chown=ml-user --from=builder /opt/app ./
 
@@ -140,7 +140,7 @@ To avoid confusion and guarantee cross-language interpolation, follow these rule
 - Use Pascal case or camel case for names more than two characters long depending on context (e.g. class names vs variable names). For example, use `SettlementWindow` (Class) or `settlementWindow` (Variable).
 - You should capitalize abbreviations that consist of only two characters, such as `ID` instead of `Id` when isolated. For example, use `/transfer/{{ID}}` instead of `/transfer/{{Id}}` when representing `ID` as a URI parameter.
 - Avoid abbreviations in identifiers or parameter names. If you must use abbreviations, use camel case for abbreviations that consist of more than two characters, even if this contradicts the standard abbreviation of the word.
-- Use screaming (capitalized) Snack case for Enumerations. For example, use `RECORD_FUNDS_OUT_PREPARE_RESERVE`.
+- Use screaming (capitalized) Snake case for Enumerations. For example, use `RECORD_FUNDS_OUT_PREPARE_RESERVE`.
 
 Ref: [Microsoft - Design Guidelines for Class Library Developers](https://docs.microsoft.com/en-us/previous-versions/dotnet/netframework-1.1/141e06ef(v=vs.71)?redirectedfrom=MSDN)
 
@@ -173,7 +173,7 @@ window.alert('hi');  // ✗ avoid
 
 ### Typescript
 
-> *Note: Standard and Typescript*  
+> *Note: Standard and Typescript*
 >
 > As we start to introduce more Typescript into the codebase, Standard becomes less useful, and can even be detrimental
 > to our development workflow if we try to run standard across the Javascript compiled from Typescript.
@@ -207,7 +207,7 @@ modules:
 
 ```yaml
 # BAD:
-id:           org.example.Foo   
+id:           org.example.Foo
 modules:
   - name:     foo
     sources:
@@ -234,14 +234,14 @@ cat ../Dockerfile | wc -l
 
 # GOOD:
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-cat ${DIR}/../Dockerfile | wc -l 
+cat ${DIR}/../Dockerfile | wc -l
 ```
 
 For other recommended bash conventions, refer to this blog post: [Best Practices for Writing Shell Scripts](https://kvz.io/bash-best-practices.html)
 
 ## Documentation
 
-- Documentation should be written in Markdown format.  
+- Documentation should be written in Markdown format.
 - Hand drawn diagrams should use an editable SVG format (example - architecture / component / block / state transition diagrams) exported from [diagrams.net](https://app.diagrams.net)
   > NOTE: Please ensure that you have imbedded the editable diagram when exporting the SVG from [diagrams.net](https://app.diagrams.net)!
 - Sequence diagrams should use PlantUML
@@ -277,7 +277,7 @@ The directory structure guide requires:
 │   ├── integration    # Integration tests, matching the directory structure in `./src`.
 │   ├── functional     # Functional tests, matching the directory structure in `./src`.
 │   └── util           # Generic testing scripts and NodeJS helpers.
-└── config 
+└── config
     └── default.json   # Default config file.
 ```
 
@@ -552,7 +552,7 @@ npx husky add .husky/pre-commit "npm run audit:check"
 
 ##### Automated CI Validations
 
-This will ensure that a auditing checks occur during reviews and releases, and also ensure that Git Pre-Commit Hook are not circumvented.
+This will ensure that auditing checks occur during reviews and releases, and also ensure that Git Pre-Commit Hook are not circumvented.
 
 CI Configs (i.e. `.circleci/config.yml`)  must contain a `vulnerability-check` vulnerability Check CI Job (i.e. `npm run dep:check`) for all Pull-Request, merges to Main branch, and Tagged Releases.
 
@@ -568,7 +568,7 @@ In the Mojaloop OSS Community, we are prefer the following tools and frameworks:
 
 - **Web Server:** [`HapiJS`](https://github.com/hapijs/hapi)
 - **Web UI Framework:** [`ReactJS`](https://reactjs.org/)
-- **Runtime Configuration:** [`rc`](https://www.npmjs.com/package/rc) (both from env variables and config files)
+- **Runtime Configuration:** [`convict`](https://www.npmjs.com/package/convict), with [`rc`](https://www.npmjs.com/package/rc) for legacy. (both for env variables and config files)
 - **Package Management:** `npm`
 - **Logging:** [`@mojaloop/central-services-logger`](https://github.com/mojaloop/central-services-logger#readme) library, built on top of Winston
 - **Containers and Orchestration:** [`docker`](https://www.docker.com/) and [`kubernetes`](https://kubernetes.io/)
