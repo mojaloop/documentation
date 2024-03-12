@@ -135,6 +135,8 @@ I don't believe a generic ISO8583 `<-> Mojaloop integration is available current
 
 On the Kubernetes dashboard, select the correct NAMESPACE. Go to Ingeresses. Depending on how you deployed the helm charts, look for 'moja-centralledger-service'. Click on edit, and find the tag `<HOST>`. This would contain the endpoint for this service.
 
+If you use the CLI, find the 'Host' column in `kubectl describe ingress moja-centralledger-service`
+
 ## 25. Why are there no reversals allowed on a Mojaloop?
 
 *Irrevocability* is a core Level One Principle (edited) and not allowing reversals is essential for that. Here is the section from the API Definition addressing this:
