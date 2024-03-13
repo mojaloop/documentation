@@ -105,6 +105,7 @@ module.exports = {
             ['contributing/new-contributor-checklist', 'New Contributor Checklist'],
             ['contributing/code-of-conduct', 'Code of Conduct'],
             ['contributing/signing-the-cla', 'Signing the CLA'],
+            ['contributing/cvd', 'Disclosing Security Vulnerabilities'],
           ]
         },
         {
