@@ -223,39 +223,3 @@ The [Level One Project](https://www.leveloneproject.org) proposes a new low-cost
 * Meeting or exceeding the convenience, cost and utility of cash
 
 By utilizing an open, digital approach to transactions, and partnering with organizations across the public and private sectors, the Level One Project aims to provide access to a robust, low-cost shared digital financial services infrastructure, sparking innovation from new and existing participants, reducing risk, and generating substantial value for providers, individuals and economies in developing markets. Additional resources have been created to help governments, NGOs and financial service providers successfully implement these changes.
-
-## Editorial Notes
-
-### ※a
-If we don't capture the Notes, the reason why these principles are important, future generations of Mojaloopers will not understand the context that drove the selection of the principles and might happily discard without appreciating the potential impact.
-
-Noted — we will re-open this and provide additional context as suggested.
-
-agreed - that was the intention of the comments I gave (which I am not sure were fully answered with the responses/changes - there wasn't enough of the *why* to make it sufficiently useful to outsiders.
-
-great that we're re-opening. and happy to review again through a product lens (as fundamentally some of these should form the core of our messaging/positioning to adopters)
-
-### ※d
-Would add to be the authoritative system of accounting record
-
-covered in #3, is that sufficient?
-
-no, it's a primary function
-
-### ※g
-Non-repudiabile? We need to tie back to some of the high level principles
-
-Covered in #10 - security
-
-not actually covered in #10 - and needs to be understood in the context of deterministic behaviour
-
-### ※j
-need to explain why necessary to achieve non-repudiation
-
-Added additional description text around general confidentiality, integrity and non-repudiation
-
-Agreed, this is about high throughput concurrency and accuracy not pure speed and latency. And the constraint should be recorded somewhere - it goes something like this- the hub would never allow a participant to exceed their position cap on the collateral made available to the hub
-
-The records need to explain the deterministic manner any decisions were arrived and have the accounting records that show both successful, declined transfer request and errors
-
-Necessary for complete record and dispute Management
