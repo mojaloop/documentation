@@ -115,7 +115,7 @@ More information here: [https://www.investopedia.com/terms/s/straightthroughproc
         1. Facilitating system wide recovery to a consistent state after failure(s) in one or more distributed components/entities.
         2. Accurate settlement processes
         3. Audit and dispute resolution processes
-    2. For example a "202 Accepted" from the hub to the payee participant upon receipt of a transfer fulfilment message indicates a guarantee of transaction settlement to the payee.
+    2. For example a "200 OK" from the hub to the payee participant upon receipt of a transfer fulfilment message indicates a guarantee of transaction settlement to the payee pending validation checks.
 2. The Mojaloop API is designed to operate safely under imperfect network conditions and as such has built in support for retries and state synchronisation between participants.
 
 
