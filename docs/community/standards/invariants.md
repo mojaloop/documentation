@@ -1,11 +1,11 @@
 # Mojaloop Invariants
 
-The following invariants have been established during the course of the platform’s development and based upon the technical requirements inferred from the [Level One Project Principles](https://www.leveloneproject.org/project_guide/level-one-project-design-principles/) ([※a](#a)) and applicable industry best practice.
+The following invariants have been established during the course of the platform’s development and based upon the technical requirements inferred from the [Level One Project Principles](https://www.leveloneproject.org/project_guide/level-one-project-design-principles/) and applicable industry best practice.
 These invariants should guide any product and technical design discussions related to the architecture of the platform.
 
 ## General Principles
 
-### 1. The primary ([※d](#d)) function of the platform is to clear payments in real-time and facilitate regular settlement, by the end of the value day.
+### 1. The primary function of the platform is to clear payments in real-time and facilitate regular settlement, by the end of the value day.
 #### Notes:
 1. The platform allows participants to clear funds immediately to their customers while keeping the risks and costs associated with this to a minimum.
 2. The platform supports per-transfer checks on available liquidity where these are required in support of the first objective.
@@ -21,7 +21,7 @@ These invariants should guide any product and technical design discussions relat
 More information here: [https://www.investopedia.com/terms/s/straightthroughprocessing.asp]()
 
 
-### 3. The hub requires no manual reconciliation as the protocol for interacting with the hub guarantees deterministic ([※g](#g)) outcomes.
+### 3. The hub requires no manual reconciliation as the protocol for interacting with the hub guarantees deterministic outcomes.
 #### Notes:
 1. When a transfer is finalized, there can be no doubt about the status of that transfer (alternatively, it is not finalized and active notice provided to participants).
 2. The hub guarantees deterministic outcomes for transfers and is accepted by all participants as the final authority on the status of transfers.
@@ -87,7 +87,7 @@ More information here: [https://www.investopedia.com/terms/s/straightthroughproc
 1. In some messaging flows e.g. party lookup, it may be desirable for participants to have a single point of contact for routing of scheme related messages, even when the messages are not intended for the hub, nor require any inspection or other processing.
 
 
-## Security ([※j](#j)) and Safety of APIs
+## Security and Safety of APIs
 
 ### 13. API messages are confidential, tamper-evident, and non-repudiable.
 #### Notes:
