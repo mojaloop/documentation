@@ -170,6 +170,8 @@ More information here: [https://www.investopedia.com/terms/s/straightthroughproc
 8. For the avoidance of doubt this means the tradeoffs chosen favour overall service availability and state consistency over performance. I.e:
    1. All participants can continue to transact at a reduced rate rather than some participants being unable to transact at all.
    2. Inconsistencies in state between scheme entities are resolvable post service restoration via the Mojaloop API, with minimal manual reconciliation necessary; the hub being the ultimate source of truth.
+9. In situation where sufficient throughput to handle all incoming requests in a timely manner cannot be sustained, the hub will prioritise processing transfers which are in-flight over new incoming requests.
+   1. Transfers which the hub cannot process before specified deadlines expire will be timed out gracefully.
 
 
 ### 3. The hub is resistant to loss of data in the event of failures.
