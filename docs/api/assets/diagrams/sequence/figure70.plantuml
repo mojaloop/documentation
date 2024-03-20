@@ -38,7 +38,7 @@ skinparam ArrowColor Black
 hide footbox
 
 ' declare title
-' title Handling of error callback from API Service /bulkTransfers
+' title Handling of error callback from POST /transfers
 
 ' Actor Keys:
 ' participant - FSP(Payer/Payee) and Switch
@@ -47,35 +47,35 @@ hide footbox
 ' declare actors
 participant "Payer\nFSP" as PayerFSP
 participant "Optional\nSwitch" as Switch
-participant "Payee\nFSP(s)" as PayeeFSP
+participant "Payee\nFSP" as PayeeFSP
 
 ' start flow
 autonumber 1 1 "<b>[0]"
 activate PayerFSP
-PayerFSP -> PayerFSP: Reserve each individual\ntransfer from Payer\naccount to Payee FSP account
-PayerFSP ->> Switch: **POST /bulkTransfers**\n(List of individual transfers\nincluding ILP packet and condition)
+PayerFSP -> PayerFSP: Reserve transfer from Payer\naccount to Switch account
+PayerFSP ->> Switch: **POST /transfers**\n(Transfer ID, condition, ILP Packet\nincluding transaction details)
 activate Switch
 autonumber stop
 PayerFSP <<-- Switch: **HTTP 202** (Accepted)
-Switch -> Switch: Reserve each individual\ntransfer from Payer FSP\nto Payee FSP
+Switch -> Switch: Reserve transfer from\nPayer FSP to Payee FSP
 autonumber resume
-Switch ->> PayeeFSP: **POST /bulkTransfers**\n(List of individual transfers\nincluding ILP packet and condition)
+Switch ->> PayeeFSP: **POST /transfers**\n(Transfer ID, condition, ILP Packet\nincluding transaction details)
 activate PayeeFSP
 autonumber stop
 Switch <<-- PayeeFSP: **HTTP 202** (Accepted)
-PayeeFSP -> PayeeFSP: Some processing error occurs,\ne.g. a validation failure that prevents\nthe bulk transfer to be performed
+PayeeFSP -> PayeeFSP: Some processing error occurs,\ne.g. a limit breach
 autonumber resume
-Switch <<- PayeeFSP: **PUT /bulkTransfers/**<i><ID></i>**/error**\n(Error information)
+Switch <<- PayeeFSP: **PUT /transfers/**<i><ID></i>**/error**
 autonumber stop
 Switch -->> PayeeFSP: **HTTP 200** (OK)
 deactivate PayeeFSP
-Switch -> Switch: Cancel each reserved\ntransfer from Payer\nFSP to Payee FSP
+Switch -> Switch: Cancel transfer from\nPayer FSP to Payee FSP
 autonumber resume
-PayerFSP <<- Switch: **PUT /bulkTransfers/**<i><ID></i>**/error**\n(Error information)
+PayerFSP <<- Switch: **PUT /transfers/**<i><ID></i>**/error**\n(Error information)
 autonumber stop
 PayerFSP -->> Switch: **HTTP 200** (OK)
 deactivate Switch
-PayerFSP -> PayerFSP: Cancel each transfer\nfrom Payer account\nto Payee FSP account
+PayerFSP -> PayerFSP: Cancel transfer from Payer\naccount to Payee FSP account
 PayerFSP -[hidden]> Switch
 deactivate PayerFSP
 @enduml
