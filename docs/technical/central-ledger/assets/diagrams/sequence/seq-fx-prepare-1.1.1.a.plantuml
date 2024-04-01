@@ -34,7 +34,6 @@ autonumber
 collections "topic-transfer-prepare" as TOPIC_TRANSFER_PREPARE
 control "Prepare Event Handler" as PREP_HANDLER
 collections "topic-transfer-position" as TOPIC_TRANSFER_POSITION
-collections "Event-Topic" as TOPIC_EVENTS
 collections "Notification-Topic" as TOPIC_NOTIFICATIONS
 entity "Position DAO" as POS_DAO
 entity "Participant DAO" as PARTICIPANT_DAO
@@ -44,7 +43,6 @@ box "Central Service" #LightYellow
     participant TOPIC_TRANSFER_PREPARE
     participant PREP_HANDLER
     participant TOPIC_TRANSFER_POSITION
-    participant TOPIC_EVENTS
     participant TOPIC_NOTIFICATIONS
     participant POS_DAO
     participant PARTICIPANT_DAO
@@ -62,13 +60,6 @@ group Prepare Handler Consume
         group Filter Event
             PREP_HANDLER <-> PREP_HANDLER: Filter event - Rules: type == 'prepare' && action == 'fx_prepare'\n<color #FF0000><b>Error codes:</b> 2001</color>
         end
-    end
-
-    group Persist Event Information
-        |||
-        PREP_HANDLER -> TOPIC_EVENTS: Publish event information
-        ref over PREP_HANDLER, TOPIC_EVENTS:  Event Handler Consume\n
-        |||
     end
 
     group Validate Prepare Transfer 
@@ -95,7 +86,13 @@ group Prepare Handler Consume
                     end note
                 else hasDuplicateId == TRUE && hasDuplicateHash == TRUE
                     break
-                        PREP_HANDLER -> PREP_HANDLER: stateRecord = await getFxTransferById(commitRequestId)
+                        PREP_HANDLER -> DB: stateRecord = await getFxTransferById(commitRequestId)
+                        activate DB
+                        hnote over DB #lightyellow
+                            fxTransferStateChange
+                        end note
+                        DB --> PREP_HANDLER: Return stateRecord
+                        deactivate DB
                         alt [COMMITTED, ABORTED].includes(stateRecord.transferStateEnumeration)
                             |||
                            
@@ -153,25 +150,21 @@ group Prepare Handler Consume
                 end
                 alt Validate Prepare Transfer (success)
                     group Persist Transfer State (with transferState='RECEIVED-PREPARE')
-                        PREP_HANDLER -> POS_DAO: Request to persist transfer\n<color #FF0000><b>Error codes:</b> 2003</color>
-                        activate POS_DAO
-                        POS_DAO -> DB: Persist transfer
+                        PREP_HANDLER -> DB: Request to persist transfer\n<color #FF0000><b>Error codes:</b> 2003</color>
+                        activate DB
                         hnote over DB #lightyellow
                             fxTransfer
                             fxTransferParticipant
                             fxTransferStateChange
                             fxTransferExtension
                         end note
-                        activate DB
+                        DB --> PREP_HANDLER: Return success
                         deactivate DB
-                        POS_DAO --> PREP_HANDLER: Return success
-                        deactivate POS_DAO
                     end
                 else Validate Prepare Transfer (failure)
                     group Persist Transfer State (with transferState='INVALID') (Introducing a new status INVALID to mark these entries)
-                        PREP_HANDLER -> POS_DAO: Request to persist transfer\n(when Payee/Payer/crypto-condition validation fails)\n<color #FF0000><b>Error codes:</b> 2003</color>
-                        activate POS_DAO
-                        POS_DAO -> DB: Persist transfer
+                        PREP_HANDLER -> DB: Request to persist transfer\n(when Payee/Payer/crypto-condition validation fails)\n<color #FF0000><b>Error codes:</b> 2003</color>
+                        activate DB
                         hnote over DB #lightyellow
                             fxTransfer
                             fxTransferParticipant
@@ -179,10 +172,8 @@ group Prepare Handler Consume
                             fxTransferExtension
                             fxTransferError
                         end note
-                        activate DB
+                        DB --> PREP_HANDLER: Return success
                         deactivate DB
-                        POS_DAO --> PREP_HANDLER: Return success
-                        deactivate POS_DAO
                     end
                 end
             end

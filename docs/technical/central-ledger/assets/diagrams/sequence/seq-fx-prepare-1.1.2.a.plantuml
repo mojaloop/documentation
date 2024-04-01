@@ -65,13 +65,6 @@ group Position Handler Consume
         end
     end
 
-    ' group Persist Event Information
-    '     |||
-    '     POS_HANDLER -> TOPIC_EVENTS: Publish event information
-    '     ref over POS_HANDLER, TOPIC_EVENTS :  Event Handler Consume\n
-    '     |||
-    ' end
-
     alt Calulate & Validate Latest Position (success)
         group Calculate position and persist change
             POS_HANDLER -> SETTLEMENT_DAO: Request active settlement models
@@ -100,30 +93,15 @@ group Position Handler Consume
             PARTICIPANT_DAO --> POS_HANDLER: Return Payer Participant position account by name and currency
             deactivate PARTICIPANT_DAO
 
-            POS_HANDLER -> POS_DAO: Request latest transfer state from DB
-            activate POS_DAO
-            POS_DAO -> DB: Retrieve transfer state from DB by 'commitRequestId'
+            POS_HANDLER -> DB: Retrieve transfer state from DB by 'commitRequestId'
             activate DB
             hnote over DB #lightyellow
                 fxTransferStateChange
             end note
-            DB --> POS_DAO: Retrieve transfer state from DB
+            DB --> POS_HANDLER: Retrieve transfer state from DB
             deactivate DB
-            POS_DAO --> POS_HANDLER: Return transfer state
-            deactivate POS_DAO
-
-            ' POS_HANDLER -> POS_DAO: Request latest position from DB for Payer
-            ' activate POS_DAO
-            ' POS_DAO -> DB: Retrieve latest position from DB for Payer
-            ' activate DB
-            ' hnote over DB #lightyellow
-            '     transferPosition
-            ' end note
-            ' DB --> POS_DAO: Retrieve latest position from DB for Payer
-            ' deactivate DB
-            ' POS_DAO --> POS_HANDLER: Return latest position
-            ' deactivate POS_DAO
-
+            DB --> POS_HANDLER: Return transfer state
+            
             POS_HANDLER -> PARTICIPANT_DAO: Request position limits for Payer Participant
             activate PARTICIPANT_DAO
             PARTICIPANT_DAO -> DB: Request position limits for Payer Participant
@@ -154,9 +132,7 @@ group Position Handler Consume
                 POS_DAO --> POS_HANDLER: Return payer participant position for the transfer currency and settlement currency
                 deactivate POS_DAO
 
-                ' Update participant position (increase reserved position by transfer amount)
                 POS_HANDLER <-> POS_HANDLER: Update participant position (increase reserved position by transfer amount)
-                ' Update payer participant position in DB
                 POS_HANDLER -> DB: Persist payer participant position in DB
                 activate DB
                 hnote over DB #lightyellow
