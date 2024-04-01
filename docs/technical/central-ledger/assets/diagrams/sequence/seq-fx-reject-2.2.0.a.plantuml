@@ -39,7 +39,7 @@ autonumber
 
 ' declare actors
 actor "DFSP1\nPayer" as DFSP1
-actor "FXP1\nFXP" as FXP1
+control "FXP1\nFXP" as FXP1
 boundary "ML API Adapter" as MLAPI
 control "ML API Notification Event Handler" as NOTIFY_HANDLER
 boundary "Central Service API" as CSAPI
