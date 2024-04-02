@@ -52,6 +52,11 @@ end box
 ' start flow
 activate PREP_HANDLER
 group Prepare Handler Consume
+    note left of PREP_HANDLER #lightgrey
+        Event is automatically replicated 
+        to the events topic (topic-events)
+    end note
+
     TOPIC_TRANSFER_PREPARE <- PREP_HANDLER: Consume Prepare event message
     activate TOPIC_TRANSFER_PREPARE
     deactivate TOPIC_TRANSFER_PREPARE

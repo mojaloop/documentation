@@ -35,7 +35,6 @@ collections "topic-transfer-position" as TOPIC_TRANSFER_POSITION
 control "Position Event Handler" as POS_HANDLER
 entity "Position DAO" as POS_DAO
 entity "Settlement DAO" as SETTLEMENT_DAO
-collections "Event-Topic" as TOPIC_EVENTS
 collections "Notification-Topic" as TOPIC_NOTIFICATIONS
 entity "Participant DAO" as PARTICIPANT_DAO
 database "Central Store" as DB
@@ -43,7 +42,6 @@ database "Central Store" as DB
 box "Central Service" #LightYellow
     participant TOPIC_TRANSFER_POSITION
     participant POS_HANDLER
-    participant TOPIC_EVENTS
     participant TOPIC_NOTIFICATIONS
     participant POS_DAO
     participant PARTICIPANT_DAO
@@ -54,6 +52,10 @@ end box
 ' start flow
 activate POS_HANDLER
 group Position Handler Consume
+    note left of POS_HANDLER #lightgrey
+        Event is automatically replicated 
+        to the events topic (topic-events)
+    end note
     TOPIC_TRANSFER_POSITION <- POS_HANDLER: Consume Position event message for Payer
     activate TOPIC_TRANSFER_POSITION
     deactivate TOPIC_TRANSFER_POSITION
