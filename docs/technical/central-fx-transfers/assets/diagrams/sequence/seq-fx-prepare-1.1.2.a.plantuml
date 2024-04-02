@@ -1,0 +1,312 @@
+/'*****
+ License
+ --------------
+ Copyright © 2020 Mojaloop Foundation
+ The Mojaloop files are made available by the Mojaloop Foundation under the Apache License, Version 2.0
+ (the "License") and you may not use these files except in compliance with the [License](http://www.apache.org/licenses/LICENSE-2.0). 
+ You may obtain a copy of the License at [http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)
+ Unless required by applicable law or agreed to in writing, the Mojaloop files are distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the [License](http://www.apache.org/licenses/LICENSE-2.0).
+ 
+ Contributors
+ --------------
+ This is the official list of the Mojaloop project contributors for this file.
+ Names of the original copyright holders (individuals or organizations)
+ should be listed with a '*' in the first column. People who have
+ contributed from an organization can be listed under the organization
+ that actually holds the copyright for their contributions (see the
+ Gates Foundation organization for an example). Those individuals should have
+ their names indented and be marked with a '-'. Email address can be added
+ optionally within square brackets <email>.
+ * Gates Foundation
+ - Name Surname <name.surname@gatesfoundation.com>
+
+ * Steven Oderayi <steven.oderayi@infitx.com>
+ --------------
+ ******'/
+
+@startuml position-handler-consume
+' declate title
+title 1.1.2.a. Position Handler Consume (single message)
+
+autonumber
+
+' declare actors
+collections "topic-transfer-position" as TOPIC_TRANSFER_POSITION
+control "Position Event Handler" as POS_HANDLER
+entity "Position DAO" as POS_DAO
+entity "Settlement DAO" as SETTLEMENT_DAO
+collections "Notification-Topic" as TOPIC_NOTIFICATIONS
+entity "Participant DAO" as PARTICIPANT_DAO
+database "Central Store" as DB
+
+box "Central Service" #LightYellow
+    participant TOPIC_TRANSFER_POSITION
+    participant POS_HANDLER
+    participant TOPIC_NOTIFICATIONS
+    participant POS_DAO
+    participant PARTICIPANT_DAO
+    participant SETTLEMENT_DAO
+    participant DB
+end box
+
+' start flow
+activate POS_HANDLER
+group Position Handler Consume
+    note left of POS_HANDLER #lightgrey
+        Event is automatically replicated 
+        to the events topic (topic-events)
+    end note
+    TOPIC_TRANSFER_POSITION <- POS_HANDLER: Consume Position event message for Payer
+    activate TOPIC_TRANSFER_POSITION
+    deactivate TOPIC_TRANSFER_POSITION
+
+    break
+        group Validate Event
+            POS_HANDLER <-> POS_HANDLER: Validate event - Rule: type == 'position' && action == 'fx_prepare'
+            POS_HANDLER -> POS_HANDLER: Validate 'payload.commitRequestId' or 'message.value.content.uriParams.id' is not empty\n<color #red>**Error code:** 2003</color>
+        end
+    end
+
+    alt Calulate & Validate Latest Position (success)
+        group Calculate position and persist change
+            POS_HANDLER -> SETTLEMENT_DAO: Request active settlement models
+            activate SETTLEMENT_DAO
+            SETTLEMENT_DAO -> DB: Retrieve active settlement models
+            activate DB
+            hnote over DB #lightyellow
+                settlementModel
+            end note
+            DB --> SETTLEMENT_DAO: Return active settlement models
+            deactivate DB
+            SETTLEMENT_DAO --> POS_HANDLER: Return active settlement models
+            deactivate SETTLEMENT_DAO
+            POS_HANDLER -> POS_HANDLER: Select currency matching or default settlement model for POSITION ledger account type\n<color #red>**Error code:** 6000</color>
+            
+            POS_HANDLER -> PARTICIPANT_DAO: Request Payer Participant position account by name and currency
+            activate PARTICIPANT_DAO
+            PARTICIPANT_DAO -> DB: Retrieve Payer Participant position account by name and currency
+            activate DB
+            hnote over DB #lightyellow
+                participant
+                participantCurrency
+            end note
+            DB --> PARTICIPANT_DAO: Return Payer Participant position account by name and currency
+            deactivate DB
+            PARTICIPANT_DAO --> POS_HANDLER: Return Payer Participant position account by name and currency
+            deactivate PARTICIPANT_DAO
+
+            POS_HANDLER -> DB: Retrieve transfer state from DB by 'commitRequestId'
+            activate DB
+            hnote over DB #lightyellow
+                fxTransferStateChange
+            end note
+            DB --> POS_HANDLER: Retrieve transfer state from DB
+            deactivate DB
+            DB --> POS_HANDLER: Return transfer state
+            
+            POS_HANDLER -> PARTICIPANT_DAO: Request position limits for Payer Participant
+            activate PARTICIPANT_DAO
+            PARTICIPANT_DAO -> DB: Request position limits for Payer Participant
+            activate DB
+            hnote over DB #lightyellow
+                participant
+                participantLimit
+            end note
+            DB --> PARTICIPANT_DAO: Return position limits
+            deactivate DB
+            deactivate DB
+            PARTICIPANT_DAO --> POS_HANDLER: Return position limits
+            deactivate PARTICIPANT_DAO
+
+            alt Validate transfer state (transferState='RECEIVED_PREPARE')
+                POS_HANDLER <-> POS_HANDLER: Update transfer state to RESERVED
+                POS_HANDLER <-> POS_HANDLER: Calculate latest position for prepare
+                POS_HANDLER <-> POS_HANDLER: Validate calculated latest position (lpos) against the net-debit cap (netcap) - Rule: lpos < netcap
+                
+                POS_HANDLER -> POS_DAO: Request payer participant position for the transfer currency and settlement currency
+                activate POS_DAO
+                POS_DAO -> DB: Retrieve payer participant position for the transfer currency and settlement currency
+                hnote over DB #lightyellow
+                    participantPosiiton
+                end note
+                activate DB
+                deactivate DB
+                POS_DAO --> POS_HANDLER: Return payer participant position for the transfer currency and settlement currency
+                deactivate POS_DAO
+
+                POS_HANDLER <-> POS_HANDLER: Update participant position (increase reserved position by transfer amount)
+                POS_HANDLER -> DB: Persist payer participant position in DB
+                activate DB
+                hnote over DB #lightyellow
+                    participantPosition
+                end note 
+                DB -> POS_HANDLER: Return success
+                deactivate DB
+
+                POS_HANDLER -> PARTICIPANT_DAO: Request payer participant limit by currency
+                activate PARTICIPANT_DAO
+                PARTICIPANT_DAO -> DB: Retrieve payer participant limit by currency
+                activate DB
+                hnote over DB #lightyellow
+                    participant
+                    participantCurrency
+                    participantLimit
+                end note
+                DB --> PARTICIPANT_DAO: Return payer participant limit by currency
+                deactivate DB
+                PARTICIPANT_DAO --> POS_HANDLER: Return payer participant limit by currency
+                deactivate PARTICIPANT_DAO
+
+                POS_HANDLER <-> POS_HANDLER: Calculate latest available position based on payer limit and payer liquidity cover
+
+                alt Validate position limits (success)
+                    POS_HANDLER <-> POS_HANDLER: Update transfer state to RESERVED
+                    POS_HANDLER -> DB: Update participant position
+                    activate DB
+                    hnote over DB #lightyellow
+                        participantPosition
+                    end note
+                    deactivate DB
+
+                    POS_HANDLER -> DB: Persist transfer state change (RESERVED) to DB
+                    activate DB
+                    hnote over DB #lightyellow
+                        fxTransferStateChange
+                    end note
+                    deactivate DB
+
+                    POS_HANDLER -> DB: Insert participant position change record
+                    activate DB
+                    hnote over DB #lightyellow
+                        participantPositionChange
+                    end note
+                    deactivate DB
+                else Validate position limits (failure)
+                    POS_HANDLER -> DB: Persist transfer state change (ABORTED_REJECTED) to DB, <color #red>**Error codes:** 4001, 4200</color>
+                    activate DB
+                    hnote over DB #lightyellow
+                        fxTransferStateChange
+                    end note
+                    deactivate DB
+                end
+            else transferState !='RECEIVED_PREPARE'
+                POS_HANDLER <-> POS_HANDLER: Update transfer state to ABORTED_REJECTED
+                POS_HANDLER -> DB: Persist aborted transfer state
+                activate DB
+                hnote over DB #lightyellow
+                    fxTransferStateChange
+                end note
+                deactivate DB
+            end
+
+            alt Transfer state is RESERVED
+                note right of POS_HANDLER #yellow
+                    Message:
+                    {
+                        id: <transferMessage.commitRequestId>
+                        from: <transferMessage.initiatingFsp>,
+                        to: <transferMessage.counterPartyFsp>,
+                        type: application/json
+                        content: {
+                            headers: <transferHeaders>,
+                            payload: <transferMessage>
+                        },
+                        metadata: {
+                            event: {
+                                id: <uuid>,
+                                responseTo: <previous.uuid>,
+                                type: transfer,
+                                action: prepare,
+                                createdAt: <timestamp>,
+                                state: {
+                                    status: "success",
+                                    code: 0
+                                }
+                            }
+                        }
+                    }
+                end note
+                POS_HANDLER -> TOPIC_NOTIFICATIONS: Publish Notification event to FXP
+                activate TOPIC_NOTIFICATIONS
+                deactivate TOPIC_NOTIFICATIONS 
+            else
+                note right of POS_HANDLER #yellow
+                    Message:
+                    {
+                        id: <transferMessage.commitRequestId>
+                        from: <switch>,
+                        to: <transferMessage.initiatingFsp>,
+                        type: application/json
+                        content: {
+                            headers: <transferHeaders>,
+                            payload: {
+                                "errorInformation": {
+                                    "errorCode": <error code>,
+                                    "errorDescription": "<error description>",
+                                    "extensionList": <transferMessage.extensionList>
+                                }
+                            }
+                        },
+                        metadata: {
+                            event: {
+                                id: <uuid>,
+                                responseTo: <previous.uuid>,
+                                type: notification,
+                                action: prepare,
+                                createdAt: <timestamp>,
+                                state: {
+                                    status: 'error',
+                                    code: <errorInformation.errorCode>
+                                    description: <errorInformation.errorDescription>
+                                }
+                            }
+                        }
+                    }
+                end note
+                POS_HANDLER -> TOPIC_NOTIFICATIONS: Publish Notification (failure) event for Payer. <color #red>**Error code:** 2001</color>
+                activate TOPIC_NOTIFICATIONS
+                deactivate TOPIC_NOTIFICATIONS
+            end
+            
+        end
+    else Calculate & Validate Latest Position (failure) 
+        note right of POS_HANDLER #yellow
+            Message:
+            {
+                id: <transferMessage.transferId>
+                from: <ledgerName>,
+                to: <transferMessage.payerFsp>,
+                type: application/json
+                content: {
+                    headers: <transferHeaders>,
+                    payload: {
+                        "errorInformation": {
+                            "errorCode": <error code>,
+                            "errorDescription": "<error description>",
+                            "extensionList": <transferMessage.extensionList>
+                    }
+                },
+                metadata: {
+                    event: {
+                        id: <uuid>,
+                        responseTo: <previous.uuid>,
+                        type: notification,
+                        action: prepare,
+                        createdAt: <timestamp>,
+                        state: {
+                            status: 'error',
+                            code: <errorInformation.errorCode>
+                            description: <errorInformation.errorDescription>
+                        }
+                    }
+                }
+            }
+        end note
+        POS_HANDLER -> TOPIC_NOTIFICATIONS: Publish Notification (failure) event for Payer <color #red>**Error codes:** 4001, 4200</color>
+        activate TOPIC_NOTIFICATIONS
+        deactivate TOPIC_NOTIFICATIONS
+        deactivate POS_HANDLER
+    end
+end
+deactivate POS_HANDLER
+@enduml
