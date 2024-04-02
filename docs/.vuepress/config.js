@@ -713,7 +713,7 @@ module.exports = {
                 },
                 {
                   title: "FX Fulfil Handler",
-                  path: "central-fx-transfers/transfers/1.1.2.a-fx-fulfil-transfer-request"
+                  path: "central-fx-transfers/transfers/2.1.0-fx-fulfil-transfer-request"
                 },
                 {
                   title: "Notifications process",
@@ -721,7 +721,7 @@ module.exports = {
                 },
                 {
                   title: "Reject/Abort",
-                  path: "central-fx-transfers/transfers/2.1.0-fx-fulfil-reject-transfer"
+                  path: "central-fx-transfers/transfers/2.2.0-fx-fulfil-reject-transfer"
                 }
               ]
             },
