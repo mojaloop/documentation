@@ -140,6 +140,9 @@ More information here: [Straight Through Processing Definition](https://www.inve
 
 ## Operational Characteristics
 
+Mojaloop is designed to function as part of a jurisdictional Instant Payments System. As such, it must demonstrably meet the standards of performance and resilience which are required for such systems.
+
+
 ### 1. Baseline system demonstrated on minimal hardware supports clearing 1,000 transfers per second, sustained for one hour, with not more than 1% (of transfer stage) taking more than 1 second through the hub.
 #### Notes:
 1. This measurement includes all necessary hardware and software components with production grade security and data persistence in place.
