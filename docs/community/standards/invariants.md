@@ -15,15 +15,16 @@ These invariants should guide any product and technical design discussions relat
 
 ### 2. The hub supports fully automatic straight-through processing.
 #### Notes:
-1. Straight through processing helps reduce human errors in the transfer process which ultimately reduces costs.
-2. The automated nature of straight through processing leads to faster value transfers between end customers.
+1. "Straight through processing" means that no manual interventions in the execution of payments or settlements should be required, except where acceptance of the terms of a payment is required from an end user in conformity with the Level One Principles
+2. Straight through processing helps reduce human errors in the transfer process which ultimately reduces costs.
+3. The automated nature of straight through processing leads to faster value transfers between end customers.
 
-More information here: [https://www.investopedia.com/terms/s/straightthroughprocessing.asp]()
+More information here: [Straight Through Processing Definition](https://www.investopedia.com/terms/s/straightthroughprocessing.asp)
 
 
 ### 3. The hub requires no manual reconciliation as the protocol for interacting with the hub guarantees deterministic outcomes.
 #### Notes:
-1. When a transfer is finalized, there can be no doubt about the status of that transfer (alternatively, it is not finalized and active notice provided to participants).
+1. When a transfer is finalized, there can be no doubt about the status of that transfer (alternatively, it is not finalized and active notice provided to participants. The notice provided to participants is on demand: if they enquire, they are informed that status is indeterminate).
 2. The hub guarantees deterministic outcomes for transfers and is accepted by all participants as the final authority on the status of transfers.
 3. Determinism means individual transfers are traceable, auditable (based on limits, constraints), with final result provided within guaranteed time limit.
 4. For the avoidance of doubt, batch transfers are processed line-by-line with potentially differing deterministic outcomes for each.
@@ -31,7 +32,7 @@ More information here: [https://www.investopedia.com/terms/s/straightthroughproc
 
 ### 4. Transaction setup logic, which is use case-specific, is separated from the policy-free transfer of money.
 #### Notes:
-1. Transaction details and business rules should be captured and applied between counterparties prior to the quoting phase and is out of scope for Mojaloop.
+1. Transaction details and business rules should be captured and applied between counterparties prior to the agreement of terms phase and is out of scope for Mojaloop.
 2. The agreement phase establishes a signed use-case specific transaction object which incorporates all transaction-specific details.
 3. The transfer phase orchestrates the transfer of retail value between institutions for the benefit of the counterparties (i.e only system limit checks are applied) and without reference to transaction details.
 4. No additional transaction-specific processing during the transfer phase.
@@ -52,12 +53,12 @@ More information here: [https://www.investopedia.com/terms/s/straightthroughproc
 ### 7. Internet-based API service hub is not a “message switch.”
 #### Notes:
 1. The service hub provides real-time API services for participants to support retail credit-push instant transfers.
-    1.  API services such as ID-to-participant look-up, transaction agreement between participants, submission of prepared transfers, and submission of fulfillment advice.
+    1.  API services such as address resolution, transaction agreement between participants, submission of prepared transfers, and submission of fulfillment advice.
 2. Auxiliary API services for participants are provided to support onboarding, position management, reporting for reconciliation, and other non-realtime functions not associated with transfer processing.
 3. All messages are validated for conformance to the API specification; non-conforming messages are actively rejected with a standardized machine-interpretable reason code.
 
 
-### 8. The hub exposes asynchronous interfaces
+### 8. The hub exposes asynchronous interfaces to participants
 #### Notes:
 1. To maximize system throughput.
 2. To isolate leaf-node connectivity issues so they don't impact other end-users.
@@ -96,7 +97,7 @@ More information here: [https://www.investopedia.com/terms/s/straightthroughproc
 2. Tamper-evident integrity mechanisms are required to ensure that messages cannot be altered in transit.
     1. To ensure the integrity of the overall system, each recipient of a message should be able to independently tell, with a high degree of confidence, that the message was not altered in transit.
     2. Public key cryptography (digital signing) provides the current best known mechanism for tamper-evident messaging
-        1. The security of the senders private key is critical.
+        1. The security of the sender's private key is critical.
         2. Scheme rules must be established to clarify the responsibilities for key management and the potential for financial liability upon compromise of a private key.
 3. Non-repudiation is required to ensure that the message was sent by the party which purported to send it and that provenance can not be repudiated by the sender.
     1. This is important for determining the liable party during audit and dispute resolution processes.
@@ -145,7 +146,7 @@ More information here: [https://www.investopedia.com/terms/s/straightthroughproc
 2. This measurement includes all three transfer stages: discovery, agreement, and transfer.
 3. This measurement does not include any participant introduced latency.
 4. A one hour period is a reasonable approximation of a demand peak for a national payment system.
-5. A lower unit cost to scale than to initially provisioned.
+5. The cost of scaling up capacity should be less per unit of capacity than the cost of initial provisioning.
 6. 1000 transfers (clearing) per second is a reasonable starting point for a national payment system.
 7. 1% of transfers (clearing) taking more than 1 second is a reasonable starting point for a national payment system.
 8. Mojaloop schemes should be able to start at a reasonable cost point, for national financial infrastructure, and scale economically as demand grows.
