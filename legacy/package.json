@@ -3,7 +3,7 @@
   "version": "11.3.2",
   "description": "Mojaloop Documentation GitBook Project",
   "dependencies": {
-    "express": "4.17.1",
+    "express": "4.19.2",
     "gitbook-cli": "2.3.2",
     "gitbook-plugin-back-to-top-button": "0.1.4",
     "gitbook-plugin-changelog": "1.0.1",
@@ -18,19 +18,19 @@
     "gitbook-plugin-theme-api": "1.1.2",
     "gitbook-plugin-uml": "1.0.1",
     "gitbook-plugin-variables": "1.1.0",
-    "svgexport": "0.4.1"
+    "svgexport": "0.4.2"
   },
   "devDependencies": {
-    "directory-tree": "^2.2.5",
-    "got": "^11.8.0",
-    "husky": "^4.2.5",
+    "directory-tree": "^3.5.1",
+    "got": "^14.2.1",
+    "husky": "^9.0.11",
     "license-checker": "25.0.1",
-    "node-plantuml": "^0.5.0",
-    "npm-audit-resolver": "2.2.1",
-    "npm-check-updates": "7.0.2",
+    "node-plantuml": "^0.9.0",
+    "npm-audit-resolver": "2.3.1",
+    "npm-check-updates": "16.14.18",
     "plantuml-encoder": "^1.4.0",
     "strip-comments": "^2.0.1",
-    "svgo": "^1.3.2"
+    "svgo": "^3.2.0"
   },
   "scripts": {
     "audit:check": "SHELL=sh check-audit",
