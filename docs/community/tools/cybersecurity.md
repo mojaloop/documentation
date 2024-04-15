@@ -14,7 +14,7 @@
 
 ## Introduction
 
-Mojaloop takes both secure-by-design and risk based approaches to cybersecurity meaning the open-source software provided by the Mojaloop Foundation have been designed to be foundationally secure and are continuously evaluated against possible risks by several processes.
+Mojaloop takes both secure-by-design and risk based approaches to cybersecurity, meaning the open-source software provided by the Mojaloop Foundation have been designed to be foundationally secure and are continuously evaluated against possible risks by several processes.
 
 In addition to the cybersecurity initiatives managed by the Mojaloop Foundation, the wider Mojaloop community includes cybersecurity experts who are able to provide consultancy and services to further enhance adopters' own capabilities.
 
