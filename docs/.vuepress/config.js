@@ -128,7 +128,7 @@ module.exports = {
             ['tools/pragmatic-rest', 'Pragmatic Rest'],
             ['tools/code-quality-metrics', 'Code Quality Metrics'],
             ['tools/automated-testing', 'Automated Testing'],
-            ['tools/test', 'Test'],
+            ['tools/cybersecurity', 'Cybersecurity'],
           ]
         },
         {
