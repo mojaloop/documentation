@@ -105,6 +105,7 @@ module.exports = {
             ['contributing/new-contributor-checklist', 'New Contributor Checklist'],
             ['contributing/code-of-conduct', 'Code of Conduct'],
             ['contributing/signing-the-cla', 'Signing the CLA'],
+            ['contributing/cvd', 'Disclosing Security Vulnerabilities'],
           ]
         },
         {
@@ -128,6 +129,7 @@ module.exports = {
             ['tools/pragmatic-rest', 'Pragmatic Rest'],
             ['tools/code-quality-metrics', 'Code Quality Metrics'],
             ['tools/automated-testing', 'Automated Testing'],
+            ['tools/cybersecurity', 'Cybersecurity'],
           ]
         },
         {
