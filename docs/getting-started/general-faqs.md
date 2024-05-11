@@ -42,7 +42,7 @@ Yes, it is really open-source. All core modules, documentation and white papers 
 
 ## 8. How can I contribute to Mojaloop?
 
-You can contribute by helping us create new functionality on our roadmap or by helping us improve the platform. For our roadmap, go to the [Mojaloop Roadmap](../mojaloop-roadmap.md). We recommend starting with the onboarding guide and sample problem. This has been designed by the team to introduce the core ideas of the platform and software, the build methods, and our process for check-ins.
+You can contribute by helping us create new functionality on our roadmap or by helping us improve the platform. For our roadmap, go to the [Mojaloop Roadmap](https://github.com/mojaloop/documentation/blob/master/docs/community/mojaloop-roadmap.md). We recommend starting with the onboarding guide and sample problem. This has been designed by the team to introduce the core ideas of the platform and software, the build methods, and our process for check-ins.
     
 ## 9. Using Mojaloop to do payment using crypto-currency?
 
