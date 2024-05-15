@@ -1,6 +1,6 @@
 # API Documentation
 
-All APIs should be documented in RAML or Swagger, see [Architecture-Documentation-Guidelines](https://github.com/mojaloop/mojaloop/blob/main/contribute/Architecture-Documentation-Guidelines.md)
+All APIs should be documented in RAML or Swagger, see [Architecture-Documentation-Guidelines](contribute/Architecture-Documentation-Guidelines.md)
 
 
 **Section Headings**
