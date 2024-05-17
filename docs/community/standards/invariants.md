@@ -164,18 +164,17 @@ Mojaloop is designed to function as part of a jurisdictional Instant Payments Sy
 2. The hub has no single point of failure; meaning that it continues to operate with minimum degradation of service in the event of a failure of any single component.
    1. Multiple active instances of each component are deployed in a distributed manner behind load balancers.
    2. Each active component instance can handle requests from any client/participant meaning no single participant loses the ability to transact in the event of a failure of any single component.
-3. Given appropriate infrastructure to operate upon, the Mojaloop software can be deployed in configurations which deliver 99.999% uptime (five nines) overall.
-   1. This includes active:active and active:passive multiple, geographically distributed data center configurations where both services and data are replicated across multiple physical nodes which are expected to fail independently.
-      1. Note that it is expected that nodes in replication groups (and/or clusters) will be located in diverse physical locations (racks and/or data centres) with independent power supplies and network interconnects.
-4. Should multiple component failures occur which have not been mitigated either in the Mojaloop software, deployment configuration or infrastructure, the Mojaloop API provides mechanisms for each entity in the scheme to recover to a consistent state, with the hub being the ultimate source of truth upon full restoration of service.
-5. _Also see further points relating to resistance to data loss in the event of failures._
-6. Given that Mojaloop schemes are intended to form parts of national financial infrastructure they must have as close to zero downtime as possible, given reasonable cost constraints.
-7. Failures in hardware and software components are to be expected, even in the highest quality components available. Best practice suggests these failures should be anticipated and planned for as much as possible in the design of the hub with a view to minimising loss or degradation of service and/or data.
-8. For the avoidance of doubt this means the tradeoffs chosen favour overall service availability and state consistency over performance. I.e:
+3. Given appropriate infrastructure to operate upon, the Mojaloop software can be deployed in active:active and/or active:passive multiple, geographically distributed data center configurations where both services and data are replicated across multiple physical nodes which are expected to fail independently.
+   4. Note that it is expected that nodes in replication groups (and/or clusters) will be located in diverse physical locations (racks and/or data centres) with independent power supplies and network interconnects.
+5. Should multiple component failures occur which have not been mitigated either in the Mojaloop software, deployment configuration or infrastructure, the Mojaloop API provides mechanisms for each entity in the scheme to recover to a consistent state, with the hub being the ultimate source of truth upon full restoration of service.
+6. _Also see further points relating to resistance to data loss in the event of failures._
+7. Given that Mojaloop schemes are intended to form parts of national financial infrastructure they must have as close to zero downtime as possible, given reasonable cost constraints.
+8. Failures in hardware and software components are to be expected, even in the highest quality components available. Best practice suggests these failures should be anticipated and planned for as much as possible in the design of the hub with a view to minimising loss or degradation of service and/or data.
+9. For the avoidance of doubt this means the tradeoffs chosen favour overall service availability and state consistency over performance. I.e:
    1. All participants can continue to transact at a reduced rate rather than some participants being unable to transact at all.
    2. Inconsistencies in state between scheme entities are resolvable post service restoration via the Mojaloop API, with minimal manual reconciliation necessary; the hub being the ultimate source of truth.
-9. In situation where sufficient throughput to handle all incoming requests in a timely manner cannot be sustained, the hub will prioritise processing transfers which are in-flight over new incoming requests.
-   1. Transfers which the hub cannot process before specified deadlines expire will be timed out gracefully.
+10. In situation where sufficient throughput to handle all incoming requests in a timely manner cannot be sustained, the hub will prioritise processing transfers which are in-flight over new incoming requests.
+    1. Transfers which the hub cannot process before specified deadlines expire will be timed out gracefully.
 
 
 ### 3. The hub is resistant to loss of data in the event of failures.
