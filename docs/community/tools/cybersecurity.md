@@ -1,17 +1,5 @@
 ## Mojaloop Cybersecurity Architecture
 
-
-## Supporting Mojaloop v15.x
-
-**DRAFT VERSION SUBJECT TO REVIEW**
-
-**Authors:** James Bush &lt;[jbush@mojaloop.io](mailto:jbush@mojaloop.io)>, Paul Makin &lt;[pmakin@mojaloop.io](mailto:pmakin@mojaloop.io)>
-
-**Version:** draft
-
-**Date:** 24th January 2024
-
-
 ## Introduction
 
 Mojaloop takes both secure-by-design and risk based approaches to cybersecurity, meaning the open-source software provided by the Mojaloop Foundation have been designed to be foundationally secure and are continuously evaluated against possible risks by several processes.
