@@ -165,7 +165,7 @@ Mojaloop is designed to function as part of a jurisdictional Instant Payments Sy
    1. Multiple active instances of each component are deployed in a distributed manner behind load balancers.
    2. Each active component instance can handle requests from any client/participant meaning no single participant loses the ability to transact in the event of a failure of any single component.
 3. Given appropriate infrastructure to operate upon, the Mojaloop software can be deployed in active:active and/or active:passive multiple, geographically distributed data center configurations where both services and data are replicated across multiple physical nodes which are expected to fail independently.
-   4. Note that it is expected that nodes in replication groups (and/or clusters) will be located in diverse physical locations (racks and/or data centres) with independent power supplies and network interconnects.
+4. Note that it is expected that nodes in replication groups (and/or clusters) will be located in diverse physical locations (racks and/or data centres) with independent power supplies and network interconnects.
 5. Should multiple component failures occur which have not been mitigated either in the Mojaloop software, deployment configuration or infrastructure, the Mojaloop API provides mechanisms for each entity in the scheme to recover to a consistent state, with the hub being the ultimate source of truth upon full restoration of service.
 6. _Also see further points relating to resistance to data loss in the event of failures._
 7. Given that Mojaloop schemes are intended to form parts of national financial infrastructure they must have as close to zero downtime as possible, given reasonable cost constraints.
