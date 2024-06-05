@@ -1,10 +1,28 @@
 # Technical Design Review & Code Review
 
+Mojaloop software is intended to form the backbone of nation scale inclusive instant payments schemes. These schemes
+are important pieces of national financial infrastructure which facilitate the life critical daily activities of a
+great number of people, such as purchasing food and clean drinking water. Adopters and users of Mojaloop software demand
+and deserve an extremely high level of quality, security, reliability and resilience from our products.
+
+In order to maintain these qualities the Mojaloop Foundation implements a rigorous product engineering process which
+includes strict requirements for technical design review and code review, testing and quality assurance.
+
+Our processes are intended to help our contributors identity and mitigate risks while enhancing our products, for the
+benefit of the entire Mojaloop community.
+
+Please read the following information carefully to make sure you understand our definitions and how these processes
+apply to the work you want to accomplish **before you begin**.
+
+**Please note that if you do not follow these processes you may be asked to rework your contribution if it does not meet
+our standards. This may lead to significant delays in getting your work into an official Mojaloop release.**
+
+
 ## What is Technical Design Review?
 
 "Technical design review" is a process whereby one or more senior domain expert engineers who are members of the
 Mojaloop Design Authority, familiar with the area(s) of the system effected, discuss proposed changes with contributors
-before they are begun, for the following purposes:
+**before implementation work is started**, for the following purposes:
 
 - Risk Management
     - To help identify and mitigate technical and/or business risks to any of our stakeholders, users or other
@@ -25,8 +43,8 @@ decisions made historically as our software evolves.
 
 ## What is Code Review
 
-"Code review" is a process whereby one or more other software engineers look over a set of proposed code changes before
-they are merged into the main branch of a repository, for the following purposes:
+"Code review" is a process whereby one or more other software engineers look over a set of proposed code changes
+**before they are merged into the main branch of a repository**, for the following purposes:
 
 - Quality Assurance
     - Code reviews help ensure the quality of the codebase by allowing other team members to identify potential issues,
@@ -58,7 +76,7 @@ they are merged into the main branch of a repository, for the following purposes
 As a contributor, the process you must follow depends on the nature of the change you are making and its potential
 impact on various categories of users and the system as a whole.
 
-Use the following definitions to identify the type of change you are making and select the appropriate process to
+Use the definitions below to identify the type of change you are making and select the appropriate process to
 follow. It is your responsibility as a contributor to apply the appropriate process and you will be required to sign a
 contributors agreement stating that you will adhere to these requirements.
 

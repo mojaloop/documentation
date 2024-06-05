@@ -9,8 +9,7 @@ In order to maintain these qualities the Mojaloop Foundation implements a rigoro
 includes strict requirements for technical design review and code review, testing and quality assurance.
 
 Our process is intended to help our contributors identity and mitigate risks while enhancing our products, for the
-benefit
-of the entire Mojaloop community.
+benefit of the entire Mojaloop community.
 
 Since 2017 when the Mojaloop project cut its first code, our process model has evolved to cope with the
 transition from a single engineering team to a number of community resourced workstreams, each focused on developing
@@ -70,18 +69,20 @@ stakeholders:
 1. Workstreams must have a clear and concise name which reflects their purpose.
 2. Workstreams must have a named individual as leader at all times; in some circumstances the workstream lead position
    may be shared by two individuals if neither has sufficient time to contribute.
-5. Workstreams must publish and maintain a description which explains their purpose, objectives and scope for each
+3. Workstreams must publish and maintain a description which explains their purpose, objectives and scope for each
    program increment on community central.
-6. Workstreams must have a minimum of two named, active contributors.
-7. Workstreams must operate a minimum of one online meeting per week.
+4. Workstreams must have a minimum of two named, active contributors.
+5. Workstreams must operate a minimum of one online meeting per week.
     1. Workstream meetings should be considered open for other community members to observe.
     2. Workstream meetings should be recorded and recordings should be published publicly.
-8. Workstreams with more than two active contributors should operate a scrum style stand-up online meeting.
+6. Workstreams with more than two active contributors should operate a scrum style stand-up online meeting.
     1. Stand-up meetings should be daily, unless the volume of work is low, in which case a less frequent cadence may
        be acceptable.
-9. Workstreams must maintain a github repository containing all related documentation and work items.
-10. Workstreams must obtain and use a specific hashtag on community central when making posts.
-11. Workstreams must be reviewed by the Mojaloop Product Council before commencement of each program increment.
+7. Workstreams must maintain a public github repository containing all related documentation and work items.
+8. Workstreams must adhere to all [Mojaloop design and code review processes](./design-review.md) before, during
+   and after work has been completed.
+9. Workstreams must obtain and use a specific hashtag on community central when making posts.
+10. Workstreams must be reviewed by the Mojaloop Product Council before commencement of each program increment.
     1. Workstream objectives must be aligned with the Mojaloop product roadmap.
     2. Workstream objectives must be aligned with the mission of the Mojaloop Foundation.
 
@@ -101,22 +102,25 @@ Workstream (co)leads must accept the following responsibilities:
 1. To be a primary point of contact for queries.
 2. To schedule, hold and record workstream meetings as required.
 3. To facilitate liaison between workstream contributors, other workstreams and the rest of the community.
-4. Report Progress to...
+4. To create, publish on community central and maintain a workstream team charter document. 
+5. Report Progress to...
     1. ...the community regularly on Community Central using assigned hashtag.
     2. ...the Product Manager/Product Council.
-5. Ensure all work items adhere to all [Mojaloop design and code review processes](./design-review.md) before, during
-   and after work has begun.
-6. Ensure all work adheres to Mojaloop quality standards such as style, test coverage and documentation.
-7. Ensure work is tracked in GitHub/Zenhub and timelines and progress are updated.
-8. Ensure technical output is tested by the code maintenance team. For non-technical workstreams the workstream should
+6. Ensure all work items adhere to all [Mojaloop design and code review processes](./design-review.md) before, during
+   and after work has completed.
+7. Ensure all work adheres to Mojaloop quality standards such as style, test coverage and documentation.
+8. Ensure work is tracked in GitHub/Zenhub and timelines and progress are updated.
+9. Ensure technical output is tested by the code maintenance team. For non-technical workstreams the workstream should
    be reviewed by someone outside the workstream.
-9. Facilitate building new features and write code as necessary.
-10. Triage/review contributions, issues, and respond to users.
-11. File bug reports / fixes and resolve conflicts in the workstream.
-12. Proactively manage technical debt and improve existing code.
-13. Ensure documentation meets the required standards.
-14. Guide the workstreams’ strategic direction in collaboration with the Product Manager and Product Council.
-15. Define SMART objectives at the beginning of each PI.
+10. Facilitate building new features and write code as necessary.
+11. Triage/review contributions, issues, and respond to users.
+12. File bug reports / fixes and resolve conflicts in the workstream.
+13. Proactively manage technical debt and improve existing code, while adhering to
+    all  [Mojaloop design and code review processes](./design-review.md).
+14. Ensure documentation meets the required standards.
+15. Guide the workstream strategic direction in collaboration with the Mojaloop Foundation Product Director and Product
+    Council.
+16. Define SMART objectives at the beginning of each PI.
 
 ### Defining Work
 
@@ -128,13 +132,23 @@ progress they make during implementation:
    [behaviour driven development style](https://www.agilealliance.org/glossary/user-story-template/).
 2. Work items should include detailed acceptance criteria defined in the "given, when,
    then" [behaviour driven development style](https://www.agilealliance.org/glossary/given-when-then/).
-3. Work items should be sized so the expected duration of any item or sub item does not exceed a single two week sprint.
+3. Work items must be sized so the expected duration of any item or sub item does not exceed a single two week sprint.
 4. Work items must adhere to all [Mojaloop design and code review processes](./design-review.md) before, during and
-   after work has begun. Where design review is required, "spike" tickets should be used to track the design process
+   after work has completed. Where design review is required, "spike" tickets should be used to track the design process
    before work item tickets are created.
     1. All required design documentation must be approved by the Mojaloop Design Authority before work commences.
 
 ### Getting Work Done
 
+Workstreams should operate a scrum style process model with regular scheduled standup, backlog refinement, sprint
+planning, sprint review and retrospective activities.
 
+A workstream team charter template is available for download here: [workstream-team-charter-template.docx](workstream-team-charter-template.docx)
+
+
+
+### Getting Support
+
+When things do not go to plan and a resolution cannot be found among the workstream members, the Mojaloop Community
+Council provides support.
 
