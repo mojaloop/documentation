@@ -114,6 +114,7 @@ module.exports = {
           sidebarDepth: 2,
           children: [
             ['standards/guide', 'Our Standards'],
+            ['standards/invariants', 'Mojaloop Invariants'],
             ['standards/versioning', 'Versioning'],
             ['standards/creating-new-features', 'Creating New Features'],
             ['standards/triaging-bugs', 'Triaging Bugs'],
