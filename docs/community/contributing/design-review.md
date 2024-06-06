@@ -29,12 +29,10 @@ Mojaloop Design Authority, familiar with the area(s) of the system effected, dis
       contributors.
 - Impact Assessment
     - To help identify other areas of the system or teams who may be impacted by the change, and to facilitate
-      communication
-      with them.
+      communication with them.
 - Standards & Cohesion
     - To guide on established Mojaloop standards for tooling, third party component choices and design patterns with a
-      view
-      to maintaining cohesion across the entire Mojaloop codebase.
+      view to maintaining cohesion across the entire Mojaloop codebase.
 
 For non-trivial changes, this process involves working collaboratively with the Mojaloop Design Authority to produce a
 design document which captures the various elements of the proposed change. Once the change is implemented, this

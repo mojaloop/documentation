@@ -8,7 +8,7 @@ and deserve an extremely high level of quality, security, reliability and resili
 In order to maintain these qualities the Mojaloop Foundation implements a rigorous product engineering process which
 includes strict requirements for technical design review and code review, testing and quality assurance.
 
-Our process is intended to help our contributors identity and mitigate risks while enhancing our products, for the
+Our process is intended to help our contributors identify and mitigate risks while enhancing our products, for the
 benefit of the entire Mojaloop community.
 
 Since 2017 when the Mojaloop project cut its first code, our process model has evolved to cope with the
@@ -23,7 +23,7 @@ Our model is a cycle of "[program increments](https://v5.scaledagileframework.co
 approximately four calendar months. At the end of each increment, workstreams present their accomplishments at a
 community meeting and planning for the next increment begins.
 
-**_Mojaloop is open-source software, but that does not mean we dont follow the best demonstrated industry practices and
+**_Mojaloop is open-source software, but that does not mean we don't follow the best demonstrated industry practices and
 risk management strategies appropriate for our market._**
 
 ![mojaloop](./assets/mojaloop-product-engineering-process-overview.jpg)
