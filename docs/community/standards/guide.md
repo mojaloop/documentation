@@ -12,7 +12,7 @@ Please ensure you are familiar with the invariants before contributing to the co
 
 ## Runtime Environment
 
-The following runtime standards are utilizes for Mojaloop.
+The following runtime standards apply to Mojaloop.
 
 ### Micro-services & Libraries
 
