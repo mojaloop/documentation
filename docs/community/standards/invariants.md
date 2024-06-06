@@ -1,6 +1,6 @@
 # Mojaloop Invariants
 
-The following invariants have been established during the course of the platform’s development and based upon the technical requirements inferred from the [Level One Project Principles](https://www.leveloneproject.org/project_guide/level-one-project-design-principles/) and applicable industry best practice.
+The following invariants have been established during the course of the platform’s development and based upon the technical requirements inferred from the [Level One Project Principles](https://www.leveloneproject.org/project_guide/level-one-project-design-principles/) and applicable industry best practices.
 These invariants should guide any product and technical design discussions related to the architecture of the platform.
 
 ## General Principles
