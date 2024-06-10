@@ -26,11 +26,11 @@ community meeting and planning for the next increment begins.
 **_Mojaloop is open-source software, but that does not mean we don't follow the best demonstrated industry practices and
 risk management strategies appropriate for our market._**
 
-![mojaloop](./assets/mojaloop-product-engineering-process-overview.jpg)
+![Mojaloop Program Increments](./assets/mojaloop-product-engineering-process-overview.jpg)
 
 ## Product Requirements Flow
 
-![Feature Flow](./assets/mojaloop-product-feature-flow.jpg)
+![Mojaloop Feature Flow](./assets/mojaloop-product-feature-flow.jpg)
 
 Feature requests and new requirements come from a variety of sources, for example:
 
