@@ -3,30 +3,28 @@
 For changes which are covered by the [consequential change definition](./design-review.md#consequential-changes) the
 following process must be followed:
 
-1. Create a 'Product Change Proposal' and request a review:
+1. Propose a product change to the Mojaloop Product Council:
    1. Create a 'Product Change Proposal' in the GitHub 'product-council' project
       repository [here](https://github.com/mojaloop/product-council-project/issues).
       1. Complete the template as thoroughly as possible to ensure a quick turnaround.
    2. Send a message on the [#product-council](https://mojaloop.slack.com/archives/C01FF8AQUAK) slack channel asking for
       a review of your proposal.
    3. The Product Council will discuss your proposal with you and identify an appropriate Mojaloop workstream.
-2. Create a 'Consequential Change Proposal' and request a review:
-    1. If you have not done so already, create a 'Product Change Proposal' in the GitHub 'product-council' project
-       repository [here](https://github.com/mojaloop/product-council-project/issues).
-        1. If you have not done so already, ask the product council to review your proposal by sending a message on
-           the [#product-council](https://mojaloop.slack.com/archives/C01FF8AQUAK) slack channel.
-    2. Create a 'Consequential Change Proposal' issue in the GitHub 'design-authority-project'
+2. Propose code changes to the Mojaloop Design Authority:
+    1. Create a 'Consequential Change Proposal' issue in the GitHub 'design-authority-project'
        repository [here](https://github.com/mojaloop/design-authority-project/issues).
         1. Complete the template as thoroughly as possible to ensure a quick turnaround.
-    3. Send a message on the [#design-authority](https://mojaloop.slack.com/archives/CARJFMH3Q) slack channel asking for
+    2. Send a message on the [#design-authority](https://mojaloop.slack.com/archives/CARJFMH3Q) slack channel asking for
        a review of your proposal.
-    4. The design authority will assign one or more members to work with you on your proposal.
-3. Collaborate with one or more design authority members on your proposal:
+    3. The design authority will assign one or more members to work with you on your proposal.
+3. Take part in a design review:
     1. Your assigned design authority member(s) will guide you through an iterative design review process.
     2. Once the design review process is complete you may proceed with your change.
     3. Once you have implemented your change, your assigned design authority member(s) will review your code changes
        with you.
     4. Any changes to the design made during implementation must be recorded on the proposal ticket.
+4. Implement and review your code changes:
+   1. 
 
 ![Consequential Change Process](./assets/consequential-change-process.jpg)
 

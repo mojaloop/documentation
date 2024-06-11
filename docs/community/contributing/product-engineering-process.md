@@ -23,7 +23,7 @@ Our model is a cycle of "[program increments](https://v5.scaledagileframework.co
 approximately four calendar months. At the end of each increment, workstreams present their accomplishments at a
 community meeting and planning for the next increment begins.
 
-**_Mojaloop is open-source software, but that does not mean we don't follow the best demonstrated industry practices and
+**_Mojaloop is open-source software, we follow the best demonstrated industry practices and
 risk management strategies appropriate for our market._**
 
 ![Mojaloop Program Increments](./assets/mojaloop-product-engineering-process-overview.jpg)
