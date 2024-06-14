@@ -8,7 +8,7 @@ The first step in contributing to the Mojaloop documentation repository is to go
 
 
 ## Setting up locally
-Refer to the [README](./README#building-and-testing-locally) for guide on how to setup the documentation site locally.
+Refer to the [README](./README.md#building-and-testing-locally) for guide on how to setup the documentation site locally.
 
 
 ## Adding Content
