@@ -60,15 +60,9 @@ frequently and may include high priority features, bug fixes or security patches
 
 ## Mojaloop Workstreams
 
-Mojaloop worstreams follow a [scrum](https://www.scrum.org/resources/what-scrum-module)-like process model by default,
-running over a two-week sprint cadence. Given the stringent risk management requirements of our users regulatory
-environments and best demonstrated practice for financial software, our day-to-day process differs from some typical
-agile methodologies in that we implement mandatory oversight functions and stricter change control mechanisms, more
-typical of larger technical organisations.
-
-Workstreams have flexibility to adjust working methods to suit their particular circumstances, within sensible
-boundaries appropriate for our mission and regulatory domain. The Mojaloop Foundation provides guidance to workstreams
-to ensure they remain within our expected operating standards.
+Official workstreams are the "production lines" of the Mojaloop community, this is where the bulk of product development
+work happens. Typically there are many workstreams running in parallel, each focused on specific areas or features of
+the platform.
 
 ### Governance Model & Operating Requirements
 
@@ -99,16 +93,17 @@ stakeholders:
 
 ### Workstream Leadership Criteria and Responsibilities
 
+The Mojaloop Foundation appoints leads who are typically volunteers from the community with a high level of relevant
+expertise or experience.
+
 To qualify as a workstream (co)lead, individuals should meet the following criteria:
 
-1. Commitment and ability to fulfil all workstream lead responsibilities.
+1. Commitment and ability to fulfil all workstream lead responsibilities (see below).
 2. Demonstrable organizational ability.
 3. Demonstrable leadership ability.
 4. Demonstrable relevant technical ability.
 5. Familiarity with Mojaloop ecosystem.
 6. Commitment for the duration of the PI.
-
-**todo: who assesses nomination/applications? how does someone become a workstream lead? voting?**
 
 Workstream (co)leads must accept the following responsibilities:
 
@@ -133,7 +128,7 @@ Workstream (co)leads must accept the following responsibilities:
 14. Ensure documentation meets the required standards.
 15. Guide the workstream strategic direction in collaboration with the Mojaloop Foundation Product Director and Product
     Council.
-16. Define SMART objectives at the beginning of each PI.
+17. Define SMART objectives at the beginning of each PI.
 
 ### Defining Work
 
@@ -155,17 +150,35 @@ progress they make during implementation:
 
 ### Getting Work Done
 
-Workstreams should operate a scrum style process with regular scheduled standup, backlog refinement, sprint planning,
-sprint review and retrospective activities.
+Mojaloop workstreams follow a [scrum](https://www.scrum.org/resources/what-scrum-module)-like process model by default,
+running over a two-week sprint cadence. Given the stringent risk management requirements of our users regulatory
+environments and best demonstrated practice for financial software, our day-to-day process differs from some typical
+agile methodologies in that we implement mandatory oversight functions and stricter change control mechanisms, more
+typical of larger technical organisations operating critical infrastructure.
+
+Workstreams have flexibility to adjust working methods to suit their particular circumstances, within sensible
+boundaries appropriate for our mission and regulatory domain. The Mojaloop Foundation provides guidance to workstreams
+to ensure they remain within our expected operating standards.
+
+Workstreams should operate regular scheduled standup, backlog refinement, sprint planning, sprint review and
+retrospective activities.
+
+![Mojaloop Workstream Sprint Process](./assets/mojaloop-workstream-sprint-process.jpg)
+
+It is recommended that every workstream define and maintain a "team charter" document to clearly and unambiguously
+communicate agreed ways of working for all contributors.
 
 A workstream team charter template is available for download
 here: [workstream-team-charter-template.docx](workstream-team-charter-template.docx)
 
 ### Getting Support
 
-When things do not go to plan and a resolution cannot be found among the workstream members, the Mojaloop Community
-Council provides support.
+When things do not go to plan and a resolution cannot be found among workstream contributors, the Mojaloop Foundation
+provides support mechanisms.
 
 ## Non-Official Workstreams and External Donations
 
-When support for product features is not wide enough to 
+When an appropriate existing workstream may not exist or support is not sufficient to warrant creation of a new official
+workstream, contributors may decide to work on features or changes externally to the community processes. In these
+circumstances our [external donation process](../standards/guide.md#adopting-open-source-contributions-into-mojaloop)
+must be followed.
