@@ -4,12 +4,13 @@ For changes which are covered by the [consequential change definition](./design-
 following process must be followed:
 
 1. Propose a product change to the Mojaloop Product Council:
-   1. Create a 'Product Change Proposal' in the GitHub 'product-council' project
-      repository [here](https://github.com/mojaloop/product-council-project/issues).
-      1. Complete the template as thoroughly as possible to ensure a quick turnaround.
-   2. Send a message on the [#product-council](https://mojaloop.slack.com/archives/C01FF8AQUAK) slack channel asking for
-      a review of your proposal.
-   3. The Product Council will discuss your proposal with you and identify an appropriate Mojaloop workstream.
+    1. Create a 'Product Change Proposal' in the GitHub 'product-council' project
+       repository [here](https://github.com/mojaloop/product-council-project/issues).
+        1. Complete the template as thoroughly as possible to ensure a quick turnaround.
+    2. Send a message on the [#product-council](https://mojaloop.slack.com/archives/C01FF8AQUAK) slack channel asking
+       for
+       a review of your proposal.
+    3. The Product Council will discuss your proposal with you and identify an appropriate Mojaloop workstream.
 2. Propose code changes to the Mojaloop Design Authority:
     1. Create a 'Consequential Change Proposal' issue in the GitHub 'design-authority-project'
        repository [here](https://github.com/mojaloop/design-authority-project/issues).
@@ -24,7 +25,14 @@ following process must be followed:
        with you.
     4. Any changes to the design made during implementation must be recorded on the proposal ticket.
 4. Implement and review your code changes:
-   1. 
+    1. Create and work on github/zenhub work items in your workstream process as necessary. Be sure to reference the
+       product council ticket and consequential change proposal ticket in your item descriptions to enable future
+       traceability.
+    2. When you are ready to make pull requests on one or more code repositories, contact your assigned design authority
+       member(s) and ask them ro begin the code review phase.
+    3. Be ready to respond to questions and make adjustments during this stage.
+    4. Once your assigned design authority member(s) approve your pull request(s) your feature is ready for including in
+       the official Mojaloop release process.
 
 ![Consequential Change Process](./assets/consequential-change-process.jpg)
 
@@ -44,10 +52,14 @@ as discussing how your design aligns with established tools, patterns and practi
        responsibility to maintain a coherent roadmap for our technology and will guide you on the most appropriate way
        to achieve your business objectives within the Mojaloop context. The Product Council may consult the Design
        Authority as part of this process.
-    2. You should be able to explain how your change will be implemented, which existing components will be affected and
-       your designs for any new components. Your designs should be presented, as a minimum, as UML sequence diagrams
-       showing each significant component involved in your usecase(s) and how they interact to achieve your desired
-       outcomes. You should make sure to include error cases as well as "normal" expected behaviours.
+    2. You should be able to explain how your change will be implemented, which existing components will be affected,
+       how they need to change and your designs for any new components. You should present, as a minimum:
+        1. UML sequence diagrams showing each significant component involved in your usecase(s) and how they interact to
+           achieve your desired outcome(s). You should make sure to include error cases as well as "normal" expected
+           behaviours.
+        2. Full details of any third-party components you will use as part of your implementation.
+        3. Full details of any changes to existing components highlighting the differences between current behaviours
+           and your desired changed and/or new behaviours.
     3. Your assigned Design Authority members will likely ask lots of questions in order to fully understand your
        proposal and its context.
 2. Your assigned design authority member(s) will help you identify any other potentially impacted contributors, teams or

@@ -60,9 +60,9 @@ frequently and may include high priority features, bug fixes or security patches
 
 ## Mojaloop Workstreams
 
-Official workstreams are the "production lines" of the Mojaloop community, this is where the bulk of product development
-work happens. Typically there are many workstreams running in parallel, each focused on specific areas or features of
-the platform.
+Official workstreams are the "production lines" of the Mojaloop community software factory, this is where the bulk of
+product development work happens. Typically there are many workstreams running in parallel, each focused on specific
+areas or features of the platform.
 
 ### Governance Model & Operating Requirements
 
@@ -150,11 +150,11 @@ progress they make during implementation:
 
 ### Getting Work Done
 
-Mojaloop workstreams follow a [scrum](https://www.scrum.org/resources/what-scrum-module)-like process model by default,
-running over a two-week sprint cadence. Given the stringent risk management requirements of our users regulatory
-environments and best demonstrated practice for financial software, our day-to-day process differs from some typical
-agile methodologies in that we implement mandatory oversight functions and stricter change control mechanisms, more
-typical of larger technical organisations operating critical infrastructure.
+Mojaloop workstreams should follow a [scrum](https://www.scrum.org/resources/what-scrum-module)-like process model by
+default, running over a two-week sprint cadence. Given the stringent risk management requirements of our users
+regulatory environments and best demonstrated practice for financial software, our day-to-day process differs from some
+typical agile methodologies in that we implement mandatory oversight functions and stricter change control mechanisms,
+more typical of larger technical organisations building and operating critical infrastructure.
 
 Workstreams have flexibility to adjust working methods to suit their particular circumstances, within sensible
 boundaries appropriate for our mission and regulatory domain. The Mojaloop Foundation provides guidance to workstreams
