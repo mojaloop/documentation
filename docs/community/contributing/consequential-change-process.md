@@ -21,11 +21,8 @@ following process must be followed:
 3. Take part in a design review:
     1. Your assigned design authority member(s) will guide you through an iterative design review process.
     2. Once the design review process is complete you may proceed with your change.
-    3. Once you have implemented your change, your assigned design authority member(s) will review your code changes
-       with you.
-    4. Any changes to the design made during implementation must be recorded on the proposal ticket.
 4. Implement and review your code changes:
-    1. Create and work on github/zenhub work items in your workstream process as necessary. Be sure to reference the
+    1. Create and work on github/zenhub work items in your [workstream process](./product-engineering-process.md#mojaloop-workstreams) as necessary. Be sure to reference the
        product council ticket and consequential change proposal ticket in your item descriptions to enable future
        traceability.
     2. When you are ready to make pull requests on one or more code repositories, contact your assigned design authority
@@ -33,6 +30,7 @@ following process must be followed:
     3. Be ready to respond to questions and make adjustments during this stage.
     4. Once your assigned design authority member(s) approve your pull request(s) your feature is ready for including in
        the official Mojaloop release process.
+    5. Any changes to the design made during implementation must be recorded on the proposal ticket.
 
 ![Consequential Change Process](./assets/consequential-change-process.jpg)
 
