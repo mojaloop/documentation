@@ -8,9 +8,9 @@ following process must be followed:
        repository [here](https://github.com/mojaloop/product-council-project/issues).
         1. Complete the template as thoroughly as possible to ensure a quick turnaround.
     2. Send a message on the [#product-council](https://mojaloop.slack.com/archives/C01FF8AQUAK) slack channel asking
-       for
-       a review of your proposal.
-    3. The Product Council will discuss your proposal with you and identify an appropriate Mojaloop workstream.
+       for a review of your proposal.
+    3. The Product Council will discuss your proposal with you in order to understand where it fits within the Mojaloop
+       product roadmap.
 2. Propose code changes to the Mojaloop Design Authority:
     1. Create a 'Consequential Change Proposal' issue in the GitHub 'design-authority-project'
        repository [here](https://github.com/mojaloop/design-authority-project/issues).
@@ -22,9 +22,10 @@ following process must be followed:
     1. Your assigned design authority member(s) will guide you through an iterative design review process.
     2. Once the design review process is complete you may proceed with your change.
 4. Implement and review your code changes:
-    1. Create and work on github/zenhub work items in your [workstream process](./product-engineering-process.md#mojaloop-workstreams) as necessary. Be sure to reference the
-       product council ticket and consequential change proposal ticket in your item descriptions to enable future
-       traceability.
+    1. Create and work on github/zenhub work items in
+       your [workstream process](./product-engineering-process.md#mojaloop-workstreams) as necessary. Be sure to
+       reference the product council ticket and consequential change proposal ticket in your item descriptions to enable
+       future traceability.
     2. When you are ready to make pull requests on one or more code repositories, contact your assigned design authority
        member(s) and ask them ro begin the code review phase.
     3. Be ready to respond to questions and make adjustments during this stage.

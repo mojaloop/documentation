@@ -1,7 +1,6 @@
 # Mojaloop Product Engineering Process
 
 ## Introduction
-
 Mojaloop software is intended to form the backbone of nation scale inclusive instant payments schemes. These schemes are
 important pieces of regulated national financial infrastructure which facilitate the life critical daily activities of a
 great number of people, such as purchasing food and clean drinking water. Our adopters, their regulators and the people
@@ -108,7 +107,7 @@ To qualify as a workstream (co)lead, individuals should meet the following crite
 Workstream (co)leads must accept the following responsibilities:
 
 1. To be a primary point of contact for queries.
-2. To schedule, hold and record workstream meetings as required.
+2. To schedule, hold, record and publish recordings and minutes of workstream meetings.
 3. To facilitate liaison between workstream contributors, other workstreams and the rest of the community.
 4. To create, publish on community central and maintain a workstream team charter document.
 5. Report Progress to...
@@ -128,7 +127,7 @@ Workstream (co)leads must accept the following responsibilities:
 14. Ensure documentation meets the required standards.
 15. Guide the workstream strategic direction in collaboration with the Mojaloop Foundation Product Director and Product
     Council.
-17. Define SMART objectives at the beginning of each PI.
+16. Define SMART objectives at the beginning of each PI.
 
 ### Defining Work
 
@@ -148,6 +147,8 @@ progress they make during implementation:
    before work item tickets are created.
     1. All required design documentation must be approved by the Mojaloop Design Authority before work commences.
 
+A github/zenhub ticket template is available here: [github-work-item-template.docx](github-work-item-template.docx)
+
 ### Getting Work Done
 
 Mojaloop workstreams should follow a [scrum](https://www.scrum.org/resources/what-scrum-module)-like process model by
@@ -158,7 +159,7 @@ more typical of larger technical organisations building and operating critical i
 
 Workstreams have flexibility to adjust working methods to suit their particular circumstances, within sensible
 boundaries appropriate for our mission and regulatory domain. The Mojaloop Foundation provides guidance to workstreams
-to ensure they remain within our expected operating standards.
+to ensure they remain within our required operating standards.
 
 Workstreams should operate regular scheduled standup, backlog refinement, sprint planning, sprint review and
 retrospective activities.
@@ -178,7 +179,7 @@ provides support mechanisms.
 
 ## Non-Official Workstreams and External Donations
 
-When an appropriate existing workstream may not exist or support is not sufficient to warrant creation of a new official
+When an appropriate existing workstream may not exist and support is not sufficient to warrant creation of a new official
 workstream, contributors may decide to work on features or changes externally to the community processes. In these
 circumstances our [external donation process](../standards/guide.md#adopting-open-source-contributions-into-mojaloop)
 must be followed before code, documentation or other artifacts can be adopted by the Mojaloop Foundation.

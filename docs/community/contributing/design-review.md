@@ -17,7 +17,6 @@ apply to the work you want to accomplish **before you begin**.
 **Please note that if you do not follow these processes you may be asked to rework your contribution if it does not meet
 our standards. This may lead to significant delays in getting your work into an official Mojaloop release.**
 
-
 ## What is Technical Design Review?
 
 "Technical design review" is a process whereby one or more senior domain expert engineers who are members of the
@@ -35,9 +34,9 @@ Mojaloop Design Authority, familiar with the area(s) of the system effected, dis
       view to maintaining cohesion across the entire Mojaloop codebase.
 
 For non-trivial changes, this process involves working collaboratively with the Mojaloop Design Authority to produce a
-design document which captures the various elements of the proposed change. Once the change is implemented, this
-document goes on to form part of our community documentation, helping others understand the rationale behind the design
-decisions made historically as our software evolves.
+design document which captures the various elements of the proposed change in a sufficient level of detail. Once the
+change is implemented, this document goes on to form part of our community documentation, helping others understand the
+rationale behind the design decisions made historically as our software evolves.
 
 ## What is Code Review
 
