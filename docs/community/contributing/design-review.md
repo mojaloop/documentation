@@ -5,8 +5,11 @@ are important pieces of national financial infrastructure which facilitate the l
 great number of people, such as purchasing food and clean drinking water. Adopters and users of Mojaloop software demand
 and deserve an extremely high level of quality, security, reliability and resilience from our products.
 
-In order to maintain these qualities the Mojaloop Foundation implements a rigorous product engineering process which
-includes strict requirements for technical design review and code review, testing and quality assurance.
+In order to maintain these qualities and mitigate the many business and technical risks our adopters and their
+stakeholders face, the Mojaloop Foundation implements a structured product engineering process based on best
+demonstrated industry practices for regulated financial software which includes managed technical and process driven
+change control and traceability, technical design and code reviews, high thresholds for testing and multiple levels of
+quality assurance gates.
 
 Our processes are intended to help our contributors identity and mitigate risks while enhancing our products, for the
 benefit of the entire Mojaloop community.
@@ -78,9 +81,9 @@ follow. It is your responsibility as a contributor to apply the appropriate proc
 contributors agreement stating that you will adhere to these requirements.
 
 If you are in any doubt about which of the following categories applies to you change, please consult the Mojaloop
-Design Authority {insert contact details}. Please note that it is important to engage in any required design review
-process before proceeding with any code changes to avoid wasting your own efforts should re-work be requested by the
-Design Authority.
+Design Authority via slack here: [#design-authority](https://mojaloop.slack.com/archives/CARJFMH3Q). Please note that it
+is important to engage in any required design review process before proceeding with any code changes to avoid wasting
+your own efforts should re-work be requested by the Design Authority.
 
 ### Non-consequential Changes
 
@@ -156,7 +159,7 @@ Consequential changes must follow the defined [Consequential Change Process](con
 #### Definition and Characteristics
 
 _**In Mojaloop, "critical changes" have largely the same definition as consequential changes but apply specifically to
-areas of the system considered critical to our main use cases.**_
+areas of the system considered critical to our core functionality and main use cases.**_
 
 Critical changes are modifications that have an impact on the behavior, functionality, operational characteristics or
 performance of any critical sub-system, system or other artefacts. These changes typically involve altering the logic of
@@ -180,11 +183,13 @@ repositories, areas and/or sub-systems:
       validation and bug fixes.
 - Transfer Flow Discovery Phase:
     - Any change in discovery phase API request handling e.g.:
-        - Any change to account lookup API request handling implementation(s) and/or calls to internal or external "
-          oracles".
+        - Any change to account lookup API request handling implementation(s) and/or call flows to and from internal or
+          external "oracles".
 - Transfer Flow Agreement Phase:
     - Any change in agreement phase API request handling e.g.:
         - Any change to the storage, retrieval, processing or display of agreement phase data or meta-data.
+        - Any change to agreement phase API request handling implementation(s) and/or call flows to and from internal or
+          external entities.
 - Transfer Flow Transfer (clearing) Phase:
     - Any change in transfer clearing phase API request handling, e.g.:
         - Any change related to the process of deciding whether to clear a transfer of reject it based on the available
