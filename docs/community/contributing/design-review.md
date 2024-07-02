@@ -24,7 +24,7 @@ our standards. This may lead to significant delays in getting your work into an 
 
 "Technical design review" is a process whereby one or more senior domain expert engineers who are members of the
 Mojaloop Design Authority, familiar with the area(s) of the system effected, discuss proposed changes with contributors
-**before implementation work is started**, for the following purposes:
+and product representatives **before implementation work is started**, for the following purposes:
 
 - Risk Management
     - To help identify and mitigate technical and/or business risks to any of our stakeholders, users or other
@@ -73,10 +73,10 @@ rationale behind the design decisions made historically as our software evolves.
 
 ## Types of Change
 
-As a contributor, the process you must follow depends on the nature of the change you are making and its potential
-impact on various categories of users and the system as a whole.
+As a Mojaloop contributor, the process you must follow depends on the nature of the change you are making and its
+potential impact on various categories of users and the system as a whole.
 
-Use the definitions below to identify the type of change you are making and select the appropriate process to
+Use the definitions below to identify the category of change you are making and select the appropriate process to
 follow. It is your responsibility as a contributor to apply the appropriate process and you will be required to sign a
 contributors agreement stating that you will adhere to these requirements.
 
@@ -168,8 +168,8 @@ refactoring code. Critical changes require a considerable amount of up-front thi
 and stakeholders due to their potential system wide impact on stability and functionality of critical aspects of the
 software. They typically carry a very high risk and require careful consideration and planning before implementation.
 
-A consequential change should be considered a critical change if it falls under one or more of the following code
-repositories, areas and/or sub-systems:
+A change should be considered a critical change if it falls under one or more of the following code repositories, areas
+and/or sub-systems:
 
 - External APIs:
     - Any alteration to an external API specification, normal or error paths, including request validation and bug

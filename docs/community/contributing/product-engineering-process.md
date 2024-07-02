@@ -1,6 +1,7 @@
 # Mojaloop Product Engineering Process
 
 ## Introduction
+
 Mojaloop software is intended to form the backbone of nation scale inclusive instant payments schemes. These schemes are
 important pieces of regulated national financial infrastructure which facilitate the life critical daily activities of a
 great number of people, such as purchasing food and clean drinking water. Our adopters, their regulators and the people
@@ -175,11 +176,18 @@ here: [workstream-team-charter-template.docx](workstream-team-charter-template.d
 ### Getting Support
 
 When things do not go to plan and a resolution cannot be found among workstream contributors, the Mojaloop Foundation
-provides support mechanisms.
+provides support mechanisms. Please contact the Mojaloop Foundation Director of Community who will guide you to find a
+resolution.
 
 ## Non-Official Workstreams and External Donations
 
-When an appropriate existing workstream may not exist and support is not sufficient to warrant creation of a new official
+When an appropriate existing workstream may not exist and support is not sufficient to warrant creation of a new
+official
 workstream, contributors may decide to work on features or changes externally to the community processes. In these
 circumstances our [external donation process](../standards/guide.md#adopting-open-source-contributions-into-mojaloop)
 must be followed before code, documentation or other artifacts can be adopted by the Mojaloop Foundation.
+
+Please note that all work done outside of official Mojaloop workstream processes is subject to
+our [external donation process](../standards/guide.md#adopting-open-source-contributions-into-mojaloop). This is to
+ensure an appropriate amount of rigorous review to ensure our standards are met before inclusion in any official
+Mojaloop release.
