@@ -30,8 +30,8 @@ and product representatives **before implementation work is started**, for the f
     - To help identify and mitigate technical and/or business risks to any of our stakeholders, users or other
       contributors.
 - Impact Assessment
-    - To help identify other areas of the system or teams who may be impacted by the change, and to facilitate
-      communication with them.
+    - To help identify other areas of the system, teams and stakeholders who may be impacted by the change, and to
+      facilitate communication with them.
 - Standards & Cohesion
     - To guide on established Mojaloop standards for tooling, third party component choices and design patterns with a
       view to maintaining cohesion across the entire Mojaloop codebase.

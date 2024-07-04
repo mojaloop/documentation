@@ -179,13 +179,13 @@ When things do not go to plan and a resolution cannot be found among workstream 
 provides support mechanisms. Please contact the Mojaloop Foundation Director of Community who will guide you to find a
 resolution.
 
-## Non-Official Workstreams and External Donations
+## Non-Official Workstreams and External Contributions
 
 When an appropriate existing workstream may not exist and support is not sufficient to warrant creation of a new
-official
-workstream, contributors may decide to work on features or changes externally to the community processes. In these
-circumstances our [external donation process](../standards/guide.md#adopting-open-source-contributions-into-mojaloop)
-must be followed before code, documentation or other artifacts can be adopted by the Mojaloop Foundation.
+official workstream, contributors may decide to work on features or changes externally to the community processes. In
+these circumstances
+our [external donation process](../standards/guide.md#adopting-open-source-contributions-into-mojaloop) must be followed
+before code, documentation or other artifacts can be adopted by the Mojaloop Foundation.
 
 Please note that all work done outside of official Mojaloop workstream processes is subject to
 our [external donation process](../standards/guide.md#adopting-open-source-contributions-into-mojaloop). This is to
