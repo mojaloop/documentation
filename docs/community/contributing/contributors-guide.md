@@ -26,7 +26,7 @@ Implementation teams can assist banks, government offices, mobile operators or c
 
 * Read and familiarise yourself with our [product engineering processes](./product-engineering-process.md)
   and [Mojaloop design and code review processes](./design-review.md).
-* Review the [Mojaloop Deployment](https://docs.mojaloop.io/documentation/deployment-guide/) Guide and
+* Review the [Mojaloop Deployment Guide](https://docs.mojaloop.io/documentation/deployment-guide/) and
   the [Onboarding Guide](https://github.com/mojaloop/mojaloop/blob/master/onboarding.md).
 * Browse through the [Repository Overview](https://docs.mojaloop.io/documentation/repositories/) to understand how the
   Mojaloop code is managed across multiple Github Repositories.
@@ -40,21 +40,14 @@ Implementation teams can assist banks, government offices, mobile operators or c
 ## What work is needed?
 
 Mojaloop follows a structured [product engineering process](./product-engineering-process.md) and we actively maintain
-a [roadmap](../mojaloop-roadmap.md) of new feature developments. You can find information about our currently running
-official workstreams on our [community central workstreams page](https://community.mojaloop.io/pi-24-workstreams).
+a [roadmap](../mojaloop-roadmap.md) of new feature developments and maintenance work. You can find information about our
+currently running official workstreams on
+our [community central workstreams page](https://community.mojaloop.io/pi-24-workstreams).
 
-Work is tracked as issues in the [mojaloop/project](https://github.com/mojaloop/project) repository GitHub. You'll see
-issues there that are open and marked as bugs, stories, or epics. An epic is larger work that contains multiple stories.
-Start with any stories that are marked
-with "[good first issue](https://github.com/mojaloop/project/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22)".
-In addition, anything that is in the backlog and not assigned to someone are things we could use help with. Stories that
-have owners are in someone's backlog already, though you can always ask about them in the issue or on Slack.
-
-There's a [roadmap](../mojaloop-roadmap.md) that shows larger work that people could do or are working on. It has some
-main initiatives and epics and the order, but lacks dates as this work is community driven. Work is broken down from
-there into issues in GitHub.
-
-In general, we are looking for example implementations and bug fixes, and project enhancements.
+Each Mojaloop workstream maintains a work item backlog in GitHub and a ZenHub workspace, reach out to the workstream
+lead or post a message on the workstream slack channel to introduce yourself and find a good ticket to start work on.
+You will find contact details for the workstream leads and slack channel information on
+our [community central workstreams page](https://community.mojaloop.io/pi-24-workstreams).
 
 ## Where do I get help?
 
@@ -67,8 +60,8 @@ the [FAQ](https://github.com/mojaloop/documentation/blob/master/contributors-gui
 
 ## What is the current release?
 
-See the [Mojaloop Slack Announcements](https://mojaloop.slack.com/messages/CG3MAJZ5J) to find out information on the
-latest release.
+See the [Mojaloop Slack Announcements channel](https://mojaloop.slack.com/messages/CG3MAJZ5J) to find out information on
+the latest release.
 
 ## What's here and what's not?
 
@@ -80,7 +73,7 @@ documents are published with CC BY-ND 4.0 License
 We don't provide production servers to run it on. That's up to you. You are free \(and encouraged!\) to clone these
 repositories, participate in the community of developers, and contribute back to the code.
 
-We are not trying to replace any mobile wallet or financial providers. We provide code to link together new and existing
+We are not trying to replace mobile wallets or financial service providers. We provide a platform to link together new and existing
 financial providers using a common scheme. There are central services for identifying a customer's provider, quoting,
 fulfillment, deferred net settlement, and shared fraud management. Each provider can take advantage of these services to
 send and receive money with others on the system and there's no cost to them to onboard new providers. We provide code
