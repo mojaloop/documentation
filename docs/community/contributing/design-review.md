@@ -17,8 +17,10 @@ benefit of the entire Mojaloop community.
 Please read the following information carefully to make sure you understand our definitions and how these processes
 apply to the work you want to accomplish **before you begin**.
 
-**Please note that if you do not follow these processes you may be asked to rework your contribution if it does not meet
-our standards. This may lead to significant delays in getting your work into an official Mojaloop release.**
+**Please note that if you do not follow these processes you may be asked to rework your contribution, or it may be
+rejected outright if it does not meet our standards. This may lead to significant delays in getting your work into an
+official Mojaloop release. Please read our statements on
+the [external dontaion process](product-engineering-process.md#non-official-workstreams-and-external-contributions).**
 
 ## What is Technical Design Review?
 

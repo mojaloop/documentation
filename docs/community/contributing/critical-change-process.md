@@ -1,8 +1,7 @@
 # Critical Change Process
 
 _**In Mojaloop, the "critical change process" is similar to the "consequential change process" but with additional
-oversight
-and a formal sign-off requirement, given the high risk nature of such changes in our operating environment.**_
+oversight and a formal sign-off requirement, given the high risk nature of such changes in our operating environment.**_
 
 For changes which are covered by the [critical change definition](./design-review.md#critical-changes) the
 following process must be followed:
@@ -68,12 +67,12 @@ as discussing how your design aligns with established tools, patterns and practi
            and your desired changed and/or new behaviours.
     3. Your assigned Design Authority members will likely ask lots of questions in order to fully understand your
        proposal and its context.
-2. Your assigned design authority member(s) will help you identify any other potentially impacted contributors, teams or
+2. Your assigned design authority members will help you identify any other potentially impacted contributors, teams or
    stakeholders to bring them in to the review process. This is done to ensure up and downstream behaviours are not
    adversely affected and also, to take into account any upcoming changes in other areas of the system. Mojaloop is a
    large system and it is often helpful to bring in experts from other areas to assist.
-3. The primary goal of your assigned Design Authority member(s) is to identify and mitigate risks that you may not have
+3. The primary goal of your assigned Design Authority members is to identify and mitigate risks that you may not have
    spotted.
-    1. Your assigned design authority member(s) may make suggestions to mitigate risk from your design and may ask you
+    1. Your assigned design authority members may make suggestions to mitigate risk from your design and may ask you
        to make specific changes to bring your proposal in line with any established Mojaloop constraints.
 

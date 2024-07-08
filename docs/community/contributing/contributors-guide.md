@@ -73,7 +73,8 @@ documents are published with CC BY-ND 4.0 License
 We don't provide production servers to run it on. That's up to you. You are free \(and encouraged!\) to clone these
 repositories, participate in the community of developers, and contribute back to the code.
 
-We are not trying to replace mobile wallets or financial service providers. We provide a platform to link together new and existing
+We are not trying to replace mobile wallets or financial service providers. We provide a platform to link together new
+and existing
 financial providers using a common scheme. There are central services for identifying a customer's provider, quoting,
 fulfillment, deferred net settlement, and shared fraud management. Each provider can take advantage of these services to
 send and receive money with others on the system and there's no cost to them to onboard new providers. We provide code
