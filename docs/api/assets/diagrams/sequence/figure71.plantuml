@@ -38,33 +38,44 @@ skinparam ArrowColor Black
 hide footbox
 
 ' declare title
-' title Error handling from client using resend of request
+' title Handling of error callback from API Service /bulkTransfers
 
 ' Actor Keys:
-' participant - Client and Server
+' participant - FSP(Payer/Payee) and Switch
 
 
 ' declare actors
-participant "Client" as client
-participant "Server" as server
+participant "Payer\nFSP" as PayerFSP
+participant "Optional\nSwitch" as Switch
+participant "Payee\nFSP(s)" as PayeeFSP
 
 ' start flow
 autonumber 1 1 "<b>[0]"
-client ->> server: **POST /service**
-activate client
-client -> client: Timeout, resend\nservice request
-client ->> server: **POST /service**
-activate server
-client <<-- server: **HTTP 202** (Accepted)
+activate PayerFSP
+PayerFSP -> PayerFSP: Reserve each individual\ntransfer from Payer\naccount to Payee FSP account
+PayerFSP ->> Switch: **POST /bulkTransfers**\n(List of individual transfers\nincluding ILP packet and condition)
+activate Switch
 autonumber stop
-client -> client: Timeout, resend\nservice request
+PayerFSP <<-- Switch: **HTTP 202** (Accepted)
+Switch -> Switch: Reserve each individual\ntransfer from Payer FSP\nto Payee FSP
 autonumber resume
-client ->> server: **POST /service**
+Switch ->> PayeeFSP: **POST /bulkTransfers**\n(List of individual transfers\nincluding ILP packet and condition)
+activate PayeeFSP
 autonumber stop
-client <<-- server: **HTTP 202** (Accepted)
+Switch <<-- PayeeFSP: **HTTP 202** (Accepted)
+PayeeFSP -> PayeeFSP: Some processing error occurs,\ne.g. a validation failure that prevents\nthe bulk transfer to be performed
 autonumber resume
-client <<- server: **PUT /service/**<i><ID></i>
-client -->> server: **HTTP 200** (OK)
-deactivate server
-deactivate client
+Switch <<- PayeeFSP: **PUT /bulkTransfers/**<i><ID></i>**/error**\n(Error information)
+autonumber stop
+Switch -->> PayeeFSP: **HTTP 200** (OK)
+deactivate PayeeFSP
+Switch -> Switch: Cancel each reserved\ntransfer from Payer\nFSP to Payee FSP
+autonumber resume
+PayerFSP <<- Switch: **PUT /bulkTransfers/**<i><ID></i>**/error**\n(Error information)
+autonumber stop
+PayerFSP -->> Switch: **HTTP 200** (OK)
+deactivate Switch
+PayerFSP -> PayerFSP: Cancel each transfer\nfrom Payer account\nto Payee FSP account
+PayerFSP -[hidden]> Switch
+deactivate PayerFSP
 @enduml
