@@ -5,7 +5,7 @@ These invariants should guide any product and technical design discussions relat
 
 ## General Principles
 
-### 1. The primary function of the platform is to clear payments in real-time and facilitate regular settlement, by the end of the value day.
+### 1. The primary function of the platform is to clear credit-push payments in real-time and facilitate regular settlement, by the end of the value day.
 #### Notes:
 1. The platform allows participants to clear funds immediately to their customers while keeping the risks and costs associated with this to a minimum.
 2. The platform supports per-transfer checks on available liquidity where these are required in support of the first objective.
