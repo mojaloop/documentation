@@ -50,3 +50,11 @@ The **Central Ledger** database schema definition [Central-Ledger Database Schem
 ## 4. API Specification
 
 Refer to **Central Ledger API** in the [API Specifications](../../api/README.md#central-ledger-api) section.
+
+## 5. Kafka Topics and Partitioning
+
+Diagram to illustrate kafka topics, partitioning strategies for various mojaloop core services.
+
+### 5.1 Overview
+
+![Transfers-Kafka-Topics-And-Partitions.drawio.svg](./assets/diagrams/architecture/Transfers-Kafka-Topics-And-Partitions.drawio.svg)
