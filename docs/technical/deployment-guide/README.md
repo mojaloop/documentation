@@ -38,6 +38,7 @@ A list of the pre-requisite tool set required for the deployment of Mojaloop:
 
   | Mojaloop Helm Chart Release Version                              | Recommended Kubernetes Version |
   | ---------------------------------------------------------------- | -------------------------- |
+  | [v16.0.0](https://github.com/mojaloop/helm/releases/tag/v16.0.0) | v1.29             |
   | [v15.0.0](https://github.com/mojaloop/helm/releases/tag/v15.0.0) | v1.24 - v1.25              |
   | [v14.1.1](https://github.com/mojaloop/helm/releases/tag/v14.1.1) | v1.20 - v1.24              |
   | [v14.0.0](https://github.com/mojaloop/helm/releases/tag/v14.0.0) | v1.20 - v1.21              |
