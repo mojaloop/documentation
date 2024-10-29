@@ -39,24 +39,25 @@ module.exports = {
     logo: '/mojaloop_logo_med.png',
     sidebarDepth: 2,
     lastUpdated: true,
-    footerCopyright: 'Apache 2.0 Licensed | Copyright © 2021 Mojaloop Foundation',
+    footerCopyright: 'Apache 2.0 Licensed | Copyright © 2020 - 2024 Mojaloop Foundation',
     nav: [
       {
-        text: 'Getting Started',
-        link: '/getting-started/',
+        text: 'Business',
+        link: '/business/',
       },
       {
         text: 'Community',
         link: '/community/'
       },
       {
-        text: 'API',
-        link: '/api/'
-      },
-      {
         text: 'Technical',
         link: '/technical/'
       },
+      {
+        text: 'Product',
+        link: '/api/'
+      },
+
       {
         text: 'Training Program',
         link: 'https://mojaloop.io/mojaloop-training-program/'
@@ -64,36 +65,34 @@ module.exports = {
     ],
     // Ref: https://vuepress.vuejs.org/theme/default-theme-config.html#sidebar
     sidebar: {
-      '/getting-started/': [
+      '/business/': [
         {
-          title: 'Getting Started',
+          title: 'Business Operations documentation',
           collapsable: false,
           children: ['']
         },
         {
-          title: 'Demos',
+          title: 'Scheme',
           collapsable: false,
           children: [
-            'demos/mojaloop-overview',
-            'demos/why-mojaloop',
-            'demos/working-with-mojaloop',
-            'demos/financial-inclusion-101',
-            'demos/what-is-rtp',
-            'demos/what-makes-a-successful-financial-ecosystem',
-            'demos/inside-the-loop'
-          ]
-        },
-        {
-          title: 'FAQs',
-          collapsable: false,
-          sidebarDepth: 2,
-          children: [
-            ['faqs', 'Frequently Asked Questions'],
-            ['general-faqs', 'General FAQs'],
-            ['technical-faqs', 'Technical FAQs'],
-            ['license', 'License'],
+            '/Scheme/platform-operating-guideline',
+            '/Scheme/scheme-business-rules',
+            '/Scheme/scheme-key-choices',
+            '/Scheme/scheme-participation-agreement',
+            '/Scheme/scheme-uniform-glossary'
           ]
         }
+        // {
+        //   title: 'Hub Operations',
+        //   collapsable: false,
+        // //   sidebarDepth: 2,
+        // //   children: [
+        // //     ['faqs', 'Frequently Asked Questions'],
+        // //     ['general-faqs', 'General FAQs'],
+        // //     ['technical-faqs', 'Technical FAQs'],
+        // //     ['license', 'License'],
+        // //   ]
+        // // }
       ],
       '/community/': [
         {
