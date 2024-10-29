@@ -109,6 +109,7 @@ module.exports = {
             ['contributing/new-contributor-checklist', 'New Contributor Checklist'],
             ['contributing/code-of-conduct', 'Code of Conduct'],
             ['contributing/signing-the-cla', 'Signing the CLA'],
+            ['contributing/cvd', 'Disclosing Security Vulnerabilities'],
           ]
         },
         {
@@ -117,6 +118,7 @@ module.exports = {
           sidebarDepth: 2,
           children: [
             ['standards/guide', 'Our Standards'],
+            ['standards/invariants', 'Mojaloop Invariants'],
             ['standards/versioning', 'Versioning'],
             ['standards/creating-new-features', 'Creating New Features'],
             ['standards/triaging-bugs', 'Triaging Bugs'],
