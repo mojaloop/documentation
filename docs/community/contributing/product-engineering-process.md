@@ -167,11 +167,11 @@ retrospective activities.
 
 ![Mojaloop Workstream Sprint Process](./assets/mojaloop-workstream-sprint-process.jpg)
 
-It is recommended that every workstream define and maintain a "team charter" document to clearly and unambiguously
+It is required that every workstream define and maintain a "team charter" document to clearly and unambiguously
 communicate agreed ways of working for all contributors.
 
 A workstream team charter template is available for download
-here: [workstream-team-charter-template.docx](workstream-team-charter-template.docx)
+here: [mojaloop-workstream-team-charter-template.pptx](assets/mojaloop-workstream-team-charter-template.pptx)
 
 ### Getting Support
 
