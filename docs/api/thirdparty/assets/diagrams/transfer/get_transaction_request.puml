@@ -35,7 +35,7 @@ end note
 
 
 
-rnote right of D1 #Light
+rnote right of D1
 **""GET /thirdpartyRequests/transactions/00000000-0000-0000-0000-000000000000""**
 ""FSPIOP-Source: pispa""
 ""FSPIOP-Destination: dfspa""
@@ -50,7 +50,7 @@ D2 --> S: ""202 Accepted""
 D2 -> D2: DFSP looks up already created \nthirdparty transaction request
 D2 -> D2: DFSP ensures that the FSPIOP-Source (pisp)\nis the same as the original sender of \n""POST /thirdpartyRequests/transactions/00000000-0000-0000-0000-000000000000""
 
-rnote left of D2 #Light
+rnote left of D2
 **""PUT /thirdpartyRequests/transactions/00000000-0000-0000-0000-000000000000""**
 ""FSPIOP-Source: dfspa""
 ""FSPIOP-Destination: pispa""

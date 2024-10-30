@@ -40,7 +40,7 @@ note right of D1
   the **""challenge""** string
 end note
 
-rnote right of D1 #Light
+rnote right of D1
 **""PUT /thirdpartyRequests/authorizations""**
 **""    /33333333-0000-0000-0000-000000000000""**
 ""FSPIOP-Source: pispa""
@@ -74,7 +74,7 @@ D2 -> D2: Lookup ""consentId"" for this ""transactionRequestId""
 
 D2 -> D2: Generate a new ""verificationRequestId"", and associate \n it with the ""thirdpartyTransactionRequestId""
 
-rnote left of D2 #Light
+rnote left of D2
 **""POST /thirdpartyRequests/verifications""**
 ""FSPIOP-Source: dfspa""
 ""FSPIOP-Destination: central-auth""
@@ -105,7 +105,7 @@ AUTHS -> AUTHS: Lookup this consent based on consentId
 AUTHS -> AUTHS: Ensure the accountAddress matches what is in Consent
 AUTHS -> AUTHS: Check that the signed bytes match the \npublickey we have stored for the consent
 
-rnote right of AUTHS #Light
+rnote right of AUTHS
 **""PUT /thirdpartyRequests/verifications""**
 **""    /44444444-0000-0000-0000-000000000000/error""**
 ""FSPIOP-Source: central-auth""
@@ -128,7 +128,7 @@ note over D2
 end note
 
 
-rnote left of D2 #Light
+rnote left of D2
 **""PUT /thirdpartyRequests/transactions""**
 **""    /00000000-0000-0000-0000-000000000000/error""**
 ""FSPIOP-Source: dfspa""

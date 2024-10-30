@@ -35,7 +35,7 @@ end box
 D2 -> D2: Generate a unique transactionId for this transaction request:\n**""11111111-0000-0000-0000-000000000000""**
 
 
-rnote left of D2 #Light
+rnote left of D2 #LightGray
 **""PUT /thirdpartyRequests/transactions""**
 **""    /00000000-0000-0000-0000-000000000000""**
 ""FSPIOP-Source: dfspa""
@@ -50,7 +50,7 @@ S --> D2: ""200 OK""
 S -> D1: ""PUT /thirdpartyRequests/transactions""\n""    /00000000-0000-0000-0000-000000000000""
 D1 --> S: ""200 OK""
 
-rnote left of D2 #Light
+rnote left of D2 #LightGray
 **""POST /quotes""**
 ""FSPIOP-Source: dfspa""
 ""FSPIOP-Destination: dfspb""
@@ -77,7 +77,6 @@ rnote left of D2 #Light
       "partyIdentifier": "qwerty-56789",
       "fspId": "dfspa"
     },
-    },
   },
   "amountType": "SEND",
   "amount": {
@@ -99,7 +98,7 @@ D3 --> S: ""202 Accepted""
 
 D3 -> D3: Quote fails for some reason.
 
-rnote left of D3 #Light
+rnote left of D3 #LightGray
 **""PUT /quotes/22222222-0000-0000-0000-000000000000/error""**
 ""FSPIOP-Source: dfspb""
 ""FSPIOP-Destination: dfspa""
@@ -120,7 +119,7 @@ note left of D2
   Quote failed, DFSP needs to inform PISP
 end note
 
-rnote left of D2 #Light
+rnote left of D2 #LightGray
 **""PUT /thirdpartyRequests/transactions""**
 **""    /00000000-0000-0000-0000-000000000000/error""**
 ""FSPIOP-Source: dfspa""
