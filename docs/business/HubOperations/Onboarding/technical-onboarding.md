@@ -42,7 +42,7 @@ The [Mojaloop-SDK](https://github.com/mojaloop/sdk-scheme-adapter) presents a si
 
 The asynchronous pattern of the Mojaloop FSPIOP API (while it has many advantages) may not be suitable for client applications that operate in a synchronous request-response mode. The Mojaloop-SDK helps bridge this gap by offering a simplified request-response API, abstracting away the complexities of multiple request composition and asynchronous API details from end clients.
 
-![Mojaloop-SDK](../../.vuepress/public/mojaloop-sdk.png)
+![Mojaloop-SDK](../../../.vuepress/public/mojaloop-sdk.png)
 
 The Mojaloop-SDK must be downloaded from [GitHub](https://github.com/mojaloop/sdk-scheme-adapter) to the DFSP environment and integrated to the DFSP backend. It is provided as a Docker container image, and may be hosted on the same infrastructure as the core banking application or a virtual machine provisioned specifically for it. Ongoing maintenance may require some specialized support from a System Integrator trained in the software.
 
@@ -52,7 +52,7 @@ Other than a simplified API, the Mojaloop-SDK also provides the security protoco
 
 [Payment Manager OSS](https://pm4ml.github.io/documents/payment_manager_oss/latest/core_connector_rest/introduction.html) presents a use-case oriented, simplified, synchronous version of the Mojaloop FSPIOP API to a DFSP's backend system. The key integration component of Payment Manager is called Core Connector, it acts as a translator between a DFSP's core backend (CBS) and a component of Payment Manager (called Mojaloop Connector, which leverages the Mojaloop-SDK) that talks directly to the Mojaloop Hub. 
 
-![Payment Manager OSS](../../.vuepress/public/PM4ML_system_architecture.png)
+![Payment Manager OSS](../../../.vuepress/public/PM4ML_system_architecture.png)
 
 Core Connector is built in Apache Camel, a declarative Java-based language for integration engineers that does not require writing code from scratch. There is a ready-made Core Connector template available to simplify the development effort. The template provides a placeholder codebase for the API endpoints that need to be developed, and it must be customized to be aligned with the appropriate CBS technology. The flexibility provided by the template allows for Core Connector to be made to fit a DFSP's backend, rather than the other way around. 
 
@@ -143,7 +143,7 @@ Mojaloop requires the following security measures to be implemented in order to 
 * To protect the application level, Mojaloop implements **JSON Web Signature (JWS)** as defined in [RFC 7515 (JSON Web Signature (JWS))](https://tools.ietf.org/html/rfc7515), the standard for integrity and non-repudiation. Signing messages ensures the Payer DFSP and the Payee DFSP can trust that messages shared between each other have not been modified by a third party. 
 * The Mojaloop FSPIOP API implements support for the **Interledger Protocol (ILP)**. ILP is built on the concept of conditional transfers, in which ledgers involved in a financial transaction from the Payer to the Payee can first reserve funds out of a Payer account and later commit them to the Payee account. The transfer from the Payer to the Payee account is conditional on the presentation of a fulfilment that satisfies the condition attached to the original transfer request. 
 
-![Security overview](../../.vuepress/public/security_overview.png)
+![Security overview](../../../.vuepress/public/security_overview.png)
 
 The next sections provide background information about the steps involved in connecting to a Mojaloop environment. The information provided is written in a way so that DFSPs and the Hub can rely on PKI best practices and any proprietary tools and technologies that they prefer or have access to.
 
@@ -168,7 +168,7 @@ The following high-level steps describe how connection is established and data i
 
 After completion of the handshake process, the client and server communicate and transfer data with each other, encrypted with the secret keys shared between the two during the handshake. 
 
-<img src="../../.vuepress/public/TLS_connection.svg" width="65%" height="65%" />
+<img src="../../../.vuepress/public/TLS_connection.svg" width="65%" height="65%" />
 
 The above process requires that before connecting to any environment (pre-production or production), the DFSP and the Mojaloop Hub each complete the following steps.
 

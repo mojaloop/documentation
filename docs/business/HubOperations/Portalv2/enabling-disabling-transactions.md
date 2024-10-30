@@ -16,7 +16,7 @@ Disabling a DFSP will stop all incoming and outgoing transactions for that DFSP,
 1. Find the entry of the DFSP you want to disable.
 1. Click the **Disable** button.
 
-<img src="../../.vuepress/public/disable_dfsp_position_ledger.png" />
+<img src="../../../.vuepress/public/disable_dfsp_position_ledger.png" />
 
 To resume services for the DFSP that you have disabled previously, complete the following steps:
 
@@ -24,5 +24,5 @@ To resume services for the DFSP that you have disabled previously, complete the 
 1. Find the entry of the DFSP you want to enable.
 1. Click the **Enable** button.
 
-<img src="../../.vuepress/public/enable_dfsp_position_ledger.png" />
+<img src="../../../.vuepress/public/enable_dfsp_position_ledger.png" />
 

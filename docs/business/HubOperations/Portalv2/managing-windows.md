@@ -23,7 +23,7 @@ Transfers that take place in the same settlement window are settled in batch aft
 
 To access the **Settlement Windows** page, go to **Settlement** > **Settlement Windows**.
 
-![Managing settlement windows](../../.vuepress/public/settlement_window_mgmt.png)
+![Managing settlement windows](../../../.vuepress/public/settlement_window_mgmt.png)
 
 The **Settlement Windows** page provides a list of settlement windows that you can filter using various search criteria:
 

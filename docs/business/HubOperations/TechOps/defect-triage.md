@@ -90,4 +90,4 @@ These two factors work hand in hand. For example, a cosmetic bug like a typo on 
 
 ## Process flowchart
 
-<img src="../../.vuepress/public/defect_triage.png" width="70%" height="70%" />
+<img src="../../../.vuepress/public/defect_triage.png" width="70%" height="70%" />

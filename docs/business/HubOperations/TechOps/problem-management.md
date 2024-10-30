@@ -128,4 +128,4 @@ The Known Error Record must contain all known symptoms so that when a new incide
 
 The following figure shows a summary of the process described above.
 
-![Problem management](../../.vuepress/public/problem_mgmt.png)
+![Problem management](../../../.vuepress/public/problem_mgmt.png)

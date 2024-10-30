@@ -16,11 +16,11 @@ When accepting new releases from Mojaloop Open Source for Switch services and ot
 
 The recommended environment setup comprises of multiple environments all serving different purposes, as depicted in the diagram below.
 
-<img src="../../.vuepress/public/release_mgmt.png" width="80%" height="80%" />
+<img src="../../../.vuepress/public/release_mgmt.png" width="80%" height="80%" />
 
 A Hub-specific implementation of Mojaloop is built on a number of service components (Mojaloop OSS, extensions or other components, potential customizations), and releases will include new features, enhancements, or bug fixes of all of these components. 
 
-<img src="../../.vuepress/public/release_service_components.png" width="70%" height="70%" />
+<img src="../../../.vuepress/public/release_service_components.png" width="70%" height="70%" />
 
 ## Development and testing (Definition of Done)
 
@@ -105,4 +105,4 @@ If the Hub Operator requests the Mojaloop Support team to perform deployment int
 
 ## Process flowchart
 
-<img src="../../.vuepress/public/release_process.png" width="65%" height="65%" />
+<img src="../../../.vuepress/public/release_process.png" width="65%" height="65%" />

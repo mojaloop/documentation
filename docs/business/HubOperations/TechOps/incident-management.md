@@ -20,7 +20,7 @@ Throughout this section, the terms "client", "customer", "end user", and "user" 
 
 The following figure defines the process flow and key concepts of incident management in a single image.
 
-<img src="../../.vuepress/public/incident_mgmt_single_image.png" width="75%" height="75%" />
+<img src="../../../.vuepress/public/incident_mgmt_single_image.png" width="75%" height="75%" />
 
 <!--![Incident management in a single image](/incident_mgmt_single_image.png)-->
 
@@ -564,7 +564,7 @@ This section describes the procedure that a Hub Operator is recommended to imple
 
 The following figure shows a summary of the process described above.
 
-![Security incident management](../../.vuepress/public/security_incident_process.png)
+![Security incident management](../../../.vuepress/public/security_incident_process.png)
 
 ### Security Incident Report template
 

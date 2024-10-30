@@ -55,7 +55,7 @@ module.exports = {
       },
       {
         text: 'Product',
-        link: '/api/'
+        link: '/product/'
       },
 
       {
@@ -67,21 +67,41 @@ module.exports = {
     sidebar: {
       '/business/': [
         {
-          title: 'Business Operations documentation',
+          title: 'Scheme Guide',
           collapsable: false,
-          children: ['']
+          sidebarDepth: 2,
+          children: [
+            ['Scheme/platform-operating-guideline', 'Platform Operating Guideline Template'],
+            ['Scheme/scheme-business-rules', 'Scheme Business Rules Template'],
+            ['Scheme/scheme-key-choices', 'Scheme Key Choices'],
+            ['Scheme/scheme-participation-agreement', 'Scheme Participation Agreement Template'],
+            ['Scheme/scheme-uniform-glossary', 'Uniform Glossary Template'],
+          ]
         },
         {
-          title: 'Scheme',
+          title: 'Hub Operations Guide',
           collapsable: false,
+          sidebarDepth: 2,
           children: [
-            '/Scheme/platform-operating-guideline',
-            '/Scheme/scheme-business-rules',
-            '/Scheme/scheme-key-choices',
-            '/Scheme/scheme-participation-agreement',
-            '/Scheme/scheme-uniform-glossary'
+            ['HubOperations/TechOps/tech-ops-introduction', 'Technical Operations Guide'],
+            ['standards/invariants', 'Mojaloop Invariants'],
+            ['standards/versioning', 'Versioning'],
+            ['standards/creating-new-features', 'Creating New Features'],
+            ['standards/triaging-bugs', 'Triaging Bugs'],
           ]
         }
+        // {
+        //   title: 'Scheme Rules and decisions',
+        //   collapsable: false,
+        //   sidebarDepth: 2,
+        //   children: [
+        //     ['/Scheme/platform-operating-guideline.md', 'Contributors\' Guide'],
+        //     ['/Scheme/scheme-business-rules', 'New Contributor Checklist'],
+        //     ['/Scheme/scheme-key-choices', 'Code of Conduct'],
+        //     ['contributing/signing-the-cla', 'Signing the CLA'],
+        //     ['/Scheme/scheme-uniform-glossary', 'Disclosing Security Vulnerabilities'],
+        //   ]
+        // }
         // {
         //   title: 'Hub Operations',
         //   collapsable: false,

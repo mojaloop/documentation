@@ -7,7 +7,7 @@ The **Settlement > Settlements** page allows you to view certain details of sett
 * the total value of transactions
 * the identifiers of the DFSPs involved in the transactions, as well as the associated Multilateral Net Settlement Position in the chosen period
 
-![Checking settlement details](../../.vuepress/public/check_settlement_details.png)
+![Checking settlement details](../../../.vuepress/public/check_settlement_details.png)
 
 The **Settlements** page provides a list of settlements that you can filter using various search criteria:
 
@@ -38,7 +38,7 @@ The following details are shown:
 
 To view details for a particular settlement, click the settlement in the results list. The **Settlement Details** pop-up window is displayed.
 
-![Settlement details pop-up window](../../.vuepress/public/settlement_details_popup.png)
+![Settlement details pop-up window](../../../.vuepress/public/settlement_details_popup.png)
 
 The following additional details are shown:
 

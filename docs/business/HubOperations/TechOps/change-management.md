@@ -228,7 +228,7 @@ All changes must be raised in the Service Desk tool.
 
 The following figure provides a high-level summary of the change management process with the key activities:
 
-![High-level summary of change management process activities](../../.vuepress/public/change_mgmt_flow.png)
+![High-level summary of change management process activities](../../../.vuepress/public/change_mgmt_flow.png)
 
 ### Step 1: Raise Request for Change (RFC)
 
@@ -238,7 +238,7 @@ The objective of this activity is to ensure that the types of change requests ar
 
 The following figure provides a summary of the fist step of the change management process.
 
-![Change management process – Initiating a change by raising an RFC](../../.vuepress/public/raise_rfc.png)
+![Change management process – Initiating a change by raising an RFC](../../../.vuepress/public/raise_rfc.png)
 
 #### Prerequisites
 
@@ -275,7 +275,7 @@ Changes are reviewed, and a technical approval stage determines if the required 
 
 The following figure provides a summary of the "review and authorize" step of the change management process.
 
-![Change management process – Review and authorise](../../.vuepress/public/review_authorize.png)
+![Change management process – Review and authorise](../../../.vuepress/public/review_authorize.png)
 
 #### Inputs
 
@@ -293,7 +293,7 @@ Qualified Change Records that have passed an initial assessment in the previous 
 
 The following figure provides a summary of the "plan and approve" step of the change management process.
 
-![Change management process – Plan and approve](../../.vuepress/public/plan_approve.png)
+![Change management process – Plan and approve](../../../.vuepress/public/plan_approve.png)
 
 #### Inputs
 
@@ -311,7 +311,7 @@ The relevant Technical SMEs carry out the planned activities, recording any devi
 
 The following figure provides a summary of the "implement" step of the change mangement process.
 
-![Change management process – Implement](../../.vuepress/public/implement.png)
+![Change management process – Implement](../../../.vuepress/public/implement.png)
 
 #### Inputs
 
@@ -327,7 +327,7 @@ The final activity of the process ensures that changes that are subject to a pos
 
 The following figure provides a summary of the "close" step of the change mangement process.
 
-![Change management process – Close](../../.vuepress/public/close.png)
+![Change management process – Close](../../../.vuepress/public/close.png)
 
 #### Inputs
 

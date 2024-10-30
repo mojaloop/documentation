@@ -11,7 +11,7 @@ The values displayed on the **Find Transfers** page are pulled from the Hub's ce
 To find transfers, complete the following steps:
 
 1. Go to **Transfers** > **Find Transfers**. The **Find Transfers** page is displayed. \
-<img src="../../.vuepress/public/find_transfers.png" width="90%" height="90%" />
+<img src="../../../.vuepress/public/find_transfers.png" width="90%" height="90%" />
 1. Use the search filters to specify what you are looking for. You can fill in any number of search fields, in any combination.
     * **Transfer ID**: Enter a full `transferId` or a fragment of a `transferId`.
     * **Payer FSP ID**: Enter the full `fspId` or a fragment of the `fspId` of the Payer DFSP.
@@ -65,7 +65,7 @@ The **Quote Requests** tab displays the `quoteId` and further information on sub
 
 #### Quote Request sub-tab
 
-<img src="../../.vuepress/public/transfer_details_quote_request.png" width="70%" height="70%" />
+<img src="../../../.vuepress/public/transfer_details_quote_request.png" width="70%" height="70%" />
 
 The **Quote Request** sub-tab displays the following details about the quote request:
 
@@ -90,7 +90,7 @@ The **Quote Request** sub-tab displays the following details about the quote req
 
 #### Quote Parties sub-tab
 
-<img src="../../.vuepress/public/transfer_details_quote_parties.png" width="70%" height="70%" />
+<img src="../../../.vuepress/public/transfer_details_quote_parties.png" width="70%" height="70%" />
 
 The **Quote Parties** sub-tab displays the following details about the Payer DFSP and Payee DFSP:
 
@@ -114,7 +114,7 @@ The **Quote Errors** sub-tab only displays information if there was an error in 
 
 ### Quote Responses
 
-<img src="../../.vuepress/public/transfer_details_quote_responses.png" width="70%" height="70%" />
+<img src="../../../.vuepress/public/transfer_details_quote_responses.png" width="70%" height="70%" />
 
 The **Quote Responses** tab displays details about the quote response:
 
@@ -137,7 +137,7 @@ The **Quote Responses** tab displays details about the quote response:
 
 ### Transfer Prepares
 
-<img src="../../.vuepress/public/transfer_details_transfer_prepares.png" width="70%" height="70%" />
+<img src="../../../.vuepress/public/transfer_details_transfer_prepares.png" width="70%" height="70%" />
 
 The **Transfer Prepares** tab displays details about the transfer request:
 
@@ -150,7 +150,7 @@ The **Transfer Prepares** tab displays details about the transfer request:
 
 ### Transfer Participants
 
-<img src="../../.vuepress/public/transfer_details_transfer_participants.png" width="70%" height="70%" />
+<img src="../../../.vuepress/public/transfer_details_transfer_participants.png" width="70%" height="70%" />
 
 The **Transfer Participants** tab displays the following details about the participants of the transfer:
 
@@ -164,7 +164,7 @@ The **Transfer Participants** tab displays the following details about the parti
 
 ### Transfer Fulfilments
 
-<img src="../../.vuepress/public/transfer_details_transfer_fulfilments.png" width="70%" height="70%" />
+<img src="../../../.vuepress/public/transfer_details_transfer_fulfilments.png" width="70%" height="70%" />
 
 The **Transfer Fulfilments** tab displays the following details about the transfer response:
 
@@ -177,7 +177,7 @@ The **Transfer Fulfilments** tab displays the following details about the transf
 
 ### Transfer State Changes
 
-<img src="../../.vuepress/public/transfer_details_transfer_state_changes.png" width="70%" height="70%" />
+<img src="../../../.vuepress/public/transfer_details_transfer_state_changes.png" width="70%" height="70%" />
 
 The **Transfer State Changes** tab displays the following details about the states that a transfer goes through:
 

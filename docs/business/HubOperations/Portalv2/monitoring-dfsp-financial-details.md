@@ -4,7 +4,7 @@ The **DFSP Financial Positions** page allows you to monitor DFSPs' financial det
 
 To access the **DFSP Financial Positions** page, go to **Participants** > **DFSP Financial Positions**.
 
-![Monitoring DFSP financial details](../../.vuepress/public/dfsp_financial_positions_2.png)
+![Monitoring DFSP financial details](../../../.vuepress/public/dfsp_financial_positions_2.png)
 
 The following details are displayed for each DFSP:
 
