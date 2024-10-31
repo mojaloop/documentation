@@ -80,43 +80,93 @@ module.exports = {
         },
         {
           title: 'Hub Operations Guide',
-          collapsable: false,
-          sidebarDepth: 2,
+          // path: './HubOperations/TechOps/tech-ops-introduction',
+          collapsable: false, // optional, defaults to true
+          sidebarDepth: 1,    // optional, defaults to 1
           children: [
-            ['HubOperations/TechOps/tech-ops-introduction', 'Technical Operations Guide'],
-            ['standards/invariants', 'Mojaloop Invariants'],
-            ['standards/versioning', 'Versioning'],
-            ['standards/creating-new-features', 'Creating New Features'],
-            ['standards/triaging-bugs', 'Triaging Bugs'],
+            {
+              title: 'Technical Operations Guide',
+              collapsable: true,
+              // path: 'HubOperations/TechOps/tech-ops-introduction',
+              sidebarDepth: 2,
+              children: [
+                'HubOperations/TechOps/tech-ops-introduction',
+                'HubOperations/TechOps/incident-management',
+                'HubOperations/TechOps/problem-management',
+                'HubOperations/TechOps/change-management',
+                'HubOperations/TechOps/release-management',
+                'HubOperations/TechOps/defect-triage',
+                'HubOperations/TechOps/key-terms-kpis',
+                'HubOperations/TechOps/incident-management-escalation-matrix',
+                'HubOperations/TechOps/service-level-agreements'
+              ]
+            },
+            {
+              title: 'Settlement Management Guide',
+              collapsable: true,
+              // path: './HubOperations/Settlement/settlement-management-introduction',
+              sidebarDepth: 2,
+              children: [
+                'HubOperations/Settlement/settlement-management-introduction',
+                'HubOperations/Settlement/settlement-basic-concepts',
+                'HubOperations/Settlement/ledgers-in-the-hub',
+              ]
+            },
+            {
+              title: 'Guide to Finance Portal v2',
+              collapsable: true,
+              // path: './HubOperations/Onboarding/busops-portal-introduction',
+              sidebarDepth: 2,
+              children: [
+                'HubOperations/Portalv2/busops-portal-introduction',
+                'HubOperations/Portalv2/settlement-business-process',
+                'HubOperations/Portalv2/accessing-the-portal',
+                'HubOperations/Portalv2/managing-windows',
+                'HubOperations/Portalv2/settling',
+                'HubOperations/Portalv2/checking-settlement-details',
+                'HubOperations/Portalv2/monitoring-dfsp-financial-details',
+                'HubOperations/Portalv2/enabling-disabling-transactions',
+                'HubOperations/Portalv2/recording-funds-in-out',
+                'HubOperations/Portalv2/updating-ndc',
+                'HubOperations/Portalv2/searching-for-transfer-data'
+              ]
+            },
+            {  
+              title: 'Roled-Based Access Control',
+              collapsable: true,
+              // path: './HubOperations/RBAC/Role-based-access-control',
+              sidebarDepth: 2,
+              children: [
+                'HubOperations/RBAC/Role-based-access-control'
+              ]
+            },
+            {  
+              title: 'Onboarding Guide for the Hub Operator',
+              collapsable: true,
+              // path: './HubOperations/Onboarding/onboarding-introduction',
+              sidebarDepth: 2,
+              children: [
+                'HubOperations/Onboarding/onboarding-introduction',
+                'HubOperations/Onboarding/business-onboarding',
+                'HubOperations/Onboarding/technical-onboarding',
+              ]
+            }       
           ]
         }
-        // {
-        //   title: 'Scheme Rules and decisions',
-        //   collapsable: false,
-        //   sidebarDepth: 2,
-        //   children: [
-        //     ['/Scheme/platform-operating-guideline.md', 'Contributors\' Guide'],
-        //     ['/Scheme/scheme-business-rules', 'New Contributor Checklist'],
-        //     ['/Scheme/scheme-key-choices', 'Code of Conduct'],
-        //     ['contributing/signing-the-cla', 'Signing the CLA'],
-        //     ['/Scheme/scheme-uniform-glossary', 'Disclosing Security Vulnerabilities'],
-        //   ]
-        // }
-        // {
-        //   title: 'Hub Operations',
-        //   collapsable: false,
-        // //   sidebarDepth: 2,
-        // //   children: [
-        // //     ['faqs', 'Frequently Asked Questions'],
-        // //     ['general-faqs', 'General FAQs'],
-        // //     ['technical-faqs', 'Technical FAQs'],
-        // //     ['license', 'License'],
-        // //   ]
-        // // }
       ],
       '/community/': [
         {
           title: 'Community',
+          collapsable: false,
+          sidebarDepth: 2,
+          children: [
+            ['contributing/contributors-guide', 'Welcome to the community'],
+            ['mojaloop-roadmap', 'Product Roadmap'],
+            ['mojaloop-publications', 'Mojaloop Publications']
+          ]
+        },
+        {
+          title: 'Contributing',
           collapsable: false,
           sidebarDepth: 2,
           children: [
@@ -128,7 +178,7 @@ module.exports = {
           ]
         },
         {
-          title: 'Community Standards',
+          title: 'Standards',
           collapsable: false,
           sidebarDepth: 2,
           children: [
@@ -161,18 +211,10 @@ module.exports = {
           ]
         },
         {
-          title: 'Community Resources',
+          title: 'Archive',
           collapsable: false,
           sidebarDepth: 4,
           children: [
-            {
-              title: 'Resources',
-              collapsable: false,
-              children: [
-                ['mojaloop-roadmap', 'Product Roadmap'],
-                ['mojaloop-publications', 'Mojaloop Publications'],
-              ]
-            },
             {
               title: 'Notes Archive',
               collapsable: true,
@@ -972,4 +1014,19 @@ module.exports = {
     '@vuepress/plugin-medium-zoom',
     'versioning'
   ]
-}
+};
+
+// function getSideBar(folder, title) {
+//   const extension = [".md"];
+
+//   const files = fs
+//     .readdirSync(path.join(`${__dirname}/../${folder}`))
+//     .filter(
+//       (item) =>
+//         item.toLowerCase() != "readme.md" &&
+//         fs.statSync(path.join(`${__dirname}/../${folder}`, item)).isFile() &&
+//         extension.includes(path.extname(item))
+//     );
+
+//   return [{ title: title, children: ["", ...files] }];
+// }

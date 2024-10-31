@@ -19,12 +19,12 @@ The [Uniform Glossary Template](./Scheme/scheme-uniform-glossary.md) acts as a g
 
 ## Hub Operations
 
-The [Technical Operations Guide](../huboperations/techops/tech-ops-introduction.md) outlines the operations processes that enable the Hub Operator to handle all aspects of managing a live service, such as incident management, problem management, change management, release management, defect triage.
+The [Technical Operations Guide](./huboperations/techops/tech-ops-introduction.md) outlines the operations processes that enable the Hub Operator to handle all aspects of managing a live service, such as incident management, problem management, change management, release management, defect triage.
 
-The [Settlement Management Guide](../huboperations/settlement/settlement-management-introduction.md) describes how settlements are managed by the Mojaloop Hub and the partner settlement bank(s), and introduces the main building blocks of settlement processing.
+The [Settlement Management Guide](./huboperations/settlement/settlement-management-introduction.md) describes how settlements are managed by the Mojaloop Hub and the partner settlement bank(s), and introduces the main building blocks of settlement processing.
 
-The [Guide to Finance Portal v2](/..huboperations/portalv2/busops-portal-introduction.md) is aimed at the Operator of a Mojaloop Hub and provides information about the Finance Portal, which facilitates the management of settlement-related processes on a daily basis.
+The [Guide to Finance Portal v2](./huboperations/portalv2/busops-portal-introduction.md) is aimed at the Operator of a Mojaloop Hub and provides information about the Finance Portal, which facilitates the management of settlement-related processes on a daily basis.
 
-The [Roled-Based Access Control](../huboperations/rbac/Role-based-access-control.md) document discusses the security mechanism employed to control access to various aspects of an operational instance of a Mojaloop Hub. 
+The [Roled-Based Access Control](./huboperations/rbac/Role-based-access-control.md) document discusses the security mechanism employed to control access to various aspects of an operational instance of a Mojaloop Hub. 
 
-The [Onboarding Guide for the Hub Operator](../huboperations/onboarding/onboarding-introduction.md) is aimed at the Operator of a Mojaloop Hub and provides information about the DFSP onboarding process. It provides a high-level overview of the onboarding journey that DFSPs take, acting as a checklist of onboarding activities.
+The [Onboarding Guide for the Hub Operator](./huboperations/onboarding/onboarding-introduction.md) is aimed at the Operator of a Mojaloop Hub and provides information about the DFSP onboarding process. It provides a high-level overview of the onboarding journey that DFSPs take, acting as a checklist of onboarding activities.
