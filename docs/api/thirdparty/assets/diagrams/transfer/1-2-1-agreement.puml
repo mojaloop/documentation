@@ -28,7 +28,7 @@ end box
 
 
 == Agreement Phase ==
-rnote right of D1 #Light
+rnote right of D1 #LightGray
 **""POST /thirdpartyRequests/transactions""**
 ""FSPIOP-Source: pispa""
 ""FSPIOP-Destination: dfspa""
@@ -68,7 +68,7 @@ D2 -> D2: Store a referece to the ""consentId"" with the ""transactionRequestId"
 D2 -> D2: Generate a unique transactionId for this transaction request:\n**""11111111-0000-0000-0000-000000000000""**
 
 
-rnote left of D2 #Light
+rnote left of D2 #LightGray
 **""PUT /thirdpartyRequests/transactions""**
 **""    /00000000-0000-0000-0000-000000000000""**
 ""FSPIOP-Source: dfspa""

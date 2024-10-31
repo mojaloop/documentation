@@ -111,6 +111,7 @@ jobs:
       - run:
           <<: *defaults_configure_nvm
       - run:
+          no_output_timeout: 30m
           name: Update NPM install
           command: npm ci
       - run:

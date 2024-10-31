@@ -96,7 +96,7 @@ actor "<$actor>\nPayee" as CB
 
 D2 -> D2: Generate a new ""transferId"", and associate \n it with the ""transactionRequestId""
 
-rnote over D2 #Light
+rnote over D2 #LightGray
 **""POST /transfers""**
 ""FSPIOP-Source: dfspa""
 ""FSPIOP-Destination: dfspb""
@@ -116,7 +116,7 @@ end note
 D2 -> S: ""POST /transfers""
 S --> D2: ""202 Accepted""
 
-rnote over S #Light
+rnote over S #LightGray
 **""POST /transfers""**
 ""FSPIOP-Source: dfspa""
 ""FSPIOP-Destination: dfspb""
@@ -136,7 +136,7 @@ end note
 S -> D3: ""POST /transfers""
 D3 --> S: ""202 Accepted""
 
-rnote left of D3 #Light
+rnote left of D3 #LightGray
 **""PUT /transfers/55555555-0000-0000-0000-000000000000""**
 ""FSPIOP-Source: dfspb""
 ""FSPIOP-Destination: dfspa""
@@ -155,7 +155,7 @@ D2 --> S: ""200 OK""
 
 D2 -> D2: Look up ""transactionRequestId"" from the ""transferId""
 
-rnote over D2 #Light
+rnote over D2 #LightGray
 **""PATCH /thirdpartyRequests/transactions/00000000-0000-0000-0000-000000000000""**
 ""FSPIOP-Source: dfspa""
 ""FSPIOP-Destination: pispa""
