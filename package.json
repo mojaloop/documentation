@@ -8,9 +8,6 @@
     "email": "uobong-eren@mojaloop.io"
   },
   "repository": "https://www.github.com/mojaloop/documentation",
-  "engines": {
-    "node": "=16.x"
-  },
   "scripts": {
     "dev": "NODE_OPTIONS=--openssl-legacy-provider npx npx vuepress dev docs",
     "build": "npx npx vuepress build docs",
@@ -25,14 +22,21 @@
   "devDependencies": {
     "@vuepress/plugin-back-to-top": "^1.9.10",
     "@vuepress/plugin-medium-zoom": "^1.9.10",
-    "got": "^14.2.0",
-    "husky": "^9.0.11",
-    "markdownlint-cli": "^0.39.0",
-    "npm-check-updates": "^16.14.15",
+    "got": "^14.4.3",
+    "husky": "^9.1.6",
+    "markdownlint-cli": "^0.42.0",
+    "npm-check-updates": "^17.1.9",
     "plantuml-encoder": "^1.4.0",
-    "svgo": "^3.2.0",
+    "svgo": "^3.3.2",
     "vuepress": "^1.9.10",
     "vuepress-plugin-versioning": "git+https://github.com/mojaloop/vuepress-plugin-versioning.git#dcb14962a69b8e5aaf184d2d1a31ae4f43870bc1",
     "vuepress-theme-titanium": "^4.11.2"
+  },
+  "overrides": {
+    "vuepress": {
+      "@vuepress/core": {
+        "lru-cache": "8.0.0"
+      }
+    }
   }
 }
