@@ -72,7 +72,7 @@ The workflow provided by this UC enables the BC to effect a method through which
 
 #### Flow Diagram
 
-![Use Case - Perform Transfer - Duplicate POST (Ignore)](./assets/ML2RA_Trf_ucPerformTrfDuplicPostIgnore_Mar22a.png)
+![Use Case - Perform Transfer - Duplicate POST (Ignore)](./assets/ML2RA_Trf_ucPerformTrfDuplicPostIgnor_Mar22a.png)
 >UC Workflow Diagram: Perform Transfer - Duplicate POST (Ignore)
 
 ## Non-Happy Path Use Case Variations

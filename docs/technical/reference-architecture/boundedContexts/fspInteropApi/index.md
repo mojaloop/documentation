@@ -231,7 +231,7 @@ POST Transfers request [^9] (POST /transfers) has already been processed but no 
 
 #### Flow Diagram
 
-![Use Case - Transfers BC - Perform Transfer - Duplicate Post (Ignore)](./assets/2-5-perform-transfer-duplicate-post-ignore.jpg)
+![Use Case - Transfers BC - Perform Transfer - Duplicate Post (Ignore)](./assets/2-5-perform-transfer-duplicate-post-ignor.jpg)
 
 >
 
