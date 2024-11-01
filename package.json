@@ -1,12 +1,12 @@
 {
   "name": "mojaloop-docs-vuepress",
-  "version": "0.0.1",
-  "description": "Mojaloop Documentation 2.0",
+  "version": "1.0.0",
+  "description": "Mojaloop Documentation 3.0",
   "license": "Apache-2.0",
-  "authors": {
-    "name": "Uduak Obong-Eren",
-    "email": "uobong-eren@mojaloop.io"
-  },
+  "contributors": [
+    "Sam Kummary <sam@mojaloop.io>",
+    "Uduak Obong-Eren <uobong-eren@mojaloop.io>"
+  ],
   "repository": "https://www.github.com/mojaloop/documentation",
   "scripts": {
     "dev": "NODE_OPTIONS=--openssl-legacy-provider npx npx vuepress dev docs",
@@ -34,9 +34,7 @@
   },
   "overrides": {
     "vuepress": {
-      "@vuepress/core": {
-        "lru-cache": "8.0.0"
-      }
+      "vue-loader": "15.1.1"
     }
   }
 }
