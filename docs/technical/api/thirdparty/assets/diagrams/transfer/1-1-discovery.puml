@@ -1,0 +1,72 @@
+@startuml
+
+' declaring skinparam
+skinparam sequenceMessageAlign center
+skinparam shadowing false
+skinparam defaultFontName Verdana
+skinparam monochrome true
+skinparam SequenceLifeLineBackgroundColor WhiteSmoke
+skinparam SequenceLifeLineBorderColor Black
+skinparam ParticipantFontStyle Bold
+skinparam ParticipantFontSize 20
+skinparam ParticipantBackgroundColor WhiteSmoke
+skinparam ArrowColor Black
+
+hide footbox
+
+title Transfer: 1.1 Discovery
+
+box "PISP"
+participant "PISP Server" as D1
+end box
+box "Mojaloop"
+    participant Switch as S
+end box
+box "DFSP B"
+    participant "DFSP B\n(Payee)" as D3
+end box
+
+
+== Discovery (Lookup) ==
+rnote right of D1 #LightGray
+**""GET /parties/MSISDN/+4412345678""**
+""FSPIOP-Source: pispa""
+end note
+D1 -> S: ""GET /parties/MSISDN/+4412345678""
+S --> D1: ""202 Accepted""
+
+... ALS lookup flow not shown here ...
+
+rnote over S #LightGray
+**""GET /parties/MSISDN/+4412345678""**
+""FSPIOP-Source: pispa""
+""FSPIOP-Destination: dfspb""
+end note
+S -> D3: ""GET /parties/MSISDN/+4412345678""
+D3 --> S: ""202 Accepted""
+
+rnote left of D3 #LightGray
+**""PUT /parties/MSISDN/+4412345678""**
+""FSPIOP-Source: dfspb""
+""FSPIOP-Destination: pispa""
+{
+  partyIdType: "MSISDN",
+  partyIdentifier: "+4412345678",
+  party: {
+    partyIdInfo: {
+      partyIdType: "MSISDN",
+      partyIdentifier: "+4412345678",
+      fspId: 'dfspb",
+    },
+    name: "Bhavesh S.",
+  }
+}
+end note
+D3 -> S: ""PUT /parties/MSISDN/+4412345678""
+S --> D3: ""200 OK""
+S -> D1: ""PUT /parties/MSISDN/+4412345678""
+D1 --> S: ""200 OK""
+
+... PISP confirms payee party with their user ...
+
+@enduml
