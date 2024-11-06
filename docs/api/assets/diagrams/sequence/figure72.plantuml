@@ -33,11 +33,12 @@ skinparam SequenceLifeLineBorderColor Black
 skinparam ParticipantFontStyle Bold
 skinparam ParticipantFontSize 20
 skinparam ParticipantBackgroundColor WhiteSmoke
+skinparam ArrowColor Black
 
 hide footbox
 
 ' declare title
-' title Error handling from client using GET request
+' title Error handling from client using resend of request
 
 ' Actor Keys:
 ' participant - Client and Server
@@ -51,12 +52,14 @@ participant "Server" as server
 autonumber 1 1 "<b>[0]"
 client ->> server: **POST /service**
 activate client
+client -> client: Timeout, resend\nservice request
+client ->> server: **POST /service**
 activate server
 client <<-- server: **HTTP 202** (Accepted)
-'autonumber stop
-client -> client: No update received within\nreasonable time period,\ncheck status
-'autonumber resume
-client ->> server: **GET /service**<i><ID></i>
+autonumber stop
+client -> client: Timeout, resend\nservice request
+autonumber resume
+client ->> server: **POST /service**
 autonumber stop
 client <<-- server: **HTTP 202** (Accepted)
 autonumber resume
