@@ -42,8 +42,8 @@ module.exports = {
     footerCopyright: 'Apache 2.0 Licensed | Copyright © 2020 - 2024 Mojaloop Foundation',
     nav: [
       {
-        text: 'Business',
-        link: '/business/',
+        text: 'Adoption',
+        link: '/adoption/',
       },
       {
         text: 'Community',
@@ -65,7 +65,7 @@ module.exports = {
     ],
     // Ref: https://vuepress.vuejs.org/theme/default-theme-config.html#sidebar
     sidebar: {
-      '/business/': [
+      '/adoption/': [
         {
           title: 'Scheme Guide',
           collapsable: false,
@@ -1078,6 +1078,16 @@ module.exports = {
             }
           ]
         }
+      ],
+      '/product/': [
+        {
+          title: 'Mojaloop feature set',
+          collapsable: false,
+          sidebarDepth: 2,
+          children: [
+            ['features/ml-feature-list', 'Mojaloop feature set']
+          ]
+        }
       ]
     }
   },
@@ -1092,17 +1102,3 @@ module.exports = {
   ]
 };
 
-// function getSideBar(folder, title) {
-//   const extension = [".md"];
-
-//   const files = fs
-//     .readdirSync(path.join(`${__dirname}/../${folder}`))
-//     .filter(
-//       (item) =>
-//         item.toLowerCase() != "readme.md" &&
-//         fs.statSync(path.join(`${__dirname}/../${folder}`, item)).isFile() &&
-//         extension.includes(path.extname(item))
-//     );
-
-//   return [{ title: title, children: ["", ...files] }];
-// }
