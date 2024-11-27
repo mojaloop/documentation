@@ -35,7 +35,7 @@ function ctrl_c() {
 docker run -d --rm \
   --name puml-local \
   -p ${PUML_PORT}:8080 \
-  plantuml/plantuml-server:jetty-v1.2020.21
+  plantuml/plantuml-server:jetty-v1.2024.7
 
 # Wait for docker to be up
 sleep 2
