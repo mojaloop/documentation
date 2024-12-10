@@ -171,6 +171,10 @@ module.exports = {
           sidebarDepth: 2,
           children: [
             ['contributing/contributors-guide', 'Contributors\' Guide'],
+            ['contributing/product-engineering-process','Product Engineering Process'],
+            ['contributing/design-review', 'Technical Design & Code Review'],
+            ['contributing/consequential-change-process', 'Consequential Change Process'],
+            ['contributing/critical-change-process', 'Critical Change Process'],
             ['contributing/new-contributor-checklist', 'New Contributor Checklist'],
             ['contributing/code-of-conduct', 'Code of Conduct'],
             ['contributing/signing-the-cla', 'Signing the CLA'],
