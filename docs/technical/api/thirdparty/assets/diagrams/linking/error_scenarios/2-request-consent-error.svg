@@ -1,0 +1,299 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="2141px" preserveAspectRatio="none" style="width:1562px;height:2141px;background:#FFFFFF;" version="1.1" viewBox="0 0 1562 2141" width="1562px" zoomAndPan="magnify">
+  <title>**PISP Linking: consentRequest error cases**</title>
+  <defs/>
+  <g>
+    <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="329.5811" x="612.3528" y="27.9951">PISP Linking: consentRequest error cases</text>
+    <rect fill="#DDDDDD" height="2085.1563" style="stroke:#181818;stroke-width:0.5;" width="97.3906" x="559.3481" y="43.2969"/>
+    <text fill="#000000" font-family="Verdana" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="66.7202" x="574.6833" y="55.3638">Mojaloop</text>
+    <rect fill="#F5F5F5" height="29.1328" style="stroke:#000000;stroke-width:1.0;" width="10" x="32.5811" y="1088.0156"/>
+    <rect fill="#F5F5F5" height="29.1328" style="stroke:#000000;stroke-width:1.0;" width="10" x="32.5811" y="2087.3203"/>
+    <rect fill="#F5F5F5" height="299.2578" style="stroke:#000000;stroke-width:1.0;" width="10" x="603.0435" y="386.8359"/>
+    <rect fill="#F5F5F5" height="208.4609" style="stroke:#000000;stroke-width:1.0;" width="10" x="603.0435" y="908.6875"/>
+    <rect fill="#F5F5F5" height="299.2578" style="stroke:#000000;stroke-width:1.0;" width="10" x="603.0435" y="1401.2734"/>
+    <rect fill="#F5F5F5" height="208.4609" style="stroke:#000000;stroke-width:1.0;" width="10" x="603.0435" y="1907.9922"/>
+    <rect fill="#F5F5F5" height="280.8594" style="stroke:#000000;stroke-width:1.0;" width="10" x="1173.5059" y="656.9609"/>
+    <rect fill="#F5F5F5" height="265.7266" style="stroke:#000000;stroke-width:1.0;" width="10" x="1173.5059" y="1671.3984"/>
+    <line style="stroke:#000000;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="37" x2="37" y1="100.7109" y2="2134.4531"/>
+    <line style="stroke:#000000;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="607.3481" x2="607.3481" y1="100.7109" y2="2134.4531"/>
+    <line style="stroke:#000000;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="1177.8428" x2="1177.8428" y1="100.7109" y2="2134.4531"/>
+    <rect fill="#F5F5F5" height="37.2813" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="65.1621" x="5" y="62.4297"/>
+    <text fill="#000000" font-family="Verdana" font-size="20" font-weight="bold" lengthAdjust="spacing" textLength="51.1621" x="12" y="87.9941">PISP</text>
+    <rect fill="#F5F5F5" height="37.2813" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="89.3906" x="563.3481" y="62.4297"/>
+    <text fill="#000000" font-family="Verdana" font-size="20" font-weight="bold" lengthAdjust="spacing" textLength="75.3906" x="570.3481" y="87.9941">Switch</text>
+    <rect fill="#F5F5F5" height="37.2813" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="73.3262" x="1141.8428" y="62.4297"/>
+    <text fill="#000000" font-family="Verdana" font-size="20" font-weight="bold" lengthAdjust="spacing" textLength="59.3262" x="1148.8428" y="87.9941">DFSP</text>
+    <rect fill="#F5F5F5" height="29.1328" style="stroke:#000000;stroke-width:1.0;" width="10" x="32.5811" y="1088.0156"/>
+    <rect fill="#F5F5F5" height="29.1328" style="stroke:#000000;stroke-width:1.0;" width="10" x="32.5811" y="2087.3203"/>
+    <rect fill="#F5F5F5" height="299.2578" style="stroke:#000000;stroke-width:1.0;" width="10" x="603.0435" y="386.8359"/>
+    <rect fill="#F5F5F5" height="208.4609" style="stroke:#000000;stroke-width:1.0;" width="10" x="603.0435" y="908.6875"/>
+    <rect fill="#F5F5F5" height="299.2578" style="stroke:#000000;stroke-width:1.0;" width="10" x="603.0435" y="1401.2734"/>
+    <rect fill="#F5F5F5" height="208.4609" style="stroke:#000000;stroke-width:1.0;" width="10" x="603.0435" y="1907.9922"/>
+    <rect fill="#F5F5F5" height="280.8594" style="stroke:#000000;stroke-width:1.0;" width="10" x="1173.5059" y="656.9609"/>
+    <rect fill="#F5F5F5" height="265.7266" style="stroke:#000000;stroke-width:1.0;" width="10" x="1173.5059" y="1671.3984"/>
+    <rect fill="#EEEEEE" height="3" style="stroke:#EEEEEE;stroke-width:1.0;" width="1555.2866" x="0" y="131.2773"/>
+    <line style="stroke:#000000;stroke-width:1.0;" x1="0" x2="1555.2866" y1="131.2773" y2="131.2773"/>
+    <line style="stroke:#000000;stroke-width:1.0;" x1="0" x2="1555.2866" y1="134.2773" y2="134.2773"/>
+    <rect fill="#EEEEEE" height="23.1328" style="stroke:#000000;stroke-width:2.0;" width="261.4951" x="646.8958" y="120.7109"/>
+    <text fill="#000000" font-family="Verdana" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="242.9692" x="652.8958" y="136.7778">NO_SUPPORTED_SCOPE_ACTIONS</text>
+    <polygon fill="#000000" points="591.0435,382.8359,601.0435,386.8359,591.0435,390.8359,595.0435,386.8359" style="stroke:#000000;stroke-width:1.0;"/>
+    <line style="stroke:#000000;stroke-width:1.0;" x1="37.5811" x2="597.0435" y1="386.8359" y2="386.8359"/>
+    <text fill="#000000" font-family="Verdana" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="44.3828" x="44.5811" y="275.8403">REQ-1</text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="164.3599" x="92.9639" y="169.9106">POST /consentRequests</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="92.9639" y="185.0435">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="148.7065" x="116.8818" y="185.0435">FSIOP-Source: pispa</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="92.9639" y="200.1763">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="187.8398" x="116.8818" y="200.1763">FSIOP-Destination: dfspa</text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="7.8267" x="92.9639" y="215.3091">{</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="92.9639" y="230.4419">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="446.1196" x="116.8818" y="230.4419">consentRequestId: &quot;11111111-0000-0000-0000-000000000000&quot;,</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="92.9639" y="245.5747">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="180.0132" x="116.8818" y="245.5747">userId: &quot;username1234&quot;,</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="92.9639" y="260.7075">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="70.4399" x="116.8818" y="260.7075">scopes: [</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="92.9639" y="275.8403">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="266.1064" x="132.5352" y="275.8403">{ accountId: &quot;dfsp.username.1234&quot;,</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="92.9639" y="290.9731">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="273.9331" x="156.0151" y="290.9731">actions: [ &quot;ACCOUNTS_TRANSFER&quot; ] },</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="92.9639" y="306.106">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="273.9331" x="132.5352" y="306.106">{ accountId: &quot;dfsp.username.91011&quot;,</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="92.9639" y="321.2388">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="273.9331" x="156.0151" y="321.2388">actions: [ &quot;ACCOUNTS_TRANSFER&quot; ] },</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="92.9639" y="336.3716">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="15.6533" x="116.8818" y="336.3716">],</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="92.9639" y="351.5044">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="242.6265" x="116.8818" y="351.5044">authChannels: [ &quot;WEB&quot;, &quot;OTP&quot; ],</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="92.9639" y="366.6372">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="281.7598" x="116.8818" y="366.6372">callbackUri: &quot;pisp-app://callback...</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="5.9795" x="398.6416" y="366.6372">&quot;</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="92.9639" y="381.77">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="7.8267" x="101.2285" y="381.77">}</text>
+    <polygon fill="#000000" points="48.5811,411.9688,38.5811,415.9688,48.5811,419.9688,44.5811,415.9688" style="stroke:#000000;stroke-width:1.0;"/>
+    <line style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="42.5811" x2="602.0435" y1="415.9688" y2="415.9688"/>
+    <text fill="#000000" font-family="Verdana" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="44.3828" x="54.5811" y="410.9028">REQ-2</text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="93.9199" x="102.9639" y="410.9028">202 Accepted</text>
+    <polygon fill="#000000" points="1161.5059,652.9609,1171.5059,656.9609,1161.5059,660.9609,1165.5059,656.9609" style="stroke:#000000;stroke-width:1.0;"/>
+    <line style="stroke:#000000;stroke-width:1.0;" x1="613.0435" x2="1167.5059" y1="656.9609" y2="656.9609"/>
+    <text fill="#000000" font-family="Verdana" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="44.3828" x="620.0435" y="545.9653">REQ-3</text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="164.3599" x="668.4263" y="440.0356">POST /consentRequests</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="668.4263" y="455.1685">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="148.7065" x="692.3442" y="455.1685">FSIOP-Source: pispa</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="668.4263" y="470.3013">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="187.8398" x="692.3442" y="470.3013">FSIOP-Destination: dfspa</text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="7.8267" x="668.4263" y="485.4341">{</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="668.4263" y="500.5669">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="446.1196" x="692.3442" y="500.5669">consentRequestId: &quot;11111111-0000-0000-0000-000000000000&quot;,</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="668.4263" y="515.6997">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="180.0132" x="692.3442" y="515.6997">userId: &quot;username1234&quot;,</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="668.4263" y="530.8325">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="70.4399" x="692.3442" y="530.8325">scopes: [</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="668.4263" y="545.9653">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="266.1064" x="707.9976" y="545.9653">{ accountId: &quot;dfsp.username.1234&quot;,</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="668.4263" y="561.0981">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="273.9331" x="731.4775" y="561.0981">actions: [ &quot;ACCOUNTS_TRANSFER&quot; ] },</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="668.4263" y="576.231">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="273.9331" x="707.9976" y="576.231">{ accountId: &quot;dfsp.username.91011&quot;,</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="668.4263" y="591.3638">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="273.9331" x="731.4775" y="591.3638">actions: [ &quot;ACCOUNTS_TRANSFER&quot; ] },</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="668.4263" y="606.4966">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="15.6533" x="692.3442" y="606.4966">],</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="668.4263" y="621.6294">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="242.6265" x="692.3442" y="621.6294">authChannels: [ &quot;WEB&quot;, &quot;OTP&quot; ],</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="668.4263" y="636.7622">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="281.7598" x="692.3442" y="636.7622">callbackUri: &quot;pisp-app://callback...</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="5.9795" x="974.104" y="636.7622">&quot;</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="668.4263" y="651.895">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="7.8267" x="676.6909" y="651.895">}</text>
+    <polygon fill="#000000" points="619.0435,682.0938,609.0435,686.0938,619.0435,690.0938,615.0435,686.0938" style="stroke:#000000;stroke-width:1.0;"/>
+    <line style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="613.0435" x2="1172.5059" y1="686.0938" y2="686.0938"/>
+    <text fill="#000000" font-family="Verdana" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="44.3828" x="625.0435" y="681.0278">REQ-4</text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="93.9199" x="673.4263" y="681.0278">202 Accepted</text>
+    <line style="stroke:#000000;stroke-width:1.0;" x1="1183.5059" x2="1225.5059" y1="745.4922" y2="745.4922"/>
+    <line style="stroke:#000000;stroke-width:1.0;" x1="1225.5059" x2="1225.5059" y1="745.4922" y2="758.4922"/>
+    <line style="stroke:#000000;stroke-width:1.0;" x1="1184.5059" x2="1225.5059" y1="758.4922" y2="758.4922"/>
+    <polygon fill="#000000" points="1194.5059,754.4922,1184.5059,758.4922,1194.5059,762.4922,1190.5059,758.4922" style="stroke:#000000;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="Verdana" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="53.0029" x="1190.5059" y="725.2935">DFSP-1</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="208.2856" x="1247.5088" y="710.1606">The PISP requested permissions</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="274.7139" x="1247.5088" y="725.2935">for accountId dfsp.username.91011 which</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="197.0186" x="1251.6411" y="740.4263">isn&apos;t owned by username1234</text>
+    <polygon fill="#000000" points="624.0435,904.6875,614.0435,908.6875,624.0435,912.6875,620.0435,908.6875" style="stroke:#000000;stroke-width:1.0;"/>
+    <line style="stroke:#000000;stroke-width:1.0;" x1="618.0435" x2="1172.5059" y1="908.6875" y2="908.6875"/>
+    <text fill="#000000" font-family="Verdana" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="44.3828" x="630.0435" y="843.0903">REQ-5</text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="493.0796" x="678.4263" y="782.5591">PUT /consentRequests/11111111-0000-0000-0000-000000000000/error</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="678.4263" y="797.6919">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="148.7065" x="702.3442" y="797.6919">FSIOP-Source: dfspa</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="678.4263" y="812.8247">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="187.8398" x="702.3442" y="812.8247">FSIOP-Destination: pispa</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="678.4263" y="827.9575">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="7.8267" x="686.6909" y="827.9575">{</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="678.4263" y="843.0903">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="156.5332" x="702.3442" y="843.0903">errorInformation : {</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="678.4263" y="858.2231">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="140.8799" x="717.9976" y="858.2231">errorCode: &quot;6101&quot;,</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="678.4263" y="873.356">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="414.813" x="717.9976" y="873.356">errorDescription: &quot;Unsupported scopes were requested&quot;</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="678.4263" y="888.4888">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="7.8267" x="702.3442" y="888.4888">}</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="678.4263" y="903.6216">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="7.8267" x="686.6909" y="903.6216">}</text>
+    <polygon fill="#000000" points="1166.5059,933.8203,1176.5059,937.8203,1166.5059,941.8203,1170.5059,937.8203" style="stroke:#000000;stroke-width:1.0;"/>
+    <line style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="613.0435" x2="1172.5059" y1="937.8203" y2="937.8203"/>
+    <text fill="#000000" font-family="Verdana" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="44.3828" x="620.0435" y="932.7544">REQ-6</text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="46.96" x="668.4263" y="932.7544">200 OK</text>
+    <polygon fill="#000000" points="53.5811,1084.0156,43.5811,1088.0156,53.5811,1092.0156,49.5811,1088.0156" style="stroke:#000000;stroke-width:1.0;"/>
+    <line style="stroke:#000000;stroke-width:1.0;" x1="47.5811" x2="602.0435" y1="1088.0156" y2="1088.0156"/>
+    <text fill="#000000" font-family="Verdana" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="44.3828" x="59.5811" y="1022.4185">REQ-7</text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="493.0796" x="107.9639" y="961.8872">PUT /consentRequests/11111111-0000-0000-0000-000000000000/error</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="107.9639" y="977.02">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="148.7065" x="131.8818" y="977.02">FSIOP-Source: dfspa</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="107.9639" y="992.1528">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="187.8398" x="131.8818" y="992.1528">FSIOP-Destination: pispa</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="107.9639" y="1007.2856">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="7.8267" x="116.2285" y="1007.2856">{</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="107.9639" y="1022.4185">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="156.5332" x="131.8818" y="1022.4185">errorInformation : {</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="107.9639" y="1037.5513">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="140.8799" x="147.5352" y="1037.5513">errorCode: &quot;6101&quot;,</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="107.9639" y="1052.6841">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="414.813" x="147.5352" y="1052.6841">errorDescription: &quot;Unsupported scopes were requested&quot;</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="107.9639" y="1067.8169">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="7.8267" x="131.8818" y="1067.8169">}</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="107.9639" y="1082.9497">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="7.8267" x="116.2285" y="1082.9497">}</text>
+    <polygon fill="#000000" points="596.0435,1113.1484,606.0435,1117.1484,596.0435,1121.1484,600.0435,1117.1484" style="stroke:#000000;stroke-width:1.0;"/>
+    <line style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="37.5811" x2="602.0435" y1="1117.1484" y2="1117.1484"/>
+    <text fill="#000000" font-family="Verdana" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="44.3828" x="44.5811" y="1112.0825">REQ-8</text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="46.96" x="92.9639" y="1112.0825">200 OK</text>
+    <rect fill="#EEEEEE" height="3" style="stroke:#EEEEEE;stroke-width:1.0;" width="1555.2866" x="0" y="1145.7148"/>
+    <line style="stroke:#000000;stroke-width:1.0;" x1="0" x2="1555.2866" y1="1145.7148" y2="1145.7148"/>
+    <line style="stroke:#000000;stroke-width:1.0;" x1="0" x2="1555.2866" y1="1148.7148" y2="1148.7148"/>
+    <rect fill="#EEEEEE" height="23.1328" style="stroke:#000000;stroke-width:2.0;" width="221.4541" x="666.9163" y="1135.1484"/>
+    <text fill="#000000" font-family="Verdana" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="202.9282" x="672.9163" y="1151.2153">UNTRUSTED_CALLBACK_URI</text>
+    <polygon fill="#000000" points="591.0435,1397.2734,601.0435,1401.2734,591.0435,1405.2734,595.0435,1401.2734" style="stroke:#000000;stroke-width:1.0;"/>
+    <line style="stroke:#000000;stroke-width:1.0;" x1="37.5811" x2="597.0435" y1="1401.2734" y2="1401.2734"/>
+    <text fill="#000000" font-family="Verdana" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="44.3828" x="44.5811" y="1290.2778">REQ-1</text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="164.3599" x="92.9639" y="1184.3481">POST /consentRequests</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="92.9639" y="1199.481">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="148.7065" x="116.8818" y="1199.481">FSIOP-Source: pispa</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="92.9639" y="1214.6138">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="187.8398" x="116.8818" y="1214.6138">FSIOP-Destination: dfspa</text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="7.8267" x="92.9639" y="1229.7466">{</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="92.9639" y="1244.8794">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="446.1196" x="116.8818" y="1244.8794">consentRequestId: &quot;11111111-0000-0000-0000-000000000000&quot;,</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="92.9639" y="1260.0122">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="180.0132" x="116.8818" y="1260.0122">userId: &quot;username1234&quot;,</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="92.9639" y="1275.145">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="70.4399" x="116.8818" y="1275.145">scopes: [</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="92.9639" y="1290.2778">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="281.7598" x="132.5352" y="1290.2778">{ **accountId: &quot;dfsp.username.1234&quot;,</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="92.9639" y="1305.4106">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="273.9331" x="156.0151" y="1305.4106">actions: [ &quot;ACCOUNTS_TRANSFER&quot; ] },</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="92.9639" y="1320.5435">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="266.1064" x="132.5352" y="1320.5435">{ accountId: &quot;dfsp.username.5678&quot;,</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="92.9639" y="1335.6763">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="273.9331" x="156.0151" y="1335.6763">actions: [ &quot;ACCOUNTS_TRANSFER&quot; ] },</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="92.9639" y="1350.8091">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="15.6533" x="116.8818" y="1350.8091">],</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="92.9639" y="1365.9419">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="242.6265" x="116.8818" y="1365.9419">authChannels: [ &quot;WEB&quot;, &quot;OTP&quot; ],</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="92.9639" y="1381.0747">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="258.2798" x="116.8818" y="1381.0747">callbackUri: &quot;http://phishing.com</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="5.9795" x="375.1616" y="1381.0747">&quot;</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="92.9639" y="1396.2075">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="7.8267" x="101.2285" y="1396.2075">}</text>
+    <polygon fill="#000000" points="48.5811,1426.4063,38.5811,1430.4063,48.5811,1434.4063,44.5811,1430.4063" style="stroke:#000000;stroke-width:1.0;"/>
+    <line style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="42.5811" x2="602.0435" y1="1430.4063" y2="1430.4063"/>
+    <text fill="#000000" font-family="Verdana" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="44.3828" x="54.5811" y="1425.3403">REQ-2</text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="93.9199" x="102.9639" y="1425.3403">202 Accepted</text>
+    <polygon fill="#000000" points="1161.5059,1667.3984,1171.5059,1671.3984,1161.5059,1675.3984,1165.5059,1671.3984" style="stroke:#000000;stroke-width:1.0;"/>
+    <line style="stroke:#000000;stroke-width:1.0;" x1="613.0435" x2="1167.5059" y1="1671.3984" y2="1671.3984"/>
+    <text fill="#000000" font-family="Verdana" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="44.3828" x="620.0435" y="1560.4028">REQ-3</text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="164.3599" x="668.4263" y="1454.4731">POST /consentRequests</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="668.4263" y="1469.606">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="148.7065" x="692.3442" y="1469.606">FSIOP-Source: pispa</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="668.4263" y="1484.7388">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="187.8398" x="692.3442" y="1484.7388">FSIOP-Destination: dfspa</text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="7.8267" x="668.4263" y="1499.8716">{</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="668.4263" y="1515.0044">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="446.1196" x="692.3442" y="1515.0044">consentRequestId: &quot;11111111-0000-0000-0000-000000000000&quot;,</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="668.4263" y="1530.1372">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="180.0132" x="692.3442" y="1530.1372">userId: &quot;username1234&quot;,</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="668.4263" y="1545.27">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="70.4399" x="692.3442" y="1545.27">scopes: [</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="668.4263" y="1560.4028">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="266.1064" x="707.9976" y="1560.4028">{ accountId: &quot;dfsp.username.1234&quot;,</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="668.4263" y="1575.5356">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="273.9331" x="731.4775" y="1575.5356">actions: [ &quot;ACCOUNTS_TRANSFER&quot; ] },</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="668.4263" y="1590.6685">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="266.1064" x="707.9976" y="1590.6685">{ accountId: &quot;dfsp.username.5678&quot;,</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="668.4263" y="1605.8013">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="273.9331" x="731.4775" y="1605.8013">actions: [ &quot;ACCOUNTS_TRANSFER&quot; ] },</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="668.4263" y="1620.9341">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="15.6533" x="692.3442" y="1620.9341">],</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="668.4263" y="1636.0669">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="242.6265" x="692.3442" y="1636.0669">authChannels: [ &quot;WEB&quot;, &quot;OTP&quot; ],</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="668.4263" y="1651.1997">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="258.2798" x="692.3442" y="1651.1997">callbackUri: &quot;http://phishing.com</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="5.9795" x="950.624" y="1651.1997">&quot;</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="668.4263" y="1666.3325">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="7.8267" x="676.6909" y="1666.3325">}</text>
+    <polygon fill="#000000" points="619.0435,1696.5313,609.0435,1700.5313,619.0435,1704.5313,615.0435,1700.5313" style="stroke:#000000;stroke-width:1.0;"/>
+    <line style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="613.0435" x2="1172.5059" y1="1700.5313" y2="1700.5313"/>
+    <text fill="#000000" font-family="Verdana" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="44.3828" x="625.0435" y="1695.4653">REQ-4</text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="93.9199" x="673.4263" y="1695.4653">202 Accepted</text>
+    <line style="stroke:#000000;stroke-width:1.0;" x1="1183.5059" x2="1225.5059" y1="1744.7969" y2="1744.7969"/>
+    <line style="stroke:#000000;stroke-width:1.0;" x1="1225.5059" x2="1225.5059" y1="1744.7969" y2="1757.7969"/>
+    <line style="stroke:#000000;stroke-width:1.0;" x1="1184.5059" x2="1225.5059" y1="1757.7969" y2="1757.7969"/>
+    <polygon fill="#000000" points="1194.5059,1753.7969,1184.5059,1757.7969,1194.5059,1761.7969,1190.5059,1757.7969" style="stroke:#000000;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="Verdana" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="53.0029" x="1190.5059" y="1732.1646">DFSP-1</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="219.6987" x="1247.5088" y="1724.5981">The callbackUri uses http scheme</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="285.7778" x="1247.5088" y="1739.731">instead of https. Reject the consentRequest</text>
+    <polygon fill="#000000" points="624.0435,1903.9922,614.0435,1907.9922,624.0435,1911.9922,620.0435,1907.9922" style="stroke:#000000;stroke-width:1.0;"/>
+    <line style="stroke:#000000;stroke-width:1.0;" x1="618.0435" x2="1172.5059" y1="1907.9922" y2="1907.9922"/>
+    <text fill="#000000" font-family="Verdana" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="44.3828" x="630.0435" y="1842.395">REQ-5</text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="493.0796" x="678.4263" y="1781.8638">PUT /consentRequests/11111111-0000-0000-0000-000000000000/error</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="678.4263" y="1796.9966">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="148.7065" x="702.3442" y="1796.9966">FSIOP-Source: dfspa</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="678.4263" y="1812.1294">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="187.8398" x="702.3442" y="1812.1294">FSIOP-Destination: pispa</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="678.4263" y="1827.2622">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="7.8267" x="686.6909" y="1827.2622">{</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="678.4263" y="1842.395">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="156.5332" x="702.3442" y="1842.395">errorInformation : {</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="678.4263" y="1857.5278">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="140.8799" x="717.9976" y="1857.5278">errorCode: &quot;6204&quot;,</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="678.4263" y="1872.6606">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="273.9331" x="717.9976" y="1872.6606">errorDescription: &quot;Bad callbackUri&quot;</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="678.4263" y="1887.7935">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="7.8267" x="702.3442" y="1887.7935">}</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="678.4263" y="1902.9263">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="7.8267" x="686.6909" y="1902.9263">}</text>
+    <polygon fill="#000000" points="1166.5059,1933.125,1176.5059,1937.125,1166.5059,1941.125,1170.5059,1937.125" style="stroke:#000000;stroke-width:1.0;"/>
+    <line style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="613.0435" x2="1172.5059" y1="1937.125" y2="1937.125"/>
+    <text fill="#000000" font-family="Verdana" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="44.3828" x="620.0435" y="1932.0591">REQ-6</text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="46.96" x="668.4263" y="1932.0591">200 OK</text>
+    <polygon fill="#000000" points="53.5811,2083.3203,43.5811,2087.3203,53.5811,2091.3203,49.5811,2087.3203" style="stroke:#000000;stroke-width:1.0;"/>
+    <line style="stroke:#000000;stroke-width:1.0;" x1="47.5811" x2="602.0435" y1="2087.3203" y2="2087.3203"/>
+    <text fill="#000000" font-family="Verdana" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="44.3828" x="59.5811" y="2021.7231">REQ-7</text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="493.0796" x="107.9639" y="1961.1919">PUT /consentRequests/11111111-0000-0000-0000-000000000000/error</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="107.9639" y="1976.3247">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="148.7065" x="131.8818" y="1976.3247">FSIOP-Source: dfspa</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="107.9639" y="1991.4575">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="187.8398" x="131.8818" y="1991.4575">FSIOP-Destination: pispa</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="107.9639" y="2006.5903">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="7.8267" x="116.2285" y="2006.5903">{</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="107.9639" y="2021.7231">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="156.5332" x="131.8818" y="2021.7231">errorInformation : {</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="107.9639" y="2036.856">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="140.8799" x="147.5352" y="2036.856">errorCode: &quot;6204&quot;,</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="107.9639" y="2051.9888">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="273.9331" x="147.5352" y="2051.9888">errorDescription: &quot;Bad callbackUri&quot;</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="107.9639" y="2067.1216">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="7.8267" x="131.8818" y="2067.1216">}</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="107.9639" y="2082.2544">  </text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="7.8267" x="116.2285" y="2082.2544">}</text>
+    <polygon fill="#000000" points="596.0435,2112.4531,606.0435,2116.4531,596.0435,2120.4531,600.0435,2116.4531" style="stroke:#000000;stroke-width:1.0;"/>
+    <line style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="37.5811" x2="602.0435" y1="2116.4531" y2="2116.4531"/>
+    <text fill="#000000" font-family="Verdana" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="44.3828" x="44.5811" y="2111.3872">REQ-8</text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="46.96" x="92.9639" y="2111.3872">200 OK</text>
+  </g>
+</svg>
