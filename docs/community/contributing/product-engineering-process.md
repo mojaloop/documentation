@@ -104,6 +104,7 @@ To qualify as a workstream (co)lead, individuals should meet the following crite
 4. Demonstrable relevant technical ability.
 5. Familiarity with Mojaloop ecosystem.
 6. Commitment for the duration of the PI.
+7. Commitment to and adherence to the Mojaloop Code of conduct
 
 Workstream (co)leads must accept the following responsibilities:
 
