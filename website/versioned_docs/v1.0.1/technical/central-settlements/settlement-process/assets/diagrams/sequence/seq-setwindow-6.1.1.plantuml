@@ -1,0 +1,123 @@
+/'*****
+ License
+ --------------
+ Copyright © 2017 Bill & Melinda Gates Foundation
+ The Mojaloop files are made available by the Bill & Melinda Gates Foundation under the Apache License, Version 2.0 (the "License") and you may not use these files except in compliance with the License. You may obtain a copy of the License at
+ http://www.apache.org/licenses/LICENSE-2.0
+ Unless required by applicable law or agreed to in writing, the Mojaloop files are distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+ Contributors
+ --------------
+ This is the official list of the Mojaloop project contributors for this file.
+ Names of the original copyright holders (individuals or organizations)
+ should be listed with a '*' in the first column. People who have
+ contributed from an organization can be listed under the organization
+ that actually holds the copyright for their contributions (see the
+ Gates Foundation organization for an example). Those individuals should have
+ their names indented and be marked with a '-'. Email address can be added
+ optionally within square brackets <email>.
+ * Gates Foundation
+ - Name Surname <name.surname@gatesfoundation.com>
+
+ * ModusBox
+ - Georgi Georgiev <georgi.georgiev@modusbox.com>
+ --------------
+ ******'/
+
+@startuml
+' declate title
+title 6.1.1. Request Settlement Window By Id (getSettlementWindowById)
+
+autonumber
+
+' declare actors
+actor "Hub Employee" as OPERATOR
+boundary "Settlement Service API" as SSAPI
+entity "Settlement DAO" as SETTLE_DAO
+database "Central Store" as DB
+
+box "Central HUB" #lightpink
+    participant OPERATOR
+end box
+
+box "Settlement Service" #lightgreen
+    participant SSAPI
+    participant SETTLE_DAO
+end box
+
+box "Central Services" #lightyellow
+    participant DB
+end box
+
+' start flow
+group Request Settlement Window
+    activate OPERATOR
+    OPERATOR -> SSAPI: GET - /settlementWindows/{id}
+    activate SSAPI
+    SSAPI -> SETTLE_DAO: Request settlementWindow by id\n<color #FF0000><b>Error code:</b> 2001</color>
+    activate SETTLE_DAO
+    SETTLE_DAO -> DB: Select from DB
+    activate DB
+    hnote over DB #lightyellow
+        SELECT sw.settlementWindowId, swsc.settlementWindowStateId, 
+               swsc.reason, sw.createdDate, swsc.createdDate changedDate
+        FROM **settlementWindow** AS sw
+        JOIN **settlementWindowStateChange** AS swsc
+        ON swsc.settlementWindowStateChangeId = sw.currentStateChangeId
+        WHERE sw.settlementWindowId = {id}
+    end hnote
+    deactivate DB
+    SSAPI <-- SETTLE_DAO: Return **data**
+    deactivate SETTLE_DAO
+
+    alt settlementWindow found
+        SSAPI -> SETTLE_DAO: Request settlementWindowContent(s)\n<color #FF0000><b>Error code:</b> 2001</color>
+        activate SETTLE_DAO
+        SETTLE_DAO -> DB: Select from DB
+        activate DB
+        hnote over DB #lightyellow
+            settlementWindowContent
+            settlementWindowContentStateChange
+            ledgerAccountType
+        end hnote
+        deactivate DB
+        SSAPI <-- SETTLE_DAO: Return **contentList**
+        deactivate SETTLE_DAO
+        note left of SSAPI #yellow
+            {
+                "id": data.settlementWindowId,
+                "state": data.settlementWindowStateId,
+                "reason": data.reason,
+                "createdDate": data.createdDate,
+                "changedDate": data.changedDate,
+                "content": [
+                    {
+                        "id": contentList.settlementWindowContentId,
+                        "state": contentList.settlementWindowStateId,
+                        "ledgerAccountType": contentList.ledgerAccountType,
+                        "currencyId": contentList.currencyId,
+                        "createdDate": contentList.createdDate,
+                        "changedDate": contentList.changedDate,
+                        "settlementId": contentList.settlementId
+                    }
+                ]
+            }
+        end note
+        OPERATOR <-- SSAPI: Respond HTTP - 200 (OK)
+    else
+        note right of SSAPI #lightgray
+            Log ERROR event
+        end note
+        note left of SSAPI #yellow
+            {
+                "errorInformation": {
+                    "errorCode": <integer>,
+                    "errorDescription": <string>
+                }
+            }
+        end note
+        OPERATOR <-- SSAPI: Respond HTTP - 4xx (Client error)
+        deactivate SSAPI
+        deactivate OPERATOR
+    end
+end
+@enduml
