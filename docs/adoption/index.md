@@ -1,6 +1,16 @@
-# About the Mojaloop Business documents
+# About the Mojaloop Adoption documents
 
-Mojaloop Business documents are presented in two main groups:
+For a hub operator or central bank to use Mojaloop for its inclusive instant payment system (IIPS), the process of adoption and steps in the decision making are often very different compared to hiring a firm to provide a proprietary software.   Using Mojaloop to build and own a platform provides greater control but also greater responsibility.   Not having dependency on a single vendor means exactly that.  
+
+The documentation and tools in this section are design to help with the rationale for selecting to use Mojaloop and a recommended process for implementation.  
+
+Building a payment system is far more than the technology platform.  The scheme and operations are actually the factors of success.   We developed Mojaloop to minimize operational burden and reduce the cost of implementing inclusive scheme rules like irrevocability and certainty. 
+
+The process of building a payment system can be as important as some of the scheme decisions which come out of it.  Every scheme owner and operator can develop their own process, but we recommend a process that is inclusive, transparent, and iterative to maximize ownership, trust and long term sustainability. 
+
+
+
+Tools available for Adopters:
 
 * [**Scheme Choices**](#scheme-choices): documents that provide assistance with defining scheme rules, operating guidelines, as well as key business and design choices
 * [**Hub Operations**](#hub-operations): guides that provide practical information about the various aspects of operating a Mojaloop Hub
