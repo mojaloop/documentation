@@ -2,7 +2,7 @@
 
 For a hub operator or central bank to use Mojaloop for its inclusive instant payment system (IIPS), the process of adoption and steps in the decision making are often very different compared to hiring a firm to provide a proprietary software.   Using Mojaloop to build and own a platform provides greater control but also greater responsibility.   Not having dependency on a single vendor means exactly that.  
 
-The documentation and tools in this section are design to help with the rationale for selecting to use Mojaloop and a recommended process for implementation.  
+The documentation and tools in this section are designed to help with the rationale for selecting to use Mojaloop and a recommended process for implementation.  
 
 Building a payment system is far more than the technology platform.  The scheme and operations are actually the factors of success.   We developed Mojaloop to minimize operational burden and reduce the cost of implementing inclusive scheme rules like irrevocability and certainty. 
 
