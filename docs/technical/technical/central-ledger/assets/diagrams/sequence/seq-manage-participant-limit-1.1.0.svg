@@ -1,457 +1,243 @@
-<svg xmlns="http://www.w3.org/2000/svg" height="1992" preserveAspectRatio="none" style="width:1743px;height:1992px" width="1743">
-  <defs>
-    <filter height="300%" id="a" width="300%" x="-1" y="-1">
-      <feGaussianBlur result="blurOut" stdDeviation="2"/>
-      <feColorMatrix in="blurOut" result="blurOut2" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/>
-      <feOffset dx="4" dy="4" in="blurOut2" result="blurOut3"/>
-      <feBlend in="SourceGraphic" in2="blurOut3"/>
-    </filter>
-  </defs>
-  <text font-family="sans-serif" font-size="18" lengthAdjust="spacingAndGlyphs" textLength="278" x="730.5" y="28.708">
-    1.1.0 Manage Participant Limits
-  </text>
-  <path fill="#FFFFE0" stroke="#a80036" d="M961.5 40.953H1680v1945.164H961.5z"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="119" x="1261.25" y="53.02">
-    Central Services
-  </text>
-  <path fill="#FFF" filter="url(#a)" stroke="#a80036" d="M84 133.25h10v1741.57H84zM721 178.516h10v1696.305h-10zM1028 382.977h10v1462.711h-10zM1385 427.242h10v135.664h-10zM1385 673.438h10v120.531h-10zM1385 1058.563h10v120.531h-10zM1623 456.375h10v77.398h-10zM1623 702.57h10v62.266h-10zM1623 1087.695h10v62.266h-10z"/>
-  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M10 140.25h1719v1742.57H10z"/>
-  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M20 620.039h1699v1197.516H20z"/>
-  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M945.5 851.102H1709v526.859H945.5z"/>
-  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M955.5 875.234H1699v311.859H955.5z"/>
-  <path fill="#FFF" d="M945.5 1194.094H1709v183.867H945.5zM20 1633.688h1699v183.867H20z"/>
-  <path stroke="#a80036" stroke-dasharray="5,5" d="M89 123.25v1776.57M726 123.25v1776.57M1032.5 123.25v1776.57M1389.5 123.25v1776.57M1628 123.25v1776.57"/>
-  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="112" x="30" y="119.948">
-    HUB OPERATOR
-  </text>
-  <circle cx="89" cy="49.953" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="8"/>
-  <path d="M89 57.953v27m-13-19h26m-13 19l-13 15m13-15l13 15" fill="none" filter="url(#a)" stroke="#a80036" stroke-width="2"/>
-  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="112" x="30" y="1911.815">
-    HUB OPERATOR
-  </text>
-  <circle cx="89" cy="1925.117" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="8"/>
-  <path d="M89 1933.117v27m-13-19h26m-13 19l-13 15m13-15l13 15" fill="none" filter="url(#a)" stroke="#a80036" stroke-width="2"/>
-  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="128" x="659" y="119.948">
-    Central Service API
-  </text>
-  <path d="M705.5 78.953v24m0-12h17" fill="none" filter="url(#a)" stroke="#a80036" stroke-width="2"/>
-  <circle cx="734.5" cy="90.953" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
-  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="128" x="659" y="1911.815">
-    Central Service API
-  </text>
-  <path d="M705.5 1919.117v24m0-12h17" fill="none" filter="url(#a)" stroke="#a80036" stroke-width="2"/>
-  <circle cx="734.5" cy="1931.117" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
-  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="129" x="965.5" y="119.948">
-    Participant Handler
-  </text>
-  <circle cx="1033" cy="90.953" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
-  <path fill="#A80036" stroke="#a80036" d="M1029 78.953l6-5-2 5 2 5-6-5z"/>
-  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="129" x="965.5" y="1911.815">
-    Participant Handler
-  </text>
-  <circle cx="1033" cy="1931.117" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
-  <path fill="#A80036" stroke="#a80036" d="M1029 1919.117l6-5-2 5 2 5-6-5z"/>
-  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="107" x="1333.5" y="119.948">
-    Participant DAO
-  </text>
-  <circle cx="1390" cy="90.953" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
-  <path stroke="#a80036" stroke-width="2" d="M1378 104.953h24"/>
-  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="107" x="1333.5" y="1911.815">
-    Participant DAO
-  </text>
-  <circle cx="1390" cy="1931.117" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
-  <path stroke="#a80036" stroke-width="2" d="M1378 1945.117h24"/>
-  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="90" x="1580" y="119.948">
-    Central Store
-  </text>
-  <path d="M1610 70.953c0-10 18-10 18-10s18 0 18 10v26c0 10-18 10-18 10s-18 0-18-10v-26" fill="#FEFECE" filter="url(#a)" stroke="#000" stroke-width="1.5"/>
-  <path d="M1610 70.953c0 10 18 10 18 10s18 0 18-10" fill="none" stroke="#000" stroke-width="1.5"/>
-  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="90" x="1580" y="1911.815">
-    Central Store
-  </text>
-  <path d="M1610 1925.117c0-10 18-10 18-10s18 0 18 10v26c0 10-18 10-18 10s-18 0-18-10v-26" fill="#FEFECE" filter="url(#a)" stroke="#000" stroke-width="1.5"/>
-  <path d="M1610 1925.117c0 10 18 10 18 10s18 0 18-10" fill="none" stroke="#000" stroke-width="1.5"/>
-  <path fill="#FFF" filter="url(#a)" stroke="#a80036" d="M84 133.25h10v1741.57H84zM721 178.516h10v1696.305h-10zM1028 382.977h10v1462.711h-10zM1385 427.242h10v135.664h-10zM1385 673.438h10v120.531h-10zM1385 1058.563h10v120.531h-10zM1623 456.375h10v77.398h-10zM1623 702.57h10v62.266h-10zM1623 1087.695h10v62.266h-10z"/>
-  <path d="M10 140.25h214v7l-10 10H10v-17" fill="#EEE" stroke="#000"/>
-  <path fill="none" stroke="#000" stroke-width="2" d="M10 140.25h1719v1742.57H10z"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="169" x="25" y="153.317">
-    Manage Net Debit Cap
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M709 174.516l10 4-10 4 4-4z"/>
-  <path stroke="#a80036" d="M94 178.516h621"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="101" y="173.45">
-    1
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="595" x="114" y="173.45">
-    Request to adjust Participant Limit for a certain Currency - POST - /participants/{name}/limits
-  </text>
-  <path d="M99 191.516v161h178v-151l-10-10H99" fill="#FF0" filter="url(#a)" stroke="#a80036"/>
-  <path d="M267 191.516v10h10l-10-10" fill="#FF0" stroke="#a80036"/>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="61" x="105" y="208.583">
-    Message:
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="105" y="223.715">
-    {
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="66" x="121" y="238.848">
-    payload: {
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="125" x="137" y="253.981">
-    currency: &lt;string&gt;,
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="43" x="137" y="269.114">
-    limit: {
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="98" x="153" y="284.247">
-    type: &lt;string&gt;,
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="75" x="153" y="299.379">
-    value: &lt;Id&gt;
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="137" y="314.512">
-    }
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="121" y="329.645">
-    }
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="105" y="344.778">
-    }
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M1016 378.977l10 4-10 4 4-4z"/>
-  <path stroke="#a80036" d="M731 382.977h291"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="738" y="377.911">
-    2
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="168" x="751" y="377.911">
-    Adjust Limit for Participant
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M1373 423.242l10 4-10 4 4-4z"/>
-  <path stroke="#a80036" d="M1038 427.242h341"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="1045" y="414.61">
-    3
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="166" x="1058" y="407.043">
-    Fetch Participant/currency
-  </text>
-  <text fill="red" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="82" x="1058" y="422.176">
-    Error code:
-  </text>
-  <text fill="red" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="32" x="1144" y="422.176">
-    3200
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M1611 452.375l10 4-10 4 4-4z"/>
-  <path stroke="#a80036" d="M1395 456.375h222"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="1402" y="451.309">
-    4
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="166" x="1415" y="451.309">
-    Fetch Participant/currency
-  </text>
-  <path fill="#FFFFE0" filter="url(#a)" stroke="#a80036" d="M1563 469.375h129l10 19-10 19h-129l-10-19 10-19z"/>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="68" x="1565" y="485.442">
-    participant
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="125" x="1565" y="500.575">
-    participantCurrency
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M1406 529.773l-10 4 10 4-4-4z"/>
-  <path stroke="#a80036" stroke-dasharray="2,2" d="M1400 533.773h227"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="1412" y="528.707">
-    5
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="191" x="1425" y="528.707">
-    Retrieved Participant/currency
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M1049 558.906l-10 4 10 4-4-4z"/>
-  <path stroke="#a80036" stroke-dasharray="2,2" d="M1043 562.906h346"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="1055" y="557.84">
-    6
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="173" x="1068" y="557.84">
-    Return Participant/currency
-  </text>
-  <path stroke="#a80036" d="M1038 592.039h42M1080 592.039v13M1039 605.039h41"/>
-  <path fill="#A80036" stroke="#a80036" d="M1049 601.04l-10 4 10 4-4-4z"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="1045" y="586.973">
-    7
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="90" x="1058" y="586.973">
-    Validate DFSP
-  </text>
-  <path d="M20 620.04h64v7l-10 10H20v-17" fill="#EEE" stroke="#000"/>
-  <path fill="none" stroke="#000" stroke-width="2" d="M20 620.039h1699v1197.516H20z"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19" x="35" y="633.106">
-    alt
-  </text>
-  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="202" x="99" y="632.25">
-    [Validate participant (success)]
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M1373 669.438l10 4-10 4 4-4z"/>
-  <path stroke="#a80036" d="M1038 673.438h341"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="1045" y="660.805">
-    8
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="298" x="1058" y="653.239">
-    (for ParticipantCurrency) Fetch ParticipantLimit
-  </text>
-  <text fill="red" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="82" x="1058" y="668.372">
-    Error code:
-  </text>
-  <text fill="red" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="32" x="1144" y="668.372">
-    3200
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M1611 698.57l10 4-10 4 4-4z"/>
-  <path stroke="#a80036" d="M1395 702.57h222"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="1402" y="697.504">
-    9
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="138" x="1415" y="697.504">
-    Fetch ParticipantLimit
-  </text>
-  <path fill="#FFFFE0" filter="url(#a)" stroke="#a80036" d="M1576 715.57h103l10 11-10 12h-103l-10-12 10-11z"/>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="99" x="1578" y="731.637">
-    participantLimit
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M1406 760.836l-10 4 10 4-4-4z"/>
-  <path stroke="#a80036" stroke-dasharray="2,2" d="M1400 764.836h227"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1412" y="759.77">
-    10
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="163" x="1434" y="759.77">
-    Retrieved ParticipantLimit
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M1049 789.969l-10 4 10 4-4-4z"/>
-  <path stroke="#a80036" stroke-dasharray="2,2" d="M1043 793.969h346"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1055" y="788.903">
-    11
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="145" x="1077" y="788.903">
-    Return ParticipantLimit
-  </text>
-  <path stroke="#a80036" d="M1038 823.102h42M1080 823.102v13M1039 836.102h41"/>
-  <path fill="#A80036" stroke="#a80036" d="M1049 832.102l-10 4 10 4-4-4z"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1045" y="818.036">
-    12
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="155" x="1067" y="818.036">
-    Validate ParticipantLimit
-  </text>
-  <path d="M945.5 851.102h64v7l-10 10h-54v-17" fill="#EEE" stroke="#000"/>
-  <path fill="none" stroke="#000" stroke-width="2" d="M945.5 851.102H1709v526.859H945.5z"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19" x="960.5" y="864.168">
-    alt
-  </text>
-  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="233" x="1024.5" y="863.312">
-    [Validate participantLimit (success)]
-  </text>
-  <path d="M955.5 875.234h643v7l-10 10h-633v-17" fill="#EEE" stroke="#000"/>
-  <path fill="none" stroke="#000" stroke-width="2" d="M955.5 875.234H1699v311.859H955.5z"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="598" x="970.5" y="888.301">
-    DB TRANSACTION IMPLEMENTATION - Lock on ParticipantLimit table with UPDATE
-  </text>
-  <path d="M1395 897.367v115h230v-105l-10-10h-220" fill="#D3D3D3" filter="url(#a)" stroke="#a80036"/>
-  <path d="M1615 897.367v10h10l-10-10" fill="#D3D3D3" stroke="#a80036"/>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="209" x="1401" y="914.434">
-    If (record exists &amp;&amp; isActive = 1)
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="148" x="1417" y="929.567">
-    oldIsActive.isActive = 0
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="84" x="1417" y="944.7">
-    insert Record
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="26" x="1401" y="959.832">
-    Else
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="84" x="1417" y="974.965">
-    insert Record
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="24" x="1401" y="990.098">
-    End
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M1373 1054.563l10 4-10 4 4-4z"/>
-  <path stroke="#a80036" d="M1038 1058.563h341"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1045" y="1045.93">
-    13
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="302" x="1067" y="1038.364">
-    (for ParticipantLimit) Insert new ParticipantLimit
-  </text>
-  <text fill="red" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="82" x="1067" y="1053.497">
-    Error code:
-  </text>
-  <text fill="red" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="32" x="1153" y="1053.497">
-    3200
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M1611 1083.695l10 4-10 4 4-4z"/>
-  <path stroke="#a80036" d="M1395 1087.695h222"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1402" y="1082.629">
-    14
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="139" x="1424" y="1082.629">
-    Insert ParticipantLimit
-  </text>
-  <path fill="#FFFFE0" filter="url(#a)" stroke="#a80036" d="M1576 1100.695h103l10 11-10 12h-103l-10-12 10-11z"/>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="99" x="1578" y="1116.762">
-    participantLimit
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M1406 1145.96l-10 4 10 4-4-4z"/>
-  <path stroke="#a80036" stroke-dasharray="2,2" d="M1400 1149.961h227"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1412" y="1144.895">
-    15
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="155" x="1434" y="1144.895">
-    Inserted ParticipantLimit
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M1049 1175.094l-10 4 10 4-4-4z"/>
-  <path stroke="#a80036" stroke-dasharray="2,2" d="M1043 1179.094h346"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1055" y="1174.028">
-    16
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="145" x="1077" y="1174.028">
-    Return ParticipantLimit
-  </text>
-  <path stroke="#000" stroke-dasharray="2,2" d="M945.5 1195.094H1709"/>
-  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="224" x="950.5" y="1205.304">
-    [Validate participantLimit (failure)]
-  </text>
-  <path d="M1043 1213.898v25h132v-15l-10-10h-122" fill="red" filter="url(#a)" stroke="#a80036"/>
-  <path d="M1165 1213.898v10h10l-10-10" fill="red" stroke="#a80036"/>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="111" x="1049" y="1230.965">
-    Validation failure!
-  </text>
-  <path d="M1043 1253.031v115h373v-105l-10-10h-363" fill="#FF0" filter="url(#a)" stroke="#a80036"/>
-  <path d="M1406 1253.031v10h10l-10-10" fill="#FF0" stroke="#a80036"/>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="61" x="1049" y="1270.098">
-    Message:
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="1065" y="1285.231">
-    {
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="130" x="1081" y="1300.364">
-    &quot;errorInformation&quot;: {
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="118" x="1097" y="1315.497">
-    &quot;errorCode&quot;: 3200,
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="304" x="1097" y="1330.629">
-    &quot;errorDescription&quot;: &quot;ParticipantLimit Not Found&quot;,
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="1081" y="1345.762">
-    }
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="1065" y="1360.895">
-    }
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M742 1402.094l-10 4 10 4-4-4z"/>
-  <path stroke="#a80036" stroke-dasharray="2,2" d="M736 1406.094h291"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="748" y="1401.028">
-    17
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="251" x="770" y="1401.028">
-    Return new Limit values and status 200
-  </text>
-  <path d="M1043 1419.094v176h287v-166l-10-10h-277" fill="#FF0" filter="url(#a)" stroke="#a80036"/>
-  <path d="M1320 1419.094v10h10l-10-10" fill="#FF0" stroke="#a80036"/>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="61" x="1049" y="1436.161">
-    Message:
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="1049" y="1451.293">
-    {
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="113" x="1065" y="1466.426">
-    &quot;currency&quot;: &quot;EUR&quot;,
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="53" x="1065" y="1481.559">
-    &quot;limit&quot;: {
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="204" x="1081" y="1496.692">
-    &quot;participantLimitId&quot;: &lt;number&gt;,
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="234" x="1081" y="1511.825">
-    &quot;participantLimitTypeId&quot;: &lt;number&gt;,
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="108" x="1081" y="1526.957">
-    &quot;type&quot;: &lt;string&gt;,
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="114" x="1081" y="1542.09">
-    &quot;value&quot;: &lt;string&gt;,
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="75" x="1081" y="1557.223">
-    &quot;isActive&quot;: 1
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="1065" y="1572.356">
-    }
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="1049" y="1587.489">
-    }
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M105 1621.688l-10 4 10 4-4-4z"/>
-  <path stroke="#a80036" stroke-dasharray="2,2" d="M99 1625.688h621"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="111" y="1620.622">
-    18
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="251" x="133" y="1620.622">
-    Return new Limit values and status 200
-  </text>
-  <path stroke="#000" stroke-dasharray="2,2" d="M20 1634.688h1699"/>
-  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="193" x="25" y="1644.898">
-    [Validate participant (failure)]
-  </text>
-  <path d="M1043 1653.492v25h132v-15l-10-10h-122" fill="red" filter="url(#a)" stroke="#a80036"/>
-  <path d="M1165 1653.492v10h10l-10-10" fill="red" stroke="#a80036"/>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="111" x="1049" y="1670.559">
-    Validation failure!
-  </text>
-  <path d="M1043 1692.625v115h313v-105l-10-10h-303" fill="#FF0" filter="url(#a)" stroke="#a80036"/>
-  <path d="M1346 1692.625v10h10l-10-10" fill="#FF0" stroke="#a80036"/>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="61" x="1049" y="1709.692">
-    Message:
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="1065" y="1724.825">
-    {
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="130" x="1081" y="1739.957">
-    &quot;errorInformation&quot;: {
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="118" x="1097" y="1755.09">
-    &quot;errorCode&quot;: 3200,
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="244" x="1097" y="1770.223">
-    &quot;errorDescription&quot;: &quot;FSP id Not Found&quot;,
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="1081" y="1785.356">
-    }
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="1065" y="1800.489">
-    }
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M742 1841.688l-10 4 10 4-4-4z"/>
-  <path stroke="#a80036" stroke-dasharray="2,2" d="M736 1845.688h296"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="748" y="1840.622">
-    19
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="42" x="770" y="1840.622">
-    Return
-  </text>
-  <text fill="red" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="82" x="816" y="1840.622">
-    Error code:
-  </text>
-  <text fill="red" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="32" x="902" y="1840.622">
-    3200
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M100 1870.82l-10 4 10 4-4-4z"/>
-  <path stroke="#a80036" stroke-dasharray="2,2" d="M94 1874.82h631"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="106" y="1869.754">
-    20
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="42" x="128" y="1869.754">
-    Return
-  </text>
-  <text fill="red" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="82" x="174" y="1869.754">
-    Error code:
-  </text>
-  <text fill="red" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="32" x="260" y="1869.754">
-    3200
-  </text>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="1958px" preserveAspectRatio="none" style="width:1781px;height:1958px;background:#FFFFFF;" version="1.1" viewBox="0 0 1781 1958" width="1781px" zoomAndPan="magnify">
+  <title>1.1.0 Manage Participant Limits</title>
+  <defs/>
+  <g>
+    <text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="252.2529" x="766.28" y="27.9951">1.1.0 Manage Participant Limits</text>
+    <rect fill="#FFFFE0" height="1909.2969" style="stroke:#181818;stroke-width:0.5;" width="742.5801" x="983.395" y="43.2969"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="119.7739" x="1294.7981" y="55.3638">Central Services</text>
+    <rect fill="#FFFFFF" height="1713.5703" style="stroke:#181818;stroke-width:1.0;" width="10" x="83.8701" y="134.7266"/>
+    <rect fill="#FFFFFF" height="1668.3047" style="stroke:#181818;stroke-width:1.0;" width="10" x="737.5376" y="179.9922"/>
+    <rect fill="#FFFFFF" height="1438.7109" style="stroke:#181818;stroke-width:1.0;" width="10" x="1052.9683" y="380.4531"/>
+    <rect fill="#FFFFFF" height="135.6641" style="stroke:#181818;stroke-width:1.0;" width="10" x="1421.6958" y="424.7188"/>
+    <rect fill="#FFFFFF" height="120.5313" style="stroke:#181818;stroke-width:1.0;" width="10" x="1421.6958" y="670.9141"/>
+    <rect fill="#FFFFFF" height="120.5313" style="stroke:#181818;stroke-width:1.0;" width="10" x="1421.6958" y="1052.0391"/>
+    <rect fill="#FFFFFF" height="77.3984" style="stroke:#181818;stroke-width:1.0;" width="10" x="1667.6069" y="453.8516"/>
+    <rect fill="#FFFFFF" height="62.2656" style="stroke:#181818;stroke-width:1.0;" width="10" x="1667.6069" y="700.0469"/>
+    <rect fill="#FFFFFF" height="62.2656" style="stroke:#181818;stroke-width:1.0;" width="10" x="1667.6069" y="1081.1719"/>
+    <rect fill="none" height="1714.5703" style="stroke:#000000;stroke-width:1.5;" width="1765.813" x="10" y="141.7266"/>
+    <rect fill="none" height="1173.5156" style="stroke:#000000;stroke-width:1.5;" width="1745.813" x="20" y="617.5156"/>
+    <rect fill="none" height="514.8594" style="stroke:#000000;stroke-width:1.5;" width="788.418" x="967.395" y="848.5781"/>
+    <rect fill="none" height="307.8594" style="stroke:#000000;stroke-width:1.5;" width="768.418" x="977.395" y="872.7109"/>
+    <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="88" x2="88" y1="124.7266" y2="1873.2969"/>
+    <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="741.6548" x2="741.6548" y1="124.7266" y2="1873.2969"/>
+    <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="1057.395" x2="1057.395" y1="124.7266" y2="1873.2969"/>
+    <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="1425.9966" x2="1425.9966" y1="124.7266" y2="1873.2969"/>
+    <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="1672.2388" x2="1672.2388" y1="124.7266" y2="1873.2969"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="111.7402" x="30" y="121.4248">HUB OPERATOR</text>
+    <ellipse cx="88.8701" cy="56.9297" fill="#E2E2F0" rx="8" ry="8" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M88.8701,64.9297 L88.8701,91.9297 M75.8701,72.9297 L101.8701,72.9297 M88.8701,91.9297 L75.8701,106.9297 M88.8701,91.9297 L101.8701,106.9297 " fill="none" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="111.7402" x="30" y="1885.292">HUB OPERATOR</text>
+    <ellipse cx="88.8701" cy="1897.0938" fill="#E2E2F0" rx="8" ry="8" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M88.8701,1905.0938 L88.8701,1932.0938 M75.8701,1913.0938 L101.8701,1913.0938 M88.8701,1932.0938 L75.8701,1947.0938 M88.8701,1932.0938 L101.8701,1947.0938 " fill="none" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="133.7656" x="672.6548" y="121.4248">Central Service API</text>
+    <path d="M722.0376,80.4297 L722.0376,104.4297 M722.0376,92.4297 L739.0376,92.4297 " fill="none" style="stroke:#181818;stroke-width:0.5;"/>
+    <ellipse cx="751.0376" cy="92.4297" fill="#E2E2F0" rx="12" ry="12" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="133.7656" x="672.6548" y="1885.292">Central Service API</text>
+    <path d="M722.0376,1892.5938 L722.0376,1916.5938 M722.0376,1904.5938 L739.0376,1904.5938 " fill="none" style="stroke:#181818;stroke-width:0.5;"/>
+    <ellipse cx="751.0376" cy="1904.5938" fill="#E2E2F0" rx="12" ry="12" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="135.1465" x="987.395" y="121.4248">Participant Handler</text>
+    <ellipse cx="1057.9683" cy="92.4297" fill="#E2E2F0" rx="12" ry="12" style="stroke:#181818;stroke-width:0.5;"/>
+    <polygon fill="#181818" points="1053.9683,80.4297,1059.9683,75.4297,1057.9683,80.4297,1059.9683,85.4297,1053.9683,80.4297" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="135.1465" x="987.395" y="1885.292">Participant Handler</text>
+    <ellipse cx="1057.9683" cy="1904.5938" fill="#E2E2F0" rx="12" ry="12" style="stroke:#181818;stroke-width:0.5;"/>
+    <polygon fill="#181818" points="1053.9683,1892.5938,1059.9683,1887.5938,1057.9683,1892.5938,1059.9683,1897.5938,1053.9683,1892.5938" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="111.3984" x="1367.9966" y="121.4248">Participant DAO</text>
+    <ellipse cx="1426.6958" cy="92.4297" fill="#E2E2F0" rx="12" ry="12" style="stroke:#181818;stroke-width:0.5;"/>
+    <line style="stroke:#181818;stroke-width:0.5;" x1="1414.6958" x2="1438.6958" y1="106.4297" y2="106.4297"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="111.3984" x="1367.9966" y="1885.292">Participant DAO</text>
+    <ellipse cx="1426.6958" cy="1904.5938" fill="#E2E2F0" rx="12" ry="12" style="stroke:#181818;stroke-width:0.5;"/>
+    <line style="stroke:#181818;stroke-width:0.5;" x1="1414.6958" x2="1438.6958" y1="1918.5938" y2="1918.5938"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="92.7363" x="1623.2388" y="121.4248">Central Store</text>
+    <path d="M1654.6069,72.4297 C1654.6069,62.4297 1672.6069,62.4297 1672.6069,62.4297 C1672.6069,62.4297 1690.6069,62.4297 1690.6069,72.4297 L1690.6069,98.4297 C1690.6069,108.4297 1672.6069,108.4297 1672.6069,108.4297 C1672.6069,108.4297 1654.6069,108.4297 1654.6069,98.4297 L1654.6069,72.4297 " fill="#E2E2F0" style="stroke:#181818;stroke-width:1.5;"/>
+    <path d="M1654.6069,72.4297 C1654.6069,82.4297 1672.6069,82.4297 1672.6069,82.4297 C1672.6069,82.4297 1690.6069,82.4297 1690.6069,72.4297 " fill="none" style="stroke:#181818;stroke-width:1.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="92.7363" x="1623.2388" y="1885.292">Central Store</text>
+    <path d="M1654.6069,1898.5938 C1654.6069,1888.5938 1672.6069,1888.5938 1672.6069,1888.5938 C1672.6069,1888.5938 1690.6069,1888.5938 1690.6069,1898.5938 L1690.6069,1924.5938 C1690.6069,1934.5938 1672.6069,1934.5938 1672.6069,1934.5938 C1672.6069,1934.5938 1654.6069,1934.5938 1654.6069,1924.5938 L1654.6069,1898.5938 " fill="#E2E2F0" style="stroke:#181818;stroke-width:1.5;"/>
+    <path d="M1654.6069,1898.5938 C1654.6069,1908.5938 1672.6069,1908.5938 1672.6069,1908.5938 C1672.6069,1908.5938 1690.6069,1908.5938 1690.6069,1898.5938 " fill="none" style="stroke:#181818;stroke-width:1.5;"/>
+    <rect fill="#FFFFFF" height="1713.5703" style="stroke:#181818;stroke-width:1.0;" width="10" x="83.8701" y="134.7266"/>
+    <rect fill="#FFFFFF" height="1668.3047" style="stroke:#181818;stroke-width:1.0;" width="10" x="737.5376" y="179.9922"/>
+    <rect fill="#FFFFFF" height="1438.7109" style="stroke:#181818;stroke-width:1.0;" width="10" x="1052.9683" y="380.4531"/>
+    <rect fill="#FFFFFF" height="135.6641" style="stroke:#181818;stroke-width:1.0;" width="10" x="1421.6958" y="424.7188"/>
+    <rect fill="#FFFFFF" height="120.5313" style="stroke:#181818;stroke-width:1.0;" width="10" x="1421.6958" y="670.9141"/>
+    <rect fill="#FFFFFF" height="120.5313" style="stroke:#181818;stroke-width:1.0;" width="10" x="1421.6958" y="1052.0391"/>
+    <rect fill="#FFFFFF" height="77.3984" style="stroke:#181818;stroke-width:1.0;" width="10" x="1667.6069" y="453.8516"/>
+    <rect fill="#FFFFFF" height="62.2656" style="stroke:#181818;stroke-width:1.0;" width="10" x="1667.6069" y="700.0469"/>
+    <rect fill="#FFFFFF" height="62.2656" style="stroke:#181818;stroke-width:1.0;" width="10" x="1667.6069" y="1081.1719"/>
+    <path d="M10,141.7266 L219.5503,141.7266 L219.5503,148.8594 L209.5503,158.8594 L10,158.8594 L10,141.7266 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="1714.5703" style="stroke:#000000;stroke-width:1.5;" width="1765.813" x="10" y="141.7266"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="164.5503" x="25" y="154.7935">Manage Net Debit Cap</text>
+    <polygon fill="#181818" points="725.5376,175.9922,735.5376,179.9922,725.5376,183.9922,729.5376,179.9922" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="93.8701" x2="731.5376" y1="179.9922" y2="179.9922"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="100.8701" y="174.9263">1</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="611.6221" x="113.9155" y="174.9263">Request to adjust Participant Limit for a certain Currency - POST - /participants/{name}/limits</text>
+    <path d="M98,192.9922 L98,353.9922 L280,353.9922 L280,202.9922 L270,192.9922 L98,192.9922 " fill="#FFFF00" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M270,192.9922 L270,202.9922 L280,202.9922 L270,192.9922 " fill="#FFFF00" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="61.3564" x="104" y="210.0591">Message:</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8.271" x="104" y="225.1919">{</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="68.4785" x="120.5293" y="240.3247">payload: {</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="128.9019" x="137.0586" y="255.4575">currency: &lt;string&gt;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="45.3794" x="137.0586" y="270.5903">limit: {</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="100.7881" x="153.5879" y="285.7231">type: &lt;string&gt;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="77.8921" x="153.5879" y="300.856">value: &lt;Id&gt;</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8.271" x="137.0586" y="315.9888">}</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8.271" x="120.5293" y="331.1216">}</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8.271" x="104" y="346.2544">}</text>
+    <polygon fill="#181818" points="1040.9683,376.4531,1050.9683,380.4531,1040.9683,384.4531,1044.9683,380.4531" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="747.5376" x2="1046.9683" y1="380.4531" y2="380.4531"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="754.5376" y="375.3872">2</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="173.5386" x="767.583" y="375.3872">Adjust Limit for Participant</text>
+    <polygon fill="#181818" points="1409.6958,420.7188,1419.6958,424.7188,1409.6958,428.7188,1413.6958,424.7188" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="1062.9683" x2="1415.6958" y1="424.7188" y2="424.7188"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="1069.9683" y="412.0864">3</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="171.7993" x="1083.0137" y="404.52">Fetch Participant/currency</text>
+    <text fill="#FF0000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="81.5293" x="1083.0137" y="419.6528">Error code:</text>
+    <text fill="#FF0000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="33.084" x="1168.6753" y="419.6528">3200</text>
+    <polygon fill="#181818" points="1655.6069,449.8516,1665.6069,453.8516,1655.6069,457.8516,1659.6069,453.8516" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="1431.6958" x2="1661.6069" y1="453.8516" y2="453.8516"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="1438.6958" y="448.7856">4</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="171.7993" x="1451.7412" y="448.7856">Fetch Participant/currency</text>
+    <polygon fill="#FFFFE0" points="1605,466.8516,1738,466.8516,1748,485.8516,1738,504.8516,1605,504.8516,1595,485.8516,1605,466.8516" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="70.5859" x="1607" y="482.9185">participant</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="129.6699" x="1607" y="498.0513">participantCurrency</text>
+    <polygon fill="#181818" points="1442.6958,527.25,1432.6958,531.25,1442.6958,535.25,1438.6958,531.25" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="1436.6958" x2="1671.6069" y1="531.25" y2="531.25"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="1448.6958" y="526.1841">5</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="198.8657" x="1461.7412" y="526.1841">Retrieved Participant/currency</text>
+    <polygon fill="#181818" points="1073.9683,556.3828,1063.9683,560.3828,1073.9683,564.3828,1069.9683,560.3828" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="1067.9683" x2="1425.6958" y1="560.3828" y2="560.3828"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="1079.9683" y="555.3169">6</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="179.791" x="1093.0137" y="555.3169">Return Participant/currency</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="1062.9683" x2="1104.9683" y1="589.5156" y2="589.5156"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="1104.9683" x2="1104.9683" y1="589.5156" y2="602.5156"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="1063.9683" x2="1104.9683" y1="602.5156" y2="602.5156"/>
+    <polygon fill="#181818" points="1073.9683,598.5156,1063.9683,602.5156,1073.9683,606.5156,1069.9683,602.5156" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="1069.9683" y="584.4497">7</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="91.1079" x="1083.0137" y="584.4497">Validate DFSP</text>
+    <path d="M20,617.5156 L84.4429,617.5156 L84.4429,624.6484 L74.4429,634.6484 L20,634.6484 L20,617.5156 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="1173.5156" style="stroke:#000000;stroke-width:1.5;" width="1745.813" x="20" y="617.5156"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="19.4429" x="35" y="630.5825">alt</text>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="195.6636" x="99.4429" y="629.7261">[Validate participant (success)]</text>
+    <polygon fill="#181818" points="1409.6958,666.9141,1419.6958,670.9141,1409.6958,674.9141,1413.6958,670.9141" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="1062.9683" x2="1415.6958" y1="670.9141" y2="670.9141"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="1069.9683" y="658.2817">8</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="308.0327" x="1083.0137" y="650.7153">(for ParticipantCurrency) Fetch ParticipantLimit</text>
+    <text fill="#FF0000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="81.5293" x="1083.0137" y="665.8481">Error code:</text>
+    <text fill="#FF0000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="33.084" x="1168.6753" y="665.8481">3200</text>
+    <polygon fill="#181818" points="1655.6069,696.0469,1665.6069,700.0469,1655.6069,704.0469,1659.6069,700.0469" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="1431.6958" x2="1661.6069" y1="700.0469" y2="700.0469"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="1438.6958" y="694.981">9</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="142.4922" x="1451.7412" y="694.981">Fetch ParticipantLimit</text>
+    <polygon fill="#FFFFE0" points="1619,713.0469,1725,713.0469,1735,724.0469,1725,736.0469,1619,736.0469,1609,724.0469,1619,713.0469" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="102.813" x="1621" y="729.1138">participantLimit</text>
+    <polygon fill="#181818" points="1442.6958,758.3125,1432.6958,762.3125,1442.6958,766.3125,1438.6958,762.3125" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="1436.6958" x2="1671.6069" y1="762.3125" y2="762.3125"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="1448.6958" y="757.2466">10</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="169.5586" x="1470.7866" y="757.2466">Retrieved ParticipantLimit</text>
+    <polygon fill="#181818" points="1073.9683,787.4453,1063.9683,791.4453,1073.9683,795.4453,1069.9683,791.4453" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="1067.9683" x2="1425.6958" y1="791.4453" y2="791.4453"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="1079.9683" y="786.3794">11</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="150.4839" x="1102.0591" y="786.3794">Return ParticipantLimit</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="1062.9683" x2="1104.9683" y1="820.5781" y2="820.5781"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="1104.9683" x2="1104.9683" y1="820.5781" y2="833.5781"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="1063.9683" x2="1104.9683" y1="833.5781" y2="833.5781"/>
+    <polygon fill="#181818" points="1073.9683,829.5781,1063.9683,833.5781,1073.9683,837.5781,1069.9683,833.5781" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="1069.9683" y="815.5122">12</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="159.9292" x="1092.0591" y="815.5122">Validate ParticipantLimit</text>
+    <path d="M967.395,848.5781 L1031.8379,848.5781 L1031.8379,855.7109 L1021.8379,865.7109 L967.395,865.7109 L967.395,848.5781 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="514.8594" style="stroke:#000000;stroke-width:1.5;" width="788.418" x="967.395" y="848.5781"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="19.4429" x="982.395" y="861.645">alt</text>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="226.9341" x="1046.8379" y="860.7886">[Validate participantLimit (success)]</text>
+    <path d="M977.395,872.7109 L1623.353,872.7109 L1623.353,879.8438 L1613.353,889.8438 L977.395,889.8438 L977.395,872.7109 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="307.8594" style="stroke:#000000;stroke-width:1.5;" width="768.418" x="977.395" y="872.7109"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="600.958" x="992.395" y="885.7778">DB TRANSACTION IMPLEMENTATION - Lock on ParticipantLimit table with UPDATE</text>
+    <path d="M1431,894.8438 L1431,1009.8438 L1665,1009.8438 L1665,904.8438 L1655,894.8438 L1431,894.8438 " fill="#D3D3D3" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M1655,894.8438 L1655,904.8438 L1665,904.8438 L1655,894.8438 " fill="#D3D3D3" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="213.5986" x="1437" y="911.9106">If (record exists &amp;&amp; isActive = 1)</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="153.2515" x="1453.5293" y="927.0435">oldIsActive.isActive = 0</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="86.9248" x="1453.5293" y="942.1763">insert Record</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="26.5967" x="1437" y="957.3091">Else</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="86.9248" x="1453.5293" y="972.4419">insert Record</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="24.7051" x="1437" y="987.5747">End</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="4.1323" x="1437" y="1002.7075"> </text>
+    <polygon fill="#181818" points="1409.6958,1048.0391,1419.6958,1052.0391,1409.6958,1056.0391,1413.6958,1052.0391" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="1062.9683" x2="1415.6958" y1="1052.0391" y2="1052.0391"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="1069.9683" y="1039.4067">13</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="313.5044" x="1092.0591" y="1031.8403">(for ParticipantLimit) Insert new ParticipantLimit</text>
+    <text fill="#FF0000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="81.5293" x="1092.0591" y="1046.9731">Error code:</text>
+    <text fill="#FF0000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="33.084" x="1177.7207" y="1046.9731">3200</text>
+    <polygon fill="#181818" points="1655.6069,1077.1719,1665.6069,1081.1719,1655.6069,1085.1719,1659.6069,1081.1719" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="1431.6958" x2="1661.6069" y1="1081.1719" y2="1081.1719"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="1438.6958" y="1076.106">14</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="143.8188" x="1460.7866" y="1076.106">Insert ParticipantLimit</text>
+    <polygon fill="#FFFFE0" points="1619,1094.1719,1725,1094.1719,1735,1105.1719,1725,1117.1719,1619,1117.1719,1609,1105.1719,1619,1094.1719" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="102.813" x="1621" y="1110.2388">participantLimit</text>
+    <polygon fill="#181818" points="1442.6958,1139.4375,1432.6958,1143.4375,1442.6958,1147.4375,1438.6958,1143.4375" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="1436.6958" x2="1671.6069" y1="1143.4375" y2="1143.4375"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="1448.6958" y="1138.3716">15</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="160.0688" x="1470.7866" y="1138.3716">Inserted ParticipantLimit</text>
+    <polygon fill="#181818" points="1073.9683,1168.5703,1063.9683,1172.5703,1073.9683,1176.5703,1069.9683,1172.5703" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="1067.9683" x2="1425.6958" y1="1172.5703" y2="1172.5703"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="1079.9683" y="1167.5044">16</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="150.4839" x="1102.0591" y="1167.5044">Return ParticipantLimit</text>
+    <line style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="967.395" x2="1755.813" y1="1188.5703" y2="1188.5703"/>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="219.4253" x="972.395" y="1198.7808">[Validate participantLimit (failure)]</text>
+    <path d="M1067,1207.375 L1067,1232.375 L1203,1232.375 L1203,1217.375 L1193,1207.375 L1067,1207.375 " fill="#FF0000" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M1193,1207.375 L1193,1217.375 L1203,1217.375 L1193,1207.375 " fill="#FF0000" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="115.8955" x="1073" y="1224.4419">Validation failure!</text>
+    <path d="M1067,1242.5078 L1067,1357.5078 L1453,1357.5078 L1453,1252.5078 L1443,1242.5078 L1067,1242.5078 " fill="#FFFF00" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M1443,1242.5078 L1443,1252.5078 L1453,1252.5078 L1443,1242.5078 " fill="#FFFF00" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="61.3564" x="1073" y="1259.5747">Message:</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8.271" x="1089.5293" y="1274.7075">{</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="136.208" x="1106.0586" y="1289.8403">&quot;errorInformation&quot;: {</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="122.9541" x="1122.5879" y="1304.9731">&quot;errorCode&quot;: 3200,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="316.1895" x="1122.5879" y="1320.106">&quot;errorDescription&quot;: &quot;ParticipantLimit Not Found&quot;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8.271" x="1106.0586" y="1335.2388">}</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8.271" x="1089.5293" y="1350.3716">}</text>
+    <polygon fill="#181818" points="758.5376,1387.5703,748.5376,1391.5703,758.5376,1395.5703,754.5376,1391.5703" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="752.5376" x2="1051.9683" y1="1391.5703" y2="1391.5703"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="764.5376" y="1386.5044">17</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="259.3398" x="786.6284" y="1386.5044">Return new Limit values and status 200</text>
+    <path d="M1067,1404.5703 L1067,1580.5703 L1364,1580.5703 L1364,1414.5703 L1354,1404.5703 L1067,1404.5703 " fill="#FFFF00" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M1354,1404.5703 L1354,1414.5703 L1364,1414.5703 L1354,1404.5703 " fill="#FFFF00" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="61.3564" x="1073" y="1421.6372">Message:</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8.271" x="1073" y="1436.77">{</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="120.4785" x="1089.5293" y="1451.9028">&quot;currency&quot;: &quot;EUR&quot;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="57.3384" x="1089.5293" y="1467.0356">&quot;limit&quot;: {</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="212.0244" x="1106.0586" y="1482.1685">&quot;participantLimitId&quot;: &lt;number&gt;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="243.9087" x="1106.0586" y="1497.3013">&quot;participantLimitTypeId&quot;: &lt;number&gt;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="112.7471" x="1106.0586" y="1512.4341">&quot;type&quot;: &lt;string&gt;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="119.2153" x="1106.0586" y="1527.5669">&quot;value&quot;: &lt;string&gt;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="79.5679" x="1106.0586" y="1542.6997">&quot;isActive&quot;: 1</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8.271" x="1089.5293" y="1557.8325">}</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8.271" x="1073" y="1572.9653">}</text>
+    <polygon fill="#181818" points="104.8701,1603.1641,94.8701,1607.1641,104.8701,1611.1641,100.8701,1607.1641" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="98.8701" x2="736.5376" y1="1607.1641" y2="1607.1641"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="110.8701" y="1602.0981">18</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="259.3398" x="132.9609" y="1602.0981">Return new Limit values and status 200</text>
+    <line style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="20" x2="1765.813" y1="1616.1641" y2="1616.1641"/>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="188.1548" x="25" y="1626.3745">[Validate participant (failure)]</text>
+    <path d="M1067,1634.9688 L1067,1659.9688 L1203,1659.9688 L1203,1644.9688 L1193,1634.9688 L1067,1634.9688 " fill="#FF0000" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M1193,1634.9688 L1193,1644.9688 L1203,1644.9688 L1193,1634.9688 " fill="#FF0000" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="115.8955" x="1073" y="1652.0356">Validation failure!</text>
+    <path d="M1067,1670.1016 L1067,1785.1016 L1390,1785.1016 L1390,1680.1016 L1380,1670.1016 L1067,1670.1016 " fill="#FFFF00" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M1380,1670.1016 L1380,1680.1016 L1390,1680.1016 L1380,1670.1016 " fill="#FFFF00" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="61.3564" x="1073" y="1687.1685">Message:</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8.271" x="1089.5293" y="1702.3013">{</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="136.208" x="1106.0586" y="1717.4341">&quot;errorInformation&quot;: {</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="122.9541" x="1122.5879" y="1732.5669">&quot;errorCode&quot;: 3200,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="253.354" x="1122.5879" y="1747.6997">&quot;errorDescription&quot;: &quot;FSP id Not Found&quot;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8.271" x="1106.0586" y="1762.8325">}</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8.271" x="1089.5293" y="1777.9653">}</text>
+    <polygon fill="#181818" points="758.5376,1815.1641,748.5376,1819.1641,758.5376,1823.1641,754.5376,1819.1641" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="752.5376" x2="1056.9683" y1="1819.1641" y2="1819.1641"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="764.5376" y="1814.0981">19</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="43.9512" x="786.6284" y="1814.0981">Return</text>
+    <text fill="#FF0000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="81.5293" x="834.7119" y="1814.0981">Error code:</text>
+    <text fill="#FF0000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="33.084" x="920.3735" y="1814.0981">3200</text>
+    <polygon fill="#181818" points="99.8701,1844.2969,89.8701,1848.2969,99.8701,1852.2969,95.8701,1848.2969" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="93.8701" x2="741.5376" y1="1848.2969" y2="1848.2969"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="105.8701" y="1843.231">20</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="43.9512" x="127.9609" y="1843.231">Return</text>
+    <text fill="#FF0000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="81.5293" x="176.0444" y="1843.231">Error code:</text>
+    <text fill="#FF0000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="33.084" x="261.7061" y="1843.231">3200</text>
+  </g>
 </svg>
