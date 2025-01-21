@@ -202,7 +202,6 @@ module.exports = {
             ['tools/pragmatic-rest', 'Pragmatic Rest'],
             ['tools/code-quality-metrics', 'Code Quality Metrics'],
             ['tools/automated-testing', 'Automated Testing'],
-            // ['tools/test', 'Test'],
             ['tools/cybersecurity', 'Cybersecurity'],
           ]
         },
@@ -551,6 +550,46 @@ module.exports = {
                     ]
                   },
                 ]
+              },
+              {
+                title: "FX Transfer Operations",
+                  collapsable: true,
+                  children: [
+                    {
+                      title: "Overview",
+                      path: "central-fx-transfers/transfers/"
+                    },
+                    {
+                      title: "FX Prepare Handler",
+                      collapsable: true,
+                      children: [
+                        {
+                          title: "Overview",
+                          path: "central-fx-transfers/transfers/1.1.0-fx-prepare-transfer-request"
+                        },
+                        {
+                          title: "FX Prepare Handler Consume",
+                          path: "central-fx-transfers/transfers/1.1.1.a-fx-prepare-handler-consume"
+                        }
+                      ]
+                    },
+                    {
+                      title: "FX Position Handler",
+                      path: "central-fx-transfers/transfers/1.1.2.a-fx-position-handler-consume"
+                    },
+                    {
+                      title: "FX Fulfil Handler",
+                      path: "central-fx-transfers/transfers/2.1.0-fx-fulfil-transfer-request"
+                    },
+                    {
+                      title: "Notifications process",
+                      path: "central-fx-transfers/transfers/1.1.4.a-send-notification-to-participant-v2.0"
+                    },
+                    {
+                      title: "Reject/Abort",
+                      path: "central-fx-transfers/transfers/2.2.0-fx-fulfil-reject-transfer"
+                    }
+                  ]
               },
               {
                 title: "Bulk Transfers Operations",
@@ -997,272 +1036,7 @@ module.exports = {
               ]
             },
             {
-<<<<<<< HEAD
-              title: "FX Transfer Operations",
-              collapsable: true,
-              children: [
-                {
-                  title: "Overview",
-                  path: "central-fx-transfers/transfers/"
-                },
-                {
-                  title: "FX Prepare Handler",
-                  collapsable: true,
-                  children: [
-                    {
-                      title: "Overview",
-                      path: "central-fx-transfers/transfers/1.1.0-fx-prepare-transfer-request"
-                    },
-                    {
-                      title: "FX Prepare Handler Consume",
-                      path: "central-fx-transfers/transfers/1.1.1.a-fx-prepare-handler-consume"
-                    }
-                  ]
-                },
-                {
-                  title: "FX Position Handler",
-                  path: "central-fx-transfers/transfers/1.1.2.a-fx-position-handler-consume"
-                },
-                {
-                  title: "FX Fulfil Handler",
-                  path: "central-fx-transfers/transfers/2.1.0-fx-fulfil-transfer-request"
-                },
-                {
-                  title: "Notifications process",
-                  path: "central-fx-transfers/transfers/1.1.4.a-send-notification-to-participant-v2.0"
-                },
-                {
-                  title: "Reject/Abort",
-                  path: "central-fx-transfers/transfers/2.2.0-fx-fulfil-reject-transfer"
-                }
-              ]
-            },
-            {
-              title: "Bulk Transfers Operations",
-              collapsable: true,
-              children: [
-                {
-                  title: "Overview",
-                  path: "central-bulk-transfers/"
-                },
-                {
-                  title: "Bulk Prepare",
-                  collapsable: true,
-                  children: [
-                    {
-                      title: "Overview",
-                      path: "central-bulk-transfers/transfers/1.1.0-bulk-prepare-transfer-request-overview"
-                    },
-                    {
-                      title: "Bulk Prepare Handler",
-                      path: "central-bulk-transfers/transfers/1.1.1-bulk-prepare-handler-consume"
-                    }
-                  ]
-                },
-                {
-                  title: "Prepare Handler",
-                  collapsable: true,
-                  path: "central-bulk-transfers/transfers/1.2.1-prepare-handler-consume-for-bulk"
-                },
-                {
-                  title: "Position Handler",
-                  collapsable: true,
-                  children: [
-                    {
-                      title: "Overview",
-                      path: "central-bulk-transfers/transfers/1.3.0-position-handler-consume-overview"
-                    },
-                    {
-                      title: "Prepare Position Handler Consume",
-                      path: "central-bulk-transfers/transfers/1.3.1-prepare-position-handler-consume"
-                    },
-                    {
-                      title: "Fulfil Position Handler Consume",
-                      path: "central-bulk-transfers/transfers/2.3.1-fulfil-position-handler-consume"
-                    },
-                    {
-                      title: "Fulfil Abort Position Handler Consume",
-                      path: "central-bulk-transfers/transfers/2.3.2-position-consume-abort"
-                    }
-                  ]
-                },
-                {
-                  title: "Bulk Fulfil Handler",
-                  collapsable: true,
-                  children: [
-                    {
-                      title: "Overview",
-                      path: "central-bulk-transfers/transfers/2.1.0-bulk-fulfil-transfer-request-overview"
-                    },
-                    {
-                      title: "Bulk Fulfil Handler Consume",
-                      path: "central-bulk-transfers/transfers/2.1.1-bulk-fulfil-handler-consume"
-                    },
-                    {
-                      title: "Fulfil Handler - Commit",
-                      path: "central-bulk-transfers/transfers/2.2.1-fulfil-commit-for-bulk"
-                    },
-                    {
-                      title: "Fulfil Handler - Reject/Abort",
-                      path: "central-bulk-transfers/transfers/2.2.2-fulfil-abort-for-bulk"
-                    }
-                  ]
-                },
-                {
-                  title: "Bulk Processing Handler",
-                  path: "central-bulk-transfers/transfers/1.4.1-bulk-processing-handler"
-                },
-                {
-                  title: "Notifications",
-                  collapsable: true,
-                  children: [
-                    {
-                      title: "Notification to Participant (a)",
-                      path: "central-ledger/transfers/1.1.4.a-send-notification-to-participant"
-                    },
-                    {
-                      title: "Notification to Participant (b)",
-                      path: "central-ledger/transfers/1.1.4.b-send-notification-to-participant"
-                    }
-                  ]
-                },
-                {
-                  title: "Timeout",
-                  collapsable: true,
-                  children: [
-                    {
-                      title: "Overview",
-                      path: "central-bulk-transfers/transfers/3.1.0-transfer-timeout-overview-for-bulk"
-                    },
-                    {
-                      title: "Timeout Handler Consume",
-                      path: "central-bulk-transfers/transfers/3.1.1-transfer-timeout-handler-consume"
-                    }
-                  ]
-                },
-                {
-                  title: "Bulk Abort Overview",
-                  path: "central-bulk-transfers/transfers/4.1.0-transfer-abort-overview-for-bulk"
-                },
-                {
-                  title: "Get Bulk Transfer Overview",
-                  path: "central-bulk-transfers/transfers/5.1.0-transfer-get-overview-for-bulk"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          // TODO: Placeholder and temporary link for this section until it can be migrated from legacy docs.
-          title: 'Central Settlement Services',
-          path: 'https://docs.mojaloop.io/legacy/mojaloop-technical-overview/central-settlements/'
-        },
-        {
-          title: "Transaction Requests Service",
-          collapsable: true,
-          sidebarDepth: 2,
-          children: [
-            {
-              title: "Overview",
-              path: "transaction-requests-service/"
-            },
-            {
-              title: "GET Transaction Requests",
-              path: "transaction-requests-service/transaction-requests-get"
-            },
-            {
-              title: "POST Transaction Requests",
-              path: "transaction-requests-service/transaction-requests-post"
-            },
-            {
-              title: "Authorizations",
-              path: "transaction-requests-service/authorizations"
-            }
-          ]
-        },
-        {
-          title: "Central Event Processor Service",
-          collapsable: true,
-          sidebarDepth: 2,
-          children: [
-            {
-              title: "Overview",
-              path: "central-event-processor/"
-            },
-            {
-              title: "Event Handler (Placeholder)",
-              path: "central-event-processor/event-handler-placeholder"
-            },
-            {
-              title: "Notification Handler for Rejections",
-              path: "central-event-processor/notification-handler-for-rejections"
-            },
-            {
-              title: "Signature Validation",
-              path: "central-event-processor/signature-validation"
-            }
-          ]
-        },
-        {
-          title: "Event Framework",
-          collapsable: true,
-          sidebarDepth: 2,
-          children: [
-            {
-              title: "Overview",
-              path: "event-framework/"
-            },
-            {
-              title: "Event Stream Processor",
-              path: "event-stream-processor/"
-            }
-          ]
-        },
-        {
-          title: "Fraud Services",
-          collapsable: true,
-          sidebarDepth: 2,
-          children: [
-            {
-              title: "Overview",
-              path: "fraud-services/"
-            },
-            {
-              title: "Usage",
-              path: "fraud-services/related-documents/documentation"
-            }
-          ]
-        },
-        {
-          title: "SDK Scheme Adapter",
-          collapsable: true,
-          sidebarDepth: 2,
-          children: [
-            {
-              title: "Overview",
-              path: "sdk-scheme-adapter/"
-            },
-            {
-              title: "Integration Flow Patterns",
-              path: "sdk-scheme-adapter/IntegrationFlowPatterns"
-            },
-            {
-              title: "Request To Pay - support",
-              path: "sdk-scheme-adapter/RequestToPay"
-            },
-            {
-              title: "Bulk Integration Flow Patterns",
-              path: "sdk-scheme-adapter/IntegrationBulkFlowPatterns"
-            },
-            {
-              title: "Usage tests",
-              path: "sdk-scheme-adapter/usage/"
-            },
-            {
-              title: "Support for Bulk Transfers",
-=======
               title: 'Administration API',
->>>>>>> 0a76df8ad77089b9036389a7bd6175468d4d1b7c
               collapsable: true,
               sidebarDepth: 2,
               children: [
