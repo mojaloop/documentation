@@ -29,6 +29,8 @@ The [Uniform Glossary Template](./Scheme/scheme-uniform-glossary.md) acts as a g
 
 ## Hub Operations
 
+These documents can serve as reference for adopters to build on and customize the hub operations portals and develop their own subsequently as needed.
+
 The [Technical Operations Guide](./huboperations/techops/tech-ops-introduction.md) outlines the operations processes that enable the Hub Operator to handle all aspects of managing a live service, such as incident management, problem management, change management, release management, defect triage.
 
 The [Settlement Management Guide](./huboperations/settlement/settlement-management-introduction.md) describes how settlements are managed by the Mojaloop Hub and the partner settlement bank(s), and introduces the main building blocks of settlement processing.
