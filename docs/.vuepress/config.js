@@ -1129,7 +1129,7 @@ module.exports = {
           collapsable: false,
           sidebarDepth: 2,
           children: [
-            ['features/ml-feature-list', 'Mojaloop feature set']
+            ['features/ml-feature-list', 'About Mojaloop']
           ]
         }
       ]
