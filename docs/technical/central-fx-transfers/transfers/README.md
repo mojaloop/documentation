@@ -1,6 +1,6 @@
 # Mojaloop FX Transfer Operations
 
-Operational processes that is the core of the FX transfer operational process:
+Operational processes that are core to enabling FX transfers:
 
 - FX Prepare process
 - FX Fulfil process
