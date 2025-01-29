@@ -552,6 +552,46 @@ module.exports = {
                 ]
               },
               {
+                title: "FX Transfer Operations",
+                  collapsable: true,
+                  children: [
+                    {
+                      title: "Overview",
+                      path: "central-fx-transfers/transfers/"
+                    },
+                    {
+                      title: "FX Prepare Handler",
+                      collapsable: true,
+                      children: [
+                        {
+                          title: "Overview",
+                          path: "central-fx-transfers/transfers/1.1.0-fx-prepare-transfer-request"
+                        },
+                        {
+                          title: "FX Prepare Handler Consume",
+                          path: "central-fx-transfers/transfers/1.1.1.a-fx-prepare-handler-consume"
+                        }
+                      ]
+                    },
+                    {
+                      title: "FX Position Handler",
+                      path: "central-fx-transfers/transfers/1.1.2.a-fx-position-handler-consume"
+                    },
+                    {
+                      title: "FX Fulfil Handler",
+                      path: "central-fx-transfers/transfers/2.1.0-fx-fulfil-transfer-request"
+                    },
+                    {
+                      title: "Notifications process",
+                      path: "central-fx-transfers/transfers/1.1.4.a-send-notification-to-participant-v2.0"
+                    },
+                    {
+                      title: "Reject/Abort",
+                      path: "central-fx-transfers/transfers/2.2.0-fx-fulfil-reject-transfer"
+                    }
+                  ]
+              },
+              {
                 title: "Bulk Transfers Operations",
                 collapsable: true,
                 children: [
