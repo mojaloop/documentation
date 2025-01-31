@@ -6,7 +6,7 @@ This section deals with all of the aspects of a Mojaloop transaction.
 
 ## Phases of a Mojaloop Transaction
 
-Mojaloop is a payment clearing hub: it clears (routes and guarantees)
+A payment clearing hub based on a Mojaloop platform clears (routes and guarantees)
 payments between accounts held by end parties (people, business,
 government departments etc) at DFSPs, and integrates with a settlement
 partner to orchestrate the movement of funds in settlement between
