@@ -1,5 +1,5 @@
-# Welcome to Mojaloop Product section
+# Welcome to Mojaloop the Product
 
-This is the repository for items related to the activities of Product Council such as roadmaps, feature set, collaboration materials etc.
+This section is devoted to Product-related documentation of Mojaloop, setting out from a business perspective its feature set, functionality, APIs, support for connecting DFSPs, the establishment of Mojaloop-based merchant payments schemes, cross-border transactions, ISO 20022, etc; in fact, all the features a potential adopter needs to know about when considering the shape of their scheme. It does not provide technical/engineering detail, which is available elsewhere on this site.
 
-It operates in support of discussions held on the #product-council Slack channel and Community Central (https://community.mojaloop.io/)
+It represents the outputs of the open source Mojaloop Community over a period of years. Should the reader wish to help shape the future of Mojaloop, then come and join the discussions held on the #product-council Slack channel and Community Central (https://community.mojaloop.io/).
