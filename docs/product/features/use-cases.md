@@ -1,7 +1,9 @@
 
 # Use Cases
 
-A Mojaloop Hub's core function is the clearing of the transfer of funds between two accounts, each of which is held at a DFSP connected to the Hub, commonly referred to as a push payment. This enables it to support a wide range of use cases.
+A Mojaloop Hub's core function is the clearing of the transfer of funds between two accounts, each of which is held at a DFSP connected to the Hub, commonly referred to as a push payment. This enables it to support a wide range of use cases. 
+
+(For an API-led view of use cases, please refer to the [use cases section of the Mojaloop API documentation]([api/fspiop/use-cases.html#table-1)
 <details>
 <summary>**Core Use Cases**</summary>
 
