@@ -2,9 +2,8 @@
 # Use Cases
 
 A Mojaloop Hub's core function is the clearing of the transfer of funds between two accounts, each of which is held at a DFSP connected to the Hub, commonly referred to as a push payment. This enables it to support a wide range of use cases.
-<details>
-<summary>**Core Use Cases**</summary>
 
+(For an API-led view of use cases, please refer to the [use cases section of the Mojaloop API documentation](https://docs.mojaloop.io/api/fspiop/use-cases.html#table-1))
 ## Core Use Cases
 This means that, at the most basic level, a Mojaloop Hub directly supports the following use cases:
 - Person to Person (**P2P**);
@@ -14,39 +13,24 @@ This means that, at the most basic level, a Mojaloop Hub directly supports the f
 - Simple forms of Person to Government (**P2G**) payments
 
 In all cases, a payment can be facilitated using merchant IDs (for USSD) or QR codes (smartphones).
-</details>
-&nbsp;
-<details>
-<summary>**Request To Pay**</summary>
 
 ## Request To Pay
 
-As well as push payments, Mojaloop supports Request To Pay (RTP) transactions, in which a payee requests a payment from a payer, and when the payer consents, their DFSP pushes the payment to the payee on their behalf. This supports the following use cases:
+As well as push payments, Mojaloop supports Request To Pay (RTP) transactions, in which a payee requests a payment from a payer, and _when the payer consents_, their DFSP pushes the payment to the payee on their behalf. This supports the following use cases:
 
 - **Merchant payments**, for example using a QR code;
-    - 	Merchant payments are explored in [**How to Configure Merchant Payments for Mojaloop**](./merchant-payments.md).
+    - 	The practicalities of configuring Mojaloop's Merchant Payments solution, including the content of QR codes, are explored in [**How to Configure Merchant Payments for Mojaloop**](./merchant-payments.md).
 
 - **Collections**, including P2G, P2B, B2B and B2G
-
-</details>
-&nbsp;
-<details>
-
-<summary>**Cash Services**</summary>
 
 ## Cash Services
 A Mojaloop Hub directly supports the common interoperable cash in/out transactions that every DFSP (and their customers) would expect:
 - **Cardless ATM**;
 - **Cash In at off-us Agent**;
-- **Cash Out at off-us Agent**.
+- **Cash Out at off-us Agent**;
+- **Offline Cash**.
 
-In addition, the Mojaloop Hub is able to offer support to **offline cash** payment schemes, as such a payment scheme is viewed as cash - albeit digital. So a withdrawal to an offline cash wallet (a load) is analogous to a "cash out" transaction; and a deposit from an offline cash wallet (an upload) is analogous to a "cash in" transaction. However, the operator of such a scheme might consider that all such wallet load/upload transactions, whether on-us or off-us, should be processed through the Mojaloop Hub, for ease of reconciliation by the offline scheme.
-
-</details>
-&nbsp;
-<details>
-
-<summary>**3PPI**</summary>
+A Mojaloop Hub is able to offer support to **offline cash** payment schemes because such a payment scheme is viewed as cash - albeit digital. So a withdrawal to an offline cash wallet (a load) is analogous to a "cash out" transaction; and a deposit from an offline cash wallet (an upload) is analogous to a "cash in" transaction. However, the operator of such a scheme might consider that all such wallet load/upload transactions, whether on-us or off-us, should be processed through the Mojaloop Hub, for ease of reconciliation by the offline scheme.
 
 ## Third Party Payment Initiation
 A Mojaloop Hub directly supports Third Party Payment Initiation (3PPI), so that Payment Initiation Service Providers (PISPs) - better known as fintechs - can, using their own smartphone apps, recruit customers, and offer them a unified or enhanced payments service. Most DFSPs connected to a Mojaloop Hub can support 3PPI services, if they have a reasonably modern back office.
@@ -55,11 +39,6 @@ A fintech can use the 3PPI service to initiate a Request To Pay (RTP) - asking t
 -	**Collections**, in particular P2G and P2B;
 -	**Salary payments**, on behalf of small/medium businesses; 
 -	**Merchant payments** (P2B), using a QR code for initiation
-</details>
-&nbsp;
-<details>
-
-<summary>**Bulk Payments**</summary>
 
 ## Bulk Payments
 Every payments service needs to facilitate bulk payments, and Mojaloop offers this service using an extremely efficient model. All but the very smallest DFSPs are able to offer this service to their customers, allowing them to submit payments lists that can reach every customer of every connected DFSP. This is in support of:
@@ -68,11 +47,6 @@ Every payments service needs to facilitate bulk payments, and Mojaloop offers th
 
 In addition, the bulk payment functionality is available through the **3PPI service** (above), which would enable all DFSPs - even the very smallest - to offer bulk payments services through either a fintech, or directly through their own 3PPI service.
 
-</details>
-&nbsp;
-<details>
-
-<summary>**Cross Border**</summary>
 
 ## Cross Border Payments
 
@@ -87,12 +61,6 @@ There are two key aspects of the Mojaloop ecosystem that enable this
 2. The support for external foreign exchange providers (FXPs) to connect to a Mojaloop Hub and offer FX services. Neither the payer not the payee needs to define the currency to be used for a transaction; they each transact in their own currency, and the Mojaloop Hub(s) facilitate the interchange.
      - Further information on how Mojaloop manages foreign exchange services is available in the [**FX**](./fx.md) documentation
 
-</details>
-&nbsp;
-<details>
-
-<summary>**Extended Use Cases**</summary>
-
 ## Extended Use Cases
 
 In addition to these standard use cases, Mojaloop supports the implementation
@@ -102,4 +70,3 @@ are layered over the top of the standard use cases.
 These
 scheme-specific use cases can readily be added by individual scheme
 operators.
-</details>

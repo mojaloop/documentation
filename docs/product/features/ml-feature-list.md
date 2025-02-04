@@ -9,8 +9,8 @@ disparate financial institutions in a manner that promotes financial
 inclusion and provides robust risk management for all participants. It
 is available for use by any body that wishes to use it to implement and
 operate an inclusive instant payments scheme.
-<details>
-<summary>**Mojaloop's Core Functions**</summary>
+
+## Mojaloop's Core Functions
 
 These are the core functions that Mojaloop provides to connected
 financial institutions:
@@ -25,7 +25,7 @@ These core functions are supported by some [unique characteristics](./transactio
 together make Mojaloop a low cost, inclusive instant payments system:
 
 1.  **A Three Phase Transaction Flow**, as follows:
-	+  **Discovery,** when the Payer's DFSP works with the Mojaloop Hub to determine where the payment should be sent, so ensuring that transactions are not misdirected. This phase resolves an alias to a specific Payee DFSP and, in collaboration with that DFSP, an individual account.
+	+  Discovery, when the Payer's DFSP works with the Mojaloop Hub to determine where the payment should be sent, so ensuring that transactions are not misdirected. This phase resolves an alias to a specific Payee DFSP and, in collaboration with that DFSP, an individual account.
 
 	 + **Agreement of Terms, or Quotation,** when the two DFSP parties to the transaction both agree that the transaction can go ahead (supporting, for example, restrictions relating to tiered KYC), and on what terms (including fees), **before** either commits to it.
 
@@ -36,17 +36,14 @@ together make Mojaloop a low cost, inclusive instant payments system:
 3.  **The PISP API is made available through the Mojaloop Hub,** not by individual DFSPs. Consequently a fintech can integrate with the Hub and immediately be connected to **all** connected DFSPs. 
 
 **Note** In Mojaloop terms, a DFSP - or Digital Financial Service Provider - is a generic term for any financial institution, of any size or status, that is able to transact digitally. It applies equally to the largest international bank and the smallest Microfinance Institution or mobile wallet operator. "DFSP" is used throughout this document.   
-</details>
 &nbsp;
-<details>
-<summary>**Features**</summary>
 ## Feature List
 
 This document presents a feature list which covers the following aspects
 of Mojaloop:
 
 -   [**Use Cases**](./use-cases.md), describing the use cases supported by every Mojaloop deployment.
--   [**Transactions**](./transactions.md), describing the Mojaloop APIs, how
+-   [**Transactions**](./transaction.md), describing the Mojaloop APIs, how
     a transaction proceeds, and the aspects of a Mojaloop
     transaction that make it uniquely suited to the implementation of an
     inclusive instant payments service.
@@ -69,13 +66,11 @@ of Mojaloop:
     principles to which any Mojaloop implementation must adhere. This
     includes the principles which ensure the security and integrity of a
     Mojaloop deployment.
-</details>
+
 &nbsp;
 
 # About This Document
 
-<details>
-<summary>Purpose</summary>
 ## Purpose of This Document
 
 This document catalogues the features of Mojaloop, independent of
@@ -89,14 +84,9 @@ The Mojaloop Foundation (MLF) defines an implementation as being an
 official instance of Mojaloop if it implements all of the features of
 Mojaloop, without exception, and they pass the standard set of Mojaloop
 tests.
-</details>
-&nbsp;
-
-<details>
-<summary>Scope</summary>
 
 ## Scope
 
 This feature list is subject to amendment as the Mojaloop ecosystem
 continues to develop. Currently, it relates to Mojaloop Congo, Version 16.
-</details>
+

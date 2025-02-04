@@ -1,16 +1,13 @@
 
 # Mojaloop Transactions
 This section deals with all of the aspects of a Mojaloop transaction.
-<details>
-<summary>**Transaction Phases**</summary>
 
 ## Phases of a Mojaloop Transaction
 
-Mojaloop is a payment clearing hub: it clears (routes and guarantees)
-payments between accounts held by end parties (people, business,
+A payments hub based on the Mojaloop platform clears (routes and guarantees) payments between accounts held by end parties (people, business,
 government departments etc) at DFSPs, and integrates with a settlement
 partner to orchestrate the movement of funds in settlement between
-participating DFSPs at a later time, according to an agreed settlement
+participating DFSPs either simultaneously (continuous gross settlement) or at a later time (various forms of net settlement), according to an agreed settlement
 schedule.
 
 All Mojaloop transactions are asynchronous (to ensure the most efficient
@@ -18,33 +15,31 @@ use of resources), and proceed through three phases:
 
 1.  **Discovery,** when the Payer's DFSP works with the Mojaloop Hub to determine where the payment should be sent. This phase resolves an alias to a specific Payee DFSP and, in collaboration with that DFSP, an individual account.
  &nbsp;
-2.  **Agreement of Terms, or Quotation,** when the two DFSP parties to the transaction agree that the transaction can go ahead (supporting, for example, restrictions relating to tiered KYC), and on what terms (including fees).
+2.  **Agreement of Terms, or Quotation,** when the two DFSP parties to the transaction agree that the transaction can go ahead (subject to, for example, restrictions relating to tiered KYC), and on what terms (including fees).
  &nbsp;
 
 3.  **Transfer,** when the transaction between the two DFSPs (and by proxy their customers' accounts) is cleared.
 &nbsp;
 
-These phases are complemented by the asynchronous nature of Mojaloop. A transaction is always unique, ensuring that it will only be processed once, regardless of how frequently it is submitted for processing. This quality is known as idempotency, and ensures that, even if a customer experiences intermittent connectivity, they can be assured that their account will only be debited once, regardless of the number of retries.
+These phases are complemented by the asynchronous nature of Mojaloop. A transaction is always unique, ensuring that it will only be processed once, regardless of how frequently it is submitted for processing. This quality is known as idempotency, and ensures that even if a customer experiences intermittent connectivity, they can be assured that their account will only be debited once, regardless of the number of retries.
 
-This three-phase approach, complemented by idempotency, has been designed to minimize the risk of transaction failures or duplication. Consequently, we eliminate the need for transaction reconciliation by DFSPs, reduce most causes of disputes, and thereby minimize costs for all parties. 
+This three-phase approach, complemented by idempotency, has been designed to minimize the risk of transaction failures or duplication. Consequently, Mojaloop eliminates the technical need for transaction reconciliation by DFSPs, reduces most causes of disputes, and thereby minimizes costs for all parties. 
 
-Coupled with the Mojaloop approach to Risk Management, this ensures that even the smallest MFI and the largest international bank can participate on equal terms, without either imposing risk on the other or indeed on the Hub itself.
-</details>
+Coupled with the Mojaloop approach to [Risk Management](./risk.md), this ensures that even the smallest MFI and the largest international bank can participate on equal terms, without either imposing risk on the other or indeed on the Hub itself.
+
 &nbsp;
-<details>
-<summary>**Mojaloop APIs**</summary>
 ## Mojaloop APIs
 
 The Mojaloop Hub supports four APIs. The first two relate to end-customer transactions, whilst the last two relate to the administration of the Hub's relationship with participating DFSPs, and the settlement of cleared transactions:
 
 1. **Transactional API**    
-Mojaloop offers two functionally-equivalent transactional APIs, which each support direct connections with Participants for the purpose of conducting transactions. Both support all of the [**Mojaloop use cases**](./use-cases.md). These APIs are:
-    - **FSP Interoperability (FSPIOP) API**, the long-established API, developed in accordance with the Level One Principals;
+Mojaloop offers two functionally-equivalent transactional APIs, which each support direct connections with Participants for the purpose of conducting transactions. Both support all of the [**Mojaloop use cases**](./use-cases.md), and have been developed in accordance with the [Level One Principles](https://www.leveloneproject.org/project_guide/level-one-project-design-principles/). These APIs are:
+    - **FSP Interoperability (FSPIOP) API**, the long-established and well-proven API;
     - An **ISO 20022 Messaging Schema**, using an ISO 20022 message set provisionally agreed by the Mojaloop Foundation with the ISO 20022 Registration Management Group (RMG),and tailored to the needs of an Inclusive Instant Payments System (IIPS)such as Mojaloop. This is offered to adopters as an alternative to FSPIOP. More details of this schema can be found in the [**ISO20022 documentation**](./iso20022.md).
 	
 2.  **Third-party Payment Initiation (3PPI/PISP) API**
 
-	This API is used to manage third party payment arrangements - payments initiated by fintechs on behalf of their customers from accounts held by those customers at DFSPs connected to the Mojaloop Hub. -- and to initiate those payments when authorized.
+	This API is used to manage third party payment arrangements - payments initiated by fintechs on behalf of their customers from accounts held by those customers at DFSPs connected to the Mojaloop Hub. - and to initiate those payments when authorized.
 
 
 3.  **Administration API**
@@ -69,13 +64,7 @@ Mojaloop offers two functionally-equivalent transactional APIs, which each suppo
 
 	The settlement API is used to manage the settlement process. It is not intended for the purpose of managing settlement models.
 
-
-</details>
 &nbsp;
-
-<details>
-
-<summary>**Unique Characteristics**</summary>
 
 ## Unique Transaction Characteristics
 
@@ -116,5 +105,4 @@ other payment clearing hubs. What differentiates Mojaloop is:
     than needing to complete an API integration with the all
     individually. This substantially reduces costs and increases
     reliability for fintechs and their customers.
-    </details>
     
