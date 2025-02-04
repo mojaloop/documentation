@@ -43,29 +43,16 @@ This document presents a feature list which covers the following aspects
 of Mojaloop:
 
 -   [**Use Cases**](./use-cases.md), describing the use cases supported by every Mojaloop deployment.
--   [**Transactions**](./transaction.md), describing the Mojaloop APIs, how
-    a transaction proceeds, and the aspects of a Mojaloop
-    transaction that make it uniquely suited to the implementation of an
-    inclusive instant payments service.
+-   [**Transactions**](./transaction.md), describing the Mojaloop APIs, how a transaction proceeds, and the aspects of a Mojaloop transaction that make it uniquely suited to the   implementation of an inclusive instant payments service.
 
--   [**Risk Management**](./risk.md), setting out the measures taken to ensure that
-    no DFSP participating in a Mojaloop scheme is exposed to any
-    counterparty risk, and that the integrity of the scheme as a whole
-    is protected.
+-   [**Risk Management**](./risk.md), setting out the measures taken to ensure that no DFSP participating in a Mojaloop scheme is exposed to any counterparty risk, and that the integrity of the scheme as a whole is protected.
 
 -  [**Connectivity Support**](./connectivity.md), describing the various tools and options for straightforward onboarding of participating DFSPs.
--   [**Product and Operational Features**](./product.md), such as portals for user and
-    service management, and the configuration and operation of a
-    Mojaloop Hub.
+-   [**Product and Operational Features**](./product.md), such as portals for user and service management, and the configuration and operation of a Mojaloop Hub.
 
--   [**Engineering Principles**](./engineering.md), such as algorithmic adherence to the
-    Mojaloop specification, code quality, security practices,
-    scalability and performance patterns (amongst others).
+-   [**Engineering Principles**](./engineering.md), such as algorithmic adherence to the Mojaloop specification, code quality, security practices, scalability and performance patterns (amongst others).
 
--   [**Invariants**](./invariants.md), setting out the development and operational
-    principles to which any Mojaloop implementation must adhere. This
-    includes the principles which ensure the security and integrity of a
-    Mojaloop deployment.
+-   [**Invariants**](./invariants.md), setting out the development and operational principles to which any Mojaloop implementation must adhere. This includes the principles which ensure the security and integrity of a Mojaloop deployment.
 
 &nbsp;
 
