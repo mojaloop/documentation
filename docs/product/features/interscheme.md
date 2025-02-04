@@ -1,3 +1,0 @@
-# Interscheme
-
-To be completed.
