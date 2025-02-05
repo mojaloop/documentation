@@ -1125,7 +1125,7 @@ module.exports = {
       ],
       '/product/': [
         {
-          title: 'Mojaloop feature set',
+          title: 'Mojaloop Features',
           collapsable: false,
           sidebarDepth: 2,
           children: [
