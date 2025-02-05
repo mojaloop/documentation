@@ -1,6 +1,6 @@
-# Product and Operational Features
+# Portal and Operational Features
 
-The aspects of product and operational features that are addressed are:
+The aspects of portals and other operational features that are addressed are:
 
 -   User Management
 
