@@ -1132,11 +1132,11 @@ module.exports = {
             ['features/ml-feature-list', 'About Mojaloop'],
             ['features/use-cases', 'Use Cases'],
             ['features/transaction', 'Transactions'],
-            ['features/risk', 'Risk Management']
+            ['features/risk', 'Risk Management'],
             ['features/connectivity', 'Connectivity Support'],
             ['features/product', 'Portals and Operational Features'],
             ['features/engineering', 'Engineering Features'],
-            ['features/invariants', 'Invariants'],
+            ['features/invariants', 'Invariants']
           ]
         }
       ]
