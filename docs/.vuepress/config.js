@@ -1130,13 +1130,13 @@ module.exports = {
           sidebarDepth: 2,
           children: [
             ['features/ml-feature-list', 'About Mojaloop'],
-            ['features/connectivity', 'Connectivity'],
-            ['features/fx', 'FX in Mojaloop'],
-            ['features/interscheme', 'Interscheme'],
-            ['features/iso20022', 'ISO 20022'],
-            ['features/merchant-payments', 'Merchant Payments'],
+            ['features/use-cases', 'Use Cases'],
             ['features/transaction', 'Transactions'],
-            ['features/use-cases', 'Use Cases']
+            ['features/risk', 'Risk Management']
+            ['features/connectivity', 'Connectivity Support'],
+            ['features/product', 'Portals and Operational Features'],
+            ['features/engineering', 'Engineering Features'],
+            ['features/invariants', 'Invariants']
           ]
         }
       ]
