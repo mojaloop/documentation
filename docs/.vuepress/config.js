@@ -1136,7 +1136,7 @@ module.exports = {
             ['features/connectivity', 'Connectivity Support'],
             ['features/product', 'Portals and Operational Features'],
             ['features/engineering', 'Engineering Features'],
-            ['features/invariants', 'Invariants']
+            ['features/invariants', 'Invariants'],
           ]
         }
       ]
