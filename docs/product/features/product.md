@@ -1,4 +1,4 @@
-# Portal and Operational Features
+# Portals and Operational Features
 
 The aspects of portals and other operational features that are addressed are:
 
