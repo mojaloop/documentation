@@ -1135,7 +1135,7 @@ module.exports = {
             ['features/risk', 'Risk Management'],
             ['features/connectivity', 'Connectivity Support'],
             ['features/product', 'Portals and Operational Features'],
-            ['features/engineering', 'Engineering Features'],
+            ['features/engineering', 'Engineering Principles'],
             ['features/invariants', 'Invariants']
           ]
         }

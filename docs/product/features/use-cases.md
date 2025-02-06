@@ -12,16 +12,17 @@ This means that, at the most basic level, a Mojaloop Hub directly supports the f
 - Business to Government (**B2G**);
 - Simple forms of Person to Government (**P2G**) payments
 
-In all cases, a payment can be facilitated using merchant IDs (for USSD) or QR codes (smartphones).
+In all types of merchant payment, a payment can be facilitated using merchant IDs (for USSD) or QR codes (smartphones).
 
 ## Request To Pay
 
 As well as push payments, Mojaloop supports Request To Pay (RTP) transactions, in which a payee requests a payment from a payer, and _when the payer consents_, their DFSP pushes the payment to the payee on their behalf. This supports the following use cases:
 
 - **Merchant payments**, for example using a QR code;
-    - 	The practicalities of configuring Mojaloop's Merchant Payments solution, including the content of QR codes, are explored in [**How to Configure Merchant Payments for Mojaloop**](./merchant-payments.md).
+    - 	The practicalities of configuring Mojaloop's Merchant Payments solution, including the content of QR codes, are explored in [**How to Configure Merchant Payments for Mojaloop**](./merchant-payments.md). 
+    - In all types of merchant payment, a payment can be facilitated using merchant IDs (for USSD) or QR codes (smartphones).
 
-- **Collections**, including P2G, P2B, B2B and B2G
+- **Collections**, including P2G, P2B, B2B and B2G.
 
 ## Cash Services
 A Mojaloop Hub directly supports the common interoperable cash in/out transactions that every DFSP (and their customers) would expect:
