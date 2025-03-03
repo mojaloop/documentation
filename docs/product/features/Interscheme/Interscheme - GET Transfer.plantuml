@@ -1,0 +1,57 @@
+@startuml
+
+title Interscheme - GET Transfers
+
+participant "Payer DFSP" as payerDFSP
+box Scheme A
+  participant "Mojaloop\nScheme A" as schemeA
+  participant "Proxy Cache\nScheme A" as pc_A
+end box
+participant "Proxy AB" as xnp
+box Scheme B
+  participant "Mojaloop\nScheme B" as schemeB
+  participant "Proxy Cache\nScheme B" as pc_B
+end box
+participant "Payee DFS" as payeeDFSP
+
+autonumber 1 "<b>[0]"
+
+payerDFSP ->> schemeA: GET /transfers/1234
+note left
+header 
+  source: payerDFSP
+  destination: payeeDFSP
+JWS signed by payerDFSP
+end note
+schemeA -->> payerDFSP: 202 OK
+schemeA -> schemeA: Load transfer information
+
+
+schemeA->>payerDFSP: PUT /transfers/1234
+note right
+header 
+  source: schemeB
+  destination: payerDFSP
+JWS signed by schemeB
+end note
+payerDFSP -->> schemeA: 200 OK
+
+payeeDFSP->>schemeB: GET /transfers/1234
+note right
+header 
+  source: scheme A
+JWS signed by schemeA
+end note
+schemeB -->> payeeDFSP: 202 OK
+schemeB -> schemeB: Load transfer informtaion\nand check if payeeDFSP is in scheme
+schemeB->>payeeDFSP: Yes; return information\nPUT /transfers/1234
+note left
+header 
+  source: schemeB
+  destination: payeeDFSP
+JWS signed by schemeB
+end note
+schemeB -->> payeeDFSP: 200 OK
+
+
+@enduml

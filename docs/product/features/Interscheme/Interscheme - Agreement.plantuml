@@ -1,0 +1,71 @@
+@startuml
+
+title Interscheme - Agreement
+
+participant "Payer DFSP" as payerDFSP
+box Scheme A
+  participant "Mojaloop\nScheme A" as schemeA
+  participant "Proxy Cache\nScheme A" as pc_A
+end box
+participant "Proxy AB" as xnp
+box Scheme B
+  participant "Mojaloop\nScheme B" as schemeB
+  participant "Proxy Cache\nScheme B" as pc_B
+end box
+participant "Payee DFS" as payeeDFSP
+
+autonumber 1 "<b>[0]"
+
+payerDFSP ->> schemeA: POST /quotes
+schemeA -->> payerDFSP: 202 OK
+note left
+header 
+  source: payerDFSP
+  destination: payeeDFSP
+JWS signed by payerDFSP
+end note
+schemeA -> pc_A: Destination not in Scheme\n Lookup proxy for payeeDFSP = Proxy AB
+schemeA ->> xnp: POST /quotes
+xnp ->> schemeB: POST /quotes\nmessage unmodified
+note left
+header 
+  source: payerDFSP
+  destination: payeeDFSP
+  fxpiop-proxy: proxyAB
+JWS signed by payerDFSP
+end note
+schemeB -->> xnp: 202 OK
+xnp -->> schemeA: 202 OK
+schemeB->>payeeDFSP: POST /quotes
+payeeDFSP-->>schemeB: 202 OK
+note right
+Checks JWS signed by payerDFSP
+end note
+payeeDFSP->>schemeB: PUT /quotes
+note right
+header 
+  source: payeeDFSP
+  destination: payerDFSP
+JWS signed by payeeDFSP
+end note
+schemeB-->>payeeDFSP: 200 OK
+schemeB -> pc_B: Destination not in Scheme\n Lookup proxy for payerDFSP = Proxy AB
+schemeB->>xnp: PUT /quotes
+xnp->>schemeA: PUT /quotes\nmessage unmodified
+note right
+header 
+  source: payeeDFSP
+  destination: payerDFSP
+  fxpiop-proxy: proxyAB
+JWS signed by payeeDFSP
+end note
+schemeA-->>xnp: 200 OK
+xnp-->>schemeB: 200 OK
+schemeA->>payerDFSP: PUT /quotes
+note left
+Checks JWS signed by payeeDFSP
+end note
+payerDFSP -->> schemeA: 200 OK
+
+
+@enduml

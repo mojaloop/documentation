@@ -1,0 +1,31 @@
+@startuml
+title Central Ledger API / Admin API
+
+participant "Onboarding Script" as script
+participant "Mojaloop\nScheme A" as schemeA
+participant "XN Proxy" as xnp
+participant "Mojaloop\nScheme B" as schemeB
+
+autonumber 1 "<b>[0]"
+
+== Create Participant Types ==
+
+script -> schemeA: POST /participants
+note left
+{
+  "name": "XN Proxy",
+  "currency": "USD",
+  <color:#ff0000>"isProxy": true
+}
+end note
+
+script -> schemeB: POST /participants
+note left
+{
+  "name": "XN Proxy",
+  "currency": "USD",
+  <color:#ff0000>"isProxy": true
+}
+end note
+
+@enduml
