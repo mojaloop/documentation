@@ -44,25 +44,31 @@ The discovery flows are summarized as follows:
 
 ### On Demand Discover with incorrectly cached results
 - When an identifier moved to another dfsp provider, then the store cache for that participant will route to an unsuccessful get \parties call.
+- Self heal if there is an error routing the payment or proxy cache reference is lost
 
 Here is a sequence diagram show how that gets updated.
 #### Sequence Diagram
 ![Interscheme - Managing Stale Cache](./Interscheme/Interscheme%20-%20Stale%20Party%20Identifier%20Cache.svg)
 
 ## Interscheme - Agreement Phase
-This is how the agreement phase is implemented
+The Agreement phase makes use of the proxy cache to route the messages.
+Here are the implementation details.
 
 ![Interscheme - Agreement](./Interscheme/Interscheme%20-%20Agreement.svg)
 
 ## Interscheme - Transfer Phase
-this is how the transfer phase is implemented
+The Transfer phase makes use of the proxy cache to route the messages.
+Here are the implementation details.
+
 ![Interscheme - Transfers](./Interscheme/Interscheme%20-%20Transfer.svg)
 
 ## Interscheme - GET Transfer 
-this is how the GET transfers is implemented
+The GET Transfer is resolved locally to return the local schemes status of the transfer.
+Here are the implementation details.
 ![Interscheme - GET Transfers](./Interscheme/Interscheme%20-%20GET%20Transfer.svg)
 
 ## Admin API - defining Proxy Participants
+This is how Proxies are defined.
 ![Admin API](./Interscheme/SettingUpProxys.svg)
 
 ## Clearing Accounts for Inter-scheme FX transfers

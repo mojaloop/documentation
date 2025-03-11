@@ -1,19 +1,19 @@
-@startuml
+@startuml Interscheme - On Demand Discovery
 
 title Interscheme - On Demand Discovery
 
 participant "Payer DFSP" as payerDFSP
-box "Scheme A"
+box "Scheme A" #LightBlue
     participant "ALS\nScheme A" as ALS_A
-    participant "Oracle\nScheme A" as Oracle_A
     participant "Proxy Cache\nScheme A" as pc_A
+    participant "Oracle\nScheme A" as Oracle_A
 end box
 participant "other Proxies" as dfspsA
 participant "Proxy AB" as xnp
-box "Scheme B"
+box "Scheme B" #d1e0c3
     participant "ALS\nScheme B" as ALS_B
-    participant "Oracle\nScheme B" as Oracle_B
     participant "Proxy Cache\nScheme B" as pc_B    
+    participant "Oracle\nScheme B" as Oracle_B
 end box
 participant "Payee DFS" as payeeDFSP
 
@@ -28,10 +28,11 @@ ALS_A-> Oracle_A: GET /participant/{ID}
 alt if not found in Oracle
 
 Oracle_A--> ALS_A: no dfsp found
-ALS_A ->> ALS_A: Are there any proxies in Scheme A?
-  ALS_A ->> ALS_A: Cache Proxy that will receive messages
+ALS_A ->> ALS_A: Are there any proxies\n in Scheme A?
+  ALS_A ->> ALS_A: Cache Proxies that \nwill receive messages
    note left
-     SentToProxies[{ID}] = {['Proxy AB', 'Proxy CD', 'Proxy EF']}
+     SentToProxies[{ID}] = 
+     {['Proxy AB', 'Proxy CD', 'Proxy EF']}
    end note
 
   loop for all Proxys in Scheme A and not source    
@@ -45,8 +46,8 @@ ALS_A ->> ALS_A: Are there any proxies in Scheme A?
     xnp ->> ALS_B: GET /parties/{Type}/{ID}
     ALS_B -->> xnp: 202 OK
     xnp -->> ALS_A: 202 OK
-    ALS_B -> pc_B: Source not in Scheme: \nfxpiop-proxy = "Proxy AB"\nAdd 'Payer DFSP' to 'Proxy AB' mapping
-    pc_B -> pc_B: Add new mapping to cache
+    ALS_B -> pc_B: Source not in Scheme: \nfxpiop-proxy = "Proxy AB"\nAdd 'Payer DFSP' to\n 'Proxy AB' mapping
+    pc_B -> pc_B: Add new mapping \nto cache
     note left
     Payer DFSP : Proxy AB
     end note        
@@ -71,12 +72,12 @@ ALS_A ->> ALS_A: Are there any proxies in Scheme A?
     xnp ->> ALS_A: PUT /parties/{ID}
     ALS_A -->> xnp: 200 OK
     xnp -->> ALS_B: 200 OK
-    ALS_A -> pc_A: Source not in Scheme: \nfxpiop-proxy = "Proxy AB"\nAdd 'Payee DFSP' to 'Proxy AB' mapping
-    pc_A -> pc_A: New mapping\nCheck JWS signature\n & Add to cache
+    ALS_A -> pc_A: Source not in Scheme: \nfxpiop-proxy = "Proxy AB"\nAdd 'Payee DFSP' to \n'Proxy AB' mapping
+    pc_A -> pc_A: New mapping\nCheck JWS \nsignature &\n Add to cache
     note left
     Payee DFSP : Proxy AB
     end note        
-    ALS_A -> Oracle_A: Update Oracle with mapping\nPOST /participants/{Type}/{ID} {{"fspId": "Payee DFSP"}}
+    ALS_A -> Oracle_A: Update Oracle with mapping\n**POST /participants/{Type}/{ID}** \n{{"fspId": "Payee DFSP"}}
     Oracle_A--> ALS_A: return
     ALS_A ->> payerDFSP: PUT /parties/{ID}
     payerDFSP -->> ALS_A: 200 OK
@@ -85,9 +86,10 @@ ALS_A ->> ALS_A: Are there any proxies in Scheme A?
     dfspsA -->> ALS_A: 202 OK
     dfspsA ->> ALS_A: PUT /parties/{ID}/error
     ALS_A -->> dfspsA: 200 OK
-    ALS_A ->> ALS_A: Mark message as received from proxy
+    ALS_A ->> ALS_A: Mark message as \nreceived from proxy
    note left
-     remove other Proxy from list SentToProxies[{ID}]
+     remove other Proxy from 
+     list SentToProxies[{ID}]
    end note
 
     alt if SentToProxies[{ID}] is empty
@@ -102,8 +104,8 @@ end loop
 else if found in Oracle
   Oracle_A--> ALS_A: dfsp = payeeDFSP
 
-  ALS_A->ALS_A: Payee DFSP is not in scheme A 
-  ALS_A-> pc_A: Lookup proxy for Payee DFSP
+  ALS_A->ALS_A: Payee DFSP is \nnot in scheme A 
+  ALS_A-> pc_A: Lookup proxy for\n Payee DFSP
   ALS_A->ALS_A: Add desitation to header 
   note left 
   destination dfsp: Payee DFSP
@@ -126,7 +128,7 @@ else if found in Oracle
   xnp ->> ALS_A: PUT /parties/{ID}
   ALS_A -->> xnp: 200 OK
   xnp -->> ALS_B: 200 OK
-  ALS_A -> pc_A: Source not in Scheme: \nAdd 'Payee DFSP' to 'Proxy AB' mapping
+  ALS_A -> pc_A: Source not in Scheme: \nAdd 'Payee DFSP' to\n 'Proxy AB' mapping
   pc_A -> pc_A: Got Mapping
   ALS_A ->> payerDFSP: PUT /parties/{ID}
   payerDFSP -->> ALS_A: 200 OK

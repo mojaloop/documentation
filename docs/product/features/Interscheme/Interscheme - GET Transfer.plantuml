@@ -1,14 +1,14 @@
-@startuml
+@startuml Interscheme - GET Transfer
 
 title Interscheme - GET Transfers
 
 participant "Payer DFSP" as payerDFSP
-box Scheme A
+box Scheme A #LightBlue
   participant "Mojaloop\nScheme A" as schemeA
   participant "Proxy Cache\nScheme A" as pc_A
 end box
 participant "Proxy AB" as xnp
-box Scheme B
+box Scheme B #d1e0c3
   participant "Mojaloop\nScheme B" as schemeB
   participant "Proxy Cache\nScheme B" as pc_B
 end box

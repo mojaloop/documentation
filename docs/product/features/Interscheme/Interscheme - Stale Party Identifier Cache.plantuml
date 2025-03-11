@@ -1,15 +1,15 @@
-@startuml
+@startuml Interscheme - Stale Party Identifier Cache
 
 title Stale Party Identifier Cache
 
 participant "Payer DFSP" as payerDFSP
-box "Scheme A"
+box "Scheme A" #LightBlue
     participant "ALS\nScheme A" as ALS_A
     participant "Oracle\nScheme A" as Oracle_A
     participant "Proxy Cache\nScheme A" as pc_A    
 end box
 participant "Proxy AB" as xnp
-box "Scheme B"
+box "Scheme B" #d1e0c3
     participant "ALS\nScheme B" as ALS_B
     participant "Oracle\nScheme A" as Oracle_B
     participant "Proxy Cache\nScheme B" as pc_B    
@@ -27,7 +27,18 @@ end note
   Oracle_A--> ALS_A: found DFSP = payeeDFSP
   ALS_A ->> ALS_A: DFSP not in scheme
   ALS_A -> pc_A: Who is payee DFSP's proxy?
+  alt proxy representative not found
+  pc_A --> ALS_A: Proxy not found
+  ALS_A -> Oracle_A: Remove mapping in Oracle\n **DELETE** \participants\{Type}\{ID} 
+  note left
+  **Self heal** if proxy 
+  reference is not found
+  end note
+  ALS_A ->> ALS_A: Restart the ALS get parties process
+  else
   pc_A --> ALS_A: forward to Proxy AB
+  end
+
   ALS_A ->> xnp: **GET** /parties/{Type}/{ID}
     xnp->xnp: Add header
     note left
@@ -57,11 +68,12 @@ ALS_B-> Oracle_B: **GET** /participant/{ID}
     fxpiop-proxy = "Proxy AB"
     end note
   xnp ->> ALS_A: **PUT** /parties/{ID}/error
-  alt message from proxy & error & desitination in scheme
+  alt message from proxy & error & no proxy message cache
   note left ALS_A
-  fxpiop-proxy = "Proxy AB"
-  Error Code = 5107
-  Destination = Payer DFSP in Scheme A
+   **Self heal** if error in routing
+    fxpiop-proxy = "Proxy AB"
+    PUT /parties error
+    SentToProxies[{ID}] list undefined
   end note
   ALS_A -> Oracle_A: Remove mapping in Oracle\n **DELETE** \participants\{Type}\{ID} 
   ALS_A ->> ALS_A: Restart the ALS get parties process
