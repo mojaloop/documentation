@@ -19,4 +19,4 @@ The current version of Mojaloop only supports the interconnection of Mojaloop-ba
 
 Further details of the implementation of this scheme interconnection capability can be found in the [**interscheme documentation**](./interscheme.md).
 
-The following pages will be of interest to those who wish to review how interscheme capabilities relate to [**foreign exchange**](./ForeignExchange.md) and [**cross border transactions**](.CrossBorder.md).
+The following pages will be of interest to those who wish to review how interscheme capabilities relate to [**foreign exchange**](./ForeignExchange.md) and [**cross border transactions**](./CrossBorder.md).
