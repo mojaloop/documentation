@@ -1,0 +1,84 @@
+@startuml Interscheme-StalePartyIdentifierCache
+
+title Stale Party Identifier Cache
+
+participant "Payer DFSP" as payerDFSP
+box "Scheme A" #LightBlue
+    participant "ALS\nScheme A" as ALS_A
+    participant "Oracle\nScheme A" as Oracle_A
+    participant "Proxy Cache\nScheme A" as pc_A    
+end box
+participant "Proxy AB" as xnp
+box "Scheme B" #d1e0c3
+    participant "ALS\nScheme B" as ALS_B
+    participant "Oracle\nScheme A" as Oracle_B
+    participant "Proxy Cache\nScheme B" as pc_B    
+end box
+participant "Payee DFS" as payeeDFSP
+
+autonumber 1 "<b>[0]"
+
+payerDFSP ->> ALS_A: **GET** /parties/{Type}/{ID}
+note left
+ header source = payerDFSP
+end note
+
+  ALS_A-> Oracle_A: **GET** /participant/{ID}
+  Oracle_A--> ALS_A: found DFSP = payeeDFSP
+  ALS_A ->> ALS_A: DFSP not in scheme
+  ALS_A -> pc_A: Who is payee DFSP's proxy?
+  alt proxy representative not found
+  pc_A --> ALS_A: Proxy not found
+  ALS_A -> Oracle_A: Remove mapping in Oracle\n **DELETE** \participants\{Type}\{ID} 
+  note left
+  **Self heal** if proxy 
+  reference is not found
+  end note
+  ALS_A ->> ALS_A: Restart the ALS get parties process
+  else
+  pc_A --> ALS_A: forward to Proxy AB
+  end
+
+  ALS_A ->> xnp: **GET** /parties/{Type}/{ID}
+    xnp->xnp: Add header
+    note left
+    fxpiop-proxy = "Proxy AB"
+    end note
+
+  xnp ->> ALS_B: **GET** /parties/{Type}/{ID}  
+  ALS_B ->> pc_B: Source not in Scheme: \nfxpiop-proxy = "Proxy AB"\nAdd 'Payer DFSP' to 'Proxy AB' mapping
+alt not MVP
+  pc_B -> pc_B: Check JWS signature
+end
+  pc_B -> pc_B: Add new mapping to cache
+note left
+Payer DFSP : Proxy AB
+end note        
+ALS_B-> Oracle_B: **GET** /participant/{ID}
+  Oracle_B--> ALS_B: dfps = payeeDFSP
+  ALS_B ->> payeeDFSP: **GET** /parties/{Type}/{ID}
+  payeeDFSP ->> ALS_B: **PUT** /parties/{ID}/error
+  note right
+   header desitination = payerDFSP
+  end note
+  ALS_B -> pc_B: Lookup payerDFSP proxy
+  ALS_B ->> xnp: **PUT** /parties/{ID}/error
+  xnp->xnp: Add header
+    note left
+    fxpiop-proxy = "Proxy AB"
+    end note
+  xnp ->> ALS_A: **PUT** /parties/{ID}/error
+  alt message from proxy & error & no proxy message cache
+  note left ALS_A
+   **Self heal** if error in routing
+    fxpiop-proxy = "Proxy AB"
+    PUT /parties error
+    SentToProxies[{ID}] list undefined
+  end note
+  ALS_A -> Oracle_A: Remove mapping in Oracle\n **DELETE** \participants\{Type}\{ID} 
+  ALS_A ->> ALS_A: Restart the ALS get parties process
+  else
+  ALS_A->>payerDFSP: **PUT** /parties/{ID}/error
+end
+
+@enduml
