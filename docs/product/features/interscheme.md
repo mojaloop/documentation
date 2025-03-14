@@ -24,10 +24,10 @@ This approach is based off the following assumptions:
 ## General Patterns
 There are certain general patterns that emerge
 ### Happy Path Patterns
-![Happy Path Patterns](./Interscheme/Interscheme%20-%20Happy%20path.svg)
+![Happy Path Patterns](./Interscheme/Interscheme-Happypath.svg)
 
 ### Error Patterns
-![Error Patterns](./Interscheme/Interscheme%20-%20Error%20Cases.svg)
+![Error Patterns](./Interscheme/Interscheme-ErrorCases.svg)
 
 ## Interscheme On Demand Discovery Design
 The discovery flows are summarized as follows:
@@ -39,7 +39,7 @@ The discovery flows are summarized as follows:
 - Identifiers for other schemes are discovered via a depth first search, but asking all participants. Proxy participant then forward the request to the connected scheme
 - This diagram shows two connected schemes, but this design work for any number of connected schemes.
 
-![Interscheme - On Demand Discovery Sequence Diagram](./Interscheme/Interscheme%20-%20On%20Demand%20Discovery.svg)
+![Interscheme - On Demand Discovery Sequence Diagram](./Interscheme/Interscheme-OnDemandDiscovery.svg)
 
 
 ### On Demand Discover with incorrectly cached results
@@ -48,24 +48,24 @@ The discovery flows are summarized as follows:
 
 Here is a sequence diagram show how that gets updated.
 #### Sequence Diagram
-![Interscheme - Managing Stale Cache](./Interscheme/Interscheme%20-%20Stale%20Party%20Identifier%20Cache.svg)
+![Interscheme - Managing Stale Cache](./Interscheme/Interscheme-StalePartyIdentifierCache.svg)
 
 ## Interscheme - Agreement Phase
 The Agreement phase makes use of the proxy cache to route the messages.
 Here are the implementation details.
 
-![Interscheme - Agreement](./Interscheme/Interscheme%20-%20Agreement.svg)
+![Interscheme - Agreement](./Interscheme/Interscheme-Agreement.svg)
 
 ## Interscheme - Transfer Phase
 The Transfer phase makes use of the proxy cache to route the messages.
 Here are the implementation details.
 
-![Interscheme - Transfers](./Interscheme/Interscheme%20-%20Transfer.svg)
+![Interscheme - Transfers](./Interscheme/Interscheme-Transfer.svg)
 
 ## Interscheme - GET Transfer 
 The GET Transfer is resolved locally to return the local schemes status of the transfer.
 Here are the implementation details.
-![Interscheme - GET Transfers](./Interscheme/Interscheme%20-%20GET%20Transfer.svg)
+![Interscheme - GET Transfers](./Interscheme/Interscheme-GETTransfer.svg)
 
 ## Admin API - defining Proxy Participants
 This is how Proxies are defined.
