@@ -288,7 +288,8 @@ module.exports = {
               ['technical/deployment-guide/', 'Deploying Mojaloop'],
               'technical/deployment-guide/releases',
               'technical/deployment-guide/deployment-troubleshooting',
-              'technical/deployment-guide/upgrade-strategy-guide'
+              'technical/deployment-guide/upgrade-strategy-guide',
+              'technical/deployment-guide/nodejs-dependency-update-guide'
             ]
           },
           {
