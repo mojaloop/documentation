@@ -24,7 +24,7 @@
 title Transfer - Currency Conversion with Amount Type RECEIVE
 actor "$senderName" as A1
 box "Payer DFSP" #LightBlue  
-  participant "Payer CBS" as PayerCBS
+'  participant "Payer CBS" as PayerCBS
   participant "Payer\nMojaloop\nConnector" as D1
 end box
 
@@ -41,8 +41,8 @@ end box
 
 box "Payee DFSP" #LightBlue   
   participant "Payee\nMojaloop\nConnector" as D2
-  participant "Payee CBS" as PayeeCBS
 end box
+  participant "Payee CBS" as PayeeCBS
 
 'actor "$receiverName" as A2
 autonumber
