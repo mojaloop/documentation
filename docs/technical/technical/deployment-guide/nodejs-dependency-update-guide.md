@@ -1,6 +1,6 @@
 # NodeJS Repository Update Sequence
 
-This document provides guidance on the order in which Mojaloop NodeJS repositories should be updated when releasing new features and/or maintaining Mojaloop. This is important to ensure that each of the services part of a Mojaloop Release use the correct Mojaloop repository dependency.
+This document provides guidance on the order in which Mojaloop NodeJS repositories should be updated when releasing new features and/or maintaining Mojaloop. This is important to ensure that each of the services part of a Mojaloop Release use the correct Mojaloop repository dependency. This is the update as of Mojaloop RC v17; as Mojaloop evolves, this needs to be updated with new components (and clean up components that are removed).
 
 ## Table of Contents
 
@@ -13,9 +13,9 @@ This document provides guidance on the order in which Mojaloop NodeJS repositori
 
 ## Repository Categories
 
-The following are the categaries of Mojaloop NodeJS repositories:
+The following are the categories of Mojaloop NodeJS repositories:
 
-1. **Central Services**
+1. **Central Services libraries**
    - `central-services-shared`
    - `central-services-error-handling`
    - `central-services-database`
@@ -27,8 +27,6 @@ The following are the categaries of Mojaloop NodeJS repositories:
 
 2. **Core Services**
    - `account-lookup-service`
-   - `als-oracle-pathfinder`
-   - `als-consent-oracle`
    - `quoting-service`
    - `central-ledger`
    - `central-settlements`
@@ -39,35 +37,37 @@ The following are the categaries of Mojaloop NodeJS repositories:
    - `central-event-processor`
    - `event-framework`
    - `event-stream-processor`
+   - `elastic-apm-node`
+   - `elastic-apm-node-opentracing`
+   - `email-notifier`
+   - `event-sidecar`
 
 4. **Adapters, SDK and API**
    - `ml-api-adapter`
    - `sdk-scheme-adapter`
+   - `sdk-standard-components`
    - `event-sdk`
    - `thirdparty-sdk`
    - `bulk-api-adapter`
+   - `thirdparty-api-svc`
+   - `als-consent-oracle`
+   - `als-oracle-pathfinder`
 
 5. **Testing**
    - `ml-testing-toolkit`
    - `ml-testing-toolkit-client-lib`
    - `ml-testing-toolkit-ui`
+   - `ml-testing-toolkit-shared-lib`
+   - `mojaloop-simulator`
+   - `simulator`
 
-6. **Others**
+6. **Other libraries**
    - `api-snippets`
    - `auth-service`
    - `ml-number`
-   - `ml-testing-toolkit-shared-lib`
-   - `elastic-apm-node`
-   - `elastic-apm-node-opentracing`
    - `object-store-lib`
    - `inter-scheme-proxy-cache-lib`
-   - `sdk-standard-components`
    - `database-lib`
-   - `email-notifier`
-   - `event-sidecar`
-   - `mojaloop-simulator`
-   - `simulator`
-   - `thirdparty-api-svc`
 
 ## Update Process
 
@@ -90,11 +90,11 @@ The following are the categaries of Mojaloop NodeJS repositories:
 4. **Integration Testing**
    - Test updated components together
    - Verify end-to-end functionality
-   - Check for performance impacts
+   - Check for performance impacts (roadmap, post v17)
 
 ## Testing Requirements
 
-For each repository following testings instructions at README and run:
+For each repository, follow the testing instructions at README and run:
 
 1. **Unit Tests**
    - Run existing test suite
