@@ -225,7 +225,8 @@ jobs:
           name: Cleanup PR Previews
           command: |
             # Get PRs that were closed or merged in the last 24 hours
-            CLOSED_PRS=$(gh pr list --state closed --search "closed:>$(date -d '24 hours ago' +%Y-%m-%d)" --json number)
+            # Using date -d@$(($(date +%s) - 86400)) for Alpine Linux compatibility
+            CLOSED_PRS=$(gh pr list --state closed --search "closed:>$(date -d@$(($(date +%s) - 86400)) +%Y-%m-%d)" --json number)
             
             # Extract PR numbers and clean up their previews
             echo "$CLOSED_PRS" | jq -r '.[].number' | while read -r pr_number; do
