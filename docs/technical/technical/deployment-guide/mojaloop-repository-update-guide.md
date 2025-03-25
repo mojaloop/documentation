@@ -1,4 +1,4 @@
-# NodeJS Repository Update Sequence
+# Mojaloop Repository Update Sequence
 
 This document provides guidance on the order in which Mojaloop NodeJS repositories should be updated when releasing new features and/or maintaining Mojaloop. This is important to ensure that each of the services part of a Mojaloop Release use the correct Mojaloop repository dependency. This is the update as of Mojaloop RC v17; as Mojaloop evolves, this needs to be updated with new components (and clean up components that are removed).
 
