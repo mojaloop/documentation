@@ -55,12 +55,12 @@ A Mojaloop Hub can enable a DFSP's customers to send money across borders in a c
 - **P2P** and **P2B** (sending money to friend and family in another country, or paying a bill in another country);
 - **Merchant Payments**, using RTP cross-border (supporting, for example, a small merchant that wishes to cross a nearby border to trade at a local market, taking payments in the local currency)
 
+In order to explore the aspects of the Mojaloop ecosystem that enable this, it is recommended to review:
+1. The ability to connect a Mojaloop Hub to neighbouring payment schemes, either within the same country or elsewhere, so that interoperability is supported. This capability [**is introduced here**](./InterconnectingSchemes.md). 
+  
+2. The support for foreign exchange providers (FXPs) to connect to a Mojaloop Hub and offer FX services. Neither the payer not the payee needs to define the currency to be used for a transaction; they each transact in their own currency, and the Mojaloop Hub(s) facilitate the interchange. This capability is introduced here [**is introduced here**](./ForeignExchange.md).
 
-There are two key aspects of the Mojaloop ecosystem that enable this
-1. The ability to connect a Mojaloop Hub to neighbouring payment schemes, either within the same country or elsewhere, so that interoperability is supported.
-    -  Further information on interoperability is available in the [**interscheme**](./interscheme.md) documentation.
-2. The support for external foreign exchange providers (FXPs) to connect to a Mojaloop Hub and offer FX services. Neither the payer not the payee needs to define the currency to be used for a transaction; they each transact in their own currency, and the Mojaloop Hub(s) facilitate the interchange.
-     - Further information on how Mojaloop manages foreign exchange services is available in the [**FX**](./fx.md) documentation
+3. How the interconnection/interscheme and foreign exchange capabilities are brought together to support [**cross border transactions**](./CrossBorder.md).
 
 ## Extended Use Cases
 
