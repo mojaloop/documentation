@@ -6,7 +6,7 @@ Ultimately, though, as a payment scheme grows, then the need to be interconnecte
 
 Mojaloop's Interscheme approach uses a specialised type of DFSP Participant, which we call a Proxy. A Proxy is a lightweight DFSP that exists in both interconnecting schemes, and has the following characteristics:
 - The Proxy does no message processing; all it does is pass messages (transactions) between the connected schemes;
-- The Proxy supports end-to-end message non-repudiation, a key feature of Mojaloop;
+- Ensuring non-repudiation across schemes means that the proxy is not involved in the agreement of terms, which helps reduce costs;
 - It plays no part in the clearing of transactions.
 
 The consequence of this is that a Proxy preserves the three phases of a Mojaloop transfer, as well as ensuring end-to-end non-repudiation. Consequently, the agreement reached during a transfer remains between the originating and receiving DFSPs, whichever scheme they are connected to.
