@@ -195,6 +195,29 @@ jobs:
           command: |
             apk add --no-cache github-cli
       - run:
+          name: Check PR Preview Limits
+          command: |
+            PR_NUMBER=${CIRCLE_PULL_REQUEST##*/}
+            PREVIEW_LIMIT=${PREVIEW_LIMIT:-10}  # Default to 10 if not set
+            
+            # Check if this PR already has a preview
+            # aws s3 ls checks if the directory exists, 2>/dev/null suppresses error output if it doesn't
+            if aws s3 ls "s3://docs.mojaloop.io-preview/pr-${PR_NUMBER}/" 2>/dev/null; then
+              echo "PR #${PR_NUMBER} already has a preview, allowing update"
+              exit 0
+            fi
+            
+            # Get count of existing previews
+            PREVIEW_COUNT=$(aws s3 ls s3://docs.mojaloop.io-preview/ | grep -c '^PRE pr-')
+            
+            if [ "$PREVIEW_COUNT" -ge "$PREVIEW_LIMIT" ]; then
+              echo "Maximum number of previews ($PREVIEW_LIMIT) reached"
+              gh pr comment "$PR_NUMBER" --body "⚠️ Preview deployment skipped: Maximum number of previews ($PREVIEW_LIMIT) reached. Please wait for other PRs to be merged or closed."
+              exit 1
+            fi
+            
+            echo "Preview count ($PREVIEW_COUNT) is under limit ($PREVIEW_LIMIT), proceeding with deployment"
+      - run:
           name: Deploy PR Preview
           command: ./scripts/_deploy_preview_s3.sh
           environment:
