@@ -1150,8 +1150,7 @@ module.exports = {
   plugins: [
     '@vuepress/plugin-back-to-top',
     '@vuepress/plugin-medium-zoom',
-    'versioning',
-    'vuepress-plugin-mermaidjs'
+    'versioning'
   ]
 };
 
