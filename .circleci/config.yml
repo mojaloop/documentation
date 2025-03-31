@@ -82,7 +82,12 @@ jobs:
       - run:
           name: build
           command: npm run build
-  
+      - persist_to_workspace:
+          root: .
+          paths:
+            - build
+            - docs/.vuepress/dist
+
   build-legacy:
     executor: legacy-docker
     steps:
@@ -175,10 +180,85 @@ jobs:
           environment:
             BUCKET_NAME: docs.mojaloop.io-root
             DOMAIN: docs.mojaloop.io
-    
-      # TODO: announce preview docs are ready
-      # - run:
-      #     <<: *defaults_slack_announcement
+
+  deploy_pr_preview:
+    executor: default-docker
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run:
+          name: Install general dependencies
+          command: *defaults_Dependencies
+      - run:
+          name: Configure GitHub CLI
+          command: |
+            apk add --no-cache github-cli
+      - run:
+          name: Check PR Preview Limits
+          command: |
+            PR_NUMBER=${CIRCLE_PULL_REQUEST##*/}
+            PREVIEW_LIMIT=${PREVIEW_LIMIT:-10}  # Default to 10 if not set
+            
+            # Check if this PR already has a preview
+            # aws s3 ls checks if the directory exists, 2>/dev/null suppresses error output if it doesn't
+            if aws s3 ls "s3://docs.mojaloop.io-preview/pr-${PR_NUMBER}/" 2>/dev/null; then
+              echo "PR #${PR_NUMBER} already has a preview, allowing update"
+              exit 0
+            fi
+            
+            # Get count of existing previews
+            PREVIEW_COUNT=$(aws s3 ls s3://docs.mojaloop.io-preview/ | grep -c '^PRE pr-')
+            
+            if [ "$PREVIEW_COUNT" -ge "$PREVIEW_LIMIT" ]; then
+              echo "Maximum number of previews ($PREVIEW_LIMIT) reached"
+              gh pr comment "$PR_NUMBER" --body "⚠️ Preview deployment skipped: Maximum number of previews ($PREVIEW_LIMIT) reached. Please wait for other PRs to be merged or closed."
+              exit 1
+            fi
+            
+            echo "Preview count ($PREVIEW_COUNT) is under limit ($PREVIEW_LIMIT), proceeding with deployment"
+      - run:
+          name: Deploy PR Preview
+          command: ./scripts/_deploy_preview_s3.sh
+          environment:
+            BUCKET_NAME: docs.mojaloop.io-preview
+            DOMAIN: docs.mojaloop.io
+            IS_PR: "true"
+            PR_NUMBER: ${CIRCLE_PULL_REQUEST##*/}
+      - run:
+          name: Comment PR with Preview URL
+          command: |
+            PR_NUMBER=${CIRCLE_PULL_REQUEST##*/}
+            if [ -n "$PR_NUMBER" ]; then
+              gh pr comment "$PR_NUMBER" --body "Preview deployment is available at: https://pr-${PR_NUMBER}.docs.mojaloop.io"
+            fi
+
+  cleanup_pr_preview:
+    executor: default-docker
+    steps:
+      - checkout
+      - run:
+          name: Install general dependencies
+          command: *defaults_Dependencies
+      - run:
+          name: Configure GitHub CLI
+          command: |
+            apk add --no-cache github-cli
+      - run:
+          name: Cleanup PR Previews
+          command: |
+            # Get PRs that were closed or merged in the last 24 hours
+            # Using date -d@$(($(date +%s) - 86400)) for Alpine Linux compatibility
+            CLOSED_PRS=$(gh pr list --state closed --search "closed:>$(date -d@$(($(date +%s) - 86400)) +%Y-%m-%d)" --json number)
+            
+            # Extract PR numbers and clean up their previews
+            echo "$CLOSED_PRS" | jq -r '.[].number' | while read -r pr_number; do
+              echo "Cleaning up preview for PR #$pr_number"
+              aws s3 rm s3://docs.mojaloop.io-preview/pr-${pr_number} --recursive
+              aws cloudfront create-invalidation \
+                --distribution-id ${CLOUDFRONT_DISTRIBUTION_ID} \
+                --paths "/pr-${pr_number}/*"
+            done
 
   # When a new tag is pushed, create a new version of docs
   # and push it to master to be uploaded
@@ -251,28 +331,35 @@ workflows:
             - build
             - build-legacy
             - test-puml
-          filters:
-            branches:
-              only:
-                - master
-          
-      - s3_upload:
+
+  pr_preview:
+    jobs:
+      - build:
           context: org-global
-          requires:
-            - infra
           filters:
             branches:
-              only:
-                - master
-      
-      - bump_version:
+              ignore: /master|main/
+      - deploy_pr_preview:
           context: org-global
           requires:
             - build
-            - build-legacy
           filters:
             branches:
-              ignore:
-                - /.*/
-            tags:
-              only: /v[0-9]+(\.[0-9]+)*(\-snapshot)?(\-hotfix(\.[0-9]+))?/
+              ignore: /master|main/
+
+  cleanup_preview:
+    jobs:
+      - cleanup_pr_preview:
+          context: org-global
+          filters:
+            branches:
+              only: /.*/
+              ignore: /master|main/
+
+  scheduled_cleanup:
+    when:
+      and:
+        - equal: [ scheduled, << pipeline.trigger_source >> ]
+    jobs:
+      - cleanup_pr_preview:
+          context: org-global
