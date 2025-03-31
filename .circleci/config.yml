@@ -241,9 +241,9 @@ jobs:
           name: Install general dependencies
           command: *defaults_Dependencies
       - run:
-          name: Configure GitHub CLI
+          name: Configure GitHub CLI and jq
           command: |
-            apk add --no-cache github-cli
+            apk add --no-cache github-cli jq
       - run:
           name: Cleanup PR Previews
           command: |
