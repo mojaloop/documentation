@@ -1,6 +1,3 @@
-The following diagram illustrates the recommended update sequence for Mojaloop repositories, taking into account their dependencies and relationships:
-
-```mermaid
 graph TD
     step1["Step 1: Base Libraries<br>api-snippets<br>ml-number<br>central-services-logger<br>central-services-metrics<br>central-services-error-handling<br>ml-testing-toolkit-shared-lib<br>elastic-apm-node<br>elastic-apm-node-opentracing"]
     step2["Step 2: First-level Dependencies<br>object-store-lib<br>central-services-stream<br>central-services-health<br>inter-scheme-proxy-cache-lib"]
@@ -30,12 +27,4 @@ graph TD
     %% Styling
     classDef default fill:#f9f9f9,stroke:#333,stroke-width:1px;
     classDef note fill:#ffffcc,stroke:#333,stroke-width:1px;
-    class note1 note;
-```
-
-This diagram provides a visual representation of the update sequence, showing:
-1. The logical grouping of repositories
-2. Dependencies between different groups
-3. Special cases like circular dependencies
-4. Parallel update possibilities
-5. Different types of dependencies to consider 
+    class note1 note; 
