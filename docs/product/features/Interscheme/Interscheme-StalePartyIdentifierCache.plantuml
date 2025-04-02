@@ -56,11 +56,13 @@ Payer DFSP : Proxy AB
 end note        
 ALS_B-> Oracle_B: **GET** /participant/{ID}
   Oracle_B--> ALS_B: dfps = payeeDFSP
+ alt if dfsp is a member of Scheme B
   ALS_B ->> payeeDFSP: **GET** /parties/{Type}/{ID}
   payeeDFSP ->> ALS_B: **PUT** /parties/{ID}/error
   note right
    header desitination = payerDFSP
   end note
+  end
   ALS_B -> pc_B: Lookup payerDFSP proxy
   ALS_B ->> xnp: **PUT** /parties/{ID}/error
   xnp->xnp: Add header
@@ -76,7 +78,11 @@ ALS_B-> Oracle_B: **GET** /participant/{ID}
     SentToProxies[{ID}] list undefined
   end note
   ALS_A -> Oracle_A: Remove mapping in Oracle\n **DELETE** \participants\{Type}\{ID} 
-  ALS_A ->> ALS_A: Restart the ALS get parties process
+  ALS_A ->> payerDFSP: **PUT** /parties/{ID}/error
+  note right 
+  {ErrorCode: "2003"} 
+  (Service Unavailable)
+  end note
   else
   ALS_A->>payerDFSP: **PUT** /parties/{ID}/error
 end
