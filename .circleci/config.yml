@@ -202,13 +202,13 @@ jobs:
             
             # Check if this PR already has a preview
             # aws s3 ls checks if the directory exists, 2>/dev/null suppresses error output if it doesn't
-            if aws s3 ls "s3://docs.mojaloop.io-preview/pr-${PR_NUMBER}/" 2>/dev/null; then
+            if aws s3 ls "s3://docs.mojaloop.io-preview/${PR_NUMBER}/" 2>/dev/null; then
               echo "PR #${PR_NUMBER} already has a preview, allowing update"
               exit 0
             fi
             
             # Get count of existing previews
-            PREVIEW_COUNT=$(aws s3 ls s3://docs.mojaloop.io-preview/ | grep -c '^PRE pr-')
+            PREVIEW_COUNT=$(aws s3 ls s3://docs.mojaloop.io-preview/ | grep -c '^PRE [0-9]')
             
             if [ "$PREVIEW_COUNT" -ge "$PREVIEW_LIMIT" ]; then
               echo "Maximum number of previews ($PREVIEW_LIMIT) reached"
@@ -222,7 +222,7 @@ jobs:
           command: ./scripts/_deploy_preview_s3.sh
           environment:
             BUCKET_NAME: docs.mojaloop.io-preview
-            DOMAIN: docs.mojaloop.io
+            DOMAIN: preview.docs.mojaloop.io
             IS_PR: "true"
             PR_NUMBER: ${CIRCLE_PULL_REQUEST##*/}
       - run:
@@ -230,7 +230,7 @@ jobs:
           command: |
             PR_NUMBER=${CIRCLE_PULL_REQUEST##*/}
             if [ -n "$PR_NUMBER" ]; then
-              gh pr comment "$PR_NUMBER" --body "Preview deployment is available at: https://pr-${PR_NUMBER}.docs.mojaloop.io"
+              gh pr comment "$PR_NUMBER" --body "Preview deployment is available at: https://preview.docs.mojaloop.io/${PR_NUMBER}"
             fi
 
   cleanup_pr_preview:
@@ -254,10 +254,10 @@ jobs:
             # Extract PR numbers and clean up their previews
             echo "$CLOSED_PRS" | jq -r '.[].number' | while read -r pr_number; do
               echo "Cleaning up preview for PR #$pr_number"
-              aws s3 rm s3://docs.mojaloop.io-preview/pr-${pr_number} --recursive
+              aws s3 rm s3://docs.mojaloop.io-preview/${pr_number} --recursive
               aws cloudfront create-invalidation \
                 --distribution-id ${CLOUDFRONT_DISTRIBUTION_ID} \
-                --paths "/pr-${pr_number}/*"
+                --paths "/${pr_number}/*"
             done
 
   # When a new tag is pushed, create a new version of docs
