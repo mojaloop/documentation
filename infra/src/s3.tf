@@ -77,8 +77,7 @@ POLICY
 resource "aws_s3_bucket" "website_preview" {
   provider = aws.custom
   bucket = "${var.website-domain-main}-preview"
-  acl    = "public-read"
-
+  
   force_destroy = true
 
   logging {
