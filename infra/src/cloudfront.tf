@@ -4,7 +4,7 @@ resource "aws_cloudfront_distribution" "website_cdn_root" {
   provider = aws.custom
   enabled     = true
   price_class = "PriceClass_All"
-  aliases = [var.website-domain-main, "*.${var.website-domain-main}"]
+  aliases = [var.website-domain-main, "preview.${var.website-domain-main}"]
 
   // base docs.mojaloop.io origin
   origin {
@@ -192,9 +192,9 @@ resource "aws_cloudfront_distribution" "website_cdn_root" {
     }
   }
 
-  # Handle PR preview subdomains before other paths
+  # Handle PR preview paths
   ordered_cache_behavior {
-    path_pattern = "/*"
+    path_pattern = "/[0-9]*"
     target_origin_id = "origin-bucket-${aws_s3_bucket.website_preview.id}"
     allowed_methods  = ["GET", "HEAD", "OPTIONS"]
     cached_methods   = ["GET", "HEAD", "OPTIONS"]
@@ -207,12 +207,6 @@ resource "aws_cloudfront_distribution" "website_cdn_root" {
       cookies {
         forward = "none"
       }
-    }
-
-    # Use the CloudFront function to route requests based on subdomain
-    function_association {
-      event_type = "viewer-request"
-      function_arn = aws_cloudfront_function.pr-preview-router.arn
     }
   }
 
@@ -278,13 +272,4 @@ resource "aws_cloudfront_function" "docs-redirects" {
   comment = "main"
   publish = true
   code    = file("${path.module}/redirect/index.js")
-}
-
-resource "aws_cloudfront_function" "pr-preview-router" {
-  provider = aws.custom
-  name    = "${replace(var.website-domain-main, ".", "-")}-pr-preview-router"
-  runtime = "cloudfront-js-1.0"
-  comment = "Routes PR preview subdomains to the correct branch folders"
-  publish = true
-  code    = file("${path.module}/redirect/pr-preview-router.js")
 }
