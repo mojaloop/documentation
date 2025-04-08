@@ -93,6 +93,29 @@ As the backend dependencies are shared between the current and target deployment
 ##### 2. Target version has datastore breaking changes
 
 See [Mojaloop installed with backend dependencies](#mojaloop-installed-with-backend-dependencies).
+#### Mojaloop installed without backend dependencies
+In this scenario, we can utilise the inplace helm upgrade of backend dependencies.
+A maintenance window need to be scheduled to stop "live" transaction on the current deployment to ensure data consistency, and allow for the switch-over to occur safely. This will cause a disruption, but can be somewhat mitigated by ensuring that the maintenance window is scheduled during the least busiest time.
+It is very important to take the backup of the database in case we need to rollback to previous version
+
+1. Schedule upgrade window
+2. Backup the databases
+3. Customize the [Mojaloop Chart values.yaml](https://github.com/mojaloop/helm/blob/master/mojaloop/values.yaml) for the desired target Mojaloop release
+4. Uninstall the mojaloop services
+5. Upgrade the backend dependencies using 
+```bash 
+helm upgrade ${RELEASE_NAME} mojaloop/example-mojaloop-backend --namespace ${NAMESPACE} --version ${RELEASE_VERSION}
+```
+6. Install mojaloop services
+```bash 
+helm upgrade ${RELEASE_NAME} mojaloop/mojaloop --namespace ${NAMESPACE} --version ${RELEASE_VERSION} -f {$VALUES_FILE}
+```
+7. Execute sanity tests
+8. If you need to rollback then
+   1. uninstall mojaloop and backend dependencies
+   2. install previous version of backend dependecies
+   3. load the database from the backup
+   4. install previous version of mojaloop services
 
 #### Mojaloop installed with backend dependencies (Version 15 or older)
 
