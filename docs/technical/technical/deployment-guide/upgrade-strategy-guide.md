@@ -94,7 +94,7 @@ As the backend dependencies are shared between the current and target deployment
 
 See [Mojaloop installed with backend dependencies](#mojaloop-installed-with-backend-dependencies).
 
-#### Mojaloop installed with backend dependencies
+#### Mojaloop installed with backend dependencies (Version 15 or older)
 
 In this scenario, we can utilise a Blue-green style deployment strategy by deploying new backend dependencies, and deploying the target Mojaloop release separately (with the additional benefit of aligning your deployment to the recommending deployment topology).
 
