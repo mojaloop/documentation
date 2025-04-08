@@ -7,6 +7,7 @@ This document provides commands to upgrade existing Mojaloop installations. It a
 - [Upgrade Commands](#upgrade-commands)
   - [Table of Contents](#table-of-contents)
   - [Upgrade to v17.0.0](#upgrade-to-v17.0.0)
+    - [Testing the upgrade scenario from v16.0.0 to v17.0.0](#testing-the-upgrade-scenario-from-v16.0.0-to-v17.0.0)
 
 
        
