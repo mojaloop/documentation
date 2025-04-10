@@ -92,9 +92,31 @@ As the backend dependencies are shared between the current and target deployment
 
 ##### 2. Target version has datastore breaking changes
 
-See [Mojaloop installed with backend dependencies](#mojaloop-installed-with-backend-dependencies).
+#### Mojaloop installed without backend dependencies
+In this scenario, we can utilise the inplace helm upgrade of backend dependencies.
+A maintenance window need to be scheduled to stop "live" transaction on the current deployment to ensure data consistency, and allow for the switch-over to occur safely. This will cause a disruption, but can be somewhat mitigated by ensuring that the maintenance window is scheduled during the least busiest time.
 
-#### Mojaloop installed with backend dependencies
+It is very important to take the backup of the database in case we need to rollback to previous version
+
+1. Schedule upgrade window
+2. Backup the databases
+3. Customize the [Mojaloop Chart values.yaml](https://github.com/mojaloop/helm/blob/master/mojaloop/values.yaml) for the desired target Mojaloop release
+4. Uninstall the mojaloop services
+5. Upgrade the backend dependencies using 
+```bash 
+helm upgrade ${RELEASE_NAME} mojaloop/example-mojaloop-backend --namespace ${NAMESPACE} --version ${RELEASE_VERSION}
+```
+6. Install mojaloop services
+```bash 
+helm install ${RELEASE_NAME} mojaloop/mojaloop --namespace ${NAMESPACE} --version ${RELEASE_VERSION} -f {$VALUES_FILE}
+```
+7. Execute sanity tests
+8. If you need to rollback then (make sure database backup was taken before the upgrade)
+   1. use `helm rollback` command to rollback to previous version of backend dependencies
+   2. load the database from the backup ( to ensure the datastore is in correct state)
+   3. install previous version of mojaloop services
+
+#### Mojaloop installed with backend dependencies (Version 15 or older)
 
 In this scenario, we can utilise a Blue-green style deployment strategy by deploying new backend dependencies, and deploying the target Mojaloop release separately (with the additional benefit of aligning your deployment to the recommending deployment topology).
 
