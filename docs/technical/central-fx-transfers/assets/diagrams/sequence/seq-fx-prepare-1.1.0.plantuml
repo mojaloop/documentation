@@ -1,0 +1,186 @@
+/'*****
+ License
+ --------------
+ Copyright © 2020 Mojaloop Foundation
+ The Mojaloop files are made available by the Mojaloop Foundation under the Apache License, Version 2.0
+ (the "License") and you may not use these files except in compliance with the [License](http://www.apache.org/licenses/LICENSE-2.0). 
+ You may obtain a copy of the License at [http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)
+ Unless required by applicable law or agreed to in writing, the Mojaloop files are distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the [License](http://www.apache.org/licenses/LICENSE-2.0).
+ 
+ Contributors
+ --------------
+ This is the official list of the Mojaloop project contributors for this file.
+ Names of the original copyright holders (individuals or organizations)
+ should be listed with a '*' in the first column. People who have
+ contributed from an organization can be listed under the organization
+ that actually holds the copyright for their contributions (see the
+ Gates Foundation organization for an example). Those individuals should have
+ their names indented and be marked with a '-'. Email address can be added
+ optionally within square brackets <email>.
+ * Gates Foundation
+ - Name Surname <name.surname@gatesfoundation.com>
+
+ * Steven Oderayi <steven.oderayi@infitx.com>
+ --------------
+ ******'/
+
+@startuml PayerFSP-fx-conversion-prepare-request
+
+!$payerCurrency = "<ISO currency code>"
+!$payeeCurrency = "<ISO currency code>"
+!$dfsp1Id = "<DFSP1>"
+!$fxpID = "<fxpId>"
+!$payerMSISDN = "<MSISDN>"
+!$payeeMSISDN = "<MSISDN>"
+!$payeeReceiveAmount = "<number>"
+!$payerSendAmount = "<number>"
+!$payeeFee = "<number>"
+!$targetAmount = "<number>"
+!$fxpChargesSource = "<number>"
+!$fxpChargesTarget = "<number>"
+!$fxpSourceAmount = "<number>"
+!$fxpTargetAmount = "<number>"
+!$conversionRequestId = "<UUID>"
+!$conversionId = "<UUID>"
+!$homeTransactionId = "<string>"
+!$quoteId = "<UUID>"
+!$transactionId = "<UUID>"
+!$quotePayerExpiration = "<timestamp>"
+!$quotePayeeExpiration = "<timestamp>"
+!$commitRequestId = "<UUID>"
+!$determiningTransferId = "<UUID>"
+!$transferId = "<UUID>"
+!$fxCondition = "<ILP condition>"
+!$condition = "<ILP condition>"
+
+' declate title
+title 1.1.0. DFSP1 sends an FX Conversion prepare request to FXP1
+
+autonumber
+
+' declare actors
+actor "DFSP1\nPayer" as DFSP1
+control "FXP1\nFXP" as FXP1
+boundary "ML API Adapter" as MLAPI
+control "ML API Notification Event Handler" as NOTIFY_HANDLER
+boundary "Central Service API" as CSAPI
+collections "topic-transfer-prepare" as TOPIC_TRANSFER_PREPARE
+control "Prepare Event Handler" as PREP_HANDLER
+collections "topic-transfer-position" as TOPIC_TRANSFER_POSITION
+control "Position Event Handler" as POS_HANDLER
+collections "Notification-Topic" as TOPIC_NOTIFICATIONS
+
+box "Financial Service Providers" #lightGray
+	participant DFSP1
+    participant FXP1
+end box
+
+box "ML API Adapter Service" #LightBlue
+	participant MLAPI
+	participant NOTIFY_HANDLER
+end box
+
+box "Central Service" #LightYellow
+    participant CSAPI
+	participant TOPIC_TRANSFER_PREPARE
+    participant PREP_HANDLER
+    participant TOPIC_TRANSFER_POSITION
+    participant POS_HANDLER
+    participant TOPIC_NOTIFICATIONS
+end box
+
+' start flow
+activate NOTIFY_HANDLER
+activate PREP_HANDLER
+activate POS_HANDLER
+group DFSP1 sends an FX Conversion request to FXP1
+    note right of DFSP1 #yellow
+        Headers - transferHeaders: {
+            Content-Length: <Content-Length>,
+            Content-Type: <Content-Type>,
+            Date: <Date>,
+            X-Forwarded-For: <X-Forwarded-For>,
+            FSPIOP-Source: <FSPIOP-Source>,
+            FSPIOP-Destination: <FSPIOP-Destination>,
+            FSPIOP-Encryption: <FSPIOP-Encryption>,
+            FSPIOP-Signature: <FSPIOP-Signature>,
+            FSPIOP-URI: <FSPIOP-URI>,
+            FSPIOP-HTTP-Method: <FSPIOP-HTTP-Method>
+        }
+
+        Payload:
+        {
+            "commitRequestId": "$commitRequestId",
+            "determiningTransferId": "$determiningTransferId",
+            "initiatingFsp": "$dfsp1Id",
+            "counterPartyFsp": "$fxpID",
+            "amountType": "SEND",
+            "sourceAmount": {
+                "currency": "$payerCurrency",
+                "amount": "$fxpSourceAmount"
+            },
+            "targetAmount": {
+                "currency": "$payeeCurrency",
+                "amount": "$fxpTargetAmount"
+            },
+            "condition": "$fxCondition"
+        }
+    end note
+    DFSP1 ->> MLAPI: POST - /fxTransfers
+    activate MLAPI
+    MLAPI -->> DFSP1: Respond HTTP - 202 (Accepted)
+    alt Schema validation error
+        MLAPI-->>DFSP1: Respond HTTP - 400 (Bad Request)
+    end
+    note right of MLAPI #yellow
+        Message:
+        {
+            id: <transferMessage.commitRequestId>
+            from: <transferMessage.initiatingFsp>,
+            to: <transferMessage.counterPartyFsp>,
+            type: application/json
+            content: {
+                headers: <transferHeaders>,
+                payload: <transferMessage>
+            },
+            metadata: {
+                event: {
+                    id: <UUID>,
+                    type: prepare,
+                    action: fx_prepare,
+                    createdAt: <timestamp>,
+                    state: {
+                        status: "success",
+                        code: 0
+                    }
+                }
+            }
+        }
+    end note
+    MLAPI -> TOPIC_TRANSFER_PREPARE: Route & Publish FX Prepare event for Payer
+    activate TOPIC_TRANSFER_PREPARE
+    TOPIC_TRANSFER_PREPARE <-> TOPIC_TRANSFER_PREPARE: Ensure event is replicated as configured (ACKS=all)\n<color #FF0000><b>Error code:</b> 2003</color>
+    TOPIC_TRANSFER_PREPARE --> MLAPI: Replication acknowledgements have been received
+    deactivate TOPIC_TRANSFER_PREPARE
+    alt Error publishing event
+        MLAPI-->>DFSP1: Respond HTTP - 500 (Internal Server Error)\n<color #red>**Error code:** 2003</color>
+    end
+    deactivate MLAPI
+    |||
+    TOPIC_TRANSFER_PREPARE <- PREP_HANDLER: Consume message
+    ref over TOPIC_TRANSFER_PREPARE, PREP_HANDLER, TOPIC_TRANSFER_POSITION :  Prepare Handler Consume\n
+    PREP_HANDLER -> TOPIC_TRANSFER_POSITION: Produce message
+    |||
+    TOPIC_TRANSFER_POSITION <- POS_HANDLER: Consume message
+    ref over TOPIC_TRANSFER_POSITION, POS_HANDLER : Position Handler Consume\n
+    POS_HANDLER -> TOPIC_NOTIFICATIONS: Produce message
+    |||
+    TOPIC_NOTIFICATIONS <- NOTIFY_HANDLER: Consume message
+    ref over FXP1, TOPIC_NOTIFICATIONS : Send notification to Participant (FXP)\n
+    NOTIFY_HANDLER -> FXP1: Send callback notification
+    |||
+end
+deactivate POS_HANDLER
+deactivate PREP_HANDLER
+deactivate NOTIFY_HANDLER
+@enduml
