@@ -26,9 +26,9 @@ Here is an example of the message:
 #### Message Details
 The details on how to compose and make this API are covered in the following sections:
 1. [Core Data Elements](#core-data-elements)<br>This section specifies which fields are required, which fields are optional, and which fields are unsupported in order to meet the message validating requirements.
-2. [Header Details](../MarketPracticeDocument.md#331-header-details)<br> This general section specifies the header requirements for the API are specified.
-3. [Supported HTTP Responses](../MarketPracticeDocument.md#332-supported-http-responses)<br> This general section specifies the http responses that must be supported.
-4. [Common Error Payload](../MarketPracticeDocument.md#333-common-error-payload)<br> This general section specifies the common error payload that is provided in synchronous http error response.
+2. [Header Details](../MarketPracticeDocument.md#_3-3-1-header-details)<br> This general section specifies the header requirements for the API are specified.
+3. [Supported HTTP Responses](../MarketPracticeDocument.md#_3-3-2-supported-http-responses)<br> This general section specifies the http responses that must be supported.
+4. [Common Error Payload](../MarketPracticeDocument.md#_3-3-3-common-error-payload)<br> This general section specifies the common error payload that is provided in synchronous http error response.
 
 #### Core Data Elements
 Here are the core data elements that are needed to meet this market practice requirement.
