@@ -58,7 +58,7 @@ ALS_A ->> ALS_A: Are there any proxies\n in Scheme A?
     payeeDFSP -->> ALS_B: 202 OK
     payeeDFSP ->> ALS_B: PUT /parties/{ID}
     note right
-    header desitination = payerDFSP
+    header destination = payerDFSP
     source = payeeDFSP
     end note
     ALS_B -->> payeeDFSP: 200 Ok
@@ -106,7 +106,8 @@ else if found in Oracle
 
   ALS_A->ALS_A: Payee DFSP is \nnot in scheme A 
   ALS_A-> pc_A: Lookup proxy for\n Payee DFSP
-  ALS_A->ALS_A: Add desitation to header 
+  alt if header source is a member of Scheme A
+  ALS_A->ALS_A: Add destination to header 
   note left 
   destination dfsp: Payee DFSP
   end note 
@@ -115,12 +116,13 @@ else if found in Oracle
   xnp ->> ALS_B: GET /parties/{Type}/{ID} 
   ALS_B -->> xnp: 202 OK
   xnp -->> ALS_A: 202 OK
-  ALS_B->ALS_B: Forward to desitination
+  end
+  ALS_B->ALS_B: Forward to destination
   ALS_B ->> payeeDFSP: GET /parties/{Type}/{ID}
   payeeDFSP -->> ALS_B: 202 OK
   payeeDFSP ->> ALS_B: PUT /parties/{ID}
   note right
-   header desitination = payerDFSP
+   header destination = payerDFSP
   end note
   ALS_B -->> payeeDFSP: 200 Ok
   ALS_B -> pc_B: Lookup payerDFSP proxy
