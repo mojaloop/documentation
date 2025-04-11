@@ -28,16 +28,16 @@
 !$fxpTargetAmount = "48000"
 !$totalChargesSourceCurrency = "55"
 !$totalChargesTargetCurrency = "10000"
-!$conversionRequestId = "828cc75f1654415e8fcddf76cc"
-!$conversionId = "581f68efb54f416f9161ac34e8"
+!$conversionRequestId = "828cc75f165441..."
+!$conversionId = "581f68efb5..."
 !$homeTransactionId = "string"
-!$quoteId = "382987a875ce4037b500c475e0"
-!$transactionId = "d9ce59d4359843968630581bb0"
+!$quoteId = "382987a875ce..."
+!$transactionId = "d9ce59d4359843..."
 !$quotePayerExpiration = "2021-08-25T14:17:09.663+01:00"
 !$quotePayeeExpiration = "2021-08-25T14:17:09.663+01:00"
-!$commitRequestId = "77c9d78dc26a44748b3c99b96a"
-!$determiningTransferId = "d9ce59d4359843968630581bb0"
-!$transferId = "d9ce59d4359843968630581bb0"
+!$commitRequestId = "77c9d78dc26..."
+!$determiningTransferId = "d9ce59d4359843..."
+!$transferId = "d9ce59d4359843..."
 !$fxCondition = "GRzLaTP7DJ9t4P-a_B..."
 !$condition = "HOr22-H3AfTDHrSkP..."
 
@@ -64,7 +64,7 @@ end box
 actor "$receiverName" as A2
 autonumber
 
-D1->>S1:Please confirm your part of the transfer
+D1->>S1:Please confirm your part\n of the transfer
 deactivate D1
 note left 
 **POST /fxTransfers**
@@ -100,7 +100,7 @@ note over S1
 **$payerFSPID has a reservation of $fxpSourceAmount $payerCurrency**
 end note
 !endif
-S1->>FXP:Please confirm the currency \nconversion part of the transfer\n** POST /fxTransfers**
+S1->>FXP:Please confirm the currency \nconversion part of the transfer\n **POST /fxTransfers**
 deactivate S1
 activate FXP
 !if ($simplified != true)
@@ -146,11 +146,11 @@ note right
 }
 end note
 else Conversion succeeded
-S1->D1:Conversion succeeded subject to transfer success\n**PUT /fxTransfers/77c9d78d-c26a-4474-8b3c-99b96a814bfc**
+S1->D1:Conversion succeeded subject \nto transfer success\n**PUT /fxTransfers/$commitRequestId**
 
 end
 !else
-S1->D1:Conversion succeeded subject to transfer success\n**PUT /fxTransfers/77c9d78d-c26a-4474-8b3c-99b96a814bfc**
+S1->D1:Conversion succeeded subject \nto transfer success\n**PUT /fxTransfers/$commitRequestId**
 !endif
 deactivate S1
 activate D1
@@ -160,7 +160,7 @@ D1-->S1:200 Gotcha
 
 D1->D1:OK, so that's all right\nNow I can send the transfer itself
 
-D1->S1:Please do the transfer **POST /transfers**
+D1->S1:Please do the transfer\n **POST /transfers**
 !if ($simplified != true)
 note left
 **POST /transfers**
@@ -183,9 +183,9 @@ activate S1
 S1-->D1:202 I'll get back to you
 !endif
 !if ($hideSwitchDetail != true)
-S1->S1:Is there a dependent transfer? Yes
+S1->S1:Is there a dependent transfer? \nYes
 !endif
-S1->S1:Perform liquidity check and reserve funds\nagainst creditor party to dependent transfer
+S1->S1:Perform liquidity check and \nreserve funds against creditor\n party to dependent transfer
 note over S1
 **Reservations:**
 
@@ -199,7 +199,7 @@ activate D2
 !if ($simplified != true)
 D2-->S1:202 I'll get back to you
 !endif
-D2->D2:Let me check that the terms\n of the dependent transfer\nare the same as the ones I agreed to\nand that the fulfilment and condition match
+D2->D2:Let me check that the terms\n of the dependent transfer\nare the same as the ones I \nagreed to and that the \nfulfilment and condition match
 
 D2->A2: Hi $receiverName's, you got inbound \ntransfer $payeeReceiveAmount $payeeCurrency
 
@@ -207,7 +207,7 @@ D2->>S1:Transfer is confirmed, here's the fulfilment
 note right
 **PUT /transfers/$commitRequestId**
 {
-  "completedTimestamp": "2021-08-25T14:17:08.227+01:00",
+  "completedTimestamp": "2021-08-25T14:17:08...",
   "fulfilment": "mhPUT9ZAwd-BXLfeSd...",
   "transferState": "COMMITTED"
 }
@@ -221,17 +221,23 @@ S1-->>D2:200 Gotcha
 S1->S1:Is there a dependent transfer?\nYes, there is.
 S1->S1:Is this dependency against the\n debtor party to the transfer?\nYes, it is.
 S1->S1:Create an obligation from the\n debtor party to the party named \nin the dependency (the FXP)
-S1->S1:Is the transfer denominated in\n the currency of the payee receive\n amount? Yes, it is.
-S1->S1:Create an obligation from the\n party named in the dependency\nto the creditor party for the transfer
+S1->S1:Is the transfer denominated in\n the currency of the payee \nreceive amount? Yes, it is.
+S1->S1:Create an obligation from the\n party named in the\n dependency to the creditor \nparty for the transfer
 !else
 S1->S1:Create obligations from the payer to the FXP and from FXP to the payee
 !endif
+note over S1
+    **Ledger positions:**
+    $payerFSPID has a debit of $fxpSourceAmount $payerCurrency
+    $fxpID has a credit of $fxpSourceAmount $payerCurrency
+    $fxpID has a debit of $fxpTargetAmount $payeeCurrency
+    $payeeFSPID has a credit of $targetAmount $payeeCurrency
+end note
 S1->>FXP:The transfer succeeded.\nYou can clear it in your ledgers
 note left
 **PATCH /fxTransfers/$commitRequestId**
 {
   "completedTimestamp": "2021-08-25T14:17:08.227+01:00",
-  "fulfilment": "mhPUT9ZAwd-BXLf...",
   "transferState": "COMMITTED"
 }
 end note
@@ -240,13 +246,6 @@ FXP->FXP:Let's just check: does this match the stuff I sent?
 FXP->FXP:It does. Great. I'll clear the conversion
 FXP-->>S1:200 Gotcha
 deactivate FXP
-note over S1
-    **Ledger positions:**
-    $payerFSPID has a debit of $fxpSourceAmount $payerCurrency
-    $fxpID has a credit of $fxpSourceAmount $payerCurrency
-    $fxpID has a debit of $fxpTargetAmount $payeeCurrency
-    $payeeFSPID has a credit of $targetAmount $payeeCurrency
-end note
 S1->>D1:Transfer is complete\n**PUT /transfers/$commitRequestId**
 deactivate S1
 activate D1
