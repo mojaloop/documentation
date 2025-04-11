@@ -2,38 +2,38 @@
  
 <!-- TOC depthfrom:1 depthto:3 orderedlist:true -->
 
-- [1. Mojaloop ISO 20022 Market Practice Document](#1-mojaloop-iso-20022-market-practice-document)
-- [2. Introduction](#2-introduction)
-    - [2.1. How to Use This Document?](#21-how-to-use-this-document)
-        - [2.1.1. Relationship with Scheme-Specific Rules Documents](#211-relationship-with-scheme-specific-rules-documents)
-        - [2.1.2. Distinction Between Generic Practices and Scheme-Specific Requirements](#212-distinction-between-generic-practices-and-scheme-specific-requirements)
-- [3. Message Expectations, Obligations, and Rules](#3-message-expectations-obligations-and-rules)
-    - [3.1. Currency Conversion](#31-currency-conversion)
-    - [3.2. JSON Messages](#32-json-messages)
-    - [3.3. APIs](#33-apis)
-        - [3.3.1. Header Details](#331-header-details)
-        - [3.3.2. Supported HTTP Responses](#332-supported-http-responses)
-        - [3.3.3. Common Error Payload](#333-common-error-payload)
-    - [3.4. ULIDs as Unique Identifiers](#34-ulids-as-unique-identifiers)
-    - [3.5. Inter-ledger Protocol v4 to represent the Cryptographic Terms](#35-inter-ledger-protocol-v4-to-represent-the-cryptographic-terms)
-    - [3.6. ISO 20022 Supplementary Data Fields](#36-iso-20022-supplementary-data-fields)
-- [4. Discovery Phase](#4-discovery-phase)
-    - [4.1. Message flow](#41-message-flow)
-    - [4.2. Parties Resource](#42-parties-resource)
-- [5. Agreement Phase](#5-agreement-phase)
-    - [5.1. Currency Conversion Agreement Sub-Phase](#51-currency-conversion-agreement-sub-phase)
-        - [5.1.1. Message flow](#511-message-flow)
-        - [5.1.2. fxQuotes Resource](#512-fxquotes-resource)
-    - [5.2. Transfer Terms Agreement Sub-Phase](#52-transfer-terms-agreement-sub-phase)
-        - [5.2.1. Message flow](#521-message-flow)
-        - [5.2.2. Quotes Resource](#522-quotes-resource)
-- [6. Transfer Phase](#6-transfer-phase)
-    - [6.1. Accepting Currency Conversion terms](#61-accepting-currency-conversion-terms)
-        - [6.1.1. Message flow](#611-message-flow)
-        - [6.1.2. fxTransfers Resource](#612-fxtransfers-resource)
-    - [6.2. Transfer Execution and Clearing](#62-transfer-execution-and-clearing)
-        - [6.2.1. Message flow](#621-message-flow)
-        - [6.2.2. Transfers Resource](#622-transfers-resource)
+- [1. Mojaloop ISO 20022 Market Practice Document](#_1-mojaloop-iso-20022-market-practice-document)
+- [2. Introduction](#_2-introduction)
+    - [2.1. How to Use This Document?](#_2-1-how-to-use-this-document)
+        - [2.1.1. Relationship with Scheme-Specific Rules Documents](#_2-1-1-relationship-with-scheme-specific-rules-documents)
+        - [2.1.2. Distinction Between Generic Practices and Scheme-Specific Requirements](#_2-1-2-distinction-between-generic-practices-and-scheme-specific-requirements)
+- [3. Message Expectations, Obligations, and Rules](#_3-message-expectations-obligations-and-rules)
+    - [3.1. Currency Conversion](#_3-1-currency-conversion)
+    - [3.2. JSON Messages](#_3-2-json-messages)
+    - [3.3. APIs](#_3-3-apis)
+        - [3.3.1. Header Details](#_3-3-1-header-details)
+        - [3.3.2. Supported HTTP Responses](#_3-3-2-supported-http-responses)
+        - [3.3.3. Common Error Payload](#_3-3-3-common-error-payload)
+    - [3.4. ULIDs as Unique Identifiers](#_3-4-ulids-as-unique-identifiers)
+    - [3.5. Inter-ledger Protocol v4 to represent the Cryptographic Terms](#_3-5-inter-ledger-protocol-v4-to-represent-the-cryptographic-terms)
+    - [3.6. ISO 20022 Supplementary Data Fields](#_3-6-iso-20022-supplementary-data-fields)
+- [4. Discovery Phase](#_4-discovery-phase)
+    - [4.1. Message flow](#_4-1-message-flow)
+    - [4.2. Parties Resource](#_4-2-parties-resource)
+- [5. Agreement Phase](#_5-agreement-phase)
+    - [5.1. Currency Conversion Agreement Sub-Phase](#_5-1-currency-conversion-agreement-sub-phase)
+        - [5.1.1. Message flow](#_5-1-1-message-flow)
+        - [5.1.2. fxQuotes Resource](#_5-1-2-fxquotes-resource)
+    - [5.2. Transfer Terms Agreement Sub-Phase](#_5-2-transfer-terms-agreement-sub-phase)
+        - [5.2.1. Message flow](#_5-2-1-message-flow)
+        - [5.2.2. Quotes Resource](#_5-2-2-quotes-resource)
+- [6. Transfer Phase](#_6-transfer-phase)
+    - [6.1. Accepting Currency Conversion terms](#_6-1-accepting-currency-conversion-terms)
+        - [6.1.1. Message flow](#_6-1-1-message-flow)
+        - [6.1.2. fxTransfers Resource](#_6-1-2-fxtransfers-resource)
+    - [6.2. Transfer Execution and Clearing](#_6-2-transfer-execution-and-clearing)
+        - [6.2.1. Message flow](#_6-2-1-message-flow)
+        - [6.2.2. Transfers Resource](#_6-2-2-transfers-resource)
 
 <!-- /TOC -->
 # 2. Introduction
@@ -55,9 +55,9 @@ This distinction enables DFSPs to implement a consistent core messaging framewor
 
 # 3 Message Expectations, Obligations, and Rules
 The Mojaloop transfer process is divided into three key phases, each essential to ensuring secure and efficient transactions. These phases use specific resources to enable participant interactions, ensuring clear communication, agreement, and execution. While some phases and resources are optional, the ultimate goal is to ensure every transfer is accurate, secure, and aligns with agreed terms. 
-1. [Discovery](#4-discovery-phase)
-2. [Agreement](#5-agreement-phase)
-3. [Transfer](#6-transfer-phase)
+1. [Discovery](#_4-discovery-phase)
+2. [Agreement](#_5-agreement-phase)
+3. [Transfer](#_6-transfer-phase)
 
 ## 3.1 Currency Conversion
 Currency conversion is included to support cross-currency transactions. As it is not always required, the associated messages and flows are only used when needed, ensuring flexibility for both single-currency and multi-currency scenarios.
@@ -83,8 +83,8 @@ The API message header should contain the following details. Required headers ar
 | **FSPIOP-Destination** <br> *string*<br>(header)|The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty.|
 | **FSPIOP-Encryption** <br> *string*<br>(header) | The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request.|
 | **FSPIOP-Signature** <br> *string* <br> (header)| The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature.|
-| **FSPIOP-URI** <br> *string* <br> (header) | The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/main/Specification%20Document%20Set).|
-| **FSPIOP-HTTP-Method** <br> *string* <br> (header) | The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/main/Specification%20Document%20Set).|
+| **FSPIOP-URI** <br> *string* <br> (header) | The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://docs.mojaloop.io/technical/api/fspiop/).|
+| **FSPIOP-HTTP-Method** <br> *string* <br> (header) | The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://docs.mojaloop.io/technical/api/fspiop/).|
 
 ### 3.3.2 Supported HTTP Responses
 
