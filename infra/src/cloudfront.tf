@@ -4,25 +4,15 @@ resource "aws_cloudfront_distribution" "website_cdn_root" {
   provider = aws.custom
   enabled     = true
   price_class = "PriceClass_All"
-  aliases = [var.website-domain-main, "*.${var.website-domain-main}"]
+  # Select the correct PriceClass depending on who the CDN is supposed to serve (https://docs.aws.amazon.com/AmazonCloudFront/ladev/DeveloperGuide/PriceClass.html)
+  # TODO: enable this - or do it manually? need to figure out how to BYO domain
+  aliases = [var.website-domain-main]
+
 
   // base docs.mojaloop.io origin
   origin {
     origin_id   = "origin-bucket-${aws_s3_bucket.website_root.id}"
     domain_name = aws_s3_bucket.website_root.website_endpoint
-
-    custom_origin_config {
-      origin_protocol_policy = "http-only"
-      http_port            = 80
-      https_port           = 443
-      origin_ssl_protocols = ["TLSv1.2", "TLSv1.1", "TLSv1"]
-    }
-  }
-
-  // preview bucket origin for PR previews
-  origin {
-    origin_id   = "origin-bucket-${aws_s3_bucket.website_preview.id}"
-    domain_name = aws_s3_bucket.website_preview.website_endpoint
 
     custom_origin_config {
       origin_protocol_policy = "http-only"
@@ -192,30 +182,6 @@ resource "aws_cloudfront_distribution" "website_cdn_root" {
     }
   }
 
-  # Handle PR preview subdomains before other paths
-  ordered_cache_behavior {
-    path_pattern = "/*"
-    target_origin_id = "origin-bucket-${aws_s3_bucket.website_preview.id}"
-    allowed_methods  = ["GET", "HEAD", "OPTIONS"]
-    cached_methods   = ["GET", "HEAD", "OPTIONS"]
-    viewer_protocol_policy = "redirect-to-https"
-    compress = true
-
-    forwarded_values {
-      query_string = false
-      headers      = ["Host"]
-      cookies {
-        forward = "none"
-      }
-    }
-
-    # Use the CloudFront function to route requests based on subdomain
-    function_association {
-      event_type = "viewer-request"
-      function_arn = aws_cloudfront_function.pr-preview-router.arn
-    }
-  }
-
   default_cache_behavior {
     allowed_methods  = ["GET", "HEAD", "OPTIONS"]
     cached_methods   = ["GET", "HEAD", "OPTIONS"]
@@ -278,13 +244,4 @@ resource "aws_cloudfront_function" "docs-redirects" {
   comment = "main"
   publish = true
   code    = file("${path.module}/redirect/index.js")
-}
-
-resource "aws_cloudfront_function" "pr-preview-router" {
-  provider = aws.custom
-  name    = "${replace(var.website-domain-main, ".", "-")}-pr-preview-router"
-  runtime = "cloudfront-js-1.0"
-  comment = "Routes PR preview subdomains to the correct branch folders"
-  publish = true
-  code    = file("${path.module}/redirect/pr-preview-router.js")
 }

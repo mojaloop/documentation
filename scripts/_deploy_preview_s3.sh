@@ -11,7 +11,8 @@
 # "Using a REST API endpoint as the origin, with access restricted by an OAI"
 
 # The website should be available at:
-# http://pr-<number>.docs.mojaloop.io
+# http://mojaloop-docs-preview.s3-website.eu-west-2.amazonaws.com
+# or http://docs-preview.moja-lab.live/
 
 # Required tools:
 # - aws-cli
@@ -20,10 +21,8 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 NVM_DIR=$HOME/.nvm
 export AWS_REGION="${AWS_REGION:-eu-west-2}"
-export BUCKET_NAME="${BUCKET_NAME:-docs.mojaloop.io-preview}"
-export DOMAIN="${DOMAIN:-docs.mojaloop.io}"
-export IS_PR="${IS_PR:-false}"
-export PR_NUMBER="${PR_NUMBER:-}"
+export BUCKET_NAME="${BUCKET_NAME:-mojaloop-docs-preview}"
+export DOMAIN="${DOMAIN:-docs-preview.moja-lab.live}"
 
 set -e
 set -u
@@ -53,37 +52,10 @@ mv ${DIR}/../legacy/_book ${DIR}/../build/legacy
 
 # TODO: can we be smart about docs versions here? maybe every minor version we can keep...
 
-# Determine the target path based on whether this is a PR or not
-if [ "$IS_PR" = "true" ] && [ -n "$PR_NUMBER" ]; then
-  TARGET_PATH="pr-${PR_NUMBER}"
-else
-  TARGET_PATH=""
-fi
-
 # upload built files to s3 
-if [ -n "$TARGET_PATH" ]; then
-  aws s3 sync ${DIR}/../build s3://${BUCKET_NAME}/${TARGET_PATH} \
-    --acl public-read
-else
-  aws s3 sync ${DIR}/../build s3://${BUCKET_NAME} \
-    --acl public-read
-fi
+aws s3 sync ${DIR}/../build s3://${BUCKET_NAME} \
+  --acl public-read
 
-# Create CloudFront invalidation
-if [ -n "$CLOUDFRONT_DISTRIBUTION_ID" ]; then
-  if [ -n "$TARGET_PATH" ]; then
-    aws cloudfront create-invalidation \
-      --distribution-id ${CLOUDFRONT_DISTRIBUTION_ID} \
-      --paths "/${TARGET_PATH}/*"
-  else
-    aws cloudfront create-invalidation \
-      --distribution-id ${CLOUDFRONT_DISTRIBUTION_ID} \
-      --paths "/*"
-  fi
-fi
-
-if [ "$IS_PR" = "true" ] && [ -n "$PR_NUMBER" ]; then
-  echo "Preview deployment is available at: https://pr-${PR_NUMBER}.${DOMAIN}"
-else
-  echo "Deployment is available at: https://${DOMAIN}"
-fi
+echo "go to: "
+echo "http://${BUCKET_NAME}.s3-website.${AWS_REGION}.amazonaws.com"
+echo "or http://${DOMAIN}/ to see the live site!"
