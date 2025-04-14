@@ -1,6 +1,6 @@
-**29th January 2025**\
-Authors: Paul Makin, James Bush\
-Version: 1.1
+**14th April 2025**\
+Author: Paul Makin\
+Version: 1.2
 
 # About Mojaloop 
 
@@ -21,7 +21,7 @@ financial institutions:
 
 &nbsp;
 
-These core functions are supported by some [unique characteristics](./transactions.md#Unique-Transaction-Characteristics), which
+These core functions are supported by some [unique characteristics](./transaction.html#unique-transaction-characteristics), which
 together make Mojaloop a low cost, inclusive instant payments system:
 
 1.  **A Three Phase Transaction Flow**, as follows:

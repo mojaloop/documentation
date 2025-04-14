@@ -35,7 +35,8 @@ The Mojaloop Hub supports four APIs. The first two relate to end-customer transa
 1. **Transactional API**    
 Mojaloop offers two functionally-equivalent transactional APIs, which each support direct connections with Participants for the purpose of conducting transactions. Both support all of the [**Mojaloop use cases**](./use-cases.md), and have been developed in accordance with the [Level One Principles](https://www.leveloneproject.org/project_guide/level-one-project-design-principles/). These APIs are:
     - **FSP Interoperability (FSPIOP) API**, the long-established and well-proven API;
-    - An **ISO 20022 Messaging Schema**, using an ISO 20022 message set provisionally agreed by the Mojaloop Foundation with the ISO 20022 Registration Management Group (RMG),and tailored to the needs of an Inclusive Instant Payments System (IIPS)such as Mojaloop. This is offered to adopters as an alternative to FSPIOP. More details of this schema can be found in the [**ISO20022 documentation**](./iso20022.md).
+&nbsp;
+    - An **ISO 20022 Messaging Schema**, using an ISO 20022 message set provisionally agreed by the Mojaloop Foundation with the ISO 20022 Registration Management Group (RMG),and tailored to the needs of an Inclusive Instant Payments System (IIPS)such as Mojaloop. This is offered to adopters as an alternative to FSPIOP. Full details of the Mojaloop implementation of the ISO20022 messaging schema and how it is expected that participating DFSPs will use it can be found in the [**Mojaloop ISO 20022 Market Practice Document**](./Iso20022/MarketPracticeDocument.html).
 	
 2.  **Third-party Payment Initiation (3PPI/PISP) API**
 

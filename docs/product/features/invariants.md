@@ -1,3 +1,7 @@
+**14th April 2025**\
+Author: James Bush\
+Version: 1.0\
+
 # Invariants
 
 ## General Principles
