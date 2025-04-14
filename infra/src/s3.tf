@@ -78,7 +78,8 @@ resource "aws_s3_bucket" "website_preview" {
   provider = aws.custom
   bucket = "${var.website-domain-main}-preview"
   
-  force_destroy = true
+  # Since this exists outside of the terraform repo, we would need to manually delete it
+  # force_destroy = true
 
   logging {
     target_bucket = aws_s3_bucket.website_logs.bucket
@@ -98,6 +99,11 @@ resource "aws_s3_bucket" "website_preview" {
   lifecycle {
     ignore_changes = [tags["Changed"]]
   }
+}
+
+import {
+  to = aws_s3_bucket.website_preview
+  id = "${var.website-domain-main}-preview"
 }
 
 # Creates policy to allow public access to the preview S3 bucket

@@ -4,7 +4,6 @@ resource "aws_cloudfront_distribution" "website_cdn_root" {
   provider = aws.custom
   enabled     = true
   price_class = "PriceClass_All"
-  aliases = [var.website-domain-main]
 
   aliases = [var.website-domain-main, "preview.${var.website-domain-main}"]
 
