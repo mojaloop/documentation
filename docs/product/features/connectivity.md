@@ -20,3 +20,13 @@ This toolkit is complemented by three exemplar implementations, ready for custom
 All DFSPs should be aware that reaping the benefits of an inclusive instant payments solution such as Mojaloop relies on the implementation of a “whole ecosystem” approach - and this means extending the reach of the Mojaloop service into the DFSPs’ domains, giving them and their customers the advantages of assurance of transaction finality, lower cost and the reliable delivery of every valid transaction.
 
 Note that the adoption of an exemplar installation affects the type of service a DFSP can provide to their customers. The Premium option is suitable for DFSPs with high throughout and reliability requirements, the Enhanced option places some limits on throughput and availability and may be best suited to medium or small DFSPs, and the Standard option places strict limits on throughput and availability and removes the ability to initiate bulk payments, and so may only be suitable for small DFSPs.
+
+## Applicability
+
+This version of this document relates to Mojaloop Version 17.
+
+## Document History
+  |Version|Date|Author|Detail|
+|:--------------:|:--------------:|:--------------:|:--------------:|
+|1.1|14th April 2025| Paul Makin|Updates related to the release of V17|
+|1.0|5th February 2025| Paul Makin|Initial version|

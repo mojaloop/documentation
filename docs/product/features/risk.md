@@ -43,3 +43,12 @@ applied are:
     The NDC is used in tandem with the liquidity balance in the
     authorisation of transactions during the Quotation phase.
     
+## Applicability
+
+This version of this document relates to Mojaloop Version 17.
+
+## Document History
+  |Version|Date|Author|Detail|
+|:--------------:|:--------------:|:--------------:|:--------------:|
+|1.1|14th April 2025| Paul Makin|Updates related to the release of V17|
+|1.0|13th March 2025| Paul Makin|Initial version|

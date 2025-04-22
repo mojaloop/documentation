@@ -71,3 +71,12 @@ are layered over the top of the standard use cases.
 These
 scheme-specific use cases can readily be added by individual scheme
 operators.
+
+## Applicability
+
+This version of this document relates to Mojaloop Version 17.
+
+## Document History
+  |Version|Date|Author|Detail|
+|:--------------:|:--------------:|:--------------:|:--------------:|
+|1.2|14th April 2025| Paul Makin|Updates related to the release of V17, including links to the interscheme and FX documentation.|

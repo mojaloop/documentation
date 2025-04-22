@@ -1,7 +1,3 @@
-**14th April 2025**\
-Author: James Bush\
-Version: 1.0\
-
 # Invariants
 
 ## General Principles
@@ -352,3 +348,13 @@ failures.**
 9.  Participants need timely confidence in the status of financial
     transactions across the scheme in order to minimise exposure risk
     and deliver excellent customer experiences.
+
+## Applicability
+
+This version of this document relates to Mojaloop Version 17.
+
+## Document History
+  |Version|Date|Author|Detail|
+|:--------------:|:--------------:|:--------------:|:--------------:|
+|1.1|14th April 2025| Paul Makin|Added version control|
+|1.0|5th February 2025| James Bush|Initial version|

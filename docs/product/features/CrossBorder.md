@@ -14,3 +14,12 @@ This model can be extended further, so that countries with existing domestic ins
 
 ![Interconnecting Domestic Schemes to Offer Cross Border transactions](./ComplexXB.svg)
 
+## Applicability
+
+This version of this document relates to Mojaloop Version 17.
+
+## Document History
+  |Version|Date|Author|Detail|
+|:--------------:|:--------------:|:--------------:|:--------------:|
+|1.1|22nd April 2025| Paul Makin|Added version history; clarified some wording|
+|1.0|14th April 2025| Paul Makin|Initial version|

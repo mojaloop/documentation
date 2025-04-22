@@ -1,6 +1,6 @@
 # Interconnecting Payment Schemes
 
-Mojaloop, as a single deployment, is intended to be used to operate one (or more) payment schemes, operating on a single platform. Of course, it is quite common for a country to host multiple payment schemes, built around differing requirements for different sectors. 
+Mojaloop, as a single deployment, is intended to be used to operate one (or more) payment schemes, operating on a single platform. Of course, it is quite common for a country to host multiple payment schemes operating on separate platforms, built around differing requirements for different sectors. 
 
 Ultimately, though, as a payment scheme grows, then the need to be interconnected  or interoperable with other payment schemes in a country grows. Mojaloop accommodates this, through a mechanism we call "Interscheme".
 
@@ -20,3 +20,13 @@ The current version of Mojaloop only supports the interconnection of Mojaloop-ba
 Further details of the implementation of this scheme interconnection capability can be found in the [**interscheme documentation**](./interscheme.md).
 
 The following pages will be of interest to those who wish to review how interscheme capabilities relate to [**foreign exchange**](./ForeignExchange.md) and [**cross border transactions**](./CrossBorder.md).
+
+## Applicability
+
+This version of this document relates to Mojaloop Version 17.
+
+## Document History
+  |Version|Date|Author|Detail|
+|:--------------:|:--------------:|:--------------:|:--------------:|
+|1.1|22nd April 2025| Paul Makin|Added version history; clarified some wording|
+|1.0|14th April 2025| Paul Makin|Initial version|
