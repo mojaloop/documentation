@@ -202,7 +202,7 @@ This includes the reports relating to settlement.
 
 ## Applicability
 
-This version of this document relates to Mojaloop Version 17.
+This version of this document relates to Mojaloop Version [17.0.0](https://github.com/mojaloop/helm/releases/tag/v17.0.0)
 
 ## Document History
   |Version|Date|Author|Detail|
