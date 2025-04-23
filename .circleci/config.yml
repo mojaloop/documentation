@@ -197,18 +197,32 @@ jobs:
       - run:
           name: Check PR Preview Limits
           command: |
+            set -x  # Enable debug output
+            echo "Starting PR Preview Limits check..."
+            
+            # Extract PR number from CIRCLE_PULL_REQUEST
             PR_NUMBER=${CIRCLE_PULL_REQUEST##*/}
+            echo "PR Number: $PR_NUMBER"
+            
+            if [ -z "$PR_NUMBER" ]; then
+              echo "Error: Could not extract PR number from CIRCLE_PULL_REQUEST"
+              exit 1
+            fi
+            
             PREVIEW_LIMIT=${PREVIEW_LIMIT:-10}  # Default to 10 if not set
+            echo "Preview Limit: $PREVIEW_LIMIT"
             
             # Check if this PR already has a preview
-            # aws s3 ls checks if the directory exists, 2>/dev/null suppresses error output if it doesn't
+            echo "Checking if PR #${PR_NUMBER} already has a preview..."
             if aws s3 ls "s3://docs.mojaloop.io-preview/${PR_NUMBER}/" 2>/dev/null; then
               echo "PR #${PR_NUMBER} already has a preview, allowing update"
               exit 0
             fi
             
             # Get count of existing previews
+            echo "Counting existing previews..."
             PREVIEW_COUNT=$(aws s3 ls s3://docs.mojaloop.io-preview/ | grep -c '^PRE [0-9]')
+            echo "Current preview count: $PREVIEW_COUNT"
             
             if [ "$PREVIEW_COUNT" -ge "$PREVIEW_LIMIT" ]; then
               echo "Maximum number of previews ($PREVIEW_LIMIT) reached"
