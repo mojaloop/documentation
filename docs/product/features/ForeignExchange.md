@@ -39,3 +39,13 @@ Other, more complex business models will be supported in an upcoming release. Th
 5. DFSP 2 proposes the transaction to multiple FXPs, selects the one with the most beneficial terms and sends 10 X to that FXP, who returns the equivalent value in currency Y back to DFSP 2, who then pays out to the payee (less fees, currency spread, etc). 
 
 The following page will be of interest to those who wish to review how interscheme and foreign exchange capabilities relate to  [**cross border transactions**](./CrossBorder.md).
+
+## Applicability
+
+This version of this document relates to Mojaloop Version [17.0.0](https://github.com/mojaloop/helm/releases/tag/v17.0.0)
+
+## Document History
+  |Version|Date|Author|Detail|
+|:--------------:|:--------------:|:--------------:|:--------------:|
+|1.1|22nd April 2025| Paul Makin|Added version history|
+|1.0|13th March 2025| Paul Makin|Initial version|

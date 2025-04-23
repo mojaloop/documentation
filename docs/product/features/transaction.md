@@ -100,10 +100,13 @@ other payment clearing hubs. What differentiates Mojaloop is:
 
 	The Mojaloop community provides a number of tools that can be freely used by DFSPs to connect to a Mojaloop Hub. These remain within the DFSP's domain, and are not the concern of the hub operator or any other party. As well as managing the connection to the Hub and facilitating transactions, these tools also ensure the security of the connection and in particular provide the key DFSP link to this non-repudiation capability.  
 	&nbsp;
-4.  **The PISP API is made available through the Mojaloop Hub,** not by
-    individual Participants. Consequently a fintech can integrate with
-    the Hub and immediately be connected to all connected DFSPs, rather
-    than needing to complete an API integration with the all
-    individually. This substantially reduces costs and increases
-    reliability for fintechs and their customers.
-    
+4.  **The PISP API is made available through the Mojaloop Hub,** not by individual Participants. Consequently a fintech can integrate with the Hub and immediately be connected to all connected DFSPs, rather than needing to complete an API integration with the all individually. This substantially reduces costs and increases reliability for fintechs and their customers.
+
+## Applicability
+
+This version of this document relates to Mojaloop Version [17.0.0](https://github.com/mojaloop/helm/releases/tag/v17.0.0)
+
+## Document History
+  |Version|Date|Author|Detail|
+|:--------------:|:--------------:|:--------------:|:--------------:|
+|1.2|14th April 2025| Paul Makin|Updates related to the release of V17|
