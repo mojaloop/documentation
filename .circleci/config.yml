@@ -344,15 +344,6 @@ workflows:
             branches:
               ignore: /master|main/
 
-  cleanup_preview:
-    jobs:
-      - cleanup_pr_preview:
-          context: org-global
-          filters:
-            branches:
-              only: /.*/
-              ignore: /master|main/
-
   scheduled_cleanup:
     when:
       and:
