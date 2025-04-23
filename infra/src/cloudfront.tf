@@ -5,6 +5,11 @@ resource "aws_cloudfront_distribution" "website_cdn_root" {
   enabled     = true
   price_class = "PriceClass_All"
 
+  depends_on = [
+    aws_s3_bucket.website_preview,
+    aws_s3_bucket.website_root
+  ]
+
   aliases = [var.website-domain-main, "preview.${var.website-domain-main}"]
 
   // base docs.mojaloop.io origin
