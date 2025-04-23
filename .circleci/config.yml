@@ -255,9 +255,6 @@ jobs:
             echo "$CLOSED_PRS" | jq -r '.[].number' | while read -r pr_number; do
               echo "Cleaning up preview for PR #$pr_number"
               aws s3 rm s3://docs.mojaloop.io-preview/${pr_number} --recursive
-              aws cloudfront create-invalidation \
-                --distribution-id ${CLOUDFRONT_DISTRIBUTION_ID} \
-                --paths "/${pr_number}/*"
             done
 
   # When a new tag is pushed, create a new version of docs
