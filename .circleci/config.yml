@@ -222,7 +222,7 @@ jobs:
             # Get count of existing previews
             echo "Counting existing previews..."
             # List all directories in the preview bucket and count them
-            PREVIEW_COUNT=$(aws s3 ls s3://docs.mojaloop.io-preview/ | grep -c '^[0-9]')
+            PREVIEW_COUNT=$(aws s3 ls s3://docs.mojaloop.io-preview/ 2>/dev/null | grep -c '^[0-9]' || echo "0")
             echo "Current preview count: $PREVIEW_COUNT"
             
             if [ "$PREVIEW_COUNT" -ge "$PREVIEW_LIMIT" ]; then
