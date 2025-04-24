@@ -82,11 +82,6 @@ jobs:
       - run:
           name: build
           command: npm run build
-      - persist_to_workspace:
-          root: .
-          paths:
-            - build
-            - docs/.vuepress/dist
 
   build-legacy:
     executor: legacy-docker
@@ -185,8 +180,6 @@ jobs:
     executor: default-docker
     steps:
       - checkout
-      - attach_workspace:
-          at: .
       - run:
           name: Install general dependencies
           command: *defaults_Dependencies
@@ -352,7 +345,19 @@ workflows:
             branches:
               only:
                 - master
-                
+
+      - bump_version:
+          context: org-global
+          requires:
+            - build
+            - build-legacy
+          filters:
+            branches:
+              ignore:
+                - /.*/
+            tags:
+              only: /v[0-9]+(\.[0-9]+)*(\-snapshot)?(\-hotfix(\.[0-9]+))?/
+
       - deploy_pr_preview:
           context: org-global
           requires:
