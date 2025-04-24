@@ -183,6 +183,9 @@ jobs:
       - run:
           name: Install general dependencies
           command: *defaults_Dependencies
+      - restore_cache:
+          keys:
+            - build-legacy-cache-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
       - run:
           name: Configure GitHub CLI
           command: |
