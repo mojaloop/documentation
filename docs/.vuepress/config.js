@@ -309,6 +309,10 @@ module.exports = {
             ]
           },
           {
+            title: "Mojaloop Releases",
+            path: "technical/releases"
+          },
+          {
             title: "Account Lookup Service",
             collapsable: true,
             sidebarDepth: 2,
