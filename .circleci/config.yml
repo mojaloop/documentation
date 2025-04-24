@@ -352,19 +352,11 @@ workflows:
             branches:
               only:
                 - master
-
-  pr_preview:
-    jobs:
-      - build:
-          context: org-global
-          filters:
-            branches:
-              ignore: /master|main/
+                
       - deploy_pr_preview:
           context: org-global
           requires:
-            - build
-            - build-legacy
+            - infra
           filters:
             branches:
               ignore: /master|main/
