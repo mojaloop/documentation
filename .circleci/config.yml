@@ -355,6 +355,7 @@ workflows:
           context: org-global
           requires:
             - build
+            - build-legacy
           filters:
             branches:
               ignore: /master|main/
