@@ -344,6 +344,15 @@ workflows:
             - build-legacy
             - test-puml
 
+      - s3_upload:
+          context: org-global
+          requires:
+            - infra
+          filters:
+            branches:
+              only:
+                - master
+
   pr_preview:
     jobs:
       - build:
