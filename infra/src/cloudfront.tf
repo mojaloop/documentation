@@ -172,7 +172,7 @@ resource "aws_cloudfront_distribution" "website_cdn_preview" {
     aws_s3_bucket.website_preview
   ]
 
-  aliases = ["preview.${var.website-domain-main}"]
+  aliases = [var.website-domain-preview]
 
   // preview bucket origin for PR previews
   origin {
@@ -203,7 +203,7 @@ resource "aws_cloudfront_distribution" "website_cdn_preview" {
 
   logging_config {
     bucket = aws_s3_bucket.website_logs.bucket_domain_name
-    prefix = "preview.${var.website-domain-main}/"
+    prefix = "${var.website-domain-preview}/"
   }
 
   # Handle PR preview paths
