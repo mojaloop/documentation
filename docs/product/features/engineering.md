@@ -60,6 +60,16 @@ the default.
 1.  Helm charts are available, and default configuration values suitable
     for production deployment scenarios can be downloaded.
 
+### Performance Baseline
+
+The Mojaloop Hub has been demonstrated to support the following performance characteristics on minimal hardware:
+
+- Clearing 1,000 transfers per second
+- Sustained for one hour
+- With not more than 1% (of transfer stage) taking more than 1 second through the hub
+
+This baseline performance can be used as a reference point for system sizing and capacity planning.
+
 ### Deployment of Mojaloop Hub (excluding participant integrations)
 
 The following table provides guidance on which Mojaloop deployment scenario is most appropriate for different user types and use cases.
