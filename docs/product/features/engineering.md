@@ -60,6 +60,33 @@ the default.
 1.  Helm charts are available, and default configuration values suitable
     for production deployment scenarios can be downloaded.
 
+### Deployment of Mojaloop Hub (excluding participant integrations)
+
+The following table provides guidance on which Mojaloop deployment scenario is most appropriate for different user types and use cases.
+
+<style>
+.green { background-color: #2ecc71; }
+.orange { background-color: #f39c12; }
+.amber { background-color: #e67e22; }
+.red { background-color: #e74c3c; }
+</style>
+
+| Deployment Scenario / User type | Learning | Evaluation (choosing Mojaloop) | Use-case Testing | Feature Development and Dev Testing | Production |
+|--------------------------------|----------|--------------------------------|------------------|------------------------------------|------------|
+| Student | <div class="green">Footprint: Single machine e.g. laptop or single VM.<br>SLA: None</div> | ? | ? | <div class="green">Footprint: Single machine e.g. laptop or single VM.<br>SLA: None</div> | N/A |
+| Developer | <div class="green">Footprint: Single machine e.g. laptop or single VM.<br>SLA: None</div> | ? | <div class="orange">Footprint:<br>- Single machine e.g. laptop or single VM.<br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</div> | <div class="orange">Footprint:<br>- Single machine e.g. laptop or single VM.<br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</div> | N/A |
+| Business analyst | <div class="green">Footprint: Single machine e.g. laptop or single VM.<br>SLA: None</div> | <div class="orange">Footprint:<br>- Single machine e.g. laptop or single VM.<br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</div> | <div class="orange">Footprint:<br>- Single machine e.g. laptop or single VM.<br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</div> | <div class="orange">? config changes only ?<br>Footprint:<br>- Single machine e.g. laptop or single VM.<br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</div> | N/A |
+| Potential adopter | <div class="green">Footprint: Single machine e.g. laptop or single VM.<br>SLA: None</div> | <div class="orange">Footprint:<br>- Single machine e.g. laptop or single VM.<br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</div> | <div class="orange">Footprint:<br>- Single machine e.g. laptop or single VM.<br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</div> | <div class="orange">Footprint:<br>- Single machine e.g. laptop or single VM.<br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</div> | N/A |
+| Auditor / External QA / Security Analyst | <div class="green">Footprint: Single machine e.g. laptop or single VM.<br>SLA: None</div> | <div class="orange">Footprint:<br>- Single machine e.g. laptop or single VM.<br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</div> | <div class="orange">Footprint:<br>- Single machine e.g. laptop or single VM.<br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</div> | N/A | N/A |
+| System Integrator | <div class="green">Footprint: Single machine e.g. laptop or single VM.<br>SLA: None</div> | <div class="orange">Footprint:<br>- Single machine e.g. laptop or single VM.<br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</div> | <div class="orange">Footprint:<br>- Single machine e.g. laptop or single VM.<br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</div> | <div class="orange">Footprint:<br>- Single machine e.g. laptop or single VM.<br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</div> | <div class="red">Footprint:<br>- Fully redundant, replicated, high availability deployment<br>- On-premises or cloud<br>SLA: High SLA in many areas.</div> |
+| Hub Operator | <div class="green">Footprint: Single machine e.g. laptop or single VM.<br>SLA: None</div> | <div class="orange">Footprint:<br>- Single machine e.g. laptop or single VM.<br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</div> | <div class="orange">Footprint:<br>- Single machine e.g. laptop or single VM.<br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</div> | <div class="orange">Footprint:<br>- Single machine e.g. laptop or single VM.<br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</div> | <div class="red">Footprint:<br>- Fully redundant, replicated, high availability deployment<br>- On-premises or cloud<br>SLA: High SLA in many areas.</div> |
+
+### Legend:
+- <div class="green" style="display: inline-block; padding: 2px 4px; border-radius: 3px;">Green</div>: Easiest to deploy
+- <div class="orange" style="display: inline-block; padding: 2px 4px; border-radius: 3px;">Orange</div>: Moderate complexity
+- <div class="amber" style="display: inline-block; padding: 2px 4px; border-radius: 3px;">Amber</div>: Complex deployment
+- <div class="red" style="display: inline-block; padding: 2px 4px; border-radius: 3px;">Red</div>: Most complex deployment
+
 ## General 
 
 1.  Context specific processing is done once and results cached in
