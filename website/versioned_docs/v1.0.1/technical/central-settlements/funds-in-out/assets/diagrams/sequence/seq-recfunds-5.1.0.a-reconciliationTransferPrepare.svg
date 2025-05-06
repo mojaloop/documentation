@@ -1,0 +1,267 @@
+<svg xmlns="http://www.w3.org/2000/svg" height="1330" preserveAspectRatio="none" style="width:684px;height:1330px" width="684">
+  <defs>
+    <filter height="300%" id="a" width="300%" x="-1" y="-1">
+      <feGaussianBlur result="blurOut" stdDeviation="2"/>
+      <feColorMatrix in="blurOut" result="blurOut2" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/>
+      <feOffset dx="4" dy="4" in="blurOut2" result="blurOut3"/>
+      <feBlend in="SourceGraphic" in2="blurOut3"/>
+    </filter>
+  </defs>
+  <text font-family="sans-serif" font-size="18" lengthAdjust="spacingAndGlyphs" textLength="629" x="25.5" y="28.708">
+    5.1.0.a. Reconciliation transfer prepare (reconciliationTransferPrepare)
+  </text>
+  <path fill="#FFFFE0" stroke="#a80036" d="M16 40.953h395v1283.109H16z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="111" x="158" y="53.02">
+    Central Service
+  </text>
+  <path fill="#FFF" filter="url(#a)" stroke="#a80036" d="M354 177.648h10v30h-10zM354 285.047h10v30h-10zM354 452.977h10v30h-10zM354 789.375h10v30h-10zM354 1032.969h10v30h-10zM354 1170.633h10v30h-10z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M10 139.383h660v1102.383H10z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M64 620.773h345v140.469H64z"/>
+  <path fill="#FFF" d="M64 692.172h345v69.07H64z"/>
+  <path stroke="#a80036" stroke-dasharray="5,5" d="M69 122.383v1136.383M359 122.383v1136.383"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="92" x="20" y="119.081">
+    Transfer DAO
+  </text>
+  <circle cx="69" cy="90.086" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path stroke="#a80036" stroke-width="2" d="M57 104.086h24"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="92" x="20" y="1270.761">
+    Transfer DAO
+  </text>
+  <circle cx="69" cy="1290.063" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path stroke="#a80036" stroke-width="2" d="M57 1304.063h24"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="90" x="311" y="119.081">
+    Central Store
+  </text>
+  <path d="M341 70.086c0-10 18-10 18-10s18 0 18 10v26c0 10-18 10-18 10s-18 0-18-10v-26" fill="#FEFECE" filter="url(#a)" stroke="#000" stroke-width="1.5"/>
+  <path d="M341 70.086c0 10 18 10 18 10s18 0 18-10" fill="none" stroke="#000" stroke-width="1.5"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="90" x="311" y="1270.761">
+    Central Store
+  </text>
+  <path d="M341 1284.063c0-10 18-10 18-10s18 0 18 10v26c0 10-18 10-18 10s-18 0-18-10v-26" fill="#FEFECE" filter="url(#a)" stroke="#000" stroke-width="1.5"/>
+  <path d="M341 1284.063c0 10 18 10 18 10s18 0 18-10" fill="none" stroke="#000" stroke-width="1.5"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#a80036" d="M354 177.648h10v30h-10zM354 285.047h10v30h-10zM354 452.977h10v30h-10zM354 789.375h10v30h-10zM354 1032.969h10v30h-10zM354 1170.633h10v30h-10z"/>
+  <path d="M10 139.383h369v7l-10 10H10v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M10 139.383h660v1102.383H10z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="324" x="25" y="152.45">
+    reconciliationTransferPrepare (payload, trx)
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M342 173.648l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M69 177.648h279"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="76" y="172.583">
+    1
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="189" x="89" y="172.583">
+    Insert transferDuplicateCheck
+  </text>
+  <path fill="#FFFFE0" filter="url(#a)" stroke="#a80036" d="M68 220.648h582l10 19-10 19H68l-10-19 10-19z"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="79" x="70" y="236.715">
+    INSERT INTO
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="174" x="153" y="236.715">
+    transferDuplicateCheck
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="198" x="331" y="236.715">
+    (transferId, hash, createdDate)
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="578" x="70" y="251.848">
+    VALUES ({payload.transferId}, hashCode({payload.transferId}), {transactionTimestamp})
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M342 281.047l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M69 285.047h279"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="76" y="279.981">
+    2
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="90" x="89" y="279.981">
+    Insert transfer
+  </text>
+  <path fill="#FFFFE0" filter="url(#a)" stroke="#a80036" d="M142 328.047h434l10 49-10 49H142l-10-49 10-49z"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="79" x="144" y="344.114">
+    INSERT INTO
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="59" x="227" y="344.114">
+    transfer
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="202" x="290" y="344.114">
+    (transferId, amount, currencyId,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="269" x="160" y="359.247">
+    ilpCondition, expirationDate, createdDate)
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="378" x="144" y="374.379">
+    VALUES ({payload.transferId}, {payload.amount.amount},
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="194" x="160" y="389.512">
+    {payload.amount.curency}, 0,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="414" x="160" y="404.645">
+    {new Date()+Config.INTERNAL_TRANSFER_VALIDITY_SECONDS},
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="165" x="160" y="419.778">
+    {transactionTimestamp})
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M342 448.977l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M69 452.977h279"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="76" y="447.911">
+    3
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="223" x="89" y="447.911">
+    Retrieve hub reconciliation account
+  </text>
+  <path fill="#FFFFE0" filter="url(#a)" stroke="#a80036" d="M176 495.977h365l10 41-10 42H176l-10-42 10-41z"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="361" x="178" y="512.043">
+    SELECT participantCurrencyId AS reconciliationAccountId
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="36" x="178" y="527.176">
+    FROM
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="146" x="218" y="527.176">
+    participantCurrency
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="155" x="178" y="542.309">
+    WHERE participantId = 1
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="297" x="178" y="557.442">
+    AND currencyId = {payload.amount.currency}
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="43" x="178" y="572.575">
+    LIMIT 1
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M80 601.773l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M74 605.773h284"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="86" y="600.707">
+    4
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="42" x="99" y="600.707">
+    Return
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="171" x="145" y="600.707">
+    reconciliationAccountId
+  </text>
+  <path d="M64 620.773h64v7l-10 10H64v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M64 620.773h345v140.469H64z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19" x="79" y="633.84">
+    alt
+  </text>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="257" x="143" y="632.984">
+    [payload.action == &apos;RECORD_FUNDS_IN&apos;]
+  </text>
+  <path d="M74 642.906v40h307v-30l-10-10H74" fill="#D3D3D3" filter="url(#a)" stroke="#a80036"/>
+  <path d="M371 642.906v10h10l-10-10" fill="#D3D3D3" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="135" x="80" y="659.973">
+    ledgerEntryTypeId
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="147" x="219" y="659.973">
+    = &apos;RECORD_FUNDS_IN&apos;
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="56" x="80" y="675.106">
+    amount
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="11" x="140" y="675.106">
+    =
+  </text>
+  <text fill="#00F" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="158" x="155" y="675.106">
+    payload.amount.amount
+  </text>
+  <path stroke="#000" stroke-dasharray="2,2" d="M64 693.172h345"/>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="333" x="69" y="703.382">
+    [payload.action == &apos;RECORD_FUNDS_OUT_PREPARE&apos;]
+  </text>
+  <path d="M74 711.977v40h321v-30l-10-10H74" fill="#D3D3D3" filter="url(#a)" stroke="#a80036"/>
+  <path d="M385 711.977v10h10l-10-10" fill="#D3D3D3" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="135" x="80" y="729.043">
+    ledgerEntryTypeId
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="161" x="219" y="729.043">
+    = &apos;RECORD_FUNDS_OUT&apos;
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="56" x="80" y="744.176">
+    amount
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="11" x="140" y="744.176">
+    =
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="163" x="155" y="744.176">
+    -payload.amount.amount
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M342 785.375l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M69 789.375h279"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="76" y="784.309">
+    5
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="210" x="89" y="784.309">
+    Insert transferParticipant records
+  </text>
+  <path fill="#FFFFE0" filter="url(#a)" stroke="#a80036" d="M83 832.375h551l10 87-10 87H83l-10-87 10-87z"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="79" x="85" y="848.442">
+    INSERT INTO
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="140" x="168" y="848.442">
+    transferParticipant
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="408" x="101" y="863.575">
+    (transferId, participantCurrencyId, transferParticipantRoleTypeId,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="265" x="101" y="878.707">
+    ledgerEntryTypeId, amount, createdDate)
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="378" x="85" y="893.84">
+    VALUES (payload.transferId, reconciliationAccountId, &apos;HUB&apos;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="377" x="101" y="908.973">
+    {ledgerEntryTypeId}, {amount}, {transactionTimestamp})
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="79" x="85" y="939.239">
+    INSERT INTO
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="140" x="168" y="939.239">
+    transferParticipant
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="408" x="101" y="954.372">
+    (transferId, participantCurrencyId, transferParticipantRoleTypeId,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="265" x="101" y="969.504">
+    ledgerEntryTypeId, amount, createdDate)
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="547" x="85" y="984.637">
+    VALUES ({payload.transferId}, {payload.participantCurrencyId}, &apos;DFSP_SETTLEMENT&apos;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="382" x="101" y="999.77">
+    {ledgerEntryTypeId}, {-amount}, {transactionTimestamp})
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M342 1028.969l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M69 1032.969h279"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="76" y="1027.903">
+    6
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="219" x="89" y="1027.903">
+    Insert transferStateChange record
+  </text>
+  <path fill="#FFFFE0" filter="url(#a)" stroke="#a80036" d="M188 1075.969h341l10 34-10 34H188l-10-34 10-34z"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="79" x="190" y="1092.036">
+    INSERT INTO
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="154" x="273" y="1092.036">
+    transferStateChange
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="315" x="206" y="1107.168">
+    (transferId, transferStateId, reason, createdDate)
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="337" x="190" y="1122.301">
+    VALUES ({payload.transferId}, &apos;RECEIVED_PREPARE&apos;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="287" x="206" y="1137.434">
+    {payload.reason}, {transactionTimestamp})
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M342 1166.633l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M69 1170.633h279"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="76" y="1165.567">
+    7
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="253" x="89" y="1165.567">
+    Save externalReference and extensions
+  </text>
+  <path fill="#FFFFE0" filter="url(#a)" stroke="#a80036" d="M301 1213.633h116l10 11-10 12H301l-10-12 10-11z"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="112" x="303" y="1229.7">
+    transferExtension
+  </text>
+</svg>
