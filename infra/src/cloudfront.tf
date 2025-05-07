@@ -89,11 +89,11 @@ resource "aws_cloudfront_distribution" "website_cdn_root" {
     prefix = "${var.website-domain-main}/"
   }
 
-  # Shared cache behaviors
+  # Shared cache behaviors for main distribution
   dynamic "ordered_cache_behavior" {
     for_each = local.shared_cache_behaviors
     content {
-      path_pattern     = "/[0-9]*${ordered_cache_behavior.value.path_pattern}"
+      path_pattern     = ordered_cache_behavior.value.path_pattern
       target_origin_id = ordered_cache_behavior.value.target_origin_id
       allowed_methods  = ["GET", "HEAD", "OPTIONS"]
       cached_methods   = ["GET", "HEAD", "OPTIONS"]
@@ -115,7 +115,6 @@ resource "aws_cloudfront_distribution" "website_cdn_root" {
     default_ttl      = "300"
     max_ttl          = "1200"
 
-    # Redirects any HTTP request to HTTPS
     viewer_protocol_policy = "redirect-to-https"
     compress               = true
     forwarded_values {
@@ -125,8 +124,6 @@ resource "aws_cloudfront_distribution" "website_cdn_root" {
       }
     }
 
-    # A custom cloudfront function that lets us dynamically
-    # configure redirects
     function_association {
       event_type = "viewer-request"
       function_arn = aws_cloudfront_function.docs-redirects.arn
