@@ -47,6 +47,7 @@ td.red {
 </style>
 
 <table>
+<thead>
 <tr>
 <th>Deployment Scenario / User type</th>
 <th>Learning</th>
@@ -55,6 +56,8 @@ td.red {
 <th>Feature Development and Dev Testing</th>
 <th>Production</th>
 </tr>
+</thead>
+<tbody>
 <tr>
 <td>Student</td>
 <td class="green">Footprint: Single machine e.g. laptop or single VM.<br>SLA: None</td>
@@ -111,11 +114,13 @@ td.red {
 <td class="orange">Footprint:<br>- Single machine e.g. laptop or single VM.<br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</td>
 <td class="red">Footprint:<br>- Fully redundant, replicated, high availability deployment<br>- On-premises or cloud<br>SLA: High SLA in many areas.</td>
 </tr>
+</tbody>
 </table>
 
 ## Deployment Tools
 
 <table>
+<thead>
 <tr>
 <th>Tool</th>
 <th>Features</th>
@@ -125,6 +130,8 @@ td.red {
 <th>SLA</th>
 <th>Caveats, Assumptions, Limitations etc...</th>
 </tr>
+</thead>
+<tbody>
 <tr>
 <td class="green">core test harness</td>
 <td>- single node<br>- docker-compose<br>- "profiles" available<br>- No HELM<br>- No gateway<br>- No ingress/egress components<br>- No IAM stack<br>- Deploys:<br>  - core services & backing services<br>  - portals (optional)<br>  - monitoring stack (optional)<br><br>Used in CI pipelines for integration testing.</td>
@@ -161,6 +168,7 @@ td.red {
 <td>- Must be able to achieve SLAs (given baseline hardware specs):<br>  - Availability:<br>    - ? 4/5 9's?<br>  - RTO/RPO: ? As close to zero as possible.<br>  - Throughput/Performance<br>    - TPS: 1000+ (sustained for 1 hour)<br>    - Latency (Percentiles) (excluding external latencies):<br>      - Clearing: 99% < 1 second.<br>      - Lookup: 99% < second.<br>      - Agreement of Terms: 99% < 1 second.<br>  - Data management:<br>    - Mitigations against data loss i.e. replication, disaster recovery.<br>    - Retention (audit, compliance)<br>    - Archiving.<br><br>NB: Strategy is high availability over disaster recovery.</td>
 <td>- Can be used in production.<br>- Safe for processing real money transactions.</td>
 </tr>
+</tbody>
 </table>
 
 ## Document History
