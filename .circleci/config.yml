@@ -48,6 +48,7 @@ defaults_configure_nvm: &defaults_configure_nvm
 executors:
   default-docker:
     working_directory: &WORKING_DIR /home/circleci/project
+    resource_class: large
     docker:
       - image: node:16.15.0-alpine # Ref: https://hub.docker.com/_/node?tab=tags&page=1&name=alpine
 
