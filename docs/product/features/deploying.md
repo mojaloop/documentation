@@ -16,6 +16,8 @@ This baseline performance can be used as a reference point for system sizing and
 
 The following table provides guidance on which Mojaloop deployment scenario is most appropriate for different user types and use cases.
 
+For detailed information about each deployment tool, please refer to the [Deployment Tools](./tools.md) documentation.
+
 <style>
 .deployment-table {
     border-collapse: collapse;
