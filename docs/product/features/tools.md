@@ -1,210 +1,146 @@
 # Mojaloop Deployment Tools
 
-This section provides detailed information about the various tools available for deploying Mojaloop.
+This document outlines the four deployment options for Mojaloop, ordered by complexity and production-readiness. Each tool serves specific use cases and deployment scenarios.
 
 ## Core Test Harness
 
 <div style="display: flex; align-items: center; margin-bottom: 20px;">
     <div style="width: 20px; height: 20px; background-color: rgba(46, 204, 113, 0.3); margin-right: 10px;"></div>
+    <span>Development and Testing Environment</span>
 </div>
 
-### Quick Description
-A lightweight, single-node deployment tool designed for learning, development, and testing purposes. It uses docker-compose for orchestration and provides a simplified Mojaloop environment without production-grade components.
+The Core Test Harness provides a single-node development environment using docker-compose. This tool implements a minimal Mojaloop stack without production components, making it suitable for development and testing.
 
-### Technical Documentation
-[Technical Documentation Link] (placeholder)
+### Implementation Details
 
-### Detailed Breakdown
+The Core Test Harness runs on a single machine using docker-compose for orchestration. It deploys core services and backing services without production-grade components like gateways, ingress/egress, or IAM stacks. The implementation uses configurable profiles to manage different deployment scenarios.
 
-#### Features
-- Single node deployment
-- Docker-compose based orchestration
-- Configurable profiles
-- No HELM integration
-- No gateway components
-- No ingress/egress components
-- No IAM stack
-- Deploys:
-  - Core services & backing services
-  - Optional portals
-  - Optional monitoring stack
-- Used in CI pipelines for integration testing
+Resource requirements include a mid-level laptop or desktop workstation with sufficient memory for container orchestration. The tool integrates with CI pipelines for automated testing and validation.
 
-#### Resource Requirements
-- Mid-level laptop or desktop workstation
+### Development Workflow
 
-#### Security
-- Zero security - not intended for production use
+Developers interact with the Core Test Harness through docker-compose commands. The tool supports local development workflows with hot-reloading capabilities. Configuration occurs through environment variables and docker-compose override files.
 
-#### Documentation
-- Developer-focused documentation
-- Non-technical user documentation for learning objectives
-- Product-level documentation explaining features and appropriate use cases
+### Testing Capabilities
 
-#### SLA
-- No SLA provided
-
-#### Limitations
-- Never to be used in production
-- Never to be used for processing real money transactions
+The Core Test Harness enables unit testing, integration testing, and end-to-end testing of Mojaloop components. It provides a controlled environment for testing service interactions and validating business logic.
 
 ## Miniloop
 
 <div style="display: flex; align-items: center; margin-bottom: 20px;">
     <div style="width: 20px; height: 20px; background-color: rgba(243, 156, 18, 0.3); margin-right: 10px;"></div>
+    <span>Testing and Evaluation Environment</span>
 </div>
 
-### Quick Description
-A single-node Kubernetes-based deployment tool that provides a more production-like environment for testing and evaluation purposes. It uses HELM with string replacements for configuration.
+Miniloop implements a single-node Kubernetes environment using microk8s. This deployment option provides a more production-like environment while maintaining simplicity for testing and evaluation.
 
-### Technical Documentation
-[Technical Documentation Link] (placeholder)
+### Architecture
 
-### Detailed Breakdown
+The implementation uses microk8s as the Kubernetes distribution, with HELM charts for service deployment. The architecture includes core services and backing services, configured through HELM value overrides.
 
-#### Features
-- Single node Kubernetes deployment
-- Microk8s-based
-- HELM with string replacements
-- No gateway components
-- No ingress/egress components
-- No IAM stack
-- Deploys:
-  - Core services & backing services
-- Enables testing in Kubernetes layer
+### Deployment Process
 
-#### Resource Requirements
-- Mid-level laptop or desktop workstation
+Deployment occurs through HELM chart installation with string replacements for configuration. The process includes:
+1. microk8s installation and configuration
+2. HELM chart repository setup
+3. Service deployment with custom values
+4. Environment validation
 
-#### Security
-- Zero security - not intended for production use
+### Testing Environment
 
-#### Documentation
-- Developer-focused documentation
-- Semi-technical/BA focused documentation for use-case experimentation
-- Product-level documentation explaining features and appropriate use cases
-
-#### SLA
-- No SLA provided
-
-#### Limitations
-- Never to be used in production
-- Never to be used for processing real money transactions
-- Useful for testing/understanding HELM charts
+Miniloop provides a Kubernetes-based testing environment that mirrors production architecture. It enables testing of:
+- Service discovery and routing
+- Kubernetes resource management
+- HELM chart configurations
+- Service interactions in a k8s environment
 
 ## HELM Deploy
 
 <div style="display: flex; align-items: center; margin-bottom: 20px;">
     <div style="width: 20px; height: 20px; background-color: rgba(230, 126, 34, 0.3); margin-right: 10px;"></div>
+    <span>Production Deployment Solution</span>
 </div>
 
-### Quick Description
-A production-ready deployment solution using HELM charts to deploy Mojaloop services and backing services. Requires user to provide and configure their own Kubernetes infrastructure.
+HELM Deploy provides production-ready deployment capabilities through HELM charts. This implementation requires a pre-configured Kubernetes cluster and implements production-grade security and performance requirements.
 
-### Technical Documentation
-[Technical Documentation Link] (placeholder)
+### Infrastructure Requirements
 
-### Detailed Breakdown
+The deployment requires:
+- A hardened Kubernetes cluster
+- Network policies and security configurations
+- Storage class definitions
+- Resource quotas and limits
 
-#### Features
-- HELM charts for Mojaloop services and backing services deployment
+### Performance Specifications
 
-#### Resource Requirements
-- High-end laptop or workstation
-- Small cloud Kubernetes cluster
+The implementation must meet these performance criteria:
+- 1000+ TPS sustained for one hour
+- 99th percentile latency under 1 second for:
+  - Clearing operations
+  - Lookup operations
+  - Agreement of Terms
+- 99.99% availability
+- Zero RTO/RPO for critical operations
 
-#### Security
-- User is required to harden their own Kubernetes cluster
+### Security Implementation
 
-#### Documentation
-- Developer-focused documentation
-- Semi-technical/BA focused documentation for use-case experimentation
-- Product-level documentation explaining features and appropriate use cases
+Security implementation includes:
+- Network policy enforcement
+- Pod security policies
+- Service mesh integration
+- Secret management
+- Certificate management
 
-#### SLA Requirements
-- Availability: 4/5 9's
-- RTO/RPO: As close to zero as possible
-- Throughput/Performance:
-  - TPS: 1000+ (sustained for 1 hour)
-  - Latency (Percentiles, excluding external latencies):
-    - Clearing: 99% < 1 second
-    - Lookup: 99% < 1 second
-    - Agreement of Terms: 99% < 1 second
-- Data Management:
-  - Mitigations against data loss (replication, disaster recovery)
-  - Retention (audit, compliance)
-  - Archiving
-
-#### Limitations
-- Can be used in production
-- Safe for processing real money transactions
-- User/adopter must deploy and configure their own infrastructure
-- Security limited to HELM charts - additional security configuration required
-
-## Infrastructure as Code (IaC)
+## Infrastructure as Code
 
 <div style="display: flex; align-items: center; margin-bottom: 20px;">
     <div style="width: 20px; height: 20px; background-color: rgba(231, 76, 60, 0.3); margin-right: 10px;"></div>
+    <span>Enterprise Deployment Solution</span>
 </div>
 
-### Quick Description
-A comprehensive deployment solution supporting multiple platforms and orchestration layers, implementing GitOps patterns for managing multiple hub instances and environments.
+The Infrastructure as Code (IaC) implementation provides a comprehensive deployment solution supporting multiple platforms and orchestration layers. It implements GitOps patterns for managing multiple hub instances.
 
-### Technical Documentation
-[Technical Documentation Link] (placeholder)
+### Platform Support
 
-### Detailed Breakdown
-
-#### Features
-- Multiple deployment platform targets:
-  - AWS
-  - On-premises
-  - Other clouds (modular)
-- Multiple orchestration layer options:
-  - Managed k8s
+The implementation supports:
+- AWS deployment through CloudFormation/Terraform
+- On-premises deployment through Terraform
+- Multi-cloud deployment through provider-agnostic modules
+- Multiple Kubernetes distributions:
+  - Managed k8s services
   - Microk8s
   - EKS
-- GitOps pattern (control centre)
-  - Deploy and manage multiple hub instances/environments
-- Deploys:
-  - Control centre
-  - Core services & backing services
-  - Portals
-  - IAM stack
-  - Monitoring stack
-  - PM4ML
 
-#### Resource Requirements
-- High-end cloud or on-premise infrastructure
+### Control Center Architecture
 
-#### Security
-- Full security implementation
+The control center implements GitOps patterns for:
+- Multi-environment management
+- Configuration versioning
+- Deployment automation
+- State management
+- Drift detection
 
-#### Documentation
-- Multiple levels targeting all user types
-- Developer documentation for maintenance and enhancement
-- Technical operations documentation for infrastructure engineers
-- Product-level documentation explaining features and use cases
+### Component Deployment
 
-#### SLA Requirements
-- Availability: 4/5 9's
-- RTO/RPO: As close to zero as possible
-- Throughput/Performance:
-  - TPS: 1000+ (sustained for 1 hour)
-  - Latency (Percentiles, excluding external latencies):
-    - Clearing: 99% < 1 second
-    - Lookup: 99% < 1 second
-    - Agreement of Terms: 99% < 1 second
-- Data Management:
-  - Mitigations against data loss (replication, disaster recovery)
-  - Retention (audit, compliance)
-  - Archiving
+The implementation deploys:
+- Control center services
+- Core Mojaloop services
+- Backing services
+- Portal applications
+- IAM infrastructure
+- Monitoring stack
+- PM4ML components
 
-#### Limitations
-- Can be used in production
-- Safe for processing real money transactions
+### Performance and Security
+
+The IaC implementation enforces:
+- Production-grade security controls
+- Performance requirements matching HELM Deploy
+- High availability configurations
+- Disaster recovery procedures
+- Compliance requirements
 
 ## Document History
 |Version|Date|Author|Detail|
 |:--------------:|:--------------:|:--------------:|:--------------:|
-|1.0|7th May 2025| Tony Williams|Initial version| 
+|1.0|14th May 2025| Tony Williams|Initial version| 
