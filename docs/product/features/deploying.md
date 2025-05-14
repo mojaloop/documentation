@@ -16,7 +16,7 @@ This baseline performance can be used as a reference point for system sizing and
 
 The following table provides guidance on which Mojaloop deployment scenario is most appropriate for different user types and use cases.
 
-For detailed information about each deployment tool, please refer to the [Deployment Tools](./tools.md) documentation.
+For detailed information about each deployment tool, please refer to the [Deployment Tools](./tools) documentation.
 
 <style>
 .deployment-table {
@@ -205,7 +205,7 @@ For detailed information about each deployment tool, please refer to the [Deploy
 </thead>
 <tbody>
 <tr>
-<td class="green">core test harness</td>
+<td class="green"><a href="./tools#core-test-harness">core test harness</a></td>
 <td>- single node<br>- docker-compose<br>- "profiles" available<br>- No HELM<br>- No gateway<br>- No ingress/egress components<br>- No IAM stack<br>- Deploys:<br>  - core services & backing services<br>  - portals (optional)<br>  - monitoring stack (optional)<br><br>Used in CI pipelines for integration testing.</td>
 <td>Mid level laptop or desktop workstation</td>
 <td>Zero security</td>
@@ -214,7 +214,7 @@ For detailed information about each deployment tool, please refer to the [Deploy
 <td>- Never to be used in production.<br>- Never to be used to process real money transactions.</td>
 </tr>
 <tr>
-<td class="orange">Miniloop</td>
+<td class="orange"><a href="./tools#miniloop">Miniloop</a></td>
 <td>- single node kubernetes<br>- microk8s?<br>- HELM with string replacements<br>- No gateway<br>- No ingress/egress components<br>- No IAM stack<br>- Deploys:<br>  - core services & backing services<br><br>Gives ability to test in Kubernetes layer.</td>
 <td>Mid level laptop or desktop workstation</td>
 <td>Zero security</td>
@@ -223,7 +223,7 @@ For detailed information about each deployment tool, please refer to the [Deploy
 <td>- Never to be used in production.<br>- Never to be used to process real money transactions.<br>- Possibly useful for testing/understanding of the HELM charts.</td>
 </tr>
 <tr>
-<td class="amber">HELM deploy</td>
+<td class="amber"><a href="./tools#helm-deploy">HELM deploy</a></td>
 <td>- Just HELM charts needed to deploy Mojaloop services and backing services.</td>
 <td>- High end laptop or workstation<br>- Small cloud kubernetes cluster.</td>
 <td>User is required to harden their own Kubernetes cluster.</td>
@@ -232,7 +232,7 @@ For detailed information about each deployment tool, please refer to the [Deploy
 <td>- Can be used in production.<br>- Safe for processing real money transactions.<br>- User/adopter is required to deploy and configure their own infrastructure, including Kubernetes cluster(s), ingress/egress, firewalls etc...<br>- Security is limited to what HELM charts provide. Additional security design and configuration is required.</td>
 </tr>
 <tr>
-<td class="red">IaC</td>
+<td class="red"><a href="./tools#infrastructure-as-code-iac">Infrastructure as Code</a></td>
 <td>- multiple deployment platform targets<br>  - AWS, On-prem, other clouds, (modular)<br>- multiple orchestration layer options<br>  - managed k8s, microk8s, eks<br>- GitOps pattern (control centre)<br>  - can deploy and manage multiple hub instances / environments<br>- Deploys:<br>  - control centre<br>  - core services & backing services (options for managed backing services)<br>  - portals<br>  - IAM stack<br>  - monitoring stack<br>  - pm4ml<br>- GitOps pattern</td>
 <td>- High end cloud or on-premise infrastructure.</td>
 <td>Full security</td>
