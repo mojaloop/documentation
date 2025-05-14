@@ -17,96 +17,106 @@ This baseline performance can be used as a reference point for system sizing and
 The following table provides guidance on which Mojaloop deployment scenario is most appropriate for different user types and use cases.
 
 <style>
-table {
+.deployment-table {
     border-collapse: collapse;
     width: 100%;
     margin: 20px 0;
-}
-th, td {
-    border: 1px solid #ddd;
-    padding: 12px;
-    text-align: left;
-    vertical-align: top;
-    position: relative;
-}
-th {
-    background-color: #f8f9fa;
-}
-td.green { 
-    background-color: rgba(46, 204, 113, 0.3); /* Lighter green with opacity */
-    position: relative;
-}
-td.green:hover::after {
-    content: "Use: core test harness";
-    position: absolute;
-    bottom: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #333;
-    color: white;
-    padding: 5px 10px;
-    border-radius: 4px;
-    font-size: 14px;
-    white-space: nowrap;
-    z-index: 1;
-}
-td.orange { 
-    background-color: rgba(243, 156, 18, 0.3); /* Lighter orange with opacity */
-    position: relative;
-}
-td.orange:hover::after {
-    content: "Use: Miniloop";
-    position: absolute;
-    bottom: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #333;
-    color: white;
-    padding: 5px 10px;
-    border-radius: 4px;
-    font-size: 14px;
-    white-space: nowrap;
-    z-index: 1;
-}
-td.amber { 
-    background-color: rgba(230, 126, 34, 0.3); /* Lighter amber with opacity */
-    position: relative;
-}
-td.amber:hover::after {
-    content: "Use: HELM deploy";
-    position: absolute;
-    bottom: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #333;
-    color: white;
-    padding: 5px 10px;
-    border-radius: 4px;
-    font-size: 14px;
-    white-space: nowrap;
-    z-index: 1;
-}
-td.red { 
-    background-color: rgba(231, 76, 60, 0.3); /* Lighter red with opacity */
-    position: relative;
-}
-td.red:hover::after {
-    content: "Use: IaC";
-    position: absolute;
-    bottom: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #333;
-    color: white;
-    padding: 5px 10px;
-    border-radius: 4px;
-    font-size: 14px;
-    white-space: nowrap;
-    z-index: 1;
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 12px;
+        text-align: left;
+        vertical-align: top;
+        position: relative;
+    }
+
+    th {
+        background-color: #f8f9fa;
+    }
+
+    td.green { 
+        background-color: rgba(46, 204, 113, 0.3); /* Lighter green with opacity */
+        position: relative;
+
+        &:hover::after {
+            content: "Use: core test harness";
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #333;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 14px;
+            white-space: nowrap;
+            z-index: 1;
+        }
+    }
+
+    td.orange { 
+        background-color: rgba(243, 156, 18, 0.3); /* Lighter orange with opacity */
+        position: relative;
+
+        &:hover::after {
+            content: "Use: Miniloop";
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #333;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 14px;
+            white-space: nowrap;
+            z-index: 1;
+        }
+    }
+
+    td.amber { 
+        background-color: rgba(230, 126, 34, 0.3); /* Lighter amber with opacity */
+        position: relative;
+
+        &:hover::after {
+            content: "Use: HELM deploy";
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #333;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 14px;
+            white-space: nowrap;
+            z-index: 1;
+        }
+    }
+
+    td.red { 
+        background-color: rgba(231, 76, 60, 0.3); /* Lighter red with opacity */
+        position: relative;
+
+        &:hover::after {
+            content: "Use: IaC";
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #333;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 14px;
+            white-space: nowrap;
+            z-index: 1;
+        }
+    }
 }
 </style>
 
-<table>
+<table class="deployment-table">
 <thead>
 <tr>
 <th>Deployment Scenario / User type</th>
@@ -179,7 +189,7 @@ td.red:hover::after {
 
 ## Deployment Tools
 
-<table>
+<table class="deployment-table">
 <thead>
 <tr>
 <th>Tool</th>
