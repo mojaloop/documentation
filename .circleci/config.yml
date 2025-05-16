@@ -211,7 +211,7 @@ jobs:
             
             # Check if this PR already has a preview
             echo "Checking if PR #${PR_NUMBER} already has a preview..."
-            if aws s3 ls "s3://docs.mojaloop.io-preview/${PR_NUMBER}/" 2>/dev/null; then
+            if aws s3 ls "s3://mojaloop-docs-preview/${PR_NUMBER}/" 2>/dev/null; then
               echo "PR #${PR_NUMBER} already has a preview, allowing update"
               exit 0
             fi
@@ -219,7 +219,7 @@ jobs:
             # Get count of existing previews
             echo "Counting existing previews..."
             # List all directories in the preview bucket and count them
-            PREVIEW_COUNT=$(aws s3 ls s3://docs.mojaloop.io-preview/ 2>/dev/null | grep -c '^[0-9]' || echo "0")
+            PREVIEW_COUNT=$(aws s3 ls s3://mojaloop-docs-preview/ 2>/dev/null | grep -c '^[0-9]' || echo "0")
             echo "Current preview count: $PREVIEW_COUNT"
             
             if [ "$PREVIEW_COUNT" -ge "$PREVIEW_LIMIT" ]; then
@@ -233,7 +233,7 @@ jobs:
           name: Deploy PR Preview
           command: ./scripts/_deploy_preview_s3.sh
           environment:
-            BUCKET_NAME: docs.mojaloop.io-preview
+            BUCKET_NAME: mojaloop-docs-preview
             DOMAIN: preview.docs.mojaloop.io
             IS_PR: "true"
             PR_NUMBER: ${CIRCLE_PULL_REQUEST##*/}
@@ -266,7 +266,7 @@ jobs:
             # Extract PR numbers and clean up their previews
             echo "$CLOSED_PRS" | jq -r '.[].number' | while read -r pr_number; do
               echo "Cleaning up preview for PR #$pr_number"
-              aws s3 rm s3://docs.mojaloop.io-preview/${pr_number} --recursive
+              aws s3 rm s3://mojaloop-docs-preview/${pr_number} --recursive
             done
 
   # When a new tag is pushed, create a new version of docs

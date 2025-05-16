@@ -20,7 +20,7 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 NVM_DIR=$HOME/.nvm
 export AWS_REGION="${AWS_REGION:-eu-west-2}"
-export BUCKET_NAME="${BUCKET_NAME:-docs.mojaloop.io-preview}"
+export BUCKET_NAME="${BUCKET_NAME:-mojaloop-docs-preview}"
 export DOMAIN="${DOMAIN:-docs.mojaloop.io}"
 export IS_PR="${IS_PR:-false}"
 export PR_NUMBER="${PR_NUMBER:-}"
