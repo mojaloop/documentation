@@ -1142,7 +1142,8 @@ module.exports = {
             ['features/deploying', 'Deploying Mojaloop'],
             ['features/tools', 'Deployment Tools'],
             ['features/engineering', 'Engineering Principles'],
-            ['features/invariants', 'Invariants']
+            ['features/invariants', 'Invariants'],
+            ['features/invariants2', 'Invariants2']
           ]
         }
       ]
