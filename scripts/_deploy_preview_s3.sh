@@ -69,19 +69,6 @@ else
     --acl public-read
 fi
 
-# Create CloudFront invalidation
-if [ -n "$CLOUDFRONT_DISTRIBUTION_ID" ]; then
-  if [ -n "$TARGET_PATH" ]; then
-    aws cloudfront create-invalidation \
-      --distribution-id ${CLOUDFRONT_DISTRIBUTION_ID} \
-      --paths "/${TARGET_PATH}/*"
-  else
-    aws cloudfront create-invalidation \
-      --distribution-id ${CLOUDFRONT_DISTRIBUTION_ID} \
-      --paths "/*"
-  fi
-fi
-
 if [ "$IS_PR" = "true" ] && [ -n "$PR_NUMBER" ]; then
   echo "Preview deployment is available at: https://${DOMAIN}/pr/${PR_NUMBER}"
 else
