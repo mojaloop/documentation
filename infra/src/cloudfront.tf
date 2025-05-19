@@ -100,7 +100,7 @@ resource "aws_cloudfront_distribution" "website_cdn_root" {
 
     forwarded_values {
       query_string = false
-      headers      = ["Host"]
+      headers      = ["Host", "Origin"]
       cookies {
         forward = "none"
       }
@@ -118,7 +118,7 @@ resource "aws_cloudfront_distribution" "website_cdn_root" {
 
     forwarded_values {
       query_string = false
-      headers      = ["Host"]
+      headers      = ["Host", "Origin"]
       cookies {
         forward = "none"
       }
