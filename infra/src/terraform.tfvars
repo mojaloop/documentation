@@ -1,5 +1,4 @@
 website-domain-main = "docs.mojaloop.io"
-website-domain-preview = "preview.docs.mojaloop.io"
 tags = {
   "mojaloop/cost_center" = "oss-qa"
   "mojaloop/owner" = "lewis"
