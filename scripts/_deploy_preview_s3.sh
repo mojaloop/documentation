@@ -11,7 +11,7 @@
 # "Using a REST API endpoint as the origin, with access restricted by an OAI"
 
 # The website should be available at:
-# http://pr-<number>.docs.mojaloop.io
+# https://docs.mojaloop.io/pr/<number>
 
 # Required tools:
 # - aws-cli
@@ -20,7 +20,7 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 NVM_DIR=$HOME/.nvm
 export AWS_REGION="${AWS_REGION:-eu-west-2}"
-export BUCKET_NAME="${BUCKET_NAME:-mojaloop-docs-preview}"
+export BUCKET_NAME="${BUCKET_NAME:-docs.mojaloop.io-root}"
 export DOMAIN="${DOMAIN:-docs.mojaloop.io}"
 export IS_PR="${IS_PR:-false}"
 export PR_NUMBER="${PR_NUMBER:-}"
@@ -55,7 +55,7 @@ mv ${DIR}/../legacy/_book ${DIR}/../build/legacy
 
 # Determine the target path based on whether this is a PR or not
 if [ "$IS_PR" = "true" ] && [ -n "$PR_NUMBER" ]; then
-  TARGET_PATH="pr-${PR_NUMBER}"
+  TARGET_PATH="pr/${PR_NUMBER}"
 else
   TARGET_PATH=""
 fi
@@ -83,7 +83,7 @@ if [ -n "$CLOUDFRONT_DISTRIBUTION_ID" ]; then
 fi
 
 if [ "$IS_PR" = "true" ] && [ -n "$PR_NUMBER" ]; then
-  echo "Preview deployment is available at: https://pr-${PR_NUMBER}.${DOMAIN}"
+  echo "Preview deployment is available at: https://${DOMAIN}/pr/${PR_NUMBER}"
 else
   echo "Deployment is available at: https://${DOMAIN}"
 fi
