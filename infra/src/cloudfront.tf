@@ -91,7 +91,7 @@ resource "aws_cloudfront_distribution" "website_cdn_root" {
 
   # Handle PR preview paths
   ordered_cache_behavior {
-    path_pattern = "/pr/[0-9]*/*"
+    path_pattern = "/pr/*/*"
     target_origin_id = "origin-bucket-${aws_s3_bucket.website_root.id}"
     allowed_methods  = ["GET", "HEAD", "OPTIONS"]
     cached_methods   = ["GET", "HEAD", "OPTIONS"]
@@ -109,7 +109,7 @@ resource "aws_cloudfront_distribution" "website_cdn_root" {
 
   # Handle root of PR preview
   ordered_cache_behavior {
-    path_pattern = "/pr/[0-9]*"
+    path_pattern = "/pr/*"
     target_origin_id = "origin-bucket-${aws_s3_bucket.website_root.id}"
     allowed_methods  = ["GET", "HEAD", "OPTIONS"]
     cached_methods   = ["GET", "HEAD", "OPTIONS"]
