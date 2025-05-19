@@ -89,6 +89,42 @@ resource "aws_cloudfront_distribution" "website_cdn_root" {
     prefix = "${var.website-domain-main}/"
   }
 
+  # Handle PR preview paths
+  ordered_cache_behavior {
+    path_pattern = "/pr/[0-9]*/*"
+    target_origin_id = "origin-bucket-${aws_s3_bucket.website_root.id}"
+    allowed_methods  = ["GET", "HEAD", "OPTIONS"]
+    cached_methods   = ["GET", "HEAD", "OPTIONS"]
+    viewer_protocol_policy = "redirect-to-https"
+    compress = true
+
+    forwarded_values {
+      query_string = false
+      headers      = ["Host"]
+      cookies {
+        forward = "none"
+      }
+    }
+  }
+
+  # Handle root of PR preview
+  ordered_cache_behavior {
+    path_pattern = "/pr/[0-9]*"
+    target_origin_id = "origin-bucket-${aws_s3_bucket.website_root.id}"
+    allowed_methods  = ["GET", "HEAD", "OPTIONS"]
+    cached_methods   = ["GET", "HEAD", "OPTIONS"]
+    viewer_protocol_policy = "redirect-to-https"
+    compress = true
+
+    forwarded_values {
+      query_string = false
+      headers      = ["Host"]
+      cookies {
+        forward = "none"
+      }
+    }
+  }
+
   # Shared cache behaviors for main distribution
   dynamic "ordered_cache_behavior" {
     for_each = local.shared_cache_behaviors
@@ -144,141 +180,6 @@ resource "aws_cloudfront_distribution" "website_cdn_root" {
     error_code            = 404
     response_page_path    = "/404.html"
     response_code         = 404
-  }
-
-  tags = merge(var.tags, {
-    ManagedBy = "terraform"
-    Changed   = formatdate("YYYY-MM-DD hh:mm ZZZ", timestamp())
-  })
-
-  lifecycle {
-    ignore_changes = [
-      tags["Changed"],
-      viewer_certificate,
-    ]
-  }
-}
-
-# Creates the CloudFront distribution for PR previews
-resource "aws_cloudfront_distribution" "website_cdn_preview" {
-  provider = aws.custom
-  enabled     = true
-  price_class = "PriceClass_All"
-
-  depends_on = [
-    aws_s3_bucket.website_preview
-  ]
-
-  aliases = [var.website-domain-preview]
-
-  // preview bucket origin for PR previews
-  origin {
-    origin_id   = "origin-bucket-${aws_s3_bucket.website_preview.id}"
-    domain_name = aws_s3_bucket.website_preview.website_endpoint
-
-    custom_origin_config {
-      origin_protocol_policy = "http-only"
-      http_port            = 80
-      https_port           = 443
-      origin_ssl_protocols = ["TLSv1.2", "TLSv1.1", "TLSv1"]
-    }
-  }
-
-  // other origins for sites hosted at docs.mojaloop.io/<PATH>
-  origin {
-    origin_id = "mojaloop.github.io"
-    domain_name = "mojaloop.github.io"
-    custom_origin_config {
-      origin_protocol_policy = "match-viewer"
-      http_port            = 80
-      https_port           = 443
-      origin_ssl_protocols = ["TLSv1.2", "TLSv1.1", "TLSv1"]
-    }
-  }
-
-  default_root_object = "index.html"
-
-  logging_config {
-    bucket = aws_s3_bucket.website_logs.bucket_domain_name
-    prefix = "${var.website-domain-preview}/"
-  }
-
-  # Handle PR preview paths
-  ordered_cache_behavior {
-    path_pattern = "/[0-9]*/*"
-    target_origin_id = "origin-bucket-${aws_s3_bucket.website_preview.id}"
-    allowed_methods  = ["GET", "HEAD", "OPTIONS"]
-    cached_methods   = ["GET", "HEAD", "OPTIONS"]
-    viewer_protocol_policy = "redirect-to-https"
-    compress = true
-
-    forwarded_values {
-      query_string = false
-      headers      = ["Host"]
-      cookies {
-        forward = "none"
-      }
-    }
-  }
-
-  # Handle root of PR preview
-  ordered_cache_behavior {
-    path_pattern = "/[0-9]*"
-    target_origin_id = "origin-bucket-${aws_s3_bucket.website_preview.id}"
-    allowed_methods  = ["GET", "HEAD", "OPTIONS"]
-    cached_methods   = ["GET", "HEAD", "OPTIONS"]
-    viewer_protocol_policy = "redirect-to-https"
-    compress = true
-
-    forwarded_values {
-      query_string = false
-      headers      = ["Host"]
-      cookies {
-        forward = "none"
-      }
-    }
-  }
-
-  # Shared cache behaviors with PR number prefix for preview
-  dynamic "ordered_cache_behavior" {
-    for_each = local.shared_cache_behaviors
-    content {
-      path_pattern     = "/[0-9]*${ordered_cache_behavior.value.path_pattern}"
-      target_origin_id = ordered_cache_behavior.value.target_origin_id
-      allowed_methods  = ["GET", "HEAD", "OPTIONS"]
-      cached_methods   = ["GET", "HEAD", "OPTIONS"]
-      viewer_protocol_policy = "allow-all"
-      forwarded_values {
-        query_string = false
-        cookies {
-          forward = "none"
-        }
-      }
-    }
-  }
-
-  default_cache_behavior {
-    allowed_methods  = ["GET", "HEAD", "OPTIONS"]
-    cached_methods   = ["GET", "HEAD", "OPTIONS"]
-    target_origin_id = "origin-bucket-${aws_s3_bucket.website_preview.id}"
-    viewer_protocol_policy = "redirect-to-https"
-    forwarded_values {
-      query_string = false
-      cookies {
-        forward = "none"
-      }
-    }
-  }
-
-  restrictions {
-    geo_restriction {
-      restriction_type = "none"
-    }
-  }
-
-  viewer_certificate {
-    acm_certificate_arn = var.cloudfront-certificate-arn
-    ssl_support_method  = "sni-only"
   }
 
   tags = merge(var.tags, {
