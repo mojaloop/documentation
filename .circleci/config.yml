@@ -240,12 +240,18 @@ jobs:
             echo "Preview count ($PREVIEW_COUNT) is under limit ($PREVIEW_LIMIT), proceeding with deployment"
       - run:
           name: Deploy PR Preview
-          command: ./scripts/_deploy_preview_s3.sh
+          command: |
+            # Extract PR number from CIRCLE_PULL_REQUEST
+            export PR_NUMBER=$(echo "$CIRCLE_PULL_REQUEST" | sed -E 's/.*\/pull\/([0-9]+)$/\1/')
+            if [ -z "$PR_NUMBER" ]; then
+              echo "Error: Could not extract PR number from CIRCLE_PULL_REQUEST"
+              exit 1
+            fi
+            ./scripts/_deploy_preview_s3.sh
           environment:
             BUCKET_NAME: docs.mojaloop.io-root
             DOMAIN: docs.mojaloop.io
             IS_PR: "true"
-            PR_NUMBER: $PR_NUMBER
       - run:
           name: Comment PR with Preview URL
           command: |
