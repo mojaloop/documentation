@@ -197,14 +197,23 @@ jobs:
             set -x  # Enable debug output
             echo "Starting PR Preview Limits check..."
             
-            # Extract PR number from CIRCLE_PULL_REQUEST
-            PR_NUMBER=${CIRCLE_PULL_REQUEST##*/}
-            echo "PR Number: $PR_NUMBER"
+            # Debug CIRCLE_PULL_REQUEST value
+            echo "CIRCLE_PULL_REQUEST value: $CIRCLE_PULL_REQUEST"
             
-            if [ -z "$PR_NUMBER" ]; then
-              echo "Error: Could not extract PR number from CIRCLE_PULL_REQUEST"
-              exit 1
+            # Extract PR number from CIRCLE_PULL_REQUEST with fallback
+            if [[ "$CIRCLE_PULL_REQUEST" =~ /pull/([0-9]+)$ ]]; then
+              PR_NUMBER="${BASH_REMATCH[1]}"
+            else
+              # Fallback: try to get PR number from branch name if it's a PR branch
+              if [[ "$CIRCLE_BRANCH" =~ ^pull/([0-9]+)$ ]]; then
+                PR_NUMBER="${BASH_REMATCH[1]}"
+              else
+                echo "Error: Could not extract PR number from CIRCLE_PULL_REQUEST or branch name"
+                exit 1
+              fi
             fi
+            
+            echo "Extracted PR Number: $PR_NUMBER"
             
             PREVIEW_LIMIT=${PREVIEW_LIMIT:-10}  # Default to 10 if not set
             echo "Preview Limit: $PREVIEW_LIMIT"
@@ -236,7 +245,7 @@ jobs:
             BUCKET_NAME: docs.mojaloop.io-root
             DOMAIN: docs.mojaloop.io
             IS_PR: "true"
-            PR_NUMBER: ${CIRCLE_PULL_REQUEST##*/}
+            PR_NUMBER: $PR_NUMBER
       - run:
           name: Comment PR with Preview URL
           command: |
