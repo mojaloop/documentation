@@ -197,15 +197,23 @@ jobs:
             set -x  # Enable debug output
             echo "Starting PR Preview Limits check..."
             
-            # Use CIRCLE_PR_NUMBER directly
-            PR_NUMBER=$CIRCLE_PR_NUMBER
+            # Debug CIRCLE_PULL_REQUEST value
+            echo "CIRCLE_PULL_REQUEST value: $CIRCLE_PULL_REQUEST"
+            
+            # Extract PR number from CIRCLE_PULL_REQUEST using POSIX-compliant syntax
+            PR_NUMBER=$(echo "$CIRCLE_PULL_REQUEST" | sed -E 's/.*\/pull\/([0-9]+)$/\1/')
+            
+            # If extraction failed, try branch name
+            if [ -z "$PR_NUMBER" ]; then
+              PR_NUMBER=$(echo "$CIRCLE_BRANCH" | sed -E 's/^pull\/([0-9]+)$/\1/')
+            fi
             
             if [ -z "$PR_NUMBER" ]; then
-              echo "Error: CIRCLE_PR_NUMBER is not set"
+              echo "Error: Could not extract PR number from CIRCLE_PULL_REQUEST or branch name"
               exit 1
             fi
             
-            echo "PR Number: $PR_NUMBER"
+            echo "Extracted PR Number: $PR_NUMBER"
             
             PREVIEW_LIMIT=${PREVIEW_LIMIT:-10}  # Default to 10 if not set
             echo "Preview Limit: $PREVIEW_LIMIT"
