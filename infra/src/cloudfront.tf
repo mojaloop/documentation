@@ -89,42 +89,6 @@ resource "aws_cloudfront_distribution" "website_cdn_root" {
     prefix = "${var.website-domain-main}/"
   }
 
-  # Handle PR preview paths
-  ordered_cache_behavior {
-    path_pattern = "/pr/*/*"
-    target_origin_id = "origin-bucket-${aws_s3_bucket.website_root.id}"
-    allowed_methods  = ["GET", "HEAD", "OPTIONS"]
-    cached_methods   = ["GET", "HEAD", "OPTIONS"]
-    viewer_protocol_policy = "redirect-to-https"
-    compress = true
-
-    forwarded_values {
-      query_string = false
-      headers      = ["Host", "Origin"]
-      cookies {
-        forward = "none"
-      }
-    }
-  }
-
-  # Handle root of PR preview
-  ordered_cache_behavior {
-    path_pattern = "/pr/*"
-    target_origin_id = "origin-bucket-${aws_s3_bucket.website_root.id}"
-    allowed_methods  = ["GET", "HEAD", "OPTIONS"]
-    cached_methods   = ["GET", "HEAD", "OPTIONS"]
-    viewer_protocol_policy = "redirect-to-https"
-    compress = true
-
-    forwarded_values {
-      query_string = false
-      headers      = ["Host", "Origin"]
-      cookies {
-        forward = "none"
-      }
-    }
-  }
-
   # Shared cache behaviors for main distribution
   dynamic "ordered_cache_behavior" {
     for_each = local.shared_cache_behaviors

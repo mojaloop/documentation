@@ -257,7 +257,7 @@ jobs:
           command: |
             PR_NUMBER=${CIRCLE_PULL_REQUEST##*/}
             if [ -n "$PR_NUMBER" ]; then
-              gh pr comment "$PR_NUMBER" --body "Preview deployment is available at: https://docs.mojaloop.io/pr/${PR_NUMBER}"
+              gh pr comment "$PR_NUMBER" --body "Preview deployment is available at: https://docs.mojaloop.io/pr/${PR_NUMBER}/"
             fi
 
   cleanup_pr_preview:
