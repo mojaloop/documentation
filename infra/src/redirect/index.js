@@ -87,6 +87,12 @@ function handler(event) {
   var uri = request.uri;
   var response
 
+  // Handle PR preview directory paths
+  if (uri.startsWith('/pr/') && uri.endsWith('/')) {
+    uri = uri + 'index.html';
+    request.uri = uri;
+  }
+
   redirectMapping.forEach(m => {
     if (uri.endsWith(m.from)) {
       var newurl = uri.replace(m.from, m.to)
