@@ -286,7 +286,6 @@ module.exports = {
             sidebarDepth: 2,
             children: [
               ['technical/deployment-guide/', 'Deploying Mojaloop'],
-              'technical/deployment-guide/releases',
               'technical/deployment-guide/deployment-troubleshooting',
               'technical/deployment-guide/upgrade-strategy-guide',
               'technical/deployment-guide/mojaloop-repository-update-guide'
@@ -307,6 +306,10 @@ module.exports = {
               'technical/overview/components-PI5',
               'technical/overview/components-PI3'
             ]
+          },
+          {
+            title: "Mojaloop Releases",
+            path: "technical/releases"
           },
           {
             title: "Account Lookup Service",
@@ -1136,8 +1139,11 @@ module.exports = {
             ['features/risk', 'Risk Management'],
             ['features/connectivity', 'Connectivity Support'],
             ['features/product', 'Portals and Operational Features'],
+            ['features/deploying', 'Deploying Mojaloop'],
+            ['features/tools', 'Deployment Tools'],
             ['features/engineering', 'Engineering Principles'],
-            ['features/invariants', 'Invariants']
+            ['features/invariants', 'Invariants'],
+            ['features/invariants2', 'Invariants2']
           ]
         }
       ]

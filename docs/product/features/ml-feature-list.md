@@ -1,7 +1,3 @@
-**29th January 2025**\
-Authors: Paul Makin, James Bush\
-Version: 1.1
-
 # About Mojaloop 
 
 Mojaloop is open source instant payments software that interconnects
@@ -21,7 +17,7 @@ financial institutions:
 
 &nbsp;
 
-These core functions are supported by some [unique characteristics](./transactions.md#Unique-Transaction-Characteristics), which
+These core functions are supported by some [unique characteristics](./transaction.html#unique-transaction-characteristics), which
 together make Mojaloop a low cost, inclusive instant payments system:
 
 1.  **A Three Phase Transaction Flow**, as follows:
@@ -61,19 +57,17 @@ of Mojaloop:
 ## Purpose of This Document
 
 This document catalogues the features of Mojaloop, independent of
-implementation. It is intended to both inform potential adopters of the
-features they can expect and (where appropriate) how those features can
-be expected to function, and to inform developers of the features they
-must implement in order for their efforts to be accepted as an official
-instance of Mojaloop.
+implementation. It is intended to both inform potential adopters of the features they can expect and (where appropriate) how those features can be expected to function, and to inform developers of the features they must implement in order for their efforts to be accepted as an official instance of Mojaloop.
 
 The Mojaloop Foundation (MLF) defines an implementation as being an
 official instance of Mojaloop if it implements all of the features of
-Mojaloop, without exception, and they pass the standard set of Mojaloop
-tests.
+Mojaloop, without exception, and they pass the standard set of Mojaloop tests.
 
-## Scope
+## Applicability
 
-This feature list is subject to amendment as the Mojaloop ecosystem
-continues to develop. Currently, it relates to Mojaloop Congo, Version 16.
+This version of this document relates to Mojaloop Version [17.0.0](https://github.com/mojaloop/helm/releases/tag/v17.0.0)
 
+## Document History
+  |Version|Date|Author|Detail|
+|:--------------:|:--------------:|:--------------:|:--------------:|
+|1.2|14th April 2025| Paul Makin|Updates related to the release of V17|
