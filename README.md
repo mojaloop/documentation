@@ -68,6 +68,54 @@ You can also deploy them manually, by running:
 
 Note that you need to have the `aws` cli, AWS access, and `aws-mfa` set up on your machine for this to work.
 
+## PR Preview System
+
+The documentation site includes an automated PR preview system that creates a live preview of documentation changes for each pull request. Here's how it works:
+
+### Key Components
+
+1. **CircleCI Configuration** (`.circleci/config.yml`):
+   - `deploy_pr_preview` job: Handles PR preview deployment
+   - `cleanup_pr_preview` job: Cleans up old PR previews
+   - Enforces a limit on the number of concurrent previews
+
+2. **Deployment Script** (`scripts/_deploy_preview_s3.sh`):
+   - Builds the documentation site
+   - Uploads to S3 under the `/pr/{PR_NUMBER}/` path
+   - Sets appropriate permissions and headers
+
+3. **CloudFront Configuration** (`infra/src/cloudfront.tf`):
+   - Serves PR previews from the S3 bucket
+   - Handles directory indexes via CloudFront function
+   - Manages caching and routing
+
+4. **CloudFront Function** (`infra/src/redirect/index.js`):
+   - Handles directory index requests (e.g., `/pr/123/` → `/pr/123/index.html`)
+   - Manages legacy URL redirects
+
+### How to Use
+
+1. Create a pull request against the main branch
+2. CircleCI will automatically:
+   - Build the documentation
+   - Deploy to a preview URL: `https://docs.mojaloop.io/pr/{PR_NUMBER}`
+   - Comment on the PR with the preview URL
+3. Preview will be automatically cleaned up when the PR is closed
+
+### Preview Limits
+
+- Maximum of 10 concurrent previews
+- Previews are automatically cleaned up after PR closure
+- Existing previews are updated when new commits are pushed
+
+### Troubleshooting
+
+If a preview isn't working:
+1. Check the CircleCI build logs for deployment issues
+2. Verify the PR number is correctly extracted
+3. Ensure the CloudFront function is properly handling directory indexes
+4. Check S3 for the presence of files at `/pr/{PR_NUMBER}/`
+
 ## Contributing to the project
 Please refer to the [Contributing Guide](./contributing-guide.md) for details on how to contribute to Mojaloop Docs 2.0.
 
