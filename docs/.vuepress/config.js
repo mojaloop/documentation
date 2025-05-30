@@ -3,6 +3,9 @@ const { description } = require('../../package')
 // Determine if we're in PR preview mode
 const isPrPreview = process.env.VUEPRESS_IS_PR === 'true'
 
+// Set base URL for PR previews
+const base = isPrPreview ? `/pr/${process.env.VUEPRESS_PR_NUMBER}/` : '/'
+
 module.exports = {
   /**
    * Ref：https://v1.vuepress.vuejs.org/config/#title
@@ -12,6 +15,13 @@ module.exports = {
    * Ref：https://v1.vuepress.vuejs.org/config/#description
    */
   description: description,
+
+  /**
+   * Base URL for the site
+   * 
+   * ref：https://v1.vuepress.vuejs.org/config/#base
+   */
+  base,
 
   /**
    * Extra tags to be injected to the page HTML `<head>`
