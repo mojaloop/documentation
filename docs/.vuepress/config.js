@@ -1,5 +1,7 @@
 const { description } = require('../../package')
 
+// Determine if we're in PR preview mode
+const isPrPreview = process.env.VUEPRESS_IS_PR === 'true'
 
 module.exports = {
   /**
@@ -40,6 +42,9 @@ module.exports = {
     sidebarDepth: 2,
     lastUpdated: true,
     footerCopyright: 'Apache 2.0 Licensed | Copyright © 2020 - 2024 Mojaloop Foundation',
+    // PR Preview configuration
+    isPrPreview: isPrPreview,
+    prNumber: process.env.VUEPRESS_PR_NUMBER || '',
     nav: [
       {
         text: 'Adoption',
