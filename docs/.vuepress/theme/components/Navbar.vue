@@ -120,7 +120,6 @@ export default {
     },
 
     navbarTotalHeight () {
-      // Use the same values as in your CSS variables
       const banner = '2.5rem';
       const navbar = '4rem';
       return this.$site.themeConfig.isPrPreview ? `calc(${banner} + ${navbar})` : navbar;
@@ -274,7 +273,6 @@ $navbar-horizontal-padding = 1.5rem
   padding: 1rem 0
   min-height: 2.5rem
   position: static // Ensure normal flow
-  // If the banner is still overlaying, check PreviewBanner.vue for absolute positioning
 
 .navbar-content
   // ... existing code ...
