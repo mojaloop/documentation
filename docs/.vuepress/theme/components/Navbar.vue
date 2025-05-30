@@ -1,10 +1,9 @@
 <template>
 
-  <header class="navbar">
-    <!-- Add a banner here when we want  -->
-    <!-- <div class="banner-content">
+  <header class="navbar" :style="{ '--navbar-total-height': navbarTotalHeight }">
+    <div class="banner-content" v-if="$site.themeConfig.isPrPreview">
       <PreviewBanner />
-    </div> -->
+    </div>
     <div class="navbar-content">
       <div class="navbar-left">
         <SidebarButton @toggle-sidebar="$emit('toggle-sidebar')"/>
@@ -118,6 +117,13 @@ export default {
           return item
         })
       }
+    },
+
+    navbarTotalHeight () {
+      // Use the same values as in your CSS variables
+      const banner = '2.5rem';
+      const navbar = '4rem';
+      return this.$site.themeConfig.isPrPreview ? `calc(${banner} + ${navbar})` : navbar;
     }
   },
 
@@ -151,6 +157,8 @@ $navbar-vertical-padding = 0.7rem
 $navbar-horizontal-padding = 1.5rem
 
 .navbar
+  display: flex
+  flex-direction: column
   padding $navbar-vertical-padding $navbar-horizontal-padding
   line-height $navbarHeight - 1.4rem
 
@@ -159,7 +167,7 @@ $navbar-horizontal-padding = 1.5rem
     align-items: center
     justify-content: space-between
     line-height: 1.5rem
-    margin-top $navbar-banner-height
+    margin-top 0
     width: 100%
     box-sizing: border-box
 
@@ -258,4 +266,16 @@ $navbar-horizontal-padding = 1.5rem
 // Ensure navbar navigation links font size is correct
 .navbar-right .nav-links
   font-size: 0.9rem
+
+.banner-content
+  width: 100%
+  display: block
+  box-sizing: border-box
+  padding: 1rem 0
+  min-height: 2.5rem
+  position: static // Ensure normal flow
+  // If the banner is still overlaying, check PreviewBanner.vue for absolute positioning
+
+.navbar-content
+  // ... existing code ...
 </style>
