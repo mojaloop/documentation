@@ -1,5 +1,10 @@
 const { description } = require('../../package')
 
+// Determine if we're in PR preview mode
+const isPrPreview = process.env.VUEPRESS_IS_PR === 'true'
+
+// Set base URL for PR previews
+const base = isPrPreview ? `/pr/${process.env.VUEPRESS_PR_NUMBER}/` : '/'
 
 module.exports = {
   /**
@@ -10,6 +15,13 @@ module.exports = {
    * Ref：https://v1.vuepress.vuejs.org/config/#description
    */
   description: description,
+
+  /**
+   * Base URL for the site
+   * 
+   * ref：https://v1.vuepress.vuejs.org/config/#base
+   */
+  base,
 
   /**
    * Extra tags to be injected to the page HTML `<head>`
@@ -40,6 +52,9 @@ module.exports = {
     sidebarDepth: 2,
     lastUpdated: true,
     footerCopyright: 'Apache 2.0 Licensed | Copyright © 2020 - 2024 Mojaloop Foundation',
+    // PR Preview configuration
+    isPrPreview: isPrPreview,
+    prNumber: process.env.VUEPRESS_PR_NUMBER || '',
     nav: [
       {
         text: 'Adoption',
