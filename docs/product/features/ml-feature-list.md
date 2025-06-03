@@ -45,7 +45,7 @@ of Mojaloop:
 
 -  [**Connectivity Support**](./connectivity.md), describing the various tools and options for straightforward onboarding of participating DFSPs.
 
--  [**Product and Operational Features**](./product.md), such as portals for user and service management, and the configuration and operation of a Mojaloop Hub.
+-  [**Portals and Operational Features**](./product.md), such as portals for user and service management, and the configuration and operation of a Mojaloop Hub.
 -  [**Fees and Tariffs**](./tariffs.md) sets out the mechanisms that Mojaloop provides to support a range of different tariff models and the opportunities for participants and hub operators to levy fees.
 
 -  [**Performance**](./performance.md), outlining the transaction processing performance adopters might expect. 
