@@ -35,6 +35,9 @@ aws s3 ls s3://${BUCKET_NAME}
 rm -rf ${DIR}/../build
 cd ${DIR}/../
 npm ci
+# Pass environment variables to VuePress build
+export VUEPRESS_IS_PR="${IS_PR}"
+export VUEPRESS_PR_NUMBER="${PR_NUMBER}"
 npm run build
 mv ${DIR}/../docs/.vuepress/dist ${DIR}/../build
 

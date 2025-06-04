@@ -2,6 +2,7 @@
   <div
     class="theme-container"
     :class="pageClasses"
+    :style="{ '--navbar-total-height': navbarTotalHeight }"
     @touchstart="onTouchStart"
     @touchend="onTouchEnd"
   >
@@ -118,6 +119,12 @@ export default {
         },
         userPageClass
       ]
+    },
+
+    navbarTotalHeight () {
+      const banner = '2.5rem';
+      const navbar = '4rem';
+      return this.$site.themeConfig.isPrPreview ? `calc(${banner} + ${navbar})` : navbar;
     }
   },
 

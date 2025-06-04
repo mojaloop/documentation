@@ -80,7 +80,7 @@ The documentation site includes an automated PR preview system that creates a li
    - Enforces a limit on the number of concurrent previews
 
 2. **Deployment Script** (`scripts/_deploy_preview_s3.sh`):
-   - Builds the documentation site
+   - Builds the documentation site with PR preview environment variables
    - Uploads to S3 under the `/pr/{PR_NUMBER}/` path
    - Sets appropriate permissions and headers
 
@@ -93,11 +93,16 @@ The documentation site includes an automated PR preview system that creates a li
    - Handles directory index requests (e.g., `/pr/123/` → `/pr/123/index.html`)
    - Manages legacy URL redirects
 
+5. **Preview Banner** (`docs/.vuepress/theme/components/PreviewBanner.vue`):
+   - Displays a prominent banner at the top of PR preview pages
+   - Shows PR number and links to the GitHub PR
+   - Automatically adjusts navbar height to accommodate the banner
+
 ### How to Use
 
 1. Create a pull request against the main branch
 2. CircleCI will automatically:
-   - Build the documentation
+   - Build the documentation with PR preview mode enabled
    - Deploy to a preview URL: `https://docs.mojaloop.io/pr/{PR_NUMBER}`
    - Comment on the PR with the preview URL
 3. Preview will be automatically cleaned up when the PR is closed
@@ -108,6 +113,20 @@ The documentation site includes an automated PR preview system that creates a li
 - Previews are automatically cleaned up after PR closure
 - Existing previews are updated when new commits are pushed
 
+### Testing Locally
+
+To test the PR preview system locally:
+
+```bash
+# Run with PR preview mode enabled
+VUEPRESS_IS_PR=true VUEPRESS_PR_NUMBER=123 npm run dev
+```
+
+This will:
+- Show the PR preview banner
+- Adjust the navbar height automatically
+- Display the PR number and link to GitHub
+
 ### Troubleshooting
 
 If a preview isn't working:
@@ -115,6 +134,7 @@ If a preview isn't working:
 2. Verify the PR number is correctly extracted
 3. Ensure the CloudFront function is properly handling directory indexes
 4. Check S3 for the presence of files at `/pr/{PR_NUMBER}/`
+5. Verify environment variables are set correctly in the build process
 
 ## Contributing to the project
 Please refer to the [Contributing Guide](./contributing-guide.md) for details on how to contribute to Mojaloop Docs 2.0.
