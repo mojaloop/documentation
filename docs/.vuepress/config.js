@@ -1154,11 +1154,11 @@ module.exports = {
             ['features/risk', 'Risk Management'],
             ['features/connectivity', 'Connectivity Support'],
             ['features/product', 'Portals and Operational Features'],
-            ['features/deploying', 'Deploying Mojaloop'],
-            ['features/tools', 'Deployment Tools'],
+			['features/tariffs', 'Fees and Tariffs'],
+			['features/performance', 'Performance'],
+            ['features/deployment', 'Deploying Mojaloop'],
             ['features/engineering', 'Engineering Principles'],
-            ['features/invariants', 'Invariants'],
-            ['features/invariants2', 'Invariants2']
+            ['features/invariants', 'Invariants']
           ]
         }
       ]

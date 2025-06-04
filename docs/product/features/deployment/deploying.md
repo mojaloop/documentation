@@ -2,16 +2,6 @@
 
 This section details the deployment aspects of the Mojaloop Hub.
 
-## Performance Baseline
-
-The Mojaloop Hub has been demonstrated to support the following performance characteristics on minimal hardware:
-
-- Clearing 1,000 transfers per second
-- Sustained for one hour
-- With not more than 1% (of transfer stage) taking more than 1 second through the hub
-
-This baseline performance can be used as a reference point for system sizing and capacity planning.
-
 ## Deployment of Mojaloop Hub (excluding participant integrations)
 
 The following table provides guidance on which Mojaloop deployment scenario is most appropriate for different user types and use cases.
@@ -246,4 +236,5 @@ For detailed information about each deployment tool, please refer to the [Deploy
 ## Document History
 |Version|Date|Author|Detail|
 |:--------------:|:--------------:|:--------------:|:--------------:|
-|1.0|7th May 2025| Tony Williams|Initial version| 
+|1.1|3rd June 2025|Paul Makin|Removed performance section, moved it to new doc|
+|1.0|7th May 2025|Tony Williams|Initial version| 
