@@ -5,7 +5,7 @@ For this reason, the Mojaloop Community has established a performance baseline, 
 
 ## Performance Baseline
 
-Version 17.0 of the Mojaloop Hub has been demonstrated to support the following performance characteristics on ***minimal*** hardware:
+Version 17.0.0 of the Mojaloop Hub has been demonstrated to support the following performance characteristics on ***minimal*** hardware:
 
 - Clearing 1,000 transfers per second
 - Sustained for one hour
