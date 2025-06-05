@@ -1,6 +1,6 @@
 # Mojaloop Deployment Tools
 
-This document outlines the four deployment options for Mojaloop, ordered by complexity and production-readiness. Each tool serves specific use cases and deployment scenarios.
+This document outlines the three deployment options for Mojaloop, ordered by complexity and production-readiness. Each tool serves specific use cases and deployment scenarios.
 
 ## Core Test Harness
 
@@ -29,39 +29,6 @@ Developers interact with the Core Test Harness through docker-compose commands. 
 ### Testing Capabilities
 
 The Core Test Harness enables unit testing, integration testing, and end-to-end testing of Mojaloop components. It provides a controlled environment for testing service interactions and validating business logic.
-
-## Miniloop
-
-<div style="display: flex; align-items: center; margin-bottom: 20px;">
-    <div style="width: 20px; height: 20px; background-color: rgba(243, 156, 18, 0.3); margin-right: 10px;"></div>
-    <span>Testing and Evaluation Environment</span>
-</div>
-
-Miniloop implements a single-node Kubernetes environment using microk8s. This deployment option provides a more production-like environment while maintaining simplicity for testing and evaluation.
-
-> **🔗 Technical Documentation:**  
-> **GAP** - Limited technical documentation. External reference: [mini-Loop GitHub repository](https://github.com/tdaly61/mini-loop)
-> - [Mini-Loop Installation Guide](../../../getting-started/installation/installing-mojaloop.md) - Basic installation instructions (see item 3)
-
-### Architecture
-
-The implementation uses microk8s as the Kubernetes distribution, with HELM charts for service deployment. The architecture includes core services and backing services, configured through HELM value overrides.
-
-### Deployment Process
-
-Deployment occurs through HELM chart installation with string replacements for configuration. The process includes:
-1. microk8s installation and configuration
-2. HELM chart repository setup
-3. Service deployment with custom values
-4. Environment validation
-
-### Testing Environment
-
-Miniloop provides a Kubernetes-based testing environment that mirrors production architecture. It enables testing of:
-- Service discovery and routing
-- Kubernetes resource management
-- HELM chart configurations
-- Service interactions in a k8s environment
 
 ## HELM Deploy
 
