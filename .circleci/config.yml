@@ -390,8 +390,7 @@ workflows:
 
   scheduled_cleanup:
     when:
-      and:
-        - equal: [ scheduled, << pipeline.trigger_source >> ]
+      equal: [ scheduled, << pipeline.trigger_source >> ]
     jobs:
       - cleanup_pr_preview:
           context: org-global
