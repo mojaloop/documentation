@@ -330,6 +330,9 @@ jobs:
 workflows:
   version: 2
   build_and_test:
+    when:
+      not:
+        equal: [ scheduled, << pipeline.trigger_source >> ]
     jobs:
       - build:
           context: org-global
