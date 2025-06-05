@@ -11,6 +11,11 @@ This document outlines the four deployment options for Mojaloop, ordered by comp
 
 The Core Test Harness provides a single-node development environment using docker-compose. This tool implements a minimal Mojaloop stack without production components, making it suitable for development and testing.
 
+> **🔗 Technical Documentation:**  
+> **GAP** - No dedicated technical documentation found for Core Test Harness. Related references in:
+> - [Deployment Guide - Prerequisite Backend Helm Deployment](../../../technical/technical/deployment-guide/README.md#_5-1-prerequisite-backend-helm-deployment) (mentions docker-compose examples)
+> - [Release Notes](../../../technical/technical/releases.md) (mentions Core-test-harness validation)
+
 ### Implementation Details
 
 The Core Test Harness runs on a single machine using docker-compose for orchestration. It deploys core services and backing services without production-grade components like gateways, ingress/egress, or IAM stacks. The implementation uses configurable profiles to manage different deployment scenarios.
@@ -33,6 +38,10 @@ The Core Test Harness enables unit testing, integration testing, and end-to-end 
 </div>
 
 Miniloop implements a single-node Kubernetes environment using microk8s. This deployment option provides a more production-like environment while maintaining simplicity for testing and evaluation.
+
+> **🔗 Technical Documentation:**  
+> **GAP** - Limited technical documentation. External reference: [mini-Loop GitHub repository](https://github.com/tdaly61/mini-loop)
+> - [Mini-Loop Installation Guide](../../../getting-started/installation/installing-mojaloop.md) - Basic installation instructions (see item 3)
 
 ### Architecture
 
@@ -62,6 +71,11 @@ Miniloop provides a Kubernetes-based testing environment that mirrors production
 </div>
 
 HELM Deploy provides production-ready deployment capabilities through HELM charts. This implementation requires a pre-configured Kubernetes cluster and implements production-grade security and performance requirements.
+
+> **🔗 Technical Documentation:**  
+> - [Mojaloop Deployment Guide](../../../technical/technical/deployment-guide/README.md) - Comprehensive HELM deployment documentation
+> - [Upgrade Strategy Guide](../../../technical/technical/deployment-guide/upgrade-strategy-guide.md) - HELM upgrade procedures  
+> - [Deployment Troubleshooting](../../../technical/technical/deployment-guide/deployment-troubleshooting.md) - Common issues and solutions
 
 ### Infrastructure Requirements
 
@@ -99,6 +113,12 @@ Security implementation includes:
 </div>
 
 The Infrastructure as Code (IaC) implementation provides a comprehensive deployment solution supporting multiple platforms and orchestration layers. It implements GitOps patterns for managing multiple hub instances.
+
+> **🔗 Technical Documentation:**  
+>  **GAP** - Limited internal technical documentation for IaC setup and configuration
+> - [IaC Installation Guide](../../../getting-started/installation/installing-mojaloop.md) - Basic IaC overview (see item 2)
+> - [IaC Deployment Blog](https://infitx.com/deploying-mojaloop-using-iac) - External detailed guide
+> - [IaC AWS Platform Repository](https://github.com/mojaloop/iac-aws-platform) - AWS-specific implementation
 
 ### Platform Support
 
@@ -143,4 +163,5 @@ The IaC implementation enforces:
 ## Document History
 |Version|Date|Author|Detail|
 |:--------------:|:--------------:|:--------------:|:--------------:|
+|1.1|5th June 2025| Tony Williams|Added links to technical documentation| 
 |1.0|14th May 2025| Tony Williams|Initial version| 
