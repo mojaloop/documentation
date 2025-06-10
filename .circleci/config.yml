@@ -332,7 +332,7 @@ workflows:
   build_and_test:
     when:
       not:
-        equal: [ scheduled, << pipeline.trigger_source >> ]
+        equal: [ scheduled_pipeline, << pipeline.trigger_source >> ]
     jobs:
       - build:
           context: org-global
@@ -390,7 +390,7 @@ workflows:
 
   scheduled_cleanup:
     when:
-      equal: [ scheduled, << pipeline.trigger_source >> ]
+      equal: [ scheduled_pipeline, << pipeline.trigger_source >> ]
     jobs:
       - cleanup_pr_preview:
           context: org-global
