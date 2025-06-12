@@ -227,8 +227,14 @@ jobs:
             
             # Get count of existing previews
             echo "Counting existing previews..."
+            # Debug: Show what we're seeing in S3
+            echo "S3 listing for pr/ directory:"
+            aws s3 ls s3://docs.mojaloop.io-root/pr/ 2>/dev/null || echo "No pr/ directory found"
+            
             # List all directories in the pr folder and count them
-            PREVIEW_COUNT=$(aws s3 ls s3://docs.mojaloop.io-root/ 2>/dev/null | grep -c 'PRE.*pr/[0-9]' || echo "0")
+            PREVIEW_COUNT=$(aws s3 ls s3://docs.mojaloop.io-root/pr/ 2>/dev/null | grep -c '^[[:space:]]*PRE [0-9]' 2>/dev/null || echo "0")
+            # Ensure PREVIEW_COUNT is a clean number (remove any whitespace/newlines)
+            PREVIEW_COUNT=$(echo "$PREVIEW_COUNT" | tr -d '\n\r ')
             echo "Current preview count: $PREVIEW_COUNT"
             
             if [ "$PREVIEW_COUNT" -ge "$PREVIEW_LIMIT" ]; then
