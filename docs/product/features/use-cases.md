@@ -3,6 +3,16 @@
 
 A Mojaloop Hub's core function is the clearing of the transfer of funds between two accounts, each of which is held at a DFSP connected to the Hub, commonly referred to as a push payment. This enables it to support a wide range of use cases.
 
+This description of the use cases supported by Mojaloop is grouped according to the underlying protocol types, in order to demonstrate the extensible nature of a Mojaloop Hub. So we have:
+- **Push payments**, which supports the core use cases of P2P, B2B, etc;
+- **Request To Pay**, which supports some types of merchant payments, e-commerce and collections;
+- A range of **cash services**, including CICO and offline;
+- **PISP/3PPI protocols**, which allow fintechs and others to develop services such as merchant payments, small-scale salary runs, collections etc;
+- **Bulk payments**, to support nation-scale social payments and salaries;
+- **Cross-Border payments**, including both remittances and merchant payments.
+
+These are described in more detail below.
+
 (For an API-led view of use cases, please refer to the [use cases section of the Mojaloop API documentation](https://docs.mojaloop.io/api/fspiop/use-cases.html#table-1))
 ## Core Use Cases
 This means that, at the most basic level, a Mojaloop Hub directly supports the following use cases:
@@ -80,5 +90,6 @@ This version of this document relates to Mojaloop Version [17.0.0](https://githu
 ## Document History
   |Version|Date|Author|Detail|
 |:--------------:|:--------------:|:--------------:|:--------------:|
+|1.4|12th June 2025| Paul Makin|Extended the introductory text to explain the use case grouping.|
 |1.3|10th June 2025| Paul Makin|Added a description of e-commerce payments using RTP. Retitled 3PPI payments as Fintech payments.Clarified bulk payment initiation via 3PPI. Finally, some cosmetic updates to highlight hyperlinks to other documents.|
 |1.2|14th April 2025| Paul Makin|Updates related to the release of V17, including links to the interscheme and FX documentation.|
