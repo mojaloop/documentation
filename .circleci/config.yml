@@ -283,19 +283,7 @@ jobs:
             set -x  # Enable debug output
             echo "Starting PR preview cleanup..."
             
-            # Get all closed PRs
-            echo "Fetching closed PRs..."
-            CLOSED_PRS=$(gh pr list --state closed --json number)
-            echo "GitHub CLI response: $CLOSED_PRS"
-            
-            # Check if we got valid JSON
-            if ! echo "$CLOSED_PRS" | jq empty 2>/dev/null; then
-              echo "Error: Invalid JSON response from GitHub CLI"
-              echo "Response was: $CLOSED_PRS"
-              exit 1
-            fi
-            
-            # Get all open PRs to exclude them from cleanup
+            # Get all open PRs (including draft)
             echo "Fetching open PRs..."
             OPEN_PRS=$(gh pr list --state open --json number)
             if ! echo "$OPEN_PRS" | jq empty 2>/dev/null; then
@@ -319,7 +307,7 @@ jobs:
             
             echo "Found PR preview directories: $S3_PREVIEWS"
             
-            # Clean up previews for PRs that are not open
+            # Clean up previews for PRs that are not in the open list
             echo "$S3_PREVIEWS" | while read -r pr_number; do
               # Skip if PR number is empty
               if [ -z "$pr_number" ]; then
