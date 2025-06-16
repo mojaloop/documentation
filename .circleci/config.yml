@@ -283,45 +283,46 @@ jobs:
             set -x  # Enable debug output
             echo "Starting PR preview cleanup..."
             
-            # Get yesterday's date in ISO format (Alpine/busybox compatible)
-            YESTERDAY=$(date -d "1 day ago" +%Y-%m-%d 2>/dev/null || date -v-1d +%Y-%m-%d 2>/dev/null || date --date="yesterday" +%Y-%m-%d)
-            echo "Looking for PRs closed after: $YESTERDAY"
-            
-            # Get all closed PRs (without date filter first to debug)
-            echo "Fetching all closed PRs..."
-            ALL_CLOSED_PRS=$(gh pr list --state closed --limit 50 --json number,closedAt 2>&1)
-            echo "GitHub CLI response: $ALL_CLOSED_PRS"
-            
-            # Check if we got valid JSON
-            if ! echo "$ALL_CLOSED_PRS" | jq empty 2>/dev/null; then
-              echo "Error: Invalid JSON response from GitHub CLI"
-              echo "Response was: $ALL_CLOSED_PRS"
+            # Get all open PRs (including draft)
+            echo "Fetching open PRs..."
+            OPEN_PRS=$(gh pr list --state open --json number)
+            if ! echo "$OPEN_PRS" | jq empty 2>/dev/null; then
+              echo "Error: Invalid JSON response from GitHub CLI for open PRs"
+              echo "Response was: $OPEN_PRS"
               exit 1
             fi
             
-            # Filter PRs closed in the last 24 hours and extract numbers
-            echo "Filtering PRs closed after $YESTERDAY..."
-            RECENT_CLOSED_PRS=$(echo "$ALL_CLOSED_PRS" | jq -r --arg yesterday "$YESTERDAY" '.[] | select(.closedAt > $yesterday) | .number')
+            # Create a list of open PR numbers for exclusion
+            OPEN_PR_NUMBERS=$(echo "$OPEN_PRS" | jq -r '.[].number')
+            echo "Open PR numbers: $OPEN_PR_NUMBERS"
             
-            if [ -z "$RECENT_CLOSED_PRS" ]; then
-              echo "No recently closed PRs found"
+            # Get all PR preview directories from S3
+            echo "Fetching PR preview directories from S3..."
+            S3_PREVIEWS=$(aws s3 ls s3://docs.mojaloop.io-root/pr/ 2>/dev/null | grep '^[[:space:]]*PRE [0-9]' | awk '{print $2}' | sed 's/\///')
+            
+            if [ -z "$S3_PREVIEWS" ]; then
+              echo "No PR previews found in S3"
               exit 0
             fi
             
-            echo "Recently closed PR numbers: $RECENT_CLOSED_PRS"
+            echo "Found PR preview directories: $S3_PREVIEWS"
             
-            # Clean up previews for recently closed PRs
-            echo "$RECENT_CLOSED_PRS" | while read -r pr_number; do
-              if [ -n "$pr_number" ]; then
-                echo "Checking if preview exists for PR #$pr_number..."
-                if aws s3 ls s3://docs.mojaloop.io-root/pr/${pr_number}/ 2>/dev/null; then
-                  echo "Cleaning up preview for PR #$pr_number"
-                  aws s3 rm s3://docs.mojaloop.io-root/pr/${pr_number} --recursive
-                  echo "Cleanup completed for PR #$pr_number"
-                else
-                  echo "No preview found for PR #$pr_number"
-                fi
+            # Clean up previews for PRs that are not in the open list
+            echo "$S3_PREVIEWS" | while read -r pr_number; do
+              # Skip if PR number is empty
+              if [ -z "$pr_number" ]; then
+                continue
               fi
+              
+              # Check if this PR is still open
+              if echo "$OPEN_PR_NUMBERS" | grep -q "^${pr_number}$"; then
+                echo "PR #$pr_number is still open, skipping cleanup"
+                continue
+              fi
+              
+              echo "PR #$pr_number is not open, cleaning up preview..."
+              aws s3 rm s3://docs.mojaloop.io-root/pr/${pr_number} --recursive
+              echo "Cleanup completed for PR #$pr_number"
             done
             
             echo "PR preview cleanup completed"
