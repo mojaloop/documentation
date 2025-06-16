@@ -76,7 +76,7 @@ This document provides a comprehensive matrix of different participant types, th
 <td>- "Some" downtime acceptable if hardware fails.<br>  - Some schemes may rule out DFSPs that cant meet a certain downtime SLA.<br>  - May take many days/weeks to purchase replacement hardware on total failure.<br>- Full Mojaloop security feature set: mTLS, JWS, ILP<br>- ~10 TPS peak sustained for 1 hour.<br>  - Max capable of 864000 per 24 hours.</td>
 <td>- Record keeping?<br>- Security?</td>
 <td>- No need to integrate with existing enterprise security platforms.<br>- Need a fully secure solution "in-a-box" following best industry practice for internet facing services i.e. including firewall.</td>
-<td>- Docker compose based integration layer.<br>- Minimal, self-contained integration layer.</td>
+<td>The “Standard Service Manager” is recommended: A minimal functionality Integration Toolkit-based solution (accessible locally by means of a BI tool). This can be hosted in a basic server, ranging from a mid-specification server for a large MFI or a small bank, right down to a Raspberry PI for the smallest DFSPs with less rigorous service continuity requirements and lower transaction volumes. The Standard Service Manager does not support bulk payments.<br>- Docker compose based integration layer.<br>- Minimal, self-contained integration layer.</td>
 </tr>
 <tr>
 <td class="low-medium participant-type">Low Medium self-hosted DFSP</td>
@@ -86,7 +86,7 @@ This document provides a comprehensive matrix of different participant types, th
 <td>- "Some" downtime acceptable if hardware fails.<br>  - Some schemes may rule out DFSPs that cant meet a certain downtime SLA.<br>  - May take hours to replace hardware on total failure.<br>- Full Mojaloop security feature set: mTLS, JWS, ILP<br>- ~50 TPS peak sustained for 1 hour.</td>
 <td>- Record keeping?<br>- Security?</td>
 <td>- May need integration with existing enterprise security platforms e.g. firewalls, gateways etc...<br>?? needs more clarification</td>
-<td>- Docker compose or docker swarm based integration layer.<br>- Minimal, self-contained integration layer.</td>
+<td>The “Enhanced Service Manager” is recommended: Based on the “Standard Service Manager” described earlier, this extends it by adding a Kafka deployment and support for bulk payments. It can be hosted at minimum in a basic server in the DFSP's own "data centre". <br>- Docker compose or docker swarm based integration layer.<br>- Minimal, self-contained integration layer.</td>
 </tr>
 <tr>
 <td class="high-medium participant-type">High Medium self-hosted DFSP</td>
@@ -96,7 +96,7 @@ This document provides a comprehensive matrix of different participant types, th
 <td>- "Some" limited (minutes) downtime acceptable if hardware fails.<br>  - Some schemes may rule out DFSPs that cant meet a certain downtime SLA.<br>  - Should have spare hardware waiting or very fast replacement services in case of failures.<br>- Full Mojaloop security feature set: mTLS, JWS, ILP<br>- ~50 TPS peak sustained for 1 hour.</td>
 <td>- Record keeping?<br>- Security?</td>
 <td>- May need integration with existing enterprise security platforms e.g. firewalls, gateways etc...</td>
-<td>- Kubernetes based integration layer<br>- Possibly have existing integration technology.</td>
+<td>The “Enhanced Service Manager” is recommended: Based on the “Standard Service Manager” described earlier, this extends it by adding a Kafka deployment and support for bulk payments. It can be hosted at minimum in a redundant, multiple server configuration in the DFSP's own "data centre". <br>- Kubernetes based integration layer<br>- Possibly have existing integration technology.</td>
 </tr>
 <tr>
 <td class="large participant-type">Large self-hosted DFSP</td>
@@ -106,7 +106,7 @@ This document provides a comprehensive matrix of different participant types, th
 <td>- No downtime acceptable<br>- High-availability of connectivity.<br>  - multiple active connections via diverse routes.<br>- Optional persistent storage.<br>- Scheme connection and integration layer SLA should match SLA for existing internal infrastructure.<br>- Up to 800 TPS peak sustained for 1 hour for e.g. FXPs.</td>
 <td>- Record keeping?<br>- Security?</td>
 <td>- May need integration with existing enterprise security platforms e.g. firewalls, gateways etc...</td>
-<td>- Kubernetes based integration layer<br>- Possibly have existing integration technology.</td>
+<td>The “Premium Service Manager” is recommended: A fully functional, Payment Manager-type service, for use by larger DFSPs. Operation of this needs significant resources; it must be hosted either in the DFSP’s existing data centre or in the cloud.<br>- Kubernetes based integration layer<br>- Possibly have existing integration technology.<br> </td>
 </tr>
 </tbody>
 </table>
