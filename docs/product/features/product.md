@@ -199,3 +199,13 @@ those reports into any of the operator portals, allowing the reports to
 be generated as required by operations staff.
 
 This includes the reports relating to settlement.
+
+## Applicability
+
+This version of this document relates to Mojaloop Version [17.0.0](https://github.com/mojaloop/helm/releases/tag/v17.0.0)
+
+## Document History
+  |Version|Date|Author|Detail|
+|:--------------:|:--------------:|:--------------:|:--------------:|
+|1.1|14th April 2025| Paul Makin|Updates related to the release of V17|
+|1.0|5th February 2025| Paul Makin|Initial version|
