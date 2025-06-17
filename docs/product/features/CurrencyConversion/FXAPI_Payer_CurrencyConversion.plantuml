@@ -44,8 +44,8 @@
 
 title Agreement Phase Currency Conversion - Mojaloop Connector Integration
 actor "$senderName" as A1
+participant "Payer CBS" as PayerCBS
 box "Payer DFSP" #LightBlue  
-  participant "Payer CBS" as PayerCBS
   participant "Core Connector" as PayerCC
   participant "Payer\nMojaloop\nConnector" as D1
 end box

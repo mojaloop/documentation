@@ -35,7 +35,8 @@ The Mojaloop Hub supports four APIs. The first two relate to end-customer transa
 1. **Transactional API**    
 Mojaloop offers two functionally-equivalent transactional APIs, which each support direct connections with Participants for the purpose of conducting transactions. Both support all of the [**Mojaloop use cases**](./use-cases.md), and have been developed in accordance with the [Level One Principles](https://www.leveloneproject.org/project_guide/level-one-project-design-principles/). These APIs are:
     - **FSP Interoperability (FSPIOP) API**, the long-established and well-proven API;
-    - An **ISO 20022 Messaging Schema**, using an ISO 20022 message set provisionally agreed by the Mojaloop Foundation with the ISO 20022 Registration Management Group (RMG),and tailored to the needs of an Inclusive Instant Payments System (IIPS)such as Mojaloop. This is offered to adopters as an alternative to FSPIOP. More details of this schema can be found in the [**ISO20022 documentation**](./iso20022.md).
+&nbsp;
+    - An **ISO 20022 Messaging Schema**, using an ISO 20022 message set provisionally agreed by the Mojaloop Foundation with the ISO 20022 Registration Management Group (RMG),and tailored to the needs of an Inclusive Instant Payments System (IIPS)such as Mojaloop. This is offered to adopters as an alternative to FSPIOP. Full details of the Mojaloop implementation of the ISO20022 messaging schema and how it is expected that participating DFSPs will use it can be found in the [**Mojaloop ISO 20022 Market Practice Document**](./Iso20022/MarketPracticeDocument.html).
 	
 2.  **Third-party Payment Initiation (3PPI/PISP) API**
 
@@ -99,10 +100,13 @@ other payment clearing hubs. What differentiates Mojaloop is:
 
 	The Mojaloop community provides a number of tools that can be freely used by DFSPs to connect to a Mojaloop Hub. These remain within the DFSP's domain, and are not the concern of the hub operator or any other party. As well as managing the connection to the Hub and facilitating transactions, these tools also ensure the security of the connection and in particular provide the key DFSP link to this non-repudiation capability.  
 	&nbsp;
-4.  **The PISP API is made available through the Mojaloop Hub,** not by
-    individual Participants. Consequently a fintech can integrate with
-    the Hub and immediately be connected to all connected DFSPs, rather
-    than needing to complete an API integration with the all
-    individually. This substantially reduces costs and increases
-    reliability for fintechs and their customers.
-    
+4.  **The PISP API is made available through the Mojaloop Hub,** not by individual Participants. Consequently a fintech can integrate with the Hub and immediately be connected to all connected DFSPs, rather than needing to complete an API integration with the all individually. This substantially reduces costs and increases reliability for fintechs and their customers.
+
+## Applicability
+
+This version of this document relates to Mojaloop Version [17.0.0](https://github.com/mojaloop/helm/releases/tag/v17.0.0)
+
+## Document History
+  |Version|Date|Author|Detail|
+|:--------------:|:--------------:|:--------------:|:--------------:|
+|1.2|14th April 2025| Paul Makin|Updates related to the release of V17|

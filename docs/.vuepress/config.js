@@ -1,5 +1,10 @@
 const { description } = require('../../package')
 
+// Determine if we're in PR preview mode
+const isPrPreview = process.env.VUEPRESS_IS_PR === 'true'
+
+// Set base URL for PR previews
+const base = isPrPreview ? `/pr/${process.env.VUEPRESS_PR_NUMBER}/` : '/'
 
 module.exports = {
   /**
@@ -10,6 +15,13 @@ module.exports = {
    * Ref：https://v1.vuepress.vuejs.org/config/#description
    */
   description: description,
+
+  /**
+   * Base URL for the site
+   * 
+   * ref：https://v1.vuepress.vuejs.org/config/#base
+   */
+  base,
 
   /**
    * Extra tags to be injected to the page HTML `<head>`
@@ -40,6 +52,9 @@ module.exports = {
     sidebarDepth: 2,
     lastUpdated: true,
     footerCopyright: 'Apache 2.0 Licensed | Copyright © 2020 - 2024 Mojaloop Foundation',
+    // PR Preview configuration
+    isPrPreview: isPrPreview,
+    prNumber: process.env.VUEPRESS_PR_NUMBER || '',
     nav: [
       {
         text: 'Adoption',
@@ -286,9 +301,9 @@ module.exports = {
             sidebarDepth: 2,
             children: [
               ['technical/deployment-guide/', 'Deploying Mojaloop'],
-              'technical/deployment-guide/releases',
               'technical/deployment-guide/deployment-troubleshooting',
-              'technical/deployment-guide/upgrade-strategy-guide'
+              'technical/deployment-guide/upgrade-strategy-guide',
+              'technical/deployment-guide/mojaloop-repository-update-guide'
             ]
           },
           {
@@ -306,6 +321,10 @@ module.exports = {
               'technical/overview/components-PI5',
               'technical/overview/components-PI3'
             ]
+          },
+          {
+            title: "Mojaloop Releases",
+            path: "technical/releases"
           },
           {
             title: "Account Lookup Service",
@@ -1135,6 +1154,9 @@ module.exports = {
             ['features/risk', 'Risk Management'],
             ['features/connectivity', 'Connectivity Support'],
             ['features/product', 'Portals and Operational Features'],
+			['features/tariffs', 'Fees and Tariffs'],
+			['features/performance', 'Performance'],
+            ['features/deployment', 'Deploying Mojaloop'],
             ['features/engineering', 'Engineering Principles'],
             ['features/invariants', 'Invariants']
           ]

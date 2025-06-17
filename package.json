@@ -6,12 +6,13 @@
   "contributors": [
     "Sam Kummary <sam@mojaloop.io>",
     "Uduak Obong-Eren <uobong-eren@mojaloop.io>",
-    "Steven Oderayi <steven.oderayi@infitx.com>"
+    "Steven Oderayi <steven.oderayi@infitx.com>",
+    "Tony Williams <tonywilliams1986@gmail.com>"
   ],
   "repository": "https://www.github.com/mojaloop/documentation",
   "scripts": {
     "dev": "NODE_OPTIONS=--openssl-legacy-provider npx npx vuepress dev docs",
-    "build": "npx npx vuepress build docs",
+    "build": "NODE_OPTIONS='--max-old-space-size=8192' npx npx vuepress build docs",
     "build:plantuml:all": "./scripts/_build_plantuml.sh",
     "build:plantuml:diff": "MODE=STAGED_GIT ./scripts/_build_plantuml.sh",
     "lint": "npx markdownlint './docs/**/*.md' --ignore node_modules --config markdownlint.yaml",
@@ -23,13 +24,14 @@
   "devDependencies": {
     "@vuepress/plugin-back-to-top": "^1.9.10",
     "@vuepress/plugin-medium-zoom": "^1.9.10",
-    "got": "^14.4.6",
+    "got": "^14.4.7",
     "husky": "^9.1.7",
-    "markdownlint-cli": "^0.44.0",
-    "npm-check-updates": "^17.1.15",
+    "markdownlint-cli": "^0.45.0",
+    "npm-check-updates": "^18.0.1",
     "plantuml-encoder": "^1.4.0",
     "svgo": "^3.3.2",
     "vuepress": "^1.9.10",
+    "vuepress-plugin-mermaidjs": "^2.0.0-beta.2",
     "vuepress-plugin-versioning": "git+https://github.com/mojaloop/vuepress-plugin-versioning.git#dcb14962a69b8e5aaf184d2d1a31ae4f43870bc1",
     "vuepress-theme-titanium": "^4.11.2"
   },
