@@ -1,7 +1,3 @@
-**29th January 2025**\
-Authors: Paul Makin, James Bush\
-Version: 1.1
-
 # About Mojaloop 
 
 Mojaloop is open source instant payments software that interconnects
@@ -21,7 +17,7 @@ financial institutions:
 
 &nbsp;
 
-These core functions are supported by some [unique characteristics](./transactions.md#Unique-Transaction-Characteristics), which
+These core functions are supported by some [unique characteristics](./transaction.html#unique-transaction-characteristics), which
 together make Mojaloop a low cost, inclusive instant payments system:
 
 1.  **A Three Phase Transaction Flow**, as follows:
@@ -48,9 +44,13 @@ of Mojaloop:
 -   [**Risk Management**](./risk.md), setting out the measures taken to ensure that no DFSP participating in a Mojaloop scheme is exposed to any counterparty risk, and that the integrity of the scheme as a whole is protected.
 
 -  [**Connectivity Support**](./connectivity.md), describing the various tools and options for straightforward onboarding of participating DFSPs.
--   [**Product and Operational Features**](./product.md), such as portals for user and service management, and the configuration and operation of a Mojaloop Hub.
 
--   [**Engineering Principles**](./engineering.md), such as algorithmic adherence to the Mojaloop specification, code quality, security practices, scalability and performance patterns (amongst others).
+-  [**Portals and Operational Features**](./product.md), such as portals for user and service management, and the configuration and operation of a Mojaloop Hub.
+-  [**Fees and Tariffs**](./tariffs.md) sets out the mechanisms that Mojaloop provides to support a range of different tariff models and the opportunities for participants and hub operators to levy fees.
+
+-  [**Performance**](./performance.md), outlining the transaction processing performance adopters might expect. 
+- [**Deployment**](./deployment.md), describing the different ways to deploy Mojaloop for a range of different purposes, and the tools that facilitate these deployment types. 
+- [**Engineering Principles**](./engineering.md), such as algorithmic adherence to the Mojaloop specification, code quality, security practices, scalability and performance patterns (amongst others).
 
 -   [**Invariants**](./invariants.md), setting out the development and operational principles to which any Mojaloop implementation must adhere. This includes the principles which ensure the security and integrity of a Mojaloop deployment.
 
@@ -61,19 +61,17 @@ of Mojaloop:
 ## Purpose of This Document
 
 This document catalogues the features of Mojaloop, independent of
-implementation. It is intended to both inform potential adopters of the
-features they can expect and (where appropriate) how those features can
-be expected to function, and to inform developers of the features they
-must implement in order for their efforts to be accepted as an official
-instance of Mojaloop.
+implementation. It is intended to both inform potential adopters of the features they can expect and (where appropriate) how those features can be expected to function, and to inform developers of the features they must implement in order for their efforts to be accepted as an official instance of Mojaloop.
 
 The Mojaloop Foundation (MLF) defines an implementation as being an
 official instance of Mojaloop if it implements all of the features of
-Mojaloop, without exception, and they pass the standard set of Mojaloop
-tests.
+Mojaloop, without exception, and they pass the standard set of Mojaloop tests.
 
-## Scope
+## Applicability
 
-This feature list is subject to amendment as the Mojaloop ecosystem
-continues to develop. Currently, it relates to Mojaloop Congo, Version 16.
+This version of this document relates to Mojaloop Version [17.0.0](https://github.com/mojaloop/helm/releases/tag/v17.0.0)
 
+## Document History
+  |Version|Date|Author|Detail|
+|:--------------:|:--------------:|:--------------:|:--------------:|
+|1.2|14th April 2025| Paul Makin|Updates related to the release of V17|

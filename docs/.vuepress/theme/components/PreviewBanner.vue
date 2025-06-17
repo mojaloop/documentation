@@ -1,27 +1,48 @@
 <template>
-  <div id="banner" class='can-hide'>
+  <div id="banner" class='can-hide' v-if="isPrPreview">
       <p>
-        We're currently migrating our old docs over to this new format.  <a href="/legacy/">Browse the legacy docs.</a> 
+        🔍 This is a preview of PR #{{ prNumber }}. <a :href="prUrl" target="_blank">View the PR on GitHub</a>
       </p>
   </div>
 </template>
 
- <style type="text/css" media="screen">
+<script>
+export default {
+  name: 'PreviewBanner',
+  computed: {
+    isPrPreview() {
+      return this.$site.themeConfig.isPrPreview === true;
+    },
+    prNumber() {
+      return this.$site.themeConfig.prNumber || '';
+    },
+    prUrl() {
+      return `https://github.com/mojaloop/documentation/pull/${this.prNumber}`;
+    }
+  }
+}
+</script>
+
+<style type="text/css" media="screen">
   div#banner { 
-    position: absolute; 
-    top: 0; 
-    left: 0; 
-    background-color: #f37349; 
-    width: 100%; 
-    margin: 0 auto; 
-    padding: 2px; 
-    font-size: 14px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #00a3ff; 
+    margin: 0;
+    padding: 0.5px 6px;
+    font-size: 11px;
     text-align: center;
+    color: white;
+    z-index: 1000;
+    box-sizing: border-box;
   }
 </style>
 
 <style lang="stylus">
   #banner p a
-    color: $textColor
+    color: white
     text-decoration: underline;
+    font-weight: bold;
 </style>

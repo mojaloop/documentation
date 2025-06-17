@@ -1,0 +1,236 @@
+@startuml FXAPI_Payer_Agreement
+
+!$simplified = false
+!$shortCutSingleFXP = false
+!$hideSwitchDetail = false
+!$advancedCoreConnectorFlow = false
+!$senderName = "John"
+!$senderLastName = ""
+!$senderDOB = "1966-06-16"
+!$receiverName = "Yaro"
+!$receiverFirstName = "Yaro"
+!$receiverMiddleName = ""
+!$receiverLastName = ""
+!$receiverDOB = "1966-06-16"
+!$payerCurrency = "BWP"
+!$payeeCurrency = "TZS"
+!$payerFSPID = "PayerFSP"
+!$payeeFSPID = "PayeeFSP"
+!$fxpID = "FDH_FX"
+!$payerMSISDN = "26787654321"
+!$payeeMSISDN = "2551234567890"
+!$payeeReceiveAmount = "44000"
+!$payerSendAmount = "300"
+!$payeeFee = "4000"
+!$targetAmount = "48000"
+!$fxpChargesSource = "33"
+!$fxpChargesTarget = "6000"
+!$fxpSourceAmount = "300"
+!$fxpTargetAmount = "48000"
+!$totalChargesSourceCurrency = "55"
+!$totalChargesTargetCurrency = "10000"
+!$conversionRequestId = "828cc75f1654415..."
+!$conversionId = "581f68efb54f41..."
+!$homeTransactionId = "string"
+!$quoteId = "382987a875ce403..."
+!$transactionId = "d9ce59d43598439..."
+!$quotePayerExpiration = "2021-08-25T14:17:09.663+01:00"
+!$quotePayeeExpiration = "2021-08-25T14:17:09.663+01:00"
+!$commitRequestId = "77c9d78dc26a44748b3c99b96a"
+!$determiningTransferId = "d9ce59d4359843..."
+!$transferId = "d9ce59d43598439..."
+!$fxCondition = "GRzLaTP7DJ9t4P-a_B..."
+!$condition = "HOr22-H3AfTDHrSkP..."
+
+title Agreement Phase - Mojaloop Connector Integration
+'actor "$senderName" as A1
+'  participant "Payer CBS" as PayerCBS
+box "Payer DFSP" #LightBlue  
+  participant "Core Connector" as PayerCC
+  participant "Payer\nMojaloop\nConnector" as D1
+end box
+
+participant "Mojaloop Switch" as S1
+
+'box "Discovery Service" #LightYellow
+'  participant "ALS Oracle" as ALS
+'end box
+
+'box "FX provider"  
+'  participant "FXP\nConnector" as FXP
+'  participant "Backend FX API" as FXPBackend
+'end box
+
+box "Payee DFSP" #LightBlue   
+  participant "Payee\nMojaloop\nConnector" as D2
+  participant "Core Connector" as PayeeCC
+end box
+
+'actor "$receiverName" as A2
+autonumber
+
+!if ($advancedCoreConnectorFlow != true)
+PayerCC->D1: I want to get a quote from the FSP\n**PUT /transfers**
+note left
+{"acceptConversion": true}
+end note
+!else
+PayerCC->D1: I want to get a quote from the FSP\n**POST /quotes**
+    !if ($simplified != true)
+        note right of PayerCC
+        {
+            "fspId": "$payeeFSPID",
+            "quotesPostRequest": {
+                "quoteId": "$quoteId",
+                "transactionId": "$transactionId",
+                "payee": {
+                    "partyIdInfo": {
+                        "partyIdType": "MSISDN",
+                        "partyIdentifier": "$payeeMSISDN",
+                        "fspId": "$payeeFSPID"
+                    },
+                    "name": "$receiverName",
+                    "supportedCurrencies": [ "$payeeCurrency" ]
+                },
+                "payer": {
+                    "partyIdInfo": {
+                        "partyIdType": "MSISDN",
+                        "partyIdentifier": "$payerMSISDN",
+                        "fspId": "$payerFSPID"
+                    },
+                    "name": "$senderName",
+                },
+                "amountType": "SEND",
+                "amount": {
+                    "currency": "$payeeCurrency",
+                    "amount": "$fxpTargetAmount"
+                },
+                "converter": "PAYER",
+                "expiration": "$quotePayerExpiration"
+            }
+        }
+        end note
+    !endif
+!endif
+
+
+D1->>S1:Please quote for a transfer which \nsends $fxpTargetAmount $payeeCurrency.\n**POST /quotes**
+!if ($simplified != true)
+note left
+**POST /quotes**
+{
+    "quoteId": "$quoteId",
+    "transactionId": "$transactionId",
+    "payee": {
+        "partyIdInfo": {
+            "partyIdType": "MSISDN",
+            "partyIdentifier": "$payeeMSISDN",
+            "fspId": "$payeeFSPID"},
+        "name": "$receiverName",
+        "supportedCurrencies": [ "$payeeCurrency" ] },
+    "payer": {
+        "partyIdInfo": {
+            "partyIdType": "MSISDN",
+            "partyIdentifier": "$payerMSISDN",
+            "fspId": "$payerFSPID"},
+        "name": "$senderName"},
+    "amountType": "SEND",
+    "amount": {
+        "currency": "$payeeCurrency",
+        "amount": "$fxpTargetAmount"},
+    "converter": "PAYER",
+    "expiration": "$quotePayerExpiration"
+}
+end note
+!endif
+activate S1
+!if ($simplified != true)
+S1-->>D1:202 I'll get back to you
+!endif
+
+S1->>D2:**POST /quotes**
+activate D2
+!if ($simplified != true)
+D2-->>S1:202 I'll get back to you
+!endif
+deactivate S1
+D2->PayeeCC:**POST /quoterequests**
+!if ($simplified != true)
+note left
+**POST /quoterequests**
+{
+    "quoteId": "$quoteId",
+    "transactionId": "$transactionId",
+    "payee": {
+        "partyIdInfo": {
+            "partyIdType": "MSISDN",
+            "partyIdentifier": "$payeeMSISDN",
+            "fspId": "$payeeFSPID"},
+        "name": "$receiverName",
+        "supportedCurrencies": [ "$payeeCurrency" ]},
+    "payer": {
+        "partyIdInfo": {
+            "partyIdType": "MSISDN",
+            "partyIdentifier": "$payerMSISDN",
+            "fspId": "$payerFSPID"},
+        "name": "$senderName"},
+    "amountType": "SEND",
+    "amount": {
+        "currency": "$payeeCurrency",
+        "amount": "$fxpTargetAmount"},
+    "converter": "PAYER",
+    "expiration": "$quotePayerExpiration"
+}
+end note
+!endif
+PayeeCC->PayeeCC:OK, so I will charge $payeeFee $payeeCurrency for this.\nNow I create terms of the transfer
+PayeeCC-->D2:Here are the terms
+!if ($simplified != true)
+note right
+**POST /quoterequests** response
+{
+    "quoteId": "$quoteId",
+    "transactionId": "$transactionId",
+    "payeeFspFeeAmount": "$payeeFee",
+    "payeeFspFeeAmountCurrency": "$payeeCurrency",
+    "payeeReceiveAmount": "$payeeReceiveAmount",
+    "payeeReceiveAmountCurrency": "$payeeCurrency",
+    "transferAmount": "$targetAmount",
+    "transferAmountCurrency": "$payeeCurrency"
+    "expiration": "$quotePayerExpiration"
+}
+end note
+!endif
+D2->D2:Now I will sign the transaction object
+D2->>S1:Here's the signed quote
+note right
+**put /quotes/$quoteId**
+{
+    "transferAmount": {
+        "currency": "$payeeCurrency",
+        "amount": "$targetAmount"},
+    "payeeReceiveAmount": {
+        "currency": "$payeeCurrency",
+        "amount": "$payeeReceiveAmount"},
+    "payeeFspFee": {
+        "currency": "$payeeCurrency",
+        "amount": "$payeeFee"},
+    "expiration": "$payeeQuoteExpiration",
+    "ilpPacket": "<This is encoded transaction object.>",
+    "condition": "$condition"
+}
+
+end note
+activate S1
+!if ($simplified != true)
+S1-->>D2:200 Gotcha
+!endif
+deactivate D2
+S1->>D1:Here's the signed quote\n**PUT /quotes/$quoteId**
+activate D1
+!if ($simplified != true)
+D1-->>S1:200 Gotcha
+!endif
+deactivate S1
+D1->D1:OK, I can see that there \nare going to be $payeeFee $payeeCurrency in charges.
+@enduml
