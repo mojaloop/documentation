@@ -23,15 +23,16 @@ The following are the categories of Mojaloop NodeJS repositories:
    - `central-services-metrics`
    - `central-services-error`
    - `central-services-logger`
-   - `central-ledger`
+   - `sdk-standard-components`
 
 2. **Core Services**
    - `account-lookup-service`
    - `quoting-service`
    - `central-ledger`
-   - `central-settlements`
+   - `central-settlement`
    - `central-bulk-transfers`
    - `transaction-requests-service`
+   - `ml-api-adapter`
 
 3. **Event Components**
    - `central-event-processor`
@@ -43,9 +44,7 @@ The following are the categories of Mojaloop NodeJS repositories:
    - `event-sidecar`
 
 4. **Adapters, SDK and API**
-   - `ml-api-adapter`
    - `sdk-scheme-adapter`
-   - `sdk-standard-components`
    - `event-sdk`
    - `thirdparty-sdk`
    - `bulk-api-adapter`
@@ -120,44 +119,47 @@ The following table provides a detailed view of Mojaloop repositories and their 
 |---|---|---|
 | 1 | api-snippets |  |
 | 2 | ml-number |  |
-| 3 | central-services-logger |  |
-| 4 | central-services-metrics |  |
-| 5 | central-services-error-handling |  |
-| 6 | ml-testing-toolkit-shared-lib |  |
-| 7 | logging-bc-public-types-lib |  |
-| 8 | platform-shared-lib-messaging-types-lib |  |
-| 9 | elastic-apm-node |  |
-| 10 | elastic-apm-node-opentracing |  |
-| 11 | object-store-libp | central-services-logger |
-| 12 | central-services-stream |  |
-| 13 | central-services-health | central-services-error-handling, central-services-logger |
-| 14 | event-sdk | central-services-stream, central-services-logger, central-services-stream |
-| 15 | inter-scheme-proxy-cache-lib | central-services-logger, central-services-shared, inter-scheme-proxy-cache-lib, central-services-error-handling, central-services-logger, central-services-metrics, event-sdk |
-| 16 | ml-schema-transformer-lib | central-services-error-handling, central-services-logger, central-services-shared, sdk-standard-components, ml-schema-transformer-lib |
-| 17 | platform-shared-lib-nodejs-kafka-client-lib |  |
-| 18 | logging-bc-client-lib |  |
-| 19 | **account-lookup-service** | central-services-error-handling, central-services-health, central-services-logger, central-services-metrics, central-services-shared, central-services-stream, database-lib, event-sdk, inter-scheme-proxy-cache-lib, sdk-standard-components, sdk-standard-components, central-services-logger, central-services-shared, central-services-stream |
-| 20 | **als-consent-oracle** | api-snippets, central-services-health, central-services-shared, sdk-standard-components, central-services-error-handling, central-services-logger, central-services-metrics, event-sdk |
-| 21 | **als-oracle-pathfinder** | central-services-logger, central-services-shared |
-| 22 | **auth-service** | api-snippets, central-services-health, central-services-shared, event-sdk, sdk-standard-components, central-services-error-handling, central-services-logger, central-services-metrics, event-sdk |
-| 23 | **bulk-api-adapter** | central-services-error-handling, central-services-health, central-services-logger, central-services-metrics, central-services-shared, central-services-stream, event-sdk, object-store-lib |
-| 24 | **central-event-processor** | central-services-error-handling, central-services-health, central-services-logger, central-services-metrics, central-services-shared, central-services-stream, event-sdk |
-| 25 | **central-ledger** | central-services-error-handling, central-services-health, central-services-logger, central-services-metrics, central-services-shared, central-services-stream, database-lib, event-sdk, inter-scheme-proxy-cache-lib, ml-number, object-store-lib |
-| 26 | **central-settlement** | central-ledger, central-services-database, central-services-error-handling, central-services-health, central-services-logger, central-services-shared, central-services-stream, event-sdk, ml-number |
-| 27 | **email-notifier** | central-services-error-handling, central-services-health, central-services-logger, central-services-metrics, central-services-shared, central-services-stream, event-sdk |
-| 28 | **event-sidecar** | central-services-logger, central-services-metrics, central-services-stream, event-sdk |
-| 29 | **event-stream-processor** | central-services-health, central-services-logger, central-services-metrics, central-services-shared, central-services-stream, elastic-apm-node, elastic-apm-node-opentracing, event-sdk |
-| 30 | **mojaloop-simulator** | central-services-logger |
-| 31 | **ml-api-adapter** | central-services-error-handling, central-services-health, central-services-logger, central-services-metrics, central-services-shared, central-services-stream, event-sdk, sdk-standard-components, database-lib, inter-scheme-proxy-cache-lib |
-| 32 | **ml-testing-toolkit** | central-services-logger, central-services-metrics, ml-schema-transformer-lib, ml-testing-toolkit-shared-lib, sdk-standard-components |
-| 33 | **ml-testing-toolkit-client-lib** | central-services-logger, ml-testing-toolkit-shared-lib, sdk-standard-components |
-| 34 | **ml-testing-toolkit-ui** | ml-testing-toolkit-shared-lib |
-| 35 | **quoting-service** | central-services-error-handling, central-services-health, central-services-logger, central-services-metrics, central-services-shared, central-services-stream, event-sdk, inter-scheme-proxy-cache-lib, ml-number, sdk-standard-components |
-| 36 | **simulator** (legacy, ALS oracle) | central-services-error-handling, central-services-logger, central-services-metrics, central-services-shared, event-sdk, sdk-standard-components |
-| 37 | **sdk-scheme-adapter** | api-snippets, central-services-error-handling, central-services-logger, central-services-metrics, central-services-shared, event-sdk, sdk-standard-components |
-| 38 | **thirdparty-api-svc** | api-snippets, central-services-shared, central-services-stream, central-services-error-handling, central-services-logger, central-services-metrics, event-sdk |
-| 39 | **thirdparty-sdk** | api-snippets, central-services-error-handling, central-services-metrics, central-services-shared, sdk-scheme-adapter, sdk-standard-components |
-| 40 | **transaction-requests-service** | central-services-error-handling, central-services-health, central-services-logger, central-services-metrics, central-services-shared, event-sdk, ml-testing-toolkit-shared-lib |
+| 3 | database-lib |  |
+| 4 | central-services-logger |  |
+| 5 | central-services-metrics |  |
+| 6 | central-services-error-handling |  |
+| 7 | ml-testing-toolkit-shared-lib |  |
+| 8 | logging-bc-public-types-lib |  |
+| 9 | platform-shared-lib-messaging-types-lib |  |
+| 10 | elastic-apm-node |  |
+| 11 | elastic-apm-node-opentracing |  |
+| 12 | object-store-libp | central-services-logger |
+| 13 | central-services-stream |  |
+| 14 | central-services-health | central-services-error-handling, central-services-logger |
+| 15 | event-sdk | central-services-stream, central-services-logger, central-services-stream |
+| 16 | inter-scheme-proxy-cache-lib | central-services-logger, central-services-shared, inter-scheme-proxy-cache-lib, central-services-error-handling, central-services-logger, central-services-metrics, event-sdk |
+| 17 | ml-schema-transformer-lib | central-services-error-handling, central-services-logger, central-services-shared, sdk-standard-components, ml-schema-transformer-lib |
+| 18 | sdk-standard-components |  |
+| 19 | central-services-shared |  |
+| 20 | platform-shared-lib-nodejs-kafka-client-lib |  |
+| 21 | logging-bc-client-lib |  |
+| 22 | **account-lookup-service** | central-services-error-handling, central-services-health, central-services-logger, central-services-metrics, central-services-shared, central-services-stream, database-lib, event-sdk, inter-scheme-proxy-cache-lib, sdk-standard-components, sdk-standard-components, central-services-logger, central-services-shared, central-services-stream |
+| 23 | **als-consent-oracle** | api-snippets, central-services-health, central-services-shared, sdk-standard-components, central-services-error-handling, central-services-logger, central-services-metrics, event-sdk |
+| 24 | **als-oracle-pathfinder** | central-services-logger, central-services-shared |
+| 25 | **auth-service** | api-snippets, central-services-health, central-services-shared, event-sdk, sdk-standard-components, central-services-error-handling, central-services-logger, central-services-metrics, event-sdk |
+| 26 | **bulk-api-adapter** | central-services-error-handling, central-services-health, central-services-logger, central-services-metrics, central-services-shared, central-services-stream, event-sdk, object-store-lib |
+| 27 | **central-event-processor** | central-services-error-handling, central-services-health, central-services-logger, central-services-metrics, central-services-shared, central-services-stream, event-sdk |
+| 28 | **central-ledger** | central-services-error-handling, central-services-health, central-services-logger, central-services-metrics, central-services-shared, central-services-stream, database-lib, event-sdk, inter-scheme-proxy-cache-lib, ml-number, object-store-lib |
+| 29 | **central-settlement** | central-ledger, central-services-database, central-services-error-handling, central-services-health, central-services-logger, central-services-shared, central-services-stream, event-sdk, ml-number |
+| 30 | **email-notifier** | central-services-error-handling, central-services-health, central-services-logger, central-services-metrics, central-services-shared, central-services-stream, event-sdk |
+| 31 | **event-sidecar** | central-services-logger, central-services-metrics, central-services-stream, event-sdk |
+| 32 | **event-stream-processor** | central-services-health, central-services-logger, central-services-metrics, central-services-shared, central-services-stream, elastic-apm-node, elastic-apm-node-opentracing, event-sdk |
+| 33 | **mojaloop-simulator** | central-services-logger |
+| 34 | **ml-api-adapter** | central-services-error-handling, central-services-health, central-services-logger, central-services-metrics, central-services-shared, central-services-stream, event-sdk, sdk-standard-components, database-lib, inter-scheme-proxy-cache-lib |
+| 35 | **ml-testing-toolkit** | central-services-logger, central-services-metrics, ml-schema-transformer-lib, ml-testing-toolkit-shared-lib, sdk-standard-components |
+| 36 | **ml-testing-toolkit-client-lib** | central-services-logger, ml-testing-toolkit-shared-lib, sdk-standard-components |
+| 37 | **ml-testing-toolkit-ui** | ml-testing-toolkit-shared-lib |
+| 38 | **quoting-service** | central-services-error-handling, central-services-health, central-services-logger, central-services-metrics, central-services-shared, central-services-stream, event-sdk, inter-scheme-proxy-cache-lib, ml-number, sdk-standard-components |
+| 39 | **simulator** (legacy, ALS oracle) | central-services-error-handling, central-services-logger, central-services-metrics, central-services-shared, event-sdk, sdk-standard-components |
+| 40 | **sdk-scheme-adapter** | api-snippets, central-services-error-handling, central-services-logger, central-services-metrics, central-services-shared, event-sdk, sdk-standard-components |
+| 41 | **thirdparty-api-svc** | api-snippets, central-services-shared, central-services-stream, central-services-error-handling, central-services-logger, central-services-metrics, event-sdk |
+| 42 | **thirdparty-sdk** | api-snippets, central-services-error-handling, central-services-metrics, central-services-shared, sdk-scheme-adapter, sdk-standard-components |
+| 43 | **transaction-requests-service** | central-services-error-handling, central-services-health, central-services-logger, central-services-metrics, central-services-shared, event-sdk, ml-testing-toolkit-shared-lib |
 
 ### Update Sequence Visualization
 
