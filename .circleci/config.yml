@@ -231,8 +231,13 @@ jobs:
             echo "S3 listing for pr/ directory:"
             aws s3 ls s3://docs.mojaloop.io-root/pr/ 2>/dev/null || echo "No pr/ directory found"
             
-            # List all directories in the pr folder and count them
-            PREVIEW_COUNT=$(aws s3 ls s3://docs.mojaloop.io-root/pr/ 2>/dev/null | grep -c '^[[:space:]]*PRE [0-9]' 2>/dev/null || echo "0")
+            # Check if pr/ directory exists before counting
+            if aws s3 ls s3://docs.mojaloop.io-root/pr/ 2>/dev/null; then
+              # List all directories in the pr folder and count them
+              PREVIEW_COUNT=$(aws s3 ls s3://docs.mojaloop.io-root/pr/ 2>/dev/null | grep -c '^[[:space:]]*PRE [0-9]' 2>/dev/null || echo "0")
+            else
+              PREVIEW_COUNT="0"
+            fi
             # Ensure PREVIEW_COUNT is a clean number (remove any whitespace/newlines)
             PREVIEW_COUNT=$(echo "$PREVIEW_COUNT" | tr -d '\n\r ')
             echo "Current preview count: $PREVIEW_COUNT"
@@ -298,6 +303,13 @@ jobs:
             
             # Get all PR preview directories from S3
             echo "Fetching PR preview directories from S3..."
+            
+            # Check if the pr/ directory exists in S3
+            if ! aws s3 ls s3://docs.mojaloop.io-root/pr/ 2>/dev/null; then
+              echo "No pr/ directory found in S3, no cleanup needed"
+              exit 0
+            fi
+            
             S3_PREVIEWS=$(aws s3 ls s3://docs.mojaloop.io-root/pr/ 2>/dev/null | grep '^[[:space:]]*PRE [0-9]' | awk '{print $2}' | sed 's/\///')
             
             if [ -z "$S3_PREVIEWS" ]; then
@@ -308,9 +320,10 @@ jobs:
             echo "Found PR preview directories: $S3_PREVIEWS"
             
             # Clean up previews for PRs that are not in the open list
-            echo "$S3_PREVIEWS" | while read -r pr_number; do
+            echo "$S3_PREVIEWS" | while IFS= read -r pr_number; do
               # Skip if PR number is empty
               if [ -z "$pr_number" ]; then
+                echo "Skipping empty PR number"
                 continue
               fi
               
@@ -321,8 +334,11 @@ jobs:
               fi
               
               echo "PR #$pr_number is not open, cleaning up preview..."
-              aws s3 rm s3://docs.mojaloop.io-root/pr/${pr_number} --recursive
-              echo "Cleanup completed for PR #$pr_number"
+              if aws s3 rm s3://docs.mojaloop.io-root/pr/${pr_number} --recursive; then
+                echo "Cleanup completed for PR #$pr_number"
+              else
+                echo "Warning: Failed to cleanup PR #$pr_number"
+              fi
             done
             
             echo "PR preview cleanup completed"
