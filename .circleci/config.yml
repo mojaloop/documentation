@@ -323,6 +323,7 @@ jobs:
             echo "$S3_PREVIEWS" | while IFS= read -r pr_number; do
               # Skip if PR number is empty
               if [ -z "$pr_number" ]; then
+                echo "Skipping empty PR number"
                 continue
               fi
               
@@ -333,8 +334,11 @@ jobs:
               fi
               
               echo "PR #$pr_number is not open, cleaning up preview..."
-              aws s3 rm s3://docs.mojaloop.io-root/pr/${pr_number} --recursive
-              echo "Cleanup completed for PR #$pr_number"
+              if aws s3 rm s3://docs.mojaloop.io-root/pr/${pr_number} --recursive; then
+                echo "Cleanup completed for PR #$pr_number"
+              else
+                echo "Warning: Failed to cleanup PR #$pr_number"
+              fi
             done
             
             echo "PR preview cleanup completed"
