@@ -74,19 +74,8 @@ other payment clearing hubs. What differentiates Mojaloop is:
 
 1.  **The Three Phase Transaction Flow and Idempotency**, described above.   &nbsp;
 2.  **The Agreement of Terms, or Quotation,** phase of a transaction,
-    which allows two DFSPs to agree that a transaction can take place
-    *before* it is committed. This supports some of the most complex
-    aspects of transactions between differing types of Participant; a
-    Payee DFSP can verify that the customer's account can receive the
-    payment, that it hasn't been suspended, or the payment won't breach
-    transaction or balance limits. If that's all OK, then the Payee DFSP
-    can accept the transaction, subject to any fees that it will charge
-    (any Hub fees are outside of the transaction itself). Only if the
-    Payer DFSP, and the Payer him/herself, agree to those charges will
-    the transaction then take place. This removes the uncertainty, and
-    all but guarantees that the transaction will succeed, even before it
-    happens.
-    &nbsp;
+    which allows two DFSPs to agree that a transaction can take place *before* it is committed. This supports some of the most complex aspects of transactions between differing types of Participant; a Payee DFSP can verify that the customer's account can receive the payment, that it hasn't been suspended, or the payment won't breach transaction or balance limits. If that's all OK, then the Payee DFSP will indicate that it can accept the transaction, subject to any fees that it will charge  (any Hub fees are outside of the transaction itself). Only if the Payer DFSP, and the Payer him/herself, agree to those charges (and any other conditions attached to the terms returned by the Payee DFSP) will the transaction then be initiated. This removes the uncertainty, and all but guarantees that the transaction will succeed, even before it happens.
+   
 3.  **End to End Non-Repudiation** in the Transfer phase of the
     transaction guarantees that each party to a message can be assured
     that the message has not been modified, and that it really was sent
@@ -109,4 +98,5 @@ This version of this document relates to Mojaloop Version [17.0.0](https://githu
 ## Document History
   |Version|Date|Author|Detail|
 |:--------------:|:--------------:|:--------------:|:--------------:|
+|1.3|30th June 2025| Paul Makin|Minor clarifications to the Agreement of Terms description| 
 |1.2|14th April 2025| Paul Makin|Updates related to the release of V17|
