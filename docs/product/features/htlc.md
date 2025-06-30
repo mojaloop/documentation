@@ -3,7 +3,7 @@ Mojaloop uses ILP's cryptographic locks to ensure atomic, conditional transfers 
 
 In summary:
 1. Payer DFSP Sends a “prepare” ILP packet to the Mojaloop Hub, which includes  the amount, payee ID, expiry, and ILP condition
-	-	The condition is the heart of the HTLC. It is a one-way hash of the fulfilment condition (known as the preimage of the hash), agreed with the Payee DFSP during the ["Agreement of Terms"](./transaction.html#unique-transaction-characteristics) phase of the transaction.
+	-	The condition is the heart of the HTLC. It is a one-way hash of the fulfilment condition (known as the preimage of the hash) which was agreed with the Payee DFSP during the ["Agreement of Terms"](./transaction.html#unique-transaction-characteristics) phase of the transaction.
 2. The Mojaloop Hub validates the ILP packet, and forwards it to the Payee DFSP. The Mojaloop Hub then sets a timer, as defined by the "expiry" in the prepare packet.
 3. The Payee DFSP verifies the ILP packet and (tentatively) credits the recipient, then generates the ILP fulfilment (the preimage of the hash) and sends it back to the Mojaloop Hub.
 4. The Mojaloop Hub validates that the returned fulfilment satisfies the ILP condition (that is, verifies that the hash of the fulfilment returned by the Payee DFSP matches the ILP condition set by the Payer DFSP); if it is valid, it confirms the transfer to both parties, otherwise it cancels the transfer.
