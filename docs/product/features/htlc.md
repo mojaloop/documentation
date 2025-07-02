@@ -1,19 +1,34 @@
 # Hashed Timelock Contracts
 Mojaloop uses ILP's cryptographic locks to ensure atomic, conditional transfers between DFSPs. The mechanism centres around Hashed Timelock Contracts (HTLCs), which allow Mojaloop to support conditional transfers — ensuring a transfer either completes fully across all participating parties, or not at all.
 
-In summary:
-1. Payer DFSP Sends a “prepare” ILP packet to the Mojaloop Hub, which includes  the amount, payee ID, expiry, and ILP condition
-	-	The condition is the heart of the HTLC. It is a one-way hash of the fulfilment condition (known as the preimage of the hash) which was agreed with the Payee DFSP during the ["Agreement of Terms"](./transaction.html#unique-transaction-characteristics) phase of the transaction.
-2. The Mojaloop Hub validates the ILP packet, and forwards it to the Payee DFSP. The Mojaloop Hub then sets a timer, as defined by the "expiry" in the prepare packet.
-3. The Payee DFSP verifies the ILP packet and (tentatively) credits the recipient, then generates the ILP fulfilment (the preimage of the hash) and sends it back to the Mojaloop Hub.
-4. The Mojaloop Hub validates that the returned fulfilment satisfies the ILP condition (that is, verifies that the hash of the fulfilment returned by the Payee DFSP matches the ILP condition set by the Payer DFSP); if it is valid, it confirms the transfer to both parties, otherwise it cancels the transfer.
-5. Since the fulfilment serves as cryptographic proof of completion, the payer is debited by the payer DFSP, and the payee is credited by the payee DFSP. 
- 
-Note that each conditionally-locked transfer includes a time limit (expiry), so creating a timelock. If the fulfilment is not provided within this time window, the transfer is cancelled automatically by the Mojaloop Hub. This protects DFSPs from funds being held indefinitely in limbo.
+A contract is agreed between the Payee and Payer DFSPs during the Agreement of Terms phase of a Mojaloop transaction, which begins when the Payer DFSP proposes a transaction, by means of a quotation request. 
+
+When the Payee DFSP is satisfied that the transaction can go ahead (having completed its own internal checks), the Payee DFSP:
+-	Amends the proposed terms of the transaction to set out the conditions on which it will carry out the transaction (which might include, for example, the fees it will charge and any compliance conditions);
+-	Creates the Transaction object, which defines the terms on which it is prepared to honour the payment request;
+-	Creates and retains the Fulfilment, which is a hash of the Transaction object, itself signed with the Payee DFSP's private key (a key created specifically for, and restricted to, this purpose);
+-	Creates the Condition, which is a hash of the Fulfilment;
+-	Appends the Condition to the Transaction object;
+-	And returns it to the Payer DFSP in a quotation response.
+
+If the Payer DFSP accepts the terms of the transaction, it sends a transfer request, comprising the Transaction object, the received Condition and an expiry time, to the Mojaloop Hub. 
+
+The Mojaloop Hub stores the Condition, and forwards the transfer request to the Payee DFSP. It also starts a timer to match the specified expiry time. 
+
+On receipt of the transfer request, the Payee DFSP: 
+-	Verifies that the Condition received matches that agreed (this includes a check that the payment requested is the same as the payment it agreed to), and satisfies itself that the compliance conditions have been met;
+-	Returns the Fulfilment to the Mojaloop Hub in a transfer response.
+
+The Mojaloop Hub hashes the returned Fulfilment to validate that it matches the Condition received from the Payer DFSP, and if successful notifies the Payer DFSP (and the Payee DFSP, if this has been requested) that an obligation has been created between them; that is, that the payment has been cleared.
+
+The notification to the Payer DFSP includes the fulfilment, which acts as cryptographic proof of irrevocable completion. If the Payer DFSP re-generates the Condition and finds that it has changed from that agreed, then they should raise a dispute with the Payee DFSP.
+
+Note that if the transaction timer expires at the Hub before the Fulfilment is received from the Payee DFSP, the Hub will notify each DFSP that the transaction has been cancelled.
 
 ## Applicability
 This document relates to Mojaloop Version 17.0.0
 ## Document History
   |Version|Date|Author|Detail|
 |:--------------:|:--------------:|:--------------:|:--------------:|
+|1.1|2nd July 2025| Paul Makin|Updated after review by Michael Richards|
 |1.0|30th June 2025| Paul Makin|Initial version|
