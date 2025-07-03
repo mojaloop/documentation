@@ -1157,6 +1157,7 @@ module.exports = {
 			['features/tariffs', 'Fees and Tariffs'],
 			['features/performance', 'Performance'],
             ['features/deployment', 'Deploying Mojaloop'],
+			['features/security', 'Mojaloop Security'],
             ['features/engineering', 'Engineering Principles'],
             ['features/invariants', 'Invariants']
           ]
