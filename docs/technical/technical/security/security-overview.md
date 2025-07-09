@@ -122,7 +122,7 @@ Here's more information about SBOM in Mojaloop: https://github.com/mojaloop/ml-d
 
 <h4>Container Security</h4>
 
-Container images are scanned for vulnerabilities using Grype before release. Grype is configured following best practices and stricter configurations are recommended for adopters.
+Container images are scanned for vulnerabilities using Grype before release. Grype is configured following best practices and stricter configurations are recommended for adopters. Grype configuration from the CI Orb Mojaloop uses: https://github.com/mojaloop/ci-config-orb-build?tab=readme-ov-file#vulnerability-image-scan-configuration .
 
 <h4>License Compliance</h4>
 
