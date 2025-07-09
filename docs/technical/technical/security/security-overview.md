@@ -10,9 +10,9 @@ Contents:
 
 <h3>1. Introduction</h3>
 
-This document outlines the Mojaloop Vulnerability Management Process, providing clear guidelines for the Mojaloop community on identifying, reporting, assessing, and addressing security vulnerabilities within Mojaloop software. By adhering to recognized security standards, such as ISO 27001, Mojaloop ensures a consistent approach to maintaining security and resilience.
+This document outlines the Mojaloop Vulnerability Management Process, providing guidelines for the Mojaloop community on identifying, reporting, assessing, and addressing security vulnerabilities within Mojaloop software. By adhering to recognized security standards, such as ISO 27001, Mojaloop ensures a consistent approach to maintaining security and resilience.
 
-This process is based on Mojaloop's established processes, ensuring a well-defined scope and clear guidelines that adopters of the software can rely on. It emphasizes responsible handling of vulnerabilities until verified fixes are available and properly communicated.
+This process is based on Mojaloop's established processes, ensuring a well-defined scope and guidelines that adopters of the software can rely on. It emphasizes responsible handling of vulnerabilities until verified fixes are available and properly communicated.
 
 A structured, transparent, and effective vulnerability management process is essential for maintaining trust and safeguarding the Mojaloop ecosystem.
 
@@ -31,7 +31,9 @@ The Security Committee is composed of core contributors and community leaders wh
 
 Mojaloop vulnerability disclosure (CVD) policy: [https://docs.mojaloop.io/community/contributing/cvd.html](https://docs.mojaloop.io/community/contributing/cvd.html) 
 
-The default process for managing a possible security vulnerability in Mojaloop is outlined below. Projects that require a different process must document it clearly and publicly.
+The default process for managing a possible security vulnerability in Mojaloop is outlined in the above link. Projects that require a different process must document it clearly and publicly.
+
+The process for general third-party dependencies and other open source modules is outlined in the [dependency vulnerability management](dependency-vulnerability-management.md) guide.
 
 <h4>Security for Mojaloop Community Members</h4>
 
@@ -39,8 +41,6 @@ Mojaloop community members and member organizations play a vital role in the vul
 
 * Avoid entering details of security vulnerabilities in public bug trackers, unless access is strictly limited.
 * Security communications should be limited to private channels designated for this purpose. These channels are not notification systems for the general public.
-
-The process for applying to receive community member security vulnerability notifications is defined <span style="text-decoration:underline;">here</span>.
 
 <h4>Work in Private</h4>
 
@@ -53,9 +53,12 @@ Information about a vulnerability should not be made public until a formal annou
 
 <h4>Report</h4>
 
-The person discovering the issue (the reporter) should report the vulnerability by completing the report and emailing it to: **[security@mojaloop.io](mailto:security@mojaloop.io)** . Report templates can be found here.
+The person discovering the issue (the reporter) should report the vulnerability by completing the report and emailing it to: **[security@mojaloop.io](mailto:security@mojaloop.io)** . Report templates can be follow the bug template here: https://github.com/mojaloop/project/issues .
 
 List of issues that are deemed relevant:
+1. Security issues / vulnerabilities in Mojaloop core services (application codebase)
+2. Security issues / vulnerabilities in Mojaloop supporting services
+3. Wide-spread or day-zero issues in latest versions of critical dependencies Mojaloop's core and supporting services use (such as nodejs, kafka, mysql)
 
 List of issues that are not deemed critical or of low priority and responses may be delayed:
 
@@ -80,7 +83,7 @@ The team investigates the report and either rejects or accepts it.
 * Details of the vulnerability and the fix should be documented to generate draft announcements.
 * The reporter may be provided with a copy of the fix and the draft announcement for comment.
 * The fix is committed without any reference in the commit message that it relates to a security vulnerability.
-* A release that includes the fix is created.
+* A release that includes the fix is created. More details are included in the Mojaloop CVD policy.
 
 <h4>Announce</h4>
 
@@ -113,18 +116,21 @@ An SBOM tool is used to generate an inventory of third-party dependencies, allow
 1. Identification of vulnerabilities and license compliance issues.
 2. Regular reporting for regulatory and security assessments.
 3. Ongoing monitoring of library versions across all repositories.
+4. Ensuring well maintained and managed packages / dependencies are used and outdated ones are managed accordingly.
 
-The SBOM is accessible here.
+Here's more information about SBOM in Mojaloop: https://github.com/mojaloop/ml-depcheck-utility?tab=readme-ov-file#sbom-generation-tool-for-mojaloop-repositories 
 
 <h4>Container Security</h4>
 
-Container images are scanned for vulnerabilities using Grype before release. Grype is configured following "Docker CIS best practices," and stricter configurations are recommended for adopters.
+Container images are scanned for vulnerabilities using Grype before release. Grype is configured following best practices and stricter configurations are recommended for adopters.
 
 <h4>License Compliance</h4>
 
 An automated license scanner ensures that only components with compatible licenses are used. Compliance checks are integrated into the CI/CD processes, blocking non-compliant code from being merged or deployed.
 
 <h4>Provenance of Images</h4>
+
+Following Mojaloop Release (v17.1.0), Mojaloop's helm charts are signed at publishing and can be verified at install / deploy time (This feature has native helm support in helm), to ensure provenance of artefacts related to charts. In the future this can be extended to other artefacts such as images.
 
 <h4>Mojaloop CI/CD Security Process</h4>
 
@@ -136,11 +142,13 @@ CI/CD Security Integration:
 2. **License Compliance:** …
 3. **Dependency Vulnerability Scanning:** …
 
-All critical vulnerabilities are logged, and the CI/CD pipeline will block deployments until these issues are resolved. These automated security measures in the CI/CD pipeline guarantee that code is continuously tested, secure, and compliant, maintaining high security standards across the development process.
+All critical vulnerabilities are logged, and the CI/CD pipeline will block publishing images or packages until these issues are resolved. These automated security measures in the CI/CD pipeline guarantee that code is continuously tested, secure, and compliant, maintaining high security standards across the development process.
 
 <h4>Coordinated Vulnerability Disclosure (CVD)</h4>
 
 Mojaloop operates a CVD process, ensuring responsible parties have adequate time to address and remedy vulnerabilities before public disclosure.
+
+Mojaloop vulnerability disclosure (CVD) policy: [https://docs.mojaloop.io/community/contributing/cvd.html](https://docs.mojaloop.io/community/contributing/cvd.html) 
 
 <h4>Reporting and Compliance</h4>
 
@@ -148,9 +156,9 @@ Comprehensive reports are generated after each scan, detailing outcomes, remedia
 
 All reports are stored for auditing and compliance, ensuring transparency and accountability.
 
-Report from license scanning at helm level is provided with Mojaloop release notes (also confirms that license scanning step has passed and only includes allowed licenses). The license summary file is attached to the release notes (present at the bottom): [https://github.com/mojaloop/helm/releases/tag/v17.0.0](https://github.com/mojaloop/helm/releases/tag/v17.0.0) 
+Report from license scanning at helm level is provided with Mojaloop release notes (also confirms that license scanning step has passed and only includes allowed licenses). The license summary file is attached to the release notes (present at the bottom): [https://github.com/mojaloop/helm/releases/tag/v17.0.0](https://github.com/mojaloop/helm/releases/tag/v17.0.0) provides an example.
 
-Image scanning reports are present for review in the CI tool (circleCI) to record either failure or pass result (but the workflow moves forward only if this step passes). For example / reference, a sample Grype scanning result here: [https://app.circleci.com/pipelines/github/mojaloop/account-lookup-service/2165/workflows/d420ef53-85a7-46d3-af1e-1527baf3a207/jobs/16509/artifacts](https://app.circleci.com/pipelines/github/mojaloop/account-lookup-service/2165/workflows/d420ef53-85a7-46d3-af1e-1527baf3a207/jobs/16509/artifacts) 
+Image scanning reports are present for review in the CI tool (circleCI) to record either failure or pass result (but the workflow moves forward only if this step passes). For example / reference, a sample Grype scanning result here: [https://app.circleci.com/pipelines/github/mojaloop/account-lookup-service/2165/workflows/d420ef53-85a7-46d3-af1e-1527baf3a207/jobs/16509/artifacts](https://app.circleci.com/pipelines/github/mojaloop/account-lookup-service/2165/workflows/d420ef53-85a7-46d3-af1e-1527baf3a207/jobs/16509/artifacts) (though this might go out-of-date with time, it is given as an example)
 
 <h3>5. Scope</h3>
 
@@ -164,8 +172,8 @@ This includes:
 Exclusions:
 
 1. Repositories that are not part of the Mojaloop core release are considered non-production and are excluded from the vulnerability management process.
-2. External components required for a typical Mojaloop deployment (e.g., MySQL, Redis, MongoDB, Kafka) are not maintained by the Mojaloop Foundation and are excluded from this vulnerability management process.
+2. External components required for a typical Mojaloop deployment (e.g., MySQL, Redis, MongoDB, Kafka) are not maintained by the Mojaloop Foundation and are excluded from this vulnerability management process meant for Mojaloop's application codebase, though they are part of the general vulnerability management (as third-party OSS dependencies).
 
-This approach ensures that the Mojaloop core components are consistently secured, while also clarifying the boundary of responsibility regarding external dependencies.
+This approach ensures that the Mojaloop core components are consistently secured, while also clarifying the boundary of responsibility regarding external dependencies and providing guidance regarding other (or third-party) OSS packages, dependencies and tools.
 
 <h2></h2>

@@ -2,16 +2,6 @@
 
 This section details the deployment aspects of the Mojaloop Hub.
 
-## Performance Baseline
-
-The Mojaloop Hub has been demonstrated to support the following performance characteristics on minimal hardware:
-
-- Clearing 1,000 transfers per second
-- Sustained for one hour
-- With not more than 1% (of transfer stage) taking more than 1 second through the hub
-
-This baseline performance can be used as a reference point for system sizing and capacity planning.
-
 ## Deployment of Mojaloop Hub (excluding participant integrations)
 
 The following table provides guidance on which Mojaloop deployment scenario is most appropriate for different user types and use cases.
@@ -142,48 +132,48 @@ For detailed information about each deployment tool, please refer to the [Deploy
 <td>Developer</td>
 <td class="green">Footprint: Single machine e.g. laptop or single VM.<br>SLA: None</td>
 <td>?</td>
-<td class="orange">Footprint:<br>- Single machine e.g. laptop or single VM.<br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</td>
-<td class="orange">Footprint:<br>- Single machine e.g. laptop or single VM.<br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</td>
+<td class="green">Footprint:<br>- Single machine e.g. laptop or single VM.<br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</td>
+<td class="green">Footprint:<br>- Single machine e.g. laptop or single VM.<br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</td>
 <td>N/A</td>
 </tr>
 <tr>
 <td>Business analyst</td>
 <td class="green">Footprint: Single machine e.g. laptop or single VM.<br>SLA: None</td>
-<td class="orange">Footprint:<br>- Single machine e.g. laptop or single VM.<br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</td>
-<td class="orange">Footprint:<br>- Single machine e.g. laptop or single VM.<br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</td>
-<td class="orange">Footprint:<br>- Single machine e.g. laptop or single VM.<br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</td>
+<td class="green">Footprint:<br>- Single machine e.g. laptop or single VM.<br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</td>
+<td class="green">Footprint:<br>- Single machine e.g. laptop or single VM.<br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</td>
+<td class="green">Footprint:<br>- Single machine e.g. laptop or single VM.<br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</td>
 <td>N/A</td>
 </tr>
 <tr>
 <td>Potential adopter</td>
 <td class="green">Footprint: Single machine e.g. laptop or single VM.<br>SLA: None</td>
-<td class="orange">Footprint:<br>- Single machine e.g. laptop or single VM.<br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</td>
-<td class="orange">Footprint:<br>- Single machine e.g. laptop or single VM.<br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</td>
-<td class="orange">Footprint:<br>- Single machine e.g. laptop or single VM.<br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</td>
+<td class="green">Footprint:<br>- Single machine e.g. laptop or single VM.<br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</td>
+<td class="green">Footprint:<br>- Single machine e.g. laptop or single VM.<br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</td>
+<td class="green">Footprint:<br>- Single machine e.g. laptop or single VM.<br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</td>
 <td>N/A</td>
 </tr>
 <tr>
 <td>Auditor / External QA / Security Analyst</td>
 <td class="green">Footprint: Single machine e.g. laptop or single VM.<br>SLA: None</td>
-<td class="orange">Footprint:<br>- Single machine e.g. laptop or single VM.<br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</td>
-<td class="orange">Footprint:<br>- Single machine e.g. laptop or single VM.<br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</td>
+<td class="green">Footprint:<br>- Single machine e.g. laptop or single VM.<br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</td>
+<td class="green">Footprint:<br>- Single machine e.g. laptop or single VM.<br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</td>
 <td>N/A</td>
 <td>N/A</td>
 </tr>
 <tr>
 <td>System Integrator</td>
 <td class="green">Footprint: Single machine e.g. laptop or single VM.<br>SLA: None</td>
-<td class="orange">Footprint:<br>- Single machine e.g. laptop or single VM.<br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</td>
-<td class="orange">Footprint:<br>- Single machine e.g. laptop or single VM.<br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</td>
-<td class="orange">Footprint:<br>- Single machine e.g. laptop or single VM.<br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</td>
+<td class="green">Footprint:<br>- Single machine e.g. laptop or single VM.<br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</td>
+<td class="green">Footprint:<br>- Single machine e.g. laptop or single VM.<br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</td>
+<td class="green">Footprint:<br>- Single machine e.g. laptop or single VM.<br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</td>
 <td class="red">Footprint:<br>- Fully redundant, replicated, high availability deployment<br>- On-premises or cloud<br>SLA: High SLA in many areas.</td>
 </tr>
 <tr>
 <td>Hub Operator</td>
 <td class="green">Footprint: Single machine e.g. laptop or single VM.<br>SLA: None</td>
-<td class="orange">Footprint:<br>- Single machine e.g. laptop or single VM.<br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</td>
-<td class="orange">Footprint:<br>- Single machine e.g. laptop or single VM.<br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</td>
-<td class="orange">Footprint:<br>- Single machine e.g. laptop or single VM.<br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</td>
+<td class="green">Footprint:<br>- Single machine e.g. laptop or single VM.<br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</td>
+<td class="green">Footprint:<br>- Single machine e.g. laptop or single VM.<br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</td>
+<td class="green">Footprint:<br>- Single machine e.g. laptop or single VM.<br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</td>
 <td class="red">Footprint:<br>- Fully redundant, replicated, high availability deployment<br>- On-premises or cloud<br>SLA: High SLA in many areas.</td>
 </tr>
 </tbody>
@@ -213,15 +203,7 @@ For detailed information about each deployment tool, please refer to the [Deploy
 <td>- No SLA</td>
 <td>- Never to be used in production.<br>- Never to be used to process real money transactions.</td>
 </tr>
-<tr>
-<td class="orange"><a href="./tools.html#miniloop">Miniloop</a></td>
-<td>- single node kubernetes<br>- microk8s?<br>- HELM with string replacements<br>- No gateway<br>- No ingress/egress components<br>- No IAM stack<br>- Deploys:<br>  - core services & backing services<br><br>Gives ability to test in Kubernetes layer.</td>
-<td>Mid level laptop or desktop workstation</td>
-<td>Zero security</td>
-<td>- Developer focused documentation<br>- Semi-technical / BA focused documentation to support use-case experimentation and testing.<br>- Product level documentation to explain features e.g. what it does and where it is appropriate for use.</td>
-<td>- No SLA</td>
-<td>- Never to be used in production.<br>- Never to be used to process real money transactions.<br>- Possibly useful for testing/understanding of the HELM charts.</td>
-</tr>
+
 <tr>
 <td class="amber"><a href="./tools.html#helm-deploy">HELM deploy</a></td>
 <td>- Just HELM charts needed to deploy Mojaloop services and backing services.</td>
@@ -246,4 +228,5 @@ For detailed information about each deployment tool, please refer to the [Deploy
 ## Document History
 |Version|Date|Author|Detail|
 |:--------------:|:--------------:|:--------------:|:--------------:|
-|1.0|7th May 2025| Tony Williams|Initial version| 
+|1.1|3rd June 2025|Paul Makin|Removed performance section, moved it to new doc|
+|1.0|7th May 2025|Tony Williams|Initial version| 
