@@ -9,19 +9,30 @@
    - [When is IaC the right choice?](#when-is-iac-the-right-choice)
    - [IaC in the context of Mojaloop](#iac-in-the-context-of-mojaloop)
 - [Overview of Mojaloop IaC-based deployment](#overview-of-mojaloop-iac-based-deployment)
-   - [Target infrastructure](#placeholder-target-infrastructure)
+   - [PLACEHOLDER: Target infrastructure](#placeholder-target-infrastructure)
 - [Deployment how-to](#deployment-how-to)
    - [Deploying the Control Center](#deploying-the-control-center)
       - [Control Center: Prerequisites](#control-center-prerequisites)
-      - [Prepare the infrastructure](#prepare-the-infrastructure)
-      - [Deploy Control Center host](#deploy-control-center-host)
-      - [Set up the Control Center utility container](#set-up-the-control-center-utility-container)
-      - [Deploy the Control Center](#deploy-the-control-center)
+      - [Control Center: Prepare the infrastructure](#control-center-prepare-the-infrastructure)
+      - [Control Center: Deploy Control Center host](#control-center-deploy-control-center-host)
+      - [Control Center: Set up the Control Center utility container](#control-center-set-up-the-control-center-utility-container)
+      - [Control Center: Deploy the Control Center](#control-center-deploy-the-control-center)
       - [Control Center: Post-deployment configuration](#control-center-post-deployment-configuration)
       - [Control Center: Verify health and access](#control-center-verify-health-and-access)
       - [Control Center: Troubleshooting](#control-center-troubleshooting)
       - [Control Center: Maintenance](#control-center-maintenance)
    - [Deploying the Mojaloop Switch environment](#deploying-the-mojaloop-switch-environment)
+      - [Mojaloop Switch: Prerequisites](#mojaloop-switch-prerequisites)
+      - [Mojaloop Switch: Initialize the bootstrap environment](#mojaloop-switch-initialize-the-bootstrap-environment)
+      - [Mojaloop Switch: Configure AWS credentials](#mojaloop-switch-configure-aws-credentials)
+      - [Mojaloop Switch: Configure the Vault secret](#mojaloop-switch-configure-the-vault-secret)
+      - [Mojaloop Switch: Configure the Switch](#mojaloop-switch-configure-the-switch)
+      - [PLACEHOLDER: Mojaloop Switch: Run the deployment](#placeholder-mojaloop-switch-run-the-deployment)
+      - [PLACEHOLDER: Mojaloop Switch: Post-deployment verification](#placeholder-mojaloop-switch-post-deployment-verification)
+      - [PLACEHOLDER: Mojaloop Switch: Configure service access](#placeholder-mojaloop-switch-configure-service-access)
+      - [PLACEHOLDER: Mojaloop Switch: Run TTK tests](#placeholder-mojaloop-switch-run-ttk-tests)
+      - [PLACEHOLDER: Mojaloop Switch: Collect PM4ML configuration info](#placeholder-mojaloop-switch-collect-pm4ml-configuration-info)
+      - [PLACEHOLDER: Mojaloop Switch: Troubleshooting](#placeholder-mojaloop-switch-troubleshooting)
 
 ## Introduction
 
@@ -92,7 +103,7 @@ Mojaloop and PM4ML are cloud-native applications that are designed to run on top
 To deploy the Mojaloop and PM4ML environment clusters, the following tools are used:
 
 - **Ansible**: A tool used for provisioning software repeatedly and idempotently via the use of playbooks that make use of reusable roles. These roles leverage modules that are executed on a virtual machine or bare-metal host via an ssh client. The main role of Ansible is to bootstrap the hosts used by the infrastructure with the prerequisites needed to run Kubernetes and initialise ArgoCD.
-- **Terraform/Terragrunt**: This tool is used to provision resources via CRUD API calls. These resources range from the creation of network resources, whole K8s clusters, managed databases or the creation of an OIDC application in an identity management solution, etc. 
+- **Terraform/Terragrunt**: This tool is used to provision resources via CRUD API calls. These resources range from the creation of network resources, whole K8s clusters, managed databases or the creation of an OIDC application in an identity management solution, etc.
 - **Helm**: A package management tool used to render K8s charts, which are groups of Kubernetes templates.
 - **Kustomize**: A tool used to manipulate and render K8s templates, including Helm charts.
 - **ArgoCD**: A tool used to deploy artifacts that are rendered via Helm and/or Kustomize to a K8s cluster and maintain the deployed state against a source of truth for the cluster, which is generated from multiple tagged git repositories in concert with environment-specific configuration values that are injected using custom ArgoCD plugins.
@@ -122,8 +133,8 @@ Before beginning the deployment, ensure you have the following in place.
 
 ##### AWS account access
 
-- Administrative privileges or IAM user with sufficient permissions
-- AWS CLI configured with appropriate credentials
+- Administrative privileges or IAM user with sufficient permissions <!-- EDITORIAL COMMENT: Shall we list those permissions?  -->
+- AWS CLI configured with appropriate credentials <!-- EDITORIAL COMMENT: https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html + set up an access key for AWS cli via console > profile > Security Credentials. After that: `aws configure` + https://docs.aws.amazon.com/cli/v1/userguide/cli-configure-files.html-->
 - Minimum service quotas:
   - vCPU limit: 64 (for m5.4xlarge instances)
   - Elastic IPs: 5
@@ -139,9 +150,8 @@ Before beginning the deployment, ensure you have the following in place.
 
 - Available domain name for the Control Center
 - Access to DNS management (Route53 or external provider)
-- Firewall rules allowing SSH access to bastion hosts
 
-#### Prepare the infrastructure
+#### Control Center: Prepare the infrastructure
 
 ##### Create SSH key pair
 
@@ -151,7 +161,7 @@ Generate an SSH key pair for secure access to the Control Center infrastructure.
 
    For details, see: [https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/create-key-pairs.html](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/create-key-pairs.html)
 
-   Choose a meaningful name for your key pair, such as: `ml-perf-ccu-host-private-key`
+   Choose a meaningful name for your key pair. In the example below, we will be using the following name: `ml-perf-ccu-host-private-key`
 
 1. Save the private key securely on your local machine, and set the permissions so that only you can read your private key file:
 
@@ -170,7 +180,9 @@ Generate an SSH key pair for secure access to the Control Center infrastructure.
 
 ##### Configure AWS IAM
 
-1. Create the required IAM group for Control Center operations through the AWS EC2 console or CLI. For details, see: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_groups_create.html
+1. Create the required IAM group for Control Center operations through the AWS EC2 console or CLI. For details, see: [https://docs.aws.amazon.com/IAM/latest/UserGuide/id_groups_create.html](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_groups_create.html)
+
+   Note that in the example below, `mojaiac` is an existing IAM user.
 
    ```bash
    # Create the IAM group
@@ -191,20 +203,20 @@ Generate an SSH key pair for secure access to the Control Center infrastructure.
 
 ##### Provision the Control Center host VM
 
-Deploy a dedicated VM to host the Control Center utility container.
+Deploy a dedicated VM to host the Control Center utility container. 
 
 VM specifications:
 
 - **Instance Type**: t3.small
 - **Operating System**: Ubuntu 24.04 LTS
 - **Storage**: 20GB root volume (expandable as needed)
-- **Security Group**: Allow SSH (port 22) from your IP
-- **Network**: Public subnet with Elastic IP
+- **Security Group**: Allow SSH (port 22) from your IP (If you're launching the VM instance via the AWS console (**EC2 > Instances > Launch instance**), choose **My IP** in the drop-down menu.)
+- **Network**: Public subnet with Elastic IP <!-- EDITORIAL COMMENT: I haven't found the Elastic IP option in the GUI. -->
 - **Authentication**: SSH key created earlier in section [Create SSH key pair](#create-ssh-key-pair)
 
-Record the public IP address for SSH access.
+Once the instance has been launched, record the public IP address, it will be needed when youssh to the VM (next step).
 
-#### Deploy Control Center host
+#### Control Center: Deploy Control Center host
 
 ##### Initial system configuration
 
@@ -294,13 +306,13 @@ Set up AWS credentials for the Control Center utility:
    # Replace <YOUR_ACCESS_KEY_ID> and <YOUR_SECRET_ACCESS_KEY> with actual values
    ```
 
-#### Set up the Control Center utility container
+#### Control Center: Set up the Control Center utility container
 
 We are going to spin up a container and then run Terraform to deploy the Control Center.
 
 1. Launch the container.
 
-   1. Start a new tmux session:
+   1. Start a new tmux session (in this example, our container name is: `ml-perf-ccu-4`):
 
       ```bash
       tmux new -s ml-perf-ccu-4
@@ -323,12 +335,12 @@ We are going to spin up a container and then run Terraform to deploy the Control
    1. Access the container:
 
       ```bash
-      docker exec -it ml-perf-ccu-4 bash.
+      docker exec -it ml-perf-ccu-4 bash
       ```
 
 1. Configure the environment.
 
-   1. Go to the `iac-run-dir` folder: 
+   1. Go to the `iac-run-dir` folder:
    
       ```bash
       cd iac-run-dir/
@@ -344,13 +356,13 @@ We are going to spin up a container and then run Terraform to deploy the Control
 
 1. Initialize the environment.
 
-   1. Load the configuration: 
+   1. Load the configuration:
 
       ```bash
       source setenv
       ```
 
-   1. Run the initialization script: 
+   1. Run the initialization script:
    
       ```bash
       ./init.sh
@@ -358,7 +370,7 @@ We are going to spin up a container and then run Terraform to deploy the Control
 
    This will clone the iac-modules repository into the `iac-run-dir` folder.
 
-#### Deploy the Control Center
+#### Control Center: Deploy the Control Center
 
 1. Access the Control Center deployment directory:
 
@@ -386,28 +398,37 @@ We are going to spin up a container and then run Terraform to deploy the Control
 
    
       ```yaml
-      cluster_name: cc004                          # Unique identifier for your Control Center
+      cluster_name: cc004                         # Unique identifier for your Control Center
       domain: perf004.mojaperflab.org             # Your domain name
       cloud_region: eu-north-1                    # AWS region for deployment
       ansible_collection_tag: v5.5.0-rc3          # Ansible collection version
       iac_terraform_modules_tag: v5.9.0           # IaC modules version
       letsencrypt_email: admin@yourdomain.com     # Email for Let's Encrypt certificates
       tags:                                       # AWS resource tags
-      Origin: Terraform
-      mojaloop/cost_center: mlf-perf004-cc
-      mojaloop/env: ft-sbox-rw
-      mojaloop/owner: Your-Name
+         Origin: Terraform
+         mojaloop/cost_center: mlf-perf004-cc
+         mojaloop/env: ft-sbox-rw
+         mojaloop/owner: Your-Name
       ```
 
 1. _optional_ To declare which environments you want to initialize in the Control Center in AWS, modify the environment configuration.
 
    You can create as many environments as you want (test and production environments, and Payment Manager environments).
 
-   Make your required changes: 
+   Make your required changes:
    
    ```bash
    vi custom-config/environment.yaml
    ```
+   
+   Example:
+
+   ```yaml
+   environments:
+      - perf004-pm4ml
+      - perf004-mojaloop
+   ```
+
 1. Deploy the Control Center by executing the following script: 
 
    `./wrapper.sh`
@@ -420,7 +441,7 @@ We are going to spin up a container and then run Terraform to deploy the Control
    1. Install and configure all Control Center services.
    1. Set up GitOps with ArgoCD.
 
-1. The Terraform state will be in the container after running the script so you need to push the state to the new system: 
+1. The Terraform state will be in the container after running the script so you need to push the state to the new system:
 
    `./movestatetok8s.sh`
 
@@ -574,6 +595,31 @@ Confirm that DNS records are properly configured:
 
 #### Control Center: Troubleshooting
 
+##### AWS EC2: UnAuthorized Operation
+
+After executing the `wrapper.sh` script to run the CC deployment, you might get an `UnAuthorized Operation` error.
+
+**Error message:**
+
+"Error: Reading EC2 AMIs: operation error EC2: DescribeImages, https response error, StatusCode: 403, RequestID: {id}, api error UnAuthorized Operation: You are not authorized to perform this operation. User: arn:aws:iam::{account-id}:user/{username} is not authorized to perform: ec2:DescribeImages with an explicit deny in an identity-based policy"
+
+Instead of `EC2` and `DescribeImages`, you may have some other service and operation in your error message.
+
+**Resolution:**
+
+1. Go to the IAM Policy Simulator: [https://policysim.aws.amazon.com](https://policysim.aws.amazon.com)
+1. In section **Users, Groups, and Roles** on the left, select the username indicated in the error message.
+1. In section **Policy Simulator** on the right, in the drop-down fields at the top of the page, choose the service (in our example, it is **EC2**) and the action (in our example, it is **DescribeImages**) that the user is unauthorized to perform according to the error message.
+1. Click **Run Simulation**.
+1. In the results, click the chevron at the beginning of the row. You should see a **Show Statement** link displayed.
+1. Click **Show Statement**. Clicking the link will show you (on the left) the relevant part in the relevant Policy that is interfering with your permissions.
+
+   Note that IAM permissions are additive, but an explicit `Deny` overrides all `Allow`s, no matter where they come from.
+
+   The `UnAuthorized Operation` error might be caused by a Policy with a `Deny`.
+
+1. Try modifying or removing the Policy that is causing the error.
+
 ##### AWS quota exceeded
 
 **Error message:**
@@ -700,4 +746,205 @@ To completely remove the Control Center:
 
 ### Deploying the Mojaloop Switch environment
 
-(placeholder)
+This section provides instructions for deploying a Mojaloop Switch environment using the Control Center's GitOps infrastructure. The Switch environment serves as the central hub for processing financial transactions between Digital Financial Service Providers (DFSPs).
+
+The Switch deployment consists of:
+
+- Kubernetes cluster with Mojaloop core services
+- Identity and access management with Keycloak
+- Monitoring and observability stack
+- Testing toolkit for validation
+- Management portals for operations
+
+The deployment utilizes:
+
+- GitLab CI/CD pipelines for automation
+- Terragrunt/Terraform for infrastructure provisioning
+- ArgoCD for GitOps-based application deployment
+- Vault for secrets management
+
+#### Mojaloop Switch: Prerequisites
+
+Before beginning the deployment, ensure you have the following in place.
+
+##### Control Center access
+
+- Active user account in Zitadel
+- Access to Control Center GitLab
+- VPN connection via Netbird
+- Appropriate RBAC permissions
+
+##### AWS resources
+
+- AWS IAM user with deployment permissions
+- Access key ID and secret access key
+- Sufficient service quotas in target region
+
+##### Tools and software
+
+- kubectl CLI installed
+- kubelogin for OIDC authentication
+- Web browser for GitLab Web IDE access
+
+##### Operator knowledge
+
+Operators should be familiar with:
+
+- Kubernetes operations
+- GitLab CI/CD pipelines
+- Mojaloop architecture
+- YAML configuration syntax
+
+#### Mojaloop Switch: Initialize the bootstrap environment
+
+Deploying the Switch environment is done in GitLab.
+
+By default, when you open GitLab, you will see the environments that you configured in `custom-config/environment.yaml` (when you deployed the Control Center - see section [Control Center: Deploy the Control Center](#control-center-deploy-the-control-center)).
+
+The **iac/bootstrap** environment is present by default, this is the main project of the Control Center.
+
+The deployment of the Switch follows a similar pattern to that of the Control Center.
+
+1. In GitLab, go to **Projects**, click **iac/bootstrap**.
+
+1. In the left-hand navigation pane, go to **Build > Pipelines**.
+
+1. Open the latest pipeline.
+
+1. Click **deploy-env-templates**. You will run this to populate the project of the Switch that we want to deploy.
+
+1. Once you opened **deploy-env-templates**, you need to provide some environment variables (Update CI/CD variables):
+   - **ENV_TO_UPDATE** → the name of the environment that you want to update (in our example, it will be: `sw004`)
+   - **IAC_MODULES_VERSION_TO_UPDATE** → the version of Terraform that you want to use (in our example, it will be: `v5.9.0`)
+
+1. Run the job. This will populate the project of the Switch.
+
+1. After successful initialization:
+
+   1. Access the newly created environment repository at:
+
+      ```
+      https://gitlab.<cluster-name>.<domain>/iac/<env-to-update>
+      ```
+   
+      Example:
+
+      ```
+      https://gitlab.cc004.perf004.mojaperflab.org/iac/sw004
+      ```
+
+   1. Verify the structure of the repository, and ensure that it contains:
+
+   - `custom-config/` directory
+   - `default-config/` directory
+   - CI/CD pipeline configuration
+
+#### Mojaloop Switch: Configure AWS credentials
+
+Set up the `AWS_ACCESS_KEY_ID` variable. Each environment must have this information.
+
+1. In GitLab, go to **Settings > CI/CD > Variables**, and create a new variable.
+1. Set up the variable as follows:
+   - Key: `AWS_ACCESS_KEY_ID`
+   - Value: The AWS access key ID of the Amazon account where you want to deploy the Switch. You can obtain this value from the AWS console. <!-- EDITORIAL COMMENT: Mention where exactly. -->
+   - Type: Variable
+   - Protected: Yes
+   - Masked: Yes
+
+#### Mojaloop Switch: Configure the Vault secret
+
+Set up the access key as a secret in the Vault.
+
+1. Connect to Vault using the internal URL (requires VPN):
+
+   ```
+   https://vault.int.<cluster-name>.<domain>
+   ```
+
+   Example:
+   ```
+   https://vault.int.cc004.perf004.mojaperflab.org/
+   ```
+
+1. Navigate to the following path: **Secrets Engines > Secrets > \<switch-project\>**
+   
+   Example path: `secret/data/sw004/`
+   
+1. Create a variable called `cloud_platform_client_secret`.
+1. Set up the variable as follows:
+   - Key: `value`
+   - Value: Your AWS secret access key
+
+#### Mojaloop Switch: Configure the Switch
+
+1. When the **deploy-env-templates** job has run, access the Switch project in GitLab by going to **Projects** and clicking **iac / \<environment identifier\>**.
+
+1. Configure the Switch. The logic is similar to how you specified your configuration for the Control Center.
+
+   There is a **default-config** folder with a set of default configurations. They can be explored to see what's inside. If you want to customize your configuration, then copy any configuration code from the default configuration into the `custom-config/cluster-config.yaml` file and make your changes.
+
+   Example:
+
+   ```yaml
+   env: sw004 # update according to your DNS planning
+   vpc_cidr: "10.107.0.0/23"
+   managed_vpc_cidr: "10.29.0.0/23"
+   domain: hub004.mojaperflab.org # update according to DNS planning
+   managed_svc_enabled: false
+   k8s_cluster_type: microk8s
+   currency: EUR
+   cloud_region: eu-north-1 # update according to your region planning
+   ansible_collection_tag: v5.5.0-rc3
+   iac_terraform_modules_tag: v5.9.0
+   letsencrypt_email: admin@yourdomain.com
+   tags:
+   Origin: Terraform
+   mojaloop/cost_center: mlf-perf004-sw
+   mojaloop/env: ft-sbox-rw
+   mojaloop/owner: Your-Name
+   ```
+
+1. Set your desired Mojaloop version:
+   1. Go to `custom-config/mojaloop-vars.yaml` file.
+   1. Specify a value for `mojaloop_chart_version`.
+   1. You can also update the `mcm_chart_version` depending on which version of MCM you wish to use (if you don't want to use the default version).
+
+   ```yaml
+   mojaloop_chart_version: 17.0.0 # Check latest version at https://github.com/mojaloop/helm/releases/
+   onboarding_collection_tag: 17.0.0 # match the mojaloop version
+   mcm_chart_version: 1.2.10 
+   bulk_enabled: true # optional
+   third_party_enabled: true # optional
+   opentelemetry_enabled: false
+   central_ledger_handler_transfer_position_batch_processing_enabled: true # required for now
+   ```
+
+1. Configure the `mojaloop-rbac-api-resources.yaml` file. This file specifies the privileges for the business portals. You can either use the default configuration in the **default-config** folder as-is, or copy the file to the **custom-config** folder and make your changes there.
+
+1. Configure the `mojaloop-stateful-resources.json` file. This file specifies the configuration of databases and message queues. You can either use the default configuration in the **default-config** folder as-is, or copy the file to the **custom-config** folder and make your changes there.
+
+1. Commit your changes in GitLab. Commit directly to the `main` branch.
+
+#### PLACEHOLDER: Mojaloop Switch: Run the deployment
+
+(placeholder...)
+
+#### PLACEHOLDER: Mojaloop Switch: Post-deployment verification
+
+(placeholder...)
+
+#### PLACEHOLDER: Mojaloop Switch: Configure service access
+
+(placeholder...)
+
+#### PLACEHOLDER: Mojaloop Switch: Run TTK tests
+
+(placeholder...)
+
+#### PLACEHOLDER: Mojaloop Switch: Collect PM4ML configuration info
+
+(placeholder...)
+
+#### PLACEHOLDER: Mojaloop Switch: Troubleshooting
+
+(placeholder...)
