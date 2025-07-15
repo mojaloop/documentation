@@ -33,14 +33,33 @@ This approach gives a Mojaloop Hub operator granular control of an individual's 
 
 In addition, it remains the responsibility of the hub operator to ensure that control points appropriate to the operation of a financial service are put in place (such as, where it applies, physical access to the servers hosting the Mojaloop Hub, control of operator use of mobile phones, video surveillance, supply chain management, visitor management, etc), and that business processes are defined to ensure the correct application of those control points.
 
+## Maintaining Security
+The Mojaloop Community has defined a set of procedures and techniques to ensure that the security of a Mojaloop deployment is maintained as attacks evolve and vulnerabilities are identified, either in Mojaloop itself of in one of the myriad of other open source programs that Mojaloop relies on. This is collectively referred to as the Vulnerability Management Process, and comprises:
+- A Security Committee, whose role is the coordination of all aspects of vulnerability management.
+- Processes for handling possible vulnerabilities, when they have been brought to the attention of the Security Committee.
+- Pro-active vulnerability identification and management processes, including:
+	- The continuous monitoring of open-source components for vulnerabilities;
+	- Static Application Security Testing (SAST), using multiple tools which together provide detailed insights into code-level vulnerabilities by leveraging public vulnerability databases;
+	- Automated maintenance of a Software Bill of Materials (SBOM), which facilitates inventory and dependency management;
+	- The scanning of container images for vulnerabilities before release;
+	- The use of an automated license scanner to ensure that only external components with compatible licenses are used;
+	- Following Mojaloop Release v17.1.0, Mojaloop's helm charts are signed at publishing and can be verified at install / deploy time, to ensure the provenance of artefacts related to charts;
+	- Mojaloop employs a CI/CD pipeline that automatically integrates security checks throughout the software development process;
+	- Mojaloop operates a Coordinated Vulnerability Disclosure (CVD) process, ensuring responsible parties have adequate time to address and remedy vulnerabilities before public disclosure;
+	- Comprehensive reports are generated after each scan, detailing outcomes, remediation actions, and their effectiveness. All reports are stored for auditing and compliance, ensuring transparency and accountability.
+
+The reader can find more detailed, technical information on the [Mojaloop Vulnerability Management Process here](https://docs.mojaloop.io/technical/technical/security/security-overview.html).
+
+
 ## Deployment Quality and Security
 Members of the Mojaloop Community are currently developing a Quality Assessment Framework, the purpose of which is to develop a Toolkit that can be used to validate the configuration, functionality, security, interoperability readiness and performance of a deployment. 
 
 This framework might be used by adopters to "self certify", or it might be used by an external reviewer in order to create a higher level of assurance for supervisory authorities and participants.
 
 ## Applicability
-This document relates to Mojaloop Version 17.0.0
+This document relates to Mojaloop Version 17.1.0
 ## Document History
   |Version|Date|Author|Detail|
 |:--------------:|:--------------:|:--------------:|:--------------:|
+|1.1|15th July 2025| Paul Makin|Added the "Maintaining Security" section.|
 |1.0|24th June 2025| Paul Makin|Initial version|
