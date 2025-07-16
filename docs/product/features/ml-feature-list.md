@@ -2,9 +2,7 @@
 
 Mojaloop is open source instant payments software that interconnects
 disparate financial institutions in a manner that promotes financial
-inclusion and provides robust risk management for all participants. It
-is available for use by any body that wishes to use it to implement and
-operate an inclusive instant payments scheme.
+inclusion and provides robust risk management for all participants. It is available for use by any body that wishes to use it to implement and operate an inclusive instant payments scheme.
 
 ## Mojaloop's Core Functions
 
@@ -35,9 +33,20 @@ together make Mojaloop a low cost, inclusive instant payments system:
 &nbsp;
 
 ## The Mojaloop Ecosystem
+### The Core
 In reading this document, it is important to understand the terminology used to identify the various actors, and how they interact. The following diagram provides a high level view of the Mojaloop ecosystem.
 
 ![Mojaloop Ecosystem](./ecosystem.svg)
+
+### Overlay Services
+Around the core illustrated in the above diagram there are a set of overlay services, which also form part of the complete Mojaloop open source package. These are:
+- The **Account Lookup Service** (ALS), and a number of oracles that are used by the ALS in alias resolution;
+- A set of **portals**, built to use the Business Operations Framework, which allow a hub operator to interact with/manage the Mojaloop Hub;
+- A **Merchant Payments** module, which supports merchant registration and the issuing of merchant IDs, including the generation of QR Codes which can be scanned to initiate a merchant transaction;
+- The **Testing Toolkit** (TTK), which allows engineers to simulate any aspect of the Mojaloop core ecosystem, to facilitate their development, integration and testing efforts;
+- An **Integration Toolkit** (ITK), part of the [connectivity support](./connectivity.md) library, which facilitates the connection between a DFSP and a Mojaloop Hub;
+- **ISO 8583 integration**, which allows ATMs (or an ATM switch) to be integrated with a Mojaloop Hub, for cash withdrawals;
+- [**MOSIP integration**](https://www.mosip.io), which allow payments to be routed to a MOSIP-based digital identity, rather than (say) a mobile phone number.
 
 ## Feature List
 
