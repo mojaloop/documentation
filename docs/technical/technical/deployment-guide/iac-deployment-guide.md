@@ -27,9 +27,9 @@
       - [Mojaloop Switch: Configure AWS credentials](#mojaloop-switch-configure-aws-credentials)
       - [Mojaloop Switch: Configure the Vault secret](#mojaloop-switch-configure-the-vault-secret)
       - [Mojaloop Switch: Configure the Switch](#mojaloop-switch-configure-the-switch)
-      - [PLACEHOLDER: Mojaloop Switch: Run the deployment](#placeholder-mojaloop-switch-run-the-deployment)
-      - [PLACEHOLDER: Mojaloop Switch: Post-deployment verification](#placeholder-mojaloop-switch-post-deployment-verification)
-      - [PLACEHOLDER: Mojaloop Switch: Configure service access](#placeholder-mojaloop-switch-configure-service-access)
+      - [Mojaloop Switch: Run the deployment](#mojaloop-switch-run-the-deployment)
+      - [Mojaloop Switch: Post-deployment verification](#mojaloop-switch-post-deployment-verification)
+      - [Mojaloop Switch: Configure service access](#placeholder-mojaloop-switch-configure-service-access)
       - [PLACEHOLDER: Mojaloop Switch: Run TTK tests](#placeholder-mojaloop-switch-run-ttk-tests)
       - [PLACEHOLDER: Mojaloop Switch: Collect PM4ML configuration info](#placeholder-mojaloop-switch-collect-pm4ml-configuration-info)
       - [PLACEHOLDER: Mojaloop Switch: Troubleshooting](#placeholder-mojaloop-switch-troubleshooting)
@@ -66,7 +66,7 @@ When deciding whether or not IaC-based deployments are the right path for your o
 
 In light of the above, to work effectively with Infrastructure-as-Code, we advise you to have working knowledge of the following concepts and technologies:
 
-- **Infrastructure fundamentals**: to understand the resources you are managing (compute, networking, storage, identity and access management, regions and availability zones, etc.) 
+- **Infrastructure fundamentals**: to understand the resources you are managing (compute, networking, storage, identity and access management, regions and availability zones, etc.)
 - **Containers and orchestration** (e.g., Docker, Kubernetes, control plane, worker nodes, etc.): to understand how to manage containerised resources
 - **Security and governance** (managing secrets, least privilege principle): to understand how to manage high-privilege resources
 - **At least one IaC tool** (e.g., Terraform, Ansible): to understand how IaC tools structure modules, resources, variables, and state
@@ -203,7 +203,7 @@ Generate an SSH key pair for secure access to the Control Center infrastructure.
 
 ##### Provision the Control Center host VM
 
-Deploy a dedicated VM to host the Control Center utility container. 
+Deploy a dedicated VM to host the Control Center utility container.
 
 VM specifications:
 
@@ -429,7 +429,7 @@ We are going to spin up a container and then run Terraform to deploy the Control
       - perf004-mojaloop
    ```
 
-1. Deploy the Control Center by executing the following script: 
+1. Deploy the Control Center by executing the following script:
 
    `./wrapper.sh`
 
@@ -440,6 +440,12 @@ We are going to spin up a container and then run Terraform to deploy the Control
    1. Deploy the Kubernetes cluster.
    1. Install and configure all Control Center services.
    1. Set up GitOps with ArgoCD.
+
+1. Monitor the progress of the deployment process through the terminal. It takes around 45-60 minutes for the process to complete.
+
+   The script will display status updates for each component:
+      - In case you observe **failed attempts and retries**, keep waiting, sometimes it takes multiple retries for some components to be set up.
+      - In case the process completes with **errors**, run `./wrapper.sh` again.
 
 1. The Terraform state will be in the container after running the script so you need to push the state to the new system:
 
@@ -466,15 +472,30 @@ All Control Center services (GitLab, ArgoCD, Grafana, Vault, etc.) use Zitadel f
    - Username: `rootauto@zitadel.zitadel.<cluster_name>.<domain>`
    - Password: `#Password1!`
 
-1. Create a user account with a strong password.
+1. Follow the on-screen prompts, and enable two-factor authentication.
 
-   For details, see: [https://zitadel.com/docs/guides/manage/console/users](https://zitadel.com/docs/guides/manage/console/users)
+1. Follow the on-screen prompts, and change your password.
 
-1. Enable two-factor authentication.
+1. Create a user account with a strong password. You can do this via the **User** menu >> **New** button.
 
-   For details, see: [https://zitadel.com/docs/guides/manage/console/default-settings#login-behavior-and-access](https://zitadel.com/docs/guides/manage/console/default-settings#login-behavior-and-access)
+   ![Zitadel: Create user](assets/diagrams/iacDeployment/001_cc_zitadel_create_user.png)
 
-1. Grant appropriate permissions through the root user account. <needs to be elaborated>
+1. Grant appropriate permissions to this new user via the **Authorizations** menu:
+
+   ![Zitadel: Grant permissions to new user 01](assets/diagrams/iacDeployment/002_cc_zitadel_grant_authorizations_1.png)
+
+   1. Click **New**.
+
+      ![Zitadel: Grant permissions to new user 02](assets/diagrams/iacDeployment/002_cc_zitadel_grant_authorizations_2.png)
+
+   1. Click the **Project name** field. You will see a list of available projects: ZITADEL, grafana, vault, argocd, k8s, Nebird, gitlab.
+   1. Select one of the projects, and click **Continue**.
+   1. Select all the roles, and click **Save**.
+   1. Repeat the steps above (Step5.1 - Step 5.4) for each of the following projects: grafana, vault, argocd, k8s, Nebird, gitlab.
+
+1. Log out of Zitadel.
+
+1. Log back in with the new user.
 
 ##### Netbird: Set up VPN access to services
 
@@ -482,47 +503,57 @@ All Control Center services (GitLab, ArgoCD, Grafana, Vault, etc.) use Zitadel f
 
    The `cluster_name` and `domain` values come from the `cluster-config.yaml` file that you configured earlier.
 
+1. You will be prompted to install the NetBird client.
+
+   ![Nebird: Install Netbird client](assets/diagrams/iacDeployment/003_cc_download_netbird_linux.png)
+
 1. Retrieve the Management URL shown on the dashboard.
 
-1. Install a NetBird client. For details, see: [https://docs.netbird.io/how-to/installation](https://docs.netbird.io/how-to/installation)
-
-1. Open the client, and go to **Settings > Advanced Settings**.
+1. Open the client that you have just installed, and go to **Settings > Advanced Settings**.
 
 1. Specify the **Management URL**, then click **Save**.
 
 1. Establish a VPN connection.
 
    1. Open the NetBird client and click **Connect**.
-   1. On the SSO login page, use the default credentials.
+   1. On the Zitadel SSO login page, use the credentials of the new non-root you have just set up in Zitadel.
+   1. Follow the on-screen prompts.
 
-      - Username: `rootauto@zitadel.zitadel.<cluster_name>.<domain>`
-      - Password: `#Password1!`
-
-Now you can access all the portals.
+Once you've connected, you can access all the portals.
 
 ##### GitLab: Set up two-factor authentication
 
-1. Navigate to: `https://gitlab.<cluster_name>.<domain>`
+1. Navigate to: `https://gitlab.<cluster_name>.<domain>` <!-- EDITORIAL COMMENT: Choose sign in with Zitadel -->
 
    The `cluster_name` and `domain` values come from the `cluster-config.yaml` file that you configured earlier.
 
-1. Enable two-factor authentication for enhanced security.
+1. To log in, select the **Zitadel** button.
+
+1. When prompted to select an account, select your non-root user account.
+
+1. Enable two-factor authentication for enhanced security:
+
+   1. Click your user profile in the top left corner, and select **Preferences**.
+   1. In the left-hand menu, select **Account**.
+   1. Click the **Enable two-factor authentication** button and follow the prompts to set up 2FA.
+
+      ![GitLab: Enable two-factor authentication](assets/diagrams/iacDeployment/004_cc_gitlab_2factor.png)
 
 ##### ArgoCD: Run the netbird-post-config application
 
 After connecting to the VPN, there is one manual task to do in ArgoCD: sync the netbird-post-config application.
 
-1. Go to: `https://argocd.int.<cluster-name>.<domain>`
+1. Go to: `https://argocd.int.<cluster-name>.<domain>` <!-- EDITORIAL COMMENT: Connection times out. -->
 
    The `cluster_name` and `domain` values come from the `cluster-config.yaml` file that you configured earlier.
 
-1. Find the netbird-post-config application and run it.
+1. Find the **netbird-post-config** application and run it.
 
 ##### Vault: Verify if secret paths are accessible
 
 <!-- EDITORIAL COMMENT: This section needs to be further elaborated. -->
 
-1. Go to: `https://vault.int.<cluster-name>.<domain>`
+1. Go to: `https://vault.int.<cluster-name>.<domain>` <!-- EDITORIAL COMMENT: Connection times out. -->
 
    The `cluster_name` and `domain` values come from the `cluster-config.yaml` file that you configured earlier.
 
@@ -532,7 +563,7 @@ After connecting to the VPN, there is one manual task to do in ArgoCD: sync the 
 
 ##### Grafana: Review dashboards and set up alerts
 
-1. Go to: `https://grafana.int.<cluster-name>.<domain>`
+1. Go to: `https://grafana.int.<cluster-name>.<domain>` <!-- EDITOTIAL COMMENT: Connection times out. -->
 
    The `cluster_name` and `domain` values come from the `cluster-config.yaml` file that you configured earlier.
 
@@ -925,13 +956,70 @@ Set up the access key as a secret in the Vault.
 
 1. Commit your changes in GitLab. Commit directly to the `main` branch.
 
-#### PLACEHOLDER: Mojaloop Switch: Run the deployment
+#### Mojaloop Switch: Run the deployment
 
-(placeholder...)
+1. In GitLab, go to **Projects**, click **iac/\<Switch\>**.
+1. Select **Build > Pipelines**.
+1. Ensure your latest commit passed the initialization (**init** stage) successfully. Initialization runs automatically on every commit.
+1. Run the deploy job:
+   1. Select the **deploy** stage of your latest commit.
+   1. Run **deploy-infra**. This will deploy the infrastructure, Kubernetes, ArgoCD, together with the configuration you specified. The deployment process takes about 45-60 minutes to complete.
+1. Following successful deployment, you can download the artifacts from the **Build > Artifacts** page. (When you run a deploy job, it will save some artifacts.)
+   1. Select **deploy-infra**, and explore its contents.
+   1. Go to **ansible > k8s-deploy**.
+   1. You will find the following artifacts:
+      1. `inventory`: used for Terraform
+      1. `oidc-kubeconfig`: the kubeconfig of the Kubernetes environment just deployed
+      1. `sshkey`
+1. Download the `kubeconfig` artifact, and save it locally. You will be able to access it via VPN.
 
-#### PLACEHOLDER: Mojaloop Switch: Post-deployment verification
+#### Mojaloop Switch: Post-deployment verification
 
-(placeholder...)
+##### Configure Kubernetes access
+
+1. Install an OIDC plugin, such as `kubelogin`. `kubelogin` is a client-side authentication helper for Kubernetes that enables you to authenticate to a Kubernetes cluster using OIDC (OpenID Connect).
+
+   With Homebrew (macOS): `brew install int128/kubelogin/kubelogin`
+
+   Or download from GitHub: [https://github.com/int128/kubelogin](https://github.com/int128/kubelogin)
+
+1. Set kubeconfig:
+
+   Example (remember to use your own environment identifier instead of `sw004`):
+
+   ```bash
+   # Save downloaded kubeconfig
+   mkdir -p ~/.kube
+   mv ~/Downloads/kubeconfig ~/.kube/sw004-config
+
+   # Export configuration
+   export KUBECONFIG=~/.kube/sw004-config
+   ```
+
+##### Verify deployment
+
+Using kubeconfig, you can check if the pods are running, or if you spot some errors to resolve. You can also collect some useful information, for example, URLs.
+
+1. Open `kubeconfig` via a Kubernetes dashboard/navigator app (such as [Lens](https://k8slens.dev/), for example).
+1. Check ArgoCD applications:
+
+   ```bash
+   kubectl get Application -n argocd
+   ```
+
+1. Verify if all pods are running:
+
+   ```bash
+   kubectl get pods --all-namespaces | grep -v Running
+   ```
+
+##### Configure user permissions
+
+1. Log in to Control Center Zitadel to grant permissions.
+1. Add user to environment group:
+   1. Navigate to (example - remember that your environment will probably be called something other than **sw004**): **sw004 project/group**
+   1. Add your user with the appropriate role.
+   1. Save changes.
 
 #### PLACEHOLDER: Mojaloop Switch: Configure service access
 
