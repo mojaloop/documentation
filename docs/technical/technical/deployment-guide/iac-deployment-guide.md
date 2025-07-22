@@ -1021,18 +1021,262 @@ Using kubeconfig, you can check if the pods are running, or if you spot some err
    1. Add your user with the appropriate role.
    1. Save changes.
 
-#### PLACEHOLDER: Mojaloop Switch: Configure service access
+#### Mojaloop Switch: Configure service access
 
-(placeholder...)
+##### ArgoCD access
 
-#### PLACEHOLDER: Mojaloop Switch: Run TTK tests
+1. Get the ArgoCD portal's URL:
 
-(placeholder...)
+   ```bash
+   kubectl get VirtualService -n argocd
+   ```
+   In the output returned, the `HOSTS` information is the link to the ArgoCD portal.
 
-#### PLACEHOLDER: Mojaloop Switch: Collect PM4ML configuration info
+   Example:
 
-(placeholder...)
+   ```bash
+   NAME       GATEWAY                                          HOSTS                                         AGE
+   argocd-vs  ["istio-ingress-int/internal-wildcard-gateway"]  ["argocd.int.sw004.hub004.mojaperflab.org"]   32h
+   ```
 
-#### PLACEHOLDER: Mojaloop Switch: Troubleshooting
+   **NOTE:** In order to have the information you can see in the output, you need to have reached a certain level of deployment to have Istio up and running. Istio is used to provide Ingress and Egress Gateways as well as ingress Virtual Services for the cluster. Without Istio up, you can use `kubectl port-forward` to forward a local port to the ArgoCD API server running inside your Kubernetes cluster. For details, see: [https://argo-cd.readthedocs.io/en/stable/getting_started/#port-forwarding](https://argo-cd.readthedocs.io/en/stable/getting_started/#port-forwarding)
 
-(placeholder...)
+1. Navigate to ArgoCD using the URL.
+
+1. Log in:
+
+   - Username: `admin`
+   - Authentication: SSO via Zitadel (recommended)
+
+      Alternative password access:
+
+      ```bash
+      kubectl get secret argocd-initial-admin-secret -n argocd \
+      -o jsonpath='{.data.password}' | base64 -d
+      ```
+
+##### Grafana access
+
+To access the Grafana monitoring dashboards of the Switch environment, perform the following steps:
+
+1. Get Grafana's URL:
+
+   ```bash
+   kubectl get VirtualService -n monitoring
+   ```
+
+   In the output returned, the `HOSTS` information is the link to Grafana.
+
+1. Navigate to Grafana using the URL.
+
+1. Log in:
+   - Option 1: SSO via Zitadel (recommended)
+   - Option 2: Local admin account
+
+      ```bash
+      # Get username
+      kubectl get secret grafana-admin-secret -n monitoring \
+      -o jsonpath='{.data.admin-user}' | base64 -d
+
+      # Get password
+      kubectl get secret grafana-admin-secret -n monitoring \
+      -o jsonpath='{.data.admin-pw}' | base64 -d
+      ```
+
+##### Keycloak access
+
+1. Get Keycloak URLs:
+
+   1. Admin console URL:
+
+      ```bash
+      kubectl get VirtualService keycloak-admin-vs -n keycloak
+      ```
+
+   1. External URL for OIDC:
+
+      ```bash
+      kubectl get VirtualService keycloak-ext-vs -n keycloak
+      ```
+
+   In the output returned, the `HOSTS` information is the link to Keycloak.
+
+1. Navigate to Keycloak using the URL.
+
+1. Obtain the credentials:
+
+   ```bash
+   # Get username
+   kubectl get secret switch-keycloak-initial-admin -n keycloak \
+   -o jsonpath='{.data.username}' | base64 -d
+
+   # Get password
+   kubectl get secret switch-keycloak-initial-admin -n keycloak \
+   -o jsonpath='{.data.password}' | base64 -d
+   ```
+1. Log in.
+
+##### Business Portal access
+
+1. Get the Business Portal's URL:
+
+   ```bash
+   kubectl get VirtualService finance-portal-vs -n mojaloop
+   ```
+   
+   In the output returned, the `HOSTS` information is the link to the portal.
+
+1. Navigate to the Business Portal using the URL.
+
+1. Log in:
+
+   - Username: `portal_admin`
+   - Authentication: Retrieved from Keycloak secret
+
+      ```bash
+      kubectl get secret portal-admin-secret -n keycloak \
+      -o jsonpath='{.data.secret}' | base64 -d
+      ```
+
+##### MCM access
+
+1. Get the MCM portal's URL:
+
+   ```bash
+   kubectl get VirtualService mcm-vs -n mcm
+   ```
+   
+   In the output returned, the `HOSTS` information is the link to the portal.
+
+1. Navigate to the MCM Portal using the URL.
+
+1. Log in:
+
+   - Username: `portal_admin`
+   - Authentication: Retrieved from Keycloak secret
+
+      ```bash
+      kubectl get secret portal-admin-secret -n keycloak \
+      -o jsonpath='{.data.secret}' | base64 -d
+      ```
+
+##### Testing Toolkit (TTK) access
+
+Get the TTK's URL:
+
+```bash
+kubectl get VirtualService mojaloop-ttkfront-vs -n mojaloop
+```
+   
+In the output returned, the `HOSTS` information is the link to the TTK frontend.
+
+#### Mojaloop Switch: Run TTK tests
+
+##### Automated tests
+
+Following deployment, the following steps are taken automatically:
+1. The `moja-ml-ttk-test-val-gp` pod in the mojaloop namespace provisions ???
+1. The `moja-ml-ttk-test-setup` pod in the mojaloop namespace runs automated tests.
+
+Automatic tests help you assess if the system you have just deployed works as expected.
+
+Check the test summary in the logs to see if everything is working fine.
+
+The log details will show a URL to download the test results from. You can use the results to investigate errors.
+
+##### Run Golden Path tests
+
+1. Download the test collection:
+    1. Go to: [https://github.com/mojaloop/testing-toolkit-test-cases/releases/tag/v17.0.15](https://github.com/mojaloop/testing-toolkit-test-cases/releases/tag/v17.0.15)
+    1. Download the appropriate test collection.
+
+1. Configure TTK.
+    1. Load the golden path provisioning collection.
+    1. Navigate to: Collections → Hub → Golden Path → P2P Money Transfer.
+    1. Set environment to: `examples/environments/hub-k8s-default-environment.json`
+
+1. Execute tests:
+    1. Run the test suite.
+    1. Verify all tests pass successfully.
+    1. Review test results and logs.
+
+#### Mojaloop Switch: Collect PM4ML configuration info
+
+##### Collect Integration URLs
+
+For DFSP/PM4ML integration, collect the following URLs:
+
+- OIDC authentication URL:
+    ```bash
+    # External Switch OIDC URL
+    kubectl get VirtualService keycloak-ext-vs -n keycloak
+    ```
+
+- Interoperability API URL:
+    ```bash
+    # External Switch FQDN
+    kubectl get VirtualService interop-vs -n mojaloop
+    ```
+
+- MCM public URL:
+    ```bash
+    # External MCM Public FQDN
+    kubectl get VirtualService mcm-vs -n mcm
+    ```
+
+##### Get JWT token
+
+1. Access Keycloak:
+    1. Log in to the Keycloak admin console.
+    2. Select the `fsps` realm in the top-left dropdown.
+
+1.  Retrieve the JWT Secret:
+    1. Navigate to **Clients** in menu on the left.
+    2. Select `dfsp-jwt` from the list.
+    3. Go to the **Credentials** tab.
+    4. Copy the `fsp-jwt` secret.
+
+##### Document integration details
+
+Create a document with:
+- All collected URLs
+- JWT token/secret
+- Network connectivity requirements
+
+#### Mojaloop Switch: Troubleshooting
+
+##### Pipeline failures
+
+###### Init pipeline issues
+- Verify AWS credentials are correctly set
+- Check Vault connectivity
+- Review pipeline logs for specific errors
+
+###### Infrastructure deployment failures
+- Check AWS service quotas
+- Verify domain ownership
+- Review Terraform state for conflicts
+
+##### Service access issues
+
+###### OIDC Authentication problems
+- Verify Zitadel user permissions
+- Check kubelogin installation
+- Ensure VPN connection is active
+
+###### Service Unavailable
+- Check pod status
+- Review ArgoCD sync status
+- Verify Istio gateways and virtual services
+
+##### Testing failures
+
+###### TTK connection issues
+- Verify TTK URL accessibility
+- Check network policies
+- Review Istio configuration
+
+###### Golden Path test failures
+- Ensure all services are healthy
+- Check database connections
+- Review service logs for errors
