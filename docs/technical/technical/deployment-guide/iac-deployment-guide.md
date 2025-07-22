@@ -29,10 +29,10 @@
       - [Mojaloop Switch: Configure the Switch](#mojaloop-switch-configure-the-switch)
       - [Mojaloop Switch: Run the deployment](#mojaloop-switch-run-the-deployment)
       - [Mojaloop Switch: Post-deployment verification](#mojaloop-switch-post-deployment-verification)
-      - [Mojaloop Switch: Configure service access](#placeholder-mojaloop-switch-configure-service-access)
-      - [PLACEHOLDER: Mojaloop Switch: Run TTK tests](#placeholder-mojaloop-switch-run-ttk-tests)
-      - [PLACEHOLDER: Mojaloop Switch: Collect PM4ML configuration info](#placeholder-mojaloop-switch-collect-pm4ml-configuration-info)
-      - [PLACEHOLDER: Mojaloop Switch: Troubleshooting](#placeholder-mojaloop-switch-troubleshooting)
+      - [Mojaloop Switch: Configure service access](#mojaloop-switch-configure-service-access)
+      - [Mojaloop Switch: Run TTK tests](#mojaloop-switch-run-ttk-tests)
+      - [Mojaloop Switch: Collect PM4ML configuration info](#mojaloop-switch-collect-pm4ml-configuration-info)
+      - [Mojaloop Switch: Troubleshooting](#mojaloop-switch-troubleshooting)
 
 ## Introduction
 
@@ -1175,7 +1175,7 @@ In the output returned, the `HOSTS` information is the link to the TTK frontend.
 ##### Automated tests
 
 Following deployment, the following steps are taken automatically:
-1. The `moja-ml-ttk-test-val-gp` pod in the mojaloop namespace provisions ???
+1. The `moja-ml-ttk-test-val-gp` pod in the mojaloop namespace provisions ??? <!-- EDITORIAL COMMENT: Need to investigate this. -->
 1. The `moja-ml-ttk-test-setup` pod in the mojaloop namespace runs automated tests.
 
 Automatic tests help you assess if the system you have just deployed works as expected.
@@ -1230,7 +1230,7 @@ For DFSP/PM4ML integration, collect the following URLs:
     1. Log in to the Keycloak admin console.
     2. Select the `fsps` realm in the top-left dropdown.
 
-1.  Retrieve the JWT Secret:
+1. Retrieve the JWT Secret:
     1. Navigate to **Clients** in menu on the left.
     2. Select `dfsp-jwt` from the list.
     3. Go to the **Credentials** tab.
@@ -1239,6 +1239,7 @@ For DFSP/PM4ML integration, collect the following URLs:
 ##### Document integration details
 
 Create a document with:
+
 - All collected URLs
 - JWT token/secret
 - Network connectivity requirements
@@ -1248,11 +1249,13 @@ Create a document with:
 ##### Pipeline failures
 
 ###### Init pipeline issues
+
 - Verify AWS credentials are correctly set
 - Check Vault connectivity
 - Review pipeline logs for specific errors
 
 ###### Infrastructure deployment failures
+
 - Check AWS service quotas
 - Verify domain ownership
 - Review Terraform state for conflicts
@@ -1260,11 +1263,13 @@ Create a document with:
 ##### Service access issues
 
 ###### OIDC Authentication problems
+
 - Verify Zitadel user permissions
 - Check kubelogin installation
 - Ensure VPN connection is active
 
 ###### Service Unavailable
+
 - Check pod status
 - Review ArgoCD sync status
 - Verify Istio gateways and virtual services
@@ -1272,11 +1277,13 @@ Create a document with:
 ##### Testing failures
 
 ###### TTK connection issues
+
 - Verify TTK URL accessibility
 - Check network policies
 - Review Istio configuration
 
 ###### Golden Path test failures
+
 - Ensure all services are healthy
 - Check database connections
 - Review service logs for errors
