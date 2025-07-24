@@ -29,7 +29,7 @@ In all types of merchant payment, a payment can be facilitated using merchant ID
 As well as push payments, Mojaloop supports Request To Pay (RTP) transactions, in which a payee requests a payment from a payer, and _when the payer consents_ their DFSP pushes the payment to the payee on their behalf. This supports the following use cases:
 
 - **Merchant payments**, in a face to face environment, for example using a QR code;
-    - 	The practicalities of configuring Mojaloop's Merchant Payments solution, including the content of QR codes, are explored in [**How to Configure Merchant Payments for Mojaloop**](./merchant-payments.html).
+    - 	The practicalities of configuring Mojaloop's Merchant Payments solution, including the content of QR codes, are explored in [**How to Configure Merchant Payments for Mojaloop**](./merchant-payments.md).
     - In all types of face to face merchant payment, a payment can be facilitated using merchant IDs (for USSD) or QR codes (smartphones).
 - **e-Commerce**, sometimes also known as remote merchant payments, when for example a checkout page (web page or mobile app) would include a "pay from my bank account" button, which would trigger an RTP. 
 
@@ -65,11 +65,11 @@ A Mojaloop Hub can enable a DFSP's customers to send money across borders in a c
 - **Merchant Payments**, using RTP cross-border (supporting, for example, a small merchant that wishes to cross a nearby border to trade at a local market, taking payments in the local currency)
 
 In order to explore the aspects of the Mojaloop ecosystem that enable this, it is recommended to review:
-1. The ability to connect a Mojaloop Hub to neighbouring payment schemes, either within the same country or elsewhere, so that interoperability is supported. This capability [**is introduced here**](./InterconnectingSchemes.html).
+1. The ability to connect a Mojaloop Hub to neighbouring payment schemes, either within the same country or elsewhere, so that interoperability is supported. This capability [**is introduced here**](./InterconnectingSchemes.md).
   
-2. The support for foreign exchange providers (FXPs) to connect to a Mojaloop Hub and offer FX services. Neither the payer not the payee needs to define the currency to be used for a transaction; they each transact in their own currency, and the Mojaloop Hub(s) facilitate the interchange. This capability [**is introduced here**](./ForeignExchange.html).
+2. The support for foreign exchange providers (FXPs) to connect to a Mojaloop Hub and offer FX services. Neither the payer not the payee needs to define the currency to be used for a transaction; they each transact in their own currency, and the Mojaloop Hub(s) facilitate the interchange. This capability [**is introduced here**](./ForeignExchange.md).
 
-3. How the interconnection/interscheme and foreign exchange capabilities are brought together to support [**cross border transactions**](./CrossBorder.html).
+3. How the interconnection/interscheme and foreign exchange capabilities are brought together to support [**cross border transactions**](./CrossBorder.md).
 ## Others; Card Payments
 Many potential adopters ask about the possibility of using Mojaloop to switch card transactions. The answer is that, from a technical perspective, it is perfectly possible to switch a card transaction; the card Personal Account Number (PAN) can be used as an alias to initiate an RTP transaction, particularly as the Bank Identification Number (BIN), which forms part of the PAN, identifies the DFSP that holds the customer's account, to which the RTP should be routed.
 
