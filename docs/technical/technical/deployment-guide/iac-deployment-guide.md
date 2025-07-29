@@ -478,6 +478,8 @@ All Control Center services (GitLab, ArgoCD, Grafana, Vault, etc.) use Zitadel f
 
 1. Create a user account with a strong password. You can do this via the **User** menu >> **New** button.
 
+   Select the "Email verified" and "Set Initial Password" checkboxes to speed up the process.
+
    ![Zitadel: Create user](assets/diagrams/iacDeployment/001_cc_zitadel_create_user.png)
 
 1. Grant appropriate permissions to this new user via the **Authorizations** menu:
@@ -491,11 +493,11 @@ All Control Center services (GitLab, ArgoCD, Grafana, Vault, etc.) use Zitadel f
    1. Click the **Project name** field. You will see a list of available projects: ZITADEL, grafana, vault, argocd, k8s, Nebird, gitlab.
    1. Select one of the projects, and click **Continue**.
    1. Select all the roles, and click **Save**.
-   1. Repeat the steps above (Step5.1 - Step 5.4) for each of the following projects: grafana, vault, argocd, k8s, Nebird, gitlab.
+   1. Repeat the steps above (Step5.1 - Step 5.4) for each of the projects.
 
-1. Log out of Zitadel.
+1. Log out of Zitadel, clicking the **Logout All Users** button.
 
-1. Log back in with the new user.
+1. Log back in with the new user. (Follow the prompts to set up 2FA and change the password.)
 
 ##### Netbird: Set up VPN access to services
 
@@ -523,7 +525,7 @@ Once you've connected, you can access all the portals.
 
 ##### GitLab: Set up two-factor authentication
 
-1. Navigate to: `https://gitlab.<cluster_name>.<domain>` <!-- EDITORIAL COMMENT: Choose sign in with Zitadel -->
+1. Navigate to: `https://gitlab.<cluster_name>.<domain>`
 
    The `cluster_name` and `domain` values come from the `cluster-config.yaml` file that you configured earlier.
 
