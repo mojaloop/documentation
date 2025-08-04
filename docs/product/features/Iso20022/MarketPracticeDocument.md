@@ -1,4 +1,4 @@
-# Mojaloop ISO 20022 Market Practice Document
+# v1.0: Mojaloop ISO 20022 Market Practice Document
  
 <!-- TOC depthfrom:1 depthto:3 orderedlist:true -->
 
@@ -38,7 +38,7 @@
 <!-- /TOC -->
 # 2. Introduction
 
-By combining the principles of financial inclusion with the robust capabilities of ISO 20022, Mojaloop ensures that DFSPs and other stakeholders can deliver real-time payment solutions that are cost-effective, secure, and scalable to meet the demands of inclusive financial ecosystems.
+By combining the principles of financial inclusion with the robust capabilities of ISO 20022, Mojaloop ensures that DFSPs and other stakeholders can deliver real-time payment solutions that are cost-effective, secure, and scalable to meet the demands of inclusive financial ecosystems. This document outline the version 1.0 of the Mojaloop ISO-20022 market practice.
 
 ## 2.1 How to Use This Document?
 This document provides a foundational reference for implementing ISO 20022 messaging for IIPS within Mojaloop-based schemes. It outlines general guidelines and practices that apply universally across Mojaloop schemes, focusing on the base-level requirements. However, it is designed to be supplemented by scheme-specific rules documents, which can define additional message fields, validations, and rules necessary to meet the unique regulations and requirements of individual schemes. This layered approach enables each scheme to tailor its implementation details while maintaining consistency with the broader Mojaloop framework.
