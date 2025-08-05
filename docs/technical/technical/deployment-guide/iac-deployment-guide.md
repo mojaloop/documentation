@@ -214,7 +214,7 @@ VM specifications:
 - **Network**: Public subnet with Elastic IP <!-- EDITORIAL COMMENT: I haven't found the Elastic IP option in the GUI. -->
 - **Authentication**: SSH key created earlier in section [Create SSH key pair](#create-ssh-key-pair)
 
-Once the instance has been launched, record the public IP address, it will be needed when youssh to the VM (next step).
+Once the instance has been launched, record the public IP address, it will be needed when you ssh to the VM (next step).
 
 #### Control Center: Deploy Control Center host
 
@@ -505,6 +505,8 @@ All Control Center services (GitLab, ArgoCD, Grafana, Vault, etc.) use Zitadel f
 
    The `cluster_name` and `domain` values come from the `cluster-config.yaml` file that you configured earlier.
 
+1. On the login page, log in with your new user.
+
 1. You will be prompted to install the NetBird client.
 
    ![Nebird: Install Netbird client](assets/diagrams/iacDeployment/003_cc_download_netbird_linux.png)
@@ -549,7 +551,9 @@ After connecting to the VPN, there is one manual task to do in ArgoCD: sync the 
 
    The `cluster_name` and `domain` values come from the `cluster-config.yaml` file that you configured earlier.
 
-1. Find the **netbird-post-config** application and run it.
+1. On the login page, click **Log in via Zitadel** and log in with your new user.
+
+1. Find the **netbird-post-config** application and run it (click **Sync**, then **Synchronize**).
 
 ##### Vault: Verify if secret paths are accessible
 
@@ -559,15 +563,17 @@ After connecting to the VPN, there is one manual task to do in ArgoCD: sync the 
 
    The `cluster_name` and `domain` values come from the `cluster-config.yaml` file that you configured earlier.
 
-1. Log in with OIDC authentication.
+1. On the login page, select **Method: OIDC**, click **Sign in with OIDC Provider**, then choose your new user.
 
-1. Verify if secret paths are accessible.
+1. Verify if secret paths are accessible: under **Secret engines**, select **secret/**. You should see a list of secrets for various applications, such as GitLab, Grafana, Mimir, and so on.
 
 ##### Grafana: Review dashboards and set up alerts
 
 1. Go to: `https://grafana.int.<cluster-name>.<domain>` <!-- EDITOTIAL COMMENT: Connection times out. -->
 
    The `cluster_name` and `domain` values come from the `cluster-config.yaml` file that you configured earlier.
+
+1. On the login page, click the **Sign in with Zitadel** button.
 
 1. Review pre-configured dashboards.
 
@@ -904,6 +910,7 @@ Set up the access key as a secret in the Vault.
    Example path: `secret/data/sw004/`
    
 1. Create a variable called `cloud_platform_client_secret`.
+
 1. Set up the variable as follows:
    - Key: `value`
    - Value: Your AWS secret access key
