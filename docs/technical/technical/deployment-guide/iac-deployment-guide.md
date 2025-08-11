@@ -330,7 +330,7 @@ We are going to spin up a container and then run Terraform to deploy the Control
       ghcr.io/mojaloop/control-center-util:6.1.2
       ```
 
-   1. Issue `docker ps` to see if the container is up. Look for your container id, in this example, it is: `ml-perf-ccu-4`.
+   1. Issue `docker ps` to see if the container is up. Look for your container name, in this example, it is: `ml-perf-ccu-4`.
 
    1. Access the container:
 
@@ -547,7 +547,7 @@ Once you've connected, you can access all the portals.
 
 After connecting to the VPN, there is one manual task to do in ArgoCD: sync the netbird-post-config application.
 
-1. Go to: `https://argocd.int.<cluster-name>.<domain>` <!-- EDITORIAL COMMENT: Connection times out. -->
+1. Go to: `https://argocd.int.<cluster-name>.<domain>`
 
    The `cluster_name` and `domain` values come from the `cluster-config.yaml` file that you configured earlier.
 
@@ -555,21 +555,25 @@ After connecting to the VPN, there is one manual task to do in ArgoCD: sync the 
 
 1. Find the **netbird-post-config** application and run it (click **Sync**, then **Synchronize**).
 
+   !["netbird-post-config" application in ArgoCD](assets/diagrams/iacDeployment/005_argocd_netbird-post-config.png)
+
 ##### Vault: Verify if secret paths are accessible
 
-<!-- EDITORIAL COMMENT: This section needs to be further elaborated. -->
-
-1. Go to: `https://vault.int.<cluster-name>.<domain>` <!-- EDITORIAL COMMENT: Connection times out. -->
+1. Go to: `https://vault.int.<cluster-name>.<domain>`
 
    The `cluster_name` and `domain` values come from the `cluster-config.yaml` file that you configured earlier.
 
 1. On the login page, select **Method: OIDC**, click **Sign in with OIDC Provider**, then choose your new user.
 
+   ![Vault login](assets/diagrams/iacDeployment/006_vault_signin.png)
+
 1. Verify if secret paths are accessible: under **Secret engines**, select **secret/**. You should see a list of secrets for various applications, such as GitLab, Grafana, Mimir, and so on.
+
+   ![Vault secrets](assets/diagrams/iacDeployment/007_vault_secrets.png)
 
 ##### Grafana: Review dashboards and set up alerts
 
-1. Go to: `https://grafana.int.<cluster-name>.<domain>` <!-- EDITOTIAL COMMENT: Connection times out. -->
+1. Go to: `https://grafana.int.<cluster-name>.<domain>`
 
    The `cluster_name` and `domain` values come from the `cluster-config.yaml` file that you configured earlier.
 
@@ -584,6 +588,8 @@ After connecting to the VPN, there is one manual task to do in ArgoCD: sync the 
 1. Go to: `https://argocd.int.<cluster-name>.<domain>`
 
    The `cluster_name` and `domain` values come from the `cluster-config.yaml` file that you configured earlier.
+
+1. On the login page, click the **Sign in with Zitadel** button, and select your new user.
 
 1. Check the status of all applications, verify that they are healthy.
 
@@ -634,31 +640,6 @@ Confirm that DNS records are properly configured:
 
 #### Control Center: Troubleshooting
 
-##### AWS EC2: UnAuthorized Operation
-
-After executing the `wrapper.sh` script to run the CC deployment, you might get an `UnAuthorized Operation` error.
-
-**Error message:**
-
-"Error: Reading EC2 AMIs: operation error EC2: DescribeImages, https response error, StatusCode: 403, RequestID: {id}, api error UnAuthorized Operation: You are not authorized to perform this operation. User: arn:aws:iam::{account-id}:user/{username} is not authorized to perform: ec2:DescribeImages with an explicit deny in an identity-based policy"
-
-Instead of `EC2` and `DescribeImages`, you may have some other service and operation in your error message.
-
-**Resolution:**
-
-1. Go to the IAM Policy Simulator: [https://policysim.aws.amazon.com](https://policysim.aws.amazon.com)
-1. In section **Users, Groups, and Roles** on the left, select the username indicated in the error message.
-1. In section **Policy Simulator** on the right, in the drop-down fields at the top of the page, choose the service (in our example, it is **EC2**) and the action (in our example, it is **DescribeImages**) that the user is unauthorized to perform according to the error message.
-1. Click **Run Simulation**.
-1. In the results, click the chevron at the beginning of the row. You should see a **Show Statement** link displayed.
-1. Click **Show Statement**. Clicking the link will show you (on the left) the relevant part in the relevant Policy that is interfering with your permissions.
-
-   Note that IAM permissions are additive, but an explicit `Deny` overrides all `Allow`s, no matter where they come from.
-
-   The `UnAuthorized Operation` error might be caused by a Policy with a `Deny`.
-
-1. Try modifying or removing the Policy that is causing the error.
-
 ##### AWS quota exceeded
 
 **Error message:**
@@ -705,6 +686,48 @@ Let's Encrypt certificate requests are failing.
 1. Verify if DNS propagation has completed.
 1. Check Let's Encrypt rate limits.
 1. Verify domain ownership.
+
+##### AWS EC2: UnAuthorized Operation
+
+After executing the `wrapper.sh` script to run the CC deployment, you might get an `UnAuthorized Operation` error.
+
+**Error message:**
+
+"Error: Reading EC2 AMIs: operation error EC2: DescribeImages, https response error, StatusCode: 403, RequestID: {id}, api error UnAuthorized Operation: You are not authorized to perform this operation. User: arn:aws:iam::{account-id}:user/{username} is not authorized to perform: ec2:DescribeImages with an explicit deny in an identity-based policy"
+
+Instead of `EC2` and `DescribeImages`, you may have some other service and operation in your error message.
+
+**Resolution:**
+
+1. Go to the IAM Policy Simulator: [https://policysim.aws.amazon.com](https://policysim.aws.amazon.com)
+1. In section **Users, Groups, and Roles** on the left, select the username indicated in the error message.
+1. In section **Policy Simulator** on the right, in the drop-down fields at the top of the page, choose the service (in our example, it is **EC2**) and the action (in our example, it is **DescribeImages**) that the user is unauthorized to perform according to the error message.
+1. Click **Run Simulation**.
+1. In the results, click the chevron at the beginning of the row. You should see a **Show Statement** link displayed.
+1. Click **Show Statement**. Clicking the link will show you (on the left) the relevant part in the relevant Policy that is interfering with your permissions.
+
+   Note that IAM permissions are additive, but an explicit `Deny` overrides all `Allow`s, no matter where they come from.
+
+   The `UnAuthorized Operation` error might be caused by a Policy with a `Deny`.
+
+1. Try modifying or removing the Policy that is causing the error.
+
+##### Unable to access internal services (ArgoCD, Vault, Grafana)
+
+**Error message:**
+
+After deploying the Control Center, when accessing services that require a VPN connection (ArgoCD, Vault, Grafana), you get either:
+
+- `connection timed out`
+- `unable to connect`
+
+This is after having set up a new non-root user in Zitadel and having established a VPN connection via Netbird with this new user.
+
+**Resolution:**
+
+This might be due to your Internet Service Provider's (ISP's) DNS resolution service being slow.
+
+Try changing your network settings to use Google Public DNS: [Configure your network settings to use Google Public DNS](https://developers.google.com/speed/public-dns/docs/using)
 
 #### Control Center: Maintenance
 
@@ -850,10 +873,12 @@ The deployment of the Switch follows a similar pattern to that of the Control Ce
 
 1. Open the latest pipeline.
 
-1. Click **deploy-env-templates**. You will run this to populate the project of the Switch that we want to deploy.
+1. Click **deploy-env-templates** (don't run it, just click it). Later on, you will run this to populate the project of the Switch that we want to deploy.
 
-1. Once you opened **deploy-env-templates**, you need to provide some environment variables (Update CI/CD variables):
-   - **ENV_TO_UPDATE** → the name of the environment that you want to update (in our example, it will be: `sw004`)
+   ![deploy-env-templates](assets/diagrams/iacDeployment/008_gitlab_deploy_env_templates.png)
+
+1. Once you opened **deploy-env-templates**, you need to provide some environment variables (**Update CI/CD variables**):
+   - **ENV_TO_UPDATE** → the name of the environment that you want to update (in our example, it will be: `sw004`) <!--EDITORIAL COMMENT: Is this the switch environment that we defined in custom-config/environment.yaml? Or is this any random name that I am defining now? -->
    - **IAC_MODULES_VERSION_TO_UPDATE** → the version of Terraform that you want to use (in our example, it will be: `v5.9.0`)
 
 1. Run the job. This will populate the project of the Switch.
@@ -882,10 +907,13 @@ The deployment of the Switch follows a similar pattern to that of the Control Ce
 
 Set up the `AWS_ACCESS_KEY_ID` variable. Each environment must have this information.
 
-1. In GitLab, go to **Settings > CI/CD > Variables**, and create a new variable.
+1. In GitLab, go to **Settings > CI/CD > Variables** (bottom left corner), and create a new variable.
+
+   ![CI/CD variables in GitLab](assets/diagrams/iacDeployment/009_gitlab_settings_cicd_variables.png)
+
 1. Set up the variable as follows:
    - Key: `AWS_ACCESS_KEY_ID`
-   - Value: The AWS access key ID of the Amazon account where you want to deploy the Switch. You can obtain this value from the AWS console. <!-- EDITORIAL COMMENT: Mention where exactly. -->
+   - Value: The AWS access key ID of the Amazon account where you want to deploy the Switch. You can obtain this value from the AWS console. <!-- EDITORIAL COMMENT: Mention where exactly. Is this under AWS Profile > Security credentials > Access keys? Is this the identifier of that key? -->
    - Type: Variable
    - Protected: Yes
    - Masked: Yes
@@ -907,13 +935,13 @@ Set up the access key as a secret in the Vault.
 
 1. Navigate to the following path: **Secrets Engines > Secrets > \<switch-project\>**
    
-   Example path: `secret/data/sw004/`
-   
-1. Create a variable called `cloud_platform_client_secret`.
+1. Create a secret called `cloud_platform_client_secret` (add this name in the **Path for this secret** field).
 
-1. Set up the variable as follows:
+   ![Configure Vault secret](assets/diagrams/iacDeployment/010_vault_create_secret.png)
+
+1. Set up the secret as follows:
    - Key: `value`
-   - Value: Your AWS secret access key
+   - Value: Your AWS secret access key <!-- EDITORIAL COMMENT: Is this the secret access key corresponding to the access key under AWS Profile > Security credentials > Access keys? -->
 
 #### Mojaloop Switch: Configure the Switch
 
