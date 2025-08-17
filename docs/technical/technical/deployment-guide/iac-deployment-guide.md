@@ -255,7 +255,7 @@ Install Docker following the official Ubuntu installation procedure:
 1. Remove conflicting packages:
 
    ```bash
-   for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do 
+   for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do
    sudo apt-get remove $pkg
    done
    ```
@@ -563,7 +563,7 @@ After connecting to the VPN, there is one manual task to do in ArgoCD: sync the 
 
    The `cluster_name` and `domain` values come from the `cluster-config.yaml` file that you configured earlier.
 
-1. On the login page, select **Method: OIDC**, click **Sign in with OIDC Provider**, then choose your new user.
+1. On the login page, select **Method: OIDC**, click **Sign in with OIDC Provider**, then in the window that pops up, choose your new user.
 
    ![Vault login](assets/diagrams/iacDeployment/006_vault_signin.png)
 
@@ -577,7 +577,7 @@ After connecting to the VPN, there is one manual task to do in ArgoCD: sync the 
 
    The `cluster_name` and `domain` values come from the `cluster-config.yaml` file that you configured earlier.
 
-1. On the login page, click the **Sign in with Zitadel** button.
+1. On the login page, click the **Sign in with Zitadel** button and select your new user.
 
 1. Review pre-configured dashboards.
 
@@ -877,8 +877,8 @@ The deployment of the Switch follows a similar pattern to that of the Control Ce
 
    ![deploy-env-templates](assets/diagrams/iacDeployment/008_gitlab_deploy_env_templates.png)
 
-1. Once you opened **deploy-env-templates**, you need to provide some environment variables (**Update CI/CD variables**):
-   - **ENV_TO_UPDATE** → the name of the environment that you want to update (in our example, it will be: `sw004`) <!--EDITORIAL COMMENT: Is this the switch environment that we defined in custom-config/environment.yaml? Or is this any random name that I am defining now? -->
+1. Once you opened **deploy-env-templates**, you need to provide some environment variables:
+   - **ENV_TO_UPDATE** → the name of the environment that you want to update, it is the environment that you defined in the `custom-config/environment.yaml` file in section [Control Center: Deploy the Control Center](#control-center-deploy-the-control-center) (in our example, it will be: `sw004`)
    - **IAC_MODULES_VERSION_TO_UPDATE** → the version of Terraform that you want to use (in our example, it will be: `v5.9.0`)
 
 1. Run the job. This will populate the project of the Switch.
@@ -907,13 +907,13 @@ The deployment of the Switch follows a similar pattern to that of the Control Ce
 
 Set up the `AWS_ACCESS_KEY_ID` variable. Each environment must have this information.
 
-1. In GitLab, go to **Settings > CI/CD > Variables** (bottom left corner), and create a new variable.
+1. In GitLab, go to **Settings > CI/CD > Variables** (bottom left corner), and create a new variable (click **Add variable**). <!-- EDITORIAL COMMENT: Mention where exactly. Is this the Switch environment or the bootstrap? The Switch environment. -->
 
    ![CI/CD variables in GitLab](assets/diagrams/iacDeployment/009_gitlab_settings_cicd_variables.png)
 
 1. Set up the variable as follows:
    - Key: `AWS_ACCESS_KEY_ID`
-   - Value: The AWS access key ID of the Amazon account where you want to deploy the Switch. You can obtain this value from the AWS console. <!-- EDITORIAL COMMENT: Mention where exactly. Is this under AWS Profile > Security credentials > Access keys? Is this the identifier of that key? -->
+   - Value: The AWS access key ID of the Amazon account where you want to deploy the Switch. You can obtain this value from the AWS console, you will find it under your AWS profile > Security credentials > Access keys. You set up the corresponding key in section [Configure AWS credentials](#configure-aws-credentials) when you deployed the Control Center.
    - Type: Variable
    - Protected: Yes
    - Masked: Yes
@@ -935,21 +935,25 @@ Set up the access key as a secret in the Vault.
 
 1. Navigate to the following path: **Secrets Engines > Secrets > \<switch-project\>**
    
-1. Create a secret called `cloud_platform_client_secret` (add this name in the **Path for this secret** field).
+1. Create a secret called `cloud_platform_client_secret` (click **Create secret** and add this name in the **Path for this secret** field).
 
    ![Configure Vault secret](assets/diagrams/iacDeployment/010_vault_create_secret.png)
 
 1. Set up the secret as follows:
    - Key: `value`
-   - Value: Your AWS secret access key <!-- EDITORIAL COMMENT: Is this the secret access key corresponding to the access key under AWS Profile > Security credentials > Access keys? -->
+   - Value: Your AWS secret access key (This is the secret access key corresponding to the access key for the AWS CLI. You set up this key in section [Configure AWS credentials](#configure-aws-credentials) when you deployed the Control Center.)
+
+1. Click **Add**, then **Save**.
 
 #### Mojaloop Switch: Configure the Switch
 
-1. When the **deploy-env-templates** job has run, access the Switch project in GitLab by going to **Projects** and clicking **iac / \<environment identifier\>**.
+1. When the **deploy-env-templates** job has run, access the Switch project in GitLab by going to **Projects** and clicking **iac /\<environment identifier\>**.
 
 1. Configure the Switch. The logic is similar to how you specified your configuration for the Control Center.
 
    There is a **default-config** folder with a set of default configurations. They can be explored to see what's inside. If you want to customize your configuration, then copy any configuration code from the default configuration into the `custom-config/cluster-config.yaml` file and make your changes.
+   
+   Commit directly to the `main` branch.
 
    Example:
 
@@ -963,39 +967,55 @@ Set up the access key as a secret in the Vault.
    currency: EUR
    cloud_region: eu-north-1 # update according to your region planning
    ansible_collection_tag: v5.5.0-rc3
-   iac_terraform_modules_tag: v5.9.0
+   iac_terraform_modules_tag: v5.9.0 # update according to your Terraform version
    letsencrypt_email: admin@yourdomain.com
    tags:
-   Origin: Terraform
-   mojaloop/cost_center: mlf-perf004-sw
-   mojaloop/env: ft-sbox-rw
-   mojaloop/owner: Your-Name
+      {
+         "Origin": "Terraform",
+         "mojaloop/cost_center": "mlf-perf004-sw",
+         "mojaloop/env": "ft-sbox-rw",
+         "mojaloop/owner": "Your-Name",
+      }
    ```
 
 1. Set your desired Mojaloop version:
-   1. Go to `custom-config/mojaloop-vars.yaml` file.
+   1. Go to `custom-config/mojaloop-vars.yaml` file. If the file doesn't exist, create a new file.
    1. Specify a value for `mojaloop_chart_version`.
    1. You can also update the `mcm_chart_version` depending on which version of MCM you wish to use (if you don't want to use the default version).
 
-   ```yaml
-   mojaloop_chart_version: 17.0.0 # Check latest version at https://github.com/mojaloop/helm/releases/
-   onboarding_collection_tag: 17.0.0 # match the mojaloop version
-   mcm_chart_version: 1.2.10 
-   bulk_enabled: true # optional
-   third_party_enabled: true # optional
-   opentelemetry_enabled: false
-   central_ledger_handler_transfer_position_batch_processing_enabled: true # required for now
-   ```
+      ```yaml
+      mojaloop_chart_version: 17.0.0 # Check latest version at https://github.com/mojaloop/helm/releases/
+      onboarding_collection_tag: 17.0.0 # match the mojaloop version
+      mcm_chart_version: 1.2.10 
+      bulk_enabled: true # optional
+      third_party_enabled: true # optional
+      opentelemetry_enabled: false
+      central_ledger_handler_transfer_position_batch_processing_enabled: true # required for now
+      ```
+   
+   1. Commit directly to the `main` branch.
 
-1. Configure the `mojaloop-rbac-api-resources.yaml` file. This file specifies the privileges for the business portals. You can either use the default configuration in the **default-config** folder as-is, or copy the file to the **custom-config** folder and make your changes there.
+1. Configure the `mojaloop-rbac-api-resources.yaml` file. This file specifies the privileges for the business portals.
 
-1. Configure the `mojaloop-stateful-resources.json` file. This file specifies the configuration of databases and message queues. You can either use the default configuration in the **default-config** folder as-is, or copy the file to the **custom-config** folder and make your changes there.
+   1. Navigate to **default-config** and click `mojaloop-rbac-api-resources.yaml`.
+   1. Copy the entire content.
+   1. Navigate to the **custom-config** directory.
+   1. Create a new file and name it `mojaloop-rbac-api-resources.yaml`.
+   1. Paste the copied content and commit.
+
+1. Configure the `mojaloop-stateful-resources.json` file. This file specifies the configuration of databases and message queues.
+
+   1. Navigate to **default-config** and click `mojaloop-stateful-resources.json`.
+   1. Copy the entire content.
+   1. Navigate to the **custom-config** directory.
+   1. Create a new file and name it `mojaloop-stateful-resources.json`.
+   1. Paste the copied content and commit.
 
 1. Commit your changes in GitLab. Commit directly to the `main` branch.
 
 #### Mojaloop Switch: Run the deployment
 
-1. In GitLab, go to **Projects**, click **iac/\<Switch\>**.
+1. In GitLab, go to **Projects**, click **iac/\<environment identifier\>**.
 1. Select **Build > Pipelines**.
 1. Ensure your latest commit passed the initialization (**init** stage) successfully. Initialization runs automatically on every commit.
 1. Run the deploy job:
