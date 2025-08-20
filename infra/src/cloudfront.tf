@@ -1,28 +1,66 @@
+# Shared cache behaviors for both main and preview distributions
+locals {
+  shared_cache_behaviors = [
+    {
+      path_pattern = "/business-operations-framework-docs/*"
+      target_origin_id = "mojaloop.github.io"
+    },
+    {
+      path_pattern = "/business-operations-framework-docs"
+      target_origin_id = "mojaloop.github.io"
+    },
+    {
+      path_pattern = "/mojaloop-business-docs/*"
+      target_origin_id = "mojaloop.github.io"
+    },
+    {
+      path_pattern = "/mojaloop-business-docs"
+      target_origin_id = "mojaloop.github.io"
+    },
+    {
+      path_pattern = "/reference-architecture-doc/*"
+      target_origin_id = "mojaloop.github.io"
+    },
+    {
+      path_pattern = "/reference-architecture-doc"
+      target_origin_id = "mojaloop.github.io"
+    },
+    {
+      path_pattern = "/charts/*"
+      target_origin_id = "mojaloop.github.io"
+    },
+    {
+      path_pattern = "/helm/*"
+      target_origin_id = "mojaloop.github.io"
+    },
+    {
+      path_pattern = "/wso2-helm-charts-simple/*"
+      target_origin_id = "mojaloop.github.io"
+    },
+    {
+      path_pattern = "/finance-portal-v2-ui/*"
+      target_origin_id = "mojaloop.github.io"
+    }
+  ]
+}
+
 # CloudFront
 # Creates the CloudFront distribution to serve the static website
 resource "aws_cloudfront_distribution" "website_cdn_root" {
   provider = aws.custom
   enabled     = true
   price_class = "PriceClass_All"
-  aliases = [var.website-domain-main, "preview.${var.website-domain-main}"]
+
+  depends_on = [
+    aws_s3_bucket.website_root
+  ]
+
+  aliases = [var.website-domain-main]
 
   // base docs.mojaloop.io origin
   origin {
     origin_id   = "origin-bucket-${aws_s3_bucket.website_root.id}"
     domain_name = aws_s3_bucket.website_root.website_endpoint
-
-    custom_origin_config {
-      origin_protocol_policy = "http-only"
-      http_port            = 80
-      https_port           = 443
-      origin_ssl_protocols = ["TLSv1.2", "TLSv1.1", "TLSv1"]
-    }
-  }
-
-  // preview bucket origin for PR previews
-  origin {
-    origin_id   = "origin-bucket-${aws_s3_bucket.website_preview.id}"
-    domain_name = aws_s3_bucket.website_preview.website_endpoint
 
     custom_origin_config {
       origin_protocol_policy = "http-only"
@@ -51,161 +89,20 @@ resource "aws_cloudfront_distribution" "website_cdn_root" {
     prefix = "${var.website-domain-main}/"
   }
 
-  // List of cache behaviours - path redirects must be first, wildcard last
-  ordered_cache_behavior {
-    path_pattern = "/business-operations-framework-docs/*"
-    target_origin_id = "mojaloop.github.io"
-    allowed_methods  = ["GET", "HEAD", "OPTIONS"]
-    cached_methods   = ["GET", "HEAD", "OPTIONS"]
-    viewer_protocol_policy = "allow-all"
-    forwarded_values {
-      query_string = false
-      cookies {
-        forward = "none"
-      }
-    }
-  }
-  ordered_cache_behavior {
-    path_pattern = "/business-operations-framework-docs"
-    target_origin_id = "mojaloop.github.io"
-    allowed_methods  = ["GET", "HEAD", "OPTIONS"]
-    cached_methods   = ["GET", "HEAD", "OPTIONS"]
-    viewer_protocol_policy = "allow-all"
-    forwarded_values {
-      query_string = false
-      cookies {
-        forward = "none"
-      }
-    }
-  }
-  ordered_cache_behavior {
-    path_pattern = "/mojaloop-business-docs/*"
-    target_origin_id = "mojaloop.github.io"
-    allowed_methods  = ["GET", "HEAD", "OPTIONS"]
-    cached_methods   = ["GET", "HEAD", "OPTIONS"]
-    viewer_protocol_policy = "allow-all"
-    forwarded_values {
-      query_string = false
-      cookies {
-        forward = "none"
-      }
-    }
-  }
-  ordered_cache_behavior {
-    path_pattern = "/mojaloop-business-docs"
-    target_origin_id = "mojaloop.github.io"
-    allowed_methods  = ["GET", "HEAD", "OPTIONS"]
-    cached_methods   = ["GET", "HEAD", "OPTIONS"]
-    viewer_protocol_policy = "allow-all"
-    forwarded_values {
-      query_string = false
-      cookies {
-        forward = "none"
-      }
-    }
-  }
-  ordered_cache_behavior {
-    path_pattern = "/reference-architecture-doc/*"
-    target_origin_id = "mojaloop.github.io"
-    allowed_methods  = ["GET", "HEAD", "OPTIONS"]
-    cached_methods   = ["GET", "HEAD", "OPTIONS"]
-    viewer_protocol_policy = "allow-all"
-    forwarded_values {
-      query_string = false
-      cookies {
-        forward = "none"
-      }
-    }
-  }
-  ordered_cache_behavior {
-    path_pattern = "/reference-architecture-doc"
-    target_origin_id = "mojaloop.github.io"
-    allowed_methods  = ["GET", "HEAD", "OPTIONS"]
-    cached_methods   = ["GET", "HEAD", "OPTIONS"]
-    viewer_protocol_policy = "allow-all"
-
-    forwarded_values {
-      query_string = false
-      cookies {
-        forward = "none"
-      }
-    }
-  }
-  ordered_cache_behavior {
-    path_pattern = "/charts/*"
-    target_origin_id = "mojaloop.github.io"
-    allowed_methods  = ["GET", "HEAD", "OPTIONS"]
-    cached_methods   = ["GET", "HEAD", "OPTIONS"]
-    viewer_protocol_policy = "allow-all"
-
-    forwarded_values {
-      query_string = false
-      cookies {
-        forward = "none"
-      }
-    }
-  }
-  ordered_cache_behavior {
-    path_pattern = "/helm/*"
-    target_origin_id = "mojaloop.github.io"
-    allowed_methods  = ["GET", "HEAD", "OPTIONS"]
-    cached_methods   = ["GET", "HEAD", "OPTIONS"]
-    viewer_protocol_policy = "allow-all"
-
-    forwarded_values {
-      query_string = false
-      cookies {
-        forward = "none"
-      }
-    }
-  }
-    
-  # Gitpages for https://github.com/mojaloop/wso2-helm-charts-simple
-  ordered_cache_behavior {
-    path_pattern = "/wso2-helm-charts-simple/*"
-    target_origin_id = "mojaloop.github.io"
-    allowed_methods  = ["GET", "HEAD", "OPTIONS"]
-    cached_methods   = ["GET", "HEAD", "OPTIONS"]
-    viewer_protocol_policy = "allow-all"
-
-    forwarded_values {
-      query_string = false
-      cookies {
-        forward = "none"
-      }
-    }
-  }
-
-  # Gitpages for https://github.com/mojaloop/finance-portal-v2-ui
-  ordered_cache_behavior {
-    path_pattern = "/finance-portal-v2-ui/*"
-    target_origin_id = "mojaloop.github.io"
-    allowed_methods  = ["GET", "HEAD", "OPTIONS"]
-    cached_methods   = ["GET", "HEAD", "OPTIONS"]
-    viewer_protocol_policy = "allow-all"
-
-    forwarded_values {
-      query_string = false
-      cookies {
-        forward = "none"
-      }
-    }
-  }
-
-  # Handle PR preview paths
-  ordered_cache_behavior {
-    path_pattern = "/[0-9]*"
-    target_origin_id = "origin-bucket-${aws_s3_bucket.website_preview.id}"
-    allowed_methods  = ["GET", "HEAD", "OPTIONS"]
-    cached_methods   = ["GET", "HEAD", "OPTIONS"]
-    viewer_protocol_policy = "redirect-to-https"
-    compress = true
-
-    forwarded_values {
-      query_string = false
-      headers      = ["Host"]
-      cookies {
-        forward = "none"
+  # Shared cache behaviors for main distribution
+  dynamic "ordered_cache_behavior" {
+    for_each = local.shared_cache_behaviors
+    content {
+      path_pattern     = ordered_cache_behavior.value.path_pattern
+      target_origin_id = ordered_cache_behavior.value.target_origin_id
+      allowed_methods  = ["GET", "HEAD", "OPTIONS"]
+      cached_methods   = ["GET", "HEAD", "OPTIONS"]
+      viewer_protocol_policy = "allow-all"
+      forwarded_values {
+        query_string = false
+        cookies {
+          forward = "none"
+        }
       }
     }
   }
@@ -218,7 +115,6 @@ resource "aws_cloudfront_distribution" "website_cdn_root" {
     default_ttl      = "300"
     max_ttl          = "1200"
 
-    # Redirects any HTTP request to HTTPS
     viewer_protocol_policy = "redirect-to-https"
     compress               = true
     forwarded_values {
@@ -228,8 +124,6 @@ resource "aws_cloudfront_distribution" "website_cdn_root" {
       }
     }
 
-    # A custom cloudfront function that lets us dynamically
-    # configure redirects
     function_association {
       event_type = "viewer-request"
       function_arn = aws_cloudfront_function.docs-redirects.arn
