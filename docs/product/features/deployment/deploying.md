@@ -123,15 +123,15 @@ For detailed information about each deployment tool, please refer to the [Deploy
 <tr>
 <td>Student</td>
 <td class="green">Footprint: Single machine e.g. laptop or single VM.<br>SLA: None</td>
-<td>?</td>
-<td>?</td>
+<td>N/A</td>
+<td class="green">Footprint: Single machine e.g. laptop or single VM.<br>SLA: None</td>
 <td class="green">Footprint: Single machine e.g. laptop or single VM.<br>SLA: None</td>
 <td>N/A</td>
 </tr>
 <tr>
 <td>Developer</td>
 <td class="green">Footprint: Single machine e.g. laptop or single VM.<br>SLA: None</td>
-<td>?</td>
+<td>N/A</td>
 <td class="green">Footprint:<br>- Single machine e.g. laptop or single VM.<br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</td>
 <td class="green">Footprint:<br>- Single machine e.g. laptop or single VM.<br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</td>
 <td>N/A</td>
@@ -140,40 +140,40 @@ For detailed information about each deployment tool, please refer to the [Deploy
 <td>Business analyst</td>
 <td class="green">Footprint: Single machine e.g. laptop or single VM.<br>SLA: None</td>
 <td class="green">Footprint:<br>- Single machine e.g. laptop or single VM.<br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</td>
-<td class="green">Footprint:<br>- Single machine e.g. laptop or single VM.<br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</td>
-<td class="green">Footprint:<br>- Single machine e.g. laptop or single VM.<br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</td>
+<td class="amber">Footprint:<br>- Low resource usage, single cluster<br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</td>
+<td class="amber">Footprint:<br>- Low resource usage, single cluster<br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</td>
 <td>N/A</td>
 </tr>
 <tr>
 <td>Potential adopter</td>
 <td class="green">Footprint: Single machine e.g. laptop or single VM.<br>SLA: None</td>
-<td class="green">Footprint:<br>- Single machine e.g. laptop or single VM.<br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</td>
-<td class="green">Footprint:<br>- Single machine e.g. laptop or single VM.<br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</td>
-<td class="green">Footprint:<br>- Single machine e.g. laptop or single VM.<br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</td>
+<td class="amber">Footprint:<br>- Low resource usage, single cluster<br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</td>
+<td class="amber">Footprint:<br>- Low resource usage, single cluster<br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</td>
+<td class="amber">Footprint:<br>- Low resource usage, single cluster<br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</td>
 <td>N/A</td>
 </tr>
 <tr>
 <td>Auditor / External QA / Security Analyst</td>
 <td class="green">Footprint: Single machine e.g. laptop or single VM.<br>SLA: None</td>
-<td class="green">Footprint:<br>- Single machine e.g. laptop or single VM.<br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</td>
-<td class="green">Footprint:<br>- Single machine e.g. laptop or single VM.<br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</td>
+<td class="amber">Footprint:<br>- Low resource usage, single cluster <br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</td>
+<td class="amber">Footprint:<br>- Low resource usage, single cluster <br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</td>
 <td>N/A</td>
 <td>N/A</td>
 </tr>
 <tr>
 <td>System Integrator</td>
 <td class="green">Footprint: Single machine e.g. laptop or single VM.<br>SLA: None</td>
-<td class="green">Footprint:<br>- Single machine e.g. laptop or single VM.<br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</td>
-<td class="green">Footprint:<br>- Single machine e.g. laptop or single VM.<br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</td>
-<td class="green">Footprint:<br>- Single machine e.g. laptop or single VM.<br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</td>
+<td class="amber">Footprint:<br>- Low resource usage, single cluster <br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</td>
+<td class="amber">Footprint:<br>- Low resource usage, single cluster <br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</td>
+<td class="amber">Footprint:<br>- Low resource usage, single cluster <br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</td>
 <td class="red">Footprint:<br>- Fully redundant, replicated, high availability deployment<br>- On-premises or cloud<br>SLA: High SLA in many areas.</td>
 </tr>
 <tr>
 <td>Hub Operator</td>
 <td class="green">Footprint: Single machine e.g. laptop or single VM.<br>SLA: None</td>
-<td class="green">Footprint:<br>- Single machine e.g. laptop or single VM.<br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</td>
-<td class="green">Footprint:<br>- Single machine e.g. laptop or single VM.<br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</td>
-<td class="green">Footprint:<br>- Single machine e.g. laptop or single VM.<br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</td>
+<td class="amber">Footprint:<br>- Low resource usage, single cluster <br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</td>
+<td class="amber">Footprint:<br>- Low resource usage, single cluster <br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</td>
+<td class="amber">Footprint:<br>- Low resource usage, single cluster <br>- Production like environment (sandbox? lower SLA than prod)<br>SLA:<br>- Lower than prod but possibility of testing NFRs.</td>
 <td class="red">Footprint:<br>- Fully redundant, replicated, high availability deployment<br>- On-premises or cloud<br>SLA: High SLA in many areas.</td>
 </tr>
 </tbody>
@@ -228,5 +228,6 @@ For detailed information about each deployment tool, please refer to the [Deploy
 ## Document History
 |Version|Date|Author|Detail|
 |:--------------:|:--------------:|:--------------:|:--------------:|
+|1.2|20th August 2025|Sam Kummary|Updated sections to use helm as deployment option where relevant|
 |1.1|3rd June 2025|Paul Makin|Removed performance section, moved it to new doc|
 |1.0|7th May 2025|Tony Williams|Initial version| 
