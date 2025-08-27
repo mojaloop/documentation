@@ -1,7 +1,5 @@
 # IaC Deployment Guide
 
-**NOTE:** This document is currently work in progress.
-
 ## Table of contents
 
 - [Introduction](#introduction)
@@ -9,7 +7,6 @@
    - [When is IaC the right choice?](#when-is-iac-the-right-choice)
    - [IaC in the context of Mojaloop](#iac-in-the-context-of-mojaloop)
 - [Overview of Mojaloop IaC-based deployment](#overview-of-mojaloop-iac-based-deployment)
-   - [PLACEHOLDER: Target infrastructure](#placeholder-target-infrastructure)
 - [Deployment how-to](#deployment-how-to)
    - [Deploying the Control Center](#deploying-the-control-center)
       - [Control Center: Prerequisites](#control-center-prerequisites)
@@ -46,6 +43,8 @@ IaC is the practice of defining and managing infrastructure through machine-read
 
 ![IaC high-level illustration](assets/diagrams/iacDeployment/iac_high_level.png)
 
+<!-- Diagram source file: https://app.diagrams.net/#G1YEjT1fDGisr1v6jujAEztCXND1eh50gS#%7B%22pageId%22%3A%22J80BWPVAeOCRfKWJG03i%22%7D -->
+
 Key features:
 
 - **Automation & Repeatability**: Define infrastructure in code to automate the provisioning of environments, eliminating manual, error-prone setup.
@@ -59,24 +58,24 @@ Key features:
 IaC comes with some overhead of writing and maintaining infrastructure code, and it may not be suitable for every scenario. A good rule of thumb is: a. if you're provisioning infrastructure across multiple environments, b. you need repeatable deployments, and c. you expect your infrastructure or your Infra team to grow – use IaC.
 When deciding whether or not IaC-based deployments are the right path for your organisation, it is crucial to understand what IaC _cannot_ do: 
 
-- IaC cannot _guarantee runtime correctness or uptime_, you will need to specifically set up monitoring and alerting capabilities, perform health checks, integration tests, etc.
+- IaC cannot _guarantee runtime correctness or uptime_, you will need to specifically set up monitoring and alerting capabilities, perform health checks, integration tests, and so on.
 - IaC cannot automatically _know your intent or business logic_. IaC tools apply the state you define, not what you "mean" to do. For example, IaC can't guess if deleting a resource will break production. You must model intent carefully and understand the impact of each change.
 - IaC doesn't _handle full lifecycle management automatically_, for example, it won't clean up unused resources. IaC only manages what's explicitly defined in code.
-- IaC doesn't _replace good engineering_. IaC simplifies provisioning, but it still requires: knowledge of cloud/network/database architecture, understanding of resource limits and trade-offs, debugging and maintenance skills, etc.
+- IaC doesn't _replace good engineering_. IaC simplifies provisioning, but it still requires: knowledge of cloud/network/database architecture, understanding of resource limits and trade-offs, debugging and maintenance skills, and so on.
 
 In light of the above, to work effectively with Infrastructure-as-Code, we advise you to have working knowledge of the following concepts and technologies:
 
-- **Infrastructure fundamentals**: to understand the resources you are managing (compute, networking, storage, identity and access management, regions and availability zones, etc.)
-- **Containers and orchestration** (e.g., Docker, Kubernetes, control plane, worker nodes, etc.): to understand how to manage containerised resources
+- **Infrastructure fundamentals**: to understand the resources you are managing (compute, networking, storage, identity and access management, regions and availability zones, and so on)
+- **Containers and orchestration** (for example, Docker, Kubernetes, control plane, worker nodes, and so on): to understand how to manage containerised resources
 - **Security and governance** (managing secrets, least privilege principle): to understand how to manage high-privilege resources
-- **At least one IaC tool** (e.g., Terraform, Ansible): to understand how IaC tools structure modules, resources, variables, and state
+- **At least one IaC tool** (for example, Terraform, Ansible): to understand how IaC tools structure modules, resources, variables, and state
 - **CI/CD and DevOps concepts**: to automate deployments
 - **AWS services**: to understand configuration options and best practices of AWS resources configured and managed via IaC tools (such as: EC2 (virtual machines), S3 (object storage), VPC (networking), IAM (identity and access), RDS (databases), Lambda (serverless functions))
-- **Monitoring tools** (e.g., Grafana): to observe and track what happens post-deployment
+- **Monitoring tools** (for example, Grafana): to observe and track what happens post-deployment
 
 ### IaC in the context of Mojaloop
 
-Mojaloop provides IaC code to facilitate the provisioning and deploying of Mojaloop resources. While the code provided is specific to certain use cases, it can be reused and customised to fit individual needs (e.g., cloud versus on-premise deployments).
+Mojaloop provides IaC code to facilitate the provisioning and deploying of Mojaloop resources. While the code provided is specific to certain use cases, it can be reused and customised to fit individual needs (for example, cloud versus on-premise deployments).
 
 Mojaloop IaC code:
 
@@ -98,21 +97,23 @@ The following figure provides a high-level overview of the Mojaloop IaC deployme
 
 ![Mojaloop IaC sequence](assets/diagrams/iacDeployment/mojaloop_iac_sequence.png)
 
-Mojaloop and PM4ML are cloud-native applications that are designed to run on top of  Kubernetes (K8s). Both applications leverage similar capabilities in terms of databases, ingress control, PKI requirements for mTLS, etc. Thus, we reuse the same infrastructure as code and extend it with slight modifications for the 2 scenarios. There is also the ability to run both Mojaloop and PM4ML in the same cluster for development purposes.
+<!-- Diagram source file: https://app.diagrams.net/#G1YEjT1fDGisr1v6jujAEztCXND1eh50gS#%7B%22pageId%22%3A%22D1AxLu6UM391d6UU7Rue%22%7D -->
+
+Mojaloop and PM4ML are cloud-native applications that are designed to run on top of  Kubernetes (K8s). Both applications leverage similar capabilities in terms of databases, ingress control, Public Key Infrastructure (PKI) requirements for mTLS, and so on. Thus, we reuse the same infrastructure as code and extend it with slight modifications for the 2 scenarios. There is also the ability to run both Mojaloop and PM4ML in the same cluster for development purposes.
 
 To deploy the Mojaloop and PM4ML environment clusters, the following tools are used:
 
 - **Ansible**: A tool used for provisioning software repeatedly and idempotently via the use of playbooks that make use of reusable roles. These roles leverage modules that are executed on a virtual machine or bare-metal host via an ssh client. The main role of Ansible is to bootstrap the hosts used by the infrastructure with the prerequisites needed to run Kubernetes and initialise ArgoCD.
-- **Terraform/Terragrunt**: This tool is used to provision resources via CRUD API calls. These resources range from the creation of network resources, whole K8s clusters, managed databases or the creation of an OIDC application in an identity management solution, etc.
+- **Terraform/Terragrunt**: This tool is used to provision resources via CRUD API calls. These resources range from the creation of network resources, whole K8s clusters, managed databases or the creation of an OIDC application in an identity management solution, and so on.
 - **Helm**: A package management tool used to render K8s charts, which are groups of Kubernetes templates.
 - **Kustomize**: A tool used to manipulate and render K8s templates, including Helm charts.
 - **ArgoCD**: A tool used to deploy artifacts that are rendered via Helm and/or Kustomize to a K8s cluster and maintain the deployed state against a source of truth for the cluster, which is generated from multiple tagged git repositories in concert with environment-specific configuration values that are injected using custom ArgoCD plugins.
 
-### PLACEHOLDER: Target infrastructure
+<!-- ### PLACEHOLDER: Target infrastructure
 
 What does Mojaloop IaC code deploy? The following table provides an overview of the various components that Mojaloop IaC provides code for. The code is platform agnostic, you have the ability to run the building blocks of your deployment on any cloud provider or bare-metal.
 
-(placeholder...)
+(placeholder...) -->
 
 ## Deployment how-to
 
@@ -161,7 +162,7 @@ Generate an SSH key pair for secure access to the Control Center infrastructure.
 
    For details, see: [https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/create-key-pairs.html](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/create-key-pairs.html)
 
-   Choose a meaningful name for your key pair. In the example below, we will be using the following name: `ml-perf-ccu-host-private-key`
+   Choose a meaningful name for your key pair. In the example below, the key pair is called: `ml-perf-ccu-host-private-key`
 
 1. Save the private key securely on your local machine, and set the permissions so that only you can read your private key file:
 
@@ -266,15 +267,15 @@ Install Docker following the official Ubuntu installation procedure:
    # Add Docker's official GPG key
    sudo apt-get update
    sudo apt-get install ca-certificates curl
-   sudo install -m 0755 -d /etc/apt/keyrings
-   sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
-   sudo chmod a+r /etc/apt/keyrings/docker.asc
+   sudo install -m 0755 -d /and so on/apt/keyrings
+   sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /and so on/apt/keyrings/docker.asc
+   sudo chmod a+r /and so on/apt/keyrings/docker.asc
 
    # Add Docker repository
    echo \
-   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
-   $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}") stable" | \
-   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+   "deb [arch=$(dpkg --print-architecture) signed-by=/and so on/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+   $(. /and so on/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}") stable" | \
+   sudo tee /and so on/apt/sources.list.d/docker.list > /dev/null
    ```
 
 1. Install Docker packages:
@@ -308,7 +309,7 @@ Set up AWS credentials for the Control Center utility:
 
 #### Control Center: Set up the Control Center utility container
 
-We are going to spin up a container and then run Terraform to deploy the Control Center.
+You are going to spin up a container and then run Terraform to deploy the Control Center.
 
 1. Launch the container.
 
@@ -346,7 +347,7 @@ We are going to spin up a container and then run Terraform to deploy the Control
       cd iac-run-dir/
       ```
 
-   1. We are going to set some variables in the `setenv` file:
+   1. You are going to set some variables in the `setenv` file:
    
       ```bash
       vi setenv
@@ -378,9 +379,9 @@ We are going to spin up a container and then run Terraform to deploy the Control
    cd /iac-run-dir/iac-modules/terraform/ccnew/
    ```
 
-1. Now we are going to configure some Control Center parameters.
+1. Now you are going to configure some Control Center parameters.
 
-   Explore what can be configured in the `default-config` folder. Then copy anything you wish to customize into the placeholder `cluster-config.yaml` file in the `custom-config` folder, and make your required changes.
+   Explore what can be configured in the `default-config` folder. Then copy anything you wish to customise into the placeholder `cluster-config.yaml` file in the `custom-config` folder, and make your required changes.
 
 1. Open the placeholder custom configuration file for editing:
 
@@ -445,7 +446,7 @@ We are going to spin up a container and then run Terraform to deploy the Control
 
    The script will display status updates for each component:
       - In case you observe **failed attempts and retries**, keep waiting, sometimes it takes multiple retries for some components to be set up.
-      - In case the process completes with **errors**, run `./wrapper.sh` again.
+      - In case the process completes with **errors**, run `./wrapper.sh` again. On the next attempt, the errors might get resolved.
 
 1. The Terraform state will be in the container after running the script so you need to push the state to the new system:
 
@@ -459,7 +460,7 @@ You are now done deploying the Control Center.
 
 ##### Zitadel: Set up a user account for all portals
 
-All Control Center services (GitLab, ArgoCD, Grafana, Vault, etc.) use Zitadel for Single Sign-On (SSO). Once you create your user account in Zitadel, you will use the same credentials to access all portals.
+All Control Center services (GitLab, ArgoCD, Grafana, Vault, and so on) use Zitadel for Single Sign-On (SSO). Once you create your user account in Zitadel, you will use the same credentials to access all portals.
 
 1. Access Zitadel.
 
@@ -472,19 +473,19 @@ All Control Center services (GitLab, ArgoCD, Grafana, Vault, etc.) use Zitadel f
    - Username: `rootauto@zitadel.zitadel.<cluster_name>.<domain>`
    - Password: `#Password1!`
 
-1. Follow the on-screen prompts, and enable two-factor authentication.
+1. Follow the on-screen prompts and enable two-factor authentication.
 
-1. Follow the on-screen prompts, and change your password.
+1. Follow the on-screen prompts and change your password.
 
 1. Create a user account with a strong password. You can do this via the **User** menu >> **New** button.
 
-   Select the "Email verified" and "Set Initial Password" checkboxes to speed up the process.
+   Select the **Email verified** and **Set Initial Password** checkboxes to speed up the process.
 
-   ![Zitadel: Create user](assets/diagrams/iacDeployment/001_cc_zitadel_create_user.png)
+   ![Zitadel: Create user](assets/screenshots/iacDeployment/001_cc_zitadel_create_user.png)
 
 1. Grant appropriate permissions to this new user via the **Authorizations** menu:
 
-   ![Zitadel: Grant permissions to new user 01](assets/diagrams/iacDeployment/002_cc_zitadel_grant_authorizations_1.png)
+   ![Zitadel: Grant permissions to new user 01](assets/screenshots/iacDeployment/002_cc_zitadel_grant_authorizations_1.png)
 
    1. Click **New**.
 
@@ -509,7 +510,7 @@ All Control Center services (GitLab, ArgoCD, Grafana, Vault, etc.) use Zitadel f
 
 1. You will be prompted to install the NetBird client.
 
-   ![Nebird: Install Netbird client](assets/diagrams/iacDeployment/003_cc_download_netbird_linux.png)
+   ![Nebird: Install Netbird client](assets/screenshots/iacDeployment/003_cc_download_netbird_linux.png)
 
 1. Retrieve the Management URL shown on the dashboard.
 
@@ -541,7 +542,7 @@ Once you've connected, you can access all the portals.
    1. In the left-hand menu, select **Account**.
    1. Click the **Enable two-factor authentication** button and follow the prompts to set up 2FA.
 
-      ![GitLab: Enable two-factor authentication](assets/diagrams/iacDeployment/004_cc_gitlab_2factor.png)
+      ![GitLab: Enable two-factor authentication](assets/screenshots/iacDeployment/004_cc_gitlab_2factor.png)
 
 ##### ArgoCD: Run the netbird-post-config application
 
@@ -555,7 +556,7 @@ After connecting to the VPN, there is one manual task to do in ArgoCD: sync the 
 
 1. Find the **netbird-post-config** application and run it (click **Sync**, then **Synchronize**).
 
-   !["netbird-post-config" application in ArgoCD](assets/diagrams/iacDeployment/005_argocd_netbird-post-config.png)
+   !["netbird-post-config" application in ArgoCD](assets/screenshots/iacDeployment/005_argocd_netbird-post-config.png)
 
 ##### Vault: Verify if secret paths are accessible
 
@@ -565,11 +566,11 @@ After connecting to the VPN, there is one manual task to do in ArgoCD: sync the 
 
 1. On the login page, select **Method: OIDC**, click **Sign in with OIDC Provider**, then in the window that pops up, choose your new user.
 
-   ![Vault login](assets/diagrams/iacDeployment/006_vault_signin.png)
+   ![Vault login](assets/screenshots/iacDeployment/006_vault_signin.png)
 
 1. Verify if secret paths are accessible: under **Secret engines**, select **secret/**. You should see a list of secrets for various applications, such as GitLab, Grafana, Mimir, and so on.
 
-   ![Vault secrets](assets/diagrams/iacDeployment/007_vault_secrets.png)
+   ![Vault secrets](assets/screenshots/iacDeployment/007_vault_secrets.png)
 
 ##### Grafana: Review dashboards and set up alerts
 
@@ -632,7 +633,7 @@ Confirm that DNS records are properly configured:
 
 1. Test internal services:
 
-   From within VPN connection (example - update with your own `cluster_name` and `domain`):
+   Once connected via VPN (example - update with your own `cluster_name` and `domain`):
 
    ```bash
    nslookup argocd.int.cc004.perf004.mojaperflab.org
@@ -716,7 +717,7 @@ Instead of `EC2` and `DescribeImages`, you may have some other service and opera
 
 **Error message:**
 
-After deploying the Control Center, when accessing services that require a VPN connection (ArgoCD, Vault, Grafana), you get either:
+After deploying the Control Center, when accessing services that require a VPN connection (ArgoCD, Vault, Grafana), you get either of the following messages:
 
 - `connection timed out`
 - `unable to connect`
@@ -873,13 +874,13 @@ The deployment of the Switch follows a similar pattern to that of the Control Ce
 
 1. Open the latest pipeline.
 
-1. Click **deploy-env-templates** (don't run it, just click it). Later on, you will run this to populate the project of the Switch that we want to deploy.
+1. Click **deploy-env-templates** (don't run it, just click it). Later on, you will run this to populate the project of the Switch that you want to deploy.
 
-   ![deploy-env-templates](assets/diagrams/iacDeployment/008_gitlab_deploy_env_templates.png)
+   ![deploy-env-templates](assets/screenshots/iacDeployment/008_gitlab_deploy_env_templates.png)
 
 1. Once you opened **deploy-env-templates**, you need to provide some environment variables:
    - **ENV_TO_UPDATE** → the name of the environment that you want to update, it is the environment that you defined in the `custom-config/environment.yaml` file in section [Control Center: Deploy the Control Center](#control-center-deploy-the-control-center) (in our example, it will be: `sw004`)
-   - **IAC_MODULES_VERSION_TO_UPDATE** → the version of Terraform that you want to use (in our example, it will be: `v5.9.0`)
+   - **IAC_MODULES_VERSION_TO_UPDATE** → the version of Terraform that you want to use (in our example, it is: `v5.9.0`)
 
 1. Run the job. This will populate the project of the Switch.
 
@@ -909,7 +910,7 @@ Set up the `AWS_ACCESS_KEY_ID` variable. Each environment must have this informa
 
 1. In GitLab, go to **Settings > CI/CD > Variables** (bottom left corner), and create a new variable (click **Add variable**). <!-- EDITORIAL COMMENT: Mention where exactly. Is this the Switch environment or the bootstrap? The Switch environment. -->
 
-   ![CI/CD variables in GitLab](assets/diagrams/iacDeployment/009_gitlab_settings_cicd_variables.png)
+   ![CI/CD variables in GitLab](assets/screenshots/iacDeployment/009_gitlab_settings_cicd_variables.png)
 
 1. Set up the variable as follows:
    - Key: `AWS_ACCESS_KEY_ID`
@@ -934,10 +935,10 @@ Set up the access key as a secret in the Vault.
    ```
 
 1. Navigate to the following path: **Secrets Engines > Secrets > \<switch-project\>**
-   
-1. Create a secret called `cloud_platform_client_secret` (click **Create secret** and add this name in the **Path for this secret** field).
 
-   ![Configure Vault secret](assets/diagrams/iacDeployment/010_vault_create_secret.png)
+1. Create a secret called `cloud_platform_client_secret` (click **Create secret** and add `cloud_platform_client_secret` in the **Path for this secret** field).
+
+   ![Configure Vault secret](assets/screenshots/iacDeployment/010_vault_create_secret.png)
 
 1. Set up the secret as follows:
    - Key: `value`
@@ -951,8 +952,8 @@ Set up the access key as a secret in the Vault.
 
 1. Configure the Switch. The logic is similar to how you specified your configuration for the Control Center.
 
-   There is a **default-config** folder with a set of default configurations. They can be explored to see what's inside. If you want to customize your configuration, then copy any configuration code from the default configuration into the `custom-config/cluster-config.yaml` file and make your changes.
-   
+   There is a **default-config** folder with a set of default configurations. They can be explored to see what's inside. If you want to customise your configuration, then copy any configuration code from the default configuration into the `custom-config/cluster-config.yaml` file and make your changes.
+
    Commit directly to the `main` branch.
 
    Example:
@@ -979,9 +980,9 @@ Set up the access key as a secret in the Vault.
    ```
 
 1. Set your desired Mojaloop version:
-   1. Go to `custom-config/mojaloop-vars.yaml` file. If the file doesn't exist, create a new file.
+   1. Go to `custom-config/mojaloop-vars.yaml` file. If the file doesn't exist, create it.
    1. Specify a value for `mojaloop_chart_version`.
-   1. You can also update the `mcm_chart_version` depending on which version of MCM you wish to use (if you don't want to use the default version).
+   1. You can also update the `mcm_chart_version` depending on which version of MCM you wish to use (in case you don't want to use the default version).
 
       ```yaml
       mojaloop_chart_version: 17.0.0 # Check latest version at https://github.com/mojaloop/helm/releases/
@@ -1001,7 +1002,7 @@ Set up the access key as a secret in the Vault.
    1. Copy the entire content.
    1. Navigate to the **custom-config** directory.
    1. Create a new file and name it `mojaloop-rbac-api-resources.yaml`.
-   1. Paste the copied content and commit.
+   1. Paste the copied content and commit directly to the `main` branch.
 
 1. Configure the `mojaloop-stateful-resources.json` file. This file specifies the configuration of databases and message queues.
 
@@ -1009,9 +1010,7 @@ Set up the access key as a secret in the Vault.
    1. Copy the entire content.
    1. Navigate to the **custom-config** directory.
    1. Create a new file and name it `mojaloop-stateful-resources.json`.
-   1. Paste the copied content and commit.
-
-1. Commit your changes in GitLab. Commit directly to the `main` branch.
+   1. Paste the copied content and commit directly to the `main` branch.
 
 #### Mojaloop Switch: Run the deployment
 
@@ -1087,6 +1086,7 @@ Using kubeconfig, you can check if the pods are running, or if you spot some err
    ```bash
    kubectl get VirtualService -n argocd
    ```
+
    In the output returned, the `HOSTS` information is the link to the ArgoCD portal.
 
    Example:
@@ -1142,7 +1142,7 @@ To access the Grafana monitoring dashboards of the Switch environment, perform t
 
 ##### Keycloak access
 
-1. Get Keycloak URLs:
+1. Get the Keycloak URLs:
 
    1. Admin console URL:
 
@@ -1224,7 +1224,7 @@ Get the TTK's URL:
 ```bash
 kubectl get VirtualService mojaloop-ttkfront-vs -n mojaloop
 ```
-   
+
 In the output returned, the `HOSTS` information is the link to the TTK frontend.
 
 #### Mojaloop Switch: Run TTK tests
@@ -1232,7 +1232,7 @@ In the output returned, the `HOSTS` information is the link to the TTK frontend.
 ##### Automated tests
 
 Following deployment, the following steps are taken automatically:
-1. The `moja-ml-ttk-test-val-gp` pod in the mojaloop namespace provisions ??? <!-- EDITORIAL COMMENT: Need to investigate this. -->
+1. The `moja-ml-ttk-test-val-gp` pod in the mojaloop namespace provisions \<placeholder\>. <!-- EDITORIAL COMMENT: Need to investigate this. -->
 1. The `moja-ml-ttk-test-setup` pod in the mojaloop namespace runs automated tests.
 
 Automatic tests help you assess if the system you have just deployed works as expected.
@@ -1288,7 +1288,7 @@ For DFSP/PM4ML integration, collect the following URLs:
     2. Select the `fsps` realm in the top-left dropdown.
 
 1. Retrieve the JWT Secret:
-    1. Navigate to **Clients** in menu on the left.
+    1. Navigate to **Clients** in the menu on the left.
     2. Select `dfsp-jwt` from the list.
     3. Go to the **Credentials** tab.
     4. Copy the `fsp-jwt` secret.
