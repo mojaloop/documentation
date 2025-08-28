@@ -267,15 +267,15 @@ Install Docker following the official Ubuntu installation procedure:
    # Add Docker's official GPG key
    sudo apt-get update
    sudo apt-get install ca-certificates curl
-   sudo install -m 0755 -d /and so on/apt/keyrings
-   sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /and so on/apt/keyrings/docker.asc
-   sudo chmod a+r /and so on/apt/keyrings/docker.asc
+   sudo install -m 0755 -d /etc/apt/keyrings
+   sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+   sudo chmod a+r /etc/apt/keyrings/docker.asc
 
    # Add Docker repository
    echo \
-   "deb [arch=$(dpkg --print-architecture) signed-by=/and so on/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
-   $(. /and so on/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}") stable" | \
-   sudo tee /and so on/apt/sources.list.d/docker.list > /dev/null
+   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+   $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}") stable" | \
+   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
    ```
 
 1. Install Docker packages:
