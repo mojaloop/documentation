@@ -82,7 +82,7 @@ Mojaloop IaC code:
 - Provides cloud-agnostic Infrastructure as Code (IaC) to be used in provisioning Kubernetes (K8s) clusters for use as Mojaloop Switches and/or Payment Managers.
 - Automatically enables the use of a Control Center in a secure fashion. <!-- EDITORIAL COMMENT: Cross-reference a resource that describes what the Control Center is. -->
 - Provides modules for the following:
-   - Automated GitOps-style provisioning of separate clusters dedicated to Mojaloop and Payment Manager for Mojaloop (PM4ML), respectively via the use of reusable open-source modules.
+   - Automated GitOps-style provisioning of separate clusters dedicated to Mojaloop and Payment Manager for Mojaloop (PM4ML), respectively, via the use of reusable open-source modules.
    - A Vault instance to securely store configuration secrets as well as manage PKI configuration for mutual TLS enabled endpoints.
    - Automatically configured OIDC access control.
    - Wireguard mesh routes that provide the ability for individual clusters to securely reach private Control Center services and that also provide operator access to the clusters.
@@ -99,7 +99,9 @@ The following figure provides a high-level overview of the Mojaloop IaC deployme
 
 <!-- Diagram source file: https://app.diagrams.net/#G1YEjT1fDGisr1v6jujAEztCXND1eh50gS#%7B%22pageId%22%3A%22D1AxLu6UM391d6UU7Rue%22%7D -->
 
-Mojaloop and PM4ML are cloud-native applications that are designed to run on top of  Kubernetes (K8s). Both applications leverage similar capabilities in terms of databases, ingress control, Public Key Infrastructure (PKI) requirements for mTLS, and so on. Thus, we reuse the same infrastructure as code and extend it with slight modifications for the 2 scenarios. There is also the ability to run both Mojaloop and PM4ML in the same cluster for development purposes.
+Mojaloop and PM4ML are cloud-native applications that are designed to run on top of Kubernetes (K8s). Both applications leverage similar capabilities in terms of databases, ingress control, Public Key Infrastructure (PKI) requirements for mTLS, and so on. Thus, we reuse the same infrastructure as code and extend it with slight modifications for the 2 scenarios. There is also the ability to run both Mojaloop and PM4ML in the same cluster for development purposes.
+
+**NOTE:** PM4ML is a tool for Digital Financial Service Provider (DFSP) participants, so the question might arise as to why it could be relevant in the context of Switch deployment. PM4ML can be run as part of simulating DFSPs, for testing purposes.
 
 To deploy the Mojaloop and PM4ML environment clusters, the following tools are used:
 
@@ -353,7 +355,7 @@ You are going to spin up a container and then run Terraform to deploy the Contro
       vi setenv
       ```
 
-   1. Specify which version of IaC you want to use (this needs to be determined before), for example (at the time of writing, v5.9.0 is the latest release): `IAC_TERRAFORM_MODULES_TAG=v5.9.0`
+   1. Specify which version of IaC you want to use (this needs to be determined before), for example (at the time of writing, v5.9.0 is the latest [release](https://github.com/mojaloop/iac-modules/releases)): `IAC_TERRAFORM_MODULES_TAG=v5.9.0`
 
 1. Initialize the environment.
 
