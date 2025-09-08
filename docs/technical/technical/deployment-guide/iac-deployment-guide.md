@@ -881,7 +881,7 @@ The deployment of the Switch follows a similar pattern to that of the Control Ce
    ![deploy-env-templates](assets/screenshots/iacDeployment/008_gitlab_deploy_env_templates.png)
 
 1. Once you opened **deploy-env-templates**, you need to provide some environment variables:
-   - **ENV_TO_UPDATE** → the name of the environment that you want to update, it is the environment that you defined in the `custom-config/environment.yaml` file in section [Control Center: Deploy the Control Center](#control-center-deploy-the-control-center) (in our example, it will be: `sw004`)
+   - **ENV_TO_UPDATE** → the name of the environment that you want to update, it is the Switch environment that you defined in the `custom-config/environment.yaml` file in section [Control Center: Deploy the Control Center](#control-center-deploy-the-control-center) (in our example, it will be: `sw004`)
    - **IAC_MODULES_VERSION_TO_UPDATE** → the version of Terraform that you want to use (in our example, it is: `v5.9.0`)
 
 1. Run the job. This will populate the project of the Switch.
@@ -936,7 +936,7 @@ Set up the access key as a secret in the Vault.
    https://vault.int.cc004.perf004.mojaperflab.org/
    ```
 
-1. Navigate to the following path: **Secrets Engines > Secrets > \<switch-project\>**
+1. Navigate to the following path: **Secrets Engines > secret > \<switch-project\>**
 
 1. Create a secret called `cloud_platform_client_secret` (click **Create secret** and add `cloud_platform_client_secret` in the **Path for this secret** field).
 
@@ -946,7 +946,7 @@ Set up the access key as a secret in the Vault.
    - Key: `value`
    - Value: Your AWS secret access key (This is the secret access key corresponding to the access key for the AWS CLI. You set up this key in section [Configure AWS credentials](#configure-aws-credentials) when you deployed the Control Center.)
 
-1. Click **Add**, then **Save**.
+1. Click **Save**.
 
 #### Mojaloop Switch: Configure the Switch
 
@@ -964,7 +964,7 @@ Set up the access key as a secret in the Vault.
    env: sw004 # update according to your DNS planning
    vpc_cidr: "10.107.0.0/23"
    managed_vpc_cidr: "10.29.0.0/23"
-   domain: hub004.mojaperflab.org # update according to DNS planning
+   domain: hub004.mojaperflab.org # update according to DNS planning, ensure this domain name is different from the one specified for the Control Center
    managed_svc_enabled: false
    k8s_cluster_type: microk8s
    currency: EUR
@@ -1023,23 +1023,19 @@ Set up the access key as a secret in the Vault.
    1. Select the **deploy** stage of your latest commit.
    1. Run **deploy-infra**. This will deploy the infrastructure, Kubernetes, ArgoCD, together with the configuration you specified. The deployment process takes about 45-60 minutes to complete.
 1. Following successful deployment, you can download the artifacts from the **Build > Artifacts** page. (When you run a deploy job, it will save some artifacts.)
-   1. Select **deploy-infra**, and explore its contents.
+   1. Browse **deploy-infra**, and explore its contents.
    1. Go to **ansible > k8s-deploy**.
    1. You will find the following artifacts:
       1. `inventory`: used for Terraform
       1. `oidc-kubeconfig`: the kubeconfig of the Kubernetes environment just deployed
       1. `sshkey`
-1. Download the `kubeconfig` artifact, and save it locally. You will be able to access it via VPN.
+1. Download the `oidc-kubeconfig` artifact, and save it locally. You will be able to access it via VPN.
 
 #### Mojaloop Switch: Post-deployment verification
 
 ##### Configure Kubernetes access
 
-1. Install an OIDC plugin, such as `kubelogin`. `kubelogin` is a client-side authentication helper for Kubernetes that enables you to authenticate to a Kubernetes cluster using OIDC (OpenID Connect).
-
-   With Homebrew (macOS): `brew install int128/kubelogin/kubelogin`
-
-   Or download from GitHub: [https://github.com/int128/kubelogin](https://github.com/int128/kubelogin)
+1. Install an OIDC plugin, such as [kubelogin](https://github.com/int128/kubelogin). `kubelogin` is a client-side authentication helper for Kubernetes that enables you to authenticate to a Kubernetes cluster using OIDC (OpenID Connect).
 
 1. Set kubeconfig:
 
@@ -1058,12 +1054,15 @@ Set up the access key as a secret in the Vault.
 
 Using kubeconfig, you can check if the pods are running, or if you spot some errors to resolve. You can also collect some useful information, for example, URLs.
 
-1. Open `kubeconfig` via a Kubernetes dashboard/navigator app (such as [Lens](https://k8slens.dev/), for example).
+1. Open `kubeconfig` via a Kubernetes dashboard/navigator app (such as [Lens](https://k8slens.dev/), for example). Alternatively, use your command line terminal.
+
 1. Check ArgoCD applications:
 
    ```bash
    kubectl get Application -n argocd
    ```
+
+   In case you're prompted to manually navigate to `http://localhost:8000/` in your browser, go ahead and do that. Log in to Zitadel. Then come back to the command line terminal and you should see the requested application info displayed in the terminal. <!-- EDITORIAL COMMENT: Try logging in as non-admin to see what happens. -->
 
 1. Verify if all pods are running:
 
@@ -1073,11 +1072,13 @@ Using kubeconfig, you can check if the pods are running, or if you spot some err
 
 ##### Configure user permissions
 
-1. Log in to Control Center Zitadel to grant permissions.
+1. Log in as admin to Control Center Zitadel to grant permissions.
 1. Add user to environment group:
-   1. Navigate to (example - remember that your environment will probably be called something other than **sw004**): **sw004 project/group**
-   1. Add your user with the appropriate role.
-   1. Save changes.
+   1. Navigate to **Users** and select your your non-admin user.
+   1. In the left-hand menu, click **Authorizations**.
+   1. Click **New**.
+   1. Under **Search for a project**, select your Switch environment from the drop-down menu.
+   1. Select all the roles and click **Save**.
 
 #### Mojaloop Switch: Configure service access
 
@@ -1102,12 +1103,12 @@ Using kubeconfig, you can check if the pods are running, or if you spot some err
 
 1. Navigate to ArgoCD using the URL.
 
-1. Log in:
+1. Log in via SSO with Zitadel (recommended).
+
+   Alternatively:
 
    - Username: `admin`
-   - Authentication: SSO via Zitadel (recommended)
-
-      Alternative password access:
+   - Password:
 
       ```bash
       kubectl get secret argocd-initial-admin-secret -n argocd \
@@ -1173,6 +1174,7 @@ To access the Grafana monitoring dashboards of the Switch environment, perform t
    kubectl get secret switch-keycloak-initial-admin -n keycloak \
    -o jsonpath='{.data.password}' | base64 -d
    ```
+
 1. Log in.
 
 ##### Business Portal access
@@ -1182,7 +1184,7 @@ To access the Grafana monitoring dashboards of the Switch environment, perform t
    ```bash
    kubectl get VirtualService finance-portal-vs -n mojaloop
    ```
-   
+
    In the output returned, the `HOSTS` information is the link to the portal.
 
 1. Navigate to the Business Portal using the URL.
