@@ -1062,7 +1062,7 @@ Using kubeconfig, you can check if the pods are running, or if you spot some err
    kubectl get Application -n argocd
    ```
 
-   In case you're prompted to manually navigate to `http://localhost:8000/` in your browser, go ahead and do that. Log in to Zitadel. Then come back to the command line terminal and you should see the requested application info displayed in the terminal. <!-- EDITORIAL COMMENT: Try logging in as non-admin to see what happens. -->
+   In case you're prompted to manually navigate to `http://localhost:8000/` in your browser, go ahead and do that. Log in to Zitadel as the admin user. Then come back to the command line terminal and you should see the requested application info displayed in the terminal.
 
 1. Verify if all pods are running:
 
@@ -1074,10 +1074,11 @@ Using kubeconfig, you can check if the pods are running, or if you spot some err
 
 1. Log in as admin to Control Center Zitadel to grant permissions.
 1. Add user to environment group:
-   1. Navigate to **Users** and select your your non-admin user.
+   1. Click the Zitadel logo in the top left corner.
+   1. Click **Users** and select your your non-admin user.
    1. In the left-hand menu, click **Authorizations**.
    1. Click **New**.
-   1. Under **Search for a project**, select your Switch environment from the drop-down menu.
+   1. Under **Search for a project**, select your Switch environment from the drop-down menu, and click **Continue**.
    1. Select all the roles and click **Save**.
 
 #### Mojaloop Switch: Configure service access
