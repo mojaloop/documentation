@@ -41,6 +41,18 @@ export VUEPRESS_PR_NUMBER="${PR_NUMBER}"
 npm run build
 mv ${DIR}/../docs/.vuepress/dist ${DIR}/../build
 
+# Copy assets from nested directories to build output
+echo "Copying assets from nested directories..."
+find ${DIR}/../docs -name "assets" -type d | while read asset_dir; do
+  # Get the relative path from docs directory
+  rel_path=$(echo "$asset_dir" | sed "s|${DIR}/../docs/||")
+  # Create the target directory in build output
+  target_dir="${DIR}/../build/${rel_path}"
+  mkdir -p "$target_dir"
+  # Copy all files from the asset directory
+  cp -r "$asset_dir"/* "$target_dir/" 2>/dev/null || true
+done
+
 
 # build legacy docs - will be removed once all docs are migrated to v2.0
 # Removing from here! multiple node versions in CI/CD are really hard!
