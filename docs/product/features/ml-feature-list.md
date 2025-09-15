@@ -1,15 +1,30 @@
-# About Mojaloop 
+# Introduction to Mojaloop 
 
 Mojaloop is open source instant payments software that interconnects
 disparate financial institutions in a manner that promotes financial
-inclusion and provides robust risk management for all participants. It
-is available for use by any body that wishes to use it to implement and
-operate an inclusive instant payments scheme.
+inclusion and provides robust risk management for all participants. It is available for use by any body that wishes to use it to implement and operate an inclusive instant payments scheme (IIPS).
 
-## Mojaloop's Core Functions
+## Regulators' and Operators' Perspective
+Mojaloop provides the foundation for an operator to establish an Inclusive Instant Payment System (IIPS), and is intended to be integrated with a settlement partner. The partner may be the national RTGS, though other settlement mechanisms are also supported. In this way, Mojaloop enables the delivery of a comprehensive payments interoperability service to participating financial institutions (FIs).
 
-These are the core functions that Mojaloop provides to connected
-financial institutions:
+Once deployed, Mojaloop allows the scheme operator to:
+- Onboard, suspend, or reactivate participating FIs as required;
+- Set net debit caps for each participant to manage both risk and liquidity;
+- Select and operate the settlement model best aligned to scheme and national requirements;
+- Define multiple settlement periods across the operational day, with the closure of each period generating a settlement file (according to the chosen model) for the settlement partner’s action.
+
+The Mojaloop Hub underpins these functions by:
+- Processing payments between debtor and creditor FIs on a continuous 24/7 basis;
+- Updating each participant’s position in real time as debits and credits occur;
+- Validating every payment to ensure sufficient liquidity and compliance with the participant’s net debit cap, rejecting transactions if these conditions are not met;
+- Updating participant positions at the end of each settlement window to reflect the value of funds settled.
+
+In addition, Mojaloop supports an **indirect participation model**, designed to extend access to smaller financial institutions — particularly non-bank entities such as MFIs — that are not eligible to participate directly in the national RTGS. This ensures broad inclusion within the payments ecosystem while maintaining financial stability.
+
+
+## Technical Perspective
+
+In order to deliver the IIPS described above, Mojaloop implements a set of core functions:
 
   |Alias Resolution|Clearing|Settlement|
 |:--------------:|:--------------:|:--------------:|
@@ -34,15 +49,25 @@ together make Mojaloop a low cost, inclusive instant payments system:
 **Note** In Mojaloop terms, a DFSP - or Digital Financial Service Provider - is a generic term for any financial institution, of any size or status, that is able to transact digitally. It applies equally to the largest international bank and the smallest Microfinance Institution or mobile wallet operator. "DFSP" is used throughout this document.   
 &nbsp;
 
-## The Mojaloop Ecosystem
+# The Mojaloop Ecosystem
+## The Core
 In reading this document, it is important to understand the terminology used to identify the various actors, and how they interact. The following diagram provides a high level view of the Mojaloop ecosystem.
 
 ![Mojaloop Ecosystem](./ecosystem.svg)
 
-## Feature List
+## Overlay Services
+Around the core illustrated in the above diagram there are a set of overlay services, which also form part of the complete Mojaloop open source package. These are:
+- The **Account Lookup Service** (ALS), and a number of oracles that are used by the ALS in alias resolution;
+- A set of **portals**, built to use the Business Operations Framework, which allow a hub operator to interact with/manage the Mojaloop Hub;
+- A **Merchant Payments** module, which supports merchant registration and the issuing of merchant IDs, including the generation of QR Codes which can be scanned to initiate a merchant transaction;
+- The **Testing Toolkit** (TTK), which allows engineers to simulate any aspect of the Mojaloop core ecosystem, to facilitate their development, integration and testing efforts;
+- An **Integration Toolkit** (ITK), part of the [connectivity support](./connectivity.md) library, which facilitates the connection between a DFSP and a Mojaloop Hub;
+- **ISO 8583 integration**, which allows ATMs (or an ATM switch) to be integrated with a Mojaloop Hub, for cash withdrawals;
+- [**MOSIP integration**](https://www.mosip.io), which allow payments to be routed to a MOSIP-based digital identity, rather than (say) a mobile phone number.
 
-This document presents a feature list which covers the following aspects
-of Mojaloop:
+# Feature List
+
+This document presents a feature list which covers the following aspects of Mojaloop:
 
 -   [**Use Cases**](./use-cases.md), describing the use cases supported by every Mojaloop deployment.
 -   [**Transactions**](./transaction.md), describing the Mojaloop APIs, how a transaction proceeds, and the aspects of a Mojaloop transaction that make it uniquely suited to the   implementation of an inclusive instant payments service.
@@ -81,5 +106,6 @@ This version of this document relates to Mojaloop Version [17.0.0](https://githu
 ## Document History
   |Version|Date|Author|Detail|
 |:--------------:|:--------------:|:--------------:|:--------------:|
+|1.4|28th August 2025| Paul Makin|Added the "Regulators' and Operators' Perspective"|
 |1.3|23rd June 2025| Paul Makin|Added the ecosystem text and diagram|
 |1.2|14th April 2025| Paul Makin|Updates related to the release of V17|

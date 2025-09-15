@@ -16,8 +16,8 @@ This document provides instructions on how to upgrade existing Mojaloop installa
       - [Mojaloop installed with backend dependencies](#mojaloop-installed-with-backend-dependencies)
         - [Example Blue-green style deployment](#example-blue-green-style-deployment)
   - [Upgrade Commands](#upgrade-commands)
-    - [Upgrade to v17.0.0](#upgrade-to-v17.0.0)
-      - [Testing the upgrade scenario from v16.0.0 to v17.0.0](#testing-the-upgrade-scenario-from-v16.0.0-to-v17.0.0)
+    - [Upgrade to v17.0.0](#upgrade-to-v1700)
+      - [Testing the upgrade scenario from v16.0.0 to v17.0.0](#testing-the-upgrade-scenario-from-v1600-to-v1700)
 
 ## Helm Upgrades
 

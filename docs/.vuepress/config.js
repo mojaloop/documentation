@@ -793,17 +793,17 @@ module.exports = {
             ]
           },
           {
-            title: "Fraud Services",
+            title: "Security & vulnerability management",
             collapsable: true,
             sidebarDepth: 2,
             children: [
               {
-                title: "Overview",
-                path: "technical/fraud-services/"
+                title: "Security Overview",
+                path: "technical/security/security-overview"
               },
               {
-                title: "Usage",
-                path: "technical/fraud-services/related-documents/documentation"
+                title: "Dependency vulnerability management",
+                path: "technical/security/dependency-vulnerability-management"
               }
             ]
           },
