@@ -1055,6 +1055,16 @@ module.exports = {
               ]
             },
             {
+              title: 'ISO-20022 API',
+              collapsable: true,
+              sidebarDepth: 4,
+              children: [
+                {
+                  title: 'Overview',
+                  path: 'api/iso20022/',
+                },]
+            },
+            {
               title: 'Administration API',
               collapsable: true,
               sidebarDepth: 2,
