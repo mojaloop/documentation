@@ -528,6 +528,102 @@
         "sidebarDepth": 2
       },
       {
+        "title": "Central Settlements Services",
+        "collapsable": true,
+        "children": [
+          {
+            "title": "Settlement Process",
+            "collapsable": false,
+            "children": [
+              {
+                "title": "Overview",
+                "path": "central-settlements/settlement-process/"
+              },
+              {
+                "title": "Settlement Windows By Params",
+                "path": "central-settlements/settlement-process/get-settlement-windows-by-params"
+              },
+              {
+                "title": "Request Settlement By Window",
+                "path": "central-settlements/settlement-process/get-settlement-window-by-id"
+              },
+              {
+                "title": "Close Settlement Window",
+                "path": "central-settlements/settlement-process/post-close-settlement-window"
+              },
+              {
+                "title": "Create Settlement",
+                "path": "central-settlements/settlement-process/post-create-settlement"
+              },
+              {
+                "title": "Request Settlement",
+                "path": "central-settlements/settlement-process/get-settlement-by-id"
+              },
+              {
+                "title": "Settlement Transfer Acknowledgment",
+                "path": "central-settlements/settlement-process/put-settlement-transfer-ack"
+              },
+              {
+                "title": "Settlement Abort",
+                "path": "central-settlements/settlement-process/put-settlement-abort"
+              },
+              {
+                "title": "Request Settlement By SPA",
+                "path": "central-settlements/settlement-process/get-settlement-by-spa"
+              },
+              {
+                "title": "Request Settlement By Params",
+                "path": "central-settlements/settlement-process/get-settlements-by-params"
+              },
+              {
+                "title": "Gross Settlement Handler",
+                "path": "central-settlements/settlement-process/gross-settlement-handler-consumer"
+              },
+              {
+                "title": "Rules Handler",
+                "path": "central-settlements/settlement-process/rules-handler-consumer"
+              }
+            ]
+          },
+          {
+            "title": "Funds In/Out",
+            "collapsable": false,
+            "path": "central-settlements/funds-in-out",
+            "children": [
+              {
+                "title": "Reconciliation Transfer Prepare",
+                "path": "central-settlements/funds-in-out/reconciliation-transfer-prepare"
+              },
+              {
+                "title": "Transfer State and Position Change",
+                "path": "central-settlements/funds-in-out/transfer-state-and-position-change"
+              },
+              {
+                "title": "Funds In",
+                "path": "central-settlements/funds-in-out/funds-in-prepare-reserve-commit"
+              },
+              {
+                "title": "Funds Out - Prepare & Reserve",
+                "path": "central-settlements/funds-in-out/funds-out-prepare-reserve"
+              },
+              {
+                "title": "Funds Out - Commit",
+                "path": "central-settlements/funds-in-out/funds-out-commit"
+              },
+              {
+                "title": "Funds Out - Abort",
+                "path": "central-settlements/funds-in-out/funds-out-abort"
+              }
+            ]
+          },
+          {
+            "title": "OSS Settlement FSD",
+            "collapsable": false,
+            "path": "central-settlements/oss-settlement-fsd"
+          }
+        ]
+      },
+      {
         "title": "Central Event Processor Service",
         "collapsable": true,
         "children": [
