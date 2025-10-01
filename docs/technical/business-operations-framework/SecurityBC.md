@@ -58,7 +58,7 @@ Here is a high-level architecture overview of the implementation of this RBAC Op
 
 Here is a table of the services and the roles they are playing.
 | Service | Owns | Implements |
-| --- | --- |
+| --- | --- | --- |
 |**WSO2 IS KM**|Users| 1. User login redirection and UI that creates the cookie token <br>2. Standard OpenID Connect (OIDC) authorization code flow |
 |**Ory Keto**|1. The roles mapped to users <br> 2. The participant mapped to users| 1. API RBAC authorization check through Ory Oathkeeper<br>2. API RBAC authorization check through operational API call|
 |**Ory Oathkeeper**|The permissions related to API access | API gateway for operational APIs with authentication and authorization checks|
@@ -105,7 +105,7 @@ Below are the results of the test calls made to the role API with and without RB
 **Request Statistics**
 
 |Method|	Name|	# Requests|	# Fails|	Average (ms)|	Min (ms)|	Max (ms)|	Average size| (bytes)	RPS|	Failures/s|
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 |GET|	Role API|	321|	0|	248|	221|	499|	604|	9.0|	0.0|
 |GET|	Role API RBAC|	320|	0|	262|	232|	418|	604|	8.9|	0.0|
 |POST|	Transfers API|	318|	0|	229|	184|	373|	4873|	8.9|	0.0|
@@ -883,4 +883,5 @@ spec:
 - **Configuring Kratos for CORS.** [docs here](https://www.ory.sh/kratos/docs/guides/setting-up-cors)
 - **Ory Kratos - Ory Oathkeeper integration (OIDC).** [Kratos docs here](https://www.ory.sh/kratos/docs/guides/zero-trust-iap-proxy-identity-access-proxy)
 - **Ory Kratos - WSO2 OIDC integration.** [docs here](https://www.ory.sh/kratos/docs/guides/sign-in-with-github-google-facebook-linkedin)
+
 
