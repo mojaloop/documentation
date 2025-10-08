@@ -1,5 +1,15 @@
 # Security
-Mojaloop security is multi-layered, complex, and subject to continuous oversight and review. Broadly, it can be broken down into three areas of scope:
+## Open Source and Security
+A common misconception is that open-source software is inherently less secure than closed-source software, simply because attackers can inspect the code. The argument goes: if the code is public, it must be easier to discover vulnerabilities. In reality, this view misunderstands how modern cybersecurity works.
+
+Mojaloop’s security does not depend on hiding its inner workings. Instead, it is built on well-established, open source cryptographic algorithms, developed by leading experts and published openly for peer review. These algorithms are rigorously tested by the global cryptographic community, ensuring that weaknesses are identified and addressed quickly. When a flaw is found, fixes are shared openly and rapidly, benefiting all users — Mojaloop included.
+
+This approach is directly comparable to the world of physical locks. The mechanism of a Yale lock, for example, is no secret: the patents are public, and anyone can study how it works. Yet the lock remains secure, not because the mechanism is hidden, but because only the correct, unique key can open it. Cryptography works the same way. Modern algorithms rely on the secrecy of keys, not on concealing the algorithm itself.
+
+## Mojaloop Security
+Mojaloop has built on these open source cryptographic algorithms to create a security model that is multi-layered, complex, and subject to continuous oversight and review. 
+
+It can be broken down into three areas of scope:
 
 - The security of the connection between the Mojaloop Hub and the Participating DFSPs (this includes both the security of transactions and the security, establishment and maintenance of the underlying connection itself);
 - The security of the Hub's operations, as reflected in the activities of the operational staff;
