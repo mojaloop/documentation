@@ -6,8 +6,10 @@ Mojaloop’s security does not depend on hiding its inner workings. Instead, it 
 
 This approach is directly comparable to the world of physical locks. The mechanism of a Yale lock, for example, is no secret: the patents are public, and anyone can study how it works. Yet the lock remains secure, not because the mechanism is hidden, but because only the correct, unique key can open it. Cryptography works the same way. Modern algorithms rely on the secrecy of keys, not on concealing the algorithm itself.
 
+The same applies to the entire Mojaloop codebase - since it is open source, anyone is able to review the source code and help to identify any vulnerabilities. Teams within the Mojaloop community take an active interest in this process, and highlight any issues identified during the quality and security process for review and remediation. Potential vulnerabilities are regularly raised by interested parties outside the core community, and these are reviewed and addressed by the quality and security teams. Further details are provided in the [Maintaining Security](#Maintaining-Security) section, below
+
 ## Mojaloop Security
-Mojaloop has built on these open source cryptographic algorithms to create a security model that is multi-layered, complex, and subject to continuous oversight and review. 
+Mojaloop has built on these open source practices and cryptographic algorithms to create a security model that is multi-layered, complex, and subject to continuous oversight and review. 
 
 It can be broken down into three areas of scope:
 
@@ -71,5 +73,6 @@ This document relates to Mojaloop Version 17.1.0
 ## Document History
   |Version|Date|Author|Detail|
 |:--------------:|:--------------:|:--------------:|:--------------:|
+|1.2|13th October 2025| Paul Makin|Added the "Open Source and Security" introductory section.|
 |1.1|15th July 2025| Paul Makin|Added the "Maintaining Security" section.|
 |1.0|24th June 2025| Paul Makin|Initial version|
