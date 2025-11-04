@@ -1160,7 +1160,7 @@ module.exports = {
 			['features/security', 'Mojaloop Security'],
             ['features/engineering', 'Engineering Principles'],
             ['features/invariants', 'Invariants']
-          ]
+            ['features/development', 'Continuous Development']          ]
         }
       ]
     }
