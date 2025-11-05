@@ -61,8 +61,8 @@ Also known as Payment Manager for Mojaloop (PM4ML), Payment Manager is a full-fu
 
  <p align="center">
  	<img src="./images/PM4ML_system_architecture.png" alt="PM4ML Architecture">
-***Figure 1: Payment Manager Architecture***
  </p> 
+***Figure 1: Payment Manager Architecture***
 
 The above diagram represents a high level view of the architecture of Payment Manager, and also indicates the elements of a Mojaloop Hub that it interacts with.
 
@@ -81,8 +81,8 @@ The Integration Toolkit set of participation tools is architected to allow signi
 
  <p align="center">
  	<img src="./images/ITK_architecture.png" alt="ITK Architecture">
-***Figure 2: ITK Architecture***
  </p> 
+***Figure 2: ITK Architecture***
 
 As would be expected, and as illustrated in the above diagram, there are common features with Payment Manager:
 
