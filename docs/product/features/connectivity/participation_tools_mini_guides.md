@@ -77,12 +77,12 @@ PM4ML’s business and technical Portals provide user-friendly interfaces with d
 
 The Integration Toolkit set of participation tools is architected to allow significant flexibility in how a DFSP chooses to connect to a Mojaloop Hub, and can be deployed on a variety of environments to meet the needs of everything from the smallest MFI to the largest bank.
 
-### Introduction
+### Overview
 
-<center>
-![ITK Architecture](./images/ITK_architecture.png)  
+ <p align="center">
+ 	<img src="./images/ITK_architecture.png" alt="ITK Architecture">
 ***Figure 2: ITK Architecture***
-</center>
+ </p> 
 
 As would be expected, and as illustrated in the above diagram, there are common features with Payment Manager:
 
