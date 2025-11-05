@@ -62,16 +62,16 @@ Also known as Payment Manager for Mojaloop (PM4ML), Payment Manager is a full-fu
  <p align="center">
  	<img src="./images/PM4ML_system_architecture.png" alt="PM4ML Architecture">
  </p> 
-***Figure 1: Payment Manager Architecture***
+**Figure 1: Payment Manager Architecture**
 
 The above diagram represents a high level view of the architecture of Payment Manager, and also indicates the elements of a Mojaloop Hub that it interacts with.
 
 ### Payment Manager’s Portals
 
 PM4ML’s business and technical Portals provide user-friendly interfaces with dashboards for monitoring critical information:   
-**Transaction monitoring**: Displays real-time and historical transaction statuses.  
-**Service status**: Allows DFSPs to monitor the health and performance of their connections.  
-**Configuration management**: Provides a single point for managing security keys, certificates, and endpoint configurations. 
+- **Transaction monitoring**: Displays real-time and historical transaction statuses.  
+- **Service status**: Allows DFSPs to monitor the health and performance of their connections.  
+- **Configuration management**: Provides a single point for managing security keys, certificates, and endpoint configurations. 
 
 ## Integration Toolkit
 
@@ -82,7 +82,7 @@ The Integration Toolkit set of participation tools is architected to allow signi
  <p align="center">
  	<img src="./images/ITK_architecture.png" alt="ITK Architecture">
  </p> 
-***Figure 2: ITK Architecture***
+**Figure 2: ITK Architecture**
 
 As would be expected, and as illustrated in the above diagram, there are common features with Payment Manager:
 
