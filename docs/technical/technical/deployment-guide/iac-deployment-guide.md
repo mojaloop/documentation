@@ -1,6 +1,6 @@
 # IaC Deployment Guide
 
-### IaC in the context of Mojaloop
+## IaC in the context of Mojaloop
 
 Mojaloop provides IaC code to facilitate the provisioning and deploying of Mojaloop resources. While the code provided is specific to certain use cases, it can be reused and customised to fit individual needs (for example, cloud versus on-premise deployments).
 
@@ -131,11 +131,9 @@ Generate an SSH key pair for secure access to the Control Center infrastructure.
    --profile mojaiac
    ```
 
-##### Provision the Control Center host VM
+##### Provision build server
 
-Deploy a dedicated VM to host the Control Center utility container.
-
-This will serve as the "build server". This build server can be re-used for any future deployments.
+Deploy a dedicated VM to host the Control Center utility container. This will serve as the "build server". This build server can be re-used for any future deployments.
 
 VM specifications:
 
@@ -201,7 +199,7 @@ Connect to the build server and perform initial setup:
 
 ##### Install AWS CLI
 
-1. Download the AWS CLI (version 2) installer for 64-bit Linux (and saves the downloaded file under the name `awscliv2.zip`).
+1. Download the AWS CLI (version 2) installer for 64-bit Linux (and save the downloaded file under the name `awscliv2.zip`).
 
    ```bash
    curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
@@ -305,7 +303,7 @@ Access the container:
 docker exec -it <NAME_OF_YOUR_CONTROL_CENTER> bash
 ```
 
-##### Configure the environment
+##### Configure and initialize the environment
 
 1. Configure the environment.
 
@@ -399,9 +397,9 @@ docker exec -it <NAME_OF_YOUR_CONTROL_CENTER> bash
 
    Configure the following:
 
-   **NOTE:** Proxmox-related variables are not required for a cloud-based (AWS) deployment, so you can leave them as-is. Since they are configured to be required for all deployments, the dummy values specified below need to be passed (without the dummy values, the wrapper script that you are going to run in a subsequent step would fail).
+   **NOTE:** Proxmox-related variables are not required for a cloud-based (AWS) deployment, so you can leave them as-is. Since they are configured to be required for all deployments, the dummy values specified below must be passed. Without the dummy values, the wrapper script that you are going to run in a subsequent step would fail.
 
-   **NOTE:** Notice the comments next to the `mimir` values. The values that have been commented out represent the default values, together with a multiplier that is used to arrive at an optimized value. For example: the default value for `mimir_distributor_requests_cpu` is `500`, but we multiplied by `0.7` to have the optimized value of `350`.
+   **NOTE:** Notice the comments next to the `mimir` values. The values that have been commented out represent the default values, together with a multiplier that is used to arrive at an optimized value. For example: the default value for `mimir_distributor_requests_cpu` is `500`, but we multiplied it by `0.7` to have the optimized value of `350`.
 
    **NOTE:** The value of `argocd_reconciliation_timeout` can differ based on the environment. By default, ArgoCD reconciles every 10 seconds, fetching the desired state from GitLab for comparison and applying changes if needed. In a dev environment where there are frequent changes, it is good practice to keep the timeout at the default value. However, in a prod environment where there are much fewer changes, the value of 5 minutes (specified below) is sufficient.
 
@@ -464,9 +462,13 @@ docker exec -it <NAME_OF_YOUR_CONTROL_CENTER> bash
    export AWS_SESSION_TOKEN=<YOUR_SESSION_KEY>
    ```
 
-1. Change directory (`cd`) to the **ccnew** folder, and deploy the Control Center by executing the following script:
+1. Change directory (`cd`) to the **ccnew** folder.
 
-   `./wrapper.sh`
+1. Deploy the Control Center by executing the following script:
+
+   ```bash
+   ./wrapper.sh
+   ```
 
    The wrapper will:
 
@@ -510,20 +512,20 @@ docker exec -it <NAME_OF_YOUR_CONTROL_CENTER> bash
       ```
 
       1. Copy the ssh key.
-      1. Paste the ssh key here:
-      
+      1. Paste the ssh key here (use a meaningful and descriptive folder name):
+
       ```bash
       vi ~/.ssh/<FOLDER_NAME>
       ```
 
       1. Change the permission of the file so that only you can read it:
-      
+
       ```bash
       chmod 400 ~/.ssh/<FOLDER_NAME>
       ```
 
       1. Connect to the bastion via ssh:
-      
+
       ```bash
       ssh -i ~/.ssh/<FOLDER_NAME> ubuntu@<BASTION_IP_ADDRESS>
       ```
@@ -531,7 +533,7 @@ docker exec -it <NAME_OF_YOUR_CONTROL_CENTER> bash
       1. Exit the session to return to your local machine: `exit`
 
    1. Create a tunnel between your machine and the VM. Issue the following command on your machine:
-   
+
       ```bash
       ssh -i .ssh/<NAME_OF_YOUR_CONTROL_CENTER> -L 8082:127.0.0.1:8445 ubuntu@<bastion-ip-address>
       ```
@@ -551,7 +553,7 @@ docker exec -it <NAME_OF_YOUR_CONTROL_CENTER> bash
       -o jsonpath="{.data.password}" | base64 --decode; echo
       ```
 
-      Copy the password returned.
+      Save the password that is returned, you will need it in the next step.
 
    1. Port forward using the password obtained in the previous step:
 
@@ -565,11 +567,11 @@ docker exec -it <NAME_OF_YOUR_CONTROL_CENTER> bash
    1. Log in using the following credentials:
 
       username: admin
-      password: the password you have just copied
+      password: <THE_PASSWORD_THAT_YOU_HAVE_JUST_COPIED>
 
    1. Observe how your applications are progressing. You can click **root-deployer** to have an overview of the status of each application. The root-deployer deploys the applications as per the configured sync waves (the order of waves has been set up so that dependencies are deployed first).
 
-1. Once the wrapper script has run successfully, the Terraform state will be in the container after running the script so you need to push the state to the new system (the Kubernetes cluster):
+1. Once the wrapper script has run successfully, the Terraform state will be in the container so you need to push the state to the new system (the Kubernetes cluster):
 
    `./movestatetok8s.sh`
 
@@ -602,15 +604,15 @@ All Control Center services (GitLab, ArgoCD, Grafana, Vault, and so on) use Zita
 
    Select the **Email verified** and **Set Initial Password** checkboxes to speed up the process.
 
-   ![Zitadel: Create user](assets/screenshots/iacDeployment/001_cc_zitadel_create_user.png)
+   <!-- ![Zitadel: Create user](assets/screenshots/iacDeployment/001_cc_zitadel_create_user.png) -->
 
 1. Grant appropriate permissions to this new user via the **Authorizations** menu:
 
-   ![Zitadel: Grant permissions to new user 01](assets/screenshots/iacDeployment/002_cc_zitadel_grant_authorizations_1.png)
+   <!-- ![Zitadel: Grant permissions to new user 01](assets/screenshots/iacDeployment/002_cc_zitadel_grant_authorizations_1.png) -->
 
    1. Click **New**.
 
-      ![Zitadel: Grant permissions to new user 02](assets/diagrams/iacDeployment/002_cc_zitadel_grant_authorizations_2.png)
+      <!-- ![Zitadel: Grant permissions to new user 02](assets/diagrams/iacDeployment/002_cc_zitadel_grant_authorizations_2.png) -->
 
    1. Click the **Project name** field. You will see a list of available projects: ZITADEL, grafana, vault, argocd, k8s, Nebird, gitlab.
    1. Select one of the projects, and click **Continue**.
@@ -631,7 +633,7 @@ All Control Center services (GitLab, ArgoCD, Grafana, Vault, and so on) use Zita
 
 1. You will be prompted to install the NetBird client.
 
-   ![Nebird: Install Netbird client](assets/screenshots/iacDeployment/003_cc_download_netbird_linux.png)
+   <!-- ![Nebird: Install Netbird client](assets/screenshots/iacDeployment/003_cc_download_netbird_linux.png) -->
 
 1. Retrieve the Management URL shown on the dashboard.
 
@@ -663,26 +665,26 @@ Once you've connected, you can access all the portals.
 
 1. Enable two-factor authentication for enhanced security, following the prompts to set up 2FA.
 
-   ![GitLab: Enable two-factor authentication](assets/screenshots/iacDeployment/004_cc_gitlab_2factor.png)
+   <!-- ![GitLab: Enable two-factor authentication](assets/screenshots/iacDeployment/004_cc_gitlab_2factor.png) -->
 
 1. Once done, go to **Groups** (left-hand menu) and choose **iac**.
 
-   1. Click **bootstrap**. Under **custom-config**, you will find the values that you configured previously in the build server.
-   1. In the **iac** group, you will also find two other environments, they act as templates and have nothing in them. They will be automatically deleted once you have created your first environment.
+   1. Click **bootstrap**. Under **custom-config**, you will find the values that you configured previously (in section [Control Center: Deploy the Control Center](#control-center-deploy-the-control-center)).
+   1. In the **iac** group, you will also find two other environments, they act as templates and are empty. They will be automatically deleted once you have created your first environment.
 
 ##### Vault: Verify if secret paths are accessible
 
 1. Go to: `https://vault.int.<cluster-name>.<domain>`
 
-   The `cluster_name` and `domain` values come from the `cluster-config.yaml` file that you configured earlier.
+   The `cluster_name` and `domain` values come from the `cluster-config.yaml` file that you configured earlier (in section [Control Center: Deploy the Control Center](#control-center-deploy-the-control-center)).
 
 1. On the login page, select **Method: OIDC**, click **Sign in with OIDC Provider**, then in the window that pops up, choose your new user. <!-- EDITORIAL COMMENT: techops-admin -->
 
-   ![Vault login](assets/screenshots/iacDeployment/006_vault_signin.png)
+   <!-- ![Vault login](assets/screenshots/iacDeployment/006_vault_signin.png) -->
 
 1. Verify if secret paths are accessible: under **Secret engines**, select **secret/**. You should see a list of secrets for various applications, such as GitLab, Grafana, Mimir, and so on.
 
-   ![Vault secrets](assets/screenshots/iacDeployment/007_vault_secrets.png)
+   <!-- ![Vault secrets](assets/screenshots/iacDeployment/007_vault_secrets.png) -->
 
 ##### Grafana: Review dashboards and set up alerts
 
@@ -692,7 +694,7 @@ Once you've connected, you can access all the portals.
 
 1. On the login page, click the **Sign in with Zitadel** button and select your new user.
 
-1. Review pre-configured dashboards.
+1. Review pre-configured dashboards. <!-- EDITORIAL COMMENT: Is there any? -->
 
 1. Set up alert channels if required.
 
@@ -700,7 +702,7 @@ Once you've connected, you can access all the portals.
 
 1. Go to: `https://argocd.int.<cluster-name>.<domain>`
 
-   The `cluster_name` and `domain` values come from the `cluster-config.yaml` file that you configured earlier.
+   The `cluster_name` and `domain` values come from the `cluster-config.yaml` file that you configured earlier (in section [Control Center: Deploy the Control Center](#control-center-deploy-the-control-center)).
 
 1. On the login page, click the **Sign in with Zitadel** button, and select your new user.
 
@@ -746,6 +748,7 @@ Before beginning the deployment, ensure you have the following in place.
 
 ##### Tools and software
 
+<!-- EDITORIAL COMMENT: Double-check if these are all needed-->
 - kubectl CLI installed
 - kubelogin for OIDC authentication
 - Web browser for GitLab Web IDE access
@@ -785,7 +788,7 @@ The deployment of the Switch follows a similar pattern to that of the Control Ce
 
 1. Open the latest pipeline.
 
-1. Wait until the **init** of the latest change completes. Once done, runs **deploy**.
+1. Wait until the **init** of the latest change completes. Once done, run **deploy**.
 
 1. Once the **deploy** job has run successfully, verify if the environments have been created. Go to **Groups** (left-hand menu) and choose **iac**.
 
@@ -801,7 +804,7 @@ The deployment of the Switch follows a similar pattern to that of the Control Ce
 
 1. Click **deploy-env-templates** (don't run it, just click it). Later on, you will run this to populate the project of the Switch that you want to deploy.
 
-   ![deploy-env-templates](assets/screenshots/iacDeployment/008_gitlab_deploy_env_templates.png)
+   <!-- ![deploy-env-templates](assets/screenshots/iacDeployment/008_gitlab_deploy_env_templates.png) -->
 
 1. Once you opened **deploy-env-templates**, you need to provide some environment variables:
    - **ENV_TO_UPDATE** → the name of the environment that you want to update, it is the Switch environment that you defined in the `custom-config/environment.yaml` file (in our example, it will be: `sw001`)
@@ -815,7 +818,7 @@ The deployment of the Switch follows a similar pattern to that of the Control Ce
 
    You will see that the environment is being initialized. It will fail because there is no custom configuration. This is fine for now, you will fix this later.
 
-1. Repeat the **deploy-env-templates** step for all the environments.
+<!-- 1. Repeat the **deploy-env-templates** step for all the environments. -->
 
 #### Mojaloop Switch: Configure secrets in the Vault
 
@@ -841,13 +844,13 @@ Set up the access key as a secret in the Vault.
 
    These secrets are AWS secrets automatically generated from the Control Center so the environments can use them.
 
-1. Copy the values of these two secrets and save them as you will need them in the next steps.
+1. Copy the values of these two secrets and save them. You will need them in the next steps.
 
 1. Navigate to: **Secrets Engines > secret > \<NAME_OF_YOUR_SWITCH_ENVIRONMENT>**.
 
 1. Create a secret called `cloud_platform_client_access_key` (click **Create secret +** in the top right corner and add `cloud_platform_client_access_key` in the **Path for this secret** field).
 
-   ![Configure Vault secret](assets/screenshots/iacDeployment/010_vault_create_secret.png)
+   <!-- ![Configure Vault secret](assets/screenshots/iacDeployment/010_vault_create_secret.png) -->
 
 1. Set up the secret as follows:
    - Key: `value`
@@ -867,7 +870,16 @@ Set up the access key as a secret in the Vault.
 
 #### Mojaloop Switch: Add custom configuration
 
-To configure the Switch, you are going to use a profile-based approach. What does this mean? There is a set of declarative configuration files defined in the [common-profile](https://github.com/infitx-org/common-profile) repository. You can simply reference the common-profile and define the values that should override the configuration defined in the repository. <!-- EDITORIAL COMMENT: It is possible to define a profile for each and every deployment and just reference that. But bear in mind that the custom-config.yaml file always needs to be present. Without this file, the deployment will fail. BTW, the profile currently only has the values that are not defined in the default-config. Also: the default thing is iac-modules and the profile overrides that. -->
+To configure the Switch, you are going to use a profile-based approach. What does this mean? You can define a "profile" (= a set of declarative configuration files) with values that are specific to your deployment, and use the profile to override the configuration defined in the **iac-modules** repository.
+
+It is possible to define a separate profile for each and every deployment.
+
+In the example below, we are going to use the [common-profile](https://github.com/infitx-org/common-profile) repository. All you have to do is reference the **common-profile** and the values defined in there will override the configuration defined in the **iac-modules** repository.
+
+**NOTE:** The `custom-config.yaml` file always needs to be present. Without this file, the deployment will fail.
+
+**NOTE:** If you do not wish to override the default configuration in the **iac-modules** repository, do not reference any profile.
+<!-- EDITORIAL COMMENT: BTW, the profile currently only has the values that are not defined in the default-config. Also: the default thing is iac-modules and the profile overrides that. So the iac-modules is the default, if we don't want to override it, we just remove the override file. --> 
 
 1. In GitLab, go back to the Switch environment.
 
@@ -877,23 +889,23 @@ To configure the Switch, you are going to use a profile-based approach. What doe
 
    ```yaml
    profiles/switch:
-   url: https://github.com/infitx-org/common-profile.git
+   url: https://github.com/infitx-org/common-profile.git       # replace with your own profile in case you have defined your own custom profile
    ref: main
    ```
 
-   This submodule will clone the repository referenced as a git submodule and will merge it directly. Anything that has to be overriden will be defined in the below steps.
+   This submodule will clone the repository referenced as a git submodule and will merge it directly into the configuration. Anything that has to be overriden will be defined in the below steps.
 
    **NOTE:** In case your profile is defined in a private repository, you have to set up a git-specific secret in the Vault. It will be used to authenticate to the repository automatically. There is no need to define a secret for a public repository.
 
    Here's how to define the secret in the Vault:
 
-   Go to: **Secrets Engines > secret**.
+   1. Go to: **Secrets Engines > secret**.
 
-   Create a secret called **git**.
+   1. Create a secret called **git**.
 
-   In the **Secret data** field, add **credentials** as the key, and a GitHub token as the value.
+   1. In the **Secret data** field, add **credentials** as the key, and a GitHub token as the value.
 
-   Click Save.
+   1. Click **Save**.
 
 1. Go to **Code > Repository > custom-config**.
 
@@ -908,7 +920,7 @@ To configure the Switch, you are going to use a profile-based approach. What doe
    cloud_region: <YOUR_AWS_REGION>
    object_storage_provider: s3
    cloud_platform: aws
-   iac_terraform_modules_tag: v7.0.0-rc.119
+   iac_terraform_modules_tag: v7.0.0-rc.119              # mcm-1762808514
    ansible_collection_tag: v7.0.0-rc.86
    manage_parent_domain: false
    cc: controlcenter
@@ -954,7 +966,7 @@ To configure the Switch, you are going to use a profile-based approach. What doe
 
 1. Create a `mojaloop-stateful-resources-monolith-databases.yaml` file and configure it as follows:
 
-   There will be 2 RDS databases: one for Ory, Keycloak, etc., and one for Mojaloop services such as the Central Ledger, MCM, etc. The MongoDB documentdb database will be for the Finance Portal, the collections, settlements, etc.
+   There will be 2 RDS databases: one for Ory, Keycloak, etc., and one for Mojaloop services such as the Central Ledger, MCM, etc. The MongoDB documentdb database will be for the Finance Portal, the collections, settlements, etc. <!-- EDITORIAL COMMENT: In the case of an on-prem deployment, they are created from Persona in the storage cluster. -->
 
    `mojaloop-stateful-resources-monolith-databases.yaml` will create the databases and the default configuration: t3.million databases with a single instance. If you need bigger databases or more instances, you can add appropriate values. <!-- EDITORIAL COMMENT: We need to add an appendix with the full values from session 2, Nov 7th. The files in the default-config folder will not work, as they contain placeholders. In session 2, we specified values in place of the dummy values or placeholders. -->
 
@@ -969,7 +981,7 @@ To configure the Switch, you are going to use a profile-based approach. What doe
 
 1. Create a `mojaloop-values-override.yaml` file and configure it as follows:
 
-   **NOTE:** Feel free to remove references to specific images. If you remove, the images will be pulled from whatever the Helm chart specifies.
+   <!-- **NOTE:** Feel free to remove references to specific images. If you remove them, the images will be pulled from whatever the Helm chart specifies. -->
 
    ```yaml
    quoting-service:
@@ -1016,7 +1028,7 @@ To configure the Switch, you are going to use a profile-based approach. What doe
 
 1. Create a `pm4ml-vars.yaml` file and configure it as follows:
 
-   NOTE: Ensure that `${switch}` and `${currency}` have been defined in the `cluster-config.yaml` file as these values will be taken from there.
+   **NOTE:** Ensure that `${switch}` and `${currency}` have been defined in the `cluster-config.yaml` file as these values will be taken from there.
 
    ```yaml
    pm4mls:
@@ -1030,18 +1042,70 @@ To configure the Switch, you are going to use a profile-based approach. What doe
          currency: ${currency}
    ```
 
-   This file will create the PM4MLs that we want to onboard.
+   This file will create the PM4ML instances that we want to onboard.
 
-1. Create a `values-hub-provisioning-override.yaml` file and configure it as follows:
+1. Create a `values-hub-provisioning-override.yaml` file and configure it as follows: <!-- EDITORIAL COMMENT: Do we need to create the same file under default-config? 56:28-->
 
    ```yaml
    testCaseEnvironmentFile:
    inputValues:
-         currency: "<YOUR_CURRENCY>"     #change this to your currency
+         currency: "<YOUR_CURRENCY>"                              # change this to your currency
          DEFAULT_SETTLEMENT_MODEL_NAME: "DEFAULTDEFERREDNET"
          hubEmail: "hub@example.com"
    ```
 
 1. Commit your changes to main.
 
-1. Run init. The first init will fail but this is fine for now. For the init to succedd the S3 buckets must be up.
+1. Run **init**. The first init will fail but this is fine for now. For the init to succeed, the S3 buckets must be up. <!-- EDITORIAL COMMENT: Do we have to run merge-config before init? -->
+
+<!-- EDITORIAL COMMENT: call 3 33:00-35:00 -->
+
+1. Run **refresh-templates**.
+
+   Whenever you use profiles, you need to run the **refresh-templates** job before the deploy job (via GitLab > switch > Build > Pipleines). The **refresh-templates** job will fetch the repository, add it as a sub-module, and apply it.
+
+<!-- 37:00  We have to run refresh-templates only when you add a sub-module. Otherwise you can run the deploy job without it. You run refresh-templates when using profiles for the first time. When you just update something in the already existing profile, you don't need to run it. ??? However, if you change the profile, you have to run refresh-templates. It's because it's the one that will clone the profile and make that update. Each time we just iac-modules or common-profiles, we have to run refresh-templates. -->
+
+1. Once **refresh-templates** has completed successfully, run **deploy-infra**.
+
+...
+
+### Destroying the Mojaloop Switch environment
+
+There is no **destroy** job defined in the pipeline, in order to avoid anyone accidentally running it.
+
+To destroy the Switch, perform the following steps:
+
+1. Make a new commit to main (for example, add a comment to a file) and when formulating your commit message, make sure that it includes the string `destroy:`.
+
+   Example:
+
+   ```bash
+   destroy: uninstall the switch
+   ```
+
+1. In GitLab, navigate to the Switch environment, and go to **Build > Pipelines**.
+
+1. Run the **init** job.
+
+1. Once **init** has completed successfully, run **deploy-infra**.
+
+1. Once **deploy-infra** has completed successfully, wait for **lint-apps** and **push-apps** to finish too.
+
+<!-- ARE THESE 2 STEPS NEEDED? 1. Wait for the **init** job of the **update generated confgs to project** commit to complete.
+
+1. Go back to the pipeline of your **destroy: uninstall the switch** commit. -->
+
+1. Go to **cleanup** stage > **destroy** job, and run the job manually. There is no need to define any variables.
+
+### Tips and tricks
+
+When configuring the Switch, you can automatically trigger certain jobs by prefixing your commit message in a specific way:
+<!-- EDITORIAL COMMENT: Need to double-check the names of the jobs. -->
+
+| Prefix                      | Job                      | Comment |
+|-----------------------------|--------------------------|---------|
+| `deploy: <your-commit-message>`                   | **refresh-deploy-infra** | This job job will work as a **deploy** and **refresh-templates** at the same time but it will take longer. |
+| `deploy-infra: <your-commit-message>`             | **deploy-infra**         | -       |
+| `[skip lint] <your-commit-message>`               | Can be added to any job to skip the linter check  | For example, `deploy-infra: [skip lint]` triggers the **deploy-infra** job and skips the linter check. The linter check may sometimes fail, for example, due to CRDs not being available yet. In such cases, skipping the check can be useful. |
+| `destroy: <your-commit-message>`                  | **destroy**              | There is no **destroy** job defined in the pipeline, and this prefix will not automatically run it either. The prefix will just show the **destroy** job and you will have to run the job manually. For details, see section [Destroying the Mojaloop Switch environment](#destroying-the-mojaloop-switch-environment). |
