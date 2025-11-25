@@ -23,12 +23,12 @@ Click on each to find out details of the workstream, such as objectives and whic
 ## Candidate Workstreams
 As well as the currently active workstreams, we have a number of candidate workstreams that are "fast followers" behind them - that is, these have been identified as high priority, but as things stand there is insufficient capacity within the Community to address them. These are:
 
-- Implementation of PISP V2.0
+- Implementation of PISP V2.0 and Settlement V3.0
 - Operator Portal enhancements - improving the UI, addressing perceived gaps in functionality
+- Enhanced forensic audit support
 - Merchant Payments - extending the current relatively simple solution for merchant registration and merchant-presented QR code payments to include some of the richer elements a live merchant payments scheme would need.
-- An overlay service to provide B2B payments functionality beyond the payment itself; integration with ERPs, management of supply chains, invoicing etc.
 
-Please contact the Product Director if you'd like to discuss any of these candidate workstreams - in particular, how we make them active!
+Please contact the Product Director if you'd like to discuss any of these candidate workstreams - in particular, how we make them active.
 
 ## Applicability
 
@@ -37,4 +37,5 @@ This version of this document relates to Mojaloop [Version 17.1.0](https://githu
 ## Document History
   |Version|Date|Author|Detail|
 |:--------------:|:--------------:|:--------------:|:--------------:|
+|1.1|25th November 2025| Paul Makin|Reviewed/amended the list of candidate workstreams|
 |1.0|4th November 2025| Paul Makin|Initial version|
