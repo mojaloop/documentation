@@ -1,5 +1,5 @@
 # Ongoing Development
-Mojaloop V17.1.0 is not a finished product - of course! There are always new features to be considered, new APIs to be implemented, new portals to be added, and of course there is always ongoing maintenance, and security requires constant vigilance.
+No software is ever finished, and Mojaloop is no exception. There are always new features to be considered, new APIs to be implemented, new portals to be added, and of course there is always ongoing maintenance, and security requires constant vigilance.
 
 The Mojaloop Roadmap addresses and prioritises these needs, placing them on a timeline, and defines them as a set of workstreams. Each of these work streams has a workstream lead, responsible for defining, managing and delivering the workstream to the Mojaloop Community. The workstream lead is supported by a number of contributors, who may be engineers helping to implement a feature, or those who can document the feature, or people helping to define the requirements.
 
