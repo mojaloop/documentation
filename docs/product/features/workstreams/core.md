@@ -9,7 +9,7 @@ The management of the Mojaloop Core and the releases of the open source platform
 ## Contributors
 |Workstream Lead|Contributors|
 |:--------------:|:--------------:|
-| Sam Kummary | Shashi Hirugade<br>Juan Correa<br>Walter Obadha |
+| Sam Kummary | Shashi Hirugade<br>Juan Correa |
 
 ## Latest Update (Summary)
 PI 28 saw the successful delivery of Mojaloop v17.1.0, a clean release with no known vulnerabilities, accompanied by artefact provenance, a full SBOM, and coordinated improvements from related workstreams. 
