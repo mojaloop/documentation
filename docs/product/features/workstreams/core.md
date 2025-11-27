@@ -1,5 +1,5 @@
 # Core and Releases Workstream
-The Mojaloop Core and Releases workstream aims to maintain the Mojaloop core (maintenance items such as fixes to critical bugs, prioritized feature enhancements, node upgrades) and undertakes the Release process of the core services and some adjacent services or products that are part of the Mojaloop Platform.
+The Mojaloop Core and Releases workstream maintains the Mojaloop core (maintenance items such as fixes to critical bugs, prioritized feature enhancements, node upgrades) and undertakes the Release process of the core services and some adjacent services or products that are part of the Mojaloop Platform.
 
 The workstream also aims to support other workstreams delivering features to core or supporting services by helping package services that are of release quality (the new features need to follow Mojaloop’s adopted quality standards and best practices such as automated tests, documentation, helm charts and such). This involves the community support aspect as well.
 
