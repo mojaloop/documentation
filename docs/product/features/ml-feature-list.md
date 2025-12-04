@@ -65,7 +65,7 @@ Around the core illustrated in the above diagram there are a set of overlay serv
 - **ISO 8583 integration**, which allows ATMs (or an ATM switch) to be integrated with a Mojaloop Hub, for cash withdrawals;
 - [**MOSIP integration**](https://www.mosip.io), which allow payments to be routed to a MOSIP-based digital identity, rather than (say) a mobile phone number.
 
-# Feature List
+## Feature List
 
 This document presents a feature list which covers the following aspects of Mojaloop:
 
@@ -87,7 +87,7 @@ This document presents a feature list which covers the following aspects of Moja
 -   [**Invariants**](./invariants.md), setting out the development and operational principles to which any Mojaloop implementation must adhere. This includes the principles which ensure the security and integrity of a Mojaloop deployment.
 
 &nbsp;
-# Continuous Development
+## Continuous Development
 No software is ever finished, and Mojaloop is no exception. There are always new features to be considered, new APIs to be implemented, new portals to be added, and of course there is always ongoing maintenance, and security requires constant vigilance.
 
 The Mojaloop Roadmap addresses and prioritises these needs, placing them on a timeline, and defines them as a set of workstreams. Each of these work streams has a workstream lead, responsible for defining, managing and delivering the workstream to the Mojaloop Community. The workstream lead is supported by a number of contributors, who may be engineers helping to implement a feature, or those who can document the feature, or people helping to define the requirements.
