@@ -12,9 +12,15 @@ The management of the Mojaloop Core and the releases of the open source platform
 | Sam Kummary | Shashi Hirugade<br>Juan Correa |
 
 ## Latest Update (Summary)
-PI 28 saw the successful delivery of Mojaloop v17.1.0, a clean release with no known vulnerabilities, accompanied by artefact provenance, a full SBOM, and coordinated improvements from related workstreams. 
+The codebase for 17.2.0 passes ~80% of automated tests across eight major collections; remaining tests are blocked by security-related changes to the Testing Toolkit. Once resolved, and once all security vulnerabilities are cleared, the release will proceed.
 
-Looking forward, the team concluded that no breaking release (v18) would be made this year. Instead, work is underway on v17.2.0, a non-breaking enhancement release expected by the end of PI 29. This release will bundle multiple fixes and significantly improved performance at the SDK layer — unlocking up to 10x throughput improvements. In collaboration with the Performance Optimisation workstream, a key goal is to tie measurable performance outcomes to a specific release version, supported by reproducible testing scripts and metrics dashboards. The workstream also responded rapidly to a breaking upstream change by Bitnami, implementing a short-term fix and designing a long-term solution to restore Helm chart stability.
+Version 17.2.0 will deliver:
+- Major performance enhancements
+- LEI support in merchant services
+- Inclusion of Connection Manager in Helm
+- Significant DRPP-originating bug fixes
+
+The team will evaluate in early 2026 whether the next release will be a minor revision or the TigerBeetle-based v18.
 
 ## Applicability
 
@@ -23,4 +29,5 @@ This version of this document relates to Mojaloop [Version 17.1.0](https://githu
 ## Document History
   |Version|Date|Author|Detail|
 |:--------------:|:--------------:|:--------------:|:--------------:|
+|1.1|4th December 2025| Paul Makin|Added latest update|
 |1.0|25th November 2025| Paul Makin|Initial version|

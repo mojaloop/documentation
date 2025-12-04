@@ -12,7 +12,7 @@ The aim is to enable adopters to deploy Mojaloop easily, in the environment of t
 | James Bush | Tony Williams<br>Vanda Illyes<br>Sam Kummary<br>Paul Makin<br>Paul Baker<br>Michael Richards|
 
 ## Latest Update (Summary)
-The Deployment Tools workstream focused on addressing a gap that emerged from increased IaC complexity: many schemes don’t require DRPP-scale infrastructure and are now underserved by the current deployment model. In response, the team began design of “IaC Lite,” a simpler, lower-cost deployment solution for production-quality Mojaloop environments. Early architecture work targets Proxmox (on-prem virtualisation), AWS, and GCP (GKE) — ensuring cloud-agnostic extensibility. Initial Terraform modules are under test in Mojaloop’s on-prem lab, and the team aims to release a community-testable version by end of November. Meanwhile, improved Helm charts are being developed and exercised through the performance and evolution workstreams, reflecting strong cross-stream alignment.
+Recent DRPP contributions to IaC increased infrastructure costs by optimising for high-scale multi-instance deployments. To address the needs of smaller schemes, the team has developed a lightweight alternative—provisionally “IAC Lite.” Test deployments are running in AWS and on Foundation lab equipment. The objective is to deliver a streamlined, low-overhead, open-source deployment experience requiring minimal manual steps.
 
 ## Applicability
 
@@ -21,4 +21,5 @@ This version of this document relates to Mojaloop [Version 17.1.0](https://githu
 ## Document History
   |Version|Date|Author|Detail|
 |:--------------:|:--------------:|:--------------:|:--------------:|
+|1.1|4th December 2025| Paul Makin|Added latest update|
 |1.0|25th November 2025| Paul Makin|Initial version|

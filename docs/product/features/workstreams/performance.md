@@ -10,11 +10,10 @@ A whitepaper that demonstrates how Mojaloop exceeds the performance requirements
 | James Bush | Julie Guetta<br>Shashi Hirugade<br>Sam Kummary<br>Nathan Delma<br>Ablipay (Jerome, team)|
 
 ## Latest Update (Summary)
-The Performance workstream has advanced steadily, having overcome early delays caused by the high cost footprint of Mojaloop’s infrastructure — a by-product of DRPP-driven IaC complexity. These constraints prompted a parallel effort to create IaC Lite (see the Deployment Tools workstream), while the performance team itself resumed tests in AWS with support from the core engineering team. 
+The workstream achieved a major milestone by reaching 1,000 TPS prior to the Nairobi convening. With replication enabled, throughput remains high (950 TPS). The team is now scaling to 2,000 and 2,500 TPS as part of the performance white paper, which will include concrete hardware sizing recommendations. Early TigerBeetle tests suggest dramatic performance improvement and reduced infrastructure cost.
 
-Throughput-limiting issues in the SDK were identified and resolved, allowing performance tests to proceed, and the team has already demonstrated performance in excess of 1000 TPS, and expects further milestones int he near future. 
+Long-term storage tiering requirements were flagged as essential for regulatory data-retention obligations in high-volume schemes.
 
-Data from these tests is being collected and analysed as input for a comprehensive performance white paper, intended to guide infrastructure sizing, scaling decisions, and cost-performance optimisation for scheme implementers.
 ## Applicability
 
 This version of this document relates to Mojaloop [Version 17.1.0](https://github.com/mojaloop/helm/releases/tag/v17.1.0)
@@ -22,4 +21,5 @@ This version of this document relates to Mojaloop [Version 17.1.0](https://githu
 ## Document History
   |Version|Date|Author|Detail|
 |:--------------:|:--------------:|:--------------:|:--------------:|
+|1.1|4th December 2025| Paul Makin|Added latest update|
 |1.0|25th November 2025| Paul Makin|Initial version|

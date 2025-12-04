@@ -12,9 +12,8 @@ By making it easier for different types of DFSP to join a Mojaloop-based payment
 | James Bush | Sam Kummary<br>Yevhen Kryiukha<br>Paul Baker<br>Vijay Kumar<br>Phil Green<br>Steve Haley<br>Paul Makin |
 
 ## Latest Update (Summary)
-The Participation Tools workstream has advanced the long-running effort to refactor and modularise the Mojaloop Connection Manager (MCM). The server component is now fully decoupled from the Mojaloop IaC stack and deployable via Helm into any Kubernetes environment. The onboarding journey has also been re-architected to remove dependency on HashiCorp Vault and Mojaloop’s IAM defaults, allowing standalone, flexible MCM deployments. Only the client-side MCM refactor remains, along with documentation. 
+The workstream continues to make progress on participant onboarding, driven by improvements to the Mojaloop Connection Manager (MCM). With MCM now decoupled from the IAC codebase, schemes can adopt it independently, broadening its utility. Documentation has emerged as the most urgent need; a dedicated technical writer is preparing comprehensive materials spanning MCM, Payment Manager, and the Integration Toolkit. Donated documentation from Infitx will be generalised for broader community use. New mini-guides have been published to simplify navigation of Mojaloop tooling.
 
-A Docker Compose version of Payment Manager has been developed for smaller DFSPs, and community-facing documentation — including tool selection guidance — has been authored and reviewed. A generalised version of the DRPP system integrator (SI) onboarding guide is planned for future PIs.
 
 ## Applicability
 
@@ -23,4 +22,5 @@ This version of this document relates to Mojaloop [Version 17.1.0](https://githu
 ## Document History
   |Version|Date|Author|Detail|
 |:--------------:|:--------------:|:--------------:|:--------------:|
+|1.1|4th December 2025| Paul Makin|Added latest update|
 |1.0|25th November 2025| Paul Makin|Initial version|
