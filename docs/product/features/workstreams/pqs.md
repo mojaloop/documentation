@@ -10,7 +10,7 @@ This ensures the Mojaloop platform quality & security is maintained; vulnerabili
 | Sam Kummary | Juan Correa<br>Devarsh Shah<br>Shuchita Prakash<br>Shashi Hirugade |
 
 ## Latest Update (Summary)
-The Platform Quality and Security workstream has maintained its focus on vulnerability management, CI/CD upgrades, and software integrity assurance. Mojaloop v17.1.0 was released with zero known vulnerabilities, and the team resolved high-profile issues such as the Axios vulnerability across libraries and services. All Helm charts now support digital provenance, and a comprehensive Software Bill of Materials (SBOM) is included in release metadata. CI pipelines are being modernised, and the team resumed efforts toward the OpenSSF/FLOSS self-assessment badge. Some objectives, including finance portal refactoring and integration of GitHub’s new code quality tools, remain active backlog items.
+The team is working toward a year-end release candidate of 1.7.20, focusing on security hardening, dependency updates, and CI reliability. AI-powered tooling is now generating automated PRs for dependency updates across Mojaloop’s internal packages, significantly reducing manual workload. The Finance Portal requires a more comprehensive rewrite due to outdated technology. The workstream also assessed the Mojaloop IAC sandbox against the new QA Framework.
 
 ## Applicability
 
@@ -19,4 +19,5 @@ This version of this document relates to Mojaloop [Version 17.1.0](https://githu
 ## Document History
   |Version|Date|Author|Detail|
 |:--------------:|:--------------:|:--------------:|:--------------:|
+|1.1|4th December 2025| Paul Makin|Added latest update|
 |1.0|25th November 2025| Paul Makin|Initial version|

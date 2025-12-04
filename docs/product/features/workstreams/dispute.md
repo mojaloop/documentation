@@ -12,9 +12,7 @@ Off the shelf alternatives generally assume that switches operate with limited d
 | Promesse Ishimwe | Derrick Wamatu |
 
 ## Latest Update (Summary)
-The approach that was defined in previous PIs was that the best match for Mojaloop's requirements is the dispute management platform that has been developed by Switch, for use with their Mojaloop deployment. Switch then agreed to donate this to the Mojaloop open source, though it was clear that further work would be required to make the code adopter-agnostic.
-
-However, because of significant pressure on RSwitch to focus their attention on immediate operational matters, this workstream did not progress during PI28. It is hoped that this will be resolved during PI 29, and the process of generalisation can begin.
+There was no update from the Dispute Management workstream in this cycle. Promesse was unable to attend the call, and no written update was provided. An update is expected at the next session once the workstream is able to report on current progress and priorities.
  
 ## Applicability
 
@@ -23,4 +21,5 @@ This version of this document relates to Mojaloop [Version 17.1.0](https://githu
 ## Document History
   |Version|Date|Author|Detail|
 |:--------------:|:--------------:|:--------------:|:--------------:|
+|1.1|4th December 2025| Paul Makin|Added latest update|
 |1.0|25th November 2025| Paul Makin|Initial version|

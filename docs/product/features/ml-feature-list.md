@@ -87,6 +87,12 @@ This document presents a feature list which covers the following aspects of Moja
 -   [**Invariants**](./invariants.md), setting out the development and operational principles to which any Mojaloop implementation must adhere. This includes the principles which ensure the security and integrity of a Mojaloop deployment.
 
 &nbsp;
+# Continuous Development
+No software is ever finished, and Mojaloop is no exception. There are always new features to be considered, new APIs to be implemented, new portals to be added, and of course there is always ongoing maintenance, and security requires constant vigilance.
+
+The Mojaloop Roadmap addresses and prioritises these needs, placing them on a timeline, and defines them as a set of workstreams. Each of these work streams has a workstream lead, responsible for defining, managing and delivering the workstream to the Mojaloop Community. The workstream lead is supported by a number of contributors, who may be engineers helping to implement a feature, or those who can document the feature, or people helping to define the requirements.
+
+You can view the current set of workstreams and their latest status reports in the [**Continuous Development** section](./development.md).
 
 # About This Document
 
@@ -106,6 +112,7 @@ This version of this document relates to Mojaloop Version [17.0.0](https://githu
 ## Document History
   |Version|Date|Author|Detail|
 |:--------------:|:--------------:|:--------------:|:--------------:|
+|1.5|4th December 2025| Paul Makin|Added the "Continuous Development" sub-section|
 |1.4|28th August 2025| Paul Makin|Added the "Regulators' and Operators' Perspective"|
 |1.3|23rd June 2025| Paul Makin|Added the ecosystem text and diagram|
 |1.2|14th April 2025| Paul Makin|Updates related to the release of V17|

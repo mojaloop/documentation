@@ -15,9 +15,7 @@ A QA Framework provides a consistent approach for stakeholders to assess the qua
 | Moses Kipchirchir | Denis Mariru <br>Brian Njoroge<br>Ei Nghon Phoo<br>Sam Kummary |
 
 ## Latest Update (Summary)
-The team presented at MojaCom 29 and aims to position the QA self-assessment framework as a permanent component of Mojaloop implementation guidance. 
-
-The QA Framework workstream reached its first delivery milestone with the rollout of a complete QA framework to adopters. The intent is now to validate the framework in a live environment before scaling it to wider adoption. 
+The draft QA Framework is now published on GitHub and Slack and available for immediate use by the community. Feedback from adopters will shape future refinement. Early discussions explore the possibility of an automated version of the framework to assess deployment quality as part of the deployment pipeline. Full automation remains a longer-term goal.
 
 ## Applicability
 
@@ -26,4 +24,5 @@ This version of this document relates to Mojaloop [Version 17.1.0](https://githu
 ## Document History
   |Version|Date|Author|Detail|
 |:--------------:|:--------------:|:--------------:|:--------------:|
+|1.1|4th December 2025| Paul Makin|Added latest update|
 |1.0|25th November 2025| Paul Makin|Initial version|
