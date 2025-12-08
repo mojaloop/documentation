@@ -12,7 +12,7 @@ The management of the Mojaloop Core and the releases of the open source platform
 | Sam Kummary | Shashi Hirugade<br>Juan Correa |
 
 ## Latest Update (Summary)
-The codebase for 17.2.0 passes ~80% of automated tests across eight major collections; remaining tests are blocked by security-related changes to the Testing Toolkit. Once resolved, and once all security vulnerabilities are cleared, the release will proceed.
+The codebase for 17.2.0 RC passes ~80% of automated tests across eight major collections; remaining tests are blocked by security-related changes to the Testing Toolkit. Once resolved, and once all security vulnerabilities are cleared, the release will proceed.
 
 Version 17.2.0 will deliver:
 - Major performance enhancements
