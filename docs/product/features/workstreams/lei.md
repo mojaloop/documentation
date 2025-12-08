@@ -12,7 +12,7 @@ It also helps our credibility in cross-border merchant payments, and complements
 | Clare Rowley<br>Ololade Osunsanya | Michael Richards<br>Paul Makin<br>Shuchita Prakash<br>Sam Kummary<br>James Bush<br>Xiaodi Wang |
 
 ## Latest Update (Summary)
-The LEI Addressing workstream has concentrated on preparing a merchant-presented QR code demo for MojaCom 29. The demo shows a merchant identified via a GLEIF-verified LEI, with the system retrieving real-time entity data from GLEIF’s API. Looking beyond the demo, the team plans to explore automated LEI generation during merchant onboarding via the Merchant Registry, and correct population of LEI tags within ISO 20022 message structures. Dialogue has begun with external actors, including CPMI and the financial messaging community, as LEI adoption increasingly intersects with regulatory and scheme-level design conversations.
+Documentation is currently the primary focus. The workstream is integrating LEI-related process flows into the Introduction to Mojaloop document, and preparing to collaborate with the ISO 20022 workstream on additional message examples, especially a P2B use case featuring LEI as a beneficiary identifier. Broader questions around applying LEIs to DFSP identities have been deferred due to complexity and regulatory implications.
 
 ## Applicability
 
@@ -21,4 +21,5 @@ This version of this document relates to Mojaloop [Version 17.1.0](https://githu
 ## Document History
   |Version|Date|Author|Detail|
 |:--------------:|:--------------:|:--------------:|:--------------:|
+|1.1|4th December 2025| Paul Makin|Added latest update|
 |1.0|25th November 2025| Paul Makin|Initial version|

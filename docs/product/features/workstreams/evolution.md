@@ -12,7 +12,14 @@ This workstream has strategic importance; TigerBeetle is the next generation led
 | Michael Richards | James Bush<br>Lewis Daley<br>Sam Kummary<br>Paul Makin |
 
 ## Latest Update (Summary)
-PI-28 marked a pivotal phase in Mojaloop’s architectural roadmap, as the core ledger refactor toward TigerBeetle integration continued. Designed to overcome throughput bottlenecks caused by SQL locking in MySQL, TigerBeetle offers event-driven, concurrency-safe ledgering with expected performance exceeding 10,000 TPS per participant — enough to support national-scale cashless economies. Work is being led by Lewis Daly, who also introduced deterministic testing into the core ledger codebase, enhancing verification under edge-case conditions. A production-ready TigerBeetle release is projected for Q1–Q2 2026. In parallel, the workstream revisited the forensic audit trail architecture, prompted by DRPP’s high-throughput requirements, and has now reached architectural consensus via the Design Authority.
+### Forensic Audit
+The forensic audit redesign is ready for implementation but awaits funding from forthcoming adoption projects. No significant progress is expected until mid-Q1 2026.
+### New Accounting Model
+The new accounting model is broadly agreed and represents a major shift toward alignment with international accounting standards. This addresses concerns raised by global institutions and enhances Mojaloop’s credibility as a financial infrastructure platform. The initial target is TigerBeetle, though the team has not yet decided whether a MySQL version of the new model will also be produced.
+### TigerBeetle Integration
+Given the accounting model’s increased complexity, TigerBeetle is the preferred ledger engine. Integration planning is underway, with work expected to begin before Christmas. 
+### Settlement v3
+Settlement v3 introduces deterministic settlement batches, addressing long-standing reconciliation challenges and enabling multi-scheme scalability. TigerBeetle will store settlement batch keys, while SQL components and admin APIs will require substantial enhancement to support model configuration, batch tracking, and settlement operations.
 
 ## Applicability
 
@@ -21,4 +28,5 @@ This version of this document relates to Mojaloop [Version 17.1.0](https://githu
 ## Document History
   |Version|Date|Author|Detail|
 |:--------------:|:--------------:|:--------------:|:--------------:|
+|1.1|4th December 2025| Paul Makin|Added latest update|
 |1.0|25th November 2025| Paul Makin|Initial version|
