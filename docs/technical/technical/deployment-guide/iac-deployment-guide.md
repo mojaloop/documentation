@@ -876,7 +876,7 @@ It is possible to define a separate profile for each and every deployment.
 
 In the example below, we are going to use the [common-profile](https://github.com/infitx-org/common-profile) repository. All you have to do is reference the **common-profile** and the values defined in there will override the configuration defined in the **iac-modules** repository.
 
-**NOTE:** The `custom-config.yaml` file always needs to be present. Without this file, the deployment will fail. <!-- EDITORIAL COMMENT: Should be `cluster-config.yaml`-->
+**NOTE:** The `cluster-config.yaml` file always needs to be present. Without this file, the deployment will fail.
 
 **NOTE:** If you do not wish to override the default configuration in the **iac-modules** repository, do not reference any profile.
 <!-- EDITORIAL COMMENT: BTW, the profile currently only has the values that are not defined in the default-config. Also: the default thing is iac-modules and the profile overrides that. So the iac-modules is the default, if we don't want to override it, we just remove the override file. --> 
@@ -1165,6 +1165,8 @@ In the example below, we are going to use the [common-profile](https://github.co
 
    The `cluster_name` and `domain` values come from the `cluster-config.yaml` file that you configured earlier.
 
+TO BE CONTINUED...
+
 ### Destroying the Mojaloop Switch environment
 
 There is no **destroy** job defined in the pipeline, in order to avoid anyone accidentally running it.
@@ -1212,8 +1214,6 @@ RDS and databases are managed by ArgoCD using Crossplane, they are not created b
 1. Go to **Build > Pipelines**.
 1. Select the latest change.
 1. Run the deploy job. <!-- EDITORIAL COMMENT: Which one? -->
-
-TO BE CONTINUED...
 
 
 ### Tips and tricks
