@@ -876,7 +876,7 @@ It is possible to define a separate profile for each and every deployment.
 
 In the example below, we are going to use the [common-profile](https://github.com/infitx-org/common-profile) repository. All you have to do is reference the **common-profile** and the values defined in there will override the configuration defined in the **iac-modules** repository.
 
-**NOTE:** The `custom-config.yaml` file always needs to be present. Without this file, the deployment will fail.
+**NOTE:** The `custom-config.yaml` file always needs to be present. Without this file, the deployment will fail. <!-- EDITORIAL COMMENT: Should be `cluster-config.yaml`-->
 
 **NOTE:** If you do not wish to override the default configuration in the **iac-modules** repository, do not reference any profile.
 <!-- EDITORIAL COMMENT: BTW, the profile currently only has the values that are not defined in the default-config. Also: the default thing is iac-modules and the profile overrides that. So the iac-modules is the default, if we don't want to override it, we just remove the override file. --> 
@@ -909,7 +909,7 @@ In the example below, we are going to use the [common-profile](https://github.co
 
 1. Go to **Code > Repository > custom-config**.
 
-1. Configure the `custom-config.yaml` file as follows:
+1. Configure the `cluster-config.yaml` file as follows:
 
    ```yaml
    env: <NAME_OF_YOUR_SWITCH_ENVIRONMENT>
@@ -920,7 +920,7 @@ In the example below, we are going to use the [common-profile](https://github.co
    cloud_region: <YOUR_AWS_REGION>
    object_storage_provider: s3
    cloud_platform: aws
-   iac_terraform_modules_tag: v7.0.0-rc.119              # mcm-1762808514
+   iac_terraform_modules_tag: v7.0.0-rc.119              # mcm-1762808514 --> mcm-1762866755
    ansible_collection_tag: v7.0.0-rc.86
    manage_parent_domain: false
    cc: controlcenter
@@ -1056,19 +1056,114 @@ In the example below, we are going to use the [common-profile](https://github.co
 
 1. Commit your changes to main.
 
-1. Run **init**. The first init will fail but this is fine for now. For the init to succeed, the S3 buckets must be up. <!-- EDITORIAL COMMENT: Do we have to run merge-config before init? -->
+1. Run **init**. The first init may fail but this is fine for now. For the init to succeed, the S3 buckets must be up. 
+<!-- EDITORIAL COMMENT: Do we have to run merge-config before init? Also, do we have to wait and re-run **init** ntil it succeeds? -->
 
 <!-- EDITORIAL COMMENT: call 3 33:00-35:00 -->
 
 1. Run **refresh-templates**.
 
-   Whenever you use profiles, you need to run the **refresh-templates** job before the deploy job (via GitLab > switch > Build > Pipleines). The **refresh-templates** job will fetch the repository, add it as a sub-module, and apply it.
+   Whenever you use profiles, you need to run the **refresh-templates** job before the deploy job (via **GitLab > switch > Build > Pipleines**). The **refresh-templates** job will fetch the repository, add it as a sub-module, and apply it.
 
 <!-- 37:00  We have to run refresh-templates only when you add a sub-module. Otherwise you can run the deploy job without it. You run refresh-templates when using profiles for the first time. When you just update something in the already existing profile, you don't need to run it. ??? However, if you change the profile, you have to run refresh-templates. It's because it's the one that will clone the profile and make that update. Each time we just iac-modules or common-profiles, we have to run refresh-templates. -->
 
-1. Once **refresh-templates** has completed successfully, run **deploy-infra**.
+#### Mojaloop Switch: Run the deployment
 
-...
+1. Once **refresh-templates** has completed successfully, run **deploy-infra**.
+   1. Select the **deploy** stage of your latest commit.
+   1. Run **deploy-infra**. This will deploy the infrastructure, Kubernetes, ArgoCD, together with the configuration you specified.
+      (After **deploy-infra** has run, two more jobs will run: **lint-apps** and **push-apps**. Following the **lint-apps** job, a **push-apps** job runs automatically, which will push the manifests generated for the ArgoCD applications.)
+   1. Wait until the job finishes successfully.
+
+#### Mojaloop Switch: Verify the deployment
+
+1. After **deploy-infra** has run successfully, you can download the artifacts from the **Build > Artifacts** page. (When you run a deploy job, it will save some artifacts.)
+   1. Browse **deploy-infra**, and explore its contents.
+   1. Go to **ansible > k8s-deploy**.
+   1. You will find the following artifacts:
+      1. `inventory`: used for Terraform
+      1. `oidc-kubeconfig`: the kubeconfig of the Kubernetes environment just deployed
+      1. `sshkey`
+1. ssh into the bastion of the environment. <!-- EDITORIAL COMMENT: Why do we need to do that? --> For this, you need to grab the ssh key from the `sshkey` artifact, and the IP address of the bastion from the `inventory` artifact.
+1. Copy the contents of the `sshkey` file, and paste it into the following new file: `~/.ssh/<ENVIRONMENT>-sshkey`
+1. Grant read-only permissions to the ssh key:
+
+   ```bash
+   chmod 400 ~/.ssh/<ENVIRONMENT>-sshkey
+   ```
+
+1. To get the IP address of the bastion, open the `inventory` file and copy the value of `ansible_host`. Save this value because you will need it in the next step. You will find `ansible_host` here:
+
+   ```yaml
+   all:
+      hosts:
+         bastion1:
+            ansible_host: <IP_address>
+      vars:
+         ...
+   ```
+
+1. ssh into the bastion of the environment:
+
+   ```bash
+   ssh -i ~/.ssh/<ENVIRONMENT>-sshkey -L <PORT???> ubuntu@<IP-ADDRESS-OF-THE-BASTION>
+   ```
+
+1. To get root access, execute following command:
+
+   ```bash
+   sudo su
+   ```
+
+1. Export kubeconfig:
+
+   ``` bash
+   export KUBECONFIG=/root/.kube/kubeconfig
+   ```
+
+1. Get the ArgoCD admin password from Kubernetes:
+
+   ```bash
+   kubectl -n argocd get secret argocd-initial-admin-secret   -o jsonpath="{.data.password}" | base64 --decode; echo
+   ```
+
+1. Copy and save the secret returned in the terminal, you will soon need it.
+
+1. To access the ArgoCD UI, forward a local port to the ArgoCD server service inside Kubernetes:
+
+   ```bash
+   kubectl -n argocd port-forward --address 0.0.0.0 service/argocd-server 8445:80
+   ```
+
+1. Navigate to **localhost** in your browser.
+
+1. Log in to ArgoCD:
+
+   - username: admin
+   - password: the secret that you have just retrieved
+
+1. Once logged in, you can check how the deployment of the various applications is progressing.
+
+   When Netbird is in a synced state, you can log in to ArgoCD directly from the browser. See the next section: [Mojaloop Switch: Access ArgoCD when Netbird is up and running](#mojaloop-switch-access-argocd-when-netbird-is-up-and-running).
+
+#### Mojaloop Switch: Access ArgoCD when Netbird is up and running
+
+##### Configure user permissions
+
+1. Log in as admin to Control Center Zitadel to grant permissions.
+1. Add user to environment group:
+   1. Click the Zitadel logo in the top left corner.
+   1. Click **Users** and select your your non-admin user.
+   1. In the left-hand menu, click **Authorizations**.
+   1. Click **New**.
+   1. Under **Search for a project**, select your Switch environment from the drop-down menu, and click **Continue**.
+   1. Select all the roles and click **Save**.
+
+##### Access ArgoCD
+
+1. Go to: `https://argocd.int.<SWITCH-ENVIRONMENT>.<DOMAIN>`
+
+   The `cluster_name` and `domain` values come from the `cluster-config.yaml` file that you configured earlier.
 
 ### Destroying the Mojaloop Switch environment
 
@@ -1097,6 +1192,29 @@ To destroy the Switch, perform the following steps:
 1. Go back to the pipeline of your **destroy: uninstall the switch** commit. -->
 
 1. Go to **cleanup** stage > **destroy** job, and run the job manually. There is no need to define any variables.
+
+1. Once the job has run, go to AWS > EC2 Instances. Everything is destroyed in AWS, except for the EBS Volumes, so you need to manually check if you can see any available volumes under Elastic Block Store > Volumes. Search by "Volume state = Available". The EC2 Instances detaches the EBS Volumes, but detaching them doesn't mean deleting them. "Available" means that the instance is not in use anymore, the instance is terminated.
+
+#### Important note about destroy sequence
+
+There are Terraform-created resources (such as EKS, EC2 instances, etc.), and there are also other Crossplane-created resources (such as RDS, DocumentDB, Route53, etc.). If you destroy everything in parallel, you will lose the Crossplane operators, and they are the only ones that manage Crossplane-managed resources. Therefore, you need to wait until the Crossplane operator destroys its created resources. Once that's done, you can destroy the Crossplane operator and the whole node.
+
+RDS and databases are managed by ArgoCD using Crossplane, they are not created by Terraform.
+
+### Deleting a repository in GitLab
+
+1. In GitLab, go to the repository that you want to delete: **Projects > iac / <NAME_OF_ENVIRONMENT_TO_DELETE>**.
+1. In the left-hand navigation pane, select **Deploy > Container registry**. There is a container created and cached inside this repository to be used by the pipeline runners, you will find that container here. To delete the repository, you need to manually delete any containers you find here.
+1. Go to **Projects > iac / bootstrap**.
+1. Go to **custom-config** > `environment.yaml`.
+1. In the `environment.yaml` file, remove the name of the environment whose repository you want to delete.
+1. Commit your change.
+1. Go to **Build > Pipelines**.
+1. Select the latest change.
+1. Run the deploy job. <!-- EDITORIAL COMMENT: Which one? -->
+
+TO BE CONTINUED...
+
 
 ### Tips and tricks
 
