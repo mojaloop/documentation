@@ -876,7 +876,7 @@ It is possible to define a separate profile for each and every deployment.
 
 In the example below, we are going to use the [common-profile](https://github.com/infitx-org/common-profile) repository. All you have to do is reference the **common-profile** and the values defined in there will override the configuration defined in the **iac-modules** repository.
 
-**NOTE:** The `cluster-config.yaml` file always needs to be present. Without this file, the deployment will fail.
+**NOTE:** The `custom-config.yaml` file always needs to be present. Without this file, the deployment will fail. <!-- EDITORIAL COMMENT: Should be `cluster-config.yaml`-->
 
 **NOTE:** If you do not wish to override the default configuration in the **iac-modules** repository, do not reference any profile.
 <!-- EDITORIAL COMMENT: BTW, the profile currently only has the values that are not defined in the default-config. Also: the default thing is iac-modules and the profile overrides that. So the iac-modules is the default, if we don't want to override it, we just remove the override file. --> 
@@ -1161,11 +1161,27 @@ In the example below, we are going to use the [common-profile](https://github.co
 
 ##### Access ArgoCD
 
-1. Go to: `https://argocd.int.<SWITCH-ENVIRONMENT>.<DOMAIN>`
+1. Go to: `https://argocd.int.<NAME_OF_YOUR_SWITCH_ENVIRONMENT>.<NAME_OF_YOUR_DOMAIN>`
 
-   The `cluster_name` and `domain` values come from the `cluster-config.yaml` file that you configured earlier.
+   The `<NAME_OF_YOUR_SWITCH_ENVIRONMENT>` and `<NAME_OF_YOUR_DOMAIN>` values come from the `cluster-config.yaml` file that you configured earlier.
+
+1. Log in using the **LOG IN VIA ZITADEL** button. When prompted, select the non-admin user account.
+
+1. At this point, you can exit the bastion, you will not need it anymore.
+
+1. Back in ArgoCD, go to **Applications** to see how the deployment of the applications is progressing.
+
+1. Check how the deployment of databases is progressing.
+
+   1. Go to **mojaloop-stateful-resources-app**. This app creates one RDS database for MCM, Central Ledger, Account Lookup, etc., and one DocumentDB for reporting, settlements, collections, etc.
+
+   Ctrl+F on your laptop and search for the string "rds". You will see that the deployment of the RDS clusters and the DocumentDB clusters are still progressing. Their deployment might take some time. You can check their progress in AWS as well by going to **Aurora and RDS > Databases** and **Amazon DocumentDB > Clusters** and checking values in the **Status** column (status **Creating** vs status **Available**).
+
+   1. Go to **common-stateful-resources-app**. This app deploys one common RDS database for Keycloak, Ory, Kratos, Keto, etc. for the common statful resources. Ctrl+F on your laptop and search for the string "rds". Check the health indicators (Synced, Healthy) of the RDS cluster to determine the progress of deployment.
+
 
 TO BE CONTINUED...
+
 
 ### Destroying the Mojaloop Switch environment
 
@@ -1195,7 +1211,11 @@ To destroy the Switch, perform the following steps:
 
 1. Go to **cleanup** stage > **destroy** job, and run the job manually. There is no need to define any variables.
 
-1. Once the job has run, go to AWS > EC2 Instances. Everything is destroyed in AWS, except for the EBS Volumes, so you need to manually check if you can see any available volumes under Elastic Block Store > Volumes. Search by "Volume state = Available". The EC2 Instances detaches the EBS Volumes, but detaching them doesn't mean deleting them. "Available" means that the instance is not in use anymore, the instance is terminated.
+1. Once the job has run, go to **AWS > EC2 Instances**. Everything is destroyed in AWS, except for the EBS Volumes, so you need to manually check if you can see any available volumes under **Elastic Block Store > Volumes**. Search by "Volume state = Available". The EC2 Instances detaches the EBS Volumes, but detaching them doesn't mean deleting them. "Available" means that the instance is not in use anymore, the instance is terminated.
+
+1. Once you destroyed all environments and removed the container registries mentioned below, you are ready to destroy the Control Center. Go to **GitLab > iac > bootstrap > custom-config**. Delete the `environment.yaml` file and run the deploy job. <!-- EDITORIAL COMMENT: Which one? -->
+
+   This is needed because there are some S3 buckets created from the Control Center to get used by the environments. They are created based on the `environment.yaml` file. For each environment, when the **init** phase is passed, the S3 buckets will be automatically created. Removing the `environment.yaml` file will remove the S3 buckets.
 
 #### Important note about destroy sequence
 
@@ -1214,7 +1234,6 @@ RDS and databases are managed by ArgoCD using Crossplane, they are not created b
 1. Go to **Build > Pipelines**.
 1. Select the latest change.
 1. Run the deploy job. <!-- EDITORIAL COMMENT: Which one? -->
-
 
 ### Tips and tricks
 
