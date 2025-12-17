@@ -91,43 +91,39 @@ As would be expected, and as illustrated in the above diagram, there are common 
 
 However, there are some significant differences. The operation of the MCM Client is now subject to the control of MCM Agent Services, which orchestrates the management of the security using a state machine. Control and configurations of the Agent Services is carried out using the ITK Configuration Utility, which presents a console-type interface to the DFSP’s operational staff. This performs the same function as Payment Manager’s Configuration portal.
 
-<span style="color:red">Questions for reviewers:</span>
+The security of the ITK Configuration Utility/console is subject to the DFSP's own infrastructure security. The server (or the Virtual Machine (VM)) the ITK components run on must be secured as per any other server infrastructure within the DFSP's administrative boundary.
 
-<span style="color:red">1. How is the security of the console ensured? Surely it must be locked down?</span> 
-
-This is subject to the DFSPs own infrastructure security. The server, or VM the ITK components run on must be secured as per any other server infrastructure within the DFSPs administrative boundary.
-
-
-<span style="color:red">2. Is there any mechanism for some BI tool (for example) to query the local filesystem for transaction monitoring and service status?</span>  
-
-ITK does not currently provide any system of record that a BI tool could access. Transaction reporting is expected to be handled by the DFSPs existing core banking platform.
-
-
-<span style="color:red">3. Is there a (built in) alternative to the BI tool?</span>
-
-See point 2. We should probably try to build a persistent data storage feature for ITK that can be optionally turned on to support BI beyond the DFSP CBS.
-
+Unlike Payment Manager, the ITK doesn't include any portals for monitoring transactions (which is expected to be handled by the DFSP's existing back office systems) or service status, while the ITK Configuration Utility fulfils the same role as Payment Manager's configuration management portal.
 
 ### ITK Deployment Options
 
 The options for deploying ITK are catalogued in the [Participant Feature Matrix](https://docs.mojaloop.io/product/features/connectivity/participant-matrix.html) and can be summarised as follows:
 
 * **A small DFSP**, such as a small MFI or bank, is expected to self-host the ITK. This approach will support all use cases except the initiation of bulk payments (bulk payments can still be received). Low transaction levels are expected (max 10 TPS), and some downtime (potentially a few hours) is acceptable.  
-	  * It is recommended that a minimal functionality version of ITK be deployed, with monitoring by <span style="color:red">some form of BI tool</span>. This should be deployed on a small server, right down to a single board computer such as a Raspberry PI for the smallest DFSPs.  
+	  * It is recommended that a minimal functionality version of ITK be deployed on a small server, right down to a single board computer such as a Raspberry PI for the smallest DFSPs. 
+	  * Transaction monitoring should be carried out through the DFSP's existing back office.  
 	  * Deployment is via Docker Compose.  
-	  * <span style="color:red">Need a link to the scripts for this</span>
 
 * **A low-medium sized DFSP**, such as a bank or MFI with one or two branches and their own “broom cupboard” data centre, is expected to self-host the ITK. This approach will support all use cases, including the initiation of small scale bulk payments. Peak transaction levels of around 50 TPS are supported, and some limited downtime (measured in hours) is acceptable.  
-	  * It is recommended that a fully functional version of ITK be deployed, with monitoring by <span style="color:red">some form of BI tool</span>. This should be deployed on a basic server, hosted in the DFSP’s own data centre.  
+	  * It is recommended that a fully functional version of ITK be deployed on a basic server, hosted in the DFSP’s own data centre.  
 	  * A Kafka deployment is needed to support bulk payments.   
 	  * Deployment is via Docker Compose or Docker Swarm.  
-	  * Minimal integration with existing enterprise security platforms.  
-	  * <span style="color:red">Need a link to the scripts for this</span>
+	  * Minimal integration with existing enterprise security platforms.
+	  * Transaction monitoring should be carried out through the DFSP's existing back office.   
+
 * **A medium-large sized DFSP**, such as a medium-sized FI with a few branches and their own self-hosted data centre and some reasonable internal IT skills, is expected to host the ITK. This approach will support all use cases, including the initiation of small/medium scale bulk payments. Peak transaction levels of around 50 TPS are supported, and some limited downtime (measured in minutes) is acceptable.  
 	  * In order to achieve the maximum downtime requirements, a multiple server configuration is required, managed using Kubernetes.  
-	 * It is recommended that a fully functional version of ITK be deployed, with monitoring by <span style="color:red">some form of BI tool</span>.    
+	 * It is recommended that a fully functional version of ITK be deployed, with transaction monitoring carried out through the DFSP's existing back office.    
 	 * A Kafka deployment is needed to support bulk payments.   
 	 * Deployment is via Kubernetes.  
-	 * May need integration with existing enterprise security platforms.  
-	 * <span style="color:red">Need a link to the scripts for this</span>
+	 * May need integration with existing enterprise security platforms. 
 * **A large DFSP**, such as a mature, multi-branch FI with its own industry-standard data centre and sophisticated internal IT skills, is recommended to use Payment Manager.
+
+## Applicability
+
+This version of this document relates to Mojaloop Version [17.1.0](https://github.com/mojaloop/helm/releases/tag/v17.1.0)
+
+## Document History
+  |Version|Date|Author|Detail|
+|:--------------:|:--------------:|:--------------:|:--------------:|
+|1.0|17th December 2025| Paul Makin |Initial version|
