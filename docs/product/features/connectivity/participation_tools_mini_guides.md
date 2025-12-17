@@ -89,15 +89,24 @@ As would be expected, and as illustrated in the above diagram, there are common 
 * Both Core Connector and Mojaloop Connector function as before.  
 * The Mojaloop Connection Manager Client (MCM Client) remains responsible for the creation, signing, and exchange of digital certificates, underpinning the security of the connection to the Mojaloop Hub.
 
-However, there are some significant differences. The operation of the MCM Client is now subject to the control of MCM Agent Services, which orchestrates the management of the security using a state machine. Control and configurations of the Agent Services is carried out using the ITK Configuration Utility, which presents a console-type interface to the DFSP’s operational staff. Thai performs the same function as Payment Manager’s Configuration portal.
+However, there are some significant differences. The operation of the MCM Client is now subject to the control of MCM Agent Services, which orchestrates the management of the security using a state machine. Control and configurations of the Agent Services is carried out using the ITK Configuration Utility, which presents a console-type interface to the DFSP’s operational staff. This performs the same function as Payment Manager’s Configuration portal.
 
 <span style="color:red">Questions for reviewers:</span>
 
 <span style="color:red">1. How is the security of the console ensured? Surely it must be locked down?</span> 
 
+This is subject to the DFSPs own infrastructure security. The server, or VM the ITK components run on must be secured as per any other server infrastructure within the DFSPs administrative boundary.
+
+
 <span style="color:red">2. Is there any mechanism for some BI tool (for example) to query the local filesystem for transaction monitoring and service status?</span>  
 
+ITK does not currently provide any system of record that a BI tool could access. Transaction reporting is expected to be handled by the DFSPs existing core banking platform.
+
+
 <span style="color:red">3. Is there a (built in) alternative to the BI tool?</span>
+
+See point 2. We should probably try to build a persistent data storage feature for ITK that can be optionally turned on to support BI beyond the DFSP CBS.
+
 
 ### ITK Deployment Options
 
