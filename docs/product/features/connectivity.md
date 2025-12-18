@@ -12,7 +12,7 @@ This playbook, which has been donated by Thitsaworks, comprises a set of tools a
 - An API mapping template, used to map between Mojaloop Hub API elements and the corresponding actions required by the DFSP's back office;
 - A plan for the setup of the security of the DFSP's connection to the Mojaloop Hub.
 
-You can [download the Thitsaworks DFSP Onboarding Playbook by clicking on this link](https://drive.google.com/drive/folders/198J65_WtneNV3CsF-M82g7zJqnxfmO9p?usp=sharing).
+You can [download the Thitsaworks DFSP Onboarding Playbook by clicking on this link](https://github.com/mojaloop/product-council/tree/main/Documentation/DFSP%20Playbook).
 
 ## Technical Onboarding
 The current connectivity portfolio includes the Integration Toolkit (ITK) which will allow a Systems Integrator (SI) to create a connection by combining the various elements of a toolkit in a way that best meets the DFSP's needs. These elements include:
