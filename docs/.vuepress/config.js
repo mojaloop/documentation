@@ -1152,7 +1152,7 @@ module.exports = {
             ['features/use-cases', 'Use Cases'],
             ['features/transaction', 'Transactions'],
             ['features/risk', 'Risk Management'],
-            ['features/connectivity', 'Connectivity Support'],
+            ['features/connectivity', 'Onboarding DFSPs'],
             ['features/product', 'Portals and Operational Features'],
 			['features/tariffs', 'Fees and Tariffs'],
 			['features/performance', 'Performance'],
