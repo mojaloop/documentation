@@ -1,13 +1,45 @@
 # IaC Deployment Guide
 
+## Table of contents
+
+- [IaC in the context of Mojaloop](#iac-in-the-context-of-mojaloop)
+- [Overview of Mojaloop IaC-based deployment](#overview-of-mojaloop-iac-based-deployment)
+- [Deployment how-to](#deployment-how-to)
+   - [Deploying the Control Center](#deploying-the-control-center)
+      - [Control Center: Prerequisites](#control-center-prerequisites)
+      - [Control Center: Prepare the infrastructure](#control-center-prepare-the-infrastructure)
+      - [Control Center: Deploy Control Center host](#control-center-deploy-control-center-host)
+      - [Control Center: Set up the Control Center container](#control-center-set-up-the-control-center-container)
+      - [Control Center: Deploy the Control Center](#control-center-deploy-the-control-center)
+      - [Control Center: Post-deployment configuration](#control-center-post-deployment-configuration)
+      - [Control Center: Troubleshooting](#control-center-troubleshooting)
+      - [Control Center: Maintenance](#control-center-maintenance)
+      - [Control Center: Destroy the Control Center](#control-center-destroy-the-control-center)
+   - [Deploying the Mojaloop Switch environment](#deploying-the-mojaloop-switch-environment)
+      - [Mojaloop Switch: Prerequisites](#mojaloop-switch-prerequisites)
+      - [Mojaloop Switch: Initialize the bootstrap environment](#mojaloop-switch-initialize-the-bootstrap-environment)
+      - [Mojaloop Switch: Configure secrets in the Vault](#mojaloop-switch-configure-secrets-in-the-vault)
+      - [Mojaloop Switch: Add custom configuration](#mojaloop-switch-add-custom-configuration)
+      - [Mojaloop Switch: Run the deployment](#mojaloop-switch-run-the-deployment)
+      - [Mojaloop Switch: Verify the deployment](#mojaloop-switch-verify-the-deployment)
+      - [Mojaloop Switch: Access the portals](#mojaloop-switch-access-the-portals)
+      - [Mojaloop Switch: Troubleshooting](#mojaloop-switch-troubleshooting)
+      - [Mojaloop Switch: Destroy the Switch environment](#mojaloop-switch-destroy-the-switch-environment)
+   - [Create a simulated DFSP in MCM](#create-a-simulated-dfsp-in-mcm)
+   - [Deploying Payment Manager for Mojaloop](#deploying-payment-manager-for-mojaloop)
+      - [Deploy PM4ML: Deploy PM4ML host](#deploy-pm4ml-deploy-pm4ml-host)
+      - [Deploy PM4ML: Access the PM4ML portal](#deploy-pm4ml-access-the-pm4ml-portal)
+      - [Deploy PM4ML: Access the MCM portal](#deploy-pm4ml-access-the-mcm-portal)
+      - [Deploy PM4ML: Access the Testing Toolkit (TTK)](#deploy-pm4ml-access-the-testing-toolkit-ttk)
+
 ## IaC in the context of Mojaloop
 
-Mojaloop provides IaC code to facilitate the provisioning and deploying of Mojaloop resources. While the code provided is specific to certain use cases, it can be reused and customised to fit individual needs (for example, cloud versus on-premise deployments).
+Mojaloop provides IaC code to facilitate the provisioning and deploying of Mojaloop resources. While the code provided is specific to certain use cases, it can be reused and customised to fit individual needs -- for example, cloud versus on-premise deployments. <!-- This guide assumes a cloud-based deployment, with on-prem specifics called out where possible. -->
 
 Mojaloop IaC code:
 
 - Provides cloud-agnostic Infrastructure as Code (IaC) to be used in provisioning Kubernetes (K8s) clusters for use as Mojaloop Switches and/or Payment Managers.
-- Automatically enables the use of a Control Center in a secure fashion. <!-- EDITORIAL COMMENT: Cross-reference a resource that describes what the Control Center is. -->
+- Automatically enables the use of a Control Center in a secure fashion.
 - Provides modules for the following:
    - Automated GitOps-style provisioning of separate clusters dedicated to Mojaloop and Payment Manager for Mojaloop (PM4ML), respectively, via the use of reusable open-source modules.
    - A Vault instance to securely store configuration secrets as well as manage PKI configuration for mutual TLS enabled endpoints.
@@ -15,8 +47,18 @@ Mojaloop IaC code:
    - Wireguard mesh routes that provide the ability for individual clusters to securely reach private Control Center services and that also provide operator access to the clusters.
    - Automated handling of DNS/TLS termination for all public and private endpoints.
    - Various components such as Mojaloop Connection Manager (MCM) and an IAM stack to provide access control for Mojaloop services.
-   - Database configuration that is specified at deployment time in order to allow the operator to choose in-cluster versus managed services for MySQL, Kafka, Postgresql and MongoDB.
+   - Database configuration that is specified at deployment time in order to allow the operator to choose in-cluster versus managed services for MySQL, Kafka, PostgreSQL and MongoDB.
 - Provides High Availability and Disaster Recovery capabilities via the use of Kubernetes best practices.
+
+To work effectively with Infrastructure-as-Code, we advise you to have working knowledge of the following concepts and technologies:
+
+- **Infrastructure fundamentals**: to understand the resources you are managing (compute, networking, storage, identity and access management, regions and availability zones, and so on)
+- **Containers and orchestration** (for example, Docker, Kubernetes, control plane, worker nodes, and so on): to understand how to manage containerised resources
+- **Security and governance** (managing secrets, least privilege principle): to understand how to manage high-privilege resources
+- **At least one IaC tool** (for example, Terraform, Ansible): to understand how IaC tools structure modules, resources, variables, and state
+- **CI/CD and DevOps concepts**: to automate deployments
+- **AWS services**: to understand configuration options and best practices of AWS resources configured and managed via IaC tools (such as: EC2 (virtual machines), S3 (object storage), VPC (networking), IAM (identity and access), RDS (databases))
+- **Monitoring tools** (for example, Grafana): to observe and track what happens post-deployment
 
 ## Overview of Mojaloop IaC-based deployment
 
@@ -26,7 +68,7 @@ Mojaloop IaC code:
 
 <!-- Diagram source file: https://app.diagrams.net/#G1YEjT1fDGisr1v6jujAEztCXND1eh50gS#%7B%22pageId%22%3A%22D1AxLu6UM391d6UU7Rue%22%7D -->
 
-Mojaloop and PM4ML are cloud-native applications that are designed to run on top of Kubernetes (K8s). Both applications leverage similar capabilities in terms of databases, ingress control, Public Key Infrastructure (PKI) requirements for mTLS, and so on. Thus, we reuse the same infrastructure as code and extend it with slight modifications for the 2 scenarios. There is also the ability to run both Mojaloop and PM4ML in the same cluster for development purposes.
+Mojaloop and PM4ML are cloud-native applications that are designed to run on top of Kubernetes (K8s). Both applications leverage similar capabilities in terms of databases, ingress control, Public Key Infrastructure (PKI) requirements for mTLS, and so on. Thus, we reuse the same infrastructure as code and extend it with slight modifications for the two scenarios. There is also the ability to run both Mojaloop and PM4ML in the same cluster for development purposes.
 
 **NOTE:** PM4ML is a tool for Digital Financial Service Provider (DFSP) participants, so the question might arise as to why it could be relevant in the context of Switch deployment. PM4ML can be run as part of simulating DFSPs, for testing purposes.
 
@@ -35,7 +77,7 @@ To deploy the Mojaloop and PM4ML environment clusters, the following tools are u
 - **Ansible**: A tool used for provisioning software repeatedly and idempotently via the use of playbooks that make use of reusable roles. These roles leverage modules that are executed on a virtual machine or bare-metal host via an ssh client. The main role of Ansible is to bootstrap the hosts used by the infrastructure with the prerequisites needed to run Kubernetes and initialise ArgoCD.
 - **Terraform/Terragrunt**: This tool is used to provision resources via CRUD API calls. These resources range from the creation of network resources, whole K8s clusters, managed databases or the creation of an OIDC application in an identity management solution, and so on.
 - **Helm**: A package management tool used to render K8s charts, which are groups of Kubernetes templates.
-- **Kustomize**: A tool used to manipulate and render K8s templates, including Helm charts.
+- **Kustomize**: A tool used to manipulate and render K8s templates, including Helm charts. <!-- QUESTION: Is this still in use? -->
 - **ArgoCD**: A tool used to deploy artifacts that are rendered via Helm and/or Kustomize to a K8s cluster and maintain the deployed state against a source of truth for the cluster, which is generated from multiple tagged git repositories in concert with environment-specific configuration values that are injected using custom ArgoCD plugins.
 
 <!-- ### PLACEHOLDER: Target infrastructure
@@ -63,8 +105,11 @@ Before beginning the deployment, ensure you have the following in place.
 
 ##### AWS account access
 
-- Administrative privileges or IAM user with sufficient permissions <!-- EDITORIAL COMMENT: Shall we list those permissions?  -->
-- AWS CLI configured with appropriate credentials <!-- EDITORIAL COMMENT: https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html + set up an access key for AWS cli via console > profile > Security Credentials. After that: `aws configure` + https://docs.aws.amazon.com/cli/v1/userguide/cli-configure-files.html-->
+- Administrative privileges or IAM user with sufficient permissions <!-- QUESTION: What are those permissions exactly?  -->
+- AWS CLI configured with appropriate credentials:
+   - Install the AWS CLI. For guidance, see AWS article [Installing or updating to the latest version of the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
+   - Set up an access key for AWS CLI via the AWS console > your profile (following login, click your username in the top right corner) > **Security credentials** menu > **Create access key**.
+   - Run `aws configure` in a terminal to store your AWS access key in your home directory, in a folder named `.aws`, in a file named `credentials`. This is needed so you can run AWS commands from your terminal. For more information, see AWS article [Configuration and credential file settings in the AWS CLI](https://docs.aws.amazon.com/cli/v1/userguide/cli-configure-files.html).
 - Minimum service quotas:
   - vCPU limit: 64 (for m5.4xlarge instances)
   - Elastic IPs: 5
@@ -79,7 +124,7 @@ Before beginning the deployment, ensure you have the following in place.
 ##### Network requirements
 
 - Available domain name for the Control Center
-- Access to DNS management (Route53 or external provider)
+- Access to DNS management (AWS Route 53 or external provider)
 
 #### Control Center: Prepare the infrastructure
 
@@ -89,7 +134,7 @@ Generate an SSH key pair for secure access to the Control Center infrastructure.
 
 1. Create the key pair through the AWS EC2 console or CLI.
 
-   For details, see: [https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/create-key-pairs.html](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/create-key-pairs.html)
+   For details, see AWS article [Create a key pair for your Amazon EC2 instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/create-key-pairs.html)
 
    Choose a meaningful name for your key pair. In the example below, the key pair is called: `ml-ccu-host-private-key`
 
@@ -110,7 +155,7 @@ Generate an SSH key pair for secure access to the Control Center infrastructure.
 
 ##### Configure AWS IAM
 
-1. Create the required IAM group for Control Center operations through the AWS EC2 console or CLI. For details, see: [https://docs.aws.amazon.com/IAM/latest/UserGuide/id_groups_create.html](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_groups_create.html)
+1. Create the required IAM group for Control Center operations through the AWS EC2 console or CLI. For details, see AWS article [Create IAM groups](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_groups_create.html)
 
    Note that in the example below, `mojaiac` is an existing IAM user.
 
@@ -131,7 +176,7 @@ Generate an SSH key pair for secure access to the Control Center infrastructure.
    --profile mojaiac
    ```
 
-##### Provision build server
+##### Provision the Control Center host VM
 
 Deploy a dedicated VM to host the Control Center utility container. This will serve as the "build server". This build server can be re-used for any future deployments.
 
@@ -140,19 +185,19 @@ VM specifications:
 - **Instance Type**: t3.medium
 - **Operating System**: Ubuntu 24.04 LTS
 - **Storage**: 16 GiB root volume (expandable as needed)
-- **Security Group**: Allow SSH (port 22) from your IP (If you're launching the VM instance via the AWS console (**EC2 > Instances > Launch instance**), choose **My IP** in the drop-down menu.) <!-- EDITORIAL COMMENT: Allow SSH traffic from -> Anywhere -->
+- **Security Group**: Allow SSH (port 22) from anywhere (If you're launching the VM instance via the AWS console (**EC2 > Instances > Launch instance**), choose **Anywhere** in the **Allow SSH traffic from** drop-down menu.)
 <!-- - **Network**: Public subnet with Elastic IP EDITORIAL COMMENT: I haven't found the Elastic IP option in the GUI. -->
 - **Authentication**: SSH key created earlier in section [Create SSH key pair](#create-ssh-key-pair)
 
 Once the instance has been launched, record the public IP address, it will be needed when you ssh to the VM (next step).
 
-#### Control Center: Deploy build server
+#### Control Center: Deploy Control Center host
 
 ##### Initial system configuration
 
-Connect to the build server and perform initial setup:
+Connect to the Control Center host and perform initial setup:
 
-1. Connect to your build server VM via ssh:
+1. Connect to your Control Center host VM via SSH:
 
    ```bash
    # Connect via SSH
@@ -177,7 +222,7 @@ Connect to the build server and perform initial setup:
    sudo apt-get install -y docker.io unzip
    ```
 
-<!-- Is this step needed? 1. exit -->
+   <!-- EDITORIAL COMMENT: Is this step needed? 1. exit -->
 
 1. Start the Docker service:
 
@@ -291,7 +336,7 @@ tmux new -s <NAME_OF_YOUR_TMUX_SESSION>
 
 Once in the tmux session, run the Docker container.
 
-Change `--name` and `--hostname` to be the name that you want to give to your Control Center.
+After `--name` and `--hostname`, change <NAME_OF_YOUR_CONTROL_CENTER> to be the name of your Control Center.
 
 ```bash
 docker run -t -d -v /home/ubuntu/.aws:/root/.aws --name <NAME_OF_YOUR_CONTROL_CENTER> --hostname <NAME_OF_YOUR_CONTROL_CENTER> --cap-add SYS_ADMIN --cap-add NET_ADMIN ghcr.io/mojaloop/control-center-util:6.1.2
@@ -319,7 +364,7 @@ docker exec -it <NAME_OF_YOUR_CONTROL_CENTER> bash
       vi setenv
       ```
 
-   1. Specify which version of IaC you want to use (this needs to be determined before), for example (at the time of writing, v7.0.0-rc.119 is the recommended release and [tag](https://github.com/mojaloop/iac-modules/tags)): `IAC_TERRAFORM_MODULES_TAG=v7.0.0-rc.119`
+   1. Specify which version of IaC you want to use (this needs to be determined before), for example (at the time of writing, mcm-1762866755 is the recommended release and [tag](https://github.com/mojaloop/iac-modules/tags)): `IAC_TERRAFORM_MODULES_TAG=mcm-1762866755` <!-- QUESTION: What is the current IAC_TERRAFORM_MODULES_TAG to use? -->
 
 1. Initialize the environment.
 
@@ -368,7 +413,7 @@ docker exec -it <NAME_OF_YOUR_CONTROL_CENTER> bash
       cluster_name:                             # Unique identifier for your Control Center 
       domain:                                   # Your domain name
       cloud_region:                             # AWS region for deployment
-      iac_terraform_modules_tag: v7.0.0-rc.119  # IaC modules version
+      iac_terraform_modules_tag: mcm-1762866755 # IaC modules version
       ansible_collection_tag: v7.0.0-rc.86      # Ansible collection version
       vpc_cidr: 10.73.0.0/16
 
@@ -379,8 +424,8 @@ docker exec -it <NAME_OF_YOUR_CONTROL_CENTER> bash
       private_dns_zone_id: "empty"
       tags:                                     # AWS resource tags
          Origin: Terraform 
-         mojaloop/cost_center:                  #Ensure that you use an env tag that already exists <!-- EDITORIAL COMMENT: Where can we set that? -->
-         mojaloop/env:                          #Ensure that you use an env tag that already exists <!-- EDITORIAL COMMENT: Where can we set that? -->
+         mojaloop/cost_center:                  # Ensure that you use a tag that has already been set up in AWS <!-- QUESTION: Where can we set that? -->
+         mojaloop/env:                          # Ensure that you use a tag that has already been set up in AWS <!-- QUESTION: Where can we set that? -->
          mojaloop/owner: 
       nodes: 
       master-generic: 
@@ -397,7 +442,7 @@ docker exec -it <NAME_OF_YOUR_CONTROL_CENTER> bash
 
    Configure the following:
 
-   **NOTE:** Proxmox-related variables are not required for a cloud-based (AWS) deployment, so you can leave them as-is. Since they are configured to be required for all deployments, the dummy values specified below must be passed. Without the dummy values, the wrapper script that you are going to run in a subsequent step would fail.
+   **NOTE:** Proxmox-related variables are not required for a cloud-based (AWS) deployment, so when deploying the Control Center in the cloud, you can leave them as-is. Since they are configured to be required for all deployments, the dummy values specified below must be passed. Without the dummy values, the wrapper script that you are going to run in a subsequent step would fail.
 
    **NOTE:** Notice the comments next to the `mimir` values. The values that have been commented out represent the default values, together with a multiplier that is used to arrive at an optimized value. For example: the default value for `mimir_distributor_requests_cpu` is `500`, but we multiplied it by `0.7` to have the optimized value of `350`.
 
@@ -450,12 +495,6 @@ docker exec -it <NAME_OF_YOUR_CONTROL_CENTER> bash
 
    **NOTE:** If you do not use MFA, the session token is not required.
 
-   <!-- >```bash
-   export AWS_ACCESS_KEY_ID=accesskeyID
-   export AWS_SECRET_ACCESS_KEY=accesskeySECRET
-   export AWS_SESSION_TOKEN=sessionToken
-   ``` -->
-
    ```bash
    export AWS_ACCESS_KEY_ID=<YOUR_ACCESS_KEY_ID>
    export AWS_SECRET_ACCESS_KEY=<YOUR_SECRET_ACCESS_KEY>
@@ -493,49 +532,49 @@ docker exec -it <NAME_OF_YOUR_CONTROL_CENTER> bash
       1. Open a new terminal.
       1. `docker exec` inside the Control Center container:
 
-      ```bash
-      `docker exec it <NAME_OF_YOUR_CONTROL_CENTER> bash`
-      ```
+         ```bash
+         `docker exec it <NAME_OF_YOUR_CONTROL_CENTER> bash`
+         ```
 
       1. Change directory to:
 
-      ```bash
-      cd /tmp/output/k8s-deploy
-      ```
+         ```bash
+         cd /tmp/output/k8s-deploy
+         ```
 
-      You will find the ssh key in there.
+         You will find the ssh key in there.
 
       1. Display the contents of the file named `sshkey`:
 
-      ```bash
-      cat sshkey
-      ```
+         ```bash
+         cat sshkey
+         ```
 
       1. Copy the ssh key.
       1. Paste the ssh key here (use a meaningful and descriptive folder name):
 
-      ```bash
-      vi ~/.ssh/<FOLDER_NAME>
-      ```
+         ```bash
+         vi ~/.ssh/<FOLDER_NAME>
+         ```
 
       1. Change the permission of the file so that only you can read it:
 
-      ```bash
-      chmod 400 ~/.ssh/<FOLDER_NAME>
-      ```
+         ```bash
+         chmod 400 ~/.ssh/<FOLDER_NAME>
+         ```
 
       1. Connect to the bastion via ssh:
 
-      ```bash
-      ssh -i ~/.ssh/<FOLDER_NAME> ubuntu@<BASTION_IP_ADDRESS>
-      ```
+         ```bash
+         ssh -i ~/.ssh/<FOLDER_NAME> ubuntu@<BASTION_IP_ADDRESS>
+         ```
 
       1. Exit the session to return to your local machine: `exit`
 
    1. Create a tunnel between your machine and the VM. Issue the following command on your machine:
 
       ```bash
-      ssh -i .ssh/<NAME_OF_YOUR_CONTROL_CENTER> -L 8082:127.0.0.1:8445 ubuntu@<bastion-ip-address>
+      ssh -i .ssh/<NAME_OF_YOUR_CONTROL_CENTER> -L 8082:127.0.0.1:8445 ubuntu@<BASTION_IP_ADDRESS>
       ```
 
    1. Export the kubeconfig:
@@ -562,16 +601,17 @@ docker exec -it <NAME_OF_YOUR_CONTROL_CENTER> bash
       ```
 
    1. In your browser, open: `http://localhost:8082`
+
       This should open ArgoCD in your browser.
 
    1. Log in using the following credentials:
 
-      username: admin
-      password: <THE_PASSWORD_THAT_YOU_HAVE_JUST_COPIED>
+      - username: `admin`
+      - password: `<THE_PASSWORD_THAT_YOU_HAVE_JUST_COPIED>`
 
    1. Observe how your applications are progressing. You can click **root-deployer** to have an overview of the status of each application. The root-deployer deploys the applications as per the configured sync waves (the order of waves has been set up so that dependencies are deployed first).
 
-1. Once the wrapper script has run successfully, the Terraform state will be in the container so you need to push the state to the new system (the Kubernetes cluster):
+1. Once the wrapper script has run successfully, the Terraform state will be in the container, so you need to push the state to the new system (the Kubernetes cluster):
 
    `./movestatetok8s.sh`
 
@@ -587,13 +627,13 @@ All Control Center services (GitLab, ArgoCD, Grafana, Vault, and so on) use Zita
 
 1. Access Zitadel.
 
-   You can access Zitadel via your browser, no VPN connection is required. The URL will be in this format: `https://zitadel.<cluster_name>.<domain>`
+   You can access Zitadel via your browser, no VPN connection is required. The URL will be in this format: `https://zitadel.<CLUSTER_NAME>.<DOMAIN>`
 
-   The `cluster_name` and `domain` values come from the `cluster-config.yaml` file that you configured earlier.
+   The `CLUSTER_NAME` and `DOMAIN` values come from the `cluster-config.yaml` file that you configured earlier (in section [Control Center: Deploy the Control Center](#control-center-deploy-the-control-center)).
 
    For login, use the default credentials:
 
-   - Username: `rootauto@zitadel.zitadel.<cluster_name>.<domain>`
+   - Username: `rootauto@zitadel.zitadel.<CLUSTER_NAME>.<DOMAIN>`
    - Password: `#Password1!`
 
 1. Follow the on-screen prompts and enable two-factor authentication.
@@ -625,9 +665,9 @@ All Control Center services (GitLab, ArgoCD, Grafana, Vault, and so on) use Zita
 
 ##### Netbird: Set up VPN access to services
 
-1. Go to the NetBird dashboard: `https://netbird-dashboard.<cluster-name>.<domain>`
+1. Go to the NetBird dashboard: `https://netbird-dashboard.<CLUSTER_NAME>.<DOMAIN>`
 
-   The `cluster_name` and `domain` values come from the `cluster-config.yaml` file that you configured earlier.
+   The `CLUSTER_NAME` and `DOMAIN` values come from the `cluster-config.yaml` file that you configured earlier (in section [Control Center: Deploy the Control Center](#control-center-deploy-the-control-center)).
 
 1. On the login page, log in with your new user.
 
@@ -647,13 +687,13 @@ All Control Center services (GitLab, ArgoCD, Grafana, Vault, and so on) use Zita
    1. On the Zitadel SSO login page, use the credentials of the new non-root you have just set up in Zitadel.
    1. Follow the on-screen prompts.
 
-Once you've connected, you can access all the portals.
+Once you have connected, you can access all the portals.
 
 ##### GitLab: Set up two-factor authentication
 
-1. Navigate to: `https://gitlab.<cluster_name>.<domain>`
+1. Navigate to: `https://gitlab.<CLUSTER_NAME>.<DOMAIN>`
 
-   The `cluster_name` and `domain` values come from the `cluster-config.yaml` file that you configured earlier.
+   The `CLUSTER_NAME` and `DOMAIN` values come from the `cluster-config.yaml` file that you configured earlier (in section [Control Center: Deploy the Control Center](#control-center-deploy-the-control-center)).
 
 1. To log in, select the **Zitadel** button.
 
@@ -674,9 +714,9 @@ Once you've connected, you can access all the portals.
 
 ##### Vault: Verify if secret paths are accessible
 
-1. Go to: `https://vault.int.<cluster-name>.<domain>`
+1. Go to: `https://vault.int.<CLUSTER_NAME>.<DOMAIN>`
 
-   The `cluster_name` and `domain` values come from the `cluster-config.yaml` file that you configured earlier (in section [Control Center: Deploy the Control Center](#control-center-deploy-the-control-center)).
+   The `CLUSTER_NAME` and `DOMAIN` values come from the `cluster-config.yaml` file that you configured earlier (in section [Control Center: Deploy the Control Center](#control-center-deploy-the-control-center)).
 
 1. On the login page, select **Method: OIDC**, click **Sign in with OIDC Provider**, then in the window that pops up, choose your new user. <!-- EDITORIAL COMMENT: techops-admin -->
 
@@ -688,9 +728,9 @@ Once you've connected, you can access all the portals.
 
 ##### Grafana: Review dashboards and set up alerts
 
-1. Go to: `https://grafana.int.<cluster-name>.<domain>`
+1. Go to: `https://grafana.int.<CLUSTER_NAME>.<DOMAIN>`
 
-   The `cluster_name` and `domain` values come from the `cluster-config.yaml` file that you configured earlier.
+   The `CLUSTER_NAME` and `DOMAIN` values come from the `cluster-config.yaml` file that you configured earlier (in section [Control Center: Deploy the Control Center](#control-center-deploy-the-control-center)).
 
 1. On the login page, click the **Sign in with Zitadel** button and select your new user.
 
@@ -700,15 +740,192 @@ Once you've connected, you can access all the portals.
 
 ##### ArgoCD: Verify if all services are operational
 
-1. Go to: `https://argocd.int.<cluster-name>.<domain>`
+1. Go to: `https://argocd.int.<CLUSTER_NAME>.<DOMAIN>`
 
-   The `cluster_name` and `domain` values come from the `cluster-config.yaml` file that you configured earlier (in section [Control Center: Deploy the Control Center](#control-center-deploy-the-control-center)).
+   The `CLUSTER_NAME` and `DOMAIN` values come from the `cluster-config.yaml` file that you configured earlier (in section [Control Center: Deploy the Control Center](#control-center-deploy-the-control-center)).
 
 1. On the login page, click the **Sign in with Zitadel** button, and select your new user.
 
 1. Check the status of all applications, verify that they are healthy.
 
 The Control Center is now fully up and running.
+
+#### Control Center: Troubleshooting
+
+##### AWS quota exceeded
+
+**Error message:**
+
+"You have requested more vCPU capacity than your current vCPU limit"
+
+**Resolution:**
+
+1. Access the AWS Service Quotas console.
+1. Request an increase for the EC2 instance vCPU limit.
+1. Wait for approval before retrying the deployment.
+
+##### IAM group not found
+
+**Error message:**
+
+"The group with name iac_admin cannot be found"
+
+**Resolution:**
+
+Execute the IAM group creation commands from section [Configure AWS IAM](#configure-aws-iam).
+
+##### Terraform state lock
+
+**Error message:**
+
+"Error acquiring the state lock"
+
+**Resolution:**
+
+```bash
+# Force unlock with the lock ID from error message
+terragrunt force-unlock <LOCK_ID>
+```
+
+##### Certificate generation failures
+
+**Issue:**
+
+Let's Encrypt certificate requests are failing.
+
+**Resolution:**
+
+1. Verify if DNS propagation has completed.
+1. Check Let's Encrypt rate limits.
+1. Verify domain ownership.
+
+##### AWS EC2: UnAuthorized Operation
+
+After executing the `wrapper.sh` script to run the CC deployment, you might get an `UnAuthorized Operation` error.
+
+**Error message - Example:**
+
+"Error: Reading EC2 AMIs: operation error EC2: DescribeImages, https response error, StatusCode: 403, RequestID: {id}, api error UnAuthorized Operation: You are not authorized to perform this operation. User: arn:aws:iam::{account-id}:user/{username} is not authorized to perform: ec2:DescribeImages with an explicit deny in an identity-based policy"
+
+Instead of `EC2` and `DescribeImages`, you may have some other service and operation in your error message.
+
+**Resolution:**
+
+1. Go to the IAM Policy Simulator: [https://policysim.aws.amazon.com](https://policysim.aws.amazon.com)
+1. In section **Users, Groups, and Roles** on the left, select the username indicated in the error message.
+1. In section **Policy Simulator** on the right, in the drop-down fields at the top of the page, choose the service (in our example, it is **EC2**) and the action (in our example, it is **DescribeImages**) that the user is unauthorized to perform according to the error message.
+1. Click **Run Simulation**.
+1. In the results, click the chevron at the beginning of the row. You should see a **Show Statement** link displayed.
+1. Click **Show Statement**. Clicking the link will show you (on the left) the relevant part in the relevant Policy that is interfering with your permissions.
+
+   Note that IAM permissions are additive, but an explicit `Deny` overrides all `Allow`s, no matter where they come from.
+
+   The `UnAuthorized Operation` error might be caused by a Policy with a `Deny`.
+
+1. Try modifying or removing the Policy that is causing the error.
+
+##### Unable to access internal services (ArgoCD, Vault, Grafana)
+
+**Error message:**
+
+After deploying the Control Center, when accessing services that require a VPN connection (ArgoCD, Vault, Grafana), you get either of the following messages:
+
+- `connection timed out`
+- `unable to connect`
+
+This is after having set up a new non-root user in Zitadel and having established a VPN connection via NetBird with this new user.
+
+**Resolution:**
+
+This might be due to your Internet Service Provider's (ISP's) DNS resolution service being slow.
+
+Try changing your network settings to use Google Public DNS: [Configure your network settings to use Google Public DNS](https://developers.google.com/speed/public-dns/docs/using)
+
+#### Control Center: Maintenance
+<!-- QUESTION: This section comes from the old doc. Is the info below still correct/relevant? -->
+
+<!-- ##### Adding new environments
+
+1. Update the configuration:
+
+   ```bash
+   vi custom-config/environment.yaml
+   # Add new environment to the list
+   ```
+
+1. Refresh templates:
+
+   ```bash
+   ./refresh-env-templates.sh
+   ```
+
+1. Apply changes: Sync changes through ArgoCD. -->
+
+##### Expanding storage
+
+If additional storage is required on the Control Center host:
+
+1. Check current usage:
+
+   ```bash
+   sudo lsblk
+   ```
+
+1. Expand the partition:
+
+   ```bash
+   # Adjust device name as needed
+   sudo growpart /dev/nvme0n1 1
+   ```
+
+1. Resize the filesystem:
+
+   ```bash
+   sudo resize2fs /dev/nvme0n1p1
+   ```
+
+#### Control Center: Destroy the Control Center
+
+**Prerequisites:**
+
+- You have successfully destroyed all Switch and PM4ML environments.
+
+For details on how to destroy the Switch, see [Mojaloop Switch: Destroy the Switch environment](#mojaloop-switch-destroy-the-switch-environment)
+
+**Steps:**
+
+To completely remove the Control Center:
+
+1. ssh into the Control Center host:
+
+   ```bash
+   ssh -i ~/.ssh/<ACCESS_KEY> ubuntu@<PUBLIC_IP_ADDRESS>
+   ```
+
+1. Navigate to the `ccnew` directory:
+
+   ```bash
+   cd /iac-run-dir/iac-modules/terraform/ccnew/
+   ```
+
+1. Load the configuration: <!-- QUESTION: This step comes from the old doc. Is it still needed? -->
+
+   ```bash
+   source externalrunner.sh
+   source scripts/setlocalvars.sh
+   ```
+
+1. Migrate state:
+
+   ```bash
+   ./movestatefromk8s.sh
+   ```
+
+1. Destroy resources:
+
+   ```bash
+   ./destroy-cc.sh
+   ```
 
 ### Deploying the Mojaloop Switch environment
 
@@ -737,7 +954,7 @@ Before beginning the deployment, ensure you have the following in place.
 
 - Active user account in Zitadel
 - Access to Control Center GitLab
-- VPN connection via Netbird
+- VPN connection via NetBird
 - Appropriate RBAC permissions
 
 ##### AWS resources
@@ -748,9 +965,8 @@ Before beginning the deployment, ensure you have the following in place.
 
 ##### Tools and software
 
-<!-- EDITORIAL COMMENT: Double-check if these are all needed-->
 - kubectl CLI installed
-- kubelogin for OIDC authentication
+<!-- - kubelogin for OIDC authentication -->
 - Web browser for GitLab Web IDE access
 
 ##### Operator knowledge
@@ -808,11 +1024,11 @@ The deployment of the Switch follows a similar pattern to that of the Control Ce
 
 1. Once you opened **deploy-env-templates**, you need to provide some environment variables:
    - **ENV_TO_UPDATE** → the name of the environment that you want to update, it is the Switch environment that you defined in the `custom-config/environment.yaml` file (in our example, it will be: `sw001`)
-   - **IAC_MODULES_VERSION_TO_UPDATE** → the version of Terraform that you want to use (in our example, it is: `v7.0.0-rc.119`)
+   - **IAC_MODULES_VERSION_TO_UPDATE** → the version of Terraform that you want to use (in our example, it is: `mcm-1762866755`)
 
 1. Run the job. This will populate the repository of the Switch with the default configuration.
 
-1. After successful initialization, access the newly created environment repository at **Groups > iac > <SWITCH_ENVIRONMENT>**.
+1. After successful initialization, access the newly created environment repository at **Groups > iac > <NAME_OF_YOUR_SWITCH_ENVIRONMENT>**.
 
 1. Once in the Switch repository, click **Build > Pipelines** on the left.
 
@@ -824,16 +1040,7 @@ The deployment of the Switch follows a similar pattern to that of the Control Ce
 
 Set up the access key as a secret in the Vault.
 
-1. Connect to Vault using the internal URL (requires VPN):
-
-   ```
-   https://vault.int.<cluster-name>.<domain>
-   ```
-
-   Example:
-   ```
-   https://vault.int.cc004.perf004.mojaperflab.org/
-   ```
+1. Connect to Vault using the internal URL (requires VPN): `https://vault.int.<CLUSTER_NAME>.<DOMAIN>`
 
 1. Navigate to the following path: **Secrets Engines > secret > cloud-api-access**.
 
@@ -870,16 +1077,15 @@ Set up the access key as a secret in the Vault.
 
 #### Mojaloop Switch: Add custom configuration
 
-To configure the Switch, you are going to use a profile-based approach. What does this mean? You can define a "profile" (= a set of declarative configuration files) with values that are specific to your deployment, and use the profile to override the configuration defined in the **iac-modules** repository.
+To configure the Switch, you are going to use a profile-based approach. What does this mean? You can define a "profile" (= a set of declarative configuration files) with values that are specific to your deployment, and use that profile to override the configuration defined in the **iac-modules** repository.
 
 It is possible to define a separate profile for each and every deployment.
 
-In the example below, we are going to use the [common-profile](https://github.com/infitx-org/common-profile) repository. All you have to do is reference the **common-profile** and the values defined in there will override the configuration defined in the **iac-modules** repository.
+In the example below, we are going to use the [common-profile](https://github.com/infitx-org/common-profile) repository. All you have to do is reference the **common-profile** and the values defined in there will override the configuration defined in the **iac-modules** repository. [common-profile](https://github.com/infitx-org/common-profile) currently only specifies the values that are not defined in the default-config.
 
-**NOTE:** The `custom-config.yaml` file always needs to be present. Without this file, the deployment will fail. <!-- EDITORIAL COMMENT: Should be `cluster-config.yaml`-->
+**NOTE:** The `cluster-config.yaml` file always needs to be present. Without this file, the deployment will fail.
 
 **NOTE:** If you do not wish to override the default configuration in the **iac-modules** repository, do not reference any profile.
-<!-- EDITORIAL COMMENT: BTW, the profile currently only has the values that are not defined in the default-config. Also: the default thing is iac-modules and the profile overrides that. So the iac-modules is the default, if we don't want to override it, we just remove the override file. --> 
 
 1. In GitLab, go back to the Switch environment.
 
@@ -889,11 +1095,11 @@ In the example below, we are going to use the [common-profile](https://github.co
 
    ```yaml
    profiles/switch:
-   url: https://github.com/infitx-org/common-profile.git       # replace with your own profile in case you have defined your own custom profile
+   url: https://github.com/infitx-org/common-profile.git       # Replace with your own profile in case you have defined your own custom profile
    ref: main
    ```
 
-   This submodule will clone the repository referenced as a git submodule and will merge it directly into the configuration. Anything that has to be overriden will be defined in the below steps.
+   This submodule will clone the profile repository referenced as a git submodule and will merge it directly into the configuration. Anything that has to be overriden will be defined in the below steps.
 
    **NOTE:** In case your profile is defined in a private repository, you have to set up a git-specific secret in the Vault. It will be used to authenticate to the repository automatically. There is no need to define a secret for a public repository.
 
@@ -920,19 +1126,19 @@ In the example below, we are going to use the [common-profile](https://github.co
    cloud_region: <YOUR_AWS_REGION>
    object_storage_provider: s3
    cloud_platform: aws
-   iac_terraform_modules_tag: v7.0.0-rc.119              # mcm-1762808514 --> mcm-1762866755
+   iac_terraform_modules_tag: mcm-1762866755             # v7.0.0-rc.119 --> mcm-1762808514 --> mcm-1762866755
    ansible_collection_tag: v7.0.0-rc.86
    manage_parent_domain: false
    cc: controlcenter
    cc_name: controlcenter
-   sc: sccontrolcenter                                   # dummy value for cloud-based deployments so that Terraform doesn't fail
+   sc: sccontrolcenter                                   # Dummy value for cloud-based deployments so that Terraform doesn't fail
    currency: <YOUR_CURRENCY>
-   switch: <NAME_OF_YOUR_SWITCH>                         # in PM4ML, it will be replaced by e.g., test-<switch>-dfsp1
+   switch: <NAME_OF_YOUR_SWITCH>                         # In PM4ML, it will be replaced by e.g., test-<switch>-dfsp1
    tags:
       {
          "Origin": "Terraform",
-         "mojaloop/cost_center": "<YOUR_COST_CENTER>",   # must already exist in AWS
-         "mojaloop/env": "<YOUR_ENVIRONMENT>",           # must already exist in AWS
+         "mojaloop/cost_center": "<YOUR_COST_CENTER>",   # Ensure that you use a tag that has already been set up in AWS <!-- QUESTION: Where can we set that? -->
+         "mojaloop/env": "<YOUR_ENVIRONMENT>",           # Ensure that you use a tag that has already been set up in AWS <!-- QUESTION: Where can we set that? -->
          "mojaloop/owner": "<YOUR_NAME>"
       }
    ```
@@ -953,11 +1159,11 @@ In the example below, we are going to use the [common-profile](https://github.co
    reporting-hub-bop-settlements-ui:
    config:
       env:
-         REPORTING_TEMPLATE_API_ENDPOINT: https://finance-portal.int.<YOUR_SWITCH_ENVIRONMENT_NAME>.<YOUR_DOMAIN>/api/reports/report-multilateral-settlement    # don't forget to update this
+         REPORTING_TEMPLATE_API_ENDPOINT: https://finance-portal.int.<YOUR_SWITCH_ENVIRONMENT_NAME>.<YOUR_DOMAIN>/api/reports/report-multilateral-settlement    # Don't forget to update this
 
    reporting-hub-bop-shell:
    configFiles:
-      config.json: # feel free to customise the title, subtitle, image, colour
+      config.json: # Feel free to customise the title, subtitle, image, colour
          TITLE: 'STG'
          SUBTITLE: 'Finance Portal'
          TITLE_IMAGE: 'data:image/webp;base64,UklGRlgDAABXRUJQVlA4IEwDAADwOACdASoAAlUBPpFGnkslo6KhpegAsBIJZ27hdrD0s7jrxt7P+7d/gLj/QAAB2S9xZ3yil7izvlFL3FnfKKXuLO+UUvcWd8ope4s75RS9xZ3yil7izvlFL3FnfKKXuLO+UUvcWd8ope4s75RS9xZ3yil7izvlFL3FnfKKXuLO+UUvcWd8ope4s75RS9xZ3yil7izvlFKq9rLzcbA82B5sDzYHmwPNgebA82B5sDzYHmwPNgebA82B5sDzEIKY9N402B5sDzYHmwPNgebA82B5sDzYHmwPNgebA82B5sD07Fi3GwSrIjmk/fLYxJXvUOiOOd8ope4s75RS9xZ3yil7izvlFL3FnfKKXuLO+UUvcWd8ope4s75RS9xZ3yieH8ymNMHXYOuwddg67B12DrsHXYOuwddg67B12DrsHXYOuwddeQWLggk2B5sDzYHmwPNgebA82B5sDzYHmwPNgebA82B5sDzYY4UUvcWd8ope4s75RS9xZ3yil7izvlFL3FnfKKXuLO+UUvcWd8ope4s75RS9xZ3yil7izvlFL3FnfKKXuLO+UUvcWd8ope4s75RS9xZ3yil7izvlFL3FnfKKXuLO+UUvcWd8ope4s75FAAD+/1/XP680CKPv//UGf/kGf/kGfqdMAARoAAAAAAAAAAAAAAAAAAACK+Kj032G4DHtg7Dwb0/4XH+klVC7pX9JKmN8EBg029Q3DW3qG4a29Q3DW3qG4a29Q3DW3qG2e/d1heeks2PKf9+bTfhdiJPvK28+3AsZPonFI4dE24ianN8MOImpzfDDiJqc3ww4ianN8MOImpzfN8lU84L/C0depefb/ndz+l12BZFWK67AsirFddgWRViuuwLIqxXXYFkVYrrsCeYIAAAAAAAAAAYn8NAaKQKSgL4g00WExaGr708XHVLA7e22TJfTxcdUsDt7bZMl9PFx1SwO3ttkyX08XHVLA7e22TJfTxcdUsDt7baTsicKMrlfN+L/tj8Ka3Pzb/SIOpinaMzQWRtY6qdBDuDpt4lyHVlzaptU8jsza9IrcuOXHTbxLkOrLm1Tap5HZm16RW5ccuOm3iX57oFSyQAAcCAAATyAADJYAAhzgAFWgAA0mAAAAAAA'
@@ -965,10 +1171,6 @@ In the example below, we are going to use the [common-profile](https://github.co
    ```
 
 1. Create a `mojaloop-stateful-resources-monolith-databases.yaml` file and configure it as follows:
-
-   There will be 2 RDS databases: one for Ory, Keycloak, etc., and one for Mojaloop services such as the Central Ledger, MCM, etc. The MongoDB documentdb database will be for the Finance Portal, the collections, settlements, etc. <!-- EDITORIAL COMMENT: In the case of an on-prem deployment, they are created from Persona in the storage cluster. -->
-
-   `mojaloop-stateful-resources-monolith-databases.yaml` will create the databases and the default configuration: t3.million databases with a single instance. If you need bigger databases or more instances, you can add appropriate values. <!-- EDITORIAL COMMENT: We need to add an appendix with the full values from session 2, Nov 7th. The files in the default-config folder will not work, as they contain placeholders. In session 2, we specified values in place of the dummy values or placeholders. -->
 
    ```yaml
    common_platform_db:
@@ -978,6 +1180,10 @@ In the example below, we are going to use the [common-profile](https://github.co
    common_mongodb:
    provider: documentdb
    ```
+
+   There will be two RDS databases: one for Ory, Keycloak, etc., and one for Mojaloop services such as the Central Ledger, MCM, etc. The MongoDB documentdb database will be for the Finance Portal, the collections, settlements, etc. <!-- EDITORIAL COMMENT: In the case of an on-prem deployment, they are created from Percona in the storage cluster. -->
+
+   `mojaloop-stateful-resources-monolith-databases.yaml` will create the databases and the default configuration: t3.million databases with a single instance. If you need bigger databases or more instances, you can add appropriate values. <!-- EDITORIAL COMMENT: We need to add an appendix with the full values from session 2, Nov 7th. The files in the default-config folder will not work, as they contain placeholders. In session 2, we specified values in place of the dummy values or placeholders. -->
 
 1. Create a `mojaloop-values-override.yaml` file and configure it as follows:
 
@@ -1003,7 +1209,7 @@ In the example below, we are going to use the [common-profile](https://github.co
    onboarding_net_debit_cap: 1000
    ```
 
-1. Create a `platform-stateful-resources.yaml` file and configure it as follows: <!-- EDITORIAL COMMENT: Instead of `external`, we could've set internal/in-cluster also because we support it for on-prem for percona, etc.-->
+1. Create a `platform-stateful-resources.yaml` file and configure it as follows: <!-- EDITORIAL COMMENT: Instead of `external`, we could've set internal/in-cluster also because we support it for on-prem for Percona, etc.-->
 
    ```yaml
    mcm-db:
@@ -1044,28 +1250,31 @@ In the example below, we are going to use the [common-profile](https://github.co
 
    This file will create the PM4ML instances that we want to onboard.
 
-1. Create a `values-hub-provisioning-override.yaml` file and configure it as follows: <!-- EDITORIAL COMMENT: Do we need to create the same file under default-config? 56:28-->
+1. Create a `values-hub-provisioning-override.yaml` file and configure it as follows: <!-- QUESTION: Do we need to create the same file under default-config? 56:28-->
 
    ```yaml
    testCaseEnvironmentFile:
    inputValues:
-         currency: "<YOUR_CURRENCY>"                              # change this to your currency
+         currency: "<YOUR_CURRENCY>"                              # Change this to your currency
          DEFAULT_SETTLEMENT_MODEL_NAME: "DEFAULTDEFERREDNET"
          hubEmail: "hub@example.com"
    ```
 
 1. Commit your changes to main.
 
-1. Run **init**. The first init may fail but this is fine for now. For the init to succeed, the S3 buckets must be up. 
-<!-- EDITORIAL COMMENT: Do we have to run merge-config before init? Also, do we have to wait and re-run **init** ntil it succeeds? -->
+1. Run **init**. The first init may fail but this is fine for now. For the init to succeed, the S3 buckets must be up.
 
-<!-- EDITORIAL COMMENT: call 3 33:00-35:00 -->
+   <!-- QUESTION: Do we have to run merge-config before init? Also, do we have to wait and re-run **init** until it succeeds? -->
+
+   <!-- EDITORIAL COMMENT: call 3 33:00-35:00 -->
 
 1. Run **refresh-templates**.
 
-   Whenever you use profiles, you need to run the **refresh-templates** job before the deploy job (via **GitLab > switch > Build > Pipleines**). The **refresh-templates** job will fetch the repository, add it as a sub-module, and apply it.
+   Whenever you use profiles, you need to run the **refresh-templates** job before the deploy job (via **GitLab > switch > Build > Pipleines**). The **refresh-templates** job will fetch the repository, add it as a submodule, and apply it.
 
-<!-- 37:00  We have to run refresh-templates only when you add a sub-module. Otherwise you can run the deploy job without it. You run refresh-templates when using profiles for the first time. When you just update something in the already existing profile, you don't need to run it. ??? However, if you change the profile, you have to run refresh-templates. It's because it's the one that will clone the profile and make that update. Each time we just iac-modules or common-profiles, we have to run refresh-templates. -->
+<!-- call 3 37:00  We have to run refresh-templates only when you add a sub-module. Otherwise you can run the deploy job without it. You run refresh-templates when using profiles for the first time. When you just update something in the already existing profile, you don't need to run it. ??? However, if you change the profile, you have to run refresh-templates. It's because it's the one that will clone the profile and make that update. Each time we just update??? iac-modules or common-profiles, we have to run refresh-templates. -->
+
+<!-- QUESTION: When do you have to run refresh-templates? Only when you add a sub-module? When using profiles for the first time? When you start referencing a whole different profile in the sub-module? When you just update something in the already existing profile, do you have to run it? -->
 
 #### Mojaloop Switch: Run the deployment
 
@@ -1073,9 +1282,16 @@ In the example below, we are going to use the [common-profile](https://github.co
    1. Select the **deploy** stage of your latest commit.
    1. Run **deploy-infra**. This will deploy the infrastructure, Kubernetes, ArgoCD, together with the configuration you specified.
       (After **deploy-infra** has run, two more jobs will run: **lint-apps** and **push-apps**. Following the **lint-apps** job, a **push-apps** job runs automatically, which will push the manifests generated for the ArgoCD applications.)
-   1. Wait until the job finishes successfully.
+1. Wait until the job finishes successfully.
 
 #### Mojaloop Switch: Verify the deployment
+
+After **deploy-infra** has run successfully, you can check how the deployment of the various applications is progressing. You can do this in the following ways:
+
+- If NetBird is not yet up and running: Use the bastion of the environment. For details, see section [Verify deployment via the bastion](#verify-deployment-via-the-bastion).
+- If NetBird is already up and running: Access ArgoCD in your browser via port forwarding. For details, see section [Verify deployment via ArgoCD when NetBird is up and running](#verify-deployment-via-argocd-when-netbird-is-up-and-running).
+
+##### Verify deployment via the bastion
 
 1. After **deploy-infra** has run successfully, you can download the artifacts from the **Build > Artifacts** page. (When you run a deploy job, it will save some artifacts.)
    1. Browse **deploy-infra**, and explore its contents.
@@ -1084,7 +1300,7 @@ In the example below, we are going to use the [common-profile](https://github.co
       1. `inventory`: used for Terraform
       1. `oidc-kubeconfig`: the kubeconfig of the Kubernetes environment just deployed
       1. `sshkey`
-1. ssh into the bastion of the environment. <!-- EDITORIAL COMMENT: Why do we need to do that? --> For this, you need to grab the ssh key from the `sshkey` artifact, and the IP address of the bastion from the `inventory` artifact.
+1. ssh into the bastion of the environment. <!-- QUESTION: Why do we need to do that? --> For this, you need to grab the ssh key from the `sshkey` artifact, and the IP address of the bastion from the `inventory` artifact.
 1. Copy the contents of the `sshkey` file, and paste it into the following new file: `~/.ssh/<ENVIRONMENT>-sshkey`
 1. Grant read-only permissions to the ssh key:
 
@@ -1092,7 +1308,7 @@ In the example below, we are going to use the [common-profile](https://github.co
    chmod 400 ~/.ssh/<ENVIRONMENT>-sshkey
    ```
 
-1. To get the IP address of the bastion, open the `inventory` file and copy the value of `ansible_host`. Save this value because you will need it in the next step. You will find `ansible_host` here:
+1. To get the IP address of the bastion, open the `inventory` file and copy the value of `ansible_host`. Save this value because you will need it in the next step. You will find `ansible_host` at the top of the file, here:
 
    ```yaml
    all:
@@ -1103,7 +1319,7 @@ In the example below, we are going to use the [common-profile](https://github.co
          ...
    ```
 
-1. ssh into the bastion of the environment:
+1. ssh into the bastion of the environment: <!-- QUESTION: Which port do we need to specify? -->
 
    ```bash
    ssh -i ~/.ssh/<ENVIRONMENT>-sshkey -L <PORT???> ubuntu@<IP-ADDRESS-OF-THE-BASTION>
@@ -1144,11 +1360,11 @@ In the example below, we are going to use the [common-profile](https://github.co
 
 1. Once logged in, you can check how the deployment of the various applications is progressing.
 
-   When Netbird is in a synced state, you can log in to ArgoCD directly from the browser. See the next section: [Mojaloop Switch: Access ArgoCD when Netbird is up and running](#mojaloop-switch-access-argocd-when-netbird-is-up-and-running).
+   When Netbird is in a synced state, you can log in to ArgoCD directly from the browser. See the next section: [Verify deployment via ArgoCD when NetBird is up and running](#verify-deployment-via-argocd-when-netbird-is-up-and-running).
 
-#### Mojaloop Switch: Access ArgoCD when Netbird is up and running
+##### Verify deployment via ArgoCD when NetBird is up and running
 
-##### Configure user permissions
+###### Configure user permissions
 
 1. Log in as admin to Control Center Zitadel to grant permissions.
 1. Add user to environment group:
@@ -1159,7 +1375,7 @@ In the example below, we are going to use the [common-profile](https://github.co
    1. Under **Search for a project**, select your Switch environment from the drop-down menu, and click **Continue**.
    1. Select all the roles and click **Save**.
 
-##### Access ArgoCD
+###### Access ArgoCD
 
 1. Go to: `https://argocd.int.<NAME_OF_YOUR_SWITCH_ENVIRONMENT>.<NAME_OF_YOUR_DOMAIN>`
 
@@ -1175,21 +1391,206 @@ In the example below, we are going to use the [common-profile](https://github.co
 
    1. Go to **mojaloop-stateful-resources-app**. This app creates one RDS database for MCM, Central Ledger, Account Lookup, etc., and one DocumentDB for reporting, settlements, collections, etc.
 
-   Ctrl+F on your laptop and search for the string "rds". You will see that the deployment of the RDS clusters and the DocumentDB clusters are still progressing. Their deployment might take some time. You can check their progress in AWS as well by going to **Aurora and RDS > Databases** and **Amazon DocumentDB > Clusters** and checking values in the **Status** column (status **Creating** vs status **Available**).
+      Ctrl+F and search for the string "rds". You will see that the deployment of the RDS clusters and the DocumentDB clusters are still progressing. Their deployment might take some time. You can check their progress in AWS as well by going to **Aurora and RDS > Databases** and **Amazon DocumentDB > Clusters** and checking values in the **Status** column (status **Creating** vs status **Available**).
 
-   1. Go to **common-stateful-resources-app**. This app deploys one common RDS database for Keycloak, Ory, Kratos, Keto, etc. for the common statful resources. Ctrl+F on your laptop and search for the string "rds". Check the health indicators (Synced, Healthy) of the RDS cluster to determine the progress of deployment.
+   1. Go to **common-stateful-resources-app**. This app deploys one common RDS database for Keycloak, Ory, Kratos, Keto, etc. for the common statful resources. Ctrl+F and search for the string "rds". Check the health indicators (Synced, Healthy) of the RDS cluster to determine the progress of deployment.
 
+When all the pods are up and running, you can start accessing the various portals (MCM portal, Finance Portal).
 
-TO BE CONTINUED...
+#### Mojaloop Switch: Access the portals
 
+##### Configure Kubernetes access
 
-### Destroying the Mojaloop Switch environment
+You will use the kubetctl command-line tool to retrieve portal credentials from the Kubernetes clusters. For this, you need to set a kubeconfig file so that kubectl knows how to talk to your Kubernetes clusters.
+
+1. In GitLab, navigate to the Switch: `https://gitlab.<CLUSTER_NAME>.<DOMAIN>/iac/<NAME_OF_YOUR_SWITCH_ENVIRONMENT>` You can download artifacts from the **Build > Artifacts** page. (When you run a deploy job, it will save some artifacts.)
+   1. Browse **deploy-infra**, and explore its contents.
+   1. Go to **ansible > k8s-deploy**.
+   1. You will find the following artifacts:
+      1. `inventory`
+      1. `oidc-kubeconfig`: the kubeconfig of the Kubernetes environment just deployed
+      1. `sshkey`
+1. Download the `oidc-kubeconfig` artifact, and save it locally.
+1. Set kubeconfig:
+
+   Example (remember to use your own environment identifier instead of `sw001`):
+
+   ```bash
+   # Save downloaded kubeconfig
+   mkdir -p ~/.kube
+   mv ~/Downloads/kubeconfig ~/.kube/sw001-config
+
+   # Export configuration
+   export KUBECONFIG=~/.kube/sw001-config
+   ```
+
+##### Access Keycloak
+
+1. Obtain the credentials:
+
+   To obtain the username, execute: `kubectl get secret switch-keycloak-initial-admin -n keycloak -o jsonpath='{.data.username}' | base64 -D`
+
+   To obtain the password, execute: `kubectl get secret switch-keycloak-initial-admin -n keycloak -o jsonpath='{.data.password}' | base64 -D`
+
+1. Go to: `https://keycloak.<NAME_OF_YOUR_SWITCH_ENVIRONMENT>.<NAME_OF_YOUR_DOMAIN>`
+
+   The `<NAME_OF_YOUR_SWITCH_ENVIRONMENT>` and `<NAME_OF_YOUR_DOMAIN>` values come from the `cluster-config.yaml` file that you configured earlier.
+
+1. Log in.
+
+1. Once logged in, check the current realm displayed in the top left corner. If it's not **hub-operators**, then switch to the **hub-operators** realm via the **Manage realm** menu item on the left.
+
+##### Access Grafana
+
+To access the Grafana monitoring dashboards of the Switch environment, perform the following steps:
+
+1. Navigate to Grafana using the following URL: `https://grafana.int.<NAME_OF_YOUR_SWITCH_ENVIRONMENT>.<NAME_OF_YOUR_DOMAIN>`
+
+   The `<NAME_OF_YOUR_SWITCH_ENVIRONMENT>` and `<NAME_OF_YOUR_DOMAIN>` values come from the `cluster-config.yaml` file that you configured earlier.
+
+1. Log in:
+   - Option 1: Choose the **Sign in with Zitadel** button and your non-admin user account. (recommended)
+   - Option 2: Local admin account
+
+      ```bash
+      # Get username
+      kubectl get secret grafana-admin-secret -n monitoring \
+      -o jsonpath='{.data.admin-user}' | base64 -d
+
+      # Get password
+      kubectl get secret grafana-admin-secret -n monitoring \
+      -o jsonpath='{.data.admin-pw}' | base64 -d
+      ```
+
+##### Access the Business Portal
+
+1. Access the Business Portal at the following URL: `https://finance-portal.int.<NAME_OF_YOUR_SWITCH_ENVIRONMENT>.<NAME_OF_YOUR_DOMAIN>`
+
+   The `<NAME_OF_YOUR_SWITCH_ENVIRONMENT>` and `<NAME_OF_YOUR_DOMAIN>` values come from the `cluster-config.yaml` file that you configured earlier.
+
+1. Log in:
+
+   - Username: `portal_admin`
+   - Authentication: Retrieved from Keycloak secret
+
+      ```bash
+      kubectl get secret portal-admin-secret -n keycloak -o jsonpath='{.data.secret}' | base64 -D
+      ```
+
+1. Once logged in to the Business Portal, update the access rights of the Portal Admin user so that you can use this same user account to access all portals : <!-- QUESTION: Is this needed? Shall I remove this step? Maybe it's not recommended and we only used it in the call to save time? -->
+
+   1. In the left-hand navigation menu, go to **Apps > Roles**. The **Users** page is displayed.
+   1. Select **portal_admin@none**, and on the page that is displayed, click **Update Roles**. A **Select Roles** window pops up.
+   1. Select all the roles except **audit**, and click **Update Roles**.
+
+##### Access the MCM portal
+
+1. Access the MCM portal at the following URL: `https://mcm.int.<NAME_OF_YOUR_SWITCH_ENVIRONMENT>.<NAME_OF_YOUR_DOMAIN>`
+
+   The `<NAME_OF_YOUR_SWITCH_ENVIRONMENT>` and `<NAME_OF_YOUR_DOMAIN>` values come from the `cluster-config.yaml` file that you configured earlier.
+
+1. Log in:
+
+   - Username: `portal_admin` <!-- EDITORIAL COMMENT: Or is it mcm_admin? -->
+   - Authentication: Retrieved from Keycloak secret
+
+      ```bash
+      kubectl get secret portal-admin-secret -n keycloak -o jsonpath='{.data.secret}' | base64 -D
+      ```
+
+In the MCM portal, you will see a widget displayed for the Hub and for the DFSPs. The DFSPs are created via the custom-config > `pm4ml-vars.yaml` file. It is only the DFSPs for the first deployment that are created via this file. Any future DFSPs must be created via Keycloak and MCM. This can be useful in testing scenarios too, when you want to simulate DFSPs. See section [Create a simulated DFSP in MCM](#create-a-simulated-dfsp-in-mcm).
+
+#### Mojaloop Switch: Run TTK tests
+
+<!-- Once the tests have run successfully, ...
+You can check if tests are still running via ArgoCD. Under LAST SYNC, you might see the following status message displayed:
+... waiting for completion of hook batch/Job/moja-ml-ttk-test-setup. -->
+
+##### Automated tests
+
+Following deployment, the following steps are taken automatically:
+
+1. The `moja-ml-ttk-test-val-gp` pod in the mojaloop namespace provisions \<placeholder\>. <!-- QUESTION: What does this do? -->
+1. The `moja-ml-ttk-test-setup` pod in the mojaloop namespace runs automated tests.
+
+Automatic tests help you assess if the system you have just deployed works as expected.
+
+Check the test summary in the logs to see if everything is working fine.
+
+The log details will show a URL to download the test results from. You can use the results to investigate errors.
+
+##### Run Golden Path tests
+
+1. Download the test collection:
+    1. Go to: [https://github.com/mojaloop/testing-toolkit-test-cases/releases/tag/v17.0.15](https://github.com/mojaloop/testing-toolkit-test-cases/releases/tag/v17.0.15) <!-- QUESTION: Should we reference some later version? -->
+    1. Download the appropriate test collection.
+
+1. Configure TTK.
+    1. Load the golden path provisioning collection.
+    1. Navigate to: Collections → Hub → Golden Path → P2P Money Transfer.
+    1. Set environment to: `examples/environments/hub-k8s-default-environment.json`
+
+1. Execute tests:
+    1. Run the test suite.
+    1. Verify all tests pass successfully.
+    1. Review test results and logs.
+
+<!-- EDITORIAL COMMENT: Should section Mojaloop Switch: Collect PM4ML configuration info from the old doc be added here? -->
+
+#### Mojaloop Switch: Troubleshooting
+<!-- QUESTION: This section comes from the old doc. Is the info below still correct/relevant? -->
+
+##### Pipeline failures
+
+###### Init pipeline issues
+
+- Verify AWS credentials are correctly set
+- Check Vault connectivity
+- Review pipeline logs for specific errors
+
+###### Infrastructure deployment failures
+
+- Check AWS service quotas
+- Verify domain ownership
+- Review Terraform state for conflicts
+
+##### Service access issues
+
+###### OIDC Authentication problems
+
+- Verify Zitadel user permissions
+- Check kubelogin installation
+- Ensure VPN connection is active
+
+###### Service Unavailable
+
+- Check pod status
+- Review ArgoCD sync status
+- Verify Istio gateways and virtual services
+
+##### Testing failures
+
+###### TTK connection issues
+
+- Verify TTK URL accessibility
+- Check network policies
+- Review Istio configuration
+
+###### Golden Path test failures
+
+- Ensure all services are healthy
+- Check database connections
+- Review service logs for errors
+
+#### Mojaloop Switch: Destroy the Switch environment
+
+##### Step 1: Destroy the Switch
 
 There is no **destroy** job defined in the pipeline, in order to avoid anyone accidentally running it.
 
 To destroy the Switch, perform the following steps:
 
-1. Make a new commit to main (for example, add a comment to a file) and when formulating your commit message, make sure that it includes the string `destroy:`.
+1. Make a new commit to main (for example, add a comment to a file) and when formulating your commit message, make sure that it includes the prefix `destroy:`. This prefix is needed to get access to the **destroy** job.
 
    Example:
 
@@ -1199,43 +1600,372 @@ To destroy the Switch, perform the following steps:
 
 1. In GitLab, navigate to the Switch environment, and go to **Build > Pipelines**.
 
-1. Run the **init** job.
-
-1. Once **init** has completed successfully, run **deploy-infra**.
+1. Wait for the **init** job to complete successfully, then run **deploy-infra**.
 
 1. Once **deploy-infra** has completed successfully, wait for **lint-apps** and **push-apps** to finish too.
 
-<!-- ARE THESE 2 STEPS NEEDED? 1. Wait for the **init** job of the **update generated confgs to project** commit to complete.
+   <!-- ARE THESE 2 STEPS NEEDED? 1. Wait for the **init** job of the **update generated configs to project** commit to complete.
 
-1. Go back to the pipeline of your **destroy: uninstall the switch** commit. -->
+   1. Go back to the pipeline of your **destroy: uninstall the switch** commit. -->
 
 1. Go to **cleanup** stage > **destroy** job, and run the job manually. There is no need to define any variables.
 
 1. Once the job has run, go to **AWS > EC2 Instances**. Everything is destroyed in AWS, except for the EBS Volumes, so you need to manually check if you can see any available volumes under **Elastic Block Store > Volumes**. Search by "Volume state = Available". The EC2 Instances detaches the EBS Volumes, but detaching them doesn't mean deleting them. "Available" means that the instance is not in use anymore, the instance is terminated.
 
-1. Once you destroyed all environments and removed the container registries mentioned below, you are ready to destroy the Control Center. Go to **GitLab > iac > bootstrap > custom-config**. Delete the `environment.yaml` file and run the deploy job. <!-- EDITORIAL COMMENT: Which one? -->
+1. Delete the GitLab repositories. For details, see section [Step 2: Delete repositories](#step-2-delete-repositories).
+
+##### Step 2: Delete repositories
+
+1. Go to **Projects > iac / bootstrap**.
+1. Go to **custom-config**.
+1. Delete the `environment.yaml` file. In case you do not wish to destroy the whole Switch, only certain environments, then in the `environment.yaml` file, remove the name of the environment that you want to delete.
 
    This is needed because there are some S3 buckets created from the Control Center to get used by the environments. They are created based on the `environment.yaml` file. For each environment, when the **init** phase is passed, the S3 buckets will be automatically created. Removing the `environment.yaml` file will remove the S3 buckets.
 
-#### Important note about destroy sequence
+1. Commit your change.
+1. Go to **Build > Pipelines**.
+1. Select the latest change.
+1. Run the deploy job. <!-- EDITORIAL COMMENT: Which one? -->
+1. Go to the repository that you want to delete: **Projects > iac / <NAME_OF_ENVIRONMENT_TO_DELETE>**.
+1. In the left-hand navigation pane, select **Deploy > Container registry**. There is a container created and cached inside this repository to be used by the pipeline runners, you will find that container here. To delete the repository, you need to manually delete any containers you find here.
+
+Once you have deleted the repositories/container registries, you are ready to destroy the Control Center. For details, see section [Control Center: Destroy the Control Center](#control-center-destroy-the-control-center).
+
+##### Important note about the destroy sequence
 
 There are Terraform-created resources (such as EKS, EC2 instances, etc.), and there are also other Crossplane-created resources (such as RDS, DocumentDB, Route53, etc.). If you destroy everything in parallel, you will lose the Crossplane operators, and they are the only ones that manage Crossplane-managed resources. Therefore, you need to wait until the Crossplane operator destroys its created resources. Once that's done, you can destroy the Crossplane operator and the whole node.
 
 RDS and databases are managed by ArgoCD using Crossplane, they are not created by Terraform.
 
-### Deleting a repository in GitLab
+### Create a simulated DFSP in MCM
+<!-- QUESTION: Is there anything else that has to be done beforehand to set up a simulated DFSP? Should this section be rather part of the Deploy PM4ML chapter? -->
 
-1. In GitLab, go to the repository that you want to delete: **Projects > iac / <NAME_OF_ENVIRONMENT_TO_DELETE>**.
-1. In the left-hand navigation pane, select **Deploy > Container registry**. There is a container created and cached inside this repository to be used by the pipeline runners, you will find that container here. To delete the repository, you need to manually delete any containers you find here.
-1. Go to **Projects > iac / bootstrap**.
-1. Go to **custom-config** > `environment.yaml`.
-1. In the `environment.yaml` file, remove the name of the environment whose repository you want to delete.
-1. Commit your change.
-1. Go to **Build > Pipelines**.
-1. Select the latest change.
-1. Run the deploy job. <!-- EDITORIAL COMMENT: Which one? -->
+In testing scenarios, you may want to run end-to-end tests with simulated DFSPs. Here's how you can create a simulated DFSP in MCM.
+
+1. Open the MCM portal.
+1. In the left-hand menu, go to **Administration > DFSPs**.
+1. Click **Add DFSP**.
+1. In the **Add DFSP** pop-up window:
+    1. Enter a **Name**. This is the name of the DFSP that will be created within the environment.
+    1. The **ID** is the unique identifier of the DFSP. This field will be auto-filled for you as both the name and the ID must be the same as the `fspId` registered in the Hub.
+    1. In the **Email** field, enter the email address of the DFSP Operator, where an invitation will be sent.
+    1. Add a monetary zone by selecting one from the **Monetary Zone** drop-down list.
+1. Click **Submit**.
+1. Click **Close**.
+
+At this point, the DFSP should receive an email with a link pointing to the MCM portal.
+
+The DFSP must complete the following steps:
+
+1. Retrieve the email sent by MCM.
+1. Access the MCM portal using the link provided in the email. When prompted to specify a username and password, specify them.
+1. Log in with the new credentials.
+1. In the MCM portal, in the left-hand menu, go to **Integration > PM4ML Credentials**.
+1. Click **Generate New Credentials**.
+
+   The **PM4ML Keycloak Credentials** page displays, showing a Client ID and a Client Secret. These credentials will be used in PM4ML.
+
+   If later on there is a need to create new credentials, it can be done via the **Regenerate Credentials** button.
+
+### Deploying Payment Manager for Mojaloop
+
+Payment Manager for Mojaloop (PM4ML) can be run as part of simulating DFSPs, for testing purposes.
+
+#### Deploy PM4ML: Deploy PM4ML host
+<!-- EDITORIAL COMMENT: Why is this needed? For simulating DFSPs? Or for a Deployment Guide for DFSPs? -->
+
+Deploy a dedicated VM to host the PM4ML container for the DFSP. <!-- EDITORIAL COMMENT: Is this correct? -->
+
+VM specifications:
+
+- **Instance Type**: t2.medium
+- **Operating System**: Ubuntu 24.04 LTS
+- **Storage**: 32 GiB root volume (expandable as needed)
+- **Security Group**: Allow SSH traffic from anywhere (If you're launching the VM instance via the AWS console (**EC2 > Instances > Launch instance**), choose **Allow ssh traffic from: Anywhere** in the drop-down menu.)
+<!-- - **Network**: Public subnet with Elastic IP EDITORIAL COMMENT: I haven't found the Elastic IP option in the GUI. -->
+- **Authentication**: SSH key created earlier in section [Create SSH key pair](#create-ssh-key-pair)
+
+Once the instance has been launched, record the public IP address, it will be needed when you ssh to the VM (next step).
+
+##### Initial system configuration
+
+Connect to the PM4ML host and perform initial setup:
+
+1. Connect to your PM4ML host VM via ssh:
+
+   ```bash
+   # Connect via SSH
+   ssh -i ~/.ssh/<NAME_OF_PRIVATE_KEY> ubuntu@<PUBLIC_IP_ADDRESS>
+   ```
+
+1. Update system packages:
+
+   ```bash
+   # Switch to root user
+   sudo su
+
+   # Update system packages
+   apt-get update && apt-get upgrade -y
+   ```
+
+##### Install Docker engine
+
+Install Docker following the official Ubuntu installation procedure:
+
+1. Remove conflicting packages:
+
+   ```bash
+   for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do
+   sudo apt-get remove $pkg
+   done
+   ```
+
+1. Add Docker repository:
+
+   ```bash
+   # Add Docker's official GPG key
+   sudo apt-get update
+   sudo apt-get install ca-certificates curl
+   sudo install -m 0755 -d /etc/apt/keyrings
+   sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+   sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+   # Add Docker repository
+   echo \
+   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+   $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}") stable" | \
+   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+   ```
+
+1. Install Docker packages:
+
+   ```bash
+   sudo apt-get update
+   apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+   ```
+
+1. Check the status of the Docker service:
+
+   ```bash
+   sudo systemctl status docker
+   ```
+
+   If the service is up and running, you can move on to the next section.
+
+##### Set environment variables
+
+1. Clone the PM4ML Docker repository:
+
+   ```bash
+   git clone https://github.com/pm4ml/pm4ml-docker-compose
+   ```
+
+1. Change directory:
+
+   ```bash
+   cd pm4ml-docker-compose
+   ```
+
+1. Copy the example variables file into an `.env` file:
+
+   ```bash
+   cp .env.example .env
+   ```
+
+1. Modify the configuration in the `.env` file to add your real values:
+
+   ```bash
+   vi .env
+   ```
+
+   Change the following environment variables:
+
+   - `DFSP_ID`: This is the **CLIENT ID** that you will find in MCM, on the DFSP's **PM4ML Keycloak Credentials** page.
+   - `AUTH_CLIENT_ID`: Same as above, so this is the **CLIENT ID** that you will find in MCM, on the DFSP's **PM4ML Keycloak Credentials** page.
+   - `AUTH_OIDC_TOKEN_ROUTE`: Ensure that it is equal to the following value: `/realms/hub-operators/protocol/openid-connect/token`
+   - `AUTH_CLIENT_SECRET`: This is the **CLIENT SECRET** that you will find in MCM, on the DFSP's **PM4ML Keycloak Credentials** page.
+   - `SWITCH_DOMAIN`: This is the following value (replace with actual values): `<NAME_OF_YOUR_SWITCH_ENVIRONMENT>.<NAME_OF_YOUR_DOMAIN>`
+   - `PM4ML_DOMAIN`: This is the following value (replace with actual values): `<NAME_OF_YOUR_DOMAIN>`
+   - `WHITELIST_IP`: This is the IP address of the DFSP. Copy and paste the Public IP address from the AWS Instance page.
+   - `SUPPORTED_CURRENCIES`: This corresponds to the monetary zone of the DFSP.
+
+   Comment out the lines that do not have any values specified.
+
+   At the bottom of the file, add the following:
+
+   ```bash
+   OAuth2/Keycloak configuration for outbound requests
+   WSO2_BEARER_TOKEN_ENABLED=true
+   OAUTH_TOKEN_ENDPOINT=http://localhost:8080/realms/hub-operators/protocol/openid-connect/token
+   OAUTH_CLIENT_KEY=<client id>
+   OAUTH_CLIENT_SECRET=<client secret>
+   OAUTH_REFRESH_SECONDS=3600
+   OIDC_TOKEN_ROUTE=realms/hub-operators/protocol/openid-connect/token
+   ```
+
+   Where:
+
+   - `OAUTH_TOKEN_ENDPOINT`: This is the Keycloak URL in this format: `http://keycloak.<NAME_OF_YOUR_SWITCH_ENVIRONMENT>.<NAME_OF_YOUR_DOMAIN>/realms/hub-operators/protocol/openid-connect/token`
+   - `OAUTH_CLIENT_KEY`: This is the **CLIENT ID** that you will find in MCM, on the DFSP's **PM4ML Keycloak Credentials** page.
+   - `OAUTH_CLIENT_SECRET`: This is the **CLIENT SECRET** that you will find in MCM, on the DFSP's **PM4ML Keycloak Credentials** page.
+
+1. Modify the `docker-compose.yaml` file.
+
+   ```bash
+   vi docker-compose.yaml
+   ```
+
+   Under `environment`, change the value of `OAUTH_TOKEN_ENDPOINT` to the following (copy and paste the below value as-is):
+
+   ```bash
+   https://keycloak.${SWITCH_DOMAIN}${AUTH_OIDC_TOKEN_ROUTE:-/realms/hub-operators/protocol/openid-connect/token}
+   ```
+
+##### Configure DNS
+<!-- EDITORIAL COMMENT: https://github.com/pm4ml/pm4ml-docker-compose/tree/main -->
+
+1. In AWS, go to **Route 53 > Hosted zones**.
+1. Select your base domain in the list of hosted zones.
+1. Once on the page of your domain, click **Create record**. The **Create record** page displays.
+1. In the **Record name** field, type `portal`.
+1. In the **Value** field, enter the IP address of the DFSP. This is the same value that you entered in the `.env` file for `WHITELIST_IP`.
+1. Leave all other values as-is.
+1. Click **Add another record**.
+1. In the **Record name** field, type `ml-connect`.
+1. In the **Value** field, enter the IP address of the DFSP. This is the same value that you entered in the `.env` file for `WHITELIST_IP`.
+1. Leave all other values as-is.
+1. Click **Add another record**.
+1. In the **Record name** field, type `ttk`.
+1. In the **Value** field, enter the IP address of the DFSP. This is the same value that you entered in the `.env` file for `WHITELIST_IP`.
+1. Leave all other values as-is.
+1. Click **Create records**.
+
+##### Configure firewall
+
+1. In AWS, go to **EC2 > Instances**. Select the instance of the DFSP.
+1. Once on the page of the DFSP instance, select the **Security** tab.
+1. Click the entry under **Security groups**.
+1. Once on the page of the security group, click **Edit inbound rules**.
+1. On the **Edit inbound rules** page, click **Add rule**.
+1. In the **Type** field, select **Custom TCP**.
+1. In the **Port range** field, type `5050`.
+1. In the **Source** field, leave it as **Custom**, and in the second field, click and select **0.0.0.0/0**.
+1. Click **Add rule**.
+1. In the **Type** field, select **Custom TCP**.
+1. In the **Port range** field, type `6060`.
+1. In the **Source** field, leave it as **Custom**, and in the second field, click and select **0.0.0.0/0**.
+1. Click **Save rules**.
+
+##### Set up SSL certificates
+
+1. Back in the terminal of the PM4ML instance, stop the HAProxy container if running:
+
+   ```bash
+   docker compose stop haproxy
+   ```
+
+1. Run certificate generation:
+
+   ```bash
+   docker compose -f docker-compose-certbot.yaml up
+   ```
+
+   If successful, you should see a message that says:
+
+   ```
+   ...
+   Successfully received certificate.
+   Certificate is saved at: ...
+   Key is saved at: ...
+   This certificate expires on ...
+   These files will be updated when the certificate renews.
+   ...
+   ```
+
+1. Start up PM4ML services for the Finance Portal and TTK:
+
+   ```bash
+   docker compose --profile portal --profile ttk up -d
+   ```
+
+   Once the process has ended successfully, you are ready to access the portals.
+
+#### Deploy PM4ML: Access the PM4ML portal
+
+1. In the terminal of the PM4ML instance, issue the following command: <!-- EDITORIAL COMMENT: Steps 1-3 are a workaround, need to check if they're still needed. -->
+
+   ```bash
+   cat docker/certbot/etc/live/portal.mojaloop.live/fullchain.pem docker/certbot/etc/live/portal.mojaloop.live/privkey.pem > docker/certbot/certs/portal.pem 
+   ```
+
+1. Issue the following command:
+
+   ```bash
+   chmod 644 docker/certbot/certs/portal.pem 
+   ```
+
+1. Issue the following command:
+
+   ```bash
+   docker compose --profile portal --profile ttk stop
+   ```
+
+   Then:
+
+   ```bash
+   docker compose --profile portal --profile ttk up -d
+   ```
+
+1. Access the PM4ML portal at: `http://portal.<NAME_OF_YOUR_DOMAIN>`
+
+1. Obtain the credentials from the `.env` file, use the values of the following variables:
+
+   - `PORTAL_USER`
+   - `PORTAL_PASSWORD`
+
+1. Log in using the credentials from the `.env` file.
+
+#### Deploy PM4ML: Access the MCM portal
+<!-- EDITORIAL COMMENT: Is this needed so that the DFSP can access the PM4ML portal at their end? -->
+
+1. Access the MCM portal as the Hub Operator at the following URL: `https://mcm.<NAME_OF_YOUR_SWITCH_ENVIRONMENT>.<NAME_OF_YOUR_DOMAIN>`
+
+1. Log in:
+
+   - Username: `portal_admin` <!-- EDITORIAL COMMENT: Or is it mcm_admin? -->
+   - Authentication: Retrieved from Keycloak secret
+
+      ```bash
+      kubectl get secret portal-admin-secret -n keycloak -o jsonpath='{.data.secret}' | base64 -D
+      ```
+
+1. Once logged in, go to: **Certificates > TLS Client Certificates**.
+
+1. Select the **Unprocessed DFSP CSRs** tab.
+
+1. Click the **Use Provided CA to Sign CSR** button.
+
+   You should see a message that says: **There are no unprocessed DFSP CSRs**
+
+1. Go to **Administration > DFSPs**.
+
+1. At the end of the row representing the DFSP that you have just added, there are two icons. Click the **Onboard** icon.
+
+   You should see a message that says: **Saved Successfully**
+
+<!-- END OF CALL 7 -->
+
+##### Deploy PM4ML: Access the Testing Toolkit (TTK)
+
+Navigate to the TTK portal using the following URL: `http://ttk.<NAME_OF_YOUR_SWITCH_ENVIRONMENT>.<NAME_OF_YOUR_DOMAIN>:6060`
+
+<!-- EDITORIAL COMMENT: This section needs more info. -->
+
+<!-- QUESTION: Should there be a Destroy PM4ML section here? -->
 
 ### Tips and tricks
+
+#### Prefixing commit messages
 
 When configuring the Switch, you can automatically trigger certain jobs by prefixing your commit message in a specific way:
 <!-- EDITORIAL COMMENT: Need to double-check the names of the jobs. -->
@@ -1246,3 +1976,49 @@ When configuring the Switch, you can automatically trigger certain jobs by prefi
 | `deploy-infra: <your-commit-message>`             | **deploy-infra**         | -       |
 | `[skip lint] <your-commit-message>`               | Can be added to any job to skip the linter check  | For example, `deploy-infra: [skip lint]` triggers the **deploy-infra** job and skips the linter check. The linter check may sometimes fail, for example, due to CRDs not being available yet. In such cases, skipping the check can be useful. |
 | `destroy: <your-commit-message>`                  | **destroy**              | There is no **destroy** job defined in the pipeline, and this prefix will not automatically run it either. The prefix will just show the **destroy** job and you will have to run the job manually. For details, see section [Destroying the Mojaloop Switch environment](#destroying-the-mojaloop-switch-environment). |
+
+#### How to get the IP address of the various services
+
+1. Connect to the NetBird VPN.
+1. Open a new terminal.
+1. Export kubeconfig.
+1. Find out the Kubernetes namespaces in your cluster (you will need to specify namespaces in the next step):
+
+```bash
+kubectl get ns
+```
+
+1. Find out the host to ping:
+
+   - For the Switch: `kubectl get VirtualService interop-vs -n mojaloop`
+   - For Keycloak: `kubectl get VirtualService keycloak-ext-vs -n keycloak`
+   - For MCM: `kubectl get VirtualService mcm-vs -n mcm`
+
+   In the next step, you will need to use the value returned under `HOSTS`.
+
+1. Ping the host: ping <HOSTS_VALUE>
+
+#### Configure NetBird for a DFSP
+
+DFSPs do not need to have connection to NetBird because they use public IP addresses to connect to the cluster. In case you still wish to connect a DFSP to NetBird because the DFSP does not have a public IP or you wish to perform some tests, complete the following steps.
+
+1. In NetBird, go to **Setup Keys** in the left-hand menu.
+1. Click **Create Setup Key**. The **Create New Setup Key** window pops up.
+1. In the **Name** field, add a descriptive name.
+1. In the **Expires in** field, leave it empty if you want the key to never expire. Otherwise, you can specify a set number of days. In the latter case, remember that the key has an expiry date and you will need to refresh the key.
+1. Click the **Auto-assigned groups** field, and select ??? <!-- EDITORIAL COMMENT: You need to create a separate group for this purpose. But where? -->
+1. Click **Create Setup Key**. The **Setup key created successfully** window pops up.
+1. Copy and save the key.
+1. Inside the VM, complete the following steps: <!-- EDITORIAL COMMENT: Which VM? -->
+
+   1. Install NetBird:
+
+      ```bash
+      brew install netbirdio/tap/netbird
+      ```
+
+   1. Connect to Netbird using the key created above: 
+
+      ```bash
+      netbird up --setup-key <SETUP_KEY> --management-url <MANAGEMENT_URL>
+      ```
