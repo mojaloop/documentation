@@ -31,6 +31,9 @@
       - [Deploy PM4ML: Access the PM4ML portal](#deploy-pm4ml-access-the-pm4ml-portal)
       - [Deploy PM4ML: Access the MCM portal](#deploy-pm4ml-access-the-mcm-portal)
       - [Deploy PM4ML: Access the Testing Toolkit (TTK)](#deploy-pm4ml-access-the-testing-toolkit-ttk)
+<!-- - [Appendix: Notes for on-prem deployments](#appendix-notes-for-on-prem-deployments)
+   - [Required Virtual Machines](#required-virtual-machines)
+   - [Recommendations for the Virtual Machines](#recommendations-for-the-virtual-machines) -->
 
 ## IaC in the context of Mojaloop
 
@@ -77,7 +80,7 @@ To deploy the Mojaloop and PM4ML environment clusters, the following tools are u
 - **Ansible**: A tool used for provisioning software repeatedly and idempotently via the use of playbooks that make use of reusable roles. These roles leverage modules that are executed on a virtual machine or bare-metal host via an ssh client. The main role of Ansible is to bootstrap the hosts used by the infrastructure with the prerequisites needed to run Kubernetes and initialise ArgoCD.
 - **Terraform/Terragrunt**: This tool is used to provision resources via CRUD API calls. These resources range from the creation of network resources, whole K8s clusters, managed databases or the creation of an OIDC application in an identity management solution, and so on.
 - **Helm**: A package management tool used to render K8s charts, which are groups of Kubernetes templates.
-- **Kustomize**: A tool used to manipulate and render K8s templates, including Helm charts. <!-- QUESTION: Is this still in use? -->
+- **Kustomize**: A tool used to manipulate and render K8s templates, including Helm charts.
 - **ArgoCD**: A tool used to deploy artifacts that are rendered via Helm and/or Kustomize to a K8s cluster and maintain the deployed state against a source of truth for the cluster, which is generated from multiple tagged git repositories in concert with environment-specific configuration values that are injected using custom ArgoCD plugins.
 
 <!-- ### PLACEHOLDER: Target infrastructure
@@ -109,7 +112,7 @@ Before beginning the deployment, ensure you have the following in place.
 - AWS CLI configured with appropriate credentials:
    - Install the AWS CLI. For guidance, see AWS article [Installing or updating to the latest version of the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
    - Set up an access key for AWS CLI via the AWS console > your profile (following login, click your username in the top right corner) > **Security credentials** menu > **Create access key**.
-   - Run `aws configure` in a terminal to store your AWS access key in your home directory, in a folder named `.aws`, in a file named `credentials`. This is needed so you can run AWS commands from your terminal. For more information, see AWS article [Configuration and credential file settings in the AWS CLI](https://docs.aws.amazon.com/cli/v1/userguide/cli-configure-files.html).
+   - Run `aws configure` in a terminal. This will automatically create a file named `credentials` in your home directory, in a folder named `.aws`. Store your AWS access key in the `credentials` file. This is needed so you can run AWS commands from your terminal. For more information, see AWS article [Configuration and credential file settings in the AWS CLI](https://docs.aws.amazon.com/cli/v1/userguide/cli-configure-files.html).
 - Minimum service quotas:
   - vCPU limit: 64 (for m5.4xlarge instances)
   - Elastic IPs: 5
@@ -178,7 +181,7 @@ Generate an SSH key pair for secure access to the Control Center infrastructure.
 
 ##### Provision the Control Center host VM
 
-Deploy a dedicated VM to host the Control Center utility container. This will serve as the "build server". This build server can be re-used for any future deployments.
+Deploy a dedicated VM to host the Control Center utility container. This will serve as the "Build Server". This Build Server can be re-used for any future deployments.
 
 VM specifications:
 
@@ -276,7 +279,7 @@ Connect to the Control Center host and perform initial setup:
    sudo gpasswd -a $USER docker
    ```
 
-The build server is now ready.
+The Build Server is now ready.
 
 ##### Set AWS credentials
 
@@ -420,7 +423,7 @@ docker exec -it <NAME_OF_YOUR_CONTROL_CENTER> bash
       enable_object_storage_backend: true 
       microk8s_dev_skip: false 
       k8s_cluster_module: eks 
-      k8s_cluster_type: eks 
+      k8s_cluster_type: eks                     # Set to microk8s for on-prem deployments 
       private_dns_zone_id: "empty"
       tags:                                     # AWS resource tags
          Origin: Terraform 
@@ -673,7 +676,7 @@ All Control Center services (GitLab, ArgoCD, Grafana, Vault, and so on) use Zita
 
 1. You will be prompted to install the NetBird client.
 
-   <!-- ![Nebird: Install Netbird client](assets/screenshots/iacDeployment/003_cc_download_netbird_linux.png) -->
+   <!-- ![Nebird: Install NetBird client](assets/screenshots/iacDeployment/003_cc_download_netbird_linux.png) -->
 
 1. Retrieve the Management URL shown on the dashboard.
 
@@ -842,7 +845,6 @@ This might be due to your Internet Service Provider's (ISP's) DNS resolution ser
 Try changing your network settings to use Google Public DNS: [Configure your network settings to use Google Public DNS](https://developers.google.com/speed/public-dns/docs/using)
 
 #### Control Center: Maintenance
-<!-- QUESTION: This section comes from the old doc. Is the info below still correct/relevant? -->
 
 <!-- ##### Adding new environments
 
@@ -1181,7 +1183,7 @@ In the example below, we are going to use the [common-profile](https://github.co
    provider: documentdb
    ```
 
-   There will be two RDS databases: one for Ory, Keycloak, etc., and one for Mojaloop services such as the Central Ledger, MCM, etc. The MongoDB documentdb database will be for the Finance Portal, the collections, settlements, etc. <!-- EDITORIAL COMMENT: In the case of an on-prem deployment, they are created from Percona in the storage cluster. -->
+   There will be two RDS databases: one for Ory, Keycloak, etc., and one for Mojaloop services such as the Central Ledger, MCM, etc. The MongoDB documentdb database will be for the Finance Portal, the collections, settlements, etc. <!-- EDITORIAL COMMENT: In the case of an on-prem deployment, they are created from Percona in the Storage-Cluster. -->
 
    `mojaloop-stateful-resources-monolith-databases.yaml` will create the databases and the default configuration: t3.million databases with a single instance. If you need bigger databases or more instances, you can add appropriate values. <!-- EDITORIAL COMMENT: We need to add an appendix with the full values from session 2, Nov 7th. The files in the default-config folder will not work, as they contain placeholders. In session 2, we specified values in place of the dummy values or placeholders. -->
 
@@ -1209,7 +1211,7 @@ In the example below, we are going to use the [common-profile](https://github.co
    onboarding_net_debit_cap: 1000
    ```
 
-1. Create a `platform-stateful-resources.yaml` file and configure it as follows: <!-- EDITORIAL COMMENT: Instead of `external`, we could've set internal/in-cluster also because we support it for on-prem for Percona, etc.-->
+1. Create a `platform-stateful-resources.yaml` file and configure it as follows: <!-- EDITORIAL COMMENT: Instead of `external`, we could've set internal/in-cluster also because we support it for on-prem for Percona, etc. -->
 
    ```yaml
    mcm-db:
@@ -1477,7 +1479,7 @@ To access the Grafana monitoring dashboards of the Switch environment, perform t
       kubectl get secret portal-admin-secret -n keycloak -o jsonpath='{.data.secret}' | base64 -D
       ```
 
-1. Once logged in to the Business Portal, update the access rights of the Portal Admin user so that you can use this same user account to access all portals : <!-- QUESTION: Is this needed? Shall I remove this step? Maybe it's not recommended and we only used it in the call to save time? -->
+1. Once logged in to the Business Portal, update the access rights of the Portal Admin user so that you can use this same user account to access all portals: <!-- QUESTION: Is this needed? Shall I remove this step? Maybe it's not recommended and we only used it in the call to save time? -->
 
    1. In the left-hand navigation menu, go to **Apps > Roles**. The **Users** page is displayed.
    1. Select **portal_admin@none**, and on the page that is displayed, click **Update Roles**. A **Select Roles** window pops up.
@@ -2022,3 +2024,49 @@ DFSPs do not need to have connection to NetBird because they use public IP addre
       ```bash
       netbird up --setup-key <SETUP_KEY> --management-url <MANAGEMENT_URL>
       ```
+
+<!-- ## Appendix: Notes for on-prem deployments
+
+### Required Virtual Machines
+
+In the case of on-prem deployments, the Virtual Machines (VMs) are provisioned on on-prem servers. The following VMs are required:
+
+**For the Control Center:**
+
+- A Build Server VM to act as the bootstrapper of the Control Center. The Control Center requires:
+   - 1 Bastion VM, which will be used as a jump host to ssh to the other nodes.
+   - 1 HAProxy VM, which must have a public IP address for traffic that targets the services that need to be publicly accessible, such as GitLab and Zitadel. So traffic will not go directly to where those services run, HAProxy will route traffic to them.
+   - 1 Storage-Cluster HAProxy VM to route traffic between the Cluster API (CAPI) service and ProxMox (or your preferred virtualization platform) for requests that go to the Storage-Cluster. For information about the Storage-Cluster, see section [Storage-Cluster](#storage-cluster).
+   - 3 Master Node VMs for the K8s cluster - to have a highly available K8s cluster in production.
+
+**For each environment:**
+
+- 1 Bastion VM
+- 1 HAProxy VM
+- 1 Master Node VM for the K8s cluster - in non-prod environments, 1 Master Node will suffice.
+
+#### Build Server for the Control Center
+
+Just like in the case of cloud deployments, you can use the same Build Server for each Control Center that you deploy.
+
+The Build Server does not have to reach ProxMox. First, it will use the public IP address to reach the Bastion VM and then it will install NetBird so it can communicate with any other VM.
+
+#### Storage-Cluster
+
+The Control Center and the environments use a layer of storage called Storage-Cluster: this is an independent cluster outside the Control Center and any environments. The Control Center and the environments consume storage from the Storage-Cluster.
+
+When bootstrapping the Control Center, the Control Center and CAPI automatically create the VMs for the Storage-Cluster and deploy the Storage-Cluster.
+
+The CAPI needs to be able to communicate with ProxMox (or the virtualization service used to deploy the VMs). For that, we need to create a VM (called "Storage-Cluster HAProxy VM"), which will route traffic between the Control Center / the CAPI service and ProxMox itself. So this VM will only be used for creating the Storage-Cluster, and after that, it won't be used anymore. You need to install HAProxy inside this VM and configure it to route CAPI traffic over port 8006 to the ProxMox cluster IP address so that CAPI can create the Storage-Cluster.
+
+#### HAProxy VM
+
+\<placeholder to talk about the configuration of HAProxy\>
+
+### Recommendations for the Virtual Machines
+
+- **Update and upgrade system packages**
+- **Time synchronization via crony**: Install, enable, and start crony on each of the Virtual Machines. This is recommended because there are some services (for example, MongoDB) which can crash if there are seconds of degradation between the nodes' times. Verify synchronization across all the nodes, verify that they all have the exact same timestamp.
+- **No password authentication over ssh**: For security reasons, it is recommended to undo password authentication and accept ssh only through private-public keys.
+- **Grant sudo privileges to ubuntu users**: IaC always uses ubuntu users, for example, the Ansible scripts in the iac-modules. <!-- QUESTION: Is this correct? -->
+<!-- - **Remove unattended-upgrades**: This is recommended because automatically installed updates can potentially produce some instability in the system. -->
