@@ -31,9 +31,9 @@
       - [Deploy PM4ML: Access the PM4ML portal](#deploy-pm4ml-access-the-pm4ml-portal)
       - [Deploy PM4ML: Access the MCM portal](#deploy-pm4ml-access-the-mcm-portal)
       - [Deploy PM4ML: Access the Testing Toolkit (TTK)](#deploy-pm4ml-access-the-testing-toolkit-ttk)
-<!-- - [Appendix: Notes for on-prem deployments](#appendix-notes-for-on-prem-deployments)
-   - [Required Virtual Machines](#required-virtual-machines)
-   - [Recommendations for the Virtual Machines](#recommendations-for-the-virtual-machines) -->
+<!-- [Appendix: Notes for on-prem deployments](#appendix-notes-for-on-prem-deployments)
+   [Required Virtual Machines](#required-virtual-machines)
+   [Recommendations for the Virtual Machines](#recommendations-for-the-virtual-machines) -->
 
 ## IaC in the context of Mojaloop
 
@@ -225,8 +225,6 @@ Connect to the Control Center host and perform initial setup:
    sudo apt-get install -y docker.io unzip
    ```
 
-   <!-- EDITORIAL COMMENT: Is this step needed? 1. exit -->
-
 1. Start the Docker service:
 
    ```bash
@@ -285,7 +283,7 @@ The Build Server is now ready.
 
 Set AWS credentials so the first `terragrunt apply` can use those credentials to build the AWS infrastructure.
 
-1. Put your key ID, access key, and session token in `~/.aws/credentials`:
+1. Put your key ID, access key, and session token in `~/.aws/credentials`: (create the credentials file: `cd aws` -->`touch credentials` --> `vi credentials`)
 
    **NOTE:** You only have to use a session token if your AWS account is set up to use MFA.
 
@@ -302,7 +300,7 @@ Set AWS credentials so the first `terragrunt apply` can use those credentials to
    aws_session_token = <YOUR_SESSION_KEY>
    ```
 
-1. Set the profile:
+1. Set the profile: (create the credentials file: `cd ..` -->`touch config` --> `vi config`)
 
    ```bash
    vi ~/.aws/config
@@ -315,6 +313,8 @@ Set AWS credentials so the first `terragrunt apply` can use those credentials to
    region = <YOUR_REGION>
    output = json
    ```
+
+1. Go back to the home directory: `cd ..`
 
 ##### Install a terminal multiplexer
 
@@ -367,7 +367,7 @@ docker exec -it <NAME_OF_YOUR_CONTROL_CENTER> bash
       vi setenv
       ```
 
-   1. Specify which version of IaC you want to use (this needs to be determined before), for example (at the time of writing, mcm-1762866755 is the recommended release and [tag](https://github.com/mojaloop/iac-modules/tags)): `IAC_TERRAFORM_MODULES_TAG=mcm-1762866755` <!-- QUESTION: What is the current IAC_TERRAFORM_MODULES_TAG to use? -->
+   1. Specify which version of IaC you want to use (this needs to be determined before), for example (at the time of writing, mcm-1762866755 is the recommended release and [tag](https://github.com/mojaloop/iac-modules/tags)): `IAC_TERRAFORM_MODULES_TAG=mcm-1763129678`
 
 1. Initialize the environment.
 
@@ -431,16 +431,16 @@ docker exec -it <NAME_OF_YOUR_CONTROL_CENTER> bash
          mojaloop/env:                          # Ensure that you use a tag that has already been set up in AWS <!-- QUESTION: Where can we set that? -->
          mojaloop/owner: 
       nodes: 
-      master-generic: 
-         node_count: 3
+         master-generic: 
+            node_count: 3
       ```
 
-1. Configure the `common-vars.yaml` file.
+1. Change directory to the **ccnew** folder: `cd ..`
 
-   Open the placeholder file for editing:
+1. Create and configure the `common-vars.yaml` file.
 
    ```bash
-   vi custom-config/common-vars.yaml
+   vi merged-config/common-vars.yaml
    ```
 
    Configure the following:
@@ -452,6 +452,12 @@ docker exec -it <NAME_OF_YOUR_CONTROL_CENTER> bash
    **NOTE:** The value of `argocd_reconciliation_timeout` can differ based on the environment. By default, ArgoCD reconciles every 10 seconds, fetching the desired state from GitLab for comparison and applying changes if needed. In a dev environment where there are frequent changes, it is good practice to keep the timeout at the default value. However, in a prod environment where there are much fewer changes, the value of 5 minutes (specified below) is sufficient.
 
    ```yaml
+   tf_version: ">= 1.2"
+   local_tf_provider_version: "~> 2.4"
+
+   netbird_image_version: "0.60.3"
+   coredns_localcache_version: "1.12.1"
+
    capi_cluster_proxmox_user: dummyuser 
    capi_cluster_proxmox_password: somepass 
    capi_cluster_proxmox_host_sshkey: key 
@@ -471,7 +477,8 @@ docker exec -it <NAME_OF_YOUR_CONTROL_CENTER> bash
    nexus_jvm_additional_options: "-XX:+UseG1GC -XX:MaxGCPauseMillis=200"
 
    mimir_distributor_requests_cpu: "350m" # 500m  0.7
-   mimir_distributor_requests_memory: "256Mi" mimir_distributor_limits_cpu: "525m" # 750m  0.7 
+   mimir_distributor_requests_memory: "256Mi" 
+   mimir_distributor_limits_cpu: "525m" # 750m  0.7 
    mimir_distributor_limits_memory: "1Gi" 
    mimir_ingester_requests_cpu: "700m" # 1000m  0.7 
    mimir_ingester_requests_memory: "3Gi" 
@@ -494,7 +501,7 @@ docker exec -it <NAME_OF_YOUR_CONTROL_CENTER> bash
    argocd_reconciliation_timeout: "5m"
    ```
 
-1. While still in the **custom-config** folder, export the same AWS secrets as environment variables.
+1. Change directory to the **ccnew** folder (`cd ..`), and export the same AWS secrets as environment variables.
 
    **NOTE:** If you do not use MFA, the session token is not required.
 
@@ -504,7 +511,18 @@ docker exec -it <NAME_OF_YOUR_CONTROL_CENTER> bash
    export AWS_SESSION_TOKEN=<YOUR_SESSION_KEY>
    ```
 
-1. Change directory (`cd`) to the **ccnew** folder.
+1. Create the `oss` AWS profile:
+
+   ```bash
+   aws configure --profile oss
+   ```
+
+   Provide the following when prompted:
+
+      - AWS Access Key ID
+      - AWS Secret Access Key
+      - AWS Region
+      - Output format (json)
 
 1. Deploy the Control Center by executing the following script:
 
