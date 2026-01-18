@@ -18,7 +18,8 @@
     "gitbook-plugin-theme-api": "1.1.2",
     "gitbook-plugin-uml": "1.0.1",
     "gitbook-plugin-variables": "1.1.0",
-    "svgexport": "0.4.1"
+    "svgexport": "0.4.1",
+    "@snyk/protect": "latest"
   },
   "devDependencies": {
     "directory-tree": "^2.2.5",
@@ -51,7 +52,9 @@
     "license:check": "npm run license:list -- --failOn `cat .licensebanned | grep '^[^#;]' | awk 'BEGIN { ORS=\"\" } { print p$0\";\"; } END { print \n }'`",
     "license:list": "license-checker . --excludePackages `cat .licenseignore | grep '^[^#;]' | awk 'BEGIN { ORS=\"\" } { print p$0\";\"; } END { print \n }'` --production --csv",
     "run": "npm run gitbook:serve",
-    "start": "npm run gitbook:serveNoReload"
+    "start": "npm run gitbook:serveNoReload",
+    "prepare": "npm run snyk-protect",
+    "snyk-protect": "snyk-protect"
   },
   "husky": {
     "hooks": {
@@ -68,5 +71,6 @@
   "bugs": {
     "url": "https://github.com/mojaloop/documentation/issues"
   },
-  "homepage": "https://github.com/mojaloop/documentation#readme"
+  "homepage": "https://github.com/mojaloop/documentation#readme",
+  "snyk": true
 }

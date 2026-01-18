@@ -1,0 +1,38 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.25.1
+ignore: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  'npm:extend:20180424':
+    - gitbook-cli > npmi > npm > node-gyp > request > extend:
+        patched: '2026-01-18T20:12:54.139Z'
+        id: 'npm:extend:20180424'
+        path: gitbook-cli > npmi > npm > node-gyp > request > extend
+    - gitbook-plugin-swagger > bootprint > customize-engine-less > less > request > extend:
+        patched: '2026-01-18T20:12:54.139Z'
+        id: 'npm:extend:20180424'
+        path: >-
+          gitbook-plugin-swagger > bootprint > customize-engine-less > less >
+          request > extend
+  'npm:stringstream:20180511':
+    - gitbook-cli > npmi > npm > node-gyp > request > stringstream:
+        patched: '2026-01-18T20:12:54.139Z'
+        id: 'npm:stringstream:20180511'
+        path: gitbook-cli > npmi > npm > node-gyp > request > stringstream
+    - gitbook-plugin-swagger > bootprint > customize-engine-less > less > request > stringstream:
+        patched: '2026-01-18T20:12:54.139Z'
+        id: 'npm:stringstream:20180511'
+        path: >-
+          gitbook-plugin-swagger > bootprint > customize-engine-less > less >
+          request > stringstream
+  'npm:tough-cookie:20170905':
+    - gitbook-cli > npmi > npm > node-gyp > request > tough-cookie:
+        patched: '2026-01-18T20:12:54.139Z'
+        id: 'npm:tough-cookie:20170905'
+        path: gitbook-cli > npmi > npm > node-gyp > request > tough-cookie
+    - gitbook-plugin-swagger > bootprint > customize-engine-less > less > request > tough-cookie:
+        patched: '2026-01-18T20:12:54.139Z'
+        id: 'npm:tough-cookie:20170905'
+        path: >-
+          gitbook-plugin-swagger > bootprint > customize-engine-less > less >
+          request > tough-cookie
