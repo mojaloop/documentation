@@ -283,15 +283,29 @@ The Build Server is now ready.
 
 Set AWS credentials so the first `terragrunt apply` can use those credentials to build the AWS infrastructure.
 
-1. Put your key ID, access key, and session token in `~/.aws/credentials`: (create the credentials file: `cd aws` -->`touch credentials` --> `vi credentials`)
+1. Put your key ID, access key, and session token in `~/.aws/credentials`:
 
-   **NOTE:** You only have to use a session token if your AWS account is set up to use MFA.
+   Change directory to the `aws` folder:
 
    ```bash
-   vi ~/.aws/credentials
+   cd aws
+   ```
+
+   Create the `credentials` file:
+
+   ```bash
+   touch credentials
+   ```
+
+   Edit the `credentials` file:
+
+   ```bash
+   vi credentials
    ```
 
    Configure the following:
+
+   **NOTE:** You only have to use a session token if your AWS account is set up to use MFA.
 
    ```bash
    [oss] 
@@ -300,10 +314,18 @@ Set AWS credentials so the first `terragrunt apply` can use those credentials to
    aws_session_token = <YOUR_SESSION_KEY>
    ```
 
-1. Set the profile: (create the credentials file: `cd ..` -->`touch config` --> `vi config`)
+1. Set the profile in `~/.aws/config`:
+
+   Create the `config` file:
 
    ```bash
-   vi ~/.aws/config
+   touch config
+   ```
+
+   Edit the `config` file:
+
+   ```bash
+   vi config
    ```
 
    Configure the following:
@@ -435,9 +457,15 @@ docker exec -it <NAME_OF_YOUR_CONTROL_CENTER> bash
             node_count: 3
       ```
 
-1. Change directory to the **ccnew** folder: `cd ..`
+1. Create and configure the `merged-config/common-vars.yaml` file.
 
-1. Create and configure the `common-vars.yaml` file.
+   Create the `merged-config` folder:
+
+   ```bash
+   mkdir merged-config
+   ```
+
+   Create and edit the `common-vars.yaml` file:
 
    ```bash
    vi merged-config/common-vars.yaml
@@ -501,7 +529,7 @@ docker exec -it <NAME_OF_YOUR_CONTROL_CENTER> bash
    argocd_reconciliation_timeout: "5m"
    ```
 
-1. Change directory to the **ccnew** folder (`cd ..`), and export the same AWS secrets as environment variables.
+1. Back in the **ccnew** folder, export the same AWS secrets as environment variables.
 
    **NOTE:** If you do not use MFA, the session token is not required.
 
