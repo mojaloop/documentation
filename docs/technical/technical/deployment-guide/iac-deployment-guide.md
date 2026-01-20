@@ -305,13 +305,10 @@ Set AWS credentials so the first `terragrunt apply` can use those credentials to
 
    Configure the following:
 
-   **NOTE:** You only have to use a session token if your AWS account is set up to use MFA.
-
    ```bash
    [oss] 
-   aws_access_key_id = <YOUR_ACCESS_KEY_ID>
-   aws_secret_access_key = <YOUR_SECRET_ACCESS_KEY>
-   aws_session_token = <YOUR_SESSION_KEY>
+   aws_access_key_id = <YOUR_AWS_ACCESS_KEY_ID>
+   aws_secret_access_key = <YOUR_AWS_SECRET_ACCESS_KEY>
    ```
 
 1. Set the profile in `~/.aws/config`:
@@ -332,8 +329,43 @@ Set AWS credentials so the first `terragrunt apply` can use those credentials to
 
    ```bash
    [profile oss]
-   region = <YOUR_REGION>
+   region = <YOUR_AWS_REGION>
    output = json
+   ```
+
+1. Create the `oss` AWS profile:
+
+   ```bash
+   aws configure --profile oss
+   ```
+
+   Provide the following when prompted:
+
+      - AWS Access Key ID
+      - AWS Secret Access Key
+      - AWS Region
+      - Output format (json)
+
+1. If you use MFA to access your AWS account, you must generate MFA credentials.
+
+   When you run the command below, don't forget to replace the following:
+
+      - **<IDENTIFIER_OF_YOUR_MFA_DEVICE>**: This is the Identifier displayed in the AWS portal under **your profile in the top-right corner > Security credentials > Multi-factor authentication (MFA)**. It will be in this format: `arn:aws:iam::<your-aws-account-id>:mfa/<your-mfa-device-name>`
+      - **<MFA_CODE_DISPLAYED_IN_YOUR_MFA_DEVICE>**: This is the code displayed right now in your device  (typically, your phone) that you use for MFA authentication to AWS.
+
+   ```bash
+   aws sts get-session-token --profile oss --duration-seconds 129600 --serial-number <IDENTIFIER_OF_YOUR_MFA_DEVICE> --token-code <MFA_CODE_DISPLAYED_IN_YOUR_MFA_DEVICE>
+   ```
+
+1. Copy the `AccessKeyId`, `SecretAccessKey`, and `SessionToken` values returned in the terminal. You will need them in the next step.
+
+1. Edit the `~/.aws/credentials` file and replace the existing credentials with the following, using the MFA-generated credentials you copied in the previous step:
+
+   ```bash
+   [oss] 
+   aws_access_key_id = <MFA_GENERATED_ACCESS_KEY_ID>
+   aws_secret_access_key = <MFA_GENERATED_SECRET_ACCESS_KEY>
+   aws_session_token = <MFA_GENERATED_SESSION_KEY>
    ```
 
 1. Go back to the home directory: `cd ..`
@@ -389,7 +421,7 @@ docker exec -it <NAME_OF_YOUR_CONTROL_CENTER> bash
       vi setenv
       ```
 
-   1. Specify which version of IaC you want to use (this needs to be determined before), for example (at the time of writing, mcm-1762866755 is the recommended release and [tag](https://github.com/mojaloop/iac-modules/tags)): `IAC_TERRAFORM_MODULES_TAG=mcm-1763129678`
+   1. Specify which version of IaC you want to use (this needs to be determined before), for example (at the time of writing, mcm-1763129678 is the recommended release and [tag](https://github.com/mojaloop/iac-modules/tags)): `IAC_TERRAFORM_MODULES_TAG=mcm-1763129678`
 
 1. Initialize the environment.
 
@@ -529,17 +561,17 @@ docker exec -it <NAME_OF_YOUR_CONTROL_CENTER> bash
    argocd_reconciliation_timeout: "5m"
    ```
 
-1. Back in the **ccnew** folder, export the same AWS secrets as environment variables.
+1. Back in the **ccnew** folder, export the AWS secrets as environment variables.
 
-   **NOTE:** If you do not use MFA, the session token is not required.
+   **NOTE:** If you use MFA, the session token is required, and you have to use the MFA-generated credentials.
 
    ```bash
-   export AWS_ACCESS_KEY_ID=<YOUR_ACCESS_KEY_ID>
-   export AWS_SECRET_ACCESS_KEY=<YOUR_SECRET_ACCESS_KEY>
-   export AWS_SESSION_TOKEN=<YOUR_SESSION_KEY>
+   export AWS_ACCESS_KEY_ID=<ACCESS_KEY_ID>
+   export AWS_SECRET_ACCESS_KEY=<SECRET_ACCESS_KEY>
+   export AWS_SESSION_TOKEN=<SESSION_KEY>
    ```
 
-1. Create the `oss` AWS profile:
+1. Create the `oss` AWS profile: <!-- EDITORIAL COMMENT: Do we use the MFA-generated credentials here? -->
 
    ```bash
    aws configure --profile oss
