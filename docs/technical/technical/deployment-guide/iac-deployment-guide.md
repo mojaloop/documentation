@@ -386,6 +386,7 @@ After `--name` and `--hostname`, change <NAME_OF_YOUR_CONTROL_CENTER> to be the 
 ```bash
 docker run -t -d -v /home/ubuntu/.aws:/root/.aws --name <NAME_OF_YOUR_CONTROL_CENTER> --hostname <NAME_OF_YOUR_CONTROL_CENTER> --cap-add SYS_ADMIN --cap-add NET_ADMIN ghcr.io/mojaloop/control-center-util:6.1.2
 ```
+<!-- EDITORIAL COMMENT: Consider using the docker run step from the old document to avoid having to export aws credentials further down the line -->
 
 Access the container:
 
@@ -559,7 +560,7 @@ docker exec -it <NAME_OF_YOUR_CONTROL_CENTER> bash
    export AWS_SESSION_TOKEN=<SESSION_KEY>
    ```
 
-1. Create the `oss` AWS profile: <!-- EDITORIAL COMMENT: Do we use the MFA-generated credentials here? -->
+1. Create the `oss` AWS profile:
 
    ```bash
    aws configure --profile oss
