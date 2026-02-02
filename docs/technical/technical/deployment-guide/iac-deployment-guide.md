@@ -291,13 +291,7 @@ Set AWS credentials so the first `terragrunt apply` can use those credentials to
    cd aws
    ```
 
-   Create the `credentials` file:
-
-   ```bash
-   touch credentials
-   ```
-
-   Edit the `credentials` file:
+   Create and edit the `credentials` file:
 
    ```bash
    vi credentials
@@ -313,13 +307,7 @@ Set AWS credentials so the first `terragrunt apply` can use those credentials to
 
 1. Set the profile in `~/.aws/config`:
 
-   Create the `config` file:
-
-   ```bash
-   touch config
-   ```
-
-   Edit the `config` file:
+   Create and edit the `config` file:
 
    ```bash
    vi config
