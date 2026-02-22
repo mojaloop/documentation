@@ -35,6 +35,44 @@
    [Required Virtual Machines](#required-virtual-machines)
    [Recommendations for the Virtual Machines](#recommendations-for-the-virtual-machines) -->
 
+## Introduction
+
+One of the ways you can deploy Mojaloop is via Infrastructure-as-Code (IaC), allowing you to automate the process of provisioning and deploying the servers, networks, databases, and other resources that make up an environment.
+
+This guide describes how to install and configure Mojaloop environments leveraging IaC tools and automation.
+
+<!-- ### IaC in general
+
+IaC is the practice of defining and managing infrastructure through machine-readable configuration files. You treat your service components as code and run scripts (rather than applying manual processes) when setting up your target infrastructure. This results in more consistent environments, faster deployments, and easier rollback or replication.
+
+Key features:
+
+- **Automation & Repeatability**: Define infrastructure in code to automate the provisioning of environments, eliminating manual, error-prone setup.
+- **Modularity & Reusability**: Code can be organised into reusable modules.
+- **Idempotency**: Applying the same code multiple times leads to the same infrastructure.
+- **Version Control and Lifecycle Management**: IaC code can be stored in Git, enabling change tracking, rollbacks, peer reviews, and auditability.
+- **CI/CD Integration**: IaC can be integrated into pipelines to enable fully automated infrastructure deployments.
+
+### When is IaC the right choice?
+
+IaC comes with some overhead of writing and maintaining infrastructure code, and it may not be suitable for every scenario. A good rule of thumb is: a. if you're provisioning infrastructure across multiple environments, b. you need repeatable deployments, and c. you expect your infrastructure or your Infra team to grow – use IaC.
+When deciding whether or not IaC-based deployments are the right path for your organisation, it is crucial to understand what IaC _cannot_ do: 
+
+- IaC cannot _guarantee runtime correctness or uptime_, you will need to specifically set up monitoring and alerting capabilities, perform health checks, integration tests, and so on.
+- IaC cannot automatically _know your intent or business logic_. IaC tools apply the state you define, not what you "mean" to do. For example, IaC can't guess if deleting a resource will break production. You must model intent carefully and understand the impact of each change.
+- IaC doesn't _handle full lifecycle management automatically_, for example, it won't clean up unused resources. IaC only manages what's explicitly defined in code.
+- IaC doesn't _replace good engineering_. IaC simplifies provisioning, but it still requires: knowledge of cloud/network/database architecture, understanding of resource limits and trade-offs, debugging and maintenance skills, and so on.
+
+In light of the above, to work effectively with Infrastructure-as-Code, we advise you to have working knowledge of the following concepts and technologies:
+
+- **Infrastructure fundamentals**: to understand the resources you are managing (compute, networking, storage, identity and access management, regions and availability zones, and so on)
+- **Containers and orchestration** (for example, Docker, Kubernetes, control plane, worker nodes, and so on): to understand how to manage containerised resources
+- **Security and governance** (managing secrets, least privilege principle): to understand how to manage high-privilege resources
+- **At least one IaC tool** (for example, Terraform, Ansible): to understand how IaC tools structure modules, resources, variables, and state
+- **CI/CD and DevOps concepts**: to automate deployments
+- **AWS services**: to understand configuration options and best practices of AWS resources configured and managed via IaC tools (such as: EC2 (virtual machines), S3 (object storage), VPC (networking), IAM (identity and access), RDS (databases), Lambda (serverless functions))
+- **Monitoring tools** (for example, Grafana): to observe and track what happens post-deployment -->
+
 ## IaC in the context of Mojaloop
 
 Mojaloop provides IaC code to facilitate the provisioning and deploying of Mojaloop resources. While the code provided is specific to certain use cases, it can be reused and customised to fit individual needs -- for example, cloud versus on-premise deployments. <!-- This guide assumes a cloud-based deployment, with on-prem specifics called out where possible. -->
@@ -381,12 +419,11 @@ tmux new -s <NAME_OF_YOUR_TMUX_SESSION>
 
 Once in the tmux session, run the Docker container.
 
-After `--name` and `--hostname`, change <NAME_OF_YOUR_CONTROL_CENTER> to be the name of your Control Center.
+After `--name` and `--hostname`, remember to change <NAME_OF_YOUR_CONTROL_CENTER_CONTAINER> and <NAME_OF_YOUR_CONTROL_CENTER_HOST_INSIDE_CONTAINER>.
 
 ```bash
-docker run -t -d -v /home/ubuntu/.aws:/root/.aws --name <NAME_OF_YOUR_CONTROL_CENTER> --hostname <NAME_OF_YOUR_CONTROL_CENTER> --cap-add SYS_ADMIN --cap-add NET_ADMIN ghcr.io/mojaloop/control-center-util:6.1.2
+docker run -t -d -v /home/ubuntu/.aws:/root/.aws --name <NAME_OF_YOUR_CONTROL_CENTER_CONTAINER> --hostname <NAME_OF_YOUR_CONTROL_CENTER_HOST_INSIDE_CONTAINER> --cap-add SYS_ADMIN --cap-add NET_ADMIN ghcr.io/mojaloop/control-center-util:6.1.2
 ```
-<!-- EDITORIAL COMMENT: Consider using the docker run step from the old document to avoid having to export aws credentials further down the line -->
 
 Access the container:
 
@@ -410,7 +447,7 @@ docker exec -it <NAME_OF_YOUR_CONTROL_CENTER> bash
       vi setenv
       ```
 
-   1. Specify which version of IaC you want to use (this needs to be determined before), for example (at the time of writing, mcm-1763129678 is the recommended release and [tag](https://github.com/mojaloop/iac-modules/tags)): `IAC_TERRAFORM_MODULES_TAG=mcm-1763129678`
+   1. Specify which version of IaC you want to use (this needs to be determined before), for example (at the time of writing, mcm-1770187122 is the recommended release and [tag](https://github.com/mojaloop/iac-modules/tags)): `IAC_TERRAFORM_MODULES_TAG=mcm-1770187122`
 
 1. Initialize the environment.
 
@@ -459,8 +496,8 @@ docker exec -it <NAME_OF_YOUR_CONTROL_CENTER> bash
       cluster_name:                             # Unique identifier for your Control Center 
       domain:                                   # Your domain name
       cloud_region:                             # AWS region for deployment
-      iac_terraform_modules_tag: mcm-1762866755 # IaC modules version
-      ansible_collection_tag: v7.0.0-rc.86      # Ansible collection version
+      iac_terraform_modules_tag: mcm-1770187122 # IaC modules version
+      ansible_collection_tag: v7.0.0-rc.144     # Ansible collection version
       vpc_cidr: 10.73.0.0/16
 
       enable_object_storage_backend: true 
@@ -597,13 +634,13 @@ docker exec -it <NAME_OF_YOUR_CONTROL_CENTER> bash
 
    1. Obtain the bastion IP address.
       1. Go to the AWS portal, **EC2 > Instances**, and click the instance whose name ends in **bastion**.
-      1. Copy the Public IPv4 address.
+      1. Copy and save the Public IPv4 address, you will need it soon.
    1. Obtain the ssh key.
       1. Open a new terminal.
       1. `docker exec` inside the Control Center container:
 
          ```bash
-         `docker exec it <NAME_OF_YOUR_CONTROL_CENTER> bash`
+         `docker exec it <NAME_OF_YOUR_CONTROL_CENTER_CONTAINER> bash`
          ```
 
       1. Change directory to:
@@ -621,7 +658,7 @@ docker exec -it <NAME_OF_YOUR_CONTROL_CENTER> bash
          ```
 
       1. Copy the ssh key.
-      1. Paste the ssh key here (use a meaningful and descriptive folder name):
+      1. Paste the ssh key into a new file on your computer (use a meaningful and descriptive folder name):
 
          ```bash
          vi ~/.ssh/<FOLDER_NAME>
@@ -633,19 +670,11 @@ docker exec -it <NAME_OF_YOUR_CONTROL_CENTER> bash
          chmod 400 ~/.ssh/<FOLDER_NAME>
          ```
 
-      1. Connect to the bastion via ssh:
+   1. In a new terminal, connect to the bastion via ssh:
 
          ```bash
          ssh -i ~/.ssh/<FOLDER_NAME> ubuntu@<BASTION_IP_ADDRESS>
          ```
-
-      1. Exit the session to return to your local machine: `exit`
-
-   1. Create a tunnel between your machine and the VM. Issue the following command on your machine:
-
-      ```bash
-      ssh -i .ssh/<NAME_OF_YOUR_CONTROL_CENTER> -L 8082:127.0.0.1:8445 ubuntu@<BASTION_IP_ADDRESS>
-      ```
 
    1. Export the kubeconfig:
 
@@ -662,15 +691,21 @@ docker exec -it <NAME_OF_YOUR_CONTROL_CENTER> bash
       -o jsonpath="{.data.password}" | base64 --decode; echo
       ```
 
-      Save the password that is returned, you will need it in the next step.
+      Save the password that is returned, you will need it soon.
 
-   1. Port forward using the password obtained in the previous step:
+   1. Port forward:
 
       ```bash
-      kubectl -n argocd port-forward svc/argocd-server 8445:80 --address 127.0.0.1
+      kubectl port-forward svc/argocd-server -n argocd 8080:443
       ```
 
-   1. In your browser, open: `http://localhost:8082`
+   1. In a new terminal, create a secure tunnel so that visiting `localhost:8080` on your computer connects to `localhost:8080` on the remote server.
+
+      ```bash
+      ssh -i ~/.ssh/<FOLDER_NAME> -L 8080:localhost:8080 ubuntu@<BASTION_IP_ADDRESS>
+      ```
+
+   1. In your browser, open: `http://localhost:8080`
 
       This should open ArgoCD in your browser.
 
@@ -714,15 +749,15 @@ All Control Center services (GitLab, ArgoCD, Grafana, Vault, and so on) use Zita
 
    Select the **Email verified** and **Set Initial Password** checkboxes to speed up the process.
 
-   <!-- ![Zitadel: Create user](assets/screenshots/iacDeployment/001_cc_zitadel_create_user.png) -->
+   ![Zitadel: Create user](assets/screenshots/iacDeployment/001_cc_zitadel_create_user.png)
 
 1. Grant appropriate permissions to this new user via the **Authorizations** menu:
 
-   <!-- ![Zitadel: Grant permissions to new user 01](assets/screenshots/iacDeployment/002_cc_zitadel_grant_authorizations_1.png) -->
+   ![Zitadel: Grant permissions to new user 01](assets/screenshots/iacDeployment/002_cc_zitadel_grant_authorizations_1.png)
 
    1. Click **New**.
 
-      <!-- ![Zitadel: Grant permissions to new user 02](assets/diagrams/iacDeployment/002_cc_zitadel_grant_authorizations_2.png) -->
+      ![Zitadel: Grant permissions to new user 02](assets/diagrams/iacDeployment/002_cc_zitadel_grant_authorizations_2.png)
 
    1. Click the **Project name** field. You will see a list of available projects: ZITADEL, grafana, vault, argocd, k8s, Nebird, gitlab.
    1. Select one of the projects, and click **Continue**.
@@ -743,7 +778,7 @@ All Control Center services (GitLab, ArgoCD, Grafana, Vault, and so on) use Zita
 
 1. You will be prompted to install the NetBird client.
 
-   <!-- ![Nebird: Install NetBird client](assets/screenshots/iacDeployment/003_cc_download_netbird_linux.png) -->
+   ![Nebird: Install NetBird client](assets/screenshots/iacDeployment/003_cc_download_netbird_linux.png)
 
 1. Retrieve the Management URL shown on the dashboard.
 
@@ -775,7 +810,7 @@ Once you have connected, you can access all the portals.
 
 1. Enable two-factor authentication for enhanced security, following the prompts to set up 2FA.
 
-   <!-- ![GitLab: Enable two-factor authentication](assets/screenshots/iacDeployment/004_cc_gitlab_2factor.png) -->
+   ![GitLab: Enable two-factor authentication](assets/screenshots/iacDeployment/004_cc_gitlab_2factor.png)
 
 1. Once done, go to **Groups** (left-hand menu) and choose **iac**.
 
@@ -790,11 +825,11 @@ Once you have connected, you can access all the portals.
 
 1. On the login page, select **Method: OIDC**, click **Sign in with OIDC Provider**, then in the window that pops up, choose your new user. <!-- EDITORIAL COMMENT: techops-admin -->
 
-   <!-- ![Vault login](assets/screenshots/iacDeployment/006_vault_signin.png) -->
+   ![Vault login](assets/screenshots/iacDeployment/006_vault_signin.png)
 
 1. Verify if secret paths are accessible: under **Secret engines**, select **secret/**. You should see a list of secrets for various applications, such as GitLab, Grafana, Mimir, and so on.
 
-   <!-- ![Vault secrets](assets/screenshots/iacDeployment/007_vault_secrets.png) -->
+   ![Vault secrets](assets/screenshots/iacDeployment/007_vault_secrets.png)
 
 ##### Grafana: Review dashboards and set up alerts
 
@@ -819,6 +854,51 @@ Once you have connected, you can access all the portals.
 1. Check the status of all applications, verify that they are healthy.
 
 The Control Center is now fully up and running.
+
+#### Control Center: Verify health and access
+
+##### Service health checks
+
+Verify if all services are operational:
+
+1. Check ArgoCD applications:
+
+   ```bash
+   kubectl get applications -n argocd
+   ```
+
+1. Verify pod status:
+
+   ```bash
+   kubectl get pods --all-namespaces | grep -v Running
+   ```
+
+1. Check Istio configuration:
+
+   ```bash
+   kubectl get gateway -n istio-system
+   ```
+
+##### DNS verification
+
+Confirm that DNS records are properly configured:
+
+1. Test external services:
+
+   Example (update with your own `cluster_name` and `domain`):
+
+   ```bash
+   nslookup gitlab.<CLUSTER_NAME>.<DOMAIN>
+   nslookup zitadel.<CLUSTER_NAME>.<DOMAIN>
+   ```
+
+1. Test internal services:
+
+   Once connected via VPN (example - update with your own `cluster_name` and `domain`):
+
+   ```bash
+   nslookup argocd.int.<CLUSTER_NAME>.<DOMAIN>
+   ```
 
 #### Control Center: Troubleshooting
 
@@ -977,7 +1057,7 @@ To completely remove the Control Center:
    cd /iac-run-dir/iac-modules/terraform/ccnew/
    ```
 
-1. Load the configuration: <!-- QUESTION: This step comes from the old doc. Is it still needed? -->
+1. Load the configuration:
 
    ```bash
    source externalrunner.sh
