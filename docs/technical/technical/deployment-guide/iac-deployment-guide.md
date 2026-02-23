@@ -1173,7 +1173,7 @@ The deployment of the Switch follows a similar pattern to that of the Control Ce
 
 1. Once you opened **deploy-env-templates**, you need to provide some environment variables:
    - **ENV_TO_UPDATE** → the name of the environment that you want to update, it is the Switch environment that you defined in the `custom-config/environment.yaml` file (in our example, it will be: `sw001`)
-   - **IAC_MODULES_VERSION_TO_UPDATE** → the version of Terraform that you want to use (in our example, it is: `mcm-1762866755`)
+   - **IAC_MODULES_VERSION_TO_UPDATE** → the version of Terraform that you want to use (in our example, it is: `mcm-1770187122`)
 
 1. Run the job. This will populate the repository of the Switch with the default configuration.
 
@@ -1275,8 +1275,8 @@ In the example below, we are going to use the [common-profile](https://github.co
    cloud_region: <YOUR_AWS_REGION>
    object_storage_provider: s3
    cloud_platform: aws
-   iac_terraform_modules_tag: mcm-1762866755             # v7.0.0-rc.119 --> mcm-1762808514 --> mcm-1762866755
-   ansible_collection_tag: v7.0.0-rc.86
+   iac_terraform_modules_tag: mcm-1770187122             
+   ansible_collection_tag: v7.0.0-rc.144
    manage_parent_domain: false
    cc: controlcenter
    cc_name: controlcenter
@@ -1684,7 +1684,7 @@ The log details will show a URL to download the test results from. You can use t
     1. Verify all tests pass successfully.
     1. Review test results and logs.
 
-<!-- EDITORIAL COMMENT: Should section Mojaloop Switch: Collect PM4ML configuration info from the old doc be added here? -->
+<!-- EDITORIAL COMMENT: Should section Mojaloop Switch: Collect PM4ML configuration info from the old doc be added here? A copy-paste of the old info is available below in Appendix 1. -->
 
 #### Mojaloop Switch: Troubleshooting
 <!-- QUESTION: This section comes from the old doc. Is the info below still correct/relevant? -->
@@ -2172,7 +2172,456 @@ DFSPs do not need to have connection to NetBird because they use public IP addre
       netbird up --setup-key <SETUP_KEY> --management-url <MANAGEMENT_URL>
       ```
 
-<!-- ## Appendix: Notes for on-prem deployments
+<!-- Appendix 1: Old Mojaloop Switch deployment steps
+
+#### Mojaloop Switch: Initialize the bootstrap environment
+
+Deploying the Switch environment is done in GitLab.
+
+By default, when you open GitLab, you will see the environments that you configured in `custom-config/environment.yaml` (when you deployed the Control Center - see section [Control Center: Deploy the Control Center](#control-center-deploy-the-control-center)).
+
+The **iac/bootstrap** environment is present by default, this is the main project of the Control Center.
+
+The deployment of the Switch follows a similar pattern to that of the Control Center.
+
+1. In GitLab, go to **Projects**, click **iac/bootstrap**.
+
+1. In the left-hand navigation pane, go to **Build > Pipelines**.
+
+1. Open the latest pipeline.
+
+1. Click **deploy-env-templates** (don't run it, just click it). Later on, you will run this to populate the project of the Switch that you want to deploy.
+
+   ![deploy-env-templates](assets/screenshots/iacDeployment/008_gitlab_deploy_env_templates.png)
+
+1. Once you opened **deploy-env-templates**, you need to provide some environment variables:
+   - **ENV_TO_UPDATE** → the name of the environment that you want to update, it is the Switch environment that you defined in the `custom-config/environment.yaml` file in section [Control Center: Deploy the Control Center](#control-center-deploy-the-control-center) (in our example, it will be: `sw004`)
+   - **IAC_MODULES_VERSION_TO_UPDATE** → the version of Terraform that you want to use (in our example, it is: `v5.9.0`)
+
+1. Run the job. This will populate the project of the Switch.
+
+1. After successful initialization:
+
+   1. Access the newly created environment repository at:
+
+      ```
+      https://gitlab.<cluster-name>.<domain>/iac/<env-to-update>
+      ```
+   
+      Example:
+
+      ```
+      https://gitlab.cc004.perf004.mojaperflab.org/iac/sw004
+      ```
+
+   1. Verify the structure of the repository, and ensure that it contains:
+
+   - `custom-config/` directory
+   - `default-config/` directory
+   - CI/CD pipeline configuration
+
+#### Mojaloop Switch: Configure AWS credentials
+
+Set up the `AWS_ACCESS_KEY_ID` variable. Each environment must have this information.
+
+1. In GitLab, go to **Settings > CI/CD > Variables** (bottom left corner), and create a new variable (click **Add variable**). 
+
+   ![CI/CD variables in GitLab](assets/screenshots/iacDeployment/009_gitlab_settings_cicd_variables.png)
+
+1. Set up the variable as follows:
+   - Key: `AWS_ACCESS_KEY_ID`
+   - Value: The AWS access key ID of the Amazon account where you want to deploy the Switch. You can obtain this value from the AWS console, you will find it under your AWS profile > Security credentials > Access keys. You set up the corresponding key in section [Configure AWS credentials](#configure-aws-credentials) when you deployed the Control Center.
+   - Type: Variable
+   - Protected: Yes
+   - Masked: Yes
+
+#### Mojaloop Switch: Configure the Vault secret
+
+Set up the access key as a secret in the Vault.
+
+1. Connect to Vault using the internal URL (requires VPN):
+
+   ```
+   https://vault.int.<cluster-name>.<domain>
+   ```
+
+   Example:
+   ```
+   https://vault.int.cc004.perf004.mojaperflab.org/
+   ```
+
+1. Navigate to the following path: **Secrets Engines > secret > \<switch-project\>**
+
+1. Create a secret called `cloud_platform_client_secret` (click **Create secret** and add `cloud_platform_client_secret` in the **Path for this secret** field).
+
+   ![Configure Vault secret](assets/screenshots/iacDeployment/010_vault_create_secret.png)
+
+1. Set up the secret as follows:
+   - Key: `value`
+   - Value: Your AWS secret access key (This is the secret access key corresponding to the access key for the AWS CLI. You set up this key in section [Configure AWS credentials](#configure-aws-credentials) when you deployed the Control Center.)
+
+1. Click **Save**.
+
+#### Mojaloop Switch: Configure the Switch
+
+1. When the **deploy-env-templates** job has run, access the Switch project in GitLab by going to **Projects** and clicking **iac /\<environment identifier\>**.
+
+1. Configure the Switch. The logic is similar to how you specified your configuration for the Control Center.
+
+   There is a **default-config** folder with a set of default configurations. They can be explored to see what's inside. If you want to customise your configuration, then copy any configuration code from the default configuration into the `custom-config/cluster-config.yaml` file and make your changes.
+
+   Commit directly to the `main` branch.
+
+   Example:
+
+   ```yaml
+   env: sw004 # update according to your DNS planning
+   vpc_cidr: "10.107.0.0/23"
+   managed_vpc_cidr: "10.29.0.0/23"
+   domain: hub004.mojaperflab.org # update according to DNS planning, ensure this domain name is different from the one specified for the Control Center
+   managed_svc_enabled: false
+   k8s_cluster_type: microk8s
+   currency: EUR
+   cloud_region: eu-north-1 # update according to your region planning
+   ansible_collection_tag: v5.5.0-rc3
+   iac_terraform_modules_tag: v5.9.0 # update according to your Terraform version
+   letsencrypt_email: admin@yourdomain.com
+   tags:
+      {
+         "Origin": "Terraform",
+         "mojaloop/cost_center": "mlf-perf004-sw",
+         "mojaloop/env": "ft-sbox-rw",
+         "mojaloop/owner": "Your-Name",
+      }
+   ```
+
+1. Set your desired Mojaloop version:
+   1. Go to `custom-config/mojaloop-vars.yaml` file. If the file doesn't exist, create it.
+   1. Specify a value for `mojaloop_chart_version`.
+   1. You can also update the `mcm_chart_version` depending on which version of MCM you wish to use (in case you don't want to use the default version).
+
+      ```yaml
+      mojaloop_chart_version: 17.0.0 # Check latest version at https://github.com/mojaloop/helm/releases/
+      onboarding_collection_tag: 17.0.0 # match the mojaloop version
+      mcm_chart_version: 1.2.10 
+      bulk_enabled: true # optional
+      third_party_enabled: true # optional
+      opentelemetry_enabled: false
+      central_ledger_handler_transfer_position_batch_processing_enabled: true # required for now
+      ```
+   
+   1. Commit directly to the `main` branch.
+
+1. Configure the `mojaloop-rbac-api-resources.yaml` file. This file specifies the privileges for the business portals.
+
+   1. Navigate to **default-config** and click `mojaloop-rbac-api-resources.yaml`.
+   1. Copy the entire content.
+   1. Navigate to the **custom-config** directory.
+   1. Create a new file and name it `mojaloop-rbac-api-resources.yaml`.
+   1. Paste the copied content and commit directly to the `main` branch.
+
+1. Configure the `mojaloop-stateful-resources.json` file. This file specifies the configuration of databases and message queues.
+
+   1. Navigate to **default-config** and click `mojaloop-stateful-resources.json`.
+   1. Copy the entire content.
+   1. Navigate to the **custom-config** directory.
+   1. Create a new file and name it `mojaloop-stateful-resources.json`.
+   1. Paste the copied content and commit directly to the `main` branch.
+
+#### Mojaloop Switch: Run the deployment
+
+1. In GitLab, go to **Projects**, click **iac/\<environment identifier\>**.
+1. Select **Build > Pipelines**.
+1. Ensure your latest commit passed the initialization (**init** stage) successfully. Initialization runs automatically on every commit.
+1. Run the deploy job:
+   1. Select the **deploy** stage of your latest commit.
+   1. Run **deploy-infra**. This will deploy the infrastructure, Kubernetes, ArgoCD, together with the configuration you specified. The deployment process takes about 45-60 minutes to complete.
+1. Following successful deployment, you can download the artifacts from the **Build > Artifacts** page. (When you run a deploy job, it will save some artifacts.)
+   1. Browse **deploy-infra**, and explore its contents.
+   1. Go to **ansible > k8s-deploy**.
+   1. You will find the following artifacts:
+      1. `inventory`: used for Terraform
+      1. `oidc-kubeconfig`: the kubeconfig of the Kubernetes environment just deployed
+      1. `sshkey`
+1. Download the `oidc-kubeconfig` artifact, and save it locally. You will be able to access it via VPN.
+
+#### Mojaloop Switch: Post-deployment verification
+
+##### Configure Kubernetes access
+
+1. Install an OIDC plugin, such as [kubelogin](https://github.com/int128/kubelogin). `kubelogin` is a client-side authentication helper for Kubernetes that enables you to authenticate to a Kubernetes cluster using OIDC (OpenID Connect).
+
+1. Set kubeconfig:
+
+   Example (remember to use your own environment identifier instead of `sw004`):
+
+   ```bash
+   # Save downloaded kubeconfig
+   mkdir -p ~/.kube
+   mv ~/Downloads/kubeconfig ~/.kube/sw004-config
+
+   # Export configuration
+   export KUBECONFIG=~/.kube/sw004-config
+   ```
+
+##### Verify deployment
+
+Using kubeconfig, you can check if the pods are running, or if you spot some errors to resolve. You can also collect some useful information, for example, URLs.
+
+1. Open `kubeconfig` via a Kubernetes dashboard/navigator app (such as [Lens](https://k8slens.dev/), for example). Alternatively, use your command line terminal.
+
+1. Check ArgoCD applications:
+
+   ```bash
+   kubectl get Application -n argocd
+   ```
+
+   In case you're prompted to manually navigate to `http://localhost:8000/` in your browser, go ahead and do that. Log in to Zitadel as the admin user. Then come back to the command line terminal and you should see the requested application info displayed in the terminal.
+
+1. Verify if all pods are running:
+
+   ```bash
+   kubectl get pods --all-namespaces | grep -v Running
+   ```
+
+##### Configure user permissions
+
+1. Log in as admin to Control Center Zitadel to grant permissions.
+1. Add user to environment group:
+   1. Click the Zitadel logo in the top left corner.
+   1. Click **Users** and select your your non-admin user.
+   1. In the left-hand menu, click **Authorizations**.
+   1. Click **New**.
+   1. Under **Search for a project**, select your Switch environment from the drop-down menu, and click **Continue**.
+   1. Select all the roles and click **Save**.
+
+#### Mojaloop Switch: Configure service access
+
+##### ArgoCD access
+
+1. Get the ArgoCD portal's URL:
+
+   ```bash
+   kubectl get VirtualService -n argocd
+   ```
+
+   In the output returned, the `HOSTS` information is the link to the ArgoCD portal.
+
+   Example:
+
+   ```bash
+   NAME       GATEWAY                                          HOSTS                                         AGE
+   argocd-vs  ["istio-ingress-int/internal-wildcard-gateway"]  ["argocd.int.sw004.hub004.mojaperflab.org"]   32h
+   ```
+
+   **NOTE:** In order to have the information you can see in the output, you need to have reached a certain level of deployment to have Istio up and running. Istio is used to provide Ingress and Egress Gateways as well as ingress Virtual Services for the cluster. Without Istio up, you can use `kubectl port-forward` to forward a local port to the ArgoCD API server running inside your Kubernetes cluster. For details, see: [https://argo-cd.readthedocs.io/en/stable/getting_started/#port-forwarding](https://argo-cd.readthedocs.io/en/stable/getting_started/#port-forwarding)
+
+1. Navigate to ArgoCD using the URL.
+
+1. Log in via SSO with Zitadel (recommended).
+
+   Alternatively:
+
+   - Username: `admin`
+   - Password:
+
+      ```bash
+      kubectl get secret argocd-initial-admin-secret -n argocd \
+      -o jsonpath='{.data.password}' | base64 -d
+      ```
+
+##### Grafana access
+
+To access the Grafana monitoring dashboards of the Switch environment, perform the following steps:
+
+1. Get Grafana's URL:
+
+   ```bash
+   kubectl get VirtualService -n monitoring
+   ```
+
+   In the output returned, the `HOSTS` information is the link to Grafana.
+
+1. Navigate to Grafana using the URL.
+
+1. Log in:
+   - Option 1: SSO via Zitadel (recommended)
+   - Option 2: Local admin account
+
+      ```bash
+      # Get username
+      kubectl get secret grafana-admin-secret -n monitoring \
+      -o jsonpath='{.data.admin-user}' | base64 -d
+
+      # Get password
+      kubectl get secret grafana-admin-secret -n monitoring \
+      -o jsonpath='{.data.admin-pw}' | base64 -d
+      ```
+
+##### Keycloak access
+
+1. Get the Keycloak URLs:
+
+   1. Admin console URL:
+
+      ```bash
+      kubectl get VirtualService keycloak-admin-vs -n keycloak
+      ```
+
+   1. External URL for OIDC:
+
+      ```bash
+      kubectl get VirtualService keycloak-ext-vs -n keycloak
+      ```
+
+   In the output returned, the `HOSTS` information is the link to Keycloak.
+
+1. Navigate to Keycloak using the URL.
+
+1. Obtain the credentials:
+
+   ```bash
+   # Get username
+   kubectl get secret switch-keycloak-initial-admin -n keycloak \
+   -o jsonpath='{.data.username}' | base64 -d
+
+   # Get password
+   kubectl get secret switch-keycloak-initial-admin -n keycloak \
+   -o jsonpath='{.data.password}' | base64 -d
+   ```
+
+1. Log in.
+
+##### Business Portal access
+
+1. Get the Business Portal's URL:
+
+   ```bash
+   kubectl get VirtualService finance-portal-vs -n mojaloop
+   ```
+
+   In the output returned, the `HOSTS` information is the link to the portal.
+
+1. Navigate to the Business Portal using the URL.
+
+1. Log in:
+
+   - Username: `portal_admin`
+   - Authentication: Retrieved from Keycloak secret
+
+      ```bash
+      kubectl get secret portal-admin-secret -n keycloak \
+      -o jsonpath='{.data.secret}' | base64 -d
+      ```
+
+##### MCM access
+
+1. Get the MCM portal's URL:
+
+   ```bash
+   kubectl get VirtualService mcm-vs -n mcm
+   ```
+   
+   In the output returned, the `HOSTS` information is the link to the portal.
+
+1. Navigate to the MCM Portal using the URL.
+
+1. Log in:
+
+   - Username: `portal_admin`
+   - Authentication: Retrieved from Keycloak secret
+
+      ```bash
+      kubectl get secret portal-admin-secret -n keycloak \
+      -o jsonpath='{.data.secret}' | base64 -d
+      ```
+
+##### Testing Toolkit (TTK) access
+
+Get the TTK's URL:
+
+```bash
+kubectl get VirtualService mojaloop-ttkfront-vs -n mojaloop
+```
+
+In the output returned, the `HOSTS` information is the link to the TTK frontend.
+
+#### Mojaloop Switch: Run TTK tests
+
+##### Automated tests
+
+Following deployment, the following steps are taken automatically:
+1. The `moja-ml-ttk-test-val-gp` pod in the mojaloop namespace provisions \<placeholder\>. 
+1. The `moja-ml-ttk-test-setup` pod in the mojaloop namespace runs automated tests.
+
+Automatic tests help you assess if the system you have just deployed works as expected.
+
+Check the test summary in the logs to see if everything is working fine.
+
+The log details will show a URL to download the test results from. You can use the results to investigate errors.
+
+##### Run Golden Path tests
+
+1. Download the test collection:
+    1. Go to: [https://github.com/mojaloop/testing-toolkit-test-cases/releases/tag/v17.0.15](https://github.com/mojaloop/testing-toolkit-test-cases/releases/tag/v17.0.15)
+    1. Download the appropriate test collection.
+
+1. Configure TTK.
+    1. Load the golden path provisioning collection.
+    1. Navigate to: Collections → Hub → Golden Path → P2P Money Transfer.
+    1. Set environment to: `examples/environments/hub-k8s-default-environment.json`
+
+1. Execute tests:
+    1. Run the test suite.
+    1. Verify all tests pass successfully.
+    1. Review test results and logs.
+
+#### Mojaloop Switch: Collect PM4ML configuration info
+
+##### Collect Integration URLs
+
+For DFSP/PM4ML integration, collect the following URLs:
+
+- OIDC authentication URL:
+    ```bash
+    # External Switch OIDC URL
+    kubectl get VirtualService keycloak-ext-vs -n keycloak
+    ```
+
+- Interoperability API URL:
+    ```bash
+    # External Switch FQDN
+    kubectl get VirtualService interop-vs -n mojaloop
+    ```
+
+- MCM public URL:
+    ```bash
+    # External MCM Public FQDN
+    kubectl get VirtualService mcm-vs -n mcm
+    ```
+
+##### Get JWT token
+
+1. Access Keycloak:
+    1. Log in to the Keycloak admin console.
+    2. Select the `fsps` realm in the top-left dropdown.
+
+1. Retrieve the JWT Secret:
+    1. Navigate to **Clients** in the menu on the left.
+    2. Select `dfsp-jwt` from the list.
+    3. Go to the **Credentials** tab.
+    4. Copy the `fsp-jwt` secret.
+
+##### Document integration details
+
+Create a document with:
+
+- All collected URLs
+- JWT token/secret
+- Network connectivity requirements -->
+
+
+<!-- ## Appendix 2: Notes for on-prem deployments
 
 ### Required Virtual Machines
 
