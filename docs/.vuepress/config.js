@@ -1139,6 +1139,13 @@ module.exports = {
                 }
               ]
             }
+            {
+              title: 'Mojaloop Connection Manager (MCM)'
+              initialOpenGroupIndex: -1,
+              children: [
+                'business-operations-framework/MCMGuideforHubOperator',
+              ]
+            }
           ]
         }
       ],
