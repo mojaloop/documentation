@@ -1140,8 +1140,7 @@ module.exports = {
               ]
             },
             {
-              title: 'Mojaloop Connection Manager (MCM)'
-              initialOpenGroupIndex: -1,
+              title: 'Mojaloop Connection Manager (MCM)',
               children: [
                 'business-operations-framework/MCMGuideforHubOperator',
               ]
