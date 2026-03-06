@@ -1138,7 +1138,7 @@ module.exports = {
                   path: 'business-operations-framework/SettlementBC'  
                 }
               ]
-            }
+            },
             {
               title: 'Mojaloop Connection Manager (MCM)'
               initialOpenGroupIndex: -1,
