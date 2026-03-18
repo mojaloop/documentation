@@ -1173,6 +1173,19 @@ module.exports = {
     '@vuepress/plugin-back-to-top',
     '@vuepress/plugin-medium-zoom',
     'versioning'
-  ]
+  ],
+
+  locales: {
+    '/': {
+      lang: 'en-US',
+      title: 'Mojaloop Documentation',
+      description: '',
+    },
+    '/fr/': {
+      lang: 'fr-FR',
+      title: 'Mojaloop Documentation',
+      description: '',
+    },
+  },
 };
 
