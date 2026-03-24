@@ -232,6 +232,9 @@ export function versionifyUserNav (navConfig, currentPage, currentVersion, local
   })
 }
 
+/** Doc paths under these prefixes reuse the default-locale sidebar keys; base is rewritten for resolvePath. */
+const SIDEBAR_LOCALE_PREFIXES = ['/fr']
+
 /**
  * @param { Route } route
  * @param { Array<string|string[]> | Array<SidebarGroup> | [link: string]: SidebarConfig } config
@@ -252,6 +255,26 @@ export function resolveMatchingConfig (regularPath, config) {
       }
     }
   }
+  for (const localePrefix of SIDEBAR_LOCALE_PREFIXES) {
+    const atLocaleRoot =
+      regularPath === localePrefix ||
+      regularPath === `${localePrefix}/`
+    const underLocale = regularPath.startsWith(`${localePrefix}/`)
+    if (!atLocaleRoot && !underLocale) {
+      continue
+    }
+    const rest = regularPath.slice(localePrefix.length)
+    const pathWithoutLocale =
+      !rest || rest === '/' ? '/' : rest.startsWith('/') ? rest : `/${rest}`
+    for (const base in config) {
+      if (ensureEndingSlash(pathWithoutLocale).indexOf(base) === 0) {
+        return {
+          base: `${localePrefix}${base}`,
+          config: config[base]
+        }
+      }
+    }
+  }
   return {}
 }
 
@@ -261,18 +284,50 @@ function ensureEndingSlash (path) {
     : path + '/'
 }
 
+function isSidebarLocaleBase (base) {
+  if (!base) {
+    return false
+  }
+  return SIDEBAR_LOCALE_PREFIXES.some(
+    prefix => base === `${prefix}/` || base.startsWith(`${prefix}/`)
+  )
+}
+
+/**
+ * For localized doc trees (e.g. /fr/...), prefer each page's title or frontmatter.sidebarTitle
+ * over the English label from themeConfig.
+ */
+function sidebarTitleForResolvedPage (resolved, base, fallbackTitle) {
+  if (resolved.type !== 'page') {
+    return fallbackTitle
+  }
+  const fm = resolved.frontmatter || {}
+  if (fm.sidebarTitle != null && fm.sidebarTitle !== '') {
+    return fm.sidebarTitle
+  }
+  if (isSidebarLocaleBase(base)) {
+    return resolved.title || fallbackTitle
+  }
+  if (fallbackTitle != null && fallbackTitle !== '') {
+    return fallbackTitle
+  }
+  return resolved.title
+}
+
 function resolveItem (item, pages, base, groupDepth = 1) {
   if (typeof item === 'string') {
     return resolvePage(pages, item, base)
   } else if (Array.isArray(item)) {
-    return Object.assign(resolvePage(pages, item[0], base), {
-      title: item[1]
+    const resolved = resolvePage(pages, item[0], base)
+    return Object.assign(resolved, {
+      title: sidebarTitleForResolvedPage(resolved, base, item[1])
     })
   } else {
     const children = item.children || []
     if (children.length === 0 && item.path) {
-      return Object.assign(resolvePage(pages, item.path, base), {
-        title: item.title
+      const resolved = resolvePage(pages, item.path, base)
+      return Object.assign(resolved, {
+        title: sidebarTitleForResolvedPage(resolved, base, item.title)
       })
     }
     return {
