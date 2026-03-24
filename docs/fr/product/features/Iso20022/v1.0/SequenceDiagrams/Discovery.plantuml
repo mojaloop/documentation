@@ -1,20 +1,20 @@
 @startuml
 
-Title Discovery ISO 20022 Message Flow
-participant PayerDFSP as "Payer DFSP"
+Title Découverte — flux de messages ISO 20022
+participant PayerDFSP as "DFSP payeur"
 participant Mojaloop as "Mojaloop"
-participant PayeeDFSP as "Payee DFSP"
+participant PayeeDFSP as "DFSP bénéficiaire"
 
 autonumber
 
 PayerDFSP -> Mojaloop: GET /parties/{type}/{PartyIdentifier}
 Mojaloop -> PayeeDFSP: GET /parties/{type}/{PartyIdentifier}
-PayeeDFSP -> PayeeDFSP: Validate payees account status.
-alt if account active
-PayeeDFSP -> Mojaloop: PUT /parties/{type}/{PartyIdentifier} \n Returns supported currencies and account owner details.
+PayeeDFSP -> PayeeDFSP: Valider l'état du compte du bénéficiaire.
+alt si le compte est actif
+PayeeDFSP -> Mojaloop: PUT /parties/{type}/{PartyIdentifier} \n Renvoie les devises prises en charge et les détails du titulaire du compte.
 note right
 **acmt.024.001.04**
-**Account Identification Verification Report**
+**Rapport de vérification d'identification de compte**
 {
 "Assgnmt": {
     "MsgId": "01JBVM14S6SC453EY9XB9GXQB5",
@@ -33,12 +33,12 @@ note right
 end note
 Mojaloop -> PayerDFSP: PUT /parties/{type}/{PartyIdentifier}
 
-else if account inactive
+else si le compte est inactif
 
-PayeeDFSP -> Mojaloop: PUT /parties/{type}/{PartyIdentifier}/error \n Returns error code 3204 Party not found.
+PayeeDFSP -> Mojaloop: PUT /parties/{type}/{PartyIdentifier}/error \n Renvoie le code d'erreur 3204 — partie introuvable.
 note right
 **acmt.024.001.04**
-**Account Identification Verification Report**
+**Rapport de vérification d'identification de compte**
 {
   "Assgnmt": {
     "Id": 123,

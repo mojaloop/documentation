@@ -42,35 +42,35 @@
 !$fxCondition = "GRzLaTP7DJ9t4P-a_B..."
 !$condition = "HOr22-H3AfTDHrSkP..."
 
-title Discovery - Mojaloop Connector Integration
+title Découverte — intégration du connecteur Mojaloop
 actor "$senderName" as A1
-  participant "Payer CBS" as PayerCBS
-box "Payer DFSP" #LightBlue  
-  participant "Core Connector" as PayerCC
-  participant "Payer\nMojaloop\nConnector" as D1
+  participant "CBS payeur" as PayerCBS
+box "DFSP payeur" #LightBlue  
+  participant "Connecteur principal" as PayerCC
+  participant "Connecteur Mojaloop\npayeur" as D1
 end box
 
-participant "Mojaloop Switch" as S1
+participant "Commutateur Mojaloop" as S1
 
-box "Discovery Service" #LightYellow
-  participant "ALS Oracle" as ALS
+box "Service de découverte" #LightYellow
+  participant "Oracle ALS" as ALS
 end box
 
-'box "FX provider"  
-'  participant "FXP\nConnector" as FXP
-'  participant "Backend FX API" as FXPBackend
+'box "Fournisseur de change"  
+'  participant "Connecteur\nFXP" as FXP
+'  participant "API FX backend" as FXPBackend
 'end box
 
-box "Payee DFSP" #LightBlue   
-  participant "Payee\nMojaloop\nConnector" as D2
-  participant "Core Connector" as PayeeCC
+box "DFSP bénéficiaire" #LightBlue   
+  participant "Connecteur Mojaloop\nbénéficiaire" as D2
+  participant "Connecteur principal" as PayeeCC
 end box
 
 'actor "$receiverName" as A2
 autonumber
 
-A1->PayerCBS:I'd like to pay $receiverName\n$payerSendAmount $payerCurrency, please
-PayerCBS->PayerCC: Initiate remittance transfer
+A1->PayerCBS:Je voudrais payer $receiverName\n$payerSendAmount $payerCurrency, s'il vous plaît
+PayerCBS->PayerCC: Lancer le transfert de fonds
 !if ($advancedCoreConnectorFlow != true)
     PayerCC->D1: **POST /transfers**
     !if ($simplified != true)
@@ -102,29 +102,29 @@ PayerCC->D1: **GET /parties/MSISDN/$payeeMSISDN**
 !endif
 
 activate D1
-D1->>S1:I want to send to MSISDN $payeeMSISDN\n**GET /parties/MSISDN/$payeeMSISDN**
+D1->>S1:Je veux envoyer vers le MSISDN $payeeMSISDN\n**GET /parties/MSISDN/$payeeMSISDN**
 activate S1
 !if ($simplified != true)
-S1-->>D1:202 I'll get back to you
+S1-->>D1:202 — Je vous recontacte
 !endif
-S1->ALS:Who owns MSISDN $payeeMSISDN?
+S1->ALS:À qui appartient le MSISDN $payeeMSISDN ?
 activate ALS
-ALS-->S1:It's $payeeFSPID
+ALS-->S1:C'est $payeeFSPID
 deactivate ALS
-S1->>D2:Do you own MSISDN $payeeMSISDN?
+S1->>D2:Le MSISDN $payeeMSISDN vous appartient-il ?
 activate D2
 !if ($simplified != true)
-D2-->>S1:202 I'll get back to you
+D2-->>S1:202 — Je vous recontacte
 deactivate S1
 !endif
 D2->PayeeCC: **GET** /parties
-PayeeCC->PayeeCC: Validate whether the party \n can receive the transfer
-PayeeCC->PayeeCC: Check account and\n get currency type
+PayeeCC->PayeeCC: Valider si la partie \n peut recevoir le transfert
+PayeeCC->PayeeCC: Vérifier le compte et\nobtenir le type de devise
 !if ($simplified != true)
-PayeeCC-->D2: Result
+PayeeCC-->D2: Résultat
 !endif
 deactivate S1
-D2->>S1:Yes, it's $receiverName.\n He can receive in $payeeCurrency\n**PUT /parties/MSISDN/$payeeMSISDN**
+D2->>S1:Oui, c'est $receiverName.\n Il peut recevoir en $payeeCurrency\n**PUT /parties/MSISDN/$payeeMSISDN**
 !if ($simplified != true)
 note right
     PUT /parties
@@ -143,17 +143,17 @@ end note
 !endif
 activate S1
 !if ($simplified != true)
-S1-->>D2:200 Gotcha
+S1-->>D2:200 — OK
 !endif
 deactivate D2
-S1->>D1:Yes, it's $receiverName. \nHe can receive in $payeeCurrency\n**PUT /parties/MSISDN/$payeeMSISDN**
+S1->>D1:Oui, c'est $receiverName. \nIl peut recevoir en $payeeCurrency\n**PUT /parties/MSISDN/$payeeMSISDN**
 !if ($simplified != true)
-D1-->>S1:200 Gotcha
+D1-->>S1:200 — OK
 !endif
 deactivate S1
 
 !if ($advancedCoreConnectorFlow != true)
-    D1-->PayerCC: Here is the party information\nand supported currencies
+    D1-->PayerCC: Voici les informations sur la partie\net les devises prises en charge
     note right
     {
         "transferId": "$transferId",
@@ -190,7 +190,7 @@ deactivate S1
         }
     end note
 !else
-    D1-->PayerCC: Here is the party information\nand supported currencies
+    D1-->PayerCC: Voici les informations sur la partie\net les devises prises en charge
     !if ($simplified != true)
         note right of PayerCC
         {
@@ -211,6 +211,6 @@ deactivate S1
     !endif
 !endif
 deactivate D1
-PayerCC-->PayerCBS:Here's are the \nreceiver details
-PayerCBS->A1:Hi, $senderName: \nThe number belongs to $receiverName \nLet me know if you want to\n go ahead
+PayerCC-->PayerCBS:Voici les \ndétails du bénéficiaire
+PayerCBS->A1:Bonjour, $senderName : \nLe numéro appartient à $receiverName \nDites-moi si vous souhaitez\n continuer
 @enduml

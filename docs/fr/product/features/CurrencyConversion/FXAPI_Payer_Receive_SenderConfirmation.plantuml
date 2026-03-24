@@ -21,26 +21,26 @@
 !$totalChargesSourceCurrency = "55"
 
 
-title Currency Conversion with Amount Type RECEIVE
+title Conversion de devises avec type de montant RÉCEPTION
 actor "$senderName" as A1
-box "Payer DFSP" #LightBlue  
-  participant "Payer CBS" as PayerCBS
-  participant "Payer\nMojaloop\nConnector" as D1
+box "DFSP payeur" #LightBlue  
+  participant "CBS payeur" as PayerCBS
+  participant "Connecteur Mojaloop\npayeur" as D1
 end box
 
-'participant "Mojaloop Switch" as S1
+'participant "Commutateur Mojaloop" as S1
 
-'box "Discovery Service" #LightYellow
-'  participant "ALS Oracle" as ALS
+'box "Service de découverte" #LightYellow
+'  participant "Oracle ALS" as ALS
 'end box
 
-'box "FX provider"  
-'  participant "FXP\nConnector" as FXP
-'  participant "Backend FX API" as FXPBackend
+'box "Fournisseur de change"  
+'  participant "Connecteur\nFXP" as FXP
+'  participant "API FX backend" as FXPBackend
 'end box
 
-'box "Payee DFSP" #LightBlue   
-'  participant "Payee\nMojaloop\nConnector" as D2
+'box "DFSP bénéficiaire" #LightBlue   
+'  participant "Connecteur Mojaloop\nbénéficiaire" as D2
 '  participant "Payee CBS" as PayeeCBS
 'end box
 
@@ -48,10 +48,10 @@ end box
 autonumber
 
 
-D1->PayerCBS:Here's the quote for the transfer\nIt expires at 2021-08-25T14:17:09.663+01:00
-PayerCBS->A1:Hi, $senderName: I can do the transfer.\nIt'll cost you $totalChargesSourceCurrency $payerCurrency in fees\n$fxpSourceAmount $payerCurrency will be deducted from your account,\nand $receiverName will receive\n$payeeReceiveAmount $payeeCurrency.\nLet me know if you want to go ahead
-A1-->PayerCBS:Great! Yes please, go ahead
+D1->PayerCBS:Voici le devis pour le transfert\nIl expire le 2021-08-25T14:17:09.663+01:00
+PayerCBS->A1:Bonjour, $senderName : je peux effectuer le transfert.\nCela vous coûtera $totalChargesSourceCurrency $payerCurrency de frais\n$fxpSourceAmount $payerCurrency seront débités de votre compte,\net $receiverName recevra\n$payeeReceiveAmount $payeeCurrency.\nDites-moi si vous souhaitez continuer
+A1-->PayerCBS:Parfait ! Oui, continuez s'il vous plaît
 
-PayerCBS-->D1: Payer has accepted the terms please proceed
+PayerCBS-->D1: Le payeur a accepté les conditions — merci de poursuivre
 
 @enduml

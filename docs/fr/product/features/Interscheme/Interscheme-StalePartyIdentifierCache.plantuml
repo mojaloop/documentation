@@ -1,87 +1,87 @@
 @startuml Interscheme-StalePartyIdentifierCache
 
-title Stale Party Identifier Cache
+title Cache d'identifiants de partie obsolètes
 
-participant "Payer DFSP" as payerDFSP
-box "Scheme A" #LightBlue
-    participant "ALS\nScheme A" as ALS_A
-    participant "Oracle\nScheme A" as Oracle_A
-    participant "Proxy Cache\nScheme A" as pc_A    
+participant "DFSP payeur" as payerDFSP
+box "Schéma A" #LightBlue
+    participant "ALS\nSchéma A" as ALS_A
+    participant "Oracle\nSchéma A" as Oracle_A
+    participant "Cache proxy\nSchéma A" as pc_A    
 end box
 participant "Proxy AB" as xnp
-box "Scheme B" #d1e0c3
-    participant "ALS\nScheme B" as ALS_B
-    participant "Oracle\nScheme A" as Oracle_B
-    participant "Proxy Cache\nScheme B" as pc_B    
+box "Schéma B" #d1e0c3
+    participant "ALS\nSchéma B" as ALS_B
+    participant "Oracle\nSchéma B" as Oracle_B
+    participant "Cache proxy\nSchéma B" as pc_B    
 end box
-participant "Payee DFS" as payeeDFSP
+participant "DFSP bénéficiaire" as payeeDFSP
 
 autonumber 1 "<b>[0]"
 
 payerDFSP ->> ALS_A: **GET** /parties/{Type}/{ID}
 note left
- header source = payerDFSP
+ en-tête source = payerDFSP
 end note
 
   ALS_A-> Oracle_A: **GET** /participant/{ID}
-  Oracle_A--> ALS_A: found DFSP = payeeDFSP
-  ALS_A ->> ALS_A: DFSP not in scheme
-  ALS_A -> pc_A: Who is payee DFSP's proxy?
-  alt proxy representative not found
-  pc_A --> ALS_A: Proxy not found
-  ALS_A -> Oracle_A: Remove mapping in Oracle\n **DELETE** \participants\{Type}\{ID} 
+  Oracle_A--> ALS_A: DFSP trouvé = payeeDFSP
+  ALS_A ->> ALS_A: DFSP absent du schéma
+  ALS_A -> pc_A: Quel est le proxy du DFSP bénéficiaire ?
+  alt représentant du proxy introuvable
+  pc_A --> ALS_A: Proxy introuvable
+  ALS_A -> Oracle_A: Supprimer le mappage dans Oracle\n **DELETE** \participants\{Type}\{ID} 
   note left
-  **Self heal** if proxy 
-  reference is not found
+  **Autoréparation** si le proxy 
+  de référence est introuvable
   end note
-  ALS_A ->> ALS_A: Restart the ALS get parties process
+  ALS_A ->> ALS_A: Redémarrer le processus ALS get parties
   else
-  pc_A --> ALS_A: forward to Proxy AB
+  pc_A --> ALS_A: transmettre vers Proxy AB
   end
 
   ALS_A ->> xnp: **GET** /parties/{Type}/{ID}
-    xnp->xnp: Add header
+    xnp->xnp: Ajouter l'en-tête
     note left
     fxpiop-proxy = "Proxy AB"
     end note
 
   xnp ->> ALS_B: **GET** /parties/{Type}/{ID}  
-  ALS_B ->> pc_B: Source not in Scheme: \nfxpiop-proxy = "Proxy AB"\nAdd 'Payer DFSP' to 'Proxy AB' mapping
-alt not MVP
-  pc_B -> pc_B: Check JWS signature
+  ALS_B ->> pc_B: Source hors schéma : \nfxpiop-proxy = "Proxy AB"\nAjouter « DFSP payeur » au mappage « Proxy AB »
+alt hors périmètre MVP
+  pc_B -> pc_B: Vérifier la signature JWS
 end
-  pc_B -> pc_B: Add new mapping to cache
+  pc_B -> pc_B: Ajouter un nouveau mappage au cache
 note left
-Payer DFSP : Proxy AB
+DFSP payeur : Proxy AB
 end note        
 ALS_B-> Oracle_B: **GET** /participant/{ID}
-  Oracle_B--> ALS_B: dfps = payeeDFSP
- alt if dfsp is a member of Scheme B
+  Oracle_B--> ALS_B: dfsp = payeeDFSP
+ alt si le dfsp est membre du schéma B
   ALS_B ->> payeeDFSP: **GET** /parties/{Type}/{ID}
   payeeDFSP ->> ALS_B: **PUT** /parties/{ID}/error
   note right
-   header desitination = payerDFSP
+   en-tête destination = payerDFSP
   end note
   end
-  ALS_B -> pc_B: Lookup payerDFSP proxy
+  ALS_B -> pc_B: Recherche du proxy payerDFSP
   ALS_B ->> xnp: **PUT** /parties/{ID}/error
-  xnp->xnp: Add header
+  xnp->xnp: Ajouter l'en-tête
     note left
     fxpiop-proxy = "Proxy AB"
     end note
   xnp ->> ALS_A: **PUT** /parties/{ID}/error
-  alt message from proxy & error & no proxy message cache
+  alt message du proxy et erreur et pas de cache de message proxy
   note left ALS_A
-   **Self heal** if error in routing
+   **Autoréparation** en cas d'erreur de routage
     fxpiop-proxy = "Proxy AB"
     PUT /parties error
     SentToProxies[{ID}] list undefined
   end note
-  ALS_A -> Oracle_A: Remove mapping in Oracle\n **DELETE** \participants\{Type}\{ID} 
+  ALS_A -> Oracle_A: Supprimer le mappage dans Oracle\n **DELETE** \participants\{Type}\{ID} 
   ALS_A ->> payerDFSP: **PUT** /parties/{ID}/error
   note right 
   {ErrorCode: "2003"} 
-  (Service Unavailable)
+  (Service indisponible)
   end note
   else
   ALS_A->>payerDFSP: **PUT** /parties/{ID}/error

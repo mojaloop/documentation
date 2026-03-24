@@ -42,40 +42,40 @@
 !$fxCondition = "GRzLaTP7DJ9t4P-a_B..."
 !$condition = "HOr22-H3AfTDHrSkP..."
 
-title Transfer Phase - Mojaloop Connector
+title Phase de transfert — connecteur Mojaloop
 actor "$senderName" as A1
-  participant "Payer CBS" as PayerCBS
-box "Payer DFSP" #LightBlue  
-  participant "Core Connector" as PayerCC
-  participant "Payer\nMojaloop\nConnector" as D1
+  participant "CBS payeur" as PayerCBS
+box "DFSP payeur" #LightBlue  
+  participant "Connecteur principal" as PayerCC
+  participant "Connecteur Mojaloop\npayeur" as D1
 end box
 
-participant "Mojaloop Switch" as S1
+participant "Commutateur Mojaloop" as S1
 
-'box "Discovery Service" #LightYellow
-'  participant "ALS Oracle" as ALS
+'box "Service de découverte" #LightYellow
+'  participant "Oracle ALS" as ALS
 'end box
 
-box "FX provider"  
-  participant "FXP\nConnector" as FXP
-  participant "Backend FX API" as FXPBackend
+box "Fournisseur de change"  
+  participant "Connecteur\nFXP" as FXP
+  participant "API FX backend" as FXPBackend
 end box
 
-box "Payee DFSP" #LightBlue   
-  participant "Payee\nMojaloop\nConnector" as D2
-  participant "Core Connector" as PayeeCC
+box "DFSP bénéficiaire" #LightBlue   
+  participant "Connecteur Mojaloop\nbénéficiaire" as D2
+  participant "Connecteur principal" as PayeeCC
 end box
 
 actor "$receiverName" as A2
 autonumber
 
 !if ($advancedCoreConnectorFlow != true)
-PayerCC->D1: Proceed with the transfer\nPUT /transfers
+PayerCC->D1: Poursuivre le transfert\nPUT /transfers
 note left
 {"acceptQuote": true}
 end note
 !else
-PayerCC->D1: Proceed with the transfer\n**POST /fxTransfers**
+PayerCC->D1: Poursuivre le transfert\n**POST /fxTransfers**
     !if ($simplified != true)
     note left
     {
@@ -98,9 +98,9 @@ PayerCC->D1: Proceed with the transfer\n**POST /fxTransfers**
 !endif
 
 !if ($advancedCoreConnectorFlow != true)
-D1->D1:First, activate the conversion
+D1->D1:D'abord, activer la conversion
 !endif
-D1->>S1:Please confirm your part of the transfer
+D1->>S1:Merci de confirmer votre part du transfert
 note left
 **POST /fxTransfers**
 {
@@ -120,28 +120,28 @@ note left
 end note
 activate S1
 !if ($simplified != true)
-S1-->>D1:202 I'll get back to you
+S1-->>D1:202 — Je vous recontacte
 !endif
 deactivate D2
 !if ($hideSwitchDetail != true)
-S1->S1:OK, so this is an FX confirmation.
-S1->S1: Is there any transfer with determiningTransactionId?\nNo, it does'nt.
+S1->S1:OK, il s'agit d'une confirmation FX.
+S1->S1: Existe-t-il un transfert avec determiningTransactionId ?\nNon.
 !endif
-S1->S1: Liquidity check and reserve on Payer DFSP's account
+S1->S1: Contrôle de liquidité et réserve sur le compte du DFSP payeur
 !if ($hideSwitchDetail != true)
 note over S1
-Reservations:
+Réservations :
 
-**$payerFSPID has a reservation of $fxpSourceAmount $payerCurrency**
+**$payerFSPID a une réservation de $fxpSourceAmount $payerCurrency**
 end note
 !endif
-S1->>FXP:Please confirm the currency conversion part of the transfer\n** POST /fxTransfers**
+S1->>FXP:Merci de confirmer la partie conversion de devises du transfert\n** POST /fxTransfers**
 activate FXP
 !if ($simplified != true)
-FXP-->>S1:202 I'll get back to you
+FXP-->>S1:202 — Je vous recontacte
 !endif
 deactivate S1
-FXP->FXPBackend:Reserve funds for FX conversion
+FXP->FXPBackend:Réserver les fonds pour la conversion FX
 note left
 **POST /fxTransfers**
 {
@@ -160,7 +160,7 @@ note left
     "condition": "$fxCondition"
 }
 end note
-FXPBackend-->FXP:Success
+FXPBackend-->FXP:Succès
 note right
 {
   "homeTransactionId": "$homeTransactionId",
@@ -168,7 +168,7 @@ note right
   "conversionState": "RESERVED"
 }
 end note
-FXP->>S1:Confirmed. Here's the fulfilment
+FXP->>S1:Confirmé. Voici l'exécution (fulfilment)
 note right
 **PUT /fxTransfers/$commitRequestId**
 {
@@ -179,13 +179,13 @@ note right
 end note
 activate S1
 !if ($simplified != true)
-S1-->>FXP:200 Gotcha
+S1-->>FXP:200 — OK
 !endif
 deactivate FXP
 !if ($simplified != true)
-S1->S1:Check fulfilment matches and cancel if not.
-alt Conversion failed
-S1->FXP:Sorry. Conversion failed
+S1->S1:Vérifier que l'exécution correspond et annuler sinon.
+alt Échec de la conversion
+S1->FXP:Désolé. La conversion a échoué
 note right
 **PATCH /fxTransfers/$commitRequestId**
 {
@@ -194,8 +194,8 @@ note right
 }
 end note
 activate FXP
-FXP-->S1:Acknowledged
-FXP->FXPBackend:Remove any reservations or obligations
+FXP-->S1:Accusé de réception
+FXP->FXPBackend:Supprimer les réservations ou obligations
 note left
 **PUT /fxTransfers/$commitRequestId**
 {
@@ -206,32 +206,32 @@ end note
 FXPBackend-->FXP:Ok
 deactivate FXP
 
-S1->>D1:Sorry. Conversion failed
+S1->>D1:Désolé. La conversion a échoué
 note right
 **PUT /fxTransfers/$commitRequestId/error**
 {
     "errorCode": "9999", 
-    "errorDescription": "Whatever the error was"
+    "errorDescription": "Description de l'erreur (variable)"
 }
 end note
-else Conversion succeeded
-S1->D1:Conversion succeeded subject to transfer success\n**PUT /fxTransfers/77c9d78d-c26a-4474-8b3c-99b96a814bfc**
+else Conversion réussie
+S1->D1:Conversion réussie sous réserve du succès du transfert\n**PUT /fxTransfers/77c9d78d-c26a-4474-8b3c-99b96a814bfc**
 
 end
 !else
-S1->D1:Conversion succeeded subject to transfer success\n**PUT /fxTransfers/77c9d78d-c26a-4474-8b3c-99b96a814bfc**
+S1->D1:Conversion réussie sous réserve du succès du transfert\n**PUT /fxTransfers/77c9d78d-c26a-4474-8b3c-99b96a814bfc**
 !endif
 activate D1
 !if ($simplified != true)
-D1-->S1:200 Gotcha
+D1-->S1:200 — OK
 !endif
 deactivate S1
 
 !if ($advancedCoreConnectorFlow != true)
-    D1->D1:OK, so that's all right\nNow I can send the transfer itself
-    ' TODO: Need to add PUT /transfers response here
+    D1->D1:OK, tout est bon\nJe peux maintenant envoyer le transfert proprement dit
+    ' TODO : ajouter ici la réponse PUT /transfers
 !else
-    D1-->PayerCC:Confirmed. You can proceed with the transfer.
+    D1-->PayerCC:Confirmé. Vous pouvez poursuivre le transfert.
     note right of PayerCC
     **PUT /fxTransfers/$commitRequestId**
     {
@@ -241,7 +241,7 @@ deactivate S1
     }
     end note
 
-    PayerCC-->D1:Please do the transfer **POST /simpleTransfers**
+    PayerCC-->D1:Merci d'effectuer le transfert **POST /simpleTransfers**
     !if ($simplified != true)
     note right of PayerCC
     {
@@ -254,7 +254,7 @@ deactivate S1
                 "currency": "$payeeCurrency",
                 "amount": "$targetAmount"
             },
-            "ilpPacket": "<Encoded transaction object>",
+            "ilpPacket": "<Objet de transaction encodé>",
             "condition": "$condition",
             "expiration": "2016-05-24T08:38:08.699-04:00"
         }
@@ -263,7 +263,7 @@ deactivate S1
     !endif
 !endif
 
-D1->S1:Please do the transfer **POST /transfers**
+D1->S1:Merci d'effectuer le transfert **POST /transfers**
 !if ($simplified != true)
 note over D1
 **POST /transfers**
@@ -274,7 +274,7 @@ note over D1
     "amount": {
         "currency": "$payeeCurrency",
         "amount": "$targetAmount"},
-    "ilpPacket": "<Encoded transaction object>",
+    "ilpPacket": "<Objet de transaction encodé>",
     "condition": "$condition",
     "expiration": "2016-05-24T08:38:08.699-04:00"
 }
@@ -282,29 +282,29 @@ end note
 !endif
 activate S1
 !if ($simplified != true)
-S1-->D1:202 I'll get back to you
+S1-->D1:202 — Je vous recontacte
 !endif
 deactivate D1
 !if ($hideSwitchDetail != true)
-S1->S1:Is there a dependent transfer? Yes
+S1->S1:Y a-t-il un transfert dépendant ? Oui
 !endif
-S1->S1:Perform liquidity check and reserve funds\nagainst creditor party to dependent transfer
+S1->S1:Effectuer le contrôle de liquidité et réserver les fonds\nen faveur de la partie créancière du transfert dépendant
 note over S1
-Reservations:
+Réservations :
 
-$payerFSPID has a reservation of $fxpSourceAmount $payerCurrency
-**$fxpID has a reservation of $targetAmount $payeeCurrency**
+$payerFSPID a une réservation de $fxpSourceAmount $payerCurrency
+**$fxpID a une réservation de $targetAmount $payeeCurrency**
 end note
 
-S1->D2:Please do the transfer\n**POST /transfers**
+S1->D2:Merci d'effectuer le transfert\n**POST /transfers**
 activate D2
 !if ($simplified != true)
-D2-->S1:202 I'll get back to you
+D2-->S1:202 — Je vous recontacte
 !endif
 deactivate S1
-D2->D2:Let me check that the terms of the dependent transfer\nare the same as the ones I agreed to\nand that the fulfilment and condition match
+D2->D2:Je vérifie que les conditions du transfert dépendant\ncorrespondent à celles auxquelles j'ai souscrit\net que l'exécution et la condition concordent
 
-D2->PayeeCC:Please credit $receiverName's account with $payeeReceiveAmount $payeeCurrency
+D2->PayeeCC:Merci de créditer le compte de $receiverName de $payeeReceiveAmount $payeeCurrency
 !if ($simplified != true)
 note left
 **POST /transfers**
@@ -339,8 +339,8 @@ note left
 end note
 !endif
 
-PayeeCC-->D2:Done
-PayeeCC->A2:You have received $payeeReceiveAmount $payeeCurrency
+PayeeCC-->D2:Fait
+PayeeCC->A2:Vous avez reçu $payeeReceiveAmount $payeeCurrency
 !if ($simplified != true)
 note right of D2
 {
@@ -353,7 +353,7 @@ note right of D2
 end note
 !endif
 
-D2->>S1:Transfer is confirmed, here's the fulfilment
+D2->>S1:Transfert confirmé, voici l'exécution (fulfilment)
 note over D2
 **PUT /transfers/$commitRequestId**
 {
@@ -364,19 +364,19 @@ note over D2
 end note
 activate S1
 !if ($simplified != true)
-S1-->>D2:200 Gotcha
+S1-->>D2:200 — OK
 !endif
 deactivate D2
 !if ($hideSwitchDetail != true)
-S1->S1:Is there a dependent transfer?\nYes, there is.
-S1->S1:Is this dependency against \nthe debtor party to the transfer?\nYes, it is.
-S1->S1:Create an obligation from the\n debtor party to the party named in the dependency (the FXP)
-S1->S1:Is the transfer denominated in\n the currency of the payee receive amount?\nYes, it is.
-S1->S1:Create an obligation from the \nparty named in the dependency\nto the creditor party for the transfer
+S1->S1:Y a-t-il un transfert dépendant ?\nOui.
+S1->S1:Cette dépendance concerne-t-elle \nle débiteur du transfert ?\nOui.
+S1->S1:Créer une obligation du\ndébiteur vers la partie nommée dans la dépendance (le FXP)
+S1->S1:Le transfert est-il libellé dans\nla devise du montant reçu par le bénéficiaire ?\nOui.
+S1->S1:Créer une obligation de la \npartie nommée dans la dépendance\nvers le créancier du transfert
 !else
-S1->S1:Create obligations from the payer to the FXP and from FXP to the payee
+S1->S1:Créer des obligations du payeur vers le FXP et du FXP vers le bénéficiaire
 !endif
-S1->>FXP:The transfer succeeded.\nYou can clear it in your ledgers
+S1->>FXP:Le transfert a réussi.\nVous pouvez le compenser dans vos livres
 note over S1
 **PATCH /fxTransfers/$commitRequestId**
 {
@@ -386,25 +386,25 @@ note over S1
 }
 end note
 activate FXP
-FXP->FXP:Let's just check: does this match the stuff I sent?
-FXP->FXP:It does. Great. I'll clear the conversion
-FXP-->>S1:200 Gotcha
+FXP->FXP:Vérifions : cela correspond-il à ce que j'ai envoyé ?
+FXP->FXP:Oui. Parfait. Je compense la conversion
+FXP-->>S1:200 — OK
 deactivate FXP
 note over S1
     Ledger positions:
-    $payerFSPID has a debit of $fxpSourceAmount $payerCurrency
-    $fxpID has a credit of $fxpSourceAmount $payerCurrency
-    $fxpID has a debit of $fxpTargetAmount $payeeCurrency
-    $payeeFSPID has a credit of $targetAmount $payeeCurrency
+    $payerFSPID a un débit de $fxpSourceAmount $payerCurrency
+    $fxpID a un crédit de $fxpSourceAmount $payerCurrency
+    $fxpID a un débit de $fxpTargetAmount $payeeCurrency
+    $payeeFSPID a un crédit de $targetAmount $payeeCurrency
 end note
-S1->>D1:Transfer is complete\n**PUT /transfers/$commitRequestId**
+S1->>D1:Transfert terminé\n**PUT /transfers/$commitRequestId**
 activate D1
 !if ($simplified != true)
-D1-->S1:200 Gotcha
+D1-->S1:200 — OK
 !endif
 deactivate S1
 !if ($advancedCoreConnectorFlow != true)
-    D1-->PayerCC:Transfer was completed successfully
+    D1-->PayerCC:Le transfert s'est terminé avec succès
     note right of PayerCC
     **POST/PUT /transfers/** response
     {
@@ -441,7 +441,7 @@ deactivate S1
         }
     end note
 !else
-   D1-->PayerCC:Transfer was completed successfully
+   D1-->PayerCC:Le transfert s'est terminé avec succès
     !if ($simplified != true)
         note right of PayerCC
         {
@@ -459,8 +459,8 @@ deactivate S1
     !endif
 !endif
 
-PayerCC->PayerCBS:Transfer was completed successfully
-PayerCBS->PayerCBS:Commit the funds in my ledgers
-PayerCBS->A1:Your transfer is successful
+PayerCC->PayerCBS:Le transfert s'est terminé avec succès
+PayerCBS->PayerCBS:Comptabiliser les fonds dans mes livres
+PayerCBS->A1:Votre transfert a réussi
 deactivate D1
 @enduml

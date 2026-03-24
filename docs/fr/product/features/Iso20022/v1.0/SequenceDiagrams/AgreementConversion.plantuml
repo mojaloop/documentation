@@ -1,16 +1,16 @@
 @startuml
 
-Title Agreement phase on providing liquidity ISO 20022 Message Flow
-participant PayerDFSP as "Payer DFSP"
+Title Phase d'accord sur l'apport de liquidité — flux de messages ISO 20022
+participant PayerDFSP as "DFSP payeur"
 participant Mojaloop as "Mojaloop"
-participant FXP as "Foreign Exchange Provider"
+participant FXP as "Fournisseur de change"
 
 autonumber
 
 PayerDFSP -> Mojaloop: POST /fxQuotes
 note left
 **pacs.091.001.01**
-**Financial Institution Credit Transfer Quote Request**
+**Demande de devis de transfert de crédit interinstitutions**
 "GrpHdr": {
     "MsgId": "01JBVM16V3Q4MSV8KTG0BRJGZ2",
     "CreDtTm": "2024-11-04T12:57:39.427Z",
@@ -38,12 +38,12 @@ note left
 }
 end note
 Mojaloop -> FXP: POST /fxQuotes
-FXP -> FXP: Check to see if liqidity can be provided \n and provide rates.
-alt if FXP can provide the payment liquidity
+FXP -> FXP: Vérifier si la liquidité peut être fournie \n et fournir les taux.
+alt si le FXP peut fournir la liquidité du paiement
 FXP -> Mojaloop: PUT /fxQuotes/{ID}
 note right
 **pacs.092.001.01**
-**Financial Institution Credit Transfer Quote Response**
+**Réponse de devis de transfert de crédit interinstitutions**
 {
 "GrpHdr": {
     "MsgId": "01JBVM176FTHB9F2ZQJJ7AFCN8",
@@ -76,8 +76,8 @@ else
 FXP -> Mojaloop: PUT /fxQuotes/{ID}/error 
 note right
 **pacs.002.001.15**
-**Financial Institution to Financial Institution** 
-**Payment Status Report**
+**D'une institution financière à une autre** 
+**Rapport d'état de paiement**
 {
 "GrpHdr": {
     "MsgId":"01JBVM1CGC5A18XQVYYRF68FD1",

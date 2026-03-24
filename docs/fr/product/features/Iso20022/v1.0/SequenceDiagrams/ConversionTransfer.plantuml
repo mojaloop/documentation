@@ -1,16 +1,16 @@
 @startuml
 
-Title Committing to providing Liquidity ISO 20022 Message Flow
-participant PayerDFSP as "Payer DFSP"
+Title Engagement à fournir de la liquidité — flux de messages ISO 20022
+participant PayerDFSP as "DFSP payeur"
 participant Mojaloop as "Mojaloop"
-participant FXP as "Foreign Exchange Provider"
+participant FXP as "Fournisseur de change"
 
 autonumber
 
 PayerDFSP -> Mojaloop: POST /fxTransfers
 note left
 **pacs.009.001.12**
-**Execute Financial Institution Credit Transfer**
+**Exécution du transfert de crédit interinstitutions**
 {
 "GrpHdr":{
     "MsgId":"01JBVM1BW4J0RJZSQ539QB9TKT",
@@ -36,13 +36,13 @@ note left
 }
 end note
 Mojaloop -> FXP: POST /fxTransfers
-FXP -> FXP: Check to see liquidity for the transfer can still be provided.  
-alt if FXP can provide the payment liquidity
+FXP -> FXP: Vérifier si la liquidité pour le transfert peut encore être fournie.  
+alt si le FXP peut fournir la liquidité du paiement
 FXP -> Mojaloop: PUT /fxTransfers/{ID}
 note right
 **pacs.002.001.15**
-**Financial Institution to Financial Institution** 
-**Payment Status Report**
+**D'une institution financière à une autre** 
+**Rapport d'état de paiement**
 {
 "GrpHdr": {
     "MsgId":"01JBVM1CGC5A18XQVYYRF68FD1",
@@ -60,8 +60,8 @@ else
 FXP -> Mojaloop: PUT /fxTransfers/{ID}/error 
 note right
 **pacs.002.001.15**
-**Financial Institution to Financial Institution** 
-**Payment Status Report**
+**D'une institution financière à une autre** 
+**Rapport d'état de paiement**
 "GrpHdr": {
     "MsgId":"01JBVM1CGC5A18XQVYYRF68FD1",
     "CreDtTm":"2024-11-04T12:57:45.228Z"},
@@ -70,13 +70,13 @@ end note
 Mojaloop -> PayerDFSP: PUT /fxTransfer/{ID}/error 
 end
 
-Mojaloop -> Mojaloop: When the determining transfer is committed, \n the FX conversion is committed.
+Mojaloop -> Mojaloop: Lorsque le transfert déterminant est engagé, \n la conversion de devises est engagée.
 
 Mojaloop->FXP: PATCH /fxTransfers/{ID}
 note left
 **pacs.002.001.15**
-**Financial Institution to Financial Institution**
-**Payment Status Report**
+**D'une institution financière à une autre**
+**Rapport d'état de paiement**
 "GrpHdr":{
     "MsgId":"01JBVM1E2CRWFZFPN7W4AZJ976",
     "CreDtTm":"2024-11-04T12:57:46.828Z"},

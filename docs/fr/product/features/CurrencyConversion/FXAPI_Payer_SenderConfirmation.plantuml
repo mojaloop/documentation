@@ -42,29 +42,29 @@
 !$fxCondition = "GRzLaTP7DJ9t4P-a_B..."
 !$condition = "HOr22-H3AfTDHrSkP..."
 
-title Payer DFSP requests conversion with SEND amount
+title Le DFSP payeur demande une conversion avec montant ENVOI
 actor "$senderName" as A1
-participant "Payer CBS" as PayerCBS
+participant "CBS payeur" as PayerCBS
 
-box "Payer DFSP" #LightBlue  
-  participant "Core Connector" as PayerCC
-  participant "Payer\nMojaloop\nConnector" as D1
+box "DFSP payeur" #LightBlue  
+  participant "Connecteur principal" as PayerCC
+  participant "Connecteur Mojaloop\npayeur" as D1
 end box
 
-'participant "Mojaloop Switch" as S1
+'participant "Commutateur Mojaloop" as S1
 
-'box "Discovery Service" #LightYellow
-  'participant "ALS Oracle" as ALS
+'box "Service de découverte" #LightYellow
+  'participant "Oracle ALS" as ALS
 'end box
 
-'box "FX provider"  
-'  participant "FXP\nConnector" as FXP
-'  participant "Backend FX API" as FXPBackend
+'box "Fournisseur de change"  
+'  participant "Connecteur\nFXP" as FXP
+'  participant "API FX backend" as FXPBackend
 'end box
 
-'box "Payee DFSP" #LightBlue   
-'  participant "Payee\nMojaloop\nConnector" as D2
-'  participant "Core Connector" as PayeeCC
+'box "DFSP bénéficiaire" #LightBlue   
+'  participant "Connecteur Mojaloop\nbénéficiaire" as D2
+'  participant "Connecteur principal" as PayeeCC
 'end box
 
 'actor "$receiverName" as A2
@@ -72,7 +72,7 @@ autonumber
 
 
 !if ($advancedCoreConnectorFlow != true)    
-    D1-->PayerCC:Here's the quote for the transfer\nIt expires at $quotePayeeExpiration
+    D1-->PayerCC:Voici le devis pour le transfert\nIl expire le $quotePayeeExpiration
     note right
     **POST/PUT /transfers** response
     {
@@ -111,13 +111,13 @@ autonumber
                         "currency": "$payeeCurrency",
                         "amount": "$payeeFee"},
                     "expiration": "$payeeQuoteExpiration",
-                    "ilpPacket": "<This is encoded transaction object.>",
+                    "ilpPacket": "<Objet de transaction encodé>",
                     "condition": "$condition"},},
             "quoteResponseSource": "$payeeFSPID",
         }
     end note
 !else
-   D1-->PayerCC:Here's the quote for the transfer\nIt expires at $quotePayeeExpiration
+   D1-->PayerCC:Voici le devis pour le transfert\nIl expire le $quotePayeeExpiration
     !if ($simplified != true)
         note right of PayerCC
         {
@@ -137,7 +137,7 @@ autonumber
                     },
                     "expiration": "$payeeQuoteExpiration",
                     "ilpPacket": "
-                        <This is encoded transaction object. It contains data from quote request and response.>
+                        <Objet de transaction encodé. Contient les données de la demande et de la réponse de devis.>
                     ",
                     "condition": "$condition"
                 },
@@ -148,10 +148,10 @@ autonumber
         end note
     !endif
 !endif
-PayerCC->PayerCBS:Here's the quote
-PayerCBS->A1:Hi, $senderName: I can do the transfer.\nIt'll cost you $totalChargesSourceCurrency $payerCurrency($totalChargesTargetCurrency $payeeCurrency) in fees\nand $receiverName will receive\n$payeeReceiveAmount $payeeCurrency.\nLet me know if you want to go ahead
-A1->PayerCBS:Great! Yes please, go ahead
+PayerCC->PayerCBS:Voici le devis
+PayerCBS->A1:Bonjour, $senderName : je peux effectuer le transfert.\nCela vous coûtera $totalChargesSourceCurrency $payerCurrency ($totalChargesTargetCurrency $payeeCurrency) de frais\net $receiverName recevra\n$payeeReceiveAmount $payeeCurrency.\nDites-moi si vous souhaitez continuer
+A1->PayerCBS:Parfait ! Oui, continuez s'il vous plaît
 
-PayerCBS->PayerCC: Payer has accepted the terms please proceed
+PayerCBS->PayerCC: Le payeur a accepté les conditions — merci de poursuivre
 
 @enduml

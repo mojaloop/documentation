@@ -41,38 +41,38 @@
 !$condition = "HOr22-H3AfTDHrSkP..."
 
 
-title Payer DFSP presents the terms to the Payer
+title Le DFSP payeur présente les conditions au payeur
 actor "$senderName" as A1
-box "Payer DFSP" #LightBlue  
-  participant "Payer DFSP" as D1
+box "DFSP payeur" #LightBlue  
+  participant "DFSP payeur" as D1
 end box
 
-'participant "Mojaloop Switch" as S1
+'participant "Commutateur Mojaloop" as S1
 
-'box "Discovery Service" #LightYellow
-'  participant "ALS Oracle" as ALS
+'box "Service de découverte" #LightYellow
+'  participant "Oracle ALS" as ALS
 'end box
 
-'box "FX provider"  
-'  participant "FXP\nConnector" as FXP
+'box "Fournisseur de change"  
+'  participant "Connecteur\nFXP" as FXP
 'end box
 
-'box "Payee DFSP" #LightBlue   
-'  participant "Payee\nMojaloop\nConnector" as D2
+'box "DFSP bénéficiaire" #LightBlue   
+'  participant "Connecteur Mojaloop\nbénéficiaire" as D2
 'end box
 
 'actor "$receiverName" as A2
 autonumber
 
-D1->A1: Present the terms of the transfer to the Payer
+D1->A1: Présenter les conditions du transfert au payeur
 note right
-Hi, $senderName: 
-I can do the transfer.
-It'll cost you $totalChargesSourceCurrency $payerCurrency($totalChargesTargetCurrency $payeeCurrency) in fees
-and $receiverName will receive $payeeReceiveAmount $payeeCurrency.
-**Let me know if you want to go ahead?**
+Bonjour, $senderName : 
+Je peux effectuer le transfert.
+Cela vous coûtera $totalChargesSourceCurrency $payerCurrency ($totalChargesTargetCurrency $payeeCurrency) de frais
+et $receiverName recevra $payeeReceiveAmount $payeeCurrency.
+**Souhaitez-vous continuer ?**
 end note
-A1->D1: Great! Yes please, go ahead
+A1->D1: Parfait ! Oui, continuez s'il vous plaît
 
-D1->D1: Payer has accepted the terms please proceed
+D1->D1: Le payeur a accepté les conditions — merci de poursuivre
 @enduml

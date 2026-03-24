@@ -42,40 +42,40 @@
 !$fxCondition = "GRzLaTP7DJ9t4P-a_B..."
 !$condition = "HOr22-H3AfTDHrSkP..."
 
-title Agreement Phase - Mojaloop Connector Integration
+title Phase d'accord — intégration du connecteur Mojaloop
 'actor "$senderName" as A1
-'  participant "Payer CBS" as PayerCBS
-box "Payer DFSP" #LightBlue  
-  participant "Core Connector" as PayerCC
-  participant "Payer\nMojaloop\nConnector" as D1
+'  participant "CBS payeur" as PayerCBS
+box "DFSP payeur" #LightBlue  
+  participant "Connecteur principal" as PayerCC
+  participant "Connecteur Mojaloop\npayeur" as D1
 end box
 
-participant "Mojaloop Switch" as S1
+participant "Commutateur Mojaloop" as S1
 
-'box "Discovery Service" #LightYellow
-'  participant "ALS Oracle" as ALS
+'box "Service de découverte" #LightYellow
+'  participant "Oracle ALS" as ALS
 'end box
 
-'box "FX provider"  
-'  participant "FXP\nConnector" as FXP
-'  participant "Backend FX API" as FXPBackend
+'box "Fournisseur de change"  
+'  participant "Connecteur\nFXP" as FXP
+'  participant "API FX backend" as FXPBackend
 'end box
 
-box "Payee DFSP" #LightBlue   
-  participant "Payee\nMojaloop\nConnector" as D2
-  participant "Core Connector" as PayeeCC
+box "DFSP bénéficiaire" #LightBlue   
+  participant "Connecteur Mojaloop\nbénéficiaire" as D2
+  participant "Connecteur principal" as PayeeCC
 end box
 
 'actor "$receiverName" as A2
 autonumber
 
 !if ($advancedCoreConnectorFlow != true)
-PayerCC->D1: I want to get a quote from the FSP\n**PUT /transfers**
+PayerCC->D1: Je souhaite obtenir un devis du FSP\n**PUT /transfers**
 note left
 {"acceptConversion": true}
 end note
 !else
-PayerCC->D1: I want to get a quote from the FSP\n**POST /quotes**
+PayerCC->D1: Je souhaite obtenir un devis du FSP\n**POST /quotes**
     !if ($simplified != true)
         note right of PayerCC
         {
@@ -114,7 +114,7 @@ PayerCC->D1: I want to get a quote from the FSP\n**POST /quotes**
 !endif
 
 
-D1->>S1:Please quote for a transfer which \nsends $fxpTargetAmount $payeeCurrency.\n**POST /quotes**
+D1->>S1:Merci de coter un transfert qui \nenvoie $fxpTargetAmount $payeeCurrency.\n**POST /quotes**
 !if ($simplified != true)
 note left
 **POST /quotes**
@@ -145,13 +145,13 @@ end note
 !endif
 activate S1
 !if ($simplified != true)
-S1-->>D1:202 I'll get back to you
+S1-->>D1:202 — Je vous recontacte
 !endif
 
 S1->>D2:**POST /quotes**
 activate D2
 !if ($simplified != true)
-D2-->>S1:202 I'll get back to you
+D2-->>S1:202 — Je vous recontacte
 !endif
 deactivate S1
 D2->PayeeCC:**POST /quoterequests**
@@ -183,8 +183,8 @@ note left
 }
 end note
 !endif
-PayeeCC->PayeeCC:OK, so I will charge $payeeFee $payeeCurrency for this.\nNow I create terms of the transfer
-PayeeCC-->D2:Here are the terms
+PayeeCC->PayeeCC:OK, je facturerai $payeeFee $payeeCurrency pour cela.\nJe crée maintenant les conditions du transfert
+PayeeCC-->D2:Voici les conditions
 !if ($simplified != true)
 note right
 **POST /quoterequests** response
@@ -201,8 +201,8 @@ note right
 }
 end note
 !endif
-D2->D2:Now I will sign the transaction object
-D2->>S1:Here's the signed quote
+D2->D2:Je signe maintenant l'objet de transaction
+D2->>S1:Voici le devis signé
 note right
 **put /quotes/$quoteId**
 {
@@ -216,21 +216,21 @@ note right
         "currency": "$payeeCurrency",
         "amount": "$payeeFee"},
     "expiration": "$payeeQuoteExpiration",
-    "ilpPacket": "<This is encoded transaction object.>",
+    "ilpPacket": "<Objet de transaction encodé>",
     "condition": "$condition"
 }
 
 end note
 activate S1
 !if ($simplified != true)
-S1-->>D2:200 Gotcha
+S1-->>D2:200 — OK
 !endif
 deactivate D2
-S1->>D1:Here's the signed quote\n**PUT /quotes/$quoteId**
+S1->>D1:Voici le devis signé\n**PUT /quotes/$quoteId**
 activate D1
 !if ($simplified != true)
-D1-->>S1:200 Gotcha
+D1-->>S1:200 — OK
 !endif
 deactivate S1
-D1->D1:OK, I can see that there \nare going to be $payeeFee $payeeCurrency in charges.
+D1->D1:OK, je vois qu'il y aura \n$payeeFee $payeeCurrency de frais.
 @enduml
