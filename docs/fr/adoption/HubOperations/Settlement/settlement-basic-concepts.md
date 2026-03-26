@@ -75,7 +75,7 @@ Il est particulièrement important de comprendre les implications lorsqu’un mo
 
 Mojaloop gère cette situation en attribuant toujours à la fenêtre de règlement un état qui est l’*état minimal* des transferts qu’elle contient. L’*état minimal* est défini par la séquence des états de fenêtre de règlement indiquée ci-dessus. Ainsi, par exemple, si une fenêtre de règlement contient des transferts déjà réglés (parce qu’ils sont réglés en brut) et d’autres transferts dont le processus de règlement n’a pas encore commencé, l’état de la fenêtre de règlement sera `OPEN`. Si une fenêtre de règlement a été fermée et qu’elle contient des transferts relevant de deux modèles de règlement différents, dont l’un est en cours de règlement (état `PENDING_SETTLEMENT`) et l’autre pas (état `CLOSED`), l’état global de la fenêtre de règlement sera `CLOSED`.
 
-## Gestion de la liquidité (Net Debit Cap) {#liquidity-management-net-debit-cap}
+## Gestion de la liquidité (Net Debit Cap)
 
 Comme indiqué ci-dessus, Mojaloop exige que les participants préfinancent les transferts lorsqu’ils sont la partie débitrice en fournissant au Hub Mojaloop une preuve crédible qu’ils peuvent honorer l’ensemble de leurs besoins de règlement actuels. Il peut toutefois exister des situations où un participant ne souhaite pas que l’intégralité de sa couverture de liquidité serve de garantie aux transferts. Par exemple, un participant peut être bénéficiaire dans un canal de rémittances et donc créancier net au global ; ou un participant peut déposer des fonds supplémentaires pour couvrir les périodes où ses comptes ne sont pas ouverts pour recevoir des fonds.
 
@@ -83,7 +83,7 @@ Pour couvrir ces cas, Mojaloop permet aux participants ou aux administrateurs du
 
 Lorsqu’il calcule si un transfert est couvert par la liquidité disponible, le Hub tient compte de toute restriction du montant de fonds disponibles fixée par le Net Debit Cap.
 
-## Position {#position}
+## Position
 
 La Position d’un DFSP reflète l’ensemble des obligations non réglées de ce DFSP pour un modèle de règlement donné à un instant donné : autrement dit, le montant des fonds qu’un DFSP devra éventuellement régler avec le schéma. La Position d’un DFSP pour un modèle de règlement donné est le net des éléments suivants :
 
@@ -95,7 +95,7 @@ Pour le DFSP payeur, ce total inclut les montants de transfert en attente et pas
 
 La Position est la position totale sur l’ensemble des fenêtres de règlement qui n’ont pas encore été réglées. Le montant de la position d’un participant ne change que lorsque certains des transferts qui la composent sont réglés.
 
-## Positions nettes de règlement {#multilateral-net-settlement-position}
+## Positions nettes de règlement
 
 Comme indiqué ci-dessus, un règlement net différé peut être multilatéral ou bilatéral. Lorsqu’un administrateur du Hub demande un règlement, le Hub calcule combien chaque participant doit ou est dû du fait des transactions à régler. Les transactions à régler sont définies comme toutes les transactions qui :
 

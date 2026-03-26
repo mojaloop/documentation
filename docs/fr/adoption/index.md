@@ -15,7 +15,7 @@ Outils à la disposition des adoptants :
 * [**Choix relatifs au schéma**](#scheme-choices) : documents d’aide pour définir les règles du schéma, les lignes directrices d’exploitation, ainsi que les choix commerciaux et de conception majeurs
 * [**Exploitation du Hub**](#hub-operations) : guides fournissant des informations pratiques sur les différents aspects de l’exploitation d’un Hub Mojaloop
 
-## Choix relatifs au schéma {#scheme-choices}
+## Choix relatifs au schéma
 
 Le [modèle de lignes directrices d’exploitation de la plateforme](./Scheme/platform-operating-guideline.md) fournit un modèle pour décrire le fonctionnement de la plateforme du Schéma et pour préciser les obligations et responsabilités du Schéma, de l’opérateur de la plateforme et des DFSP.
 
@@ -27,7 +27,7 @@ Le [modèle de convention de participation au schéma](./Scheme/scheme-participa
 
 Le [modèle de glossaire uniforme](./Scheme/scheme-uniform-glossary.md) sert de glossaire des termes métier.
 
-## Exploitation du Hub {#hub-operations}
+## Exploitation du Hub
 
 Ces documents peuvent servir de référence aux adoptants pour s’appuyer dessus et adapter les portails d’exploitation du Hub, puis développer les leurs ultérieurement selon les besoins.
 
