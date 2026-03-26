@@ -32,7 +32,7 @@ La mise en œuvre de la conversion côté DFSP payeur couvre deux scénarios dis
 
 Dans ce cas d’usage, le **DFSP payeur** initie un transfert avec le type de montant **SEND**, en indiquant le montant dans la devise locale du payeur (devise source). Cette méthode est courante pour les transferts de **rémittance P2P**, où l’émetteur envoie des fonds dans sa devise locale et le bénéficiaire reçoit l’équivalent dans sa devise après conversion.
 
-### Transfert avec conversion de devises (devise source) {#currency-conversion-transfer-source-currency}
+### Transfert avec conversion de devises (devise source)
 
 Ci-dessous, un diagramme de séquence simplifié des flux entre les organisations participantes, les fournisseurs de change et le switch Mojaloop pour un transfert avec conversion de devises exprimé en **devise source**.
 
@@ -43,31 +43,31 @@ Le flux se décompose ainsi :
 1. [Le DFSP payeur présente les conditions au payeur](#payer-dfsp-presents-terms-to-payer)
 1. [Phase de transfert](#transfer-phase)
 
-#### Phase de découverte {#discovery-phase}
+#### Phase de découverte
 
 Le DFSP payeur identifie l’organisation DFSP bénéficiaire et confirme la validité du compte et la devise.
 
 ![Phase de découverte](./CurrencyConversion/Payer_SEND_Discovery.svg)
 
-#### Phase d’accord – conversion de devises {#agreement-phase---currency-conversion}
+#### Phase d’accord – conversion de devises
 
 Le DFSP payeur adresse une demande au FXP pour la couverture de liquidité du transfert. Les conditions de conversion de devises sont renvoyées.
 
 ![Conversion de devises](./CurrencyConversion/PAYER_SEND_CurrencyConversion.svg)
 
-#### Phase d’accord {#agreement-phase}
+#### Phase d’accord
 
 Le DFSP payeur demande au DFSP bénéficiaire les conditions du transfert.
 
 ![Accord](./CurrencyConversion/PAYER_SEND_Agreement.svg)
 
-#### Le DFSP payeur présente les conditions au payeur {#payer-dfsp-presents-terms-to-payer}
+#### Le DFSP payeur présente les conditions au payeur
 
 À ce stade, les informations sur la partie, les conditions de conversion et les conditions de transfert ont été fournies au DFSP payeur. Le DFSP payeur les présente au payeur et lui demande s’il souhaite poursuivre.
 
 ![Confirmation d’envoi](./CurrencyConversion/PAYER_SEND_Confirmation.svg)
 
-#### Phase de transfert {#transfer-phase}
+#### Phase de transfert
 
 Les conditions du transfert ayant été acceptées, le transfert peut avoir lieu. Les conditions de conversion et de transfert sont engagées conjointement.
 
@@ -78,76 +78,76 @@ Les conditions du transfert ayant été acceptées, le transfert peut avoir lieu
 
 Le diagramme de séquence détaillé ci-dessous présente le flux complet, avec le **connecteur Mojaloop** et les API d’intégration pour toutes les organisations participantes. (Vue utile si vous réalisez des intégrations en tant qu’organisation participante.)
 
-#### Phase de découverte – connecteur Mojaloop {#discovery-phase---mojaloop-connector}
+#### Phase de découverte – connecteur Mojaloop
 
 Mojaloop s’appuie sur un oracle pour identifier l’organisation DFSP associée à l’identifiant de partie. Le DFSP bénéficiaire doit répondre au GET /parties pour confirmer que le compte existe et est actif pour cet identifiant. Les devises prises en charge pour ce compte sont renvoyées.
 
 ![Phase de découverte](./CurrencyConversion/FXAPI_Discovery.svg)
 
 
-#### Phase d’accord – conversion de devises – connecteur Mojaloop {#agreement-phase-currency-conversion---mojaloop-connector}
+#### Phase d’accord – conversion de devises – connecteur Mojaloop
 
 Le DFSP payeur n’effectue pas d’opérations dans les devises prises en charge par le DFSP bénéficiaire. Cela déclenche le besoin de conversion de devises au sein du connecteur Mojaloop. Le DFSP payeur utilise son cache local des FXP pour en sélectionner un et envoie une demande au fournisseur de change pour couverture de liquidité et taux de conversion.
 
 ![Conversion de devises](./CurrencyConversion/FXAPI_Payer_CurrencyConversion.svg)
 
-#### Phase d’accord – connecteur Mojaloop {#agreement-phase---mojaloop-connector}
+#### Phase d’accord – connecteur Mojaloop
 
 La liquidité en devise cible est assurée. Le DFSP payeur peut demander l’accord sur les conditions au DFSP bénéficiaire. Ces conditions sont exprimées en devise cible.
 
 ![Phase d’accord](./CurrencyConversion/FXAPI_Payer_Agreement.svg)
 
-#### Confirmation par l’émetteur {#sender-confirmation}
+#### Confirmation par l’émetteur
 
 Toutes les conditions de conversion et de transfert ont été obtenues par le DFSP payeur et le FXP. Il s’agit maintenant de les regrouper et de les présenter au payeur pour confirmation.
 
 ![Confirmation](./CurrencyConversion/FXAPI_Payer_SenderConfirmation.svg)
 
-#### Phase de transfert {#transfer-phase-mojaloop-connector}
+#### Phase de transfert
 
 Les conditions du transfert ont été acceptées. La phase de transfert peut commencer.
 
 ![Transfert](./CurrencyConversion/FXAPI_Payer_Transfer.svg)
 
-## Transfert avec conversion de devises (devise cible) {#currency-conversion-transfer-target-currency}
+## Transfert avec conversion de devises (devise cible)
 
 Pour ce cas d’usage, le DFSP payeur indique le transfert avec le type de montant **RECEIVE** et définit le montant dans la **devise locale du bénéficiaire** (devise cible). Un autre exemple est le paiement commerçant transfrontalier.
 
 Ci-dessous, un diagramme de séquence détaillé du flux complet, avec le connecteur Mojaloop et les API d’intégration pour toutes les organisations participantes.
 
-#### Découverte {#discovery-receive}
+#### Découverte
 
 Mojaloop s’appuie sur un oracle pour identifier l’organisation DFSP associée à l’identifiant de partie. Le DFSP bénéficiaire doit répondre au GET /parties pour confirmer que le compte existe et est actif pour cet identifiant. Les devises prises en charge pour ce compte sont renvoyées.
 
 ![Découverte](./CurrencyConversion/FXAPI_Payer_Receive_Discovery.svg)
 
 
-#### Accord {#agreement-receive}
+#### Accord
 
 Le DFSP payeur ne prend en charge aucune des devises du DFSP bénéficiaire, ce qui impose une conversion de devises dans le connecteur Mojaloop. Comme la demande de paiement est en devise cible, un accord avec le DFSP bénéficiaire doit être établi avant d’initier la demande de liquidité auprès du fournisseur de change. Le DFSP payeur négocie d’abord les conditions de transfert avec le DFSP bénéficiaire, puis utilise son cache local de fournisseurs de change pour en choisir un et demander couverture de liquidité et taux de conversion.
 
 ![Accord](./CurrencyConversion/FXAPI_Payer_Receive_Agreement.svg)
 
-#### Confirmation par l’émetteur {#sender-confirmation-receive}
+#### Confirmation par l’émetteur
 
 Toutes les conditions de conversion et de transfert ont été obtenues par le DFSP payeur et le FXP. Il s’agit maintenant de les regrouper et de les présenter au payeur pour confirmation.
 
 ![Confirmation par l’émetteur](./CurrencyConversion/FXAPI_Payer_Receive_SenderConfirmation.svg)
 
-#### Transfert {#transfer-receive}
+#### Transfert
 
 Les conditions du transfert ont été acceptées. La phase de transfert peut commencer.
 
 ![Transfert](./CurrencyConversion/FXAPI_Payer_Receive_TransferPhase.svg)
 
 
-## Flux d’abandon {#abort-flows}
+## Flux d’abandon
 
 Ce diagramme de séquence illustre la manière dont la conception prend en charge les messages d’abandon pendant la phase de transfert avec conversion de devises.
 
 ![Transfert](./CurrencyConversion/Payer_SEND_ABORT_TransferPhase.svg)
 
-## Références OpenAPI {#open-api-references}
+## Références OpenAPI
 
 Ces références OpenAPI sont rédigées pour être lisibles tant par les équipes logicielles que par les relecteurs. Elles décrivent les exigences détaillées et la mise en œuvre de la conception d’API.
 

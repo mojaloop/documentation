@@ -28,7 +28,7 @@ Cette approche en trois phases, complétée par l’idempotence, limite les éch
 Associée à l’approche Mojaloop de la [gestion des risques](./risk.md), elle permet à la plus petite IMF et à la plus grande banque internationale de participer à égalité, sans qu’aucune n’impose un risque à l’autre ni au Hub.
 
 &nbsp;
-## API Mojaloop {#mojaloop-apis}
+## API Mojaloop
 
 Le Hub Mojaloop expose quatre API. Les deux premières concernent les transactions clients ; les deux autres, l’administration des relations avec les DFSP participants et le règlement des transactions compensées :
 
@@ -67,7 +67,7 @@ Mojaloop propose deux API transactionnelles fonctionnellement équivalentes pour
 
 &nbsp;
 
-## Caractéristiques distinctives des transactions {#unique-transaction-characteristics}
+## Caractéristiques distinctives des transactions
 
 La plupart des fonctions de Mojaloop existent aussi sur d’autres hubs de compensation. Ce qui distingue Mojaloop :
 

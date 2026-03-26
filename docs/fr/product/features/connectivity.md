@@ -1,10 +1,10 @@
 ---
-sidebarTitle: Raccordement des DFSP
+sidebarTitle: Onboarding des DFSP
 ---
 
 # Intégration des DFSP
 
-En principe, la définition et la documentation des [API Mojaloop](./transaction.md#mojaloop-apis) devraient suffire pour permettre aux DFSP de se connecter à un Hub Mojaloop. Toutefois, dans le cadre de la mission de la communauté Mojaloop en faveur de l’inclusion financière, il est depuis longtemps considéré que la clé pour réduire le coût et la complexité du raccordement du système d’information d’un DFSP à un Hub Mojaloop réside dans une offre de solutions de connectivité, permettant à chaque DFSP de choisir l’approche la mieux adaptée. Ces éléments sont complétés par un *DFSP Onboarding Playbook*, qui décrit les processus métier nécessaires à l’intégration d’un DFSP.
+En principe, la définition et la documentation des [API Mojaloop](./transaction.md#mojaloop-apis) devraient suffire pour permettre aux DFSP de se connecter à un Hub Mojaloop. Toutefois, dans le cadre de la mission de la communauté Mojaloop en faveur de l’inclusion financière, il est depuis longtemps considéré que la clé pour réduire le coût et la complexité du onboarding du système d’information d’un DFSP à un Hub Mojaloop réside dans une offre de solutions de connectivité, permettant à chaque DFSP de choisir l’approche la mieux adaptée. Ces éléments sont complétés par un *DFSP Onboarding Playbook*, qui décrit les processus métier nécessaires à l’intégration d’un DFSP.
 
 ## Intégration métier
 

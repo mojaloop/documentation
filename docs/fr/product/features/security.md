@@ -54,7 +54,7 @@ L’opérateur du Hub Mojaloop dispose ainsi d’un contrôle fin des accès aux
 
 Il incombe également à l’opérateur de mettre en place les points de contrôle adaptés à un service financier (accès physique aux serveurs, usage des téléphones portables par les opérateurs, vidéosurveillance, chaîne d’approvisionnement, gestion des visiteurs, etc.) et de définir les processus métier associés.
 
-## Maintenir la sécurité {#maintenir-la-securite}
+## Maintenir la sécurité
 
 La communauté Mojaloop a défini procédures et moyens pour maintenir la sécurité des déploiements face à l’évolution des attaques et à l’identification de vulnérabilités dans Mojaloop ou dans les nombreux programmes open source dont il dépend. C’est le **processus de gestion des vulnérabilités**, qui comprend notamment :
 
