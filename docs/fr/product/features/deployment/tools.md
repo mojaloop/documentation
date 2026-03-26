@@ -6,7 +6,7 @@ sidebarTitle: Outils de déploiement
 
 Ce document présente les trois options de déploiement de Mojaloop, classées par complexité et maturité production. Chaque outil correspond à des cas d’usage et des scénarios de déploiement précis.
 
-## Core Test Harness {#core-test-harness}
+## Core Test Harness
 
 <div style="display: flex; align-items: center; margin-bottom: 20px;">
     <div style="width: 20px; height: 20px; background-color: rgba(46, 204, 113, 0.3); margin-right: 10px;"></div>
@@ -34,7 +34,7 @@ Les développeurs interagissent avec le Core Test Harness via les commandes dock
 
 Le Core Test Harness permet les tests unitaires, d’intégration et de bout en bout des composants Mojaloop. Il offre un environnement contrôlé pour tester les interactions entre services et valider la logique métier.
 
-## Déploiement HELM {#helm-deploy}
+## Déploiement HELM
 
 <div style="display: flex; align-items: center; margin-bottom: 20px;">
     <div style="width: 20px; height: 20px; background-color: rgba(230, 126, 34, 0.3); margin-right: 10px;"></div>
@@ -76,7 +76,7 @@ La sécurité comprend notamment :
 - Gestion des secrets
 - Gestion des certificats
 
-## Infrastructure as Code {#infrastructure-as-code-iac}
+## Infrastructure as Code
 
 <div style="display: flex; align-items: center; margin-bottom: 20px;">
     <div style="width: 20px; height: 20px; background-color: rgba(231, 76, 60, 0.3); margin-right: 10px;"></div>
