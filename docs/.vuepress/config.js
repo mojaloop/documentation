@@ -52,31 +52,42 @@ module.exports = {
     sidebarDepth: 2,
     lastUpdated: true,
     footerCopyright: 'Apache 2.0 Licensed | Copyright © 2020 - 2024 Mojaloop Foundation',
-    // PR Preview configuration
     isPrPreview: isPrPreview,
     prNumber: process.env.VUEPRESS_PR_NUMBER || '',
-    nav: [
-      {
-        text: 'Adoption',
-        link: '/adoption/',
+    locales: {
+      '/': {
+        selectText: 'Languages',
+        label: 'English',
+        editLinkText: 'Edit this page on GitHub',
+        lastUpdated: 'Last Updated',
+        nav: [
+          { text: 'Adoption', link: '/adoption/' },
+          { text: 'Community', link: '/community/' },
+          { text: 'Technical', link: '/technical/' },
+          { text: 'Product', link: '/product/' },
+          { text: 'Training Program', link: 'https://mojaloop.io/mojaloop-training-program/' }
+        ],
       },
-      {
-        text: 'Community',
-        link: '/community/'
-      },
-      {
-        text: 'Technical',
-        link: '/technical/'
-      },
-      {
-        text: 'Product',
-        link: '/product/'
-      },
-
-      {
-        text: 'Training Program',
-        link: 'https://mojaloop.io/mojaloop-training-program/'
+      '/fr/': {
+        selectText: 'Langues',
+        label: 'Français',
+        editLinkText: 'Modifier cette page sur GitHub',
+        lastUpdated: 'Dernière mise à jour',
+        nav: [
+          { text: 'Adoption', link: '/fr/adoption/' },
+          { text: 'Communauté', link: '/fr/community/' },
+          { text: 'Technique', link: '/fr/technical/' },
+          { text: 'Produit', link: '/fr/product/' },
+          { text: 'Programme de formation', link: 'https://mojaloop.io/mojaloop-training-program/' }
+        ],
       }
+    },
+    nav: [
+      { text: 'Adoption', link: '/adoption/' },
+      { text: 'Community', link: '/community/' },
+      { text: 'Technical', link: '/technical/' },
+      { text: 'Product', link: '/product/' },
+      { text: 'Training Program', link: 'https://mojaloop.io/mojaloop-training-program/' }
     ],
     // Ref: https://vuepress.vuejs.org/theme/default-theme-config.html#sidebar
     sidebar: {
@@ -1162,6 +1173,89 @@ module.exports = {
             ['features/invariants', 'Invariants'],
             ['features/development', 'Continuous Development']]
         }
+      ],
+      '/fr/adoption/': [
+        {
+          title: 'Guide du Schéma',
+          collapsable: false,
+          sidebarDepth: 2,
+          children: [
+            ['Scheme/platform-operating-guideline', 'Modèle de Directive Opérationnelle de la Plateforme'],
+            ['Scheme/scheme-business-rules', 'Modèle de Règles Commerciales du Schéma'],
+            ['Scheme/scheme-key-choices', 'Choix Clés du Schéma'],
+            ['Scheme/scheme-participation-agreement', 'Modèle d\'Accord de Participation au Schéma'],
+            ['Scheme/scheme-uniform-glossary', 'Modèle de Glossaire Uniforme'],
+          ]
+        },
+        {
+          title: 'Guide des Opérations du Hub',
+          collapsable: false,
+          sidebarDepth: 1,
+          children: [
+            {
+              title: 'Guide des Opérations Techniques',
+              collapsable: true,
+              sidebarDepth: 2,
+              children: [
+                'HubOperations/TechOps/tech-ops-introduction',
+                'HubOperations/TechOps/incident-management',
+                'HubOperations/TechOps/problem-management',
+                'HubOperations/TechOps/change-management',
+                'HubOperations/TechOps/release-management',
+                'HubOperations/TechOps/defect-triage',
+                'HubOperations/TechOps/key-terms-kpis',
+                'HubOperations/TechOps/incident-management-escalation-matrix',
+                'HubOperations/TechOps/service-level-agreements'
+              ]
+            },
+            {
+              title: 'Guide de Gestion des Règlements',
+              collapsable: true,
+              sidebarDepth: 2,
+              children: [
+                'HubOperations/Settlement/settlement-management-introduction',
+                'HubOperations/Settlement/settlement-basic-concepts',
+                'HubOperations/Settlement/ledgers-in-the-hub',
+              ]
+            },
+            {
+              title: 'Guide du Portail Finance v2',
+              collapsable: true,
+              sidebarDepth: 2,
+              children: [
+                'HubOperations/Portalv2/busops-portal-introduction',
+                'HubOperations/Portalv2/settlement-business-process',
+                'HubOperations/Portalv2/accessing-the-portal',
+                'HubOperations/Portalv2/managing-windows',
+                'HubOperations/Portalv2/settling',
+                'HubOperations/Portalv2/checking-settlement-details',
+                'HubOperations/Portalv2/monitoring-dfsp-financial-details',
+                'HubOperations/Portalv2/enabling-disabling-transactions',
+                'HubOperations/Portalv2/recording-funds-in-out',
+                'HubOperations/Portalv2/updating-ndc',
+                'HubOperations/Portalv2/searching-for-transfer-data'
+              ]
+            },
+            {
+              title: 'Contrôle d\'Accès Basé sur les Rôles',
+              collapsable: true,
+              sidebarDepth: 2,
+              children: [
+                'HubOperations/RBAC/Role-based-access-control'
+              ]
+            },
+            {
+              title: 'Guide d\'Intégration pour l\'Opérateur du Hub',
+              collapsable: true,
+              sidebarDepth: 2,
+              children: [
+                'HubOperations/Onboarding/onboarding-introduction',
+                'HubOperations/Onboarding/business-onboarding',
+                'HubOperations/Onboarding/technical-onboarding',
+              ]
+            }
+          ]
+        }
       ]
     }
   },
@@ -1183,8 +1277,8 @@ module.exports = {
     },
     '/fr/': {
       lang: 'fr-FR',
-      title: 'Mojaloop Documentation',
-      description: '',
+      title: 'Documentation Mojaloop',
+      description: 'Documentation officielle du projet Mojaloop',
     },
   },
 };
