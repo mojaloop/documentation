@@ -1,20 +1,13 @@
 <template>
-  <SearchBox v-if="!hasVersions"/>
-  <VersionedSearchBox v-else/>
+  <StrictSearchBox />
 </template>
 
 <script>
-import SearchBox from '@SearchBox'
+import StrictSearchBox from '../../components/StrictSearchBox.vue'
 
 export default {
   components: {
-    SearchBox,
-    VersionedSearchBox: () => import('vuepress-plugin-versioning/components/SearchBox')
-  },
-  computed: {
-    hasVersions () {
-      return this.$versions && this.$versions.length > 0
-    }
+    StrictSearchBox
   }
 }
 </script>

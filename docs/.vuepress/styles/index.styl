@@ -40,3 +40,33 @@ p
 
 // .main-content-wrapper
 //   margin-top: 75px
+
+// Keep search box appearance consistent while improving result readability.
+.search-box
+  input
+    border-radius 2rem
+    &:focus
+      width 10rem
+
+  .suggestions
+    top 2rem
+    max-height 24rem
+    overflow-y auto
+    overscroll-behavior contain
+
+  .suggestion
+    .suggestion__title
+      font-weight 600
+      color $textColor
+      display block
+
+    .suggestion__result
+      display block
+      margin-top 0.2rem
+      font-size 0.9em
+      color lighten($textColor, 25%)
+
+    em
+      color #004daa
+      font-style normal
+      font-weight 700
