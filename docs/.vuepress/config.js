@@ -1170,6 +1170,21 @@ module.exports = {
    * Apply plugins，ref：https://v1.vuepress.vuejs.org/zh/plugin/
    */
   plugins: [
+    ['flexsearch', {
+      maxSuggestions: 12,
+      searchPaths: null,
+      searchHotkeys: ['s', '/'],
+      searchResultLength: 110,
+      search_options: {
+        encode: 'icase',
+        tokenize: 'forward',
+        resolution: 9,
+        doc: {
+          id: 'key',
+          field: ['title', 'headers', 'content']
+        }
+      }
+    }],
     '@vuepress/plugin-back-to-top',
     '@vuepress/plugin-medium-zoom',
     'versioning'
