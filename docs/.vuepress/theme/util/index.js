@@ -263,7 +263,9 @@ export function resolveMatchingConfig(regularPath, config) {
       regularPath.startsWith(`/${l}/`)
   )
 
-  if (!localePrefix) return
+  if (!localePrefix) {
+    return {}
+  }
 
   const rest = regularPath.slice(localePrefix.length + 1)
 
