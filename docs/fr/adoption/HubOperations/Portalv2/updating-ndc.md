@@ -4,7 +4,7 @@ La page **DFSP Financial Positions** vous permet de mettre à jour le Net Debit 
 
 Pour accéder à la page **DFSP Financial Positions**, allez dans **Participants** > **DFSP Financial Positions**.
 
-![Mise à jour du NDC d'un DFSP]("../../../../.vuepress/public/dfsp_financial_positions_2.png")
+![Mise à jour du NDC d'un DFSP](../../../../.vuepress/public/dfsp_financial_positions_2.png)
 
 Pour mettre à jour le Net Debit Cap d'un DFSP, effectuez les étapes suivantes :
 
