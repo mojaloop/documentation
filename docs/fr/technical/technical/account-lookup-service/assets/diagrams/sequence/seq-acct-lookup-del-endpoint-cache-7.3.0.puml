@@ -1,0 +1,104 @@
+/'*****
+ License
+ --------------
+ Copyright © 2017 Bill & Melinda Gates Foundation
+ The Mojaloop files are made available by the Bill & Melinda Gates Foundation under the Apache License, Version 2.0 (the "License") and you may not use these files except in compliance with the License. You may obtain a copy of the License at
+ http://www.apache.org/licenses/LICENSE-2.0
+ Unless required by applicable law or agreed to in writing, the Mojaloop files are distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+ Contributors
+ --------------
+ This is the official list of the Mojaloop project contributors for this file.
+ Names of the original copyright holders (individuals or organizations)
+ should be listed with a '*' in the first column. People who have
+ contributed from an organization can be listed under the organization
+ that actually holds the copyright for their contributions (see the
+ Gates Foundation organization for an example). Those individuals should have
+ their names indented and be marked with a '-'. Email address can be added
+ optionally within square brackets <email>.
+ * Gates Foundation
+ - Name Surname <name.surname@gatesfoundation.com>
+
+ * Rajiv Mothilal <rajiv.mothilal@modusbox.com>
+ --------------
+ ******'/
+
+
+@startuml
+' titre
+title 7.3.0 Suppression du cache des points de terminaison
+
+autonumber
+
+
+' Clés des acteurs :
+' boundary - API / interfaces, etc.
+' control - Gestionnaire d’API ALS
+' database - persistance base de données
+
+' acteurs
+entity "OPÉRATEUR DU HUB" as OPERATOR
+boundary "API Account Lookup Service" as ALSAPI
+control "Gestionnaire de suppression du cache" as DEL_HANDLER
+database "Cache" as Cache
+
+box "Account Lookup Service" #LightYellow
+participant ALSAPI
+participant DEL_HANDLER
+participant Cache
+end box
+
+' flux
+
+activate OPERATOR
+group Suppression du cache des points de terminaison
+  OPERATOR -> ALSAPI: Requête DELETE sur le cache des points de terminaison — DELETE /endpointcache
+  activate ALSAPI
+  activate ALSAPI
+
+  ALSAPI -> DEL_HANDLER: Supprimer le cache
+  activate DEL_HANDLER
+  DEL_HANDLER -> Cache: Arrêter le cache
+  activate Cache
+
+
+  alt Statut d’arrêt du cache (succès)
+    Cache --> DEL_HANDLER: Retourner le statut
+    deactivate Cache
+
+    DEL_HANDLER -> Cache: Initialiser le cache
+    activate Cache
+    Cache -> DEL_HANDLER: Retourner le statut
+    deactivate Cache
+    DEL_HANDLER -> ALSAPI: Retourner le statut
+    deactivate DEL_HANDLER
+    ALSAPI --> OPERATOR: Retour <color #000000><b>Statut HTTP :</b> 202</color>
+
+    deactivate ALSAPI
+    deactivate OPERATOR
+  end
+
+  alt Validation du statut (échec du service)
+    Cache --> DEL_HANDLER: Lever une erreur
+    deactivate Cache
+    DEL_HANDLER -> ALSAPI: Lever une erreur
+    deactivate DEL_HANDLER
+    note left of ALSAPI #yellow
+        Message :
+        {
+            "errorInformation": {
+                "errorCode": <Error Code>,
+                "errorDescription": <Msg>,
+            }
+        }
+    end note
+
+    ALSAPI --> OPERATOR: Retour <color #FF0000><b>Statut HTTP :</b> 502</color>
+
+    deactivate ALSAPI
+    deactivate OPERATOR
+
+
+  end
+end
+
+@enduml

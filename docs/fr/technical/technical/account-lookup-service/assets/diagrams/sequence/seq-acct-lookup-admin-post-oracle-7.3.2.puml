@@ -1,0 +1,112 @@
+/'*****
+ License
+ --------------
+ Copyright © 2017 Bill & Melinda Gates Foundation
+ The Mojaloop files are made available by the Bill & Melinda Gates Foundation under the Apache License, Version 2.0 (the "License") and you may not use these files except in compliance with the License. You may obtain a copy of the License at
+ http://www.apache.org/licenses/LICENSE-2.0
+ Unless required by applicable law or agreed to in writing, the Mojaloop files are distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+ Contributors
+ --------------
+ This is the official list of the Mojaloop project contributors for this file.
+ Names of the original copyright holders (individuals or organizations)
+ should be listed with a '*' in the first column. People who have
+ contributed from an organization can be listed under the organization
+ that actually holds the copyright for their contributions (see the
+ Gates Foundation organization for an example). Those individuals should have
+ their names indented and be marked with a '-'. Email address can be added
+ optionally within square brackets <email>.
+ * Gates Foundation
+ - Name Surname <name.surname@gatesfoundation.com>
+
+ * Rajiv Mothilal <rajiv.mothilal@modusbox.com>
+ --------------
+ ******'/
+
+
+@startuml
+' titre
+title 7.3.2 Créer des points de terminaison d’oracle
+
+autonumber
+
+
+' Clés des acteurs :
+' boundary - API / interfaces, etc.
+' control - Gestionnaire d’administration ALS
+' database - persistance base de données
+
+' acteurs
+entity "OPÉRATEUR DU HUB" as OPERATOR
+boundary "API d’administration Account Lookup Service" as ALSADM
+control "Gestionnaire POST Oracle" as ORC_HANDLER
+database "Stockage ALS" as DB
+
+box "Account Lookup Service" #LightYellow
+participant ALSADM
+participant ORC_HANDLER
+participant DB
+end box
+
+' flux
+
+activate OPERATOR
+group Créer un point de terminaison d’oracle
+  OPERATOR -> ALSADM: Requête pour créer un point de terminaison d’oracle —\nPOST /oracles
+  note left of ALSADM #yellow
+      Message :
+      {
+          "oracleIdType": <PartyIdType>,
+          "endpoint": {
+              "value": <string>,
+              "endpointType": <EndpointType>
+          },
+          "currency": <Currency>,
+          "isDefault": <boolean>
+      }
+  end note
+  activate ALSADM
+
+  ALSADM -> ORC_HANDLER: Créer un point de terminaison d’oracle
+
+  activate ORC_HANDLER
+  ORC_HANDLER -> ORC_HANDLER: Construire l’objet de données du point de terminaison Oracle
+  ORC_HANDLER -> DB: Insérer l’objet de données du point de terminaison Oracle
+  activate DB
+
+  alt Création d’une entrée Oracle (succès)
+    DB --> ORC_HANDLER: Retourner une réponse de succès
+    deactivate DB
+
+    ORC_HANDLER -> ALSADM: Retourner une réponse de succès
+    deactivate ORC_HANDLER
+    ALSADM --> OPERATOR: Retour <color #000000><b>Statut HTTP :</b> 201</color>
+
+    deactivate ALSADM
+    deactivate OPERATOR
+  end
+
+  alt Création d’une entrée Oracle (échec)
+    DB --> ORC_HANDLER: Lever une erreur
+    deactivate DB
+    ORC_HANDLER -> ALSADM: Lever une erreur
+    deactivate ORC_HANDLER
+    note left of ALSADM #yellow
+        Message :
+        {
+            "errorInformation": {
+                "errorCode": <Error Code>,
+                "errorDescription": <Msg>,
+            }
+        }
+    end note
+
+    ALSADM --> OPERATOR: Retour <color #FF0000><b>Statut HTTP :</b> 502</color>
+
+    deactivate ALSADM
+    deactivate OPERATOR
+
+
+  end
+end
+
+@enduml

@@ -1,0 +1,225 @@
+/'*****
+ License
+ --------------
+ Copyright © 2017 Bill & Melinda Gates Foundation
+ The Mojaloop files are made available by the Bill & Melinda Gates Foundation under the Apache License, Version 2.0 (the "License") and you may not use these files except in compliance with the License. You may obtain a copy of the License at
+ http://www.apache.org/licenses/LICENSE-2.0
+ Unless required by applicable law or agreed to in writing, the Mojaloop files are distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+ Contributors
+ --------------
+ This is the official list of the Mojaloop project contributors for this file.
+ Names of the original copyright holders (individuals or organizations)
+ should be listed with a '*' in the first column. People who have
+ contributed from an organization can be listed under the organization
+ that actually holds the copyright for their contributions (see the
+ Gates Foundation organization for an example). Those individuals should have
+ their names indented and be marked with a '-'. Email address can be added
+ optionally within square brackets <email>.
+ * Gates Foundation
+ - Name Surname <name.surname@gatesfoundation.com>
+
+ * Rajiv Mothilal <rajiv.mothilal@modusbox.com>
+ * Georgi Georgiev <georgi.georgiev@modusbox.com>
+ * Sam Kummary <sam@modusbox.com>
+ --------------
+ ******'/
+
+@startuml
+' declate title
+title 2.2.1. Consommation par le gestionnaire d'exécution (interruption/rejet)
+autonumber
+' Actor Keys:
+'   boundary - APIs/Interfaces, etc
+'   collections - Kafka Topics
+'   control - Kafka Consumers
+'   entity - Database Access Objects
+'   database - Database Persistance Store
+' declare actors
+collections "Fulfil-Topic" as TOPIC_FULFIL
+control "Gestionnaire d'événements d'exécution" as FULF_HANDLER
+collections "Rubrique d'événements" as TOPIC_EVENT
+collections "topic-transfer-position" as TOPIC_TRANSFER_POSITION
+collections "Rubrique de notification" as TOPIC_NOTIFICATIONS
+'entity "Transfer Duplicate Facade" as DUP_FACADE
+entity "DAO transfert" as TRANS_DAO
+database "Stockage central" as DB
+box "Service central" #LightYellow
+    participant TOPIC_FULFIL
+    participant FULF_HANDLER
+    participant TOPIC_TRANSFER_POSITION
+    participant TOPIC_EVENT
+    participant TOPIC_NOTIFICATIONS
+    participant TRANS_DAO
+    participant DB
+end box
+' start flow
+activate FULF_HANDLER
+group Consommation du gestionnaire d'exécution (échec)
+    alt Consommer un message unique
+        TOPIC_FULFIL <- FULF_HANDLER: Consommer le message d'événement d'exécution pour le payeur
+        activate TOPIC_FULFIL
+        deactivate TOPIC_FULFIL
+        break
+            group Valider l'événement
+                FULF_HANDLER <-> FULF_HANDLER: Valider l'événement — règle : type == 'fulfil' && ( action IN ['reject','abort'] )\n<color #FF0000><b>Codes d'erreur :</b> 2001</color>
+            end
+        end
+        group Persister les informations d'événement
+            FULF_HANDLER -> TOPIC_EVENT: Publier les informations d'événement
+            ref over FULF_HANDLER, TOPIC_EVENT:  Consommation du gestionnaire d'événements
+        end
+        group Valider la signature FSPIOP
+            |||
+            ref over FULF_HANDLER, TOPIC_NOTIFICATIONS: Valider message.content.headers.**FSPIOP-Signature**\n<color #FF0000><b>Codes d'erreur :</b> 2001</color>
+        end
+        group Valider le contrôle de doublon d'exécution du transfert
+            FULF_HANDLER -> FULF_HANDLER: Générer l'uuid transferFulfilmentId
+            FULF_HANDLER -> TRANS_DAO: Demande de récupérer les hachages d'exécution par transferId\n<color #FF0000><b>Code d'erreur :</b> 2003</color>
+            activate TRANS_DAO
+            TRANS_DAO -> DB: Demander les hachages de messages d'exécution en doublon
+            hnote over DB #lightyellow
+                SELET transferId, hash
+                FROM **transferFulfilmentDuplicateCheck**
+                WHERE transferId = request.params.id
+            end note
+            activate DB
+            TRANS_DAO <-- DB: Renvoyer les hachages existants
+            deactivate DB
+            TRANS_DAO --> FULF_HANDLER: Renvoyer la ou les empreintes des messages d'exécution
+            deactivate TRANS_DAO
+            FULF_HANDLER -> FULF_HANDLER: Parcourir la liste des hachages renvoyés et comparer chaque entrée au hachage du message calculé
+            alt Hachage correspondant
+                ' Need to check what respond with same results if finalised then resend, else ignore and wait for response
+                FULF_HANDLER -> TRANS_DAO: Demande de récupérer l'exécution du transfert et l'état\n<color #FF0000><b>Code d'erreur :</b> 2003</color>
+                activate TRANS_DAO
+                TRANS_DAO -> DB: Demande de récupérer l'exécution du transfert et l'état
+                hnote over DB #lightyellow
+                    transferFulfilment
+                    transferStateChange
+                end note
+                activate DB
+                TRANS_DAO <-- DB: Renvoyer l'exécution du transfert et l'état
+                deactivate DB
+                TRANS_DAO --> FULF_HANDLER: Renvoyer l'exécution du transfert et l'état
+                deactivate TRANS_DAO
+                alt transferFulfilment.isValid == 0
+                    break
+                        FULF_HANDLER <-> FULF_HANDLER: <color #FF0000><b>Gestion des erreurs :</b> 3105</color>
+                    end
+                else transferState IN ['COMMITTED', 'ABORTED']
+                    break
+                        ref over FULF_HANDLER, TOPIC_NOTIFICATIONS: Envoyer une notification au participant (bénéficiaire)\n
+                    end
+                else transferState NOT 'RESERVED'
+                    break
+                        FULF_HANDLER <-> FULF_HANDLER: <color #FF0000><b>Code d'erreur :</b> 2001</color>
+                    end
+                else
+                    break
+                        FULF_HANDLER <-> FULF_HANDLER: Laisser la requête précédente se terminer
+                    end
+                end
+            else Hachage non correspondant
+                FULF_HANDLER -> TRANS_DAO: Demande de persister le hachage du transfert\n<color #FF0000><b>Codes d'erreur :</b> 2003</color>
+                activate TRANS_DAO
+                TRANS_DAO -> DB: Persister le hachage
+                hnote over DB #lightyellow
+                    transferFulfilmentDuplicateCheck
+                end note
+                activate DB
+                deactivate DB
+                TRANS_DAO --> FULF_HANDLER: Renvoyer le succès
+                deactivate TRANS_DAO
+            end
+        end
+        alt Appel action=='reject' effectué sur PUT /transfers/{ID}
+        FULF_HANDLER -> FULF_HANDLER: Consigner le message d'erreur
+        note right of FULF_HANDLER: l'action REJECT n'est pas autorisée dans le gestionnaire d'exécution
+        else action=='abort' Rappel d'erreur
+            alt Validation réussie
+                group Persister l'état du transfert (transferState='RECEIVED_ERROR')
+                    FULF_HANDLER -> TRANS_DAO: Demande de persister le transfert state and Error\n<color #FF0000><b>Code d'erreur :</b> 2003</color>
+                    activate TRANS_DAO
+                    TRANS_DAO -> DB: Persister l'état du transfert et les informations d'erreur
+                    activate DB
+                    hnote over DB #lightyellow
+                        transferStateChange
+                        transferError
+                        transferExtension
+                    end note
+                    deactivate DB
+                    TRANS_DAO --> FULF_HANDLER: Renvoyer le succès
+                end
+
+                note right of FULF_HANDLER #yellow
+                    Message :
+                    {
+                        id: <ID>,
+                        from: <transferHeaders.FSPIOP-Source>,
+                        to: <transferHeaders.FSPIOP-Destination>,
+                        type: application/json,
+                        content: {
+                            headers: <transferHeaders>,
+                            payload: <transferMessage>
+                        },
+                        metadata: {
+                            event: {
+                                id: <uuid>,
+                                responseTo: <previous.uuid>,
+                                type: position,
+                                action: abort,
+                                createdAt: <timestamp>,
+                                state: {
+                                    status: "success",
+                                    code: 0
+                                }
+                            }
+                        }
+                    }
+                end note
+
+                FULF_HANDLER -> TOPIC_TRANSFER_POSITION: Acheminer et publier l'événement de position pour le payeur
+                activate TOPIC_TRANSFER_POSITION
+                deactivate TOPIC_TRANSFER_POSITION
+            else Message d'erreur de transfert invalide
+                break
+                    note right of FULF_HANDLER #yellow
+                        Message :
+                        {
+                            id: <ID>,
+                            from: <transferHeaders.FSPIOP-Source>,
+                            to: <transferHeaders.FSPIOP-Destination>,
+                            type: application/json,
+                            content: {
+                                headers: <transferHeaders>,
+                                payload: <transferMessage>
+                            },
+                            metadata: {
+                                event: {
+                                    id: <uuid>,
+                                    responseTo: <previous.uuid>,
+                                    type: position,
+                                    action: abort,
+                                    createdAt: <timestamp>,
+                                    state: {
+                                        status: "error",
+                                        code: 1
+                                    }
+                                }
+                            }
+                        }
+                    end note
+                    FULF_HANDLER -> TOPIC_NOTIFICATIONS: Acheminer et publier l'événement de notification pour le bénéficiaire
+                    activate TOPIC_NOTIFICATIONS
+                    deactivate TOPIC_NOTIFICATIONS
+                end
+            end
+        end
+    else Consommer des messages groupés
+        note left of FULF_HANDLER #lightblue
+            À livrer dans une future story
+        end note
+    end
+end
+deactivate FULF_HANDLER
+@enduml

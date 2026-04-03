@@ -1,0 +1,117 @@
+@startuml
+Title Demander la création d’une cotation
+participant "FSP payeur" as PayerFSP
+participant "Switch\n[Service de\ncotation]" as Switch
+database "Référentiel central" as DB
+participant "FSP bénéficiaire" as PayeeFSP
+autonumber
+
+note over PayerFSP, Switch: Le FSP payeur envoie une demande de cotation\nau FSP bénéficiaire via le Switch
+PayerFSP -\ Switch: POST /quotes
+note right of Switch #aaa
+    Valider la requête selon la
+    spécification d’interface Mojaloop
+    **<color #red>Codes d’erreur : 300x, 310x</color>**
+    **<color #red>Codes HTTP d’erreur : 4xx</color>**
+end note
+Switch -> Switch: Validation de schéma
+PayerFSP \-- Switch: 202 Accepted
+|||
+Switch -> Switch: Validation de la demande de cotation (moteur de règles, etc.)
+|||
+alt SimpleRoutingMode === FALSE
+    Switch -> Switch: Contrôle de doublon
+    |||
+    alt la requête est un doublon mais pas un renvoi
+    |||
+        note left of Switch
+            Le Switch renvoie une erreur au FSP payeur
+            <color #red>**Code d’erreur : 3106**</color>
+        end note
+        PayerFSP /- Switch: PUT /quotes/{ID}/error
+        PayerFSP --/ Switch: 200 OK
+    |||
+    else la requête est un doublon et un renvoi
+        Switch -> Switch: Le Switch gère le scénario de renvoi
+    end
+    |||
+    Switch -\ DB: Persister la demande de cotation
+    activate DB
+        hnote over DB
+            quoteDuplicateCheck
+            transactionReference
+            quote
+            quoteParty
+            quoteExtension
+            geoCode
+        end hnote
+    Switch \-- DB: Demande de cotation enregistrée
+    deactivate DB
+end
+|||
+alt SimpleRoutingMode === TRUE
+    Switch -> Switch: Utiliser l’en-tête fspiop-destination pour obtenir le point de terminaison « quotes » du FSP bénéficiaire
+else SimpleRoutingMode === FALSE
+    Switch -> Switch: Récupérer le point de terminaison du FSP bénéficiaire via les informations « quote party »
+end
+|||
+alt point de terminaison « quotes » du bénéficiaire trouvé
+    note right of Switch: Le Switch transmet la demande au FSP bénéficiaire
+    Switch -\ PayeeFSP: POST /quotes
+    Switch \-- PayeeFSP: 202 OK
+
+    PayeeFSP -> PayeeFSP: Le FSP bénéficiaire persiste et calcule la cotation
+    alt traitement de la cotation réussi côté bénéficiaire
+        note left of PayeeFSP: Le FSP bénéficiaire envoie la réponse au FSP payeur via le Switch
+        Switch /- PayeeFSP: PUT /quotes/{ID}
+        Switch --/ PayeeFSP: 200 OK
+
+        Switch -> Switch: Valider la réponse de cotation
+        alt SimpleRoutingMode === FALSE
+            Switch -> Switch: Contrôle de doublon
+            alt la réponse est un doublon mais pas un renvoi
+                Switch -\ PayeeFSP: PUT /quotes/{ID}/error
+                Switch \-- PayeeFSP: 200 OK
+            end
+            alt la réponse est un doublon et un renvoi
+                Switch -> Switch: Le Switch gère le scénario de renvoi
+            end
+            Switch -\ DB: Persister la réponse de cotation
+            activate DB
+            hnote over DB
+                quoteResponse
+                quoteDuplicateCheck
+                quoteResponseIlpPacket
+                geoCode
+                quoteExtension
+            end hnote
+            Switch \-- DB: Réponse de cotation enregistrée
+            deactivate DB
+        end
+        note left of Switch: Le Switch transmet la réponse au FSP payeur
+        PayerFSP /- Switch: PUT /quotes/{ID}
+        PayerFSP --/ Switch: 200 OK
+    else le bénéficiaire rejette ou rencontre une erreur
+        note left of PayeeFSP: Le FSP bénéficiaire envoie un callback d’erreur au FSP payeur via le Switch
+        Switch /- PayeeFSP: PUT /quotes/{ID}/error
+        Switch --/ PayeeFSP: 200 OK
+        alt SimpleRoutingMode === FALSE
+            Switch -\ DB: Enregistrer l’erreur de cotation
+            activate DB
+            hnote over DB
+                quoteError
+            end hnote
+            Switch \-- DB: Erreur de cotation enregistrée
+            deactivate DB
+        end
+        note left of Switch: Le Switch transmet le callback d’erreur au FSP payeur
+        PayerFSP /- Switch: PUT /quotes/{ID}/error
+        PayerFSP --/ Switch: 200 OK
+    end
+else point de terminaison « quotes » du FSP bénéficiaire introuvable
+    note left of Switch: Le Switch envoie un callback d’erreur au FSP payeur \n <color #red>**Code d’erreur : 3201**</color>
+    PayerFSP /- Switch: PUT /quotes/{ID}/error
+    PayerFSP --\ Switch: 200 OK
+end
+
+@enduml
