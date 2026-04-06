@@ -40,7 +40,7 @@ La « revue de code » est un processus par lequel un ou plusieurs ingénieurs e
 - Propriété collective du code
     - Responsabilité partagée plutôt qu’individuelle.
 
-## Types de changement {#types-of-change}
+## Types de changement
 
 Le processus dépend de la nature du changement et de son impact sur les utilisateurs et le système.
 
@@ -48,7 +48,7 @@ Identifiez la catégorie ci-dessous et suivez le processus correspondant. En tan
 
 En cas de doute, consultez la Design Authority sur Slack : [#design-authority](https://mojaloop.slack.com/archives/CARJFMH3Q). Engagez la revue de conception requise **avant** tout code pour éviter un travail à refaire.
 
-### Changements non conséquentiels {#non-consequential-changes}
+### Changements non conséquentiels
 
 #### Définition et caractéristiques
 
@@ -75,7 +75,7 @@ _Note importante : si votre changement est une optimisation qui modifie l’impl
     1. S’il n’y a pas de code owners pour certains fichiers, ouvrez un ticket auprès de {coordonnées} pour en définir. Tous les fichiers de l’organisation GitHub Mojaloop devraient avoir des code owners.
 3. Revues par les pairs supplémentaires souhaitées ; plus il y a de regards, mieux c’est.
 
-### Changements conséquents {#consequential-changes}
+### Changements conséquents
 
 #### Définition et caractéristiques
 
@@ -97,7 +97,7 @@ _Note importante : si vous pensez être dans les changements conséquents, véri
 
 Les changements conséquents doivent suivre le [processus des changements conséquents](consequential-change-process.md).
 
-### Changements critiques {#critical-changes}
+### Changements critiques
 
 #### Définition et caractéristiques
 

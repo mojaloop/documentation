@@ -15,14 +15,14 @@ Pour mieux gérer et comprendre notre usage et nos dépenses AWS, nous appliquon
     - [Modifier les politiques d’étiquetage](#editing-tag-policies)
     - [Attacher / détacher des politiques d’étiquetage](#attach-detach-tag-policies)
 
-## Étiquettes proposées et signification {#proposed-tags}
+## Étiquettes proposées et signification
 
 Nous proposons les deux clés d’étiquette suivantes :
 
 - `mojaloop/cost_center`
 - `mojaloop/owner`
 
-### `mojaloop/cost_center` {#tag-cost-center}
+### `mojaloop/cost_center`
 
 `mojaloop/cost_center` ventile les ressources AWS par fil de travail ou projet qui génère les coûts associés.
 
@@ -41,7 +41,7 @@ Valeurs spéciales réservées :
 - `n/a` : la ressource ne génère pas de coût ; l’assignation d’un `cost_center` importe peu.
   - Utile pour étiqueter en masse des ressources difficiles à classer (ex. groupes de sécurité EC2).
 
-### `mojaloop/owner` {#tag-owner}
+### `mojaloop/owner`
 
 `mojaloop/owner` désigne la personne responsable de la gestion et de l’arrêt d’une ressource donnée.
 
@@ -57,7 +57,7 @@ Valeurs réservées :
   - Permet de filtrer `mojaloop/owner:unknown` et d’identifier les ressources « orphelines ».
 
 
-## Étiquetage manuel {#manual-tagging}
+## Étiquetage manuel
 
 Utiliser le « Tag Editor » dans la console AWS pour rechercher les ressources non étiquetées.
 
@@ -74,7 +74,7 @@ On peut aussi rechercher par étiquettes ou par absence d’étiquettes.
 6. Exporter un fichier `.csv` des ressources trouvées
 
 
-## Étiquetage automatisé {#automated-tagging}
+## Étiquetage automatisé
 
 Nous automatisons l’étiquetage pour les éléments suivants (liste évolutive).
 
@@ -85,12 +85,12 @@ Pour l’instant, cela inclut notamment :
 2. IaC — code IaC à venir pour les environnements de développement
 
 
-## Politiques d’étiquetage AWS {#aws-tagging-policies}
+## Politiques d’étiquetage AWS
 
 Depuis le 3 août 2020, nous introduisons les [politiques d’étiquetage AWS](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies.html) pour renforcer les étiquettes et le suivi des ressources (notamment les coûts).
 
 
-### Rapports de conformité des étiquettes {#tag-reports-compliance}
+### Rapports de conformité des étiquettes
 
 1. Connexion à la console AWS
 2. « Resource Groups » > « Tag Editor »
@@ -101,7 +101,7 @@ On y voit le rapport de conformité des politiques d’étiquettes.
 ![](./images/tagging_03.png)
 
 
-### Modifier les politiques d’étiquetage {#editing-tag-policies}
+### Modifier les politiques d’étiquetage
 
 > Note : peut nécessiter des droits administrateur.
 
@@ -118,7 +118,7 @@ On y voit le rapport de conformité des politiques d’étiquettes.
 5. Dans la barre latérale : « View details » > « Edit policy » pour modifier
 
 
-### Attacher / détacher des politiques d’étiquetage {#attach-detach-tag-policies}
+### Attacher / détacher des politiques d’étiquetage
 
 1. Page « My Organization »
 2. Sélectionner le compte concerné > « Tag policies » dans la barre latérale

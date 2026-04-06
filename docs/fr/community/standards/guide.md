@@ -10,7 +10,7 @@ Ces invariants découlent des [principes Level One](https://www.leveloneproject.
 
 Assurez-vous de connaître ces invariants avant de contribuer.
 
-## Environnement d’exécution {#runtime-environment}
+## Environnement d’exécution
 
 Les normes d’exécution suivantes s’appliquent à Mojaloop.
 
@@ -428,9 +428,9 @@ module.exports = {
 
 Configuration Typescript détaillée (`package.json`, `jest.config.js`, etc.) : [Typescript Template Project](https://github.com/mojaloop/template-typescript-public).
 
-## Gestion des dépendances {#dependency-management}
+## Gestion des dépendances
 
-### Mises à jour des dépendances {#dependency-upgrades}
+### Mises à jour des dépendances
 
 Il est important d’utiliser les dépendances à jour pour limiter les problèmes de sécurité.
 
@@ -493,7 +493,7 @@ Contrôles lors des revues et releases ; évite le contournement du hook.
 
 Les configs CI (`.circleci/config.yml`) doivent inclure un job `test-dependencies` (`npm run dep:check`) pour les PR, fusions vers la branche principale et releases étiquetées.
 
-### Audit des dépendances {#dependency-auditing}
+### Audit des dépendances
 
 #### NodeJS
 
@@ -585,7 +585,7 @@ La communauté OSS Mojaloop privilégie les outils et frameworks suivants :
 
 Ces outils maintiennent cohérence et maintenabilité sur la base de code. Nous n’imposons pas leur usage aux dépôts fournis en contribution, mais d’autres choix peuvent alourdir la maintenance pour la communauté.
 
-## Adopter des contributions open source dans Mojaloop {#adopting-open-source-contributions-into-mojaloop}
+## Adopter des contributions open source dans Mojaloop
 
 Lignes directrices pour l’adoption d’une contribution dans les dépôts open source Mojaloop. L’adoption est le processus par lequel la communauté accompagne un contributeur pour aligner sa contribution sur nos normes afin qu’elle rejoigne la base de code OSS Mojaloop.
 
@@ -641,7 +641,7 @@ Nous appliquons le [code de conduite de la Fondation Mojaloop](https://github.co
 
 Voir la politique [License](https://github.com/mojaloop/mojaloop/blob/master/contribute/License.md).
 
-## FAQ {#faqs}
+## FAQ
 
 **1. Je veux contribuer du code qui ne suit pas le style ou les outils recommandés dans ce guide.**
 

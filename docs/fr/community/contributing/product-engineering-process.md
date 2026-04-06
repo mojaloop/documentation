@@ -36,7 +36,7 @@ Les fils ont en général des objectifs fixés au début de chaque incrément de
 
 Les livrables des fils entrent dans un processus maîtrisé qui publie périodiquement des releases officielles du logiciel Mojaloop. Le processus de release s’aligne souvent sur les incréments de programme ; les releases majeures (nouvelles fonctionnalités) ont lieu en fin d’incrément. Les releases mineures et correctifs sont plus fréquentes (fonctionnalités prioritaires, correctifs de bugs ou correctifs de sécurité, etc.).
 
-## Fils de travail Mojaloop {#mojaloop-workstreams}
+## Fils de travail Mojaloop
 
 Les fils officiels sont les « chaînes de production » de la « fabrique » logicielle communautaire Mojaloop ; c’est là que se concentre l’essentiel du développement produit. Plusieurs fils tournent en parallèle, chacun sur des domaines ou fonctionnalités précis de la plateforme.
 
@@ -128,7 +128,7 @@ Modèle de charte : [mojaloop-workstream-team-charter-template.pptx](assets/moja
 
 En cas de blocage entre contributeurs du fil, la Fondation Mojaloop propose des mécanismes d’aide. Contactez le directeur communauté de la Fondation Mojaloop pour être orienté vers une résolution.
 
-## Fils non officiels et contributions externes {#non-official-workstreams-and-external-contributions}
+## Fils non officiels et contributions externes
 
 Lorsqu’aucun fil existant ne convient et que le besoin ne justifie pas un nouveau fil officiel, les contributeurs peuvent travailler en dehors des processus communautaires. Dans ce cas, notre [processus de don externe](../standards/guide.md#adopting-open-source-contributions-into-mojaloop) doit être suivi avant que code, documentation ou autres artefacts ne soient adoptés par la Fondation Mojaloop.
 
