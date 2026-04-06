@@ -197,7 +197,7 @@ En-têtes HTTP proposés pour le traçage.
 
 Mojaloop n’a pas encore arbitré entre ces standards ni validé un support combiné.
 
-#### 4.1.1 En-têtes W3C {#411-wc3-http-headers}
+#### 4.1.1 En-têtes W3C
 
 Référence : https://w3c.github.io/trace-context/
 
