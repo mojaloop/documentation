@@ -1,0 +1,132 @@
+@startuml
+/'********
+--------------
+*********'/
+
+skinparam activityFontSize 4
+skinparam activityDiamondFontSize 30
+skinparam activityArrowFontSize 22
+skinparam defaultFontSize 22
+skinparam noteFontSize 22
+skinparam monochrome true
+' declare title
+' title Bulk Transactions pattern using the Mojaloop Connector
+' declare actors
+
+box "Payer DFSP" #LightGrey
+  participant "Backend System" as MFICC
+  participant "sdk-scheme-adapter" as MFIMC
+end box
+participant "Mojaloop\nSwitch" as MJW
+box "Payee DFSP" #LightGrey
+   participant "sdk-scheme-adapter" as PayeeFSPMC
+   participant "Backend System" as PayeeFSPCC
+end box
+
+== MVP Bulk Transfers using SDK-Scheme-Adapter ==
+
+autonumber 1 1 "<b>[0]"
+MFICC->>MFIMC: **POST** /bulkTransactions
+note left
+Bulk Disbursement is triggerd 
+by beneficiary management sub-system
+end note
+
+loop  Discovery Processing: For each individualTransfer in bulk message
+hnote left of MFIMC
+      Resolving all potential recipients 
+      which might be at any of the DFSPs 
+      on the service.
+end hnote
+    MFIMC ->> MJW: **GET** /parties/*
+    activate MFIMC
+    MJW->MJW: query oracle to \ndetermine Payee DFSP
+    MJW->>PayeeFSPMC: **GET** /parties/*
+        PayeeFSPMC->PayeeFSPCC: **GET** /parties/*
+        note right
+        Lookup / validate party information
+        end note
+        PayeeFSPMC-->>MJW: **PUT** /parties/{type}/{id}
+    MJW-->>MFIMC: **PUT** /parties/{type}/{id}
+    deactivate MFIMC
+
+end Loop
+    MFIMC-->>MFICC: **PUT** /bulkTransactions/{bulkTransactionId}
+    MFICC->>MFIMC: **PUT** /bulkTransactions/{bulkTransactionId}
+    note left
+     Confirmation of party integration
+    end note
+
+MFIMC->MFIMC: Group Valid Transfers into batches
+loop Agreement Processing: For each batch in bulk message
+hnote left of MFIMC
+  Each DFSP is provided the opportunity to
+  perform AML checks and add costs 
+  or discounts to each transfer.
+end hnote
+    MFIMC ->> MJW: **POST** /bulkquotes
+    activate MFIMC
+    MJW->>PayeeFSPMC: **POST** /bulkquotes
+    alt if (HasSupportForBulkQuotes)
+      PayeeFSPMC->PayeeFSPCC: **POST** /bulkquotes
+      note right
+        Bulk AML checks 
+        Bulk Fee calculations
+      end note
+    else if (!HasSupportForBulkQuotes)
+      loop X times for each transfer in bulk message
+        PayeeFSPMC->PayeeFSPCC: **POST** /quoterequests
+      note right
+        AML checks
+        Fee calculations
+      end note
+      end Loop
+    end
+    PayeeFSPMC-->>MJW: **PUT** /bulkquotes/{id)
+    MJW-->>MFIMC: **PUT** /bulkquotes/{id)
+    deactivate  MFIMC
+end loop
+
+    MFIMC-->>MFICC: **PUT** /bulkTransactions/{bulkTransactionId}
+    MFICC->>MFIMC: **PUT** /bulkTransactions/{bulkTransactionId}
+    note left
+     confirmation of quote integration
+    end note
+
+loop Transfer Processing: For each batch in bulk message
+  hnote left of MFIMC
+    Each DFSP is messaged to proceed 
+    with the transfer. Results 
+    are captured and returned.
+  end hnote
+    MFIMC ->> MJW: **POST** /bulktransfers
+    activate MFIMC
+    MJW-> MJW: Perform liquidity(NDC) check\n at individual transfer level
+    MJW->MJW: Reserve Funds
+    MJW ->> PayeeFSPMC: **POST** /bulktransfers
+    alt if (HasSupportForBulkTransfers)
+      PayeeFSPMC->PayeeFSPCC: **POST** /bulktransfers
+      note right
+       Bulk Transfer integration
+      end note
+    else if (!HasSupportForBulkTransfers)
+      loop X times for each transfer in bulk message
+        PayeeFSPMC->PayeeFSPCC: **POST** /transfers
+        note right
+         Single Transfer integration
+        end note
+      end Loop
+    end
+    PayeeFSPMC -->> MJW: **PUT** /bulktransfers/{id} (BulkStatus)
+    MJW->MJW: Commit funds at indivial transfer level
+    MJW-->>MFIMC:**PUT** /bulktransfers/{id}
+
+    deactivate MFIMC
+end loop
+MFIMC-->>MFICC:Callback Response \n**PUT** /bulkTransactions/{bulkTransactionId}\nTransfer Response (success & fail)
+note left
+ Result of bulk disbursement received.
+end note
+
+
+@enduml

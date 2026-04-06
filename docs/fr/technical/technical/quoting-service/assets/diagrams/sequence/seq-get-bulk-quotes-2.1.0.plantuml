@@ -1,0 +1,92 @@
+/'*****
+ License
+ --------------
+ Copyright © 2017 Bill & Melinda Gates Foundation
+ The Mojaloop files are made available by the Bill & Melinda Gates Foundation under the Apache License, Version 2.0 (the "License") and you may not use these files except in compliance with the License. You may obtain a copy of the License at
+ http://www.apache.org/licenses/LICENSE-2.0
+ Unless required by applicable law or agreed to in writing, the Mojaloop files are distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+ Contributors
+ --------------
+ This is the official list of the Mojaloop project contributors for this file.
+ Names of the original copyright holders (individuals or organizations)
+ should be listed with a '*' in the first column. People who have
+ contributed from an organization can be listed under the organization
+ that actually holds the copyright for their contributions (see the
+ Gates Foundation organization for an example). Those individuals should have
+ their names indented and be marked with a '-'. Email address can be added
+ optionally within square brackets <email>.
+ * Gates Foundation
+ - Name Surname <name.surname@gatesfoundation.com>
+
+ * Sam Kummary <sam@modusbox.com>
+ --------------
+******'/
+ 
+@startuml
+Title Obtenir les informations d’une cotation groupée
+participant "FSP payeur" as PayerFSP
+participant "Switch\n[Service de cotation]" as Switch
+participant "FSP bénéficiaire" as PayeeFSP
+
+autonumber
+note right of PayerFSP: Le FSP payeur demande le détail d’une cotation groupée\nau FSP bénéficiaire via le Switch
+PayerFSP -\ Switch: GET /bulkQuotes/{ID}
+note right of Switch #aaa
+    Valider la requête selon la
+    spécification d’interface Mojaloop
+    **<color #red>Codes d’erreur : 300x, 310x</color>**
+    **<color #red>Codes HTTP d’erreur : 4xx</color>**
+end note
+Switch -> Switch: Validation de schéma
+PayerFSP \-- Switch: 202 Accepted
+Switch -> Switch: Récupérer le point de terminaison « bulk quotes » du FSP bénéficiaire
+alt point de terminaison « bulk quotes » du FSP bénéficiaire trouvé
+    note right of Switch: Le Switch transmet la requête au FSP bénéficiaire (mode pass-through)
+    Switch -\ PayeeFSP: GET /bulkQuotes/{ID}
+    PayeeFSP --/ Switch: 202 Accepted
+    PayeeFSP -> PayeeFSP: Le FSP bénéficiaire récupère la cotation groupée
+    alt le FSP bénéficiaire récupère la cotation avec succès
+        note left of PayeeFSP: Le FSP bénéficiaire répond à la demande de cotation
+        PayeeFSP -\ Switch: PUT /quotes/{ID}
+        note right of Switch #aaa
+            Valider la requête selon la
+            spécification d’interface Mojaloop
+            **<color #red>Codes d’erreur : 300x, 310x</color>**
+            **<color #red>Codes HTTP d’erreur : 4xx</color>**
+        end note
+        Switch --/ PayeeFSP: 200 Ok
+        alt réponse valide
+            Switch -> Switch: Récupérer le point de terminaison « bulk quotes » du FSP payeur
+            alt point de terminaison de callback « bulk quotes » trouvé
+                note left of Switch: Le Switch transmet la réponse de cotation groupée au FSP payeur
+                Switch -\ PayerFSP: PUT /bulkQuotes/{ID}
+                PayerFSP --/ Switch: 200 Ok    
+            else point de terminaison de callback « bulk quotes » introuvable
+                note right of Switch: Le Switch renvoie une erreur au FSP bénéficiaire
+                Switch -\ PayeeFSP: PUT /bulkQuotes/{ID}/error
+                PayeeFSP --/ Switch : 200 Ok
+            end
+        else réponse invalide
+            note right of Switch: Le Switch renvoie une erreur au FSP bénéficiaire
+            Switch -\ PayeeFSP: PUT /bulkQuotes/{ID}/error
+            PayeeFSP --/ Switch : 200 Ok
+            note over Switch, PayeeFSP #ec7063: Dans ce scénario, le FSP payeur\npeut ne pas recevoir de réponse
+        end
+
+    else bulkQuote introuvable
+        note left of PayeeFSP: Le FSP bénéficiaire renvoie une erreur au Switch\n <color #red>**Code d’erreur : 3205**</color>
+        PayeeFSP -\ Switch: PUT /bulkQuotes/{ID}/error
+        Switch --/ PayeeFSP: 200 OK
+        note left of Switch: Le Switch renvoie une erreur au FSP payeur\n <color #red>**Code d’erreur : 3205**</color>
+        Switch -\ PayerFSP: PUT /bulkQuotes/{ID}/error
+        PayerFSP --/ Switch: 200 OK
+    end
+else point de terminaison « bulk quotes » du FSP bénéficiaire introuvable
+    note left of Switch
+        Le Switch renvoie une erreur au FSP payeur
+        **<color #red>Code d’erreur : 3201</color>**
+    end note
+    PayerFSP /- Switch: PUT /bulkQuotes/{ID}/error
+    PayerFSP --/ Switch: 200 OK
+end
+@enduml
