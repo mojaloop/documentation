@@ -24,6 +24,7 @@ The following conventions are used in this document to identify the specified ty
 |Version|Date|Change Description|
 |---|---|---|
 |**1.0**|2018-03-13|Initial version|
+|**2.0**|2026-04-08|Second version published to match FSPIOP v2.0 document set|
 
 ## Introduction
 
