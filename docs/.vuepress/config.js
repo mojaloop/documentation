@@ -1,3 +1,4 @@
+const path = require('path')
 const { description } = require('../../package')
 
 // Determine if we're in PR preview mode
@@ -35,6 +36,15 @@ module.exports = {
   ],
 
   theme: 'titanium',
+
+  // Force the active theme runtime to use the custom typo-tolerant search box.
+  configureWebpack: {
+    resolve: {
+      alias: {
+        '@SearchBox': path.resolve(__dirname, './components/StrictSearchBox.vue')
+      }
+    }
+  },
 
   /**
    * Theme configuration, here is the default theme configuration for VuePress.
