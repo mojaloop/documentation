@@ -1,7 +1,7 @@
 # Policy on the Responsible Use of Artificial Intelligence (AI) Tools by Community Members
 
 - Version: 1.0
-- Effective Date: 2026-02-16
+- Effective Date: 2026-04-08
 - Author: James Bush (jbush@mojaloop.io)
 - Applies To: All contributors, maintainers, adopters, and participants in the Mojaloop Foundation community and its associated projects, including repositories under the Mojaloop GitHub organisation.
 
