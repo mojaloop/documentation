@@ -56,105 +56,106 @@ Il n’existe pas de `POST` sur la ressource `/parties`, comme indiqué dans la 
 ” _The HTTP request `POST /participants/<Type>/<ID>` (or `POST /participants/<Type>/<ID>/<SubId>`) is used to create information on the server regarding the provided identity, defined by `<Type>`, `<ID>`, and optionally `<SubId>` (for example, POST_
   _/participants/MSISDN/123456789 or POST /participants/BUSINESS/shoecompany/employee1). See Section 5.1.6.11 for more information regarding addressing of a Party._ ”.
   
-## 11. Does the participant represent an account of a customer in a bank?
+## 11. Le participant représente-t-il un compte d’un client dans une banque ?
 
-For more on this, please refer to this doc (Section 3..2): https://github.com/mojaloop/mojaloop-specification/blob/develop/Generic%20Transaction%20Patterns.pdf.
+Pour plus d'informations, veuillez consulter ce document (Section 3.2) : https://github.com/mojaloop/mojaloop-specification/blob/develop/Generic%20Transaction%20Patterns.pdf.
   
-” _In the API, a Participant is the same as an FSP that is participating in an Interoperability Scheme. The primary purpose of the logical API resource Participants is for FSPs to find out in which other FSP a counterparty in an interoperable financial transaction is located. There are also services defined for the FSPs to provision information to a common system._ ”
+” _Dans l’API, un Participant est équivalent à un PSP (Prestataire de Services de Paiement/FSP) qui participe à un schéma d’interopérabilité. L’objectif principal de la ressource logique Participants de l’API est de permettre aux PSP de savoir dans quel autre PSP se trouve la contrepartie d’une transaction financière interopérable. Il existe également des services définis pour que les PSP fournissent des informations à un système commun._ ”
 
-In essence, a participant is any FSP participating in the Scheme (usually not a customer). For account lookup, a directory service such as *Pathfinder* can be used, which provides user lookup and the mapping. If such a directory service is not provided, an alternative is provided in the Specification, where the Switch hosts an Account Lookup Service (ALS) but to which the participants need to register parties. I addressed this earlier. But one thing to note here is that the Switch does not store the details, just the mapping between an ID and an FSP and then the calls to resolve the party are sent to that FSP. 
+En résumé, un participant est tout PSP impliqué dans le schéma (généralement pas un client). Pour la recherche de compte, un service d’annuaire tel que *Pathfinder* peut être utilisé, qui permet de rechercher un utilisateur et d’établir la correspondance. Si un tel service d’annuaire n’est pas fourni, la spécification propose une alternative où le Switch héberge un service de lookup de comptes (ALS) auquel les participants doivent enregistrer les parties. J’ai déjà évoqué ce point. Mais il faut noter que le Switch ne conserve pas les détails, uniquement la correspondance entre un identifiant et un FSP, et les requêtes de résolution de la partie sont redirigées vers ce FSP.
 
-https://github.com/mojaloop/mojaloop-specification CORE RELATED (Mojaloop):
+https://github.com/mojaloop/mojaloop-specification LIÉ AU CŒUR (Mojaloop) :
 
-This repo contains the specification document set of the Open API for FSP Interoperability - mojaloop/mojaloop-specification.
+Ce dépôt contient le jeu de documents de spécification de l’Open API pour l’interopérabilité des PSP - mojaloop/mojaloop-specification.
 
-## 12. How to register _trusted_ payee to a payer, to skip OTP?
+## 12. Comment enregistrer un bénéficiaire _de confiance_ auprès d’un payeur pour éviter l’OTP ?
 
-To skip the OTP, the initial request on the /transactionRequests from the Payee can be programmatically (or manually for that matter) made to be approved without the use of the /authorizations endpoint (that is need for OTP approval). Indeed the FSP needs to handle this, the Switch does not. This is discussed briefly in section 6.4 of the Specification.
+Pour éviter la saisie de l’OTP, la demande initiale sur /transactionRequests initiée par le bénéficiaire peut être approuvée de façon programmatique (ou même manuelle) sans passer par le endpoint /authorizations (utilisé habituellement pour la validation OTP). C’est en effet au PSP de gérer cela, le Switch ne le fait pas. Ceci est évoqué brièvement en section 6.4 de la spécification.
 
-## 13. Receiving a 404 error when attempting to access or load kubernetes-dashboard.yaml file?
+## 13. J’obtiens une erreur 404 lorsque j’essaie d’accéder ou de charger le fichier kubernetes-dashboard.yaml ?
 
-From the official kubernetes github repository in the README.md, the latest link to use is "https://raw.githubusercontent.com/kubernetes/dashboard/v1.10.1/src/deploy/recommended/kubernetes-dashboard.yaml". Be sure to always verify 3rd party links before implementing. Open source applications are always evolving.
+Selon le README.md officiel du dépôt github de kubernetes, le lien le plus récent à utiliser est : "https://raw.githubusercontent.com/kubernetes/dashboard/v1.10.1/src/deploy/recommended/kubernetes-dashboard.yaml". Veillez toujours à vérifier les liens tiers avant toute utilisation. Les applications open source évoluent constamment.
 
-## 14. When installing nginx-ingress for load balancing & external access - Error: no available release name found?
+## 14. Lors de l’installation de nginx-ingress pour la répartition de charge & l’accès externe – Erreur : no available release name found ?
 
-Please have a look at the following addressing a similar issue. To summarise - it is most likely an RBAC issue. Have a look at the documentation to set up Tiller with RBAC. https://docs.helm.sh/using_helm/#role-based-access-control goes into detail about this. The issue logged: helm/helm#3839.
+Merci de consulter la page suivante qui aborde une problématique similaire. Pour résumer, il s’agit très probablement d’un problème RBAC. Consultez la documentation pour configurer Tiller avec RBAC : https://docs.helm.sh/using_helm/#role-based-access-control détaille la procédure. Voir également l’issue enregistrée : helm/helm#3839.
 
-## 15. Received "ImportError: librdkafka.so.1: cannot open shared object file: No such file or directory" when running `npm start' command.
+## 15. Message reçu "ImportError: librdkafka.so.1: cannot open shared object file: No such file or directory" lors de l’exécution de la commande `npm start`.
 
-Found a solution here https://github.com/confluentinc/confluent-kafka-python/issues/65#issuecomment-269964346
-GitHub
-ImportError: librdkafka.so.1: cannot open shared object file: No such file or directory · Issue #65 · confluentinc/confluent-kafka-python
-Ubuntu 14 here, pip==7.1.2, setuptools==18.3.2, virtualenv==13.1.2. First, I want to build latest stable (seems it&#39;s 0.9.2) librdkafka into /opt/librdkafka. curl https://codeload.github.com/ede...
+Solution trouvée ici : https://github.com/confluentinc/confluent-kafka-python/issues/65#issuecomment-269964346  
+GitHub  
+ImportError: librdkafka.so.1: cannot open shared object file: No such file or directory · Issue #65 · confluentinc/confluent-kafka-python  
+Sous Ubuntu 14, pip==7.1.2, setuptools==18.3.2, virtualenv==13.1.2. Je souhaite d’abord compiler la dernière version stable (il semble que ce soit 0.9.2) de librdkafka dans /opt/librdkafka :  
+curl https://codeload.github.com/ede...
 
-Here are the steps to rebuild librdkafka:
+Voici les étapes pour reconstruire librdkafka :
 
-git clone https://github.com/edenhill/librdkafka && cd librdkafka && git checkout `<commit_sha>
+git clone https://github.com/edenhill/librdkafka && cd librdkafka && git checkout `<commit_sha>`
 
 cd librdkafka && ./configure && make && make install && ldconfig
 
-After that I'm able to import stuff without specifying LD_LIBRARY_PATH.
-GitHub
-edenhill/librdkafka
-The Apache Kafka C/C++ library. Contribute to edenhill/librdkafka development by creating an account on GitHub.
+Après cela, je peux importer les dépendances sans avoir à spécifier LD_LIBRARY_PATH.  
+GitHub  
+edenhill/librdkafka  
+La bibliothèque Apache Kafka C/C++. Contribuez à edenhill/librdkafka sur GitHub.
 
-## 16. Can we use mojaloop as open-source mobile wallet software or mojaloop does interoperability only?
+## 16. Peut-on utiliser mojaloop comme logiciel open source de portefeuille mobile ou mojaloop gère-t-il uniquement l’interopérabilité ?
 
-We can use mojaloop for interoperability to support mobile wallet and other such money transfers. This is not a software for a DFSP (there are open source projects that cater for these such as Finserv etc). Mojaloop is for a Hub/Switch primarily and an API that needs to be implemented by a DFSP. But this is not for managing mobile wallets as such.
+Nous pouvons utiliser mojaloop pour l’interopérabilité afin de supporter les portefeuilles mobiles et autres transferts d’argent. Ce n’est pas un logiciel pour les DFSP (il existe d’autres projets open source pour cela, comme Finserv, etc). Mojaloop sert principalement de Hub/Switch et fournit une API à implémenter côté DFSP, mais ne sert pas à gérer directement des portefeuilles mobiles.
 
-## 17. Describe companies that helps to deploy & support for mojaloop?
+## 17. Quelles sont les sociétés qui aident à déployer et à supporter mojaloop ?
 
-Mojaloop is an open source software and specification.
+Mojaloop est un logiciel et une spécification open source.
 
-## 18. Can you say something about mojaloop & security?
+## 18. Que pouvez-vous dire au sujet de mojaloop et de la sécurité ?
 
-The Specification is pretty standard and has good security standards. But these need to be implemented by the adopters and deployers. Along with this, the security measures need to be coupled with other Operational and Deployment based security measures. Moreover, the coming few months will focus on security perspective for the Open Source community.
+La spécification est assez standard et dispose de bonnes pratiques de sécurité. Mais leur mise en œuvre incombe aux intégrateurs et déployeurs. En complément, des mesures de sécurité opérationnelle et de déploiement doivent être appliquées. Par ailleurs, les prochains mois se concentreront sur la sécurité au sein de la communauté open source.
 
-## 19. What are the benefit(s) from using mojaloop as interoperabilty platform?
+## 19. Quels sont les avantages d’utiliser mojaloop comme plateforme d’interopérabilité ?
 
-Benefits: Right now for example, an Airtel mobile money user can transfer to another Airtel mobile money user only. With this, he/she can transfer to any Financial service provider such as another mobile money provider or any other bank account or Merchant that is connected to the Hub, irrespective of their implementation. They just need to be connected to the same Switch. Also, this is designed for feature phones so everyone can use it.
+Bénéfices : À ce jour, par exemple, un utilisateur Airtel mobile money ne peut transférer qu’à un autre utilisateur Airtel. Avec ce système, il/elle peut transférer à tout autre prestataire financier comme un autre opérateur mobile money, une banque ou un commerçant connecté au Hub, quelle que soit l’implémentation. Il suffit qu’ils soient connectés au même Switch. De plus, la plateforme est conçue pour être utilisable sur les téléphones basiques (feature phones), donc accessible à tous.
 
-## 20. What are the main challenges that companies face using mojaloop?
+## 20. Quels sont les principaux défis auxquels font face les entreprises utilisant mojaloop ?
 
-At this point, the main challenges are around expectations. Expectations of the adopters of mojaloop and what really mojaloop is. A lot of adopters have different understanding of what mojaloop is and about its capabilities. If they have a good understanding, a lot of current challenges are mitigated..
-Yes, forensic logging is a security measure as well for auditing purposes which will ensure there is audit-able log of actions and that everything that is a possible action of note is logged and rolled up, securely after encryption at a couple of levels.
+Actuellement, les difficultés majeures sont liées aux attentes. Les attentes des adopteurs de mojaloop et la réalité de ce qu’est mojaloop. Beaucoup ont une compréhension différente de mojaloop et de ses capacités. Avec une bonne compréhension, de nombreux défis actuels disparaissent.  
+Oui, la journalisation forensic (forensic logging) est aussi une mesure de sécurité pour l’audit, elle permet d’assurer qu’il existe un registre traçable des actions, que toute action notable soit consignée et conservée en toute sécurité après chiffrement à plusieurs niveaux.
 
-## 21. Is forensic logging/audit in mojaloop , is it related with securing the inter-operability platform?
+## 21. L’audit/journalisation forensic dans mojaloop est-il/elle lié(e) à la sécurisation de la plateforme d’interopérabilité ?
 
-This also ensures all the services always run the code they’re meant to run and anything wrong/bad is stopped from even starting up. Also, for reporting and auditors, reports can have a forensic-log to follow.
+Cela garantit aussi que tous les services exécutent toujours le code attendu et que toute anomalie est empêchée de démarrer. Pour le reporting et les auditeurs, des rapports peuvent intégrer un journal forensic retraçable.
 
-## 22. How do the financial service providers connect with mojaloop?
+## 22. Comment les fournisseurs de services financiers se connectent-ils à mojaloop ?
 
-There is an architecture diagram that presents a good view of the integration between the different entities. https://github.com/mojaloop/docs/blob/master/Diagrams/ArchitectureDiagrams/Arch-Flows.svg.
+Il existe un schéma architectural qui présente clairement l’intégration des différentes entités : https://github.com/mojaloop/docs/blob/master/Diagrams/ArchitectureDiagrams/Arch-Flows.svg.
 
-## 23. Is there any open source ISO8583-OpenAPI converter/connector available?
+## 23. Existe-t-il un convertisseur/connecteur open source ISO8583-OpenAPI ?
 
-I don't believe a generic ISO8583 `<-> Mojaloop integration is available currently. We're working on some "traditional payment channel" to Mojaloop integrations (POS and ATM) which we hope to demo at the next convening. These would form the basis for an ISO8583 integration we might build and add to the OSS stack but bare in mind that these integrations will be very use case specific.
+Je ne crois pas qu’il existe à ce jour une intégration générique ISO8583 `<-> Mojaloop`. Nous travaillons actuellement sur certaines intégrations de « canaux de paiement traditionnels » à Mojaloop (POS et GAB) que nous espérons présenter lors de la prochaine réunion. Celles-ci pourraient former la base d’une intégration ISO8583 à ajouter à la stack open source, mais gardez à l’esprit que ces intégrations sont très spécifiques à chaque cas d’usage.
 
-## 24. How do I know the end points to setup postman for testing the deployment?
+## 24. Comment connaître les endpoints à utiliser dans postman pour tester le déploiement ?
 
-On the Kubernetes dashboard, select the correct NAMESPACE. Go to Ingeresses. Depending on how you deployed the helm charts, look for 'moja-centralledger-service'. Click on edit, and find the tag `<HOST>`. This would contain the endpoint for this service.
+Dans le dashboard Kubernetes, sélectionnez le NAMESPACE approprié. Allez dans Ingresses. Selon la manière dont vous avez déployé les charts Helm, recherchez 'moja-centralledger-service'. Cliquez sur "éditer", et cherchez la balise `<HOST>`. Celle-ci contient l’endpoint du service.
 
-If you use the CLI, find the 'Host' column in `kubectl describe ingress moja-centralledger-service`
+En ligne de commande, repérez la colonne 'Host' dans la commande : `kubectl describe ingress moja-centralledger-service`
 
-## 25. Why are there no reversals allowed on a Mojaloop?
+## 25. Pourquoi les rétrocessions ne sont-elles pas autorisées sur Mojaloop ?
 
-*Irrevocability* is a core Level One Principle (edited) and not allowing reversals is essential for that. Here is the section from the API Definition addressing this:
+*L’irrévocabilité* est un principe fondamental du projet Level One (édité) et il est essentiel qu’aucune rétrocession ne soit permise. Extrait pertinent issu de la définition d’API ci-dessous :
 
-_*6.7.1.2 Transaction Irrevocability*_
-_The API is designed to support irrevocable financial transactions only; this means that a financial transaction cannot be changed, cancelled, or reversed after it has been created. This is to simplify and reduce costs for FSPs using the API. A large percentage of the operating costs of a typical financial system is due to reversals of transactions._
-_As soon as a Payer FSP sends a financial transaction to a Payee FSP (that is, using POST /transfers including the end-to-end financial transaction), the transaction is irrevocable from the perspective of the Payer FSP. The transaction could still be rejected in the Payee FSP, but the Payer FSP can no longer reject or change the transaction. An exception to this would be if the transfer’s expiry time is exceeded before the Payee FSP responds (see Sections 6.7.1.3 and 6.7.1.5 for more information). As soon as the financial transaction has been accepted by the Payee FSP, the transaction is irrevocable for all parties._
+_*6.7.1.2 Irrévocabilité des transactions*_
+_L’API est conçue pour ne supporter que des transactions financières irrévocables ; cela signifie qu’une transaction ne peut ni être modifiée, annulée ou rétrocédée après sa création. L’objectif est de simplifier et de réduire les coûts pour les PSP utilisant l’API. Une grande part du coût opérationnel d’un système financier classique est liée aux rétrocessions._
+_Aussitôt qu’un PSP payeur envoie une transaction financière à un PSP bénéficiaire (via POST /transfers avec la transaction financière de bout en bout), la transaction devient irrévocable du point de vue du PSP payeur. Elle peut toujours être rejetée côté bénéficiaire, mais le payeur ne peut plus la rejeter ou la modifier. Seule exception : si l’expiration du transfert est atteinte avant la réponse du bénéficiaire (voir Sections 6.7.1.3 et 6.7.1.5 pour plus de détails). Dès qu’une transaction est acceptée par le bénéficiaire, elle devient irrévocable pour toutes les parties._
 
-However, *Refunds* is a use case supported by the API.
+Cependant, *les remboursements* sont un cas d’usage supporté par l’API.
 
-## 26. ffg. error with microk8s installation "MountVolume.SetUp failed"?
+## 26. Erreur "MountVolume.SetUp failed" lors de l’installation de microk8s ?
 
-Would appear if it is a space issue, but more the 100GiB of EBS storage was allocated.
-The issue resolved itself after 45 minutes. Initial implementation of the mojaloop project can take a while to stabilize.
+Ce message peut apparaître en cas de problème d’espace disque, même si plus de 100Go d’espace EBS ont été alloués.  
+Le problème s’est résolu de lui-même après 45 minutes. La mise en place initiale du projet mojaloop peut mettre un certain temps à se stabiliser.
 
-## 27. Why am I getting this error when trying to create a participant: "Hub reconciliation account for the specified currency does not exist"?
+## 27. Pourquoi cette erreur lors de la création d’un participant : "Hub reconciliation account for the specified currency does not exist" ?
 
-You need to create the corresponding Hub accounts (HUB_MULTILATERAL_SETTLEMENT and HUB_RECONCILIATION) for the specified currency before setting up the participants. 
-In this Postman collection you can find the requests to perform the operation in the "Hub Account" folder: https://github.com/mojaloop/postman/blob/master/OSS-New-Deployment-FSP-Setup.postman_collection.json
+Vous devez d’abord créer les comptes Hub correspondants (HUB_MULTILATERAL_SETTLEMENT et HUB_RECONCILIATION) pour la devise concernée avant de configurer les participants.  
+Dans cette collection Postman vous trouverez les requêtes pour effectuer l’opération dans le dossier "Hub Account" : https://github.com/mojaloop/postman/blob/master/OSS-New-Deployment-FSP-Setup.postman_collection.json
 
-Find also the related environments in the Postman repo: https://github.com/mojaloop/postman
+Trouvez également les environnements correspondants dans le dépôt Postman : https://github.com/mojaloop/postman
