@@ -14,8 +14,7 @@ module.exports = (options, ctx) => ({
     return {
       '@AlgoliaSearchBox': isAlgoliaSearch
         ? path.resolve(__dirname, 'components/AlgoliaSearchBox.vue')
-        : path.resolve(__dirname, 'noopModule.js'),
-      '@SearchBox': path.resolve(__dirname, '../components/StrictSearchBox.vue')
+        : path.resolve(__dirname, 'noopModule.js')
     }
   },
   plugins: [
