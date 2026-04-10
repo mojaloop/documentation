@@ -1,0 +1,31 @@
+@startuml SettingUpProxys
+title API du grand livre central / API d'administration
+
+participant "Script d'intégration" as script
+participant "Mojaloop\nSchéma A" as schemeA
+participant "Proxy XN" as xnp
+participant "Mojaloop\nSchéma B" as schemeB
+
+autonumber 1 "<b>[0]"
+
+== Création des types de participants ==
+
+script -> schemeA: POST /participants
+note left
+{
+  "name": "XN Proxy",
+  "currency": "USD",
+  <color:#ff0000>"isProxy": true
+}
+end note
+
+script -> schemeB: POST /participants
+note left
+{
+  "name": "XN Proxy",
+  "currency": "USD",
+  <color:#ff0000>"isProxy": true
+}
+end note
+
+@enduml

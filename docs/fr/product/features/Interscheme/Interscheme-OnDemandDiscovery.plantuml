@@ -1,0 +1,140 @@
+@startuml Interscheme-OnDemandDiscovery
+
+title Inter-schéma — découverte à la demande
+
+participant "DFSP payeur" as payerDFSP
+box "Schéma A" #LightBlue
+    participant "ALS\nSchéma A" as ALS_A
+    participant "Cache proxy\nSchéma A" as pc_A
+    participant "Oracle\nSchéma A" as Oracle_A
+end box
+participant "autres proxys" as dfspsA
+participant "Proxy AB" as xnp
+box "Schéma B" #d1e0c3
+    participant "ALS\nSchéma B" as ALS_B
+    participant "Cache proxy\nSchéma B" as pc_B    
+    participant "Oracle\nSchéma B" as Oracle_B
+end box
+participant "DFSP bénéficiaire" as payeeDFSP
+
+autonumber 1 "<b>[0]"
+
+payerDFSP ->> ALS_A: GET /parties/{Type}/{ID}
+note left
+ en-tête source = payerDFSP
+end note
+ALS_A -->> payerDFSP: 202 OK
+ALS_A-> Oracle_A: GET /participant/{ID}
+alt si introuvable dans Oracle
+
+Oracle_A--> ALS_A: aucun dfsp trouvé
+ALS_A ->> ALS_A: Y a-t-il des proxys\n dans le schéma A ?
+  ALS_A ->> ALS_A: Mettre en cache les proxys\nqui recevront les messages
+   note left
+     SentToProxies[{ID}] = 
+     {['Proxy AB', 'Proxy CD', 'Proxy EF']}
+   end note
+
+  loop pour chaque proxy du schéma A (hors source)    
+  alt si Proxy AB
+    ALS_A ->> xnp: GET /parties/{Type}/{ID}      
+    xnp->xnp: Ajouter l'en-tête
+    note left
+    fxpiop-proxy = "Proxy AB"
+    end note
+
+    xnp ->> ALS_B: GET /parties/{Type}/{ID}
+    ALS_B -->> xnp: 202 OK
+    xnp -->> ALS_A: 202 OK
+    ALS_B -> pc_B: Source hors schéma : \nfxpiop-proxy = "Proxy AB"\nAjouter « DFSP payeur » au\nmappage « Proxy AB »
+    pc_B -> pc_B: Ajouter un nouveau mappage\nau cache
+    note left
+    DFSP payeur : Proxy AB
+    end note        
+
+    ALS_B-> Oracle_B: GET /participant/{ID}
+    Oracle_B--> ALS_B: dfsp = payeeDFSP
+    ALS_B ->> payeeDFSP: GET /parties/{Type}/{ID}  
+    payeeDFSP -->> ALS_B: 202 OK
+    payeeDFSP ->> ALS_B: PUT /parties/{ID}
+    note right
+    en-tête destination = payerDFSP
+    source = payeeDFSP
+    end note
+    ALS_B -->> payeeDFSP: 200 OK
+    ALS_B -> pc_B: Recherche du proxy payerDFSP
+    ALS_B ->> xnp: PUT /parties/{ID}
+    xnp->xnp: Ajouter l'en-tête
+    note left
+    fxpiop-proxy = "Proxy AB"
+    end note
+    
+    xnp ->> ALS_A: PUT /parties/{ID}
+    ALS_A -->> xnp: 200 OK
+    xnp -->> ALS_B: 200 OK
+    ALS_A -> pc_A: Source hors schéma : \nfxpiop-proxy = "Proxy AB"\nAjouter « DFSP bénéficiaire » au\nmappage « Proxy AB »
+    pc_A -> pc_A: Nouveau mappage\nVérifier la signature JWS\net ajouter au cache
+    note left
+    DFSP bénéficiaire : Proxy AB
+    end note        
+    ALS_A -> Oracle_A: Mettre à jour Oracle avec le mappage\n**POST /participants/{Type}/{ID}** \n{{"fspId": "DFSP bénéficiaire"}}
+    Oracle_A--> ALS_A: retour
+    ALS_A ->> payerDFSP: PUT /parties/{ID}
+    payerDFSP -->> ALS_A: 200 OK
+  else si autre proxy dans le schéma A
+    ALS_A ->> dfspsA: GET /parties/{Type}/{ID}    
+    dfspsA -->> ALS_A: 202 OK
+    dfspsA ->> ALS_A: PUT /parties/{ID}/error
+    ALS_A -->> dfspsA: 200 OK
+    ALS_A ->> ALS_A: Marquer le message comme\nreçu du proxy
+   note left
+     retirer l'autre proxy de 
+     liste SentToProxies[{ID}]
+   end note
+
+    alt si SentToProxies[{ID}] est vide
+        ALS_A ->> payerDFSP: PUT /parties/{ID}/error
+   note right
+     SentToProxies[{ID}] est vide
+   end note
+        payerDFSP -->> ALS_A: 200 OK
+    end
+  end  
+end loop
+else si trouvé dans Oracle
+  Oracle_A--> ALS_A: dfsp = payeeDFSP
+
+  ALS_A->ALS_A: Le DFSP bénéficiaire n'est\npas dans le schéma A 
+  ALS_A-> pc_A: Recherche du proxy pour\nle DFSP bénéficiaire
+  alt si la source de l'en-tête est membre du schéma A
+  ALS_A->ALS_A: Ajouter la destination à l'en-tête 
+  note left 
+  dfsp destination : DFSP bénéficiaire
+  end note 
+
+  ALS_A ->> xnp: GET /parties/{Type}/{ID}
+  xnp ->> ALS_B: GET /parties/{Type}/{ID} 
+  ALS_B -->> xnp: 202 OK
+  xnp -->> ALS_A: 202 OK
+  end
+  ALS_B->ALS_B: Transférer vers la destination
+  ALS_B ->> payeeDFSP: GET /parties/{Type}/{ID}
+  payeeDFSP -->> ALS_B: 202 OK
+  payeeDFSP ->> ALS_B: PUT /parties/{ID}
+  note right
+   en-tête destination = payerDFSP
+  end note
+  ALS_B -->> payeeDFSP: 200 OK
+  ALS_B -> pc_B: Recherche du proxy payerDFSP
+  ALS_B ->> xnp: PUT /parties/{ID}
+  xnp ->> ALS_A: PUT /parties/{ID}
+  ALS_A -->> xnp: 200 OK
+  xnp -->> ALS_B: 200 OK
+  ALS_A -> pc_A: Source hors schéma : \nAjouter « DFSP bénéficiaire » au\nmappage « Proxy AB »
+  pc_A -> pc_A: Mappage obtenu
+  ALS_A ->> payerDFSP: PUT /parties/{ID}
+  payerDFSP -->> ALS_A: 200 OK
+end
+
+
+@enduml

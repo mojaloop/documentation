@@ -1,0 +1,113 @@
+@startuml Payer_SEND_Discovery
+!$simplified = true
+!$hideSwitchDetail = false
+!$advancedCoreConnectorFlow = true
+!$senderName = "John"
+!$senderLastName = ""
+!$senderDOB = "1966-06-16"
+!$receiverName = "Yaro"
+!$receiverFirstName = "Yaro"
+!$receiverMiddleName = ""
+!$receiverLastName = ""
+!$receiverDOB = "1966-06-16"
+!$payerCurrency = "BWP"
+!$payeeCurrency = "TZS"
+!$payerFSPID = "PayerFSP"
+!$payeeFSPID = "PayeeFSP"
+!$fxpID = "FDH_FX"
+!$payerMSISDN = "26787654321"
+!$payeeMSISDN = "2551234567890"
+!$payeeReceiveAmount = "44000"
+!$payerSendAmount = "300"
+!$payeeFee = "4000"
+!$targetAmount = "48000"
+!$fxpChargesSource = "33"
+!$fxpChargesTarget = "6000"
+!$fxpSourceAmount = "300"
+!$fxpTargetAmount = "48000"
+!$totalChargesSourceCurrency = "55"
+!$totalChargesTargetCurrency = "10000"
+!$conversionRequestId = "828cc75f1654415e8fcddf76cc"
+!$conversionId = "581f68efb54f416f9161ac34e8"
+!$homeTransactionId = "string"
+!$quoteId = "382987a875ce4037b500c475e0"
+!$transactionId = "d9ce59d4359843968630581bb0"
+!$quotePayerExpiration = "2021-08-25T14:17:09.663+01:00"
+!$quotePayeeExpiration = "2021-08-25T14:17:09.663+01:00"
+!$commitRequestId = "77c9d78dc26a44748b3c99b96a"
+!$determiningTransferId = "d9ce59d4359843968630581bb0"
+!$transferId = "d9ce59d4359843968630581bb0"
+!$fxCondition = "GRzLaTP7DJ9t4P-a_B..."
+!$condition = "HOr22-H3AfTDHrSkP..."
+
+
+title Découverte — conversion de devises
+actor "$senderName" as A1
+box "DFSP payeur" #LightBlue  
+  participant "DFSP payeur" as D1
+end box
+
+participant "Commutateur Mojaloop" as S1
+
+'box "Service de découverte" #LightYellow
+'  participant "Oracle ALS" as ALS
+'end box
+
+'box "Fournisseur de change"  
+'  participant "Connecteur\nFXP" as FXP
+'end box
+
+box "DFSP bénéficiaire" #LightBlue   
+  participant "Connecteur Mojaloop\nbénéficiaire" as D2
+end box
+
+'actor "$receiverName" as A2
+autonumber
+
+A1->D1:Je voudrais payer $receiverName\n$payerSendAmount $payerCurrency, s'il vous plaît
+
+activate D1
+D1->>S1:Je veux envoyer vers le MSISDN $payeeMSISDN\n**GET /parties/MSISDN/$payeeMSISDN**
+deactivate D1
+activate S1
+!if ($simplified != true)
+S1-->>D1:202 — Je vous recontacte
+!endif
+S1->S1:Who owns MSISDN $payeeMSISDN?\nIt's $payeeFSPID
+S1->>D2:Le MSISDN $payeeMSISDN vous appartient-il ?
+deactivate S1
+activate D2
+!if ($simplified != true)
+D2-->>S1:202 — Je vous recontacte
+!endif
+D2->D2: Vérifier le statut de liste de sanctions et déclencher une actualisation
+D2->>S1:Oui, c'est $receiverName. Il peut recevoir en $payeeCurrency\n**PUT /parties/MSISDN/$payeeMSISDN**
+note right 
+    **PUT /parties**
+    {
+        "partyIdInfo": {
+            "partyIdType": "MSISDN",
+            "partyIdentifier": "$payeeMSISDN",
+            "fspId": "$payeeFSPID"},
+        "name": "$receiverName",
+        "supportedCurrencies": [ "$payeeCurrency" ]
+    }
+end note
+
+deactivate D2
+activate S1
+!if ($simplified != true)
+S1-->>D2:200 — OK
+!endif
+S1->>D1:Oui, c'est $receiverName. Il peut recevoir en $payeeCurrency\n**PUT /parties/MSISDN/$payeeMSISDN**
+deactivate S1
+activate D1
+!if ($simplified != true)
+D1-->>S1:200 — OK
+!endif
+
+D1->A1: Bonjour, $senderName : le numéro appartient à $receiverName \nDites-moi si vous souhaitez continuer
+deactivate D1
+A1->D1: Le payeur a accepté les informations sur la partie
+
+@enduml
