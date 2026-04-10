@@ -206,6 +206,7 @@ module.exports = {
             ['standards/versioning', 'Versioning'],
             ['standards/creating-new-features', 'Creating New Features'],
             ['standards/triaging-bugs', 'Triaging Bugs'],
+            ['standards/ai_policy', "AI Policy"],
           ]
         },
         {
