@@ -3,6 +3,7 @@ const { description } = require('../../package')
 
 // Determine if we're in PR preview mode
 const isPrPreview = process.env.VUEPRESS_IS_PR === 'true'
+const isWindows = process.platform === 'win32'
 
 // Set base URL for PR previews
 const base = isPrPreview ? `/pr/${process.env.VUEPRESS_PR_NUMBER}/` : '/'
@@ -1183,7 +1184,7 @@ module.exports = {
   plugins: [
     '@vuepress/plugin-back-to-top',
     '@vuepress/plugin-medium-zoom',
-    'versioning'
-  ]
+    !isWindows && 'versioning'
+  ].filter(Boolean)
 };
 
