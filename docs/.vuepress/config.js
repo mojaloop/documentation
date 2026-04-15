@@ -41,8 +41,8 @@ module.exports = {
   configureWebpack: {
     resolve: {
       alias: {
-        '@SearchBox': path.resolve(__dirname, './components/StrictSearchBox.vue'),
-        'vuepress-plugin-versioning/components/SearchBox': path.resolve(__dirname, './components/StrictSearchBox.vue')
+        '@SearchBox': path.resolve(__dirname, './components/search-fuzzy-matchin.vue'),
+        'vuepress-plugin-versioning/components/SearchBox': path.resolve(__dirname, './components/search-fuzzy-matchin.vue')
       }
     }
   },

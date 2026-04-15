@@ -10,7 +10,7 @@ const TYPO_FALLBACK_MIN_SIMILARITY = 0.35
 const TOKEN_CORRECTION_MIN_SIMILARITY = 0.64
 
 export default {
-  name: 'StrictSearchBox',
+  name: 'search-fuzzy-matchin',
   extends: VuepressSearchBox,
 
   computed: {
