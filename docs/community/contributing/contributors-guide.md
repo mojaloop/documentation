@@ -2,6 +2,9 @@
 
 We are glad that you are considering becoming a part of the Mojaloop community.
 
+_Note: If you use or are planning to use Artificial Intelligence (AI) tools as part of your Mojaloop contribution workflow,
+please ensure you have fully read and comply with our [responsible use of AI policy](../standards/ai_policy.md)._
+
 Based on the current phase of the Mojaloop project, we are looking for the following types of contributors:
 
 ## Types of contributors
@@ -84,3 +87,8 @@ a production mobile money provider.
 ## Where do I send bugs, questions, and feedback?
 
 For bugs, see [Reporting bugs](https://github.com/mojaloop/mojaloop/blob/master/contribute/Reporting-Bugs.md).
+
+## Policy on the Use of Artificial Intelligence (AI) Tools by Community Members
+
+If you use or are planning to use Artificial Intelligence (AI) tools as part of your Mojaloop contribution workflow,
+please ensure you have fully read and comply with our [responsible use of AI policy](../standards/ai_policy.md).
