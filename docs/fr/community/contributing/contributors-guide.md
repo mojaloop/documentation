@@ -2,6 +2,8 @@
 
 Nous sommes heureux que vous envisagiez de rejoindre la communauté Mojaloop.
 
+_Note : si vous utilisez ou envisagez d’utiliser des outils d’intelligence artificielle (IA) dans le cadre de votre contribution à Mojaloop, assurez-vous d’avoir entièrement lu et de respecter notre [politique d’usage responsable de l’IA](../standards/ai_policy.md)._
+
 Compte tenu de la phase actuelle du projet Mojaloop, nous recherchons notamment les types de contributeurs suivants :
 
 ## Types de contributeurs
@@ -66,3 +68,8 @@ Nous ne cherchons pas à remplacer les portefeuilles mobiles ou les fournisseurs
 ## Où signaler bugs, questions et retours ?
 
 Pour les bugs : [Reporting bugs](https://github.com/mojaloop/mojaloop/blob/master/contribute/Reporting-Bugs.md).
+
+## Politique relative à l’usage d’outils d’intelligence artificielle (IA) par les membres de la communauté
+
+Si vous utilisez ou envisagez d’utiliser des outils d’intelligence artificielle (IA) dans le cadre de votre contribution à Mojaloop,
+assurez-vous d’avoir entièrement lu et de respecter notre [politique d’usage responsable de l’IA](../standards/ai_policy.md).
