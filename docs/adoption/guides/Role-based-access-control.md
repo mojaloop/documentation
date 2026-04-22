@@ -2,11 +2,11 @@
 
 An individual who needs to access the various Mojaloop Hub management portals can be registered and an &quot;account&quot; generated, which can be used to access various aspects of an operational instance of a Mojaloop Hub and to provide a basis for auditing that access by tying activities to the original registration. For the purposes of this document, an &quot;account&quot; is a digital identity, a means of authenticating (linking) the person asserting that identity to the original registration, and a set of attributes, which will include - among other things - a set of access rights, or rights that are enabled through the possession of those attributes.
 
-### RBAC Design
+## RBAC Design
 
 The RBAC design for a hub operator, outlines the security control points that should be considered or extended in order to mitigate risk within a typical Mojaloop hub operations organisation. Some control points are business processes and organisational structure related, some control points are technical relating to the identification, authentication and authorisation layers, and some control points require monitoring. All three should be considered to create accountability and mitigate risk.
 
-### Audit
+## Audit
 
 Audit would need to work collaboratively with the business and the IT teams to Segregate these duties wherever possible and assign an appropriate mitigation control in cases wherein it is not feasible to do so. In addition, these controls would need to be monitored on a quarterly basis and the results need to be reported to senior management.
 

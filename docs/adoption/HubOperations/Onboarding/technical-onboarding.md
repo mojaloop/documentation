@@ -168,7 +168,7 @@ The following high-level steps describe how connection is established and data i
 
 After completion of the handshake process, the client and server communicate and transfer data with each other, encrypted with the secret keys shared between the two during the handshake.
 
-<img src="../../../.vuepress/public/TLS_connection.svg" width="65%" height="65%" />
+<img src="../../../.vuepress/public/TLS_connection.svg" width="65%" height="65%" alt="mTLS connection handshake process diagram" />
 
 The above process requires that before connecting to any environment (pre-production or production), the DFSP and the Mojaloop Hub each complete the following steps.
 
