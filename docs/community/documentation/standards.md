@@ -10,7 +10,7 @@ Mojaloop has set forward several standards to ensure that documentation througho
   * Overview: business overview to provide the value or reason for the documentation page
   * Details: appropriate summary information to support the documentation
 
-### 
+###
 
 [Documentation standards](https://github.com/mojaloop/mojaloop/blob/master/contribute/Documentation-and-Template-Standards.md)
 

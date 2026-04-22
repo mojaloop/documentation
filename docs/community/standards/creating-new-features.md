@@ -169,7 +169,7 @@ It is recommended that `npm test` is executed after each of these steps to ensur
    1. If the repo is using [audit-ci](https://www.npmjs.com/package/audit-ci) - update `audit-ci.jsonc` with the issue by adding it to the `allowlist`, and ensure that you add a comment indicating the reason.
    2. If the repo is using [npm-audit-resolver](https://www.npmjs.com/package/npm-audit-resolver) - Run `npm run audit:resolve` and follow the CLI prompts to try fix or ignore the issue (if there is no fix available)
 
-3. OPTIONAL - Update NodeJS to `Active LTS` version
+   3. OPTIONAL - Update NodeJS to `Active LTS` version
 
    Check the `Active LTS` version as per [Official NodeJS Releases](https://nodejs.org/en/about/releases).
 

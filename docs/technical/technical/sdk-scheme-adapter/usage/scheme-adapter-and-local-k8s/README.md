@@ -13,6 +13,7 @@ A detailed documentation for dfsps who want to test the mojaloop cluster deploym
 ## Configuration & Starting services
 
 ### Mojaloop Local K8S cluster deployment
+
 Please follow the below link to deploy your own cluster on local system.
 https://mojaloop.io/documentation/deployment-guide/
 
@@ -23,6 +24,7 @@ After installation please complete the `OSS-New-Deployment-FSP-Setup.postman_col
 Then make sure the oracles & endpoints are configured correctly and that the "Golden Path Collection" can be run successfully.
 
 ### DFSP Mock Backend service & SDK Scheme adapter
+
 The SDK scheme adapter version should be greater than 8.6.0
 The next step starts the scheme adapter from docker-compose file automatically.
 
@@ -57,6 +59,7 @@ services:
 ```
 
 Edit the backend.env file and change the OUTBOUND_ENDPOINT value
+
 ```
 OUTBOUND_ENDPOINT=http://sa_sim2:4001
 ```
@@ -82,6 +85,7 @@ JWS_SIGN_PUT_PARTIES=true
 ### Name resolution configuration - Mac ONLY
 
 Point the following hostnames to your local machine IP by adding the below line in /etc/hosts file
+
 ```
 192.168.5.101       ml-api-adapter.local account-lookup-service.local central-ledger.local central-settlement.local account-lookup-service-admin.local quoting-service.local moja-simulator.local central-ledger central-settlement ml-api-adapter account-lookup-service account-lookup-service-admin quoting-service simulator host.docker.internal moja-account-lookup-mysql
 ```
@@ -112,6 +116,7 @@ The 172.17.0.1 is a default docker0 network interface on linux, however please m
 ### Start
 
 Start the backend and scheme adapter using the following command.
+
 ```
 cd src
 docker-compose up -d
@@ -119,8 +124,10 @@ docker-compose up -d
 
 ## Testing
 
-### Configure new FSP 
+### Configure new FSP
+
 Download the following files:
+
 * [Mojaloop-Local.postman_environment_modified.json](assets/postman_files/Mojaloop-Local.postman_environment_modified.json) - modified environment variables that point to your local setup
 * [OSS-Custom-FSP-Onboaring-SchemeAdapter-Setup.postman_collection.json](assets/postman_files/OSS-Custom-FSP-Onboaring-SchemeAdapter-Setup.postman_collection.json) - steps that will setup new FSP
 
@@ -129,6 +136,7 @@ The SCHEME_ADAPTER_ENDPOINT in the environment file should point to your local s
 In postman, select the environment file and run the custom collection in the postman to provision a new FSP called "safsp". The endpoints for safsp will be set to the URL of the scheme adapter which is configured in environment file.
 
 ### Add the target MSISDN to payee simulator which is running inside the K8S. Run the following commands
+
 ```
 curl -X POST \
   http://moja-simulator.local/payeefsp/parties/MSISDN/27713803912 \
@@ -178,8 +186,10 @@ curl -X POST \
 ```
 
 ### Try to send money
+
 Try to send funds from "safsp" (Mock DFSP) to a MSISDN which is in "payeedfsp" (Simulator in K8S) through scheme adapter.
 Run the following curl command to issue command to Mock DFSP service.
+
 ```
 curl -X POST \
   http://localhost:23000/send \

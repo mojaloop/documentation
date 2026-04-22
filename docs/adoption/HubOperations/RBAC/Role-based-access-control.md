@@ -1,4 +1,5 @@
-# RBAC Context 
+# RBAC Context
+
 The Mojaloop Hub uses a Role-Based Access Control (RBAC) method for mitigating risk.
 
 ## What is RBAC and how to design for it?
@@ -8,6 +9,7 @@ Role-based access control (RBAC) is a method of restricting network access based
 The RBAC design for a hub operator, outlines the security control points that should be considered or extended in order to mitigate risk within a typical Mojaloop hub operations organisation. Some control points are business processes and organisational structure related, some control points are technical relating to the identification, authentication and authorisation layers, and some control points require monitoring. All three should be considered to create accountability and mitigate risk.
 
 This document covers:
+
 1. RBAC Overview.<br>
 Where we discuss RBAC principles and organsational structures.
 2. Technical implementation of the RBAC controls.<br>
@@ -36,6 +38,7 @@ Segregation of Duties focuses on mitigating the risk of internal fraud by settin
 Audit would need to work collaboratively with the business and the IT teams to Segregate these duties wherever possible and assign an appropriate mitigation control in cases wherein it is not feasible to do so. In addition, these controls would need to be monitored on a quarterly basis and the results need to be reported to senior management.
 
 Some contextual definitions include:
+
 1. **Action** : a distinct event triggered by a user that results in:
    - Creation of a data asset
    - Reading or accessing of a data asset
@@ -65,7 +68,7 @@ Mojaloop will have 2 Broad categories of users:
 
 1. **Human** <br>
 These are hub and DFSP users who through various interfaces will interact with Mojaloop. DFSP users will interact with Mojaloop through the Payment Manager and portals that will be made available during the onboarding process.
-2. **Non-human** <br> 
+2. **Non-human** <br>
 These will automate the business processes and automate tasks that would otherwise be done by a human. These will communicate via API calls that will affect actions to fulfil business requirements.
 
 The context of this document will focus on Human users only.
@@ -84,7 +87,6 @@ The Onboarding process will have some activities involving user creation both at
 2. DFSP
    - DFSP Operators
    - DFSP administrators (only applicable to Payment manager).
-
 
 ### Process of Segregation Of Duties determination
 
@@ -108,11 +110,11 @@ The Onboarding process will have some activities involving user creation both at
 | Platform Configuration | | | | | | | | | | |
 |
 
-3. Reconfigure any conflicting roles
+1. Reconfigure any conflicting roles
    - Business approvals
    - Maker checker user creation
-4. Periodic System Access & User Authorisation reporting
-5. Separation of IT-security and Operational IT security that will support user management activities
+2. Periodic System Access & User Authorisation reporting
+3. Separation of IT-security and Operational IT security that will support user management activities
 
 ### Best Practices for RBAC and Mojaloop Identity Management
 
@@ -128,7 +130,7 @@ The Onboarding process will have some activities involving user creation both at
    - Auto user profile deactivation / disabling
 8. Mojaloop will monitor user inactivity and disable inactive users over a specified period
 9. Enforce centralised policy enforcement across identities e.g. Password policy, login policies, MFA, risk based authentication etc.
-10. Identify and closely monitor privileged identities that have permissions to perform sensitive actions. 
+10. Identify and closely monitor privileged identities that have permissions to perform sensitive actions.
 The following apply to privileged users:
     - Advanced privileges must be requested for and approved on a case-by-case basis;
     - Administrators should have their privileged permissions for the minimum time possible;
@@ -304,9 +306,10 @@ Viewing the settings for the Payment Manager/Hub connection is available to any 
 Carrying out transaction investigations using the facilities of the Payment Manager portal is a controlled activity, due to the potential for revealing PII data. It is therefore only available to logged-in/authenticated users with role MANAGER.
 
 ## Monitoring
+
 Monitoring is the fourth pillar of mitigating the RBAC risk. Designing and configurating this is very dependent on the maturity of the Scheme, the scheme rules, the use cases being used, and the participants classes.
 As a starting point for designing your monitoring, consider these categories:
+
 1. External Security threat monitoring
 1. Internal Security treat monitoring e.g. Auditing
 1. Scheme rule enforcement monitoring
-

@@ -2,8 +2,6 @@
 
 All APIs should be documented in RAML or Swagger, see Architecture-Documentation-Guidelines\]\(Architecture-Documentation-Guidelines.md\)
 
-
-
 **Section Headings**
 
 * Do not number headings - for example, "Prepare and Fulfill", not "C - Prepare and Fulfill"

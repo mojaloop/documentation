@@ -48,7 +48,6 @@ The diagram below shows where a reference architecture exists in reference to ot
 ![Perform Transfer (Universal Mode)](./assets/process.png)
 > Introduction (Mojaloop 2.0 Reference Architecture): How to keep the Reference Architecture up to date
 
-
 ## Principles guiding this architecture
 
 The Mojaloop 2.0 Reference Architecture design has been guided by Domain-Driven Design[^1] principles, and inspired by SOLID[^2] object-oriented programming principles for building software applications, especially the single responsibility principle (SRP).

@@ -83,11 +83,11 @@ Mojaloop&#39;s inherent design will implement a Zero Trust approach in its archi
 | Platform Configuration | | | | | | | | | | |
 |
 
-3. Reconfigure any conflicting roles
+1. Reconfigure any conflicting roles
   3.1 Business approvals
   3.2 Maker checker user creation
-4. Periodic System Access & User Authorisation reporting
-5. Separation of IT-security and Operational IT security that will support user management activities
+2. Periodic System Access & User Authorisation reporting
+3. Separation of IT-security and Operational IT security that will support user management activities
 
 ## Best Practices for RBAC and Mojaloop Identity Management
 

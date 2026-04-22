@@ -27,7 +27,7 @@ These three phases correspond to the key resources of the Mojaloop FSPIOP API:
 
 DFSPs can choose to:
 
-* connect directly to the Mojaloop Hub and implement the asynchronous Mojaloop version of these API services, or 
+* connect directly to the Mojaloop Hub and implement the asynchronous Mojaloop version of these API services, or
 * leverage an open-source integration component (the [Mojaloop-SDK](#mojaloop-sdk) or [Payment Manager OSS](#payment-manager-oss)) and implement a simplified, synchronous version of Mojaloop FSPIOP API services
 
 DFSPs with an in-house development team and experience with RESTful APIs will likely be able to manage the process internally and develop a direct connection to Mojaloop. However, it is recommended that DFSPs use one of the open-source integration components, as a direct connection requires additional code development and maintenance. Using the Mojaloop-SDK or Payment Manager OSS reduces the time it takes to integrate with the Mojaloop Hub and makes troubleshooting easier for the Hub Operator, thus reducing the overall cost of the system.
@@ -38,7 +38,7 @@ While the DFSP is carrying out offline development work, the Hub Operator's role
 
 #### Mojaloop-SDK
 
-The [Mojaloop-SDK](https://github.com/mojaloop/sdk-scheme-adapter) presents a simplified, synchronous version of the Mojaloop FSPIOP API to a DFSP's backend system, allowing DFSPs to implement a simple API internally to interface with the Mojaloop Hub, while still being compliant with the Mojaloop FSPIOP API specification for interoperable external communications. 
+The [Mojaloop-SDK](https://github.com/mojaloop/sdk-scheme-adapter) presents a simplified, synchronous version of the Mojaloop FSPIOP API to a DFSP's backend system, allowing DFSPs to implement a simple API internally to interface with the Mojaloop Hub, while still being compliant with the Mojaloop FSPIOP API specification for interoperable external communications.
 
 The asynchronous pattern of the Mojaloop FSPIOP API (while it has many advantages) may not be suitable for client applications that operate in a synchronous request-response mode. The Mojaloop-SDK helps bridge this gap by offering a simplified request-response API, abstracting away the complexities of multiple request composition and asynchronous API details from end clients.
 
@@ -50,19 +50,19 @@ Other than a simplified API, the Mojaloop-SDK also provides the security protoco
 
 #### Payment Manager OSS
 
-[Payment Manager OSS](https://pm4ml.github.io/documents/payment_manager_oss/latest/core_connector_rest/introduction.html) presents a use-case oriented, simplified, synchronous version of the Mojaloop FSPIOP API to a DFSP's backend system. The key integration component of Payment Manager is called Core Connector, it acts as a translator between a DFSP's core backend (CBS) and a component of Payment Manager (called Mojaloop Connector, which leverages the Mojaloop-SDK) that talks directly to the Mojaloop Hub. 
+[Payment Manager OSS](https://pm4ml.github.io/documents/payment_manager_oss/latest/core_connector_rest/introduction.html) presents a use-case oriented, simplified, synchronous version of the Mojaloop FSPIOP API to a DFSP's backend system. The key integration component of Payment Manager is called Core Connector, it acts as a translator between a DFSP's core backend (CBS) and a component of Payment Manager (called Mojaloop Connector, which leverages the Mojaloop-SDK) that talks directly to the Mojaloop Hub.
 
 ![Payment Manager OSS](../../../.vuepress/public/PM4ML_system_architecture.png)
 
-Core Connector is built in Apache Camel, a declarative Java-based language for integration engineers that does not require writing code from scratch. There is a ready-made Core Connector template available to simplify the development effort. The template provides a placeholder codebase for the API endpoints that need to be developed, and it must be customized to be aligned with the appropriate CBS technology. The flexibility provided by the template allows for Core Connector to be made to fit a DFSP's backend, rather than the other way around. 
+Core Connector is built in Apache Camel, a declarative Java-based language for integration engineers that does not require writing code from scratch. There is a ready-made Core Connector template available to simplify the development effort. The template provides a placeholder codebase for the API endpoints that need to be developed, and it must be customized to be aligned with the appropriate CBS technology. The flexibility provided by the template allows for Core Connector to be made to fit a DFSP's backend, rather than the other way around.
 
 The effort to customize a Core Connector template will differ depending on the chosen deployment option. When deploying Payment Manager, two options are available:
 
 * **Managed and hosted by System Integrator**: A System Integrator deploys Payment Manager in the cloud, and syncs up the Core Connector template with the DFSP's core backend implementation.
 * **Self-hosted by DFSP**: The DFSP deploys Payment Manager on premise or in the cloud, and the customization of the Core Connector template can be done by a number of actors (depending on the outcome of an initial assessment of DFSP capabilities):
-    * the System Integrator
-    * the System Integrator and the vendor of the DFSP's core backend solution
-    * the DFSP and the vendor of the DFSP's core backend solution
+  * the System Integrator
+  * the System Integrator and the vendor of the DFSP's core backend solution
+  * the DFSP and the vendor of the DFSP's core backend solution
 
 Payment Manager is provided as a set of Linux container images (Docker) and may be hosted on-premise using commodity server infrastructure or in appropriate cloud infrastructure where available.
 
@@ -72,7 +72,7 @@ Given that Payment Manager incorporates Mojaloop-SDK functionality, it also impl
 
 ## Connecting to Mojaloop environments
 
-Once the DFSP has completed coding, they test their integration against a lab instance in a test environment provided by the Hub. This is where the connection phase of the technical onboarding journey begins, with a new set of responsibilities for the Hub Operator. 
+Once the DFSP has completed coding, they test their integration against a lab instance in a test environment provided by the Hub. This is where the connection phase of the technical onboarding journey begins, with a new set of responsibilities for the Hub Operator.
 
 The requirements around connecting are dictated by the multiple security protocols that any Mojaloop Hub and participating DFSPs must implement:
 
@@ -84,7 +84,7 @@ The requirements around connecting are dictated by the multiple security protoco
 
 If you are interested in more details, see [Security in Mojaloop](#security-in-mojaloop).
 
-Putting the above security measures into practice requires extensive information sharing and technical configuration from different teams at both the DFSP and the Mojaloop Hub. There are open-source tools available for the community to facilitate this process, both for DFSPs and the Hub Operator. 
+Putting the above security measures into practice requires extensive information sharing and technical configuration from different teams at both the DFSP and the Mojaloop Hub. There are open-source tools available for the community to facilitate this process, both for DFSPs and the Hub Operator.
 
 ### Open-source tools to facilitate connecting to Mojaloop environments
 
@@ -106,7 +106,7 @@ Exchanging endpoint details with the Hub and configuring them in the Mojaloop-SD
 
 Payment Manager OSS provides all the security features that the Mojaloop-SDK provides, and more. Payment Manager comes with a Mojaloop Connection Manager (MCM) Client, which simplifies and automates certificate creation, signing and exchange, as well as the configuration of the connections required to different environments. How much of these processes is automated will differ depending on the chosen deployment option. Two options are available:
 
-* **Managed and hosted by System Integrator**: A System Integrator deploys Payment Manager in the cloud. 
+* **Managed and hosted by System Integrator**: A System Integrator deploys Payment Manager in the cloud.
 * **Self-hosted by DFSP**: The DFSP deploys Payment Manager on premise or in the cloud.
 
 When a DFSP opts for the **managed-hosted option**, the System Integrator (this role can be filled by the Hub Operator) can employ Infrastructure-as-Code and onboarding scripts to handle the following elements of the process in an automated way:
@@ -127,7 +127,7 @@ Obtaining the Hub API gateway credentials required for collecting OAuth 2.0 toke
 
 #### MCM
 
-The Mojaloop Connection Manager (MCM) product is instrumental in simplifying and automating much of the information sharing and configuration around endpoints and certificates. MCM has an MCM Client and an MCM Server component, which talk to each other when exchanging endpoint details and certificates, and when signing Certificate Signing Requests. 
+The Mojaloop Connection Manager (MCM) product is instrumental in simplifying and automating much of the information sharing and configuration around endpoints and certificates. MCM has an MCM Client and an MCM Server component, which talk to each other when exchanging endpoint details and certificates, and when signing Certificate Signing Requests.
 
 The MCM Client is incorporated into Payment Manager, whereas the MCM Server is within the boundaries of the Hub. MCM provides a portal for the Hub Operator to submit Hub endpoint information and Hub certificates, and to retrieve DFSP endpoint and certificate details submitted by the DFSP via Payment Manager.
 
@@ -137,11 +137,11 @@ To understand what connecting a DFSP to a Mojaloop environment entails in detail
 
 Mojaloop requires the following security measures to be implemented in order to protect the data exchanged between DFSPs:
 
-* **Transport Layer Security** is a secure mechanism for exchanging a shared symmetric key over a network between two anonymous peers, with identity verification (that is, trusted certificates). It provides confidentiality (no one has read the content) and integrity (no one has changed the content). Mojaloop requires two-way TLS mutual authentication using X.509 certificates for securing bi-directional connections. DFSPs and the Mojaloop Hub authenticate each other to ensure that both parties involved in the communication are trusted. Both parties share their public certificates with each other and then verification/validation is performed based on that. 
+* **Transport Layer Security** is a secure mechanism for exchanging a shared symmetric key over a network between two anonymous peers, with identity verification (that is, trusted certificates). It provides confidentiality (no one has read the content) and integrity (no one has changed the content). Mojaloop requires two-way TLS mutual authentication using X.509 certificates for securing bi-directional connections. DFSPs and the Mojaloop Hub authenticate each other to ensure that both parties involved in the communication are trusted. Both parties share their public certificates with each other and then verification/validation is performed based on that.
 * Another security measure that is offered for authentication is the **OAuth tokens** that DFSPs are required to use when making an API call request. OAuth 2 is used to provide role-based access to Mojaloop Hub endpoints (API authorization).
 * **IP address whitelisting** reduces the attack surface of the Mojaloop Hub.
-* To protect the application level, Mojaloop implements **JSON Web Signature (JWS)** as defined in [RFC 7515 (JSON Web Signature (JWS))](https://tools.ietf.org/html/rfc7515), the standard for integrity and non-repudiation. Signing messages ensures the Payer DFSP and the Payee DFSP can trust that messages shared between each other have not been modified by a third party. 
-* The Mojaloop FSPIOP API implements support for the **Interledger Protocol (ILP)**. ILP is built on the concept of conditional transfers, in which ledgers involved in a financial transaction from the Payer to the Payee can first reserve funds out of a Payer account and later commit them to the Payee account. The transfer from the Payer to the Payee account is conditional on the presentation of a fulfilment that satisfies the condition attached to the original transfer request. 
+* To protect the application level, Mojaloop implements **JSON Web Signature (JWS)** as defined in [RFC 7515 (JSON Web Signature (JWS))](https://tools.ietf.org/html/rfc7515), the standard for integrity and non-repudiation. Signing messages ensures the Payer DFSP and the Payee DFSP can trust that messages shared between each other have not been modified by a third party.
+* The Mojaloop FSPIOP API implements support for the **Interledger Protocol (ILP)**. ILP is built on the concept of conditional transfers, in which ledgers involved in a financial transaction from the Payer to the Payee can first reserve funds out of a Payer account and later commit them to the Payee account. The transfer from the Payer to the Payee account is conditional on the presentation of a fulfilment that satisfies the condition attached to the original transfer request.
 
 ![Security overview](../../../.vuepress/public/security_overview.png)
 
@@ -160,13 +160,13 @@ Two-way or mutual TLS authentication (mTLS) relies on both parties (client and s
 The following high-level steps describe how connection is established and data is transferred between a client and server in the case of mTLS:
 
 1. The client requests a protected resource over the HTTPS protocol and the SSL/TLS handshake process begins.
-1. The server returns its public certificate to the client along with a server hello. 
+1. The server returns its public certificate to the client along with a server hello.
 1. The client validates/verifies the received certificate. The client verifies the certificate through the Certificate Authority (CA) for CA-signed certificates.
 1. If the server certificate was validated successfully, the server requests the client certificate.
 1. The client provides its public certificate to the server.
 1. The server validates/verifies the received certificate. The server verifies the certificate through the Certificate Authority for CA-signed certificates.
 
-After completion of the handshake process, the client and server communicate and transfer data with each other, encrypted with the secret keys shared between the two during the handshake. 
+After completion of the handshake process, the client and server communicate and transfer data with each other, encrypted with the secret keys shared between the two during the handshake.
 
 <img src="../../../.vuepress/public/TLS_connection.svg" width="65%" height="65%" />
 
@@ -201,8 +201,8 @@ The Mojaloop Hub and the DFSPs share endpoint information to:
 
 Typically, access to any incoming and outgoing traffic for a DFSP will be controlled by the relevant Security team. The DFSP's firewall needs to be appropriately configured:
 
-* to access the Mojaloop Hub in any environment where the DFSP and the Hub interact, and 
-* for the Mojaloop Hub to make callbacks to the DFSP 
+* to access the Mojaloop Hub in any environment where the DFSP and the Hub interact, and
+* for the Mojaloop Hub to make callbacks to the DFSP
 
 Apart from access to and from the Hub deployed in an environment, all other public access should be blocked to prevent any unauthorized/unwarranted access.
 
@@ -219,18 +219,18 @@ Onboarding comprises certain steps that do not require any actions from DFSPs an
 1. Configure the Hub API gateways that handle incoming and outgoing data flows from/to DFSPs. Mojaloop employs WSO2 technologies for gateway access, as well as DFSP authorization and authentication for message pass-through via the gateways. The WSO2 product stack can be deployed from code using a continuous integration and deployment (CI/CD) solution, provisioning can be done through automation scripts.
 1. Create users and accounts, configure role-based access control.
 1. Set up the Hub for managing the use cases supported by the Scheme:
-    - Configure Hub ledgers.
-    - Configure Hub notification emails.
-    - Configure settlement model.
-    - Onboard oracles. \
+    * Configure Hub ledgers.
+    * Configure Hub notification emails.
+    * Configure settlement model.
+    * Onboard oracles. \
     Mojaloop provides a [provisioning script](https://github.com/mojaloop/testing-toolkit-test-cases/tree/master/collections/hub/provisioning/MojaloopHub_Setup) to perform all of the above steps in an automated way using the [Mojaloop Testing Toolkit (TTK)](https://github.com/mojaloop/ml-testing-toolkit).
 1. Set up simulator DFSPs for initial validation activities. \
-   Mojaloop provides [provisioning scripts](https://github.com/mojaloop/testing-toolkit-test-cases/tree/master/collections/hub/provisioning/MojaloopSims_Onboarding) to perform this step in an automated way using the Mojaloop Testing Toolkit (TTK). 
+   Mojaloop provides [provisioning scripts](https://github.com/mojaloop/testing-toolkit-test-cases/tree/master/collections/hub/provisioning/MojaloopSims_Onboarding) to perform this step in an automated way using the Mojaloop Testing Toolkit (TTK).
 1. Set up DFSPs in the Hub backend. For each DFSP:
-    - Add DFSP and create a currency for it.
-    - Add callback URLs for all API services.
-    - Add a Net Debit Cap and set initial Position to 0.
-    - Configure DFSP notification emails. \
+    * Add DFSP and create a currency for it.
+    * Add callback URLs for all API services.
+    * Add a Net Debit Cap and set initial Position to 0.
+    * Configure DFSP notification emails. \
     Similar to previous steps, the configuration of DFSP details can also be done via a provisioning script.
 
 ## Testing and validation

@@ -1,8 +1,10 @@
 ## 7.14 POST /transfers
+
 | Financial Institution to Financial Institution Customer Credit Transfer - **pacs.008.001.13**|
 |--|
 
-#### Context 
+#### Context
+
 *(DFSP -> DFSP)*
 
 This message is initiated by a payer DFSP who is requesting to transfer funds. The message is sent to the payee DFSP who provided the transfer terms in the `PUT /quotes` message. This message is an acknowledgement that the terms of the transfer are accepted, and is thus an instruction to proceed with the transfer.
@@ -14,6 +16,7 @@ This message can be seen as an agreement to the terms that have previously been 
 The `GrpHdr.PmtInstrXpryDtTm` specifies the expiry of the this transfer message. It is the responsibility of the HUB to enforce this expiry. The status of which a DFSP can query by making a `GET /transfers/{ID}` request.
 
 Here is an example of the message:
+
 ```json
 {
 "GrpHdr":{
@@ -37,14 +40,18 @@ Here is an example of the message:
     "VrfctnOfTerms":{"IlpV4PrepPacket":"DIICzQAAAAAAAaX..."}}
 }    
 ```
+
 #### Message Details
+
 The details on how to compose and make this API are covered in the following sections:
+
 1. [Core Data Elements](#core-data-elements)<br>This section specifies which fields are required, which fields are optional, and which fields are unsupported in order to meet the message validating requirements.
 2. [Header Details](../MarketPracticeDocument.md#_3-3-1-header-details)<br> This general section specifies the header requirements for the API are specified.
 3. [Supported HTTP Responses](../MarketPracticeDocument.md#_3-3-2-supported-http-responses)<br> This general section specifies the http responses that must be supported.
 4. [Common Error Payload](../MarketPracticeDocument.md#_3-3-3-common-error-payload)<br> This general section specifies the common error payload that is provided in synchronous http error response.
 
 #### Core Data Elements
+
 Here are the core data elements that are needed to meet this market practice requirement.
 
 The background colours indicate the classification of the data element.
@@ -73,7 +80,7 @@ The background colours indicate the classification of the data element.
     }
     td, th {
         padding: 1px;
-        margin: 1px; 
+        margin: 1px;
     }  
   </style>
 
@@ -83,7 +90,6 @@ The background colours indicate the classification of the data element.
    <tr class="unsupported"> <td><b>unsupported</b></td><td>These fields are actively not supported. The functionality specifying data in these fields are not compatible with a Mojaloop scheme, and will fail message validation if provided.</td></tr>
   </table>
    <br><br>
-    
 
 Here is the defined core data element table.
 
@@ -620,4 +626,3 @@ Here is the defined core data element table.
 <tr class=unsupported><td>&nbsp;&nbsp;&nbsp;&nbsp;  <b>SplmtryData</b> - SupplementaryData1</td><td>[0..0]</td><td>Additional information that cannot be captured in the structured fields and/or any other specific block.<br></td></tr>
 <tr class=unsupported><td>  <b>SplmtryData</b> - SupplementaryData1</td><td>[0..0]</td><td>Additional information that cannot be captured in the structured fields and/or any other specific block.<br></td></tr>
 </table>
-

@@ -14,11 +14,12 @@ The central ledger is a series of services that facilitate clearing and settleme
 
 ## 2. Transfers End-to-End Architecture
 
-
 ### 2.1 Transfers End-to-End Architecture for v1.1
+
 ![Transfers Architecture for Mojaloop FSP Interoperability API v1.1](./assets/diagrams/architecture/Transfers-Arch-End-to-End-v1.1.svg)
 
 ### 2.2 Transfers End-to-End Architecture for v1.0
+
 ![Transfers Architecture for Mojaloop FSP Interoperability API v1.0](./assets/diagrams/architecture/Transfers-Arch-End-to-End-v1.0.svg)
 
 ## 3. Database Design
@@ -29,17 +30,17 @@ The tables *Grey* colored tables are specific to the transfer process. The *Blue
 
 Summary of the tables specific to the transfer process;
 
-- `transfer` - stores data related to the transfer;
-- `transferDuplicateCheck` - used to identify duplication during the transfer requests process;
-- `transferError` - stores information on transfer errors encountered during the transfer process;
-- `transferErrorDuplicateCheck` - used to identify duplication error transfer processes;
-- `transferExtensions` - stores information on the transfer extension data;
-- `transferFulfilment` - stores data for transfers that have completed the prepare transfer process;
-- `transferFulfilmentDuplicateCheck` - used the identify duplicate transfer fulfil requests;
-- `transferParticipant` - participant information related to the transfer process;
-- `transferStateChange` - use to track state changes of each individual transfer, creating and audit trail for a specific transfer request;
-- `transferTimeout` - stores information of transfers that encountered a timeout exception during the process;
-- `ilpPacket` - stores the ilp package for the transfer;
+* `transfer` - stores data related to the transfer;
+* `transferDuplicateCheck` - used to identify duplication during the transfer requests process;
+* `transferError` - stores information on transfer errors encountered during the transfer process;
+* `transferErrorDuplicateCheck` - used to identify duplication error transfer processes;
+* `transferExtensions` - stores information on the transfer extension data;
+* `transferFulfilment` - stores data for transfers that have completed the prepare transfer process;
+* `transferFulfilmentDuplicateCheck` - used the identify duplicate transfer fulfil requests;
+* `transferParticipant` - participant information related to the transfer process;
+* `transferStateChange` - use to track state changes of each individual transfer, creating and audit trail for a specific transfer request;
+* `transferTimeout` - stores information of transfers that encountered a timeout exception during the process;
+* `ilpPacket` - stores the ilp package for the transfer;
 
 The remaining tables in the below ERD are either lookup (blue) or settlement-specific (red) and are included as direct or indirect dependencies to depict the relation between the transfer specific entities and the transfer tables.
 

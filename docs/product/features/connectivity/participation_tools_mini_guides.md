@@ -10,7 +10,7 @@ The Community has recognised that different DFSPs have different requirements an
 
 # Functionality
 
-One of the core purposes of the participation tools is to hide the complexity of the Mojaloop API. As well as all of the security, the tools handle complex, multi-step Mojaloop procedures—such as party lookups, agreement of terms, and transfers—and present them to the DFSP's systems in a more straightforward way. 
+One of the core purposes of the participation tools is to hide the complexity of the Mojaloop API. As well as all of the security, the tools handle complex, multi-step Mojaloop procedures—such as party lookups, agreement of terms, and transfers—and present them to the DFSP's systems in a more straightforward way.
 
 To achieve this, the participation tools all offer the following services:
 
@@ -27,29 +27,29 @@ The common architecture of all of the participation tools consists of several ke
 
 ## Core Connector
 
-This is the central integration component that acts as a "translator" between the DFSP's back office and the participation tool. Templates are provided in both the Apache Camel framework, which provides a declarative, integration-focused language, and TypeScript, a commonly known and understood programming language. System integrators and/or participants may choose to use these templates or create a custom connector in a technology stack of their choosing. The use of templates allows the core connector to be customized to fit the DFSP's existing backend technology rather than forcing the DFSP to change its own systems. 
+This is the central integration component that acts as a "translator" between the DFSP's back office and the participation tool. Templates are provided in both the Apache Camel framework, which provides a declarative, integration-focused language, and TypeScript, a commonly known and understood programming language. System integrators and/or participants may choose to use these templates or create a custom connector in a technology stack of their choosing. The use of templates allows the core connector to be customized to fit the DFSP's existing backend technology rather than forcing the DFSP to change its own systems.
 
 ## Mojaloop Connector
 
-This component communicates directly with the Mojaloop Hub and contains two key sub-components:   
+This component communicates directly with the Mojaloop Hub and contains two key sub-components:
 **Mojaloop-SDK:** Provides the necessary security components and handles HTTP header processing in a Mojaloop-compliant manner.
 
-**Simplified API:** Offers a more synchronous and use-case-oriented version of the Mojaloop FSPIOP API, which is easier for the DFSP's backend systems to consume. 
+**Simplified API:** Offers a more synchronous and use-case-oriented version of the Mojaloop FSPIOP API, which is easier for the DFSP's backend systems to consume.
 
 ## Mojaloop Connection Manager (MCM) Client
 
-This client automates and simplifies the process of configuring connections to different Mojaloop environments. It handles the creation, signing, and exchange of digital certificates, which is a critical security requirement for the Mojaloop ecosystem. 
+This client automates and simplifies the process of configuring connections to different Mojaloop environments. It handles the creation, signing, and exchange of digital certificates, which is a critical security requirement for the Mojaloop ecosystem.
 
 # High-level transaction flow
 
-The participation tools all facilitate the transaction process by acting as the DFSP's gateway to the Mojaloop Hub: 
+The participation tools all facilitate the transaction process by acting as the DFSP's gateway to the Mojaloop Hub:
 
 * A transaction is initiated by the DFSP's back office.  
 * The back office sends the request to the Core Connector within the participation tool.  
 * The Core Connector translates the request for the Mojaloop Connector and its simplified API.  
 * The Mojaloop Connector communicates securely with the Mojaloop Switch (Hub) using the Mojaloop-SDK.  
 * Payments are routed and orchestrated by the Mojaloop Hub to the destination DFSP.  
-* The participation tool provides status updates and reconciliation information to the DFSP via monitoring portals, where these are implemented. 
+* The participation tool provides status updates and reconciliation information to the DFSP via monitoring portals, where these are implemented.
 
 # Available Participation Tools
 
@@ -60,18 +60,18 @@ There are two broad groups of participation tools; first, Payment Manager, which
 Also known as Payment Manager for Mojaloop (PM4ML), Payment Manager is a full-function Mojaloop participation tool that offers all the features a large corporate bank would expect. It can be deployed either in the cloud or in a bank’s data centre, and supports all of the DR options such a bank would expect. It also has comprehensive management and reporting capabilities.  
 
  <p align="center">
- 	<img src="./images/PM4ML_system_architecture.png" alt="PM4ML Architecture">
- </p> 
+  <img src="./images/PM4ML_system_architecture.png" alt="PM4ML Architecture">
+ </p>
 **Figure 1: Payment Manager Architecture**
 
 The above diagram represents a high level view of the architecture of Payment Manager, and also indicates the elements of a Mojaloop Hub that it interacts with.
 
 ### Payment Manager’s Portals
 
-PM4ML’s business and technical Portals provide user-friendly interfaces with dashboards for monitoring critical information:   
-- **Transaction monitoring**: Displays real-time and historical transaction statuses.  
-- **Service status**: Allows DFSPs to monitor the health and performance of their connections.  
-- **Configuration management**: Provides a single point for managing security keys, certificates, and endpoint configurations. 
+PM4ML’s business and technical Portals provide user-friendly interfaces with dashboards for monitoring critical information:
+* **Transaction monitoring**: Displays real-time and historical transaction statuses.  
+* **Service status**: Allows DFSPs to monitor the health and performance of their connections.  
+* **Configuration management**: Provides a single point for managing security keys, certificates, and endpoint configurations.
 
 ## Integration Toolkit
 
@@ -80,8 +80,8 @@ The Integration Toolkit set of participation tools is architected to allow signi
 ### Overview
 
  <p align="center">
- 	<img src="./images/ITK_architecture.png" alt="ITK Architecture">
- </p> 
+  <img src="./images/ITK_architecture.png" alt="ITK Architecture">
+ </p>
 **Figure 2: ITK Architecture**
 
 As would be expected, and as illustrated in the above diagram, there are common features with Payment Manager:
@@ -100,23 +100,23 @@ Unlike Payment Manager, the ITK doesn't include any portals for monitoring trans
 The options for deploying ITK are catalogued in the [Participant Feature Matrix](https://docs.mojaloop.io/product/features/connectivity/participant-matrix.html) and can be summarised as follows:
 
 * **A small DFSP**, such as a small MFI or bank, is expected to self-host the ITK. This approach will support all use cases except the initiation of bulk payments (bulk payments can still be received). Low transaction levels are expected (max 10 TPS), and some downtime (potentially a few hours) is acceptable.  
-	  * It is recommended that a minimal functionality version of ITK be deployed on a small server, right down to a single board computer such as a Raspberry PI for the smallest DFSPs. 
-	  * Transaction monitoring should be carried out through the DFSP's existing back office.  
-	  * Deployment is via Docker Compose.  
+   *It is recommended that a minimal functionality version of ITK be deployed on a small server, right down to a single board computer such as a Raspberry PI for the smallest DFSPs.
+   * Transaction monitoring should be carried out through the DFSP's existing back office.  
+   * Deployment is via Docker Compose.  
 
 * **A low-medium sized DFSP**, such as a bank or MFI with one or two branches and their own “broom cupboard” data centre, is expected to self-host the ITK. This approach will support all use cases, including the initiation of small scale bulk payments. Peak transaction levels of around 50 TPS are supported, and some limited downtime (measured in hours) is acceptable.  
-	  * It is recommended that a fully functional version of ITK be deployed on a basic server, hosted in the DFSP’s own data centre.  
-	  * A Kafka deployment is needed to support bulk payments.   
-	  * Deployment is via Docker Compose or Docker Swarm.  
-	  * Minimal integration with existing enterprise security platforms.
-	  * Transaction monitoring should be carried out through the DFSP's existing back office.   
+   *It is recommended that a fully functional version of ITK be deployed on a basic server, hosted in the DFSP’s own data centre.  
+   * A Kafka deployment is needed to support bulk payments.
+   *Deployment is via Docker Compose or Docker Swarm.  
+   * Minimal integration with existing enterprise security platforms.
+   * Transaction monitoring should be carried out through the DFSP's existing back office.
 
 * **A medium-large sized DFSP**, such as a medium-sized FI with a few branches and their own self-hosted data centre and some reasonable internal IT skills, is expected to host the ITK. This approach will support all use cases, including the initiation of small/medium scale bulk payments. Peak transaction levels of around 50 TPS are supported, and some limited downtime (measured in minutes) is acceptable.  
-	  * In order to achieve the maximum downtime requirements, a multiple server configuration is required, managed using Kubernetes.  
-	 * It is recommended that a fully functional version of ITK be deployed, with transaction monitoring carried out through the DFSP's existing back office.    
-	 * A Kafka deployment is needed to support bulk payments.   
-	 * Deployment is via Kubernetes.  
-	 * May need integration with existing enterprise security platforms. 
+   * In order to achieve the maximum downtime requirements, a multiple server configuration is required, managed using Kubernetes.  
+  * It is recommended that a fully functional version of ITK be deployed, with transaction monitoring carried out through the DFSP's existing back office.
+  * A Kafka deployment is needed to support bulk payments.
+  * Deployment is via Kubernetes.  
+  * May need integration with existing enterprise security platforms.
 * **A large DFSP**, such as a mature, multi-branch FI with its own industry-standard data centre and sophisticated internal IT skills, is recommended to use Payment Manager.
 
 ## Applicability
@@ -124,6 +124,7 @@ The options for deploying ITK are catalogued in the [Participant Feature Matrix]
 This version of this document relates to Mojaloop Version [17.1.0](https://github.com/mojaloop/helm/releases/tag/v17.1.0)
 
 ## Document History
+
   |Version|Date|Author|Detail|
 |:--------------:|:--------------:|:--------------:|:--------------:|
 |1.0|17th December 2025| Paul Makin |Initial version|

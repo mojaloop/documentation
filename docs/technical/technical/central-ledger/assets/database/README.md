@@ -1,13 +1,16 @@
-# How to EDIT the central-ledger-schema-DBeaver.erd file 
+# How to EDIT the central-ledger-schema-DBeaver.erd file
 
 This is a basic guide on how to successfully view/update the central-ledger-schema-DBeaver.erd file.
 
 ## Prerequisites
+
 * Download and install the DBeaver Community DB Manager
 * The Mojaloop Central-Ledger MySQL Database needs to be up and running, and connectable by the DBeaver
-* You'll also need a text editor    
-##  Steps to follow
-* Create a new db connection in DBeaver under Database Navigator tab for the MySQL instance running. 
+* You'll also need a text editor
+
+## Steps to follow
+
+* Create a new db connection in DBeaver under Database Navigator tab for the MySQL instance running.
 * Under the Projects tab right click and create a New ER Diagram.
 * Give the diagram a name and select central-ledger db in the wizard.
 

@@ -4,7 +4,6 @@ footerCopyright: Attribution-NoDerivatives 4.0 International (CC BY-ND 4.0) | Er
 
 # Use Cases
 
-
 ## Preface
 
 This section contains information about how to use this document.
@@ -84,7 +83,7 @@ The following generic transaction patterns are introduced in [Generic Transactio
 
 - **Payer-Initiated Transaction**
   - In a _Payer-Initiated Transaction_, it is the _Payer_ (that is, the payer of electronic funds) who initiates the transaction.
-   
+
     The pattern should be used whenever a Payer would like to transfer funds to another party whose account is not located in the same FSP.
 
 - **Payee-Initiated Transaction**
@@ -134,6 +133,7 @@ Each use case describes variations on and special considerations for the generic
 This section demonstrates ways in which the API can be used through the use cases identified in [Table 1](#table-1) – _Use Case Summary_.
 
 For each use case, the following is presented:
+
 - Use Case Description
 - Reference to Generic Pattern
 - Actors and Roles
@@ -146,7 +146,7 @@ For each use case, the following is presented:
 
 This section describes the business process and business rules for a use case in which an individual End User initiates a transaction to send money to another individual End User who doesn’t belong to the same FSP as the Payer.
 
-This is usually a remote transaction in which Payer and Payee are not in the same location. 
+This is usually a remote transaction in which Payer and Payee are not in the same location.
 
 There are four steps necessary to complete a _P2P_ Transfer transaction from one FSP user to another FSP user.
 
@@ -220,6 +220,7 @@ A notification is sent to the Payee once the transaction is performed by Payee F
 Payer FSP sends notification to Payer to indicate the transaction result.
 
 #### Relevant Error Conditions
+
 [Table 3](#table-3) below describes relevant errors and recommended follow-up actions for this use case.
 
 ##### Table 3
@@ -464,19 +465,19 @@ The Payer FSP sends a notification of the transaction result to the customer.
 
 ##### Relevant Error Conditions
 
-[Table 9](#table-9) describes relevant errors and recommended follow-up actions for this use case. 
+[Table 9](#table-9) describes relevant errors and recommended follow-up actions for this use case.
 
 ##### Table 9
 
 | Step | Error Condition | Error Description | Follow Up Action |
 | --- | --- | --- | --- |
-| 5 | Timeout | **Lookup Party Information** request timedout| Retry| 
+| 5 | Timeout | **Lookup Party Information** request timedout| Retry|
 | 6 | Payer cannot be found | Account Lookup System fails to locate the Payer | Cancel the transaction |
 | 8 | Transaction request timeout | **Perform Transaction Request** to Payer FSP timed out | Query transaction status and decide to complete or retry<br></br>The retry policy will be defined by the scheme rules. For example, retry times and period |
 | 28 | OTP is expired | OTP is expired | Push another authentication request to Payee FSP<br>or</br>Cancel the transaction in the Payer FSP |
 | 28 | Invalid OTP | OTP is unrecognized | Push another authentication request to Payee FSP<br>or</br>Cancel the transaction in the Payer FSP |
 | 35 | Transaction failed | Transaction failed at the Payee FSP.<br>Possible reasons:<li>Limit Breached</li><li>Payer or Payee blacklisted</li><li>Quote is expired</li><li>Invalid account status of Payee</li><li>Payee FSP internal system error</li></br> | Cancel the transaction |
-| 38 | Reservation is expired | Funds reservation is expired and the transaction fails at Payer FSP but succeeds at Payee FSP | Reconcile according to scheme rules | 
+| 38 | Reservation is expired | Funds reservation is expired and the transaction fails at Payer FSP but succeeds at Payee FSP | Reconcile according to scheme rules |
 
 **Table 9 – Agent-Initiated Cash-Out Authorized on POS: Relevant Error Conditions**
 
@@ -779,11 +780,12 @@ The customer need only confirm the transaction on POS if initiating transaction 
 A notification is sent to the merchant once the transaction is performed by the Payee FSP. After receiving the transaction notification, the merchant gives goods to the customer.
 
 ##### Step 44
+
 The Payer FSP sends a notification of the transaction result to the customer.
 
 #### Relevant Error Conditions
 
-[Table 17](#table-17) below describes relevant errors and recommended follow-up actions for this use case. 
+[Table 17](#table-17) below describes relevant errors and recommended follow-up actions for this use case.
 
 ##### Table 17
 
@@ -984,7 +986,7 @@ There are several refund scenarios for merchant payment transaction:
 
 3. An online merchant selling tickets (train, air or bus) provides a refund to a customer when the customer cancels the ticket.
 
-4. The customer has returned the goods to the merchant and the merchant wants to refund the customer. 
+4. The customer has returned the goods to the merchant and the merchant wants to refund the customer.
 
 Additional business scenarios may require transaction reversals. For example:
 

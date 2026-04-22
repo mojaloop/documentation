@@ -40,7 +40,7 @@ The incident management process ends:
 The boundaries of incident management stipulate that the process takes into account the following prerequisites:
 
 * A Service Level Agreement (SLA) between the Community (for example, Mojaloop), holding companies (for example, the Hub), and Digital Financial Service Providers (DFSPs) is in place.
-* An SLA between the Implementing Partner (the Hub) and third-party Software Vendors (for example, Microsoft, Oracle, and so on) is in place. 
+* An SLA between the Implementing Partner (the Hub) and third-party Software Vendors (for example, Microsoft, Oracle, and so on) is in place.
 * There is an existing operational level agreement (OLA). This agreement describes the responsibilities of each internal Support group towards other Support groups, including the process and time frame for delivery of their services.
 
 ## Incident management step-by-step
@@ -49,7 +49,7 @@ This section provides a detailed description of the incident management process.
 
 ### Step 1: Report and log incident, change request, or question
 
-Issues, change requests, or questions can be reported and logged via the Service Desk tool as soon as they occur. The Service Desk tool is the primary channel for receiving incident-related queries. Emails, phone calls, and instant messaging can be used as secondary channels. 
+Issues, change requests, or questions can be reported and logged via the Service Desk tool as soon as they occur. The Service Desk tool is the primary channel for receiving incident-related queries. Emails, phone calls, and instant messaging can be used as secondary channels.
 
 The status of tickets as captured in the Service Desk system can take the following values:
 
@@ -60,15 +60,15 @@ The status of tickets as captured in the Service Desk system can take the follow
 Bearing in mind that using the "Pending" status stops the SLA clock, the only reason that justifies the usage of "Pending" is when client action is required. This has to be an action that is the responsibility of the client/customer or their vendor and is a prerequisite to the continuation of the process; for example, requesting essential information or approval to solve the request. Tickets with Severity 1 and 2 must not be set to status "Pending". Restoring a service or a function of a service seldom depends on customer action. The only exception is when the customer stops the investigation or implementation of a solution or denies a necessary approval. In any case, the customer’s decision has to be documented.
 * **Cancelled**: An incident that has been cancelled. An incident can only be cancelled when the customer initiates it.
 * **Resolved**: An incident that was worked on by a Support Engineer and was fixed, and an alert has been triggered to the user to reopen if not satisfied.
-* **Closed**: An incident that was closed once the resolution was acknowledged by the end user. 
+* **Closed**: An incident that was closed once the resolution was acknowledged by the end user.
 
 All relevant information relating to incidents must be logged so that a full historical record is maintained. By maintaining accurate and complete incident records, future assigned Support group personnel are better able to resolve recorded incidents.
 
-### Step 2: Categorize and prioritize 
+### Step 2: Categorize and prioritize
 
 The end user/requester is assigned a ticket number for reference and ease of access when the issue is acknowledged and actioned by the Support Team. The ticket should be visible by the requester (the DFSP employee who raised the issue) at all Support levels.
 
-The requester will be automatically notified by email of any changes, status updates, requests for more information, readiness for testing, or final resolution with regards to the ticket. 
+The requester will be automatically notified by email of any changes, status updates, requests for more information, readiness for testing, or final resolution with regards to the ticket.
 
 We generally classify support requests into:
 
@@ -76,7 +76,7 @@ We generally classify support requests into:
 * Service Request
 * Change Request or Request for Change (RFC, such as features, enhancements)
 
-Incidents are categorized and sub-categorized based on the IT service or business area that the incident is causing a disruption to. 
+Incidents are categorized and sub-categorized based on the IT service or business area that the incident is causing a disruption to.
 
 These are some of the sample service categories:
 
@@ -99,15 +99,15 @@ Once the incident is categorized, it gets automatically routed to an L1 Support 
 
 The assigned Support resource will be in charge of investigating the issue, as well as preparing the incident record, and communicating with the client on how to resolve the issue.
 
-Incident investigation may include any of the following actions: 
+Incident investigation may include any of the following actions:
 
-* Information gathering and analysis 
-* Research, including reproducing the issue 
+* Information gathering and analysis
+* Research, including reproducing the issue
 * Acquiring additional information from other sources
 
-Incident resolution may include any of the following actions: 
+Incident resolution may include any of the following actions:
 
-* Providing a resolution or steps towards a resolution 
+* Providing a resolution or steps towards a resolution
 * Configuration changes
 
 Based on the complexity of the incident, it may have to be broken down into sub-tasks or tasks. Tasks are typically created when an incident resolution requires the contribution of multiple technicians from various departments.
@@ -123,12 +123,12 @@ Workarounds need to be documented and communicated to the Service Desk so they c
 
 ### Step 4: Escalate
 
-Incident escalation is recognition that there is the possibility of an incident exceeding the agreed resolution timeliness at each Support level. Clear escalation management allows the Support Team to identify, track, monitor, and manage situations that require increased awareness and swift action. 
+Incident escalation is recognition that there is the possibility of an incident exceeding the agreed resolution timeliness at each Support level. Clear escalation management allows the Support Team to identify, track, monitor, and manage situations that require increased awareness and swift action.
 
 There are two types of escalation:
 
 * **Functional escalation**: This type of escalation comes to play when a Support level team (for example, L1) is unable to resolve the issue or stay within the agreed timeline (meaning that the targeted time for resolution is exceeded). Therefore, the case is proactively assigned to the next service level (for example, L2).
-* **Hierarchical escalation**: This type of escalation acts as a means to inform all the parties involved, in a proactive manner, of a potential SLA breach. This helps in bringing order, structure, responsibility, ownership, focused management, and resource mobilization for the purpose of delivering effective and efficient services. 
+* **Hierarchical escalation**: This type of escalation acts as a means to inform all the parties involved, in a proactive manner, of a potential SLA breach. This helps in bringing order, structure, responsibility, ownership, focused management, and resource mobilization for the purpose of delivering effective and efficient services.
 
 ### Step 5: Close incident
 
@@ -630,7 +630,7 @@ This support function is made up of engineers or Business Operations Subject Mat
 
 *Roles*
 
-This level is usually comprised of Specialist Engineers who have advanced knowledge of particular domains of the Hub – for example, knowledge of infrastructure components or system applications, or expertise in security engineering. 
+This level is usually comprised of Specialist Engineers who have advanced knowledge of particular domains of the Hub – for example, knowledge of infrastructure components or system applications, or expertise in security engineering.
 
 *Responsibilities*
 
@@ -644,7 +644,7 @@ This level is usually comprised of Specialist Engineers who have advanced knowle
 
 *Role*
 
-The Service Manager monitors the effectiveness of the process. The Service Manager manages the process to restore normal service operation as quickly as possible and to minimize the impact on business operations. 
+The Service Manager monitors the effectiveness of the process. The Service Manager manages the process to restore normal service operation as quickly as possible and to minimize the impact on business operations.
 
 *Responsibilities*
 

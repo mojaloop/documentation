@@ -4,7 +4,6 @@ The purpose of the Event Framework is to provide a standard unified architecture
 
 _Disclaimer: This is experimental and is being implemented as a PoC. As such the design may change based on the evolution of the PoC's implementation, and any lessons learned._
 
-
 ## 1. Requirements
 
 - Events will be produced by utilising a standard common library that will publish events to a sidecar component utilising a light-weight highly performant protocol (e.g. gRPC).
@@ -12,7 +11,6 @@ _Disclaimer: This is experimental and is being implemented as a PoC. As such the
 - Kafka partitions will be determined by the event-type (e.g. log, audit, trace, errors etc).
 - Each Mojaloop component will have its own tightly coupled Sidecar.
 - Event messages will be produced to Kafka using the Trace-Id as the message key. This will ensure that all the messages part of the same trace (transaction) are stored in the same partition in order.
-
 
 ## 2. Architecture
 
@@ -27,7 +25,6 @@ _Disclaimer: This is experimental and is being implemented as a PoC. As such the
 ### 2.3 Event Flow
 
 ![Tracing Architecture](./assets/diagrams/architecture/architecture-event-trace.svg)
-
 
 ## 3. Event Envelope Model
 
@@ -143,7 +140,7 @@ _Note: HEXDIGLC = DIGIT / "a" / "b" / "c" / "d" / "e" / "f" ; lower case hex cha
 | transactionType | string | N | The transaction type represented by the transactionId. E.g. (transfer, quote, etc) | transfer |
 | parentEventType | string | N | The event-type of the parent Span. | bulk-prepare |
 | parentEventAction | string | N | The event-action of the parent Span. | prepare |
-| tracestate | string | N | This tag is set if EventSDK environmental variable `EVENT_SDK_TRACESTATE_HEADER_ENABLED` is `true` or if parent span context has the `tracestate` header or tag included. The tag holds updated `tracestate` header value as per the W3C trace headers specification. [More here](#411-wc3-http-headers)| `congo=t61rcWkgMzE,rojo=00f067aa0ba902b7` | 
+| tracestate | string | N | This tag is set if EventSDK environmental variable `EVENT_SDK_TRACESTATE_HEADER_ENABLED` is `true` or if parent span context has the `tracestate` header or tag included. The tag holds updated `tracestate` header value as per the W3C trace headers specification. [More here](#411-wc3-http-headers)| `congo=t61rcWkgMzE,rojo=00f067aa0ba902b7` |
 | `<string>` | string | N | Arbitary Key-value pair for additional meta-data to be added to the trace information. | n/a |
 
 ##### 3.2.1.6 Enum: EventStatusType
@@ -188,7 +185,6 @@ _Note: HEXDIGLC = DIGIT / "a" / "b" / "c" / "d" / "e" / "f" ; lower case hex cha
 | --- | --- |
 | span | Event action representing a span of a trace. |
 
-
 ## 4. Tracing Design
 
 ### 4.1 HTTP Transports
@@ -208,7 +204,7 @@ Refer to the following publication for more information: https://w3c.github.io/t
 
 Note: Before this specification was written, some tracers propagated X-B3-Sampled as true or false as opposed to 1 or 0. While you shouldn't encode X-B3-Sampled as true or false, a lenient implementation may accept them.
 
-Note: (Event-SDK)[https://github.com/mojaloop/event-sdk] since version v9.4.1 has methods to add key value tags in the tracestate, and since version v9.5.2 the tracestate is base64 encoded. To be able to use the tracestate consistently, use matching versions across all services in a system.
+Note: [Event-SDK](https://github.com/mojaloop/event-sdk) since version v9.4.1 has methods to add key value tags in the tracestate, and since version v9.5.2 the tracestate is base64 encoded. To be able to use the tracestate consistently, use matching versions across all services in a system.
 
 #### 4.1.2 B3 HTTP Headers
 

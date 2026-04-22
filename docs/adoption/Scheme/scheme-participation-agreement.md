@@ -1,9 +1,9 @@
 # Scheme Participation Agreement Template
 
-- Version: 3.0 
-    - Author: Carol Coye Benson (Glenbrook) 
-    - Date: October 2019
-    - Description: 
+- Version: 3.0
+  - Author: Carol Coye Benson (Glenbrook)
+  - Date: October 2019
+  - Description:
 
 ---
 
@@ -30,7 +30,7 @@ The following documents are part of the project:
 # Table Of Content
 
 [1 - Participation Application and Agreement](#_1-participation-application-and-agreement)
-    
+
 [1.1 - Applicable Law](#_1-1-applicable-law)
 
 [1.2 - Signature Block: Applicant and Scheme](#_1-2-signature-block-applicant-and-scheme)
@@ -41,7 +41,7 @@ The following documents are part of the project:
 The goal of this document is to have it contain the minimal necessary provisions to evidence a DFSP's application to join the Scheme and abide by its Business Rules. In particular, future changes to the Business Rules should not result in a need to re-sign or amend this agreement.
 :::
 
-The undersigned organization ("_Applicant_") hereby applies for participation in the \[Scheme\], a \[a legal form of company\] organized and existing under the laws of \[define\] and if accepted by \[Scheme\] agrees that Applicant's participation in the Scheme will be subject to the following terms and conditions. This Application and Agreement is dated \_\_\_\_\_\_\_\_\_\_\_\_\_\_and shall become effective and binding upon the Applicant as of the date shown below when signed on behalf of the \[Scheme\] (the "*Effective Date*"). From the Effective Date, Applicant shall be called a "*Participant*." Applicant acknowledges that this Participation Application and Agreement is supported by adequate mutual consideration. Terms not defined in this Application and Agreement will have the meanings as set forth in the Business Rules, as defined below.
+The undersigned organization ("_Applicant_") hereby applies for participation in the \[Scheme\], a \[a legal form of company\] organized and existing under the laws of \[define\] and if accepted by \[Scheme\] agrees that Applicant's participation in the Scheme will be subject to the following terms and conditions. This Application and Agreement is dated \_\_\_\_\_\_\_\_\_\_\_\_\_\_and shall become effective and binding upon the Applicant as of the date shown below when signed on behalf of the \[Scheme\] (the "_Effective Date_"). From the Effective Date, Applicant shall be called a "_Participant_." Applicant acknowledges that this Participation Application and Agreement is supported by adequate mutual consideration. Terms not defined in this Application and Agreement will have the meanings as set forth in the Business Rules, as defined below.
 
 - Applicant shall be bound by and shall observe all of the provisions of the Business Rules.
 
@@ -53,15 +53,15 @@ The undersigned organization ("_Applicant_") hereby applies for participation in
 
 - Termination:
 
-    - A Participant may terminate participation at any time without cause on X days' written notice. Such termination will be subject to provisions in the Business Rules regarding the costs and procedures for winding down the Participant's operations with respect to the Scheme. The Participant will remain liable for all Fees and other charges and liabilities incurred pursuant to the Business Rules through the effective date of termination.
+  - A Participant may terminate participation at any time without cause on X days' written notice. Such termination will be subject to provisions in the Business Rules regarding the costs and procedures for winding down the Participant's operations with respect to the Scheme. The Participant will remain liable for all Fees and other charges and liabilities incurred pursuant to the Business Rules through the effective date of termination.
 
-    - The Scheme can terminate a Participant for causes provided in the Business Rules.
+  - The Scheme can terminate a Participant for causes provided in the Business Rules.
 
-    - Termination of a Participant for cause will be subject to obligations upon termination and procedures specified in the Business Rules.
+  - Termination of a Participant for cause will be subject to obligations upon termination and procedures specified in the Business Rules.
 
-    - License. Participant is granted a license to participate, including use of Scheme Property, upon terms as specified in the Business Rules. Participant is licensed to provide Services using Scheme Processing Components and the Scheme Brand and to use Scheme Property in the following countries:
+  - License. Participant is granted a license to participate, including use of Scheme Property, upon terms as specified in the Business Rules. Participant is licensed to provide Services using Scheme Processing Components and the Scheme Brand and to use Scheme Property in the following countries:
 
-    - Information Submissions. Applicant warrants and represents that all information submitted to the Scheme in support of this Participation Application and Agreement is correct and complete as of the date of this application.
+  - Information Submissions. Applicant warrants and represents that all information submitted to the Scheme in support of this Participation Application and Agreement is correct and complete as of the date of this application.
 
 ## 1.1 Applicable Law
 

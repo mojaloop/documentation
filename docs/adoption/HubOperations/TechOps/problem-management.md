@@ -12,7 +12,6 @@ The problem management procedure ensures that:
 * resolution provided meets the requirements of the agreed upon service level agreement (SLA)
 * resolution of root cause issues or problems is done
 
-
 ## Identifying problems
 
 A problem is declared by the relevant service management stakeholder in the following situations:

@@ -1,23 +1,29 @@
 ## 7.7 POST /quotes
+
 |**Financial Institution to Financial Institution Customer Credit Transfer Quote Request - pacs.081.001.01**|
 |--|
 
 #### Context
+
 *(DFSP -> DFSP)*
 
-This request for quote message that is initiated by the payer DFSP who is requesting the payee DFSP to provide the terms of the transfer. The reply to this request is a callback made on the PUT /quotes endpoint. In this phase of the transfer all participants present and agree on the terms of the transfer, and are expected to validate whether the transfer will be able to proceed. 
+This request for quote message that is initiated by the payer DFSP who is requesting the payee DFSP to provide the terms of the transfer. The reply to this request is a callback made on the PUT /quotes endpoint. In this phase of the transfer all participants present and agree on the terms of the transfer, and are expected to validate whether the transfer will be able to proceed.
 
 If this transaction includes currency conversion, then the transfer amount and currency specified must be in target currency. The transfer amounts is specified in the `CdtTrfTxInf.IntrBkSttlmAmt.ActiveCurrencyAndAmount` and the `CdtTrfTxInf.IntrBkSttlmAmt.Ccy` fields.
 Both the `ChrgBr` type `CRED` and `DEBT` are supported.
+
 #### Charge Type `CRED`
-If the `CdtTrfTxInf.ChrgBr` is defined as `CRED`, then the transfer amount is expected to remain the same in the returned transfer terms and the payee party receive amount is adjusted to account for any fees. 
+
+If the `CdtTrfTxInf.ChrgBr` is defined as `CRED`, then the transfer amount is expected to remain the same in the returned transfer terms and the payee party receive amount is adjusted to account for any fees.
 
 #### Charge Type `DEBT`
-If the `CdtTrfTxInf.ChrgBr` is defined as `DEBT`, then the amount the payee party receives must equal the transfer amount specified. The transfer amount in returned transfer terms is adjusted to account for any fees. 
+
+If the `CdtTrfTxInf.ChrgBr` is defined as `DEBT`, then the amount the payee party receives must equal the transfer amount specified. The transfer amount in returned transfer terms is adjusted to account for any fees.
 
 The Identifier for this request must be a ULID generated identifier and is specified in the `CdtTrfTxInf.PmtId.TxId` field. If this transfer is part of a wider transaction, then that too is represented by a ULID specified in the `CdtTrfTxInf.PmtId.EndToEndId` field.
 
 Here is an example of the message:
+
 ```json
 {
 "GrpHdr": {
@@ -45,14 +51,18 @@ Here is an example of the message:
         "ChrgBr": "CRED"}
 }        
 ```
+
 #### Message Details
+
 The details on how to compose and make this API are covered in the following sections:
+
 1. [Core Data Elements](#core-data-elements)<br>This section specifies which fields are required, which fields are optional, and which fields are unsupported in order to meet the message validating requirements.
 2. [Header Details](../MarketPracticeDocument.md#_3-3-1-header-details)<br> This general section specifies the header requirements for the API are specified.
 3. [Supported HTTP Responses](../MarketPracticeDocument.md#_3-3-2-supported-http-responses)<br> This general section specifies the http responses that must be supported.
 4. [Common Error Payload](../MarketPracticeDocument.md#_3-3-3-common-error-payload)<br> This general section specifies the common error payload that is provided in synchronous http error response.
 
 #### Core Data Elements
+
 Here are the core data elements that are needed to meet this market practice requirement.
 
 The background colours indicate the classification of the data element.
@@ -81,7 +91,7 @@ The background colours indicate the classification of the data element.
     }
     td, th {
         padding: 1px;
-        margin: 1px; 
+        margin: 1px;
     }  
   </style>
 
@@ -91,7 +101,6 @@ The background colours indicate the classification of the data element.
    <tr class="unsupported"> <td><b>unsupported</b></td><td>These fields are actively not supported. The functionality specifying data in these fields are not compatible with a Mojaloop scheme, and will fail message validation if provided.</td></tr>
   </table>
    <br><br>
-    
 
 Here is the defined core data element table.
 
@@ -628,4 +637,3 @@ Here is the defined core data element table.
 <tr class=unsupported><td>&nbsp;&nbsp;&nbsp;&nbsp;  <b>SplmtryData</b> - SupplementaryData1</td><td>[0..0]</td><td>Additional information that cannot be captured in the structured fields and/or any other specific block.<br></td></tr>
 <tr class=unsupported><td>  <b>SplmtryData</b> - SupplementaryData1</td><td>[0..0]</td><td>Additional information that cannot be captured in the structured fields and/or any other specific block.<br></td></tr>
 </table>
-

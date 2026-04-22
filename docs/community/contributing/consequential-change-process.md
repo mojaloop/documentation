@@ -69,4 +69,3 @@ as discussing how your design aligns with established tools, patterns and practi
    spotted.
     1. Your assigned design authority member(s) may make suggestions to mitigate risk from your design and may ask you
        to make specific changes to bring your proposal in line with any established Mojaloop constraints.
-

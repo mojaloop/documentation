@@ -13,7 +13,7 @@ Terms with specific and commonly accepted meaning within the Bounded Context in 
 | Term              | Description                                                                                                                                           |
 |-------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Account**       | Refers to a General Ledger account, a record in an accounting system that records the debit or credit entries that represent a financial transaction. |
-| **Journal Entry** | Credit/Debit financial records against Account.                                                                                                       | 
+| **Journal Entry** | Credit/Debit financial records against Account.                                                                                                       |
 | **Balance**       | The amount available in an account, when the debits and credits have been factored in.                                                                |
 
 ## Functional Overview - Accounts and Balances
@@ -118,4 +118,3 @@ Journal Entry insertion from [Settlements BC](../settlements/index.md) using `Im
 <!-- Footnotes themselves at the bottom. -->
 <!-- ## Notes -->
 
-[^1]: Common Interfaces: [Mojaloop Common Interface List](../../commonInterfaces.md)

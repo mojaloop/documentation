@@ -12,7 +12,7 @@ The Reporting strategy for this Reference Architecture, is to describe the gener
 - Such component must exists in the Reporting BC for any Client BC's who's data is made available in the Reporting Data Store.
 - Any direct data sending, or fetching, from the source Client BC, or its internal data stores, to the Reporting Data Store, constitutes a violation of the decoupling principle and will negatively affect the maintainability of the system by virtue of its tight coupling.
 
-### Reporting strategies:
+### Reporting strategies
 
 - Event based - Preferred way - On the Reporting BC sits a component (event handler) that is listening to relevant event from its correspondent BC and transforms those events into reporting data store entries - there can be many of these components per Client BC, however, each should be the only one responsible for writing a subset of the reporting data
 - Push - The Client BC will call the correspondent Client BC Reporting Component API to send data, this API will be transforming the data and persisting it to the reporting store ([^1] with the source BC, ie, there should be a API per source BC)
@@ -20,7 +20,7 @@ The Reporting strategy for this Reference Architecture, is to describe the gener
 
 **For performance critical BC we should always try to use the event driven reporting strategy.**
 
-### Absolutely minimum rules to observe:
+### Absolutely minimum rules to observe
 
 - Only the Reporting Data Store can be used for reporting and dashboarding. External systems are forbidden direct access to Bounded Contexts' own data stores. Operational access for external systems will be available via the Operational or [Interop APIs](/refarch/boundedContexts/fspInteropApi/).
 - Client BC's internal source data cannot be "passed" directly to the Reporting Data Store - There must be a translation between the source data structure and the reporting data structure, even if there are no structure changes. Objective is to not have a dependency on the source BC data structure on the reporting side.

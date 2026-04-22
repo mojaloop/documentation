@@ -28,7 +28,7 @@ The following runtime standards apply to Mojaloop.
 
     > NOTE: When specifying the `NODE_ACTIVE_LTS_VERSION`, use the full semantic version such as `<MAJOR>-<MINOR>-<PATCH>`.
     >
-    > `node:16.15.0-alpine ` <-- This is OK
+    > `node:16.15.0-alpine` <-- This is OK
     >
     > `lts-alpine3.16` <-- This is NOT OK
     >

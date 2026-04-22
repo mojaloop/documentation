@@ -27,18 +27,18 @@ Implementation teams can assist banks, government offices, mobile operators or c
 
 ## How do I contribute?
 
-* Read and familiarise yourself with our [product engineering processes](./product-engineering-process.md)
+- Read and familiarise yourself with our [product engineering processes](./product-engineering-process.md)
   and [Mojaloop design and code review processes](./design-review.md).
-* Review the [Mojaloop Deployment Guide](https://docs.mojaloop.io/documentation/deployment-guide/) and
+- Review the [Mojaloop Deployment Guide](https://docs.mojaloop.io/documentation/deployment-guide/) and
   the [Onboarding Guide](https://github.com/mojaloop/mojaloop/blob/master/onboarding.md).
-* Browse through the [Repository Overview](https://docs.mojaloop.io/documentation/repositories/) to understand how the
+- Browse through the [Repository Overview](https://docs.mojaloop.io/documentation/repositories/) to understand how the
   Mojaloop code is managed across multiple Github Repositories.
-* Get familiar with our [Standards](../standards/guide.md) for contributing to this project.
-* Go through the [New Contributor Checklist](./new-contributor-checklist.md), and browse through the project board and
+- Get familiar with our [Standards](../standards/guide.md) for contributing to this project.
+- Go through the [New Contributor Checklist](./new-contributor-checklist.md), and browse through the project board and
   work on
   your [good first issue](https://github.com/mojaloop/project/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22)
-* Review the [Roadmap](../mojaloop-roadmap.md) and contribute to future opportunities.
-* Familiarize yourself with our Community [Code of Conduct](./code-of-conduct.md).
+- Review the [Roadmap](../mojaloop-roadmap.md) and contribute to future opportunities.
+- Familiarize yourself with our Community [Code of Conduct](./code-of-conduct.md).
 
 ## What work is needed?
 

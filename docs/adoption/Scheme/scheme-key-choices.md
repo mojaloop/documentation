@@ -1,9 +1,9 @@
 # Scheme Key Choices
 
-- Version: 5.0 
-    - Author: Carol Coye Benson (Glenbrook)
-    - Date: October 2019
-    - Description: 
+- Version: 5.0
+  - Author: Carol Coye Benson (Glenbrook)
+  - Date: October 2019
+  - Description:
 
 ---
 
@@ -141,9 +141,9 @@ There is no single Level One Principle that argues in favor of one of these mode
 
 ### 4.1 Scope
 
-Scheme rules vary widely in scope from scheme to scheme. All cover the essential elements of scheme participation, party obligations, and the mechanics of interoperability. But many schemes go much further in terms of defining how DFSPs make payments services available to their customers, and under which terms. Two areas here are worthy of note: 
+Scheme rules vary widely in scope from scheme to scheme. All cover the essential elements of scheme participation, party obligations, and the mechanics of interoperability. But many schemes go much further in terms of defining how DFSPs make payments services available to their customers, and under which terms. Two areas here are worthy of note:
 
-- Some schemes specify elements of the end-user experience. Examples of this include the card networks specifying card physical parameters and design requirements. Some systems (for example, Peru\'s BIM) specify how the mobile phone interface appears to a consumer. Other systems (for example, India\'s UPI) go so far as to provide the SKD\'s and API\'s that define what the end-user app can functionally do. Some systems may require that a DFSP receiving a credit-push transaction must post it to a customer\'s account within a specified amount of time 
+- Some schemes specify elements of the end-user experience. Examples of this include the card networks specifying card physical parameters and design requirements. Some systems (for example, Peru\'s BIM) specify how the mobile phone interface appears to a consumer. Other systems (for example, India\'s UPI) go so far as to provide the SKD\'s and API\'s that define what the end-user app can functionally do. Some systems may require that a DFSP receiving a credit-push transaction must post it to a customer\'s account within a specified amount of time
 - Some schemes also specify elaborate liability provisions on interoperable transactions. These provisions may vary according to use case and particular attributes of a transaction. For example, in the card networks, liability may pass from the card issuer to the merchant acquirer if the merchant terminal does not meet certain specifications.
 
 ### 4.2 Rules Authority
@@ -222,19 +222,19 @@ Any scheme implementing credit-push payments needs to specify how the payer and 
 
 - For each type of payment address supported by the scheme, the scheme needs to determine how that payment address is resolved. At a minimum, the scheme needs to support a mechanism by which the address is mapped to a DFSP scheme participant responsible for the transaction account associated with that payment address. Resolution can be done in a number of different ways:
 
-    - The scheme can maintain a directory mapping addressing to responsible DFSP ID's: this requires some type of DFSP registration process for addresses.
+  - The scheme can maintain a directory mapping addressing to responsible DFSP ID's: this requires some type of DFSP registration process for addresses.
 
-    - The scheme can maintain a directory which maps the address to the responsible DFSP and also specifies the account number: this requires a slightly different registration process.
+  - The scheme can maintain a directory which maps the address to the responsible DFSP and also specifies the account number: this requires a slightly different registration process.
 
-    - Either of these types of directories can be maintained by a third party: scheme rules would establish how these directories are populated, maintained and used, and what the responsibilities of the various parties are.
+  - Either of these types of directories can be maintained by a third party: scheme rules would establish how these directories are populated, maintained and used, and what the responsibilities of the various parties are.
 
-    - A scheme may also use a broadcast method to determine the DFSP responsible for a given payment address ("do you claim this address"), but needs to develop a protocol to manage conflicts if more than one DFSP "claims" the address.
+  - A scheme may also use a broadcast method to determine the DFSP responsible for a given payment address ("do you claim this address"), but needs to develop a protocol to manage conflicts if more than one DFSP "claims" the address.
 
 - It is important to note that the resolution method can different for each type of supported payment address. Some supported payment address types may also be accompanied by particular data sets: for example, when a payment is being made in payment of an invoice, the payment address may be some type of alias, and that use of that alias may be tied to accompanying invoice data. Dynamic QR codes, as an example, will create a "request to pay" that may contain the scheme-supported merchant ID (an alias) and accompanying transaction data detail.
 
 The Open API specification and the Mojaloop reference code support a wide range of different address types: mobile number, bank account, national ID, aliases ("Quickshop\@abc"), etc.
 
-### 7.1 L1P Alignment — Payments Addressing 
+### 7.1 L1P Alignment — Payments Addressing
 
 Secure, easy payment addressing relates to two important concepts in Level One: convenience for the end-user and "openness". The latter is particularly important to enable competition and rapid scaling of a payment system. As schemes (Level One and otherwise) worldwide struggle to determine how to best solve the question of payments addressing, a few best practices appear to be emerging:
 
@@ -296,7 +296,7 @@ Note this section does not discuss access to the system by other FSPs: that is a
 
 Fees associated with an interoperable payment scheme can be categorized as:
 
--   End-User Fees: the fees (or minimum balance requirements, etc.) assessed by a DFSP to their end-user customer. This includes fees charged to consumers, merchants, billers, governments or other enterprises. Some of these fees are specifically attached to the interoperable transfer itself (e.g. a "send transfer" fee, or a "merchant discount fee"); others are related (a "cash-out" fee, an ATM withdrawal fee). These fees are typically set by the DFSP. In some countries and situations, regulation or scheme rule agreements may apply to or influence the fees. Fees may either be fixed amounts; fixed amounts; percent-of-value amounts, or a combination of fixed and percent of value. In either case, fee schedules can differ based on which value-bands (for example, transactions lower than value "X" have this fee) or end-user transaction volume.
+- End-User Fees: the fees (or minimum balance requirements, etc.) assessed by a DFSP to their end-user customer. This includes fees charged to consumers, merchants, billers, governments or other enterprises. Some of these fees are specifically attached to the interoperable transfer itself (e.g. a "send transfer" fee, or a "merchant discount fee"); others are related (a "cash-out" fee, an ATM withdrawal fee). These fees are typically set by the DFSP. In some countries and situations, regulation or scheme rule agreements may apply to or influence the fees. Fees may either be fixed amounts; fixed amounts; percent-of-value amounts, or a combination of fixed and percent of value. In either case, fee schedules can differ based on which value-bands (for example, transactions lower than value "X" have this fee) or end-user transaction volume.
 
 - Processing Fees: the fee that the Scheme, and the Operator of the Platform (if different) charge to the DFSPs for use of the scheme and platform. As with end-user fees, processing fees can be fixed or variable and may also vary by value-band or transaction volume.
 
@@ -314,13 +314,13 @@ One of the most important Level One concepts is to have an ultra-low-cost platfo
 
 - **Interchange Fees**. This is a complex and often debated topic in the payment industry worldwide, and one which frequently attracts regulatory scrutiny. Schemes may want to consider:
 
-    - Whether or not to have interchange at all. Some payments systems have this; many do not. Retail real-time payments systems worldwide are split on whether or not they support the use of interchange, and where they do, in which direction interchange flows for use cases such as P2P.
+  - Whether or not to have interchange at all. Some payments systems have this; many do not. Retail real-time payments systems worldwide are split on whether or not they support the use of interchange, and where they do, in which direction interchange flows for use cases such as P2P.
 
-    - Interchange is a useful mechanism for a form of billing: where the receiver of a valuable service (such as a merchant who wants access to a consumer's payment account) has no relationship with the provider of that service (the consumer's DFSP). Another example of this is where one bank's ATM is used to disburse funds to another bank's customer.
+  - Interchange is a useful mechanism for a form of billing: where the receiver of a valuable service (such as a merchant who wants access to a consumer's payment account) has no relationship with the provider of that service (the consumer's DFSP). Another example of this is where one bank's ATM is used to disburse funds to another bank's customer.
 
-    - Interchange is more questionable when it is being used to support legacy business models: for example, if an interoperable transaction causes a paying DFSP to "lose" a cash-out fee they would otherwise have gained, the scheme may specify an interchange rate in which the Payee DFSP pays the Payer DFSP to compensate for this loss. It may be practical to use interchange in these situations in the short run, but in the long run one can argue that the underlying business model needs to evolve.
+  - Interchange is more questionable when it is being used to support legacy business models: for example, if an interoperable transaction causes a paying DFSP to "lose" a cash-out fee they would otherwise have gained, the scheme may specify an interchange rate in which the Payee DFSP pays the Payer DFSP to compensate for this loss. It may be practical to use interchange in these situations in the short run, but in the long run one can argue that the underlying business model needs to evolve.
 
-    - Schemes should keep in mind that wherever interchange is used, a "hard cost" is being created that is being absorbed by, and probably passed on in end-user fees, by the interchange-paying-DFSP.
+  - Schemes should keep in mind that wherever interchange is used, a "hard cost" is being created that is being absorbed by, and probably passed on in end-user fees, by the interchange-paying-DFSP.
 
 ## 11. Choice: Brand Management
 

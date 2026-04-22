@@ -26,7 +26,7 @@ For detailed information about each deployment tool, please refer to the [Deploy
         background-color: #f8f9fa;
     }
 
-    td.green { 
+    td.green {
         background-color: rgba(46, 204, 113, 0.3); /* Lighter green with opacity */
         position: relative;
 
@@ -46,7 +46,7 @@ For detailed information about each deployment tool, please refer to the [Deploy
         }
     }
 
-    td.orange { 
+    td.orange {
         background-color: rgba(243, 156, 18, 0.3); /* Lighter orange with opacity */
         position: relative;
 
@@ -66,7 +66,7 @@ For detailed information about each deployment tool, please refer to the [Deploy
         }
     }
 
-    td.amber { 
+    td.amber {
         background-color: rgba(230, 126, 34, 0.3); /* Lighter amber with opacity */
         position: relative;
 
@@ -86,7 +86,7 @@ For detailed information about each deployment tool, please refer to the [Deploy
         }
     }
 
-    td.red { 
+    td.red {
         background-color: rgba(231, 76, 60, 0.3); /* Lighter red with opacity */
         position: relative;
 
@@ -226,8 +226,9 @@ For detailed information about each deployment tool, please refer to the [Deploy
 </table>
 
 ## Document History
+
 |Version|Date|Author|Detail|
 |:--------------:|:--------------:|:--------------:|:--------------:|
 |1.2|20th August 2025|Sam Kummary|Updated sections to use helm as deployment option where relevant|
 |1.1|3rd June 2025|Paul Makin|Removed performance section, moved it to new doc|
-|1.0|7th May 2025|Tony Williams|Initial version| 
+|1.0|7th May 2025|Tony Williams|Initial version|

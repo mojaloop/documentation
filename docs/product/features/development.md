@@ -1,9 +1,11 @@
 # Ongoing Development
+
 No software is ever finished, and Mojaloop is no exception. There are always new features to be considered, new APIs to be implemented, new portals to be added, and of course there is always ongoing maintenance, and security requires constant vigilance.
 
 The Mojaloop Roadmap addresses and prioritises these needs, placing them on a timeline, and defines them as a set of workstreams. Each of these work streams has a workstream lead, responsible for defining, managing and delivering the workstream to the Mojaloop Community. The workstream lead is supported by a number of contributors, who may be engineers helping to implement a feature, or those who can document the feature, or people helping to define the requirements.
 
 ## Active Workstreams
+
 The current active workstreams are:
 
 - [Participation Tools](./workstreams/participation.html)
@@ -21,6 +23,7 @@ The current active workstreams are:
 Click on each to find out details of the workstream, such as objectives and which community members are contributing.
 
 ## Candidate Workstreams
+
 As well as the currently active workstreams, we have a number of candidate workstreams that are "fast followers" behind them - that is, these have been identified as high priority, but as things stand there is insufficient capacity within the Community to address them. These are:
 
 - Implementation of PISP V2.0
@@ -36,6 +39,7 @@ Please contact the Product Director if you'd like to discuss any of these candid
 This version of this document relates to Mojaloop [Version 17.1.0](https://github.com/mojaloop/helm/releases/tag/v17.1.0)
 
 ## Document History
+
   |Version|Date|Author|Detail|
 |:--------------:|:--------------:|:--------------:|:--------------:|
 |1.1|25th November 2025| Paul Makin|Reviewed/amended the list of candidate workstreams|

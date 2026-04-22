@@ -39,7 +39,6 @@ This document provides the glossary for the Open API for FSP Interoperability Sp
 
 Information is shared in accordance with Creative Commons Licensing<sup>[LICENSE](https://github.com/mojaloop/mojaloop-specification/blob/master/LICENSE.md)</sup>.
 
-
 ### Open API for FSP Interoperability Specification
 
 The Open API for FSP Interoperability Specification includes the following documents.
@@ -74,7 +73,6 @@ The Open API for FSP Interoperability Specification includes the following docum
 
 <br />
 
-
 ## API Glossary
 
 | **Term** | **Alternative and Related Terms** | **Definition** | **Source** |
@@ -82,7 +80,7 @@ The Open API for FSP Interoperability Specification includes the following docum
 | **Access Channel** | POS ("Point of Sale"), Customer Access Point, ATM, Branch, MFS Access Point | Places or capabilities that are used to initiate or receive a payment. Access channels can include bank branch offices, ATMs, terminals at the POS, agent outlets, mobile phones, and computers. | ITU-T |
 | **Account ID** | | A unique identifier assigned by the FSP that created the account. | PDP |
 | **Account Lookup System** | | Account Lookup System is an abstract entity used for retrieving information regarding in which FSP an account, wallet, or identity is hosted. The Account Lookup System itself can be hosted in its own server, as part of a financial switch, or in the different FSPs. | PDP |
-| **Active User** | | A term used by many providers in describing how many of their account holders are frequent users of their service. | 
+| **Active User** | | A term used by many providers in describing how many of their account holders are frequent users of their service. |
 | **Agent** | Agent Til , Agent Outlet | An entity authorized by the provider to handle various functions such as customer enrollment, cash-in and cash-out using an agent til . | ITU-T |
 | **Agent Outlet** | Access Point | A physical location that carries one or more agent tills, enabling it to perform enrollment, cash-in, and cash-out transactions for customers on behalf of one or more providers. National law defines whether an agent outlet may remain exclusive to one provider. Agent outlets may have other businesses and support functions. | ITU-T |
 | **Agent Till** | Registered Agent | An agent till is a provider-issued registered “line”, either a special SIM card or a POS machine, used to perform enrollment, cash-in and cash-out transactions for clients. National law dictates which financial service providers can issue agent tills. | ITU-T |

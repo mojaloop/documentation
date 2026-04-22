@@ -1,4 +1,5 @@
 # SDK usage tested scenario's overview
+
 A scheme adapter is a service that interfaces between a Mojaloop API compliant switch and a DFSP backend platform that does not natively implement the Mojaloop API.
 
 The API between the scheme adapter and the DFSP backend is synchronous HTTP while the interface between the scheme adapter and the switch is native Mojaloop API.
@@ -6,6 +7,7 @@ The API between the scheme adapter and the DFSP backend is synchronous HTTP whil
 This document provides different ways of setups that a DFSP can test using the scheme adapter.
 
 # Scenarios
+
 There are number of scenarios those we tested and documented as follows.
 
 * [[Scheme Adapter + Mock DFSP Backend] -> [Scheme Adapter + Mojaloop Simulator]](./scheme-adapter-to-scheme-adapter/README.md)
@@ -39,6 +41,5 @@ Please [click here](./scheme-adapter-and-local-k8s/README.md) for the documentat
 If you have access to the WSO2 Mojaloop API, you can test that by the following documentation. In the above two scenarios, we didn't use token authentication and SSL encryption capabilities of scheme adapter. We are going to use those capabilites in this section.
 
 Please [click here](./scheme-adapter-and-wso2-api-gateway/README.md) for the documentation.
-
 
 ![SchemeAdapterAndWSO2APIGateway](./scheme-adapter-and-wso2-api-gateway/scheme-adapter-and-wso2-api-gateway-overview.png)

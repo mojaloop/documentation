@@ -25,4 +25,3 @@ To resume services for the DFSP that you have disabled previously, complete the 
 1. Click the **Enable** button.
 
 <img src="../../../.vuepress/public/enable_dfsp_position_ledger.png" />
-

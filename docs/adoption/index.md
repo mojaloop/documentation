@@ -4,11 +4,9 @@ For a hub operator or central bank to use Mojaloop for its inclusive instant pay
 
 The documentation and tools in this section are designed to help with the rationale for selecting to use Mojaloop and a recommended process for implementation.  
 
-Building a payment system is far more than the technology platform.  The scheme and operations are actually the factors of success.   We developed Mojaloop to minimize operational burden and reduce the cost of implementing inclusive scheme rules like irrevocability and certainty. 
+Building a payment system is far more than the technology platform.  The scheme and operations are actually the factors of success.   We developed Mojaloop to minimize operational burden and reduce the cost of implementing inclusive scheme rules like irrevocability and certainty.
 
-The process of building a payment system can be as important as some of the scheme decisions which come out of it.  Every scheme owner and operator can develop their own process, but we recommend a process that is inclusive, transparent, and iterative to maximize ownership, trust and long term sustainability. 
-
-
+The process of building a payment system can be as important as some of the scheme decisions which come out of it.  Every scheme owner and operator can develop their own process, but we recommend a process that is inclusive, transparent, and iterative to maximize ownership, trust and long term sustainability.
 
 Tools available for Adopters:
 
@@ -25,7 +23,7 @@ The [Scheme Key Choices](./Scheme/scheme-key-choices.md) document describes and 
 
 The [Scheme Participation Agreement Template](./Scheme/scheme-participation-agreement.md) provides a template of the Scheme Participation Agreement that contains the minimal necessary provisions to evidence a DFSP's application to join the Scheme and abide by its Business Rules.
 
-The [Uniform Glossary Template](./Scheme/scheme-uniform-glossary.md) acts as a glossary of business terms. 
+The [Uniform Glossary Template](./Scheme/scheme-uniform-glossary.md) acts as a glossary of business terms.
 
 ## Hub Operations
 
@@ -37,6 +35,6 @@ The [Settlement Management Guide](./huboperations/settlement/settlement-manageme
 
 The [Guide to Finance Portal v2](./huboperations/portalv2/busops-portal-introduction.md) is aimed at the Operator of a Mojaloop Hub and provides information about the Finance Portal, which facilitates the management of settlement-related processes on a daily basis.
 
-The [Roled-Based Access Control](./huboperations/rbac/Role-based-access-control.md) document discusses the security mechanism employed to control access to various aspects of an operational instance of a Mojaloop Hub. 
+The [Roled-Based Access Control](./huboperations/rbac/Role-based-access-control.md) document discusses the security mechanism employed to control access to various aspects of an operational instance of a Mojaloop Hub.
 
 The [Onboarding Guide for the Hub Operator](./huboperations/onboarding/onboarding-introduction.md) is aimed at the Operator of a Mojaloop Hub and provides information about the DFSP onboarding process. It provides a high-level overview of the onboarding journey that DFSPs take, acting as a checklist of onboarding activities.

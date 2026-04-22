@@ -1,15 +1,18 @@
 ## 7.15 PUT /transfers/{ID}
+
 | Financial Institution to Financial Institution Payment Status Report - **pacs.002.001.15**|
 |--|
 
-#### Context 
+#### Context
+
 *(DFSP -> DFSP, DFSP -> HUB, HUB -> DFSP)*
 
 This message is a response to the `POST \transfers` call initiated by the DFSP who is requesting to proceed with the transfer terms presented in the `PUT \quotes`. It is the payee DFSPs responsibility to check that the clearing amounts align with the agreed transfer terms, and if all requirements are met, this message is used to lock-in the agreed terms. Once the hub receives this acceptance message, the transfer can no-longer timeout and will be committed. If this transfer is a dependent transfer in a currency conversion, then that currency conversion will be committed at the same time as this transfer.
 
-The cryptographic ILP fulfillment provided in the `TxInfAndSts.ExctnConf` field, is released by the payee DFSP as an indication to the HUB that the terms have been met. 
+The cryptographic ILP fulfillment provided in the `TxInfAndSts.ExctnConf` field, is released by the payee DFSP as an indication to the HUB that the terms have been met.
 
 Here is an example of the message:
+
 ```json
 {
 "GrpHdr": {
@@ -24,13 +27,16 @@ Here is an example of the message:
 ```
 
 #### Message Details
+
 The details on how to compose and make this API are covered in the following sections:
+
 1. [Core Data Elements](#core-data-elements)<br>This section specifies which fields are required, which fields are optional, and which fields are unsupported in order to meet the message validating requirements.
 2. [Header Details](../MarketPracticeDocument.md#_3-3-1-header-details)<br> This general section specifies the header requirements for the API are specified.
 3. [Supported HTTP Responses](../MarketPracticeDocument.md#_3-3-2-supported-http-responses)<br> This general section specifies the http responses that must be supported.
 4. [Common Error Payload](../MarketPracticeDocument.md#_3-3-3-common-error-payload)<br> This general section specifies the common error payload that is provided in synchronous http error response.
 
 #### Core Data Elements
+
 Here are the core data elements that are needed to meet this market practice requirement.
 
 The background colours indicate the classification of the data element.
@@ -59,7 +65,7 @@ The background colours indicate the classification of the data element.
     }
     td, th {
         padding: 1px;
-        margin: 1px; 
+        margin: 1px;
     }  
   </style>
 
@@ -69,7 +75,6 @@ The background colours indicate the classification of the data element.
    <tr class="unsupported"> <td><b>unsupported</b></td><td>These fields are actively not supported. The functionality specifying data in these fields are not compatible with a Mojaloop scheme, and will fail message validation if provided.</td></tr>
   </table>
    <br><br>
-    
 
 Here is the defined core data element table.
 
@@ -96,4 +101,3 @@ Here is the defined core data element table.
 <tr class=optional><td>&nbsp;&nbsp;&nbsp;&nbsp;  <b>PlcAndNm</b> - PlaceAndName</td><td>[0..1]</td><td>Unambiguous reference to the location where the supplementary data must be inserted in the message instance.<br></td></tr>
 <tr class=optional><td>&nbsp;&nbsp;&nbsp;&nbsp;  <b>Envlp</b> - Envelope</td><td>[0..1]</td><td>Technical element wrapping the supplementary data.<br>Technical component that contains the validated supplementary data information. This technical envelope allows to segregate the supplementary data information from any other information.<br></td></tr>
 </table>
-

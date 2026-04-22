@@ -1,4 +1,5 @@
 # Deploying Mojaloop
+
 There is a range of different reasons to deploy Mojaloop, ranging from a desire to learn more about Mojaloop or a wish to evaluate its suitability for some purpose, through developers who wish to develop or test new features, or perhaps an adopter who wishes to evaluate its functionality and connectivity, through to a production-grade deployment of a national payments system.
 
 ## Deployment Guide
@@ -16,6 +17,7 @@ The Community has developed a self assessment matrix that can be used by adopter
 You can [view the matrix here](./Production_Readiness_Technical_Assessment.md), and the form can be [downloaded here](https://github.com/mojaloop/product-council/tree/main/Documentation/Deployment%20Readiness) when you are ready to begin an assessment.
 
 ## Document History
+
   |Version|Date|Author|Detail|
 |:--------------:|:--------------:|:--------------:|:--------------:|
 |1.1|18th December 2025| Paul Makin, Julie Guetta|Added a link to the Production Readiness document|

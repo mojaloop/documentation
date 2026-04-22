@@ -1,11 +1,14 @@
 # SDK Support for Bulk Transfers - Tests
+
 ## Test Strategy
+
 The quality of the delivered solution is as good a the quality of the tests and testing strategy adopbted. The distributed nature of this event sourcing solution affected the testing strategy chosen. Multiple types of test were created, each supporting the others and designed to pick bugs as quickly as possible.
 
 The Command event handler and the domain event handler have both unit tests and narrow integration tests as the base testing. The FSPIOP API and backend API components have only unit tests.
 Great emphasis was put on the functional tests which then tested the four components working together in both happy and unhappy path scenarios.
 
 ### Narrow integration tests
+
 These tests are written in jest and assert for example the updated state store and produced events based on a command event generated.
 
 **Command Handler Integration Test Harness**
@@ -13,7 +16,8 @@ These tests are written in jest and assert for example the updated state store a
 ![Local Test Setup](../assets/CHIntegrationTestHarness.drawio.svg)
 
 ### The functional test testharness
-The functional test makes use of the TTK which simulates both the Payer and the Payee DFSP backends. 
+
+The functional test makes use of the TTK which simulates both the Payer and the Payee DFSP backends.
 
 :::tip Note
 This test harness tests both the Payer SDK and the Payee SDK.
@@ -84,6 +88,7 @@ These test can be run on the local checked out monorepo, and are run in the CI p
 </div>
 
 ## Payer DFSP Features reference
+
 |#|Outbound Features|Detail|
 |---|---|---|
 |B1|Backend API|POST /bulkTransactions SDKBulkRequest|
@@ -198,4 +203,3 @@ These test can be run on the local checked out monorepo, and are run in the CI p
 ||TC-BT6|Functional|Out of scope for MVP|Accept quote - All false (Not Implemented - Issue 3015)|
 ||TC-BT7|Functional|Out of scope for MVP|True is sent only for one transfer in PUT /bulkTxn acceptParty, ignoring second one - (Not Implemented - Issue 3015)|
 ||TC-BT8|Functional|Out of scope for MVP|false is sent only for one transfer in PUT /bulkTxn acceptParty, ignoring second one - (Not Implemented - Issue 3015)|
-

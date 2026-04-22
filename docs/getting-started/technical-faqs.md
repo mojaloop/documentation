@@ -8,7 +8,7 @@ Currently the Central ledger components are supported by the team. The DFSP comp
 
 ## 2. Can we connect directly to Pathfinder in a development environment?
 
-For the local and test environment, we recommend interfacing with the 'mock-pathfinder' service instead. Pathfinder is a 'paid by usage' service. 
+For the local and test environment, we recommend interfacing with the 'mock-pathfinder' service instead. Pathfinder is a 'paid by usage' service.
 
 Access the https://github.com/mojaloop/mock-pathfinder repository to download and install mock-pathfinder. Run command npm install in mock-pathfinder directory to install dependencies after this update Database_URI in mock-pathfinder/src/lib/config.js.
 
@@ -24,13 +24,12 @@ You should register using the API provided, using postman or curl. Client is usi
   Error from server (BadRequest): container "centralledger-handler-admin-transfer" in pod "pi3-centralledger-handler-admin-transfer-6787b6dc8d-x68q9" is waiting to start: PodInitializing
   And the status of the pod pi3-kafka-0 is still on CrashLoopBackOff.
   I am using a vps on ubuntu 16.04 with RAM 12GB, 2vCores, 2.4GHz, Rom 50GB at OVH for the deployment.
-    
+
 Increased RAM to 24 GB and CPU to 4 resolved the issues. Appears to be a timeout on Zookeeper due depletion of available resources, resulting in the services shutting down.
 
 ## 5. Why am I getting an error when we try to create new DFSP using Admin?
 
 Please insure you are using the most current Postman scripts available on https://github.com/mojaloop/mock-pathfinder repository.
-
 
 ## 6.  Can I spread Mojaloop components over different physical machines and VM's?
 
@@ -48,27 +47,26 @@ At the moment, the Mojaloop Open source Switch implementation does *not* store Q
 
 Not at the moment, but this may happen in the future. Regarding correlating requests that are related to a specific transfer, you may look at the ‘transaction’ end-point/resource in the Specification for more information on this. In addition to this, I can convey that some background work is ongoing regarding the specification to make this correlation more straight-forward and simpler i.e., to correlate quote and transfer requests that come under a single transaction.
 
-
 ## 10. How to register a new party in Mojaloop?
 
 There is no  POST on /parties resource, as specified in section 6.1.1 of the API Defintion. Please refer to section: 6.2.2.3 `POST /participants/<Type>/<ID>` in the API Defintion.
 
-” _The HTTP request `POST /participants/<Type>/<ID>` (or `POST /participants/<Type>/<ID>/<SubId>`) is used to create information on the server regarding the provided identity, defined by `<Type>`, `<ID>`, and optionally `<SubId>` (for example, POST_
-  _/participants/MSISDN/123456789 or POST /participants/BUSINESS/shoecompany/employee1). See Section 5.1.6.11 for more information regarding addressing of a Party._ ”.
+” *The HTTP request `POST /participants/<Type>/<ID>` (or `POST /participants/<Type>/<ID>/<SubId>`) is used to create information on the server regarding the provided identity, defined by `<Type>`, `<ID>`, and optionally `<SubId>` (for example, POST*
+  */participants/MSISDN/123456789 or POST /participants/BUSINESS/shoecompany/employee1). See Section 5.1.6.11 for more information regarding addressing of a Party.* ”.
   
 ## 11. Does the participant represent an account of a customer in a bank?
 
 For more on this, please refer to this doc (Section 3..2): https://github.com/mojaloop/mojaloop-specification/blob/develop/Generic%20Transaction%20Patterns.pdf.
   
-” _In the API, a Participant is the same as an FSP that is participating in an Interoperability Scheme. The primary purpose of the logical API resource Participants is for FSPs to find out in which other FSP a counterparty in an interoperable financial transaction is located. There are also services defined for the FSPs to provision information to a common system._ ”
+” *In the API, a Participant is the same as an FSP that is participating in an Interoperability Scheme. The primary purpose of the logical API resource Participants is for FSPs to find out in which other FSP a counterparty in an interoperable financial transaction is located. There are also services defined for the FSPs to provision information to a common system.* ”
 
-In essence, a participant is any FSP participating in the Scheme (usually not a customer). For account lookup, a directory service such as *Pathfinder* can be used, which provides user lookup and the mapping. If such a directory service is not provided, an alternative is provided in the Specification, where the Switch hosts an Account Lookup Service (ALS) but to which the participants need to register parties. I addressed this earlier. But one thing to note here is that the Switch does not store the details, just the mapping between an ID and an FSP and then the calls to resolve the party are sent to that FSP. 
+In essence, a participant is any FSP participating in the Scheme (usually not a customer). For account lookup, a directory service such as *Pathfinder* can be used, which provides user lookup and the mapping. If such a directory service is not provided, an alternative is provided in the Specification, where the Switch hosts an Account Lookup Service (ALS) but to which the participants need to register parties. I addressed this earlier. But one thing to note here is that the Switch does not store the details, just the mapping between an ID and an FSP and then the calls to resolve the party are sent to that FSP.
 
 https://github.com/mojaloop/mojaloop-specification CORE RELATED (Mojaloop):
 
 This repo contains the specification document set of the Open API for FSP Interoperability - mojaloop/mojaloop-specification.
 
-## 12. How to register _trusted_ payee to a payer, to skip OTP?
+## 12. How to register *trusted* payee to a payer, to skip OTP?
 
 To skip the OTP, the initial request on the /transactionRequests from the Payee can be programmatically (or manually for that matter) made to be approved without the use of the /authorizations endpoint (that is need for OTP approval). Indeed the FSP needs to handle this, the Switch does not. This is discussed briefly in section 6.4 of the Specification.
 
@@ -80,7 +78,7 @@ From the official kubernetes github repository in the README.md, the latest link
 
 Please have a look at the following addressing a similar issue. To summarise - it is most likely an RBAC issue. Have a look at the documentation to set up Tiller with RBAC. https://docs.helm.sh/using_helm/#role-based-access-control goes into detail about this. The issue logged: helm/helm#3839.
 
-## 15. Received "ImportError: librdkafka.so.1: cannot open shared object file: No such file or directory" when running `npm start' command.
+## 15. Received "ImportError: librdkafka.so.1: cannot open shared object file: No such file or directory" when running `npm start' command
 
 Found a solution here https://github.com/confluentinc/confluent-kafka-python/issues/65#issuecomment-269964346
 GitHub
@@ -141,9 +139,9 @@ If you use the CLI, find the 'Host' column in `kubectl describe ingress moja-cen
 
 *Irrevocability* is a core Level One Principle (edited) and not allowing reversals is essential for that. Here is the section from the API Definition addressing this:
 
-_*6.7.1.2 Transaction Irrevocability*_
-_The API is designed to support irrevocable financial transactions only; this means that a financial transaction cannot be changed, cancelled, or reversed after it has been created. This is to simplify and reduce costs for FSPs using the API. A large percentage of the operating costs of a typical financial system is due to reversals of transactions._
-_As soon as a Payer FSP sends a financial transaction to a Payee FSP (that is, using POST /transfers including the end-to-end financial transaction), the transaction is irrevocable from the perspective of the Payer FSP. The transaction could still be rejected in the Payee FSP, but the Payer FSP can no longer reject or change the transaction. An exception to this would be if the transfer’s expiry time is exceeded before the Payee FSP responds (see Sections 6.7.1.3 and 6.7.1.5 for more information). As soon as the financial transaction has been accepted by the Payee FSP, the transaction is irrevocable for all parties._
+**6.7.1.2 Transaction Irrevocability**
+*The API is designed to support irrevocable financial transactions only; this means that a financial transaction cannot be changed, cancelled, or reversed after it has been created. This is to simplify and reduce costs for FSPs using the API. A large percentage of the operating costs of a typical financial system is due to reversals of transactions.*
+*As soon as a Payer FSP sends a financial transaction to a Payee FSP (that is, using POST /transfers including the end-to-end financial transaction), the transaction is irrevocable from the perspective of the Payer FSP. The transaction could still be rejected in the Payee FSP, but the Payer FSP can no longer reject or change the transaction. An exception to this would be if the transfer’s expiry time is exceeded before the Payee FSP responds (see Sections 6.7.1.3 and 6.7.1.5 for more information). As soon as the financial transaction has been accepted by the Payee FSP, the transaction is irrevocable for all parties.*
 
 However, *Refunds* is a use case supported by the API.
 
@@ -154,7 +152,7 @@ The issue resolved itself after 45 minutes. Initial implementation of the mojalo
 
 ## 27. Why am I getting this error when trying to create a participant: "Hub reconciliation account for the specified currency does not exist"?
 
-You need to create the corresponding Hub accounts (HUB_MULTILATERAL_SETTLEMENT and HUB_RECONCILIATION) for the specified currency before setting up the participants. 
+You need to create the corresponding Hub accounts (HUB_MULTILATERAL_SETTLEMENT and HUB_RECONCILIATION) for the specified currency before setting up the participants.
 In this Postman collection you can find the requests to perform the operation in the "Hub Account" folder: https://github.com/mojaloop/postman/blob/master/OSS-New-Deployment-FSP-Setup.postman_collection.json
 
 Find also the related environments in the Postman repo: https://github.com/mojaloop/postman

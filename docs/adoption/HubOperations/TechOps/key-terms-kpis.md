@@ -11,13 +11,13 @@ This section acts as a glossary of Technical Operations terms and provides defin
 
 **Escalation:** The acknowledgement of the fact that an incident requires additional resources in order to meet service level targets or user expectations, taking into account the criticality, impact, and urgency of the incident.
 
-**Helpdesk/Service Desk:** The Single Point of Contact between the service provider and users. A typical Service Desk manages incidents and service requests, and also handles communication with the users. 
+**Helpdesk/Service Desk:** The Single Point of Contact between the service provider and users. A typical Service Desk manages incidents and service requests, and also handles communication with the users.
 
-**Incident:** An unplanned interruption to an IT service, or reduction in the quality of an IT service. The failure of a configuration item that has not yet impacted service is also an incident; for example, the failure of one disk from a mirror set. 
+**Incident:** An unplanned interruption to an IT service, or reduction in the quality of an IT service. The failure of a configuration item that has not yet impacted service is also an incident; for example, the failure of one disk from a mirror set.
 
 **Incident management process (IMP):** The process of managing the lifecycle of all incidents. The primary purpose of incident management is to restore normal IT service operation as quickly as possible with the support of a whole organization in place.
 
-**Incident record/ticket:** A record containing the details of an incident. Each incident record (also known as a ticket) documents the lifecycle of a single incident. 
+**Incident record/ticket:** A record containing the details of an incident. Each incident record (also known as a ticket) documents the lifecycle of a single incident.
 
 **Priority:** A category used to identify the relative importance of an incident or change. Priority is used to identify required times for actions to be taken.  
 
@@ -33,11 +33,11 @@ This section acts as a glossary of Technical Operations terms and provides defin
 
 **Severity:** A measure of the effect of an incident on business processes.
 
-**TAT (Turnaround Time):** This is the time taken from when the incident is reported to the time it is resolved and closed. It includes Guaranteed Intervention Time (GIT) and Guaranteed Resolution Time (GRT). 
+**TAT (Turnaround Time):** This is the time taken from when the incident is reported to the time it is resolved and closed. It includes Guaranteed Intervention Time (GIT) and Guaranteed Resolution Time (GRT).
 
 ## Key Performance Indicators (KPIs)
 
-**Availability rate (Service availability rate):** The whole technical solution’s availability to provide the service per DFSP. 
+**Availability rate (Service availability rate):** The whole technical solution’s availability to provide the service per DFSP.
 
 **Average Incident Closure Duration:** Average amount of time between the registration of incidents and their closure.
 
@@ -45,7 +45,7 @@ This section acts as a glossary of Technical Operations terms and provides defin
 
 **Average Number of Incidents Solved By Service Desk:** Average number of incidents solved by Service Desk relative to all open incidents.
 
-**Guaranteed Intervention Time (GIT):** The time elapsed between the time an incident is reported (for example, an email is sent to the Service Desk tool) and the time that an acknowledgement response is returned to the reporter of the issue. 
+**Guaranteed Intervention Time (GIT):** The time elapsed between the time an incident is reported (for example, an email is sent to the Service Desk tool) and the time that an acknowledgement response is returned to the reporter of the issue.
 
 **Guaranteed Resolution Time (GRT):** Sum of total time spent on resolving an issue from all parties. (The issue status must be “In Progress” or “Escalated” to count towards the sum total. Issue status “Pending” or “Closed” are not taken into account when calculating the sum total.)
 

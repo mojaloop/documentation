@@ -7,7 +7,7 @@ On accessing the portal, you are prompted to log in. Enter your credentials on t
 The portal implements role-based access control, meaning that the role you have determines the range of portal functionalities available to you. Currently, the following roles exist:
 
 * `portaladmin`: has full access to all portal functionalities
-* `portaluser`: has limited access to portal functionalities 
+* `portaluser`: has limited access to portal functionalities
 
 The following table lists all available functionalities, the navigation paths where you can access them, and the relevant roles permissions.
 

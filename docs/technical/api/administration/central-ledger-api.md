@@ -33,7 +33,7 @@ The DFSP callback URL where the Hub routes API callbacks. The URL specified is t
 
 ### Limit
 
-Currently, only one type of limit is supported, it is called "_Net Debit Cap (NDC)_". In the future, it is possible to add support for further types of limits. 
+Currently, only one type of limit is supported, it is called "_Net Debit Cap (NDC)_". In the future, it is possible to add support for further types of limits.
 
 The _Net Debit Cap_ represents the liquidity cover available for a specific account (the Position account). It is the total amount of good funds which the scheme attests are available to guarantee that a participant is able to settle the liabilities it incurs on the Position account as a consequence of transferring funds. This amount of good funds is represented as the balance of an account (the Settlement account), which is tied to the Position account by a settlement model. The source of the funds in this account can be either funds recorded by the scheme's administrators as having been deposited to or withdrawn from the Settlement account, or funds which are automatically credited to or debited from the account by the scheme if the account is the Settlement account for an immediate gross settlement model.
 
@@ -46,9 +46,10 @@ Also called _Ledger_. The Hub maintains a number of internal accounts to keep tr
 ### Position
 
 The Position represents the net of:
-- transfers on that account which have cleared but have not yet settled, and 
-- transfers on that account where: 
-  - the DFSP is the debtor party, and 
+
+- transfers on that account which have cleared but have not yet settled, and
+- transfers on that account where:
+  - the DFSP is the debtor party, and
   - the transfer has been accepted for processing by the Hub, but has not yet cleared.
 
 The Position for a given account is always verifiably up to date.
@@ -83,8 +84,8 @@ HTTP headers are generally described in [RFC 7230](https://tools.ietf.org/html/r
 
 The following HTTP methods, as defined in [RFC 7231](https://tools.ietf.org/html/rfc7231#section-4), are supported by the API:
 
-- `GET` – The HTTP GET method is used from a client to retrieve information about a previously-created object on a server. 
-- `POST` – The HTTP POST method is used from a client to request an object to be created on the server. 
+- `GET` – The HTTP GET method is used from a client to retrieve information about a previously-created object on a server.
+- `POST` – The HTTP POST method is used from a client to request an object to be created on the server.
 - `PUT` – The HTTP PUT method is used from a client to request an object already existing on the server to be modified (to replace a representation of the target resource with the request payload).
 
 > **NOTE:** The `DELETE` method is not supported.
@@ -141,7 +142,6 @@ The [Supported API services](#supported-api-services) table includes high-level 
 | **`/settlementModels`**  | View all settlement models  | Not supported  | Create a settlement model  |  Not supported |
 | `/settlementModels/{name}`  | View settlement model by name  | Update a settlement model (activate/deactivate a settlement model) | Not supported  |  Not supported |
 | **`/transactions/{id}`**  | Retrieve transaction details by `transferId`  | Not supported  | Not supported  | Not supported |
-
 
 <br />
 
@@ -241,7 +241,7 @@ Content-Type: application/json
 | `id`  |  yes | [String](#string) | The identifier of the participant in the form of a fully qualified domain name combined with the participant's `fspId`. |
 | `created`  |  yes | [DateTime](#datetime)  | Date and time when the participant was created. |
 | `isActive`  |  yes | [Integer(1)](#integer) | A flag to indicate whether or not the participant is active. Possible values are `1` and `0`. |
-| `links`  |  yes | [Self](#self) | List of links for a Hypermedia-Driven RESTful Web Service. | 	
+| `links`  |  yes | [Self](#self) | List of links for a Hypermedia-Driven RESTful Web Service. |  
 | `accounts`  |  yes | [Accounts](#accounts) | The list of ledger accounts configured for the participant. |
 
 <br />
@@ -310,7 +310,7 @@ Content-Type: application/json
 | `id`  |  yes | [String](#string) | The identifier of the participant in the form of a fully qualified domain name combined with the participant's `fspId`. |
 | `created`  |  yes | [DateTime](#datetime)  | Date and time when the participant was created. |
 | `isActive`  |  yes | [Integer(1)](#integer) | A flag to indicate whether or not the participant is active. Possible values are `1` and `0`. |
-| `links`  |  yes | [Self](#self) | List of links for a Hypermedia-Driven RESTful Web Service. | 	
+| `links`  |  yes | [Self](#self) | List of links for a Hypermedia-Driven RESTful Web Service. |  
 | `accounts`  |  yes | [Accounts](#accounts) | The list of ledger accounts configured for the participant. |
 
 <br />
@@ -443,7 +443,7 @@ Content-Type: application/json
 | `id`  |  yes | [String](#string) | The identifier of the participant in the form of a fully qualified domain name combined with the participant's `fspId`. |
 | `created`  |  yes | [DateTime](#datetime)  | Date and time when the participant was created. |
 | `isActive`  |  yes | [Integer(1)](#integer) | A flag to indicate whether or not the participant is active. Possible values are `1` and `0`. |
-| `links`  |  yes | [Self](#self) | List of links for a Hypermedia-Driven RESTful Web Service. | 	
+| `links`  |  yes | [Self](#self) | List of links for a Hypermedia-Driven RESTful Web Service. |  
 | `accounts`  |  yes | [Accounts](#accounts) | The list of ledger accounts configured for the participant. |
 
 <br />
@@ -523,7 +523,7 @@ Content-Type: application/json
 | `id`  |  yes | [String](#string) | The identifier of the participant in the form of a fully qualified domain name combined with the participant's `fspId`. |
 | `created`  |  yes | [DateTime](#datetime)  | Date and time when the participant was created. |
 | `isActive`  |  yes | [Integer(1)](#integer) | A flag to indicate whether or not the participant is active. Possible values are `1` and `0`. |
-| `links`  |  yes | [Self](#self) | List of links for a Hypermedia-Driven RESTful Web Service. | 	
+| `links`  |  yes | [Self](#self) | List of links for a Hypermedia-Driven RESTful Web Service. |  
 | `accounts`  |  yes | [Accounts](#accounts) | The list of ledger accounts configured for the participant. |
 
 <br />
@@ -545,6 +545,7 @@ curl 'http://<domain-where-hub-central-ledger-service-is-running>/participants/p
 ```
 
 #### Example response
+
 ```
 HTTP/1.1 200 OK
 Content-Type: application/json
@@ -695,7 +696,6 @@ Content-Type: application/json
 ```
 
 <br />
-
 
 ### GET /participants/{name}/limits
 
@@ -980,7 +980,7 @@ Content-Type: application/json
 | `id`  |  yes | [String](#string) | The identifier of the participant in the form of a fully qualified domain name combined with the participant's `fspId`. |
 | `created`  |  yes | [DateTime](#datetime)  | Date and time when the participant was created. |
 | `isActive`  |  yes | [Integer(1)](#integer) | A flag to indicate whether or not the participant is active. Possible values are `1` and `0`. |
-| `links`  |  yes | [Self](#self) | List of links for a Hypermedia-Driven RESTful Web Service. | 	
+| `links`  |  yes | [Self](#self) | List of links for a Hypermedia-Driven RESTful Web Service. |  
 | `accounts`  |  yes | [Accounts](#accounts) | The list of ledger accounts configured for the participant. |
 
 <br />
@@ -1075,7 +1075,7 @@ HTTP/1.1 200 OK
 
 ### PUT /participants/{name}/accounts/{id}/transfers/{transferId}
 
-Records a transfer as a Funds In or Out transaction for a participant account. 
+Records a transfer as a Funds In or Out transaction for a participant account.
 
 #### Path parameters
 
@@ -1628,7 +1628,7 @@ Data model for the complex type **Participant**.
 | `id`  |  yes | [String](#string) | The identifier of the participant in the form of a fully qualified domain name combined with the participant's `fspId`. |
 | `created`  |  yes | [DateTime](#datetime)  | Date and time when the participant was created. |
 | `isActive`  |  yes | [Integer(1)](#integer) | A flag to indicate whether or not the participant is active. Possible values are `1` and `0`. |
-| `links`  |  yes | [Self](#self) | List of links for a Hypermedia-Driven RESTful Web Service. | 	
+| `links`  |  yes | [Self](#self) | List of links for a Hypermedia-Driven RESTful Web Service. |  
 | `accounts`  |  yes | [Accounts](#accounts) | The list of ledger accounts configured for the participant. |
 
 #### ParticipantFunds

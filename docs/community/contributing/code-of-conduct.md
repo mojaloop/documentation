@@ -1,6 +1,5 @@
 # Mojaloop Code of Conduct
 
-
 ## Vision and Mission
 
 Mojaloop is a portmanteau derived from the Swahili word "Moja" meaning "one" and the English word loop. Mojaloop's vision is to loop digital financial providers and customers together in one inclusive ecosystem.
@@ -19,38 +18,38 @@ We treat each other openly and respectfully, we evaluate contributions with fair
 
 The Code of Conduct governs how we behave in public or in private, virtually or in person. We expect it to be honoured by everyone who represents the project officially or informally, claims affiliation with the project, or participates directly.
 
-### We strive to:
+### We strive to
 
--   **Be Considerate**\
+- **Be Considerate**\
     Our work will be used by other people, and we in turn will depend on the work of others. Any decision we take will affect everyone involved in our ecosystem, and we should consider all relevant aspects when making decisions.
 
--   **Be Respectful**\
+- **Be Respectful**\
     We work together to resolve conflict, assume good intentions, and do our best to act in an empathic fashion. We believe a community where people are respected and feel comfortable is a productive one.
 
--   **Be Accountable**\
+- **Be Accountable**\
     We are accountable for our words and actions. We all can make mistakes; when we do, we take responsibility for them. If someone has been harmed or offended, we listen carefully and respectfully and work to right the wrong.
 
--   **Be Collaborative**\
+- **Be Collaborative**\
     What we produce is a complex whole made of many parts. Collaboration between teams that each have their own goal and vision is essential; for the whole to be more than the sum of its parts, each part must make an effort to understand the whole.\
     Collaboration reduces redundancy and improves the quality of our work. Internally and externally, we celebrate good collaboration. Wherever possible, we work closely with upstream projects and others in the open-source software community to coordinate our efforts. We prefer to work transparently and involve interested parties as early as possible.
 
--   **Value Decisiveness, Clarity, and Consensus**\
+- **Value Decisiveness, Clarity, and Consensus**\
     Disagreements, social and technical, are normal, but we do not allow them to persist and fester leaving others uncertain of the agreed direction.\
     We expect community members to resolve disagreements constructively. When they face obstacles in doing so, we escalate the matter to structures with designated leaders to arbitrate and provide clarity and direction.
 
--   **Ask for help when unsure**\
+- **Ask for help when unsure**\
     Nobody is expected to be perfect in this community. Asking questions early avoids many problems later, so questions are encouraged, though they may be directed to the appropriate forum. Those who are asked should be responsive and helpful.
 
--   **Step Down Considerately**\
+- **Step Down Considerately**\
     When somebody leaves or disengages from the project, we ask that they do so in a way that minimises disruption to the project. They should tell people they are leaving and take the proper steps to ensure that others can pick up where they left off.
 
--   **Open Meritocracy**\
+- **Open Meritocracy**\
 We invite anybody, from any company or organization, to participate in any aspect of the project. Our community is open, and any responsibility can be carried by any contributor who demonstrates the required capacity and competence.
 
--   **Value Diversity and Inclusion**\
+- **Value Diversity and Inclusion**\
 This is a community that wants to make a real difference to people's lives across the globe; and, in particular, in developing societies and economies. We value our members, first of all, for themselves; and, second, for the help they can give each of us as we work together to transform the world. Each of us will strive never to allow any other considerations to weigh with us, either consciously or unconsciously. In particular, considerations of gender identity or expression, sexual orientation, religion, ethnicity, age, neurodiversity, disability status, language, and citizenship have no place in our collaboration and we will work to eradicate them where we find them: first of all, in ourselves; but after that, and with respect and affection, in those we work with.
 
--   **Be Transparent**\
+- **Be Transparent**\
 We believe community members will have personal and professional interests in the development of the Mojaloop Open Source Software. These interests will, directly and indirectly, influence perceptions about the best direction of the community. Community members should make every reasonable effort to be transparent about their interests within the limits of confidentiality.  Community members who hold permanent or temporary governance roles should not use those roles in the advancement of personal or professional interests but should base their influence on the best interests of the success of the community.
 
 This Code of Conduct is not exhaustive or complete. It is not a rulebook; it serves to distill our common understanding of a collaborative, shared environment, and goals. We expect it to be followed in spirit as much as in the letter.
@@ -59,27 +58,27 @@ This Code of Conduct is not exhaustive or complete. It is not a rulebook; it ser
 
 Examples of behavior that contributes to creating a positive environment include:
 
--   Using welcoming and inclusive language
+- Using welcoming and inclusive language
 
--   Being respectful of differing viewpoints and experiences
+- Being respectful of differing viewpoints and experiences
 
--   Gracefully accepting constructive criticism
+- Gracefully accepting constructive criticism
 
--   Focusing on what is best for the community
+- Focusing on what is best for the community
 
--   Showing empathy towards other community members
+- Showing empathy towards other community members
 
 Examples of unacceptable behavior by participants include:
 
--   The use of sexualized language or imagery and unwelcome sexual attention or advances
+- The use of sexualized language or imagery and unwelcome sexual attention or advances
 
--   Trolling, insulting/derogatory comments, and personal or political attacks
+- Trolling, insulting/derogatory comments, and personal or political attacks
 
--   Public or private harassment
+- Public or private harassment
 
--   Publishing others' private information, such as a physical or electronic address, without explicit permission
+- Publishing others' private information, such as a physical or electronic address, without explicit permission
 
--   Other conduct which could reasonably be considered inappropriate in a professional setting
+- Other conduct which could reasonably be considered inappropriate in a professional setting
 
 ### Reporting and Resolution
 

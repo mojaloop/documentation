@@ -58,10 +58,10 @@ There is no deterministic way of assigning transfers to a particular settlement 
 
 A settlement window can have the following states:
 
-* `OPEN`: The settlement window is open, transfers are being accepted into the current open window.
-* `CLOSED`: The settlement window is closed. It is not accepting any additional transfers and all new transfers are being allocated to a new, open settlement window.
-* `PENDING_SETTLEMENT`: The settlement window is closed, the [Multilateral Net Settlement Positions](#multilateral-net-settlement-position) have been calcluated for each DFSP but settlement with the partner settlement bank has not happened yet. 
-* `SETTLED`: The settlement bank has confirmed that all the participant DFSPs that engaged in transfers in the settlement window have settled their payments, and the Hub Operator has settled the window.
+- `OPEN`: The settlement window is open, transfers are being accepted into the current open window.
+- `CLOSED`: The settlement window is closed. It is not accepting any additional transfers and all new transfers are being allocated to a new, open settlement window.
+- `PENDING_SETTLEMENT`: The settlement window is closed, the [Multilateral Net Settlement Positions](#multilateral-net-settlement-position) have been calcluated for each DFSP but settlement with the partner settlement bank has not happened yet.
+- `SETTLED`: The settlement bank has confirmed that all the participant DFSPs that engaged in transfers in the settlement window have settled their payments, and the Hub Operator has settled the window.
 
 Closing a settlement window automatically opens the next one.
 
@@ -110,19 +110,19 @@ If the settlement is *bilateral*, then a DFSP may receive multiple figures as th
 
 To facilitate DFSP reconciliation and settlement at the settlement bank, the Hub provides various settlement reports. A Scheme can choose to have several different reports for different purposes. Below are some examples:
 
-* DFSP Settlement Report: A report issued to a DFSP when settlement has been initiated. It provides the DFSP's bilateral settlement position with each DFSP they transacted with (either as a Payer DFSP or Payee DFSP) in the settlement window(s) being settled. It also provides the Multilateral Net Settlement Position of the DFSP (the sum total of the transfer amounts sent and received by the DFSP in the settlement window(s)).
-* Settlement Bank Report: A report issued to the settlement bank when settlement has been initiated. It provides the bilateral settlement position of each DFSP against every other DFSP that transacted in the settlement window(s) being settled. It also provides the Multilateral Net Settlement Position of each DFSP (the sum total of the transfer amounts sent and received by the DFSP).
-* DFSP Settlement Result Report: A report issued to a DFSP when settlement has been finalised. It provides details about the balance of the DFSP's liquidity account, and the money movements arising from the closure of the settlement window.
+- DFSP Settlement Report: A report issued to a DFSP when settlement has been initiated. It provides the DFSP's bilateral settlement position with each DFSP they transacted with (either as a Payer DFSP or Payee DFSP) in the settlement window(s) being settled. It also provides the Multilateral Net Settlement Position of the DFSP (the sum total of the transfer amounts sent and received by the DFSP in the settlement window(s)).
+- Settlement Bank Report: A report issued to the settlement bank when settlement has been initiated. It provides the bilateral settlement position of each DFSP against every other DFSP that transacted in the settlement window(s) being settled. It also provides the Multilateral Net Settlement Position of each DFSP (the sum total of the transfer amounts sent and received by the DFSP).
+- DFSP Settlement Result Report: A report issued to a DFSP when settlement has been finalised. It provides details about the balance of the DFSP's liquidity account, and the money movements arising from the closure of the settlement window.
 
 ## Finance Portal
 
 The [Finance Portal](busops-portal-introduction.md) (commonly referred to as "Finance Portal v2") is a web portal used by the Hub Operator to manage settlement-related processes on a daily basis. The portal provides functionality to:
 
-* monitor details such as the balance, [Position](#position), [Net Debit Cap](#liquidity-management-net-debit-cap) of DFSPs
-* update a DFSP's [Net Debit Cap](#liquidity-management-net-debit-cap)
-* manage settlement windows
+- monitor details such as the balance, [Position](#position), [Net Debit Cap](#liquidity-management-net-debit-cap) of DFSPs
+- update a DFSP's [Net Debit Cap](#liquidity-management-net-debit-cap)
+- manage settlement windows
 <!--* download reports-->
-* record deposits to or withdrawals from DFSPs' liquidity accounts
+- record deposits to or withdrawals from DFSPs' liquidity accounts
 
 ::: tip NOTE
 The Finance Portal currently only supports settlement processes that rely on the Deferred Net Settlement model.

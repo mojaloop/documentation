@@ -2,8 +2,8 @@
 
 The purpose of the defect triage process is to ensure that all the bugs identified in the Hub Operator's Production environment are captured, evaluated, and submitted to a Mojaloop Support team, a team dedicated to running Support services for the technical operations of a Mojaloop Hub. This team can be insourced or outsourced (or even part insourced and part outsourced), depending on the level of expertise or capacity within the scheme's hosting organization. If it is decided to outsource this function, there are organizations within the Mojaloop community that do provide different levels of support as a service. (For more information and referrals, contact the Mojaloop Foundation.)
 
-::: tip NOTE 
-The processes described in this section represent best practices and act as recommendations for organizations fulfilling a Hub Operator role. 
+::: tip NOTE
+The processes described in this section represent best practices and act as recommendations for organizations fulfilling a Hub Operator role.
 :::
 
 ::: tip NOTE
@@ -12,7 +12,7 @@ The process proposed here applies to bugs identified in the Hub Operator's Produ
 
 There needs to be a specific team that is responsible for the evaluation and resolution planning of each bug raised in the various environments (Production, Staging, QA, Dev, and so on). It can be a Support team or a QA/Development team. Within the remainder of this section, this team is referred to as the "Mojaloop Support Triage team".
 
-The Triage team has the following members: 
+The Triage team has the following members:
 
 * Mojaloop Product Manager (core Mojaloop)
 * Product Manager of extensions or other components implemented in the Hub - Payment Manager, PortX, and so on
@@ -40,13 +40,13 @@ The review of the ticket is conducted to a) establish good understanding of the 
 1. The Mojaloop Support Engineer assigned to the Mojaloop Support bug ticket monitors the cloned ticket and handles all communication between the Product Manager and the Hub Operator on the progress of the bugs, including sharing any remediation steps (for example, workarounds or alternative ways of using the affected functionality). Each subsequent update from the Product Delivery team should also be shared in the Product Manager bug ticket for visibility to the Hub Operator. The Product Manager assignee must remain the owner of the Product Manager bug ticket until the bug is resolved.
 1. The Product Manager communicates the resolution plan and timelines back to the Support team via the original Product Manager bug ticket. The resolution plan is then communicated to the Hub Operator. \
 \
-For details on what happens if the Hub Operator does not agree with the proposed prioritization and resolution plan, see [Escalation process](#escalation-process). 
+For details on what happens if the Hub Operator does not agree with the proposed prioritization and resolution plan, see [Escalation process](#escalation-process).
 1. The bug is resolved following the standard development process of the allocated Product Delivery team and is included in a release, which will be made available to the Hub Operator or can be offered as an ad-hoc (patch) release, if required.
 1. The Mojaloop Support ticket is closed once the bug fix release is deployed and validated in the Hub Operator's environment.
 
 ## Bugs identified during deployment/change window in Hub environment
 
-Deployments into Hub environments are the responsibility of the Hub Operator's team, and bugs identified during the deployment should be raised via the standard process (that is, a ticket is raised as per the Hub’s incident management process and then escalated to the Mojaloop Support team if required). In addition: 
+Deployments into Hub environments are the responsibility of the Hub Operator's team, and bugs identified during the deployment should be raised via the standard process (that is, a ticket is raised as per the Hub’s incident management process and then escalated to the Mojaloop Support team if required). In addition:
 
 * The Hub team will evaluate if the behavior is a known issue or a new defect. For known issues, the release should proceed and be completed as planned with the known bug reported as part of the post-deployment report.
 * For new defects identified, the release/change can be rolled back depending on severity. This can be decided by the deployment team. In the case of a roll-back, regression tests must be executed to confirm that the previous working version is stable on the environment and the bug reported as part of the post-deployment report.
@@ -64,15 +64,15 @@ The creator of the Service Desk ticket (the Hub Operator's Support Engineer) rem
 
 Priority and severity must be aligned, discussed, and negotiated between the Mojaloop Support Triage team and the Hub Operator's Operations team.
 
-Information from triage discussions and from the Product Delivery team must be shared in the Service Desk ticket by the Mojaloop Support Engineer. 
+Information from triage discussions and from the Product Delivery team must be shared in the Service Desk ticket by the Mojaloop Support Engineer.
 
-The Product Manager who is assigned the bug, must ensure that cross-referencing and tracking is in place to ensure the flow of information required or produced by the Product Delivery team's evaluation. 
+The Product Manager who is assigned the bug, must ensure that cross-referencing and tracking is in place to ensure the flow of information required or produced by the Product Delivery team's evaluation.
 
 The Product Manager who is assigned the bug, must determine and communicate the resolution plan back to the Mojaloop Support team/engineer, via the ticket only.
 
 ### Prioritization of bugs
 
-The prioritization of bugs is the responsibility of Subject Matter Experts (SMEs) in the Mojaloop Support Triage team. 
+The prioritization of bugs is the responsibility of Subject Matter Experts (SMEs) in the Mojaloop Support Triage team.
 
 All bugs are evaluated based on the expected behavior of the system and the actual behavior observed (and reproduced). The operational impact and the urgency of the bug must be captured by the Hub Operator's Operations team in order for this to be considered by the Triage team in the prioritization.
 

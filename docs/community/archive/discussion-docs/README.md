@@ -1,6 +1,7 @@
 # Discussion Documents (Archive)
 
 ## PI 10
+
 - [Performance Project](./Mojaloop%20Performance%202020.pdf)
 - [Code Improvement Project](./code-improvement.md)
 - [Cross Border Project](./cross-border.md)
@@ -24,4 +25,3 @@
 ## PI 7
 
 - [Workbench Workstream](./workbench.md)
-

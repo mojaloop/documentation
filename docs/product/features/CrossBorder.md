@@ -10,7 +10,7 @@ The following diagram illustrates how Mojaloop implements this functionality.
 
 In this context, a Proxy acts as the link between two Mojaloop schemes operating in different countries (regulatory jurisdictions), facilitating transactions and ensuring their end-to-end non-repudiation. Multiple FXPs are illustrated, two in jurisdiction A and one in jurisdiction B, so the various business models proposed for FX transactions can be supported.
 
-This model can be extended further, so that countries with existing domestic instant payment systems can be interconnected, as follows: 
+This model can be extended further, so that countries with existing domestic instant payment systems can be interconnected, as follows:
 
 ![Interconnecting Domestic Schemes to Offer Cross Border transactions](./ComplexXB.svg)
 
@@ -19,6 +19,7 @@ This model can be extended further, so that countries with existing domestic ins
 This version of this document relates to Mojaloop Version [17.0.0](https://github.com/mojaloop/helm/releases/tag/v17.0.0)
 
 ## Document History
+
   |Version|Date|Author|Detail|
 |:--------------:|:--------------:|:--------------:|:--------------:|
 |1.1|22nd April 2025| Paul Makin|Added version history; clarified some wording|

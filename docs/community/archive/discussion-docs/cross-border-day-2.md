@@ -1,21 +1,22 @@
 # Cross Border Discussion Day 2
 
 >**Links**
+>
 >- [Day 1 Notes](./cross_border_day_1.md)
 >- [Relevant Issue on DA Board](https://github.com/mojaloop/design-authority/issues/32)
 >- [Mojaloop Spec Pull Request](https://github.com/mojaloop/mojaloop-specification/pull/22)
 
-## Next Steps:
+## Next Steps
 
 - Updated the proposal APIs
 - Present the consolidated change to the CCB in writing
 - Couple of weeks to put together the changes (Michael/Adrian to split up the work)
 - Mid-November CCB call
- 
 
 ## Session 1
 
 Unanswered Questions:
+
 - addressing
   - break it down?
   - cross-mojaloop
@@ -43,6 +44,7 @@ Unanswered Questions:
 ---
 
 Running up against ML + non-ML assumptions
+
 - does this mean CNP needs to do more work when connecting to non-ML?
   - e.g. knowing the resulting scheme/switch?
     - why? Failure handling
@@ -55,13 +57,16 @@ Running up against ML + non-ML assumptions
 ---
 
 CNP: Goal is to 'act like' a normal member of the network
-  - This minimizes the responsibilities that the scheme assumes
+
+- This minimizes the responsibilities that the scheme assumes
 
 When is the TX considered completed?
-  - There might be cases where the scheme considers it done, but it is not techincally finished end to end
+
+- There might be cases where the scheme considers it done, but it is not techincally finished end to end
 
 How do we deal with service deteroriation?
-  - Scheme rules
+
+- Scheme rules
 
 ---
 
@@ -74,6 +79,7 @@ Back to quotes:
   - Can we provide QOS information here as part of the lookup?
 
 Addressing:
+
 - Need for a globally unique address
   - Allow an address space for DFSPs and unique persons/accounts
 - sheme says "this isn't in my space"
@@ -81,7 +87,7 @@ Addressing:
 
 ---
 
-### Michael's Tangent:
+### Michael's Tangent
 
 - did we make the wrong assumptions about the CNP?
 
@@ -90,22 +96,23 @@ Addressing:
 
 - if the sender or receiver is an FXP, the the tx is *not* a cross-currency tx
 
---- 
+---
 
 ## Session 2
 
 *Decision:*
+
 - header value is CNP id
 - partId object is the final FSP
 
 valueDate
+
 - implied that funds are expected to clear before the valueDate
 - can still have short expiry times on tx
 
 - CNP:
   - returns an obfuscated set of fees
   - fits into our current model
-
 
 - condition:
   - existing object cryptographically tied to the tx object
@@ -115,10 +122,7 @@ valueDate
   - We want **only 1 condition for all hops**
   - the idea of a multi-condition is a "perversion" (according to some)
 
+## Boards
 
-## Boards:
-
-_board 3: Cross Network lookup and quotes flow, fixed receive of 1000 PHP from USD_
+*board 3: Cross Network lookup and quotes flow, fixed receive of 1000 PHP from USD*
 ![board_3](./images/cb_board_3.jpg)
-
-

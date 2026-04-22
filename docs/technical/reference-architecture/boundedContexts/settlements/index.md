@@ -24,6 +24,7 @@ The following terms are used in this BC, also known as a domain.
 ### Deferred Net Settlement (DNS)
 
 #### Description
+
 Method of deferring payments to enable settlement on multiple batches according a predetermined schedule.  This is useful for environments involving multiple Participants to a transaction requiring a balance of payment due settlement approach.
 
 #### Flow Diagram
@@ -34,6 +35,7 @@ Method of deferring payments to enable settlement on multiple batches according 
 ### Immediate Gross Settlement (IGS)
 
 #### Description
+
 Method to enable immediate settlement of batches.  This is useful for SME environments where quick payment turnarounds are often desirable in order to maximize their liquidity.  IGS is also known as Real-Time Gross Settlement (RTGS)
 
 #### Flow Diagram
@@ -44,6 +46,7 @@ Method to enable immediate settlement of batches.  This is useful for SME enviro
 ### Abort Settlement
 
 #### Description
+
 Method that enables the Settlement BC to abort a settlement as required, reversing Participant settlement accounts, updating the settlement status for settlement windows, and updating the settlement state.
 
 #### Flow Diagram
@@ -54,6 +57,7 @@ Method that enables the Settlement BC to abort a settlement as required, reversi
 ### Create/Update the Settlement Model (DNS/IGS)
 
 #### Description
+
 Method that enables the Settlement BC to create or update the settlement method for a settlement batch based on the Participant Account Type.  Useful in instances where mixed Settlement Methods are required.
 
 #### Flow Diagram
@@ -64,6 +68,7 @@ Method that enables the Settlement BC to create or update the settlement method 
 ### Bootstrap (Startup) Settlement Model via Configuration
 
 #### Description
+
 Method that configures the Settlement Method (DNS/IGS) based upon the system startup configuration.  Useful in instances where all Settlement Models are the same, such as all DNS, or all IGS.
 
 #### Flow Diagram
@@ -74,6 +79,7 @@ Method that configures the Settlement Method (DNS/IGS) based upon the system sta
 ### Create Settlement related accounts for newly created Particpants
 
 #### Description
+
 The system creates settlement accounts for new Participants to enable fund transfers to managed by the Switch.  This enables the Switch to exercise end-to-end management of all transfers irrespective of settlement method.
 
 #### Flow Diagram
@@ -84,4 +90,3 @@ The system creates settlement accounts for new Participants to enable fund trans
 <!-- Footnotes themselves at the bottom. -->
 <!-- ## Notes -->
 
-[^1]: Common Interfaces: [Mojaloop Common Interface List](../../commonInterfaces.md)

@@ -1,5 +1,7 @@
 # Micro-frontend - JAMStack design
+
 ## Overview
+
 The objective of the micro-frontend - JAMStack design is to create a framework that:
 
 - empowers the community to collaborate easily (by enabling independent development of components)
@@ -7,40 +9,44 @@ The objective of the micro-frontend - JAMStack design is to create a framework t
 - enables community members to contribute back into OSS without branching the whole codebase
 
 ### Micro-frontends
-The framework uses micro-frontends as a means of decoupling parts of the UI to enable maintainable codebases, autonomous teams, independent releases, and incremental upgrades of parts of the UI. 
+
+The framework uses micro-frontends as a means of decoupling parts of the UI to enable maintainable codebases, autonomous teams, independent releases, and incremental upgrades of parts of the UI.
 
 ### JAMStack
-The [JAMStack](https://jamstack.org/) implementation reduces the role of the web server to the distribution static markup files, keeping the functionallity in JavaScript (that is running in the client browser) and in the backend API. 
+
+The [JAMStack](https://jamstack.org/) implementation reduces the role of the web server to the distribution static markup files, keeping the functionallity in JavaScript (that is running in the client browser) and in the backend API.
 :::warning JAMStack stands for:
  **J** - JavaScript
- **A** - APIs 
+ **A** - APIs
  **M** - Static markup
  :::
 This stack implementation is considered best practice as it:
+
 - is much simpler to keep secure
 - provides a good customer experience as it has fast web response times
 - is inexpensive to host
 
 In addition, the following have also been engineered and are normally part of a JAMStack implementation:
+
 - deployment to a content delivery network (CDN)
 - atomic deploys
 - uses dynamically loaded micro-frontends, so updating to the latest version is automatic
 
 ## Technology stack
 
-1. **React** 
+1. **React**
 The framework is based on the React library.
 This is the most popular Single Page Application (SPA) library in use, and additionally this choice allows us to capitalize on other community efforts facilitating an easy conversion into this library.
 It can be enhanced by using state container libraries (Redux, Flux, MobX), however there is no restriction on a specific one to use.
 The micro-frontends come with preconfigured, isolated Redux stores.
 
-2. **Webpack 5** 
+2. **Webpack 5**
 Webpack 5 is currently the only JavaScript bundler that supports remote build separation. It is done by using the Module Federation Plugin.
 It enables runtime composition to provide a smooth and fully transparent user experience to the users, resulting in a traditional Single Page Application.
 There are additional benefits over other technologies, all that resulting in a small footprint and overall better experience for users.
 Webpack 5 will implement the host / child micro-frontends integration at runtime.
 
-3. **CI/CD and atomic deployments** (for example, Github Actions) 
+3. **CI/CD and atomic deployments** (for example, Github Actions)
 Each implementation of the Business Operations Framework will need to implement their own atomic deployment solution.
 The standard Business Operations project will use Github Actions to perform the task of executing a continuous integration pipeline, running the relevant tests, building the individual micro-frontend and deploying the resulting static files over a CDN and/or creating a Docker image.
 Each micro-frontend is released in complete autonomy: the composed application can use the updated versions of each individual micro-frontend automatically, without involving any further coordination.
@@ -49,7 +55,7 @@ Each micro-frontend is released in complete autonomy: the composed application c
 The micro-frontends can run on a CDN. Individual builds are composed of only static files (HTML, CSS, JavaScript) and can be deployed in different locations / different URLs.
 As long as they are available over a secure connection (HTTPS), micro-frontends can be served from any location and also from different CDNs.
 
-5. **Running in Kubernetes** 
+5. **Running in Kubernetes**
 The micro-frontends can run in a Kubernetes environment. There are two approaches that can be taken here:
    - The individual micro-frontends and the shell application are containerized (using, for example, Docker) and then hosted in Kubernetes.
 The host and the children apps can be deployed on the same cluster or on different clusters as long as they are publicly accessible.
@@ -60,7 +66,7 @@ There are various CDNs available that are compatible with Kubernetes.
 
 The host and the children apps include scripts to build the distribution artifacts. The build can be done in the developer host machine, in the CI, and in Docker.
 
-## Micro-frontend loading 
+## Micro-frontend loading
 
 The host is responsible for loading the children apps at runtime. It gathers information about the available children at runtime, from either an API or a registry.
 
@@ -72,6 +78,7 @@ The individual micro-frontends will not be loaded when not necessary (for exampl
 ![High level sequence diagram illustrating how microservices are loaded](../../.vuepress/public/microfrontendloading.png)
 
 ### Repository of micro-frontends
+
 In order to provide a centralized authority responsible for controlling the individual micro-frontends meeting the necessary requirements, it is suggested to build a solution that works as a registry.
 
 The registry would serve the following purposes:
@@ -80,7 +87,7 @@ The registry would serve the following purposes:
 2. expose an API used by the host to retrieve information about the available micro-frontends
 3. provide information around the versions of the available micro-frontends
 
-The registry does not exist yet, nor does it make sense to create it at this time. 
+The registry does not exist yet, nor does it make sense to create it at this time.
 
 ## Deployments
 
@@ -176,6 +183,7 @@ There is virtually no limit on how the host can grow and how much can be extende
 It is suggested, however, to centralize all the host-child communication and shared components in an external library so that both host and children have the same knowledge and integration will not break.
 
 ### Versioning micro-frontends
+
 ​The suggested approach is to build a registry where individual apps are registered. The registry would allow to set some configuration on each app and keep track of all the available versions.
 ​
 The registry would then expose an API consumed by the host, providing information around the available micro-frontends, the versions, and the artifact locations.
@@ -187,17 +195,23 @@ It would also allow to easily test versions and roll back when necessary, all th
 The JS build artifacts created by Webpack do not include the version in the filename. It could be necessary to upgrade the build in order to differentiate versions. A simpler approach that does not require to update the build configuration would be hosting the versions on different URLs.
 :::
 ​
+
 ### Upgrading the host
+
 ​The host is pretty much self-isolated and the only necessary thing to do proper versioning is to use the built-in command `yarn version`. It will create a new git tag and increment the `package.json` version according to how the command is used (interactive CLI).
 ​
+
 ### Upgrading the remotes
+
 ​The remotes are self-isolated and the only necessary thing to do proper versioning is to use the built-in command `yarn version`. It will create a new git tag and increment the `package.json` version according to how the command is used (interactive CLI).
 
 ### Menu / App composition
+
 ​The host is configured to dynamically build the _Menu_ and the _Pages_ (with react-router) structure. Currently, the _Menu_ component(s) is imported from the `@modusbox/react-components` library.
 ​
 It is not strictly necessary to use such components and the host / remotes could use custom components, as long as they allow dynamic composition and support routing.
 ​​
+
 ## Micro-frontend motivation in more detail
 
 ​Building scalable and distributed user interfaces is complicated; logic complexity, testing setups, build and deployment costs increase over time. ​Architectural decisions taken in the initial phase can raise unnecessary complexity and highly affect development costs in later stages.​ Furthermore, a single project does not scale well with distributed teams co-working on the same codebase.​ Switching to a micro-frontend setup can solve all the above issues; it scales well, atomic deployments do not need a full build, and independent teams can use different codebases.​​
@@ -221,6 +235,7 @@ Single responsibility
 ### Types of micro-frontend setups
 
 ​There are several ways to implement micro-frontends, to list a few:​
+
 - Iframe composition
 - Runtime composition
 - Module federation (single framework) composition​
@@ -257,10 +272,10 @@ Check out the following live example: [https://microfrontend-shell-boilerplate.v
 
 Here is a list of Git repositories that are part of this implementation:
 
- - [Micro frontend-shell-boilerplate](https://github.com/mojaloop/microfrontend-shell-boilerplate)
- - [Micro frontend-boilerplate](https://github.com/mojaloop/microfrontend-boilerplate)
- - [Micro frontend-utils](https://github.com/modusintegration/microfrontend-utils)
+- [Micro frontend-shell-boilerplate](https://github.com/mojaloop/microfrontend-shell-boilerplate)
+- [Micro frontend-boilerplate](https://github.com/mojaloop/microfrontend-boilerplate)
+- [Micro frontend-utils](https://github.com/modusintegration/microfrontend-utils)
 Library shared with both the shell application and the micro-frontend.
- - [Reporting-Hub BizOps Role Assignment Micro-frontend](https://github.com/mojaloop/reporting-hub-bop-role-ui)
- - [Reporting-Hub BizOps Transaction Tracing Micro-frontend](https://github.com/mojaloop/reporting-hub-bop-trx-ui)
+- [Reporting-Hub BizOps Role Assignment Micro-frontend](https://github.com/mojaloop/reporting-hub-bop-role-ui)
+- [Reporting-Hub BizOps Transaction Tracing Micro-frontend](https://github.com/mojaloop/reporting-hub-bop-trx-ui)
   

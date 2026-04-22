@@ -2,6 +2,7 @@
 <h1>Mojaloop Vulnerability Management Process</h1>
 
 Contents:
+
 1. [Introduction](#1-introduction)
 2. [Security committee](#2-security-committee)
 3. [Handling a possible vulnerability](#3-handling-a-possible-vulnerability)
@@ -29,7 +30,7 @@ The Security Committee is composed of core contributors and community leaders wh
 
 <h3>3. Handling a Possible Vulnerability</h3>
 
-Mojaloop vulnerability disclosure (CVD) policy: [https://docs.mojaloop.io/community/contributing/cvd.html](https://docs.mojaloop.io/community/contributing/cvd.html) 
+Mojaloop vulnerability disclosure (CVD) policy: [https://docs.mojaloop.io/community/contributing/cvd.html](https://docs.mojaloop.io/community/contributing/cvd.html)
 
 The default process for managing a possible security vulnerability in Mojaloop is outlined in the above link. Projects that require a different process must document it clearly and publicly.
 
@@ -56,6 +57,7 @@ Information about a vulnerability should not be made public until a formal annou
 The person discovering the issue (the reporter) should report the vulnerability by completing the report and emailing it to: **[security@mojaloop.io](mailto:security@mojaloop.io)** . Report templates can be follow the bug template here: https://github.com/mojaloop/project/issues .
 
 List of issues that are deemed relevant:
+
 1. Security issues / vulnerabilities in Mojaloop core services (application codebase)
 2. Security issues / vulnerabilities in Mojaloop supporting services
 3. Wide-spread or day-zero issues in latest versions of critical dependencies Mojaloop's core and supporting services use (such as nodejs, kafka, mysql)
@@ -118,7 +120,7 @@ An SBOM tool is used to generate an inventory of third-party dependencies, allow
 3. Ongoing monitoring of library versions across all repositories.
 4. Ensuring well maintained and managed packages / dependencies are used and outdated ones are managed accordingly.
 
-Here's more information about SBOM in Mojaloop: https://github.com/mojaloop/ml-depcheck-utility?tab=readme-ov-file#sbom-generation-tool-for-mojaloop-repositories 
+Here's more information about SBOM in Mojaloop: https://github.com/mojaloop/ml-depcheck-utility?tab=readme-ov-file#sbom-generation-tool-for-mojaloop-repositories
 
 <h4>Container Security</h4>
 
@@ -138,7 +140,7 @@ Mojaloop employs a CI/CD pipeline that automatically integrates security checks 
 
 CI/CD Security Integration:
 
-1. **Container Security: **…
+1. **Container Security:**…
 2. **License Compliance:** …
 3. **Dependency Vulnerability Scanning:** …
 
@@ -148,7 +150,7 @@ All critical vulnerabilities are logged, and the CI/CD pipeline will block publi
 
 Mojaloop operates a CVD process, ensuring responsible parties have adequate time to address and remedy vulnerabilities before public disclosure.
 
-Mojaloop vulnerability disclosure (CVD) policy: [https://docs.mojaloop.io/community/contributing/cvd.html](https://docs.mojaloop.io/community/contributing/cvd.html) 
+Mojaloop vulnerability disclosure (CVD) policy: [https://docs.mojaloop.io/community/contributing/cvd.html](https://docs.mojaloop.io/community/contributing/cvd.html)
 
 <h4>Reporting and Compliance</h4>
 
@@ -162,7 +164,7 @@ Image scanning reports are present for review in the CI tool (circleCI) to recor
 
 <h3>5. Scope</h3>
 
-The Mojaloop vulnerability management process applies to all components that are part of the Mojaloop Helm release. 
+The Mojaloop vulnerability management process applies to all components that are part of the Mojaloop Helm release.
 
 This includes:
 

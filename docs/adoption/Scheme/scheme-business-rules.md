@@ -1,9 +1,9 @@
 # Scheme Business Rules Template
 
-- Version: 4.0 
-    - Author: Carol Coye Benson (Glenbrook)
-    - Date: October 2019
-    - Description:     
+- Version: 4.0
+  - Author: Carol Coye Benson (Glenbrook)
+  - Date: October 2019
+  - Description:
 
 ---
 
@@ -83,7 +83,7 @@ Section Headings and bulleted entries underneath section headings are actual pro
 The Mojaloop software can be used for bilateral exchanges among DFSPs, as well as within a Scheme structure that uses a switch. This document assumes the latter; that the Scheme is either providing, hiring, or otherwise arranging that interoperable transactions are exchanged through a switch. Some of the concepts in these rules apply only to this configuration; others would be useful in bilateral agreements as well.
 :::
 
-### 1.2 Scheme Ownership 
+### 1.2 Scheme Ownership
 
 <ul><i>Who owns the scheme, what opportunities exist for ownership participation. Reference to other documents (charter, by-laws, etc.)</i></ul>
 
@@ -326,7 +326,7 @@ The Mojaloop software can be used for bilateral exchanges among DFSPs, as well a
 
 - The Scheme may allocate responsibility among Participants for consequences of unauthorized use of or access to data by a Participant or for a Security Incident suffered by one Participant that impacts other Participants or the Scheme in accordance with principles stated in the Rules.
 
-## 8. Security, Risk Management, and Data Confidentiality 
+## 8. Security, Risk Management, and Data Confidentiality
 
 ### 8.1 Confidentiality and Protection of Personal Information
 
@@ -392,7 +392,7 @@ The Mojaloop software can be used for bilateral exchanges among DFSPs, as well a
 
 - Participants agree that Fulfilled Transfers executed via the Platform are irrevocable. A Transfer which has been credited to a Payee's account as a result of a Scheme Transfer may not be revoked without the consent of the Payee.
 
-- The Scheme may instruct a Participant to initiate a corrective transaction between Participants in an amount determined by the Scheme to be necessary to correct errors caused by Payer DFSP, the Payee DFSP, or the Scheme.  The conditions under which such corrective transactions may be made are specified by the Rules. 
+- The Scheme may instruct a Participant to initiate a corrective transaction between Participants in an amount determined by the Scheme to be necessary to correct errors caused by Payer DFSP, the Payee DFSP, or the Scheme.  The conditions under which such corrective transactions may be made are specified by the Rules.
 
 - Errors on the part of the Payee DFSP, the Payer DFSP, or the Scheme which result in erroneous or duplicate posting of a Transfer to a Payee's account may be corrected by the Payee Participant, as long as the instructions in the Fulfilled Transfer are not revoked or altered in any way.
 
@@ -509,35 +509,35 @@ Participants must adhere to the following practices of service quality security,
     of their customers in creating and approving transactions that use
     the Scheme.
 
--   Participants will develop effective business continuity and
+- Participants will develop effective business continuity and
     contingency plans.
 
--   Participants will manage technical and business operations to allow
+- Participants will manage technical and business operations to allow
     timely responses to API calls received from the Scheme Platform or
     from other Participants via the Scheme Platform.
 
--   Participants will establish written agreements governing their
+- Participants will establish written agreements governing their
     relationship with agents, processors, and other entities providing
     outsourced services that pertain to the Scheme.
 
--   Participants will develop policies and processes for ongoing
+- Participants will develop policies and processes for ongoing
     management and oversight of staff, agents, processors, and other
     entities providing outsourced services that pertain to the Scheme.
 
--   Participants will ensure that customers are provided with clear,
+- Participants will ensure that customers are provided with clear,
     prominent, and timely information regarding fees and terms and
     conditions with respect to services using the Scheme.
 
--   Participants will develop and publish customer service policies and
+- Participants will develop and publish customer service policies and
     procedures with respect to services using the Scheme.
 
--   Participants will provide an appropriate mechanism for customers to
+- Participants will provide an appropriate mechanism for customers to
     address questions and problems. Participants will specify how
     disputes can be resolved if internal resolution fails.
 
--   Participants will comply with good practices and Applicable Laws
+- Participants will comply with good practices and Applicable Laws
     governing customer data privacy.
 
--   Participants will ensure that Customers are provided with clear,
+- Participants will ensure that Customers are provided with clear,
     prominent, and timely information regarding their data privacy
     practices.

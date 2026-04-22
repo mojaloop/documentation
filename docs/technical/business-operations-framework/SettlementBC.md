@@ -5,9 +5,10 @@
 The objective of this design is to provide a solution that links the business process functions with core-settlement operations on the switch.
 
 This design is an example implementation of a Mojaloop settlement for a specific use case and is not meant to be comprehensive or cover all scenarios. This guide outlines the high-level design and explains the thinking that went into the design for a specific use-case chosen.```
-Although a version of this design is built and operational, not everything in this design document has been built. 
+Although a version of this design is built and operational, not everything in this design document has been built.
 This is an example of a settlement implementation design. The benefit of this design & design document is therefore:
-- to use for demonstration; 
+
+- to use for demonstration;
 - to use as an initial version to help 'Getting Started Quickly';
 - to use as a starting design on which improvements can be made before adopting;
 - to use as a starting point to elaborate on concepts that are discussed in this design that may need to be addressed in another design.
@@ -24,7 +25,6 @@ The Core-Settlement operations support the following capabilities:
 - Queries for Settlement Matrix Reports, Settlement-Windows, etc
 
 The OpenAPI definition is available at the [Mojaloop-Specification repository](https://github.com/mojaloop/mojaloop-specification/tree/master/settlement-api).
-
 
 ## High-level Architecture
 
@@ -62,9 +62,11 @@ This process needs to occur after the settlement bank has applied the settlement
    - the settlement ledgers are checked against the real settlement account balances and adjustments processed to ensure that they are aligned.
 
 ### Re-balancing function - is not best practice
-It is worth noting that the re-balancing function that is defined in the above settlement finalization process is not the preferred or best-practice approach. 
-This approach was chosen because of regulatory requirements and limitations of mechanisms available to implement settlement between participants, i.e. it was designed to work on existing in-place financial solutions. Re-balancing has quite a few drawbacks, and is not considered best practice and should be avoided if possible. 
+
+It is worth noting that the re-balancing function that is defined in the above settlement finalization process is not the preferred or best-practice approach.
+This approach was chosen because of regulatory requirements and limitations of mechanisms available to implement settlement between participants, i.e. it was designed to work on existing in-place financial solutions. Re-balancing has quite a few drawbacks, and is not considered best practice and should be avoided if possible.
 These drawbacks are:
+
 1. Out of sequence re-balancing results in incorrect results. This vulnerability therefore requires a business process and supportive management to enforce.
 1. Reconciliation of the Mojaloop Settlement Account and the settlement bank account is difficult and complicated. This is because the re-balancing may not directly reflect the activity in the settlement bank account. The transfer amounts are linked to the timing of when the re-balancing action is applied, and when the reports and statements are generated.
 
@@ -73,6 +75,7 @@ There are numerous other approaches to implementing settlement that do follow be
 Replacing re-balancing mechanism with an import of a statement from the settlement bank account's transactions would remove the timing and reconciling problems mentioned above.
 
 ## Detailed Sequence Diagram
+
 ![Settlement Detailed Process](../../.vuepress/public/settlementProcessAPI.svg)
 
 There are a couple of processes in the sequence diagram that are worth elaborating on.
@@ -89,6 +92,7 @@ The continuation of the process is only possible once the operator has accepted 
 It is for this reason that the validation of the data is a necessary step, and must be referenced when accepting and proceeding with the process.
 
 ### Use cases for Finalize Settlement
+
 **Validation scenarios**
 
 | Validation Description                                                                            | Expected behaviour                                                                             |
@@ -144,8 +148,8 @@ This can be achieved by creating separate settlement models I.e. one for each te
 The default action on initiating the settlement with transaction in both currencies, would be that separate settlements are initiated. (The determine settlement model function would find both settlement models.)
 ___
 
+## Error Cases
 
-## Error Cases 
 ### Initiate Settlement
 
 **Detailed Initiate Settlement Sequence Diagram**
@@ -162,7 +166,6 @@ ___
 | Not able to create settlement                                          | 2000        | 500              |  Internal Server Error                                    |
 | Not able to update settlement state                                    | 2000        | 500              |  Internal Server Error                                    |
 | Technical error while communicating with Mojaloop services             | 1000        | 500              |  Technical Error                                          |
-
 
 ### Finalize Settlement
 
