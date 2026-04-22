@@ -63,7 +63,6 @@ There are several strategies that can be employed when upgrading between breakin
 
     > *NOTE: This process will be deprecated from Mojaloop v15.0.0 onwards (including v15) though example backend deployment support is provided for testing, QA. Refer to section [5. BREAKING CHANGES](https://github.com/mojaloop/helm/blob/master/.changelog/release-v15.0.0.md#5-breaking-changes) section in the [v15.0.0 Release Notes](https://github.com/mojaloop/helm/blob/master/.changelog/release-v15.0.0.md).*
 
-
 #### Mojaloop installed without backend dependencies
 
 This is the preferred deployment topology as it will provide the most flexibility when upgrading. By separating out the backend dependencies, it will enable one to deploy the target version of Mojaloop as a new deployment.
@@ -96,6 +95,7 @@ As the backend dependencies are shared between the current and target deployment
 ##### 2. Target version has datastore breaking changes
 
 #### Mojaloop installed without backend dependencies
+
 In this scenario, we can utilise the inplace helm upgrade of backend dependencies.
 A maintenance window need to be scheduled to stop "live" transaction on the current deployment to ensure data consistency, and allow for the switch-over to occur safely. This will cause a disruption, but can be somewhat mitigated by ensuring that the maintenance window is scheduled during the least busiest time.
 
@@ -105,16 +105,18 @@ It is very important to take the backup of the database in case we need to rollb
 2. Backup the databases
 3. Customize the [Mojaloop Chart values.yaml](https://github.com/mojaloop/helm/blob/master/mojaloop/values.yaml) for the desired target Mojaloop release
 4. Uninstall the mojaloop services
-5. Upgrade the backend dependencies using 
-```bash 
+5. Upgrade the backend dependencies using
+
+```bash
 helm upgrade ${RELEASE_NAME} mojaloop/example-mojaloop-backend --namespace ${NAMESPACE} --version ${RELEASE_VERSION}
 ```
-6. Install mojaloop services
-```bash 
+1. Install mojaloop services
+
+```bash
 helm install ${RELEASE_NAME} mojaloop/mojaloop --namespace ${NAMESPACE} --version ${RELEASE_VERSION} -f {$VALUES_FILE}
 ```
-7. Execute sanity tests
-8. If you need to rollback then (make sure database backup was taken before the upgrade)
+1. Execute sanity tests
+2. If you need to rollback then (make sure database backup was taken before the upgrade)
    1. use `helm rollback` command to rollback to previous version of backend dependencies
    2. load the database from the backup ( to ensure the datastore is in correct state)
    3. install previous version of mojaloop services
@@ -142,18 +144,19 @@ Manual data migrating from the existing datastores to the new target backend dep
    4. Execute sanity tests on the Blue Target deployment environment
    5. Cut-over API Gateway (or upgrade target Ingress rules) to from Green Current to Blue Target deployment environment
 
-
 ## Upgrade Commands
 
 This document provides commands to upgrade existing Mojaloop installations. It assumes that Mojaloop is already installed using Helm.
-       
+
 ### Upgrade to v17.0.0
 
 1. Upgrade the backend dependencies
+
 ```bash
 helm upgrade backend mojaloop/example-mojaloop-backend --namespace ${NAMESPACE} --version v17.0.0 -f ${VALUES_FILE}
 ```
-2. Install the mojaloop services
+1. Install the mojaloop services
+
 ```bash
 helm install moja mojaloop/mojaloop --namespace ${NAMESPACE} --version v17.0.0 -f ${VALUES_FILE}
 ```
@@ -161,28 +164,32 @@ helm install moja mojaloop/mojaloop --namespace ${NAMESPACE} --version v17.0.0 -
 #### Testing the upgrade scenario from v16.0.0 to v17.0.0
 
 1. Install backend dependencies v16.0.0 with persistence enabled (need to create databases manually since the initDb scripts will not run)
+
 ```bash
 helm --namespace ${NAMESPACE} install ${RELEASE} mojaloop/example-mojaloop-backend --version 16.0.0  -f ${VALUES_FILE}
 ```
-2. Install the mojaloop services v16.0.0 and run tests to create data in databases
+1. Install the mojaloop services v16.0.0 and run tests to create data in databases
+
 ```bash
 helm --namespace ${NAMESPACE} install ${RELEASE} mojaloop/mojaloop --version 16.0.0  -f ${VALUES_FILE}
 ```
-3. Uninstall the mojaloop services
+1. Uninstall the mojaloop services
+
 ```bash
 helm delete ${RELEASE} --namespace ${NAMESPACE}
 ```
-4. Upgrade the backend dependencies to v17.0.0 (This will upgrade mysql/Kafka/MongoDB versions)
+1. Upgrade the backend dependencies to v17.0.0 (This will upgrade mysql/Kafka/MongoDB versions)
+
 ```bash
 helm --namespace ${NAMESPACE} upgrade ${RELEASE} mojaloop/example-mojaloop-backend --version 17.0.0  -f ${VALUES_FILE}
 ```
-5. Install the mojaloop services v17.0.0 (This will run the knex migrations to upgrade the database schemas)
+1. Install the mojaloop services v17.0.0 (This will run the knex migrations to upgrade the database schemas)
+
 ```bash
 helm --namespace ${NAMESPACE} install ${RELEASE} mojaloop/mojaloop --version 17.0.0  -f ${VALUES_FILE}
 ```
-6. Run the GP Tests
+1. Run the GP Tests
+
 ```bash
 helm test ${RELEASE} --namespace=${NAMESPACE} --logs
 ```
-
-

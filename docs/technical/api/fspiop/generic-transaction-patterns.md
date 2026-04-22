@@ -7,7 +7,7 @@ footerCopyright: Attribution-NoDerivatives 4.0 International (CC BY-ND 4.0) | Er
 
 This section contains information about how to use this document.
 
-### Conventions Used in This Document 
+### Conventions Used in This Document
 
 The following conventions are used in this document to identify the specified types of information
 
@@ -68,7 +68,7 @@ The Open API for FSP Interoperability Specification includes the following docum
 
 The Interoperability API consists of a number of logical API resources. Each resource defines one or more services that clients can use to connect to a server that has implemented the API. This section introduces these services.
 
-**Note:** API services identified in this section may not be relevant to (and therefore may not appear in) the generic transaction patterns identified in [Generic Transaction Patterns](#generic-transaction-patterns). 
+**Note:** API services identified in this section may not be relevant to (and therefore may not appear in) the generic transaction patterns identified in [Generic Transaction Patterns](#generic-transaction-patterns).
 
 For example, some services are used for provisioning of information, are part of error cases, or are for retrieving information that is not necessary in a generic transaction pattern.
 
@@ -334,7 +334,7 @@ The logical API service error response `Return Authorization Error` is used to r
 
 ### API Resource Transfers
 
-In the API, a _Transfer_ is hop-to-hop ILP (see [Interledger](#interledger) section for links to more information) transfer of funds. 
+In the API, a _Transfer_ is hop-to-hop ILP (see [Interledger](#interledger) section for links to more information) transfer of funds.
 
 The transfer also contains information regarding the end-to-end interoperable financial transaction. The primary purpose of the logical API resource **Transfers** is for an FSP or Switch to request that the next entity in the chain of the ILP Payment perform the transfer involved in the interoperable financial transaction.
 
@@ -420,7 +420,7 @@ The logical API service error response `Return Transaction Information Error` is
 
 ### API Resource Bulk Quotes
 
-In the API, a _Bulk Quote_ is a collection of individual quotes (see [API Resource Quotes](#api-resource-quotes) section for information regarding a single quote) for performing more than one interoperable financial transaction from the Payer FSP to the Payee FSP. 
+In the API, a _Bulk Quote_ is a collection of individual quotes (see [API Resource Quotes](#api-resource-quotes) section for information regarding a single quote) for performing more than one interoperable financial transaction from the Payer FSP to the Payee FSP.
 
 The primary purpose of the logical API resource **Bulk Quotes** is for a Payer FSP to request a Payee FSP to calculate the Payee FSP's part of the bulk quote.
 
@@ -430,7 +430,7 @@ This section identifies the logical API service requests that can be sent from a
 
 ##### Calculate Bulk Quote
 
-The logical API service request `Calculate Bulk Quote` is used by a Payer FSP to request that a Payee FSP calculate the Payee FSP's part of the quotes to perform more than one interoperable financial transaction. 
+The logical API service request `Calculate Bulk Quote` is used by a Payer FSP to request that a Payee FSP calculate the Payee FSP's part of the quotes to perform more than one interoperable financial transaction.
 
 The Payee FSP should also create the ILP Packet and the condition (see [Interledger](#interledger) section for links to more information) per quote when receiving the request.
 
@@ -470,7 +470,7 @@ The logical API service error response `Return Bulk Quote Information Error` is 
 
 ### API Resource Bulk Transfers
 
-In the API, a _Bulk Transfer_ is a collection of hop-to-hop ILP (see [Interledger.](#interledger)section for links to more information) transfers of funds. The transfers also contain information regarding the end-to-end interoperable financial transactions. 
+In the API, a _Bulk Transfer_ is a collection of hop-to-hop ILP (see [Interledger.](#interledger)section for links to more information) transfers of funds. The transfers also contain information regarding the end-to-end interoperable financial transactions.
 
 The primary purpose of the logical API resource **Bulk Transfers** is to enable an FSP or Switch to request that the next entity in the chain of the ILP Payment perform the transfers involved in the interoperable financial transactions.
 
@@ -485,7 +485,6 @@ The logical API service request `Perform Bulk Transfer` is used by an FSP or Swi
 - Successful response: [Return Bulk Transfer Information](#return-bulk-transfer-information)
 
 - Error response: [Return Bulk Transfer Information Error](#return-bulk-transfer-information-error)
-
 
 ##### Retrieve Bulk Transfer Information
 
@@ -563,7 +562,6 @@ The actors in a _Payer-Initiated Transaction_ are:
 
 - **Payee** -- The recipient of funds in a financial transaction.
 
-
 The intermediary objects used in a _Payer-Initiated Transaction_ to perform the transaction are:
 
 - **Payer FSP** -- The FSP in which the Payer's account is located.
@@ -573,7 +571,6 @@ The intermediary objects used in a _Payer-Initiated Transaction_ to perform the 
 - **Account Lookup System** -- An entity used for retrieving information regarding accounts or participants. Could be hosted in a separate server, in the Switch, or in the different FSPs.
 
 - **Payee FSP** -- The FSP in which the Payee's account is located.
-
 
 #### Business Process Sequence Diagram
 
@@ -631,7 +628,7 @@ This section provides descriptions of and assumptions made for all steps in the 
 
 6. **Description**
 
-    The `Payee FSP` receives the request [Lookup Participant Information](#lookup-participant-information). The `Payee FSP` then does an internal lookup to find more information regarding the `Payee` and sends the response [Return Participant Information](#return-participant-information) to the `Switch`. 
+    The `Payee FSP` receives the request [Lookup Participant Information](#lookup-participant-information). The `Payee FSP` then does an internal lookup to find more information regarding the `Payee` and sends the response [Return Participant Information](#return-participant-information) to the `Switch`.
 
     **Assumptions**
 
@@ -647,7 +644,7 @@ This section provides descriptions of and assumptions made for all steps in the 
 
 8. **Description**
 
-    The `Payer FSP` receives the response [Return Party Information](#return-party-information) containing information about the `Payee`. 
+    The `Payer FSP` receives the response [Return Party Information](#return-party-information) containing information about the `Payee`.
 
     **Assumptions**
 
@@ -657,7 +654,7 @@ This section provides descriptions of and assumptions made for all steps in the 
 
 ##### Calculate Quote
 
-9. **Description**
+1. **Description**
 
     Depending on the fee model used, the `Payer FSP` rates the transaction internally and includes the quote information in the request [Calculate Quote](#calculate-quote) to a `Switch` to retrieve the full quote for performing the interoperable financial transaction from the `Payer FSP` to the `Payee FSP`. The transaction details are sent in the parameters of the request to allow for the `Payee FSP` to correctly calculate the quote.
 
@@ -665,7 +662,7 @@ This section provides descriptions of and assumptions made for all steps in the 
 
     In this sequence, a `Switch` is placed between the `Payer FSP` and the `Payee FSP` to route the messages. The `Switch` is optional in the process, as the request[Calculate Quote](#calculate-quote) could also be sent directly to the `Payee FSP` if there is no `Switch` in-between.
 
-10. **Description**
+2. **Description**
 
     The `Switch` receives the [Calculate Quote](#calculate-quote) request. The `Switch` then routes the request to the `Payee FSP`, using the same parameters.
 
@@ -673,7 +670,7 @@ This section provides descriptions of and assumptions made for all steps in the 
 
     None.
 
-11. **Description**
+3. **Description**
 
     The `Payee FSP` receives the [Calculate Quote](#calculate-quote) request. The `Payee FSP` then internally calculates the fees or FSP commission for performing the transaction. It then constructs the ILP Packet containing the ILP Address of the `Payee`, the amount that the `Payee` will receive, and the transaction details. The fulfilment and the condition are then generated out of the ILP Packet combined with a local secret.
 
@@ -682,18 +679,18 @@ This section provides descriptions of and assumptions made for all steps in the 
     None.
 
     **Optional procedure: Quote Confirmation by Payee**
-    
+
     a. **Description**
 
-    Depending on the use case and the fee model used, the `Payee` might be informed of the quote in order to confirm the proposed financial transaction. The quote is in that case sent to the `Payee` using a front-end API (outside the scope of this API). The `Payee` receives the quote including information regarding the transaction including fees and optionally `Payer` name. The `Payee` then confirms the quote using a front-end API (outside the scope of this API), and the `Payee FSP` receives the confirmation from the `Payee`. 
-   
-    **Assumptions** 
-   
+    Depending on the use case and the fee model used, the `Payee` might be informed of the quote in order to confirm the proposed financial transaction. The quote is in that case sent to the `Payee` using a front-end API (outside the scope of this API). The `Payee` receives the quote including information regarding the transaction including fees and optionally `Payer` name. The `Payee` then confirms the quote using a front-end API (outside the scope of this API), and the `Payee FSP` receives the confirmation from the `Payee`.
+
+    **Assumptions**
+
     The `Payee` is assumed to accept and confirm the quote. If the `Payee` would reject the quote, an error response would be sent from the `Payee` FSP to the `Payer FSP` via the `Switch` to inform about the rejected quote.
 
     **End of Optional procedure**
 
-12. **Description**
+4. **Description**
 
     The `Payee FSP` uses the response [Return Quote Information](#return-quote-information) to the `Switch` to return information to the `Payer FSP` about the quote, the ILP Packet, and the condition. The quote has an expiration time, to inform the `Payer FSP` until which point in time the quote is valid.
 
@@ -701,7 +698,7 @@ This section provides descriptions of and assumptions made for all steps in the 
 
     None.
 
-13. **Description**
+5. **Description**
 
     The `Switch` receives the response [Return Quote Information](#return-quote-information). The `Switch` will then route the response to the `Payer FSP`.
 
@@ -709,7 +706,7 @@ This section provides descriptions of and assumptions made for all steps in the 
 
     None.
 
-14. **Description**
+6. **Description**
 
     The `Payer FSP` receives the response[Return Quote Information](#return-quote-information) from the `Switch`. The `Payer FSP` then informs the `Payer` using a front-end API (outside the scope of this API) about the total fees to perform the transaction, along with the `Payee` name.
 
@@ -717,19 +714,19 @@ This section provides descriptions of and assumptions made for all steps in the 
 
     The total quote can be calculated by the `Payer FSP`. Also, the `Payee` name was allowed to be sent during the counterparty lookup (depending on regulation on privacy laws).
 
-15. **Description**
+7. **Description**
 
-    The `Payer` receives the transaction information including fees, taxes and optionally `Payee` name. If the `Payer` rejects the transaction, the sequence ends here. 
-   
-    **Assumptions** 
-   
+    The `Payer` receives the transaction information including fees, taxes and optionally `Payee` name. If the `Payer` rejects the transaction, the sequence ends here.
+
+    **Assumptions**
+
     The `Payer` is assumed to approve the transaction in this sequence. If the `Payer` would reject the transaction at this stage, no response regarding the rejection is sent to the `Payee FSP`. The created quote at the `Payee FSP` should have an expiry time, at which time it is automatically deleted.
 
 <br />
 
 ##### Perform Transfer
 
-16. **Description**
+1. **Description**
 
     The `Payer FSP` receives an approval of the interoperable financial transaction using a front-end API (out of scope of this API). The `Payer FSP` then performs all applicable internal transaction validations (for example, limit checks, blacklist check, and so on). If the validations are successful, a transfer of funds is reserved from the `Payer`'s account to either a combined `Switch` account or a `Payee FSP` account, depending on setup. After the transfer has been successfully reserved, the request [Perform Transfer](#perform-transfer) is sent to the `Switch` to request the `Switch` to transfer the funds from the `Payer FSP` account in the Switch to the `Payee FSP` account. The request [Perform Transfer](#perform-transfer) includes a reference to the earlier quote, an expiry of the transfer, the ILP Packet, and the condition that was received from the `Payee FSP`. The interoperable financial transaction is now irrevocable from the `Payer FSP`.
 
@@ -737,15 +734,15 @@ This section provides descriptions of and assumptions made for all steps in the 
 
     Internal validations and reservation are assumed to be successful. In this sequence, a `Switch` is placed between the `Payer FSP` and the `Payee FSP` to route the messages. The `Switch` is optional in the process, as the request [Perform Transfer](#perform-transfer) could also be sent directly to the `Payee FSP` if there is no `Switch` in-between.
 
-17. **Description**
+2. **Description**
 
-    The `Switch` receives the request [Perform Transfer](#perform-transfer). The `Switch` then performs all its applicable internal transfer validations (for example, limit checks blacklist check and so on). If the validations are successful, a transfer is reserved from a `Payer FSP` account to a `Payee FSP` account. After the transfer has been successfully reserved, the request [Perform Transfer](#perform-transfer) is sent to the `Payee FSP`, including the same ILP Packet and condition as was received from the `Payer FSP`. The expiry time should be decreased by the `Switch` so that the `Payee FSP` should answer before the `Switch` answers to the `Payer FSP`. The transfer is now irrevocable from the `Switch`. 
-   
+    The `Switch` receives the request [Perform Transfer](#perform-transfer). The `Switch` then performs all its applicable internal transfer validations (for example, limit checks blacklist check and so on). If the validations are successful, a transfer is reserved from a `Payer FSP` account to a `Payee FSP` account. After the transfer has been successfully reserved, the request [Perform Transfer](#perform-transfer) is sent to the `Payee FSP`, including the same ILP Packet and condition as was received from the `Payer FSP`. The expiry time should be decreased by the `Switch` so that the `Payee FSP` should answer before the `Switch` answers to the `Payer FSP`. The transfer is now irrevocable from the `Switch`.
+
     **Assumptions**
 
     Internal validations and reservation are successful.
 
-18. **Description**
+3. **Description**
 
     The `Payee FSP` receives the request [Perform Transfer](#perform-transfer). The `Payee FSP` then performs all applicable internal transaction validations (for example, limit checks, blacklist check, and so on). It also verifies that the amount and ILP Address in the ILP Packet are correct and match the amount and `Payee` in the transaction details stored in the ILP Packet. If all the validations are successful, a transfer of funds is performed from either a combined `Switch` account or a `Payer FSP` account to the `Payee`'s account and the fulfilment of the condition is regenerated, using the same secret as in Step 11. After the interoperable financial transaction has been successfully performed, a transaction notification is sent to the `Payee` using a front-end API (out of scope of this API) and the response **Return Transfer Information** is sent to the `Switch`, including the regenerated fulfilment. The transfer is now irrevocable from the `Payee FSP`.
 
@@ -753,15 +750,15 @@ This section provides descriptions of and assumptions made for all steps in the 
 
     Internal validations and transfer of funds are successful.
 
-19. **Description**
+4. **Description**
 
-    The `Payee` receives a transaction notification containing information about the successfully performed transaction. 
-   
+    The `Payee` receives a transaction notification containing information about the successfully performed transaction.
+
     **Assumptions**
 
     None.
 
-20. **Description**
+5. **Description**
 
     The `Switch` receives the response [Return Transfer Information](#return-transfer-information). The `Switch` then validates the fulfilment and commits the earlier reserved transfer. The `Switch` then uses the response [Return Transfer Information](#return-transfer-information) to the `Payer FSP`, using the same parameters.
 
@@ -769,7 +766,7 @@ This section provides descriptions of and assumptions made for all steps in the 
 
     The fulfilment is assumed to be correctly validated.
 
-21. **Description**
+6. **Description**
 
     The `Payer FSP` receives the response [Return Transfer Information](#return-transfer-information). The `Payer FSP` then validates the fulfilment and commits the earlier reserved transaction.
 
@@ -779,7 +776,7 @@ This section provides descriptions of and assumptions made for all steps in the 
 
 **Optional fragment: Get Transaction Details**
 
-22. **Description**
+1. **Description**
 
     In case the interoperable financial transaction contains additional information that is useful for the `Payer` or the `Payer FSP`, such as a code or a voucher token, the `Payer FSP` can use the request [Return Transfer Information](#return-transfer-information) to get the additional transaction information. The request [Retrieve Transaction Information](#retrieve-transaction-information) is sent to the `Switch`.
 
@@ -787,7 +784,7 @@ This section provides descriptions of and assumptions made for all steps in the 
 
     None.
 
-23. **Description**
+2. **Description**
 
     The `Switch` receives the request [Retrieve Transaction Information](#retrieve-transaction-information). The `Switch` then routes the [Retrieve Transaction Information](#retrieve-transaction-information) request to the `Payee FSP`.
 
@@ -795,7 +792,7 @@ This section provides descriptions of and assumptions made for all steps in the 
 
     None.
 
-24. **Description**
+3. **Description**
 
     The `Payee FSP` receives the request [Retrieve Transaction Information](#retrieve-transaction-information). The `Payee FSP` then collects the requested information and sends the response [Return Transaction Information](#return-transaction-information) to the `Switch`.
 
@@ -803,7 +800,7 @@ This section provides descriptions of and assumptions made for all steps in the 
 
     The transaction with the provided ID can be found in the `Payee FSP`.
 
-25. **Description**
+4. **Description**
 
     The `Switch` receives the response [Return Transaction Information](#return-transaction-information). The Switch then routes the [Return Transaction Information](#return-transaction-information) response to the `Payer FSP`.
 
@@ -811,7 +808,7 @@ This section provides descriptions of and assumptions made for all steps in the 
 
     None.
 
-26. **Description**
+5. **Description**
 
     The `Payer FSP` receives the response [Return Transaction Information](#return-transaction-information).
 
@@ -821,7 +818,7 @@ This section provides descriptions of and assumptions made for all steps in the 
 
     **End of Optional fragment**
 
-28. **Description**
+6. **Description**
 
     The `Payer FSP` sends a transaction notification to the `Payee` using a front-end API (out of scope of this API), optionally including transaction details retrieved from the `Payee FSP`.
 
@@ -829,10 +826,10 @@ This section provides descriptions of and assumptions made for all steps in the 
 
     None.
 
-29. **Description**
+7. **Description**
 
-    The `Payer` receives a transaction notification containing information about the successfully performed transaction. 
-    
+    The `Payer` receives a transaction notification containing information about the successfully performed transaction.
+
     **Assumptions**
 
     None.
@@ -901,9 +898,9 @@ This section provides descriptions of and assumptions made for all steps in the 
 
     **Assumptions**
 
-    The `Payer` is assumed to be located in a different FSP than the `Payee`. Also, an `Account Lookup System` is assumed to exist. 
-    
-    The `Account Lookup System` is optional in the process, as the request [Lookup Participant Information](#lookup-participant-information) could also be sent directly to the` Payer FSP` if there is no `Account Lookup System`. As the `Payee FSP` should not know in which FSP the Payer is located if there is no `Account Lookup System` present, the request might need to be sent to more than one FSP. It is also possible that the `Payee FSP` would like more information about the `Payer` before a transaction request is sent; in that case the request [Lookup Participant Information](#lookup-participant-information), either to the Switch or directly to the `Payer FSP`, should be sent instead of [Lookup Participant Information](#lookup-participant-information) to the `Account Lookup System`.
+    The `Payer` is assumed to be located in a different FSP than the `Payee`. Also, an `Account Lookup System` is assumed to exist.
+
+    The `Account Lookup System` is optional in the process, as the request [Lookup Participant Information](#lookup-participant-information) could also be sent directly to the`Payer FSP` if there is no `Account Lookup System`. As the `Payee FSP` should not know in which FSP the Payer is located if there is no `Account Lookup System` present, the request might need to be sent to more than one FSP. It is also possible that the `Payee FSP` would like more information about the `Payer` before a transaction request is sent; in that case the request [Lookup Participant Information](#lookup-participant-information), either to the Switch or directly to the `Payer FSP`, should be sent instead of [Lookup Participant Information](#lookup-participant-information) to the `Account Lookup System`.
 
 3. **Description**
 
@@ -941,9 +938,9 @@ This section provides descriptions of and assumptions made for all steps in the 
 
 7. **Description**
 
-    The `Payer FSP` receives the request [Perform Transaction Request](#perform-transaction-request). The `Payer FSP` then optionally validates the transaction request (for example, whether the `Payer` exists) and uses the response [Return Transaction Request Information](#return-transaction-request-information) to inform the `Payee FSP` via the `Switch` that the transaction request has been received. 
+    The `Payer FSP` receives the request [Perform Transaction Request](#perform-transaction-request). The `Payer FSP` then optionally validates the transaction request (for example, whether the `Payer` exists) and uses the response [Return Transaction Request Information](#return-transaction-request-information) to inform the `Payee FSP` via the `Switch` that the transaction request has been received.
 
-    **Assumptions** 
+    **Assumptions**
 
     The optional validation succeeds.
 
@@ -951,15 +948,15 @@ This section provides descriptions of and assumptions made for all steps in the 
 
     The `Switch` receives the response [Return Transaction Request Information](#return-transaction-request-information). The `Switch` then sends the same response [Return Transaction Request Information](#return-transaction-request-information) to inform the `Payee FSP` about the successfully delivered transaction request to the `Payer FSP`.
 
-    **Assumptions** 
+    **Assumptions**
 
-    None. 
+    None.
 
 9. **Description**
 
-    The `Payee FSP` receives the response [Return Transaction Request Information](#return-transaction-request-information) from the `Switch`. 
+    The `Payee FSP` receives the response [Return Transaction Request Information](#return-transaction-request-information) from the `Switch`.
 
-    **Assumptions** 
+    **Assumptions**
 
     None.
 
@@ -967,23 +964,23 @@ This section provides descriptions of and assumptions made for all steps in the 
 
 ##### Calculate Quote
 
-10. **Description**
+1. **Description**
 
-    The `Payer FSP` rates the transaction internally based on the fee model used and includes the quote information in the request[Calculate Quote](#calculate-quote) to a `Switch` to retrieve the full quote for performing the interoperable financial transaction from the `Payer FSP` to the `Payee FSP`. The transaction details, including a reference to the earlier sent transaction request, are sent in the parameters of the request to allow for the `Payee FSP` to correctly calculate the quote. 
+    The `Payer FSP` rates the transaction internally based on the fee model used and includes the quote information in the request[Calculate Quote](#calculate-quote) to a `Switch` to retrieve the full quote for performing the interoperable financial transaction from the `Payer FSP` to the `Payee FSP`. The transaction details, including a reference to the earlier sent transaction request, are sent in the parameters of the request to allow for the `Payee FSP` to correctly calculate the quote.
 
-    **Assumptions** 
+    **Assumptions**
 
-    In this sequence, a `Switch` is placed between the `Payer FSP` and the `Payee FSP` to route the messages. The `Switch` is optional in the process, as the request [Calculate Quote](#calculate-quote) could also be sent directly to the `Payee FSP` if there is no `Switch` in-between. 
+    In this sequence, a `Switch` is placed between the `Payer FSP` and the `Payee FSP` to route the messages. The `Switch` is optional in the process, as the request [Calculate Quote](#calculate-quote) could also be sent directly to the `Payee FSP` if there is no `Switch` in-between.
 
-11. **Description**
+2. **Description**
 
-    The `Switch` receives the [Calculate Quote](#calculate-quote) request. The `Switch` then routes the request to the `Payee FSP`. 
+    The `Switch` receives the [Calculate Quote](#calculate-quote) request. The `Switch` then routes the request to the `Payee FSP`.
 
     **Assumptions**
 
     None.
 
-12. **Description**
+3. **Description**
 
     The `Payee FSP` receives the [Calculate Quote](#calculate-quote) request. The `Payee FSP` then internally calculates the fees or FSP commission for performing the transaction. It then constructs the ILP Packet containing the ILP Address of the `Payee`, the amount that the `Payee` will receive, and the transaction details. The fulfilment and the condition are then generated out of the ILP Packet combined with a local secret.
 
@@ -991,7 +988,7 @@ This section provides descriptions of and assumptions made for all steps in the 
 
     None
 
-13. **Description**
+4. **Description**
 
     Depending on use case and the fee model used, the `Payee` might be informed of the quote so that the `Payee` can confirm the proposed financial transaction. The quote is in that case sent to the `Payee` using a front-end API (outside the scope of this API). The `Payee` receives the quote including information regarding the transaction including fees and optionally Payer name. The `Payee` then confirms the quote using a front-end API (outside the scope of this API). The `Payee FSP` receives the confirmation from the `Payee`.
 
@@ -1001,7 +998,7 @@ This section provides descriptions of and assumptions made for all steps in the 
 
     **End of Optional fragment**
 
-14. **Description**
+5. **Description**
 
     The `Payee FSP` uses the response [Return Quote Information](#return-quote-information) to the `Switch` to return information to the `Payer FSP` about the quote, the ILP Packet, and the condition. The quote has an expiration time, to inform the `Payer FSP` until which point in time the quote is valid.
 
@@ -1009,7 +1006,7 @@ This section provides descriptions of and assumptions made for all steps in the 
 
     None.
 
-15. **Description**
+6. **Description**
 
     The `Switch` receives the response [Return Quote Information](#return-quote-information). The `Switch` then routes the response to the `Payer FSP`.
 
@@ -1017,17 +1014,17 @@ This section provides descriptions of and assumptions made for all steps in the 
 
     None.
 
-16. **Description**
+7. **Description**
 
-    The `Payer FSP` receives the response [Return Quote Information](#return-quote-information) from the `Switch`. The `Payer FSP` then informs the `Payer` using a front-end API (outside the scope of this API) about the transaction request from the `Payee`, including the amount and the total fees required to perform the transaction, along with the `Payee` name. 
+    The `Payer FSP` receives the response [Return Quote Information](#return-quote-information) from the `Switch`. The `Payer FSP` then informs the `Payer` using a front-end API (outside the scope of this API) about the transaction request from the `Payee`, including the amount and the total fees required to perform the transaction, along with the `Payee` name.
 
     **Assumptions**
 
     The total quote can be calculated by the `Payer FSP`. Also, the `Payee` name was allowed to be sent during the counterparty lookup (depending on regulation on privacy laws).
 
-17. **Description**
+8. **Description**
 
-    The `Payer` receives the transaction request information including fees, taxes and optionally `Payee` name. 
+    The `Payer` receives the transaction request information including fees, taxes and optionally `Payee` name.
 
     **Assumptions**
 
@@ -1035,7 +1032,7 @@ This section provides descriptions of and assumptions made for all steps in the 
 
     **Alternative: Transaction Rejection**
 
-18. **Description**
+9. **Description**
 
     The `Payer FSP` receives the rejection of the transaction request using a front-end API (out of scope of this API). The `Payer FSP` then uses the response [Return Transaction Request Information](#return-transaction-request-information) with a rejected status to inform the `Switch` that the transaction was rejected.
 
@@ -1043,7 +1040,7 @@ This section provides descriptions of and assumptions made for all steps in the 
 
     The `Payer` is assumed to reject the transaction request in Step 17.
 
-19. **Description**
+10. **Description**
 
     The `Switch` receives the response [Return Transaction Request Information](#return-transaction-request-information) from the `Payer FSP`. The `Switch` then routes the response [Return Transaction Request Information](#return-transaction-request-information) to the `Payee FSP`.
 
@@ -1051,7 +1048,7 @@ This section provides descriptions of and assumptions made for all steps in the 
 
     None.
 
-20. **Description**
+11. **Description**
 
     The `Payee FSP` receives the response *[Return Transaction Request Information](#return-transaction-request-information) with a rejected status from the `Switch`. The `Payee FSP` then informs the Payee using a front-end API (outside the scope of this API) about the rejected transaction request.
 
@@ -1059,7 +1056,7 @@ This section provides descriptions of and assumptions made for all steps in the 
 
     None.
 
-21. **Description**
+12. **Description**
 
     The `Payee` receives the notification that the transaction was rejected. The process ends here as the transaction request was rejected and the `Payee` has been informed of the decision.
 
@@ -1069,7 +1066,7 @@ This section provides descriptions of and assumptions made for all steps in the 
 
     **Alternative: Perform Transfer**
 
-22. **Description**
+13. **Description**
 
     The `Payer FSP` receives an approval of the interoperable financial transaction using a front-end API (out of scope of this API). The `Payer FSP` then performs all applicable internal transaction validations (for example, limit checks, blacklist check, and so on). If the validations are successful, a transfer of funds is reserved from the `Payer`'s account to either a combined `Switch` account or a `Payee FSP` account, depending on setup. After the transfer has been successfully reserved, the request [Perform Transfer](#perform-transfer) is sent to the `Switch` to request the `Switch` to transfer the funds from the `Payer FSP` account in the `Switch` to the `Payee FSP` account. The request [Perform Transfer](#perform-transfer) includes a reference to the earlier quote, an expiry of the transfer, the ILP Packet, and the condition that was received from the `Payee FSP`. The interoperable financial transaction is now irrevocable from the `Payer FSP`.
 
@@ -1077,15 +1074,15 @@ This section provides descriptions of and assumptions made for all steps in the 
 
     The `Payer` is assumed to approve the transaction request in Step 17. Internal validations and reservation are assumed to be successful. In this sequence, a `Switch` is placed between the `Payer FSP` and the `Payee FSP` to route the messages. The Switch is optional in the process, as the request [Perform Transfer](#perform-transfer) could also be sent directly to the `Payee FSP` if there is no `Switch` in-between.
 
-23. **Description**
+14. **Description**
 
-    The `Switch` receives the request [Perform Transfer](#perform-transfer). The `Switch` then performs all its applicable internal transfer validations (for example, limit checks, blacklist check, and so on). If the validations are successful, a transfer is reserved from a `Payer FSP` account to a `Payee FSP` account. After the transfer has been successfully reserved, the request [Perform Transfer](#perform-transfer) is sent to the `Payee FSP`, including the same ILP Packet and condition as was received from the Payer FSP. The expiry time should be decreased by the `Switch`, so that the `Payee FSP` should answer before the `Switch` should answer to the `Payer FSP`. The transfer is now irrevocable from the `Switch`. 
+    The `Switch` receives the request [Perform Transfer](#perform-transfer). The `Switch` then performs all its applicable internal transfer validations (for example, limit checks, blacklist check, and so on). If the validations are successful, a transfer is reserved from a `Payer FSP` account to a `Payee FSP` account. After the transfer has been successfully reserved, the request [Perform Transfer](#perform-transfer) is sent to the `Payee FSP`, including the same ILP Packet and condition as was received from the Payer FSP. The expiry time should be decreased by the `Switch`, so that the `Payee FSP` should answer before the `Switch` should answer to the `Payer FSP`. The transfer is now irrevocable from the `Switch`.
 
     **Assumptions**
 
     Internal validations and reservation are successful.
 
-24. **Description**
+15. **Description**
 
     The `Payee FSP` receives the request [Perform Transfer](#perform-transfer). The `Payee FSP` then performs all applicable internal transaction validations (for example, limit checks, blacklist check, and so on). It also verifies that the amount and ILP Address in the ILP Packet are correct and match the amount and `Payee` in the transaction details stored in the ILP Packet. If all the validations are successful, a transfer of funds is performed from either a combined `Switch` account or a `Payer FSP` account to the `Payee`'s account and the fulfilment of the condition is regenerated, using the same secret as in Step 11. After the interoperable financial transaction has been successfully performed, a transaction notification is sent to the Payee using a front-end API (out of scope of this API) and the response [Return Transfer Information](#return-transfer-information) is sent to the `Switch`, including the regenerated fulfilment. The transfer is now irrevocable from the `Payee FSP`.
 
@@ -1093,15 +1090,15 @@ This section provides descriptions of and assumptions made for all steps in the 
 
     Internal validations and transfer of funds are successful.
 
-25. **Description**
+16. **Description**
 
-    The `Payee` receives a transaction notification containing information about the successfully performed transaction. 
+    The `Payee` receives a transaction notification containing information about the successfully performed transaction.
 
     **Assumptions**
 
     None.
 
-26. **Description**
+17. **Description**
 
     The `Switch` receives the response [Return Transfer Information](#return-transfer-information). The `Switch` then validates the fulfilment and commits the earlier reserved transfer. The `Switch` then uses the response [Return Transfer Information](#return-transfer-information) to the `Payer FSP`, using the same parameters.
 
@@ -1109,7 +1106,7 @@ This section provides descriptions of and assumptions made for all steps in the 
 
     The fulfilment is assumed to be correctly validated.
 
-27. **Description**
+18. **Description**
 
     The `Payer FSP` receives the response [Return Transfer Information](#return-transfer-information). The `Payer FSP` then validates the fulfilment and commits the earlier reserved transaction.
 
@@ -1119,7 +1116,7 @@ This section provides descriptions of and assumptions made for all steps in the 
 
     **Optional fragment: Get Transaction Details**
 
-28. **Description**
+19. **Description**
 
     In case the interoperable financial transaction contains additional information that is useful for the `Payer` or the `Payer FSP`; for example, a code or a voucher token, the `Payer FSP` can use the request [Retrieve Transaction Information](#retrieve-transaction-information) to get the additional information. The request  [Retrieve Transaction Information](#retrieve-transaction-information) is sent to the `Switch`.
 
@@ -1127,7 +1124,7 @@ This section provides descriptions of and assumptions made for all steps in the 
 
     None.
 
-29. **Description**
+20. **Description**
 
     The `Switch` receives the request  [Retrieve Transaction Information](#retrieve-transaction-information). The `Switch` then routes the request  [Retrieve Transaction Information](#retrieve-transaction-information) to the `Payee FSP`.
 
@@ -1135,15 +1132,15 @@ This section provides descriptions of and assumptions made for all steps in the 
 
     None.
 
-30. **Description**
+21. **Description**
 
-    The `Payee FSP` receives the request  [Retrieve Transaction Information](#retrieve-transaction-information). The `Payee FSP` then collects the requested information and uses the response [Retrieve Transaction Information](#retrieve-transaction-information) to the `Switch`. 
+    The `Payee FSP` receives the request  [Retrieve Transaction Information](#retrieve-transaction-information). The `Payee FSP` then collects the requested information and uses the response [Retrieve Transaction Information](#retrieve-transaction-information) to the `Switch`.
 
     **Assumptions**
 
     The transaction with the provided ID can be found in the Payee FSP.
 
-31. **Description**
+22. **Description**
 
     The `Switch` receives the response  [Retrieve Transaction Information](#retrieve-transaction-information). The `Switch` then routes the  [Retrieve Transaction Information](#retrieve-transaction-information) response to the `Payer FSP`.
 
@@ -1151,7 +1148,7 @@ This section provides descriptions of and assumptions made for all steps in the 
 
     None.
 
-32. **Description**
+23. **Description**
 
     The `Payer FSP` receives the response  [Retrieve Transaction Information](#retrieve-transaction-information) from the `Switch`.
 
@@ -1161,7 +1158,7 @@ This section provides descriptions of and assumptions made for all steps in the 
 
     **End of Optional fragment**
 
-33. **Description**
+24. **Description**
 
     The `Payer FSP` sends a transaction notification to the `Payee` using a front-end API (out of scope of this API), optionally including transaction details retrieved from the `Payee FSP`.
 
@@ -1169,9 +1166,9 @@ This section provides descriptions of and assumptions made for all steps in the 
 
     None.
 
-34. **Description**
+25. **Description**
 
-    The `Payer` receives a transaction notification containing information about the successfully performed transaction. 
+    The `Payer` receives a transaction notification containing information about the successfully performed transaction.
 
     **Assumptions**
 
@@ -1239,7 +1236,7 @@ This section provides descriptions of and assumptions made for all steps in the 
 
 3. **Description**
 
-    `Payer` receives the generated OTP. The OTP can then be used by the `Payer` in Step 25 for automatic approval. 
+    `Payer` receives the generated OTP. The OTP can then be used by the `Payer` in Step 25 for automatic approval.
 
     **Assumptions**
 
@@ -1249,101 +1246,101 @@ This section provides descriptions of and assumptions made for all steps in the 
 
 ###### Lookup Counterparty
 
-4. **Description**
+1. **Description**
 
-    The `Payee` initiates the transaction by requesting to receive funds from a `Payer`, using the `Payee FSP`'s front-end API (outside the scope of this API). 
-    
-    **Assumptions** 
-    
+    The `Payee` initiates the transaction by requesting to receive funds from a `Payer`, using the `Payee FSP`'s front-end API (outside the scope of this API).
+
+    **Assumptions**
+
     None.
 
-5. **Description**
+2. **Description**
 
-    The `Payee FSP` tries to find the `Payer` within the FSP system. Because the `Payer` cannot be found in the `Payee FSP` system, the request **Lookup Participant Information** is sent by the `Payee FSP` to the optional Account Lookup System to get information regarding in which FSP the Payer is located. 
+    The `Payee FSP` tries to find the `Payer` within the FSP system. Because the `Payer` cannot be found in the `Payee FSP` system, the request **Lookup Participant Information** is sent by the `Payee FSP` to the optional Account Lookup System to get information regarding in which FSP the Payer is located.
 
-    **Assumptions** 
+    **Assumptions**
 
     The `Payer` is assumed to be in a different FSP than the `Payee`. Also, an `Account Lookup System` is assumed to exist. The `Account Lookup System` is optional in the process, as the request [Lookup Participant Information](#lookup-participant-information) could also be sent directly to the `Payer FSP` if there is no `Account Lookup System`. As the `Payee FSP` should not know in which FSP the `Payer` is located if there is no `Account Lookup System` present, the request might need to be sent to more than one FSP. It is also possible that the `Payee FSP` would like more information about the Payer before a transaction request is sent; in that case the request [Lookup Party Information](#lookup-party-information), either to the `Switch` or directly to the `Payer FSP`, should be sent instead of [Lookup Participant Information](#lookup-participant-information) to the `Account Lookup System`.
 
-6. **Description**
+3. **Description**
 
-    The `Account Lookup System` receives the [Lookup Participant Information](#lookup-participant-information). It then performs an internal lookup to find in which FSP the `Payer` is located. When the lookup is completed, the response [Return Participant Information](#return-participant-information) is sent to inform the `Payee FSP` about which FSP the `Payer` is located in. 
+    The `Account Lookup System` receives the [Lookup Participant Information](#lookup-participant-information). It then performs an internal lookup to find in which FSP the `Payer` is located. When the lookup is completed, the response [Return Participant Information](#return-participant-information) is sent to inform the `Payee FSP` about which FSP the `Payer` is located in.
 
-    **Assumptions** 
+    **Assumptions**
 
     The `Payer` can be found by the `Account Lookup System`.
 
-7. **Description**
+4. **Description**
 
-    The `Payee FSP` receives the response [Return Participant Information](#return-participant-information). 
+    The `Payee FSP` receives the response [Return Participant Information](#return-participant-information).
 
-    **Assumptions** 
+    **Assumptions**
 
     None.
 
 ##### Transaction Request
 
-8. **Description**
+1. **Description**
 
     The Payee FSP sends the request [Perform Transaction Request](#perform-transaction-request) to the `Switch`. The request contains the transaction details including the amount that the `Payee` would like to receive, and that the request should be validated using an OTP (possibly a QR code containing a OTP).
 
-    **Assumptions** 
+    **Assumptions**
 
     In this sequence, a `Switch` is placed between the `Payee FSP` and the `Payer FSP` to route the messages. The `Switch` is optional in the process, as the request [Perform Transaction Request](#perform-transaction-request) could also be sent directly to the `Payer FSP` if there is no `Switch` in-between.
 
-9. **Description**
+2. **Description**
 
-    The `Switch` receives the request [Perform Transaction Request](#perform-transaction-request). The `Switch` then routes the request to the `Payer FSP`, using the same parameters. 
+    The `Switch` receives the request [Perform Transaction Request](#perform-transaction-request). The `Switch` then routes the request to the `Payer FSP`, using the same parameters.
 
-    **Assumptions** 
+    **Assumptions**
 
     None.
 
-10. **Description**
+3. **Description**
 
     The `Payer FSP` receives the request [Perform Transaction Request](#perform-transaction-request). The `Payer FSP` then optionally validates the transaction request (for example, whether the `Payer` exists or not) and sends the response [Return Transaction Request Information](#return-transaction-request-information) to inform the `Payee FSP` via the `Switch` that the transaction request has been received.
 
-    **Assumptions** 
+    **Assumptions**
 
     The optional validation succeeds.
 
-11. **Description**
+4. **Description**
 
     The `Switch` receives the response [Return Transaction Request Information](#return-transaction-request-information). The `Switch` then uses the same response [Return Transaction Request Information](#return-transaction-request-information) to inform the `Payee FSP` about the successfully delivered transaction request to the `Payer FSP`.
 
-    **Assumptions:** 
+    **Assumptions:**
 
     None.
 
-12. **Description**
+5. **Description**
 
-    The `Payee FSP` receives the response [Return Transaction Request Information](#return-transaction-request-information) from the `Switch`. 
+    The `Payee FSP` receives the response [Return Transaction Request Information](#return-transaction-request-information) from the `Switch`.
 
-    **Assumptions** 
+    **Assumptions**
 
     None.
 
     **Calculate Quote**
 
-13. **Description**
+6. **Description**
 
-    The `Payer FSP` rates the transaction internally based on the fee model used and includes the quote information in the request [Calculate Quote](#calculate-quote) to a `Switch` to retrieve the full quote for performing the interoperable financial transaction from the `Payer FSP` to the `Payee FSP`. The transaction details, including a reference to the transaction request, are sent in the parameters of the request to allow for the `Payee FSP` to correctly calculate the quote. 
+    The `Payer FSP` rates the transaction internally based on the fee model used and includes the quote information in the request [Calculate Quote](#calculate-quote) to a `Switch` to retrieve the full quote for performing the interoperable financial transaction from the `Payer FSP` to the `Payee FSP`. The transaction details, including a reference to the transaction request, are sent in the parameters of the request to allow for the `Payee FSP` to correctly calculate the quote.
 
-    **Assumptions** 
+    **Assumptions**
 
     In this sequence, a `Switch` is placed between the `Payer FSP` and the `Payee FSP` to route the messages. The `Switch` is optional in the process, as the request [Calculate Quote](#calculate-quote) could also be sent directly to the `Payee FSP` if there is no `Switch` in-between.
 
-14. **Description**
+7. **Description**
 
     The `Switch` receives the [Calculate Quote](#calculate-quote) request. The `Switch` then routes the request to the `Payee FSP`, using the same parameters.
 
-    **Assumptions** 
+    **Assumptions**
 
     None.
 
-15. **Description**
+8. **Description**
 
-    The `Payee FSP` receives the [Calculate Quote](#calculate-quote) request. The `Payee FSP` then internally calculates the fees or FSP commission for performing the transaction. It then constructs the ILP Packet containing the ILP Address of the `Payee`, the amount that the `Payee` will receive, and the transaction details. The fulfilment and the condition is then generated out of the ILP Packet combined with a local secret. 
+    The `Payee FSP` receives the [Calculate Quote](#calculate-quote) request. The `Payee FSP` then internally calculates the fees or FSP commission for performing the transaction. It then constructs the ILP Packet containing the ILP Address of the `Payee`, the amount that the `Payee` will receive, and the transaction details. The fulfilment and the condition is then generated out of the ILP Packet combined with a local secret.
 
     **Assumptions**
 
@@ -1351,17 +1348,17 @@ This section provides descriptions of and assumptions made for all steps in the 
 
     **Optional fragment: Quote Confirmation by Payee**
 
-16. **Description**
+9. **Description**
 
-    Depending on the fee model used and which use case it is, the `Payee` might be informed of the quote to be able to confirm the proposed financial transaction. The quote is in that case sent to the `Payee` using a front- end API (outside the scope of this API. The `Payee` receives the quote including information regarding the transaction including fees and optionally `Payer` name. The `Payee` then confirms the quote using a front-end API (outside the scope of this API). The `Payee FSP` receives the confirmation from the `Payee`. 
+    Depending on the fee model used and which use case it is, the `Payee` might be informed of the quote to be able to confirm the proposed financial transaction. The quote is in that case sent to the `Payee` using a front- end API (outside the scope of this API. The `Payee` receives the quote including information regarding the transaction including fees and optionally `Payer` name. The `Payee` then confirms the quote using a front-end API (outside the scope of this API). The `Payee FSP` receives the confirmation from the `Payee`.
 
-    **Assumptions** 
+    **Assumptions**
 
     The quote is assumed to be sent to the Payer for confirmation, and the `Payee` is assumed to accept and confirm the quote. If the `Payee` would reject the quote, an error response would be sent from the `Payee FSP` to the `Payer FSP` via the `Switch` to inform about the rejected quote.
 
     **End of Optional fragment**
 
-17. **Description**
+10. **Description**
 
     The `Payee FSP` uses the response [Return Quote Information](#return-quote-information) to the `Switch` to return information to the `Payer FSP` about the quote, the ILP Packet, and the condition. The quote has an expiration time, to inform the `Payer FSP` until which point in time the quote is valid.
 
@@ -1369,35 +1366,35 @@ This section provides descriptions of and assumptions made for all steps in the 
 
     None.
 
-18. **Description**
+11. **Description**
 
-    The `Switch` receives the response [Return Quote Information](#return-quote-information). The `Switch` will then route the request to the `Payer FSP`. 
+    The `Switch` receives the response [Return Quote Information](#return-quote-information). The `Switch` will then route the request to the `Payer FSP`.
 
     **Assumptions**
 
     None.
 
-19. **Description**
+12. **Description**
 
-    The `Payer FSP` receives the response [Return Quote Information](#return-quote-information) from the Switch. 
+    The `Payer FSP` receives the response [Return Quote Information](#return-quote-information) from the Switch.
 
-    **Assumptions** 
+    **Assumptions**
 
     The total quote can be calculated by the `Payer FSP`.
 
     **Optional fragment: Automatic OTP generation**
 
-20. **Description**
+13. **Description**
 
     The `Payer FSP` automatically generates an OTP and sends it to the `Payer`, using the `Payer FSP`'s front-end API (outside the scope of this API).
 
-    **Assumptions** 
+    **Assumptions**
 
     There are two alternatives for generating the OTP. Either it is generated upon request by the `Payer` (Step 1), or it is automatically generated (this option).
 
-21. **Description**
+14. **Description**
 
-    The `Payer` receives the automatically-generated OTP. 
+    The `Payer` receives the automatically-generated OTP.
 
     **Assumptions**
 
@@ -1405,141 +1402,141 @@ This section provides descriptions of and assumptions made for all steps in the 
 
     **End of Optional fragment**
 
-22. **Description**
+15. **Description**
 
-    The `Payer FSP` sends the request [Perform Authorization](#perform-authorization) to the `Switch`, to get an authorization to perform the transaction from the Payer via a POS, ATM, or similar payment device, in the `Payee FSP`. The request includes the amount to be withdrawn from the `Payer`'s account, and how many retries are left for the `Payer` to retry the OTP. 
+    The `Payer FSP` sends the request [Perform Authorization](#perform-authorization) to the `Switch`, to get an authorization to perform the transaction from the Payer via a POS, ATM, or similar payment device, in the `Payee FSP`. The request includes the amount to be withdrawn from the `Payer`'s account, and how many retries are left for the `Payer` to retry the OTP.
 
-    **Assumptions** 
-
-    None.
-
-23. **Description**
-
-    The `Switch` receives the request [Perform Authorization](#perform-authorization) from the `Payer FSP`. The `Switch` then routes the [Perform Authorization](#perform-authorization) to the `Payee FSP`. 
-
-    **Assumptions** 
+    **Assumptions**
 
     None.
 
-24. **Description**
+16. **Description**
 
-    The `Payee FSP` receives the request [Perform Authorization](#perform-authorization) from the `Switch`. The `Payee FSP` sends the authorization request to the `Payee` device (POS, ATM, or similar payment device) using the `Payee FSP`'s front-end API (outside the scope of this API). 
+    The `Switch` receives the request [Perform Authorization](#perform-authorization) from the `Payer FSP`. The `Switch` then routes the [Perform Authorization](#perform-authorization) to the `Payee FSP`.
 
-    **Assumptions** 
+    **Assumptions**
 
     None.
 
-25. **Description**
+17. **Description**
 
-    The `Payee` device receives the authorization request, and the `Payer` can see the amount that will be withdrawn from his or her account. The `Payer` then uses the OTP received in Step 3 or Step 21, depending on whether the OTP was manually requested or automatically generated. The entered or scanned OTP is then sent to the `Payee FSP` using the `Payee FSP`'s front-end API (outside the scope of this API). 
+    The `Payee FSP` receives the request [Perform Authorization](#perform-authorization) from the `Switch`. The `Payee FSP` sends the authorization request to the `Payee` device (POS, ATM, or similar payment device) using the `Payee FSP`'s front-end API (outside the scope of this API).
 
-    **Assumptions** 
+    **Assumptions**
+
+    None.
+
+18. **Description**
+
+    The `Payee` device receives the authorization request, and the `Payer` can see the amount that will be withdrawn from his or her account. The `Payer` then uses the OTP received in Step 3 or Step 21, depending on whether the OTP was manually requested or automatically generated. The entered or scanned OTP is then sent to the `Payee FSP` using the `Payee FSP`'s front-end API (outside the scope of this API).
+
+    **Assumptions**
 
     The `Payer` has received the OTP in Step 3 or Step 21.
 
-26. **Description**
+19. **Description**
 
-    The `Payee FSP` receives the OTP from the `Payee` device. The `Payee FSP` then sends the response [Return Authorization Result](#return-authorization-result) to the Switch containing the OTP from the Payer. 
+    The `Payee FSP` receives the OTP from the `Payee` device. The `Payee FSP` then sends the response [Return Authorization Result](#return-authorization-result) to the Switch containing the OTP from the Payer.
 
-    **Assumptions** 
-
-    None.
-
-27. **Description**
-
-    The `Switch` receives the request [Return Authorization Result](#return-authorization-result) from the `Payee FSP`. The `Switch` then routes the [Return Authorization Result](#return-authorization-result) to the `Payer FSP`. 
-
-    **Assumptions** 
+    **Assumptions**
 
     None.
 
-28. **Description**
+20. **Description**
 
-    The `Payer FSP` receives the request [Return Authorization Result](#return-authorization-result) to the `Switch`. The `Payer FSP` then validates the OTP received from the OTP generated in Step 2 or Step 20. If the `Payer FSP` is unable to validate the OTP (for example, because the OTP is incorrect) and this was the last remaining retry for the Payer, the sequence continues with Step 29. If the `Payer FSP` correctly validates the OTP, the sequence continues with Step 33. 
+    The `Switch` receives the request [Return Authorization Result](#return-authorization-result) from the `Payee FSP`. The `Switch` then routes the [Return Authorization Result](#return-authorization-result) to the `Payer FSP`.
 
-    **Assumptions** 
+    **Assumptions**
+
+    None.
+
+21. **Description**
+
+    The `Payer FSP` receives the request [Return Authorization Result](#return-authorization-result) to the `Switch`. The `Payer FSP` then validates the OTP received from the OTP generated in Step 2 or Step 20. If the `Payer FSP` is unable to validate the OTP (for example, because the OTP is incorrect) and this was the last remaining retry for the Payer, the sequence continues with Step 29. If the `Payer FSP` correctly validates the OTP, the sequence continues with Step 33.
+
+    **Assumptions**
 
     None.
 
     **Alternative: OTP validation failed**
 
-29. **Description**
+22. **Description**
 
-    The validation in Step 28 fails and this was the final retry for the Payer. The `Payer FSP` then uses the response [Return Transaction Request Information](#return-transation-request-information) with a rejected state to inform the `Switch` that the transaction was rejected. 
+    The validation in Step 28 fails and this was the final retry for the Payer. The `Payer FSP` then uses the response [Return Transaction Request Information](#return-transation-request-information) with a rejected state to inform the `Switch` that the transaction was rejected.
 
-    **Assumptions** 
+    **Assumptions**
 
     The OTP validation in Step 28 is assumed to fail and no more retries remains for the Payer.
 
-30. **Description**
+23. **Description**
 
     The `Switch` receives the response [Return Transaction Request Information](#return-transation-request-information) from the Payer FSP. The `Switch` then routes the [Return Transaction Request Information](#return-transation-request-information) response to the `Payee FSP`.
 
-    **Assumptions** 
+    **Assumptions**
 
     None.
 
-31. **Description**
+24. **Description**
 
-    The `Payee FSP` receives the response [Return Transaction Request Information](#return-transation-request-information) with a rejected status from the `Switch`. The `Payee FSP` then informs the `Payee` using a front-end API (outside the scope of this API) about the rejected transaction request. 
+    The `Payee FSP` receives the response [Return Transaction Request Information](#return-transation-request-information) with a rejected status from the `Switch`. The `Payee FSP` then informs the `Payee` using a front-end API (outside the scope of this API) about the rejected transaction request.
 
-    **Assumptions** 
+    **Assumptions**
 
     None.
 
-32. **Description**
+25. **Description**
 
-    The `Payee` receives the notification that the transaction was rejected. The process ends here as the transaction request was rejected and the `Payee` has been informed of the decision. The `Payer` is also assumed to receive the notification via the `Payee` device. 
+    The `Payee` receives the notification that the transaction was rejected. The process ends here as the transaction request was rejected and the `Payee` has been informed of the decision. The `Payer` is also assumed to receive the notification via the `Payee` device.
 
-    **Assumptions** 
+    **Assumptions**
 
     None.
 
     **Alternative: OTP validation succeed**
 
-33. **Description**
+26. **Description**
 
-    The validation in Step 28 is successful. The `Payer FSP` then performs all applicable internal transaction validations (for example, limit checks, blacklist check, and so on). If the validations are successful, a transfer of funds is reserved from the `Payer`'s account to either a combined Switch account or a `Payee FSP` account, depending on setup. After the transfer has been successfully reserved, the request [Perform Transfer](#perform-transfer) is sent to the `Switch` to request the `Switch` to transfer the funds from the `Payer FSP` account in the `Switch` to the `Payee FSP` account. The request [Perform Transfer](#perform-transfer) includes a reference to the earlier quote, an expiry of the transfer, the ILP Packet, and the condition that was received from the `Payee FSP`. The interoperable financial transaction is now irrevocable from the `Payer FSP`. 
+    The validation in Step 28 is successful. The `Payer FSP` then performs all applicable internal transaction validations (for example, limit checks, blacklist check, and so on). If the validations are successful, a transfer of funds is reserved from the `Payer`'s account to either a combined Switch account or a `Payee FSP` account, depending on setup. After the transfer has been successfully reserved, the request [Perform Transfer](#perform-transfer) is sent to the `Switch` to request the `Switch` to transfer the funds from the `Payer FSP` account in the `Switch` to the `Payee FSP` account. The request [Perform Transfer](#perform-transfer) includes a reference to the earlier quote, an expiry of the transfer, the ILP Packet, and the condition that was received from the `Payee FSP`. The interoperable financial transaction is now irrevocable from the `Payer FSP`.
 
-    **Assumptions** 
+    **Assumptions**
 
     The OTP validation in Step 28 is assumed to be successful. Internal validations and reservation are assumed to be successful. In this sequence, a Switch is placed between the `Payer FSP` and the `Payee FSP` to route the messages. The Switch is optional in the process, as the request [Perform Transfer](#perform-transfer) could also be sent directly to the `Payee FSP` if there is no Switch in-between.
 
-    34. **Description**
+    1. **Description**
 
-    The `Switch` receives the request [Perform Transfer](#perform-transfer). The `Switch` then performs all its applicable internal transfer validations (for example, limit checks, blacklist check, and so on). If the validations are successful, a transfer is reserved from a `Payer FSP` account to a `Payee FSP` account. After the transfer has been successfully reserved, the request [Perform Transfer](#perform-transfer) is sent to the Payee FSP, including the same ILP Packet and condition as was received from the Payer FSP. The expiry time should be decreased by the Switch so that the `Payee FSP` should answer before the Switch should answer to the `Payer FSP`. The transfer is now irrevocable from the `Switch`. 
+    The `Switch` receives the request [Perform Transfer](#perform-transfer). The `Switch` then performs all its applicable internal transfer validations (for example, limit checks, blacklist check, and so on). If the validations are successful, a transfer is reserved from a `Payer FSP` account to a `Payee FSP` account. After the transfer has been successfully reserved, the request [Perform Transfer](#perform-transfer) is sent to the Payee FSP, including the same ILP Packet and condition as was received from the Payer FSP. The expiry time should be decreased by the Switch so that the `Payee FSP` should answer before the Switch should answer to the `Payer FSP`. The transfer is now irrevocable from the `Switch`.
 
-    **Assumptions** 
+    **Assumptions**
 
     Internal validations and reservation are successful.
 
-35. **Description**
+27. **Description**
 
-    The `Payee FSP` receives the [Perform Transfer](#perform-transfer). The `Payee FSP` then performs all applicable internal transaction validations (for example, limit checks, blacklist check, and so on). It also verifies that the amount and ILP Address in the ILP Packet are correct, and match the amount and `Payee` in the transaction details stored in the ILP Packet. If all the validations are successful, a transfer of funds is performed from either a combined `Switch` account or a Payer FSP account to the `Payee`'s account and the fulfilment of the condition is regenerated, using the same secret as in Step 11. After the interoperable financial transaction has been successfully performed, a transaction notification is sent to the `Payee` using a front-end API (out of scope of this API) and the response [Return Transfer Information](#return-transfer-information) is sent to the `Switch`, including the regenerated fulfilment. The transfer is now irrevocable from the `Payee FSP`. 
+    The `Payee FSP` receives the [Perform Transfer](#perform-transfer). The `Payee FSP` then performs all applicable internal transaction validations (for example, limit checks, blacklist check, and so on). It also verifies that the amount and ILP Address in the ILP Packet are correct, and match the amount and `Payee` in the transaction details stored in the ILP Packet. If all the validations are successful, a transfer of funds is performed from either a combined `Switch` account or a Payer FSP account to the `Payee`'s account and the fulfilment of the condition is regenerated, using the same secret as in Step 11. After the interoperable financial transaction has been successfully performed, a transaction notification is sent to the `Payee` using a front-end API (out of scope of this API) and the response [Return Transfer Information](#return-transfer-information) is sent to the `Switch`, including the regenerated fulfilment. The transfer is now irrevocable from the `Payee FSP`.
 
-    **Assumptions** 
+    **Assumptions**
 
     Internal validations and transfer of funds are successful.
 
-36. **Description**
+28. **Description**
 
-    The `Payee` receives a transaction notification containing information about the successfully performed transaction. 
+    The `Payee` receives a transaction notification containing information about the successfully performed transaction.
 
-    **Assumptions** 
+    **Assumptions**
 
     None.
 
-37. **Description**
+29. **Description**
 
     The `Switch` receives the response [Return Transfer Information](#return-transfer-information). The `Switch` then validates the fulfilment and commits the earlier reserved transfer. The `Switch` will then use the response [Return Transfer Information](#return-transfer-information)  to the `Payer FSP`, using the same parameters.
 
-    **Assumptions** 
+    **Assumptions**
 
     The fulfilment is assumed to be correctly validated.
 
-38. **Description**
+30. **Description**
 
-    The `Payer FSP` receives the response [Return Transfer Information](#return-transfer-information). The` Payer FSP` then validates the fulfilment and commits the earlier reserved transaction. 
+    The `Payer FSP` receives the response [Return Transfer Information](#return-transfer-information). The`Payer FSP` then validates the fulfilment and commits the earlier reserved transaction.
 
     **Assumptions**
 
@@ -1547,61 +1544,61 @@ This section provides descriptions of and assumptions made for all steps in the 
 
     **Optional fragment: Get Transaction Details**
 
-39. **Description**
+31. **Description**
 
     In case the interoperable financial transaction contains additional information that is useful for the `Payer` or the `Payer FSP`, such as a code or a voucher token, the `Payer FSP` can use the request [Retrieve Transaction Information](#retrieve-transaction-information) to get the additional information. The request [Retrieve Transaction Information](#retrieve-transaction-information) is sent to the Switch.
 
-    **Assumptions** 
+    **Assumptions**
 
     None.
 
-40. **Description**
+32. **Description**
 
-    The `Switch` receives the request [Retrieve Transaction Information](#retrieve-transaction-information). The `Switch` then routes the request[Retrieve Transaction Information](#retrieve-transaction-information) to the `Payee FSP`. 
+    The `Switch` receives the request [Retrieve Transaction Information](#retrieve-transaction-information). The `Switch` then routes the request[Retrieve Transaction Information](#retrieve-transaction-information) to the `Payee FSP`.
 
-    **Assumptions** 
+    **Assumptions**
 
     None.
 
-41. **Description**
+33. **Description**
 
-    The `Payee FSP` receives the request *[Retrieve Transaction Information](#retrieve-transaction-information). The `Payee FSP` then collects the requested information and uses the response [Return Transaction Information](#return-transaction-information) to the `Switch`. 
+    The `Payee FSP` receives the request *[Retrieve Transaction Information](#retrieve-transaction-information). The `Payee FSP` then collects the requested information and uses the response [Return Transaction Information](#return-transaction-information) to the `Switch`.
 
-    **Assumptions** 
+    **Assumptions**
 
     The transaction with the provided ID can be found in the `Payee FSP`.
 
-42. **Description**
+34. **Description**
 
-    The `Switch` receives the response [Return Transaction Information](#return-transaction-information). The `Switch` then routes the [Return Transaction Information](#return-transaction-information) response to the `Payer FSP`. 
+    The `Switch` receives the response [Return Transaction Information](#return-transaction-information). The `Switch` then routes the [Return Transaction Information](#return-transaction-information) response to the `Payer FSP`.
 
-    **Assumptions** 
+    **Assumptions**
 
     None.
 
-43. **Description**
+35. **Description**
 
-    The `Payer FSP` receives the response [Return Transaction Information](#return-transaction-information) from the `Switch`. 
+    The `Payer FSP` receives the response [Return Transaction Information](#return-transaction-information) from the `Switch`.
 
-    **Assumptions** 
+    **Assumptions**
 
     None.
 
     **End of Optional fragment**
 
-44. **Description**
+36. **Description**
 
-    The `Payer FSP` sends a transaction notification to the `Payee` using a front-end API (out of scope of this API), optionally including transaction details retrieved from the `Payee FSP`. 
+    The `Payer FSP` sends a transaction notification to the `Payee` using a front-end API (out of scope of this API), optionally including transaction details retrieved from the `Payee FSP`.
 
-    **Assumptions** 
+    **Assumptions**
 
     None.
 
-45. **Description**
+37. **Description**
 
-    The `Payer` receives a transaction notification containing information about the successfully performed transaction. 
+    The `Payer` receives a transaction notification containing information about the successfully performed transaction.
 
-    **Assumptions** 
+    **Assumptions**
 
     None.
 
@@ -1649,9 +1646,9 @@ This section provides descriptions of and assumptions made for all steps in the 
 
 1. **Description**
 
-    The `Payer` initiates the bulk transaction process by uploading a bulk file to the `Payer FSP`, using the `Payer FSP`'s front-end API (outside the scope of this API). 
+    The `Payer` initiates the bulk transaction process by uploading a bulk file to the `Payer FSP`, using the `Payer FSP`'s front-end API (outside the scope of this API).
 
-    **Assumptions** 
+    **Assumptions**
 
     None.
 
@@ -1661,31 +1658,31 @@ This section provides descriptions of and assumptions made for all steps in the 
 
     `Payer FSP` tries to find the Payee within the `Payer FSP` system.
 
-    **Assumptions** 
+    **Assumptions**
 
     The `Payee` is assumed to be located in a different FSP than the `Payer`. If the `Payee` is within the `Payer FSP`, the transaction can be handled internally in the `Payer FSP` (outside the scope of this API).
 
 3. **Description**
 
-    The `Payer FSP` sends the request [Lookup Participant Information](#lookup-participant-information) to the optional `Account Lookup System` to get information regarding in which FSP the `Payer` is present in. 
+    The `Payer FSP` sends the request [Lookup Participant Information](#lookup-participant-information) to the optional `Account Lookup System` to get information regarding in which FSP the `Payer` is present in.
 
-    **Assumptions** 
+    **Assumptions**
 
-    The `Payee` is assumed to in a different FSP than the `Payer`. Also, an `Account Lookup System` is assumed to exist. The `Account Lookup System` is optional in the process, as the request  [Lookup Participant Information](#lookup-participant-information) could also be sent directly to the `Payee FSP`s if there is no `Account Lookup System`. As the `Payer FSP `should not know in which FSP the `Payee` is located in if there is no `Account Lookup System` present, the request might need to be sent to more than one FSP. It is also possible that the `Payer FSP` would like more information about the `Payee` before a bulk transaction is executed; for example, for additional verification purposes of the `Payee` name. In that case, the request [Lookup Party Information](#lookup-party-information), either to the `Switch` or directly to the `Payee FSP`, should be sent instead of the request [Lookup Participant Information](#lookup-participant-information) to the `Account Lookup System`.
+    The `Payee` is assumed to in a different FSP than the `Payer`. Also, an `Account Lookup System` is assumed to exist. The `Account Lookup System` is optional in the process, as the request  [Lookup Participant Information](#lookup-participant-information) could also be sent directly to the `Payee FSP`s if there is no `Account Lookup System`. As the `Payer FSP`should not know in which FSP the `Payee` is located in if there is no `Account Lookup System` present, the request might need to be sent to more than one FSP. It is also possible that the `Payer FSP` would like more information about the `Payee` before a bulk transaction is executed; for example, for additional verification purposes of the `Payee` name. In that case, the request [Lookup Party Information](#lookup-party-information), either to the `Switch` or directly to the `Payee FSP`, should be sent instead of the request [Lookup Participant Information](#lookup-participant-information) to the `Account Lookup System`.
 
 4. **Description**
 
-    The `Account Lookup System` receives the request [Lookup Participant Information](#lookup-participant-information) It then performs an internal lookup to find in which FSP the `Payee` is located. When the lookup is completed, the response [Return Participant Information](#return-participant-information) is sent to inform the Payer FSP about which FSP the `Payee` is located in. 
+    The `Account Lookup System` receives the request [Lookup Participant Information](#lookup-participant-information) It then performs an internal lookup to find in which FSP the `Payee` is located. When the lookup is completed, the response [Return Participant Information](#return-participant-information) is sent to inform the Payer FSP about which FSP the `Payee` is located in.
 
-    **Assumptions** 
+    **Assumptions**
 
     The `Payee` can be found by the `Account Lookup System`.
 
 5. **Description**
 
-    The `Payer FSP` receives the response [Return Participant Information](#return-participant-information). The `Payee` and the related transaction is then placed in a new bulk file separated per `Payee FSP`. 
+    The `Payer FSP` receives the response [Return Participant Information](#return-participant-information). The `Payee` and the related transaction is then placed in a new bulk file separated per `Payee FSP`.
 
-    **Assumptions** 
+    **Assumptions**
 
     None.
 
@@ -1755,79 +1752,79 @@ This section provides descriptions of and assumptions made for all steps in the 
 
 ##### Perform Bulk Transfer**
 
-13. **Description**
+1. **Description**
 
-    The `Payer FSP` receives the request to execute the bulk transaction from the `Payer`. 
+    The `Payer FSP` receives the request to execute the bulk transaction from the `Payer`.
 
-    **Assumptions** 
+    **Assumptions**
 
     None.
 
     **Loop for each `Payee FSP` to perform Bulk Transfer**
 
-14. **Description**
+2. **Description**
 
-    The `Payer FSP` performs all applicable internal transaction validations (for example, limit checks, blacklist check, and so on) for the bulk transaction to the `Payee FSP`. If the validations are successful, a transfer of funds is reserved from the Payer's account to either a combined `Switch` account or a `Payee FSP` account, depending on setup. After the transfer has been successfully reserved, the request [Perform Bulk Transfer](#perform-bulk-transfer) is sent to the `Switch`. The request [Perform Bulk Transfer](#perform-bulk-transfer) includes a reference to the earlier bulk quote, an expiry of the bulk transfer, and the ILP Packets and condition per transfer that was received from the `Payee FSP`. The interoperable financial transaction is now irrevocable from the Payer FSP. The interoperable bulk transaction is now irrevocable from the Payer FSP. 
+    The `Payer FSP` performs all applicable internal transaction validations (for example, limit checks, blacklist check, and so on) for the bulk transaction to the `Payee FSP`. If the validations are successful, a transfer of funds is reserved from the Payer's account to either a combined `Switch` account or a `Payee FSP` account, depending on setup. After the transfer has been successfully reserved, the request [Perform Bulk Transfer](#perform-bulk-transfer) is sent to the `Switch`. The request [Perform Bulk Transfer](#perform-bulk-transfer) includes a reference to the earlier bulk quote, an expiry of the bulk transfer, and the ILP Packets and condition per transfer that was received from the `Payee FSP`. The interoperable financial transaction is now irrevocable from the Payer FSP. The interoperable bulk transaction is now irrevocable from the Payer FSP.
 
-    **Assumptions** 
+    **Assumptions**
 
-    In this sequence, a Switch is placed between the `Payer FSP `and the `Payee FSP` to route the messages. The `Switch` is optional in the process, as the request *[Perform Bulk Transfer](#perform-bulk-transfer) could also be sent directly to the `Payee FSP` if there is no Switch in-between.
+    In this sequence, a Switch is placed between the `Payer FSP`and the `Payee FSP` to route the messages. The `Switch` is optional in the process, as the request *[Perform Bulk Transfer](#perform-bulk-transfer) could also be sent directly to the `Payee FSP` if there is no Switch in-between.
 
-15. **Description**
+3. **Description**
 
-    The Switch receives the request [Perform Bulk Transfer](#perform-bulk-transfer). The Switch then performs all applicable internal transfer validations (such as limit checks, blacklist check, and so on). If the validations are successful, a transfer is reserved from a Payer FSP account to a `Payee FSP` account. After the transfer has been successfully reserved, the request [Perform Bulk Transfer](#perform-bulk-transfer) is sent to the `Payee FSP`, including the same ILP Packets and conditions for each transfer that were received from the `Payer FSP`. The expiry time should be decreased by the Switch so that the `Payee FSP` should answer before the Switch should answer to the `Payer FSP`. The bulk transfer is now irrevocable from the `Switch`. 
+    The Switch receives the request [Perform Bulk Transfer](#perform-bulk-transfer). The Switch then performs all applicable internal transfer validations (such as limit checks, blacklist check, and so on). If the validations are successful, a transfer is reserved from a Payer FSP account to a `Payee FSP` account. After the transfer has been successfully reserved, the request [Perform Bulk Transfer](#perform-bulk-transfer) is sent to the `Payee FSP`, including the same ILP Packets and conditions for each transfer that were received from the `Payer FSP`. The expiry time should be decreased by the Switch so that the `Payee FSP` should answer before the Switch should answer to the `Payer FSP`. The bulk transfer is now irrevocable from the `Switch`.
 
-    **Assumptions** 
+    **Assumptions**
 
     Internal validations and reservation are successful.
 
-16. **Description**
+4. **Description**
 
     The `Payee FSP` receives the request [Perform Bulk Transfer](#perform-bulk-transfer). The `Payee FSP` then performs all applicable internal transaction validations (such as limit checks, and blacklist checks) for each individual transaction in the bulk transaction. If the validations are successful, a transfer of funds is performed from either a combined Switch account or a `Payer FSP` account, depending on setup, to each of the Payees' accounts and the fulfilment of each condition is regenerated, using the same secret as in Step 8. After each transfer to a `Payee` has been successfully performed, a transaction notification is sent to the `Payee` using a front-end API (out of scope of this API). After each of the individual transactions in the bulk transaction has been completed, the response [Return Bulk Transfer Information](#return-bulk-transfer-information)  is sent to the Switch to inform the Switch and the Payer FSP of the result including each fulfilment. The transactions in the bulk transaction are now irrevocable from the `Payee FSP`.
 
-    **Assumptions** 
+    **Assumptions**
 
     Internal validations and transfers of funds are successful.
 
-17. **Description**
+5. **Description**
 
-    Each `Payee` receives a transaction notification containing information about the successfully performed transaction. 
+    Each `Payee` receives a transaction notification containing information about the successfully performed transaction.
 
-    **Assumptions** 
+    **Assumptions**
 
     None.
 
-18. **Description**
+6. **Description**
 
     The `Switch` receives the response [Return Bulk Transfer Information](#return-bulk-transfer-information). The `Switch` then validates the fulfilments and commits the earlier reserved transfers. The `Switch` then uses the response [Return Bulk Transfer Information](#return-bulk-transfer-information) to the `Payer FSP`, using the same parameters.
 
-    **Assumptions** 
+    **Assumptions**
 
     Each individual transaction in the bulk transaction is assumed to be successful in the `Payee FSP`, and the validation of the fulfilments is also assumed to be correct. If one or more of the transactions in the bulk transaction were unsuccessful, the earlier reserved, now unsuccessful, transfer or transfers in the `Switch` would need to be cancelled.
 
-19. **Description**
+7. **Description**
 
-    The `Payer FSP` receives the response [Return Bulk Transfer Information](#return-bulk-transfer-information). The `Payer FSP` then commits the earlier reserved transfers. After the bulk transaction has been successfully committed, a transaction notification is sent to the `Payer` using a front-end API (out of scope of this API). 
+    The `Payer FSP` receives the response [Return Bulk Transfer Information](#return-bulk-transfer-information). The `Payer FSP` then commits the earlier reserved transfers. After the bulk transaction has been successfully committed, a transaction notification is sent to the `Payer` using a front-end API (out of scope of this API).
 
-    **Assumptions** 
+    **Assumptions**
 
     Each individual transaction in the bulk transaction is assumed to be successful in the `Payee FSP`, and the validation of the fulfilments is also assumed to be correct. If one or more of the transactions in the bulk transaction were unsuccessful, the earlier reserved transfer in the `Payer FSP` would need to be updated with the total amount of all successful transactions before being committed.
 
     **End of loop for each `Payee FSP`**
 
-20. **Description**
+8. **Description**
 
-    After each of the `Payee FSP`s has executed their part of the bulk transaction, a response is sent to the Payer using a front- end API (out of scope for this API). 
+    After each of the `Payee FSP`s has executed their part of the bulk transaction, a response is sent to the Payer using a front- end API (out of scope for this API).
 
-    **Assumptions** 
+    **Assumptions**
 
     None.
 
-21. **Description**
+9. **Description**
 
     The `Payer` receives a bulk transaction notification containing information about the successfully performed bulk transaction.
 
-    **Assumptions** 
+    **Assumptions**
 
     None.
 
@@ -1840,8 +1837,6 @@ This section provides descriptions of and assumptions made for all steps in the 
 <sup>3</sup> [https://interledger.org/interledger.pdf - A Protocol for Interledger Payments](https://interledger.org/interledger.pdf)
 
 <sup>4</sup> [https://interledger.org/rfcs/0001-interledger-architecture/ - Interledger Architecture](https://interledger.org/rfcs/0001-interledger-architecture)
-
-
 
 **List of Figures**
 

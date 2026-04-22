@@ -1,4 +1,5 @@
 # SDK Scheme Adapter
+
 A scheme adapter is a service that interfaces between a Mojaloop API compliant switch and a DFSP backend platform that does not natively implement the Mojaloop API.
 
 The API between the scheme adapter and the DFSP backend is synchronous HTTP while the interface between the scheme adapter and the switch is native Mojaloop API. There is one exception to this, and that is the bulk integrations that can be configured to either be synchronous or asynchronous.
@@ -6,9 +7,10 @@ The API between the scheme adapter and the DFSP backend is synchronous HTTP whil
 The SDK-Scheme-Adapter is supported by the Mojaloop Community, and is regarded as a reference for the best practice method for a DFSP to connect to a Mojaloop API. More commonly the SDK-Scheme-Adapter is used and deployed directly into the solution. Below is a summary of the different ways in which this can be done.
 
 ## SDK Adoption Models
+
 Depending on the Scheme Rules, there are four common modes in which DFSPs interact with the central Mojaloop Hub. This summary highlights the role that the SDK-Scheme-Adpater plays in each of the modes and provides a brief overview of each mode and highlights how the DFSPs benefit.
 
-### 1. DFSP using third party solution e.g. Payment Manager that makes use of the SDK Scheme Adapter 
+### 1. DFSP using third party solution e.g. Payment Manager that makes use of the SDK Scheme Adapter
 
 There are a number of third party solutions that provide support, tooling and integrations into backend systems that makes use of the SDK-Scheme-Adapter in order to provide support for synchronous integration (using the Mojaloop best practice means) to connect to the Mojaloop API.
 
@@ -25,7 +27,6 @@ Payment Manager an open sourced* tool is an example of this. Payment manager pro
 :::tip Open Source Components
 These are all Apache License v2.0. This was especially chosen as it would not violate many organizations' policies. Apache License v2.0 has no “copy-left” constraints, so adopters can customize elements, such as core connectors without having to share those private details back to the community.  
 :::
-
 
 ### 2. DFSP using their own Core Connector with SDK Scheme Adapter
 
@@ -50,7 +51,3 @@ There is no standard Connection used and the DFSP chooses to develop their own c
 - Operated by DFSP Tech Ops
 - SDK Scheme Adapter is possibly used as a reference
 - This implementation directly interacts with Mojaloop's asynchronous APIs
-
-
-
-

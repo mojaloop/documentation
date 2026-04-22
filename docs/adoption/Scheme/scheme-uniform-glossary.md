@@ -1,9 +1,9 @@
 # Uniform Glossary Template
 
-- Version: 1.0 
-    - Author: Carol Coye Benson (Glenbrook)
-    - Date: October 2019
-    - Description: 
+- Version: 1.0
+  - Author: Carol Coye Benson (Glenbrook)
+  - Date: October 2019
+  - Description:
 
 ---
 
@@ -34,7 +34,7 @@ This is a glossary of terms used in the Mojaloop Business Community Document Pro
 # Uniform Glossary Template
 
 | Term   | Definition                                                                                      |
-| :----- | :---------------------------------------------------------------------------------------------- | 
+| :----- | :---------------------------------------------------------------------------------------------- |
 | Access Channel | Places or capabilities that are used to initiate or receive a payment. Access channels can include bank branch offices, ATMs, terminals at the POS, agent outlets, mobile phones, and computers. |
 | Account Lookup | A process that determines the DFSP responsible for a Transaction Account. |
 | Account Lookup System | Account Lookup System is an abstract entity used for retrieving information regarding in which FSP an account, wallet or identity is hosted. The Account Lookup System itself can be hosted in its own server, as part of a financial switch, or in the different FSPs. |

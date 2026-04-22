@@ -365,11 +365,11 @@ which allows Third Party Payment Initiators (3PPIs) the ability to request an ac
 payments on behalf of users.
 
 > Learn more about 3PPI:
+>
 > - Mojaloop's [Third Party API](https://github.com/mojaloop/mojaloop-specification/tree/master/thirdparty-api)
 > - 3rd Party Use Cases:
 >   - [3rd Party Account Linking](https://sandbox.mojaloop.io/usecases/3ppi-account-linking.html)
 >   - [3rd Party Initiated Payments](https://sandbox.mojaloop.io/usecases/3ppi-transfer.html)
-
 
 #### <a id='configuring-a-deployment'></a>6.1 Configuring a deployment for Third Party API support
 

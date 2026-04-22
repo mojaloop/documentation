@@ -15,10 +15,10 @@ To find transfers, complete the following steps:
 1. Use the search filters to specify what you are looking for. You can fill in any number of search fields, in any combination.
     * **Transfer ID**: Enter a full `transferId` or a fragment of a `transferId`.
     * **Payer FSP ID**: Enter the full `fspId` or a fragment of the `fspId` of the Payer DFSP.
-    * **Payer ID Type**: Using the drop-down list, select the type of identifier used to identify the Payer (for example, **MSISDN** or **ACCOUNT_ID**). 
+    * **Payer ID Type**: Using the drop-down list, select the type of identifier used to identify the Payer (for example, **MSISDN** or **ACCOUNT_ID**).
     * **Payer ID Value**: Enter the full identifier or a fragment of the identifier used to identify the Payer (for example, a phone number or a bank account number).
     * **Payee FSPID**: Enter the full `fspId` or a fragment of the `fspId` of the Payee DFSP.
-    * **Payee ID Type**: Using the drop-down list, select the type of identifier used to identify the Payee. 
+    * **Payee ID Type**: Using the drop-down list, select the type of identifier used to identify the Payee.
     * **Payee ID Value**: Enter the full identifier or a fragment of the identifier used to identify the Payee.
     * **From** and **To**: Enter the start time and end time of the time range when the transfer(s) you are looking for happened.
 1. Once you have set your search filters, click **Find Transfers**. The list of search results that meet the search criteria are displayed.
@@ -45,7 +45,7 @@ Transfers without quotes (that is "add/withdraw funds" transfers and settlement 
 :::
 
 * **Transfer ID**: The unique identifier of the transfer (corresponds to `transferId`).
-* **Type**: The type of the transfer (corresponds to `transactionType` in Payment Manager and `transactionScenario` in the Mojaloop FSPIOP API). 
+* **Type**: The type of the transfer (corresponds to `transactionType` in Payment Manager and `transactionScenario` in the Mojaloop FSPIOP API).
 * **Timestamp**: The date and time when the transfer request was created, as an [ISO-8601](https://www.iso.org/iso-8601-date-and-time-format.html) formatted timestamp.
 * **Payer FSPID**: The `fspId` of the Payer DFSP.
 * **Payee FSPID**: The `fspId` of the Payee DFSP.
@@ -78,10 +78,10 @@ The **Quote Request** sub-tab displays the following details about the quote req
 * **createdDate**: The date and time when the quote request was created, as an [ISO-8601](https://www.iso.org/iso-8601-date-and-time-format.html) formatted timestamp.
 * **transactionInitiator**: Specifies if the initiator of the transfer is the **PAYER** or the **PAYEE**.
 * **transactionInitiatorType**: Specifies the type of the initiator:
-    * **CONSUMER**: Consumer is the initiator of the transaction. For example: peer-to-peer transfer or loan repayment from wallet.
-    * **AGENT**: Agent is the initiator of the transaction. For example: loan repayment via an agent. 
-    * **BUSINESS**: Business is the initiator of the transaction. For example: loan disbursement. 
-    * **DEVICE**: Device is the initiator of the transaction. For example: merchant-initiated merchant payment authorized on POS.
+  * **CONSUMER**: Consumer is the initiator of the transaction. For example: peer-to-peer transfer or loan repayment from wallet.
+  * **AGENT**: Agent is the initiator of the transaction. For example: loan repayment via an agent.
+  * **BUSINESS**: Business is the initiator of the transaction. For example: loan disbursement.
+  * **DEVICE**: Device is the initiator of the transaction. For example: merchant-initiated merchant payment authorized on POS.
 * **transactionScenario**: Specifies the transaction scenario (corresponds to `transactionType` in Payment Manager).
 * **transactionSubScenario**: Specifies the transaction sub-scenario defined by the scheme.
 * **balanceOfPaymentsType**: The BoP code as defined in [the IMF's Balance of Payments Coding System](https://www.imf.org/external/np/sta/bopcode/).

@@ -158,9 +158,9 @@ The workflow provided by this UC enables the Switch to permit authorized PISP Us
 
 Some suggested applications of Third Party Payment Initiation UC include:
 
- - Peer to Peer Payments (e.g.: GPay in India)
- - Online checkouts for seamless end-user user experience (UX) (e.g.: PayPal)
- - Payroll Clearing Software
+- Peer to Peer Payments (e.g.: GPay in India)
+- Online checkouts for seamless end-user user experience (UX) (e.g.: PayPal)
+- Payroll Clearing Software
 
 #### Flow Diagram
 
@@ -214,6 +214,7 @@ The workflow provided by this UC enables the Switch to handle instances where an
 ### Third Party Transaction Request Failed - Downstream FSPIOP Failure
 
 #### Description
+
 The workflow provided by this UC enables the Switch to handle instances where an authorized PISP User requests and confirms a transaction request, which when forwarded to the DFSP Account Holder fails for some reason during the quote process.  The Switch is alerted to the failure, and provides a notification to the PISP User via their PISP App/Process.
 
 #### Flow Diagram

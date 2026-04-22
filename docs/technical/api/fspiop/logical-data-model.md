@@ -86,7 +86,6 @@ This section describes the data model of services that can be requested by a cli
 
 Table 1 contains the data model for _Lookup Participant Information_.
 
-
 | Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
 | **partyIdType** | 1 | [PartyIdType](#partyidtype-element) | The type of the identifier. |
@@ -243,9 +242,7 @@ Table 10 below contains the data model for _Return Party Information_.
 | **partySubIdOrType** | 0..1 | [PartySubIdOrType](#partysuboridtype-element) | A sub-identifier or sub-type for the Party. |
 | **party** | 1 | [Party](#party) | Information regarding the requested Party. |
 
-
 **Table 10 – Return Party Information data model**
-
 
 <br />
 
@@ -284,7 +281,6 @@ Table 12 below contains the data model for _Retrieve Transaction Request_.
 
 **Table 12 – Retrieve Transaction Request data model**
 
-
 <br />
 
 ##### Perform Transaction Request Information
@@ -311,7 +307,6 @@ Table 13 below contains the data model for _Perform Transaction Request Informat
 #### Responses
 
 This section describes the data model of responses used by the server in the API for services provided by the resource **Transaction Requests**.
-
 
 ##### Return Transaction Request Information
 
@@ -349,17 +344,17 @@ Table 15 below contains the data model for _Return Transaction Request Informati
 
 This section describes the data model of services for the resource **Quotes**.
 
-####  Requests
+#### Requests
 
 This section describes the data model of services that can be requested by a client in the API for the resource **Quotes**.
 
 ##### Retrieve Quote Information
 
-Table 16 bleow contains the data model for _Retrieve Quote Information_. 
+Table 16 bleow contains the data model for _Retrieve Quote Information_.
 
 | Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **quoteId** | 1 | [CorrelationId](#correlationid-element) | Identifies quote message.| 
+| **quoteId** | 1 | [CorrelationId](#correlationid-element) | Identifies quote message.|
 
 **Table 16 – Retrieve Quote Information data model**
 
@@ -378,7 +373,7 @@ Table 17 below contains the data model for _Calculate Quote_.
 | **payer** | 1 | [Party](#party) | Information about the Payer in the proposed financial transaction. |
 | **amountType** | 1 | [AmountType](#amounttype-element) | SEND for sendAmount, RECEIVE for receiveAmount. |
 | **amount** | 1 | [Money](#money) | Depending on amountType: <br>If SEND: The amount the Payer would like to send, that is, the amount that should be withdrawn from the Payer account including any fees. The amount is updated by each participating entity in the transaction.</br><br>If RECEIVE: The amount the Payee should receive, that is, the amount that should be sent to the receiver exclusive any fees. The amount is not updated by any of the participating entities.</br> |
-| **fees** | 0..1 | [Money](#money) | The fees in the transaction. <ul><li>The fees element should be empty if fees should be non-disclosed.</li> <li>The fees element should be non-empty if fees should be disclosed.</li></ul>| 
+| **fees** | 0..1 | [Money](#money) | The fees in the transaction. <ul><li>The fees element should be empty if fees should be non-disclosed.</li> <li>The fees element should be non-empty if fees should be disclosed.</li></ul>|
 | **transactionType** | 1 | [TransactionType](#transactiontype) | The type of transaction for which the quote is requested. |
 | **geoCode** | 0..1 | [GeoCode](#geocode) | Longitude and Latitude of the initiating party. Can be used to detect fraud. |
 | **note** | 0..1 | [Note](#note-element) | A memo that will be attached to the transaction. |
@@ -431,7 +426,7 @@ Table 19 below contains the data model for _Return Quote Information Error_.
 
 <br />
 
-###  API Resource Authorizations
+### API Resource Authorizations
 
 This section describes the data model of services for the resource **Authorizations**.
 
@@ -504,7 +499,7 @@ Table 23 below contains the data model for _Retrieve Transfer Information_.
 
 | Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **transferId** | 1 | [CorrelationId](#correlationid-element) | The common ID between the FSPs and the optional Switch for the transfer object, determined by the Payer FSP. The ID should be re-used for re-sends of the same transfer. A new ID should be generated for each new transfer. | 
+| **transferId** | 1 | [CorrelationId](#correlationid-element) | The common ID between the FSPs and the optional Switch for the transfer object, determined by the Payer FSP. The ID should be re-used for re-sends of the same transfer. A new ID should be generated for each new transfer. |
 
 **Table 23 – Retrieve Transfer Information data model**
 
@@ -736,12 +731,12 @@ Table 35 contains the data model for _Perform Bulk Transfer_.
 
 This section describes the data model of responses used by the server in the API for services provided by the resource **Bulk Transfers**.
 
-#####  Return Bulk Transfer Information
+##### Return Bulk Transfer Information
 
 Table 36 below contains the data model for _Return Bulk Transfer Information_.
 
 | Name | Cardinality | Type | Description |
-| --- | --- | --- | --- | 
+| --- | --- | --- | --- |
 | **bulkTransferId** | 1 | [CorrelationId](#correlationid-element) | The common ID between the FSPs and the optional Switch for the bulk transfer object, determined by the Payer FSP. The ID should be re-used for re-sends of the same bulk transfer. A new ID should be generated for each new bulk transfer. |
 | **completedTimestamp** | 0..1 | [DateTime](#datetime) | The time and date when the bulk transfer was completed. |
 | **individualTransferResults** | 0..1000 | [IndividualTransferResult](#individualtransferresult) | List of `IndividualTransferResult` elements. |
@@ -786,6 +781,7 @@ This section defines the data model and contains the following sub-sections:
 <br />
 
 ### Length Specification
+
 All element data types have both a minimum and maximum length. These lengths are indicated by one of the following:
 
 - A minimum and maximum length
@@ -826,7 +822,7 @@ The API data type `String` is a normal JSON String<sup>[2](https://tools.ietf.or
 
 ##### Example Format I
 
-`String(1..32)` – A String that is minimum *1* character and maximum *32* characters long.
+`String(1..32)` – A String that is minimum _1_ character and maximum _32_ characters long.
 
 An example of `String(1..32)` appears below:
 
@@ -834,7 +830,7 @@ An example of `String(1..32)` appears below:
 
 ##### Example Format II
 
-`String(1..128)` – A String that is minimum *1* character and maximum *128* characters long.
+`String(1..128)` – A String that is minimum _1_ character and maximum _128_ characters long.
 
 An example of `String(32..128)` appears below:
 
@@ -863,6 +859,7 @@ The regular expression for restricting the `UndefinedEnum` type appears in Listi
 ```
 ^[A-Z_]{1,32}$
 ```
+
 **Listing 1 – Regular expression for data type UndefinedEnum**
 
 <br />
@@ -932,6 +929,7 @@ The API data type `BopCode` is a JSON String of three characters, consisting of 
 ##### Regular Expression
 
 The regular expression for restricting the `BopCode` type appears in Listing 5 below.
+
 ```
 ^[1-9]\d{2}$
 ```
@@ -1167,7 +1165,6 @@ An example of a `BinaryString(32..256)` appears below. Note that a padding chara
 
 - _QmlsbCAmIE1lbGluZGEgR2F0ZXMgRm91bmRhdGlvbiE=_
 
-
 <br />
 
 #### BinaryString32
@@ -1175,6 +1172,7 @@ An example of a `BinaryString(32..256)` appears below. Note that a padding chara
 The API data type _BinaryString32_ is a fixed size variation of the API data type `BinaryString` defined [here](#binarystring), in which the raw underlying data is always of 32 bytes. The data type _BinaryString32_ should not use a padding character because the size of the underlying data is fixed.
 
 ##### Regular Expression
+
 The regular expression for restricting the _BinaryString32_ type appears in Listing 16 below.
 
 ```
@@ -1184,6 +1182,7 @@ The regular expression for restricting the _BinaryString32_ type appears in List
 **Listing 16 – Regular expression for data type BinaryString32**
 
 ##### Example Format
+
 `BinaryString(32)` – 32 bytes of data base64url encoded.
 
 An example of a `BinaryString32` appears below. Note that this is the same binary data as the example shown in the [Example Format](#example-format-3) of the `BinaryString` type, but due to the underlying data being fixed size, the padding character `'='` is excluded.
@@ -1290,7 +1289,6 @@ Table 46 below contains the data model for the element `CorrelationId`.
 | --- | --- | --- | --- |
 | **CorrelationId** | 1 |[UUID](#uuid) | Identifier that correlates all messages of the same sequence. |
 
-
 **Table 46 – Element CorrelationId**
 
 <br />
@@ -1368,6 +1366,7 @@ Table 52 below contains the data model for the element `ExtensionValue`.
 <br />
 
 #### FirstName element
+
 Table 53 below contains the data model for the element `FirstName`.
 
 | Name | Cardinality | Type | Description |
@@ -1402,7 +1401,7 @@ Table 55 below contains the data model for the element `IlpCondition`.
 
 <br />
 
-####  IlpFulfilment element
+#### IlpFulfilment element
 
 Table 56 below contains the data model for the element `IlpFulfilment`.
 
@@ -1473,7 +1472,6 @@ Table 61 below contains the data model for the element `Note`.
 **Table 61 – Element Note**
 
 <br />
-
 
 #### NrOfRetries element
 
@@ -1578,7 +1576,6 @@ Table 70 below contains the data model for the element `TransactionRequestState`
 | Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
 | **TransactionRequestState** | 1 | [Enum](#enum) of [String(1..32)](#string) | See [TransactionRequestState](#transactionrequeststate-enum) enumeration for more information on allowed values. |
-
 
 **Table 70 – Element TransactionRequestState**
 
@@ -1858,7 +1855,7 @@ Table 90 below contains the data model for the complex type `Refund`.
 
 | Name | Cardinality | Type | Description |
 | --- | --- | --- | --- |
-| **originalTransactionId** | 1 | [CorrelationId](#correlationid-element) | Reference to the original transaction ID that is requested to be refunded.| 
+| **originalTransactionId** | 1 | [CorrelationId](#correlationid-element) | Reference to the original transaction ID that is requested to be refunded.|
 | **refundReason** | 0..1 | [RefundReason](#refundreason-element) | Free text indicating the reason for the refund. |
 
 **Table 90 – Complex type Refund**
@@ -1898,7 +1895,6 @@ Table 92 below contains the data model for the complex type `TransactionType`.
 **Table 92 – Complex type TransactionType**
 
 <br />
-
 
 ### Enumerations
 
@@ -1972,14 +1968,14 @@ The currency codes defined in ISO 4217<sup>[7](https://www.iso.org/iso-4217-curr
 Table 97 below contains the allowed values for the enumeration `PartyIdType`.
 
 | Name | Description |
-| --- | ---| 
+| --- | ---|
 | **MSISDN** | Used when an MSISDN (Mobile Station International Subscriber Directory Number, that is, the phone number) is used as reference to a participant. The MSISDN identifier should be in international format according to the ITU-T E.164 standard. Optionally, the MSISDN may be prefixed by a single plus sign, indicating the international prefix. |
 | **EMAIL** | Used when an email should be used as reference to a participant. The format of the email should be according to the informational RFC 3696. |
 | **PERSONAL_ID** | Used when some kind of personal identifier should be used as reference to a participant. Examples of personal identification can be passport number, birth certificate number, national registration number or similar. The identifier number shall be added in the PartyIdentifier element. The personal identifier type shall be added in the PartySubIdOrType element. |
 | **BUSINESS** | Used when a specific Business (for example, an Organization or a Company) should be used as reference to a participant. The Business identifier can be in any format. To make a transaction connected to a specific username or bill number in a Business, the PartySubIdOrType element should be used. |
 | **DEVICE** | Used when a specific Device (for example, a POS or ATM) ID connected to a specific Business or Organization should be used as reference to a Party. To use a specific device under a specific Business or Organization, the PartySubIdOrType element should be used. |
 | **ACCOUNT_ID** | Used when a bank account number or FSP account ID should be used as reference to a participant. The  `ACCOUNT_ID` identifier can be in any format, as formats can greatly differ depending on country and FSP. |
-| **IBAN** | Used when a bank account number or FSP account ID should be used as reference to a participant. The IBAN identifier can consist of up to 34 alphanumeric characters and should be entered without any whitespace. | 
+| **IBAN** | Used when a bank account number or FSP account ID should be used as reference to a participant. The IBAN identifier can consist of up to 34 alphanumeric characters and should be entered without any whitespace. |
 | **ALIAS** | Used when an alias should be used as reference to a participant. The alias should be created in the FSP as an alternative reference to an account owner. Another example of an alias can be username in the FSP system. The `ALIAS` identifier can be in any format. It is also possible to use the PartySubIdOrType element for identifying an account under an Alias defined by the PartyIdentifier. |
 
 **Table 97 – Enumeration PartyIdType**
@@ -2159,6 +2155,7 @@ See Table 106 below for all server errors defined in the API.
 All possible errors occurring in the server where the server’s opinion is that the client have sent one or more erroneous parameters should use the high-level error code 3 (error codes **3**_xxx_). These error codes should indicate that the server could not perform the service according to the request from the client. The server should provide an explanation why the service could not be performed.
 
 Low level categories defined under client Errors:
+
 - **Generic Client Error – 30**_xx_
   - See Table 107 for the generic client errors defined in the API.
 - **Validation Error – 31**_xx_
@@ -2222,6 +2219,7 @@ Low level categories defined under client Errors:
 All possible errors occurring in the server when the Payer or the Payer FSP is the cause of an error should use the high-level error code 4 (error codes **4**_xxx_). These error codes should indicate that there was no error in the server or in the request from the client, but the request failed for some reason due to the Payer or the Payer FSP. The server should provide an explanation why the service could not be performed.
 
 Low level categories defined under Payer Errors:
+
 - **Generic Payer Error – 40**_xx_
 - **Payer Rejection Error – 41**_xx_
 - **Payer Limit Error – 42**_xx_
@@ -2243,7 +2241,6 @@ See Table 111 below for all Payer errors defined in the API.
 | **4400** | Generic Payer blocked error | Generic Payer blocked error, the Payer is blocked or has failed regulatory screenings. | | | X | X | X | X | X | X | X |
 
 **Table 111 – Payer errors – 4xxx**
-
 
 <br />
 
@@ -2278,7 +2275,6 @@ See Table 112 below for all Payee errors defined in the API.
 
 **Table 112 – Payee errors – 5xxx**
 
-
 <br />
 
 ## References
@@ -2297,9 +2293,6 @@ See Table 112 below for all Payee errors defined in the API.
 and Filename Safe Alphabet
 
 <sup>7</sup> [https://www.iso.org/iso-4217-currency-codes.html](https://www.iso.org/iso-4217-currency-codes.html) - Currency codes - ISO 4217
-
-
-
 
 ## List of Figures
 
@@ -2403,7 +2396,7 @@ and Filename Safe Alphabet
 - [Table 94](#authenticationtype-enum) – Enumeration AuthenticationType
 - [Table 95](#authorizationresponse-enum) – Enumeration AuthorizationResponse
 - [Table 96](#bulktransferstate-enum) – Enumeration BulkTransferState
-- [Table 97](#partyIdtype-enum) – Enumeration PartyIdType
+- [Table 97](#partyidtype-enum) – Enumeration PartyIdType
 - [Table 98](#personalidentifiertype-enum) – Enumeration PersonalIdentifierType
 - [Table 99](#transactioninitiator-enum) – Enumeration TransactionInitiator
 - [Table 100](#transactioninitiatortype-enum) – Enumeration TransactionInitiatorType
@@ -2420,8 +2413,8 @@ and Filename Safe Alphabet
 - [Table 111](#463-payer-errors-–-4xxx) – Payer errors – 4xxx
 - [Table 112](#464-payee-errors-–-5xxx) – Payee errors – 5xxx
 
-
 ## Table of Listings
+
 - [Listing 1](#regular-expression) – Regular expression for data type UndefinedEnum
 - [Listing 2](#regular-expression-2) – Regular expression for data type Name
 - [Listing 3](#regular-expression-3) – Regular expression for data type Integer

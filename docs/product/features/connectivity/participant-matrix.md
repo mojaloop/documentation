@@ -29,19 +29,19 @@ This document provides a comprehensive matrix of different participant types, th
         text-align: center;
     }
 
-    td.small { 
+    td.small {
         background-color: rgba(46, 204, 113, 0.2);
     }
 
-    td.low-medium { 
+    td.low-medium {
         background-color: rgba(243, 156, 18, 0.2);
     }
 
-    td.high-medium { 
+    td.high-medium {
         background-color: rgba(230, 126, 34, 0.2);
     }
 
-    td.large { 
+    td.large {
         background-color: rgba(231, 76, 60, 0.2);
     }
 
@@ -171,6 +171,7 @@ This document provides a comprehensive matrix of different participant types, th
 </table>
 
 ## Document History
+
 |Version|Date|Author|Detail|
 |:--------------:|:--------------:|:--------------:|:--------------:|
-|1.0|9th June 2025|Tony Williams|Initial version| 
+|1.0|9th June 2025|Tony Williams|Initial version|

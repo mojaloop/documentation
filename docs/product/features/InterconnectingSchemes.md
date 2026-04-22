@@ -1,10 +1,11 @@
 # Interconnecting Payment Schemes
 
-Mojaloop, as a single deployment, is intended to be used to operate one (or more) payment schemes, operating on a single platform. Of course, it is quite common for a country to host multiple payment schemes operating on separate platforms, built around differing requirements for different sectors. 
+Mojaloop, as a single deployment, is intended to be used to operate one (or more) payment schemes, operating on a single platform. Of course, it is quite common for a country to host multiple payment schemes operating on separate platforms, built around differing requirements for different sectors.
 
 Ultimately, though, as a payment scheme grows, then the need to be interconnected  or interoperable with other payment schemes in a country grows. Mojaloop accommodates this, through a mechanism we call "Interscheme".
 
 Mojaloop's Interscheme approach uses a specialised type of DFSP Participant, which we call a Proxy. A Proxy is a lightweight DFSP that exists in both interconnecting schemes, and has the following characteristics:
+
 - The Proxy does no message processing; all it does is pass messages (transactions) between the connected schemes;
 - Ensuring non-repudiation across schemes means that the proxy is not involved in the agreement of terms, which helps reduce costs;
 - It plays no part in the clearing of transactions.
@@ -26,6 +27,7 @@ The following pages will be of interest to those who wish to review how intersch
 This version of this document relates to Mojaloop Version [17.0.0](https://github.com/mojaloop/helm/releases/tag/v17.0.0)
 
 ## Document History
+
   |Version|Date|Author|Detail|
 |:--------------:|:--------------:|:--------------:|:--------------:|
 |1.1|22nd April 2025| Paul Makin|Added version history; clarified some wording|

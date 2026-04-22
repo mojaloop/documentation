@@ -13,6 +13,7 @@ The Core Test Harness provides a single-node development environment using docke
 
 > **🔗 Technical Documentation:**  
 > **GAP** - No dedicated technical documentation found for Core Test Harness. Related references in:
+>
 > - [Deployment Guide - Prerequisite Backend Helm Deployment](../../../technical/technical/deployment-guide/README.md#_5-1-prerequisite-backend-helm-deployment) (mentions docker-compose examples)
 > - [Release Notes](../../../technical/technical/releases.md) (mentions Core-test-harness validation)
 
@@ -40,6 +41,7 @@ The Core Test Harness enables unit testing, integration testing, and end-to-end 
 HELM Deploy provides production-ready deployment capabilities through HELM charts. This implementation requires a pre-configured Kubernetes cluster and implements production-grade security and performance requirements.
 
 > **🔗 Technical Documentation:**  
+>
 > - [Mojaloop Deployment Guide](../../../technical/technical/deployment-guide/README.md) - Comprehensive HELM deployment documentation
 > - [Upgrade Strategy Guide](../../../technical/technical/deployment-guide/upgrade-strategy-guide.md) - HELM upgrade procedures  
 > - [Deployment Troubleshooting](../../../technical/technical/deployment-guide/deployment-troubleshooting.md) - Common issues and solutions
@@ -47,6 +49,7 @@ HELM Deploy provides production-ready deployment capabilities through HELM chart
 ### Infrastructure Requirements
 
 The deployment requires:
+
 - A hardened Kubernetes cluster
 - Network policies and security configurations
 - Storage class definitions
@@ -55,6 +58,7 @@ The deployment requires:
 ### Performance Specifications
 
 The implementation must meet these performance criteria:
+
 - 1000+ TPS sustained for one hour
 - 99th percentile latency under 1 second for:
   - Clearing operations
@@ -66,6 +70,7 @@ The implementation must meet these performance criteria:
 ### Security Implementation
 
 Security implementation includes:
+
 - Network policy enforcement
 - Pod security policies
 - Service mesh integration
@@ -82,7 +87,8 @@ Security implementation includes:
 The Infrastructure as Code (IaC) implementation provides a comprehensive deployment solution supporting multiple platforms and orchestration layers. It implements GitOps patterns for managing multiple hub instances.
 
 > **🔗 Technical Documentation:**  
->  **GAP** - Limited internal technical documentation for IaC setup and configuration
+> **GAP** - Limited internal technical documentation for IaC setup and configuration
+>
 > - [IaC Installation Guide](../../../getting-started/installation/installing-mojaloop.md) - Basic IaC overview (see item 2)
 > - [IaC Deployment Blog](https://infitx.com/deploying-mojaloop-using-iac) - External detailed guide
 > - [IaC AWS Platform Repository](https://github.com/mojaloop/iac-aws-platform) - AWS-specific implementation
@@ -90,6 +96,7 @@ The Infrastructure as Code (IaC) implementation provides a comprehensive deploym
 ### Platform Support
 
 The implementation supports:
+
 - AWS deployment through CloudFormation/Terraform
 - On-premises deployment through Terraform
 - Multi-cloud deployment through provider-agnostic modules
@@ -101,6 +108,7 @@ The implementation supports:
 ### Control Center Architecture
 
 The control center implements GitOps patterns for:
+
 - Multi-environment management
 - Configuration versioning
 - Deployment automation
@@ -110,6 +118,7 @@ The control center implements GitOps patterns for:
 ### Component Deployment
 
 The implementation deploys:
+
 - Control center services
 - Core Mojaloop services
 - Backing services
@@ -121,6 +130,7 @@ The implementation deploys:
 ### Performance and Security
 
 The IaC implementation enforces:
+
 - Production-grade security controls
 - Performance requirements matching HELM Deploy
 - High availability configurations
@@ -128,7 +138,8 @@ The IaC implementation enforces:
 - Compliance requirements
 
 ## Document History
+
 |Version|Date|Author|Detail|
 |:--------------:|:--------------:|:--------------:|:--------------:|
-|1.1|5th June 2025| Tony Williams|Added links to technical documentation| 
-|1.0|14th May 2025| Tony Williams|Initial version| 
+|1.1|5th June 2025| Tony Williams|Added links to technical documentation|
+|1.0|14th May 2025| Tony Williams|Initial version|

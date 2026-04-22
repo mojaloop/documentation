@@ -110,7 +110,6 @@ For each repository, follow the testing instructions at README and run:
    - Verify transaction flows
    - Test error scenarios
 
-
 ## Mojaloop Repo Sequence
 
 The following table provides a detailed view of Mojaloop repositories and their dependencies. This information is crucial for understanding the correct order of updates when addressing dependency changes or vulnerabilities.
@@ -168,8 +167,9 @@ The following diagram illustrates the recommended update sequence for Mojaloop r
 ![Repository Update Sequence](./assets/diagrams/repositoryUpdate/repository-update-sequence.svg)
 
 This diagram provides a visual representation of the update sequence, showing:
+
 1. The logical grouping of repositories
 2. Dependencies between different groups
 3. Special cases like circular dependencies
 4. Parallel update possibilities
-5. Different types of dependencies to consider 
+5. Different types of dependencies to consider

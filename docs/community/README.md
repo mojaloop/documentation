@@ -12,9 +12,11 @@
 Join the [Mojaloop Slack Discussions](https://join.slack.com/t/mojaloop/shared_invite/zt-1qy6f3fs0-xYfqfIHJ6zFfNXb0XRpiHw) to connect with other members of the community.
 
 ## What if I have more questions?
+
 You can checkout some of our frequently asked questions in the [FAQ](../getting-started/faqs.md) section. Or better still head over to the community on [Slack](https://join.slack.com/t/mojaloop/shared_invite/zt-1qy6f3fs0-xYfqfIHJ6zFfNXb0XRpiHw).
 
 ## How do I stay up to date with the project?
-Subscribe by joining the [commmunity](https://community.mojaloop.io/) where you can be notified about upcoming [events](https://community.mojaloop.io/c/events/8) and [product announcements](https://community.mojaloop.io/c/announcements/9). 
+
+Subscribe by joining the [commmunity](https://community.mojaloop.io/) where you can be notified about upcoming [events](https://community.mojaloop.io/c/events/8) and [product announcements](https://community.mojaloop.io/c/announcements/9).
 
 You can also join our [Slack Announcements](https://mojaloop.slack.com/messages/CG3MAJZ5J) channel to receive information on the latest release.

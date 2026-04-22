@@ -64,4 +64,3 @@ The Event Based Audit UC is triggered when a participating BC includes local aud
 
 [^1]: Cryptographic refers to algorithmic techniques and methodologies that are employed by systems to prevent unauthorised systems or persons from accessing, identifying, or using stored data. For further reading please refer to the accompanying Wikipedia article: [Cryptography, From Wikipedia, the free encyclopedia](https://en.wikipedia.org/wiki/Cryptography)
 
-[^2]: Common Interfaces: [Mojaloop Common Interface List](../../refarch/commonInterfaces.md)

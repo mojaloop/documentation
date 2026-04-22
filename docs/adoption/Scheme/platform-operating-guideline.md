@@ -1,9 +1,9 @@
 # Platform Operating Guideline Template
 
-- Version: 2.0 
-    - Author: Carol Coye Benson (Glenbrook), Michael Richards (ModusBox)  
-    - Date: October 2019
-    - Description: 
+- Version: 2.0
+  - Author: Carol Coye Benson (Glenbrook), Michael Richards (ModusBox)  
+  - Date: October 2019
+  - Description:
 
 ---
 
@@ -133,7 +133,7 @@ The Scheme supports certain Identifiers, or payment addresses, for use in making
 
 For each scheme supported identifier, this document should specify what the identifier is and how it is resolved (how it is determined which Payee DFSP is responsible for the transaction account associated with that identifier.
 
-#### 1.4.1 Example: The MSISDN Identifier 
+#### 1.4.1 Example: The MSISDN Identifier
 
 Each scheme will have its own guidelines for each identifier; the provisions below could vary significantly depending on choices made.
 
@@ -147,7 +147,7 @@ If MSISDN's are used for other Transaction Accounts, they are aliases, and a sep
 
 - A Party Request for an MSISDN is resolved by a MSISDN directory service determined by the Scheme. The Scheme may specify directory service maintenance obligations for Mobile Network Operator DFSPs from time to time.
 
-#### 1.4.2 Example: The Bank Account Number Identifier 
+#### 1.4.2 Example: The Bank Account Number Identifier
 
 Each scheme will have its own guidelines for each identifier; the provisions below could vary significantly depending on choices made.
 
@@ -159,7 +159,7 @@ Each scheme will have its own guidelines for each identifier; the provisions bel
 
 - A Party Request for a Bank Account Identifier is sent by the Payer DFSP to Scheme. Scheme checks that the Bank Code in the Bank Account Identifier is associated with a Bank active in Scheme.
 
-#### 1.4.3 Example: The Scheme Merchant Identifier 
+#### 1.4.3 Example: The Scheme Merchant Identifier
 
 Each scheme will have its own guidelines for each identifier; the provisions below could vary significantly depending on choices made.
 
@@ -181,13 +181,13 @@ Each scheme will have its own guidelines for each identifier; the provisions bel
 
 - Registration Requirements. DFSPs will request a Merchant ID for a customer using a Scheme API specific to this purpose. DFSPs will be required to provide:
 
-    - DFSP ID
+  - DFSP ID
 
-    - The Transaction Account number which will receive the funds paid to the merchant. This may be either an MSISDN or a bank account number.
+  - The Transaction Account number which will receive the funds paid to the merchant. This may be either an MSISDN or a bank account number.
 
-    - The \[business registration or tax ID\] of the merchant. Any number of merchant IDs may be associated with the same business registration or tax ID.
+  - The \[business registration or tax ID\] of the merchant. Any number of merchant IDs may be associated with the same business registration or tax ID.
 
-    - The Merchant Name
+  - The Merchant Name
 
 - DFSPs requesting a Merchant ID from Scheme warrant that they have completed the required KYC information for the merchant account at the time of the request.
 
@@ -197,7 +197,7 @@ Each scheme will have its own guidelines for each identifier; the provisions bel
 
 The Scheme may wish to provide some mechanism for porting a Merchant ID from one DFSP to another.
 
-#### 1.4.4 The Scheme ID Identifier 
+#### 1.4.4 The Scheme ID Identifier
 
 This ID would be similar to the Merchant ID above but would be meant for consumers as well as businesses, and could be expressed in phrases rather than as a number. Note each scheme will have its own guidelines for each identifier; the provisions below could vary significantly depending on choices made.
 
@@ -213,13 +213,13 @@ Schemes may wish to enable Scheme ID's
 
 - Registration Requirements. DFSPs will request a Scheme ID for a customer using a Scheme API specific to this purpose. DFSPs will be required to provide in this API:
 
-    - DFSP ID
+  - DFSP ID
 
-    - The requested Scheme ID
+  - The requested Scheme ID
 
-    - The Transaction Account number which will receive the funds paid to the customer. This may be either an MSISDN or a bank account number.
+  - The Transaction Account number which will receive the funds paid to the customer. This may be either an MSISDN or a bank account number.
 
-    - If the Transaction Account Holder is a merchant or business, the \[business registration or tax ID\] of the Account Holder. Any number of Scheme IDs may be associated with the same business registration or tax ID.
+  - If the Transaction Account Holder is a merchant or business, the \[business registration or tax ID\] of the Account Holder. Any number of Scheme IDs may be associated with the same business registration or tax ID.
 
 - DFSPs requesting a Scheme ID from Scheme warrant that they have completed the required KYC information for the customer account at the time of the request.
 
@@ -231,7 +231,7 @@ The following sections describe each service and the obligations and responsibil
 
 ## 2. The Account Lookup Service
 
-### 2.1 Description of the Account Lookup Service 
+### 2.1 Description of the Account Lookup Service
 
 - The Account Lookup Service allows DFSPs to map specific Identifiers for individual customers to the DFSP that provides a Transaction Account for that customer. Identifiers are used to identify individuals, merchants, billers, government agencies or other enterprises. Any Identifier Type supported by Scheme has a defined Identifier Service, the parameters of which are shown in the section "Scheme Supported Identifiers" of this document.
 
@@ -243,9 +243,9 @@ The following sections describe each service and the obligations and responsibil
 
 - A Party Request is sent by a Payer DFSP to the Platform. The Party Request must contain the following key data elements:
 
-    - The Identifier for the intended Payee
+  - The Identifier for the intended Payee
 
-    - The Payer DFSP identifier
+  - The Payer DFSP identifier
 
 The scheme may define additional key data elements which will be required in the Parties Request.
 
@@ -261,19 +261,19 @@ The scheme may define additional key data elements which will be required in the
 
 - The identified DFSP responds either with a positive Parties Query Response or with an error response. If positive, the Parties Query Response must contain the following key data elements:
 
-    - The full Name of the Payee
+  - The full Name of the Payee
 
-    - The Payer DFSP Identifier
+  - The Payer DFSP Identifier
 
-    - The Transaction Account Type, which specifies whether the Account is a bank account or a wallet
+  - The Transaction Account Type, which specifies whether the Account is a bank account or a wallet
 
-    - The Transaction Account Holder Type, which specifies whether the Transaction Account Holder is a consumer, a merchant (including other enterprise types) or a government agency.
+  - The Transaction Account Holder Type, which specifies whether the Transaction Account Holder is a consumer, a merchant (including other enterprise types) or a government agency.
 
-    - If the Payee is a Merchant, the Merchant Category Code. These codes are found in an appendix to this document.
+  - If the Payee is a Merchant, the Merchant Category Code. These codes are found in an appendix to this document.
 
 The scheme may define additional data elements required in the Parties Query Response.
 
--   The Platform responds to the Payer DFSP with the result of the Parties Query Response
+- The Platform responds to the Payer DFSP with the result of the Parties Query Response
 
 ## 3. The Quote Service
 
@@ -285,21 +285,21 @@ The scheme may define additional data elements required in the Parties Query Res
 
 - The steps in the Quote Process are shown below.
 
-#### 3.2 Quote Request 
+#### 3.2 Quote Request
 
 - A Quote Request is sent by a Payer DFSP to the Payee DFSP; the Quote Request is recorded by the Platform. The Quote Request must contain the following key data elements:
 
-    - The Transfer Amount
+  - The Transfer Amount
 
-    - The Amount Type set as a Send Amount.
+  - The Amount Type set as a Send Amount.
 
-    - The complete set of Party Information that was returned from the Parties Request Response.
+  - The complete set of Party Information that was returned from the Parties Request Response.
 
-    - The Full Name of the Payer (the Transaction Account Holder at the Payer DFSP)
+  - The Full Name of the Payer (the Transaction Account Holder at the Payer DFSP)
 
-    - Transaction Type data required for the Use Case and Secondary Use Case of the Transaction, as specified in the Use Case Appendix to this document.
+  - Transaction Type data required for the Use Case and Secondary Use Case of the Transaction, as specified in the Use Case Appendix to this document.
 
-    - An expiry time, the allowable parameters of which will be specified by the scheme from time to time.
+  - An expiry time, the allowable parameters of which will be specified by the scheme from time to time.
 
 The scheme may define additional key data elements which will be required in the Parties Query Response.
 
@@ -311,11 +311,11 @@ The scheme may define additional key data elements which will be required in the
 
 - The Quote Response must contain the following key data elements:
 
-    - The Transfer Amount
+  - The Transfer Amount
 
-    - An expiry time, the allowable parameters of which will be specified by the Scheme from time to time.
+  - An expiry time, the allowable parameters of which will be specified by the Scheme from time to time.
 
-    - The signed Transaction Object which contains the parameters of the transfer. The Transaction Object is the authoritative description of the transaction for the purposes of Scheme reporting, fraud management and dispute resolution.
+  - The signed Transaction Object which contains the parameters of the transfer. The Transaction Object is the authoritative description of the transaction for the purposes of Scheme reporting, fraud management and dispute resolution.
 
 The scheme may define additional key data elements which will be required in the Parties Query Response.
 
@@ -331,13 +331,13 @@ The scheme may define additional key data elements which will be required in the
 
 - A Transfer Request is sent by a Payer DFSP to the Payee DFSP via the Transfer Service at Scheme. The Platform records the Transfer Request. The Transfer Request must contain the following key data elements:
 
-    - The Payer and Payee DFSP Identifiers
+  - The Payer and Payee DFSP Identifiers
 
-    - The Transaction Amount
+  - The Transaction Amount
 
-    - An ILP packet representing the Transaction Object
+  - An ILP packet representing the Transaction Object
 
-    - An expiry time, the allowable parameters of which will be specified by the Scheme from time to time.
+  - An expiry time, the allowable parameters of which will be specified by the Scheme from time to time.
 
 The scheme may define additional key data elements which will be required in the Transfer Request.
 
@@ -361,13 +361,13 @@ The scheme may define additional key data elements which will be required in the
 
 - Payer and Payee DFSPs are required:
 
-    - To notify their customers of the status of a transfer on a timely basis
+  - To notify their customers of the status of a transfer on a timely basis
 
-    - To immediately debit and credit the Transaction Accounts of their customers upon fulfillment of the Transfer
+  - To immediately debit and credit the Transaction Accounts of their customers upon fulfillment of the Transfer
 
-    - To release any reserved funds immediately if a Transfer has been refused or cancelled
+  - To release any reserved funds immediately if a Transfer has been refused or cancelled
 
-### 4.3 Request to Pay 
+### 4.3 Request to Pay
 
 _This section has not yet been written._
 
@@ -375,7 +375,7 @@ _This section has not yet been written._
 
 This document presents a template for the settlement processes both for transfers and for scheme fees. There are multiple possible approaches to settlement, which are discussed in the "Key Choices" document that is part of this project. The template below covers two models: net settlement and continuous gross settlement. Mojaloop reference code supports a number of different settlement models, including these.
 
-### 5.1 Transfer Settlement 
+### 5.1 Transfer Settlement
 
 #### 5.1.1 Description of the Transfer Settlement Service
 
@@ -384,19 +384,19 @@ the Settlement Account Management Process.
 
 - \[_Net settlement option_\] DFSPs are required to open a Settlement Bank account with the Scheme Settlement Bank. \[_Continuous gross settlement option_\] DFSPs are required to become joint owners of the Scheme Pooled Settlement bank account at the Scheme Settlement Bank, and to use or open such other individual bank accounts at the Scheme Settlement Bank as necessary to transfer funds into and out of the Scheme Pooled Settlement bank account.
 
-#### 5.1.2 The Platform Ledger 
+#### 5.1.2 The Platform Ledger
 
 - The Platform is responsible for maintaining a DFSP Position Ledger for each DFSP. This operation runs on a continual basis. \[_Continuous gross settlement option_\] The DFSP Position Ledger of each DFSP, less any provisional entries, represents the ownership share of that DFSP in the Scheme Pooled Settlement Bank Account.
 
 - The Position Ledger records:
 
-    - All Fulfilled Transfer as debits to the Payer DFSP's ledger and credits to the Payee DFSP's ledger
+  - All Fulfilled Transfer as debits to the Payer DFSP's ledger and credits to the Payee DFSP's ledger
 
-    - All Transfer Requests as provisional debits to the Payer DFSP's ledger. These provisional debits are removed when the Transfer is Fulfilled, refused by the Payee DFSP, or expires.
+  - All Transfer Requests as provisional debits to the Payer DFSP's ledger. These provisional debits are removed when the Transfer is Fulfilled, refused by the Payee DFSP, or expires.
 
-    - \[_Net settlement option only_\] Settlement Entries delivered to and accepted by the Scheme Settlement Bank for that DFSP.
+  - \[_Net settlement option only_\] Settlement Entries delivered to and accepted by the Scheme Settlement Bank for that DFSP.
 
-    - \[_Continuous gross settlement option only_\] Transfers into and out of the Scheme Pooled Settlement Bank account made by DFSPs.
+  - \[_Continuous gross settlement option only_\] Transfers into and out of the Scheme Pooled Settlement Bank account made by DFSPs.
 
 - The DFSP Ledger Position is the sum of all of the items listed above. This is used in the Transfer Approval Process.
 
@@ -404,7 +404,7 @@ the Settlement Account Management Process.
 
 - The Net Debit Cap for a DFSP is a value that the Platform uses during the Transfer Approval Process. The Net Debit for a DFSP is the sum of:
 
-    - \[_Net Settlement Option only_\] A value set by the scheme that is intended to represent the funds the DFSP has available in its Settlement Bank Account
+  - \[_Net Settlement Option only_\] A value set by the scheme that is intended to represent the funds the DFSP has available in its Settlement Bank Account
 
 Note the scheme may be able to automate the calculation of value described above, or it may choose to manually input this into the Platform Operator section of the Scheme Portal.
 
@@ -412,7 +412,7 @@ Note the scheme may be able to automate the calculation of value described above
 
 - The DFSP Discretionary Margin. This is a value, determined by an individual DFSP, which lowers the absolute value of the Net Debit Cap. The DFSP Discretionary Margin is set within allowable parameters defined by the Scheme. This has the effect of decreasing the DFSP's ability to execute transactions.
 
-#### 5.1.4 Transfer Approval Process 
+#### 5.1.4 Transfer Approval Process
 
 - Transfer Approval. When the Platform receives a Transfer Request from a Payer DFSP, the Platform will approve or reject the request based on a comparison of the amount of the requested transfer to the Payer DFSP's Current Ledger Position less the Payer DFSP's Net Debit Cap.
 
@@ -438,15 +438,15 @@ Scheme rules will need to account for provisions and procedures in the event of 
 
 - DFSPs may request withdrawal of funds from their \[_Net settlement option_\] Settlement Bank Account through the Scheme Portal \[_Continuous gross settlement option_\] DFSPs may request withdrawal of funds from the Scheme Pooled Settlement Bank Account through the Scheme Portal. The scheme will review the requested withdrawal, and, if approved, execute the transfer on behalf of the DFSP. The purpose of this review is to ensure that a DFSP's share of the Settlement Bank Account is sufficient to support Transfers in process: this approval will not be unreasonably denied.
 
-#### 5.1.7 Scheme Settlement Reporting 
+#### 5.1.7 Scheme Settlement Reporting
 
 - The scheme will provide, through the Scheme DFSP Portal, information for DFSPs which includes for each DFSP:
 
-    - The current Net Debit Cap and its components
+  - The current Net Debit Cap and its components
 
-    - The current Ledger Position and its components, including Fulfilled Transfers for all DFPSs and Provisional Transfers for Payer DFSPs
+  - The current Ledger Position and its components, including Fulfilled Transfers for all DFPSs and Provisional Transfers for Payer DFSPs
 
-    - Alerts at certain levels of the Current Ledger Position: these levels to be determined by the DFSPS and/or the Scheme from time to time
+  - Alerts at certain levels of the Current Ledger Position: these levels to be determined by the DFSPS and/or the Scheme from time to time
 
 - Tools to enable DFSPs to forecast their anticipated transfer volume based on historical data
 
@@ -474,15 +474,15 @@ There is a parallel Platform Operator Service that is necessary for the operatio
 
 - The Registration Process enables DFSP application for participation and for operational and technical on-boarding. It covers the following areas:
 
-    - Forms and processes for DFSP application for Participation in Scheme.
+  - Forms and processes for DFSP application for Participation in Scheme.
 
-    - Forms and processes for obtaining digital certificates and digital signatures for use with the Platform.
+  - Forms and processes for obtaining digital certificates and digital signatures for use with the Platform.
 
-    - Processes for downloading Scheme-provided software artifacts including SDKs and APIs.
+  - Processes for downloading Scheme-provided software artifacts including SDKs and APIs.
 
-    - Processes for testing technical readiness to access the Platform and Services.
+  - Processes for testing technical readiness to access the Platform and Services.
 
-    - Processes for receiving Scheme approval and certification for accessing the Platform and Services.
+  - Processes for receiving Scheme approval and certification for accessing the Platform and Services.
 
 ### 6.3 DFSP Customer Service
 
@@ -506,7 +506,7 @@ There is a parallel Platform Operator Service that is necessary for the operatio
 
 _This section has not yet been written, but is expected to include the
 following sections:_
-    
+
 1. _Description of the Fraud Management Utility — Purpose and Scope_
 
 2. _The Shared Transaction Database_
@@ -542,8 +542,8 @@ _This table is an example of a table of Use Cases and Secondary Use Cases that a
 | 3.2 | P2B | QR code Purchase | tbd | |
 | 3.3 | P2B | Online Purchase | Merchant ID Code = tbd | |
 | 3.4 | P2B | Bill Payment | | tbd: a data element in the Quote Request will include the Payer’s account number at the biller |
-| 3.5 | P2B | Person to Business - Other | | | 
-| 4.0 | P2G | | API Settings <br>Scenario=Transfer</br> <br>Initiator = Payer</br> <br>Recipient Type = Government</br> | 
+| 3.5 | P2B | Person to Business - Other | | |
+| 4.0 | P2G | | API Settings <br>Scenario=Transfer</br> <br>Initiator = Payer</br> <br>Recipient Type = Government</br> |
 | 4.1 | P2G | Person to Government | | |
 | 4.1 | P2G | Till Number Purchase | Initiator Type = Device | |
 | 4.2 | P2G | QR code Purchase | tbd | |

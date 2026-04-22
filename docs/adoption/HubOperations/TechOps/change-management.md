@@ -245,11 +245,11 @@ The following figure provides a summary of the fist step of the change managemen
 Prerequisites for changes should be in line with the requirements for releases as described in the [release management process](release-management.md). The following should be clearly captured in the Service Desk tool while preparing the Change Record:
 
 * Handover from relevant team to Operations team, including full review of the following:
-    * Change Ticket or Change Record: Reason for the change including impact, risks, limitations. The categorization matrix for the change can be the same as for incidents. For details on the incident categorization matrix, see [Incident categorization matrix](incident-management.md#incident-categorization-matrix).
-    * Change runbook: Steps required to make the change and roll back the change if needed
-    * Test results from lower environment: Evidence that the change was tested successfully and causes no regression
-    * Test plan for higher environment: What specific tests need to be run to validate the change
-    * All related documentation including architecture, flowcharts, setup/configuration information, and so on have been updated
+  * Change Ticket or Change Record: Reason for the change including impact, risks, limitations. The categorization matrix for the change can be the same as for incidents. For details on the incident categorization matrix, see [Incident categorization matrix](incident-management.md#incident-categorization-matrix).
+  * Change runbook: Steps required to make the change and roll back the change if needed
+  * Test results from lower environment: Evidence that the change was tested successfully and causes no regression
+  * Test plan for higher environment: What specific tests need to be run to validate the change
+  * All related documentation including architecture, flowcharts, setup/configuration information, and so on have been updated
 * Pre-change testing: Verify environment stability by reviewing the last Golden Path (GP) test results
 * Post-change testing: Execution of the agreed tests to validate the change, and execution of the full GP tests to confirm no regression on the environment
 
@@ -354,19 +354,19 @@ Closed changes.
 
 **Recommended attendees (process roles):**
 
-* Standing CAB Members 
-* Business representatives 
+* Standing CAB Members
+* Business representatives
 * Change Initiator/Implementer
 
 **Inputs:**
 
-* Change Schedule 
+* Change Schedule
 * Change Record
 
 **Outputs:**
 
-* Approval/rejection 
-* Updated Change Records 
+* Approval/rejection
+* Updated Change Records
 * Action items
 
 ### Governance for change communication

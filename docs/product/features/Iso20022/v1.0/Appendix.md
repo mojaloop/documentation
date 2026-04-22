@@ -1,5 +1,7 @@
 # 8. Appendix A: Payment Identifier Type Codes
+
 ## 8.1 FSPIOP Identifier types
+
 |Code|Description|
 | -- | -- |
 |MSISDN|An MSISDN (Mobile Station International Subscriber Directory Number, that is, the phone number) is used as reference to a participant. The MSISDN identifier should be in international format according to the ITU-T E.164 standard. Optionally, the MSISDN may be prefixed by a single plus sign, indicating the international prefix.|
@@ -11,8 +13,8 @@
 |IBAN|A bank account number or FSP account ID is used as reference to a participant. The IBAN identifier can consist of up to 34 alphanumeric characters and should be entered without whitespace.|
 |ALIAS| alias is used as reference to a participant. The alias should be created in the FSP as an alternative reference to an account owner. Another example of an alias is a username in the FSP system. The ALIAS identifier can be in any format. It is also possible to use the PartySubIdOrType element for identifying an account under an Alias defined by the PartyIdentifier.|
 
-
 ## 8.2 Personal Identifier Code Table
+
 These type are not yet supported.
 
 |Code|Description|
@@ -28,8 +30,8 @@ These type are not yet supported.
 |TXID|TaxIdentificationNumber|
 |POID|PersonCommercialIdentification|
 
-
 ## 8.3 Organisation Identifier Code Table
+
 These type are not yet supported.
 
 |Code|Description

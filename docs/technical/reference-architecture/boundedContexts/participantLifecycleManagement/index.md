@@ -3,9 +3,11 @@
 The Participant Lifecycle Bounded Context's primary concern regards anything to do with the management of a Participant within the Mojaloop Environment. When we are defining the Participant Lifecycle Management Bounded Context there are a few key concepts that should be clearly defined.
 
 #### Maker-Checker Process
+
 The Maker-Checker Process establishes the 6 eye verification and ensure that no write action takes place without being validated by some one with adiquite permissions. These permissions are defined by the Participant Lifecycle Management Bounded Context but are configurable and assignable as needed by the Scheme Rules. It is recommended that the users/roles that receive the maker permissions do not receive the checker permissions, and that the checker permissions are assigned to different users/roles. It will still be possible to assign both responsibilities to the same users/roles but this then voids the security that is provided by the maker-checker process that the system was built to support.
 
 #### Participant States
+
 The participant state management allows the admin operators to control permissions for a given participant based on their state. During the Platform Configuration phase, the Participant Lifecycle Management Bounded Context expects participant states to be defined and configured with either roles/permissions. The participant states can then be assigned to a given participant through the Participant Status Management process.
 
 ## Terms
@@ -164,20 +166,20 @@ The workflow provided by this UC enables the BC to employ a process through whic
 
 ## Canonical Model
 
--   Participant
-    -   id
-    -   participantAlias
-    -   endpointURL
-    -   state
-    -   Accounts[]
-        -   accountID
-        -   ledgerAccountType
-        -   accountCurrency
-        -   isActive
-        -   warningThreshold
-        -   limit
-            -   type
-            -   value
+- Participant
+  - id
+  - participantAlias
+  - endpointURL
+  - state
+  - Accounts[]
+    - accountID
+    - ledgerAccountType
+    - accountCurrency
+    - isActive
+    - warningThreshold
+    - limit
+      - type
+      - value
 
 ## Concluding Comments
 

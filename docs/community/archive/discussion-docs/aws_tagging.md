@@ -5,15 +5,16 @@
 To better manage and understand our AWS usage and spending, we are implementing the following tagging guidelines.
 
 ## Contents
+
 - [Proposed tags and their meanings](#proposed-tags-and-their-meanings)
-    - [mojaloop/cost_center](#mojaloopcost_center)
-    - [mojaloop/owner](#mojaloopowner)
+  - [mojaloop/cost_center](#mojaloopcost_center)
+  - [mojaloop/owner](#mojaloopowner)
 - [Manual Tagging](#manual-tagging)
 - [Automated Tagging](#automated-tagging)
 - [AWS Tagging Policies](#aws-tagging-policies)
-    - [Viewing Tag Reports + Compliance](#viewing-tag-reports--compliance)
-    - [Editing Tag Policies](#editing-tag-policies)
-    - [Attaching/Detaching Tag Policies](#attachingdetaching-tag-policies)
+  - [Viewing Tag Reports + Compliance](#viewing-tag-reports--compliance)
+  - [Editing Tag Policies](#editing-tag-policies)
+  - [Attaching/Detaching Tag Policies](#attachingdetaching-tag-policies)
 
 ## Proposed tags and their meanings
 
@@ -36,6 +37,7 @@ Some potential values for `mojaloop/cost_center` are:
 - `oss-perf-poc`: Performance/Architecture POC
 
 We also reserve some special values:
+
 - `unknown`: This resource was evaluated (perhaps manually, or perhaps by an automated tool), and no appropriate `cost_center` could be determined.
   - This will allow us to easily filter for the `mojaloop/cost_center:unknown` tags and produce a report
 - `n/a`: This resource incurrs no cost, so we're not really worried about assigning a `cost_center` to it
@@ -48,14 +50,15 @@ We also reserve some special values:
 The goal of this tag is to prevent long running resources that everybody else thinks _someone else_ knows about, but we no longer need. By applying this tag, we will be able to have a list of _who to go to_ in order to ask questions about the resource.
 
 The value can simply be a person's name, all lowercase:
+
 - `lewis`
 - `miguel`
 - etc.
 
 Once again, we will reserve the following values:
+
 - `unknown`: This resource was evaluated (perhaps manually, or perhaps by an automated tool), and no appropriate `cost_center` could be determined.
   - This will allow us to easily filter for the `mojaloop/owner:unknown` tags and see what resources are 'orphaned'
-
 
 ## Manual Tagging
 
@@ -70,9 +73,8 @@ We can use the "Tag Editor" in the AWS console to search for untagged resources.
 You can also search by tags, or the absense of tags to see what resources have not been tagged yet.
 ![](./images/tagging_02.png)
 
-5. Once you have a list of the resources, you can select and edit tags for many resources at once!
-6. You can also export a `.csv` file of resources found in your search
-
+1. Once you have a list of the resources, you can select and edit tags for many resources at once!
+2. You can also export a `.csv` file of resources found in your search
 
 ## Automated Tagging
 
@@ -81,14 +83,13 @@ We currently automate tagging on the following
 As we have a firmer grasp of our tagging guidelines, we need to introduce them into our tooling so that all of the grunt work of manual tagging.
 
 At the moment, this will look like introducing tags into:
+
 1. Rancher - which currently manages our Kubernetes clusters for both QA and Performance purposes
 2. IAC - The upcoming IAC code that will eventually be running our dev environments
-
 
 ## AWS Tagging Policies
 
 As of August 3, 2020, we have started introducing [AWS Tagging Policies](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies.html) to better enforce tags and monitor our resources (especially with respect to costs).
-
 
 ### Viewing Tag Reports + Compliance
 
@@ -100,7 +101,6 @@ From here you can see the tag policies "compliance report"
 
 ![](./images/tagging_03.png)
 
-
 ### Editing Tag Policies
 
 > Note: This may require special admin priviledges to access these pages
@@ -111,12 +111,11 @@ From here you can see the tag policies "compliance report"
 
 ![](./images/tagging_04.png)
 
-4. From here, you can view the current tag policies
+1. From here, you can view the current tag policies
 
 ![](./images/tagging_05.png)
 
-5. In the sidebar, you can click "View details" > "Edit policy" to edit the policy
-
+1. In the sidebar, you can click "View details" > "Edit policy" to edit the policy
 
 ### Attaching/Detaching Tag Policies
 

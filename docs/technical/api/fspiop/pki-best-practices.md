@@ -36,7 +36,7 @@ The API should be implemented in an environment that consists of either:
 
 - A _Switch_ that acts as an intermediary platform between FSP platforms. There is also an _Account Lookup System_ (ALS) available to identify in which FSP an account holder is located.
 
-For more information about the environment, see [Network Topology](#network-topology) section. [Certificate Authority PKI Management Strategy](#certificate-authority-pki-management-strategy) and [Platform PKI Management Strategy](#platform-pki-management-strategy) identify management strategies for the CA and for the platform. 
+For more information about the environment, see [Network Topology](#network-topology) section. [Certificate Authority PKI Management Strategy](#certificate-authority-pki-management-strategy) and [Platform PKI Management Strategy](#platform-pki-management-strategy) identify management strategies for the CA and for the platform.
 
 Communication between platforms is performed using a REST (REpresentational State Transfer)-based HTTP protocol (for more information, see _API Definition_). Because this protocol does not provide a means for ensuring either integrity or confidentiality between platforms, extra security layers must be added to protect sensitive information from alteration or exposure to unauthorized parties.
 
@@ -75,7 +75,6 @@ The Open API for FSP Interoperability Specification includes the following docum
 - [Glossary](./glossary)
 
 <br />
-
 
 ## PKI Background
 
@@ -135,13 +134,13 @@ The CA performs the following functions:
 
 - Support CRLs – Maintain and provide certificate revocation lists (CRLs) to be downloaded by clients so that they can see which certificates have been revoked.
 
-- Support Online Certificate Status Protocol (OCSP) – Provide real-time certificate revocation checks. 
+- Support Online Certificate Status Protocol (OCSP) – Provide real-time certificate revocation checks.
 
 #### Account Lookup System (ALS)
 
 - Holds basic information about account holders.
 
-- Answer questions like “Where should I send my financial transaction request for account holder with **MSISDN 0123456**?” 
+- Answer questions like “Where should I send my financial transaction request for account holder with **MSISDN 0123456**?”
 
 #### Financial Services Provider (FSP)
 
@@ -213,11 +212,11 @@ The CA signs three types of platform certificates; TLS (for communication), JWS 
 
 - The subject distinguished names must contain at least the following attributes:
 
-   - _Common Name_ (CN) – This must be the hostname of the platform which has created the certificate. A N can never be the same for two different platforms or organizations.
+  - _Common Name_ (CN) – This must be the hostname of the platform which has created the certificate. A N can never be the same for two different platforms or organizations.
 
-   - _Organization_ (O) – The name of the organization.
+  - _Organization_ (O) – The name of the organization.
 
-   - _Country_ (C) – The country of the organization.
+  - _Country_ (C) – The country of the organization.
 
 - The URL for platforms to download CRLs must be present.
 
@@ -271,17 +270,17 @@ Different keys and types of certificates can all be in the same store, but a mor
 
 - For TLS communication:
 
-   - One protected key store to hold the private key, its associated certificate, and certificate chain. These items are used for server- and client authentication in TLS.
+  - One protected key store to hold the private key, its associated certificate, and certificate chain. These items are used for server- and client authentication in TLS.
 
-   - One protected certificate store to hold all trusted TLS certificates. These certificates will be trusted by your platform during a TLS handshake, meaning that they will allow secure communication with the owners of the certificates. Since all participants trust the same CA, it is sufficient to keep only the CA’s root certificate here.
+  - One protected certificate store to hold all trusted TLS certificates. These certificates will be trusted by your platform during a TLS handshake, meaning that they will allow secure communication with the owners of the certificates. Since all participants trust the same CA, it is sufficient to keep only the CA’s root certificate here.
 
 - For signature and encryption:
 
-   - One protected key store to hold your private keys, their associated certificates, and certificate chains used for signatures and encryption.
+  - One protected key store to hold your private keys, their associated certificates, and certificate chains used for signatures and encryption.
 
-   - One private key and certificate chain used for signing using JWS, and one private key and certificate chain used for encryption using JWE.
+  - One private key and certificate chain used for signing using JWS, and one private key and certificate chain used for encryption using JWE.
 
-   - One protected certificate store to hold all trusted signature and encryption certificates from other platforms. Here you must store the certificates (signature and encryption certificates) for each platform that you want to trust for end-to-end integrity and confidentiality.
+  - One protected certificate store to hold all trusted signature and encryption certificates from other platforms. Here you must store the certificates (signature and encryption certificates) for each platform that you want to trust for end-to-end integrity and confidentiality.
 
 ### Creating a CSR and Obtaining CA Signature
 
@@ -293,11 +292,11 @@ When you create your keys, certificates, and CSRs, the following requirements ap
 
 - The following attributes in the subject distinguished names are mandatory:
 
-   - Common Name (CN) – This must be the hostname of the platform who created the certificate. A CN can never be the same for two different platforms or organizations.
+  - Common Name (CN) – This must be the hostname of the platform who created the certificate. A CN can never be the same for two different platforms or organizations.
 
-   - Organization (O) – The name of the organization.
+  - Organization (O) – The name of the organization.
 
-   - Country (C) – The country of the organization.
+  - Country (C) – The country of the organization.
 
 **For examples of how to create a store, certificate, and CSR, see Appendix C – Common PKI Tasks**
 
@@ -421,7 +420,6 @@ The use of JWE is optional and is applied to specific fields. This is to fulfill
 
 For more information about how to apply JWE to fields in messages, see the extended JWE standard specification _API Encryption_.
 
-
 ## List of Appendices
 
 ### Appendix A - Key Lengths and Algorithms
@@ -445,8 +443,8 @@ Table 2 contains the required key length and algorithm for each entity.
 
 ### Appendix B - Terminology
 
-| | | 
-| --- | --- | 
+| | |
+| --- | --- |
 | PKI | Public Key Infrastructure
 | API | Application Program Interface
 | TLS | Transport Layer Security
@@ -601,6 +599,7 @@ When you are asked to trust the imported certificated, answer **yes**:
 Trust this certificate? [no]: yes
 Certificate was added to keystore
 ```
+
 **Using openssl**
 
 Put the CA certificate with your other certificate files.
@@ -685,7 +684,6 @@ Some Java examples is found in the following link:
 
 A good example is found at the following link:
 [https://raymii.org/s/articles/OpenSSL_Manually_Verify_a_certificate_against_an_OCSP.html](#https://raymii.org/s/articles/OpenSSL_Manually_Verify_a_certificate_against_an_OCSP.html)
-
 
 <sup>1</sup> This term, and other italicized terms, are defined in Glossary for Open API for FSP Interoperability Specification.
 

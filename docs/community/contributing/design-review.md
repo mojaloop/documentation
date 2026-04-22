@@ -29,13 +29,13 @@ Mojaloop Design Authority, familiar with the area(s) of the system effected, dis
 and product representatives **before implementation work is started**, for the following purposes:
 
 - Risk Management
-    - To help identify and mitigate technical and/or business risks to any of our stakeholders, users or other
+  - To help identify and mitigate technical and/or business risks to any of our stakeholders, users or other
       contributors.
 - Impact Assessment
-    - To help identify other areas of the system, teams and stakeholders who may be impacted by the change, and to
+  - To help identify other areas of the system, teams and stakeholders who may be impacted by the change, and to
       facilitate communication with them.
 - Standards & Cohesion
-    - To guide on established Mojaloop standards for tooling, third party component choices and design patterns with a
+  - To guide on established Mojaloop standards for tooling, third party component choices and design patterns with a
       view to maintaining cohesion across the entire Mojaloop codebase.
 
 For non-trivial changes, this process involves working collaboratively with the Mojaloop Design Authority to produce a
@@ -49,27 +49,27 @@ rationale behind the design decisions made historically as our software evolves.
 **before they are merged into the main branch of a repository**, for the following purposes:
 
 - Quality Assurance
-    - Code reviews help ensure the quality of the codebase by allowing other team members to identify potential issues,
+  - Code reviews help ensure the quality of the codebase by allowing other team members to identify potential issues,
       bugs, or areas for improvement before the code is merged into the main branch. This can lead to higher-quality
       software with fewer defects.
 - Knowledge Sharing
-    - Code reviews provide an opportunity for team members to learn from each other. By reviewing code written by their
+  - Code reviews provide an opportunity for team members to learn from each other. By reviewing code written by their
       peers, contributors can gain insights into different approaches, best practices, and coding patterns. This helps
       spread knowledge and expertise around the community.
 - Consistency
-    - Code reviews help maintain consistency in coding style, standards, and conventions within the Mojaloop project. By
+  - Code reviews help maintain consistency in coding style, standards, and conventions within the Mojaloop project. By
       having multiple community members review each other's code, we hope to ensure that the codebase follows
       established standards and remains cohesive.
 - Risk Mitigation
-    - Code reviews can help mitigate risks associated with changes to the codebase. By having multiple sets of eyes
+  - Code reviews can help mitigate risks associated with changes to the codebase. By having multiple sets of eyes
       examine the code, potential risks, security vulnerabilities, and performance bottlenecks can be identified early
       on and addressed before they cause problems in production deployments.
 - Feedback and Improvement
-    - Code reviews provide an opportunity for constructive feedback and collaboration. Contributors can offer
+  - Code reviews provide an opportunity for constructive feedback and collaboration. Contributors can offer
       suggestions for improvement, share alternative solutions, and discuss design decisions. This fosters a culture of
       continuous improvement within the community.
 - Code Ownership
-    - Code reviews encourage a sense of collective ownership of the codebase. When multiple community members are
+  - Code reviews encourage a sense of collective ownership of the codebase. When multiple community members are
       involved in reviewing and contributing to the code, it becomes a shared responsibility rather than the sole
       responsibility of individual contributors.
 
@@ -174,42 +174,42 @@ A change should be considered a critical change if it falls under one or more of
 and/or sub-systems:
 
 - External APIs:
-    - Any alteration to an external API specification, normal or error paths, including request validation and bug
+  - Any alteration to an external API specification, normal or error paths, including request validation and bug
       fixes.
-    - Any alteration to an external API request handling implementation, normal or error paths, including request
+  - Any alteration to an external API request handling implementation, normal or error paths, including request
       validation and bug fixes.
-        - Note that "external API" in this case means any API exposed outside the switch boundary e.g. FSPIOP API etc...
+    - Note that "external API" in this case means any API exposed outside the switch boundary e.g. FSPIOP API etc...
 - Administrative APIs:
-    - Any change to any administrative API specification.
-    - Any change to any administrative API request handling implementation, normal, or error paths, including request
+  - Any change to any administrative API specification.
+  - Any change to any administrative API request handling implementation, normal, or error paths, including request
       validation and bug fixes.
 - Transfer Flow Discovery Phase:
-    - Any change in discovery phase API request handling e.g.:
-        - Any change to account lookup API request handling implementation(s) and/or call flows to and from internal or
+  - Any change in discovery phase API request handling e.g.:
+    - Any change to account lookup API request handling implementation(s) and/or call flows to and from internal or
           external "oracles".
 - Transfer Flow Agreement Phase:
-    - Any change in agreement phase API request handling e.g.:
-        - Any change to the storage, retrieval, processing or display of agreement phase data or meta-data.
-        - Any change to agreement phase API request handling implementation(s) and/or call flows to and from internal or
+  - Any change in agreement phase API request handling e.g.:
+    - Any change to the storage, retrieval, processing or display of agreement phase data or meta-data.
+    - Any change to agreement phase API request handling implementation(s) and/or call flows to and from internal or
           external entities.
 - Transfer Flow Transfer (clearing) Phase:
-    - Any change in transfer clearing phase API request handling, e.g.:
-        - Any change related to the process of deciding whether to clear a transfer of reject it based on the available
+  - Any change in transfer clearing phase API request handling, e.g.:
+    - Any change related to the process of deciding whether to clear a transfer of reject it based on the available
           liquidity of a participant (liquidity check).
-        - Any change to the calculation, storage, retrieval, processing or display of participant net debit cap values.
-        - Any change to the calculation, storage, retrieval, processing or display of a participants available
+    - Any change to the calculation, storage, retrieval, processing or display of participant net debit cap values.
+    - Any change to the calculation, storage, retrieval, processing or display of a participants available
           liquidity.
-        - Any change to the calculation, storage, retrieval, processing or display of any monetary value.
-        - Any change to the calculation, storage, retrieval, processing or display of transfer data or meta-data.
-        - Any change within the transfer prepare request processing pipeline.
-        - Any change within the transfer fulfil request processing pipeline.
+    - Any change to the calculation, storage, retrieval, processing or display of any monetary value.
+    - Any change to the calculation, storage, retrieval, processing or display of transfer data or meta-data.
+    - Any change within the transfer prepare request processing pipeline.
+    - Any change within the transfer fulfil request processing pipeline.
 - Settlement:
-    - Any alteration to an external or internal settlement API specification, normal or error paths, including request
+  - Any alteration to an external or internal settlement API specification, normal or error paths, including request
       validation and bug fixes.
-    - Any alteration to an external or internal settlement API request handling implementation, normal or error paths,
+  - Any alteration to an external or internal settlement API request handling implementation, normal or error paths,
       including request validation and bug fixes.
-    - Any change related to the inclusion or exclusion of transfers for settlement batching.
-    - Any change related to the calculation, storage, retrieval, processing or display of settlement related data or
+  - Any change related to the inclusion or exclusion of transfers for settlement batching.
+  - Any change related to the calculation, storage, retrieval, processing or display of settlement related data or
       meta-data.
 
 #### Examples
@@ -225,7 +225,3 @@ Examples include:
 #### Required Design & Code Review Process
 
 Critical changes must follow the defined [Critical Change Process](critical-change-process.md).
-
-
-
-

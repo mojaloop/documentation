@@ -117,21 +117,21 @@ The API uses the customized HTTP header parameter **FSPIOP-Encryption** to repre
 
 This section describes the encryption process for message fields. The order of the steps is not significant in cases where there are no dependencies between the inputs and outputs of the steps.
 
-1. Determine the algorithm used to determine the CEK value (this is the algorithm recorded in the **alg** (algorithm) Header Parameter of the resulting JWE). Because the CEK should be encrypted with the public key of the API recipient, in the API the available algorithms to protect the CEK can only be **RSA-OAEP-256**. 
-2. If there are multiple fields to be encrypted in the API message, then perform Steps 3-15 for each field. 
-3. Generate a random CEK. The FSP can generate the value using either its own application or using the JWE implementation employed. 
-4. Encrypt the CEK with the algorithm determined by the JWE header parameter **alg**. 
-5. Compute the encoded key value BASE64URL(JWE Encrypted Key). 
-6. Generate a random JWE Initialization Vector of the correct size for the content encryption algorithm (if required for the algorithm); otherwise, let the JWE Initialization Vector be the empty octet sequence. 
-7. Compute the encoded Initialization Vector value BASE64URL(JWE Initialization Vector). 
-8. If a **zip** parameter was included, compress the plaintext using the specified compression algorithm and let *M* be the octet sequence representing the compressed plain text; otherwise, let _M_ be the octet sequence representing the plain text. 
-9. Create the JSON object or objects containing the desired set of header parameters, which together comprise the JWE Protected Header. Besides the parameter **alg**, the parameter **enc** must be included in the JWE Protected Header. The available values for the parameter **enc** in the API can only be: **A128GC**_M_, **A192GC**_M_, **A256GC**_M_. **A256GC**_M_ is recommended. 
-10. Compute the Encoded Protected Header value BASE64URL(UTF8(JWE Protected Header)). 
-11. Let the Additional Authenticated Data encryption parameter be ASCII(Encoded Protected Header). 
-12. Encrypt *M* using the CEK, the JWE Initialization Vector, and the Additional Authenticated Data value using the specified content encryption algorithm to create the JWE Cipher text value and the JWE Authentication Tag (which is the Authentication Tag output from the encryption operation). 
-13. Compute the encoded cipher text value BASE64URL(JWE Cipher Text). 
-14. Compute the encoded Authentication Tag value BASE64URL(JWE Authentication Tag). 
-15. Compute the **encryptedField** element (see Table 3) for the HTTP header parameter **FSPIOP-Encryption**. 
+1. Determine the algorithm used to determine the CEK value (this is the algorithm recorded in the **alg** (algorithm) Header Parameter of the resulting JWE). Because the CEK should be encrypted with the public key of the API recipient, in the API the available algorithms to protect the CEK can only be **RSA-OAEP-256**.
+2. If there are multiple fields to be encrypted in the API message, then perform Steps 3-15 for each field.
+3. Generate a random CEK. The FSP can generate the value using either its own application or using the JWE implementation employed.
+4. Encrypt the CEK with the algorithm determined by the JWE header parameter **alg**.
+5. Compute the encoded key value BASE64URL(JWE Encrypted Key).
+6. Generate a random JWE Initialization Vector of the correct size for the content encryption algorithm (if required for the algorithm); otherwise, let the JWE Initialization Vector be the empty octet sequence.
+7. Compute the encoded Initialization Vector value BASE64URL(JWE Initialization Vector).
+8. If a **zip** parameter was included, compress the plaintext using the specified compression algorithm and let _M_ be the octet sequence representing the compressed plain text; otherwise, let _M_ be the octet sequence representing the plain text.
+9. Create the JSON object or objects containing the desired set of header parameters, which together comprise the JWE Protected Header. Besides the parameter **alg**, the parameter **enc** must be included in the JWE Protected Header. The available values for the parameter **enc** in the API can only be: **A128GC**_M_, **A192GC**_M_, **A256GC**_M_. **A256GC**_M_ is recommended.
+10. Compute the Encoded Protected Header value BASE64URL(UTF8(JWE Protected Header)).
+11. Let the Additional Authenticated Data encryption parameter be ASCII(Encoded Protected Header).
+12. Encrypt _M_ using the CEK, the JWE Initialization Vector, and the Additional Authenticated Data value using the specified content encryption algorithm to create the JWE Cipher text value and the JWE Authentication Tag (which is the Authentication Tag output from the encryption operation).
+13. Compute the encoded cipher text value BASE64URL(JWE Cipher Text).
+14. Compute the encoded Authentication Tag value BASE64URL(JWE Authentication Tag).
+15. Compute the **encryptedField** element (see Table 3) for the HTTP header parameter **FSPIOP-Encryption**.
 16. Compute the value for the HTTP Header parameter **FSPIOP-Encryption** as described in [FSPIOP API](/fspiop) documentation. The value for this **FSPIOP-Encryption** is JSON Object Serialization string.
 
 **Note**: If JWE is used to encrypt some fields of the payload, then the API client should:
@@ -147,14 +147,14 @@ This section describes the encryption process for message fields. The order of t
 If the HTTP Header parameter **FSPIOP-Encryption** (which is also protected by the API signature) is present, then the API message recipient should decrypt the encrypted fields of the API message after the API signature is validated successfully. The message decryption process is the reverse of the encryption process. The order of the steps is not significant in cases where there are no dependencies between the inputs and outputs of the steps. If there are multiple fields being encrypted, then all fields must be decrypted successfully; otherwise it indicates the API message is invalid.
 
 1. Parse the HTTP Header parameter **FSPIOP-Encryption** to get encrypted fields' information, including field name, JWE Protected Header, JWE Encrypted Key, JWE Initialization Vector, and JWE Authentication Tag for each field. If there are multiple fields being encrypted, then perform Steps 2-9 for each encrypted field.
-2. Get the cipher text of the encrypted field by parsing the payload with the specified field path. The value of the specified field is already encoded with BASE64URL. 
-3. Verify that the octet sequence resulting from decoding the encoded JWE Protected Header is a UTF-8-encoded representation of a valid JSON object conforming to JSON Data Interchange Format (defined in RFC 7159<sup>[The JavaScript Object Notation (JSON) Data Interchange Format](https://tools.ietf.org/html/rfc7159)</sup>); let the JWE Protected Header be this JSON object. 
+2. Get the cipher text of the encrypted field by parsing the payload with the specified field path. The value of the specified field is already encoded with BASE64URL.
+3. Verify that the octet sequence resulting from decoding the encoded JWE Protected Header is a UTF-8-encoded representation of a valid JSON object conforming to JSON Data Interchange Format (defined in RFC 7159<sup>[The JavaScript Object Notation (JSON) Data Interchange Format](https://tools.ietf.org/html/rfc7159)</sup>); let the JWE Protected Header be this JSON object.
 4. Verify that the parameters in the JWE Protected Header understand and can process all fields that are required to support the JWE specification; for example, the algorithm being used.
-5. Determine that the algorithm specified by the **alg** (algorithm) Header Parameter matches the algorithm of the public / private key of the API recipient. 
-6. Decrypt the JWE Encrypted Key with the private key of the API recipient to get the JWE CEK. 
-7. Let the Additional Authenticated Data encryption parameter be ASCII(Encoded Protected Header). 
-8. Decrypt the JWE Cipher Text using the CEK, the JWE Initialization Vector, the Additional Authenticated Data value, and the JWE Authentication Tag (which is the Authentication Tag input to the calculation) using the specified content encryption algorithm, returning the decrypted plaintext and validating the JWE Authentication Tag in the manner specified for the algorithm. If the JWE Authentication Tag is incorrect, then reject the input without any decryption. 
-9. If a **zip** parameter was included, then the API recipient should decompress the decrypted plaintext using the specified compression algorithm. 
+5. Determine that the algorithm specified by the **alg** (algorithm) Header Parameter matches the algorithm of the public / private key of the API recipient.
+6. Decrypt the JWE Encrypted Key with the private key of the API recipient to get the JWE CEK.
+7. Let the Additional Authenticated Data encryption parameter be ASCII(Encoded Protected Header).
+8. Decrypt the JWE Cipher Text using the CEK, the JWE Initialization Vector, the Additional Authenticated Data value, and the JWE Authentication Tag (which is the Authentication Tag input to the calculation) using the specified content encryption algorithm, returning the decrypted plaintext and validating the JWE Authentication Tag in the manner specified for the algorithm. If the JWE Authentication Tag is incorrect, then reject the input without any decryption.
+9. If a **zip** parameter was included, then the API recipient should decompress the decrypted plaintext using the specified compression algorithm.
 
 ## API Encryption/Decryption Examples
 
@@ -257,39 +257,39 @@ Because there are two fields to be encrypted, the Payer FSP needs to encrypt the
 
 The Payer FSP performs the following steps to encrypt the field **payer** in the **POST /quotes** API message.
 
-1. Determine the algorithm used to determine the CEK value. In this case, assuming it is **RSA-OAEP-256**. 
+1. Determine the algorithm used to determine the CEK value. In this case, assuming it is **RSA-OAEP-256**.
 2. Generate a 256-bit random CEK. In this case, its value is (using JSON Array notation):
 
 ```
 191 100 167 60 2 248 21 136 172 39 145 120 102 7 73 31 166 66 114 199 219 157 104 162 7 253 10 105 33 136 57 167
 ```
 
-3. Encrypt the CEK with the Payee FSP's public key shown in JSON Web
+1. Encrypt the CEK with the Payee FSP's public key shown in JSON Web
 Key format in [API Encryption/Decryption Examples](#api-encryptiondecryption-examples). In this case, the encrypted value is (using JSON Array notation):
 
 ```
 22 210 45 47 153 95 183 79 84 26 194 42 27 152 50 195 163 18 235 121 140 120 224 129 180 120 21 0 46 196 21 114 251 148 127 75 198 42 87 250 186 98 15 136 249 131 224 73 111 108 159 140 107 156 80 30 133 77 86 26 28 13 66 83 248 229 132 77 203 113 229 24 208 155 81 172 9 164 25 126 206 217 25 206 30 218 38 190 128 196 250 233 34 47 86 91 157 140 87 240 29 119 126 136 168 10 87 246 213 23 104 114 215 134 71 87 46 55 131 174 15 193 194 90 194 208 212 15 24 33 143 38 253 125 121 175 220 202 106 95 127 129 192 2 72 137 14 40 147 207 166 239 161 248 159 203 52 223 103 129 54 83 85 199 211 228 56 82 83 135 166 103 42 76 191 146 80 40 192 123 42 18 31 113 25 198 24 58 87 149 47 182 144 86 182 137 253 103 214 34 192 76 254 64 14 114 97 194 28 60 75 164 131 170 210 231 168 205 181 78 79 136 82 115 218 174 5 48 158 162 230 229 164 85 26 135 15 164 206 36 182 131 115 224 207 12 178 234 145 6 181 140 243 41 8 151
 ```
 
-4. Compute the encoded key value BASE64URL(JWE Encrypted Key). In this case, its value is: 
+1. Compute the encoded key value BASE64URL(JWE Encrypted Key). In this case, its value is:
 
 ```
 FtItL5lft09UGsIqG5gyw6MS63mMeOCBtHgVAC7EFXL7lH9LxipX-rpiD4j5g-BJb2yfjGucUB6 FTVYaHA1CU_jlhE3LceUY0JtRrAmkGX7O2RnOHtomvoDE-ukiL1ZbnYxX8B13foioClf21Rdoct eGR1cuN4OuD8HCWsLQ1A8YIY8m_X15r9zKal9_gcACSIkOKJPPpu-h-J_LNN9ngTZTVcfT5DhSU 4emZypMv5JQKMB7KhIfcRnGGDpXlS-2kFa2if1n1iLATP5ADnJhwhw8S6SDqtLnqM21Tk-IUnPa rgUwnqLm5aRVGocPpM4ktoNz4M8MsuqRBrWM8ykIlw
 ```
 
-5. Generate a random JWE Initialization Vector of the correct size for the content encryption algorithm. In this case, its value is (using JSON Array notation):
+1. Generate a random JWE Initialization Vector of the correct size for the content encryption algorithm. In this case, its value is (using JSON Array notation):
 
 ```
 101 98 192 15 167 157 93 152 54 145 173 236 83 4 6 243
 ```
 
-6. Compute the encoded Initialization Vector value BASE64URL(JWE Initialization Vector). In this case, its value is:
+1. Compute the encoded Initialization Vector value BASE64URL(JWE Initialization Vector). In this case, its value is:
 
 ```
 ZWLAD6edXZg2ka3sUwQG8w
 ```
 
-7. Get the plaintext of the field **payer** of the API message as the payload to be encrypted. In this case, its value is:
+1. Get the plaintext of the field **payer** of the API message as the payload to be encrypted. In this case, its value is:
 
 ```json
 {
@@ -303,27 +303,27 @@ ZWLAD6edXZg2ka3sUwQG8w
 }
 ```
 
-8. Create the JSON object or objects containing the desired set of header parameters, which together comprise the JWE Protected Header. In this case, its value is:
+1. Create the JSON object or objects containing the desired set of header parameters, which together comprise the JWE Protected Header. In this case, its value is:
 
 ```json
 {"alg":"RSA-OAEP-256","enc":"A256GCM"}
 ```
 
-9. Compute the Encoded Protected Header value BASE64URL(UTF8(JWE Protected Header)). In this case, its value is:
+1. Compute the Encoded Protected Header value BASE64URL(UTF8(JWE Protected Header)). In this case, its value is:
 
 ```
 eyJhbGciOiJSU0EtT0FFUC0yNTYiLCJlbmMiOiJBMjU2R0NNIn0
 ```
 
-10. Let the Additional Authenticated Data encryption parameter be ASCII(Base64URL(JWE Protected Header)). 
-11. Encrypt the plain text using the CEK, the JWE Initialization Vector, and the Additional Authenticated Data value using the specified content encryption algorithm to create the JWE Cipher text value and the JWE Authentication Tag (which is the Authentication Tag output from the encryption operation). 
-12. Compute the encoded cipher text value BASE64URL(JWE Cipher Text). In this case its value is:
+1. Let the Additional Authenticated Data encryption parameter be ASCII(Base64URL(JWE Protected Header)).
+2. Encrypt the plain text using the CEK, the JWE Initialization Vector, and the Additional Authenticated Data value using the specified content encryption algorithm to create the JWE Cipher text value and the JWE Authentication Tag (which is the Authentication Tag output from the encryption operation).
+3. Compute the encoded cipher text value BASE64URL(JWE Cipher Text). In this case its value is:
 
 ```
 BfXbxoyXcWCzL3DwG7B2P5UswlP8MPXerIkKbRR3vDLuN7lfa33puj7VICFeqG1fAlxrXgs_Nvk ZkE4WlqGNlQ_nBS1xYknxjh7hkPVb-V-Z9ZEvLdcaHlGJrH5oEvR7RIB8TOHgVHP1brlrEptB4- 4ejXXv80cbknRJtDl_mmjaU_Na4irGrWhA3ZhXZM1aM7wtquJLIk-1ZNLadGnGPygl21sEITF8h fPzbk7Djs45nBc5izWcoskCCNvLDU6PqOEhWe3y6GdsDiqFPB1OeZRq06ZBEfKZzAAJ0u3KZqoO BAEVHVvt41D3ejVimTVQJs1dVL2HacvuJyVW6YugwFotZbg
 ```
 
-13. Compute the encoded Authentication Tag value BASE64URL(JWE Authentication Tag). In this case its value is:
+1. Compute the encoded Authentication Tag value BASE64URL(JWE Authentication Tag). In this case its value is:
 
 ```
 9GaZEDZD9wmzqVGCI-FDgQ
@@ -331,14 +331,14 @@ BfXbxoyXcWCzL3DwG7B2P5UswlP8MPXerIkKbRR3vDLuN7lfa33puj7VICFeqG1fAlxrXgs_Nvk ZkE4
 
 ##### Encrypt payee.partyIdInfo.partyIdentifier
 
-1. Determine the algorithm used to determine the CEK value. In this case, assuming it is **RSA-OAEP-256**. 
+1. Determine the algorithm used to determine the CEK value. In this case, assuming it is **RSA-OAEP-256**.
 2. Generate a 256-bit random CEK. In this case, the same CEK defined in [Encryption Data Model](#encryption-data-model) is used., Its value is (using JSON Array notation):
 
 ```
 191 100 167 60 2 248 21 136 172 39 145 120 102 7 73 31 166 66 114 199 219 157 104 162 7 253 10 105 33 136 57 167
 ```
 
-3. Encrypt the CEK with the Payee FSP's public key represented in JSON Web Key format in [API Encryption/Decryption Examples](#api-encryptiondecryption-examples). In this case, its value is (using JSON Array notation):
+1. Encrypt the CEK with the Payee FSP's public key represented in JSON Web Key format in [API Encryption/Decryption Examples](#api-encryptiondecryption-examples). In this case, its value is (using JSON Array notation):
 
 ```
 149 174 138 153 221 70 241 229 93 27 56 185 185 210 242 238 81 187 207 88 40 43 24 7 245 121 94 73 151 150 249 19 15 158 11 97 80 99 194 60 143 138 168 211 202 210 52 19 128 211 156 179 101 248 95 163 23 166 217 222 14 12 163 206 242 182 170 211 119 22 84 107 3 97 153 207 240 211 82 113 100 254 39 62 224 183 250 176 156 63 198 73 245 187 239 16  136 127 120 130 146 236 29 47 255 116 223 240 39 224 94 165 102 120 242 9 182 84 138 109 205 55 242 20 186 91 140 49 198 244 250 58 123 3 63 22 51 59 5 183 112 17 160 238 34 217 11 109 79 246 174 221 138 118 82 21 15 239 72 185 77 20 178 20 192 89 45 68 140 190 251 233 82 123 33 49 191 135 49 21 25 42 253 171 211 151 7 238 142 206 201 140 206 6 129 23 173 56 153 159 31 39 52 119 102 147 197 213 230 97 113 71 168 184 6 57 183 109 173 233 206 110 112 202 179 74 56 153 184 122 114 234 151 28 15 131 79 192 80 145 130 170 188 82 92 61 121 90 63 148 37 110 20 132 49 131
@@ -351,45 +351,45 @@ BfXbxoyXcWCzL3DwG7B2P5UswlP8MPXerIkKbRR3vDLuN7lfa33puj7VICFeqG1fAlxrXgs_Nvk ZkE4
 la6Kmd1G8eVdGzi5udLy7lG7z1goKxgH9XleSZeW-RMPngthUGPCPI-KqNPK0jQTgNOcs2X4X6M XptneDgyjzvK2qtN3FlRrA2GZz_DTUnFk_ic-4Lf6sJw_xkn1u--niH94gpLsHS__dN_wJ-BepW Z48gm2VIptzTfyFLpbjDHG9Po6ewM_FjM7BbdwEaDuItkLbU_2rt2KdlIVD-9IuU0UshTAWS1Ej L776VJ7ITG_hzEVGSr9q9OXB-6OzsmMzgaBF604mZ8fJzR3ZpPF1eZhcUeouAY5t22t6c5ucMqz SjiZuHpy6pccD4NPwFCRgqq8Ulw9eVo_lCVuFIQxgw
 ```
 
-5. Generate a random JWE Initialization Vector of the correct size for the content encryption algorithm. In this case, its value is (using JSON Array notation):
+1. Generate a random JWE Initialization Vector of the correct size for the content encryption algorithm. In this case, its value is (using JSON Array notation):
 
 ```
 86 250 136 87 147 231 201 138 65 75 164 215 147 100 136 195
 ```
 
-6. Compute the encoded Initialization Vector value BASE64URL(JWE Initialization Vector). In this case, its value is:
+1. Compute the encoded Initialization Vector value BASE64URL(JWE Initialization Vector). In this case, its value is:
 
 ```
 VvqIV5PnyYpBS6TXk2SIww
 ```
 
-7. Get the plain text of the field **payee.partyIdInfo.partyIdentifier** of the API message as the payload to be encrypted. In this case, its value is
+1. Get the plain text of the field **payee.partyIdInfo.partyIdentifier** of the API message as the payload to be encrypted. In this case, its value is
 
 ```
 15295558888
 ```
 
-8. Create the JSON object or objects containing the desired set of Header Parameters, which together comprise the JWE Protected Header. In this case, its value is:
+1. Create the JSON object or objects containing the desired set of Header Parameters, which together comprise the JWE Protected Header. In this case, its value is:
 
 ```json
 {"alg":"RSA-OAEP-256","enc":"A256GCM"}
-``` 
+```
 
-9. Compute the Encoded Protected Header value BASE64URL(UTF8(JWE Protected Header)). In this case, its value is:
+1. Compute the Encoded Protected Header value BASE64URL(UTF8(JWE Protected Header)). In this case, its value is:
 
 ```
 eyJhbGciOiJSU0EtT0FFUC0yNTYiLCJlbmMiOiJBMjU2R0NNIn0 
 ```
 
-10. Let the Additional Authenticated Data encryption parameter be ASCII(Encoded Protected Header).
-11. Encrypt the plain text using the CEK, the JWE Initialization Vector, and the Additional Authenticated Data value using the specified content encryption algorithm to create the JWE Cipher text value and the JWE Authentication Tag (which is the Authentication Tag output from the encryption operation). 
-12. Compute the encoded cipher text value BASE64URL(JWE Cipher Text). In this case its value is:
+1. Let the Additional Authenticated Data encryption parameter be ASCII(Encoded Protected Header).
+2. Encrypt the plain text using the CEK, the JWE Initialization Vector, and the Additional Authenticated Data value using the specified content encryption algorithm to create the JWE Cipher text value and the JWE Authentication Tag (which is the Authentication Tag output from the encryption operation).
+3. Compute the encoded cipher text value BASE64URL(JWE Cipher Text). In this case its value is:
 
 ```
 WBQN5nLDGK26EiM
 ```
 
-13. Compute the encoded Authentication Tag value BASE64URL(JWE Authentication Tag). In this case its value is:
+1. Compute the encoded Authentication Tag value BASE64URL(JWE Authentication Tag). In this case its value is:
 
 ```
 6jQVo7kmZq3jMNXfavxoXQ
@@ -495,56 +495,56 @@ The Payer FSP performs the following steps to decrypt the field **payer** in the
 eyJhbGciOiJSU0EtT0FFUC0yNTYiLCJlbmMiOiJBMjU2R0NNIn0 
 ```
 
-2. Decode the encoded JWE Protected Header. In this case its value is:
+1. Decode the encoded JWE Protected Header. In this case its value is:
 
 ```json
 {"alg":"RSA-OAEP-256","enc":"A256GCM"
 ```
 
-3. Check that the decoded value of JWE Protected Header is a UTF-8-encoded representation of a completely valid JSON object conforming to JSON Data Interchange Format (RFC 7159), and that the parameters in the JWE Protected Header can process all fields that are required to support the JWE specification. 
-4. Get the encoded BASE64URL(JWE Encrypted Key). In this case its value is:
+1. Check that the decoded value of JWE Protected Header is a UTF-8-encoded representation of a completely valid JSON object conforming to JSON Data Interchange Format (RFC 7159), and that the parameters in the JWE Protected Header can process all fields that are required to support the JWE specification.
+2. Get the encoded BASE64URL(JWE Encrypted Key). In this case its value is:
 
 ```
 FtItL5lft09UGsIqG5gyw6MS63mMeOCBtHgVAC7EFXL7lH9LxipX-rpiD4j5g-BJb2yfjGucUB6 FTVYaHA1CU_jlhE3LceUY0JtRrAmkGX7O2RnOHtomvoDE-ukiL1ZbnYxX8B13foioClf21Rdoct eGR1cuN4OuD8HCWsLQ1A8YIY8m_X15r9zKal9_gcACSIkOKJPPpu-h-J_LNN9ngTZTVcfT5DhSU 4emZypMv5JQKMB7KhIfcRnGGDpXlS-2kFa2if1n1iLATP5ADnJhwhw8S6SDqtLnqM21Tk-IUnPa rgUwnqLm5aRVGocPpM4ktoNz4M8MsuqRBrWM8ykIlw]
 ```
 
-5. Decode the encoded JWE Encrypted Key. In this case its value is as follows (using JSON Array notation):
+1. Decode the encoded JWE Encrypted Key. In this case its value is as follows (using JSON Array notation):
 
 ```
 [22 210 45 47 153 95 183 79 84 26 194 42 27 152 50 195 163 18 235 121 140 120 224 129 180 120 21 0 46 196 21 114 251 148 127 75 198 42 87 250 186 98 15 136 249 131 224 73 111 108 159 140 107 156 80 30 133 77 86 26 28 13 66 83 248 229 132 77 203 113 229 24 208 155 81 172 9 164 25 126 206 217 25 206 30 218 38 190 128 196 250 233 34 47 86 91 157 140 87 240 29 119 126 136 168 10 87 246 213 23 104 114 215 134 71 87 46 55 131 174 15 193 194 90 194 208 212 15 24 33 143 38 253 125 121 175 220 202 106 95 127 129 192 2 72 137 14 40 147 207 166 239 161 248 159 203 52 223 103 129 54 83 85 199 211 228 56 82 83 135 166 103 42 76 191 146 80 40 192 123 42 18 31 113 25 198 24 58 87 149 47 182 144 86 182 137 253 103 214 34 192 76 254 64 14 114 97 194 28 60 75 164 131 170 210 231 168 205 181 78 79 136 82 115 218 174 5 48 158 162 230 229 164 85 26 135 15 164 206 36 182 131 115 224 207 12 178 234 145 6 181 140 243 41 8 151]
 ```
 
-6. Decrypt the JWE Encrypted Key using the specified algorithm **RSA-OAEP-256** with the Payee FSP's private key to get the CEK. In this case the decrypted CEK is (using JSON Array notat ion):
+1. Decrypt the JWE Encrypted Key using the specified algorithm **RSA-OAEP-256** with the Payee FSP's private key to get the CEK. In this case the decrypted CEK is (using JSON Array notat ion):
 
 ```
 [191 100 167 60 2 248 21 136 172 39 145 120 102 7 73 31 166 66 114 199 219 157 104 162 7 253 10 105 33 136 57 167]
 ```
 
-7. Get the encoded BASE64URL(JWE Initialization Vector). Its value is:
+1. Get the encoded BASE64URL(JWE Initialization Vector). Its value is:
 
 ```
 ZWLAD6edXZg2ka3sUwQG8w
 ```
 
-8. Decode the encoded JWE Initialization Vector. In this case, its value is (using JSON Array notation):
+1. Decode the encoded JWE Initialization Vector. In this case, its value is (using JSON Array notation):
 
 ```
 [101 98 192 15 167 157 93 152 54 145 173 236 83 4 6 243]
 ```
 
-9. Get the value of the field **payer** from the API message as the encoded BASE64URL(JWE Cipher Text) to be decrypted. In this case, its value is
+1. Get the value of the field **payer** from the API message as the encoded BASE64URL(JWE Cipher Text) to be decrypted. In this case, its value is
 
 ```
 BfXbxoyXcWCzL3DwG7B2P5UswlP8MPXerIkKbRR3vDLuN7lfa33puj7VICFeqG1fAlxrXgs\_Nvk ZkE4WlqGNlQ\_nBS1xYknxjh7hkPVb-V-Z9ZEvLdcaHlGJrH5oEvR7RIB8TOHgVHP1brlrEptB4- 4ejXXv80cbknRJtDl\_mmjaU\_Na4irGrWhA3ZhXZM1aM7wtquJLIk-1ZNLadGnGPygl21sEITF8h fPzbk7Djs45nBc5izWcoskCCNvLDU6PqOEhWe3y6GdsDiqFPB1OeZRq06ZBEfKZzAAJ0u3KZqoO BAEVHVvt41D3ejVimTVQJs1dVL2HacvuJyVW6YugwFotZbg
 ```
 
-10. Get the encoded Authentication Tag value BASE64URL(JWE Authentication Tag). In this case its value is:
+1. Get the encoded Authentication Tag value BASE64URL(JWE Authentication Tag). In this case its value is:
 
 ```
 9GaZEDZD9wmzqVGCI-FDgQ
 ```
 
-11. Decrypt the cipher text using the CEK, the JWE Initialization Vector, and the Additional Authenticated Data value using the specified content encryption algorithm to decrypt the JWE Cipher text. In this case, the plain text is
+1. Decrypt the cipher text using the CEK, the JWE Initialization Vector, and the Additional Authenticated Data value using the specified content encryption algorithm to decrypt the JWE Cipher text. In this case, the plain text is
 
 ```json
 {
@@ -561,7 +561,7 @@ BfXbxoyXcWCzL3DwG7B2P5UswlP8MPXerIkKbRR3vDLuN7lfa33puj7VICFeqG1fAlxrXgs\_Nvk ZkE
 }
 ```
 
-12. Verify that the plaintext is a UTF-8-encoded representation of a completely valid JSON object conforming to RFC 7159, and the content matches the data mode definition for the **payer**.
+1. Verify that the plaintext is a UTF-8-encoded representation of a completely valid JSON object conforming to RFC 7159, and the content matches the data mode definition for the **payer**.
 
 ##### Decrypt payee.partyIdInfo.partyIdentifier
 
@@ -573,66 +573,67 @@ The Payer FSP performs the following steps to decrypt the field **payee.partyIdI
 eyJhbGciOiJSU0EtT0FFUC0yNTYiLCJlbmMiOiJBMjU2R0NNIn0 
 ```
 
-2. Decode the encoded JWE Protected Header. In this case its value is:
+1. Decode the encoded JWE Protected Header. In this case its value is:
 
 ```json
 {"alg":"RSA-OAEP-256","enc":"A256GCM"}
 ```
 
-3. Verify that the decoded value of JWE Protected Header is a UTF-8-encoded representation of a completely valid JSON object conforming to RFC 7159, and that the parameters in the JWE Protected Header understand and can process all fields that are required to support the JWE specification. 
-4. Get the encoded BASE64URL(JWE Encrypted Key). In this case its value is:
+1. Verify that the decoded value of JWE Protected Header is a UTF-8-encoded representation of a completely valid JSON object conforming to RFC 7159, and that the parameters in the JWE Protected Header understand and can process all fields that are required to support the JWE specification.
+2. Get the encoded BASE64URL(JWE Encrypted Key). In this case its value is:
 
 ```
 la6Kmd1G8eVdGzi5udLy7lG7z1goKxgH9XleSZeW-RMPngthUGPCPI-KqNPK0jQTgNOcs2X4X6M XptneDgyjzvK2qtN3FlRrA2GZz_DTUnFk_ic-4Lf6sJw_xkn1u--niH94gpLsHS__dN_wJ-BepW Z48gm2VIptzTfyFLpbjDHG9Po6ewM_FjM7BbdwEaDuItkLbU_2rt2KdlIVD-9IuU0UshTAWS1Ej L776VJ7ITG_hzEVGSr9q9OXB-6OzsmMzgaBF604mZ8fJzR3ZpPF1eZhcUeouAY5t22t6c5ucMqz SjiZuHpy6pccD4NPwFCRgqq8Ulw9eVo_lCVuFIQxgw
 ```
 
-5. Decode the encoded JWE Encrypted Key. In this case its value is (using JSON Array notation):
+1. Decode the encoded JWE Encrypted Key. In this case its value is (using JSON Array notation):
 
 ```
 [149 174 138 153 221 70 241 229 93 27 56 185 185 210 242 238 81 187 207 88 40 43 24 7 245 121 94 73 151 150 249 19 15 158 11 97 80 99 194 60 143 138 168 211 202 210 52 19 128 211 156 179 101 248 95 163 23 166 217 222 14 12 163 206 242 182 170 211 119 22 84 107 3 97 153 207 240 211 82 113 100 254 39 62 224 183 250 176 156 63 198 73 245 187 239 167 136 127 120 130 146 236 29 47 255 116 223 240 39 224 94 165 102 120 242 9 182 84 138 109 205 55 242 20 186 91 140 49 198 244 250 58 123 3 63 22 51 59 5 183 112 17 160 238 34 217 11 109 79 246 174 221 138 118 82 21 15 239 72 185 77 20 178 20 192 89 45 68 140 190 251 233 82 123 33 49 191 135 49 21 25 42 253 171 211 151 7 238 142 206 201 140 206 6 129 23 173 56 153 159 31 39 52 119 102 147 197 213 230 97 113 71 168 184 6 57 183 109 173 233 206 110 112 202 179 74 56 153 184 122 114 234 151 28 15 131 79 192 80 145 130 170 188 82 92 61 121 90 63 148 37 110 20 132 49 131]
 ```
 
-6. Decrypt the JWE Encrypted Key using the specified algorithm **RSA-OAEP-256** with the Payee FSP's private key to get the CEK. In this case the decrypted CEK is (using JSON Array notation):
+1. Decrypt the JWE Encrypted Key using the specified algorithm **RSA-OAEP-256** with the Payee FSP's private key to get the CEK. In this case the decrypted CEK is (using JSON Array notation):
 
 ```
 [191 100 167 60 2 248 21 136 172 39 145 120 102 7 73 31 166 66 114 199 219 157 104 162 7 253 10 105 33 136 57 167]
 ```
 
-7. Get the encoded BASE64URL(JWE Initialization Vector). Its value is:
+1. Get the encoded BASE64URL(JWE Initialization Vector). Its value is:
 
 ```
 VvqIV5PnyYpBS6TXk2SIww
 ```
 
-8. Decode the encoded JWE Initialization Vector. In this case, its value is (using JSON Array notation):
+1. Decode the encoded JWE Initialization Vector. In this case, its value is (using JSON Array notation):
 
 ```
 [86 250 136 87 147 231 201 138 65 75 164 215 147 100 136 195]
 ```
 
-9. Get the value of the field **payee.partyIdInfo.partyIdentifier** from the API message as the encoded BASE64URL(JWE Cipher Text) to be decrypted. In this case, its value is:
+1. Get the value of the field **payee.partyIdInfo.partyIdentifier** from the API message as the encoded BASE64URL(JWE Cipher Text) to be decrypted. In this case, its value is:
 
 ```
 WBQN5nLDGK26EiM
 ```
 
-10. Get the encoded Authentication Tag value BASE64URL(JWE Authentication Tag). In this case its value is:
+1. Get the encoded Authentication Tag value BASE64URL(JWE Authentication Tag). In this case its value is:
 
 ```
 6jQVo7kmZq3jMNXfavxoXQ
 ```
 
-11. Decrypt the cipher text using the CEK, the JWE Initialization Vector, and the Additional Authenticated Data value using the specified content encryption algorithm to decrypt the JWE Cipher text. In this case, the plain text is
+1. Decrypt the cipher text using the CEK, the JWE Initialization Vector, and the Additional Authenticated Data value using the specified content encryption algorithm to decrypt the JWE Cipher text. In this case, the plain text is
 
 ```
 15295558888
 ```
 
-12. Verify that the plain text is a valid **partyIdentifier** value.
+1. Verify that the plain text is a valid **partyIdentifier** value.
 
 <br />
 
 ## Table of Tables
+
 - [Table 1 -- Data model of HTTP Header Field FSPIOP-Encryption](#table-1)
 - [Table 2 -- Data model of complex type EncryptedFields](#table-2)
 - [Table 3 -- Data model of complex type EncryptedField](#table-3)

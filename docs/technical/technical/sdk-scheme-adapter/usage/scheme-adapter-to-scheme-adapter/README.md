@@ -17,9 +17,11 @@ The idea is to run two docker-compose scripts in parallel from the above two ser
 ### Mojaloop Simulator service
 
 Please download the Mojaloop Simulator repo
+
 ```
 git clone https://github.com/mojaloop/mojaloop-simulator.git
 ```
+
 * Edit the file src/docker-compose.yml and add the container names for all the containers. Please refer the following lines
 
 ```
@@ -73,6 +75,7 @@ JWS_SIGN_PUT_PARTIES=true
 ```
 
 Then try running the following command to run the services
+
 ```
 cd src/
 docker-compose up -d
@@ -81,11 +84,13 @@ docker-compose up -d
 We can now access the mojaloop simulator's test api on 3003.
 
 A new party should be added to the simulator using the following command. Feel free to change the details you want.
+
 ```
 curl -X POST "http://localhost:3003/repository/parties" -H "accept: */*" -H "Content-Type: application/json" -d "{\"displayName\":\"Test Payee1\",\"firstName\":\"Test\",\"middleName\":\"\",\"lastName\":\"Payee1\",\"dateOfBirth\":\"1970-01-01\",\"idType\":\"MSISDN\",\"idValue\":\"9876543210\"}"
 ```
 
 Then try to run the following command to check the new party added.
+
 ```
 curl -X GET "http://localhost:3003/repository/parties" -H "accept: */*"
 ```
@@ -97,12 +102,14 @@ Let's move on to setup another instance of scheme adapter with DFSP mock backend
 The DFSP mock backend is a minimal implementation of an example DFSP. Only basic functions are supported at the moment.
 
 Please download the following repository
+
 ```
 git clone https://github.com/mojaloop/sdk-mock-dfsp-backend.git
 ```
 
 Edit the files src/docker-compose.yml, src/backend.env and src/scheme-adapter.env and add the container names for all the containers. Please refer the following files.
 docker-compose.yml
+
 ```
 version: '3'
 services:
@@ -125,7 +132,9 @@ services:
     depends_on:
       - redis2
 ```
+
 scheme-adapter.env
+
 ```
 DFSP_ID=payerfsp
 CACHE_HOST=redis2
@@ -141,19 +150,23 @@ JWS_SIGN_PUT_PARTIES=true
 ```
 
 backend.env
+
 ```
 OUTBOUND_ENDPOINT=http://sa_sim2:4001
 ```
 
 Then try running the following command to run the services
+
 ```
 cd src/
 docker-compose up -d
 ```
 
 ## Try to send money
+
 Try to send funds from "payerfsp" (Mock DFSP) to a MSISDN which is in "payeefsp" (Mojaloop Simulator) through scheme adapter.
 Run the following curl command to issue command to Mock DFSP service.
+
 ```
 curl -X POST \
   http://localhost:23000/send \

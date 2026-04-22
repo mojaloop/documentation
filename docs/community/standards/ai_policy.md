@@ -160,4 +160,3 @@ AI tools are permitted within the Mojaloop community when used responsibly and t
 - Code must always be reviewed and submitted by a human.
 
 The Mojaloop Foundation encourages thoughtful adoption of AI tools in ways that strengthen, not dilute, the quality, trust, and collaborative spirit of the Mojaloop ecosystem.
-

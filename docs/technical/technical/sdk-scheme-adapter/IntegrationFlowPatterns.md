@@ -5,6 +5,7 @@ When integrating core banking system into a modern, real-time, push based transa
 ## Payer DFSP Integration Patterns
 
 There are three patterns that can be used when building the Payer DFSP integrations
+
 1. **Three phase** transfer integration. This aligns with the three Mojaloop transaction phases. I.e. Discovery, Agreement and Transfer.
 1. **Double API Integration** integration. This pattern is described in detail in the sequence diagram below. It involves combining the Discovery and Agreement phases; as the first phase; the results are presented to the Payer for confirmation; following which the Transfer phase is executed as the second phase.
 ![Payer DFSP Double Integration API Flow Pattern](./assets/sequence/PayerDFSPDoubleIntegrationApiPattern.svg)
@@ -16,7 +17,9 @@ All Payer DFSP Integration Patterns support a 2 phased (reservation and commit p
 :::
 
 ## Payee DFSP ideal integration pattern
+
 Ideally a vendor's API's will provide the following.
+
 1. To be able to perform AML checks ahead of and independent of the transfer.
 1. To be able to calculate the fees of a transfer ahead of and independent of the transfer.
 1. To be able to perform the transfer in two phases. I.e. A reserve phase, and then a committing phase.
@@ -34,7 +37,9 @@ A common limitation in Vendor API's is that all these functions are combined int
 :::
 
 ## Vendor API only supports Single API call
+
 If the Core Banking Systems only support a single API call to perform all transfer related checks and phases, there there are two patterns that should be considered.
+
 1. Call Transfer on the Patch Notification
 ![Payee DFSP Integration during Patch Notification](./assets/sequence/PayeeDFSPSingleIntegrationApiOnPatchPattern.svg)
 A failure at anytime after the PATCH notification **[Step 17]** will result in a reconciliation error. This can be catered for by building in recompensation methods. E.g. initiate a refund transfer if an error occurs after step 17.

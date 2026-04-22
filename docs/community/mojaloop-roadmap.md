@@ -23,31 +23,35 @@ On the right of the Roadmap there are four tables. These list candidate workstre
 All of the Pillars have their own workstreams. For PI 23, the following technical workstreams have been adopted.
 
 ## Make Adoption Easier
+
 * Support for On Premise Deployment
-    * Improve support for non-Cloud deployment of Mojaloop, where this is required due to regulatory or other reasons
+  * Improve support for non-Cloud deployment of Mojaloop, where this is required due to regulatory or other reasons
 * Participation Tools
-    * Ensure there is a range of options for Participating DFSPs to connect to a Mojaloop Hub, and that these options off comparable connectivity capabilities
+  * Ensure there is a range of options for Participating DFSPs to connect to a Mojaloop Hub, and that these options off comparable connectivity capabilities
 
 ## Achieve Scale
+
 * Merchant Payments
-    * Support for merchant payments using a Mojaloop Hub as the payments element for a merchant scheme that offers payments through either QR codes or USSD. This includes merchant registration and support for merchant acquiring.
+  * Support for merchant payments using a Mojaloop Hub as the payments element for a merchant scheme that offers payments through either QR codes or USSD. This includes merchant registration and support for merchant acquiring.
 
 ## Connect to Other Systems
+
 * Next Generation Settlement
-    * Connecting to other payments systems and conducting cross-border transactions increases the complexity of settlement processes needed by a switch, and this workstream is updating Mojaloop’s settlement engine to provide the necessary flexibility.
+  * Connecting to other payments systems and conducting cross-border transactions increases the complexity of settlement processes needed by a switch, and this workstream is updating Mojaloop’s settlement engine to provide the necessary flexibility.
 * Foreign Exchange
-    * This workstream is enhancing the Mojaloop Hub to support multi-currency transactions, through integration with an external FX Provider (FXP). The initial version will support one model (sender converts) and one FXP; future versions will support multiple models, multiple FXPs, and the use of a reserve currency as intermediary.
+  * This workstream is enhancing the Mojaloop Hub to support multi-currency transactions, through integration with an external FX Provider (FXP). The initial version will support one model (sender converts) and one FXP; future versions will support multiple models, multiple FXPs, and the use of a reserve currency as intermediary.
 * MOSIP Integration
-    * In order to better support social payments and national payments programs, this workstream is developing a solution which will allow payments to be routed to a MOSIP digital identity, instead of for example a mobile phone number. This workstream also works towards greater integration with other open source DPG projects, including Mifos, PHEE and OpenG2P, in support of using MOSIP IDs to generate payments lists for bulk delivery of social payments.
+  * In order to better support social payments and national payments programs, this workstream is developing a solution which will allow payments to be routed to a MOSIP digital identity, instead of for example a mobile phone number. This workstream also works towards greater integration with other open source DPG projects, including Mifos, PHEE and OpenG2P, in support of using MOSIP IDs to generate payments lists for bulk delivery of social payments.
+
 ## Quality Product
+
 * Performance Characterisation
-    * Identify and implement changes to the Mojaloop Hub core software that can improve performance, as we move towards a number of national deployments.
+  * Identify and implement changes to the Mojaloop Hub core software that can improve performance, as we move towards a number of national deployments.
 * Adopt Tigerbeetle
-    * Use Tigerbeetle for ledger updates during transaction processing to achieve even greater performance (we don’t expect his to be in place before the release of Mojaloop Baobab)
+  * Use Tigerbeetle for ledger updates during transaction processing to achieve even greater performance (we don’t expect his to be in place before the release of Mojaloop Baobab)
 * Core Team
-    * Maintains the Mojaloop core through fixes to critical bugs, prioritized feature enhancements and upgrades in dependencies, and undertakes the Release process of the core services and some adjacent services or products that are part of the Mojaloop Platform.
+  * Maintains the Mojaloop core through fixes to critical bugs, prioritized feature enhancements and upgrades in dependencies, and undertakes the Release process of the core services and some adjacent services or products that are part of the Mojaloop Platform.
 * Platform Quality and Security
-    * Assessment, maintenance and enhancement of the cybersecurity of the Mojaloop platform, encompassing connectivity to participating DFSPs (including transactions) and the security of hub operator portals.
+  * Assessment, maintenance and enhancement of the cybersecurity of the Mojaloop platform, encompassing connectivity to participating DFSPs (including transactions) and the security of hub operator portals.
 
 In addition to these technical workstreams, we have a number of **Strategic Workstreams**, which are intended to address long term, strategic issues, such as a migration to supporting ISO 20022, or monitoring developments in cross-border transactions. It is expected that the outputs of strategic workstreams will include the periodic specification of candidate technical workstreams, for potential adoption in future PIs.
-

@@ -11,43 +11,37 @@ To ensure every developer has signed the CLA, we use [CLA Assistant](https://cla
 
 <img src="../assets/cla/cla_1.png" width=600>
 
-3. Click 'Details', and you will be directed to the CLA Assistant tool, where you can read the CLA, fill out some personal details, and sign it.
+1. Click 'Details', and you will be directed to the CLA Assistant tool, where you can read the CLA, fill out some personal details, and sign it.
 
 <img src="../assets/cla/cla_2_1.png" width=700 />
 </br>
 <img src="../assets/cla/cla_2_2.png" width=700 />
 
-
-4. Once you have clicked "I agree", navigate back to the Pull request, and see that the CLA Assistant check has passed.
+1. Once you have clicked "I agree", navigate back to the Pull request, and see that the CLA Assistant check has passed.
 
 <img src="../assets/cla/cla_3.png" width=600 />
-
-
 
 ### Signing For A Company
 
 Section 3 of the [Mojaloop CLA](https://github.com/mojaloop/mojaloop/blob/master/CONTRIBUTOR_LICENSE_AGREEMENT.md) covers contributions both from individuals and contributions made by individuals on behalf of their employer. If you are contributing to the Mojaloop Community on behalf of your employer, please enter your employer's name in the "Company or Organization" field. If not, feel free to write "OSS Contributor" and leave the "role" field blank.
-
 
 ## Administering the CLA tool
 
 The CLA Tool is easy to install, any GitHub admin can link it with the Mojaloop organization.
 
 1. Create a new GitHub Gist and enter in the text of the CLA in a new file.
+
 > Since Github doesn't allow Gists to be owned my organizations, [our gist](https://gist.github.com/mojaloopci/9b7133e1ac153a097ae4ff893add8974) is owned by the 'mojaloopci' user.
 
-2. Go to [CLA Assistant](https://cla-assistant.io/) and click "Sign in with GitHub"
+1. Go to [CLA Assistant](https://cla-assistant.io/) and click "Sign in with GitHub"
 <img src="../assets/cla/admin_sign_in.png" width=700 />
 
-
-3. You can add a CLA to either a Repo or Organization. Select "Mojaloop", and then select the gist you just created
+2. You can add a CLA to either a Repo or Organization. Select "Mojaloop", and then select the gist you just created
 <img src="../assets/cla/admin_configure.png" width=700 />
 
+3. Hit "Link" and that's it!
 
-4. Hit "Link" and that's it!
-
-
-### Requesting Additional Information:
+### Requesting Additional Information
 
 > Reference: [request-more-information-from-the-cla-signer](https://github.com/cla-assistant/cla-assistant#request-more-information-from-the-cla-signer)
 
@@ -94,4 +88,3 @@ You can also add a `metadata` file to the CLA gist, to build a custom form for t
 Produces the following form:
 
 <img src="../assets/cla/cla_2_2.png" width=750 />
-

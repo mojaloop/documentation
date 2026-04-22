@@ -49,9 +49,9 @@ Acts as a control account, and tracks the movement of funds across all DFSP Sett
 
 In accounting, a positive net position (more debits) is treated as an asset, while a negative net position (more credits) is treated as a liability. The Mojaloop Hub applies these same principles but from the Hub's perspective. What does that mean?
 
-A transfer is recorded by the Hub as a debit (DR) on the Payer DFSP side because the transfer reduces the amount that is owed back to that DFSP (reduced liability from the Hub's perspective). So while the Payer DFSP itself will treat the transfer as an increase in their liability in their own system, the Hub treats the transfer as an increase in their asset. 
+A transfer is recorded by the Hub as a debit (DR) on the Payer DFSP side because the transfer reduces the amount that is owed back to that DFSP (reduced liability from the Hub's perspective). So while the Payer DFSP itself will treat the transfer as an increase in their liability in their own system, the Hub treats the transfer as an increase in their asset.
 
-The same transfer is recorded by the Hub as a credit (CR) on the Payee DFSP side because the transfer increases the amount owed to that DFSP (increased liability from the Hub's perspective). 
+The same transfer is recorded by the Hub as a credit (CR) on the Payee DFSP side because the transfer increases the amount owed to that DFSP (increased liability from the Hub's perspective).
 
 Recording a transaction in two accounts as opposing debit and credit entries (of equal amounts) is what we call "double entry" in accounting.
 
@@ -59,7 +59,7 @@ Applying the above accounting principles to a deposit by a DFSP in the DFSP's li
 
 ## Settlement: an example
 
-This section demonstrates how a transaction is logged in the various ledgers, using a simple example. 
+This section demonstrates how a transaction is logged in the various ledgers, using a simple example.
 
 Let’s take the following example: DFSP1 sends 50 USD to DFSP2. Here is how this example transaction is recorded in the Hub ledgers.
 

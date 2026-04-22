@@ -179,7 +179,7 @@ For each of the data types, a description of the JSON Schema from the Open API S
 
 ## Element and Basic Data Types
 
-This section contains the definitions of and transformation rules for the basic formats and _element_ types used by the API as specified in _API Definition_ and _API Data Model_. These definitions are basic in the context of the API specification, but *not* the Open API Technical Specification. Often, these basic data types are derived from the basic types supported by Open API Specification standards, such as string type.
+This section contains the definitions of and transformation rules for the basic formats and _element_ types used by the API as specified in _API Definition_ and _API Data Model_. These definitions are basic in the context of the API specification, but _not_ the Open API Technical Specification. Often, these basic data types are derived from the basic types supported by Open API Specification standards, such as string type.
 
 ### Data Type Amount
 
@@ -195,7 +195,6 @@ This section provides the JSON Schema definition for the data type `Amount`. [Li
 
 ##### Listing 1
 
-
 ```JSON
 "Amount": {
     "title": "Amount", 
@@ -206,6 +205,7 @@ This section provides the JSON Schema definition for the data type `Amount`. [Li
     "description": "The API data type Amount is a JSON String in a canonical format that is restricted by a regular expression for interoperability reasons." 
 } 
 ```
+
 **Listing 1 -- JSON Schema for Data type Amount**
 
 The transformation rules for an instance of Amount data type are as follows:
@@ -238,6 +238,7 @@ This section provides the JSON Schema definition for the data type BinaryString.
     "description":"The API data type BinaryString is a JSON String. The string is the base64url encoding of a string of raw bytes, where padding (character '=') is added at the end of the data if needed to ensure that the string is a multiple of 4 characters. The length restriction indicates the allowed number of characters.
 } 
 ```
+
 **Listing 2 -- JSON Schema for Data type BinaryString**
 
 The section on [BinaryString Type IlpPacket](#binarystring-type-ilppacket) gives an example for `BinaryString` type.
@@ -257,17 +258,17 @@ AYIBgQAAAAAAAASwNGxldmVsb25lLmRmc3AxLm1lci45T2RTOF81MDdqUUZERmZlakgyOVc4bXFmNEpL
 
 This section provides the JSON Schema definition for the `BinaryString` type `IlpPacket`. [Listing 3](listing-3) provides a JSON Schema for the IlpPacket type. The transformation rules for an instance of `IlpPacket` are the same as those of data type `BinaryString`.
 
-  - JSON value pair with Name "**title**" and Value "**IlpPacket**"
+- JSON value pair with Name "**title**" and Value "**IlpPacket**"
 
-  - JSON value pair with Name "**type**" and Value "**string**"
+- JSON value pair with Name "**type**" and Value "**string**"
 
-  - JSON value pair with Name "**pattern**" and Value "**^\[A-Za-z0-9-\_\]+\[=\]{0,2}\$**"
+- JSON value pair with Name "**pattern**" and Value "**^\[A-Za-z0-9-\_\]+\[=\]{0,2}\$**"
 
-  - JSON value pair with Name "**minLength**" and Value **1**
+- JSON value pair with Name "**minLength**" and Value **1**
 
-  - JSON value pair with Name "**pattern**" and Value **32768**
+- JSON value pair with Name "**pattern**" and Value **32768**
 
-  - JSON value pair with Name "**description**" and Value "**Information for recipient (transport layer information).**"
+- JSON value pair with Name "**description**" and Value "**Information for recipient (transport layer information).**"
 
 ##### Listing 3
 
@@ -427,7 +428,7 @@ This section provides the JSON Schema definition for the Enum type `AmountType`.
 
 - JSON value pair with Name **enum** and Value the array containing the values:
 
-  → **SEND** 
+  → **SEND**
   
   → **RECEIVE**
 
@@ -470,12 +471,12 @@ This section provides the JSON Schema definition for the data type `Date`. [List
 ##### Listing 9
 
 ```json
-"Date":	{
-    "title":	"Date",	
-    "type":	"string",	
-    "pattern":	"^(?:[1-9]\d{3}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1\d|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[1-9]\d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29)$",	
-    "description": "The API data type Date is a JSON String in a lexical format that is restricted by a regular	 expression for interoperability reasons. This format is according to ISO 8601 containing a date only. A more readable version of the format is “yyyy-MM-dd”, e.g. "1982-05-23" or "1987-08-05”."	
-}	
+"Date": {
+    "title": "Date", 
+    "type": "string", 
+    "pattern": "^(?:[1-9]\d{3}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1\d|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[1-9]\d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29)$", 
+    "description": "The API data type Date is a JSON String in a lexical format that is restricted by a regular  expression for interoperability reasons. This format is according to ISO 8601 containing a date only. A more readable version of the format is “yyyy-MM-dd”, e.g. "1982-05-23" or "1987-08-05”." 
+} 
 ```
 
 **Listing 9 -- JSON Schema for Data type Date**
@@ -531,8 +532,8 @@ The JSON Schema definition for this section provides the JSON Schema definition 
 "DateTime": {
     "title":"DateTime",
     "type": "string",
-    "pattern":	"^(?:[1-9]\d{3}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1\d|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[1-9]\d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29)T(?:[01\d|2[0-3]):[0-5]\d:[0-5]\d(?:(\.\d{3}))(?:Z|[+-][01]\d:[0-5]\\d)$",
-    "description": "The API data type DateTime is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons. This format is according to ISO	8601, expressed in a combined date, time and time zone format. A more readable version of the format is	“yyyy-MM-ddTHH:mm:ss.SSS[-HH:MM]”, e.g. "2016-05-24T08:38:08.699-04:00" or "2016-05-24T08:38:08.699Z" (where Z indicates Zulu time zone, same as UTC)."
+    "pattern": "^(?:[1-9]\d{3}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1\d|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[1-9]\d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29)T(?:[01\d|2[0-3]):[0-5]\d:[0-5]\d(?:(\.\d{3}))(?:Z|[+-][01]\d:[0-5]\\d)$",
+    "description": "The API data type DateTime is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons. This format is according to ISO 8601, expressed in a combined date, time and time zone format. A more readable version of the format is “yyyy-MM-ddTHH:mm:ss.SSS[-HH:MM]”, e.g. "2016-05-24T08:38:08.699-04:00" or "2016-05-24T08:38:08.699Z" (where Z indicates Zulu time zone, same as UTC)."
 }
 ```
 
@@ -666,7 +667,7 @@ This section provides the JSON Schema definition for the data type `Longitude`. 
     "pattern": "^(\+|-)?(?:180(?:(?:\.0{1,6})?)|(?:[0-9]|[1-9][0-9]|1[0-7][0-9])(?:(?:\.[0-9]{1,6})?))$", 
     "description": "The API data type Longitude is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons." 
 }
-``` 
+```
 
 **Listing 15 -- JSON Schema for Data type Longitude**
 
@@ -699,7 +700,7 @@ This section provides the JSON Schema definition for the data type `MerchantClas
     "pattern": "^[\d]{1,4}$", 
     "description": "A limited set of pre-defined numbers. This list would be a limited set of numbers identifying a set of popular merchant types like School Fees, Pubs and Restaurants, Groceries, etc." 
 } 
-``` 
+```
 
 **Listing 16 -- JSON Schema for Data type MerchantClassificationCode**
 
@@ -775,7 +776,7 @@ This section provides the JSON Schema definition for the `Name` type `FirstName`
     "pattern": "^(?!\s*$)[\w .,'-]+$", 
     "description": "First name of the Party (Name Type)." 
 }
-``` 
+```
 
 **Listing 18 -- JSON Schema for Name type FirstName**
 
@@ -828,7 +829,7 @@ This section provides the JSON Schema definition for the data type `String`. [Li
 
 - If Property pattern is not empty, JSON value pair with Name **pattern** and Value the content of Property **pattern**.
 
-- JSON value pair with Name "**description**" and Value the content of Property **description**. [Below](#string-type-errordescription), is an example for Stri`ng type, `ErrorDescription`. [Listing 20](#listing-20) has other `String` types specified and used in the API.
+- JSON value pair with Name "**description**" and Value the content of Property **description**. [Below](#string-type-errordescription), is an example for Stri`ng type,`ErrorDescription`. [Listing 20](#listing-20) has other`String` types specified and used in the API.
 
 ##### Listing 20
 
@@ -909,7 +910,7 @@ This section provides the JSON Schema definition for the data type `TokenCode`. 
     "pattern": "^[0-9a-zA-Z]{4,32}$", 
     "description": "The API data type TokenCode is a JSON String between 4 and 32 characters, consisting of digits or characters from a to z (case insensitive)." 
 } 
-``` 
+```
 
 **Listing 22 -- JSON Schema for Data type TokenCode**
 
@@ -942,7 +943,7 @@ This section provides the JSON Schema definition for the `TokenCode` type `Code`
     "pattern": "^[0-9a-zA-Z]{4,32}$", 
     "description": "Any code/token returned by the Payee FSP (TokenCode Type)." 
 } 
-``` 
+```
 
 **Listing 23 -- JSON Schema for TokenCode type Code**
 
@@ -981,7 +982,7 @@ An example value for `UndefinedEnum` type depends on the list of values specifie
 
 ### Data Type UUID
 
-This section provides the JSON Schema definition for the data type `UUID`. [Listing 25](#listing-25) provides a JSON Schema for `CorrelationId` which is of `UUID` type. Since `CorrelationId` is an element type in the *API Definition*, it is being used interchangeably with `UUID` in the Open API Specification version.
+This section provides the JSON Schema definition for the data type `UUID`. [Listing 25](#listing-25) provides a JSON Schema for `CorrelationId` which is of `UUID` type. Since `CorrelationId` is an element type in the _API Definition_, it is being used interchangeably with `UUID` in the Open API Specification version.
 
 - JSON value pair with Name "**type**" and Value "**string**"
 
@@ -1178,7 +1179,7 @@ The transformation rules for an instance of `AuthorizationsIDPutResponse` comple
 
 - The instance MUST contain a property with name "**responseType**".
 
-- The JSON object titled "**responseType**" MUST be an instance of AuthorizationReponse type, provided in the definitions. 
+- The JSON object titled "**responseType**" MUST be an instance of AuthorizationReponse type, provided in the definitions.
 
 An example instance for `AuthorizationsIDPutResponse` complex type is given in [Listing 30](#listing-30).
 
@@ -1219,8 +1220,6 @@ BulkQuotesPostRequest, BulkQuotesIDPutResponse, BulkTransfersPostRequest, BulkTr
 <sup>4</sup> The description for "Instance" keyword is taken from: [http://json-schema.org/latest/json-schema-core.html\#rfc.section.4.2](http://json-schema.org/latest/json-schema-core.html\#rfc.section.4.2)
 
 <sup>5</sup> Meaning and usage of \$ref as specified here: [http://json-schema.org/latest/json-schema-core.html\#rfc.section.8](http://json-schema.org/latest/json-schema-core.html\#rfc.section.8)
-
-
 
 ## Table of Listings
 

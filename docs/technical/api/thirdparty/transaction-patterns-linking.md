@@ -17,7 +17,7 @@ Mojaloop Third Party API
 3. [Linking](#Linking)  
    3.1 [Pre-linking](#Pre-linking)  
    3.2 [Discovery](#Discovery)  
-   3.3 [Request consent](#Requestconsent)    
+   3.3 [Request consent](#Requestconsent)
    3.4 [Authentication](#Authentication)  
    3.5 [Grant consent](#Grantconsent)  
    3.6 [Credential registration](#Credentialregistration)  
@@ -30,11 +30,11 @@ Mojaloop Third Party API
    5.3 [Authentication](#Authentication-1)  
    5.4 [Grant consent](#Grantconsent-1)  
 
-#  1. <a id='Preface'></a>Preface
+# 1. <a id='Preface'></a>Preface
 
 This section contains information about how to use this document.
 
-##  1.1. <a id='ConventionsUsedinThisDocument'></a>Conventions Used in This Document
+## 1.1. <a id='ConventionsUsedinThisDocument'></a>Conventions Used in This Document
 
 The following conventions are used in this document to identify the
 specified types of information.
@@ -46,13 +46,13 @@ specified types of information.
 |**Glossary terms**|Italics on first occurrence; defined in _Glossary_|The purpose of the API is to enable interoperable financial transactions between a _Payer_ (a payer of electronic funds in a payment transaction) located in one _FSP_ (an entity that provides a digital financial service to an end user) and a _Payee_ (a recipient of electronic funds in a payment transaction) located in another FSP.|
 |**Library documents**|Italics|User information should, in general, not be used by API deployments; the security measures detailed in _API Signature and API Encryption_ should be used instead.|
 
-##  1.2. <a id='DocumentVersionInformation'></a>Document Version Information
+## 1.2. <a id='DocumentVersionInformation'></a>Document Version Information
 
 | Version | Date | Change Description |
 | --- | --- | --- |
 | **1.0** | 2021-10-03    | Initial Version
 
-##  1.3. <a id='References'></a>References
+## 1.3. <a id='References'></a>References
 
 The following references are used in this specification:
 
@@ -60,15 +60,14 @@ The following references are used in this specification:
 | --- | --- | --- | --- |
 | Ref. 1 | Open API for FSP Interoperability | `1.1` | [API Definition v1.1](https://github.com/mojaloop/mojaloop-specification/blob/master/fspiop-api/documents/v1.1-document-set/API%20Definition%20v1.1.md)|
 
-
-#  2. <a id='Introduction'></a>Introduction
+# 2. <a id='Introduction'></a>Introduction
 
 This document introduces the transaction patterns supported by the Third Party API relating
 to the establishment of a relationship between a User, a DFSP and a PISP.
 
 The API design and architectural style of this API are based on [Section 3](https://github.com/mojaloop/mojaloop-specification/blob/master/fspiop-api/documents/v1.1-document-set/API%20Definition%20v1.1.md#3-api-definition) of Ref 1. above.
 
-##  2.1 <a id='ThirdPartyAPISpecification'></a>Third Party API Specification
+## 2.1 <a id='ThirdPartyAPISpecification'></a>Third Party API Specification
 
 The Mojaloop Third Party API Specification includes the following documents:
 
@@ -78,8 +77,7 @@ The Mojaloop Third Party API Specification includes the following documents:
 - [Third Party Open API Definition - DFSP](./thirdparty-dfsp-v1.0.yaml)
 - [Third Party Open API Definition - PISP](./thirdparty-dfsp-v1.0.yaml)
 
-
-#  3. <a id='Linking'></a>Linking
+# 3. <a id='Linking'></a>Linking
 
 The goal of the linking process is to explain how users establish trust between
 all three interested parties:
@@ -104,10 +102,10 @@ Linking is broken down into several separate phases:
    In this phase, a User establishes the credential they'll use to consent to
    future transfers from the DFSP and initiated by the PISP.
 
-##  3.1 <a id='Pre-linking'></a>Pre-linking
+## 3.1 <a id='Pre-linking'></a>Pre-linking
 
 In this phase, a PISP Server needs to know what DFSPs are available to link
-with. This is *unlikely* to be done on-demand (e.g., when a User clicks "link"
+with. This is _unlikely_ to be done on-demand (e.g., when a User clicks "link"
 in the PISP mobile App), and far more likely to be done periodically and cached
 by the PISP Server. The reason for this is simply that new DFSPs don't typically
 join the Mojaloop network all that frequently, so calling this multiple times on
@@ -123,7 +121,7 @@ which DFSP they hold an account with for linking.
 
 ![Pre-linking](./assets/diagrams/linking/0-pre-linking.svg)
 
-##  3.2 <a id='Discovery'></a>Discovery
+## 3.2 <a id='Discovery'></a>Discovery
 
 In this phase, we ask the user to select the type and value of identifier they use
 with the DFSP they intend to link with. This could be a username, MSISDN (phone number),
@@ -147,7 +145,7 @@ time to time.
 
 ![Discovery](./assets/diagrams/linking/1-discovery.svg)
 
-##  3.3 <a id='Requestconsent'></a>Request consent
+## 3.3 <a id='Requestconsent'></a>Request consent
 
 In this phase, a PISP is asking a specific DFSP to start the process of
 establishing consent between three parties:
@@ -216,14 +214,12 @@ the **PUT /consentRequests/**_{ID}_ callback to redirect the user to the DFSP's
 website where they can prove their identity (likely by a typical username and
 password style login).
 
-
 **Note:** Keep in mind that at this stage, the User may update their choices of
 which accounts to link with. The result of this will be seen later on when
 during the Grant consent phase, where the DFSP will provide the correct values
 to the PISP in the `scopes` field.
 
 ![Authentication (Web)](./assets/diagrams/linking/3-authentication-web.svg)
-
 
 ### 3.4.2 <a id='OTP'></a>OTP
 
@@ -233,6 +229,7 @@ should prompt the user for this one-time password and then provide it back
 to the DFSP using the API call **PATCH /consentRequests/**_{ID}_.
 
 ![Authentication (OTP)](./assets/diagrams/linking/3-authentication-otp.svg)
+
 ## 3.5 <a id='Grantconsent'></a>Grant consent
 
 Now that mutual trust has been established between all three parties, the DFSP
@@ -246,7 +243,6 @@ This phase consists exclusively of the DFSP requesting that a new consent be
 created.
 
 ![Grant consent](./assets/diagrams/linking/4-grant-consent.svg)
-
 
 ## 3.6 <a id='Credentialregistration'></a>Credential registration
 
@@ -268,11 +264,11 @@ The PISP must derive the challenge to be used as an input to the FIDO Key
 Registration step. This challenge must not be guessable ahead of time by
 the PISP.
 
-
 1. _Let `consentId` be the value of the `body.consentId` in the **POST /consents** request_
 2. _Let `scopes` be the value of `body.scopes` in the **POST /consents** request_
 
 3. The PISP must build the JSON object `rawChallenge`
+
 ```
 {
    "consentId": <body.consentId>,
@@ -280,13 +276,12 @@ the PISP.
 }
 ```
 
-4. Next, the PISP must convert this json object to a string representation using a [RFC-8785 Canonical JSON format](https://tools.ietf.org/html/rfc8785)
+1. Next, the PISP must convert this json object to a string representation using a [RFC-8785 Canonical JSON format](https://tools.ietf.org/html/rfc8785)
 
-5. Finally, the PISP must calculate a SHA-256 hash of the canonicalized JSON string.
+2. Finally, the PISP must calculate a SHA-256 hash of the canonicalized JSON string.
 i.e. `SHA256(CJSON(rawChallenge))`
 
 The output of this algorithm, `challenge` will be used as the challenge for the [FIDO registration flow](https://webauthn.guide/#registration)
-
 
 ### 3.6.2 <a id='Registeringthecredential'></a>Registering the credential
 
@@ -302,6 +297,7 @@ information about the credential on the Consent resource:
 > While we are focused on FIDO first, we don't want to exclude PISPs who want
 > to offer services to users over other channels, eg. USSD or SMS, for this
 > reason, the API also supports a `GENERIC` Credential type, i.e.:
+>
 >```
 > CredentialTypeGeneric {
 >   credentialType: 'GENERIC'
@@ -325,13 +321,11 @@ Otherwise, if it receives a **PUT /consents/**_{ID}_**/error** callback, it know
 went wrong with registering the Consent and associated credential, and can inform
 the PISP accordingly.
 
-
 The Auth service is then responsible for calling **POST /participants/CONSENTS/**_{ID}_.
 This call will associate the `consentId` with the auth-service's `participantId` and
 allows us to look up the Auth service given a `consentId` at a later date.
 
 ![Credential registration: Register](./assets/diagrams/linking/5a-credential-registration.svg)
-
 
 ### 3.6.3 <a id='FinalizingtheConsent'></a>Finalizing the Consent
 
@@ -344,9 +338,7 @@ the _source of funds_ for the transaction request.
 Finally, the DFSP calls **PUT /consent/**_{ID}_ with the finalized Consent
 object it received from the Auth Service.
 
-
 ![Credential registration: Finalize](./assets/diagrams/linking/5b-finalize_consent.svg)
-
 
 # 4. <a id='Unlinking'></a>Unlinking
 
@@ -359,13 +351,13 @@ device, the PISP, and the DFSP.
 To make this work, we simply need to provide a way for a member on the network
 to remove the Consent resource and notify the other parties about the removal.
 
-
 There are 2 scenarios we need to cater for with a **DELETE /consents/**_{ID}_ request:
+
 1. A DFSP-hosted Auth Service, where no details about the Consent are stored in the Switch, and
 2. A Switch hosted Auth Service, where the Switch hosted auth service is considered the Authoritative source on the `Consent` object
 
-
 ## 4.1 <a id='UnlinkingwithoutaSwitchHostedAuthService'></a>Unlinking without a Switch Hosted Auth Service
+
 In this case, the switch passes on the **DELETE /consents/22222222-0000-0000-0000-000000000000** request to the DFSP in the `FSPIOP-Destination` header.
 
 ![Unlinking-DFSP-Hosted](./assets/diagrams/linking/6a-unlinking-dfsp-hosted.svg)
@@ -396,6 +388,7 @@ the DFSP responds with error code `6205` in **PUT /accounts/**_{ID}_**/error**.
 ![Accounts error](./assets/diagrams/linking/error_scenarios/1-discovery-error.svg)
 
 ## 5.2 <a id='BadconsentRequests'></a>ConsentRequest Errors
+
 When the DFSP receives the **POST /consentRequests** request from the PISP, the following processing errors
 could occur:
 

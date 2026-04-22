@@ -31,7 +31,7 @@ This document defines scheme rules for Open API for FSP Interoperability (hereaf
 1. Business Scheme Rules:
 
     a. These business rules should be governed by FSPs and an optional regulatory authority implementing the API within a scheme.
-    
+
     b. The regulatory authority or implementing authority should identify valid values for these business scheme rules in their API policy document.
 
 2. API implementation Scheme Rules:
@@ -42,7 +42,7 @@ This document defines scheme rules for Open API for FSP Interoperability (hereaf
 
 3. Security and Non-Functional Scheme Rules.
 
-    a. Security and non-functional scheme rules should be determined and identified in the implementation policy of a scheme. 
+    a. Security and non-functional scheme rules should be determined and identified in the implementation policy of a scheme.
 
 <br />
 
@@ -100,7 +100,7 @@ A scheme may recommend allowing transactions in more than one currency. This sch
 
 A scheme may determine the format of the FSP ID. The FSP ID should be of string type. Each participant will be issued a unique FSP ID by the scheme. Each FSP should prepend the FSP ID to a merchant code (a unique identifier for a merchant) so that the merchant code is unique across all the participants (that is, across the scheme). The scheme can also determine an alternate strategy to ensure that FSP IDs and merchant codes are unique across participating FSPs.
 
-#### Interoperability Transaction Type 
+#### Interoperability Transaction Type
 
 The API supports the use cases documented in _Use Cases_. A scheme may recommend implementation of all the supported usecases or a subset thereof. A scheme may also recommend to rollout the use cases in phases. Two or more FSPs in the scheme might decide to implement additional use-cases supported by the API. A Switch may work as a transaction router and does not validate transaction type; the FSP can accept or reject the transaction based on its supported transaction types. If a participant FSP initiates a supported API transaction type due to incorrect configuration on the Payer end, then the transaction must be rejected by the peer FSP if the peer FSP doesn’t support the specific transaction type.
 
@@ -178,7 +178,6 @@ The FSPs and the Switch should configure callback timeouts. The callback timeout
 
 ![Figure 1 Callback Timeout](../assets/scheme-rules-figure-2-callback-timeout.png)
 
-
 **Figure 2 – Callback Timeout**
 
 ## Security and Non-Functional Requirements Scheme Rules
@@ -210,7 +209,6 @@ All parties must support the encoding and encryption ciphers as specified in _En
 A scheme should require that all HTTP communication between parties is secured using TLS<sup>[1](https://tools.ietf.org/html/rfc5246)</sup> version 1.2 or later.
 
 <sup>1</sup> [https://tools.ietf.org/html/rfc5246](https://tools.ietf.org/html/rfc5246) - The Transport Layer Security (TLS) Protocol - Version 1.2
-
 
 ### Table of Figures
 

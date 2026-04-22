@@ -22,7 +22,7 @@
   a. Launch of Mojaloop Foundation
   b. Paula H - Executive Director of the Mojaloop Foundation.
 5. Mojaloop Foundation - Simeon:
-  a. Provide feedback on the Community Survey 
+  a. Provide feedback on the Community Survey
   b. Hackathon possible in early June time-frame in collaboration with Google
   c. Mojaloop Newsletter with interesting items such as ML FSPIOP v1.1 Spec, Helm v10.1.0 release, etc. to be launched next week.
 
@@ -143,7 +143,7 @@
   d. Lewis D: Code quality - GDPR requirements proposal
   e: Lewis D: Versioning - iinitial draft made as PR - will be presented to DA next week
 3. Mifos:
-  a. Ed C, Istvan M: Payment Hub, envt in Azure, 
+  a. Ed C, Istvan M: Payment Hub, envt in Azure,
   b. Ed C, Istvan M: Transactions now going through
   c. Ed C, Istvan M: Next phase: to implement back office screens to see screens for business users
   d. Ed C, Istvan M: Workshop with Google on PISP

@@ -85,7 +85,6 @@ The Open API for FSP Interoperability Specification includes the following docum
 
 This section introduces the technology used by the API signature, including the data exchange format for the signature of an API message and the mechanism used to generate and verify a signature.
 
-
 ### Signature Data Model
 
 The API uses a customized HTTP header parameter **FSPIOP-Signature** to represent the signature that is produced by the initiating API client for the API message. The data model for this parameter is described in [Table 1](#table-1).
@@ -234,7 +233,7 @@ Content-Type:application/vnd.interoperability.quotes+json;version=1.0
 
 #### Computing Signature Input
 
-According to JWS specification, the signature input is BASE64URL(UTF8(JWS Protected Header)) || '.' || BASE64URL(JWS Payload). 
+According to JWS specification, the signature input is BASE64URL(UTF8(JWS Protected Header)) || '.' || BASE64URL(JWS Payload).
 
 Assuming the HTTP header parameters **Date** and **FSPIOP-Destination** are protected by the signature, and the algorithm RS256 is used to sign the message, the JWS Protected Header in this case is as follows (line breaks and indentation within values for display purposes only):
 
@@ -331,7 +330,7 @@ iL3F1b3RlcyIsIkZTUElPUC1IVFRQLU1ldGhvZCI6IlBPU1QiLCJEYXRlIjoiVHVlLCAyMyBNYX
 kgMjAxNyAyMToxMjozMSBHTVQiLCJGU1BJT1AtU291cmNlIjoiMTIzNCJ9
 ```
 
-2. Use BASE64URL to decode the encoded representation of the JWS Protected Header. Verify that the resulting octet sequence is a UTF-8-encoded representation of a completely valid JSON object conforming to JSON Data Interchange Format, defined in RFC7159. In this case, the decoded JSON object is:
+1. Use BASE64URL to decode the encoded representation of the JWS Protected Header. Verify that the resulting octet sequence is a UTF-8-encoded representation of a completely valid JSON object conforming to JSON Data Interchange Format, defined in RFC7159. In this case, the decoded JSON object is:
 
 ```json
 {
@@ -344,17 +343,17 @@ kgMjAxNyAyMToxMjozMSBHTVQiLCJGU1BJT1AtU291cmNlIjoiMTIzNCJ9
 }
 ```
 
-3. Verify that the **alg** parameter is valid for the API. That means it must be in the list of **RS256, RS384, RS512**. In this case, the value of **alg** is **RS256**, which is valid.
+1. Verify that the **alg** parameter is valid for the API. That means it must be in the list of **RS256, RS384, RS512**. In this case, the value of **alg** is **RS256**, which is valid.
 
-4. Verify that the value of the parameter **FSPIOP-URI** is same as the input URL of this API message.
+2. Verify that the value of the parameter **FSPIOP-URI** is same as the input URL of this API message.
 
-5. Verify that the value of the parameter **FSPIOP-HTTP-Method** is same as the HTTP method of this API message.
+3. Verify that the value of the parameter **FSPIOP-HTTP-Method** is same as the HTTP method of this API message.
 
-6. Verify that the value of the HTTP header parameter **FSPIOP-Source** is the same as the corresponding value listed in this JWS Protected Header.
+4. Verify that the value of the HTTP header parameter **FSPIOP-Source** is the same as the corresponding value listed in this JWS Protected Header.
 
-7. Verify that the values for the HTTP header parameter **FSPIOP-Destination** are the same as the corresponding values stated in this JWS Protected Header.
+5. Verify that the values for the HTTP header parameter **FSPIOP-Destination** are the same as the corresponding values stated in this JWS Protected Header.
 
-8. Verify the other protected HTTP header parameters. In this case, the **Date** parameter is protected by JWS Protected Header. If the parameters **Date** in the HTTP header of this API message and **Date** in the JWS Protected Header are equal, then the validation is successful. Both **Date** parameters in the example should be the following value:
+6. Verify the other protected HTTP header parameters. In this case, the **Date** parameter is protected by JWS Protected Header. If the parameters **Date** in the HTTP header of this API message and **Date** in the JWS Protected Header are equal, then the validation is successful. Both **Date** parameters in the example should be the following value:
 
 ```
 "Tue, 23 May 2017 21:12:31 GMT"
@@ -403,13 +402,13 @@ The validation is passed.
 }
   ```
 
-2. Compute the encoded payload value BASE64URL(JWS Payload). Get the encoded value as:
+1. Compute the encoded payload value BASE64URL(JWS Payload). Get the encoded value as:
 
 ```
 eyJwYXllZSI6eyJwYXJ0eUlkSW5mbyI6eyJwYXJ0eUlkVHlwZSI6Ik1TSVNETiIsInBhcnR5SWRlbnRpZmllciI6IjE1Mjk1NTU4ODg4IiwiZnNwSWQiOiI1Njc4In19LCJhbW91bnRUeXBlIjoiUkVDRUlWRSIsInRyYW5zYWN0aW9uVHlwZSI6eyJzY2VuYXJpbyI6IlRSQU5TRkVSIiwiaW5pdGlhdG9yIjoiUEFZRVIiLCJzdWJTY2VuYXJpbyI6IlAyUCBUcmFuc2ZlciBhY3Jvc3MgTU0gc3lzdGVtcyIsImluaXRpYXRvclR5cGUiOiJDT05TVU1FUiJ9LCJub3RlIjoidGhpcyBpcyBhIHNhbXBsZSBmb3IgUE9TVCAvcXVvdGVzIiwiYW1vdW50Ijp7ImFtb3VudCI6IjE1MCIsImN1cnJlbmN5IjoiVVNEIn0sImZlZXMiOnsiYW1vdW50IjoiMS41IiwiY3VycmVuY3kiOiJVU0QifSwiZXh0ZW5zaW9uTGlzdCI6W3sidmFsdWUiOiJ2YWx1ZTEiLCJrZXkiOiJrZXkxIn0seyJ2YWx1ZSI6InZhbHVlMiIsImtleSI6ImtleTIifSx7InZhbHVlIjoidmFsdWUzIiwia2V5Ijoia2V5MyJ9XSwiZ2VvQ29kZSI6eyJsYXRpdHVkZSI6IjU3LjMyMzg4OSIsImxvbmdpdHVkZSI6IjEyNS41MjAwMDEifSwiZXhwaXJhdGlvbiI6IjIwMTctMDUtMjRUMDg6NDA6MDAuMDAwLTA0OjAwIiwicGF5ZXIiOnsicGVyc29uYWxJbmZvIjp7ImNvbXBsZXhOYW1lIjp7ImZpcnN0TmFtZSI6IkJpbGwiLCJtaWRkbGVOYW1lIjoiQmVuIiwiTGFzdE5hbWUiOiJMZWUifSwiZGF0ZU9mQmlydGgiOiIxOTg2LTAyLTE0In0sInBhcnR5SWRJbmZvIjp7InBhcnR5SWRUeXBlIjoiTVNJU0ROIiwicGFydHlTdWJJZE9yVHlwZSI6IlJlZ2lzdGVyZWRDdXN0b21lciIsInBhcnR5SWRlbnRpZmllciI6IjE2MTM1NTUxMjEyIiwiZnNwSWQiOiIxMjM0In0sIm5hbWUiOiJCaWxsIExlZSJ9LCJxdW90ZUlkIjoiNTllMzMxZmEtMzQ1Zi00NTU0LWFhYzgtZmNkODgzM2Y3ZDUwIiwidHJhbnNhY3Rpb25JZCI6IjM2NjI5YTUxLTM5M2EtNGUzYy1iMzQ3LWMyY2I1N2UxZTFmYyJ9
 ```
 
-3. Validate the JWS Signature against the JWS Signing Input (that is, the JWS Protected Header, JWS Payload) with the specified algorithm **RS256** (specified in the JWS Protected Header), and the public key. Record whether the validation succeeded or not.
+1. Validate the JWS Signature against the JWS Signing Input (that is, the JWS Protected Header, JWS Payload) with the specified algorithm **RS256** (specified in the JWS Protected Header), and the public key. Record whether the validation succeeded or not.
 
 <br />
 

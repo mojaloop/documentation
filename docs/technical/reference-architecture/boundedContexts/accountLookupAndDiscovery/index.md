@@ -42,9 +42,6 @@ Where a Participant DFSP requests an existing association between a given Party 
 ![Use Case - Party/Participant Disassociate](./assets/aldPartyParticipantDisassoc_20220919.png)
 >UC Workflow Diagram: Party/Participant Disassociate
 
-
-
-
 ### Get Participant
 
 #### Description
@@ -70,4 +67,3 @@ Where a participant DFSP queries another participant DFSP for the details of a P
 <!--## Notes -->
 <!-- Footnotes themselves at the bottom. -->
 
-[^1]: Common Interfaces: [Mojaloop Common Interface List](../../commonInterfaces.md)

@@ -258,4 +258,3 @@ Mojaloop uses two canonical models to manage funds transfers, one for non-bulk t
 <!-- Footnotes themselves at the bottom. -->
 <!--## Notes -->
 
-[^1]: Common Interfaces: [Mojaloop Common Interface List](../../commonInterfaces.md)

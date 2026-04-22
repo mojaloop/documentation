@@ -6,12 +6,12 @@ The FSP Interoperability API Bounded Context provides access to the internal ope
 
 The FSP IOP API interacts with many different bounded contexts and thus the simplified view is provided here, for further reading on the events and connections that the FSP IOP API provides and consumes please review the Mojaloop Common Interfaces [^1]. The bounded contexts that are integrated with the FSP IOP API are:
 
--   Account Lookup & Discovery Bounded Context [^14]
--   Notifications and Alerts Bounded Context [^27]
--   Participant Lifecycle Management Bounded Context [^26]
--   Quoting\Agreement Bounded Context [^19]
--   Transfers Bounded Context [^22]
--   Settlement Bounded Context [^21]
+- Account Lookup & Discovery Bounded Context [^14]
+- Notifications and Alerts Bounded Context [^27]
+- Participant Lifecycle Management Bounded Context [^26]
+- Quoting\Agreement Bounded Context [^19]
+- Transfers Bounded Context [^22]
+- Settlement Bounded Context [^21]
 
 ![Use Case - FSP Interoperability API Functional Overview](./assets/0-0-functional-overview.jpg)
 
@@ -167,7 +167,7 @@ When the Payer FSP sends a POST Quote request [^3] (POST /quotes) the FSP IOP AP
 
 When the Payer FSP sends a POST Quote request [^3] (POST /quotes) the FSP IOP API sends the request to the Quoting/Agreement BC [^19] for processing and it succeeds initial processing. The FSP IOP API sends the request POST quote request to the Payee FSP. The Payee FSP should react with a accepted quote by sending PUT Quote request [^18] (PUT /quotes/{ID}). The response is sent to Quoting/Agreement BC [^19] for further processing and validation. When the Bounded Context detects that the quote does not adhere to the scheme rules defined then an error response is then sent to the FSP IOP API. The FSP IOP API then notifies both the Payer FSP and the Payee FSP through the use of the PUT Quote Error response [^20] (PUT /quotes/{ID}/error).
 
-#### Flow Diagram 
+#### Flow Diagram
 
 ![Use Case - Agreement BC - Calculate Quote - Invalid Scheme Rules detected in Response](./assets/1-6-calculate-quote-invalid-scheme-rules-response.jpg)
 
@@ -358,9 +358,7 @@ Many use cases stipulate that the request structure and semantics should be vali
 [^7]: [Get Participant - Definition](https://docs.mojaloop.io/mojaloop-specification/fspiop-api/documents/API%20Definition%20v1.1.html#6231-get-participantstypeid)
 [^8]: [Get Parties - Definition](https://docs.mojaloop.io/mojaloop-specification/fspiop-api/documents/API%20Definition%20v1.1.html#6331-get-partiestypeid)
 [^9]: [Post Transfers - Definition](https://docs.mojaloop.io/mojaloop-specification/fspiop-api/documents/API%20Definition%20v1.1.html#6732-post-transfers)
-[^10]: [Commit Notification - Definition](https://docs.mojaloop.io/mojaloop-specification/fspiop-api/documents/API%20Definition%20v1.1.html#6726-commit-notification)
 [^11]: [Get Transfers - Definition](https://docs.mojaloop.io/mojaloop-specification/fspiop-api/documents/API%20Definition%20v1.1.html#6731-get-transfersid)
-[^12]: [Transaction Irrevocability - Definition](https://docs.mojaloop.io/mojaloop-specification/fspiop-api/documents/API%20Definition%20v1.1.#6722-transaction-irrevocability)
 [^13]: [Transfers Timeout and Expiry - Definition](https://docs.mojaloop.io/mojaloop-specification/fspiop-api/documents/API%20Definition%20v1.1.html#6724-timeout-and-expiry)
 [^14]: [Account Lookup and Discovery Bounded Context](../accountLookupAndDiscovery/index.md)
 [^15]: [Put Participant - Definition](https://docs.mojaloop.io/mojaloop-specification/fspiop-api/documents/API%20Definition%20v1.1.html#6242-put-participantsid)

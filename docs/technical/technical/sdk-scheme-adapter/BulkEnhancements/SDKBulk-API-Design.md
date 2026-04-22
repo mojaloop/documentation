@@ -1,20 +1,24 @@
 # SDK Support for Bulk Transfers - API
-The Payer SDK Scheme Adapter enhancements have been added to the API under the \BulkTransactions endpoint. 
-- **POST** /bulkTransactions 
-- **PUT** /bulkTransactions 
+
+The Payer SDK Scheme Adapter enhancements have been added to the API under the \BulkTransactions endpoint.
+
+- **POST** /bulkTransactions
+- **PUT** /bulkTransactions
 - **PUT** /bulkTransactions callback
 
 The Outbound Open API definition can be found [here](https://github.com/mojaloop/api-snippets/blob/master/sdk-scheme-adapter/v2_0_0/outbound/openapi.yaml).
 The Inbound Open API definition can be found [here](https://github.com/mojaloop/api-snippets/blob/master/sdk-scheme-adapter/v2_0_0/inbound/openapi.yaml).
 
-
 ## Technical Sequence Diagram
+
 ![Technical Bulk Transfer Sequence Diagram](https://raw.githubusercontent.com/mojaloop/sdk-scheme-adapter/master/docs/design-bulk-transfers/assets/api-sequence-diagram.svg)
 
 ## Error Tables for bulk transfers
+
 [Table of Error Codes](./assets/sequence/BULK-ERRORCODES.md)
 
 ### Discovery Phase
+
 All the errors encountered during this phase will be accumulated in the mojaloop-connector and will be added to the `lastError` object and returned to the Payer FSP along with all other successful or failed transfers involved in the bulk transfer request.
 
 mojaloop-connector will act as a pass-through for all the errors returned by the switch
@@ -37,14 +41,15 @@ mojaloop-connector will act as a pass-through for all the errors returned by the
 | Error Description                                                      | Error Code  |  HTTP Code       | Category                                                  |
 |------------------------------------------------------------------------|-------------|------------------|-----------------------------------------------------------|
 | Communication error                                                    | 1000        | 503              |  Technical Error                                          |
-| Destination communication error	                                       | 1001        | 503              |  Technical Error                                          |
+| Destination communication error                                        | 1001        | 503              |  Technical Error                                          |
 | Generic server error                                                   | 2000        | 503              |  Processing Error                                         |
-| Internal server error	                                                 | 2001        | 503              |  Processing Error                                         |
-| Timeout Resolving Party	                                               | 2004        | 503              |  Processing Error                                         |
+| Internal server error                                                  | 2001        | 503              |  Processing Error                                         |
+| Timeout Resolving Party                                                | 2004        | 503              |  Processing Error                                         |
 | Generic validation error                                               | 3100        | 400              |  Request Validation Error                                 |
-| Party not found	                                                       | 3204        | 202              |  Processing Error                                         |
+| Party not found                                                        | 3204        | 202              |  Processing Error                                         |
 
 ### Agreement Phase
+
 All the errors encountered during this phase will be accumulated in the mojaloop-connector and will be added to the `lastError` object and returned to the Payer FSP along with all other successful or failed transfers involved in the bulk transfer request.
 
 mojaloop-connector will act as a pass-through for all the errors returned by the switch
@@ -67,27 +72,27 @@ mojaloop-connector will act as a pass-through for all the errors returned by the
 | Error Description                                                      | Error Code  |  HTTP Code       | Category                                                  |
 |------------------------------------------------------------------------|-------------|------------------|-----------------------------------------------------------|
 | Communication error                                                    | 1000        | 503              |  Technical Error                                          |
-| Destination communication error	                                       | 1001        | 503              |  Technical Error                                          |
+| Destination communication error                                        | 1001        | 503              |  Technical Error                                          |
 | Generic server error                                                   | 2000        | 503              |  Technical Error                                          |
-| Internal server error	                                                 | 2001        | 503              |  Technical Error                                          |
-| Not implemented	                                                       | 2002        | 501              |  Processing Error                                         |
-| Service currently unavailable	                                         | 2003        | 503              |  Processing Error                                         |
-| Server timed out	                                                     | 2004        | 503              |  Processing Error                                         |
-| Server busy     	                                                     | 2005        | 503              |  Processing Error                                         |
+| Internal server error                                                  | 2001        | 503              |  Technical Error                                          |
+| Not implemented                                                        | 2002        | 501              |  Processing Error                                         |
+| Service currently unavailable                                          | 2003        | 503              |  Processing Error                                         |
+| Server timed out                                                      | 2004        | 503              |  Processing Error                                         |
+| Server busy                                                           | 2005        | 503              |  Processing Error                                         |
 | Generic client error                                                   | 3000        | 400              |  Request Validation Error                                 |
 | Unacceptable version requested                                         | 3001        | 406              |  Not acceptable Error                                     |
 | Unknown URI                                                            | 3002        | 404              |  Not Found Error                                          |
 | Generic validation error                                               | 3100        | 400              |  Request Validation Error                                 |
-| Malformed syntax	                                                     | 3101        | 400              |  Request Validation Error                                 |
-| Missing mandatory element	                                             | 3102        | 400              |  Request Validation Error                                 |
-| Too many elements       	                                             | 3103        | 400              |  Request Validation Error                                 |
-| Too large payload       	                                             | 3104        | 400              |  Request Validation Error                                 |
-| Invalid signature       	                                             | 3105        | 403              |  Forbidden Error                                          |
-| Destination FSP Error       	                                         | 3201        | 404              |  Not Found Error                                          |
-| Payer FSP ID not found       	                                         | 3202        | 404              |  Not Found Error                                          |
-| Payee FSP ID not found       	                                         | 3203        | 404              |  Not Found Error                                          |
-| Quote ID not found          	                                         | 3205        | 404              |  Not Found Error                                          |
-| Bulk quote ID not found          	                                     | 3209        | 404              |  Not Found Error                                          |
+| Malformed syntax                                                      | 3101        | 400              |  Request Validation Error                                 |
+| Missing mandatory element                                              | 3102        | 400              |  Request Validation Error                                 |
+| Too many elements                                                     | 3103        | 400              |  Request Validation Error                                 |
+| Too large payload                                                     | 3104        | 400              |  Request Validation Error                                 |
+| Invalid signature                                                     | 3105        | 403              |  Forbidden Error                                          |
+| Destination FSP Error                                                 | 3201        | 404              |  Not Found Error                                          |
+| Payer FSP ID not found                                                 | 3202        | 404              |  Not Found Error                                          |
+| Payee FSP ID not found                                                 | 3203        | 404              |  Not Found Error                                          |
+| Quote ID not found                                                    | 3205        | 404              |  Not Found Error                                          |
+| Bulk quote ID not found                                                | 3209        | 404              |  Not Found Error                                          |
 | Generic expired error                                                  | 3300        | 503              |  Processing Error                                         |
 | Quote expired                                                          | 3302        | 503              |  Processing Error                                         |
 | Generic Payer error                                                    | 4000        | 400              |  Request Validation Error                                 |
@@ -106,9 +111,8 @@ mojaloop-connector will act as a pass-through for all the errors returned by the
 | Payee permission error                                                 | 5300        | 403              |  Forbidden Error                                          |
 | Generic Payee blocked error                                            | 5400        | 403              |  Forbidden Error                                          |
 
-
-
 ### Transfer Phase
+
 All the errors encountered during this phase will be accumulated in the mojaloop-connector and will be added to the `lastError` object and returned to the Payer FSP along with all other successful or failed transfers involved in the bulk transfer request.
 
 mojaloop-connector will act as a pass-through for all the errors returned by the switch
@@ -131,10 +135,10 @@ mojaloop-connector will act as a pass-through for all the errors returned by the
 | Error Description                                                      | Error Code  |  HTTP Code       | Category                                                  |
 |------------------------------------------------------------------------|-------------|------------------|-----------------------------------------------------------|
 | Communication error                                                    | 1000        | 503              |  Technical Error                                          |
-| Destination communication error	                                     | 1001        | 503              |  Technical Error                                          |
+| Destination communication error                                      | 1001        | 503              |  Technical Error                                          |
 | Generic server error                                                   | 2000        | 503              |  Processing Error                                         |
-| Internal server error	                                                 | 2001        | 503              |  Processing Error                                         |
-| Server timed out	                                                 | 2004        | 503              |  Processing Error                                         |
+| Internal server error                                                  | 2001        | 503              |  Processing Error                                         |
+| Server timed out                                                  | 2004        | 503              |  Processing Error                                         |
 | Generic validation error                                               | 3100        | 400              |  Request Validation Error                                 |
 | Bulk transfer ID not found                                             | 3210        | 404              |  Processing Error                                         |
 | Generic expired error                                                  | 3300        | 503              |  Processing Error                                         |

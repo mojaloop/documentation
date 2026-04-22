@@ -117,4 +117,3 @@ The canonical model stores the following details of quotations in the Quotes & A
 <!--## Notes -->
 
 <!-- Footnotes themselves at the bottom. -->
-[^1]: Common Interfaces: [Mojaloop Common Interface List](../../commonInterfaces.md)

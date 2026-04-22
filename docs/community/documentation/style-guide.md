@@ -70,7 +70,7 @@ When a document uses both footnotes and endnotes, for the footnotes, use the fol
 * 5th note = \*\* \(2 asterisks\)
 * 6th note = †† \(2 daggers\)
 * 7th note = ‡‡ \(2 double daggers\)
-* 8th note = §§ \(2 section signs\) 
+* 8th note = §§ \(2 section signs\)
 
 Separate multiple superscript references \(footnotes, endnotes\) with commas, not semicolons.
 

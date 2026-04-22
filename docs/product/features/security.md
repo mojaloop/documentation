@@ -1,15 +1,18 @@
 # Security
+
 ## Open Source and Security
+
 A common misconception is that open-source software is inherently less secure than closed-source software, simply because attackers can inspect the code. The argument goes: if the code is public, it must be easier to discover vulnerabilities. In reality, this view misunderstands how modern cybersecurity works.
 
 Mojaloop’s security does not depend on hiding its inner workings. Instead, it is built on well-established, open source cryptographic algorithms, developed by leading experts and published openly for peer review. These algorithms are rigorously tested by the global cryptographic community, ensuring that weaknesses are identified and addressed quickly. When a flaw is found, fixes are shared openly and rapidly, benefiting all users — Mojaloop included.
 
 This approach is directly comparable to the world of physical locks. The mechanism of a Yale lock, for example, is no secret: the patents are public, and anyone can study how it works. Yet the lock remains secure, not because the mechanism is hidden, but because only the correct, unique key can open it. Cryptography works the same way. Modern algorithms rely on the secrecy of keys, not on concealing the algorithm itself.
 
-The same applies to the entire Mojaloop codebase - since it is open source, anyone is able to review the source code and help to identify any vulnerabilities. Teams within the Mojaloop community take an active interest in this process, and highlight any issues identified during the quality and security process for review and remediation. Potential vulnerabilities are regularly raised by interested parties outside the core community, and these are reviewed and addressed by the quality and security teams. Further details are provided in the [Maintaining Security](#Maintaining-Security) section, below
+The same applies to the entire Mojaloop codebase - since it is open source, anyone is able to review the source code and help to identify any vulnerabilities. Teams within the Mojaloop community take an active interest in this process, and highlight any issues identified during the quality and security process for review and remediation. Potential vulnerabilities are regularly raised by interested parties outside the core community, and these are reviewed and addressed by the quality and security teams. Further details are provided in the [Maintaining Security](#maintaining-security) section, below
 
 ## Mojaloop Security
-Mojaloop has built on these open source practices and cryptographic algorithms to create a security model that is multi-layered, complex, and subject to continuous oversight and review. 
+
+Mojaloop has built on these open source practices and cryptographic algorithms to create a security model that is multi-layered, complex, and subject to continuous oversight and review.
 
 It can be broken down into three areas of scope:
 
@@ -20,6 +23,7 @@ It can be broken down into three areas of scope:
 How Mojaloop approaches each of these areas is explored in the following sections.
 
 ## DFSP Connection Security
+
 The connection between a participant DFSP and the Mojaloop Hub benefits from three levels of security which together ensure the integrity, confidentiality, and non-repudiation of messages between a DFSP, the Mojaloop Hub, and (where appropriate) the other DFSP participating in a transaction.
 
 The following diagram illustrates these three levels.
@@ -35,6 +39,7 @@ Finally, the terms of a transaction/ transfer are secured using the  Interledger
 These three layers are all built into the Mojaloop Hub. On the DFSP side, these can be directly established and managed by the DFSP's own engineering teams. However, the Mojaloop Community also [makes available a set of tools](./connectivity.html) which both establish these security layers and maintain them during the lifetime of the connection. The tools also help a DFSP to manage and orchestrate their use of the various communications/APIs with the Mojaloop Hub, handling many of the complexities on behalf of the DFSP, whilst existing entirely within the DFSP's own domain (and so not forming part of the Mojaloop Hub).
 
 ## Hub Operational Security
+
 Security at the Mojaloop Hub itself reaches beyond the connections to participating DFSPs (as described in the previous section), and includes the security of operator actions through the use of the various [Hub Portals](.product.html).
 
 Portals are implemented using Mojaloop's Business Operations Framework (BOF), which not only provides the core Mojaloop portals, but also provides a set of APIs to allow a Hub operator to extend these portals, and create new ones, to meet their specific requirements.
@@ -46,31 +51,36 @@ This approach gives a Mojaloop Hub operator granular control of an individual's 
 In addition, it remains the responsibility of the hub operator to ensure that control points appropriate to the operation of a financial service are put in place (such as, where it applies, physical access to the servers hosting the Mojaloop Hub, control of operator use of mobile phones, video surveillance, supply chain management, visitor management, etc), and that business processes are defined to ensure the correct application of those control points.
 
 ## Maintaining Security
+
 The Mojaloop Community has defined a set of procedures and techniques to ensure that the security of a Mojaloop deployment is maintained as attacks evolve and vulnerabilities are identified, either in Mojaloop itself of in one of the myriad of other open source programs that Mojaloop relies on. This is collectively referred to as the Vulnerability Management Process, and comprises:
+
 - A Security Committee, whose role is the coordination of all aspects of vulnerability management.
 - Processes for handling possible vulnerabilities, when they have been brought to the attention of the Security Committee.
 - Pro-active vulnerability identification and management processes, including:
-	- The continuous monitoring of open-source components for vulnerabilities;
-	- Static Application Security Testing (SAST), using multiple tools which together provide detailed insights into code-level vulnerabilities by leveraging public vulnerability databases;
-	- Automated maintenance of a Software Bill of Materials (SBOM), which facilitates inventory and dependency management;
-	- The scanning of container images for vulnerabilities before release;
-	- The use of an automated license scanner to ensure that only external components with compatible licenses are used;
-	- Following Mojaloop Release v17.1.0, Mojaloop's helm charts are signed at publishing and can be verified at install / deploy time, to ensure the provenance of artefacts related to charts;
-	- Mojaloop employs a CI/CD pipeline that automatically integrates security checks throughout the software development process;
-	- Mojaloop operates a Coordinated Vulnerability Disclosure (CVD) process, ensuring responsible parties have adequate time to address and remedy vulnerabilities before public disclosure;
-	- Comprehensive reports are generated after each scan, detailing outcomes, remediation actions, and their effectiveness. All reports are stored for auditing and compliance, ensuring transparency and accountability.
+ 	- The continuous monitoring of open-source components for vulnerabilities;
+ 	- Static Application Security Testing (SAST), using multiple tools which together provide detailed insights into code-level vulnerabilities by leveraging public vulnerability databases;
+ 	- Automated maintenance of a Software Bill of Materials (SBOM), which facilitates inventory and dependency management;
+ 	- The scanning of container images for vulnerabilities before release;
+ 	- The use of an automated license scanner to ensure that only external components with compatible licenses are used;
+ 	- Following Mojaloop Release v17.1.0, Mojaloop's helm charts are signed at publishing and can be verified at install / deploy time, to ensure the provenance of artefacts related to charts;
+ 	- Mojaloop employs a CI/CD pipeline that automatically integrates security checks throughout the software development process;
+ 	- Mojaloop operates a Coordinated Vulnerability Disclosure (CVD) process, ensuring responsible parties have adequate time to address and remedy vulnerabilities before public disclosure;
+ 	- Comprehensive reports are generated after each scan, detailing outcomes, remediation actions, and their effectiveness. All reports are stored for auditing and compliance, ensuring transparency and accountability.
 
 The reader can find more detailed, technical information on the [Mojaloop Vulnerability Management Process here](https://docs.mojaloop.io/technical/technical/security/security-overview.html).
 
-
 ## Deployment Quality and Security
-Members of the Mojaloop Community are currently developing a Quality Assessment Framework, the purpose of which is to develop a Toolkit that can be used to validate the configuration, functionality, security, interoperability readiness and performance of a deployment. 
+
+Members of the Mojaloop Community are currently developing a Quality Assessment Framework, the purpose of which is to develop a Toolkit that can be used to validate the configuration, functionality, security, interoperability readiness and performance of a deployment.
 
 This framework might be used by adopters to "self certify", or it might be used by an external reviewer in order to create a higher level of assurance for supervisory authorities and participants.
 
 ## Applicability
+
 This document relates to Mojaloop Version 17.1.0
+
 ## Document History
+
   |Version|Date|Author|Detail|
 |:--------------:|:--------------:|:--------------:|:--------------:|
 |1.2|13th October 2025| Paul Makin|Added the "Open Source and Security" introductory section.|

@@ -15,10 +15,10 @@ To help get you started with Mojaloop, select which of the options below best su
 
     7.2. [Working with Mojaloop?](./demos/working-with-mojaloop.md)
 
-    7.3. [Financial inclusion 101 ](./demos/financial-inclusion-101.md)
+    7.3. [Financial inclusion 101](./demos/financial-inclusion-101.md)
 
     7.4. [What is RTP?](./demos/what-is-rtp.md)
 
     7.5. [What Makes a Successful Financial Ecosystem?](./demos/what-makes-a-successful-financial-ecosystem.md)
-    
+
     7.6. [Inside the Loop](./demos/inside-the-loop.md)

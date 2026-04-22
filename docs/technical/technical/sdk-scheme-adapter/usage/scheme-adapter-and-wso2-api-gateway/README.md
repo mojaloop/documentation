@@ -2,7 +2,6 @@
 
 This documentaion is for testing scheme adapter against a public hosted WSO2 API gateway with SSL encryption and bearer token authentication.
 
-
 ![Overview](scheme-adapter-and-wso2-api-gateway-overview.png)
 
 ## Prerequisite
@@ -20,10 +19,11 @@ This documentaion is for testing scheme adapter against a public hosted WSO2 API
 * You can try some api requests in "API Console" tab by selecting the generated access token.
 * Please make a note of the API URLs for both APIs and access token.
 
-
 ## Infrastructure Stuff
+
 The following are the things your infrastructure team should take care off.
 Please contact your infra team for further details.
+
 * For getting back the responses, we need a machine with static public IP. And a domain name should be pointed to that IP.
 * Generate client and server SSL certificates using MCM portal and keychain tool. This step is to establish secure communication using mutual SSL.
 * Provision the endpoints pointing to your https address in WSO2 / HA Proxy.
@@ -43,13 +43,14 @@ Please contact your infra team for further details.
     * You can use route53 in aws or any other DNS service to point a DNS name to this IP address
     * This step is required because the Let's Encrypt certificate authority will not issue certificates for a bare IP address.
 
-
 ## Setting up Scheme Adapter with Mojaloop Simulator
 
 Please download the Mojaloop Simulator repo
+
 ```
 git clone https://github.com/mojaloop/mojaloop-simulator.git
 ```
+
 * Replace the certificates and keys in src/secrets folder with the generated certificates in the previous step.
 
 * Edit the file src/docker-compose.yml and change the required parameters. Please refer the following file.
@@ -92,6 +93,7 @@ git clone https://github.com/mojaloop/mojaloop-simulator.git
     ```
 
 * Edit the file src/scheme-adapter.env and change the following settings
+
   ```
   MUTUAL_TLS_ENABLED=true
   CACHE_HOST=redis
@@ -102,6 +104,7 @@ git clone https://github.com/mojaloop/mojaloop-simulator.git
   ```
 
 Then try running the following command to run the services
+
 ```
 cd src/
 docker-compose up -d
@@ -114,6 +117,7 @@ We can now access the mojaloop simulator's test api on 3003.
 We should create a new fsp named "extpayerfp" or with any other name.
 
 The FSP onboarding section in "OSS-New-Deployment-FSP-Setup" postman collection can be used for this. You can get the postman repo from https://github.com/mojaloop/postman.
+
 * Duplicate the "Mojaloop-Local" environment and change the following valuesin that
   * payerfsp - extpayerfsp
   * HOST_ML_API_ADAPTER, HOST_ML_API, HOST_SWITCH_TRANSFERS, HOST_ACCOUNT_LOOKUP_SERVICE, HOST_QUOTING_SERVICE - Your WSO2 FSPIOP API endpoint
@@ -134,6 +138,7 @@ Generally the simulator running in the switch contains payeefsp and you should r
 You can refer the postman request "p2p_happy_path SEND QUOTE / Register Participant {{pathfinderMSISDN}} against MSISDN Simulator for PayeeFSP" in "Golden_Path" collection to achieve this.
 
 The postman request will send a POST request to <HOST_ACCOUNT_LOOKUP_SERVICE>/participants/MSISDN/<new_phone_number> with the following body and required http headers.
+
 ```
 {
     "fspId": "payeefsp",
@@ -144,6 +149,7 @@ The postman request will send a POST request to <HOST_ACCOUNT_LOOKUP_SERVICE>/pa
 ## Send money
 
 ### In one step
+
 If you want to send the money in one step, the configuration options "AUTO_ACCEPT_QUOTES" & "AUTO_ACCEPT_PARTY" in "scheme_adapter.env" should be enabled.
 
 ```

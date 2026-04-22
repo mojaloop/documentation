@@ -7,7 +7,7 @@ The **Settlement Windows** page allows you to:
 * settle a single window or settle multiple windows at once
 
 ::: tip NOTE
-Remember that settling must follow this procedure: 
+Remember that settling must follow this procedure:
 
 * Close the settlement window that you want to settle.
 * Settle closed window(s) of your choice. This creates a new settlement.
@@ -32,12 +32,12 @@ The **Settlement Windows** page provides a list of settlement windows that you c
 The **Clear** option allows you to remove any date filters already applied.
 * **From** and **To**: Displays the start time and end time of the time range selected in the **Date** field. When **Date** is set to **Custom Range**, you have to set the date and time yourself in the **From** and **To** fields.
 * **State**: Provides a drop-down list of settlement window states:
-    * **Open**: The settlement window is open, transfers are being accepted into the current open window.
-    * **Closed**: The settlement window is closed. It is not accepting any additional transfers and all new transfers are being allocated to a new, open settlement window.
-    * **Pending**: The settlement window is closed, but the settlement window still needs to be settled. A window can only be settled once the settlement bank has confirmed that all the participant DFSPs that engaged in transfers in the settlement window have settled their payments.
-    * **Settled**: The settlement bank has confirmed that all the affected DFSPs have settled their obligations towards one another. Following confirmation, the Hub Operator has settled the settlement window.
-    * **Aborted**: The settlement window was part of a settlement that got aborted. It is possible to add the aborted window to a new settlement.
-    * **Clear**: Allows you to remove any window state filters already applied.
+  * **Open**: The settlement window is open, transfers are being accepted into the current open window.
+  * **Closed**: The settlement window is closed. It is not accepting any additional transfers and all new transfers are being allocated to a new, open settlement window.
+  * **Pending**: The settlement window is closed, but the settlement window still needs to be settled. A window can only be settled once the settlement bank has confirmed that all the participant DFSPs that engaged in transfers in the settlement window have settled their payments.
+  * **Settled**: The settlement bank has confirmed that all the affected DFSPs have settled their obligations towards one another. Following confirmation, the Hub Operator has settled the settlement window.
+  * **Aborted**: The settlement window was part of a settlement that got aborted. It is possible to add the aborted window to a new settlement.
+  * **Clear**: Allows you to remove any window state filters already applied.
 * **Clear Filters** button: Allows you to remove all filters you applied.
 
 As you apply search criteria, the list of results (settlement windows) is continuously updated. The search results list displays the following details:
