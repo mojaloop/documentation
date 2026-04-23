@@ -366,8 +366,6 @@ For a bug-fix collection, also run against a service image that *predates* the f
 
 ## Common patterns and pitfalls
 
-- **Heredocs and zsh.** Avoid multi-line heredocs in shell for commit messages and PR bodies — use files + `git commit -F` / `gh pr create --body-file`.
-- **`<<'EOF'` still requires each continuation line to have no trailing whitespace.** When in doubt, write to a file.
 - **URL encoding.** TTK does not double-encode `params`. If your `path` contains `%7B` and you also set `params.ID = "{ID}"`, both are valid — use whichever reads more clearly. Mixing URL encodings in one path is a common source of "why did TTK send a different URL than I expected" bugs.
 - **Callback matching.** TTK matches an inbound callback to an outbound request by path. If the service emits a callback to a *different* path than TTK is listening on (HTML-entity-encoded URL segments, trailing-slash mismatch, SubId vs no-SubId route confusion), the callback-assertion block will time out. Check the service's egress-URL logs first, then the TTK UI's "Callback" tab.
 - **Environment drift.** `hub.json` (used in the main e2e CI) and `default-env.json` (used in ml-core-test-harness) are maintained separately. When you add an input variable, update **both**.
