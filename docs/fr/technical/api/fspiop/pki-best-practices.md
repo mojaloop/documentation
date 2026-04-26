@@ -17,7 +17,7 @@ Les conventions suivantes sont utilisées dans ce document pour identifier les t
 | **Éléments de l’API, comme les ressources** | Gras | **/authorization** |
 | **Variables** | Italique entre accolades | _{ID}_ |
 | **Termes du glossaire** | Italique à la première occurrence ; défini dans le _Glossaire_ | Le but de l’API est de permettre des transactions financières interopérables entre un _Payeur_ (un payeur de fonds électroniques dans une transaction de paiement) situé dans un _FSP_ (une entité qui fournit un service financier numérique à un utilisateur final) et un _Bénéficiaire_ (un destinataire de fonds électroniques dans une transaction de paiement) situé dans un autre FSP. |
-| **Documents de la bibliothèque** | Italique | Les informations utilisateur ne devraient, en général, pas être utilisées par les déploiements d’API ; les mesures de sécurité détaillées dans _Signature API_ et _Cryptage API_ doivent être utilisées à la place. |
+| **Documents de la bibliothèque** | Italique | Les informations utilisateur ne devraient, en général, pas être utilisées par les déploiements d’API ; les mesures de sécurité détaillées dans _Signature API_ et _Chiffrement API_ doivent être utilisées à la place. |
 
 ### Informations sur la Version du Document
 
@@ -67,7 +67,7 @@ La spécification Open API pour l’Interopérabilité des FSP inclut les docume
 
 - [Signature](./v1.1/signature)
 
-- [Cryptage](./v1.1/encryption)
+- [Chiffrement](./v1.1/encryption)
 
 #### Documents Généraux
 

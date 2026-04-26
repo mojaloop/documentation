@@ -8,7 +8,7 @@ Le **SDK-Scheme-Adapter** est maintenu par la communauté Mojaloop et sert de r�
 
 ## Modèles d’adoption du SDK
 
-Selon les règles du schéma, les DFSP interagissent avec le Hub Mojaloop central selon quatre modes courants. Ce qui suit résume le rôle du SDK-Scheme-Adapter dans chaque mode et les avantages pour les DFSP.
+Selon les règles du système, les DFSP interagissent avec le Hub Mojaloop central selon quatre modes courants. Ce qui suit résume le rôle du SDK-Scheme-Adapter dans chaque mode et les avantages pour les DFSP.
 
 ### 1. DFSP utilisant une solution tierce (ex. Payment Manager) intégrant le SDK Scheme Adapter
 
