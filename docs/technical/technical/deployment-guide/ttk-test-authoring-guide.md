@@ -15,6 +15,7 @@ The audience is a Mojaloop contributor who has already picked up a ticket, has (
 - [Step 5. Register the file in master.json](#step-5-register-the-file-in-masterjson)
 - [Step 6. Verify locally with ml-core-test-harness](#step-6-verify-locally-with-ml-core-test-harness)
 - [Step 7. Submit the pull request](#step-7-submit-the-pull-request)
+- [Worked example: bug fix #4144 (ALS path-parameter validation)](#worked-example-bug-fix-4144-als-path-parameter-validation)
 - [Common patterns and pitfalls](#common-patterns-and-pitfalls)
 - [Reference collections](#reference-collections)
 
@@ -363,6 +364,182 @@ For a bug-fix collection, also run against a service image that *predates* the f
    - The exact verification command(s) a reviewer can run locally (Step 6.5 above).
    - The `Depends on:` line pointing at the service PR.
    - Any non-obvious fixture choices (e.g. "backticks/angle-brackets covered by Jest unit tests because ALS HTML-escapes them in outbound URLs — separate issue filed as #<N>").
+
+## Worked example: bug fix #4144 (ALS path-parameter validation)
+
+This walk-through follows the same workflow described in Steps 1–7 above, applied to a real bug fix. It is the example used to validate the guide itself; the collection landed as [testing-toolkit-test-cases#251](https://github.com/mojaloop/testing-toolkit-test-cases/pull/251), and the service-side fix it covers is [account-lookup-service#622](https://github.com/mojaloop/account-lookup-service/pull/622) (a fast-follow to the original [#619](https://github.com/mojaloop/account-lookup-service/pull/619) for [project#4144](https://github.com/mojaloop/project/issues/4144)).
+
+### Step 1 — Understand the issue and the fix
+
+[mojaloop/project#4144](https://github.com/mojaloop/project/issues/4144) reported that the Account Lookup Service (ALS) accepted URL-template placeholders such as a literal `{ID}` in the path (e.g. `GET /parties/MSISDN/{ID}`) as if they were valid identifiers. The fix introduced `src/lib/validators.js` with a `validatePathParameters()` function that rejects:
+
+- empty / non-string / over-128-char values
+- whitespace and control characters
+- `{`, `}`, `<`, `>`, `` ` ``, `\`
+- type-specific format violations for `MSISDN` / `EMAIL` / `IBAN`
+
+On violation the service returns FSPIOP error code **3101** (`MALFORMED_SYNTAX`).
+
+Reading the diff exposed two distinct rejection layers:
+
+1. The OpenAPI schema pattern `^[^\s{}]+$` on the `ID` parameter, which rejects curly-braced / whitespace IDs **synchronously** with HTTP 400 + errorCode **3100** (`Generic validation error`).
+2. The new handler-level `validatePathParameters` call, which rejects the broader set above **asynchronously** via `PUT /parties/{Type}/{ID}/error` with errorCode **3101**.
+
+The two layers can both catch the same input — that detail drove the assertion design in Step 3.
+
+### Step 2 — Decide where the collection belongs
+
+A bug fix touching a hub-side service belongs in `collections/hub/golden_path/bug fixes/`. The file was named per convention:
+
+```
+collections/hub/golden_path/bug fixes/Test for Bugfix #4144 - Reject URL template placeholders in ID path parameter.json
+```
+
+### Step 3 — Design the test scenarios
+
+The scenario table written before any JSON was authored:
+
+| # | Method + path | Layer | Expected |
+|---|---|---|---|
+| 1 | `GET /parties/MSISDN/{ID}` (literal `%7BID%7D`) | schema | sync **400**, errorCode in `{3100, 3101}`, description matches `/Invalid ID|pattern/i` |
+| 2 | `GET /parties/EMAIL/not-an-email` | handler | sync **202**, `callback.body.errorInformation.errorCode` in `{3100, 3101}`, description matches `/EMAIL/i` |
+| 3 | `GET /parties/IBAN/notaniban` | handler | sync **202**, callback errorCode in `{3100, 3101}`, description matches `/IBAN/i` |
+| 4 | `GET /parties/MSISDN/not-a-phone` | handler | sync **202**, callback errorCode in `{3100, 3101}`, description matches `/MSISDN/i` |
+| 5 | `GET /participants/MSISDN/{ID}` (literal `%7BID%7D`) | schema | sync **400** (same shape as #1) |
+| 6 | `GET /parties/MSISDN/27713803912` | positive control | sync **202**, no `errorInformation` in callback |
+
+Two design decisions worth highlighting:
+
+- **Tolerant `errorCode` assertion.** Both layers can produce the rejection, and the *exact* code depends on which one fires. Asserting `expect(['3100','3101']).to.include(actual)` keeps the test green if the OpenAPI schema is later loosened or tightened. The contract under test is "rejection happens", not "which layer caught it".
+- **URL-safe handler-only fixtures.** The first draft of the collection used `<script>` and backticks to exercise the handler-only paths; the runs revealed that ALS HTML-entity-encodes those characters in outbound callback URLs (`&lt;script&gt;`, `&#x60;backtick&#x60;`), which TTK then can't match. Swapping to `not-a-phone`, `not-an-email`, `notaniban` exercised the same `validatePartyIdentifier` code path with URL-safe ASCII, and the callbacks routed cleanly. The exotic-character cases stayed in the service-repo Jest unit tests where the validator is invoked directly.
+
+### Step 4 — Write the collection JSON
+
+Two representative requests from the final file:
+
+```json
+{
+  "id": "parties-get-literal-id-placeholder",
+  "operationPath": "/parties/{Type}/{ID}",
+  "path": "/parties/MSISDN/%7BID%7D",
+  "method": "get",
+  "url": "{$inputs.HOST_ACCOUNT_LOOKUP_SERVICE}",
+  "ignoreCallbacks": true,
+  "headers": {
+    "Accept": "{$inputs.accept}",
+    "Content-Type": "{$inputs.contentType}",
+    "Date": "{$function.generic.curDate}",
+    "FSPIOP-Source": "{$inputs.fromFspId}"
+  },
+  "params": { "Type": "MSISDN", "ID": "{ID}" },
+  "tests": {
+    "assertions": [
+      { "id": "rsp-status-400", "exec": ["expect(response.status).to.equal(400)"] },
+      { "id": "rsp-error-code-3100-or-3101",
+        "exec": ["expect(['3100', '3101']).to.include(response.body.errorInformation.errorCode)"] },
+      { "id": "rsp-error-description-mentions-id",
+        "exec": ["expect(response.body.errorInformation.errorDescription).to.match(/Invalid ID|\\/path\\/ID|pattern/i)"] }
+    ]
+  }
+}
+```
+
+(synchronous schema-layer rejection — `ignoreCallbacks: true` because nothing async runs.)
+
+```json
+{
+  "id": "parties-get-msisdn-format-violation",
+  "operationPath": "/parties/{Type}/{ID}",
+  "path": "/parties/MSISDN/not-a-phone",
+  "method": "get",
+  "url": "{$inputs.HOST_ACCOUNT_LOOKUP_SERVICE}",
+  "headers": { "...": "..." },
+  "params": { "Type": "MSISDN", "ID": "not-a-phone" },
+  "tests": {
+    "assertions": [
+      { "id": "rsp-status-202", "exec": ["expect(response.status).to.equal(202)"] },
+      { "id": "cb-errorInformation",
+        "exec": ["expect(callback.body).to.have.property('errorInformation')"] },
+      { "id": "cb-error-code-3100-or-3101",
+        "exec": ["expect(['3100', '3101']).to.include(callback.body.errorInformation.errorCode)"] },
+      { "id": "cb-error-description-mentions-msisdn",
+        "exec": ["expect(callback.body.errorInformation.errorDescription).to.match(/Invalid MSISDN|MSISDN/i)"] }
+    ]
+  }
+}
+```
+
+(handler-level rejection — note the absence of `ignoreCallbacks`, the assertion on `callback.body`, and the dual-code tolerance.)
+
+The full file lives at [collections/hub/golden_path/bug fixes/Test for Bugfix #4144 - Reject URL template placeholders in ID path parameter.json](https://github.com/mojaloop/testing-toolkit-test-cases/blob/master/collections/hub/golden_path/bug%20fixes/Test%20for%20Bugfix%20%234144%20-%20Reject%20URL%20template%20placeholders%20in%20ID%20path%20parameter.json) (post-merge).
+
+### Step 5 — Register in master.json
+
+```json
+{
+  "name": "Test for Bugfix #4144 - Reject URL template placeholders in ID path parameter.json",
+  "type": "file",
+  "labels": ["account-lookup-service"]
+}
+```
+
+The `account-lookup-service` label scopes the file in the TTK UI's filter views.
+
+### Step 6 — Verify locally
+
+The harness provisions `testingtoolkitdfsp` with the parties / participants callback endpoints pointing at the embedded TTK callback receiver, so no extra setup is needed beyond pointing the harness at an ALS image built from the fix branch.
+
+```bash
+# from /path/to/account-lookup-service on the fix branch
+docker build -t mojaloop/account-lookup-service:local .
+
+# in /path/to/ml-core-test-harness/.env
+# ACCOUNT_LOOKUP_SERVICE_VERSION=local
+
+cd /path/to/ml-core-test-harness
+docker compose up -d account-lookup-service mojaloop-testing-toolkit mojaloop-testing-toolkit-ui
+
+# copy the new collection + the master.json edit into the harness mount
+# under docker/ml-testing-toolkit/test-cases/collections/tests/golden_path/bug fixes/
+
+docker run --rm --network mojaloop-net \
+  -v "$(pwd)/docker/ml-testing-toolkit/test-cases/collections:/opt/app/collections" \
+  -v "$(pwd)/docker/ml-testing-toolkit/test-cases/environments:/opt/app/environments" \
+  mojaloop/ml-testing-toolkit-client-lib:v1.9.1 \
+  npm run cli -- -u http://mojaloop-testing-toolkit:5050 \
+    -i "collections/tests/golden_path/bug fixes/Test for Bugfix #4144 - Reject URL template placeholders in ID path parameter.json" \
+    -e environments/default-env.json
+```
+
+Expected: 21/21 assertions, exit code 0, ~1.4 s. The first run actually returned **12/21** — the handler-level rejections in scenarios 2–4 timed out waiting for callbacks. ALS logs (`docker logs account-lookup-service`) showed the validator was throwing but the throw was being swallowed because `validatePathParameters()` was being called from the `BasePartiesService` *constructor*, which sat outside the surrounding try/catch in the caller (`getPartiesByTypeAndID.js`). That observability gap was fixed in the follow-up service PR [account-lookup-service#622](https://github.com/mojaloop/account-lookup-service/pull/622). After re-running with the patched image the collection went green.
+
+This sequence — *write a TTK test → discover that the fix has an observability gap → patch the service to make its rejections externally visible → green test* — is the kind of value a TTK collection adds beyond what unit tests can give you.
+
+### Step 7 — Submit the PR
+
+The implementation PR (account-lookup-service#622) was open but not merged when the TTK collection was ready, so the TTK PR was opened **draft** with a `Depends on:` line in the body:
+
+```
+gh pr create \
+  --repo mojaloop/testing-toolkit-test-cases \
+  --base master \
+  --draft \
+  --title "feat: add TTK tests for bug fix #4144 (ALS path-parameter placeholder validation)" \
+  --body-file /tmp/ttk-4144-pr-body.md
+```
+
+The PR body explicitly listed the assertion table, called out the URL-encoding fixture decision in a "Scope note", and pointed reviewers at the verification command above. Once #622 merged, a single command flipped the TTK PR to ready for review:
+
+```
+gh pr ready 251 --repo mojaloop/testing-toolkit-test-cases
+```
+
+### Lessons captured from this example
+
+- The **tolerant `expect([codeA, codeB]).to.include(actual)`** pattern lets a single TTK collection guard against regressions at multiple validation layers without coupling the test to which layer caught the input.
+- A **scenario table written before any JSON** prevents over-scoping. Half the energy in this fix was in deciding which fixtures to include and which to defer to unit tests.
+- **TTK can surface latent observability gaps in the service.** A failing async-callback assertion is not always a TTK problem — sometimes it means the service throws an error that never propagates to a callback. Inspect service logs before adjusting the test.
+- **URL safety matters for round-tripping callbacks.** When picking fixtures for handler-level error scenarios, prefer characters that the service won't entity-escape or normalize on its outbound URL construction.
 
 ## Common patterns and pitfalls
 
