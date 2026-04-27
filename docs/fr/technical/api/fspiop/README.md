@@ -25,4 +25,4 @@ La spécification Open API pour l’interopérabilité des FSP inclut les docume
 
 * [Bonnes Pratiques PKI](./pki-best-practices.md)
 * [Signature](./v1.1/signature.md)
-* [Cryptage](./v1.1/encryption.md)
+* [Chiffrement](./v1.1/encryption.md)

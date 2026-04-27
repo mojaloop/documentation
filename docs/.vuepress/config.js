@@ -2149,6 +2149,7 @@ module.exports = {
             ['standards/versioning', 'Gestion des versions'],
             ['standards/creating-new-features', 'Création de nouvelles fonctionnalités'],
             ['standards/triaging-bugs', 'Tri des bogues'],
+            ['standards/ai_policy', 'Politique sur l’usage responsable de l’IA'],
           ]
         },
         {
