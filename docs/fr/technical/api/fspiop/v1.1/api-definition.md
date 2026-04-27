@@ -1816,7 +1816,7 @@ La fulfilment est un secret temporaire généré pour chaque transaction financi
 
 Le FSP bénéficiaire utilise un secret local pour générer un HMAC SHA-256 du paquet ILP. Le même secret peut être utilisé pour toutes les transactions financières, ou le FSP bénéficiaire peut stocker un secret différent par bénéficiaire ou selon une autre segmentation.
 
-Le choix et la cardinalité du secret local sont une décision d’implémentation, qui peut être dictée par les règles du schéma. Le seul prérequis est que le FSP bénéficiaire puisse déterminer à quel secret correspond un paquet ILP reçu ultérieurement dans le cadre d’un transfert entrant (voir [Ressource API Transfers](#api-resource-transfers)).
+Le choix et la cardinalité du secret local sont une décision d’implémentation, qui peut être dictée par les règles du système. Le seul prérequis est que le FSP bénéficiaire puisse déterminer à quel secret correspond un paquet ILP reçu ultérieurement dans le cadre d’un transfert entrant (voir [Ressource API Transfers](#api-resource-transfers)).
 
 La fulfilment et la condition sont générées conformément à l’algorithme défini dans le [Listing 12](#listing-12). Une fois que le FSP bénéficiaire a dérivé la condition, la fulfilment peut être supprimée puisqu’elle peut être régénérée plus tard.
 

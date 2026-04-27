@@ -11,7 +11,7 @@ La conception de la sécurité :
 1. fournit une journalisation des activités qui peut être utilisée lors d'un audit.
 
 ## Détails de l'implémentation RBAC
-1. Les utilisateurs se voient attribuer un ou plusieurs rôles. Un utilisateur peut se voir attribuer plusieurs rôles, sous réserve de règles définies.
+1. Les utilisateurs se voient attribuer un ou plusieurs rôles. Un utilisateur peut endosser plusieurs rôles plusieurs rôles, sous réserve de règles définies.
 1. Les rôles se voient attribuer des permissions.
 1. Le Proxy d'Identité et d'Accès (Ory Oathkeeper) applique l'accès aux endpoints en fonction des permissions.
 1. L'API backend peut, en option, vérifier les permissions via l'API Keto.
