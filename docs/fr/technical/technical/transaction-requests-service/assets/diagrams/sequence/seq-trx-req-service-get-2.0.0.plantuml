@@ -37,7 +37,7 @@ Switch --/ "FSP bénéficiaire": 202 Accepted
 
 alt la requête de consultation est valide
     
-    Switch -> Switch: Récupérer les points de terminaison du FSP payeur
+    Switch -> Switch: Récupérer les endpoints du FSP payeur
     note over Switch, "FSP payeur": Le commutateur transmet GET /transactionRequests/{ID} au FSP payeur
     Switch -\ "FSP payeur": GET /transactionRequests/{ID}
     "FSP payeur" --/ Switch: 202 Accepted
@@ -54,7 +54,7 @@ alt la requête de consultation est valide
         alt la réponse est valide
         
             note over Switch, "FSP bénéficiaire": Le commutateur relaie la réponse au FSP bénéficiaire
-            Switch -> Switch: Récupérer les points de terminaison du FSP bénéficiaire
+            Switch -> Switch: Récupérer les endpoints du FSP bénéficiaire
             
             Switch -\ "FSP bénéficiaire": PUT /transactionRequests/{ID}
             "FSP bénéficiaire" --/ Switch: 200 Ok

@@ -15,10 +15,10 @@ Il comprend notamment :
 * Le **Account Lookup Service** (**ALS**) permet de résoudre les informations de routage des FSP via l’API Participant ou d’orchestrer une requête Party à partir d’une recherche interne de Participant. La recherche interne de Participant est assurée par plusieurs adaptateurs ou services Oracle standard. Un exemple d’adaptateur ou de service Oracle consiste à rechercher les informations de Participant dans Pathfinder ou un registre marchand. Ces adaptateurs ou services Oracle peuvent être ajoutés facilement selon les exigences du schéma.
 * Le **Quoting Service** (**QA**) : le devis est le processus qui détermine les éventuels frais et commissions nécessaires pour réaliser une opération financière entre deux FSP. Il est toujours initié par le FSP payeur vers le FSP bénéficiaire ; le flux du devis suit donc le même sens qu’une opération financière.
 * Le **simulateur** (**SIM**) simule plusieurs fonctions DFSP, notamment :
-  * des points de terminaison Oracle pour les opérations CRUD sur les Participants Oracle avec cache en mémoire ;
-  * des points de terminaison Participant pour les Oracles avec prise en charge des `partyIdTypes` paramétrables ;
-  * des points de terminaison Parties pour les FSP payeur et bénéficiaire avec réponses de rappel associées ;
-  * des points de terminaison de transfert pour les FSP payeur et bénéficiaire avec réponses de rappel associées ; et
+  * des endpoints Oracle pour les opérations CRUD sur les Participants Oracle avec cache en mémoire ;
+  * des endpoints Participant pour les Oracles avec prise en charge des `partyIdTypes` paramétrables ;
+  * des endpoints Parties pour les FSP payeur et bénéficiaire avec réponses de rappel associées ;
+  * des endpoints de transfert pour les FSP payeur et bénéficiaire avec réponses de rappel associées ; et
   * des API d’interrogation pour vérifier les transactions (requêtes, réponses, rappels, etc.) afin de soutenir les tests et la vérification (assurance qualité).
 
 De part et d’autre du Hub Mojaloop, du code open source d’exemple illustre comment un DFSP peut envoyer et recevoir des paiements, ainsi que le client qu’un DFSP existant pourrait héberger pour se connecter au réseau.

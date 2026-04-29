@@ -15,8 +15,8 @@ note right of Switch #aaa
 end note
 Switch -> Switch: Validation de schéma
 PayerFSP \-- Switch: 202 Accepted
-Switch -> Switch: Récupérer le point de terminaison « quotes » du FSP bénéficiaire
-alt point de terminaison « quotes » du FSP bénéficiaire trouvé
+Switch -> Switch: Récupérer le l'endpoint « quotes » du FSP bénéficiaire
+alt l'endpoint « quotes » du FSP bénéficiaire trouvé
     note right of Switch: Le Switch transmet la requête au FSP bénéficiaire (mode pass-through)\n<Règles côté payeur> 
     Switch -\ PayeeFSP: GET /quotes/{ID}
     PayeeFSP --/ Switch: 202 Accepted

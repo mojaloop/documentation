@@ -39,7 +39,7 @@ Switch --/ "FSP payeur": 202 Accepted
 alt la demande d'autorisation est valide
     
     Switch -> Switch: Valider GET /authorizations/{TransactionRequestID} (validation interne)
-    Switch -> Switch: Récupérer les points de terminaison du FSP bénéficiaire
+    Switch -> Switch: Récupérer les endpoints du FSP bénéficiaire
     note over Switch, "FSP bénéficiaire": Le commutateur transmet GET /authorizations au FSP bénéficiaire
     Switch -\ "FSP bénéficiaire": GET /authorizations/{TransactionRequestID}
     "FSP bénéficiaire" --/ Switch: 202 Accepted
@@ -50,7 +50,7 @@ alt la demande d'autorisation est valide
     Switch --/ "FSP bénéficiaire": 200 Ok
 
     note over "FSP payeur", Switch: Le commutateur transmet PUT /authorizations/{TransactionRequestID} au FSP payeur
-    Switch -> Switch: Récupérer les points de terminaison du FSP payeur
+    Switch -> Switch: Récupérer les endpoints du FSP payeur
     Switch -\ "FSP payeur": PUT /authorizations/{TransactionRequestID}
     "FSP payeur" --/ Switch: 200 Ok
         

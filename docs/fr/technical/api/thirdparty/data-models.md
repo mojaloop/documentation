@@ -86,7 +86,7 @@ La ressource **/accounts** est utilisée pour demander des informations à un DF
 Le DFSP retourne un ensemble d'informations sur les comptes qu'il est prêt à divulguer au PISP.
 Le PISP peut ensuite afficher les noms des comptes à l'utilisateur et permettre à l’utilisateur de sélectionner les comptes qu’il souhaite lier via le PISP.
 
-La ressource **/accounts** prend en charge les points de terminaison décrits ci-dessous.
+La ressource **/accounts** prend en charge les endpoints décrits ci-dessous.
 
 #### <a id='Requests'></a>3.1.1.1 Requêtes
 

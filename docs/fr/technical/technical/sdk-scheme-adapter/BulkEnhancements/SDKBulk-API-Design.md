@@ -1,6 +1,6 @@
 # Prise en charge des transferts groupés par le SDK — API
 
-Les évolutions du SDK Scheme Adapter côté payeur sont exposées dans l’API sous le point de terminaison `BulkTransactions` :
+Les évolutions du SDK Scheme Adapter côté payeur sont exposées dans l’API sous le l'endpoint `BulkTransactions` :
 
 - **POST** `/bulkTransactions`
 - **PUT** `/bulkTransactions`

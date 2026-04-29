@@ -281,7 +281,7 @@ Tables proposées pour la conception des transferts groupés :
 ### 4.4 Notes complémentaires
 
 1. Documenter `GET /bulkTransfers` pour préciser les différences de réponses entre FSP payeur et FSP bénéficiaire
-2. Utiliser un service dédié : *bulk-api-adapter* pour les points de terminaison des transferts groupés (y compris la persistance évoquée ci-dessus)
+2. Utiliser un service dédié : *bulk-api-adapter* pour les endpoints des transferts groupés (y compris la persistance évoquée ci-dessus)
 
 ## 5. Sujets de feuille de route
 

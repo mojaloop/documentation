@@ -1660,8 +1660,8 @@ Modèle de données pour le type complexe **ParticipantsNameEndpointsObject**.
 
 | Nom  | Obligatoire  | Type | Description |
 |---|---|--|--|
-| `type`  |  oui | [String](#string) | Type de point de terminaison.  |
-| `value`  |  oui | [String](#string) | Valeur du point de terminaison.  |
+| `type`  |  oui | [String](#string) | Type d'endpoint.  |
+| `value`  |  oui | [String](#string) | Valeur de l'endpoint.  |
 
 #### ParticipantsNameLimitsObject
 

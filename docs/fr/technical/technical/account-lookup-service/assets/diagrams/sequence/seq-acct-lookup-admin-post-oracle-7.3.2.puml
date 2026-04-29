@@ -25,7 +25,7 @@
 
 @startuml
 ' titre
-title 7.3.2 Créer des points de terminaison d’oracle
+title 7.3.2 Créer des endpoints d’oracle
 
 autonumber
 
@@ -50,8 +50,8 @@ end box
 ' flux
 
 activate OPERATOR
-group Créer un point de terminaison d’oracle
-  OPERATOR -> ALSADM: Requête pour créer un point de terminaison d’oracle —\nPOST /oracles
+group Créer un l'endpoint d’oracle
+  OPERATOR -> ALSADM: Requête pour créer un l'endpoint d’oracle —\nPOST /oracles
   note left of ALSADM #yellow
       Message :
       {
@@ -66,11 +66,11 @@ group Créer un point de terminaison d’oracle
   end note
   activate ALSADM
 
-  ALSADM -> ORC_HANDLER: Créer un point de terminaison d’oracle
+  ALSADM -> ORC_HANDLER: Créer un l'endpoint d’oracle
 
   activate ORC_HANDLER
-  ORC_HANDLER -> ORC_HANDLER: Construire l’objet de données du point de terminaison Oracle
-  ORC_HANDLER -> DB: Insérer l’objet de données du point de terminaison Oracle
+  ORC_HANDLER -> ORC_HANDLER: Construire l’objet de données de l'endpoint Oracle
+  ORC_HANDLER -> DB: Insérer l’objet de données de l'endpoint Oracle
   activate DB
 
   alt Création d’une entrée Oracle (succès)

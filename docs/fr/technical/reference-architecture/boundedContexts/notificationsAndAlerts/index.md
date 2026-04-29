@@ -43,7 +43,7 @@ Termes ayant une signification spécifique et communément admise dans le Contex
 Les opérateurs du hub ou les sous-systèmes pourront appeler l’API d’enregistrement d’alerte pour s’abonner à des alertes de notification spécifiques. L’opération AlertRegister inclura :
 
 - Message/Événement de domaine à surveiller
-- Informations de point de terminaison / transport pour la livraison de la notification
+- Informations d'endpoint / transport pour la livraison de la notification
 - Modèle pour l’alerte qui sera utilisé pour générer la notification réelle
 
 #### Diagramme de flux
