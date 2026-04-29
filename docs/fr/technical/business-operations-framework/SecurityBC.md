@@ -58,30 +58,30 @@ Voici une vue d’ensemble de haut niveau de l’implémentation de l'API opéra
 ![Diagramme d'architecture générale de l'implémentation du contexte de sécurité](../../../.vuepress/public/BizOps-Framework-IaC-3.xx-&-Mojaloop-13.xx.png)
 
 Voici un tableau des services et de leur rôle respectif.
-| Service | Propriétaire | Implémente |
+| Service | Gère | Rôle |
 | --- | --- | --- |
 |**WSO2 IS KM**|Utilisateurs| 1. Redirection de la connexion utilisateur et UI qui crée le cookie <br>2. Flux d’autorisation standard OpenID Connect (OIDC) |
 |**Ory Keto**|1. Mappage rôles-utilisateurs <br> 2. Mappage participants-utilisateurs| 1. Vérification d’autorisation RBAC via Ory Oathkeeper<br>2. Vérification d’autorisation RBAC via appel API opérationnelle|
 |**Ory Oathkeeper**|Permissions liées à l’accès API | Passerelle API pour les APIs opérationnelles, avec contrôles d’authentification et d’autorisation|
 |**Ory Kratos**|Aucune|Cookie d'authentification|
-|**API opérationnelle BC**|Permissions liées aux appels API opérationnels|Fonctions API opérationnelles|
+|**API opérationnelle du contexte borné**|Permissions liées aux appels API opérationnels|Fonctions API opérationnelles|
 |**Shim**| Aucune | Redirection pour configurer OIDC|
-|**Rôle Opérateur**| Aucune | Mettre à jour Keto pour refléter les changements de mapping rôle-permission réalisés dans le fichier ressource des rôles|
-|**Fichier de ressources rôle Kubernetes**| Rôles et assignations de rôles-permissions| Modifications contrôlées par du contrôle de version (par exemple GitHub ou GitLab).|
+|**Rôle Opérateur**| Aucune | Met à jour Keto pour refléter les changements de mapping rôle-permission réalisés dans le fichier ressource des rôles|
+|**Fichier de ressources rôle Kubernetes**| Rôles et assignations de rôles-permissions| Modifications contrôlées par implémentation de contrôle de version (par exemple GitHub ou GitLab).|
 |**API des Rôles**|Aucune|1. Contrôle API rôle-utilisateur <br>(liste des utilisateurs, liste des rôles, liste des rôles attribués aux utilisateurs, ajouter un rôle à un utilisateur, enlever un rôle à un utilisateur)<br> 2. Contrôle API participant-utilisateur <br>(liste des utilisateurs, liste des participants, liste des participants attribués à un utilisateur, ajout/suppression de participant à un utilisateur)|
 
 ## Alignement avec l’architecture de référence
-Comparons cette implémentation RBAC à celle définie dans l’architecture de référence, appelée "bounded context sécurité". Cette conception diffère de l’architecture de référence par sa fonction, son but et son approche, mais elle en adopte certaines idées quand cela est approprié. Le but de cette RBAC est d'ajouter une couche de sécurité sur les APIs opérationnelles des contextes bornés. L’architecture de référence du "Security Bounded Context" a été conçue pour répondre aux exigences de performance des fonctions transactionnelles critiques de Mojaloop.
+Comparons cette implémentation RBAC à celle définie dans l’architecture de référence, appelée "bounded context sécurité". Cette conception diffère de l’architecture de référence par sa fonction, son but et son approche, mais elle en adopte certaines idées quand cela est approprié. Le but de cette RBAC est d'ajouter une couche de sécurité aux APIs opérationnelles des contextes bornés. L’architecture de référence du "Security Bounded Context"/"contexte de sécurité de référence" a été conçue pour prendre en compte les exigences de performance des fonctions transactionnelles critiques de Mojaloop.
 Voici les principales différences :
-1. Les fonctions d’autorisation sont centralisées dans cette RBAC. L’architecture de référence prévoit une autorisation distribuée, implémentée indépendamment dans chaque contexte borné. Ce niveau de complexité supplémentaire est inutile dans le cas des APIs opérationnelles.
+1. Les fonctions d’autorisation sont centralisées dans cette RBAC. L’architecture de référence prévoit une autorisation distribuée, mise en œuvre indépendamment dans chaque contexte borné. Ce niveau de complexité supplémentaire est inutile dans le cas des APIs opérationnelles.
 1. L’architecture de référence demande des interfaces vers d’autres contextes bornés pour initier l’autorisation distribuée. Elles n’ont pas été construites car aucun composant n’existe pour les consommer.
 1. L’architecture de référence exige que le contexte de sécurité génère ses propres tokens de sécurité. Cette RBAC utilise ceux générés par l’IAM.
-1. L’architecture de référence exige que les permissions soient distribuées via les JWT à chaque contexte borné. Cela pourrait être paramétré dans l'outillage actuel, mais ne l’a pas été car cela peut être considéré comme une faille potentielle, et ce n’était pas nécessaire pour cette implémentation RBAC.
+1. L’architecture de référence exige que les permissions soient distribuées via les JWT à chaque contexte borné. Cela pourrait être paramétré dans l'outillage actuel, mais ne l’a pas été car certains expert considèrent cette distribution comme une vulnérabilité, et ce n’était pas nécessaire pour cette implémentation RBAC.
 
 Certains principes du contexte de sécurité de référence ont été repris :
 1. Chaque contexte borné possède son propre jeu de permissions ou privilèges.
-1. L’implémentation RBAC possède toutes les associations privilèges/utilisateurs.
-1. Les permissions de rôles utilisateurs sont structurées pour être facilement distribuées dans un cluster Kubernetes.
+1. L’implémentation RBAC centralise toutes les associations privilèges/utilisateurs.
+1. Les permissions de rôles utilisateurs sont structurées pour être facilement distribuable dans un cluster Kubernetes.
 
 ## Alignement avec IaC 4.xxx
 Voici un schéma illustrant à quoi ressemblerait l’architecture si l’API opérationnelle RBAC était implémentée dans la future version IaC (IaC 4.xxx) utilisant Keycloak et Ambassador / Envoy entre autres évolutions.
@@ -99,19 +99,19 @@ Dans nos tests, cela se traduit typiquement par :
 1. moins de 10% pour des vérifications doubles (Ory Oathkeeper & Ory Keto + un appel Keto additionnel)
 :::
 
-**Détails de la mise en place des tests**
-Sur la même infrastructure de test, des appels chronométrés identiques ont été effectués sur la même API backend, directement et via RBAC.
+**Configuration des tests de caractérisation**
+Sur la même infrastructure de test, des appels chronométrés identiques ont été effectués sur la même API backend et via RBAC.
 Voici les résultats des appels aux APIs Role avec et sans RBAC et aux APIs POST Transfers avec et sans RBAC. L’API Role a une seule vérification d’autorisation réalisée via Ory Oathkeeper qui appelle Ory Keto. L’API Transfer (GraphQL) ajoute une vérification RBAC additionnelle.
 
 **Statistiques des requêtes**
 
-|Méthode|	Nom|	# Requêtes|	# Échecs|	Moyenne (ms)|	Min (ms)|	Max (ms)|	Taille Moy| (octets)	RPS|	Echecs/s|
+|Méthode|	Nom|	# Requêtes|	# Échecs|	Moyenne (ms)|	Min (ms)|	Max (ms)|	Taille Moyenne| Taille moyenne (octets) RPS|	Echecs/s|
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 |GET|	Role API|	321|	0|	248|	221|	499|	604|	9.0|	0.0|
 |GET|	Role API RBAC|	320|	0|	262|	232|	418|	604|	8.9|	0.0|
 |POST|	Transfers API|	318|	0|	229|	184|	373|	4873|	8.9|	0.0|
 |POST|	Transfers API RBAC|	314|	0|	240|	194|	406|	4873|	8.8|	0.0|
-| | **Total**|	**1273**|	**0**|	**245**|	**184**|	**499**|	**2723**|	**35.5**|	**0.0**|
+| | **Agrégé**|	**1273**|	**0**|	**245**|	**184**|	**499**|	**2723**|	**35.5**|	**0.0**|
 
 **Statistiques des Temps de Réponse**
 
@@ -121,7 +121,7 @@ Voici les résultats des appels aux APIs Role avec et sans RBAC et aux APIs POST
 |GET|	Role API RBAC|	250|	260|	260|	270|	290|	320|	410|	420|
 |POST|	Transfers API|	220|	220|	240|	250|	290|	330|	360|	370|
 |POST|	Transfers API RBAC|	230|	240|	250|	280|	310|	330|	400|	410|
-| |**Total**|	**240**|	**250**|	**250**|	**260**|	**290**|	**320**|	**400**|	**500**|
+| |**Agrégé**|	**240**|	**250**|	**250**|	**260**|	**290**|	**320**|	**400**|	**500**|
 
 ## Connexion à l'interface utilisateur (UI)
 Ce diagramme de séquence illustre les événements lors d’une tentative d’accès à une API backend depuis un navigateur :
@@ -233,7 +233,7 @@ Le dépôt GitHub du service est disponible [ici](https://github.com/mojaloop/ro
 
 ## Attribution des permissions aux rôles & ensembles mutuellement exclusifs
 L’attribution des permissions aux rôles est stockée dans un fichier `.yml` appelé fichier ressource de rôle (`roleresource.yml`).
-Les accès et modifications sur ces fichiers sont gérés via un gestionnaire de versionnage hébergé (ex : GitHub, GitLab). Cela assure un historique complet et des points de contrôle manuels/automatiques configurables.
+Les accès et les modifications sur ces fichiers sont gérés via un gestionnaire de versionnage hébergé (ex : GitHub, GitLab). Cela assure un historique complet et des points de contrôle manuels/automatiques configurables.
 Ces fichiers sont mappés comme des Custom Resource definitions (CRDs) Kubernetes, auxquels un opérateur rôle-permission s’abonne. Les changements déclenchent la mise à jour d’Ory Keto. Un même rôle peut être représenté par plusieurs fichiers au besoin.
 
 Il existe deux types de fichiers de ressource : un pour les attributions rôle-permission, l’autre pour les permissions mutuellement exclusives.
