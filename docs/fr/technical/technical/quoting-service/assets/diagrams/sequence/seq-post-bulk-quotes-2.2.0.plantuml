@@ -57,8 +57,8 @@ else la requête est un doublon et un renvoi
     Switch -> Switch: Le Switch gère le scénario de renvoi
 end
 |||
-Switch -> Switch: Utiliser l’en-tête fspiop-destination pour obtenir\nle point de terminaison « bulk quotes » du DFSP bénéficiaire
-alt point de terminaison « bulk quotes » du bénéficiaire trouvé
+Switch -> Switch: Utiliser l'en-tête fspiop-destination pour obtenir\nl'endpoint « bulk quotes » du DFSP bénéficiaire
+alt endpoint « bulk quotes » du bénéficiaire trouvé
     note right of Switch: Le Switch transmet la demande de cotation groupée au FSP bénéficiaire
     Switch -\ PayeeFSP: POST /bulkQuotes
     Switch \-- PayeeFSP: 202 OK
@@ -90,8 +90,8 @@ alt point de terminaison « bulk quotes » du bénéficiaire trouvé
         PayerFSP /- Switch: PUT /bulkQuotes/{ID}/error
         PayerFSP --/ Switch: 200 OK
     end
-else point de terminaison « quotes » du FSP bénéficiaire introuvable
-    note left of Switch: Le Switch envoie un callback d’erreur au FSP payeur \n <color #red>**Code d’erreur : 3201**</color>
+else endpoint « quotes » du FSP bénéficiaire introuvable
+    note left of Switch: Le Switch envoie un callback d'erreur au FSP payeur \n <color #red>**Code d'erreur : 3201**</color>
     PayerFSP /- Switch: PUT /bulkQuotes/{ID}/error
     PayerFSP --\ Switch: 200 OK
 end

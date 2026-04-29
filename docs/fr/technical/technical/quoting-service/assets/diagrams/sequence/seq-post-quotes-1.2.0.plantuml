@@ -50,12 +50,12 @@ alt SimpleRoutingMode === FALSE
 end
 |||
 alt SimpleRoutingMode === TRUE
-    Switch -> Switch: Utiliser l’en-tête fspiop-destination pour obtenir le point de terminaison « quotes » du FSP bénéficiaire
+    Switch -> Switch: Utiliser l'en-tête fspiop-destination pour obtenir l'endpoint « quotes » du FSP bénéficiaire
 else SimpleRoutingMode === FALSE
-    Switch -> Switch: Récupérer le point de terminaison du FSP bénéficiaire via les informations « quote party »
+    Switch -> Switch: Récupérer l'endpoint du FSP bénéficiaire via les informations « quote party »
 end
 |||
-alt point de terminaison « quotes » du bénéficiaire trouvé
+alt endpoint « quotes » du bénéficiaire trouvé
     note right of Switch: Le Switch transmet la demande au FSP bénéficiaire
     Switch -\ PayeeFSP: POST /quotes
     Switch \-- PayeeFSP: 202 OK
@@ -108,8 +108,8 @@ alt point de terminaison « quotes » du bénéficiaire trouvé
         PayerFSP /- Switch: PUT /quotes/{ID}/error
         PayerFSP --/ Switch: 200 OK
     end
-else point de terminaison « quotes » du FSP bénéficiaire introuvable
-    note left of Switch: Le Switch envoie un callback d’erreur au FSP payeur \n <color #red>**Code d’erreur : 3201**</color>
+else endpoint « quotes » du FSP bénéficiaire introuvable
+    note left of Switch: Le Switch envoie un callback d'erreur au FSP payeur \n <color #red>**Code d'erreur : 3201**</color>
     PayerFSP /- Switch: PUT /quotes/{ID}/error
     PayerFSP --\ Switch: 200 OK
 end

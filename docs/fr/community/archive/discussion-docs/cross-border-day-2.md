@@ -37,7 +37,7 @@ Questions sans réponse :
   - Il faut des règles de filtrage des routes
     - difficile : ex. blacklist d’un switch ? ou préférence pour certaines routes
 
-- comment le DFSP émetteur découvre-t-il les règles du schéma du bénéficiaire ?
+- comment le DFSP émetteur découvre-t-il les règles du système du bénéficiaire ?
 - le DFSP émetteur doit-il « connaître » le switch final ? Ou seulement le suivant ?
 
 ---

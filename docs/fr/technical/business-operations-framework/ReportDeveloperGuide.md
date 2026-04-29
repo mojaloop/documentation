@@ -5,7 +5,7 @@ Ceci est un guide du développeur pour la construction et le déploiement de rap
 ![Diagramme d'architecture du service de reporting](../../../.vuepress/public/RestReportingArchitecture.drawio.png)
 [Voici](https://github.com/mojaloop/reporting) le dépôt de l'opérateur du service de reporting.
 L'opérateur du service de reporting a été conçu pour être accessible soit par un opérateur de hub, soit par un opérateur DFSP.
-L'accès au rapport est contrôlé via l'intégration RBAC qui fait partie du business operations framework. Ory Oathkeeper protège le point de terminaison API de reporting, et Keto est vérifié par l'opérateur du service de reporting pour une autorisation de rapport plus précise.
+L'accès au rapport est contrôlé via l'intégration RBAC qui fait partie du business operations framework. Ory Oathkeeper protège l'endpoint API de reporting, et Keto est vérifié par l'opérateur du service de reporting pour une autorisation de rapport plus précise.
 Les données du rapport sont interrogées depuis la base de données SQL de reporting qui est actuellement une synchronisation unidirectionnelle de la base de données du central ledger.
 Chaque rapport est installé sur le système en tant que ressource personnalisée Kubernetes qui est un fichier .yaml d'un format particulier appliqué au cluster Kubernetes. [Voici](https://github.com/mojaloop/reporting-k8s-templates) le dépôt des templates de rapports open source. La définition de ressource personnalisée pour un rapport est définie [ici](https://github.com/mojaloop/reporting-k8s-templates/blob/master/crds/reporting-crd.yaml), qui décrit le format de la ressource personnalisée.
 
@@ -17,7 +17,7 @@ La première vérification d'autorisation est effectuée par Ory Oathkeeper qui 
 ```
 reportingApi
 ```
-à l'accès au point de terminaison API du service de reporting.
+à l'accès à  l'endpoint API du service de reporting.
 
 La vérification d'autorisation suivante est effectuée par l'opérateur du service de reporting. La permission d'accéder au rapport particulier est vérifiée. La permission qui est vérifiée est définie dans la ressource personnalisée. Cette permission est optionnelle et utilisera sinon le nom (metadata) du rapport tel que défini dans la ressource personnalisée.
 ### Exiger la permission DFSP
@@ -203,7 +203,7 @@ spec:
         required: true
 ```
 - **permission** c'est ici que le tag de permission RBAC pour ce rapport est défini
-- **path** c'est le chemin du point de terminaison pour ce rapport
+- **path** c'est le chemin de l'endpoint pour ce rapport
 - **params** ici les paramètres du rapport sont définis et il est précisé s'ils sont des paramètres requis ou non.
 
 ### Contrôler la source des données du rapport
@@ -232,7 +232,7 @@ Les scripts EJS sont assez polyvalents et peuvent être utilisés pour modifier 
 
 ## Construire votre environnement de développement
 *(Installation de ce service localement pour faciliter le développement.)*
-Actuellement, la seule façon de valider la conception du rapport est d'appliquer le rapport au cluster Kubernetes sur lequel le service de reporting s'exécute. Le service de reporting validera initialement le rapport, puis activera le point de terminaison. Le rapport peut être exécuté et vérifié pour voir s'il répond à ses exigences.
+Actuellement, la seule façon de valider la conception du rapport est d'appliquer le rapport au cluster Kubernetes sur lequel le service de reporting s'exécute. Le service de reporting validera initialement le rapport, puis activera l'endpoint. Le rapport peut être exécuté et vérifié pour voir s'il répond à ses exigences.
 
 Ce document fournit des instructions pour déployer ce service localement, afin qu'un développeur puisse tester ses conceptions avant d'installer le rapport dans un environnement.
 Étant donné que le service de reporting suit le modèle d'opérateur K8S, nous devons déployer un mini cluster Kubernetes sur notre machine et déployer le service de reporting avec certains services dépendants.

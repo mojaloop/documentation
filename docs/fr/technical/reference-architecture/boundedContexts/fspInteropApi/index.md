@@ -153,7 +153,7 @@ Si une requête POST Quote [^3] (POST /quotes) est envoyée et que le BC Quoting
 
 #### Description
 
-Quand le FSP Payeur envoie une requête POST Quote [^3] (POST /quotes), l'API FSP IOP l'envoie au BC Quoting/Agreement [^19]. Si le devis n'est pas conforme aux règles du schéma, une erreur est renvoyée à l'API FSP IOP qui la notifie au FSP Payeur via PUT Quote Error [^20] (PUT /quotes/{ID}/error).
+Quand le FSP Payeur envoie une requête POST Quote [^3] (POST /quotes), l'API FSP IOP l'envoie au BC Quoting/Agreement [^19]. Si le devis n'est pas conforme aux règles du système, une erreur est renvoyée à l'API FSP IOP qui la notifie au FSP Payeur via PUT Quote Error [^20] (PUT /quotes/{ID}/error).
 
 #### Schéma de Flux
 

@@ -2,7 +2,7 @@
 
 La Liste des Interfaces Communes recense l’ensemble des interfaces utilisées actuellement dans l’Architecture de Référence Mojaloop 2.0. Les interfaces communes sont partagées par plusieurs Bounded Contexts, d’où leur nom.
 
-Chaque interface commune listée comprend les informations suivantes : le nom de l’événement source ou du point de terminaison (endpoint), le style de communication, le Bounded Context émetteur/fournisseur, une description de la fonction de l’interface, ainsi qu’une liste des Bounded Contexts qui l’utilisent.
+Chaque interface commune listée comprend les informations suivantes : le nom de l'événement source ou de l'endpoint, le style de communication, le Bounded Context émetteur/fournisseur, une description de la fonction de l'interface, ainsi qu'une liste des Bounded Contexts qui l'utilisent.
 
 ## Interfaces Communes
 

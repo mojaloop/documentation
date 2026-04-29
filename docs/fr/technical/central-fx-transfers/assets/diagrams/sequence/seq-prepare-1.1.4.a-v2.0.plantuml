@@ -30,7 +30,7 @@ autonumber
 
 actor "DFSP payeur\nParticipant" as PAYER_DFSP
 actor "DFSP bénéficiaire / FXP\nParticipant" as PAYEE_DFSP_OR_FXP
-control "Gestionnaire d’événements de notification ML API" as NOTIFY_HANDLER
+control "Gestionnaire d'événements de notification ML API" as NOTIFY_HANDLER
 boundary "API du service central" as CSAPI
 collections "Notification-Topic" as TOPIC_NOTIFICATIONS
 entity "DAO Participant" as PARTICIPANT_DAO
@@ -58,38 +58,38 @@ end box
 activate NOTIFY_HANDLER
 group Envoi de notification aux participants
     note left of NOTIFY_HANDLER #lightgray
-        L’événement est automatiquement répliqué
+        L'événement est automatiquement répliqué
         vers le topic des événements (topic-events)
     end note
-    TOPIC_NOTIFICATIONS <- NOTIFY_HANDLER: Consommer l’événement de notification
+    TOPIC_NOTIFICATIONS <- NOTIFY_HANDLER: Consommer l'événement de notification
     activate TOPIC_NOTIFICATIONS
     deactivate TOPIC_NOTIFICATIONS
 
     note right of NOTIFY_HANDLER #lightgray
-        Les détails du point de terminaison sont mis en cache ; à l’expiration du cache,
+        Les détails de l'endpoint sont mis en cache ; à l'expiration du cache,
         les détails sont récupérés à nouveau
     end note
-    NOTIFY_HANDLER -> CSAPI: Demander les détails du point de terminaison pour le participant - GET - /participants/{{fsp}}/endpoints\n<color #FF0000><b>Code d’erreur :</b> 2003</color>
+    NOTIFY_HANDLER -> CSAPI: Demander les détails de l'endpoint pour le participant - GET - /participants/{{fsp}}/endpoints\n<color #FF0000><b>Code d'erreur :</b> 2003</color>
 
     activate CSAPI
-    CSAPI -> PARTICIPANT_DAO: Récupérer les détails du point de terminaison pour le participant\n<color #FF0000><b>Code d’erreur :</b> 2003</color>
+    CSAPI -> PARTICIPANT_DAO: Récupérer les détails de l'endpoint pour le participant\n<color #FF0000><b>Code d'erreur :</b> 2003</color>
     activate PARTICIPANT_DAO
-    PARTICIPANT_DAO -> DB: Récupérer les détails du point de terminaison pour le participant
+    PARTICIPANT_DAO -> DB: Récupérer les détails de l'endpoint pour le participant
     activate DB
     hnote over DB #lightyellow
         participantEndpoint
     end note
-    DB -> PARTICIPANT_DAO: Détails du point de terminaison récupérés pour le participant
+    DB -> PARTICIPANT_DAO: Détails de l'endpoint récupérés pour le participant
     deactivate DB
-    PARTICIPANT_DAO --> CSAPI: Retour des détails du point de terminaison pour le participant
+    PARTICIPANT_DAO --> CSAPI: Retour des détails de l'endpoint pour le participant
     deactivate PARTICIPANT_DAO
-    CSAPI --> NOTIFY_HANDLER: Retour des détails du point de terminaison pour le participant\n<color #FF0000><b>Codes d’erreur :</b> 3202, 3203</color>
+    CSAPI --> NOTIFY_HANDLER: Retour des détails de l'endpoint pour le participant\n<color #FF0000><b>Codes d'erreur :</b> 3202, 3203</color>
     deactivate CSAPI
-    NOTIFY_HANDLER -> PAYER_DFSP: Notification avec le résultat prepare/fulfil ou l’erreur vers\nle DFSP payeur sur le point de terminaison indiqué - PUT \n<color #FF0000><b>Code d’erreur :</b> 1001</color>
+    NOTIFY_HANDLER -> PAYER_DFSP: Notification avec le résultat prepare/fulfil ou l'erreur vers\nle DFSP payeur sur l'endpoint indiqué - PUT \n<color #FF0000><b>Code d'erreur :</b> 1001</color>
     NOTIFY_HANDLER <-- PAYER_DFSP: HTTP 200 OK 
     alt event.action === 'reserve'
         alt event.status === 'success'
-        NOTIFY_HANDLER -> PAYEE_DFSP_OR_FXP: Notification du résultat d’exécution réussi (engagé) vers le DFSP bénéficiaire / FXP sur le point de terminaison indiqué - PATCH \n<color #FF0000><b>Code d’erreur :</b> 1001</color>
+        NOTIFY_HANDLER -> PAYEE_DFSP_OR_FXP: Notification du résultat d'exécution réussi (engagé) vers le DFSP bénéficiaire / FXP sur l'endpoint indiqué - PATCH \n<color #FF0000><b>Code d'erreur :</b> 1001</color>
         |||
         NOTIFY_HANDLER <-- PAYEE_DFSP_OR_FXP: HTTP 200 OK
         end 

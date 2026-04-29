@@ -66,7 +66,7 @@ Les couleurs de fond indiquent la classification de l’élément de données.
 
   <table> <tr> <th>Clé de type du modèle de données</th> <th>Description</th> </tr>
    <tr class="required"> <td><b>obligatoire</b></td><td>Ces champs sont obligatoires pour satisfaire les exigences de validation du message.</td></tr>
-   <tr class="optional"> <td><b>facultatif</b></td><td>Ces champs peuvent être inclus facultativement dans le message. (Certains peuvent être obligatoires pour un schéma donné, selon les règles du schéma.)</td></tr>
+   <tr class="optional"> <td><b>facultatif</b></td><td>Ces champs peuvent être inclus facultativement dans le message. (Certains peuvent être obligatoires pour un schéma donné, selon les règles du système.)</td></tr>
    <tr class="unsupported"> <td><b>non pris en charge</b></td><td>Ces champs ne sont pas pris en charge. Les fonctionnalités associées à ces données ne sont pas compatibles avec un schéma Mojaloop ; leur fourniture entraînera un échec de validation du message.</td></tr>
   </table>
    <br><br>

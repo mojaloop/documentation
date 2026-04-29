@@ -235,7 +235,7 @@ L'intégration comprend certaines étapes qui ne nécessitent aucune action de l
 
 ## Tests et validation
 
-Au fur et à mesure que les DFSP avancent dans leur parcours d'intégration, ils sont tenus d'effectuer des tests dans chaque environnement. Les exigences de validation métier et technique doivent être satisfaites lors des tests. Les détails de la validation métier sont définis dans les règles du schéma.
+Au fur et à mesure que les DFSP avancent dans leur parcours d'intégration, ils sont tenus d'effectuer des tests dans chaque environnement. Les exigences de validation métier et technique doivent être satisfaites lors des tests. Les détails de la validation métier sont définis dans les règles du système.
 
 Voici quelques exemples d'activités de test que les DFSP sont censés effectuer dans les différents environnements de pré-production :
 

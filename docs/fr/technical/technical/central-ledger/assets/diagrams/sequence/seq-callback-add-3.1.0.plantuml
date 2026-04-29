@@ -86,7 +86,7 @@ group Ajouter les détails de rappel (callback)
     alt Valider le participant (succès)
         PARTICIPANT_HANDLER ->PARTICIPANT_DAO: Ajouter les détails de rappel du participant \n<color #FF0000><b>Code d'erreur :</b> 2003/<b>Msg :</b> Service unavailable </color> \n<color #FF0000><b>Code d'erreur :</b> 2001/<b>Msg :</b> Internal Server Error </color>
         activate PARTICIPANT_DAO
-        PARTICIPANT_DAO -> DB: Persister le point de terminaison participant
+        PARTICIPANT_DAO -> DB: Persister l'endpoint participant
         activate DB
         hnote over DB #lightyellow
             participantEndpoint

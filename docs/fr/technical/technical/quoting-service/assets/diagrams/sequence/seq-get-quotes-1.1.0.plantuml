@@ -44,15 +44,15 @@ alt point de terminaison « quotes » du FSP bénéficiaire trouvé
                 end
             end
             alt SimpleRoutingMode est TRUE
-                Switch -> Switch: Récupérer le point de terminaison « quotes » du FSP payeur
+                Switch -> Switch: Récupérer l'endpoint « quotes » du FSP payeur
             else SimpleRoutingMode est FALSE
-                Switch -> Switch: Récupérer le point de terminaison « quote party » (PAYER)
+                Switch -> Switch: Récupérer l'endpoint « quote party » (PAYER)
             end
-            alt point de terminaison de callback « quotes » trouvé
+            alt endpoint de callback « quotes » trouvé
                 note left of Switch: Le Switch transmet la réponse au FSP payeur\n<Règle bénéficiaire — requête complète>
                 Switch -\ PayerFSP: PUT /quotes/{ID}
                 PayerFSP --/ Switch: 200 Ok    
-            else point de terminaison de callback « quotes » introuvable
+            else endpoint de callback « quotes » introuvable
                 note right of Switch: Le Switch renvoie une erreur au FSP bénéficiaire
                 Switch -\ PayeeFSP: PUT /quotes/{ID}/error
                 PayeeFSP --/ Switch : 200 Ok
@@ -75,7 +75,7 @@ alt point de terminaison « quotes » du FSP bénéficiaire trouvé
         Switch -\ PayerFSP: PUT /quotes/{ID}/error
         PayerFSP --/ Switch: 200 OK
     end
-else point de terminaison « quotes » du FSP bénéficiaire introuvable
+else endpoint « quotes » du FSP bénéficiaire introuvable
     note left of Switch
         Le Switch renvoie une erreur au FSP payeur
         **<color #red>Code d’erreur : 3201</color>**

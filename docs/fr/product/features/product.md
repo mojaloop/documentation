@@ -124,7 +124,7 @@ Gestion des oracles utilisés par l’Account Lookup Service (ALS) pour résoudr
 
 2.  Enregistrer un oracle.
 
-3.  Définir un point de terminaison.
+3.  Définir un endpoint.
 
 4.  Tester la santé d’un oracle.
 

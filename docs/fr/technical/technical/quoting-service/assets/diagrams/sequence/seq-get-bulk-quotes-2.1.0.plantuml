@@ -39,8 +39,8 @@ note right of Switch #aaa
 end note
 Switch -> Switch: Validation de schéma
 PayerFSP \-- Switch: 202 Accepted
-Switch -> Switch: Récupérer le point de terminaison « bulk quotes » du FSP bénéficiaire
-alt point de terminaison « bulk quotes » du FSP bénéficiaire trouvé
+Switch -> Switch: Récupérer l'endpoint « bulk quotes » du FSP bénéficiaire
+alt endpoint « bulk quotes » du FSP bénéficiaire trouvé
     note right of Switch: Le Switch transmet la requête au FSP bénéficiaire (mode pass-through)
     Switch -\ PayeeFSP: GET /bulkQuotes/{ID}
     PayeeFSP --/ Switch: 202 Accepted
@@ -56,12 +56,12 @@ alt point de terminaison « bulk quotes » du FSP bénéficiaire trouvé
         end note
         Switch --/ PayeeFSP: 200 Ok
         alt réponse valide
-            Switch -> Switch: Récupérer le point de terminaison « bulk quotes » du FSP payeur
-            alt point de terminaison de callback « bulk quotes » trouvé
+            Switch -> Switch: Récupérer l'endpoint « bulk quotes » du FSP payeur
+            alt endpoint de callback « bulk quotes » trouvé
                 note left of Switch: Le Switch transmet la réponse de cotation groupée au FSP payeur
                 Switch -\ PayerFSP: PUT /bulkQuotes/{ID}
                 PayerFSP --/ Switch: 200 Ok    
-            else point de terminaison de callback « bulk quotes » introuvable
+            else endpoint de callback « bulk quotes » introuvable
                 note right of Switch: Le Switch renvoie une erreur au FSP bénéficiaire
                 Switch -\ PayeeFSP: PUT /bulkQuotes/{ID}/error
                 PayeeFSP --/ Switch : 200 Ok
@@ -81,7 +81,7 @@ alt point de terminaison « bulk quotes » du FSP bénéficiaire trouvé
         Switch -\ PayerFSP: PUT /bulkQuotes/{ID}/error
         PayerFSP --/ Switch: 200 OK
     end
-else point de terminaison « bulk quotes » du FSP bénéficiaire introuvable
+else endpoint « bulk quotes » du FSP bénéficiaire introuvable
     note left of Switch
         Le Switch renvoie une erreur au FSP payeur
         **<color #red>Code d’erreur : 3201</color>**
