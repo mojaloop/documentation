@@ -49,7 +49,7 @@ Mojaloop propose deux API transactionnelles fonctionnellement équivalentes pour
 
 	- création / activation / désactivation des participants dans le Hub ;
 
-	- ajout et mise à jour des informations de point de terminaison des participants ;
+	- ajout et mise à jour des informations de endpoint des participants ;
 
 	- gestion des comptes, plafonds et positions des participants ;
 

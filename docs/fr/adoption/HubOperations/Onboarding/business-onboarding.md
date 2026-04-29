@@ -10,7 +10,7 @@ Les étapes clés du parcours d'intégration métier sont :
 
 1. Le DFSP découvre le service offert par le schéma et indique son intention et sa raison commerciale de rejoindre le schéma.
 1. Le DFSP signe un accord de candidature.
-1. La documentation est partagée avec le DFSP, ce qui permet au DFSP d'évaluer l'effort technique d'intégration, ainsi que sa compatibilité commerciale avec les règles du schéma.
+1. La documentation est partagée avec le DFSP, ce qui permet au DFSP d'évaluer l'effort technique d'intégration, ainsi que sa compatibilité commerciale avec les règles du système.
 1. L'opérateur du schéma effectue une vérification préalable de l'éligibilité du candidat.
 1. Le DFSP comprend et signe un accord de participation (contrat).
 1. Le DFSP effectue une procédure KYC auprès de la banque de règlement. Cela fait partie du processus d'ouverture d'un compte bancaire de règlement (également appelé compte de liquidité).

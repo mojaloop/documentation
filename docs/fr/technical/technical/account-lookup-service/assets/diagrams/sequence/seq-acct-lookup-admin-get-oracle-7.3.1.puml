@@ -25,7 +25,7 @@
 
 @startuml
 ' titre
-title 7.3.1 Obtenir tous les points de terminaison d’oracle
+title 7.3.1 Obtenir tous les points de terminaison d'oracle
 
 autonumber
 
@@ -50,13 +50,13 @@ end box
 ' flux
 
 activate OPERATOR
-group Obtenir les points de terminaison d’oracle
-  OPERATOR -> ALSADM: Requête GET pour tous les points de terminaison d’oracle —\nGET /oracles?currency=USD&type=MSISDN
+group Obtenir les points de terminaison d'oracle
+  OPERATOR -> ALSADM: Requête GET pour tous les points de terminaison d'oracle —\nGET /oracles?currency=USD&type=MSISDN
   activate ALSADM
 
-  ALSADM -> ORC_HANDLER: Obtenir les points de terminaison d’oracle
+  ALSADM -> ORC_HANDLER: Obtenir les points de terminaison d'oracle
   activate ORC_HANDLER
-  ORC_HANDLER -> DB: Lire les points de terminaison d’oracle
+  ORC_HANDLER -> DB: Lire les points de terminaison d'oracle
   activate DB
 
   alt Obtenir les points de terminaison d’oracle (succès)

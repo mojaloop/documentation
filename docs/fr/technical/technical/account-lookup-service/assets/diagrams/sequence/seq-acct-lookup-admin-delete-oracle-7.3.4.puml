@@ -25,7 +25,7 @@
 
 @startuml
 ' titre
-title 7.3.4 Supprimer un point de terminaison d’oracle
+title 7.3.4 Supprimer un endpoint d'oracle
 
 autonumber
 
@@ -50,18 +50,18 @@ end box
 ' flux
 
 activate OPERATOR
-group Supprimer un point de terminaison d’oracle
-  OPERATOR -> ALSADM: Requête pour supprimer un point de terminaison d’oracle —\nDELETE /oracles/{ID}
+group Supprimer un endpoint d'oracle
+  OPERATOR -> ALSADM: Requête pour supprimer un endpoint d'oracle —\nDELETE /oracles/{ID}
   activate ALSADM
 
-  ALSADM -> ORC_HANDLER: Supprimer le point de terminaison d’oracle
+  ALSADM -> ORC_HANDLER: Supprimer l'endpoint d'oracle
 
   activate ORC_HANDLER
-  ORC_HANDLER -> DB: Mettre à jour le point de terminaison Oracle existant par ID
+  ORC_HANDLER -> DB: Mettre à jour l'endpoint Oracle existant par ID
   hnote over DB #lightyellow
       Mettre isActive = false
   end note
-  alt Suppression du point de terminaison Oracle existant (succès)
+  alt Suppression de l'endpoint Oracle existant (succès)
       activate DB
       DB -> ORC_HANDLER: Retour succès
       deactivate DB
@@ -73,7 +73,7 @@ group Supprimer un point de terminaison d’oracle
       deactivate ALSADM
       deactivate OPERATOR
   end
-  alt Suppression du point de terminaison Oracle existant (échec)
+  alt Suppression de l'endpoint Oracle existant (échec)
     DB -> ORC_HANDLER: Lever une erreur (introuvable)
     ORC_HANDLER -> ALSADM: Lever une erreur
     note left of ALSADM #yellow

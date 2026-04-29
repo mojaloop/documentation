@@ -210,7 +210,7 @@ Au moment où un Hub est mis en place pour la première fois, Ory/Keycloak sera 
 
 Toutes les fonctions exécutées à l'aide d'Ory/Keycloak sont soumises à une journalisation au niveau du système à des fins d'audit.
 
-L'administrateur système utilisera ensuite Ory/Keycloak pour créer d'autres comptes utilisateurs, sous réserve de vérifications d'identité et de contrôles d'antécédents standard pour chaque individu (définis dans les règles du schéma associées à un déploiement Mojaloop particulier) avant que leurs comptes ne soient créés.
+L'administrateur système utilisera ensuite Ory/Keycloak pour créer d'autres comptes utilisateurs, sous réserve de vérifications d'identité et de contrôles d'antécédents standard pour chaque individu (définis dans les règles du système associées à un déploiement Mojaloop particulier) avant que leurs comptes ne soient créés.
 
 Ces nouveaux comptes utilisateurs se verront attribuer l'un de ces rôles :
 
@@ -234,7 +234,7 @@ Un compte utilisateur ne peut pas avoir plus d'un des rôles OPERATOR, MANAGER, 
 - Les rôles d'opérateur et de gestionnaire dans les fonctions maker/checker
 
 ::: tip NOTE
-L'attribution des rôles ADMINISTRATOR ou FINANCE_MANAGER est soumise à un degré plus élevé de vérification d'identité et de contrôle des antécédents que tout autre rôle, en raison de la nature sensible des fonctions associées. Ces vérifications supplémentaires sont définies dans les règles du schéma.
+L'attribution des rôles ADMINISTRATOR ou FINANCE_MANAGER est soumise à un degré plus élevé de vérification d'identité et de contrôle des antécédents que tout autre rôle, en raison de la nature sensible des fonctions associées. Ces vérifications supplémentaires sont définies dans les règles du système.
 :::
 
 ### Portail Financier / Cadre opérationnel métier
@@ -282,7 +282,7 @@ Lors du déploiement de Payment Manager, un seul compte utilisateur administrate
 
 Toutes les fonctions exécutées à l'aide de Keycloak sont soumises à une journalisation au niveau du système à des fins d'audit.
 
-L'utilisateur administrateur utilisera Keycloak pour créer d'autres comptes utilisateurs, sous réserve de vérifications d'identité et de contrôles d'antécédents standard pour chaque individu (définis dans les règles du schéma associées à un déploiement Mojaloop particulier) avant que leurs comptes ne soient créés.
+L'utilisateur administrateur utilisera Keycloak pour créer d'autres comptes utilisateurs, sous réserve de vérifications d'identité et de contrôles d'antécédents standard pour chaque individu (définis dans les règles du système associées à un déploiement Mojaloop particulier) avant que leurs comptes ne soient créés.
 
 Ces nouveaux comptes utilisateurs se verront attribuer l'un des rôles suivants :
 
@@ -304,8 +304,8 @@ La visualisation des paramètres de la connexion Payment Manager/Hub est disponi
 La réalisation d'investigations de transactions à l'aide des fonctionnalités du portail Payment Manager est une activité contrôlée, en raison du potentiel de révélation de données PII. Elle n'est donc disponible que pour les utilisateurs connectés/authentifiés ayant le rôle MANAGER.
 
 ## Surveillance
-La surveillance est le quatrième pilier de l'atténuation du risque RBAC. Sa conception et sa configuration dépendent fortement de la maturité du schéma, des règles du schéma, des cas d'utilisation employés et des classes de participants.
+La surveillance est le quatrième pilier de l'atténuation du risque RBAC. Sa conception et sa configuration dépendent fortement de la maturité du schéma, des règles du système, des cas d'utilisation employés et des classes de participants.
 Comme point de départ pour concevoir votre surveillance, considérez ces catégories :
 1. Surveillance des menaces de sécurité externes
 1. Surveillance des menaces de sécurité internes, par ex. l'audit
-1. Surveillance de l'application des règles du schéma
+1. Surveillance de l'application des règles du système

@@ -1,6 +1,6 @@
-# DELETE cache de point de terminaison
+# DELETE cache de l'endpoint
 
-Conception de la suppression du cache de point de terminaison (administration ALS).
+Conception de la suppression du cache de l'endpoint (administration ALS).
 
 ## Diagramme de séquence
 

@@ -25,7 +25,7 @@ La première livraison de ce framework comprend une tranche verticale mince pour
 
 |Catégorie|Description|Effort communautaire contributeur|
 | --- | --- | --- |
-|**Configuration de la plateforme**|Processus pour configurer la plateforme afin qu'elle applique le schéma et les règles du schéma.| - |
+|**Configuration de la plateforme**|Processus pour configurer la plateforme afin qu'elle applique le schéma et les règles du système.| - |
 |**Gestion de la plateforme**|Contrôles de gestion opérationnelle technique pour la plateforme.| Actuellement réalisé avec Kibana Application Performance Monitoring (APM) et Elasticsearch. Aucun plan actuel de migration vers le framework. |
 |**Gestion de la liquidité**|Support de processus pour la gestion de la liquidité.|Financial Portal V2 - pas encore intégré au framework.|
 |**Gestion du cycle de vie des participants <br> (vue Hub)**|Gérer l'intégration et les transitions d'état des participants.|Financial Portal V2 - pas encore intégré au framework.|

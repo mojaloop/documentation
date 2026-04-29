@@ -330,7 +330,7 @@ Jour n°1 :
 	
 	- Le switch a des schémas
 	
-		○ Un opérateur de hub suivant les règles du schéma peut autoriser les noms de FSP selon ces règles
+		○ Un opérateur de hub suivant les règles du système peut autoriser les noms de FSP selon ces règles
 		
 		○ La technologie ou l’Admin API elle-même ne restreint pas les noms (sauf longueur, type, caractères, etc.)
 		

@@ -427,7 +427,7 @@ Notez que le schéma peut être en mesure d'automatiser le calcul de la valeur d
 
 - \[_Option de règlement net uniquement_\] La banque de règlement comptabilisera les écritures de règlement sur le compte bancaire de règlement de chaque DFSP, et enverra une confirmation à la plateforme de l'achèvement de ce processus.
 
-Les règles du schéma devront tenir compte des dispositions et procédures en cas d'échec du processus décrit ci-dessus.
+Les règles du système devront tenir compte des dispositions et procédures en cas d'échec du processus décrit ci-dessus.
 
 #### 5.1.6 Processus de gestion du compte de règlement
 

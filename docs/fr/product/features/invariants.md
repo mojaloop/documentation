@@ -38,8 +38,8 @@ sidebarTitle: Invariants
 
 **Le hub n’analyse ni n’agit sur les détails de bout en bout de la transaction ; les messages de transfert ne contiennent que les valeurs nécessaires à la compensation et au règlement.**
 
-1. Les contrôles pendant l’étape de transfert portent uniquement sur la conformité aux règles du schéma, les limites, l’authentification des signatures et la validation de la condition de paiement et de son accomplissement.
-2. Les transferts engagés pour le règlement sont définitifs et garantis de se régler selon les règles du schéma.
+1. Les contrôles pendant l’étape de transfert portent uniquement sur la conformité aux règles du système, les limites, l’authentification des signatures et la validation de la condition de paiement et de son accomplissement.
+2. Les transferts engagés pour le règlement sont définitifs et garantis de se régler selon les règles du système.
 
 **La sémantique de transfert *credit-push* est réduite à sa forme la plus simple et normalisée pour tous les types de transaction.**
 

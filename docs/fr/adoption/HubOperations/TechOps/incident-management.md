@@ -319,7 +319,7 @@ Cette section décrit la procédure qu'il est recommandé à un opérateur du Hu
 <p>Prendre les mesures de base pour atténuer l'effet sur l'environnement.</p></td>
 <td>Les mesures de base peuvent inclure des tâches telles que :
 <ul>
-<li><p>Verrouiller un point de terminaison.</p></li>
+<li><p>Verrouiller un endpoint.</p></li>
 <li><p>Déployer un anti-malware si nécessaire.</p></li>
 <li><p>Examiner les procédures opérationnelles standard de sécurité (SOP) (le cas échéant) pour toute étape supplémentaire qui pourrait être nécessaire.</p></li>
 </ul>

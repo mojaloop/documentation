@@ -90,30 +90,30 @@ group Envoyer une notification aux participants
         deactivate CSAPI
     end
     note right of NOTIFY_HANDLER #lightgray
-        Les détails du point de terminaison sont mis en cache ; à l'expiration du cache,
+        Les détails de l'endpoint sont mis en cache ; à l'expiration du cache,
         les détails sont récupérés à nouveau
     end note
-    NOTIFY_HANDLER -> CSAPI: Demander les détails du point de terminaison du participant - GET - /participants/{{fsp}}/endpoints\n<color #FF0000><b>Code d'erreur :</b> 2003</color>
+    NOTIFY_HANDLER -> CSAPI: Demander les détails de l'endpoint du participant - GET - /participants/{{fsp}}/endpoints\n<color #FF0000><b>Code d'erreur :</b> 2003</color>
 
     activate CSAPI
-    CSAPI -> PARTICIPANT_DAO: Récupérer les détails de point de terminaison du participant\n<color #FF0000><b>Code d'erreur :</b> 2003</color>
+    CSAPI -> PARTICIPANT_DAO: Récupérer les détails de l'endpoint du participant\n<color #FF0000><b>Code d'erreur :</b> 2003</color>
     activate PARTICIPANT_DAO
-    PARTICIPANT_DAO -> DB: Récupérer les détails de point de terminaison du participant
+    PARTICIPANT_DAO -> DB: Récupérer les détails de l'endpoint du participant
     activate DB
     hnote over DB #lightyellow
         participantEndpoint
     end note
-    DB -> PARTICIPANT_DAO: Détails du point de terminaison du participant récupérés
+    DB -> PARTICIPANT_DAO: Détails de l'endpoint du participant récupérés
     deactivate DB
-    PARTICIPANT_DAO --> CSAPI: Renvoyer les détails de point de terminaison du participant
+    PARTICIPANT_DAO --> CSAPI: Renvoyer les détails de l'endpoint du participant
     deactivate PARTICIPANT_DAO
-    CSAPI --> NOTIFY_HANDLER: Renvoyer les détails de point de terminaison du participant\n<color #FF0000><b>Codes d'erreur :</b> 3202, 3203</color>
+    CSAPI --> NOTIFY_HANDLER: Renvoyer les détails de l'endpoint du participant\n<color #FF0000><b>Codes d'erreur :</b> 3202, 3203</color>
     deactivate CSAPI
-    NOTIFY_HANDLER -> PAYER_DFSP: Notification avec résultat/erreur de préparation/exécution \nau DFSP payeur sur le point de terminaison spécifié - PUT \n<color #FF0000><b>Code d'erreur :</b> 1001</color>
+    NOTIFY_HANDLER -> PAYER_DFSP: Notification avec résultat/erreur de préparation/exécution \nau DFSP payeur sur l'endpoint spécifié - PUT \n<color #FF0000><b>Code d'erreur :</b> 1001</color>
     NOTIFY_HANDLER <-- PAYER_DFSP: HTTP 200 OK
     alt event.action === 'reserve'
         alt event.status === 'success'
-        NOTIFY_HANDLER -> PAYEE_DFSP: Notification avec résultat d'exécution réussi (validé) au DFSP bénéficiaire sur le point de terminaison spécifié - PATCH \n<color #FF0000><b>Code d'erreur :</b> 1001</color>
+        NOTIFY_HANDLER -> PAYEE_DFSP: Notification avec résultat d'exécution réussi (validé) au DFSP bénéficiaire sur l'endpoint spécifié - PATCH \n<color #FF0000><b>Code d'erreur :</b> 1001</color>
         |||
         NOTIFY_HANDLER <-- PAYEE_DFSP: HTTP 200 OK
         end 
