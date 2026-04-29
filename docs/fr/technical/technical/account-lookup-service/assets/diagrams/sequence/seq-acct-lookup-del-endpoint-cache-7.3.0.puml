@@ -25,7 +25,7 @@
 
 @startuml
 ' titre
-title 7.3.0 Suppression du cache des points de terminaison
+title 7.3.0 Suppression du cache des endpoints
 
 autonumber
 
@@ -50,8 +50,8 @@ end box
 ' flux
 
 activate OPERATOR
-group Suppression du cache des points de terminaison
-  OPERATOR -> ALSAPI: Requête DELETE sur le cache des points de terminaison — DELETE /endpointcache
+group Suppression du cache des endpoints
+  OPERATOR -> ALSAPI: Requête DELETE sur le cache des endpoints — DELETE /endpointcache
   activate ALSAPI
   activate ALSAPI
 

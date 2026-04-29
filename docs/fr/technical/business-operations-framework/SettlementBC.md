@@ -123,7 +123,7 @@ De plus, l’utilisateur et les références sont capturés dans les listes d’
 
 ### RBAC
 
-Pour exploiter au mieux le contrôle RBAC, les quatre processus ci-dessus seront implémentés comme combinaisons distinctes de point de terminaison API et méthode HTTP. Cela autorise des permissions dédiées à chaque processus.
+Pour exploiter au mieux le contrôle RBAC, les quatre processus ci-dessus seront implémentés comme combinaisons distinctes d'endpoint API et méthode HTTP. Cela autorise des permissions dédiées à chaque processus.
 
 ## Prise en charge du multi-devises
 

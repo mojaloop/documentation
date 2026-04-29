@@ -194,7 +194,7 @@ group Publication des détails FSP du Participant
             ALS_PARTICIPANT_HANDLER -> ALS_PARTICIPANT_HANDLER: Combiner les résultats de ParticipantResultMap[TypeKey] dans ParticipantResult
         end loop
 
-        '********************* Obtenir les infos du point de terminaison Participant FSP payeur - DÉBUT ************************
+        '********************* Obtenir les infos de l'endpoint Participant FSP payeur - DÉBUT ************************
 
         ALS_PARTICIPANT_HANDLER -> ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO: Récupérer l’endpoint de rappel du participant PayerFSP (FSPIOP-Source)\n<color #FF0000><b>Codes erreur :</b> 200x, 310x, 320x</color>
         activate ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO
@@ -207,13 +207,13 @@ group Publication des détails FSP du Participant
 
         ALS_PARTICIPANT_HANDLER -> ALS_PARTICIPANT_HANDLER: Trouver les endpoints de rappel de Participant PayerFSP pour\nFSPIOP_CALLBACK_URL_PARTICIPANT_BATCH_PUT
 
-        '********************* Obtenir les infos du point de terminaison Participant FSP payeur - FIN ************************
+        '********************* Obtenir les infos de l'endpoint Participant FSP payeur - FIN ************************
 
         ALS_PARTICIPANT_HANDLER --> ALS_API: Retourner la liste des informations du participant depuis ParticipantResult
         ALS_API ->> PAYER_FSP: Callback : PUT - /participants/{requestId}
 
     else Échec de validation ou la ParticipantMap n’a pas pu être créée
-        '********************* Obtenir les infos du point de terminaison Participant FSP payeur - DÉBUT ************************
+        '********************* Obtenir les infos de l'endpoint Participant FSP payeur - DÉBUT ************************
 
         ALS_PARTICIPANT_HANDLER -> ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO: Récupérer l’endpoint de rappel du participant PayerFSP (FSPIOP-Source)\n<color #FF0000><b>Codes erreur :</b> 200x, 310x, 320x</color>
         activate ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO
@@ -226,7 +226,7 @@ group Publication des détails FSP du Participant
 
         ALS_PARTICIPANT_HANDLER -> ALS_PARTICIPANT_HANDLER: Trouver les endpoints de rappel du participant pour\nFSPIOP_CALLBACK_URL_PARTICIPANT_BATCH_PUT_ERROR
 
-        '********************* Obtenir les infos du point de terminaison Participant FSP payeur - FIN ************************
+        '********************* Obtenir les infos de l'endpoint Participant FSP payeur - FIN ************************
 
         ALS_PARTICIPANT_HANDLER --> ALS_API: Gérer l’erreur\n<color #FF0000><b>Codes erreur :</b> 200x, 310x, 320x</color>
         ALS_API ->> PAYER_FSP: Callback : PUT - /participants/{requestId}/error

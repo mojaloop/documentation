@@ -20,7 +20,7 @@ Linux est recommandé ; prévoir au moins 16 Go de RAM et 4 cœurs.
 
 Après installation, exécuter la collection Postman `OSS-New-Deployment-FSP-Setup.postman_collection` depuis https://github.com/mojaloop/postman
 
-Vérifier la configuration des *oracles* et des points de terminaison, et l’exécution réussie de la *Golden Path Collection*.
+Vérifier la configuration des *oracles* et des endpoints, et l’exécution réussie de la *Golden Path Collection*.
 
 ### *Mock backend* DFSP et SDK Scheme Adapter
 
@@ -126,7 +126,7 @@ Télécharger :
 
 `SCHEME_ADAPTER_ENDPOINT` doit cibler votre *scheme adapter* local. Sous macOS, `http://host.docker.internal:4000` est souvent correct. Sous Linux, utiliser l’interface `docker0` (souvent `172.17.0.1`), comme indiqué plus haut.
 
-Dans Postman, sélectionner l’environnement et exécuter la collection pour créer un FSP `safsp`. Les points de terminaison de `safsp` correspondront à l’URL du *scheme adapter* définie dans l’environnement.
+Dans Postman, sélectionner l’environnement et exécuter la collection pour créer un FSP `safsp`. Les endpoints de `safsp` correspondront à l’URL du *scheme adapter* définie dans l’environnement.
 
 ### Ajouter le MSISDN cible au simulateur bénéficiaire (dans le cluster)
 

@@ -25,7 +25,7 @@
 
 @startuml
 ' titre
-title 7.3.3 Mettre à jour un point de terminaison d’oracle
+title 7.3.3 Mettre à jour un l'endpoint d’oracle
 
 autonumber
 
@@ -50,8 +50,8 @@ end box
 ' flux
 
 activate OPERATOR
-group Mettre à jour un point de terminaison d’oracle
-  OPERATOR -> ALSADM: Requête pour mettre à jour un point de terminaison d’oracle —\nPUT /oracles/{ID}
+group Mettre à jour un l'endpoint d’oracle
+  OPERATOR -> ALSADM: Requête pour mettre à jour un l'endpoint d’oracle —\nPUT /oracles/{ID}
   note left of ALSADM #yellow
       Message :
       {
@@ -66,13 +66,13 @@ group Mettre à jour un point de terminaison d’oracle
   end note
   activate ALSADM
 
-  ALSADM -> ORC_HANDLER: Mettre à jour le point de terminaison d’oracle
+  ALSADM -> ORC_HANDLER: Mettre à jour le l'endpoint d’oracle
 
   activate ORC_HANDLER
-  ORC_HANDLER -> DB: Trouver le point de terminaison Oracle existant
-  alt Trouver le point de terminaison Oracle existant (succès)
+  ORC_HANDLER -> DB: Trouver le l'endpoint Oracle existant
+  alt Trouver le l'endpoint Oracle existant (succès)
       activate DB
-          DB -> ORC_HANDLER: Retourner le résultat du point de terminaison Oracle
+          DB -> ORC_HANDLER: Retourner le résultat de l'endpoint Oracle
           deactivate DB
           ORC_HANDLER -> ORC_HANDLER: Mettre à jour l’objet de données Oracle retourné
           ORC_HANDLER -> DB: Mettre à jour l’objet de données Oracle
@@ -112,7 +112,7 @@ group Mettre à jour un point de terminaison d’oracle
 
       end
   end
-  alt Trouver le point de terminaison Oracle existant (échec)
+  alt Trouver le l'endpoint Oracle existant (échec)
     DB -> ORC_HANDLER: Retourne un objet vide
     ORC_HANDLER -> ALSADM: Lever une erreur
     note left of ALSADM #yellow

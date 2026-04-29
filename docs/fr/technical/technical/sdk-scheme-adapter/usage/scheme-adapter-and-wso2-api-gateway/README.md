@@ -15,7 +15,7 @@ Guide pour tester le *scheme adapter* contre une passerelle WSO2 publique avec T
 
 * Se connecter au *store* WSO2, menu *Applications* : créer une application et des clés d’accès si nécessaire.
 * Menu *APIs* : s’abonner aux deux API ci-dessous (application et *tier* depuis la page de chaque API).
-  * **Central Ledger Admin API** — création de FSP et configuration des points de terminaison (demander à l’équipe infra les URL HTTPS correctes sur le Hub).
+  * **Central Ledger Admin API** — création de FSP et configuration des endpoints (demander à l’équipe infra les URL HTTPS correctes sur le Hub).
   * **FSPIOP API** — recherche de compte, cotations et transferts.
 * Tester des requêtes dans l’onglet *API Console* avec le jeton généré.
 * Noter les URL des deux API et le jeton d’accès.
@@ -27,7 +27,7 @@ Points généralement gérés par l’équipe infrastructure (les contacter pour
 
 * Machine avec IP publique fixe et nom de domaine pointant vers cette IP pour recevoir les réponses.
 * Certificats client/serveur (portail MCM, outil de *keychain*) pour la communication en *mutual* TLS.
-* Publication des points de terminaison vers votre adresse HTTPS dans WSO2 / HAProxy.
+* Publication des endpoints vers votre adresse HTTPS dans WSO2 / HAProxy.
 * Mise en place de l’authentification JWS.
 * **Déploiement AWS** (exemple)
   * Créer une instance EC2 (**t2.micro**, **Ubuntu 18.04**), connexion SSH avec la clé fournie par la console.
@@ -102,7 +102,7 @@ docker-compose up -d
 
 L’API de test du simulateur est sur le port **3003**.
 
-## Provisionner le DFSP `extpayerfsp` avec les bons points de terminaison
+## Provisionner le DFSP `extpayerfsp` avec les bons endpoints
 
 Créer un FSP (nom libre, ex. `extpayerfsp`).
 
@@ -110,7 +110,7 @@ Utiliser la section d’intégration FSP de la collection Postman `OSS-New-Deplo
 
 * Dupliquer l’environnement `Mojaloop-Local` et ajuster :
   * `payerfsp` → `extpayerfsp`
-  * `HOST_ML_API_ADAPTER`, `HOST_ML_API`, `HOST_SWITCH_TRANSFERS`, `HOST_ACCOUNT_LOOKUP_SERVICE`, `HOST_QUOTING_SERVICE` → point de terminaison FSPIOP WSO2
+  * `HOST_ML_API_ADAPTER`, `HOST_ML_API`, `HOST_SWITCH_TRANSFERS`, `HOST_ACCOUNT_LOOKUP_SERVICE`, `HOST_QUOTING_SERVICE` → l'endpoint FSPIOP WSO2
   * `HOST_CENTRAL_LEDGER` → API d’administration des services centraux WSO2
   * `HOST_CENTRAL_SETTLEMENT` → règlement central WSO2 (optionnel pour ces tests)
   * `HOST_SIMULATOR` et `HOST_SIMULATOR_K8S_CLUSTER` → `https://<votre_domaine>:4000`
@@ -118,7 +118,7 @@ Utiliser la section d’intégration FSP de la collection Postman `OSS-New-Deplo
 * Pour tout le dossier *Payer FSP Onboarding* : authentification *Bearer Token* avec le jeton WSO2 ; URL en HTTPS fournies par l’infra.
 * Exécuter le dossier *Payer FSP Onboarding* avec le nouvel environnement.
 
-Un passage à 100 % valide la création du FSP et la configuration des points de terminaison.
+Un passage à 100 % valide la création du FSP et la configuration des endpoints.
 
 ## Provisionner `payeefsp` et enregistrer un participant (simulateur MSISDN)
 

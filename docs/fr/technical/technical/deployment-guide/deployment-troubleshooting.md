@@ -68,7 +68,7 @@ Déployez les charts Helm Mojaloop v10.x ou antérieurs sur Kubernetes v1.15.
 
 #### 2.1.1 Description
 
-Cette erreur apparaît en accédant à un point de terminaison (ex. central-ledger.local) via le service Kubernetes directement dans un navigateur : `ERR_NAME_NOT_RESOLVED`
+Cette erreur apparaît en accédant à un l'endpoint (ex. central-ledger.local) via le service Kubernetes directement dans un navigateur : `ERR_NAME_NOT_RESOLVED`
 
 #### 2.1.2 Correctifs
 
