@@ -105,15 +105,15 @@ Fonctionnalité principale avec options de configuration :
     - Admin de recherche de comptes
     - Oracles
     - ALS (Account Lookup Service)
-2. Cote (Quoting)
+2. Devis (Quoting)
     - Prise en charge des modes persistant/passe-plat (paramétrable)
 3. Transferts (Clearing)
     - Prise en charge des transferts on-us (paramétrable)
 4. Règlement (Settlement)
     - Support de plusieurs types, granularités, fréquences
 5. Requêtes de transaction (fonctionnalité Request-to-pay)
-6. Services 3PPI (Interface Fournisseur Tier-Parti)
-7. Couche API — pour parties, cotations, transferts et requêtes de transaction
+6. Services 3PPI (Interface Fournisseur Tiers)
+7. Couche API — pour parties, devis, transferts et requêtes de transaction
 8. Notifications
     - ML-API-Adapter
 9. Conversion de devises
@@ -129,7 +129,7 @@ Fonctionnalité principale avec options de configuration :
     - ML Simulator
     - SDK-Scheme-Adapters
     - Instances Payment Manager
-13. Adapteurs de schéma tiers
+13. Adaptateurs de schéma tiers
     - Intégration avec des schémas tiers
 14. Gestion du cycle de vie des participants
     - Création de participants
@@ -140,7 +140,7 @@ Fonctionnalité principale avec options de configuration :
 
 ## 4. Plateforme Mojaloop
 1. Release principale Mojaloop (helm) et configuration avec :
-    - Moteur de compensation cœur incluant le support du Bulk
+    - Moteur central de compensation incluant le support du Bulk
     - Quoting
     - Recherche de comptes et ses composants associés
     - Moteur de règlement
