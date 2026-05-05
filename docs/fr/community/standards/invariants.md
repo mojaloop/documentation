@@ -219,7 +219,7 @@ Mojaloop est conçu pour s’intégrer à un système de paiements instantanés 
 
 
 ## Annexe A : aperçu des principes Level One
-Le [Level One Project](https://www.leveloneproject.org) propose un système de paiements à faible coût pour des paiements numériques inclusifs et interopérables. Le [guide Level One Project](https://www.leveloneproject.org/project_guide/03-welcome-to-the-2019-guide/) décrit une vision de système de services financiers numériques inclusifs au service des populations défavorisées. Les principes de conception incluent notamment :
+Le [Level One Project](https://www.leveloneproject.org) propose un système de paiements à faible coût pour des paiements numériques inclusifs et interopérables. Le [guide Level One Project](https://www.leveloneproject.org/project_guide/03-welcome-to-the-2019-guide/) décrit une vision de système de services financiers numériques inclusifs au service des populations à faible revenu. Les principes de conception incluent notamment :
 * Modèle de paiement en poussée de crédit avec transfert immédiat des fonds et règlement le jour même
 * Interopérabilité en boucle ouverte entre fournisseurs
 * Respect de normes internationales bien définies et adoptées

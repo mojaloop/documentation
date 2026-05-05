@@ -1,4 +1,4 @@
-# Diagramme de séquence — POST Participants (lot)
+# Diagramme de séquence — POST Participants (batch)
 
 Conception de la création de participants par un DFSP via une requête groupée.
 
