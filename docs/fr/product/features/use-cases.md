@@ -70,7 +70,7 @@ Un hub Mojaloop peut permettre aux clients d’un DFSP d’envoyer de l’argent
 Pour explorer les éléments de l’écosystème Mojaloop qui le rendent possible, il est recommandé de consulter :
 1. La possibilité de connecter un hub Mojaloop à des schémas de paiement voisins, dans le même pays ou ailleurs, pour assurer l’interopérabilité. Cette capacité [**est présentée ici**](./InterconnectingSchemes.md).
 
-2. La prise en charge des fournisseurs de change (FXP) se connectant à un hub Mojaloop pour proposer des services FX. Ni le payeur ni le bénéficiaire n’a besoin de définir le devise utilisée pour la transaction ; chacun opère dans sa propre devise, et le ou les hub(s) Mojaloop assure(nt) l’échange. Cette capacité [**est présentée ici**](./ForeignExchange.md).
+2. La prise en charge des fournisseurs de change (FXP) se connectant à un hub Mojaloop pour proposer des services FX. Ni le payeur ni le bénéficiaire n’a besoin de définir la devise utilisée pour la transaction ; chacun opère dans sa propre devise, et le ou les hub(s) Mojaloop assure(nt) l’échange. Cette capacité [**est présentée ici**](./ForeignExchange.md).
 
 3. La manière dont l’interconnexion / l’inter-schéma et le change sont combinés pour soutenir les [**transactions transfrontalières**](./CrossBorder.md).
 ## Autres ; paiements par carte

@@ -1345,7 +1345,7 @@ Service logique API : [Recherche d’informations sur un participant](../generic
 
 La requête HTTP **GET /participants/**_{Type}_**/**_{ID}_ (ou **GET /participants/**_{Type}_**/**_{ID}_**/**_{SubId}_) sert à déterminer dans quel FSP se trouve la partie demandée, définie par _{Type}_, _{ID}_ et éventuellement _{SubId}_ (par exemple, **GET** **/participants/MSISDN/123456789**, ou **GET /participants/BUSINESS/shoecompany/employee1**). Voir [Remboursement](#refund) pour plus d’informations sur l’adressage d’une partie.
 
-Cette requête HTTP doit prendre en charge une chaîne de requête (voir [Syntaxe URI](#uri-syntax) pour plus d’informations sur la syntaxe URI) pour filtrer par devise. Pour utiliser le filtrage par devise, la requête HTTP **GET /participants/**_{Type}_**/**_{ID}_**?currency=**_XYZ_ doit être utilisée, où _XYZ_ est le devise demandée.
+Cette requête HTTP doit prendre en charge une chaîne de requête (voir [Syntaxe URI](#uri-syntax) pour plus d’informations sur la syntaxe URI) pour filtrer par devise. Pour utiliser le filtrage par devise, la requête HTTP **GET /participants/**_{Type}_**/**_{ID}_**?currency=**_XYZ_ doit être utilisée, où _XYZ_ est la devise demandée.
 
 Informations de callback et de modèle de données pour **GET /participants/**_{Type}_**/**_{ID}_ (alternative **GET /participants/**_{Type}_**/**_{ID}_**/**_{SubId}_):
 
@@ -1359,7 +1359,7 @@ URI alternative : N/A
 
 Service logique API : [Création d’informations bulk sur un participant](../generic-transaction-patterns#create-bulk-participant-information)
 
-La requête HTTP **POST /participants** est utilisée pour créer des informations sur le serveur concernant la liste d’identités fournie. Cette requête doit être utilisée pour la création groupée d’informations FSP pour plusieurs parties. Le paramètre de devise optionnel doit indiquer que chaque partie fournie prend en charge le devise.
+La requête HTTP **POST /participants** est utilisée pour créer des informations sur le serveur concernant la liste d’identités fournie. Cette requête doit être utilisée pour la création groupée d’informations FSP pour plusieurs parties. Le paramètre de devise optionnel doit indiquer que chaque partie fournie prend en charge la devise.
 
 Callback et modèle de données pour **POST /participants** :
 
@@ -1373,7 +1373,7 @@ Callback et modèle de données pour **POST /participants** :
 |---|---|---|---|
 |**requestId**|1|CorrelationId|L’identifiant de la requête, choisi par le client. Utilisé pour identifier le callback du serveur.|
 |**partyList**|1..10000|PartyIdInfo|Liste des éléments PartyIdInfo pour lesquels le client souhaite créer ou mettre à jour les informations FSP.|
-|**currency**|0..1|Currency|Indique que le devise fournie est prise en charge par chaque PartyIdInfo de la liste.|
+|**currency**|0..1|Currency|Indique que la devise fournie est prise en charge par chaque PartyIdInfo de la liste.|
 
 **Tableau 9 — Modèle de données POST /participants**
 
@@ -1396,7 +1396,7 @@ Callback et modèle de données pour **POST /participants**/_{Type}_**/**_{ID}_ 
 |Nom|Cardinalité|Type|Description|
 |---|---|---|---|
 |**fspId**|1|FspId|Identifiant FSP auquel appartient la partie.|
-|**currency**|0..1|Currency|Indique que le devise fournie est prise en charge par la partie.|
+|**currency**|0..1|Currency|Indique que la devise fournie est prise en charge par la partie.|
 |**extensionList**|0..1|ExtensionList|Extension optionnelle, spécifique au déploiement.|
 
 **Tableau 10 — Modèle de données POST /participants/_{Type}_/_{ID}_ (ou POST /participants/_{Type}_/_{ID}_/_{SubId}_)**
@@ -1409,7 +1409,7 @@ Service logique API : [Suppression d’informations sur un participant](../gener
 
 La requête HTTP **DELETE /participants/**_{Type}_**/**_{ID}_ (ou **DELETE /participants/**_{Type}_**/**_{ID}_**/**_{SubId}_) est utilisée pour supprimer les informations sur le serveur concernant l’identité fournie, définie par _{Type}_ et _{ID}_ (par exemple, **DELETE /participants/MSISDN/123456789**) et éventuellement _{SubId}_. Voir [Remboursement](#refund) pour plus d’informations sur l’adressage d’une partie.
 
-Cette requête HTTP doit prendre en charge une chaîne de requête (voir [Syntaxe URI](#uri-syntax)) pour supprimer les informations FSP concernant uniquement une devise spécifique. Pour supprimer uniquement une devise spécifique, la requête HTTP **DELETE** **/participants/**_{Type}_**/**_{ID}_**?currency**_=XYZ_ doit être utilisée, où _XYZ_ est le devise demandée.
+Cette requête HTTP doit prendre en charge une chaîne de requête (voir [Syntaxe URI](#uri-syntax)) pour supprimer les informations FSP concernant uniquement une devise spécifique. Pour supprimer uniquement une devise spécifique, la requête HTTP **DELETE** **/participants/**_{Type}_**/**_{ID}_**?currency**_=XYZ_ doit être utilisée, où _XYZ_ est la devise demandée.
 
 **Note :** L’ALS doit vérifier que c’est bien le FSP actuel de la partie qui supprime l’information FSP.
 
@@ -1458,7 +1458,7 @@ Voir [Tableau 12](#table-12) pour le modèle de données.
 |Nom|Cardinalité|Type|Description|
 |---|---|---|---|
 |**partyList**|1..10000|PartyResults|Liste des éléments PartyResult qui ont été créés ou dont la création a échoué.|
-|**currency**|0..1|Currency|Indique que le devise fournie a été définie comme prise en charge par chaque PartyIdInfo ajouté avec succès.|
+|**currency**|0..1|Currency|Indique que la devise fournie a été définie comme prise en charge par chaque PartyIdInfo ajouté avec succès.|
 
 **Tableau 12 — Modèle de données PUT /participants/_{ID}_**
 
@@ -2029,7 +2029,7 @@ Cette requête nécessite que la chaîne de requête (voir [Syntaxe URI](#uri-sy
 - **authenticationType=**_{Type}_, où _{Type}_ est une valeur valide de l’énumération [AuthenticationType](#authenticationtype).
 - **retriesLeft=**_{NrOfRetries}_, où _{NrOfRetries}_ est le nombre de tentatives restantes avant le rejet de la transaction financière. _{NrOfRetries}_ doit être exprimé via le type de données [Integer](#integer)). **retriesLeft=1** signifie qu’il s’agit de la dernière tentative.
 - **amount=**_{Amount}_, où _{Amount}_ est le montant de la transaction qui sera prélevé du compte du payeur. _{Amount}_ doit être de type [Amount](#amount).
-- **currency=**_{Currency}_, où _{Currency}_ est le devise de la transaction. La valeur _{Currency}_ doit être conforme à l’énumération [CurrencyCode](#currencycode)).
+- **currency=**_{Currency}_, où _{Currency}_ est la devise de la transaction. La valeur _{Currency}_ doit être conforme à l’énumération [CurrencyCode](#currencycode)).
 
 Exemple d’URI contenant toutes les clés requises :
 
@@ -4338,7 +4338,7 @@ Voir [Tableau 117](#table-117) pour les erreurs Payeur définies dans l’API.
 | **4100** | Rejet générique Payeur | Le Payeur ou le FSP Payeur a rejeté la requête. ||| X | X | X | X | X | X | X |
 | **4101** | Payeur a rejeté la demande de transaction | Le Payeur a rejeté la demande de transaction du Bénéficiaire. ||| X |||||||
 | **4102** | FSP Payeur type de transaction non supporté | Le FSP Payeur ne supporte pas ou a rejeté le type de transaction demandé. ||| X ||||||| 
-| **4103** | Payeur devise non supportée | Le Payeur n’a pas de compte supportant le devise demandée. ||| X |||||||
+| **4103** | Payeur devise non supportée | Le Payeur n’a pas de compte supportant la devise demandée. ||| X |||||||
 | **4200** | Erreur de limite Payeur | Erreur de limite générique, par exemple nombre de paiements journalier/mensuel dépassé ou montant de la transaction supérieur au maximum autorisé. ||| X | X || X || X | X |
 | **4300** | Erreur de permission Payeur | Erreur de permission générique, le Payeur ou son FSP n’a pas les droits pour réaliser le service. ||| X | X | X | X | X | X | X |
 | **4400** | Erreur Payeur bloqué générique | Erreur Payeur bloqué générique ; le Payeur est bloqué ou a échoué les contrôles réglementaires. ||| X | X | X | X | X | X | X |
@@ -4371,7 +4371,7 @@ Voir [Tableau 118](#table-118) pour toutes les erreurs Bénéficiaire définies 
 | **5103** | FSP Bénéficiaire a rejeté le devis | Le FSP Bénéficiaire ne souhaite pas poursuivre la transaction après réception du devis. |||| X |||| X ||
 | **5104** | Bénéficiaire a rejeté la transaction | Le Bénéficiaire a rejeté la transaction financière. |||||| X ||| X |
 | **5105** | FSP Bénéficiaire a rejeté la transaction | Le FSP Bénéficiaire a rejeté la transaction financière. |||||| X ||| X |
-| **5106** | Devise non supportée par le Bénéficiaire | Le Bénéficiaire ne possède pas de compte prenant en charge le devise demandée. |||| X || X || X | X |
+| **5106** | Devise non supportée par le Bénéficiaire | Le Bénéficiaire ne possède pas de compte prenant en charge la devise demandée. |||| X || X || X | X |
 | **5200** | Erreur de limite Bénéficiaire | Erreur de limite générique, par exemple Bénéficiaire recevant plus de paiements par jour/mois que permis, ou recevant un paiement dépassant le montant maximum par transaction. ||| X | X || X || X | X |
 | **5300** | Erreur de permission Bénéficiaire | Erreur de permission générique, le Bénéficiaire ou son FSP n’a pas les droits pour réaliser le service. ||| X | X | X | X | X | X | X |
 | **5400** | Erreur Bénéficiaire bloqué générique | Erreur générique Bénéficiaire bloqué, le Bénéficiaire est bloqué ou a échoué les contrôles réglementaires. ||| X | X | X | X | X | X | X |
@@ -4655,7 +4655,7 @@ Avant que le bénéficiaire Henrik Karlsson ne soit trouvable via le FSP **BankN
 
 #### FSP MobileMoney provisionne Henrik Karlsson : Étape 1 du déroulé
 
-[Listing 29](#listing-29) montre la demande HTTP où **MobileMoney** provisionne les infos FSP pour Henrik Karlsson, identifié par **MSISDN** et **123456789** (voir [Adressage de Parties](#party-addressing)). L’élément JSON **fspId** est mis à l’identifiant du FSP et **currency** à le devise du compte (USD).
+[Listing 29](#listing-29) montre la demande HTTP où **MobileMoney** provisionne les infos FSP pour Henrik Karlsson, identifié par **MSISDN** et **123456789** (voir [Adressage de Parties](#party-addressing)). L’élément JSON **fspId** est mis à l’identifiant du FSP et **currency** à la devise du compte (USD).
 
 Voir [Tableau 1](#table-1) pour les en-têtes HTTP requis,
 et [POST /participants/_{Type}_/_{ID}_](#post-participants-type-id) pour plus d’infos. Pour le routage avec **FSPIOP-Destination** et **FSPIOP-Source**, voir [Routage du flux d’appel](#call-flow-routing-using-fspiop-destination-and-fspiop-source). Pour la négociation de version, voir [Négociation de version entre client et serveur](#version-negotiation-between-client-and-server).
@@ -4697,7 +4697,7 @@ application/vnd.interoperability.participants+json;version=1.0
 
 #### Traitement du provisionnement par le Switch : Étape 2
 
-Une fois la demande reçue ([Listing 29](#listing-29)) et la réponse envoyée ([Listing 30](#listing-30)), le Switch vérifie le corps de la demande. Par exemple, il s’assure que **fspId** correspond à **FSPIOP-Source**, que le devise est autorisée, etc.
+Une fois la demande reçue ([Listing 29](#listing-29)) et la réponse envoyée ([Listing 30](#listing-30)), le Switch vérifie le corps de la demande. Par exemple, il s’assure que **fspId** correspond à **FSPIOP-Source**, que la devise est autorisée, etc.
 
 Après validation, l’information que le compte identifié par **MSISDN** et **123456789** est chez le FSP **MobileMoney** est enregistrée en base Switch.
 

@@ -25,12 +25,12 @@ Cette approche clarifiée favorise la transparence et la concurrence sur les op�
 ## Incidence du type de montant sur la conversion de devises
 
 La mise en œuvre de la conversion côté DFSP payeur couvre deux scénarios distincts selon le type de montant indiqué dans la transaction :
-1. **Envoi de fonds dans le devise source (locale)**
-1. **Paiement dans le devise cible (étrangère)**
+1. **Envoi de fonds dans la devise source (locale)**
+1. **Paiement dans la devise cible (étrangère)**
 
 ### Envoi de fonds vers un compte dans une autre devise
 
-Dans ce cas d’usage, le **DFSP payeur** initie un transfert avec le type de montant **SEND**, en indiquant le montant dans le devise locale du payeur (devise source). Cette méthode est courante pour les transferts de **rémittance P2P**, où l’émetteur envoie des fonds dans sa devise locale et le bénéficiaire reçoit l’équivalent dans sa devise après conversion.
+Dans ce cas d’usage, le **DFSP payeur** initie un transfert avec le type de montant **SEND**, en indiquant le montant dans la devise locale du payeur (devise source). Cette méthode est courante pour les transferts de **rémittance P2P**, où l’émetteur envoie des fonds dans sa devise locale et le bénéficiaire reçoit l’équivalent dans sa devise après conversion.
 
 ### Transfert avec conversion de devises (devise source)
 
@@ -45,7 +45,7 @@ Le flux se décompose ainsi :
 
 #### Phase de découverte
 
-Le DFSP payeur identifie l’organisation DFSP bénéficiaire et confirme la validité du compte et le devise.
+Le DFSP payeur identifie l’organisation DFSP bénéficiaire et confirme la validité du compte et la devise.
 
 ![Phase de découverte](./CurrencyConversion/Payer_SEND_Discovery.svg)
 

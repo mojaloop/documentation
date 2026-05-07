@@ -101,8 +101,8 @@ C’est pourquoi la validation des données est une étape nécessaire, à consu
 | Comptes du rapport absents du règlement                                                        | Finalisation annulée avec erreur                                                              |
 | Les identifiants participant ne correspondent pas (ID, nom, compte)                            | Finalisation annulée avec erreur                                                              |
 | Le type de compte doit être POSITION                                                           | Finalisation annulée avec erreur                                                              |
-| Nouveau solde invalide pour le devise                                                          | Finalisation annulée avec erreur                                                              |
-| Montant du transfert invalide pour le devise                                                   | Finalisation annulée avec erreur                                                              |
+| Nouveau solde invalide pour la devise                                                          | Finalisation annulée avec erreur                                                              |
+| Montant du transfert invalide pour la devise                                                   | Finalisation annulée avec erreur                                                              |
 | L’ID du compte n’existe pas dans le switch                                                     | Finalisation annulée avec erreur                                                              |
 | Tentative de finaliser un règlement annulé                                                     | Finalisation annulée avec erreur                                                              |
 | Erreur lors de l’ajustement d’un participant                                                   | Continuer avec les autres ; notifier l’utilisateur de l’erreur                                |
@@ -137,7 +137,7 @@ Comme il est difficile de séparer un règlement une fois initié, il est préf�
 
 ---
 **REMARQUE**
-Si vous exécutez un modèle net différé multilatéral à devise unique et utilisez des devises test pour vos tests réguliers, il est préférable de créer les règlements des devises de test séparément du devise réelle. Idéalement, il ne faut pas avoir à sélectionner le devise ou un modèle lors de l’initiation du règlement.
+Si vous exécutez un modèle net différé multilatéral à devise unique et utilisez des devises test pour vos tests réguliers, il est préférable de créer les règlements des devises de test séparément du devise réelle. Idéalement, il ne faut pas avoir à sélectionner la devise ou un modèle lors de l’initiation du règlement.
 Cela s’obtient en créant des modèles séparés : un pour chaque monnaie test, un pour la monnaie réelle.
 Par défaut, l’initiation sur transactions multi-devises génère des règlements séparés. (La fonction de détermination des modèles les trouvera tous.)
 ___
@@ -179,10 +179,10 @@ ___
 | Comptes du rapport ne correspondent pas au règlement                  | 3000       | 500              | Erreur validation processus                 |
 | Somme des transferts non nulle dans le rapport                        | 3100       | 500              | Erreur validation processus                 |
 | Montant transfert ≠ montant net de règlement                          | 3100       | 500              | Erreur validation processus                 |
-| Nouveau solde non valide pour le devise                               | 3100       | 500              | Erreur validation processus                 |
-| Montant de transfert non valide pour le devise                        | 3100       | 500              | Erreur validation processus                 |
+| Nouveau solde non valide pour la devise                               | 3100       | 500              | Erreur validation processus                 |
+| Montant de transfert non valide pour la devise                        | 3100       | 500              | Erreur validation processus                 |
 | Règlement à l’état ABORTED ou invalide                               | 3100       | 500              | Erreur validation processus                 |
-| Montant de transfert non valide pour le devise                        | 3100       | 500              | Erreur validation processus                 |
+| Montant de transfert non valide pour la devise                        | 3100       | 500              | Erreur validation processus                 |
 
 **Codes d’erreur de confirmation à la finalisation**
 
