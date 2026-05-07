@@ -221,7 +221,7 @@ S1-->>D2:200 — OK
 S1->S1:Y a-t-il un transfert dépendant ?\nOui.
 S1->S1:Cette dépendance concerne-t-elle le\ndébiteur du transfert ?\nOui.
 S1->S1:Créer une obligation du\ndébiteur vers la partie nommée\ndans la dépendance (le FXP)
-S1->S1:Le transfert est-il libellé dans\nle devise du montant \nreçu par le bénéficiaire ? Oui.
+S1->S1:Le transfert est-il libellé dans\nla devise du montant \nreçu par le bénéficiaire ? Oui.
 S1->S1:Créer une obligation de la\n partie nommée dans la\ndépendance vers le créancier\ndu transfert
 !else
 S1->S1:Créer des obligations du payeur vers le FXP et du FXP vers le bénéficiaire

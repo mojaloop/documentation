@@ -128,7 +128,7 @@ group Publication des détails FSP du Participant
 
             '********************* Récupérer les infos de routage Oracle - DÉBUT ************************
 
-            ALS_PARTICIPANT_HANDLER <-> ALS_DB: Obtenir la config de routage Oracle selon TypeKey (et le devise si présente)\n<color #FF0000><b>Codes erreur :</b> 300x, 310x</color>
+            ALS_PARTICIPANT_HANDLER <-> ALS_DB: Obtenir la config de routage Oracle selon TypeKey (et la devise si présente)\n<color #FF0000><b>Codes erreur :</b> 300x, 310x</color>
             ref over ALS_PARTICIPANT_HANDLER, ALS_DB
                 GET Participants - [[https://docs.mojaloop.live/mojaloop-technical-overview/account-lookup-service/als-get-participants.html Séquence : Obtenir la config de routage Oracle]]
                 |||
