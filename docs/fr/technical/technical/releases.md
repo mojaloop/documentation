@@ -30,13 +30,13 @@ Les décisions concernant les fonctionnalités à inclure, celles jugées prête
 - [x] S’assurer que tous les services cœur et les services inclus dans la release respectent les standards concernant :
   - [x] Alertes Dependabot
   - [x] Fichiers de licence
-  - [x] Entêtes de licence dans les sources
+  - [x] En-têtes de licence dans les sources
   - [x] Alertes Snyk
   - [x] Fichiers codeowners
   - [x] Règles de protection des branches principales vérifiées
   - [x] Revue des issues ouvertes
   - [x] Revue des pull requests ouvertes
-  - [x] Revue des exceptions d’audit fournies et clarification / réduction de la liste
+  - [x] Revue des exceptions d’audit fournies et effacer/réduire de la liste
 - [x] Mise à jour des manifests pour le workflow Github "Release Pull Request (PR)"
 - [x] Valider le PR de release ainsi que le processus associé
 - [x] Déployer les valeurs par défaut avec le RC dans l'environnement AWS moja*
@@ -45,7 +45,7 @@ Les décisions concernant les fonctionnalités à inclure, celles jugées prête
 - [x] Déployer et valider le RC sur un second environnement
   - [x] Valider que la collection GP passe à 100 %
   - [x] Valider que les tests FX et inter-schéma fonctionnent à 100 %
-- [x] Identifier les problèmes éventuels avec les scripts QA ; les corriger et re-tester
+- [x] Identifier les problèmes éventuels avec les scripts QA ; les corriger et retester
 - [x] QA pour bugs, régressions, les consigner
 - [x] Corriger les bugs remontés si critique
 - [x] Valider avec la collection GP de TTK
@@ -79,8 +79,8 @@ Les décisions concernant les fonctionnalités à inclure, celles jugées prête
     - [x] Collection FX (ou tests)
     - [x] Tests mode ISO 20022
     - [x] Collection tests inter-schéma
-- [x] Valider les cronJobs quotidiens de GP sur dev/qa et les scripts de nettoyage
-- Valider la capacité à réaliser une mise à niveau depuis la version stable précédente, et en profiter pour identifier tout "piège" à gérer dans la release ou dans la documentation de mise à niveau (à la charge de la personne qui effectue la montée de version).
+- [x] Valider que les cronJobs quotidiens de GP sur dev/qa et les scripts de nettoyage s'exécutent correctement, ainsi que les scripts de nettoyage
+- Valider la capacité à réaliser une mise à niveau depuis la version stable précédente, et en profiter pour identifier tout "piège" à gérer dans la release ou mettre à jour les notes de version (à la charge de la personne qui effectue la montée de version).
 
 
 ## 2. Processus de publication Mojaloop – évolutions proposées :
@@ -90,10 +90,10 @@ Proposer un calendrier de release et des échéances
 1. Exemple : le gel des fonctionnalités pour une release majeure doit précéder d'au moins six semaines le prochain kick-off PI (ou événement communautaire)
 1. Le gel des corrections de bugs (non critiques) doit intervenir quatre semaines avant la date de publication
 1. Le RC doit être validé par au moins un intégrateur / utilisateur aval : Mini-loop, IaC, Core-test-harness ou un autre
-1. La release peut être publiée dans les temps si aucun bug majeur ou moyen n'est ouvert dans le RC et si les validations sont faites sur un environnement de dev et par une équipe downstream
+1. La release peut être publiée dans les temps si aucun bug de priorité haute ou moyenne n'est ouvert dans le RC et si les validations sont faites sur un environnement de dev et par une équipe downstream
 1. Harmoniser la numérotation des versions entre les différents composants de la plateforme Mojaloop, tel que le Finance Portal
 1. Inclure des mesures de performance et des détails sur l'environnement de référence utilisé pour ces mesures
-1. Ressources : capturer l'empreinte ressources d'une publication de base
+1. Ressources : capturer l'empreinte des ressources d'une publication de base
 1. Documenter les mécanismes de support pour les releases Mojaloop
 
 ## 3. Contenu de la release Helm Mojaloop
@@ -105,15 +105,15 @@ Fonctionnalité principale avec options de configuration :
     - Admin de recherche de comptes
     - Oracles
     - ALS (Account Lookup Service)
-2. Cote (Quoting)
+2. Devis (Quoting)
     - Prise en charge des modes persistant/passe-plat (paramétrable)
 3. Transferts (Clearing)
     - Prise en charge des transferts on-us (paramétrable)
 4. Règlement (Settlement)
-    - Support de plusieurs types, granularités, fréquences
+    - Prise en charge de plusieurs types, granularités, fréquences
 5. Requêtes de transaction (fonctionnalité Request-to-pay)
-6. Services 3PPI (Interface Fournisseur Tier-Parti)
-7. Couche API — pour parties, cotations, transferts et requêtes de transaction
+6. Services 3PPI (Interface Fournisseur Tiers)
+7. Couche API — pour parties, devis, transferts et requêtes de transaction
 8. Notifications
     - ML-API-Adapter
 9. Conversion de devises
@@ -129,7 +129,7 @@ Fonctionnalité principale avec options de configuration :
     - ML Simulator
     - SDK-Scheme-Adapters
     - Instances Payment Manager
-13. Adapteurs de schéma tiers
+13. Adaptateurs de schéma tiers
     - Intégration avec des schémas tiers
 14. Gestion du cycle de vie des participants
     - Création de participants
@@ -140,30 +140,30 @@ Fonctionnalité principale avec options de configuration :
 
 ## 4. Plateforme Mojaloop
 1. Release principale Mojaloop (helm) et configuration avec :
-    - Moteur de compensation cœur incluant le support du Bulk
+    - Moteur central de compensation incluant la prise en charge du Bulk
     - Quoting
     - Recherche de comptes et ses composants associés
     - Moteur de règlement
     - Couche API
-    - Support pour request-to-pay (requêtes de transaction)
+    - La prise en charge du pour request-to-pay (requêtes de transaction)
     - Gestion du cycle de vie des participants
     - Réf : Release Helm Mojaloop (exemple : v15.1.0)
 2. Fonctionnalité PISP / 3PPI
 3. Gateway(s) API
     - Assurer une couche API sécurisée
     - Fournir entrée, sortie (Ingress/Egress), filtrage IP, pare-feux
-    - Support des mécanismes de sécurité : JWS, mTLS
+    - Prise en charge des mécanismes de sécurité : JWS, mTLS
     - Référence : WSO2
 4. Composants de sécurité :
-    - HSM si utilisé/requis
+    - HSM si pertinent/utilisé
     - Gestion des identités & accès
     - Gestion des certificats
     - Gestion des connexions
 5. Portail Finance, Reporting
-    - Portails pour les équipes d’Ops Hub, Ops métier
+    - Portails pour les équipes d’Opérations du Hub, Ops métier
     - Portails et capacités pour équipes techniques d’Ops
     - Réf : FP v3 basé sur le Business Operations Framework
-6. Support de monitoring :
+6. Prise en charge de monitoring :
     - Support opérationnel et traçabilité (ex : EFK, Prometheus, Grafana, Loki)
     - IaC utilise Grafana, Prometheus et Loki
 7. Utiliser IaC comme référence, exemple : https://github.com/mojaloop/iac-modules/releases/tag/v5.7.0

@@ -15,7 +15,7 @@ Toutes les transactions Mojaloop sont **asynchrones** (pour optimiser l’usage 
 
 1.  **Découverte**, pendant laquelle le DFSP du payeur collabore avec le Hub Mojaloop pour déterminer où envoyer le paiement. Cette phase résout un alias vers un DFSP bénéficiaire précis et, avec ce DFSP, un compte individuel.
  &nbsp;
-2.  **Accord sur les conditions (cotation)**, pendant laquelle les deux DFSP parties à la transaction conviennent que la transaction peut avoir lieu (sous réserve, par exemple, de restrictions liées à un KYC par paliers) et à quelles conditions (dont frais).
+2.  **Accord sur les conditions (devis)**, pendant laquelle les deux DFSP parties à la transaction conviennent que la transaction peut avoir lieu (sous réserve, par exemple, de restrictions liées à un KYC par paliers) et à quelles conditions (dont frais).
  &nbsp;
 
 3.  **Transfert**, lorsque la transaction entre les deux DFSP (et, par procuration, les comptes clients) est compensée.
@@ -72,7 +72,7 @@ Mojaloop propose deux API transactionnelles fonctionnellement équivalentes pour
 La plupart des fonctions de Mojaloop existent aussi sur d’autres hubs de compensation. Ce qui distingue Mojaloop :
 
 1.  **Le flux transactionnel en trois phases et l’idempotence**, décrits ci-dessus.   &nbsp;
-2.  **La phase d’accord sur les conditions (cotation)**, qui permet aux deux DFSP de convenir qu’une transaction peut avoir lieu *avant* tout engagement. Le DFSP bénéficiaire peut vérifier que le compte peut recevoir le paiement, qu’il n’est pas suspendu, que les plafonds ne seront pas dépassés. S’il accepte, il indique les frais éventuels (les frais de hub sont hors transaction). Ce n’est qu’après accord du DFSP payeur et du payeur sur ces frais et conditions que la transaction est lancée. L’incertitude est ainsi réduite et la probabilité de succès augmentée *avant* exécution.
+2.  **La phase d’accord sur les conditions (devis)**, qui permet aux deux DFSP de convenir qu’une transaction peut avoir lieu *avant* tout engagement. Le DFSP bénéficiaire peut vérifier que le compte peut recevoir le paiement, qu’il n’est pas suspendu, que les plafonds ne seront pas dépassés. S’il accepte, il indique les frais éventuels (les frais de hub sont hors transaction). Ce n’est qu’après accord du DFSP payeur et du payeur sur ces frais et conditions que la transaction est lancée. L’incertitude est ainsi réduite et la probabilité de succès augmentée *avant* exécution.
    
 3.  **La non-répudiation de bout en bout** pendant la phase de transfert garantit à chaque partie qu’un message n’a pas été modifié et qu’il provient bien de l’émetteur déclaré. Mojaloop s’appuie sur cette technologie pour que la transaction ne soit engagée que si *les deux* DFSP payeur et bénéficiaire l’acceptent, sans qu’aucun puisse la nier. Le rapprochement au niveau transactionnel devient inutile, ce qui réduit litiges et traitement d’exceptions, et donc les coûts — au service de l’inclusion financière et de la confiance dans les paiements.
 

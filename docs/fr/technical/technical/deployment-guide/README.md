@@ -9,7 +9,7 @@ Ce document s’adresse à un public disposant de solides connaissances techniqu
     - [1. Prérequis](#_1-prérequis)
     - [2. Recommandations de déploiement](#_2-recommandations-de-déploiement)
     - [3. Kubernetes](#_3-kubernetes)
-      - [3.1. Contrôleur d’entrée Kubernetes (Ingress)](#_3-1-contrôleur-dentrée-kubernetes-ingress)
+      - [3.1. Ingress controller Kubernetes](#_3-1-contrôleur-dentrée-kubernetes-ingress)
       - [3.2. Interfaces d’administration Kubernetes](#_3-2-interfaces-dadministration-kubernetes)
     - [4. Helm](#_4-helm)
       - [4.1. Configuration Helm](#_4-1-configuration-helm)
@@ -70,57 +70,57 @@ Liste des outils prérequis pour le déploiement de Mojaloop :
 
 ### 2. Recommandations de déploiement
 
-Cette section présente des recommandations sur les ressources d’environnement et l’architecture d’infrastructure.
+Ceci présente des recommandations sur les ressources d’environnement et ainsi qu'une vue sur l’architecture d’infrastructure.
 
 **Besoins en ressources :**
 
-- Plan de contrôle (nœuds maîtres)
+- Plan de contrôle c.-à-d. (nœuds maîtres)
 
   [https://kubernetes.io/docs/setup/cluster-large/#size-of-master-and-master-components](https://kubernetes.io/docs/setup/cluster-large/#size-of-master-and-master-components)
 
-  - 3 nœuds maîtres pour la montée en charge future et la haute disponibilité (HA)
+  - 3x nœuds maîtres pour la mise à l'échelle future et la haute disponibilité (HA)
 
 - Plan ETCd :
 
   [https://etcd.io/docs/latest/op-guide/hardware/](https://etcd.io/docs/latest/op-guide/hardware/)
 
-  - 3 nœuds ETCd pour la HA (haute disponibilité)
+  - 3x nœuds ETCd pour la HA (haute disponibilité)
 
-- Plan de calcul (nœuds workers) :
+- Plan de calcul c.-à-d. (nœuds workers) :
 
-  À confirmer une fois les tests de charge terminés. Taille générale actuellement recommandée :
+  À confirmer une fois les tests de charge terminés. Cependant, le configuration générale recommandée actuellement est :
 
-  - 3 nœuds workers, chacun avec :
+  - 3x nœuds workers, chacun disposant :
     - 4 vCPU, 16 Go de RAM et 40 Go de stockage
 
-  **Remarque :** cela dépend aussi de votre infrastructure sous-jacente et **n’inclut pas** les besoins en volumes persistants / stockage.
+  **Remarque :** cela dépend aussi de votre infrastructure sous-jacente et cela **N’INCLUT PAS** les besoins en volumes persistants / stockage.
 
 ![Recommandations de déploiement Mojaloop — Architecture d’infrastructure](./assets/diagrams/deployment/KubeInfrastructureArch.svg)
 
 ### 3. Kubernetes
 
-Si vous installez Kubernetes vous-même, nous recommandons l’une des distributions suivantes, en installant la version cible indiquée à la section [1. Prérequis](#_1-prérequis) :
+Si vous installez Kubernetes vous-même, nous recommandons l’une des distributions suivantes, en installant la version correspondante souhaitée, telle qu'indiquée à la section [1. Prérequis](#_1-prérequis) :
 
 - [k3s](https://docs.k3s.io/installation) — Distribution Kubernetes légère et flexible, utilisable pour presque tout, du local à la production.
-- [Minikube](https://minikube.sigs.k8s.io/docs/start) — Distribution Kubernetes mono-nœud, simple et multiplateforme, adaptée au local ou au développement.
+- [Minikube](https://minikube.sigs.k8s.io/docs/start) — Distribution Kubernetes mono-nœud, simple et indépendant de la plateforme, adaptée au local ou au développement.
 - [Microk8s](https://microk8s.io/docs/install-alternatives) — Distribution Kubernetes simple, adaptée au local ou au développement.
 - [Docker Desktop](https://docs.docker.com/desktop/kubernetes/) — Distribution Kubernetes simple, adaptée au local ou au développement (installez la version qui inclut votre version Kubernetes cible en consultant les [notes de version Docker Desktop](https://docs.docker.com/desktop/release-notes)).
 
-Nous ne prescrivons pas une distribution Kubernetes précise ; toute distribution certifiée [Cloud Native Computing Foundation (CNCF)](https://www.cncf.io/certification/software-conformance) ou solution managée (ex. Azure, AWS, GCP) convient pour tester les nouvelles versions Mojaloop.
+Nous ne prescrivons pas une distribution Kubernetes précise ; mais plutôt toute distribution executant certifiée [Cloud Native Computing Foundation (CNCF)](https://www.cncf.io/certification/software-conformance) ou solution managée (ex. Azure, AWS, GCP) convient pour tester les nouvelles versions Mojaloop.
 
-Si vous débutez avec Kubernetes, il est fortement conseillé de vous familiariser avec les concepts. [Concepts Kubernetes](https://kubernetes.io/docs/concepts/overview/) est un bon point de départ.
+Si vous débutez avec Kubernetes, il est fortement conseillé de vous familiariser avec les concepts. [Concepts Kubernetes](https://kubernetes.io/docs/concepts/overview/) est un bon point de départ et fournira un aperçu général.
 
 Vérifiez que **kubectl** est installé. Les instructions complètes se trouvent [ici](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
 
-#### 3.1. Contrôleur d’entrée Kubernetes (Ingress)
+#### 3.1. Ingress Controller Kubernetes
 
-Installez le contrôleur Ingress de votre choix pour l’équilibrage de charge et l’accès externe.
+Installez l'Ingress controller de votre choix pour l’équilibrage de charge et l’accès externe.
 
 Pour installer le contrôleur Nginx-Ingress utilisé dans ce guide, voir : <https://kubernetes.github.io/ingress-nginx/deploy/#using-helm>.
 
 Liste d’autres contrôleurs Ingress : <https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/>.
 
-Installez une version **prise en charge** du `Ingress Controller` compatible avec votre version cible de `Kubernetes`.
+Installez une version **prise en charge** de l'`Ingress Controller` compatible avec votre version cible de `Kubernetes`.
 
 > **DÉPANNAGE DU DÉPLOIEMENT — Mis à jour en mars 2023**
 >
@@ -137,11 +137,11 @@ Installez une version **prise en charge** du `Ingress Controller` compatible ave
 
    Interface web officielle d’administration Kubernetes.
 
-   Instructions d’installation : [Web UI (Dashboard) — installation](https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/) (inutile si **MicroK8s** est installé).
+   Instructions d’installation : [Web UI (Dashboard) — installation](https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/) (inutile si **microk8s** est installé).
 
-   **IMPORTANT :** Configurez les rôles RBAC et un compte de service associé (inutile si **MicroK8s** est installé) ; exemple pour un utilisateur de test uniquement : [Créer un utilisateur d’exemple](https://github.com/kubernetes/dashboard/blob/master/docs/user/access-control/creating-sample-user.md).
+   **IMPORTANT :** (inutile si **microk8s** est installé) Configurez les rôles RBAC et un compte de service associé ; exemple pour un utilisateur de test uniquement : [Créer un utilisateur d’exemple](https://github.com/kubernetes/dashboard/blob/master/docs/user/access-control/creating-sample-user.md).
 
-   Si vous avez installé MicroK8s, **activez le tableau de bord MicroK8s** :
+   Si vous avez installé microk8s, **activez le tableau de bord microk8s** :
 
    ```bash
    microk8s.enable dashboard
@@ -149,23 +149,23 @@ Installez une version **prise en charge** du `Ingress Controller` compatible ave
 
    Plus d’informations : [Extension : dashboard](https://microk8s.io/docs/addon-dashboard).
 
-   **Pensez** à préfixer toutes les commandes **kubectl** par **microk8s** si vous n’avez pas créé d’alias.
+   **Pensez** à préfixer toutes les commandes **kubectl** par **microk8s** si vous avez choisi de ne pas créer d'alias.
 
 2. k8sLens
 
-   Alternative graphique locale à kubectl, simple à installer et à configurer.
+   Alternative graphique de bureau (desktop) à kubectl, simple à installer et à configurer.
 
    Plus d’informations : <https://k8slens.dev/>.
 
 ### 4. Helm
 
-Consultez [Charts Helm Mojaloop](../repositories/helm.md) pour comprendre les relations entre les charts Helm déployés.
+Consultez [Charts Helm Mojaloop](../repositories/helm.md) pour comprendre les relations entre les charts Helm Mojaloop déployés.
 
 Installation de la dernière version de Helm : <https://helm.sh/docs/intro/install/>.
 
-Si vous utilisez Helm v2 : [Déploiement avec Helm v2 (obsolète)](https://docs.mojaloop.io/legacy/deployment-guide/helm-legacy-deployment.html).
+Si vous utilisez Helm v2, consultez le document suivant : [Déploiement avec Helm v2 (obsolète)](https://docs.mojaloop.io/legacy/deployment-guide/helm-legacy-deployment.html).
 
-Pour migrer un déploiement Helm v2 existant vers v3 : [Guide de migration Helm v2 vers v3](https://docs.mojaloop.io/legacy/deployment-guide/helm-legacy-migration.html).
+Si vous souhaitez migrer un déploiement Helm v2 existant vers v3, consultez le [Guide de migration Helm v2 vers v3](https://docs.mojaloop.io/legacy/deployment-guide/helm-legacy-migration.html).
 
 #### 4.1. Configuration Helm
 
@@ -185,13 +185,13 @@ Pour migrer un déploiement Helm v2 existant vers v3 : [Guide de migration Helm 
 
 ### 5. Mojaloop
 
-#### 5.1. Déploiement Helm du backend (prérequis)
+#### 5.1. Prérequis - Déploiement Helm du backend
 
-Mojaloop dépend de plusieurs backends externes.
+Mojaloop dépend de plusieurs dépendances backends externes.
 
 Nous recommandons de déployer ces dépendances dans un déploiement nommé distinct.
 
-Le chart backend d’exemple est fourni à titre indicatif et ne doit servir qu’à la preuve de concept, au développement et aux tests.
+Le chart backend d’exemple est fourni à titre d'exemple et ne doit servir qu’à des fins de preuve de concept, de développement et de test.
 
 Plus de détails [ici](https://github.com/mojaloop/helm/blob/master/README.md#deploying-backend-dependencies).
 
@@ -213,7 +213,7 @@ Plus de détails [ici](https://github.com/mojaloop/helm/blob/master/README.md#de
    helm --namespace demo install moja mojaloop/mojaloop --create-namespace
    ```
 
-   Ou avec une configuration personnalisée :
+   Ou si vous avez besoin d'une configuration personnalisée :
 
    ```bash
    helm --namespace demo install moja mojaloop/mojaloop --create-namespace -f {custom-values.yaml}
@@ -221,7 +221,7 @@ Plus de détails [ici](https://github.com/mojaloop/helm/blob/master/README.md#de
 
    Plus de détails [ici](https://github.com/mojaloop/helm/blob/master/README.md#deploying-mojaloop-helm-charts).
 
-   _Remarque : Téléchargez et adaptez le fichier [values.yaml](https://github.com/mojaloop/helm/blob/master/mojaloop/values.yaml). Utilisez le `values.yaml` correspondant à la bonne version (ex. `https://github.com/mojaloop/helm/blob/v<SPECIFIC_VERSION>/mojaloop/values.yaml`) via les [releases Helm](https://github.com/mojaloop/helm/releases). Pour vérifier la version installée : `helm --namespace demo list`. Sous la colonne **CHART**, vous devriez voir quelque chose comme `mojaloop-**{version}**`._
+   _Remarque : Téléchargez et adaptez le fichier [values.yaml](https://github.com/mojaloop/helm/blob/master/mojaloop/values.yaml). Assurez vous également d'utiliser le `values.yaml` correspondant à la bonne version (ex. `https://github.com/mojaloop/helm/blob/v<SPECIFIC_VERSION>/mojaloop/values.yaml`) via les [releases Helm](https://github.com/mojaloop/helm/releases). Pour vérifier la version installée : `helm --namespace demo list`. Sous la colonne **CHART**, vous devriez voir quelque chose comme `mojaloop-**{version}**` où `{version}` correspond à la version déployée._
 
    ```bash
     $ helm -n demo list
@@ -256,7 +256,7 @@ Plus de détails [ici](https://github.com/mojaloop/helm/blob/master/README.md#de
    vi /etc/hosts
    ```
 
-   _Sous Windows, modifiez le fichier dans le Bloc-notes avec des droits administrateur. Emplacement : `C:\Windows\System32\drivers\etc\hosts`._
+   _Sous Windows, le fichier doit être modifié dans dans le Bloc-notes en l'ouvrant obligatoirement avec des droits administrateur. Emplacement : `C:\Windows\System32\drivers\etc\hosts`._
 
    Ajoutez les lignes suivantes (ou combinez-les) à la configuration hôte.
 
@@ -267,7 +267,7 @@ Plus de détails [ici](https://github.com/mojaloop/helm/blob/master/README.md#de
     127.0.0.1   ml-api-adapter.local central-ledger.local account-lookup-service.local account-lookup-service-admin.local quoting-service.local central-settlement-service.local transaction-request-service.local central-settlement.local bulk-api-adapter.local moja-simulator.local sim-payerfsp.local sim-payeefsp.local sim-testfsp1.local sim-testfsp2.local sim-testfsp3.local sim-testfsp4.local mojaloop-simulators.local finance-portal.local operator-settlement.local settlement-management.local testing-toolkit.local testing-toolkit-specapi.local
    ```
 
-2. Testez la santé du système dans le navigateur après installation. Cela ne fonctionne que si un déploiement Helm est actif.
+2. Testez la santé du système dans le navigateur après installation. Cela ne fonctionne que si un déploiement de chart Helm est actif et en cours d'exécution.
 
    _Remarque : Les exemples ci-dessous concernent un déploiement local. Les entrées doivent correspondre au DNS ou aux règles Ingress du [values.yaml](https://github.com/mojaloop/helm/blob/master/mojaloop/values.yaml) ou à toute configuration Ingress personnalisée._
 
@@ -344,7 +344,7 @@ Le [Mojaloop Testing Toolkit](../../documentation/mojaloop-technical-overview/ml
 
    Ouvrez dans le navigateur : <http://testing-toolkit.local>.
 
-   Vous pouvez charger et exécuter manuellement les collections du Testing Toolkit pour inspecter en détail requêtes, réponses et assertions. C’est une bonne façon d’apprendre Mojaloop.
+   Vous pouvez charger et exécuter manuellement les collections du Testing Toolkit via l'interface graphique, ce qui permet d'inspecter visuellement les requêtes, réponses et assertions en détail. C'est une excellente façon d'en apprendre davantage sur Mojaloop.
 
    Voir la [documentation du Mojaloop Testing Toolkit](../../documentation/mojaloop-technical-overview/ml-testing-toolkit/README.md).
 
@@ -354,7 +354,7 @@ Le [Mojaloop Testing Toolkit](../../documentation/mojaloop-technical-overview/ml
 
 [Postman](https://www.postman.com/downloads) peut remplacer le [Mojaloop Testing Toolkit](../../documentation/mojaloop-technical-overview/ml-testing-toolkit/README.md). Voir le [Guide des tests automatisés](../contributors-guide/tools-and-technologies/automated-testing.md).
 
-Les [collections Postman Mojaloop](https://github.com/mojaloop/postman) correspondent aux [cas de test du Mojaloop Testing Toolkit](https://github.com/mojaloop/testing-toolkit-test-cases) comme suit :
+Les [collections Postman Mojaloop](https://github.com/mojaloop/postman) sont similaires aux [cas de test du Mojaloop Testing Toolkit](https://github.com/mojaloop/testing-toolkit-test-cases) comme suit :
 
 | Collection Postman | Mojaloop Testing Toolkit | Description |
 |---------|----------|---------|
@@ -363,13 +363,13 @@ Les [collections Postman Mojaloop](https://github.com/mojaloop/postman) correspo
 
 Prérequis :
 
-- Importer ou adapter l’environnement Postman suivant pour les collections ci-dessus : [Mojaloop-Local-MojaSims.postman_environment.json](https://github.com/mojaloop/postman/blob/master/environments/Mojaloop-Local-MojaSims.postman_environment.json).
-- Téléchargez la **dernière version patch** depuis les [releases du dépôt Postman Mojaloop](https://github.com/mojaloop/postman/releases). Par exemple, si vous installez Mojaloop v12.0.**X**, assurez-vous d’avoir la dernière version patch des collections v12.0.**Y**.
+- Le fichier d'environnement Postman suivant doit être importé ou adapté selon les besoins lors de l'exécution des collections Postman listées ci-dessus : [Mojaloop-Local-MojaSims.postman_environment.json](https://github.com/mojaloop/postman/blob/master/environments/Mojaloop-Local-MojaSims.postman_environment.json).
+- Assurez-vous de téléchargez la **dernière version patch** depuis les [releases du dépôt Postman Mojaloop](https://github.com/mojaloop/postman/releases). Par exemple, si vous installez Mojaloop v12.0.**X**, assurez-vous d’avoir la dernière version patch des collections v12.0.**Y**.
 
-### <a id='overlay-services'></a>6. Services superposés / 3PPI
+### <a id='overlay-services'></a>6. Overlay Services/3PPI
 
-À partir de la [R.C. v13.1.0](https://github.com/mojaloop/helm/tree/release/v13.1.0) de Mojaloop, l’API tierce est prise en charge et sera publiée avec la version officielle Mojaloop v13.1.0,
-ce qui permet aux initiateurs de paiement tiers (3PPI) de demander un lien de compte auprès d’un DFSP et d’initier
+À partir de la [R.C. v13.1.0](https://github.com/mojaloop/helm/tree/release/v13.1.0) de Mojaloop, l'API tierce est désormais prise en charge et sera incluse dans la version officielle Mojaloop v13.1.0,
+ce qui permet aux initiateurs de paiement tiers (3PPI) de demander la liaison de compte auprès d’un DFSP et d’initier
 des paiements pour le compte des utilisateurs.
 
 > En savoir plus sur les 3PPI :
@@ -404,7 +404,7 @@ thirdparty:
 
 De plus, l’API tierce a plusieurs dépendances à déployer manuellement pour que les services thirdparty
 fonctionnent. [mojaloop/helm/thirdparty](https://github.com/mojaloop/helm/tree/master/thirdparty) décrit ces
-dépendances et fournit des exemples de fichiers de configuration k8s pour les installer.
+dépendances et fournit des exemples de fichiers de configuration k8s qui se chargent de les installer automatiquement.
 
 ```bash
 # installer redis et mysql pour auth-service
@@ -416,7 +416,7 @@ kubectl apply --namespace demo -f https://raw.githubusercontent.com/mojaloop/hel
 helm upgrade --install --namespace demo moja mojaloop/mojaloop -f values.yaml
 ```
 
-Une fois la mise à jour Helm terminée, vérifiez que les services tiers sont opérationnels :
+Une fois la mise à jour Helm terminée, vous pouvez vérifiez que les services tiers sont actifs et en cours d'éxecutions :
 
 ```bash
 kubectl get po | grep tp-api
@@ -441,7 +441,7 @@ curl -H "Host: consent-oracle.local" <adresse ip ingress>/health
 # {"status":"OK","uptime":3721.520096665,"startTime":"2021-11-04T05:43:48.382Z","versionNumber":"0.0.8","services":[]}
 ```
 
-> Vous pouvez aussi ajouter les entrées suivantes à `/etc/hosts` pour faciliter l’accès aux services thirdparty
+> Vous pouvez aussi ajouter les entrées suivantes à votre fichier `/etc/hosts` pour faciliter l’accès aux services thirdparty
 >
 > ```bash
 > <adresse ip ingress> tp-api-svc.local auth-service.local consent-oracle.local
@@ -450,7 +450,7 @@ curl -H "Host: consent-oracle.local" <adresse ip ingress>/health
 #### <a id='validating-and-testing'></a>6.2 Valider et tester l’API tierce
 
 Une fois les services tiers déployés, déployez des simulateurs capables de reproduire
-les scénarios tiers.
+les scénarios de l'API tierce.
 
 ##### 6.2.1 Déployer les simulateurs
 
@@ -482,8 +482,7 @@ Cette configuration crée trois nouveaux jeux de simulateurs mojaloop :
 
 ##### 6.2.2 Provisionner l’environnement
 
-Une fois les simulateurs déployés et opérationnels, configurez le Hub Mojaloop
-et les simulateurs pour tester l’API tierce.
+Une fois les simulateurs déployés et opérationnels, il est temps de configurer le Hub Mojaloop et les simulateurs afin de pouvoir tester l'API tierce.
 
 Utilisez la [collection de provisionnement tiers](https://github.com/mojaloop/testing-toolkit-test-cases#third-party-provisioning-collection)
 du dépôt mojaloop/testing-toolkit-test-cases pour provisionner l’environnement tiers et les simulateurs

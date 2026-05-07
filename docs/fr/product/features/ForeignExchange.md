@@ -18,7 +18,7 @@ Le schéma suivant illustre la mise en œuvre dans Mojaloop.
 
 ### Le payeur décide
 
-1. Un client du DFSP1 souhaite envoyer 10 unités de la devise X au bénéficiaire.
+1. Un client du DFSP1 souhaite envoyer 10 unités du devise X au bénéficiaire.
 2. La phase de découverte indique que le compte du bénéficiaire est hébergé par le DFSP2.
 3. Le DFSP1 propose la transaction au DFSP2, qui indique que le paiement doit être effectué en devise Y.
 4. Le DFSP1 envoie 10 X au FXP, qui transmet la contre-valeur en Y au DFSP2, puis le versement au bénéficiaire (hors frais, écart de change, etc.).
@@ -29,16 +29,16 @@ D’autres modèles, plus complexes, seront pris en charge dans une prochaine ve
 
 ### Plusieurs FXP
 
-1. Un client du DFSP1 souhaite envoyer 10 unités de la devise X au bénéficiaire.
+1. Un client du DFSP1 souhaite envoyer 10 unités du devise X au bénéficiaire.
 2. La découverte montre que le compte du bénéficiaire est hébergé par le DFSP2.
 3. Le DFSP1 propose la transaction au DFSP2, qui indique que le paiement doit être effectué en devise Y.
 4. Le DFSP1 sollicite plusieurs FXP, retient celui offrant les conditions les plus favorables, envoie 10 X à ce FXP, qui transmet la contre-valeur en Y au DFSP2 et règle le bénéficiaire (hors frais, écart de change, etc.).
 
 ### Le bénéficiaire décide
 
-1. Un client du DFSP1 souhaite envoyer 10 unités de la devise X au bénéficiaire.
+1. Un client du DFSP1 souhaite envoyer 10 unités du devise X au bénéficiaire.
 2. La découverte montre que le compte du bénéficiaire est hébergé par le DFSP2.
-3. Le DFSP1 propose la transaction au DFSP2, qui indique que le paiement doit être effectué dans la devise du payeur, X.
+3. Le DFSP1 propose la transaction au DFSP2, qui indique que le paiement doit être effectué dans le devise du payeur, X.
 4. Le DFSP1 envoie 10 X au DFSP2.
 5. Le DFSP2 sollicite plusieurs FXP, en retient un selon les conditions les plus favorables et envoie 10 X à ce FXP, qui renvoie la contre-valeur en Y au DFSP2, lequel règle ensuite le bénéficiaire (hors frais, écart de change, etc.).
 

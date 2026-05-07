@@ -32,7 +32,7 @@ La première livraison de ce framework comprend une tranche verticale mince pour
 |**Gestion du cycle de vie des participants <br> (vue DFSP)**|Permettre aux DFSP de gérer leur statut et leur interaction avec le Hub.| - |
 |**Gestion du règlement**|Interface de gestion pour le règlement.|Rapports de réconciliation DFSP - les rapports Myanmar MFI Digitization (MMD) sont en cours d'intégration dans le framework (accessibles via une API).<br>Règlement net différé multilatéral - Financial Portal V2 pas encore disponible dans le framework.|
 |**Gestion des transferts et transactions**| Vue des opérations métier de toutes les transactions au niveau du hub. | Financial Portal V2 - en cours de conversion dans le framework avec des améliorations. Activation du traçage d'un transfert de bout en bout. |
-|**Gestion des accords (cotations)**| - | - |
+|**Gestion des accords (devis)**| - | - |
 |**Gestion de la recherche et découverte de compte**| - | - |
 |**Gestion des paiements initiés par des tiers**| - | - |
 |**Gestion des frais (interchange et facturation)**| - | - |

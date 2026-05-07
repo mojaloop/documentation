@@ -139,8 +139,8 @@ _Note : HEXDIGLC = chiffre / « a » … « f » (hex minuscule). Référence : 
 
 | Nom | Type | Obligatoire (O/N) | Description | Exemple |
 | --- | --- | --- | --- | --- |
-| transactionId | string | N | Identifiant de transaction (transfert, cotation, etc.). | 659ee338-c8f8-4c06-8aff-944e6c5cd694 |
-| transactionType | string | N | Type représenté par `transactionId` (transfert, cotation, etc.). | transfer |
+| transactionId | string | N | Identifiant de transaction (transfert, devis, etc.). | 659ee338-c8f8-4c06-8aff-944e6c5cd694 |
+| transactionType | string | N | Type représenté par `transactionId` (transfert, devis, etc.). | transfer |
 | parentEventType | string | N | Type d’événement du span parent. | bulk-prepare |
 | parentEventAction | string | N | Action d’événement du span parent. | prepare |
 | tracestate | string | N | Présent si la variable d’environnement EventSDK `EVENT_SDK_TRACESTATE_HEADER_ENABLED` vaut `true` ou si le contexte parent contient l’en-tête ou le tag `tracestate`. Valeur conforme W3C. [Détails](#411-wc3-http-headers). | `congo=t61rcWkgMzE,rojo=00f067aa0ba902b7` | 

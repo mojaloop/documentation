@@ -1,6 +1,6 @@
-# GET — obtenir une cotation par identifiant
+# GET — obtenir une devis par identifiant
 
-Conception de la récupération d’une cotation par un FSP.
+Conception de la récupération d’une devis par un FSP.
 
 ## Diagramme de séquence
 

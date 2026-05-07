@@ -52,7 +52,7 @@ Le *mojaloop-connector* relaie les erreurs renvoyées par le commutateur.
             }
 ```
 
-**Codes d’erreur — cotations**
+**Codes d’erreur — devis**
 
 | Description de l’erreur                                                | Code erreur | Code HTTP        | Catégorie                                                |
 |------------------------------------------------------------------------|-------------|------------------|----------------------------------------------------------|
@@ -76,10 +76,10 @@ Le *mojaloop-connector* relaie les erreurs renvoyées par le commutateur.
 | Erreur FSP destinataire                                                | 3201        | 404              | Erreur « introuvable »                                   |
 | Identifiant FSP payeur introuvable                                     | 3202        | 404              | Erreur « introuvable »                                   |
 | Identifiant FSP bénéficiaire introuvable                               | 3203        | 404              | Erreur « introuvable »                                   |
-| Identifiant de cotation introuvable                                    | 3205        | 404              | Erreur « introuvable »                                   |
-| Identifiant de cotation groupée introuvable                            | 3209        | 404              | Erreur « introuvable »                                   |
+| Identifiant de devis introuvable                                    | 3205        | 404              | Erreur « introuvable »                                   |
+| Identifiant de devis groupé introuvable                            | 3209        | 404              | Erreur « introuvable »                                   |
 | Erreur d’expiration générique                                          | 3300        | 503              | Erreur de traitement                                     |
-| Cotation expirée                                                       | 3302        | 503              | Erreur de traitement                                     |
+| Devis expirée                                                       | 3302        | 503              | Erreur de traitement                                     |
 | Erreur payeur générique                                                | 4000        | 400              | Erreur de validation de la requête                       |
 | Rejet payeur générique                                                 | 4100        | 403              | Erreur « interdit »                                      |
 | Erreur de plafond payeur                                               | 4200        | 400              | Erreur de validation de la requête                       |
@@ -88,9 +88,9 @@ Le *mojaloop-connector* relaie les erreurs renvoyées par le commutateur.
 | Erreur bénéficiaire générique                                          | 5000        | 503              | Erreur de traitement                                     |
 | Liquidité insuffisante côté FSP bénéficiaire                           | 5001        | 503              | Erreur de traitement                                     |
 | Rejet bénéficiaire générique                                           | 5100        | 403              | Erreur « interdit »                                      |
-| Cotation rejetée par le bénéficiaire                                   | 5101        | 503              | Erreur de traitement                                     |
+| Devis rejetée par le bénéficiaire                                   | 5101        | 503              | Erreur de traitement                                     |
 | Type de transaction non pris en charge par le FSP bénéficiaire         | 5102        | 503              | Erreur de traitement                                     |
-| Cotation rejetée par le bénéficiaire                                   | 5103        | 503              | Erreur de traitement                                     |
+| Devis rejetée par le bénéficiaire                                   | 5103        | 503              | Erreur de traitement                                     |
 | Devise non prise en charge par le bénéficiaire                         | 5106        | 503              | Erreur de traitement                                     |
 | Erreur de plafond bénéficiaire                                         | 5200        | 503              | Erreur de traitement                                     |
 | Erreur d’autorisation bénéficiaire                                     | 5300        | 403              | Erreur « interdit »                                      |
@@ -134,9 +134,9 @@ Le *mojaloop-connector* relaie les erreurs renvoyées par le commutateur.
 | Erreur bénéficiaire générique                                          | 5000        | 400              | Erreur de traitement                                     |
 | Liquidité insuffisante côté FSP bénéficiaire                           | 5001        | 400              | Erreur de traitement                                     |
 | Rejet bénéficiaire générique                                           | 5100        | 400              | Erreur de traitement                                     |
-| Cotation rejetée par le bénéficiaire                                   | 5101        | 400              | Erreur de traitement                                     |
+| Devis rejetée par le bénéficiaire                                   | 5101        | 400              | Erreur de traitement                                     |
 | Type de transaction non pris en charge par le FSP bénéficiaire         | 5102        | 400              | Erreur de traitement                                     |
-| Cotation rejetée par le FSP bénéficiaire                                | 5103        | 400              | Erreur de traitement                                     |
+| Devis rejetée par le FSP bénéficiaire                                | 5103        | 400              | Erreur de traitement                                     |
 | Transaction rejetée par le bénéficiaire                                | 5104        | 400              | Erreur de traitement                                     |
 | Transaction rejetée par le FSP bénéficiaire                            | 5105        | 400              | Erreur de traitement                                     |
 | Devise non prise en charge par le bénéficiaire                         | 5106        | 400              | Erreur de traitement                                     |

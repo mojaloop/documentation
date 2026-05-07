@@ -46,7 +46,7 @@ Plusieurs collections Postman sont utilisées selon les processus :
 
 Pour le simulateur Mojaloop :
 
-+ [MojaloopHub_Setup](https://github.com/mojaloop/postman/blob/master/MojaloopHub_Setup.postman_collection.json) : à exécuter une fois après un nouveau déploiement, en général par le responsable de release. Elle configure un hub Mojaloop vide, notamment la devise du hub et les comptes de règlement.
++ [MojaloopHub_Setup](https://github.com/mojaloop/postman/blob/master/MojaloopHub_Setup.postman_collection.json) : à exécuter une fois après un nouveau déploiement, en général par le responsable de release. Elle configure un hub Mojaloop vide, notamment le devise du hub et les comptes de règlement.
 + [MojaloopSims_Onboarding](https://github.com/mojaloop/postman/blob/master/MojaloopSims_Onboarding.postman_collection.json) : configure les simulateurs DFSP et des éléments telles que les URL de callback pour que le hub Mojaloop sache où envoyer les requêtes.
 + [Golden_Path_Mojaloop](https://github.com/mojaloop/postman/blob/master/Golden_Path_Mojaloop.postman_collection.json) : pack de régression bout en bout qui exerce l’ensemble des fonctionnalités déployées. Peut être lancé manuellement mais est conçu pour une exécution automatisée du début à la fin, les valeurs de réponse étant chaînées entre requêtes. (L’équipe cœur s’en sert pour valider releases et déploiements)
     + Remarques : dans certains cas, un délai de `250 ms` à `500 ms` est nécessaire si l’exécution passe par le Test Runner de l’interface Postman, pour laisser le temps aux tests de valider les requêtes contre le simulateur. Ce n’est pas toujours nécessaire.

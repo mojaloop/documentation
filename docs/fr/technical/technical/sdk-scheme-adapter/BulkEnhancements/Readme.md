@@ -6,8 +6,8 @@ Ce document décrit les évolutions du SDK Scheme Adapter pour le cas d’usage 
 
 L’implémentation des transferts groupés dans Mojaloop présente les limites suivantes, que cette évolution du SDK vise à atténuer.
 
-1. Seuls les transferts individuels adressés au même DFSP payeur peuvent figurer dans un appel de cotations groupées ou de transferts groupés.
-2. Le nombre de cotations et de transferts individuels par appel `bulkQuotes` / `bulkTransfers` est plafonné à 1000.
+1. Seuls les transferts individuels adressés au même DFSP payeur peuvent figurer dans un appel de devis groupés ou de transferts groupés.
+2. Le nombre de devis et de transferts individuels par appel `bulkQuotes` / `bulkTransfers` est plafonné à 1000.
 3. Pour activer les *bulk*, chaque DFSP bénéficiaire doit intégrer la messagerie groupée — en pratique, tous les DFSP connectés devraient mettre à jour leurs intégrations vers leurs systèmes *core banking*.
 4. Il n’existe pas aujourd’hui d’appel de découverte (*discovery*) groupé.
 
@@ -18,7 +18,7 @@ Les évolutions permettent notamment :
 1. Des transferts sans phase de découverte préalable.
 2. Aucune limite stricte sur le nombre de transferts (bornée par l’infrastructure et le réseau, au-delà du plafond ~1k de ML FSPIOP).
 3. L’intégration *bulk* côté bénéficiaire devient optionnelle.
-4. En option : prise en charge de scénarios tels qu’un appel unique combinant découverte, accord et transfert ; acceptation indépendante des recherches de partie ; acceptation indépendante des cotations ; plafond de frais pour l’acceptation automatique des cotations ; saut de la phase de découverte ; exécution de la seule phase de découverte ; expiration du message groupé ; identifiants de transaction *home* pour le message groupé et pour chaque transfert ; appels API synchrones et asynchrones.
+4. En option : prise en charge de scénarios tels qu’un appel unique combinant découverte, accord et transfert ; acceptation indépendante des recherches de partie ; acceptation indépendante des devis ; plafond de frais pour l’acceptation automatique des devis ; saut de la phase de découverte ; exécution de la seule phase de découverte ; expiration du message groupé ; identifiants de transaction *home* pour le message groupé et pour chaque transfert ; appels API synchrones et asynchrones.
 
 ## Fonctionnalités implémentées
 
@@ -29,11 +29,11 @@ L’implémentation actuelle ne couvre pas encore toutes les capacités prévues
 | Mode asynchrone | publié | v14.1.0 RC |
 | Mode synchrone | non démarré | |
 | Acceptation auto des parties | non démarré | |
-| Acceptation auto des cotations (avec plafond de frais) | non démarré | |
+| Acceptation auto des devis (avec plafond de frais) | non démarré | |
 | Validation des parties uniquement | non démarré | |
 | Ignorer la recherche de partie | non démarré | |
 | Expiration du lot | non démarré | |
-| SDK bénéficiaire — démultiplexage des cotations groupées | non démarré | |
+| SDK bénéficiaire — démultiplexage des devis groupés | non démarré | |
 | SDK bénéficiaire — démultiplexage des transferts groupés | non démarré | |
 | Mojaloop — notification *bulk patch* | non démarré | |
 | SDK bénéficiaire — démultiplexage *bulk patch* | non démarré | |

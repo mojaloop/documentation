@@ -58,7 +58,7 @@ activate POS_HANDLER
 group Consommation par le gestionnaire de position (préparation)
     POS_HANDLER -> POS_MGMT: Demander le traitement des transferts
     activate POS_MGMT
-    POS_MGMT -> POS_MGMT: Vérifier le 1er transfert pour sélectionner le participant et la devise
+    POS_MGMT -> POS_MGMT: Vérifier le 1er transfert pour sélectionner le participant et le devise
     group <color #blue>TRANSACTION BD</color>
         ' Transaction BD : C'est ici que débuterait la 1re transaction BD dans le futur modèle à 2 transactions BD pour la mise à l'échelle horizontale
         POS_MGMT -> POS_MGMT: Parcourir le lot et construire la liste des transferIds et calculer sumTransfersInBatch,\nen vérifiant que tous les éléments du lot concernent le bon participant et la bonne devise\n<color #FF0000><b>Code d'erreur :</b> 2001, 3100</color>
@@ -89,7 +89,7 @@ group Consommation par le gestionnaire de position (préparation)
             **sumReserved** = SOMME des transferts ayant satisfait les critères de règle et traités
         end note
         note over POS_MGMT,DB
-            Réserver la somme des transferts valides du lot par rapport à la position du participant dans la devise de ce lot
+            Réserver la somme des transferts valides du lot par rapport à la position du participant dans le devise de ce lot
             et calculer la position disponible pour le participant
         end note
         POS_MGMT -> DB: Sélectionner effectivePosition FOR UPDATE depuis la BD pour le payeur

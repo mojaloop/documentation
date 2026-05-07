@@ -1,6 +1,6 @@
-# BC Cotation/Accords
+# BC Devis/Accords
 
-Le Contexte Borné de Cotation et Accords fournit aux Participants des devis pour effectuer des transferts, et enregistre les réponses d’acceptation ou de rejet des participants.
+Le Contexte Borné de Devis et Accords fournit aux Participants des devis pour effectuer des transferts, et enregistre les réponses d’acceptation ou de rejet des participants.
 
 ## Termes
 
@@ -79,7 +79,7 @@ Processus permettant au système d’invalider les réponses de devis dans le ca
 
 ## Modèle Canonique de Devis
 
-Le modèle canonique stocke les informations suivantes des devis dans le BC Cotations & Accords :
+Le modèle canonique stocke les informations suivantes des devis dans le BC Devis & Accords :
 
 - Identifiant du devis
 - Identifiant de la transaction

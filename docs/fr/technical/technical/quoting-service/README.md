@@ -2,22 +2,22 @@
 version: 1.1
 ---
 
-# Vue d’ensemble du service de cotation
+# Vue d’ensemble du service de devis
 
-Le **Quoting Service** (**QS**) — *(voir la section `5.1`)* de la [spécification Mojaloop {{ $page.frontmatter.version }}](/api) — prend en charge la phase de cotation des différents cas d’usage.
+Le **Quoting Service** (**QS**) — *(voir la section `5.1`)* de la [spécification Mojaloop {{ $page.frontmatter.version }}](/api) — prend en charge la phase de devis des différents cas d’usage.
 
-_Note : outre les cotations individuelles, le service de cotation prend aussi en charge les cotations groupées (*bulk quotes*)._
+_Note : outre les devis individuelles, le service de devis prend aussi en charge les devis groupés (*bulk quotes*)._
 
 ## Diagramme de séquence
 
 ![](./assets/diagrams/sequence/seq-quotes-1.0.0.svg)
 
-## Cotations individuelles
+## Devis individuelles
 
-- [GET — obtenir une cotation par identifiant](qs-get-quotes.md)
-- [POST — demande de cotation](qs-post-quotes.md)
+- [GET — obtenir une devis par identifiant](qs-get-quotes.md)
+- [POST — demande de devis](qs-post-quotes.md)
 
-## Cotations groupées (*bulk*)
+## Devis groupées (*bulk*)
 
-- [GET — obtenir une cotation groupée par identifiant](qs-get-bulk-quotes.md)
-- [POST — demande de cotation groupée](qs-post-bulk-quotes.md)
+- [GET — obtenir une devis groupé par identifiant](qs-get-bulk-quotes.md)
+- [POST — demande de devis groupé](qs-post-bulk-quotes.md)

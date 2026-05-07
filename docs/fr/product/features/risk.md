@@ -18,7 +18,7 @@ L’exploitation d’un schéma de paiement construit autour d’un hub Mojaloop
     &nbsp;
 6. Un DFSP doit gérer sa liquidité : l’augmenter si elle devient insuffisante pour les transactions anticipées, ou en retirer une partie (sur demande à l’opérateur de schéma) si elle est trop élevée. Ces opérations ont lieu hors Mojaloop mais doivent être déclarées dans le schéma Mojaloop par le DFSP ou le partenaire de règlement.
     &nbsp;
-7. Si le partenaire de règlement n’est pas disponible 24h/24, un DFSP peut déposer un excédent sur son compte de liquidité, par exemple pour couvrir les transactions prévues pendant un jour férié. Ce reliquat peut être géré via un plafond de débit net (NDC), par exemple pour limiter l’usage de la liquidité au niveau attendu un jour donné et préserver la capacité à traiter pendant toute la période de fermeture. Le NDC s’utilise conjointement avec le solde de liquidité pour l’autorisation des transactions pendant la phase de cotation.
+7. Si le partenaire de règlement n’est pas disponible 24h/24, un DFSP peut déposer un excédent sur son compte de liquidité, par exemple pour couvrir les transactions prévues pendant un jour férié. Ce reliquat peut être géré via un plafond de débit net (NDC), par exemple pour limiter l’usage de la liquidité au niveau attendu un jour donné et préserver la capacité à traiter pendant toute la période de fermeture. Le NDC s’utilise conjointement avec le solde de liquidité pour l’autorisation des transactions pendant la phase de devis.
 
 ## Applicabilité
 

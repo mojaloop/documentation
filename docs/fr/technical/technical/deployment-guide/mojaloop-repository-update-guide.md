@@ -1,6 +1,6 @@
-# Ordre de mise à jour des dépôts (Repository) Mojaloop
+# Séquence de mise à jour des dépôts NodeJS Mojaloop
 
-Ce document indique l’ordre dans lequel les dépôts NodeJS Mojaloop doivent être mis à jour lors de la publication de nouvelles fonctionnalités et/ou de la maintenance de Mojaloop. Cela garantit que chaque service d’une publication Mojaloop utilise les bonnes dépendances des dépôts Mojaloop. Document à jour pour Mojaloop RC v17 ; à actualiser au fil de l’évolution de Mojaloop (nouveaux composants, suppression des composants obsolètes).
+Ce document indique l’ordre dans lequel les dépôts NodeJS Mojaloop doivent être mis à jour lors de la publication de nouvelles fonctionnalités et/ou de la maintenance de Mojaloop. Il est important de respecter cet ordre pour s'assurer que chaque service d'une publication Mojaloop utilise la bonne dépendance du dépôt Mojaloop. Ce document est à jour pour Mojaloop RC v17 ; il doit être mis à jour au fil de l'évolution de Mojaloop (ajout des nouveaux composants et retrait des composants supprimés).
 
 ## Table des matières
 
@@ -71,49 +71,49 @@ Catégories des dépôts NodeJS Mojaloop :
 ## Processus de mise à jour
 
 1. **Identifier les dépendances**
-   - Utiliser `npm audit` pour repérer les vulnérabilités
-   - Examiner les fichiers `package.json` pour les dépendances obsolètes
-   - Vérifier les changements cassants lors des mises à jour majeures
+   - Utilisez `npm audit` pour repérer les vulnérabilités
+   - Examinez les fichiers `package.json` pour les dépendances obsolètes
+   - Vérifiez les changements majeurs lors des mises à jour majeures
 
 2. **Élaborer un plan de mise à jour**
-   - Lister tous les dépôts à mettre à jour
-   - Identifier les changements cassants potentiels
-   - Définir la stratégie de test pour chaque composant
+   - Listez tous les dépôts à mettre à jour
+   - Identifiez les changements majeurs potentiels
+   - Définissez la stratégie de test pour chaque composant
 
 3. **Exécuter les mises à jour**
-   - Commencer par les bibliothèques de base
-   - Mettre à jour un dépôt à la fois
-   - Lancer les tests après chaque mise à jour
-   - Documenter les problèmes ou contournements
+   - Commencez par les bibliothèques de base
+   - Mettez à jour un dépôt à la fois
+   - Lancez les tests après chaque mise à jour
+   - Documentez les problèmes ou contournements
 
 4. **Tests d’intégration**
-   - Tester les composants mis à jour ensemble
-   - Vérifier le fonctionnement bout en bout
-   - Contrôler l’impact sur les performances (feuille de route, après v17)
+   - Testez les composants mis à jour ensemble
+   - Vérifiez le fonctionnement bout en bout
+   - Contrôlez l’impact sur les performances (feuille de route, après v17)
 
 ## Exigences de test
 
-Pour chaque dépôt, suivre les instructions de test du README et exécuter :
+Pour chaque dépôt, suivez les instructions de test du README et exécuter :
 
 1. **Tests unitaires**
-   - Exécuter la suite de tests existante
-   - Ajouter des tests pour les fonctionnalités modifiées
-   - Vérifier la couverture de tests
+   - Exécutez la suite de tests existante
+   - Ajoutez des tests pour les fonctionnalités modifiées
+   - Vérifiez la couverture de tests
 
 2. **Tests d’intégration**
-   - Tester avec les services dépendants
-   - Vérifier la compatibilité des API
-   - Contrôler la gestion des événements
+   - Testez avec les services dépendants
+   - Vérifiez la compatibilité des API
+   - Contrôlez la gestion des événements
 
 3. **Tests de bout en bout**
-   - Passer par le testing toolkit Mojaloop
-   - Vérifier les flux de transaction
-   - Tester les scénarios d’erreur
+   - Passez par le testing toolkit Mojaloop
+   - Vérifiez les flux de transaction
+   - Testez les scénarios d’erreur
 
 
 ## Séquence des dépôts Mojaloop
 
-Le tableau suivant détaille les dépôts Mojaloop et leurs dépendances. Ces informations sont essentielles pour respecter le bon ordre de mise à jour lors de changements de dépendances ou de correctifs de vulnérabilités.
+Le tableau suivant détaille les dépôts Mojaloop et leurs dépendances. Ces informations sont essentielles pour comprendre le bon ordre de mise à jour lors du traitement de changements de dépendances ou de vulnérabilités.
 
 | Ordre | Dépôt | Dépendances |
 |---|---|---|
@@ -170,7 +170,7 @@ Le diagramme suivant illustre la séquence de mise à jour recommandée pour les
 Ce diagramme donne une représentation visuelle de la séquence de mise à jour et montre :
 
 1. Le regroupement logique des dépôts
-2. Les dépendances entre groupes
+2. Les dépendances entre les différents groupes
 3. Les cas particuliers comme les dépendances circulaires
 4. Les possibilités de mises à jour en parallèle
 5. Les différents types de dépendances à prendre en compte

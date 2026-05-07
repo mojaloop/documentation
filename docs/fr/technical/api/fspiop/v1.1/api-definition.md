@@ -1218,9 +1218,9 @@ Cette section présente et détaille tous les services que l’API prend en char
 - **Demande de transaction** — Demander à un payeur de transférer des fonds électroniques au bénéficiaire, à la demande du bénéficiaire. Le payeur peut approuver ou refuser la demande. Une approbation initiera effectivement la transaction financière.
    - Utilisez les services fournis par la ressource API **/transactionRequests**.
 
-- **Calculer une cotation** — Calculer tous les éléments d’une transaction qui influenceront le montant de la transaction, c’est-à-dire les frais et la commission du FSP.
-   - Utilisez les services fournis par la ressource API **/quotes** pour la cotation d’une transaction individuelle (un payeur vers un bénéficiaire).
-   - Utilisez les services fournis par la ressource API **/bulkQuotes** pour la cotation d’une transaction groupée (un payeur vers plusieurs bénéficiaires).
+- **Calculer une devis** — Calculer tous les éléments d’une transaction qui influenceront le montant de la transaction, c’est-à-dire les frais et la commission du FSP.
+   - Utilisez les services fournis par la ressource API **/quotes** pour le devis d’une transaction individuelle (un payeur vers un bénéficiaire).
+   - Utilisez les services fournis par la ressource API **/bulkQuotes** pour le devis d’une transaction groupée (un payeur vers plusieurs bénéficiaires).
 
 - **Réaliser une autorisation** — Demander au payeur de saisir les identifiants requis lorsqu’il a initié la transaction depuis un terminal de paiement, un DAB, ou un appareil similaire dans le système FSP du bénéficiaire.
    - Utilisez les services fournis par la ressource API **/authorizations**.
@@ -1246,14 +1246,14 @@ Cette section présente et détaille tous les services que l’API prend en char
 |**/parties/**_{Type}_/_{ID}_ Alternative : **/parties/**_{Type}_/_{ID}_/_{SubId}_|Obtenir des informations concernant une partie depuis un FSP pair.|Callback pour informer un FSP pair des informations demandées sur la partie.|Non pris en charge|Non pris en charge|Non pris en charge|
 |**/transactionRequests**|Non pris en charge|Non pris en charge|Demander à un FSP pair de solliciter l’approbation d’un payeur pour transférer des fonds à un bénéficiaire. Le payeur peut approuver ou refuser la demande.|Non pris en charge|Non pris en charge|
 |**/transactionRequests/**_{ID}_|Obtenir des informations concernant une demande de transaction déjà envoyée.|Callback pour informer un FSP pair d’une demande de transaction déjà envoyée.|Non pris en charge|Non pris en charge|Non pris en charge|
-|**/quotes**|Non pris en charge|Non pris en charge|Demander à un FSP pair de créer une nouvelle cotation pour réaliser une transaction.|Non pris en charge|Non pris en charge|
-|**/quotes/**_{ID}_|Obtenir des informations concernant une cotation déjà demandée.|Callback pour informer un FSP pair d’une cotation demandée précédemment.|Non pris en charge|Non pris en charge|Non pris en charge|
+|**/quotes**|Non pris en charge|Non pris en charge|Demander à un FSP pair de créer une nouvelle devis pour réaliser une transaction.|Non pris en charge|Non pris en charge|
+|**/quotes/**_{ID}_|Obtenir des informations concernant une devis déjà demandée.|Callback pour informer un FSP pair d’une devis demandée précédemment.|Non pris en charge|Non pris en charge|Non pris en charge|
 |**/authorizations/**_{ID}_|Obtenir l’autorisation pour une transaction du payeur qui interagit avec le système FSP du bénéficiaire.|Callback pour informer le FSP payeur concernant les informations d’autorisation.|Non pris en charge|Non pris en charge|Non pris en charge|
 |**/transfers**|Non pris en charge|Non pris en charge|Demander à un FSP pair d’effectuer le transfert des fonds liés à une transaction.|Non pris en charge|Non pris en charge|
 |**/transfers/**_{ID}_|Obtenir des informations concernant un transfert déjà effectué.|Callback pour informer un FSP pair d’un transfert déjà effectué.|Non pris en charge|Non pris en charge|Notification d’engagement au FSP bénéficiaire|
 |**/transactions/**_{ID}_|Obtenir des informations concernant une transaction déjà réalisée.|Callback pour informer un FSP pair d’une transaction déjà réalisée.|Non pris en charge|Non pris en charge|Non pris en charge|
-|**/bulkQuotes**|Non pris en charge|Non pris en charge|Demander à un FSP pair de créer une nouvelle cotation pour effectuer une transaction groupée.|Non pris en charge|Non pris en charge|
-|**/bulkQuotes/**_{ID}_|Obtenir des informations concernant une cotation groupée déjà demandée.|Callback pour informer un FSP pair d’une cotation groupée déjà demandée.|Non pris en charge|Non pris en charge|Non pris en charge|
+|**/bulkQuotes**|Non pris en charge|Non pris en charge|Demander à un FSP pair de créer une nouvelle devis pour effectuer une transaction groupée.|Non pris en charge|Non pris en charge|
+|**/bulkQuotes/**_{ID}_|Obtenir des informations concernant une devis groupé déjà demandée.|Callback pour informer un FSP pair d’une devis groupé déjà demandée.|Non pris en charge|Non pris en charge|Non pris en charge|
 |**/bulkTransfers**|Non pris en charge|Non pris en charge|Demander à un FSP pair de créer un transfert groupé.|Non pris en charge|Non pris en charge|
 |**/bulkTransfers/**_{ID}_|Obtenir des informations concernant un transfert groupé déjà envoyé.|Callback pour informer un FSP pair d’un transfert groupé déjà envoyé.|Non pris en charge|Non pris en charge|Non pris en charge|
 
@@ -1345,7 +1345,7 @@ Service logique API : [Recherche d’informations sur un participant](../generic
 
 La requête HTTP **GET /participants/**_{Type}_**/**_{ID}_ (ou **GET /participants/**_{Type}_**/**_{ID}_**/**_{SubId}_) sert à déterminer dans quel FSP se trouve la partie demandée, définie par _{Type}_, _{ID}_ et éventuellement _{SubId}_ (par exemple, **GET** **/participants/MSISDN/123456789**, ou **GET /participants/BUSINESS/shoecompany/employee1**). Voir [Remboursement](#refund) pour plus d’informations sur l’adressage d’une partie.
 
-Cette requête HTTP doit prendre en charge une chaîne de requête (voir [Syntaxe URI](#uri-syntax) pour plus d’informations sur la syntaxe URI) pour filtrer par devise. Pour utiliser le filtrage par devise, la requête HTTP **GET /participants/**_{Type}_**/**_{ID}_**?currency=**_XYZ_ doit être utilisée, où _XYZ_ est la devise demandée.
+Cette requête HTTP doit prendre en charge une chaîne de requête (voir [Syntaxe URI](#uri-syntax) pour plus d’informations sur la syntaxe URI) pour filtrer par devise. Pour utiliser le filtrage par devise, la requête HTTP **GET /participants/**_{Type}_**/**_{ID}_**?currency=**_XYZ_ doit être utilisée, où _XYZ_ est le devise demandée.
 
 Informations de callback et de modèle de données pour **GET /participants/**_{Type}_**/**_{ID}_ (alternative **GET /participants/**_{Type}_**/**_{ID}_**/**_{SubId}_):
 
@@ -1359,7 +1359,7 @@ URI alternative : N/A
 
 Service logique API : [Création d’informations bulk sur un participant](../generic-transaction-patterns#create-bulk-participant-information)
 
-La requête HTTP **POST /participants** est utilisée pour créer des informations sur le serveur concernant la liste d’identités fournie. Cette requête doit être utilisée pour la création groupée d’informations FSP pour plusieurs parties. Le paramètre de devise optionnel doit indiquer que chaque partie fournie prend en charge la devise.
+La requête HTTP **POST /participants** est utilisée pour créer des informations sur le serveur concernant la liste d’identités fournie. Cette requête doit être utilisée pour la création groupée d’informations FSP pour plusieurs parties. Le paramètre de devise optionnel doit indiquer que chaque partie fournie prend en charge le devise.
 
 Callback et modèle de données pour **POST /participants** :
 
@@ -1373,7 +1373,7 @@ Callback et modèle de données pour **POST /participants** :
 |---|---|---|---|
 |**requestId**|1|CorrelationId|L’identifiant de la requête, choisi par le client. Utilisé pour identifier le callback du serveur.|
 |**partyList**|1..10000|PartyIdInfo|Liste des éléments PartyIdInfo pour lesquels le client souhaite créer ou mettre à jour les informations FSP.|
-|**currency**|0..1|Currency|Indique que la devise fournie est prise en charge par chaque PartyIdInfo de la liste.|
+|**currency**|0..1|Currency|Indique que le devise fournie est prise en charge par chaque PartyIdInfo de la liste.|
 
 **Tableau 9 — Modèle de données POST /participants**
 
@@ -1396,7 +1396,7 @@ Callback et modèle de données pour **POST /participants**/_{Type}_**/**_{ID}_ 
 |Nom|Cardinalité|Type|Description|
 |---|---|---|---|
 |**fspId**|1|FspId|Identifiant FSP auquel appartient la partie.|
-|**currency**|0..1|Currency|Indique que la devise fournie est prise en charge par la partie.|
+|**currency**|0..1|Currency|Indique que le devise fournie est prise en charge par la partie.|
 |**extensionList**|0..1|ExtensionList|Extension optionnelle, spécifique au déploiement.|
 
 **Tableau 10 — Modèle de données POST /participants/_{Type}_/_{ID}_ (ou POST /participants/_{Type}_/_{ID}_/_{SubId}_)**
@@ -1409,7 +1409,7 @@ Service logique API : [Suppression d’informations sur un participant](../gener
 
 La requête HTTP **DELETE /participants/**_{Type}_**/**_{ID}_ (ou **DELETE /participants/**_{Type}_**/**_{ID}_**/**_{SubId}_) est utilisée pour supprimer les informations sur le serveur concernant l’identité fournie, définie par _{Type}_ et _{ID}_ (par exemple, **DELETE /participants/MSISDN/123456789**) et éventuellement _{SubId}_. Voir [Remboursement](#refund) pour plus d’informations sur l’adressage d’une partie.
 
-Cette requête HTTP doit prendre en charge une chaîne de requête (voir [Syntaxe URI](#uri-syntax)) pour supprimer les informations FSP concernant uniquement une devise spécifique. Pour supprimer uniquement une devise spécifique, la requête HTTP **DELETE** **/participants/**_{Type}_**/**_{ID}_**?currency**_=XYZ_ doit être utilisée, où _XYZ_ est la devise demandée.
+Cette requête HTTP doit prendre en charge une chaîne de requête (voir [Syntaxe URI](#uri-syntax)) pour supprimer les informations FSP concernant uniquement une devise spécifique. Pour supprimer uniquement une devise spécifique, la requête HTTP **DELETE** **/participants/**_{Type}_**/**_{ID}_**?currency**_=XYZ_ doit être utilisée, où _XYZ_ est le devise demandée.
 
 **Note :** L’ALS doit vérifier que c’est bien le FSP actuel de la partie qui supprime l’information FSP.
 
@@ -1458,7 +1458,7 @@ Voir [Tableau 12](#table-12) pour le modèle de données.
 |Nom|Cardinalité|Type|Description|
 |---|---|---|---|
 |**partyList**|1..10000|PartyResults|Liste des éléments PartyResult qui ont été créés ou dont la création a échoué.|
-|**currency**|0..1|Currency|Indique que la devise fournie a été définie comme prise en charge par chaque PartyIdInfo ajouté avec succès.|
+|**currency**|0..1|Currency|Indique que le devise fournie a été définie comme prise en charge par chaque PartyIdInfo ajouté avec succès.|
 
 **Tableau 12 — Modèle de données PUT /participants/_{ID}_**
 
@@ -1627,7 +1627,7 @@ Alternativement, le payeur peut prendre la décision manuellement.
 
 #### Détails des services
 
-[Figure 44](#figure-44) montre comment fonctionne le processus de demande de transaction à l’aide de la ressource **/transactionRequests**. L’approbation ou le refus n’est pas montré dans la figure. Un refus est un callback **PUT /transactionRequests/**_{ID}_ avec un état **REJECTED**, similaire au callback de la figure avec l’état **RECEIVED**, tel que décrit dans la [Section 6.4.2.1](#6421-payer-rejected-transaction-request). Une approbation du payeur n’est pas envoyée en tant que callback ; à la place, une cotation et un transfert sont envoyés contenant une référence à la demande de transaction.
+[Figure 44](#figure-44) montre comment fonctionne le processus de demande de transaction à l’aide de la ressource **/transactionRequests**. L’approbation ou le refus n’est pas montré dans la figure. Un refus est un callback **PUT /transactionRequests/**_{ID}_ avec un état **REJECTED**, similaire au callback de la figure avec l’état **RECEIVED**, tel que décrit dans la [Section 6.4.2.1](#6421-payer-rejected-transaction-request). Une approbation du payeur n’est pas envoyée en tant que callback ; à la place, une devis et un transfert sont envoyés contenant une référence à la demande de transaction.
 
 ###### Figure 44
 
@@ -1756,15 +1756,15 @@ Les états possibles d’une demande de transaction sont représentés dans la [
 
 ### Ressource API /quotes
 
-Cette section définit la ressource API logique **Quotes** (« cotations »), décrite dans les [Modèles génériques de transaction](../generic-transaction-patterns#api-resource-quotes).
+Cette section définit la ressource API logique **Quotes** (« Devis »), décrite dans les [Modèles génériques de transaction](../generic-transaction-patterns#api-resource-quotes).
 
-Le principal service proposé par la ressource **/quotes** est le calcul des frais éventuels et des commissions FSP liés à la réalisation d’une transaction financière interopérable. Les FSP payeur et bénéficiaire doivent chacun calculer leur part de la cotation pour obtenir une vue globale de tous les frais et commissions applicables à la transaction.
+Le principal service proposé par la ressource **/quotes** est le calcul des frais éventuels et des commissions FSP liés à la réalisation d’une transaction financière interopérable. Les FSP payeur et bénéficiaire doivent chacun calculer leur part du devis pour obtenir une vue globale de tous les frais et commissions applicables à la transaction.
 
-Une cotation est irrévocable ; elle ne peut pas être modifiée après sa création. Elle peut cependant expirer (toutes les cotations sont valables uniquement jusqu’à leur date d’expiration).
+Une devis est irrévocable ; elle ne peut pas être modifiée après sa création. Elle peut cependant expirer (toutes les devis sont valables uniquement jusqu’à leur date d’expiration).
 
-**Note :** Une cotation n’est pas une garantie que la transaction financière réussira. La transaction peut toujours échouer ultérieurement. Une cotation garantit uniquement que les frais et commissions appliqués à la transaction spécifiée restent valables jusqu’à expiration de la cotation.
+**Note :** Une devis n’est pas une garantie que la transaction financière réussira. La transaction peut toujours échouer ultérieurement. Une devis garantit uniquement que les frais et commissions appliqués à la transaction spécifiée restent valables jusqu’à expiration du devis.
 
-Pour plus d’informations, voir la section [Cotation](#quoting).
+Pour plus d’informations, voir la section [Devis](#quoting).
 
 #### Historique des versions de la ressource
 
@@ -1789,25 +1789,25 @@ Pour plus d’informations, voir la section [Cotation](#quoting).
 
 **Figure 47 — Exemple de processus pour la ressource /quotes**
 
-#### Détails de l’expiration de la cotation
+#### Détails de l’expiration du devis
 
-La demande de cotation du FSP payeur peut contenir une date d’expiration, si le FSP payeur souhaite indiquer à partir de quand il n’est plus utile pour le FSP bénéficiaire de renvoyer une cotation. Par exemple, la transaction peut expirer ou sa cotation peut expirer.
+La demande de devis du FSP payeur peut contenir une date d’expiration, si le FSP payeur souhaite indiquer à partir de quand il n’est plus utile pour le FSP bénéficiaire de renvoyer une devis. Par exemple, la transaction peut expirer ou sa devis peut expirer.
 
-Le FSP bénéficiaire doit définir une expiration dans le callback de la cotation pour indiquer à partir de quand elle n’est plus valable pour le FSP payeur.
+Le FSP bénéficiaire doit définir une expiration dans le callback du devis pour indiquer à partir de quand elle n’est plus valable pour le FSP payeur.
 
-#### Rejet d’une cotation
+#### Rejet d’une devis
 
-Le FSP bénéficiaire peut rejeter une demande de cotation émise par le FSP payeur en envoyant le callback d’erreur **PUT /quotes/**_{ID}_/**error** plutôt que le callback **PUT /quotes/**_{ID}_.
-Selon le modèle générique de transaction utilisé (voir Section 8 pour plus d’informations), le FSP payeur peut rejeter une cotation en utilisant l’une des méthodes suivantes :
+Le FSP bénéficiaire peut rejeter une demande de devis émise par le FSP payeur en envoyant le callback d’erreur **PUT /quotes/**_{ID}_/**error** plutôt que le callback **PUT /quotes/**_{ID}_.
+Selon le modèle générique de transaction utilisé (voir Section 8 pour plus d’informations), le FSP payeur peut rejeter une devis en utilisant l’une des méthodes suivantes :
 
-- Si la transaction est initiée par le payeur (voir Section 8.1), le FSP payeur ne doit pas informer le FSP bénéficiaire du rejet. La cotation créée chez le FSP bénéficiaire doit avoir une date d’expiration, après laquelle elle est automatiquement supprimée.
+- Si la transaction est initiée par le payeur (voir Section 8.1), le FSP payeur ne doit pas informer le FSP bénéficiaire du rejet. La devis créée chez le FSP bénéficiaire doit avoir une date d’expiration, après laquelle elle est automatiquement supprimée.
 - Si la transaction est initiée par le bénéficiaire (voir Section 8.2 et 8.3), le FSP payeur doit informer le FSP bénéficiaire du rejet par le callback **PUT /transactionRequests/**_{ID}_ avec un état « rejected ». Le processus est décrit plus en détail à la Section 6.4.2.1.
 
 #### Demande de paiement Interledger
 
 Dans le cadre de la prise en charge d’Interledger et de l’implémentation concrète de la demande de paiement Interledger (voir [Protocole Interledger](#interledger-protocol)), le FSP bénéficiaire doit :
 
-- Déterminer l’adresse ILP (voir [Adresses ILP](#ILP-addressing) pour plus d’informations) du bénéficiaire et le montant qu’il recevra. Notez que puisque l’élément **amount** dans le paquet ILP est défini comme un UInt64 (donc valeur entière), le montant doit être multiplié par l’exposant de la devise (par exemple, l’exposant de l’USD est 2, donc le montant doit être multiplié par 10<sup>2</sup>, et celui du JPY est 0, donc multiplié par 10<sup>0</sup>). L’adresse ILP et le montant doivent être renseignés dans le paquet ILP (voir [ILP Packet](#ilp-packet) pour plus d’informations).
+- Déterminer l’adresse ILP (voir [Adresses ILP](#ILP-addressing) pour plus d’informations) du bénéficiaire et le montant qu’il recevra. Notez que puisque l’élément **amount** dans le paquet ILP est défini comme un UInt64 (donc valeur entière), le montant doit être multiplié par l’exposant du devise (par exemple, l’exposant de l’USD est 2, donc le montant doit être multiplié par 10<sup>2</sup>, et celui du JPY est 0, donc multiplié par 10<sup>0</sup>). L’adresse ILP et le montant doivent être renseignés dans le paquet ILP (voir [ILP Packet](#ilp-packet) pour plus d’informations).
 
 - Renseigner l’élément **data** dans le paquet ILP par le modèle de données [Transaction](#transaction).
 - Générer la fulfilment et la condition (voir [Transferts conditionnels](#conditional-transfers) pour plus de détails). Renseigner l’élément **condition** dans le [PUT /quotes/**_{ID}_](#put-quotes-id)). Le [Tableau 19](#table-19) montre le modèle de données avec la condition générée.
@@ -1850,9 +1850,9 @@ Cette section décrit les services pouvant être demandés par un client de l’
 
 URI alternative : N/A
 
-Service logique de l’API : [Récupérer les informations de la cotation](../generic-transaction-patterns#retrieve-quote-information)
+Service logique de l’API : [Récupérer les informations du devis](../generic-transaction-patterns#retrieve-quote-information)
 
-La requête HTTP **GET /quotes/**_{ID}_ permet d’obtenir des informations sur une cotation préalablement créée ou demandée. Le _{ID}_ dans l’URI doit contenir le **quoteId** (voir [Tableau 23](#table-23)) qui a été utilisé pour la création de la cotation.
+La requête HTTP **GET /quotes/**_{ID}_ permet d’obtenir des informations sur une devis préalablement créée ou demandée. Le _{ID}_ dans l’URI doit contenir le **quoteId** (voir [Tableau 23](#table-23)) qui a été utilisé pour la création du devis.
 
 Informations sur les callbacks et le modèle de données pour **GET /quotes/**_{ID}_ :
 
@@ -1864,9 +1864,9 @@ Informations sur les callbacks et le modèle de données pour **GET /quotes/**_{
 
 URI alternative : N/A
 
-Service logique de l’API : [Calculer les informations de la cotation](../generic-transaction-patterns#calculate-quote-information)
+Service logique de l’API : [Calculer les informations du devis](../generic-transaction-patterns#calculate-quote-information)
 
-La requête HTTP **POST /quotes** est utilisée pour demander la création d’une cotation pour la transaction financière fournie sur le serveur.
+La requête HTTP **POST /quotes** est utilisée pour demander la création d’une devis pour la transaction financière fournie sur le serveur.
 
 Informations sur les callbacks et le modèle de données pour **POST /quotes** :
 
@@ -1878,15 +1878,15 @@ Informations sur les callbacks et le modèle de données pour **POST /quotes** :
 
 | **Nom** | **Cardinalité** | **Type** | **Description** |
 | --- | --- | --- | --- |
-| **quoteId** | 1 | CorrelationId | Identifiant commun entre les FSPs pour l’objet cotation, décidé par le FSP du payeur. Cet ID doit être réutilisé pour les renvois de la même cotation pour une transaction. Un nouvel ID doit être généré pour chaque nouvelle cotation pour une transaction. |
-| **transactionId** | 1 | CorrelationId | Identifiant commun (décidé par le FSP du payeur) entre les FSPs pour l’objet de la future transaction. La transaction réelle sera créée dans le cadre d’un processus de transfert réussi. L’ID doit être réutilisé pour les renvois de la même cotation pour une transaction. Un nouvel ID doit être généré pour chaque nouvelle cotation pour une transaction. |
+| **quoteId** | 1 | CorrelationId | Identifiant commun entre les FSPs pour l’objet devis, décidé par le FSP du payeur. Cet ID doit être réutilisé pour les renvois de la même devis pour une transaction. Un nouvel ID doit être généré pour chaque nouvelle devis pour une transaction. |
+| **transactionId** | 1 | CorrelationId | Identifiant commun (décidé par le FSP du payeur) entre les FSPs pour l’objet de la future transaction. La transaction réelle sera créée dans le cadre d’un processus de transfert réussi. L’ID doit être réutilisé pour les renvois de la même devis pour une transaction. Un nouvel ID doit être généré pour chaque nouvelle devis pour une transaction. |
 | **transactionRequestId** | 0..1 | CorrelationId | Identifie une demande de transaction optionnelle envoyée précédemment. |
 | **payee** | 1 | Party | Informations concernant le bénéficiaire de la transaction financière proposée. |
 | **payer** | 1 | Party | Informations concernant le payeur de la transaction financière proposée. |
 | **amountType** | 1 | AmountType |**SEND** pour montant envoyé, **RECEIVE** pour montant reçu. |
 | **amount** | 1 | Money | Selon **amountType** :<br>Si **SEND** : Le montant que le payeur souhaite envoyer ; c’est-à-dire le montant à prélever du compte payeur, frais inclus. Le montant est mis à jour par chaque entité participant à la transaction.<br>Si **RECEIVE** : Le montant que le bénéficiaire doit recevoir ; c’est-à-dire le montant qui doit être envoyé au destinataire, frais exclus. Le montant n’est pas mis à jour par les entités participantes.</br> |
 | **fees** | 0..1 | Money | Frais associés à la transaction. <li>L’élément fees doit être vide si les frais ne doivent pas être divulgués.</li><li>L’élément fees doit être renseigné si les frais doivent être divulgués.</li> |
-| **transactionType** | 1 | TransactionType | Type de transaction pour laquelle la cotation est demandée. |
+| **transactionType** | 1 | TransactionType | Type de transaction pour laquelle le devis est demandée. |
 | **geoCode** | 0..1 | GeoCode | Longitude et latitude de la partie initiatrice. Peut être utilisé pour détecter la fraude. |
 | **note** | 0..1 | Note | Mémo à joindre à la transaction. |
 | **expiration** | 0..1 | DateTime | L’expiration est optionnelle. Elle peut être fixée afin d’obtenir un échec rapide si le FSP pair met trop de temps à répondre. Elle peut également être utile pour que le consommateur, l’agent ou le commerçant sache que leur demande a une limite de temps. |
@@ -1902,9 +1902,9 @@ Cette section décrit les callbacks utilisés par le serveur sous la ressource *
 
 URI alternative : N/A
 
-Service logique de l’API : [Retourner les informations de la cotation](../generic-transaction-patterns#return-quote-information)
+Service logique de l’API : [Retourner les informations du devis](../generic-transaction-patterns#return-quote-information)
 
-Le callback **PUT /quotes/**_{ID}_ est utilisé pour informer le client d’une cotation demandée ou créée. Le _{ID}_ dans l’URI doit contenir le **quoteId** (voir [Tableau 23](#table-23)) qui a été utilisé pour la création de la cotation, ou le _{ID}_ utilisé dans le [**GET /quotes/**_{ID}_](#get-quotesid). Voir [Tableau 24](#table-24) pour le modèle de données.
+Le callback **PUT /quotes/**_{ID}_ est utilisé pour informer le client d’une devis demandée ou créée. Le _{ID}_ dans l’URI doit contenir le **quoteId** (voir [Tableau 23](#table-23)) qui a été utilisé pour la création du devis, ou le _{ID}_ utilisé dans le [**GET /quotes/**_{ID}_](#get-quotesid). Voir [Tableau 24](#table-24) pour le modèle de données.
 
 ###### Tableau 24
 
@@ -1914,7 +1914,7 @@ Le callback **PUT /quotes/**_{ID}_ est utilisé pour informer le client d’une 
 | **payeeReceiveAmount** | 0..1 | Money | Le montant que le bénéficiaire doit recevoir dans la transaction de bout en bout. Optionnel si le FSP bénéficiaire ne souhaite pas divulguer de potentiels frais au bénéficiaire. |
 | **payeeFspFee** | 0..1 | Money | Partie des frais de la transaction imputée au FSP bénéficiaire. |
 | **payeeFspCommission** | 0..1 | Money | Commission du FSP bénéficiaire sur la transaction. |
-| **expiration** | 1 | DateTime | Date et heure jusqu’à laquelle la cotation est valide et peut être honorée lorsqu’elle est utilisée dans la transaction suivante. |
+| **expiration** | 1 | DateTime | Date et heure jusqu’à laquelle le devis est valide et peut être honorée lorsqu’elle est utilisée dans la transaction suivante. |
 | **geoCode** | 0..1 | GeoCode | Longitude et latitude du bénéficiaire. Peut être utilisé pour détecter la fraude. |
 | **ilpPacket** | 1 | IlpPacket | Le paquet ILP qui doit être joint au transfert par le payeur. |
 | **condition** | 1 | IlpCondition | La condition qui doit être jointe au transfert par le payeur. |
@@ -1931,9 +1931,9 @@ sous la ressource **/quotes**.
 
 URI alternative : N/A
 
-Service logique de l’API : [Retourner une erreur d’information de cotation](../generic-transaction-patterns#return-quote-information-error)
+Service logique de l’API : [Retourner une erreur d’information de devis](../generic-transaction-patterns#return-quote-information-error)
 
-Si le serveur ne parvient pas à trouver ou créer une cotation, ou qu’une autre erreur de traitement se produit, le callback d’erreur **PUT** **/quotes/**_{ID}_**/error** est utilisé. Le _{ID}_ dans l’URI doit contenir le **quoteId** (voir [Tableau 23](#table-23)) utilisé pour la création de la cotation, ou le _{ID}_ utilisé dans le [**GET /quotes/**_{ID}_](#get-quotesid). Voir [Tableau 25](#table-25) pour le modèle de données.
+Si le serveur ne parvient pas à trouver ou créer une devis, ou qu’une autre erreur de traitement se produit, le callback d’erreur **PUT** **/quotes/**_{ID}_**/error** est utilisé. Le _{ID}_ dans l’URI doit contenir le **quoteId** (voir [Tableau 23](#table-23)) utilisé pour la création du devis, ou le _{ID}_ utilisé dans le [**GET /quotes/**_{ID}_](#get-quotesid). Voir [Tableau 25](#table-25) pour le modèle de données.
 
 ###### Tableau 25
 
@@ -1947,13 +1947,13 @@ Si le serveur ne parvient pas à trouver ou créer une cotation, ou qu’une aut
 
 ###### Figure 48
 
-[Figure 48](#figure-48) contient la machine à états UML (Unified Modeling Language) pour les états possibles d’un objet cotation.
+[Figure 48](#figure-48) contient la machine à états UML (Unified Modeling Language) pour les états possibles d’un objet devis.
 
-**Remarque :** Un serveur n’a pas besoin de conserver en base les objets cotation ayant été rejetés ou expirés. Cela signifie qu’un client doit s’attendre à ce qu’un callback d’erreur puisse être retourné pour une cotation expirée ou rejetée.
+**Remarque :** Un serveur n’a pas besoin de conserver en base les objets devis ayant été rejetés ou expirés. Cela signifie qu’un client doit s’attendre à ce qu’un callback d’erreur puisse être retourné pour une devis expirée ou rejetée.
 
 ![Figure 48](../../assets/diagrams/images/figure48.svg)
 
-**Figure 48 -- États possibles d’une cotation**
+**Figure 48 -- États possibles d’une devis**
 
 <br />
 
@@ -1977,7 +1977,7 @@ La ressource **/authorizations** est utilisée pour demander au payeur de saisir
 
 #### Détails des services
 
-[Figure 49](#figure-49) présente un exemple de processus pour la ressource API **/authorizations**. Le FSP bénéficiaire envoie d’abord une [demande de transaction](#api-resource-transactionrequests)) qui est autorisée via OTP. Le FSP payeur réalise ensuite la cotation (voir [Ressource API Quotes](#api-resource-quotes)) avant qu’une demande d’autorisation soit envoyée au système du FSP bénéficiaire pour que le payeur approuve via la saisie de l’OTP. Si l’OTP est correct, le processus de transfert doit être initié (voir [Ressource API Transfers](#api-resource-transfers)).
+[Figure 49](#figure-49) présente un exemple de processus pour la ressource API **/authorizations**. Le FSP bénéficiaire envoie d’abord une [demande de transaction](#api-resource-transactionrequests)) qui est autorisée via OTP. Le FSP payeur réalise ensuite le devis (voir [Ressource API Quotes](#api-resource-quotes)) avant qu’une demande d’autorisation soit envoyée au système du FSP bénéficiaire pour que le payeur approuve via la saisie de l’OTP. Si l’OTP est correct, le processus de transfert doit être initié (voir [Ressource API Transfers](#api-resource-transfers)).
 
 ###### Figure 49
 
@@ -2029,7 +2029,7 @@ Cette requête nécessite que la chaîne de requête (voir [Syntaxe URI](#uri-sy
 - **authenticationType=**_{Type}_, où _{Type}_ est une valeur valide de l’énumération [AuthenticationType](#authenticationtype).
 - **retriesLeft=**_{NrOfRetries}_, où _{NrOfRetries}_ est le nombre de tentatives restantes avant le rejet de la transaction financière. _{NrOfRetries}_ doit être exprimé via le type de données [Integer](#integer)). **retriesLeft=1** signifie qu’il s’agit de la dernière tentative.
 - **amount=**_{Amount}_, où _{Amount}_ est le montant de la transaction qui sera prélevé du compte du payeur. _{Amount}_ doit être de type [Amount](#amount).
-- **currency=**_{Currency}_, où _{Currency}_ est la devise de la transaction. La valeur _{Currency}_ doit être conforme à l’énumération [CurrencyCode](#currencycode)).
+- **currency=**_{Currency}_, où _{Currency}_ est le devise de la transaction. La valeur _{Currency}_ doit être conforme à l’énumération [CurrencyCode](#currencycode)).
 
 Exemple d’URI contenant toutes les clés requises :
 
@@ -2094,7 +2094,7 @@ Cette section définit la ressource logique d’API **Transfers**, décrite dans
 
 Les services fournis par la ressource d’API **/transfers** servent à effectuer le(s) transfert(s) ILP hop-by-hop et à réaliser la transaction financière de bout en bout en envoyant les détails de transaction du FSP payeur au FSP bénéficiaire. Les détails de la transaction sont envoyés en tant que partie du modèle de données de transfert dans le paquet ILP.
 
-Le protocole Interledger suppose que la mise en place d’une transaction financière se fait via un protocole de bout en bout, mais qu’un transfert ILP est réalisé via des protocoles hop-by-hop entre FSPs connectés au même registre. Dans la version actuelle de l’API, la ressource **/quotes** établit la transaction financière. Avant de réaliser un transfert, la cotation doit être effectuée pour préparer la transaction. Voir [Ressource API Quotes](#api-resource-quotes) pour plus d’informations.
+Le protocole Interledger suppose que la mise en place d’une transaction financière se fait via un protocole de bout en bout, mais qu’un transfert ILP est réalisé via des protocoles hop-by-hop entre FSPs connectés au même registre. Dans la version actuelle de l’API, la ressource **/quotes** établit la transaction financière. Avant de réaliser un transfert, le devis doit être effectuée pour préparer la transaction. Voir [Ressource API Quotes](#api-resource-quotes) pour plus d’informations.
 
 Un transfert ILP s’effectue entre deux détenteurs de comptes sur chaque côté d’un registre commun. Il s’exprime généralement par une demande d’exécution d’un transfert sur le registre et une notification au bénéficiaire que le transfert est réservé en sa faveur, incluant une condition devant être remplie pour commettre le transfert.
 
@@ -2132,9 +2132,9 @@ L’API est conçue pour ne supporter que les transactions financières irrévoc
 
 Dès qu’un FSP payeur envoie une transaction au FSP bénéficiaire (via **POST /transfers** incluant la transaction de bout en bout), la transaction est irrévocable côté FSP payeur. Elle peut toutefois encore être rejetée côté FSP bénéficiaire, mais le payeur ne peut plus modifier ou rejeter la transaction. Une exception à cela serait si le délai d’expiration du transfert est dépassé avant que le FSP bénéficiaire ne réponde (voir [Quote expirée](#expired-quote) et [Client recevant un transfert expiré](#client-receiving-expired-transfer) pour plus d’informations). Dès que la transaction a été acceptée par le FSP bénéficiaire, elle est irrévocable pour toutes les parties.
 
-#### Cotation expirée
+#### Devis expirée
 
-Si un serveur reçoit une transaction utilisant une cotation expirée, il doit refuser le transfert ou la transaction.
+Si un serveur reçoit une transaction utilisant une devis expirée, il doit refuser le transfert ou la transaction.
 
 #### Timeout et expiration
 
@@ -2188,11 +2188,11 @@ La notification de commit est envoyée avec la requête **PATCH /transfers/**_{I
 
 #### Remboursements
 
-Au lieu de supporter les inversions, l’API supporte les remboursements. Pour rembourser une transaction via l’API, une nouvelle transaction doit être créée par le bénéficiaire initial. Celle-ci doit annuler la transaction originale (en totalité ou partiellement) ; par exemple, si le client X a envoyé 100 USD au commerçant Y, celui-ci crée une nouvelle transaction pour reverser 100 USD à X. Il existe un type de transaction spécifique pour indiquer un remboursement ; cela permet de gérer différemment la cotation. L’ID de la transaction d’origine doit être inclus dans la nouvelle transaction à des fins d’information et de rapprochement.
+Au lieu de supporter les inversions, l’API supporte les remboursements. Pour rembourser une transaction via l’API, une nouvelle transaction doit être créée par le bénéficiaire initial. Celle-ci doit annuler la transaction originale (en totalité ou partiellement) ; par exemple, si le client X a envoyé 100 USD au commerçant Y, celui-ci crée une nouvelle transaction pour reverser 100 USD à X. Il existe un type de transaction spécifique pour indiquer un remboursement ; cela permet de gérer différemment le devis. L’ID de la transaction d’origine doit être inclus dans la nouvelle transaction à des fins d’information et de rapprochement.
 
 #### Demande de paiement Interledger
 
-Dans le cadre du support d’Interledger et de la demande de paiement Interledger (voir [Protocole Interledger](#interledger-protocol)), le FSP payeur doit joindre au transfert le paquet ILP, la condition ainsi qu’une date d’expiration. La condition et le paquet ILP sont les mêmes que ceux envoyés par le FSP bénéficiaire dans le callback de la cotation ; voir [Demande de paiement Interledger](#interledger-payment-request) pour plus d’informations.
+Dans le cadre du support d’Interledger et de la demande de paiement Interledger (voir [Protocole Interledger](#interledger-protocol)), le FSP payeur doit joindre au transfert le paquet ILP, la condition ainsi qu’une date d’expiration. La condition et le paquet ILP sont les mêmes que ceux envoyés par le FSP bénéficiaire dans le callback du devis ; voir [Demande de paiement Interledger](#interledger-payment-request) pour plus d’informations.
 
 Le paiement ILP de bout en bout est une chaîne d’un ou plusieurs transferts conditionnels tous dépendants de la même condition. La condition est fournie par le FSP payeur lors de l’initiation du transfert vers le prochain ledger.
 
@@ -2201,8 +2201,8 @@ Le récepteur du transfert extrait l’adresse ILP du bénéficiaire dans le paq
 Quand le FSP bénéficiaire reçoit le dernier transfert entrant pour le compte du bénéficiaire, il extrait le paquet ILP et procède ainsi :
 
 1. Valide que l’adresse ILP du bénéficiaire dans le paquet ILP correspond au compte bénéficiaire de destination.
-2. Valide que le montant dans le paquet ILP correspond au montant du transfert et déclenche la réservation sur le registre local (moins les éventuels frais cachés au bénéficiaire, voir [Cotations](#quoting)).
-3. Si la réservation est un succès, le FSP bénéficiaire génère le fulfilment à l’aide du même algorithme que celui utilisé pour générer la condition envoyée dans le callback de la cotation (voir [Demande de paiement Interledger](#interledger-payment-request)).
+2. Valide que le montant dans le paquet ILP correspond au montant du transfert et déclenche la réservation sur le registre local (moins les éventuels frais cachés au bénéficiaire, voir [Devis](#quoting)).
+3. Si la réservation est un succès, le FSP bénéficiaire génère le fulfilment à l’aide du même algorithme que celui utilisé pour générer la condition envoyée dans le callback du devis (voir [Demande de paiement Interledger](#interledger-payment-request)).
 4. Le fulfilment est soumis au registre du FSP bénéficiaire pour engager la réservation en faveur du bénéficiaire. Le registre valide que le hash SHA-256 du fulfilment correspond à la condition du transfert. Si oui, il valide la transaction. Sinon, il la rejette, et le FSP bénéficiaire annule la réservation préalablement effectuée.
 
 Le fulfilment est ensuite transmis au FSP payeur via la même chaîne de registres dans le callback du transfert. Chaque ledger engage les fonds après validation du fulfilment, et l’entité initiatrice est notifiée que ses fonds ont été libérés et reçoit le fulfilment.
@@ -2375,7 +2375,7 @@ URI alternative : N/A
 
 Service logique d’API : [Récupérer les informations sur la transaction](../generic-transaction-patterns#retrieve-transaction-information)
 
-La requête HTTP **GET /transactions/**_{ID}_ est utilisée pour obtenir des informations sur une transaction financière précédemment créée. Le _{ID}_ doit correspondre au **transactionId** utilisé lors de la création de la cotation (voir [Tableau 23](#table-23)), car la transaction est créée dans le cadre d’un autre processus (le transfert, voir [API Resource Transfers](#api-resource-transfers)).
+La requête HTTP **GET /transactions/**_{ID}_ est utilisée pour obtenir des informations sur une transaction financière précédemment créée. Le _{ID}_ doit correspondre au **transactionId** utilisé lors de la création du devis (voir [Tableau 23](#table-23)), car la transaction est créée dans le cadre d’un autre processus (le transfert, voir [API Resource Transfers](#api-resource-transfers)).
 
 Informations sur les callbacks et modèles de données pour **GET /transactions/**_{ID}_ :
 
@@ -4338,7 +4338,7 @@ Voir [Tableau 117](#table-117) pour les erreurs Payeur définies dans l’API.
 | **4100** | Rejet générique Payeur | Le Payeur ou le FSP Payeur a rejeté la requête. ||| X | X | X | X | X | X | X |
 | **4101** | Payeur a rejeté la demande de transaction | Le Payeur a rejeté la demande de transaction du Bénéficiaire. ||| X |||||||
 | **4102** | FSP Payeur type de transaction non supporté | Le FSP Payeur ne supporte pas ou a rejeté le type de transaction demandé. ||| X ||||||| 
-| **4103** | Payeur devise non supportée | Le Payeur n’a pas de compte supportant la devise demandée. ||| X |||||||
+| **4103** | Payeur devise non supportée | Le Payeur n’a pas de compte supportant le devise demandée. ||| X |||||||
 | **4200** | Erreur de limite Payeur | Erreur de limite générique, par exemple nombre de paiements journalier/mensuel dépassé ou montant de la transaction supérieur au maximum autorisé. ||| X | X || X || X | X |
 | **4300** | Erreur de permission Payeur | Erreur de permission générique, le Payeur ou son FSP n’a pas les droits pour réaliser le service. ||| X | X | X | X | X | X | X |
 | **4400** | Erreur Payeur bloqué générique | Erreur Payeur bloqué générique ; le Payeur est bloqué ou a échoué les contrôles réglementaires. ||| X | X | X | X | X | X | X |
@@ -4371,7 +4371,7 @@ Voir [Tableau 118](#table-118) pour toutes les erreurs Bénéficiaire définies 
 | **5103** | FSP Bénéficiaire a rejeté le devis | Le FSP Bénéficiaire ne souhaite pas poursuivre la transaction après réception du devis. |||| X |||| X ||
 | **5104** | Bénéficiaire a rejeté la transaction | Le Bénéficiaire a rejeté la transaction financière. |||||| X ||| X |
 | **5105** | FSP Bénéficiaire a rejeté la transaction | Le FSP Bénéficiaire a rejeté la transaction financière. |||||| X ||| X |
-| **5106** | Devise non supportée par le Bénéficiaire | Le Bénéficiaire ne possède pas de compte prenant en charge la devise demandée. |||| X || X || X | X |
+| **5106** | Devise non supportée par le Bénéficiaire | Le Bénéficiaire ne possède pas de compte prenant en charge le devise demandée. |||| X || X || X | X |
 | **5200** | Erreur de limite Bénéficiaire | Erreur de limite générique, par exemple Bénéficiaire recevant plus de paiements par jour/mois que permis, ou recevant un paiement dépassant le montant maximum par transaction. ||| X | X || X || X | X |
 | **5300** | Erreur de permission Bénéficiaire | Erreur de permission générique, le Bénéficiaire ou son FSP n’a pas les droits pour réaliser le service. ||| X | X | X | X | X | X | X |
 | **5400** | Erreur Bénéficiaire bloqué générique | Erreur générique Bénéficiaire bloqué, le Bénéficiaire est bloqué ou a échoué les contrôles réglementaires. ||| X | X | X | X | X | X | X |
@@ -4655,7 +4655,7 @@ Avant que le bénéficiaire Henrik Karlsson ne soit trouvable via le FSP **BankN
 
 #### FSP MobileMoney provisionne Henrik Karlsson : Étape 1 du déroulé
 
-[Listing 29](#listing-29) montre la demande HTTP où **MobileMoney** provisionne les infos FSP pour Henrik Karlsson, identifié par **MSISDN** et **123456789** (voir [Adressage de Parties](#party-addressing)). L’élément JSON **fspId** est mis à l’identifiant du FSP et **currency** à la devise du compte (USD).
+[Listing 29](#listing-29) montre la demande HTTP où **MobileMoney** provisionne les infos FSP pour Henrik Karlsson, identifié par **MSISDN** et **123456789** (voir [Adressage de Parties](#party-addressing)). L’élément JSON **fspId** est mis à l’identifiant du FSP et **currency** à le devise du compte (USD).
 
 Voir [Tableau 1](#table-1) pour les en-têtes HTTP requis,
 et [POST /participants/_{Type}_/_{ID}_](#post-participants-type-id) pour plus d’infos. Pour le routage avec **FSPIOP-Destination** et **FSPIOP-Source**, voir [Routage du flux d’appel](#call-flow-routing-using-fspiop-destination-and-fspiop-source). Pour la négociation de version, voir [Négociation de version entre client et serveur](#version-negotiation-between-client-and-server).
@@ -4697,7 +4697,7 @@ application/vnd.interoperability.participants+json;version=1.0
 
 #### Traitement du provisionnement par le Switch : Étape 2
 
-Une fois la demande reçue ([Listing 29](#listing-29)) et la réponse envoyée ([Listing 30](#listing-30)), le Switch vérifie le corps de la demande. Par exemple, il s’assure que **fspId** correspond à **FSPIOP-Source**, que la devise est autorisée, etc.
+Une fois la demande reçue ([Listing 29](#listing-29)) et la réponse envoyée ([Listing 30](#listing-30)), le Switch vérifie le corps de la demande. Par exemple, il s’assure que **fspId** correspond à **FSPIOP-Source**, que le devise est autorisée, etc.
 
 Après validation, l’information que le compte identifié par **MSISDN** et **123456789** est chez le FSP **MobileMoney** est enregistrée en base Switch.
 
@@ -4964,7 +4964,7 @@ Quand le FSP **MobileMoney** a reçu la requête HTTP [Exemple 39](#listing-40) 
 
 Dans cet exemple, le FSP **MobileMoney** décide de prendre 1 USD de commission car il va recevoir de l’argent, ce qui peut engendrer de futurs revenus (frais ultérieurs). Comme le bénéficiaire (Henrik Karlsson) doit recevoir 100 USD et que la commission FSP est de 1 USD, le FSP **BankNrOne** n’aura à transférer que 99 USD au FSP **MobileMoney** (voir [Non Disclosing Receive Amount](#non-disclosing-receive-amount) pour l’équation). Les 99 USD sont renseignés dans l’élément transferAmount du callback, c’est donc le montant à transférer plus tard entre FSPs.
 
-Pour envoyer le callback, le FSP **MobileMoney** doit alors créer un paquet ILP (voir [ILP Packet](#ilp-packet) pour plus d’infos) encodé en base64url, car l'élément **ilpPacket** du callback [PUT /quotes/_{ID}_](#put-quotes-id) est défini comme [BinaryString](#binarystring). La manière de remplir ce paquet ILP est expliquée dans [Interledger Payment Request](#interledger-payment-request). L’adresse ILP d’Henrik dans le FSP **MobileMoney** est fixée à **g.se.mobilemoney.msisdn.123456789** (voir [ILP Addressing](#ilp-addressing)). Comme le montant du transfert est de 99 USD et que l’exposant de la devise USD est 2, le montant renseigné dans le paquet ILP est 9900 (99 \* 10^2 = 9900). L’autre élément du paquet ILP est **data**. Comme expliqué dans [Interledger Payment Request](#interledger-payment-request), cet élément doit contenir le modèle de données Transaction (voir [Transaction](#transaction)). Avec les informations de la demande de devis, la Transaction dans cet exemple est illustrée dans [Exemple 41](#listing-41). Après encodage base64url du paquet ILP complet avec **amount**, **account** et le **data**, cela donne l’élément **ilpPacket** du callback [PUT /quotes/_{ID}_](#put-quotes-id).
+Pour envoyer le callback, le FSP **MobileMoney** doit alors créer un paquet ILP (voir [ILP Packet](#ilp-packet) pour plus d’infos) encodé en base64url, car l'élément **ilpPacket** du callback [PUT /quotes/_{ID}_](#put-quotes-id) est défini comme [BinaryString](#binarystring). La manière de remplir ce paquet ILP est expliquée dans [Interledger Payment Request](#interledger-payment-request). L’adresse ILP d’Henrik dans le FSP **MobileMoney** est fixée à **g.se.mobilemoney.msisdn.123456789** (voir [ILP Addressing](#ilp-addressing)). Comme le montant du transfert est de 99 USD et que l’exposant du devise USD est 2, le montant renseigné dans le paquet ILP est 9900 (99 \* 10^2 = 9900). L’autre élément du paquet ILP est **data**. Comme expliqué dans [Interledger Payment Request](#interledger-payment-request), cet élément doit contenir le modèle de données Transaction (voir [Transaction](#transaction)). Avec les informations de la demande de devis, la Transaction dans cet exemple est illustrée dans [Exemple 41](#listing-41). Après encodage base64url du paquet ILP complet avec **amount**, **account** et le **data**, cela donne l’élément **ilpPacket** du callback [PUT /quotes/_{ID}_](#put-quotes-id).
 
 Une fois le paquet ILP créé, la réalisation (fulfilment) et la condition sont générées selon l’algorithme défini dans [Exemple 12](#listing-12). En utilisant un secret d’exemple généré (voir [Exemple 42](#listing-42)), la réalisation devient celle de [Exemple 43](#listing-43) après execution de HMAC SHA-256 sur le paquet ILP avec ce secret comme clé (le tout en base64url). Le FSP **MobileMoney** doit stocker la réalisation en base de données pour ne pas avoir à la régénérer plus tard. La condition correspond au hash SHA-256 de la réalisation (voir [Exemple 44](#listing-44), base64url).
 

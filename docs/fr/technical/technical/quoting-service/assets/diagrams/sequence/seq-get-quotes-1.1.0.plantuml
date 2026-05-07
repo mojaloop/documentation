@@ -1,11 +1,11 @@
 @startuml
-Title Obtenir les informations d’une cotation
+Title Obtenir les informations d’une devis
 participant "FSP payeur" as PayerFSP
-participant "Switch\n[Service de\ncotation]" as Switch
+participant "Switch\n[Service de\ndevis]" as Switch
 database "Référentiel central" as DB
 participant "FSP bénéficiaire" as PayeeFSP
 autonumber
-note right of PayerFSP: Le FSP payeur demande le détail d’une cotation\nau FSP bénéficiaire via le Switch
+note right of PayerFSP: Le FSP payeur demande le détail d’une devis\nau FSP bénéficiaire via le Switch
 PayerFSP -\ Switch: GET /quotes/{ID}
 note right of Switch #aaa
     Valider la requête selon la
@@ -20,9 +20,9 @@ alt l'endpoint « quotes » du FSP bénéficiaire trouvé
     note right of Switch: Le Switch transmet la requête au FSP bénéficiaire (mode pass-through)\n<Règles côté payeur> 
     Switch -\ PayeeFSP: GET /quotes/{ID}
     PayeeFSP --/ Switch: 202 Accepted
-    PayeeFSP -> PayeeFSP: Le FSP bénéficiaire récupère la cotation
-    alt le FSP bénéficiaire récupère la cotation avec succès
-        note left of PayeeFSP: Le FSP bénéficiaire répond à la demande de cotation
+    PayeeFSP -> PayeeFSP: Le FSP bénéficiaire récupère le devis
+    alt le FSP bénéficiaire récupère le devis avec succès
+        note left of PayeeFSP: Le FSP bénéficiaire répond à la demande de devis
         PayeeFSP -\ Switch: PUT /quotes/{ID}
         Switch --/ PayeeFSP: 200 Ok
         Switch -> Switch: Valider la réponse (schéma, en-têtes (<color #red>**Code d’erreur : 3100**</color>))
@@ -30,7 +30,7 @@ alt l'endpoint « quotes » du FSP bénéficiaire trouvé
             alt SimpleRoutingMode est FALSE
                 Switch -> Switch: Valider la réponse (contrôle de doublon, scénario renvoi (<color #red>**Code d’erreur : 3106**</color>))
                 alt validation réussie
-                    Switch -\ DB: Persister la réponse de cotation
+                    Switch -\ DB: Persister la réponse de devis
                     activate DB
                         hnote over DB
                             quoteResponse
@@ -39,7 +39,7 @@ alt l'endpoint « quotes » du FSP bénéficiaire trouvé
                             quoteExtensions
                             geoCode
                         end hnote
-                    Switch \-- DB: Réponse de cotation enregistrée
+                    Switch \-- DB: Réponse de devis enregistrée
                     deactivate DB
                 end
             end
@@ -64,7 +64,7 @@ alt l'endpoint « quotes » du FSP bénéficiaire trouvé
             note over Switch, PayeeFSP #ec7063: Dans ce scénario, le FSP payeur\npeut ne pas recevoir de réponse
         end
 
-    else cotation introuvable
+    else devis introuvable
         note left of PayeeFSP: Le FSP bénéficiaire renvoie une erreur au Switch\n <color #red>**Code d’erreur : 3205**</color>
         PayeeFSP -\ Switch: PUT /quotes/{ID}/error
         Switch --/ PayeeFSP: 200 OK

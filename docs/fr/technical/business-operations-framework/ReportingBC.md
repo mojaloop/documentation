@@ -115,7 +115,7 @@ Afin de tracer efficacement un transfert de bout en bout, quatre cas d'utilisati
 
 - La chronologie et l'état actuel du transfert
 - Toute information d'erreur associée à ce transfert
-- Les informations de cotation associées et la chronologie pour ce transfert
+- Les informations de devis associées et la chronologie pour ce transfert
 - Le statut du processus de règlement associé et les identifiants
 
 :::::: col-wrapper
@@ -152,8 +152,8 @@ Afin de tracer efficacement un transfert de bout en bout, quatre cas d'utilisati
 | ID de transfert domestique | |
 | Informations sur le payeur et le bénéficiaire | Type d'ID, Valeur d'ID, Nom d'affichage, Prénom, Deuxième prénom,<br> Nom, Date de naissance, Code de classification du marchand,<br> ID FSP, Liste d'extensions |
 | Réponse de recherche de partie | |
-| Demande de cotation | |
-| Réponse de cotation | |
+| Demande de devis | |
+| Réponse de devis | |
 | Préparation du transfert | |
 | Exécution du transfert | |
 | Message(s) d'erreur | |

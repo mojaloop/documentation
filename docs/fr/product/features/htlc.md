@@ -6,7 +6,7 @@ sidebarTitle: Contrats HTLC
 
 Mojaloop utilise les verrous cryptographiques d’ILP pour garantir des transferts atomiques et conditionnels entre DFSP. Le mécanisme repose sur les contrats à secret et délai (HTLC), qui permettent des transferts conditionnels : un transfert se termine entièrement pour toutes les parties ou pas du tout.
 
-Un contrat est conclu entre les DFSP payeur et bénéficiaire pendant la phase d’accord sur les conditions d’une transaction Mojaloop, ouverte lorsque le DFSP payeur propose une transaction via une demande de cotation.
+Un contrat est conclu entre les DFSP payeur et bénéficiaire pendant la phase d’accord sur les conditions d’une transaction Mojaloop, ouverte lorsque le DFSP payeur propose une transaction via une demande de devis.
 
 Lorsque le DFSP bénéficiaire estime que la transaction peut avoir lieu (après ses contrôles internes), il :
 - modifie les conditions proposées pour préciser celles auxquelles il accepte d’exécuter la transaction (par exemple frais et conditions de conformité) ;
@@ -14,7 +14,7 @@ Lorsque le DFSP bénéficiaire estime que la transaction peut avoir lieu (après
 - crée et conserve le *Fulfilment*, haché de l’objet Transaction, signé avec la clé privée du DFSP bénéficiaire (clé dédiée et limitée à cet usage) ;
 - crée la *Condition*, haché du *Fulfilment* ;
 - ajoute la *Condition* à l’objet Transaction ;
-- et le renvoie au DFSP payeur dans la réponse de cotation.
+- et le renvoie au DFSP payeur dans la réponse de devis.
 
 Si le DFSP payeur accepte les conditions, il envoie une demande de transfert comprenant l’objet Transaction, la *Condition* reçue et une heure d’expiration, au Hub Mojaloop.
 

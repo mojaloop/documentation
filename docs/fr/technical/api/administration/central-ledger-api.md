@@ -364,7 +364,7 @@ Content-Type: application/json
 
 #### Modèle de données de la réponse
 
-Chaque limite dans la liste renvoyée est appliquée au nom du participant et à la devise spécifiés dans chaque objet.
+Chaque limite dans la liste renvoyée est appliquée au nom du participant et à le devise spécifiés dans chaque objet.
 
 | Nom  | Obligatoire  | Type | Description |
 |---|---|--|--|
@@ -740,7 +740,7 @@ Content-Type: application/json
 
 #### Modèle de données de la réponse
 
-Chaque limite dans la liste renvoyée est appliquée au nom du participant et à la devise spécifiés dans chaque objet.
+Chaque limite dans la liste renvoyée est appliquée au nom du participant et à le devise spécifiés dans chaque objet.
 
 | Nom  | Obligatoire  | Type | Description |
 |---|---|--|--|
