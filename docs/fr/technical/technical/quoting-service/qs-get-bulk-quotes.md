@@ -1,6 +1,6 @@
-# GET — obtenir une cotation groupée par identifiant
+# GET — obtenir une devis groupé par identifiant
 
-Conception de la récupération d’une cotation groupée (*bulk quote*) par un FSP.
+Conception de la récupération d’une devis groupé (*bulk quote*) par un FSP.
 
 ## Diagramme de séquence
 

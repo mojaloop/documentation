@@ -1,12 +1,12 @@
 @startuml
-Title Demander la création d’une cotation
+Title Demander la création d’une devis
 participant "FSP payeur" as PayerFSP
-participant "Switch\n[Service de\ncotation]" as Switch
+participant "Switch\n[Service de\ndevis]" as Switch
 database "Référentiel central" as DB
 participant "FSP bénéficiaire" as PayeeFSP
 autonumber
 
-note over PayerFSP, Switch: Le FSP payeur envoie une demande de cotation\nau FSP bénéficiaire via le Switch
+note over PayerFSP, Switch: Le FSP payeur envoie une demande de devis\nau FSP bénéficiaire via le Switch
 PayerFSP -\ Switch: POST /quotes
 note right of Switch #aaa
     Valider la requête selon la
@@ -17,7 +17,7 @@ end note
 Switch -> Switch: Validation de schéma
 PayerFSP \-- Switch: 202 Accepted
 |||
-Switch -> Switch: Validation de la demande de cotation (moteur de règles, etc.)
+Switch -> Switch: Validation de la demande de devis (moteur de règles, etc.)
 |||
 alt SimpleRoutingMode === FALSE
     Switch -> Switch: Contrôle de doublon
@@ -35,7 +35,7 @@ alt SimpleRoutingMode === FALSE
         Switch -> Switch: Le Switch gère le scénario de renvoi
     end
     |||
-    Switch -\ DB: Persister la demande de cotation
+    Switch -\ DB: Persister la demande de devis
     activate DB
         hnote over DB
             quoteDuplicateCheck
@@ -45,7 +45,7 @@ alt SimpleRoutingMode === FALSE
             quoteExtension
             geoCode
         end hnote
-    Switch \-- DB: Demande de cotation enregistrée
+    Switch \-- DB: Demande de devis enregistrée
     deactivate DB
 end
 |||
@@ -60,13 +60,13 @@ alt endpoint « quotes » du bénéficiaire trouvé
     Switch -\ PayeeFSP: POST /quotes
     Switch \-- PayeeFSP: 202 OK
 
-    PayeeFSP -> PayeeFSP: Le FSP bénéficiaire persiste et calcule la cotation
-    alt traitement de la cotation réussi côté bénéficiaire
+    PayeeFSP -> PayeeFSP: Le FSP bénéficiaire persiste et calcule le devis
+    alt traitement du devis réussi côté bénéficiaire
         note left of PayeeFSP: Le FSP bénéficiaire envoie la réponse au FSP payeur via le Switch
         Switch /- PayeeFSP: PUT /quotes/{ID}
         Switch --/ PayeeFSP: 200 OK
 
-        Switch -> Switch: Valider la réponse de cotation
+        Switch -> Switch: Valider la réponse de devis
         alt SimpleRoutingMode === FALSE
             Switch -> Switch: Contrôle de doublon
             alt la réponse est un doublon mais pas un renvoi
@@ -76,7 +76,7 @@ alt endpoint « quotes » du bénéficiaire trouvé
             alt la réponse est un doublon et un renvoi
                 Switch -> Switch: Le Switch gère le scénario de renvoi
             end
-            Switch -\ DB: Persister la réponse de cotation
+            Switch -\ DB: Persister la réponse de devis
             activate DB
             hnote over DB
                 quoteResponse
@@ -85,7 +85,7 @@ alt endpoint « quotes » du bénéficiaire trouvé
                 geoCode
                 quoteExtension
             end hnote
-            Switch \-- DB: Réponse de cotation enregistrée
+            Switch \-- DB: Réponse de devis enregistrée
             deactivate DB
         end
         note left of Switch: Le Switch transmet la réponse au FSP payeur
@@ -96,12 +96,12 @@ alt endpoint « quotes » du bénéficiaire trouvé
         Switch /- PayeeFSP: PUT /quotes/{ID}/error
         Switch --/ PayeeFSP: 200 OK
         alt SimpleRoutingMode === FALSE
-            Switch -\ DB: Enregistrer l’erreur de cotation
+            Switch -\ DB: Enregistrer l’erreur de devis
             activate DB
             hnote over DB
                 quoteError
             end hnote
-            Switch \-- DB: Erreur de cotation enregistrée
+            Switch \-- DB: Erreur de devis enregistrée
             deactivate DB
         end
         note left of Switch: Le Switch transmet le callback d’erreur au FSP payeur

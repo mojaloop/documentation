@@ -6,7 +6,7 @@ version: 1.1
 
 Le **Quoting Service** (**QS**) — *(voir la section `5.1`)* de la [spécification Mojaloop {{ $page.frontmatter.version }}](/api) — prend en charge la phase de devis des différents cas d’usage.
 
-_Note : outre les devis individuelles, le service de devis prend aussi en charge les devis groupées (*bulk quotes*)._
+_Note : outre les devis individuelles, le service de devis prend aussi en charge les devis groupés (*bulk quotes*)._
 
 ## Diagramme de séquence
 
@@ -19,5 +19,5 @@ _Note : outre les devis individuelles, le service de devis prend aussi en charge
 
 ## Devis groupées (*bulk*)
 
-- [GET — obtenir une devis groupée par identifiant](qs-get-bulk-quotes.md)
-- [POST — demande de devis groupée](qs-post-bulk-quotes.md)
+- [GET — obtenir une devis groupé par identifiant](qs-get-bulk-quotes.md)
+- [POST — demande de devis groupé](qs-post-bulk-quotes.md)

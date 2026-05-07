@@ -1,6 +1,6 @@
-# POST — demande de cotation
+# POST — demande de devis
 
-Conception d’une demande de cotation émise par un FSP.
+Conception d’une demande de devis émise par un FSP.
 
 ## Diagramme de séquence
 

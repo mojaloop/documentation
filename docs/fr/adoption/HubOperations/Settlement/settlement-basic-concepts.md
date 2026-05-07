@@ -48,7 +48,7 @@ Les règlements sont *bilatéraux* si chaque paire de participants se règle ent
 
 Un modèle de règlement définit la manière dont un Hub Mojaloop règlera un ensemble de transferts. Dans le cas simple, il n’y a qu’un seul modèle de règlement et il règle tous les transferts traités par le Hub. Mojaloop prend toutefois en charge plus d’un modèle de règlement pour un même schéma. Cela permet, par exemple, à un schéma de définir des modèles de règlement différents selon les devises ou les types de comptes du grand livre.
 
-Si un schéma définit plus d’un modèle de règlement, il incombe au schéma de veiller à ce qu’un transfert donné ne puisse relever que d’un seul modèle de règlement. Par exemple, supposons qu’un schéma définisse un modèle de règlement pour tous les transferts nécessitant une conversion de devise (définis comme : tous les transferts dont la devise source et la devise cible diffèrent), et un autre modèle pour tous les transferts dont la devise source est le shilling kényan (KES). Dans ce cas, un transfert convertissant des shillings kényans en rand sud-africain pourrait relever des deux modèles.
+Si un schéma définit plus d’un modèle de règlement, il incombe au schéma de veiller à ce qu’un transfert donné ne puisse relever que d’un seul modèle de règlement. Par exemple, supposons qu’un schéma définisse un modèle de règlement pour tous les transferts nécessitant une conversion de devise (définis comme : tous les transferts dont le devise source et le devise cible diffèrent), et un autre modèle pour tous les transferts dont le devise source est le shilling kényan (KES). Dans ce cas, un transfert convertissant des shillings kényans en rand sud-africain pourrait relever des deux modèles.
 
 ## Fenêtre de règlement
 

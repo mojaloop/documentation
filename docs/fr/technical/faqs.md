@@ -150,7 +150,7 @@ Le problème s’est résolu de lui-même après 45 minutes. L’implémentation
 
 ### 27. Pourquoi ai-je cette erreur lors de la création d’un participant : "Hub reconciliation account for the specified currency does not exist" ?
 
-Vous devez créer les comptes Hub correspondants (HUB_MULTILATERAL_SETTLEMENT et HUB_RECONCILIATION) pour la devise spécifiée avant de configurer les participants.
+Vous devez créer les comptes Hub correspondants (HUB_MULTILATERAL_SETTLEMENT et HUB_RECONCILIATION) pour le devise spécifiée avant de configurer les participants.
 Dans cette collection Postman, vous pouvez trouver les requêtes nécessaires dans le dossier "Hub Account" : https://github.com/mojaloop/postman/blob/master/OSS-New-Deployment-FSP-Setup.postman_collection.json
 
 Trouvez aussi les environnements associés dans le dépôt Postman : https://github.com/mojaloop/postman

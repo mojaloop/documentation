@@ -77,7 +77,7 @@ group Consommation du gestionnaire Position
             deactivate DB
             SETTLEMENT_DAO --> POS_HANDLER: Retour des modèles de règlement actifs
             deactivate SETTLEMENT_DAO
-            POS_HANDLER -> POS_HANDLER: Sélectionner la devise correspondante ou le modèle de règlement par défaut pour le type de compte grand livre POSITION\n<color #red>**Code d’erreur :** 6000</color>
+            POS_HANDLER -> POS_HANDLER: Sélectionner le devise correspondante ou le modèle de règlement par défaut pour le type de compte grand livre POSITION\n<color #red>**Code d’erreur :** 6000</color>
             
             POS_HANDLER -> PARTICIPANT_DAO: Demander le compte de position du participant payeur par nom et devise
             activate PARTICIPANT_DAO
@@ -120,15 +120,15 @@ group Consommation du gestionnaire Position
                 POS_HANDLER <-> POS_HANDLER: Calculer la position la plus récente pour la préparation
                 POS_HANDLER <-> POS_HANDLER: Valider la position la plus récente calculée (lpos) par rapport au plafond de débit net (netcap) - Règle : lpos < netcap
                 
-                POS_HANDLER -> POS_DAO: Demander la position du participant payeur pour la devise du transfert et la devise de règlement
+                POS_HANDLER -> POS_DAO: Demander la position du participant payeur pour le devise du transfert et le devise de règlement
                 activate POS_DAO
-                POS_DAO -> DB: Récupérer la position du participant payeur pour la devise du transfert et la devise de règlement
+                POS_DAO -> DB: Récupérer la position du participant payeur pour le devise du transfert et le devise de règlement
                 hnote over DB #lightyellow
                     participantPosiiton
                 end note
                 activate DB
                 deactivate DB
-                POS_DAO --> POS_HANDLER: Retour de la position du participant payeur pour la devise du transfert et la devise de règlement
+                POS_DAO --> POS_HANDLER: Retour de la position du participant payeur pour le devise du transfert et le devise de règlement
                 deactivate POS_DAO
 
                 POS_HANDLER <-> POS_HANDLER: Mettre à jour la position du participant (augmenter la position réservée du montant du transfert)

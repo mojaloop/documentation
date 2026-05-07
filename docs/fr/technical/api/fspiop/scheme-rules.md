@@ -94,7 +94,7 @@ Un schéma peut imposer la vérification de l’identification KYC (Know Your Cu
 
 #### Devise
 
-Un schéma peut recommander de permettre des transactions dans plusieurs devises. Ce schéma peut définir la liste des devises valides dans lesquelles les transactions peuvent être effectuées par les participants ; cependant ce n’est pas obligatoire. Un Switch peut agir en tant que routeur de transaction et ne valide pas la devise de la transaction. Si un schéma ne définit pas la liste des devises valides, alors le Switch joue ce rôle et le FSP participant peut accepter ou rejeter la transaction selon les devises qu’il supporte. Les échanges de devises ne sont pas pris en charge ; c’est-à-dire que la devise de transaction du Payeur et du _Bénéficiaire_ doit être la même.
+Un schéma peut recommander de permettre des transactions dans plusieurs devises. Ce schéma peut définir la liste des devises valides dans lesquelles les transactions peuvent être effectuées par les participants ; cependant ce n’est pas obligatoire. Un Switch peut agir en tant que routeur de transaction et ne valide pas le devise de la transaction. Si un schéma ne définit pas la liste des devises valides, alors le Switch joue ce rôle et le FSP participant peut accepter ou rejeter la transaction selon les devises qu’il supporte. Les échanges de devises ne sont pas pris en charge ; c’est-à-dire que le devise de transaction du Payeur et du _Bénéficiaire_ doit être la même.
 
 #### Format d’ID FSP
 

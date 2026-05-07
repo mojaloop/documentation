@@ -31,7 +31,7 @@ sidebarTitle: Invariants
 
 **La logique de mise en place de transaction, propre aux cas d’usage, est séparée du transfert d’argent sans logique métier.**
 
-1. Les détails de transaction et règles métier sont capturés et convenus comme règles de schéma et guides d’exploitation technique ; ils peuvent être appliqués pendant la cotation par les contreparties et sont portés entre elles par le Hub.
+1. Les détails de transaction et règles métier sont capturés et convenus comme règles de schéma et guides d’exploitation technique ; ils peuvent être appliqués pendant le devis par les contreparties et sont portés entre elles par le Hub.
 2. La phase d’accord établit un objet de transaction signé, spécifique au cas d’usage, intégrant tous les détails propres à la transaction.
 3. La phase de transfert orchestre la compensation de la valeur de détail entre institutions au profit des contreparties (seuls des contrôles de limites système s’appliquent), sans référence aux détails métier de la transaction.
 4. Aucun traitement supplémentaire propre à la transaction pendant la phase de transfert.

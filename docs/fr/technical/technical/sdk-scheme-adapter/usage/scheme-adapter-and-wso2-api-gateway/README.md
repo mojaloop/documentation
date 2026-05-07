@@ -16,7 +16,7 @@ Guide pour tester le *scheme adapter* contre une passerelle WSO2 publique avec T
 * Se connecter au *store* WSO2, menu *Applications* : créer une application et des clés d’accès si nécessaire.
 * Menu *APIs* : s’abonner aux deux API ci-dessous (application et *tier* depuis la page de chaque API).
   * **Central Ledger Admin API** — création de FSP et configuration des endpoints (demander à l’équipe infra les URL HTTPS correctes sur le Hub).
-  * **FSPIOP API** — recherche de compte, cotations et transferts.
+  * **FSPIOP API** — recherche de compte, devis et transferts.
 * Tester des requêtes dans l’onglet *API Console* avec le jeton généré.
 * Noter les URL des deux API et le jeton d’accès.
 
@@ -172,7 +172,7 @@ curl -X POST \
 
 ### En deux étapes
 
-Demander d’abord une cotation, puis accepter après vérification des frais et de la partie :
+Demander d’abord une devis, puis accepter après vérification des frais et de la partie :
 
 ```
 curl -X POST \

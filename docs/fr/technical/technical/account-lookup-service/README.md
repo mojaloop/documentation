@@ -34,7 +34,7 @@ La conception de l’ALS fournit un composant générique central faisant partie
 La configuration de routage repose sur les éléments suivants :
 
 * **PartyIdType** — voir la section `7.5.6` de la spécification Mojaloop
-* **Currency** — voir la section `7.5.5` de la spécification Mojaloop. Code devise selon [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) sous forme de chaîne alphabétique de trois lettres. Ce champ est optionnel ; toutefois, l'indicateur `isDefault` doit être défini à `true` si la devise n'est pas fournie.
+* **Currency** — voir la section `7.5.5` de la spécification Mojaloop. Code devise selon [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) sous forme de chaîne alphabétique de trois lettres. Ce champ est optionnel ; toutefois, l'indicateur `isDefault` doit être défini à `true` si le devise n'est pas fournie.
 * **isDefault** — indicateur précisant qu'un Oracle donné est le fournisseur par défaut pour un **PartyIdType** spécifique. Plusieurs Oracles peuvent être définis comme « par défaut », mais il ne peut y avoir qu'un seul Oracle par défaut par **PartyIdType** donné. L’Oracle par défaut, pour un **PartyIdType**  donné n’est séléctionné que si la requête initiale n’inclut pas de filtre de devise.
  
 
@@ -113,7 +113,7 @@ _Note : le cas « recherche de participant » s’applique de la même façon à
 #### Notes
 
 - `partyIdType` — valeurs initialement injectées selon la section _`7.5.6`_ de la [spécification Mojaloop {{ $page.frontmatter.version }}](../../api/README.md).
-- `currency` — voir la section `7.5.5` de la spécification Mojaloop ; code selon [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html). Optionnel ; et doit fournir une configuration « par défaut » si aucune devise n'est fournie, OU fournir une valeur par défaut si la devise est fournie mais que seule la configuration de point de terminaison « par défaut » existe.
+- `currency` — voir la section `7.5.5` de la spécification Mojaloop ; code selon [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html). Optionnel ; et doit fournir une configuration « par défaut » si aucune devise n'est fournie, OU fournir une valeur par défaut si le devise est fournie mais que seule la configuration de point de terminaison « par défaut » existe.
 - `endPointType` — identifiant du type d'endpoint (ex. `URL`) offrant la flexibilité nécessaire pour la prise en charge de futurs protocoles de transport.
 - `migration*` — tables de métadonnées utilisées par le moteur du framework Knex.
 - Un `centralSwitchEndpoint` doit être associé à l’`OracleEndpoint` par l’API de l'admin lors de l’insertion d’un nouvel enregistrement `OracleEndpoint`. S’il n’est pas fourni dans la requête API, il doit être défini par défaut. 

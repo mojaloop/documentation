@@ -23,13 +23,13 @@
 ******'/
  
 @startuml
-Title Demander la création d’une cotation groupée
+Title Demander la création d’une devis groupé
 participant "FSP payeur" as PayerFSP
-participant "Switch\n[Service de cotation]" as Switch
+participant "Switch\n[Service de devis]" as Switch
 participant "FSP bénéficiaire" as PayeeFSP
 autonumber
 
-note over PayerFSP, Switch: Le FSP payeur envoie une demande de cotation groupée\nau FSP bénéficiaire via le Switch
+note over PayerFSP, Switch: Le FSP payeur envoie une demande de devis groupé\nau FSP bénéficiaire via le Switch
 PayerFSP -\ Switch: POST /bulkQuotes
 note right of Switch #aaa
     Valider la requête selon la
@@ -40,7 +40,7 @@ end note
 Switch -> Switch: Validation de schéma
 PayerFSP \-- Switch: 202 Accepted
 |||
-Switch -> Switch: Validation de la demande de cotation groupée (moteur de règles, etc.)
+Switch -> Switch: Validation de la demande de devis groupé (moteur de règles, etc.)
 |||
 Switch -> Switch: Contrôle de doublon
 |||
@@ -59,17 +59,17 @@ end
 |||
 Switch -> Switch: Utiliser l'en-tête fspiop-destination pour obtenir\nl'endpoint « bulk quotes » du DFSP bénéficiaire
 alt endpoint « bulk quotes » du bénéficiaire trouvé
-    note right of Switch: Le Switch transmet la demande de cotation groupée au FSP bénéficiaire
+    note right of Switch: Le Switch transmet la demande de devis groupé au FSP bénéficiaire
     Switch -\ PayeeFSP: POST /bulkQuotes
     Switch \-- PayeeFSP: 202 OK
 
-    PayeeFSP -> PayeeFSP: Le FSP bénéficiaire calcule les cotations individuelles\net répond avec un résultat de cotation groupée
+    PayeeFSP -> PayeeFSP: Le FSP bénéficiaire calcule les devis individuelles\net répond avec un résultat de devis groupé
     alt traitement bulkQuotes réussi côté bénéficiaire
         note over PayeeFSP, Switch: Le FSP bénéficiaire envoie la réponse au FSP payeur via le Switch
         Switch /- PayeeFSP: PUT /bulkQuotes/{ID}
         Switch --/ PayeeFSP: 200 OK
 
-        Switch -> Switch: Valider la réponse de cotation groupée
+        Switch -> Switch: Valider la réponse de devis groupé
         Switch -> Switch: Contrôle de doublon
         alt la réponse est un doublon mais pas un renvoi
             Switch -\ PayeeFSP: PUT /bulkQuotes/{ID}/error
@@ -82,7 +82,7 @@ alt endpoint « bulk quotes » du bénéficiaire trouvé
         note left of Switch: Le Switch transmet la réponse au FSP payeur
         PayerFSP /- Switch: PUT /bulkQuotes/{ID}
         PayerFSP --/ Switch: 200 OK
-    else le bénéficiaire rejette la cotation groupée ou rencontre une erreur
+    else le bénéficiaire rejette le devis groupé ou rencontre une erreur
         note left of PayeeFSP: Le FSP bénéficiaire envoie un callback d’erreur au FSP payeur via le Switch
         Switch /- PayeeFSP: PUT /bulkQuotes/{ID}/error
         Switch --/ PayeeFSP: 200 OK

@@ -25,7 +25,7 @@ Si le payeur accepte et souhaite poursuivre, le montant convenu du transfert est
 
 À l’issue du transfert, le DFSP bénéficiaire retient ses frais convenus et crédite le compte du bénéficiaire du reliquat.
 
-Ainsi, tous les frais sont regroupés dans une seule cotation : le payeur connaît le coût exact avant de valider, y compris si les frais du DFSP bénéficiaire sont payés par le payeur ou le bénéficiaire.
+Ainsi, tous les frais sont regroupés dans une seule devis : le payeur connaît le coût exact avant de valider, y compris si les frais du DFSP bénéficiaire sont payés par le payeur ou le bénéficiaire.
 
 ## Rules Handler — frais d’interchange
 

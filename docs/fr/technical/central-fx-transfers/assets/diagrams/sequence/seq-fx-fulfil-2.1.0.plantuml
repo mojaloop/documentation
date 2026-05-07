@@ -69,7 +69,7 @@ activate FULF_HANDLER
 activate SETMODEL_HANDLER
 activate POS_HANDLER
 group FXP1 envoie une demande d’exécution réussie de conversion FX
-    FXP1 <-> FXP1: Récupérer la chaîne d’exécution (fulfilment) générée lors du\nprocessus de cotation FX ou la régénérer à partir du\n**secret local** et du **paquet ILP**
+    FXP1 <-> FXP1: Récupérer la chaîne d’exécution (fulfilment) générée lors du\nprocessus de devis FX ou la régénérer à partir du\n**secret local** et du **paquet ILP**
     note right of FXP1 #yellow
         En-têtes - transferHeaders: {
             Content-Length: <Content-Length>,

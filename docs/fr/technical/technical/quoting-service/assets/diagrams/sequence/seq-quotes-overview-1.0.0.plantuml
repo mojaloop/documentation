@@ -1,30 +1,30 @@
 @startuml
-Title Séquences du service de cotation
+Title Séquences du service de devis
 participant "FSP payeur"
-participant "Switch\nService de\ncotation" as Switch
+participant "Switch\nService de\ndevis" as Switch
 participant "FSP bénéficiaire"
 
 autonumber
-note over "FSP payeur", Switch: Le FSP payeur demande une cotation au FSP bénéficiaire
+note over "FSP payeur", Switch: Le FSP payeur demande une devis au FSP bénéficiaire
 "FSP payeur" -\ Switch: POST /quotes
 Switch --/ "FSP payeur": 202 Accepted
-Switch -> Switch: Valider la demande de cotation
+Switch -> Switch: Valider la demande de devis
 
-alt cotation valide
+alt devis valide
     
-    Switch -> Switch: Persister les données de cotation
+    Switch -> Switch: Persister les données de devis
     note over Switch, "FSP bénéficiaire": Le Switch transmet la demande au FSP bénéficiaire\n<Règles côté payeur> 
     Switch -\ "FSP bénéficiaire": POST /quotes
     "FSP bénéficiaire" --/ Switch: 202 Accepted
     "FSP bénéficiaire" -> "FSP bénéficiaire": Calculer frais et commissions
     
-    alt le FSP bénéficiaire calcule la cotation avec succès
+    alt le FSP bénéficiaire calcule le devis avec succès
     
-        note over "FSP bénéficiaire", Switch: Le FSP bénéficiaire répond à la demande de cotation
+        note over "FSP bénéficiaire", Switch: Le FSP bénéficiaire répond à la demande de devis
         "FSP bénéficiaire" -\ Switch: PUT /quotes/{ID}
         Switch --/ "FSP bénéficiaire": 200 Ok
         
-        Switch -> Switch: Valider la réponse de cotation
+        Switch -> Switch: Valider la réponse de devis
         
         alt réponse valide
             Switch -> Switch: Persister les données de réponse
@@ -34,7 +34,7 @@ alt cotation valide
             Switch -\ "FSP payeur": PUT /quotes/{ID}
             "FSP payeur" --/ Switch: 200 Ok
             
-            note over "FSP payeur" #3498db: Le FSP payeur poursuit\nle transfert si la cotation\nest acceptable…
+            note over "FSP payeur" #3498db: Le FSP payeur poursuit\nle transfert si le devis\nest acceptable…
         else réponse invalide
         
             note over Switch, "FSP bénéficiaire": Le Switch renvoie une erreur au FSP bénéficiaire
@@ -59,7 +59,7 @@ alt cotation valide
         "FSP payeur" --/ Switch: 200 OK
     
     end
-else cotation invalide
+else devis invalide
     note over "FSP payeur", Switch: Le Switch renvoie une erreur au FSP payeur
     Switch -\ "FSP payeur": PUT /quotes/{ID}/error
     "FSP payeur" --/ Switch: 200 OK

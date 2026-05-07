@@ -39,7 +39,7 @@ Ces fonctions s’appuient sur des [caractéristiques distinctives](./transactio
 1.  **Un flux transactionnel en trois phases** :
 	+  **Découverte**, lorsque le DFSP du payeur collabore avec le Hub Mojaloop pour déterminer où envoyer le paiement et éviter les erreurs de routage. L’alias est résolu vers un DFSP bénéficiaire précis et, avec ce DFSP, un compte individuel.
 
-	 + **Accord sur les conditions (cotation)**, lorsque les deux DFSP conviennent que la transaction peut avoir lieu (avec par exemple des restrictions liées à un KYC par paliers) et à quelles conditions (dont frais), **avant** tout engagement de l’un ou l’autre.
+	 + **Accord sur les conditions (devis)**, lorsque les deux DFSP conviennent que la transaction peut avoir lieu (avec par exemple des restrictions liées à un KYC par paliers) et à quelles conditions (dont frais), **avant** tout engagement de l’un ou l’autre.
 
 	+  **Transfert**, lorsque la transaction entre les deux DFSP (et, par procuration, les comptes clients) est compensée, avec la garantie que les deux parties partagent la même vision en temps réel du succès ou de l’échec.
 &nbsp;

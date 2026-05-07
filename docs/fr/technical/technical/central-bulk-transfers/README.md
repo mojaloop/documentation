@@ -27,7 +27,7 @@ Les éléments clés implicites dans la spécification en version 1.0 sont les s
 D’après la figure 60 de la spécification, voici quelques implications importantes.
 
 1. Le DFSP payeur effectue les recherches d’utilisateur pour chaque partie du paiement groupé séparément
-2. Le DFSP payeur effectue une cotation groupée par DFSP bénéficiaire
+2. Le DFSP payeur effectue une devis groupé par DFSP bénéficiaire
 3. Il incombe au DFSP payeur de préparer les transferts groupés selon les FSP bénéficiaires et d’envoyer une demande de transfert groupé à un seul FSP bénéficiaire
 4. Il s’agit d’un processus « tout ou rien » : si un transfert individuel ne peut pas être réservé, tout le lot est rejeté, car on ne peut l’envoyer tel quel au bénéficiaire s’il contient un transfert sans réserve de fonds
 5. Dans cette logique, la proposition actuelle est de donner au *Switch* le pouvoir (la spécification devra être mise à jour) d’envoyer la requête `POST /bulkTransfers` avec la liste des transferts individuels pour lesquels les fonds ont pu être réservés sur le *Switch*
@@ -287,7 +287,7 @@ Tables proposées pour la conception des transferts groupés :
 
 1. Réévaluer le besoin de prendre en charge plusieurs FSP bénéficiaires dans un lot et les évolutions de spécification
 2. Traiter par priorité les points et enseignements du PoC documentés
-3. Étudier une ressource type *Bulk make* (`/bulkMake` ?) où le *Switch* accepte un lot complet et enchaîne les trois phases — recherche, cotation et transferts
+3. Étudier une ressource type *Bulk make* (`/bulkMake` ?) où le *Switch* accepte un lot complet et enchaîne les trois phases — recherche, devis et transferts
 4. *Throttling* des transferts individuels dans un lot ?
 5. Ordre de traitement dans un lot — sur le *Switch* et chez les FSP. Recommandation : règle imposant aux FSP de respecter l’ordre du lot sans traitement préférentiel ; sur le *Switch*, rester neutre sur l’ordre, bonne pratique : tri par montants croissants
 6. Règlements avec transferts groupés et paiements publics de très montants : assouplir les règles de liquidité si nécessaire

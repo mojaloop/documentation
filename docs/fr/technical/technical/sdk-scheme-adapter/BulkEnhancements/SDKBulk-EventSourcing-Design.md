@@ -20,9 +20,9 @@ Un modèle fondé sur le *event sourcing* et le domain‑driven design a été r
 
 ## SDK Scheme Adapter DFSP bénéficiaire
 
-### Diagramme de séquence *event sourcing* — cotations groupées entrantes
+### Diagramme de séquence *event sourcing* — devis groupés entrantes
 
-![Séquence des cotations groupées entrantes](../assets/sequence/inbound-bulk-quotes-sequence.svg)
+![Séquence des devis groupés entrantes](../assets/sequence/inbound-bulk-quotes-sequence.svg)
 
 ### Diagramme de séquence *event sourcing* — transferts groupés entrants
 
@@ -78,9 +78,9 @@ outboundBulkTransaction_< bulkTransactionId >
 - **partyLookupTotalCount** : nombre total de demandes de recherche de partie
 - **partyLookupSuccessCount** : nombre de recherches de partie réussies
 - **partyLookupFailedCount** : nombre de recherches de partie en échec
-- **bulkQuotesTotalCount** : nombre total de demandes de cotations groupées
-- **bulkQuotesSuccessCount** : nombre de demandes de cotation réussies
-- **bulkQuotesFailedCount** : nombre de demandes de cotation en échec
+- **bulkQuotesTotalCount** : nombre total de demandes de devis groupés
+- **bulkQuotesSuccessCount** : nombre de demandes de devis réussies
+- **bulkQuotesFailedCount** : nombre de demandes de devis en échec
 - **bulkTransfersTotalCount** : nombre total de demandes de transferts groupés
 - **bulkTransfersSuccessCount** : nombre de demandes de transfert réussies
 - **bulkTransfersFailedCount** : nombre de demandes de transfert en échec
@@ -109,7 +109,7 @@ HSET outboundBulkCorrelationMap <attribute1> <value1>
 
 ## Format des messages Redis pour le transfert groupé entrant
 
-### 1. Cotations groupées
+### 1. Devis groupées
 
 #### Commande :
 ```
@@ -121,7 +121,7 @@ inboundBulkQuotes_< bulkQuotesId >
 ```
 
 #### Attributs :
-- **bulkQuotesId** : identifiant des cotations groupées
+- **bulkQuotesId** : identifiant des devis groupés
 - **individualItem_< quotesId >** : sérialisation de ({
   id: quotesId
   request: {}
@@ -133,9 +133,9 @@ inboundBulkQuotes_< bulkQuotesId >
 - **state** : état global
   - RECEIVED
   - PROCESSING
-- **bulkQuotesTotalCount** : nombre total de demandes de cotations groupées
-- **bulkQuotesSuccessCount** : nombre de demandes de cotation réussies
-- **bulkQuotesFailedCount** : nombre de demandes de cotation en échec
+- **bulkQuotesTotalCount** : nombre total de demandes de devis groupés
+- **bulkQuotesSuccessCount** : nombre de demandes de devis réussies
+- **bulkQuotesFailedCount** : nombre de demandes de devis en échec
 
 ::: tip Remarques
 - Les messages Kafka doivent contenir le *bulkQuotesId*.

@@ -125,7 +125,7 @@ group Consommation du gestionnaire Prepare
                     PARTICIPANT_DAO --> PREP_HANDLER: Retour des détails du participant s’ils existent
                     deactivate PARTICIPANT_DAO
                     PREP_HANDLER <-> PREP_HANDLER: Valider que le participant payeur est actif
-                    PREP_HANDLER <-> PREP_HANDLER: Valider le compte de position du participant payeur pour la devise source [existe, actif]
+                    PREP_HANDLER <-> PREP_HANDLER: Valider le compte de position du participant payeur pour le devise source [existe, actif]
                 end
                 group Valider le bénéficiaire
                     PREP_HANDLER -> PARTICIPANT_DAO: Demander les détails du participant bénéficiaire (s’il existe)
@@ -141,7 +141,7 @@ group Consommation du gestionnaire Prepare
                     PARTICIPANT_DAO --> PREP_HANDLER: Retour des détails du participant s’ils existent
                     deactivate PARTICIPANT_DAO
                     PREP_HANDLER <-> PREP_HANDLER: Valider que le participant bénéficiaire est actif
-                    PREP_HANDLER <-> PREP_HANDLER: Valider le compte de position du participant bénéficiaire pour la devise cible [existe, actif]
+                    PREP_HANDLER <-> PREP_HANDLER: Valider le compte de position du participant bénéficiaire pour le devise cible [existe, actif]
                 end
                 group Valider la condition et l’expiration
                     PREP_HANDLER <-> PREP_HANDLER: Valider la condition cryptographique

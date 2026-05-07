@@ -106,7 +106,7 @@ Le Tableau 2 ci-dessous contient le modèle de données pour _Création d’Info
 | **partyIdentifier** | 1 | [PartyIdentifier](#partyidentifier-element) | Un identifiant pour la Partie. |
 | **partySubIdOrType** | 0..1 | [PartyIdSubIdOrType](#partysubidortype-element) | Un sous-identifiant ou sous-type pour la Partie. |
 | **fspId** | 1 | [FspId](#fspid-element) | Identifiant FSP auquel la Partie appartient. |
-| **currency** | 0..1 | [Currency](#currency-element) | Indique que la devise fournie est prise en charge par la Partie. |
+| **currency** | 0..1 | [Currency](#currency-element) | Indique que le devise fournie est prise en charge par la Partie. |
 
 **Tableau 2 – Modèle de données de Création d’Informations sur un Participant**
 
@@ -120,7 +120,7 @@ Le Tableau 3 ci-dessous contient le modèle de données pour _Création d’Info
 | --- | --- | --- | --- |
 | **requestId** | 1 | [CorrelationId](#correlationid-element) | L’ID de la demande, déterminé par le client. Utilisé pour identifier le rappel du serveur. |
 | **partyList** | 1..10000 | [PartyIdInfo](#partyidinfo) | Liste des éléments Party que le Client veut mettre à jour ou créer des informations FSP à propos. |
-| **currency** | 0..1 | [Currency](#currency-enum) | Indique que la devise fournie est prise en charge par chaque PartyIdInfo de la liste. |
+| **currency** | 0..1 | [Currency](#currency-enum) | Indique que le devise fournie est prise en charge par chaque PartyIdInfo de la liste. |
 
 **Tableau 3 – Modèle de données de Création en Masse d’Informations sur les Participants**
 
@@ -167,7 +167,7 @@ Le Tableau 6 ci-dessous contient le modèle de données pour _Retour d’Informa
 | --- | --- | --- | --- |
 | **requestId** | 1 | [CorrelationId](#correlationid-element) | L’ID de la demande, déterminé par le client. Utilisé pour identifier le rappel du serveur. |
 | **partyList** | 1..10000 | [PartyResult](#partyresult) | Liste des éléments PartyResult pour lesquels la création a été tentée (et a réussi ou échoué). |
-| **Currency** | 0..1 | [Currency](#currency-element) | Indique que la devise fournie a été indiquée comme acceptée pour chaque PartyIdInfo ajouté avec succès. |
+| **Currency** | 0..1 | [Currency](#currency-element) | Indique que le devise fournie a été indiquée comme acceptée pour chaque PartyIdInfo ajouté avec succès. |
 
 **Tableau 6 – Modèle de données de Retour d’Informations en Masse sur les Participants**
 
