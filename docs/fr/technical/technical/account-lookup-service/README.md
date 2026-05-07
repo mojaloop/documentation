@@ -22,7 +22,7 @@ Cas d’usage implémentés en sus pour l’exploitation du Hub :
 
 ### 1.1. Account Lookup Service (ALS)
 
-La conception de l’ALS fournit un composant générique central faisant partie du cœur Mojaloop. Il sert à fournir le routage et l’alignement sur la spécification de l’API Mojaloop. Il prend en charge plusieurs registres de recherche (*Oracles*). Cet ALS fournira une API d'administration pour configurer le routage/la configuration de chaque Oracle, de manière similaire à l'API du Central-Service pour la configuration des points de terminaison de routage DFSP par le Notification Handler (composant ML-API-Adapter). L’ALS agit, en substance, comme un *switch* avec un stockage persistant des règles et de la configuration de routage.
+La conception de l’ALS fournit un composant générique central faisant partie du cœur Mojaloop. Il sert à fournir le routage et l’alignement sur la spécification de l’API Mojaloop. Il prend en charge plusieurs registres de recherche (*Oracles*). Cet ALS fournira une API d'administration pour configurer le routage/la configuration de chaque Oracle, de manière similaire à l'API du Central-Service pour la configuration des points de terminaison de routage DFSP par le Notification Handler (composant ML-API-Adapter). L’ALS est, à toutes fin utiles, un *switch* doté d'un stockage persistant des règles et de la configuration de routage.
 
 #### 1.1.1. Hypothèses
 
@@ -35,7 +35,7 @@ La configuration de routage repose sur les éléments suivants :
 
 * **PartyIdType** — voir la section `7.5.6` de la spécification Mojaloop
 * **Currency** — voir la section `7.5.5` de la spécification Mojaloop. Code devise selon [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) sous forme de chaîne alphabétique de trois lettres. Ce champ est optionnel ; toutefois, l'indicateur `isDefault` doit être défini à `true` si la devise n'est pas fournie.
-* **isDefault** — indicateur précisant qu'un Oracle donné est le fournisseur par défaut pour un **PartyIdType**. Plusieurs Oracles peuvent être définis comme « par défaut », mais il ne peut y avoir qu'un seul Oracle par défaut par **PartyIdType**. L’Oracle par défaut pour un **PartyIdType** n’est donné que si la requête d’origine n’inclut pas de filtre sur la devise.
+* **isDefault** — indicateur précisant qu'un Oracle donné est le fournisseur par défaut pour un **PartyIdType** spécifique. Plusieurs Oracles peuvent être définis comme « par défaut », mais il ne peut y avoir qu'un seul Oracle par défaut par **PartyIdType** donné. L’Oracle par défaut, pour un **PartyIdType**  donné n’est séléctionné que si la requête initiale n’inclut pas de filtre de devise.
  
 
 ### 1.2. Oracle ALS
