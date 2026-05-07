@@ -73,11 +73,11 @@ Catégories des dépôts NodeJS Mojaloop :
 1. **Identifier les dépendances**
    - Utilisez `npm audit` pour repérer les vulnérabilités
    - Examinez les fichiers `package.json` pour les dépendances obsolètes
-   - Vérifiez les changements cassants lors des mises à jour majeures
+   - Vérifiez les changements majeurs lors des mises à jour majeures
 
 2. **Élaborer un plan de mise à jour**
    - Listez tous les dépôts à mettre à jour
-   - Identifiez les changements cassants potentiels
+   - Identifiez les changements majeurs potentiels
    - Définissez la stratégie de test pour chaque composant
 
 3. **Exécuter les mises à jour**

@@ -57,7 +57,7 @@ Un retour en arrière est possible avec la commande [Helm rollback](https://helm
 
 Plusieurs stratégies existent selon la topologie de déploiement :
 
-1. Mojaloop installé **sans** dépendances backend (Kafka, MySQL, MongoDB, etc.), celles-ci étant gérées séparément — **option recommandée**, offrant le plus de souplesse lors des mises à niveau, surtout en présence de changements cassants.
+1. Mojaloop installé **sans** dépendances backend (Kafka, MySQL, MongoDB, etc.), celles-ci étant gérées séparément — **option recommandée**, offrant le plus de souplesse lors des mises à niveau, surtout en présence de changements majeurs.
 
 2. Mojaloop installé **avec** dépendances backend couplées à l’installation Helm.
 
@@ -70,7 +70,7 @@ Topologie préférée : elle offre le plus de souplesse. En séparant les dépen
 
 Ce nouveau déploiement peut soit réutiliser les dépendances backend existantes, soit en exiger de nouvelles selon les cas :
 
-##### 1. La version cible n’introduit pas de changements cassants sur le stockage de données
+##### 1. La version cible n’introduit pas de changements majeurs sur le stockage de données
 
 Dans ce cas, on peut adopter une stratégie de type **canary** en pointant le nouveau déploiement vers les dépendances backend existantes. Par défaut, les schémas de données sont mis à niveau via les scripts de `migration` (voir [Central-ledger](https://github.com/mojaloop/central-ledger/tree/master/migrations), [Account-lookup-service](https://github.com/mojaloop/account-lookup-service/tree/master/migrations)). On peut aussi désactiver les migrations (ex. [central-ledger](https://github.com/mojaloop/helm/blob/master/mojaloop/values.yaml#L147), configuration analogue pour account-lookup-service) et préparer un script SQL manuel (voir [migrate:list](https://knexjs.org/#Migrations) pour la liste des changements en attente).
 
@@ -93,7 +93,7 @@ Les dépendances backend étant partagées entre l’ancien et le nouveau déplo
 4. Exécutez des tests de cohérence sur l’environnement cible **Bleu**.
 5. Basculez la passerelle API (ou les règles Ingress) du **Vert** actuel vers le **Bleu** cible.
 
-##### 2. La version cible introduit des changements cassants sur le stockage de données
+##### 2. La version cible introduit des changements majeurs sur le stockage de données
 
 Dans ce scénario (Mojaloop installé sans dépendances backend), on peut utiliser une **mise à niveau Helm sur place** des dépendances backend.
 Une fenêtre de maintenance doit être planifiée pour arrêter les transactions « en direct » sur le déploiement courant afin de garantir la cohérence des données et une bascule sûre. Cela provoque une interruption, atténuable en planifiant la fenêtre aux heures les moins chargées.
