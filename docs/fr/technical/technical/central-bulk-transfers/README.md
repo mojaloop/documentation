@@ -1,10 +1,10 @@
-# Conception des transferts groupés (*Bulk Transfers*)
+# Conception des transferts groupés
 
-Le scénario des transferts groupés est décrit dans le document de définition d’API pour la ressource `/bulkTransfers`. Pour le détail, *(voir la section `6.10`)* selon la [spécification Mojaloop](https://github.com/mojaloop/mojaloop-specification/blob/master/API%20Definition%20v1.0.pdf).
+Le scénario des transferts groupés est décrit dans le document *API Definition* pour la ressource `/bulkTransfers`. Pour plus de détails (voir la section 6.10), conformément à la [spécification Mojaloop](https://github.com/mojaloop/mojaloop-specification/blob/master/API%20Definition%20v1.0.pdf).
 
 1. [Introduction](introduction)
-2. [Considérations de conception](design-considerations)
-3. [Étapes de l’architecture de haut niveau](steps-involved-in-the-high-level-architecture)
+2. [Principes de conception](design-considerations)
+3. [Étapes impliquées dans l’architecture de haut niveau](steps-involved-in-the-high-level-architecture)
 4. [Notes](notes)
     1. [Points de discussion](discussion-items)
     2. [Nouvelles tables proposées](proposed-new-tables)
@@ -22,23 +22,23 @@ Les éléments clés implicites dans la spécification en version 1.0 sont les s
 - La réserve de fonds est effectuée pour chaque transfert individuel du FSP payeur vers le FSP bénéficiaire
 - Si un seul transfert individuel échoue pendant la phase *prepare*, l’ensemble du lot doit être rejeté.
 
-## 2. Considérations de conception
+## 2. Principes de conception
 
 D’après la figure 60 de la spécification, voici quelques implications importantes.
 
 1. Le DFSP payeur effectue les recherches d’utilisateur pour chaque partie du paiement groupé séparément
 2. Le DFSP payeur effectue une devis groupé par DFSP bénéficiaire
 3. Il incombe au DFSP payeur de préparer les transferts groupés selon les FSP bénéficiaires et d’envoyer une demande de transfert groupé à un seul FSP bénéficiaire
-4. Il s’agit d’un processus « tout ou rien » : si un transfert individuel ne peut pas être réservé, tout le lot est rejeté, car on ne peut l’envoyer tel quel au bénéficiaire s’il contient un transfert sans réserve de fonds
-5. Dans cette logique, la proposition actuelle est de donner au *Switch* le pouvoir (la spécification devra être mise à jour) d’envoyer la requête `POST /bulkTransfers` avec la liste des transferts individuels pour lesquels les fonds ont pu être réservés sur le *Switch*
-6. Le *Switch* agrège alors les engagements et les échec côté FSP bénéficiaire et envoie un seul appel `PUT /bulkTransfers/{ID}` au FSP payeur avec la liste complète, y compris les transferts ayant échoué sur le *Switch* ou chez le FSP bénéficiaire
+4. Ce processus semble fonctionner selon un principe « tout ou rien » : si un transfert individuel ne peut pas être réservé, tout le lot doit être rejeté, car on ne peut l’envoyer tel quel au bénéficiaire s’il contient un transfert sans réserve de fonds.
+5. Dans cette logique, la proposition actuelle est d’habiliter le *Switch* (une mise à jour de la spécification est nécessaire) à envoyer la requête `POST /bulkTransfers` avec la liste des transferts individuels pour lesquels les fonds ont pu être réservés sur le *Switch*
+6. Il en résulte que le *Switch* agrège les engagements et les échecs côté FSP bénéficiaire et envoie un seul appel `PUT /bulkTransfers/{ID}` au FSP payeur avec la liste complète, y compris les transferts ayant échoué sur le *Switch* ou chez le FSP bénéficiaire
 7. Exemple : 1000 transferts dans un lot ; le *Switch* réserve les fonds pour 900 d’entre eux — la requête *prepare* vers le DFSP bénéficiaire ne contient que ces 900. Si le FSP bénéficiaire renvoie un *Bulk Fulfil* avec 800 engagements et 100 abandons, le *Switch* traite chaque transfert et envoie le *callback* `PUT /bulkTransfers/{ID}` au FSP payeur pour les 1000 transferts : 800 *committed*, 200 *aborted*
 8. Des impacts sur la signature, le chiffrement, la PKI et d’autres aspects de sécurité devront être traités
-9. L’ordonnancement des transferts individuels relève aussi du schéma. Dans les marchés émergents, l’objectif peut être de maximiser le volume : un schéma peut réordonner par montants croissants avant traitement — décision de schéma
+9. L’ordonnancement des transferts individuels doit également être pris en compte par le schéma. Dans les marchés émergents, l’objectif de mise en œuvre est de maximiser le nombre de transactions : un schéma bien conçu peut réordonner les transferts par montants croissants avant traitement. Il peut toutefois s’agir d’une décision propre au schéma.
 10. Une règle de schéma recommandée : les FSP bénéficiaires ne devraient pas pouvoir réordonner les transferts d’un lot pour éviter un biais en faveur des parties bénéficiaires
 11. Les règlements impliquant des paiements publics de très gros montants via transferts groupés doivent être examinés pour permettre le traitement sans règles de liquidité trop strictes
 
-## 3. Étapes de l’architecture de haut niveau
+## 3. Étapes impliquées dans l’architecture de haut niveau
 
 Étapes principales pour les transferts groupés.
 
@@ -281,12 +281,12 @@ Tables proposées pour la conception des transferts groupés :
 ### 4.4 Notes complémentaires
 
 1. Documenter `GET /bulkTransfers` pour préciser les différences de réponses entre FSP payeur et FSP bénéficiaire
-2. Utiliser un service dédié : *bulk-api-adapter* pour les endpoints des transferts groupés (y compris la persistance évoquée ci-dessus)
+2. Un service dédié a été utilisé : *bulk-api-adapter* pour les endpoints des transferts groupés (y compris la persistance évoquée ci-dessus).
 
 ## 5. Sujets de feuille de route
 
-1. Réévaluer le besoin de prendre en charge plusieurs FSP bénéficiaires dans un lot et les évolutions de spécification
-2. Traiter par priorité les points et enseignements du PoC documentés
+1. Réévaluer le besoin de prendre en charge plusieurs FSP bénéficiaires dans un lot et les modifications nécessaires à apporter à la spécification.
+2. Traiter par ordre de priorité les problèmes et enseignements documentés issus du PoC.
 3. Étudier une ressource type *Bulk make* (`/bulkMake` ?) où le *Switch* accepte un lot complet et enchaîne les trois phases — recherche, devis et transferts
 4. *Throttling* des transferts individuels dans un lot ?
 5. Ordre de traitement dans un lot — sur le *Switch* et chez les FSP. Recommandation : règle imposant aux FSP de respecter l’ordre du lot sans traitement préférentiel ; sur le *Switch*, rester neutre sur l’ordre, bonne pratique : tri par montants croissants

@@ -1,8 +1,8 @@
-# Opérations de transfert FX Mojaloop
+# Opérations Mojaloop de transfert FX
 
-Processus opérationnels essentiels pour activer les transferts FX :
+Processus opérationnels au cœur de l’activation des transferts FX :
 
 - Processus de préparation FX (Prepare)
 - Processus d’exécution FX (Fulfil)
-- Processus de notifications
+- Processus FX de notifications
 - Processus de rejet / abandon FX (Reject/Abort)
