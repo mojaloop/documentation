@@ -1,4 +1,4 @@
-# Gestionnaire d’événements (espace réservé)
+# Gestionnaire d’événements — Provisoire
 
 Diagramme de conception de séquence pour le processus du gestionnaire d’événements.
 

@@ -90,7 +90,7 @@ outboundBulkTransaction_< bulkTransactionId >
 - Pour mettre à jour l’état global, utiliser la commande `HSET bulkTransaction_< bulkTransactionId > state < stateValue >`
 :::
 
-### 2. Mappage des *callbacks* individuels avec les éléments du lot
+### 2. Mappage des *callbacks* individuels avec les éléments individuels du lot
 
 #### Commande :
 ```
@@ -109,7 +109,7 @@ HSET outboundBulkCorrelationMap <attribute1> <value1>
 
 ## Format des messages Redis pour le transfert groupé entrant
 
-### 1. Devis groupées
+### 1. Devis groupés
 
 #### Commande :
 ```

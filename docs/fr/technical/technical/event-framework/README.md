@@ -1,17 +1,17 @@
-# Cadre d’événements (Event Framework)
+# Infrastructure d’événements (Event Framework)
 
-Le **cadre d’événements** (*Event Framework*) vise à fournir une architecture unifiée et standard pour capturer tous les événements Mojaloop.
+L’**infrastructure d’événements** (*Event Framework*) vise à fournir une architecture unifiée et standard pour capturer tous les événements Mojaloop.
 
-_Avertissement : solution expérimentale mise en œuvre comme preuve de concept (PoC). La conception peut évoluer selon les apprentissages et l’avancement du PoC._
+_Avertissement : solution expérimentale mise en œuvre comme preuve de concept (PoC). La conception peut évoluer selon l’avancement de la mise en œuvre du PoC et les enseignements tirés._
 
 
 ## 1. Exigences
 
-- Les événements sont produits via une bibliothèque commune standard qui publie vers un composant *sidecar* sur un protocole léger et performant (p. ex. gRPC).
+- Les événements seront produits via une bibliothèque commune standard qui publiera vers un composant *sidecar* sur un protocole léger et hautement performant (p. ex. gRPC).
 - Le module *sidecar* publie sur un topic Kafka unique, consommable par plusieurs gestionnaires selon les besoins.
 - Le partitionnement Kafka repose sur le type d’événement (p. ex. *log*, *audit*, *trace*, *errors*).
-- Chaque composant Mojaloop dispose de son *sidecar* couplé.
-- Les messages utilisent le *Trace-Id* comme clé Kafka, afin de regrouper toutes les traces d’une même transaction dans une même partition.
+- Chaque composant Mojaloop disposera de son propre *sidecar* étroitement couplé.
+- Les messages utiliseront le *Trace-Id* comme clé Kafka, afin de garantir que tous les messages d’une même trace (transaction) soient stockés dans la même partition et dans l’ordre.
 
 
 ## 2. Architecture
@@ -57,7 +57,7 @@ _Avertissement : solution expérimentale mise en œuvre comme preuve de concept 
             "state": {
                 "status": "success",
                 "code": 0,
-                "description": "action réussie"
+                "description": "action successful"
             },
             "responseTo": "1a396c07-47ab-4d68-a7a0-7a1ea36f0012"
         },
@@ -89,7 +89,7 @@ _Avertissement : solution expérimentale mise en œuvre comme preuve de concept 
 | from | string | N | Si absent côté destination, la notification a été générée par le nœud connecté (serveur). |  |
 | to | string | O | Obligatoire côté émetteur, optionnel côté destination. L’émetteur peut omettre la valeur de domaine. | |
 | pp | string | N | Optionnel côté émetteur lorsqu’il représente l’identité de session. Obligatoire côté destination si l’identité de l’émetteur diffère de la propriété `from`. | |
-| metadata | object `<MessageMetadata>` | N | Ne pas transporter d’informations de contenu via cette propriété — seulement le contexte de communication. Définir un nouveau type de contenu si nécessaire. | |
+| metadata | object `<MessageMetadata>` | N | L’émetteur devrait éviter d’utiliser cette propriété pour transporter des informations liées au contenu — uniquement des données contextuelles à la communication. Il est conseillé de définir un nouveau type de contenu si davantage d’informations de contenu doivent être incluses dans le message. | |
 | type | string | O | Déclaration `MIME` du type de contenu du message. | |
 | content | object \<any\> | O | Représentation du contenu. | |
 
@@ -125,7 +125,7 @@ _Avertissement : solution expérimentale mise en œuvre comme preuve de concept 
 | --- | --- | --- | --- | --- |
 | service | string | O | Nom du service produisant la trace. | central-ledger-prepare-handler |
 | traceId | 32HEXDIGLC | O | Identifiant de transaction de bout en bout. | 664314d5b207d3ba722c6c0fdcd44c61 |
-| spanId | 16HEXDIGLC | O | Identifiant de jambe de traitement pour un composant ou une fonction. | 81fa25e8d66d2e88 |
+| spanId | 16HEXDIGLC | O | Identifiant de tronçon de traitement pour un composant ou une fonction. | 81fa25e8d66d2e88 |
 | parentSpanId | 16HEXDIGLC | N | Identifiant du span parent. | e457b5a2e4d86bd1 |
 | sampled | number | N | Indique si le message doit entrer dans la trace (`1`). Sinon, l’échantillonnage est laissé au consommateur. | 1 |
 | flags | number | N | Inclusion dans le flux de trace (*Debug* `1` — surcharge la valeur `sampled`). | 0 |
@@ -230,4 +230,4 @@ Le contexte de trace peut aussi être placé dans les en-têtes Kafka (v0.11+), 
 
 ### 4.3 Limites connues
 
-- Le traçage des transferts reste limité à chaque jambe (*Prepare* / *Fulfil*) : la spécification API Mojaloop ne prévoit pas nativement les informations de trace. Le *Switch* peut les inclure dans les *callbacks*, mais les FSP ne sont pas tenus de répondre avec des en-têtes de trace réciproques.
+- Le traçage des transferts reste limité à chaque tronçon (*Prepare* / *Fulfil*) : la spécification API Mojaloop ne prend pas en charge les informations de trace. Le *Switch* peut les inclure dans les *callbacks*, mais les FSP ne sont pas tenus de répondre avec des en-têtes de trace réciproques.

@@ -1,6 +1,6 @@
 # Prise en charge des transferts groupés par le SDK — API
 
-Les évolutions du SDK Scheme Adapter côté payeur sont exposées dans l’API sous le l'endpoint `BulkTransactions` :
+Les évolutions du SDK Scheme Adapter côté payeur sont exposées dans l’API sous l’endpoint `BulkTransactions` :
 
 - **POST** `/bulkTransactions`
 - **PUT** `/bulkTransactions`
@@ -22,7 +22,7 @@ La définition OpenAPI entrante (*inbound*) se trouve [ici](https://github.com/m
 
 Toutes les erreurs rencontrées pendant cette phase sont agrégées dans le *mojaloop-connector*, ajoutées à l’objet `lastError` et renvoyées au FSP payeur avec l’ensemble des transferts réussis ou en échec inclus dans la requête de transfert groupé.
 
-Le *mojaloop-connector* relaie les erreurs renvoyées par le commutateur.
+Le *mojaloop-connector* agira comme relais transparent (*pass-through*) pour toutes les erreurs renvoyées par le commutateur.
 
 ```
             "lastError": {
@@ -53,7 +53,7 @@ Le *mojaloop-connector* relaie les erreurs renvoyées par le commutateur.
 
 Toutes les erreurs rencontrées pendant cette phase sont agrégées dans le *mojaloop-connector*, ajoutées à l’objet `lastError` et renvoyées au FSP payeur avec l’ensemble des transferts réussis ou en échec inclus dans la requête de transfert groupé.
 
-Le *mojaloop-connector* relaie les erreurs renvoyées par le commutateur.
+Le *mojaloop-connector* agira comme relais transparent (*pass-through*) pour toutes les erreurs renvoyées par le commutateur.
 
 ```
             "lastError": {
@@ -89,16 +89,16 @@ Le *mojaloop-connector* relaie les erreurs renvoyées par le commutateur.
 | Trop d’éléments                                                        | 3103        | 400              | Erreur de validation de la requête                       |
 | Charge utile trop volumineuse                                          | 3104        | 400              | Erreur de validation de la requête                       |
 | Signature invalide                                                     | 3105        | 403              | Erreur « interdit »                                      |
-| Erreur FSP destinataire                                                | 3201        | 404              | Erreur « introuvable »                                   |
+| Erreur du FSP de destination                                                | 3201        | 404              | Erreur « introuvable »                                   |
 | Identifiant FSP payeur introuvable                                     | 3202        | 404              | Erreur « introuvable »                                   |
 | Identifiant FSP bénéficiaire introuvable                               | 3203        | 404              | Erreur « introuvable »                                   |
 | Identifiant de devis introuvable                                    | 3205        | 404              | Erreur « introuvable »                                   |
 | Identifiant de devis groupé introuvable                            | 3209        | 404              | Erreur « introuvable »                                   |
 | Erreur d’expiration générique                                          | 3300        | 503              | Erreur de traitement                                     |
-| Devis expirée                                                       | 3302        | 503              | Erreur de traitement                                     |
+| Devis expiré                                                       | 3302        | 503              | Erreur de traitement                                     |
 | Erreur payeur générique                                                | 4000        | 400              | Erreur de validation de la requête                       |
 | Rejet payeur générique                                                 | 4100        | 403              | Erreur « interdit »                                      |
-| Erreur de plafond payeur                                               | 4200        | 400              | Erreur de validation de la requête                       |
+| Erreur de limite payeur                                               | 4200        | 400              | Erreur de validation de la requête                       |
 | Erreur d’autorisation payeur                                           | 4300        | 403              | Erreur « interdit »                                      |
 | Erreur de blocage payeur générique                                     | 4400        | 403              | Erreur « interdit »                                      |
 | Erreur bénéficiaire générique                                          | 5000        | 503              | Erreur de traitement                                     |
@@ -108,7 +108,7 @@ Le *mojaloop-connector* relaie les erreurs renvoyées par le commutateur.
 | Type de transaction non pris en charge par le FSP bénéficiaire        | 5102        | 503              | Erreur de traitement                                     |
 | Devis rejetée par le bénéficiaire                                   | 5103        | 503              | Erreur de traitement                                     |
 | Devise non prise en charge par le bénéficiaire                         | 5106        | 503              | Erreur de traitement                                     |
-| Erreur de plafond bénéficiaire                                         | 5200        | 503              | Erreur de traitement                                     |
+| Erreur de limite bénéficiaire                                         | 5200        | 503              | Erreur de traitement                                     |
 | Erreur d’autorisation bénéficiaire                                     | 5300        | 403              | Erreur « interdit »                                      |
 | Erreur de blocage bénéficiaire générique                               | 5400        | 403              | Erreur « interdit »                                      |
 
@@ -118,7 +118,7 @@ Le *mojaloop-connector* relaie les erreurs renvoyées par le commutateur.
 
 Toutes les erreurs rencontrées pendant cette phase sont agrégées dans le *mojaloop-connector*, ajoutées à l’objet `lastError` et renvoyées au FSP payeur avec l’ensemble des transferts réussis ou en échec inclus dans la requête de transfert groupé.
 
-Le *mojaloop-connector* relaie les erreurs renvoyées par le commutateur.
+Le *mojaloop-connector* agira comme relais transparent (*pass-through*) pour toutes les erreurs renvoyées par le commutateur.
 
 ```
             "lastError": {
@@ -156,6 +156,6 @@ Le *mojaloop-connector* relaie les erreurs renvoyées par le commutateur.
 | Transaction rejetée par le bénéficiaire                                | 5104        | 400              | Erreur de traitement                                     |
 | Transaction rejetée par le FSP bénéficiaire                           | 5105        | 400              | Erreur de traitement                                     |
 | Devise non prise en charge par le bénéficiaire                         | 5106        | 400              | Erreur de traitement                                     |
-| Erreur de plafond bénéficiaire                                         | 5200        | 400              | Erreur de traitement                                     |
+| Erreur de limite bénéficiaire                                         | 5200        | 400              | Erreur de traitement                                     |
 | Erreur d’autorisation bénéficiaire                                     | 5300        | 403              | Erreur de traitement                                     |
 | Erreur de blocage bénéficiaire générique                               | 5400        | 400              | Erreur de traitement                                     |

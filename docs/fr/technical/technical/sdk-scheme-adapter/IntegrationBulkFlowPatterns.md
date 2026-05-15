@@ -2,7 +2,7 @@
 
 Il existe trois modèles pour construire l’intégration du DFSP payeur dans le cadre des transferts groupés.
 
-1. Intégration de transfert en **trois phases**. Aligné sur les trois phases de transaction Mojaloop : découverte, accord et transfert.
+1. Intégration de transfert en **trois phases**. Ce modèle s’aligne sur les trois phases de transaction Mojaloop : découverte, accord et transfert.
 1. **Intégration double API**. Ce modèle est détaillé dans le diagramme de séquence ci‑dessous. Il regroupe les phases Découverte et Accord en une première phase ; les résultats sont présentés au payeur pour confirmation ; la phase Transfert s’exécute ensuite en seconde phase.
 
 ![Modèle de flux d’intégration double API — transferts groupés, DFSP payeur](./assets/sequence/PayerDFSPBulkDoubleIntegrationApiPattern.svg)
@@ -12,18 +12,18 @@ Il existe trois modèles pour construire l’intégration du DFSP payeur dans le
 ![Modèle de flux d’intégration API unique — transferts groupés, DFSP payeur](./assets/sequence/PayerDFSPBulkSingleIntegrationApiPattern.svg)
 
 
-::: tip Validation en deux temps
-Tous les modèles d’intégration DFSP payeur prennent en charge une validation en deux temps (phase de réservation puis phase d’engagement).
+::: tip Commit en deux phases
+Tous les modèles d’intégration DFSP payeur prennent en charge un commit en deux phases (phase de réservation puis phase d’engagement).
 :::
 
 ## Exigences côté DFSP bénéficiaire
 
-Les évolutions du SDK Scheme Adapter garantissent que les DFSP ayant déjà intégré Mojaloop **n’ont pas** à modifier leur intégration pour **recevoir** des transferts groupés : le SDK Scheme Adapter reçoit les messages de transfert groupé et les convertit en messages de transfert individuels. Si un DFSP bénéficiaire souhaite tirer parti du message de transfert groupé, une intégration dédiée aux messages *bulk* peut être mise en œuvre au cas par cas.
+Les évolutions du SDK Scheme Adapter garantiront que les DFSP ayant déjà intégré Mojaloop n’auront pas à modifier leur intégration pour recevoir des transferts groupés : le SDK Scheme Adapter recevra les messages de transfert groupé et les convertira en messages de transfert individuels. Si un DFSP bénéficiaire souhaite tirer parti du message de transfert groupé, une intégration dédiée aux messages de transfert groupé peut être mise en œuvre lorsque cela s’avère pertinent pour le DFSP bénéficiaire concerné.
 
 
 ## Modèle de flux idéal côté bénéficiaire (groupé)
 
-Ici, les contrôles LBC/FT et les frais sont traités en phase d’accord, et la phase de transfert comporte une réservation puis un engagement.
+Ici, les contrôles LBC/FT sont effectués et les frais calculés en phase d’accord, et la phase de transfert comporte une phase de réservation puis une phase d’engagement.
 
 ![Modèle d’intégration idéal — transferts groupés, DFSP bénéficiaire](./assets/sequence/PayeeDFSPBulkIdealPattern.svg)
 

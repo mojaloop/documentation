@@ -15,8 +15,8 @@ Trois modèles peuvent être utilisés pour construire l’intégration du DFSP 
 
 ![Modèle de flux d’intégration API unique — DFSP payeur](./assets/sequence/PayerDFSPSingleIntegrationApiPattern.svg)
 
-::: tip Validation en deux temps
-Tous les modèles d’intégration DFSP payeur prennent en charge une validation en deux temps (phase de réservation puis phase d’engagement).
+::: tip Commit en deux phases
+Tous les modèles d’intégration DFSP payeur prennent en charge un commit en deux phases (phase de réservation puis phase d’engagement).
 :::
 
 ## Modèle idéal d’intégration côté DFSP bénéficiaire
@@ -27,7 +27,7 @@ Idéalement, les API de l’éditeur permettent :
 1. De calculer les frais d’un transfert **avant** et **indépendamment** du transfert.
 1. D’exécuter le transfert en **deux phases** : une phase de réservation, puis une phase d’engagement.
 
-Lorsque ces capacités existent dans l’API éditeur, une intégration « idéale » peut réduire les écarts de réconciliation lors d’erreurs inattendues et limiter le risque pour le DFSP.
+Lorsque ces capacités existent dans l’API éditeur, une intégration « idéale » peut réduire les écarts de réconciliation lors d’erreurs inattendues et présente le niveau de risque le plus faible pour le DFSP.
 
 ### Modèle de flux idéal côté bénéficiaire
 
