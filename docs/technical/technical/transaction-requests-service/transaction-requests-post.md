@@ -1,6 +1,6 @@
 # Transaction Requests
 
-POST /transactionRequests and PUT /transacionRequests to suppport "Merchant Request to Pay"
+POST /transactionRequests and PUT /transactionRequests to support "Merchant Request to Pay"
 
 ## Sequence Diagram
 

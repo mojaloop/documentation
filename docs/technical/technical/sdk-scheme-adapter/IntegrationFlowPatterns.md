@@ -1,14 +1,14 @@
 # Integrating Core Banking Systems to Mojaloop Patterns
 
-When integrating core banking system into a modern, real-time, push based transaction flow can come with some challenges. These are largely based on what vendor provided integration API's are on offer. This documents discusses what an ideal integration should look like, some of the typical limitations seen in vendor API's, and flow patterns that are used to overcome some of these limitations and a discussion on the risks.
+Integrating a core banking system into a modern, real-time, push-based transaction flow can come with some challenges. These are largely based on what vendor-provided integration APIs are on offer. This documents discusses what an ideal integration should look like, some of the typical limitations seen in vendor API's, and flow patterns that are used to overcome some of these limitations and a discussion on the risks.
 
 ## Payer DFSP Integration Patterns
 
 There are three patterns that can be used when building the Payer DFSP integrations
 1. **Three phase** transfer integration. This aligns with the three Mojaloop transaction phases. I.e. Discovery, Agreement and Transfer.
-1. **Double API Integration** integration. This pattern is described in detail in the sequence diagram below. It involves combining the Discovery and Agreement phases; as the first phase; the results are presented to the Payer for confirmation; following which the Transfer phase is executed as the second phase.
+1. **Double API Integration**. This pattern is described in detail in the sequence diagram below. It involves combining the Discovery and Agreement phases; as the first phase; the results are presented to the Payer for confirmation; following which the Transfer phase is executed as the second phase.
 ![Payer DFSP Double Integration API Flow Pattern](./assets/sequence/PayerDFSPDoubleIntegrationApiPattern.svg)
-1. **Single API Integration** integrations. This pattern is described in detail in the sequence diagram below. Here all three phases are combined to produce a single synchronous transfer call.
+1. **Single API Integration**. This pattern is described in detail in the sequence diagram below. Here all three phases are combined to produce a single synchronous transfer call.
 ![Payer DFSP Single Integration API Flow Pattern](./assets/sequence/PayerDFSPSingleIntegrationApiPattern.svg)
 
 ::: tip 2-Phased Commit
@@ -25,7 +25,7 @@ If these are available in the Vendor's API, then an ideal integration can be bui
 
 ### Ideal Payee Integration Flow Pattern
 
-Here the AML checks and fees are calculated in the Agreement Phase, and the transfer phase is performed in two phases namely a reserved and commit phase.
+Here the AML checks and fees are calculated in the Agreement Phase, and the transfer phase is performed in two phases namely a reservation phase and a commit phase.
 
 ![Payee DFSP Integration Ideal Pattern](./assets/sequence/PayeeDFSPIdealPattern.svg)
 
@@ -34,7 +34,7 @@ A common limitation in Vendor API's is that all these functions are combined int
 :::
 
 ## Vendor API only supports Single API call
-If the Core Banking Systems only support a single API call to perform all transfer related checks and phases, there there are two patterns that should be considered.
+If the Core Banking System only supports a single API call to perform all transfer related checks and phases, there are two patterns that should be considered.
 1. Call Transfer on the Patch Notification
 ![Payee DFSP Integration during Patch Notification](./assets/sequence/PayeeDFSPSingleIntegrationApiOnPatchPattern.svg)
 A failure at anytime after the PATCH notification **[Step 17]** will result in a reconciliation error. This can be catered for by building in recompensation methods. E.g. initiate a refund transfer if an error occurs after step 17.
