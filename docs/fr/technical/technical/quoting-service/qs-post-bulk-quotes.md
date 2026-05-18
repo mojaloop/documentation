@@ -1,6 +1,6 @@
-# POST — demande de devis groupé
+# POST — Cotation
 
-Conception d’une demande de devis groupé émise par un FSP.
+Conception d’une demande de cotation groupée par un FSP.
 
 ## Diagramme de séquence
 

@@ -11,3 +11,12 @@ _Note: In addition to individual quotes, the quoting service supports bulk quote
 
 ![](./assets/diagrams/sequence/seq-quotes-1.0.0.svg)
 
+## Individual Quotes
+
+- [GET: retrieve a quote by identifier](qs-get-quotes.md)
+- [POST: quote request](qs-post-quotes.md)
+
+## Bulk Quotes
+
+- [GET: retrieve a bulk quote by identifier](qs-get-bulk-quotes.md)
+- [POST: bulk quote request](qs-post-bulk-quotes.md)

@@ -79,7 +79,7 @@ Le *mojaloop-connector* relaie les erreurs renvoyées par le commutateur.
 | Identifiant de devis introuvable                                    | 3205        | 404              | Erreur « introuvable »                                   |
 | Identifiant de devis groupé introuvable                            | 3209        | 404              | Erreur « introuvable »                                   |
 | Erreur d’expiration générique                                          | 3300        | 503              | Erreur de traitement                                     |
-| Devis expirée                                                       | 3302        | 503              | Erreur de traitement                                     |
+| Devis expiré                                                       | 3302        | 503              | Erreur de traitement                                     |
 | Erreur payeur générique                                                | 4000        | 400              | Erreur de validation de la requête                       |
 | Rejet payeur générique                                                 | 4100        | 403              | Erreur « interdit »                                      |
 | Erreur de plafond payeur                                               | 4200        | 400              | Erreur de validation de la requête                       |

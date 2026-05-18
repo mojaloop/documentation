@@ -10,9 +10,9 @@ Contenu :
 
 <h3>1. Introduction</h3>
 
-Ce document décrit le Processus de Gestion des Vulnérabilités Mojaloop et fournit des lignes directrices à la communauté Mojaloop pour identifier, signaler, évaluer et traiter les vulnérabilités de sécurité dans les logiciels Mojaloop. En respectant les normes de sécurité reconnues, telles que l’ISO 27001, Mojaloop garantit une approche cohérente pour maintenir la sécurité et la résilience.
+Ce document décrit le Processus de Gestion des Vulnérabilités Mojaloop et fournit des lignes directrices à la communauté Mojaloop pour identifier, signaler, évaluer et traiter les vulnérabilités de sécurité dans les logiciels Mojaloop. En respectant les normes de sécurité reconnues, telles que l’ISO 27001, Mojaloop vise à assurer une approche cohérente pour maintenir la sécurité et la résilience.
 
-Ce processus s’appuie sur les pratiques déjà établies par Mojaloop, garantissant un périmètre clair et des directives fiables pour les adoptants. Il met l'accent sur une gestion responsable des vulnérabilités jusqu’à ce que des correctifs vérifiés soient disponibles et correctement communiqués.
+Ce processus s’appuie sur les pratiques déjà établies par Mojaloop, garantissant un périmètre bien défini et des directives sur lesquelles les adoptants du logiciel peuvent s’appuyer. Il met l'accent sur une gestion responsable des vulnérabilités jusqu’à ce que des correctifs vérifiés soient disponibles et correctement communiqués.
 
 Un processus de gestion des vulnérabilités structuré, transparent et efficace est essentiel pour maintenir la confiance et la protection de l’écosystème Mojaloop.
 
@@ -25,7 +25,7 @@ Le processus de gestion des vulnérabilités de Mojaloop est soutenu par un "Com
 3. La définition des correctifs appropriés et la planification des annonces.
 4. La coordination des versions intégrant des correctifs de sécurité.
 
-Le comité de sécurité est composé de contributeurs principaux et de leaders de la communauté, garantissant une gestion efficace et sécurisée des vulnérabilités. Sa structure et ses responsabilités sont conçues pour préserver la sécurité et l’intégrité de l’écosystème Mojaloop.
+Le comité de sécurité est composé de contributeurs principaux et de leaders de la communauté, garantissant une gestion efficace et sécurisée des vulnérabilités au sein de Mojaloop. Sa structure et ses responsabilités sont conçues pour préserver la sécurité et l’intégrité de l’écosystème Mojaloop.
 
 <h3>3. Gestion d’une vulnérabilité potentielle</h3>
 
@@ -40,14 +40,14 @@ Le processus concernant les dépendances tierces générales et autres modules o
 Les membres de la communauté Mojaloop et les organisations membres jouent un rôle clé dans la gestion des vulnérabilités, en particulier pour le respect des procédures établies en cas de découverte de vulnérabilités. Voici les étapes attendues :
 
 * Évitez d’entrer les détails des vulnérabilités dans des suivis de bugs publics, sauf si l’accès y est strictement limité.
-* Les communications concernant la sécurité doivent être limitées à des canaux privés dédiés. Ces canaux ne servent pas à notifier le grand public.
+* Les communications concernant la sécurité doivent être limitées à des canaux privés dédiés. Ces canaux ne constituent pas des systèmes de notification destinés au grand public.
 
 <h4>Travailler en privé</h4>
 
 Les informations sur une vulnérabilité ne doivent pas être rendues publiques avant qu'une annonce officielle n'ait été faite à la fin du processus. Cela signifie :
 
 * **Ne créez pas de tickets dans des suivis publics (par ex. GitHub/Zenhub) pour suivre l’incident**, car cela le rendrait public.
-* **Les messages liés aux commits ne doivent pas révéler la nature sécuritaire du commit.**
+* **Les messages associés aux commits de code ne doivent pas mentionner la nature sécuritaire du commit.**
 * **Les discussions autour de la vulnérabilité, des corrections potentielles et des annonces doivent avoir lieu sur des canaux privés**, tels qu’une liste de diffusion sécurité du projet ou un canal dédié aux mainteneurs.
 * Travaillez avec l’équipe sécurité Mojaloop (security at mojaloop dot io) pour suivre le processus CVD : https://docs.mojaloop.io/community/contributing/cvd.html
 
@@ -59,7 +59,7 @@ Des modèles de rapports peuvent s’inspirer du modèle de bug ici : https://gi
 Liste des problèmes jugés pertinents :
 1. Problèmes/vulnérabilités de sécurité dans les services principaux Mojaloop (code applicatif)
 2. Problèmes/vulnérabilités de sécurité dans les services de support Mojaloop
-3. Vulnérabilités larges ou "jours zéro" dans les dernières versions des dépendances critiques utilisées par les services principaux ou de support (ex : nodejs, kafka, mysql)
+3. Vulnérabilités à large diffusion ou de type zero-day dans les dernières versions des dépendances critiques utilisées par les services principaux ou de support (ex : nodejs, kafka, mysql)
 
 Liste des problèmes non critiques ou à faible priorité (réponses pouvant être différées) :
 
@@ -82,14 +82,14 @@ L’équipe analyse le rapport et le rejette ou l’accepte.
 
 * L’équipe convient d’un correctif, généralement sur une liste privée.
 * Les détails de la vulnérabilité et du correctif doivent être documentés pour générer des annonces préliminaires.
-* Le rapporteur peut recevoir une copie du correctif et de l’annonce en projet pour commentaire.
+* Le rapporteur peut recevoir une copie du correctif ainsi que le projet d’annonce afin d’y apporter ses commentaires.
 * Le correctif est intégré sans mention du caractère sécurité dans le message du commit.
 * Une version intégrant le correctif est publiée. Plus de détails dans la politique CVD Mojaloop.
 
 <h4>Annonce</h4>
 
 * Après la publication, la vulnérabilité et son correctif sont annoncés publiquement.
-* L’annonce doit être envoyée aux destinataires concernés : rapporteur de la vulnérabilité, listes sécurité du projet et éventuellement listes publiques dédiées à la sécurité.
+* L’annonce doit être envoyée aux destinataires et canaux appropriés, notamment le rapporteur de la vulnérabilité, les listes de sécurité du projet et éventuellement les listes publiques de sécurité.
 
 <h4>Clôturer</h4>
 
@@ -117,13 +117,13 @@ Un outil SBOM est utilisé pour générer un inventaire des dépendances tierces
 1. L’identification des vulnérabilités et des questions de conformité de licences ;
 2. La génération de rapports réguliers pour les besoins réglementaires et d’audit ;
 3. La surveillance permanente des versions de bibliothèques sur tous les dépôts ;
-4. L’assurance que seuls les paquets/dépendances bien maintenus sont utilisés et que les obsolètes sont gérés de façon appropriée.
+4. S’assurer que seuls les paquets et dépendances bien maintenus et correctement administrés sont utilisés, et que les paquets obsolètes font l’objet d’une gestion appropriée.
 
 Plus d’informations sur le SBOM dans Mojaloop : https://github.com/mojaloop/ml-depcheck-utility?tab=readme-ov-file#sbom-generation-tool-for-mojaloop-repositories 
 
 <h4>Sécurité des conteneurs</h4>
 
-Les images des conteneurs sont analysées pour les vulnérabilités via Grype avant chaque publication. Grype est configuré selon les meilleures pratiques, et des configurations encore plus strictes sont recommandées pour les adoptants. Configuration Grype de l’Orb CI utilisée par Mojaloop : https://github.com/mojaloop/ci-config-orb-build?tab=readme-ov-file#vulnerability-image-scan-configuration .
+Les images de conteneurs sont analysées pour détecter les vulnérabilités à l’aide de Grype avant la publication. Grype est configuré conformément aux meilleures pratiques, et des configurations plus strictes sont recommandées pour les adoptants. Configuration Grype de l’Orb CI utilisée par Mojaloop : https://github.com/mojaloop/ci-config-orb-build?tab=readme-ov-file#vulnerability-image-scan-configuration .
 
 <h4>Conformité des licences</h4>
 
@@ -172,7 +172,7 @@ Cela inclut :
 
 Exclusions :
 
-1. Les dépôts ne faisant pas partie de la release principale Mojaloop sont considérés comme non production et exclus du processus de gestion des vulnérabilités.
+1. Les dépôts ne faisant pas partie de la version principale de Mojaloop sont considérés comme hors production et exclus du processus de gestion des vulnérabilités.
 2. Les composants externes requis pour un déploiement Mojaloop typique (par ex. MySQL, Redis, MongoDB, Kafka) ne sont pas maintenus par la Fondation Mojaloop et sont exclus du processus de gestion des vulnérabilités spécifique au code applicatif Mojaloop, bien qu’ils relèvent de la gestion générale des vulnérabilités (en tant que dépendances OSS tierces).
 
 Cette approche garantit la sécurité constante des composants de base Mojaloop, tout en définissant clairement la limite de responsabilité autour des dépendances externes et en fournissant des lignes directrices concernant tous les autres paquets OSS (internes ou tiers), dépendances et outils.

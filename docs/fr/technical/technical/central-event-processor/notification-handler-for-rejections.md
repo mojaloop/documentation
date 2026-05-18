@@ -2,10 +2,10 @@
 
 Diagramme de conception de séquence pour le processus du gestionnaire de notifications en cas de rejet.
 
-## Références dans le diagramme de séquence
+## Références au sein du diagramme de conception de séquence
 
 * [Consommation du gestionnaire d’événements (9.1.0)](event-handler-placeholder.md)
-* [Obtenir les détails de callback du participant (3.1.0)](../central-ledger/admin-operations/3.1.0-post-participant-callback-details.md)
+* [Récupérer les détails de callback du participant (3.1.0)](../central-ledger/admin-operations/3.1.0-post-participant-callback-details.md)
 
 ## Diagramme de séquence
 

@@ -5,7 +5,7 @@ This design document describes how the SDK Scheme Adapter has been enhanced to s
 The implementation of bulk transfers within Mojaloop have the following limitations that this SDK bulk enhancement is designed to overcome.
 1. Only individual transfers that are addressed to the same Payer DFSP may be included in a bulk quotes and bulk transfers call.
 1. The number of individual quotes and transfers in each bulkQuotes and bulkTransfers respectively are limited to a maximum of 1000.
-1. In order to allow bulk functionality, all Payee DFSP's need to create integration support for bulk messaging. I.e. If the bulk use case were to be introduced into an existing scheme, then all connecting DFSPs would need to upgrade their connections and integrations into their core banking systems.
+1. In order to allow bulk functionality, all Payee DFSPs need to create integration support for bulk messaging. I.e. If the bulk use case were to be introduced into an existing scheme, then all connecting DFSPs would need to upgrade their connections and integrations into their core banking systems.
 1. There is currently no bulk discovery call.
 
 ## SDK Scheme Adapter bulk enhancement requirements
@@ -25,7 +25,7 @@ The enhancements enable:
    - both synchronous API calls and asynchronous API calls
 
 ## Features Implemented
-The current implementation does not include all the features. All the features that have been completed are functional and can be used. Additional features and enhancements can be added to the existing functionality as prioritized by Mojaloop product and the community. This aligns with the MVP (Minimal Viable Product) agile concept.
+The current implementation does not include all the features. All the features that have been completed are functional and can be used. Additional features and enhancements can be added to the existing functionality as prioritized by Mojaloop product and the community. This aligns with the MVP (Minimum Viable Product) agile concept.
 These are the features that are currently implemented:
 
 |Feature|Implementation Status|Release Version|

@@ -1,3 +1,3 @@
-# Opérations HUB / Switch Mojaloop
+# Opérations Mojaloop HUB/Switch
 
-Processus opérationnels généralement lancés par un opérateur du HUB ou du *Switch*.
+Processus opérationnels généralement initiés par un opérateur du HUB/Switch.

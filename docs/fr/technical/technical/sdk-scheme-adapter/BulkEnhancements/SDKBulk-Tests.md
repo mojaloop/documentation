@@ -2,7 +2,7 @@
 
 ## Stratégie de test
 
-La qualité de la solution livrée dépend de la qualité des tests et de la stratégie de test adoptée. La nature distribuée de cette solution fondée sur l’*event sourcing* a influé sur la stratégie retenue. Plusieurs types de tests ont été créés, se renforçant mutuellement et visant à détecter les défauts le plus tôt possible.
+La qualité de la solution livrée est à la hauteur de la qualité des tests et de la stratégie de test adoptée. La nature distribuée de cette solution fondée sur l’*event sourcing* a influé sur la stratégie retenue. Plusieurs types de tests ont été créés, se renforçant mutuellement et visant à détecter les défauts le plus tôt possible.
 
 Le gestionnaire d’événements de commande et le gestionnaire d’événements de domaine disposent tous deux de tests unitaires et de tests d’intégration ciblés comme socle. Les composants API FSPIOP et API *backend* n’ont que des tests unitaires.
 
