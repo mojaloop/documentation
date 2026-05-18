@@ -1889,7 +1889,7 @@ module.exports = {
                   // children: [ /* ... */ ],
                 },
                 {
-                  title: 'Gestion du cycle de vie des participants',
+                  title: 'Participant Lifecycle Management',
                   path: 'reference-architecture/boundedContexts/participantLifecycleManagement/',      // optional, link of the title, which should be an absolute path and must exist
                   // children: [ /* ... */ ],
                 },
@@ -1904,7 +1904,7 @@ module.exports = {
                   // children: [ /* ... */ ],
                 },
                 {
-                  title: 'BC Scheduling',
+                  title: 'Scheduling BC',
                   path: 'reference-architecture/boundedContexts/scheduling/',      // optional, link of the title, which should be an absolute path and must exist
                   // children: [ /* ... */ ],
                 },
@@ -1914,7 +1914,7 @@ module.exports = {
                   // children: [ /* ... */ ],
                 },
                 {
-                  title: 'BC Settlements',
+                  title: 'Settlements BC',
                   path: 'reference-architecture/boundedContexts/settlements/',      // optional, link of the title, which should be an absolute path and must exist
                   // children: [ /* ... */ ],
                 },
