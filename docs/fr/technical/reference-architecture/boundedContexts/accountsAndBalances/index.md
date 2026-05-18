@@ -4,7 +4,7 @@ Le BC Comptes et Soldes agit comme le « grand livre central » du système.
 
 **Remarque :**
 
-Le BC Comptes et Soldes contient une quantité limitée de logique afin de garantir que **(a)** les bonnes relations sont créées et maintenues entre les entités lorsqu’un BC externe crée, met à jour, consulte ou ferme des comptes et **(b)** que les limites de comptes appropriées sont appliquées (c’est-à-dire définies et non dépassées) lorsqu’un BC externe tente de créer des écritures comptables, et **(c)** qu’on évite les doublons d’écritures grâce à l’utilisation d’*identifiants uniques universels (UUID)* pour les identifiants d’écritures.
+Le BC Comptes et Soldes contient une quantité limitée de logique afin de garantir que **(a)** les bonnes relations sont créées et maintenues entre les entités lorsqu’un BC externe crée, met à jour, consulte ou ferme des comptes et **(b)** que les limites de comptes appropriées sont appliquées (c’est-à-dire définies et non dépassées) lorsqu’un BC externe tente de créer des écritures comptables, et **(c)** qu’on évite les doublons d’écritures grâce à l’utilisation d’*identifiants uniques universels (UUID)* pour les identifiants d’écritures uniques.
 
 ## Termes
 
@@ -50,7 +50,7 @@ Création de compte depuis le [BC Règlements](../settlements/index.md)
 
 #### Description
 
-Fermer un compte participant dans le Grand Livre du Système et empêcher l’impact de nouvelles écritures comptables sur celui-ci. <br/>(À déterminer : possible vidage automatique des soldes CR de collatéral vers un autre compte ?)
+Fermer un compte participant dans le Grand Livre du Système et empêcher l’impact de nouvelles écritures comptables sur celui-ci. <br/>(À déterminer : possible vidage automatique des soldes CR de collatéral vers un autre compte automatiquement ?)
 
 ### Consultation de Compte
 

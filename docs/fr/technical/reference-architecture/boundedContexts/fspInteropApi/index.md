@@ -26,10 +26,10 @@ Termes ayant une signification spécifique et reconnue dans le contexte borné o
 | **(D)FSP**           | Fournisseur de Services Financiers (Digitaux)                                                                                                                     |
 | **Participant**      | Fournisseur de Services Financiers (FSP) enregistré dans l'écosystème Mojaloop, pouvant ainsi effectuer des transactions avec d'autres Participants           |
 | **FSP IOP API**      | Interface API d'Interopérabilité des FSP, qui donne accès aux fonctions de l'écosystème Mojaloop                                                                |
-| **Payeur**           | Le payeur des fonds électroniques dans une transaction de paiement                                                                                              |
-| **FSP du Payeur**    | Fournisseur de Services Financiers du payeur                                                                                                                    |
-| **Bénéficiaire**     | Le destinataire des fonds électroniques dans une transaction de paiement                                                                                        |
-| **FSP du Bénéficiaire** | Fournisseur de Services Financiers du bénéficiaire                                                                                                              |
+| **Payer**           | Le payeur des fonds électroniques dans une transaction de paiement                                                                                              |
+| **Payer FSP**    | Fournisseur de Services Financiers du payeur                                                                                                                    |
+| **Payee**     | Le destinataire des fonds électroniques dans une transaction de paiement                                                                                        |
+| **Payee FSP** | Fournisseur de Services Financiers du bénéficiaire                                                                                                              |
 
 ## Cas d'Utilisation
 
@@ -41,7 +41,7 @@ Les définitions des cas d'utilisation stipulées dans la Spécification Open AP
 
 #### Description
 
-Les notifications concernent TOUS les cas d'utilisation ci-dessous en réponse à des demandes reçues sous différentes formes. Pendant que l'API FSP IOP traite une demande, elle peut devoir envoyer une requête au DFSP demandeur ou à d'autres DFSP concernés. L'API FSP IOP interrogera alors le Contexte Borné de Gestion du Cycle de Vie du Participant [^26] pour obtenir l'URI de rappel du participant destinataire. L'API FSP IOP enverra ensuite la notification au Contexte Borné Notifications et Alertes [^27].
+Les notifications concernent TOUS les cas d'utilisation ci-dessous en réponse à des demandes reçues sous différentes formes. Pendant que l'API FSP IOP traite une demande, elle peut devoir envoyer une requête au DFSP demandeur ou à d'autres DFSP concernés. L'API FSP IOP interrogera alors le Contexte Borné de Gestion du Cycle de Vie du Participant [^26] pour obtenir l'URI de rappel (callback) du participant destinataire. L'API FSP IOP enverra ensuite la notification au Contexte Borné Notifications et Alertes [^27].
 
 #### Schéma de Flux
 
@@ -55,7 +55,7 @@ Les notifications concernent TOUS les cas d'utilisation ci-dessous en réponse �
 
 #### Description
 
-Associer un ou plusieurs Participants et/ou parties avec la requête POST Participant [^5] (POST /participants/{Type}/{ID}). L'API FSP IOP envoie la requête au BC de Recherche et Découverte de Compte [^14] qui la traite et répond par un évènement de succès. L'API FSP IOP envoie ensuite une réponse de notification PUT Participant [^15] (PUT /participants/{Type}/{ID}).
+Associer un ou plusieurs Participants et/ou parties à la requête POST Participant [^5] (POST /participants/{Type}/{ID}). L'API FSP IOP envoie la requête au BC de Recherche et Découverte de Compte [^14] qui la traite et répond par un évènement de succès. L'API FSP IOP envoie ensuite une réponse de notification PUT Participant [^15] (PUT /participants/{Type}/{ID}).
 
 #### Schéma de Flux
 
@@ -179,7 +179,7 @@ Lorsque le FSP Payeur envoie une requête POST Quote [^3] (POST /quotes), l'API 
 
 #### Description
 
-Le FSP Payeur envoie une requête POST Transfers [^9] (POST /transfers) à l'API FSP IOP. Celle-ci envoie ensuite un évènement au BC des Règlements [^21]. L'API FSP IOP attend un évènement du BC des Transferts [^22] signalant que le transfert a été préparé, pour envoyer une requête POST au FSP Bénéficiaire. Celui-ci répond avec une requête PUT Transfers [^23] (PUT /transfers/{ID}) (transferState = committed) à l'API FSP IOP qui finalise l'exécution. Le PUT transfer est ensuite envoyé au FSP Payeur.
+Le FSP Payeur envoie une requête POST Transfers [^9] (POST /transfers) à l'API FSP IOP. Celle-ci envoie ensuite un évènement au BC des Règlements [^21]. L'API FSP IOP attend un évènement du BC des Transferts [^22] signalant que le transfert a été préparé, pour envoyer une requête POST au FSP Bénéficiaire. Celui-ci répond avec une requête PUT Transfers [^23] (PUT /transfers/{ID}) (transferState = committed) à l'API FSP IOP qui finalise l'exécution du transfert. Le PUT transfer est ensuite envoyé au FSP Payer.
 
 #### Schéma de Flux
 
@@ -191,7 +191,7 @@ Le FSP Payeur envoie une requête POST Transfers [^9] (POST /transfers) à l'API
 
 #### Description
 
-Le FSP Payeur envoie une requête POST Transfers [^9] (POST /transfers) à l'API FSP IOP. Celle-ci envoie un évènement au BC des Règlements [^21]. L'API FSP IOP attend l'évènement du BC des Transferts [^22], puis émet un POST vers le FSP Bénéficiaire. Celui-ci répond avec un PUT Transfers [^23] (PUT /transfers/{ID}) (transferState = reserved). Le PUT transfer est ensuite envoyé au FSP Payeur. Le FSP Bénéficiaire reçoit alors un PATCH Transfers [^24] (PATCH /transfers/{ID}) pour notifier le changement d'état.
+Le FSP Payeur envoie une requête POST Transfers [^9] (POST /transfers) à l'API FSP IOP. Celle-ci envoie un évènement au BC des Règlements [^21]. L'API FSP IOP attend l'évènement du BC des Transferts [^22], puis émet un POST vers le FSP Bénéficiaire. Celui-ci répond avec un PUT Transfers [^23] (PUT /transfers/{ID}) (transferState = reserved). Le PUT transfer est ensuite envoyé au FSP Payer. Le FSP Bénéficiaire reçoit alors un PATCH Transfers [^24] (PATCH /transfers/{ID}) pour notifier le changement d'état.
 
 #### Schéma de Flux
 
@@ -275,7 +275,7 @@ Le FSP Payeur envoie une requête POST Transfers [^9] (POST /transfers) à l'API
 
 #### Description
 
-Le FSP Payeur envoie une requête POST Transfers [^9] (POST /transfers) à l'API FSP IOP. Celle-ci envoie un évènement au BC des Règlements [^21]. L'API FSP IOP attend la préparation depuis le BC des Transferts [^22], puis transmet le POST au FSP Bénéficiaire qui répond par PUT Transfers [^23] (disant que le transfert est engagé – transferState = committed). Après validation, le transfert expire [^13]; le transfert est alors considéré rejeté.
+Le FSP Payeur envoie une requête POST Transfers [^9] (POST /transfers) à l'API FSP IOP. Celle-ci envoie un évènement au BC des Règlements [^21]. L'API FSP IOP attend la préparation depuis le BC des Transferts [^22], puis transmet le POST au FSP Bénéficiaire qui répond par PUT Transfers [^23] (disant que le transfert est engagé – transferState = committed). Après validation, le transfert expire ; le transfert est alors considéré rejeté.
 
 #### Schéma de Flux
 
@@ -299,7 +299,7 @@ Une requête POST Transfers [^9] (POST /transfers) déjà traitée ; un rapport 
 
 #### Description
 
-Le FSP Payeur envoie une requête POST Transfers [^9] (POST /transfers) à l'API FSP IOP. Celle-ci émet un évènement au BC des Règlements [^21]. Après avoir reçu l'indication de préparation depuis le BC des Transferts [^22], un échec de contrôle de liquidité est détecté pour le FSP Payeur. L'API FSP OIP envoie alors une requête PUT Transfer Error [^25] au FSP Payeur.
+Le FSP Payeur envoie une requête POST Transfers [^9] (POST /transfers) à l'API FSP IOP. Celle-ci émet un évènement au BC des Règlements [^21]. Après avoir reçu l'indication de préparation depuis le BC des Transferts [^22], un échec de contrôle de liquidité est détecté pour le FSP Payeur. L'API FSP IOP envoie alors une requête PUT Transfer Error [^25] au FSP Payeur.
 
 #### Schéma de Flux
 
@@ -323,7 +323,7 @@ Le FSP Payeur envoie une requête POST Transfers [^9] (POST /transfers) à l'API
 
 #### Description
 
-Le FSP Payeur envoie une requête POST Transfers [^9] (POST /transfers) à l'API FSP IOP. Le BC Transferts [^22] signale à l'API FSP IOP que le FSP Payeur est invalide. Selon le motif, l'API FSP IOP enverra une requête PUT Transfer Error [^25] (PUT /transfers/{ID}/error) au FSP Payeur.
+Le FSP Payeur envoie une requête POST Transfers [^9] (POST /transfers) à l'API FSP IOP. Le BC Transferts [^22] signale à l'API FSP IOP que le FSP Payeur est invalide. Selon le motif pour lequel le FSP Payer est invalide, l'API FSP IOP enverra une requête PUT Transfer Error [^25] (PUT /transfers/{ID}/error) au FSP Payeur.
 
 #### Schéma de Flux
 

@@ -1,6 +1,6 @@
 # BC Transferts
 
-Le BC Transferts est responsable de l'orchestration des demandes de transfert. Il fonctionne en concert avec plusieurs autres BCs, notamment Règlements (Settlements), Planification (Scheduling), Gestion du Cycle de Vie des Participants, Comptes & Soldes, ainsi que le FSPIOP.
+Le BC Transferts est responsable de l'orchestration des demandes de transfert. Il fonctionne en concert avec plusieurs autres BCs, notamment Settlements, Scheduling, Participant Lifecycle Management, Accounts & Balances, ainsi que le FSPIOP.
 
 ## Termes
 
@@ -9,9 +9,9 @@ Les termes suivants sont utilisés dans ce BC, également appelé domaine.
 | Terme | Description |
 |---|---|
 | **Comptes** | Désigne les comptes utilisés dans toutes les activités de transfert. Ils servent à enregistrer les positions créditrices et débitrices, soit de manière temporaire dans le cas des comptes alloués spécifiquement pour les transferts, soit de façon permanente dans le cas des mises à jour finales sur les comptes des participants. |
-| **Participant/Acteur** | Désigne généralement les parties DFSP Payeur/Bénéficiaire utilisant Mojaloop. |
+| **Participant/Acteur** | Désigne généralement les parties DFSP Payer/Payee utilisant Mojaloop. |
 | **IGS** | Méthode de règlement des transferts - Règlement Brut Immédiat (Immediate Gross Settlement). Ce processus est typiquement utilisé dans les environnements à haut volume comme le commerce de détail, et s’applique aux comptes individuels ou partagés. Dans le cas de comptes partagés, le système met à jour les soldes des Participants en modifiant la valeur proportionnelle des fonds détenus par chaque Participant sur le total disponible du compte. |
-| **DNS** | Méthode de règlement des transferts - Règlement Net Différé (Deferred Net Settlement). Ce processus est fréquemment utilisé dans les environnements où plusieurs Participants réalisent un transfert nécessitant un règlement global entre eux. Par exemple, lorsque des matières premières sont vendues par le Participant A au Participant B pour être transformées en produits finis, puis revendues par le Participant B au Participant A. Le switch calcule alors la valeur proportionnelle due à chaque Participant de la transaction, et effectue le règlement à la clôture de la fenêtre de règlement. |
+| **DNS** | Méthode de règlement des transferts - Règlement Net Différé (Deferred Net Settlement). Ce processus est fréquemment utilisé dans les environnements où un groupe de Participants réalise un transfert nécessitant un règlement global entre eux. Par exemple, lorsque des matières premières sont vendues par le Participant A au Participant B pour être transformées en produits finis, puis revendues par le Participant B au Participant A. Le switch calcule alors la valeur proportionnelle due à chaque Participant de la transaction, et effectue le règlement à la clôture de la fenêtre de règlement. |
 
 ## Vue Fonctionnelle - Transferts - Bulk
 
@@ -24,29 +24,29 @@ Les termes suivants sont utilisés dans ce BC, également appelé domaine.
 
 #### Description
 
-Le flux de ce cas d'utilisation (UC) permet au BC d’effectuer un transfert en utilisant une méthode qui exclut l’intervention de l’Acteur.
+Le flux de ce cas d'utilisation (UC) permet au BC d’effectuer un transfert en utilisant une méthode qui exclut l’intervention de l’Actor.
 
 #### Diagramme de flux
 
 ![Effectuer un Transfert (Mode Universel)](./assets/ML2RA_Trf_ucPerformTrfUniMode_Mar22a.png)
 >Diagramme de flux UC : Effectuer un Transfert (Mode Universel)
 
-### Effectuer un Transfert avec Confirmation du Bénéficiaire
+### Effectuer un Transfert avec Confirmation du Payee
 
 #### Description
 
-Le flux de ce cas d’utilisation permet au BC d’effectuer un transfert via une méthode incluant l’intervention de l’Acteur.
+Le flux de ce cas d’utilisation permet au BC d’effectuer un transfert via une méthode incluant l’intervention de l’Actor.
 
 #### Diagramme de flux
 
-![Cas d’utilisation - Effectuer un Transfert avec Confirmation du Bénéficiaire](./assets/ML2RA_Trf_ucPerformTrfPayeeConfirm_Mar22a-P1-2.png)
->Diagramme de flux UC : Effectuer un Transfert avec Confirmation du Bénéficiaire
+![Cas d’utilisation - Effectuer un Transfert avec Confirmation du Payee](./assets/ML2RA_Trf_ucPerformTrfPayeeConfirm_Mar22a-P1-2.png)
+>Diagramme de flux UC : Effectuer un Transfert avec Confirmation du Payee
 
 ### Requête (GET) Transfert
 
 #### Description
 
-Le flux de ce cas d’utilisation permet au BC de fournir un mécanisme de requête pour qu’un Participant puisse interroger l’état d’un transfert.
+Le flux de ce cas d’utilisation permet au BC de fournir un mécanisme permettant à un Participant d’interroger l’état d’un transfert.
 
 #### Diagramme de flux
 
@@ -81,7 +81,7 @@ Le flux de ce cas d’utilisation permet au BC d’ignorer une demande de transf
 
 #### Description
 
-Le flux de ce cas d’utilisation permet au BC de terminer une demande de transfert rejetée par le Bénéficiaire.
+Le flux de ce cas d’utilisation permet au BC de terminer une demande de transfert rejetée par le Payee.
 
 #### Diagramme de flux
 
@@ -92,7 +92,7 @@ Le flux de ce cas d’utilisation permet au BC de terminer une demande de transf
 
 #### Description
 
-Ce flux permet au BC de terminer une demande de préparation de transfert lorsque le seuil de timeout est dépassé.
+Ce flux permet au BC de terminer une demande de préparation de transfert lorsque le seuil de délai d’attente est dépassé.
 
 #### Diagramme de flux
 
@@ -121,7 +121,7 @@ Ce flux permet au BC de terminer une demande de transfert post-engagée (post-co
 ![Cas d’utilisation - Effectuer un Transfert - Timeout (Post-Committed)](./assets/ML2RA_Trf_ucPerformTrfTimeoutPostCommit_Mar22a.png)
 >Diagramme de flux UC : Effectuer un Transfert - Timeout (Post-Committed)
 
-### Effectuer un Transfert - Duplicate POST (Aucun Correspondant)
+### Effectuer un Transfert - Duplicate POST (Aucune Correspondance)
 
 #### Description
 
@@ -129,62 +129,62 @@ Ce flux permet au BC de terminer une demande de transfert dupliquée ne correspo
 
 #### Diagramme de flux
 
-![Cas d’utilisation - Effectuer un Transfert - Duplicate POST (Aucun Correspondant)](./assets/ML2RA_Trf_ucPerformTrfTimeoutDuplicPostNoMatch_Mar22a.png)
->Diagramme de flux UC : Effectuer un Transfert - Duplicate POST (Aucun Correspondant)
+![Cas d’utilisation - Effectuer un Transfert - Duplicate POST (Aucune Correspondance)](./assets/ML2RA_Trf_ucPerformTrfTimeoutDuplicPostNoMatch_Mar22a.png)
+>Diagramme de flux UC : Effectuer un Transfert - Duplicate POST (Aucune Correspondance)
 
-### Effectuer un Transfert - Liquidity Insuffisante du Payeur FSP
+### Effectuer un Transfert - Liquidité Insuffisante du Payer FSP
 
 #### Description
 
-Ce flux permet au BC de décliner une demande de transfert échouée car le Payeur ne dispose pas d’assez de liquidités pour couvrir la transaction.
+Ce flux permet au BC de décliner une demande de transfert échouée car le Payer ne dispose pas d’assez de liquidités pour couvrir la transaction.
 
 #### Diagramme de flux
 
-![Cas d’utilisation - Effectuer un Transfert - Liquidité Insuffisante du Payeur FSP](./assets/ML2RA_Trf_ucPayerFspInsufficientLiquid_Mar22a.png)
->Diagramme de flux UC : Effectuer un Transfert - Liquidité Insuffisante du Payeur FSP
+![Cas d’utilisation - Effectuer un Transfert - Liquidité Insuffisante du Payer FSP](./assets/ML2RA_Trf_ucPayerFspInsufficientLiquid_Mar22a.png)
+>Diagramme de flux UC : Effectuer un Transfert - Liquidité Insuffisante du Payer FSP
 
-### Effectuer un Transfert - Échec de Validation lors de la Préparation (Payeur Invalide)
+### Effectuer un Transfert - Échec de Validation lors de la Préparation (Payer Participant invalide)
 
 #### Description
 
-Ce flux permet au BC de mettre fin à une demande de préparation de transfert qui échoue lors de la validation, du fait d’un payeur invalide ou inexistant.
+Ce flux permet au BC de mettre fin à une demande de préparation de transfert qui échoue lors de la validation, du fait d’un Payer Participant invalide ou inexistant.
 
 #### Diagramme de flux
 
-![Cas d’utilisation - Effectuer un Transfert - Échec de Validation lors de la Préparation (Payeur Invalide)](./assets/ML2RA_Trf_ucTransferPrepValidationFail-InvalidPayer_Mar22a.png)
->Diagramme de flux UC : Effectuer un Transfert - Échec de Validation lors de la Préparation (Payeur Invalide)
+![Cas d’utilisation - Effectuer un Transfert - Échec de Validation lors de la Préparation (Payer Participant invalide)](./assets/ML2RA_Trf_ucTransferPrepValidationFail-InvalidPayer_Mar22a.png)
+>Diagramme de flux UC : Effectuer un Transfert - Échec de Validation lors de la Préparation (Payer Participant invalide)
 
-### Effectuer un Transfert - Échec de Validation lors de la Préparation (Bénéficiaire Invalide)
+### Effectuer un Transfert - Échec de Validation lors de la Préparation (Payee Participant invalide)
 
 #### Description
 
-Ce flux permet au BC de terminer une demande de préparation qui échoue car le bénéficiaire n'est pas valide ou inexistant.
+Ce flux permet au BC de terminer une demande de préparation qui échoue car le Payee Participant n'est pas valide ou inexistant.
 
 #### Diagramme de flux
 
-![Cas d’utilisation - Effectuer un Transfert - Échec de Validation lors de la Préparation (Bénéficiaire Invalide)](./assets/ML2RA_Trf_ucTransferPrepValidationFail-InvalidPayee_Mar22a.png)
->Diagramme de flux UC : Effectuer un Transfert - Échec de Validation lors de la Préparation (Bénéficiaire Invalide)
+![Cas d’utilisation - Effectuer un Transfert - Échec de Validation lors de la Préparation (Payee Participant invalide)](./assets/ML2RA_Trf_ucTransferPrepValidationFail-InvalidPayee_Mar22a.png)
+>Diagramme de flux UC : Effectuer un Transfert - Échec de Validation lors de la Préparation (Payee Participant invalide)
 
-### Requête (GET) Transfert - Échec de Validation (Payeur Invalide)
+### Requête (GET) Transfert - Échec de Validation (Payer Participant invalide)
 
 #### Description
 
-Ce flux permet au BC de terminer une requête d’état de transfert lorsque la validation échoue en raison d’un payeur invalide ou inexistant.
+Ce flux permet au BC de terminer une requête d’état de transfert lorsque la validation échoue en raison d’un Payer Participant invalide ou inexistant.
 
 <!--#### Diagramme de flux
 
-![Cas d’utilisation - Requête (GET) Transfert - Échec de Validation (Payeur Invalide)]()
+![Cas d’utilisation - Requête (GET) Transfert - Échec de Validation (Payer Participant invalide)]()
 > Diagramme UC à définir -->
 
-### Requête (GET) Transfert - Échec de Validation (Bénéficiaire Invalide)
+### Requête (GET) Transfert - Échec de Validation (Payee Participant invalide)
 
 #### Description
 
-Ce flux permet au BC de terminer une requête d’état de transfert lorsque la validation échoue à cause d’un bénéficiaire invalide ou inexistant.
+Ce flux permet au BC de terminer une requête d’état de transfert lorsque la validation échoue à cause d’un Payee Participant invalide ou inexistant.
 
 <!--#### Diagramme de flux
 
-![Cas d’utilisation - Requête (GET) Transfert - Échec de Validation (Bénéficiaire Invalide)]() 
+![Cas d’utilisation - Requête (GET) Transfert - Échec de Validation (Payee Participant invalide)]() 
 > Diagramme UC à définir -->
 
 ### Requête (GET) Transfert - Échec de Validation (Identifiant de Transfert Introuvable)
@@ -210,31 +210,31 @@ Mojaloop utilise deux modèles canoniques pour gérer les transferts de fonds : 
   * quoteld (optionnel)
   * settlementModelId
   * Participants
-    * Payeur
+    * Payer
       * participantId
       * Comptes
-        * Débit
+        * Debit
           * accountId
           * accountType
           * devise (currency)
-        * Crédit
+        * Credit
           * accountId
           * accountType
           * devise (currency)
-    * Bénéficiaire
+    * Payee
       * participantId
       * Comptes
-        * Débit
+        * Debit
           * accountId
           * accountType
           * devise (currency)
-        * Crédit
+        * Credit
           * accountId
           * accountType
           * devise (currency)
   * Montant (montant à transférer)
     * value (nombre)
-    * devise (code devise ISO)
+    * devise (code de devise ISO)
   * expiration (dateTime ISO)
   * ilpPacket
   * Extensions
@@ -249,8 +249,8 @@ Mojaloop utilise deux modèles canoniques pour gérer les transferts de fonds : 
 
 ## Commentaires Finaux
 
-* Le FSP Payeur ne doit pas être autorisé à forcer unilatéralement l’expiration d’un transfert (peu importe son délai d’expiration), mais doit respecter les décisions de timeout du Switch.
-* La validation des conditions cryptographiques et des accomplissements d’engagement serait gérée par le BC Transferts car il s’agit d’une composante fondamentale du « processus de transfert » (c’est-à-dire : cette fonction n’est pas spécifique au langage FSPIOP).
+* Le Payer FSP ne doit pas être autorisé à forcer unilatéralement le timeout d’un transfert (peu importe son délai d’expiration), mais doit respecter les décisions de timeout du Switch.
+* La validation des conditions cryptographiques et accomplissements (fulfillments) serait gérée par le BC Transferts car il s’agit d’une composante fondamentale du « processus de transfert » (c’est-à-dire : cette fonction n’est pas spécifique au langage FSPIOP).
 * Le BC Transferts appliquera le même modèle de validation que le BC Quoting & Party pour valider les Participants, pour déterminer la capacité d’un compte à effectuer une transaction, ou si un Participant est activé en mode exclusif.
 * Le BC Transferts est l’unique « source de vérité » pour tous les transferts, il est donc responsable de la persistance de l’état des transferts.
 * Désactiver des Participants déjà dans un état « préparé » ne doit pas empêcher le traitement des transferts en cours. Néanmoins, toute nouvelle instruction de transfert reçue par le BC Transferts via des événements TransferPrepareAccountAllocated doit être refusée.

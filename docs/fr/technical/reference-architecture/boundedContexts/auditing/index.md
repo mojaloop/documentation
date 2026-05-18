@@ -2,9 +2,9 @@
 
 Le BC Auditing est responsable du maintien d’un enregistrement immuable de toutes les transactions qui ont lieu sur le Switch. Son architecture est composée de cinq principaux composants :
 
-* Service Centralisé de Journalisation Médico-légale
+* Service centralisé de journalisation médico-légale
 * Services
-* Stockage Immuable
+* Stockage immuable
 * Système de Gestion des Clés (KMS)
 * Module Fournisseur Cryptographique (CPM)[^1]
 
@@ -16,7 +16,7 @@ Termes ayant une signification spécifique et communément admise dans le Contex
 
 | Terme | Description |
 |---|---|
-| **KMS** | Système de Gestion des Clés (Key Management System) – Fournit des services de chiffrement/déchiffrement et d’Autorité de Certification à l’environnement du Switch (émission, signature et vérification via le BC Sécurité). |
+| **KMS** | Système de Gestion des Clés (Key Management System) – Fournit des services de chiffrement/déchiffrement et d’Autorité de Certification (CA) à l’environnement du Switch (émission, signature et vérification via le BC Sécurité). |
 | **CPM** | Module Fournisseur Cryptographique – Gère les techniques et méthodologies cryptographiques employées par le Switch, afin de garantir des services de chiffrement et de déchiffrement de bout en bout pour toutes les données stockées ou transmises. |
 
 ## Vue Fonctionnelle
@@ -41,7 +41,7 @@ Le cas d’utilisation « Démarrage du BC Auditing » est déclenché lors du d
 
 #### Description
 
-Le cas d’utilisation « Audit Sync/RPC » est activé lors d’un événement digne d’audit déclenché pendant une transaction notée par un BC participant. Le BC participant notifie alors le BC Auditing via un appel RPC synchronisé. L’entrée d’audit est signée localement par le BC émetteur. Dès réception, le BC Auditing effectue une série de procédures comprenant une opération avec le KMS via le BC Sécurité, puis persiste l’enregistrement dans un stockage à ajout-seul (Append-only Store).
+Le cas d’utilisation « Audit Sync/RPC » est activé lors d’un événement digne d’audit déclenché pendant une transaction notée par un BC participant. Le BC participant notifie alors le BC Auditing via un appel RPC synchronisé. L’entrée d’audit est signée localement par le BC émetteur. Dès réception, le BC Auditing effectue une série de procédures comprenant une procédure avec le KMS via le BC Sécurité, puis persiste l’enregistrement dans un stockage à ajout seul (Append-only Store).
 
 #### Diagramme de déroulement
 
@@ -52,7 +52,7 @@ Le cas d’utilisation « Audit Sync/RPC » est activé lors d’un événement 
 
 #### Description
 
-Le cas d’utilisation « Audit Basé sur les Événements » est déclenché lorsqu’un BC participant dispose d’une capacité d’audit locale, détecte un événement digne d’audit, crée un événement d’audit signé localement, qu’il publie puis envoie (individuellement ou en lot) au BC Auditing. L’événement est validé via une procédure avec le BC Sécurité, puis stocké dans le dépôt à ajout-seul.
+Le cas d’utilisation « Audit Basé sur les Événements » est déclenché lorsqu’un BC participant dispose d’une capacité d’audit locale, détecte un événement digne d’audit, crée un événement d’audit signé localement, qu’il publie puis envoie (individuellement ou en lot (Event-batch)) au BC Auditing. L’événement est validé via une procédure avec le BC Sécurité, puis stocké dans le dépôt à ajout seul (Append-Only Store).
 
 #### Diagramme de déroulement
 

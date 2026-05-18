@@ -8,8 +8,8 @@ Les termes suivants sont utilisés dans ce BC, aussi appelé domaine.
 
 | Terme | Description |
 |---|---|
-| **Participant** | Fournisseur de Services Financiers (FSF) |
-| **Party (Partie)** | Client du FSF |
+| **Participant** | Fournisseur de Services Financiers (FSP) |
+| **Party (Partie)** | Client du FSP |
 
 ## Vue Fonctionnelle
 
@@ -24,7 +24,7 @@ Les termes suivants sont utilisés dans ce BC, aussi appelé domaine.
 
 Lorsqu’un Participant DFSP demande à associer un identifiant de Partie donné à un Participant (lui-même).
 
-***Remarque :*** *Les vérifications et validations KYC (« Know Your Customer » – Connaître votre client) ne sont pas couvertes ici et relèvent de processus extérieurs aux appels d’API Mojaloop. Ces vérifications doivent être prises en charge par le Schéma pour garantir la validité des demandes d’association (ou de dissociation).*
+***Remarque :*** *Les vérifications et validations KYC (« Know Your Customer » – Connaître votre client) ne sont pas couvertes ici et relèvent de processus extérieurs aux appels d’API Mojaloop. Ces vérifications doivent être couvertes par le Schéma pour garantir la validité des demandes d’association (ou de dissociation).*
 
 #### Diagramme de Flux
 
@@ -46,7 +46,7 @@ Dans ce cas, un Participant DFSP demande à supprimer l’association existante 
 
 #### Description
 
-Lorsqu’un Participant DFSP demande des informations d’association de Participant sur la base d’un identifiant de Partie, ce cas d’utilisation est utilisé par le switch pour valider la demande et fournir les données d’association demandées au DFSP requérant.
+Lorsqu’un Participant DFSP demande des informations d’association de Participant sur la base d’un identifiant de Partie, ce cas d’utilisation est utilisé par le Switch pour valider la demande et fournir les données d’association demandées au DFSP requérant.
 
 #### Diagramme de Flux
 

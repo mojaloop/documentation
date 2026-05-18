@@ -6,7 +6,7 @@ Le Contexte Borné Gestion du Cycle de Vie des Participants (Participant Lifecyc
 Le processus Maker-Checker établit une vérification à 6 yeux, garantissant qu'aucune action d'écriture n'a lieu sans être validée par une personne disposant des autorisations adéquates. Ces autorisations sont définies par le Contexte Borné Gestion du Cycle de Vie des Participants, mais elles restent configurables et attribuables selon les règles du système. Il est recommandé que les utilisateurs/rôles titulaires des droits de "Maker" ne reçoivent pas ceux de "Checker", et que les droits de "Checker" soient attribués à des personnes différentes. Il reste possible d'attribuer les deux responsabilités au même utilisateur/rôle, mais cela annule alors la sécurité prévue par la séparation des rôles qui est au cœur du processus maker-checker.
 
 #### États du Participant
-La gestion des états du participant permet aux opérateurs administrateurs de contrôler les permissions d’un participant donné selon son état. Lors de la phase de configuration de la plateforme, le Contexte Borné attend que les états soient définis et paramétrés avec des rôles et/ou permissions. Un état peut ensuite être attribué à un participant via le processus de gestion du statut du participant.
+La gestion des états du participant permet aux opérateurs administrateurs de contrôler les permissions d’un participant donné selon son état. Lors de la phase de configuration de la plateforme, le Contexte Borné attend que les états soient définis et configurés avec des rôles et/ou permissions. Un état peut ensuite être attribué à un participant via le processus de gestion du statut du participant.
 
 ## Termes
 
@@ -55,7 +55,7 @@ Ce flux permet au BC de mettre en œuvre un processus pour permettre les retrait
 
 #### Description
 
-Ce flux permet au BC de mettre à jour l’endpoint (adresse réseau) d’un participant donné. Une fois la demande approuvée, l’endpoint sera contacté (keep-alive) pour garantir la connectivité.
+Ce flux permet au BC de mettre à jour l’endpoint (adresse réseau) d’un participant donné. Une fois la demande approuvée, l’endpoint sera contacté (chemin keep-alive) pour garantir la connectivité.
 
 #### Diagramme de flux
 
@@ -142,7 +142,7 @@ Ce flux permet au BC de notifier le participant lorsqu’il atteint la limite de
 
 #### Description
 
-Ce flux permet au BC de réinitialiser les contrôles de notification de limite ou seuil de liquidité lorsque des transferts réussis ont été exécutés et que la position du compte du participant est devenue positive.
+Ce flux permet au BC de réinitialiser les vérifications de notification de limite ou seuil de liquidité lorsque des transferts réussis ont été exécutés et que la position du compte du participant est devenue positive.
 
 #### Diagramme de flux
 
@@ -169,7 +169,7 @@ Ce flux permet au BC d’interroger la liquidité courante d’un compte partici
     -   participantAlias
     -   endpointURL
     -   state
-    -   Comptes[]
+    -   Accounts[]
         -   accountID
         -   ledgerAccountType
         -   accountCurrency
@@ -182,8 +182,8 @@ Ce flux permet au BC d’interroger la liquidité courante d’un compte partici
 ## Commentaires de Conclusion
 
 **Comptes Participants :** Les Participants ne peuvent avoir qu’un seul compte par devise autorisée.
-**Cas d’Utilisation - Update Position :** A été remplacé par le cas d’utilisation Gestion des Fonds.
-**Opérations Maker/Checker :** Le nombre de tentatives de reprise (retry) n’a aucun effet sur la manière dont nous traitons/retraitons les demandes.
+**Cas d'Utilisation - Update Position :** A été remplacé par le cas d’utilisation Gestion des Fonds.
+**Opérations Maker/Checker :** Le nombre de tentatives de reprise (retry) n’a aucun effet.
 
 <!-- Notes de bas de page elles-mêmes à la fin. -->
 
