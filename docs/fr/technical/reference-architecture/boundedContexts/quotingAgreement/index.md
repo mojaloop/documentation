@@ -21,7 +21,7 @@ Les termes suivants sont utilisés dans ce BC, également appelé domaine.
 
 #### Description
 
-Ce processus collecte une série de données pertinentes sur le Participant, y compris les indicateurs de statut, calcule le coût du transfert (y compris les frais), et le fournit au(x) Participant(s). Il permet également d’enregistrer les demandes & réponses des Participants (par exemple, acceptation ou rejet du devis).
+Ce processus collecte une série de données pertinentes sur le Participant, y compris les indicateurs de statut, calcule le coût du transfert (y compris les frais), et le fournit au(x) Participant(s). Il est également capable d’enregistrer les demandes & réponses des Participants (par exemple, acceptation ou rejet du devis).
 
 #### Diagramme de flux
 
@@ -51,7 +51,7 @@ Processus permettant au système d’invalider des demandes de devis en surveill
 
 #### Description
 
-Processus permettant au système d’invalider des demandes de devis FSP lorsque les informations du FSP ne correspondent pas au devis d’origine pour un ou les deux Participants.
+Processus permettant au système d’invalider des demandes de devis FSP lorsque les détails du FSP ne correspondent pas au devis d’origine pour un ou les deux Participants.
 
 #### Diagramme de flux
 
@@ -61,7 +61,7 @@ Processus permettant au système d’invalider des demandes de devis FSP lorsque
 
 #### Description
 
-Processus permettant au système d’invalider une demande de devis lorsqu’une ou plusieurs règles du schéma sont violées par un ou plusieurs participants, par exemple lorsque la limite de période du devis est atteinte.
+Processus permettant au système d’invalider une demande de devis lorsqu’une ou plusieurs règles du schéma (Scheme Rules) sont violées par un ou plusieurs participants, par exemple lorsque la limite de période du devis est atteinte.
 
 #### Diagramme de flux
 
@@ -71,7 +71,7 @@ Processus permettant au système d’invalider une demande de devis lorsqu’une
 
 #### Description
 
-Processus permettant au système d’invalider les réponses de devis dans le cas où des règles du schéma sont violées par un ou plusieurs participants, par exemple lorsque des conditions invalides sont détectées.
+Processus permettant au système d’invalider les réponses de devis dans le cas où des règles du schéma (Scheme Rules) sont violées par un ou plusieurs participants, par exemple lorsque des conditions invalides sont détectées.
 
 #### Diagramme de flux
 
@@ -79,40 +79,40 @@ Processus permettant au système d’invalider les réponses de devis dans le ca
 
 ## Modèle Canonique de Devis
 
-Le modèle canonique stocke les informations suivantes des devis dans le BC Devis & Accords :
+Le modèle canonique stocke les informations suivantes des devis dans le BC Cotations & Accords :
 
 - Identifiant du devis
 - Identifiant de la transaction
 - Participants
   - payerId
   - payeeId
-- Payeur
+- Payer
   - Participant
     - participantId
-    - roleType (ex. payeur)
+    - roleType (ex. payer)
   - Montant demandé (montant initial)
-    - Valeur (nombre)
-    - Devise (code de devise ISO)
+    - value (nombre)
+    - currency (code de devise ISO)
   - Montant à envoyer (incluant frais, etc.)
-    - Valeur (nombre)
-    - Devise (code de devise ISO)
-- Destinataire(s) (un ou plusieurs : tous doivent être ajoutés au « Montant à envoyer »)
+    - value (nombre)
+    - currency (code de devise ISO)
+- Payee(s) (un ou plusieurs : tous doivent être ajoutés au « Montant à envoyer »)
   - '#'
     - Participant
       - participantId
-      - roleType (identifier pourquoi ce « payee » reçoit ce montant, ex : frais, bénéficiaire, etc.)
+      - roleType (identifier pourquoi ce « payee » reçoit ce montant, ex : frais, destinataire, etc.)
       - motif (reason)
       - Montant à recevoir
-        - valeur (nombre)
-        - devise (code de devise ISO)
+        - value (nombre)
+        - currency (code de devise ISO)
 - Extensions
 
 ## Commentaires finaux
 
-- Aucune anomalie majeure constatée dans le BC ou la conception de l’Architecture de Référence.
-- Besoin de mieux comprendre/clarifier le modèle « GET » via « POST » :
+- Aucune anomalie majeure dans le BC ou la conception de l’Architecture de Référence.
+- Besoin de mieux comprendre/clarifier le pattern « GET » via « POST » :
   - Un événement « GET » doit-il être un simple « GET » Restful, ou le système doit-il prendre en charge le « GET » à partir de posts dupliqués ?
-  - Devons-nous servir des requêtes « GET » incluant des détails FSP à une date ultérieure ?
+  - Devons-nous prendre en charge des requêtes « GET » incluant des détails FSP à une date ultérieure ?
 
 <!--## Notes -->
 

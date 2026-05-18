@@ -1899,39 +1899,39 @@ module.exports = {
                 // children: [ /* ... */ ],
                 //},
                 {
-                  title: 'Rapports',
+                  title: 'BC Reporting',
                   path: 'reference-architecture/boundedContexts/reporting/',      // optional, link of the title, which should be an absolute path and must exist
                   // children: [ /* ... */ ],
                 },
                 {
-                  title: 'Planification',
+                  title: 'BC Scheduling',
                   path: 'reference-architecture/boundedContexts/scheduling/',      // optional, link of the title, which should be an absolute path and must exist
                   // children: [ /* ... */ ],
                 },
                 {
-                  title: 'Sécurité',
+                  title: 'BC Security',
                   path: 'reference-architecture/boundedContexts/security/',      // optional, link of the title, which should be an absolute path and must exist
                   // children: [ /* ... */ ],
                 },
                 {
-                  title: 'Règlements',
+                  title: 'BC Settlements',
                   path: 'reference-architecture/boundedContexts/settlements/',      // optional, link of the title, which should be an absolute path and must exist
                   // children: [ /* ... */ ],
                 },
                 {
-                  title: 'API tierce partie',
+                  title: 'BC Third Party API',
                   path: 'reference-architecture/boundedContexts/thirdPartyApi/',      // optional, link of the title, which should be an absolute path and must exist
                   // children: [ /* ... */ ],
                 },
                 {
-                  title: 'Transferts',
+                  title: 'BC Transferts',
                   path: 'reference-architecture/boundedContexts/transfers/',      // optional, link of the title, which should be an absolute path and must exist
                   // children: [ /* ... */ ],
                 },
               ],
             },
             {
-              title: 'Liste d\'interfaces communes',
+              title: 'Liste des Interfaces Communes',
               path: 'reference-architecture/boundedContexts/commonInterfaces/',      // optional, link of the title, which should be an absolute path and must exist
               // children: [ /* ... */ ],
             },
