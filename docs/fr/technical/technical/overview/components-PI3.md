@@ -1,3 +1,8 @@
+---
+sidebarTitle: Vue d'ensemble PI3
+title: Vue d'ensemble PI3
+---
+
 # Composants hérités du Hub Mojaloop — PI3
 
 Le schéma de composants suivant présente la décomposition des services Mojaloop et leur architecture microservices pour PI3 :

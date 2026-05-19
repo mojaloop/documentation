@@ -16,7 +16,7 @@ Les conventions suivantes sont utilisées dans ce document pour identifier les t
 | **Éléments de l'API, tels que ressources** | Gras | **/authorization** |
 | **Variables** | Italique entre accolades | _{ID}_ |
 | **Termes du glossaire** | Italique à la première occurrence ; défini dans le _Glossaire_ | Le but de l'API est de permettre des transactions financières interopérables entre un _Payeur_ (un payeur de fonds électroniques dans une transaction de paiement) situé dans un _FSP_ (une entité fournissant un service financier numérique à un utilisateur final) et un _Bénéficiaire_ (un destinataire de fonds électroniques dans une transaction de paiement) situé dans un autre FSP. |
-| **Documents de bibliothèque** | Italique | Les informations utilisateur ne devraient, en général, pas être utilisées par les déploiements de l’API ; les mesures de sécurité détaillées dans _Signature de l'API_ et _Chiffrement de l'API_ devraient être utilisées à la place. |
+| **Documents de référence** | Italique | Les informations utilisateur ne devraient, en général, pas être utilisées par les déploiements de l’API ; les mesures de sécurité détaillées dans _Signature de l'API_ et _Chiffrement de l'API_ devraient être utilisées à la place. |
 
 ### Informations sur les versions du document
 
@@ -33,7 +33,7 @@ Ce document détaille les méthodes de sécurité à mettre en œuvre pour l'Ope
 
 En sécurité de l'information, la _confidentialité_ signifie que l'information n'est pas rendue disponible ou divulguée à des personnes, entités ou processus non autorisés (extrait de l’ISO27000<sup>[The ISO 27000 Directory](http://www.27000.org)</sup>). Pour l’API, la confidentialité signifie que certains champs sensibles du contenu d’un message API ne peuvent être consultés ou identifiés de manière non autorisée ou non détectée par les intermédiaires impliqués dans la communication API. Autrement dit, si certains champs d’un message API sont chiffrés par le client API, alors seul le destinataire prévu de l’API peut déchiffrer ces champs.
 
-Le chiffrement JSON Web Encryption (JWE, défini dans la RFC 7516<sup>[JSON Web Encryption (JWE)](https://tools.ietf.org/html/rfc7516)</sup>) doit être appliqué à l'API pour assurer la confidentialité de bout en bout des messages. Lorsqu'un client API envoie une requête HTTP (telle qu'une requête API ou un message de rappel) à un contrepartie, le client API peut déterminer s'il existe des champs sensibles dans le message API à protéger selon la réglementation ou le schéma local. S'il y a un champ à protéger, le client API utilise JWE pour chiffrer la valeur de ce champ. Par la suite, le texte chiffré de ce champ sera transmis à la contrepartie.
+Le chiffrement JSON Web Encryption (JWE, défini dans la RFC 7516<sup>[JSON Web Encryption (JWE)](https://tools.ietf.org/html/rfc7516)</sup>) doit être appliqué à l'API pour assurer la confidentialité de bout en bout des messages. Lorsqu'un client API envoie une requête HTTP (telle qu'une requête API ou un message de rappel) à un contrepartie, le client API peut déterminer s'il existe des champs sensibles dans le message API à protéger selon la réglementation ou le système local. S'il y a un champ à protéger, le client API utilise JWE pour chiffrer la valeur de ce champ. Par la suite, le texte chiffré de ce champ sera transmis à la contrepartie.
 
 Pour prendre en charge le chiffrement de plusieurs champs d’un message API, le JWE est étendu dans ce document pour s’adapter aux exigences de l’API.
 
@@ -57,7 +57,7 @@ La Spécification Open API pour l’Interopérabilité FSP comprend les document
 
 - [Règles de Liaison JSON](../json-binding-rules)
 
-- [Règles de Schéma](./scheme-rules)
+- [Règles du système](./scheme-rules)
 
 #### Intégrité des données, Confidentialité et Non-répudiation
 
@@ -84,32 +84,32 @@ Cette section présente la technologie utilisée par le chiffrement de l'API, no
 
 L’API utilise l’en-tête HTTP personnalisé **FSPIOP-Encryption** pour représenter les champs chiffrés d’un message API ; sa valeur est une sérialisation d’objet JSON. Le modèle de données de ce paramètre est décrit dans la [Table 1](#table-1), [Table 2](#table-2) et [Table 3](#table-3).
 
-**Note** : Si **FSPIOP-Encryption** est présent dans un message API, alors il doit aussi être protégé par la signature de l’API. Cela signifie que **FSPIOP-Encryption** doit être inclus dans le JWS Protected Header de la signature.
+**Note** : Si **FSPIOP-Encryption** est présent dans un message API, il doit également être protégé par la signature de l’API. Cela signifie que **FSPIOP-Encryption** doit être inclus dans le JWS Protected Header de la signature.
 
-###### Table 1
+###### Tableau 1
 
 | **Nom** | **Cardinalité** | **Type** | **Description** |
 | :--- | :---: | :--- | :--- |
 | **encryptedFields** | 1 | EncryptedFields | Informations sur les champs chiffrés d’un message API |
-**Table 1 -- Modèle de données du champ d’en-tête HTTP FSPIOP-Encryption**
+**Tableau 1 -- Modèle de données du champ d’en-tête HTTP FSPIOP-Encryption**
 
-###### Table 2
+###### Tableau 2
 
 | **Nom** | **Cardinalité** | **Type** | **Description** |
 | :--- | :---: | :--- | :--- |
 | **encryptedField** | 1..* | EncryptedField | Informations sur un champ chiffré d’un message API |
-**Table 2 -- Modèle de données du type complexe EncryptedFields**
+**Tableau 2 -- Modèle de données du type complexe EncryptedFields**
 
-###### Table 3
+###### Tableau 3
 
 | **Nom** | **Cardinalité** | **Type** | **Description** |
 | :--- | :---: | :--- | :--- |
 |**fieldName** | 1 | String(1..512) | Cet élément identifie le champ à chiffrer dans le contenu d’un message API. <br>Comme la charge utile (payload) de l’API est une chaîne de sérialisation d’objet JSON, le nom du champ doit permettre d’identifier le chemin exact de l’élément dans l’objet JSON. Un point (‘**.**’) est utilisé pour séparer les éléments dans un chemin d’élément. Par exemple, **payer.personalInfo.dateOfBirth** est une valeur valide pour cet élément pour la requête API **POST /quotes**.</br> |
 | **encryptedKey** | 1 | String(1..512) | Valeur de la clé de chiffrement de contenu chiffrée (CEK). Sa valeur est encodée en BASE64URL (Clé Chiffrée JWE). <br>S'il y a plusieurs champs à chiffrer dans le message API, il est recommandé d'utiliser la même clé chiffrée JWE pour simplifier la mise en œuvre ; cependant, c'est une décision propre à chaque FSP selon leur implémentation.</br> |
 |**protectedHeader** | 1 | String(1..1024) | Cet élément identifie les paramètres d’en-tête appliqués à JWE pour chiffrer le champ spécifié. Sa valeur est encodée en BASE64URL(UTF8(JWE Protected Header)). <br>Par exemple, si le JWE Protected Header appliqué au chiffrement est ```{"alg":"RSA-OAEP-256","enc":"A256GCM"}```, alors la valeur est ```eyJhbGciOiJSU0EtT0FFUCIsImVuYyI6IkEyNTZHQ00ifQ```.</br> |
-| **initializationVector** | 1 | String(1..128) | Valeur du Vecteur d'Initialisation utilisé lors du chiffrement du texte clair. Sa valeur est encodée en BASE64URL (Vecteur d'Initialisation JWE). |
+| **initializationVector** | 1 | String(1..128) | Valeur du vecteur d'initialisation utilisé lors du chiffrement du texte clair. Sa valeur est encodée en BASE64URL (vecteur d'initialisation JWE). |
 | **authenticationTag** | 1 | String(1..128) | Valeur de l’étiquette d’authentification résultant du chiffrement authentifié du texte en clair avec des Données Authentifiées Additionnelles. Sa valeur est encodée en BASE64URL (Tag d’authentification JWE) |
-**Table 3 -- Modèle de données du type complexe EncryptedField**
+**Tableau 3 -- Modèle de données du type complexe EncryptedField**
 
 ### Chiffrement des champs d’un message API
 
@@ -151,7 +151,7 @@ Si le paramètre d’en-tête HTTP **FSPIOP-Encryption** (qui est aussi protég�
 5. Déterminer si l’algorithme spécifié par le paramètre **alg** du header correspond à l’algorithme de la clé publique / privée du destinataire de l’API.
 6. Déchiffrer la clé chiffrée JWE avec la clé privée du destinataire API pour obtenir la CEK JWE.
 7. Prendre pour paramètre de Données Authentifiées Additionnelles la valeur ASCII (Encoded Protected Header).
-8. Déchiffrer le texte chiffré JWE en utilisant la CEK, le vecteur d'initialisation JWE, la Donnée Authentifiée Additionnelle et le Tag d’authentification JWE avec l’algorithme de chiffrement spécifié, pour retourner le texte déchiffré tout en validant le tag d’authentification conformément à l’algorithme. Si le tag d’authentification JWE est incorrect, refuser l’entrée sans aucun déchiffrement.
+8. Déchiffrer le texte chiffré JWE en utilisant la CEK, le vecteur d'initialisation JWE, la Donnée Authentifiée Additionnelle et le Tag d’authentification JWE avec l’algorithme de chiffrement spécifié, pour retourner le texte déchiffré tout en validant le tag d’authentification conformément à l’algorithme. Si le tag d’authentification JWE est incorrect, rejeter l’entrée sans procéder au déchiffrement.
 9. Si un paramètre **zip** a été inclus, le destinataire de l’API doit décompresser le texte déchiffré en utilisant l'algorithme de compression spécifié.
 
 ## Exemples de chiffrement/déchiffrement d’API
@@ -219,7 +219,7 @@ Content-Type:application/vnd.interoperability.quotes+json;version=1.0
     "amountType": "RECEIVE",
     "transactionType": { "scenario": "TRANSFER", "initiator": "PAYER",
         "subScenario": "P2P Transfer across MM systems", "initiatorType": "CONSUMER" },
-    "note": "Ceci est un exemple pour POST /quotes",
+    "note": "Ceci est un exemple de requête POST /quotes",
     "amount": { "amount": "150","currency": "USD" },
     "fees": { "amount": "1.5", "currency": "USD" },
     "extensionList": {
@@ -302,7 +302,7 @@ eyJhbGciOiJSU0EtT0FFUC0yNTYiLCJlbmMiOiJBMjU2R0NNIn0
 
 <br />
 
-## Table des Tableaux
-- [Table 1 -- Modèle de données du champ d’en-tête HTTP FSPIOP-Encryption](#table-1)
-- [Table 2 -- Modèle de données du type complexe EncryptedFields](#table-2)
-- [Table 3 -- Modèle de données du type complexe EncryptedField](#table-3)
+## Table des tableaux
+- [Tableau 1 -- Modèle de données du champ d’en-tête HTTP FSPIOP-Encryption](#table-1)
+- [Tableau 2 -- Modèle de données du type complexe EncryptedFields](#table-2)
+- [Tableau 3 -- Modèle de données du type complexe EncryptedField](#table-3)

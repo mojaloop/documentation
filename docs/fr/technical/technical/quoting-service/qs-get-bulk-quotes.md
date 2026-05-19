@@ -1,6 +1,6 @@
-# GET — Cotation par ID
+# GET — Devis par ID
 
-Conception de la récupération d’une cotation groupée par un FSP.
+Conception de la récupération d’un devis groupé par un FSP.
 
 ## Diagramme de séquence
 

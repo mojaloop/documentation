@@ -251,7 +251,7 @@ Mojaloop utilise deux modèles canoniques pour gérer les transferts de fonds : 
 
 * Le Payer FSP ne doit pas être autorisé à forcer unilatéralement le timeout d’un transfert (peu importe son délai d’expiration), mais doit respecter les décisions de timeout du Switch.
 * La validation des conditions cryptographiques et accomplissements (fulfillments) serait gérée par le BC Transferts car il s’agit d’une composante fondamentale du « processus de transfert » (c’est-à-dire : cette fonction n’est pas spécifique au langage FSPIOP).
-* Le BC Transferts appliquera le même modèle de validation que le BC Quoting & Party pour valider les Participants, pour déterminer la capacité d’un compte à effectuer une transaction, ou si un Participant est activé en mode exclusif.
+* Le BC Transferts appliquera le même modèle de validation que le Quoting & Party BC pour valider les Participants, pour déterminer la capacité d’un compte à effectuer une transaction, ou si un Participant est activé en mode exclusif.
 * Le BC Transferts est l’unique « source de vérité » pour tous les transferts, il est donc responsable de la persistance de l’état des transferts.
 * Désactiver des Participants déjà dans un état « préparé » ne doit pas empêcher le traitement des transferts en cours. Néanmoins, toute nouvelle instruction de transfert reçue par le BC Transferts via des événements TransferPrepareAccountAllocated doit être refusée.
 

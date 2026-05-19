@@ -18,7 +18,7 @@ Les conventions suivantes sont utilisées dans ce document pour identifier les t
 |**Éléments de l'API, tels que les ressources**|Gras|**/authorization**|
 |**Variables**|Italique entre accolades|_{ID}_|
 |**Termes du glossaire**|Italique à la première occurrence; définis dans le _Glossaire_|Le but de l'API est de permettre des transactions financières interopérables entre un _Payeur_ (un payeur de fonds électroniques dans une transaction de paiement) situé dans un _FSP_ (entité fournissant un service financier numérique à un utilisateur final) et un _Bénéficiaire_ (un destinataire des fonds électroniques dans une transaction de paiement) situé dans un autre FSP.|
-|**Documents de bibliothèque**|Italique|Les informations utilisateur ne doivent généralement pas être utilisées par les implémentations de l'API ; les mesures de sécurité détaillées dans _Signature de l'API_ et _Chiffrement de l'API_ doivent être utilisées à la place.|
+|**Documents de référence**|Italique|Les informations utilisateur ne doivent généralement pas être utilisées par les implémentations de l'API ; les mesures de sécurité détaillées dans _Signature de l'API_ et _Chiffrement de l'API_ doivent être utilisées à la place.|
 
 ### Informations sur les versions du document
 
@@ -35,15 +35,15 @@ Ce document détaille les méthodes de sécurité à implémenter pour l'Open AP
 
 En sécurité de l'information, l’_intégrité des données_ signifie maintenir et assurer l'exactitude et la complétude des données sur tout leur cycle de vie. Pour l'API, l'intégrité des données signifie qu'un message API ne peut être modifié de manière non autorisée ou non détectée par les parties impliquées dans la communication API.
 
-Dans les termes juridiques, la _non-répudiation_ signifie qu'une personne s'engage à remplir ses obligations contractuelles. Cela signifie aussi qu'une des parties à une transaction ne peut pas nier avoir reçu la transaction, pas plus que l'autre partie ne peut nier l’avoir envoyée. Pour l'API, la non-répudiation signifie qu’un client API ne peut pas nier avoir envoyé un message API à une contrepartie. La signature JSON Web (JWS), telle que définie dans la RFC 7515<sup>[2](https://tools.ietf.org/html/rfc7515)</sup>, doit être appliquée à l'API pour garantir l'intégrité et la non-répudiation du message, soit pour des champs composants d'une charge utile API, soit pour la totalité de celle-ci. À chaque fois qu'un client API envoie un message API à une contrepartie, le client API doit signer le message avec sa clé privée. Après que la contrepartie a reçu le message API, elle doit valider la signature avec la clé publique du client API. Seul le message HTTP request d'une API doit être signé ; toute réponse API HTTP NE DOIT PAS être signée.
+Dans les termes juridiques, la _non-répudiation_ signifie qu'une personne s'engage à remplir ses obligations contractuelles. Cela signifie aussi qu'une des parties à une transaction ne peut pas nier avoir reçu la transaction, pas plus que l'autre partie ne peut nier l’avoir envoyée. Pour l'API, la non-répudiation signifie qu’un client API ne peut pas nier avoir envoyé un message API à une contrepartie. JSON Web Signature (JWS), telle que définie dans la RFC 7515<sup>[2](https://tools.ietf.org/html/rfc7515)</sup>, doit être appliquée à l'API pour garantir l'intégrité et la non-répudiation du message, soit pour des champs composants d'une charge utile API, soit pour la totalité de celle-ci. À chaque fois qu'un client API envoie un message API à une contrepartie, le client API doit signer le message à l'aide de sa clé privée. Après que la contrepartie a reçu le message API, elle doit valider la signature avec la clé publique du client API. Seul le message HTTP request d'une API doit être signé ; toute réponse API HTTP NE DOIT PAS être signée.
 
-**Note :** La clé publique correspondante doit soit être partagée à l'avance avec la contrepartie, soit être récupérée par la contrepartie (par exemple via l'autorité de certification du schéma local).
+**Note :** La clé publique correspondante doit soit être partagée à l'avance avec la contrepartie, soit être récupérée par la contrepartie (par exemple via l'autorité de certification du système local).
 
 Comme les frais d'intermédiaire ne sont pas supportés dans la version courante de l'API, les intermédiaires impliqués dans le transit du message API ne peuvent pas modifier la charge utile du message API. Ainsi, la signature au niveau de la charge utile complète est utilisée pour protéger l'intégrité de l'ensemble du message API de bout en bout. Peu importe le nombre d'intermédiaires, la charge utile originale ne peut pas être modifiée. Le destinataire final du message API doit valider la signature générée par le client API original en se basant sur la charge utile reçue.
 
-**Note :** La nécessité pour les intermédiaires d’effectuer la validation de la signature en transit dépend de l’implémentation interne de chaque intermédiaire ou du schéma local.
+**Note :** La nécessité pour les intermédiaires d’effectuer la validation de la signature en transit dépend de l’implémentation interne de chaque intermédiaire ou du système local.
 
-**Note :** Dans une future version de l'API, les frais d’intermédiaire pourraient être pris en charge ; la signature au niveau du champ pourrait alors aussi être supportée. Cependant, ces deux fonctionnalités sont hors du périmètre de cette version de l'API.
+**Note :** Dans une future version de l'API, les frais d’intermédiaire pourraient être pris en charge ; la signature au niveau du champ pourrait alors aussi être prise en charge. Cependant, ces deux fonctionnalités sont hors du périmètre de cette version de l'API.
 
 <br />
 
@@ -55,7 +55,7 @@ La spécification Open API pour l'interopérabilité des FSP inclut les document
 
 - [Modèle de données logique](./logical-data-model)
 
-- [Schémas de transactions génériques](./generic-transaction-patterns)
+- [Modèles de transactions génériques](./generic-transaction-patterns)
 
 - [Cas d'utilisation](./use-cases)
 
@@ -63,9 +63,9 @@ La spécification Open API pour l'interopérabilité des FSP inclut les document
 
 - [Définition de l'API](./definitions)
 
-- [Règles d'encodage JSON](./json-binding-rules)
+- [Règles de liaison JSON](./json-binding-rules)
 
-- [Règles du schéma](./scheme-rules)
+- [Règles du système](./scheme-rules)
 
 #### Intégrité des données, confidentialité et non-répudiation
 
@@ -93,9 +93,9 @@ L'API utilise un paramètre d'en-tête HTTP personnalisé **FSPIOP-Signature** p
 
 ###### Tableau 1
 
-| Nom | Cardin. | Type | Description |
+| Nom | Cardinalité | Type | Description |
 | --- | --- | --- | --- |
-| protectedHeader | 1 | Chaîne(1..32768) | <br>Cet élément indique les paramètres d'en-tête HTTP protégés par la signature. Sa valeur doit être BASE64URL(UTF8(JWS Protected Header)).</br> <br>Selon la spécification JWS, le paramètre d'en-tête **alg** doit être présent pour identifier l'algorithme cryptographique utilisé pour sécuriser le JWS.</br> <br>Un paramètre personnalisé **FSPIOP-URI** représentant le chemin d'URI et les paramètres de requête du message de requête HTTP des APIs doit être présent.</br> <br>Un paramètre personnalisé **FSPIOP-HTTP-Method** contenant la méthode HTTP utilisée dans le message HTTP doit être présent.</br> <br>Un paramètre personnalisé **FSPIOP-Source** indiquant le système qui a envoyé la requête API doit être présent.</br> <br>Le paramètre d'en-tête HTTP personnalisé **FSPIOP-Destination** est obligatoire dans protectedHeader si le FSP de destination est connu par l'initiateur du message. Sinon, cet en-tête ne doit pas être protégé car il peut être modifié par les systèmes intermédiaires. Voir Définition de l'API pour plus d'informations sur les services pour lesquels l'en-tête FSPIOP-Destination est optionnel.</br> |
+| protectedHeader | 1 | Chaîne(1..32768) | <br>Cet élément indique les paramètres d'en-tête HTTP protégés par la signature. Sa valeur doit être BASE64URL(UTF8(JWS Protected Header)).</br> <br>Selon la spécification JWS, le paramètre d'en-tête **alg** doit être présent pour identifier l'algorithme cryptographique utilisé pour sécuriser le JWS.</br> <br>Un paramètre personnalisé **FSPIOP-URI** représentant le chemin d'URI et les paramètres de requête du message de requête HTTP de l'API doit être présent.</br> <br>Un paramètre personnalisé **FSPIOP-HTTP-Method** contenant la méthode HTTP utilisée dans le message HTTP doit être présent.</br> <br>Un paramètre personnalisé **FSPIOP-Source** indiquant le système qui a envoyé la requête API doit être présent.</br> <br>Le paramètre d'en-tête HTTP personnalisé **FSPIOP-Destination** est obligatoire dans protectedHeader si le FSP de destination est connu par l'initiateur du message. Sinon, cet en-tête ne doit pas être protégé car il peut être modifié par les systèmes intermédiaires. Voir Définition de l'API pour plus d'informations sur les services pour lesquels l'en-tête FSPIOP-Destination est optionnel.</br> |
 | signature | 1 | Chaîne(1..512) | Cet élément représente la signature. Sa valeur fait partie de la sérialisation JWS : BASE64URL(JWS Signature). |
 **Tableau 1 – Modèle de données du champ d'en-tête HTTP FSPIOP-Signature**
 
@@ -137,9 +137,9 @@ Pour créer la signature d'un message API, on effectue les étapes suivantes. L�
 
 Lors de la validation de la signature d'une requête API, on effectue les étapes suivantes. L’ordre des étapes n’est pas significatif lorsque les entrées et sorties ne dépendent pas les unes des autres. Si l’une des étapes échoue, alors la signature ne peut pas être validée.
 
-1. Extraire le paramètre d’en-tête HTTP **FSPIOP-Signature** pour obtenir les composants **protectedHeader** et **signature**.
+1. Analyser le paramètre d’en-tête HTTP **FSPIOP-Signature** pour obtenir les composants **protectedHeader** et **signature**.
 
-2. Utiliser BASE64URL pour décoder la représentation encodée du JWS Protected Header. Vérifier que la séquence d’octets obtenue est une représentation UTF-8 d’un objet JSON complètement valide conforme au format JSON Data Interchange, défini dans la RFC 7159<sup>[4](https://tools.ietf.org/html/rfc7159)</sup>.
+2. Utiliser BASE64URL pour décoder la représentation encodée du JWS Protected Header. Vérifier que la séquence d’octets résultante est une représentation UTF-8 d’un objet JSON complètement valide conforme au format JSON Data Interchange, défini dans la RFC 7159<sup>[4](https://tools.ietf.org/html/rfc7159)</sup>.
 
 3. Vérifier les paramètres du JWS Protected Header.
 
@@ -161,7 +161,7 @@ Lors de la validation de la signature d'une requête API, on effectue les étape
 
 5. Valider la signature JWS contre JWS Signing Input ASCII(BASE64URL(UTF8(JWS Protected Header)) || '.' || BASE64URL(JWS Payload)) de la manière définie par l’algorithme utilisé, qui doit correspondre à la valeur du paramètre d’en-tête **alg**.
 
-6. Consigner si la validation a réussi.
+6. Consigner le résultat de la validation.
 
 <br />
 
@@ -330,7 +330,7 @@ iL3F1b3RlcyIsIkZTUElPUC1IVFRQLU1ldGhvZCI6IlBPU1QiLCJEYXRlIjoiVHVlLCAyMyBNYX
 kgMjAxNyAyMToxMjozMSBHTVQiLCJGU1BJT1AtU291cmNlIjoiMTIzNCJ9
 ```
 
-2. Utilisez BASE64URL pour décoder la représentation encodée du JWS Protected Header. Vérifiez que la séquence d’octets obtenue est une représentation UTF-8 d’un objet JSON conforme au format RFC7159. Dans ce cas, l'objet JSON décodé est :
+2. Utilisez BASE64URL pour décoder la représentation encodée du JWS Protected Header. Vérifiez que la séquence d’octets résultante est une représentation UTF-8 d’un objet JSON conforme au format RFC7159. Dans ce cas, l'objet JSON décodé est :
 
 ```json
 {
@@ -414,7 +414,7 @@ eyJwYXllZSI6eyJwYXJ0eUlkSW5mbyI6eyJwYXJ0eUlkVHlwZSI6Ik1TSVNETiIsInBhcnR5SWRlbnRp
 
 ## Références
 
-<sup>1</sup> [https://tools.ietf.org/html/rfc7515#section-1.1](https://tools.ietf.org/html/rfc7515#section-1.1) – JSON Web Signature (JWS) - Notational Conventions
+<sup>1</sup> [https://tools.ietf.org/html/rfc7515#section-1.1](https://tools.ietf.org/html/rfc7515#section-1.1) – JSON Web Signature (JWS) - Conventions de notation
 
 <sup>2</sup> [https://tools.ietf.org/html/rfc7515](https://tools.ietf.org/html/rfc7515) – JSON Web Signature (JWS)
 

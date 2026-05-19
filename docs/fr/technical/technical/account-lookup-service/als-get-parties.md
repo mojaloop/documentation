@@ -1,4 +1,9 @@
-# GET Parties
+---
+sidebarTitle: GET — Parties
+title: GET — Parties
+---
+
+# GET — Parties
 
 Conception de la récupération d’informations de partie (*Party*) par un DFSP.
 

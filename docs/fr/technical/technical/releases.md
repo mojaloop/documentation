@@ -1,3 +1,8 @@
+---
+sidebarTitle: Versions Mojaloop
+title: Versions Mojaloop
+---
+
 # Processus de publication Mojaloop
 
 Le processus de publication de Mojaloop suit une approche menée par la communauté, en particulier par les workstreams techniques, en collaboration et consultation avec le Conseil Produit et l’Autorité de Conception (DA).

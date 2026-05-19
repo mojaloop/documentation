@@ -233,8 +233,8 @@ Le dépôt GitHub du service est disponible [ici](https://github.com/mojaloop/ro
 
 ## Attribution des permissions aux rôles & ensembles mutuellement exclusifs
 L'attribution des permissions aux rôles est stockée dans un fichier `.yml` appelé fichier ressource de rôle (`roleresource.yml`).
-Les accès et les modifications sur ces fichiers sont gérés via un gestionnaire de versionnage hébergé (ex : GitHub, GitLab). Cela assure un historique complet et des points de contrôle manuels/automatiques configurables.
-Ces fichiers sont mappés comme des Custom Resource definitions (CRDs) Kubernetes, auxquels un opérateur rôle-permission s'abonne. Les changements déclenchent la mise à jour d'Ory Keto. Un même rôle peut être représenté par plusieurs fichiers au besoin.
+Les accès et les modifications sur ces fichiers sont gérés via une solution de gestion de versions hébergée (ex. : GitHub, GitLab). Cela assure un historique complet et des points de contrôle automatiques et manuels configurables.
+Ces fichiers sont définis comme des définitions de ressources personnalisées (CRD) Kubernetes, auxquels un opérateur rôle-permission s'abonne. Les changements déclenchent la mise à jour d'Ory Keto. Un même rôle peut être représenté par plusieurs fichiers au besoin.
 
 Il existe deux types de fichiers de ressource : un pour les attributions rôle-permission, l'autre pour les permissions mutuellement exclusives.
 
@@ -245,7 +245,7 @@ kind: MojaloopRole
 metadata:
   name: nom-arbitraire-ici
 spec:
-  # doit correspondre à la valeur utilisée dans Keto
+  # doit correspondre à ce qui est utilisé dans Keto, quelle que soit la valeur
   role: IdentifiantRole
   permissions:
   - permission_01
@@ -253,24 +253,24 @@ spec:
   - permission_03
   - permission_04
 ```
-Le diagramme suivant illustre comment Ory Keto est mis à jour.
+Le diagramme de séquence suivant illustre comment Ory Keto est mis à jour.
 
 ![Diagramme de séquence illustrant l'attribution des rôles et participation utilisateur](../../../.vuepress/public/rolepermissions.png)
 
 ## Détail d'implémentation Ory Keto
-Dans cette conception, Ory Keto est l'outil qui détermine si un jeton de connexion possède la bonne autorisation pour accéder à une partie du système (enforçant ainsi le RBAC). Trois volets sont gérés :
+Dans cette conception, Ory Keto est l'outil qui détermine si un jeton de connexion possède la bonne autorisation pour accéder à une partie du système, c'est-à-dire qu'il est utilisé pour faire respecter le RBAC. Trois volets sont gérés :
 1. L'attribution des rôles aux utilisateurs.
-Gérée/maintenue par le module API des Rôles, qui sollicite Keto à chaque changement.
+Cette fonctionnalité sera maintenue et mise à jour depuis le module API des Rôles, qui appellera et mettra à jour Keto en conséquence.
 2. L'attribution des accès participants à un utilisateur.
-Référant aux rapports d'accès DFSP qui ne doivent être délivrés que pour les participants configurés.
-Géré également via l'API des Rôles et Keto.
+Cela concerne les rapports d'accès DFSP qui ne doivent être délivrés que pour les participants configurés.
+Cette fonctionnalité sera également maintenue via le module API des Rôles, qui appellera et mettra à jour Keto en conséquence.
 3. L'attribution des permissions/privilèges aux rôles.
 Contrôlée via les modifications du fichier `roleresource.yml` sur GitHub. L'opérateur rôle-permission surveille ces fichiers et met à jour Keto.
 
 ### Ajouter des rôles et des accès aux participants dans Keto
 La liste des utilisateurs (personnes et comptes de service) vient du serveur d'identités WSO2 ; celle des participants, d'une API existante. Un identifiant permanent et durable doit être utilisé pour les appels Keto.
 
-Les rôles sont hardcodés, chacun avec un identifiant court, lisible et modifiable, et un nom. L'interface doit afficher les deux.
+Les rôles sont hardcodés, chacun avec un identifiant court, lisible et inscriptible, ainsi qu'un nom. L'interface devrait afficher l'identifiant et le nom, car l'identifiant sera nécessaire pour l'opérateur rôle-permission.
 
 Deux espaces de nom Keto sont utilisés : role et participant. Les tuples Keto sont :
 ```
@@ -280,9 +280,9 @@ role:ROLEID#member@USERID et participant:PARTICIPANTID#member@USERID
 
 La réutilisation de "member" pour la relation ne pose pas problème, chaque relation étant spécifique à l'espace de nom. Un autre terme peut être utilisé si préféré.
 
-Pour récupérer les rôles/participants d'un utilisateur : utiliser [l'API Query Relation Tuples](https://www.ory.sh/keto/docs/reference/rest-api#query-relation-tuples), en passant namespace, relation et subject. La réponse inclura les tuples et un next-page-token si besoin.
+Pour récupérer les rôles/participants d'un utilisateur : utiliser [l'API de requête de tuples de relation](https://www.ory.sh/keto/docs/reference/rest-api#query-relation-tuples), en passant namespace, relation et subject. La réponse inclura les tuples et un next-page-token si besoin.
 
-Pour ajouter/supprimer un rôle ou participant pour un utilisateur : utiliser [create](https://www.ory.sh/keto/docs/reference/rest-api#create-a-relation-tuple) et [delete](https://www.ory.sh/keto/docs/reference/rest-api#delete-a-relation-tuple) ; chaque appel traite un seul tuple. Toute erreur non-HTTP 4xx doit être retentée plusieurs fois.
+Pour ajouter/supprimer un rôle ou participant pour un utilisateur : utiliser [create](https://www.ory.sh/keto/docs/reference/rest-api#create-a-relation-tuple) et [delete](https://www.ory.sh/keto/docs/reference/rest-api#delete-a-relation-tuple) ; chaque appel traite un seul tuple. Si l'appel échoue, mais que l'échec n'est pas une erreur HTTP 4xx, il devrait être retenté quelques fois.
 
 Exemple d'appel Keto pour ajouter un rôle à un utilisateur :
 ::: tip Exemple : Attribuer un rôle à un utilisateur via Ory Keto
@@ -308,25 +308,26 @@ Succès = HTTP 204 sans contenu.
 
 ::: tip REMARQUE
 Le champ `"relation"` utilise `"member"`.
-On utilise `PATCH` plutôt que `PUT` pour supporter les créations/suppressions en lot.
+On utilise `PATCH` plutôt que `PUT` car `PATCH` fonctionne comme une création et/ou suppression en lot.
 :::
 
 ### Attribution des permissions/privilèges à un rôle dans Keto
-Ceci se fait via un opérateur Kubernetes dédié à un CRD. L'opérateur peut être implémenté en Python (`kopf`), Go, Node ou autre.
-Il doit garder en mémoire l'ensemble des ressources qu'il gère, regroupées par rôle. L'indexation de Kopf est idéale pour ceci.
+Ceci se fait via un opérateur Kubernetes dédié à une définition de ressource personnalisée [(CRD)](https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/_print/). L'opérateur pourrait être implémenté dans presque n'importe quel langage. L'expertise existante de ModusBox en opérateurs repose principalement sur `kopf`, un framework Python, mais il existe aussi des options en Go et Node (et d'autres).
 
-Lorsqu'une ressource de rôle change, la liste complète des permissions de ce rôle (tous fichiers confondus) est recalculée, et une requête Patch via [Multiple Relation Tuples API](https://www.ory.sh/keto/docs/reference/rest-api#patch-multiple-relation-tuples) appliquée (actions insert et delete). Cette étape évite de supprimer une permission si elle existerait via un autre fichier pour le même rôle.
+L'opérateur doit garder en mémoire l'ensemble des ressources qu'il gère, regroupées par rôle. [L'indexation de Kopf](https://kopf.readthedocs.io/en/latest/indexing/) est idéale pour ceci.
 
-Les tuples Keto pour cela :
+Lorsqu'une ressource de rôle change, la liste des permissions de ce rôle, sur l'ensemble des ressources de rôle, doit être compilée, et un changement envoyé via l'API Patch [Multiple Relation Tuples](https://www.ory.sh/keto/docs/reference/rest-api#patch-multiple-relation-tuples) en utilisant les actions `insert` et `delete`. Il est nécessaire de prendre en compte toutes les ressources de rôle, car un même rôle peut être réparti sur plusieurs ressources, et plusieurs peuvent inclure la même permission ; supprimer une ressource de rôle qui associe le Rôle X à la Permission P ne signifie pas nécessairement que le tuple Keto pour cette association rôle-permission doit être supprimé, car une autre ressource de rôle peut toujours associer le Rôle X à la Permission P.
+
+Les tuples Keto auront la forme suivante :
 ```
 permission:PERMISSIONID#granted@role:ROLEID#member
 ```
 
 Opérations détaillées lors du changement de ressource :
-1. Récupérer permissions actuelles du rôle via [Query Relation Tuples API](https://www.ory.sh/keto/docs/reference/rest-api/#query-relation-tuples).
-2. Calculer le diff à partir des index stockés.
-3. Appliquer le patch.
-4. En cas de problème, lever une exception pour forcer une re-synchro.
+1. Récupérer les permissions actuellement accordées au rôle via [l'API de requête de tuples de relation](https://www.ory.sh/keto/docs/reference/rest-api/#query-relation-tuples).
+2. À partir de l'index stocké des rôles vers les permissions, calculer la différence à partir de la liste récupérée.
+3. Exécuter le patch à partir de la différence.
+4. En cas de problème, lever une exception pour que le problème soit journalisé et qu'une resynchronisation soit tentée ultérieurement.
 
 Exemple d'appel Keto pour assigner une permission à un rôle :
 ::: tip Exemple : Attribuer une permission/privilège à un rôle
@@ -352,7 +353,7 @@ Succès = HTTP 204 sans contenu.
 
 ::: tip REMARQUE
 Le champ `"relation"` utilise `"granted"`.
-On utilise `PATCH` plutôt que `PUT` pour les lots.
+On utilise `PATCH` plutôt que `PUT` car `PATCH` fonctionne comme une création et/ou suppression en lot.
 :::
 
 ### Ajout de permissions mutuellement exclusives dans Keto
@@ -367,10 +368,10 @@ On utilise `"excludes"` pour désigner les exclusions de permissions.
 :::
 
 ### Appel standard à l'API Keto pour vérifier l'autorisation
-Les vérifications d'autorisation peuvent être gérées via la passerelle API, et si besoin, par chaque contexte borné.
+La vérification de l'autorisation d'un utilisateur pour un privilège ou une permission est gérée par la passerelle API, et si nécessaire, peut être vérifiée par chaque contexte borné.
 
 Exemple de requête Keto pour vérifier si un utilisateur détient une permission :
-::: tip Exemple : Vérification d'une autorisation via Ory Keto
+::: tip Exemple : Vérification d'une autorisation dans Ory Keto
 POST /check HTTP/1.1
 Content-Type: application/json
 Accept: application/json
@@ -390,53 +391,65 @@ Réponse :
 }
 ```
 ::: tip Remarque :
-Les permissions exclues n'ont pas à être vérifiées explicitement par appel Keto, puisque le système s'assure que des attributions conflictuelles ne peuvent exister.
+Les permissions mutuellement exclues n'ont pas besoin d'être vérifiées explicitement par un appel Keto, car le système est maintenu de manière à ce que les attributions rôle-permission ne puissent être définies que si les ensembles de permissions mutuellement exclusives ne sont pas violés.
 :::
 
 ## Ory Oathkeeper – détail d'implémentation
 ### Configuration de Ory Oathkeeper pour BizOps
 
-[ORY Oathkeeper](https://www.ory.sh/oathkeeper/docs/next/) autorise les requêtes HTTP entrantes. Il peut agir comme Policy Enforcement Point dans une architecture cloud, c'est-à-dire un reverse proxy devant l'API ou le serveur web qui rejette les accès non autorisés et transfère les accès valides au backend. Si un autre API Gateway est utilisé (Kong, Nginx, Envoy, AWS API Gateway…), Ory Oathkeeper peut servir de Policy Decision Point.
+[ORY Oathkeeper](https://www.ory.sh/oathkeeper/docs/next/) contrôle l'autorisation des requêtes HTTP entrantes. Il peut agir comme point d'application de la politique (PEP) dans une architecture cloud, c'est-à-dire un reverse proxy devant l'API ou le serveur web en amont qui rejette les requêtes non autorisées et transmet les requêtes autorisées au serveur. Si un autre API Gateway est utilisé (Kong, Nginx, Envoy, AWS API Gateway…), Ory Oathkeeper peut également s'y intégrer et servir de point de décision de politique (PDP).
 
 Le chart Helm Ory Oathkeeper est décrit [ici](https://k8s.ory.sh/helm/oathkeeper.html) et défini [là](https://github.com/ory/k8s/tree/master/helm/charts/oathkeeper). Le référentiel Helm est documenté [ici](https://k8s.ory.sh/helm/). La configuration de référence est [là](https://www.ory.sh/oathkeeper/docs/reference/configuration). Toutes les valeurs peuvent être surchargées par des variables d'environnement.
 
-Le chart Helm déploie deux composants principaux : Ory Oathkeeper (stateless, config-driven, reload à chaud) et Ory Oathkeeper Maester (contrôleur du CRD Rule, qui compose toutes les rules en un unique fichier pour Oathkeeper, généralement dans un ConfigMap).
+Le chart Helm Ory Oathkeeper déploie deux composants clés dans Kubernetes : Ory Oathkeeper lui-même, et Ory Oathkeeper Maester. Ory Oathkeeper est sans état et piloté par la configuration ; il se recharge de manière transparente sans interruption de service à chaque changement de configuration. Ory Oathkeeper Maester est un contrôleur pour la CRD Rule et compose les objets Rule dans Kubernetes en un fichier de règles unique et complet chargé par Ory Oathkeeper. Par défaut, il s'agit d'un ConfigMap monté par Ory Oathkeeper, mais il peut aussi être configuré en sidecar avec un montage partagé.
 
-Ory Oathkeeper expose deux ports/services : un pour l'API, un pour le Proxy. À terme, l'API sera utilisée (décisions d'accès via l'API Gateway de prochaine génération - voir [Access Control Decision API](https://www.ory.sh/oathkeeper/docs/reference/api/#access-control-decision-api)), mais à court terme, c'est le Proxy, exposé via Ingress, qui est utilisé. Les URLs externes sont pointées sur Oathkeeper Proxy, qui proxy et applique les règles d'accès sur les services internes.
+Ory Oathkeeper expose deux ports sous forme de deux services : un service API et un service Proxy. À long terme, nous utiliserons le service API, qui sera interrogé par la passerelle API de nouvelle génération via l'[API Access Control Decision](https://www.ory.sh/oathkeeper/docs/reference/api/#access-control-decision-api) fournie par Ory Oathkeeper ; pour l'instant, nous utiliserons le service Proxy, exposé via Ingress. Les URL externes des services protégés par Ory Oathkeeper pointeront vers l'ingress du Proxy Ory Oathkeeper, qui fera ensuite le proxy vers les services internes à ces URL et appliquera les règles de contrôle d'accès.
 
-Ory Oathkeeper est configuré pour générer/signature un JWT contenant des "claims" que les services internes peuvent vérifier en accédant à un endpoint JWKS public qu'il publie (voir [listes-cryptographic-keys](https://www.ory.sh/oathkeeper/docs/reference/api/#lists-cryptographic-keys)). Ce modèle permet un régime de zero trust basique : seuls les tokens générés par Oathkeeper, respectant les règles d'accès, permettent d'accéder aux services.
+Ory Oathkeeper sera configuré pour générer et signer un JSON Web Token (JWT) contenant des revendications que les services internes peuvent vérifier en pointant vers le jeu de clés JSON Web (JWKS) publié par Ory Oathkeeper (voir [listes-cryptographic-keys](https://www.ory.sh/oathkeeper/docs/reference/api/#lists-cryptographic-keys)). Si un service fait cela, il opère alors dans un régime de confiance zéro de base, car il ne sera pas possible d'appeler ce service sauf avec un jeton généré par Ory Oathkeeper, et Ory Oathkeeper ne générera un jeton que si les règles d'accès pour l'URL donnée autorisent l'accès.
 
 ### Débogage
 Les réponses/logs d'Oathkeeper sont généralement informatifs. Vérifiez les logs lors d'une requête problématique. Oathkeeper log aussi des health checks, etc.
 
-Quelques actions de débogage :
-- Rendre la règle de correspondance beaucoup plus permissive pour localiser un problème d'accès.
-- Vérifier que chaque URL interne pointe bien vers le bon service (tester en curl depuis le cluster).
-- Examiner les logs du fournisseur d'identité (IdP).
-- S'assurer que le domaine et le port pour l'introspection et l'endpoint token externe sont identiques (Keycloak est très sensible à ça).
-- Pointer une règle Oathkeeper vers [https://httpbin.org/anything](https://httpbin.org/anything) pour visualiser tous les headers/requêtes effectivement reçus par le backend.
+Quelques actions de débogage utiles dans différentes circonstances :
 
-### Éléments nécessaires en plus du Helm chart
+- Rendre une correspondance beaucoup plus permissive (en remplaçant la partie entière commençant par `<.*>` et en conservant le suffixe unique minimum actuel).
+
+- Vérifier minutieusement que chaque URL interne est bien l'URL interne appropriée en vérifiant qu'elle est accessible dans le cluster avec curl.
+
+- Examiner les logs du fournisseur d'identité (IdP).
+
+- S'assurer que les domaines et les ports pour l'introspection et l'endpoint de jeton externe sont identiques. Keycloak notamment n'apprécie pas qu'ils ne le soient pas.
+
+- Pointer la règle Ory Oathkeeper vers [https://httpbin.org/](https://httpbin.org/), généralement le préfixe de chemin `/anything` qui renverra tout ce qu'il reçoit, ce qui facilite la visualisation de ce que le service verra.
+
+### Éléments nécessaires en plus d'un chart Helm
+
+Les éléments suivants seront nécessaires en plus du chart Helm :
+
 - un secret JWKS,
 - des valeurs Helm annotées.
 
 #### Secret JWKS
-Un secret doit exister avec la clé `mutator.id_token.jwks.json` et une valeur JWKS compatible. Voyager la doc [ici](https://www.ory.sh/oathkeeper/docs/configure-deploy#cryptographic-keys) pour générer, il inclura la partie publique+privée.
 
-##### Rotation du secret JWKS
+Un secret doit être créé avec la clé `mutator.id_token.jwks.json` et la valeur d'un JWKS adapté à Ory Oathkeeper. Un JWKS initial peut être généré comme décrit dans [Configure and Deploy | ORY Oathkeeper](https://www.ory.sh/oathkeeper/docs/configure-deploy#cryptographic-keys). Il contiendra les clés publiques et privées.
 
-Procédure suggérée :
-0. Notez l'heure.
-1. Ajoutez une nouvelle paire publique/privée JWKS (vue en première dans le tableau JWKS), supprimez toutes les autres sauf les deux premières. Oathkeeper utilise toujours la première clé.
-2. Attendre la propagation du secret côté cluster/pod (~2 minutes max).
-3. Si l'ancien secret doit être supprimé (sur suspicion de compromission), le retirer maintenant.
+##### Utilisation du secret JWKS
+
+Pour faire tourner le secret, appliquer la procédure suivante :
+
+0. Noter l'heure.
+1. Ajouter une paire de clés publique et privée au début du tableau dans le JWKS (s'assurer que toutes les JWK publiques ont un `kid` unique spécifié) dans le secret. Toutes les clés autres que les nouvelles clés et les premières clés publique et privée précédentes peuvent être supprimées, car Ory Oathkeeper signe toujours avec la première clé.
+2. Attendre que toutes les requêtes qu'Ory Oathkeeper aurait pu recevoir et autoriser aient eu leur JWT traité par le service backend. Le délai principal ici est le temps de propagation de la mise à jour du secret, comprenant le délai du gestionnaire de secrets vers le secret mis à jour et le délai du secret vers le volume mis à jour, ce qui est probablement d'une minute ou deux au maximum ; attendre aussi longtemps après l'heure notée à l'étape 0.
+3. Si l'ancien secret doit être supprimé (ce n'est nécessaire que si une violation est suspectée, sinon l'étape 1 suffit pour la rotation périodique des clés), retirez-le maintenant.
 
 #### Valeurs Helm annotées
 
-Plusieurs endroits nécessiteront remplacement par les bonnes URLs/valeurs spécifiques au déploiement (cf. commentaires plus bas).
+Plusieurs endroits devront être modifiés pour utiliser les URL ou autres valeurs spécifiques au reste du déploiement. Ces endroits sont décrits dans les commentaires de l'exemple ci-dessous, ainsi que d'autres commentaires.
 
-Si besoin de TLS direct à Oathkeeper, voir la doc sur `tls`, les secrets, volumes, etc.
-Prometheus écoute par défaut sur `:9000/metrics`.
+La configuration du Proxy ingress n'est pas encore décidée à ce stade, car elle devra changer lorsque la solution sera ajoutée à l'IaC 3.xxx ; cette zone de la configuration n'est donc pas encore spécifiée. Cela laisse l'ingress hors configuration par défaut. Modifier `ingress.proxy.enabled` à `true` activera le proxy ingress. Voir les pages liées au début pour les options disponibles pour la configuration ingress intégrée.
+
+Si le TLS doit être terminé au niveau d'Ory Oathkeeper, voir les sections `tls` dans la [documentation de configuration](https://www.ory.sh/oathkeeper/docs/reference/configuration), et combinez cela avec des secrets et les valeurs `deployment.extraVolumes` et `deployment.extraVolumeMounts`.
+Prometheus est accessible sur `:9000/metrics` par défaut, s'il est utilisé.
 
 ```yaml
 
@@ -506,7 +519,11 @@ deployment:
 
 ### Règles
 
-Une ressource Rule doit être créée en Kubernetes pour chaque "match" backend (regex URL + méthodes HTTP) protégé par une permission. Exemple :
+Des ressources Rule devront être créées dans Kubernetes pour chaque correspondance backend (expression régulière d'URL plus méthode(s) HTTP) protégée par une permission. L'exemple ci-dessous fournit des indications.
+
+À mesure que la flexibilité pour définir des services tiers et des contextes bornés augmente, ceux-ci peuvent définir leurs propres règles (peut-être derrière un indicateur de valeurs Helm), qui expriment quelles permissions devraient être requises pour quelles URL.
+
+Le plus gros problème potentiel ici est que chaque correspondance DOIT être unique. Si une requête correspond à plusieurs, Ory Oathkeeper se plaindra. Une fois qu'un modèle général est choisi qui produit des regex uniques, cela n'arrivera pas sauf en cas d'erreur utilisateur.
 
 ```yaml
 apiVersion: oathkeeper.ory.sh/v1alpha1
@@ -516,17 +533,27 @@ metadata:
 spec:
   version: v0.36.0-beta.4
   upstream:
+    # définissez l'URL vers laquelle cette requête doit être transférée
     url: http://url-interne-backend/
   match:
+    # cela pourrait devoir être http même si l'externe est https, cela dépend de la façon dont l'ingress gère les choses
+    # ma recommandation est d'avoir un préfixe donné, puis le matcher « tout le reste dans le nom de domaine »
+    # pour qu'il n'ait pas besoin d'être changé quand la configuration est déplacée entre différents domaines principaux
+    # puis ce qui est nécessaire pour le chemin spécifique (cela est défini pour correspondre à tous les sous-chemins)
+    # les regex vont entre des chevrons
     url: https://example.<[^/]*>/<.*>
     methods:
+    # quelle(s) que soit/ent la/les méthode(s) auxquelles cette règle s'applique
       - GET
   authenticators:
     - handler: oauth2_introspection
+    # commentez ce deuxième handler pour ne pas permettre l'accès par cookie navigateur
     - handler: cookie_session
   authorizer:
     handler: remote_json
     config:
+      # celles-ci seront généralement identiques pour toutes les règles,
+      # sauf que « object » sera changé en l'ID de permission pertinent pour cette URL
       payload: |
         {
           "namespace": "permission",
@@ -535,6 +562,7 @@ spec:
           "subject_id": "{{ print .Subject }}"
         }
   mutators:
+    # changez cela en un tableau vide si le id_token n'est pas nécessaire, si vous le souhaitez
     - handler: id_token
 ```
 
@@ -579,35 +607,38 @@ authorizers:
 
 ## Ory Kratos – détail d'implémentation
  
-Ory Kratos est le composant de la suite Ory qui gère tous les flux d'authentification.
-Il est très configurable et peut se connecter à divers systèmes/flux. Voir [la doc Kratos](https://www.ory.sh/kratos/docs/next/).
-Dans ce projet, seuls connexion/déconnexion utilisateur sont mis en œuvre.
-À noter, Kratos propose aussi :
-- **Connexion/inscription self-service** : comptes utilisateurs via mail/mdp, SSO, passwordless, etc.
-- **MFA/2FA** : support TOTP (ex : Google Authenticator)
-- **Vérification de compte** : email, téléphone, adresse physique
-- **Récupération de compte** : "mot de passe oublié", codes de secours, etc.
-- **Gestion du profil** : changer mot de passe, email, données personnelles, réseaux sociaux, etc.
-- **APIs admin** : importer, modifier, supprimer des identités.
-Ces aspects peuvent devenir importants dans de futures versions IaC.
+Ory Kratos est la partie de la suite Ory qui gère tous les flux d'authentification.
+Il est hautement configurable et peut se connecter à une variété et à de multiples systèmes et flux d'authentification. La [documentation Kratos](https://www.ory.sh/kratos/docs/next/) explique bien l'étendue de la configuration. C'est-à-dire qu'il est probable qu'elle réponde à vos besoins.
+Dans ce projet de flux de travail, seuls les flux de connexion et de déconnexion utilisateur sont requis et mis en œuvre.
+Il est utile de savoir que Kratos peut aussi fournir des flux pour :
+- **Connexion et inscription en libre-service** : permettre aux utilisateurs finaux de créer et de se connecter à des comptes (que nous appelons des identités) en utilisant des combinaisons nom d'utilisateur/e-mail et mot de passe, une connexion sociale (« Se connecter avec Google, GitHub »), des flux sans mot de passe, et d'autres.
+- **Authentification multifacteur (MFA/2FA)** : prend en charge des protocoles tels que TOTP (RFC 6238 et IETF RFC 4226 — mieux connu sous le nom de Google Authenticator)
+- **Vérification de compte** : vérifier qu'une adresse e-mail, un numéro de téléphone ou une adresse physique appartiennent bien à cette identité.
+- **Récupération de compte** : récupérer l'accès en utilisant des flux « Mot de passe oublié », des codes de sécurité (en cas de perte de dispositif MFA), etc.
+- **Gestion du profil et du compte** : mettre à jour les mots de passe, les détails personnels, les adresses e-mail, les profils sociaux liés en utilisant des flux sécurisés.
+- **APIs d'administration** : importer, mettre à jour, supprimer des identités.
+… ce qui peut devenir important dans les futures versions des conceptions de déploiement IaC.
 
 ### Détails du déploiement
-Le chart Helm Kratos est décrit [ici](https://k8s.ory.sh/helm/kratos.html) et [là](https://github.com/ory/k8s/tree/master/helm/charts/kratos). Contrairement à Oathkeeper, il n'a pas de Maester CRD. Il a besoin d'une base de données (MySQL, PostgreSQL, CockroachDB, etc.).
+Le chart Helm Kratos est décrit sur [ORY Kratos Helm Chart | k8s](https://k8s.ory.sh/helm/kratos.html) et défini sur [k8s/helm/charts/kratos](https://github.com/ory/k8s/tree/master/helm/charts/kratos). Contrairement à Ory Oathkeeper, il n'a pas de Maester associé gérant un CRD. Il nécessite toutefois une base de données (MySQL, PostgreSQL, CockroachDB, ou quelques autres). Le dépôt Helm est le même que pour Ory Oathkeeper, et documenté sur [ORY Helm Charts | k8s](https://k8s.ory.sh/helm/). Une référence de configuration est disponible sur [Configuration | Ory Kratos](https://www.ory.sh/kratos/docs/reference/configuration), mais notez que le chart Helm fonctionne légèrement différemment.
 
-En plus de la base, Kratos requiert une interface utilisateur (webapp) qui affiche le déroulement courant à l'utilisateur et gère la communication backend. Ici, l'UI est minimaliste et sert uniquement d'intermédiaire pour une redirection OIDC immédiate. Elle est open source (voir [ce dépôt](https://github.com/modusbox/kratos-ui-oidcer) et l'image docker [ici](https://github.com/modusbox/kratos-ui-oidcer/pkgs/container/oidcer)), et appelée 'Shim' dans la doc ci-dessus.
+En plus d'une base de données, l'autre différence majeure pour Kratos est qu'il nécessite une interface utilisateur, sous la forme d'une petite application web qui gère le rendu de l'étape actuelle de ce qui se passe avec Kratos dans le navigateur et effectue également la communication backend nécessaire pour que cela se produise en toute sécurité. Dans notre cas, l'interface utilisateur que nous utiliserons est très simple et n'est jamais réellement visible — tout ce qu'elle fera est de rediriger immédiatement vers le seul fournisseur d'identité OIDC (IdP) que nous aurons configuré et de recevoir le callback associé. Cette application d'interface utilisateur a déjà été créée et open-sourcée dans le dépôt modusbox, et publie des images docker publiques dans le registre docker GitHub. L'interface utilisateur peut être trouvée sur [GitHub - modusbox/kratos-ui-oidcer : une interface utilisateur Kratos pour rediriger immédiatement vers un seul fournisseur OIDC configuré](https://github.com/modusbox/kratos-ui-oidcer), et est une application Rust très minimale avec une excellente couverture de tests et une image docker minuscule (environ 5 mégaoctets, [https://github.com/modusbox/kratos-ui-oidcer/pkgs/container/oidcer](https://github.com/modusbox/kratos-ui-oidcer/pkgs/container/oidcer)). Elle est désignée comme « Shim » dans la documentation de conception ci-dessus.
 
-Pour faciliter l'hébergement, Kratos + UI doivent être montés sur des chemins différents sur le même domaine que l'UI principale. Alternativement, on peut utiliser des cookies cross-domain. Ce document part du principe d'une même base domaine.
+Pour faciliter l'hébergement, Kratos et l'interface utilisateur doivent être montés sur des chemins séparés sur le même domaine que l'interface utilisateur principale. Alternativement, il est possible de les configurer sur un domaine différent et de configurer Kratos pour utiliser des cookies inter-domaines. Ce document est rédigé sous l'hypothèse que la stratégie de même domaine est choisie.
 
 ### Connexion à l'UI principale
-Un client OIDC (supportant 'authorization code grant') doit être créé côté IdP, configuré pour rediriger vers n'importe quelle URL de l'UI principale (ou directement vers `/kratos/self-service/methods/oidc/callback/idp` si le wildcard n'est pas supporté). Le segment final `idp` doit être aligné avec l'id défini dans la conf. Ce client sera utilisé dans les valeurs Helm.
+Un client doit être créé dans l'IdP qui prend en charge les autorisations de code OIDC. Ce client doit être configuré pour rediriger soit vers n'importe quelle URL sous l'interface utilisateur principale si elle prend en charge les caractères génériques, soit vers l'URL spécifique du chemin `/kratos/self-service/methods/oidc/callback/idp` (notez que le dernier segment, `idp`, est l'ID du fournisseur dans la configuration, les deux doivent donc être modifiés ensemble). Ce client sera utilisé dans la configuration des valeurs du chart Helm.
 
-Pour fonctionner parfaitement avec Kratos, l'UI principale doit :
-1. Faire un appel cookies-inclus à `/kratos/sessions/whoami` ([doc](https://www.ory.sh/kratos/docs/reference/api/#operation/toSession)), qui retourne 200 avec les metadata utilisateur si connecté, sinon 401.
-2. Si non connecté, rediriger ou proposer un lien vers `/kratos/self-service/registration/browser`. (Notez : `registration` désigne ici l'inscription Kratos, qui, si l'utilisateur existe déjà, redirige automatiquement vers le flow login.)
-3. Pour la déconnexion, l'UI doit pointer vers `/kratos/self-service/browser/flows/logout`.
+Afin de se connecter avec succès à Kratos, l'interface utilisateur principale doit se comporter comme suit :
+
+1. Effectuer une requête incluant les cookies vers `/kratos/sessions/whoami` (documenté dans la [documentation de l'API HTTP Ory Kratos](https://www.ory.sh/kratos/docs/reference/api/#operation/toSession)), qui retourne un 200 et un objet contenant les métadonnées utilisateur si l'utilisateur est connecté, ou un 401 s'il ne l'est pas.
+2. Si l'utilisateur n'est pas connecté, rediriger immédiatement ou fournir un lien vers `/kratos/self-service/registration/browser`. Note : l'inscription dans l'URL n'est pas une faute de frappe. Cela fait référence à l'inscription avec Kratos, ce que les utilisateurs IdP ne seront pas initialement. Si l'utilisateur existe déjà, Kratos suivra automatiquement le flux de connexion à la place.
+3. Pour se déconnecter, liez l'utilisateur à `/kratos/self-service/browser/flows/logout`.
 
 ### Valeurs Helm annotées
-Ce qui suit suppose le nom de déploiement Helm `kratos`, le service exposé sous `/kratos/` et l'UI sous `/auth/` sur le même domaine.
+Cette configuration suppose que le nom du déploiement Helm est `kratos`, que le service Kratos est exposé sous `/kratos/` sur le même domaine que l'interface utilisateur principale, et que l'interface utilisateur Kratos est exposée sous `/auth/` sur le même domaine que l'interface utilisateur principale.
+
+Le chart Helm prend en charge la création d'ingress, mais cela n'est pas couvert dans la documentation.
 
 ```yaml
 deployment:
@@ -698,7 +729,7 @@ kratos:
 ```
 
 ### ConfigMap JSonnet
-Dans les valeurs Helm, une ConfigMap supplémentaire `kratos-extra-config` doit contenir le fichier JSonnet suivant pour transformer les claims reçus de l'IdP dans le modèle attendu par Kratos :
+Dans les valeurs Helm de Kratos, cela fait référence à une ConfigMap `kratos-extra-config` qui contient du JSonnet (un langage de configuration) expliquant comment transformer les revendications de l'IdP en ce que Kratos stocke sur la personne. Elle doit contenir le fichier JSonnet suivant :
 
 ```javascript
 local claims = std.extVar('claims');
@@ -714,10 +745,12 @@ local claims = std.extVar('claims');
 }
 ```
 
-Les claims mail et subject ne devraient jamais changer ; certains IdP peuvent présenter le nom différemment, dans ce cas adapter le JSonnet. Les clés dans `traits` sont libres (mais attention pour `subject` à la compatibilité avec la config).
+Les revendications d'e-mail et de sujet n'auront probablement jamais besoin de changer, mais avec certains IdP, le nom pourrait être fourni différemment, auquel cas cette partie du JSonnet devra être mise à jour. Les clés à l'intérieur de `traits` sont fondamentalement arbitraires (bien que `subject` ait certaines dépendances ailleurs qui devraient être mises à jour), tant qu'elles sont également mises à jour dans le schéma dans la configuration, mais les valeurs sont limitées à la liste des revendications probables à l'intérieur d'un jeton d'identification OIDC, et sont décrites dans la documentation de Kratos. Cela ne se présentera probablement pas.
 
 ### Déploiement & Service de l'UI
-Exemple pour exposer le service UI, supposé sur `/auth/` :
+
+Le service devra également être exposé à un chemin approprié, la configuration suppose `/auth/`, sur le même domaine que l'interface utilisateur principale :
+
 
 ```yaml
 ---

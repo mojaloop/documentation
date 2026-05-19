@@ -7,7 +7,7 @@ showToc: true
 
 Ce document fournit des informations détaillées sur l'API Central Ledger. L’API Central Ledger est une API Mojaloop permettant aux opérateurs du Hub de gérer les processus administratifs tels que :
 
-- Création/activation/désactivation des participants dans le Hub
+- Création, activation et désactivation de participants dans le hub
 - Ajout et mise à jour des informations d’endpoints des participants
 - Gestion des comptes, des limites et des positions des participants
 - Création de comptes Hub
@@ -33,7 +33,7 @@ L’URL de callback du DFSP où le Hub envoie les callbacks de l’API. L’URL 
 
 ### Limite
 
-Actuellement, un seul type de limite est supporté, appelée "_Net Debit Cap (NDC)_". À l’avenir, d’autres types de limites pourraient être pris en charge.
+Actuellement, un seul type de limite est pris en charge, appelée "_Net Debit Cap (NDC)_". À l’avenir, d’autres types de limites pourraient être pris en charge.
 
 Le _Net Debit Cap_ représente la couverture de liquidité disponible pour un compte spécifique (le compte de Position). Il s’agit du montant total de fonds garantis que le système atteste disponibles afin de garantir qu’un participant a la capacité de régler les obligations résultant des transferts sur ce compte de Position. Ce montant est représenté par le solde d’un compte (le compte de Règlement), qui est lié au compte de Position via un modèle de règlement. L’origine des fonds dans ce compte peut provenir soit de dépôts/retraits effectués par les administrateurs du système, soit de fonds automatiquement crédités/débités par le système si le compte correspond à un modèle de règlement brut immédiat.
 
@@ -75,9 +75,9 @@ Fait référence à la façon dont le règlement se produit dans un schéma. Le 
 
 Cette section fournit des informations détaillées sur l’usage du protocole HTTP au niveau applicatif dans l’API.
 
-### Champs d’entête HTTP
+### Champs d’en-tête HTTP
 
-Les entêtes HTTP sont généralement décrits dans la [RFC 7230](https://tools.ietf.org/html/rfc7230). Tout entête spécifique à l’API Central Ledger sera standardisé à l’avenir.
+Les en-têtes HTTP sont généralement décrits dans la [RFC 7230](https://tools.ietf.org/html/rfc7230). Tout en-tête spécifique à l’API Central Ledger sera standardisé à l’avenir.
 
 ### Méthodes HTTP
 
@@ -93,7 +93,7 @@ Les méthodes HTTP suivantes, telles que définies dans la [RFC 7231](https://to
 
 La table [Codes de statut de réponse HTTP](#http-response-status-codes) liste les codes de statut HTTP pris en charge par l’API :
 
-|Code Statut|Raison|Description|
+|Code de statut|Raison|Description|
 |---|---|---|
 |**200**|OK|Réponse standard pour une opération `GET`, `PUT`, ou `POST` réussie. La réponse contiendra une entité correspondant à la ressource demandée.|
 |**201**|Created|La requête `POST` a abouti à la création d’une nouvelle ressource. La réponse ne contiendra pas d’entité décrivant ou contenant le résultat de l’action.|
@@ -103,7 +103,7 @@ La table [Codes de statut de réponse HTTP](#http-response-status-codes) liste l
 |**403**|Forbidden|La requête a été rejetée, et le sera également à l’avenir.|
 |**404**|Not Found|La ressource demandée n’est pas disponible actuellement.|
 |**405**|Method Not Allowed|Une méthode HTTP non supportée a été utilisée.|
-|**406**|Not Acceptable|La ressource demandée ne peut générer que du contenu non accepté selon les entêtes Accept de la requête.|
+|**406**|Not Acceptable|La ressource demandée ne peut générer que du contenu non accepté selon les en-têtes Accept de la requête.|
 |**500**|Internal Server Error|Message d’erreur générique, utilisé lorsqu’une condition inattendue est rencontrée et qu’aucun message plus spécifique n’est approprié.|
 |**501**|Not Implemented|Le serveur ne supporte pas le service demandé. Le client ne doit pas réessayer.|
 |**503**|Service Unavailable|Le serveur est temporairement indisponible pour de nouvelles requêtes. Cela doit être un état temporaire, le client doit réessayer dans un délai raisonnable.|
@@ -987,7 +987,7 @@ Content-Type: application/json
 
 ### POST /participants/{name}/accounts/{id}
 
-Enregistre des mouvements de fonds entrants ou sortants d’un compte de participant.
+Enregistre des opérations de dépôt ou de retrait sur un compte participant.
 
 #### Paramètres de chemin
 
@@ -1466,7 +1466,7 @@ Content-Type: application/json
 
 Pour les détails sur les formats utilisés pour les types de données élémentaires de l’API, voir la section [Element Data Type Formats](../fspiop/logical-data-model#element-data-type-formats) dans la définition de l’API Mojaloop FSPIOP.
 
-### Formats de type de données élémentaires
+### Formats des types de données élémentaires
 
 Cette section définit les types de données élémentaires utilisés par l'API.
 
@@ -1514,7 +1514,7 @@ Modèle de données pour l’élément **IsActive**.
 
 | Nom  | Obligatoire  | Type | Description |
 |---|---|--|--|
-| `isActive`  | oui | [Integer(1)](#integer) | Indique si un compte de grand livre/participant est actif ou non. Valeurs possibles : `1` (actif) et `0` (inactif). |
+| `isActive`  | oui | [Integer(1)](#integer) | Indique si un compte de grand livre ou un participant est actif. Valeurs possibles : `1` (actif) et `0` (inactif). |
 
 #### IsActiveBoolean
 
@@ -1612,7 +1612,7 @@ Modèle de données pour le type complexe **Limit**.
 | Nom  | Obligatoire  | Type | Description |
 |---|---|--|--|
 | `type`  |  oui | [String](#string) | Type de limite. |
-| `value`  |  oui | un [Number](#number) positif | Valeur de la limite. |
+| `value`  |  oui | un nombre positif | Valeur de la limite. |
 
 #### Money
 

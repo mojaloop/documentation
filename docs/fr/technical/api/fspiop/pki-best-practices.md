@@ -2,7 +2,7 @@
 footerCopyright: Attribution-NoDerivatives 4.0 International (CC BY-ND 4.0) | Ericsson, Huawei, Mahindra-Comviva, Telepin, et la Fondation Bill & Melinda Gates
 ---
 
-# Bonnes Pratiques de l’Infrastructure à Clé Publique (PKI)
+# Bonnes pratiques d’infrastructure à clé publique (PKI)
 
 ## Préface
 
@@ -17,7 +17,7 @@ Les conventions suivantes sont utilisées dans ce document pour identifier les t
 | **Éléments de l’API, comme les ressources** | Gras | **/authorization** |
 | **Variables** | Italique entre accolades | _{ID}_ |
 | **Termes du glossaire** | Italique à la première occurrence ; défini dans le _Glossaire_ | Le but de l’API est de permettre des transactions financières interopérables entre un _Payeur_ (un payeur de fonds électroniques dans une transaction de paiement) situé dans un _FSP_ (une entité qui fournit un service financier numérique à un utilisateur final) et un _Bénéficiaire_ (un destinataire de fonds électroniques dans une transaction de paiement) situé dans un autre FSP. |
-| **Documents de la bibliothèque** | Italique | Les informations utilisateur ne devraient, en général, pas être utilisées par les déploiements d’API ; les mesures de sécurité détaillées dans _Signature API_ et _Chiffrement API_ doivent être utilisées à la place. |
+| **Documents de référence** | Italique | Les informations utilisateur ne devraient, en général, pas être utilisées par les déploiements d’API ; les mesures de sécurité détaillées dans _Signature API_ et _Chiffrement API_ doivent être utilisées à la place. |
 
 ### Informations sur la Version du Document
 
@@ -59,11 +59,11 @@ La spécification Open API pour l’Interopérabilité des FSP inclut les docume
 
 - [Règles de Liaison JSON](./json-binding-rules)
 
-- [Règles des Schémas](./scheme-rules)
+- [Règles du système](./scheme-rules)
 
-#### Intégrité des Données, Confidentialité et Non-Répudiation
+#### Intégrité des données, confidentialité et non-répudiation
 
-- [Bonnes Pratiques PKI](#)
+- [Bonnes pratiques PKI](#)
 
 - [Signature](./v1.1/signature)
 
@@ -78,7 +78,7 @@ La spécification Open API pour l’Interopérabilité des FSP inclut les docume
 
 ## Contexte PKI
 
-L’Infrastructure à Clé Publique (PKI) est un ensemble de standards, procédures et logiciels permettant la mise en œuvre de l’authentification utilisant la cryptographie à clé publique. La PKI est utilisée pour demander, installer, configurer, gérer et révoquer des certificats numériques. La PKI fournit l’authentification via des certificats numériques ; ces certificats sont signés et fournis par des _Autorités de Certification_ (CA).
+L’infrastructure à clé publique (PKI) est un ensemble de normes, procédures et logiciels permettant la mise en œuvre de l’authentification par cryptographie à clé publique. La PKI est utilisée pour demander, installer, configurer, gérer et révoquer des certificats numériques. La PKI fournit l’authentification via des certificats numériques ; ces certificats sont signés et fournis par des _Autorités de Certification_ (CA).
 
 La PKI utilise la cryptographie à clé publique et fonctionne avec des certificats conformes à la norme X.509. Elle offre également des fonctionnalités telles que :
 
@@ -104,7 +104,7 @@ Pour protéger le niveau de transport, _Transport Layer Security_<sup>2</sup> (T
 
 #### Protection au Niveau Applicatif
 
-Cette couche assure l’intégrité et la confidentialité de bout en bout. L’API utilise le standard _JSON Web Signature_<sup>3</sup> (JWS) pour l’intégrité et la _non-répudiation_ (preuve de l’intégrité et de l’origine des données), et le standard JSON Web Encryption (JWE)<sup>4</sup> pour la confidentialité. Une version étendue de JWE est utilisée pour supporter le chiffrement au niveau des champs.
+Cette couche assure l’intégrité et la confidentialité de bout en bout. L’API utilise le standard _JSON Web Signature_<sup>3</sup> (JWS) pour l’intégrité et la _non-répudiation_ (preuve de l’intégrité et de l’origine des données), et le standard JSON Web Encryption (JWE)<sup>4</sup> pour la confidentialité. Une version étendue de JWE est utilisée pour prendre en charge le chiffrement au niveau des champs.
 
 L’utilisation de ces standards nécessite la gestion de certificats ; par conséquent, les _Autorités de Certification_ (CA) et les techniques PKI associées sont nécessaires. Pour plus d’informations, voir le Contexte PKI.
 
@@ -140,15 +140,15 @@ La CA réalise les fonctions suivantes :
 
 - Stocke les informations de base sur les titulaires de compte.
 
-- Répond à des questions comme : « Où dois-je envoyer ma demande de transaction financière pour le titulaire du compte **MSISDN 0123456** ? »
+- Répond à des questions telles que : « Où dois-je envoyer ma demande de transaction financière pour le titulaire du compte **MSISDN 0123456** ? »
 
 #### Fournisseur de Services Financiers (FSP)
 
-Possède les titulaires de compte vers qui ou depuis qui l’argent est transféré.
+Détient les comptes des titulaires vers lesquels ou depuis lesquels l’argent est transféré.
 
 #### Switch
 
-- Relaye les informations de transaction vers d’autres plateformes.
+- Relaie les informations de transaction vers d’autres plateformes.
 
 - Peut exécuter des services financiers, comme spécifié dans la _Définition de l’API_.
 
@@ -242,7 +242,7 @@ En fonction du type de certificat à signer, les usages de la clé X.509 et les 
 
 - La CA doit mettre à jour et signer la CRL quotidiennement et fournir (chaque jour) une URL HTTP permettant aux plateformes de télécharger la CRL. Cette URL doit être stockée dans les _points de distribution CRL_ de chaque certificat signé.
 
-- L’URL OCSP doit être présente dans l’_Authority Information Access_ de chaque certificat signé. Une réponse OCSP doit être signée. Les valeurs de nonce dans une requête OCSP doivent être prises en charge pour éviter les attaques par relecture.
+- L’URL OCSP doit être présente dans l’_Authority Information Access_ de chaque certificat signé. Une réponse OCSP doit être signée. Les valeurs de nonce dans une requête OCSP doivent être prises en charge pour éviter les attaques par rejeu.
 
 - La CA a le droit de révoquer les certificats, mais n’a pas l’obligation d’informer les plateformes. Les plateformes n’ont pas le droit de révoquer des certificats, mais elles ont l’obligation de vérifier régulièrement leur état de révocation.
 
@@ -356,7 +356,7 @@ Voir exemples pour la vérification via CRL.
 
 L’état d’un certificat peut être obtenu via une requête OCSP à un _OCSP Responder_ (souvent la CA). La requête contient le numéro de série du certificat ; la réponse renvoie l’état, signée.
 
-La requête doit contenir une valeur de nonce que le répondeur retournera afin que la plateforme la valide à la réception. Ceci empêche les attaques par relecture.
+La requête doit contenir une valeur de nonce que le répondeur retournera afin que la plateforme la valide à la réception. Ceci empêche les attaques par rejeu.
 
 Une requête/réponse OCSP est très rapide et peut être réalisée pour chaque opération de certificat client, mais selon la charge, elle peut être mise en cache.
 
@@ -514,7 +514,7 @@ keyout tlscert.key
 
 **Note :** L’attribut CN indique le nom d’hôte utilisé pour s’identifier lors d’une session TLS.
 
-Remarque : la clé privée créée est non chiffrée. Utilisez la commande suivante pour l’encrypter :
+Remarque : la clé privée créée est non chiffrée. Utilisez la commande suivante pour le chiffrer :
 
 ```
 openssl rsa -aes256 -in <unenrypted key file> -out <encrypted key file>

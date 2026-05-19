@@ -15,7 +15,7 @@ Les conventions suivantes sont utilisées dans ce document pour identifier les t
 |**Éléments de l'API, tels que les ressources**|Gras|**/authorization**|
 |**Variables**|Italique avec des chevrons|_{ID}_|
 |**Termes du glossaire**|Italique lors de la première occurrence ; défini dans le _Glossaire_|Le but de l’API est de permettre des transactions financières interopérables entre un _Payeur_ (un payeur de fonds électroniques dans une transaction de paiement) situé dans un _FSP_ (une entité qui fournit un service financier numérique à un utilisateur final) et un _Bénéficiaire_ (un bénéficiaire de fonds électroniques dans une transaction de paiement) situé dans un autre FSP.|
-|**Documents de bibliothèque**|Italique|Les informations utilisateur ne devraient généralement pas être utilisées par les déploiements de l’API ; à la place, les mesures de sécurité détaillées dans _Signature API et Chiffrement API_ doivent être utilisées.|
+|**Documents de référence**|Italique|Les informations utilisateur ne devraient généralement pas être utilisées par les déploiements de l’API ; les mesures de sécurité détaillées dans _Signature API et Chiffrement API_ doivent être utilisées à la place.|
 
 ### Informations sur la version du document
 
@@ -27,13 +27,13 @@ Les conventions suivantes sont utilisées dans ce document pour identifier les t
 
 ## Introduction
 
-Ce document introduit et décrit l’_Open API_ (Interface de Programmation Applicative) _pour l’interopérabilité FSP_ (Fournisseur de Services Financiers), appelé ci-après « l’API ». L'objectif de l'API est de permettre des transactions financières interopérables entre un _Payeur_ (un payeur de fonds électroniques dans une transaction de paiement) situé dans un _FSP_ (une entité qui fournit un service financier numérique à un utilisateur final) et un _Bénéficiaire_ (un bénéficiaire de fonds électroniques dans une transaction de paiement) situé dans un autre FSP. L'API ne précise aucun service frontal entre un Payeur ou un Bénéficiaire et son propre FSP ; tous les services définis dans l'API sont entre FSPs. Les FSPs sont connectés soit (a) directement entre eux, soit (b) par un _Switch_ placé entre les FSPs pour router les transactions financières vers le FSP approprié.
+Ce document introduit et décrit l’API ouverte (Interface de Programmation Applicative) pour l’interopérabilité des Fournisseurs de Services Financiers (FSP), appelée ci-après « l’API ». L'objectif de l'API est de permettre des transactions financières interopérables entre un _Payeur_ (un payeur de fonds électroniques dans une transaction de paiement) situé dans un _FSP_ (une entité qui fournit un service financier numérique à un utilisateur final) et un _Bénéficiaire_ (un destinataire de fonds électroniques dans une opération de paiement) situé dans un autre FSP. L'API ne précise aucun service frontal entre un Payeur ou un Bénéficiaire et son propre FSP ; tous les services définis dans l'API sont entre FSPs. Les FSPs sont connectés soit (a) directement entre eux, soit (b) par un _Switch_ placé entre les FSPs pour router les transactions financières vers le FSP approprié.
 
-Le transfert de fonds d'un Payeur à un Bénéficiaire doit être effectué quasi en temps réel. Dès qu'une transaction financière a été acceptée par les deux parties, elle est réputée irrévocable. Cela signifie qu'une transaction terminée ne peut pas être annulée dans l'API. Pour annuler une transaction, une nouvelle transaction de remboursement négative doit être créée à partir du Bénéficiaire de la transaction d'origine.
+Le transfert de fonds d'un Payeur à un Bénéficiaire doit être effectué en quasi temps réel. Dès qu'une transaction financière a été acceptée par les deux parties, elle est réputée irrévocable. Cela signifie qu'une transaction terminée ne peut pas être annulée dans l'API. Pour annuler une transaction, une nouvelle transaction de remboursement inverse doit être créée à partir du Bénéficiaire de la transaction d'origine.
 
 L'API est conçue pour être suffisamment générique pour prendre en charge de nombreux cas d'utilisation et l’extensibilité de ceux-ci. Cependant, elle doit contenir suffisamment de détails pour permettre une implémentation sans ambiguïté.
 
-La version 1.0 de l'API est conçue pour être utilisée dans un pays ou une région ; les envois internationaux nécessitant un échange de devises ne sont pas pris en charge. Cette version contient également une prise en charge de base du [protocole Interledger](#4-interledger-protocol), qui sera utilisé dans les futures versions de l’API pour gérer les transactions multi-devises et multi-intermédiaires.
+La version 1.0 de l'API est conçue pour être utilisée dans un pays ou une région ; les envois internationaux nécessitant des opérations de change ne sont pas pris en charge. Cette version contient également une prise en charge de base du [protocole Interledger](#4-interledger-protocol), qui sera utilisé dans les futures versions de l’API pour gérer les transactions multi-devises et multi-intermédiaires.
 
 Ce document :
 
@@ -56,9 +56,9 @@ La spécification Open API pour l’Interopérabilité FSP inclut les documents 
 
 - [Définition de l’API](../definitions)
 
-- [Règles d’assemblage JSON](../json-binding-rules)
+- [Règles de liaison JSON](../json-binding-rules)
 
-- [Règles de schéma](../scheme-rules)
+- [Règles du scheme](../scheme-rules)
 
 #### Intégrité des données, confidentialité et non-répudiation
 
@@ -98,15 +98,15 @@ L’API est basée sur le style architectural REST (REpresentational State Trans
 
 - **Orientée service** : les ressources proposées par l’API sont relativement orientées service comparées à une API REST classique.
 
-- **Pas totalement sans état** : certaines informations d’état doivent être conservées à la fois côté client et côté serveur durant le processus de transaction.
+- **Pas entièrement sans état** : certaines informations d’état doivent être conservées à la fois côté client et côté serveur durant le processus de transaction.
 
-- **Le client choisit l’identifiant commun** : dans une implémentation REST typique (avec distinction claire client/serveur), c’est le serveur qui génère l’ID lors de la création de l’objet. Dans cette API, un devis ou une transaction financière réside à la fois dans le FSP du Payeur et du Bénéficiaire, car les services sont décentralisés. Il est donc nécessaire d’avoir un identifiant commun pour l’objet. Les raisons en sont doubles :
+- **Le client détermine l’identifiant commun** : dans une implémentation REST typique (avec distinction claire client/serveur), c’est le serveur qui génère l’ID lors de la création de l’objet. Dans cette API, un devis ou une transaction financière réside à la fois dans le FSP du Payeur et du Bénéficiaire, car les services sont décentralisés. Il est donc nécessaire d’avoir un identifiant commun pour l’objet. Les raisons en sont doubles :
    - L’ID commun est utilisé dans l’URI du callback asynchrone vers le client. Le client sait donc à quelle URI écouter pour le callback correspondant à la requête.
    - Le client peut utiliser l’ID commun dans une requête HTTP **GET** directement s’il ne reçoit pas de callback depuis le serveur (voir [Détails HTTP](#http-details) pour plus d’informations).
 
   Pour maintenir l’unicité des IDs communs, chacun est défini comme un UUID (Identifiant Universel Unique<sup>2</sup>). Pour garantir encore plus l’unicité, il est recommandé au serveur d’associer chaque ID d’objet à l’ID FSP du client. Si un serveur reçoit tout de même un ID commun non unique lors d’une requête HTTP **POST** (voir [Détails HTTP](#http-details) pour plus de détails), la requête doit être gérée comme indiqué dans la section [Services idempotents côté serveur](#idempotent-services-in-server).
 
-#### Protocole de niveau application
+#### Protocole de niveau applicatif
 
 HTTP, tel que défini dans RFC 7230<sup>3</sup>, est utilisé comme protocole de niveau applicatif dans l’API. Toute communication en environnement de production doit être sécurisée en utilisant HTTPS (HTTP sur TLS<sup>4</sup>). Pour plus de détails, voir [Détails HTTP](#http-details).
 
@@ -125,9 +125,9 @@ scheme:[//[user:password@]host[:port]][/]path[?query][#fragment]
 
 **Exemple 1 -- Format générique d’URI**
 
-##### Schéma
+##### Scheme
 
-Conformément à la section [Protocole de niveau application](#aplication-level-protocol), le _schéma_ (ensemble de règles, pratiques et standards nécessaires au fonctionnement des services de paiement) sera toujours soit **http**, soit **https**.
+Conformément à la section [Protocole de niveau applicatif](#aplication-level-protocol), le _scheme_ sera toujours soit **http**, soit **https**.
 
 ##### Autorité
 
@@ -135,7 +135,7 @@ La partie d’autorité consiste en une partie d’authentification optionnelle 
 
 ###### Informations utilisateur
 
-Les informations utilisateur ne devraient généralement pas être utilisées par les déploiements API ; les mesures de sécurité détaillées dans *Signature API* et _Chiffrement API_ doivent être privilégiées.
+Les informations utilisateur ne devraient généralement pas être utilisées par les déploiements API ; les mesures de sécurité détaillées dans *Signature API* et _Chiffrement API_ doivent être utilisées à la place.
 
 ###### Hôte
 
@@ -163,11 +163,11 @@ Toutes les ressources ci-dessus sont également organisées de façon hiérarchi
 
 ##### Query
 
-La partie query est optionnelle ; elle n’est actuellement utilisée et supportée que par certains services de l’API. Voir les ressources API dans la section [Services API](#api-services) pour plus de détails sur les services qui supportent les chaînes de requête. Tous les autres services doivent ignorer toute chaîne de requête reçue, car des chaînes de requête pourront être ajoutées dans de futures versions mineures de l’API (voir [Méthodes HTTP](#http-methods)).
+La partie query est optionnelle ; elle n’est actuellement utilisée et prise en charge que par certains services de l’API. Voir les ressources API dans la section [Services API](#api-services) pour plus de détails sur les services qui prennent en charge les chaînes de requête. Tous les autres services doivent ignorer toute chaîne de requête reçue, car des chaînes de requête pourront être ajoutées dans de futures versions mineures de l’API (voir [Méthodes HTTP](#http-methods)).
 
-S’il y a plusieurs paires clé-valeur dans la chaîne de requête, celles-ci doivent être séparées par le symbole esperluette (**'&'**).
+S’il y a plusieurs paires clé-valeur dans la chaîne de requête, celles-ci doivent être séparées par l’esperluette (**'&'**).
 
-[L'exemple 2](#listing-2) montre un exemple d’URI issue de la ressource **/authorization**, où quatre paires clé-valeur différentes sont présentes, séparées par le symbole esperluette.
+[L'exemple 2](#listing-2) montre un exemple d’URI issue de la ressource **/authorization**, où quatre paires clé-valeur différentes sont présentes, séparées par l’esperluette.
 
 ###### Exemple 2
 
@@ -183,11 +183,11 @@ Le fragment est une partie optionnelle d’une URI. Il n’est pris en charge pa
 
 #### Normalisation et comparaison d’URI
 
-Comme précisé dans la RFC 7230<sup>6</sup>, les parties [schéma](#scheme)) et [hôte](#host)) de l’URI doivent être considérées comme insensibles à la casse. Toutes les autres parties doivent être traitées en tenant compte de la casse.
+Comme précisé dans la RFC 7230<sup>6</sup>, les parties [scheme](#scheme)) et [hôte](#host)) de l’URI doivent être considérées comme insensibles à la casse. Toutes les autres parties doivent être traitées en tenant compte de la casse.
 
 #### Jeu de caractères
 
-Le jeu de caractères doit toujours être supposé UTF-8, défini dans 3629<sup>7</sup>. Il n’est donc pas nécessaire de l’indiquer dans les en-têtes HTTP (voir [Champs d’en-tête HTTP](#http-header-fields)). Aucun autre jeu de caractères que UTF-8 n’est supporté par l’API.
+Le jeu de caractères doit toujours être supposé UTF-8, défini dans 3629<sup>7</sup>. Il n’est donc pas nécessaire de l’indiquer dans les en-têtes HTTP (voir [Champs d’en-tête HTTP](#http-header-fields)). Aucun autre jeu de caractères que UTF-8 n’est pris en charge par l’API.
 
 #### Format d’échange de données
 
@@ -218,7 +218,7 @@ L’API prend en charge une taille maximale de 65536 octets (64 kilooctets) dans
 |**Content-Type**|**application/vnd.interoperability.resource+json;version=1.0**|1|**Content-Type**<sup>12</sup> indique la version spécifique de l’API utilisée pour envoyer le corps de la requête. Voir [Version acceptée demandée par le client](#acceptable-version-requested-by-client) pour plus d’informations.|
 |**Date**|**Tue, 15 Nov 1994 08:12:31 GMT**|1|Le champ **Date**<sup>13</sup> indique la date à laquelle la requête a été envoyée.|
 |**X-Forwarded-For**|**X-Forwarded-For: 192.168.0.4, 136.225.27.13**|1..0|Le champ **X-Forwarded-For**<sup>14</sup> est une norme officieuse utilisée pour indiquer l’IP d’origine du client à titre informatif, une requête pouvant passer par plusieurs proxys, pare-feux, etc. Plusieurs valeurs **X-Forwarded-For** comme dans l’exemple doivent être attendues et supportées. <br>**Note** : Une alternative à **X-Forwarded-For** est définie dans RFC 723915. Cependant, en 2018, RFC 7239 est moins utilisé/supporté que **X-Forwarded-For**.</br>|
-|**FSPIOP-Source**|**FSP321**|1|Le champ d’en-tête **FSPIOP-Source** est un champ non standard HTTP utilisé par l’API pour identifier l’émetteur de la requête HTTP. Il doit être placé par l’émetteur original de la requête. Nécessaire pour le routage (voir [Routage par FSPIOP-Source et FSPIOP-Destination](#call-flow-routing-using-fspiop-destination-and-fspiop-source)) et la vérification de signature (**FSPIOP-Signature**).|
+|**FSPIOP-Source**|**FSP321**|1|Le champ d’en-tête **FSPIOP-Source** est un champ non standard HTTP utilisé par l’API pour identifier l’émetteur de la requête HTTP. Il doit être placé par l’émetteur original de la requête. Nécessaire pour le routage (voir [Routage des flux d'appels avec FSPIOP-Destination et FSPIOP-Source](#call-flow-routing-using-fspiop-destination-and-fspiop-source)) et la vérification de signature (**FSPIOP-Signature**).|
 |**FSPIOP-Destination**|**FSP123**|0..1|Le champ **FSPIOP-Destination** est non standard HTTP, utilisé pour le routage (via en-tête HTTP) des requêtes/réponses vers la destination. Il doit être défini par l’émetteur initial de la requête, si la destination est connue (valable pour tous les services sauf GET /parties), afin que les entités intermédiaires n’aient pas à parser le corps pour le routage (voir [Routage](#3236-call-flow-routing-using-fspiop-destination-and-fspiop-source)). Si la destination n’est pas connue (valable pour GET /parties), ce champ doit rester vide.|
 |**FSPIOP-Encryption**||0..1|Champ non standard HTTP utilisé pour le chiffrement de bout en bout de la requête.<br>Voir Chiffrement API.</br>|
 |**FSPIOP-Signature**||0..1|Champ non standard, utilisé pour la signature de bout en bout de la requête.<br>Voir Signature API.</br>|
@@ -287,7 +287,7 @@ Tous les séquences et services sont asynchrones. Aucun service ne supporte le m
 
 ##### Appel GET HTTP
 
-[La figure 2](#figure-2) montre le cas d’obtention d’informations sur un objet dans un FSP pair via HTTP **GET**. Le service **/service/**_{ID}_ du schéma doit être adapté à n’importe quel service listé dans [Tableau 6](#table-6) supportant **GET**.
+[La figure 2](#figure-2) montre le cas d’obtention d’informations sur un objet dans un FSP pair via HTTP **GET**. Le service **/service/**_{ID}_ doit être remplacé par n’importe quel service listé dans [Tableau 6](#table-6) prenant en charge **GET**.
 
 ###### Figure 2
 
@@ -297,7 +297,7 @@ Tous les séquences et services sont asynchrones. Aucun service ne supporte le m
 
 ##### Appel DELETE HTTP
 
-[La figure 3](#figure-3) décrit l’appel d’API pour supprimer des informations FSP sur une Party via HTTP **DELETE** dans un ALS. Le service **/service/**_{ID}_ doit être adapté à un service du [Tableau 6](#table-6) supportant **DELETE**. DELETE n’est géré que par un ALS commun (c’est pourquoi l’ALS n’apparaît que côté serveur dans la figure).
+[La figure 3](#figure-3) décrit l’appel d’API pour supprimer des informations FSP sur une Party via HTTP **DELETE** dans un ALS. Le service **/service/**_{ID}_ doit être remplacé par un service du [Tableau 6](#table-6) prenant en charge **DELETE**. DELETE n’est géré que par un ALS commun (c’est pourquoi l’ALS n’apparaît que côté serveur dans la figure).
 
 ###### Figure 3
 
@@ -325,7 +325,7 @@ Le flux d’appel d’une requête **PUT** et de la réponse peut être observé
 
 **Remarque :** les requêtes vers l’ALS peuvent aussi être routées via un Switch, voire ALS et Switch peuvent être le même serveur.
 
-##### Routage par FSPIOP-Source et FSPIOP-Destination
+##### Routage des flux d'appels avec FSPIOP-Destination et FSPIOP-Source
 
 Les en-têtes HTTP non standard **FSPIOP-Destination** et **FSPIOP-Source** servent au routage et à la vérification de signature (voir _Signature API_). [La figure 5](#figure-5) montre l’usage de ces en-têtes dans un appel **POST /service** abstrait, lorsque le FSP de destination est connu.
 
@@ -366,7 +366,7 @@ L’API prend en charge les codes HTTP de réponse indiqués dans le [tableau 4
 
  **Tableau 4 — Codes de statut HTTP supportés dans l’API**
 
-Tout code de statut HTTP 3*xx*<sup>20</sup> retourné côté serveur ne doit pas être retenté et requiert une investigation manuelle.
+Tout code de statut HTTP 3*xx*<sup>20</sup> retourné côté serveur ne doit pas faire l'objet d'une nouvelle tentative et requiert une investigation manuelle.
 
 Une implémentation de l’API doit aussi savoir gérer d’autres erreurs non listées, en particulier si la requête passe par des proxies.
 
@@ -404,7 +404,7 @@ Pour simplifier cette analyse, il est recommandé de stocker un hash de toutes l
 
 La stratégie de développement de l’API est de maintenir la compatibilité ascendante entre l’API et ses ressources/services au maximum, cependant des changements doivent être attendus par les parties qui implémentent. La gestion des versions de l’API est propre à chaque ressource (par exemple : **/participants**, **/quotes**, **/transfers**).
 
-Il existe deux types de versions de ressource API : les versions _mineures_ (backwards-compatibles), et _majeures_ (non compatibles en rétro).
+Il existe deux types de versions de ressource API : les versions _mineures_ (rétrocompatibles), et _majeures_ (non rétrocompatibles).
 
 - À chaque changement des caractéristiques de l’API impactant un service, la ressource concernée voit sa version augmentée (mineure ou majeure selon la compatibilité).
 - Un changement dans un service spécifique voit sa ressource correspondante recevoir une nouvelle version.
@@ -462,7 +462,7 @@ application/vnd.interoperability.{resource}+json
 
 Pour l’exemple de [l’exemple 3](#listing-3) :
 
-- **_POST /service_** doit être adapté à n’importe quelle méthode/service supporté (voir [Tableau 6](#table-6)).
+- **_POST /service_** doit être remplacé par n’importe quelle méthode HTTP et le service associé (voir [Tableau 6](#table-6)).
 - L’en-tête **Accept** indique la version de ressource API que le client souhaite utiliser.
   - Le type d’application est toujours **application/vnd.interoperability.**_{resource}_ où _{resource}_ est la vraie ressource (**participants**, **quotes**, ...).
   - Le seul format d’échange de données actuellement supporté est **json**.
@@ -525,13 +525,13 @@ Ce document contient les informations ILP utiles à l’API. Pour davantage d’
 
 ILP est une norme pour l’interconnexion des réseaux de paiement. De la même façon que le protocole IP constitue les bases pour la transmission et l’adressage entre réseaux de données différents, ILP définit des bases pour l’adressage des transactions financières et le transfert de valeur entre comptes sur différents réseaux de paiement.
 
-ILP n’est pas un schéma en soi. C’est un ensemble de standards qui, s’il est mis en œuvre par plusieurs schémas de paiement, permettra leur interopérabilité. Par conséquent, implémenter ILP implique d’adapter un schéma existant à ces standards. Cela implique notamment que les transferts se fassent en deux phases (_réserve_ et _validation_) et la définition d’une correspondance entre les comptes du schéma et le schéma d’adressage mondial ILP. Cela peut se faire en modifiant le schéma lui-même, ou via des entités qui fournissent une compatibilité ILP via des adaptateurs.
+ILP n’est pas un scheme en soi. C’est un ensemble de standards qui, s’il est mis en œuvre par plusieurs schemes de paiement, permettra leur interopérabilité. Par conséquent, implémenter ILP implique d’adapter un scheme existant à ces standards. Cela implique notamment que les transferts se fassent en deux phases (_réserve_ et _validation_) et la définition d’une correspondance entre les comptes du scheme et le système d’adressage mondial ILP. Cela peut se faire en modifiant le scheme lui-même, ou via des entités qui fournissent une compatibilité ILP via des adaptateurs.
 
 Les prérequis pour un paiement ILP sont l’adresse ILP du Bénéficiaire (voir [Adressage ILP](#ilp-addressing)) et la condition (voir [Transferts conditionnels](#conditional-transfers)). Dans la version actuelle de l’API, ces deux informations doivent être renvoyées par le FSP Bénéficiaire lors d’un devis ([**/quotes**](#api-resource-quotes)).
 
 ### Adressage ILP
 
-Un composant clé du standard ILP est le schéma d’adressage<sup>28</sup>. Il s’agit d’un schéma hiérarchique définissant une ou plusieurs adresses pour chaque compte d’un registre.
+Un composant clé du standard ILP est le système d’adressage<sup>28</sup>. Il s’agit d’un système hiérarchique définissant une ou plusieurs adresses pour chaque compte d’un registre.
 
 [Le tableau 5](#table-5) donne des exemples d’adresses ILP dans différents scénarios. À noter : la structure est standardisée, le contenu non, sauf pour le premier segment (avant le premier point).
 
