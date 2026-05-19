@@ -1,0 +1,204 @@
+/'*****
+ License
+ --------------
+ Copyright © 2017 Bill & Melinda Gates Foundation
+ The Mojaloop files are made available by the Bill & Melinda Gates Foundation under the Apache License, Version 2.0 (the "License") and you may not use these files except in compliance with the License. You may obtain a copy of the License at
+ http://www.apache.org/licenses/LICENSE-2.0
+ Unless required by applicable law or agreed to in writing, the Mojaloop files are distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+ Contributors
+ --------------
+ This is the official list of the Mojaloop project contributors for this file.
+ Names of the original copyright holders (individuals or organizations)
+ should be listed with a '*' in the first column. People who have
+ contributed from an organization can be listed under the organization
+ that actually holds the copyright for their contributions (see the
+ Gates Foundation organization for an example). Those individuals should have
+ their names indented and be marked with a '-'. Email address can be added
+ optionally within square brackets <email>.
+ * Gates Foundation
+ - Name Surname <name.surname@gatesfoundation.com>
+
+ * Neal Donnan <neal.donnan@modusbox.com>
+ * Shashikant Hirugade <shashikant.hirugade@modusbox.com>
+ --------------
+ ******'/
+
+@startuml
+' declare title
+title Gross Settlement Handler Consume (Success)
+autonumber
+' Actor Keys:
+'   boundary - APIs/Interfaces, etc
+'   collections - Kafka Topics
+'   control - Kafka Consumers
+'   entity - Database Access Objects
+'   database - Database Persistance Store
+
+' declare actors
+
+collections "topic-notification" as TOPIC_NOTIFICATION
+control "Gross Settlement Handler" as SETTLEMENT_HANDLER
+control "Gross Settlement Service" as SETTLEMENT_SERVICE
+database "central_ledger" as DB
+entity "Settlement DAO" as SETTLEMENT_DAO
+
+box "Settlement Service" #LightGreen
+    participant TOPIC_NOTIFICATION
+    participant SETTLEMENT_HANDLER
+    participant SETTLEMENT_SERVICE
+    participant SETTLEMENT_DAO
+end box
+
+box "Central Services" #lightyellow
+    participant DB
+end box
+
+' start flow
+activate SETTLEMENT_HANDLER
+group Gross Settlement Handler Consume (Success)
+    alt Consume Single Message
+        TOPIC_NOTIFICATION <- SETTLEMENT_HANDLER: Consume notification event message
+        activate TOPIC_NOTIFICATION
+        deactivate TOPIC_NOTIFICATION
+        group Validate Message
+            SETTLEMENT_HANDLER <-> SETTLEMENT_HANDLER: Validate event - Rule: message has payload\n<color #FF0000><b>Error codes:</b> 2001</color>
+        end
+        opt action == 'COMMIT'
+            
+            group Retry (default 3 retries)
+                group <color #blue>DB TRANSACTION: settle transfer</color>
+                    SETTLEMENT_HANDLER -> SETTLEMENT_SERVICE: Process fulfil message
+                    SETTLEMENT_SERVICE -> SETTLEMENT_DAO: Get Gross settlement model
+                    SETTLEMENT_DAO -> DB: Get settlement model records
+                    activate DB
+                        deactivate DB
+                        hnote over DB #lightyellow
+                        SELECT settlementModel.*
+                        FROM **settlementModel**
+                            INNER JOIN `participantCurrency` AS `pc` ON `pc`.`currencyId` = `settlementModel`.`currencyId`
+                                AND `pc`.`ledgerAccountTypeId` `settlementModel`.`ledgerAccountTypeId`
+                            INNER JOIN `transferParticipant` AS `tp` ON `tp`.`participantCurrencyId` = `pc`.`participantCurrencyId`
+                            INNER JOIN settlementGranularity AS `g` ON `g`.`settlementGranularityId` = `settlementModel`.`settlementGranularityId`
+                        WHERE `tp`.`transferId`, {transferId}
+                            AND `g`.`name`, {settlementGranularityName}
+                            AND `settlementModel`.`isActive`, {1};
+                        end hnote
+                    SETTLEMENT_DAO <-- DB: Gross settlement model result
+                    SETTLEMENT_SERVICE <-- SETTLEMENT_DAO: Gross settlement model result
+                    group Validate settlement model
+                        SETTLEMENT_SERVICE <-> SETTLEMENT_SERVICE: Valid Gross settlement model with given currency does not exist
+                        SETTLEMENT_SERVICE <-> DB: Get all settlement models
+                        alt Check if NET settlement model with the transfer currency exists
+                            SETTLEMENT_SERVICE <-> SETTLEMENT_SERVICE: Return true
+                        else 
+                            SETTLEMENT_SERVICE <-> SETTLEMENT_SERVICE: filter all settlement models by currencyId === null and granularityType === GROSS
+                            SETTLEMENT_SERVICE <-> SETTLEMENT_SERVICE: Return default GROSS settlement model
+                        end
+                    end
+                    SETTLEMENT_SERVICE -> SETTLEMENT_DAO: Settle transfer if CGS
+                    SETTLEMENT_DAO -> DB: Insert transferParticipant entries
+                    activate DB
+                    deactivate DB
+                    hnote over DB #lightyellow
+                        insert into **`transferParticipant`** (transferID, participantCurrencyId, transferParticipantRoleTypeId, ledgerEntryTypeId,
+                                                         amount)
+                        select `TP`.`transferId`,
+                               `TP`.`participantCurrencyId`,
+                               `TP`.`transferParticipantRoleTypeId`,
+                               `TP`.`ledgerEntryTypeId`,
+                               `TP`.`amount` * -1
+                        from `transferParticipant` as `TP`
+                                 inner join `participantCurrency` as `PC` on `TP`.`participantCurrencyId` = `PC`.`participantCurrencyId`
+                                 inner join `settlementModel` as `M` on `PC`.`ledgerAccountTypeId` = `M`.`ledgerAccountTypeId`
+                                 inner join `settlementGranularity` as `G` on `M`.`settlementGranularityId` = `G`.`settlementGranularityId`
+                        where (`TP`.`transferId` = {transferId} and (`G`.`name` = 'GROSS'))
+                        union
+                        select `TP`.`transferId`,
+                               `PC1`.`participantCurrencyId`,
+                               `TP`.`transferParticipantRoleTypeId`,
+                               `TP`.`ledgerEntryTypeId`,
+                               `TP`.`amount`
+                        from `transferParticipant` as `TP`
+                                 inner join `participantCurrency` as `PC` on `TP`.`participantCurrencyId` = `PC`.`participantCurrencyId`
+                                 inner join `settlementModel` as `M` on `PC`.`ledgerAccountTypeId` = `M`.`ledgerAccountTypeId`
+                                 inner join `settlementGranularity` as `G` on `M`.`settlementGranularityId` = `G`.`settlementGranularityId`
+                                 inner join `participantCurrency` as `PC1`
+                                            on `PC1`.`currencyId` = `PC`.`currencyId` and `PC1`.`participantId` = `PC`.`participantId` and
+                                               `PC1`.`ledgerAccountTypeId` = `M`.`settlementAccountTypeId`
+                        where (`TP`.`transferId` = {transferId} and (`G`.`name` = 'GROSS'));
+                    end hnote
+                    SETTLEMENT_DAO -> DB: Update participantPosition records
+                    activate DB
+                    deactivate DB
+                    hnote over DB #lightyellow
+                        update **`participantPosition`** as `PP`
+                            inner join (select `PC`.`participantCurrencyId`, `TP`.`Amount`
+                                         from `transferParticipant` as `TP`
+                                                  inner join `participantCurrency` as `PC`
+                                                             on `TP`.`participantCurrencyId` = `PC`.`participantCurrencyId`
+                                                  inner join `settlementModel` as `M`
+                                                             on `PC`.`ledgerAccountTypeId` = `M`.`ledgerAccountTypeId`
+                                                  inner join `settlementGranularity` as `G`
+                                                             on `M`.`settlementGranularityId` = `G`.`settlementGranularityId`
+                                         where (`TP`.`transferId` = {transferId} and (`G`.`name` = 'GROSS'))
+                                         union
+                                         select `PC1`.`participantCurrencyId`, `TP`.`amount`
+                                         from `transferParticipant` as `TP`
+                                                  inner join `participantCurrency` as `PC`
+                                                             on `TP`.`participantCurrencyId` = `PC`.`participantCurrencyId`
+                                                  inner join `settlementModel` as `M`
+                                                             on `M`.`ledgerAccountTypeId` = `PC`.`ledgerAccountTypeId`
+                                                  inner join `settlementGranularity` as `G`
+                                                             on `M`.`settlementGranularityId` = `G`.`settlementGranularityId`
+                                                  inner join `participantCurrency` as `PC1`
+                                                             on `PC1`.`currencyId` = `PC`.`currencyId` and
+                                                                `PC1`.`participantId` = `PC`.`participantId` and
+                                                                `PC1`.`ledgerAccountTypeId` = `M`.`settlementAccountTypeId`
+                                         where (`TP`.`transferId` = {transferId} and (`G`.`name` = 'GROSS')))
+                            AS TR ON PP.participantCurrencyId = TR.ParticipantCurrencyId
+                        set `value` = `PP`.`value` - `TR`.`amount`;
+                    end hnote
+                    SETTLEMENT_DAO -> DB: Insert participantPositionChange records
+                    activate DB
+                    deactivate DB
+                    hnote over DB #lightyellow
+                        insert into **`participantPositionChange`** (participantPositionId, transferStateChangeId, value, reservedValue)
+                        select `PP`.`participantPositionId`, `TSC`.`transferStateChangeId`, `PP`.`value`, `PP`.`reservedValue`
+                        from `participantPosition` as `PP`
+                                 inner join (select `PC`.`participantCurrencyId`
+                                             from `transferParticipant` as `TP`
+                                                      inner join `participantCurrency` as `PC`
+                                                                 on `TP`.`participantCurrencyId` = `PC`.`participantCurrencyId`
+                                                      inner join `settlementModel` as `M`
+                                                                 on `PC`.`ledgerAccountTypeId` = `M`.`ledgerAccountTypeId`
+                                                      inner join `settlementGranularity` as `G`
+                                                                 on `M`.`settlementGranularityId` = `G`.`settlementGranularityId`
+                                             where (`TP`.`transferId` = {transferId} and (`G`.`name` = 'GROSS'))
+                                             union
+                                             select `PC1`.`participantCurrencyId`
+                                             from `transferParticipant` as `TP`
+                                                      inner join `participantCurrency` as `PC`
+                                                                 on `TP`.`participantCurrencyId` = `PC`.`participantCurrencyId`
+                                                      inner join `settlementModel` as `M`
+                                                                 on `PC`.`ledgerAccountTypeId` = `PC`.`ledgerAccountTypeId`
+                                                      inner join `settlementGranularity` as `G`
+                                                                 on `M`.`settlementGranularityId` = `G`.`settlementGranularityId`
+                                                      inner join `participantCurrency` as `PC1` on `PC1`.`currencyId` = `PC`.`currencyId` and
+                                                                                                   `PC1`.`participantId` = `PC`.`participantId` and
+                                                                                                   `PC1`.`ledgerAccountTypeId` = `M`.`settlementAccountTypeId`
+                                             where (`TP`.`transferId` = {transferId} and (`G`.`name` = 'GROSS'))) AS TR
+                                            ON PP.participantCurrencyId = TR.ParticipantCurrencyId
+                                 inner join `transferStateChange` as `TSC`
+                                            on `TSC`.`transferID` = {transferId} and `TSC`.`transferStateId` = 'SETTLED';
+                    end hnote
+                end
+            end
+        end
+    else Consume Batch Messages
+        note left of SETTLEMENT_HANDLER #lightblue
+            To be delivered by future story
+        end note
+    end
+end
+deactivate SETTLEMENT_HANDLER
+@enduml
