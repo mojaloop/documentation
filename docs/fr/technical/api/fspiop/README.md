@@ -19,7 +19,7 @@ La spécification Open API pour l’interopérabilité des FSP inclut les docume
   * [FSPIOP v1.0](./v1.0/api-definition.md)
 * [API Central Ledger](#central-ledger-api)
 * [Règles de Liaison JSON](#json-binding-rules)
-* [Règles des Schémas](./scheme-rules.md)
+* [Règles du système](./scheme-rules.md)
   
 ## Intégrité des Données, Confidentialité et Non-Répudiation
 

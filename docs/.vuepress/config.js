@@ -1289,11 +1289,11 @@ module.exports = {
                 'technical/overview/components-PI7',
                 'technical/overview/components-PI6',
                 'technical/overview/components-PI5',
-                'technical/overview/components-PI3'
+                ['technical/overview/components-PI3', 'Vue d\'ensemble PI3']
               ]
             },
             {
-              title: "Versions de Mojaloop",
+              title: "Versions Mojaloop",
               path: "technical/releases"
             },
             {
@@ -1302,19 +1302,19 @@ module.exports = {
               sidebarDepth: 2,
               children: [
                 ['technical/account-lookup-service/', 'Aperçu'],
-                'technical/account-lookup-service/als-get-participants',
+                ['technical/account-lookup-service/als-get-participants', 'GET — Participants'],
                 'technical/account-lookup-service/als-post-participants',
                 'technical/account-lookup-service/als-post-participants-batch',
                 'technical/account-lookup-service/als-del-participants',
-                'technical/account-lookup-service/als-get-parties',
+                ['technical/account-lookup-service/als-get-parties', 'GET — Parties'],
               ]
             },
             {
-              title: "Service de cotation",
+              title: "Service de devis",
               collapsable: true,
               sidebarDepth: 2,
               children: [
-                ['technical/quoting-service/', 'Aperçu'],
+                ['technical/quoting-service/', 'Service de devis'],
                 'technical/quoting-service/qs-get-quotes',
                 'technical/quoting-service/qs-post-quotes',
                 'technical/quoting-service/qs-get-bulk-quotes',

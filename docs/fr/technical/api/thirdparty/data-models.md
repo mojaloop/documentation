@@ -1,4 +1,4 @@
-# Modèles de Données
+# Modèles de données
 
 API Tierce Partie
 
@@ -12,8 +12,8 @@ API Tierce Partie
     2.1 [Spécification de l’API Tierce Partie](#ThirdPartyAPISpecification) 
 3. [Éléments de l’API Tierce Partie](#ThirdPartyAPIElements)  
     3.1 [Ressources](#Resources)  
-    3.2 [Modèles de Données](#DataModels)  
-    3.3 [Codes d’Erreur](#ErrorCodes)
+    3.2 [Modèles de données](#DataModels)  
+    3.3 [Codes d’erreur](#ErrorCodes)
 # <a id='Preface'></a>1. Préface
 Cette section contient des informations sur l'utilisation de ce document.
 
@@ -24,9 +24,9 @@ Les conventions suivantes sont utilisées dans ce document pour identifier les t
 |Type d’Information|Convention|Exemple|
 |---|---|---|
 |**Éléments de l’API, tels que les ressources**|Gras|**/authorization**|
-|**Variables**|Italique entre crochets|_{ID}_|
-|**Termes du glossaire**|Italique à la première occurrence ; défini dans _Glossaire_|Le but de l'API est de permettre des transactions financières interopérables entre un _Payer_ (un payeur de fonds électroniques dans une transaction de paiement) situé dans un _FSP_ (une entité qui fournit un service financier numérique à un utilisateur final) et un _Payee_ (un bénéficiaire de fonds électroniques dans une transaction de paiement) situé dans un autre FSP.|
-|**Documents de la bibliothèque**|Italique|Les informations utilisateur ne doivent généralement pas être utilisées par les déploiements de l’API ; les mesures de sécurité détaillées dans _Signature API et Chiffrement API_ doivent être utilisées à la place.|
+|**Variables**|Italique entre chevrons|_{ID}_|
+|**Termes du glossaire**|Italique à la première occurrence ; défini dans _Glossaire_|Le but de l'API est de permettre des transactions financières interopérables entre un _Payeur_ (un payeur de fonds électroniques dans une transaction de paiement) situé dans un _FSP_ (une entité qui fournit un service financier numérique à un utilisateur final) et un _Bénéficiaire_ (un bénéficiaire de fonds électroniques dans une transaction de paiement) situé dans un autre FSP.|
+|**Documents de référence**|Italique|Les informations utilisateur ne doivent généralement pas être utilisées par les déploiements de l’API ; les mesures de sécurité détaillées dans _Signature API et Chiffrement API_ doivent être utilisées à la place.|
 
 ## <a id='DocumentVersionInformation'></a>1.2 Informations sur la Version du Document
 
@@ -51,9 +51,9 @@ Ce document spécifie le modèle de données utilisé par l’API Tierce Partie 
 
 La spécification de l’API Tierce Partie Mojaloop comprend les documents suivants :
 
-- [Modèles de Données](./data-models.md)
-- [Schémas de Transaction - Liaison](./transaction-patterns-linking.md)
-- [Schémas de Transaction - Transfert](./transaction-patterns-transfer.md)
+- [Modèles de données](./data-models.md)
+- [Modèles de transaction - Liaison](./transaction-patterns-linking.md)
+- [Modèles de transaction - Transfert](./transaction-patterns-transfer.md)
 - [Définition Open API Tierce Partie - DFSP](./thirdparty-dfsp-v1.0.yaml)
 - [Définition Open API Tierce Partie - PISP](./thirdparty-dfsp-v1.0.yaml)
 
@@ -64,8 +64,8 @@ Cette section décrit le contenu de l’API qui sera utilisé par les PISP et DF
 
 Le contenu de l’API se divise en deux sections :
 
-1. [Schémas de Transaction - Liaison](./transaction-patterns-linking.md) décrit le processus de liaison des comptes clients et fournit un mécanisme d'autorisation générale pour permettre aux PISP d’effectuer des opérations sur ces comptes
-2. [Schémas de Transaction - Transfert](./transaction-patterns-transfer.md) décrit le transfert de fonds à l’instigation d’un PISP.
+1. [Modèles de transaction - Liaison](./transaction-patterns-linking.md) décrit le processus de liaison des comptes clients et fournit un mécanisme d'autorisation générale pour permettre aux PISP d’effectuer des opérations sur ces comptes
+2. [Modèles de transaction - Transfert](./transaction-patterns-transfer.md) décrit le transfert de fonds à l’instigation d’un PISP.
 
 L’API est utilisée par les différents types de participants suivants :
   1. PISP
@@ -101,7 +101,7 @@ La requête HTTP **GET /accounts/**_{ID}_ est utilisée pour rechercher des info
 Informations sur le callback et le modèle de données pour **GET /accounts/**_{ID}_ :
 - Callback - **PUT /accounts/**_{ID}_
 - Callback d’erreur - **PUT /accounts/**_{ID}_**/error**
-- Modèle de Données – corps vide
+- Modèle de données – corps vide
 
 #### <a id='Callbacks'></a>3.1.1.2 Callbacks 
 
@@ -148,7 +148,7 @@ La requête HTTP **GET /consentRequests/**_{ID}_ est utilisée pour obtenir des 
 Informations de callback et modèle de données pour **GET /consentRequests/**_{ID}_ :
 - Callback – **PUT /consentRequests/**_{ID}_
 - Callback d’erreur – **PUT /consentRequests/**_{ID}_**/error**
-- Modèle de Données – corps vide
+- Modèle de données – corps vide
 
 ##### 3.1.2.1.2 **POST /consentRequests**
 
@@ -216,4 +216,38 @@ ou la requête **POST /consentRequests**. Le modèle de données pour cette ress
 | Nom | Cardinalité | Type | Description |
 | --- | --- | --- | --- |
 | errorInformation | 1 | ErrorInformation | Informations décrivant l’erreur et le code erreur. |
+
+## <a id='ErrorCodes'></a>3.3 Codes d’erreur
+
+Les codes d’erreur de l’API tierce partie sont définis dans la [Section 7.6](https://github.com/mojaloop/mojaloop-specification/blob/master/fspiop-api/documents/v1.1-document-set/API%20Definition%20v1.1.md#76-error-codes) de la Réf. 1 ci-dessus.
+
+En outre, l’API tierce partie ajoute les codes d’erreur suivants, préfixés par `6` :
+
+- Erreur générale tierce partie — **60**_xx_
+
+| **Code d’erreur** | **Nom** | **Description** | /accounts | /consentRequests | /consents | /parties | /services | /thirdpartyRequests/authorizations | thirdpartyRequests/transactions | thirdpartyRequests/verifications |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| **6000** | Erreur tierce partie | Erreur générique. | X | X | X | X | X | X | X | X |
+| **6001** | Erreur de demande tierce partie | Échec de la demande tierce partie. | X | X | X | X | X | X | X | X |
+| **6003** | Échec aval | La demande aval a échoué. | X | X | X | X | X | X | X | X |
+
+- Erreur de permission — **61**_xx_
+
+| **Code d’erreur** | **Nom** | **Description** | /accounts | /consentRequests | /consents | /parties | /services | /thirdpartyRequests/authorizations | thirdpartyRequests/transactions | thirdpartyRequests/verifications |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| **6100** | Rejet d’authentification | Rejet d’authentification générique |   | X |   |   |   | X |   |   |
+| **6101** | Étendues non prises en charge | Le PISP a demandé des étendues que le DFSP n’autorise ou ne prend pas en charge |   | X | X |   |   |   |   |   |
+| **6102** | Consentement non accordé | L’utilisateur n’a pas accordé son consentement au PISP |   | X | X |   |   |   |   |   |
+| **6103** | Consentement non valide | L’objet Consent n’est pas valide ou a été révoqué |   | X | X |   |   | X | X | X |
+| **6104** | Rejet de demande tierce partie | La demande a été rejetée | X | X | X | X | X | X | X | X |
+
+- Erreur de validation — **62**_xx_
+
+| **Code d’erreur** | **Nom** | **Description** | /accounts | /consentRequests | /consents | /parties | /services | /thirdpartyRequests/authorizations | thirdpartyRequests/transactions | thirdpartyRequests/verifications |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| **6200** | Justificatif de consentement invalide | La signature du justificatif soumis par le PISP est invalide |   |   | X |   |   |   |   |   |
+| **6201** | Signature de transaction invalide | La signature de la réponse de vérification ne correspond pas au justificatif |   |   |   |   |   | X |   | X |
+| **6203** | Jeton d’authentification invalide | Le DFSP reçoit un jeton d’authentification invalide du PISP |   | X |   |   |   |   |   |   |
+| **6204** | callbackUri invalide | Le callbackUri est jugé invalide ou non fiable |   | X |   |   |   |   |   |   |
+| **6205** | Aucun compte trouvé | Aucun compte n’a été trouvé pour l’identifiant donné | X |   |   |   |   |   |   |   |
 

@@ -1,7 +1,7 @@
 ---
 version: 1.1
+sidebarTitle: Aperçu
 ---
-
 
 # Service de recherche de compte - Account Lookup Service
 
@@ -52,9 +52,9 @@ _Note : le cas « recherche de participant » s’applique de la même façon à
 
 ### 2.2. Diagrammes de séquence
 
-#### 2.2.1. GET Participants
+#### 2.2.1. GET — Participants
 
-- [Diagramme de séquence GET Participants](als-get-participants.md)
+- [Diagramme de séquence GET — Participants](als-get-participants.md)
 
 #### 2.2.2. POST Participants
 
@@ -75,9 +75,9 @@ _Note : le cas « recherche de participant » s’applique de la même façon à
 
 ### 3.2. Diagramme de séquence
 
-#### 3.2.1. GET Parties
+#### 3.2.1. GET — Parties
 
-- [Diagramme de séquence GET Parties](als-get-parties.md)
+- [Diagramme de séquence GET — Parties](als-get-parties.md)
 
 ## 4. Conception de l’administration ALS
 

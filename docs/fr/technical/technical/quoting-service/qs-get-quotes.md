@@ -1,6 +1,6 @@
-# GET — Cotation par ID
+# GET — Devis par ID
 
-Spécification de l’endpoint de récupération d’une cotation par un FSP.
+Spécification de l’endpoint de récupération d’un devis par un FSP.
 
 ## Diagramme de séquence
 

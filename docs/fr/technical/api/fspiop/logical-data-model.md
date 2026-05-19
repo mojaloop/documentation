@@ -15,9 +15,9 @@ Les conventions suivantes sont utilisées dans ce document pour identifier les t
 |Type d'information|Convention|Exemple|
 |---|---|---|
 |**Éléments de l'API, comme les ressources**|Gras|**/authorization**|
-|**Variables**|Italique entre crochets|_{ID}_|
-|**Termes du glossaire**|Italique à la première occurrence ; défini dans le _Glossaire_|Le but de l'API est de permettre des transactions financières interopérables entre un _Payeur_ (un payeur de fonds électroniques dans une transaction de paiement) situé dans un _FSP_ (une entité qui fournit un service financier numérique à un utilisateur final) et un _Bénéficiaire_ (destinataire de fonds électroniques dans une transaction de paiement) situé dans un autre FSP.|
-|**Documents de bibliothèque**|Italique|Les informations utilisateur ne devraient généralement pas être utilisées par les déploiements API ; les mesures de sécurité détaillées dans _Signature API_ et _Chiffrement API_ doivent être utilisées à la place.|
+|**Variables**|Italique entre accolades|_{ID}_|
+|**Termes du glossaire**|Italique à la première occurrence ; défini dans le _Glossaire_|Le but de l'API est de permettre des transactions financières interopérables entre un _Payeur_ (un payeur de fonds électroniques dans une transaction de paiement) situé dans un _FSP_ (une entité qui fournit un service financier numérique à un utilisateur final) et un _Bénéficiaire_ (un destinataire de fonds électroniques dans une opération de paiement) situé dans un autre FSP.|
+|**Documents de référence**|Italique|Les informations utilisateur ne devraient généralement pas être utilisées par les déploiements API ; les mesures de sécurité détaillées dans _Signature API_ et _Chiffrement API_ doivent être utilisées à la place.|
 
 ### Informations sur la version du document
 
@@ -29,7 +29,7 @@ Les conventions suivantes sont utilisées dans ce document pour identifier les t
 
 ## Introduction
 
-Ce document spécifie le modèle de données logique utilisé par Open API (Interface de Programmation d'Applications) pour l'Interopérabilité des Fournisseurs de Services Financiers (FSP, Financial Service Provider) (ci-après appelée « l’API »).
+Ce document spécifie le modèle de données logique utilisé par l’API ouverte (Interface de Programmation Applicative) pour l’interopérabilité des Fournisseurs de Services Financiers (FSP) (ci-après appelée « l’API »).
 
 La section [Éléments de Services](#api-services-elements) répertorie les éléments utilisés par chaque service.
 
@@ -51,13 +51,13 @@ La spécification Open API pour l'interopérabilité des FSP inclut les document
 
 - [Définition de l'API](./api-definition)
 
-- [Règles de Liaison JSON](./json-binding-rules)
+- [Règles de liaison JSON](./json-binding-rules)
 
-- [Règles de Schéma](./scheme-rules)
+- [Règles du scheme](./scheme-rules)
 
-#### Intégrité des Données, Confidentialité et Non-Répudiation
+#### Intégrité des données, confidentialité et non-répudiation
 
-- [Bonnes Pratiques PKI](./pki-best-practices)
+- [Bonnes pratiques PKI](./pki-best-practices)
 
 - [Signature](./v1.1/signature)
 
@@ -82,9 +82,9 @@ Cette section décrit le modèle de données des services pour la ressource **Pa
 Cette section décrit le modèle de données des services qui peuvent être demandés par un client à l’API pour la ressource **Participants**.
 <br />
 
-##### Recherche d’Informations sur un Participant
+##### Recherche d’informations sur un participant
 
-Le Tableau 1 contient le modèle de données pour _Recherche d’Informations sur un Participant_.
+Le Tableau 1 contient le modèle de données pour _Recherche d’informations sur un participant_.
 
 | Nom | Cardinalité | Type | Description |
 | --- | --- | --- | --- |
@@ -92,7 +92,7 @@ Le Tableau 1 contient le modèle de données pour _Recherche d’Informations su
 | **partyIdentifier** | 1 | [PartyIdentifier](#partyidentifier-element) | Un identifiant pour la Partie. |
 | **partySubIdOrType** | 0..1 | [PartyIdSubIdOrType](#partysubidortype-element) | Un sous-identifiant ou sous-type pour la Partie.|
 
-**Tableau 1 – Modèle de données de Recherche d’Informations sur un Participant**
+**Tableau 1 – Modèle de données de recherche d’informations sur un participant**
 
 <br />
 
@@ -105,24 +105,24 @@ Le Tableau 2 ci-dessous contient le modèle de données pour _Création d’Info
 | **partyIdType** | 1 | [PartyIdType](#partyidtype-element) |Le type de l'identifiant. |
 | **partyIdentifier** | 1 | [PartyIdentifier](#partyidentifier-element) | Un identifiant pour la Partie. |
 | **partySubIdOrType** | 0..1 | [PartyIdSubIdOrType](#partysubidortype-element) | Un sous-identifiant ou sous-type pour la Partie. |
-| **fspId** | 1 | [FspId](#fspid-element) | Identifiant FSP auquel la Partie appartient. |
+| **fspId** | 1 | [FspId](#fspid-element) | Identifiant du FSP auquel appartient la Partie. |
 | **currency** | 0..1 | [Currency](#currency-element) | Indique que la devise fournie est prise en charge par la Partie. |
 
 **Tableau 2 – Modèle de données de Création d’Informations sur un Participant**
 
 <br />
 
-##### Création d’Informations en Masse sur des Participants
+##### Création d’informations groupées sur des participants
 
-Le Tableau 3 ci-dessous contient le modèle de données pour _Création d’Informations en Masse sur des Participants_.
+Le Tableau 3 ci-dessous contient le modèle de données pour _Création d’informations groupées sur des participants_.
 
 | Nom | Cardinalité | Type | Description |
 | --- | --- | --- | --- |
 | **requestId** | 1 | [CorrelationId](#correlationid-element) | L’ID de la demande, déterminé par le client. Utilisé pour identifier le rappel du serveur. |
-| **partyList** | 1..10000 | [PartyIdInfo](#partyidinfo) | Liste des éléments Party que le Client veut mettre à jour ou créer des informations FSP à propos. |
+| **partyList** | 1..10000 | [PartyIdInfo](#partyidinfo) | Liste des éléments Party pour lesquels le client souhaite mettre à jour ou créer des informations FSP. |
 | **currency** | 0..1 | [Currency](#currency-enum) | Indique que la devise fournie est prise en charge par chaque PartyIdInfo de la liste. |
 
-**Tableau 3 – Modèle de données de Création en Masse d’Informations sur les Participants**
+**Tableau 3 – Modèle de données de création d’informations groupées sur les participants**
 
 <br />
 
@@ -153,23 +153,23 @@ Le Tableau 5 ci-dessous contient le modèle de données pour _Retour des Informa
 | **partyIdType** | 1 | [PartyIdType](#partyidtype-element) | Le type de l'identifiant. |
 | **partyIdentifier** | 1 | [PartyIdentifier](#partyidentifier-element) | Un identifiant pour la Partie. |
 | **partySubIdOrType** | 0..1 | [PartyIdSubIdOrType](#partysubidortype-element) | Un sous-identifiant ou sous-type pour la Partie. |
-| **fspId** | 0..1 | [FspId](#fspid-element) | Identifiant FSP auquel la Partie appartient. |
+| **fspId** | 0..1 | [FspId](#fspid-element) | Identifiant du FSP auquel appartient la Partie. |
 
 **Tableau 5 – Modèle de données de Retour des Informations sur un Participant**
 
 <br />
 
-##### Retour d’Informations en Masse sur des Participants
+##### Retour d’informations groupées sur des participants
 
-Le Tableau 6 ci-dessous contient le modèle de données pour _Retour d’Informations en Masse sur des Participants_.
+Le Tableau 6 ci-dessous contient le modèle de données pour _Retour d’informations groupées sur des participants_.
 
 | Nom | Cardinalité | Type | Description |
 | --- | --- | --- | --- |
 | **requestId** | 1 | [CorrelationId](#correlationid-element) | L’ID de la demande, déterminé par le client. Utilisé pour identifier le rappel du serveur. |
-| **partyList** | 1..10000 | [PartyResult](#partyresult) | Liste des éléments PartyResult pour lesquels la création a été tentée (et a réussi ou échoué). |
-| **Currency** | 0..1 | [Currency](#currency-element) | Indique que la devise fournie a été indiquée comme acceptée pour chaque PartyIdInfo ajouté avec succès. |
+| **partyList** | 1..10000 | [PartyResult](#partyresult) | Liste des éléments PartyResult pour lesquels la création a été tentée (et a réussi ou a échoué). |
+| **currency** | 0..1 | [Currency](#currency-element) | Indique que la devise fournie a été définie comme prise en charge par chaque PartyIdInfo ajouté avec succès. |
 
-**Tableau 6 – Modèle de données de Retour d’Informations en Masse sur les Participants**
+**Tableau 6 – Modèle de données de retour d’informations groupées sur les participants**
 
 <br />
 
@@ -192,16 +192,16 @@ Le Tableau 7 ci-dessous contient le modèle de données pour _Erreur de Retour d
 
 <br />
 
-##### Erreur de Retour d’Informations en Masse sur des Participants
+##### Erreur de retour d’informations groupées sur des participants
 
-Le Tableau 8 ci-dessous contient le modèle de données pour _Erreur de Retour d’Informations en Masse sur des Participants_.
+Le Tableau 8 ci-dessous contient le modèle de données pour _Erreur de retour d’informations groupées sur des participants_.
 
 | Nom | Cardinalité | Type | Description |
 | --- | --- | --- | --- |
 | **requestId** | 1 | [CorrelationId](#correlationid-element) | L’ID de la demande, déterminé par le client. Utilisé pour identifier le rappel du serveur. |
 | **errorInformation** | 1 | [ErrorInformation](#errorinformation) | Code d’erreur, description de la catégorie. |
 
-**Tableau 8 – Modèle de données d’Erreur de Retour d’Informations en Masse sur des Participants**
+**Tableau 8 – Modèle de données d’erreur de retour d’informations groupées sur les participants**
 
 <br />
 
@@ -213,9 +213,9 @@ Cette section décrit le modèle de données des services pour la ressource **Pa
 
 Cette section décrit le modèle de données des services qui peuvent être demandés par un client dans l’API pour la ressource **Parties**.
 
-##### Recherche d’Informations sur une Partie
+##### Recherche d’informations sur une partie
 
-Le Tableau 9 ci-dessous contient le modèle de données pour _Recherche d’Informations sur une Partie_.
+Le Tableau 9 ci-dessous contient le modèle de données pour _Recherche d’informations sur une partie_.
 
 | Nom | Cardinalité | Type | Description |
 | --- | --- | --- | --- |
@@ -223,7 +223,7 @@ Le Tableau 9 ci-dessous contient le modèle de données pour _Recherche d’Info
 | **partyIdentifier** | 1 | [PartyIdentifier](#partyidentifier-element) | Un identifiant pour la Partie. |
 | **partySubIdOrType** | 0..1 | [PartyIdSubIdOrType](#partysubidortype-element) | Un sous-identifiant ou sous-type pour la Partie. |
 
-**Tableau 9 – Modèle de données de Recherche d’Informations sur une Partie**
+**Tableau 9 – Modèle de données de recherche d’informations sur une partie**
 
 <br />
 
@@ -263,7 +263,7 @@ Le Tableau 11 ci-dessous contient le modèle de données pour _Erreur de Retour 
 
 <br />
 
-### Ressource API : Demandes de Transactions
+### Ressource API : demandes de transaction
 
 _… Etc (CONTINUER pour tout le document en respectant la structure, la terminologie et en traduisant l’anglais vers le français, conserver les noms techniques JSON/tables tels quels, traduire entête, descriptions, colonnes, paragraphes, légendes, intitulés, titres, notes, et ne pas traduire la syntaxe des expressions régulières, noms de champs d’API ou extraits de code)._
 

@@ -2,7 +2,7 @@
 footerCopyright: Attribution-NoDerivatives 4.0 International (CC BY-ND 4.0) | Ericsson, Huawei, Mahindra-Comviva, Telepin, and the Bill & Melinda Gates Foundation
 ---
 
-# Modèles de Transactions - Liaison
+# Modèles de transaction - Liaison
 
 API Tiers de Mojaloop
 
@@ -20,7 +20,7 @@ API Tiers de Mojaloop
    3.3 [Demande de consentement](#Requestconsent)    
    3.4 [Authentification](#Authentication)  
    3.5 [Octroi du consentement](#Grantconsent)  
-   3.6 [Enregistrement de l'identifiant](#Credentialregistration)  
+   3.6 [Enregistrement du justificatif](#Credentialregistration)  
 4. [Déliaison](#Unlinking)  
    4.1 [Déliaison sans service d'authentification hébergé par le Switch](#UnlinkingwithoutaSwitchHostedAuthService)  
    4.2 [Déliaison avec service d'authentification hébergé par le Switch](#UnlinkingwithaSwitchHostedAuthService)  
@@ -41,13 +41,13 @@ Les conventions suivantes sont utilisées dans ce document pour identifier les i
 |Type d'information|Convention|Exemple|
 |---|---|---|
 |**Éléments de l'API, tels que les ressources**|Gras|**/authorization**|
-|**Variables**|Italique entre crochets|_{ID}_|
+|**Variables**|Italique entre chevrons|_{ID}_|
 |**Termes du glossaire**|Italique à la première occurrence ; défini dans _Glossaire_|Le but de l'API est de permettre des transactions financières interopérables entre un _Payeur_ (une personne qui paie dans une transaction) localisé dans un _FSP_ (une entité qui fournit un service financier numérique à un utilisateur final) et un _Bénéficiaire_ (une personne qui reçoit des fonds) localisé dans un autre FSP.|
-|**Documents de la bibliothèque**|Italique|Les informations sur l'utilisateur ne doivent généralement pas être utilisées par les déploiements de l'API ; les mesures de sécurité détaillées dans _Signature API et Chiffrement API_ doivent être utilisées à la place.|
+|**Documents de référence**|Italique|Les informations sur l'utilisateur ne doivent généralement pas être utilisées par les déploiements de l'API ; les mesures de sécurité détaillées dans _Signature API et Chiffrement API_ doivent être utilisées à la place.|
 
 ##  1.2. <a id='DocumentVersionInformation'></a>Informations sur la version du document
 
-| Version | Date | Description de la modification |
+| Version | Date | Description des modifications |
 | --- | --- | --- |
 | **1.0** | 2021-10-03 | Version initiale
 
@@ -73,8 +73,8 @@ La spécification de l'API Tiers Mojaloop inclut les documents suivants :
 - [Modèles de données](./data-models.md)
 - [Modèles de transactions - Liaison](./transaction-patterns-linking.md)
 - [Modèles de transactions - Transfert](./transaction-patterns-transfer.md)
-- [Définition d'API Open Tier - DFSP](./thirdparty-dfsp-v1.0.yaml)
-- [Définition d'API Open Tier - PISP](./thirdparty-dfsp-v1.0.yaml)
+- [Définition de l'API ouverte tierce partie – DFSP](./thirdparty-dfsp-v1.0.yaml)
+- [Définition de l'API ouverte tierce partie – PISP](./thirdparty-pisp-v1.0.yaml)
 
 
 #  3. <a id='Linking'></a>Liaison
@@ -95,8 +95,8 @@ La liaison est divisée en plusieurs phases distinctes :
    Dans cette phase, l'utilisateur prouve son identité à son DFSP.
 4. **Octroi du consentement**  
    Dans cette phase, un PISP prouve au DFSP que l'utilisateur et le PISP ont établi la confiance, et ainsi, le DFSP confirme que la confiance mutuelle existe entre les 3 parties.
-5. **Enregistrement de l'identifiant**  
-   Dans cette phase, un utilisateur crée l'identifiant qu'il utilisera pour consentir à des transferts futurs du DFSP initiés par le PISP.
+5. **Enregistrement du justificatif**  
+   Dans cette phase, un utilisateur crée le justificatif qu'il utilisera pour consentir à des transferts futurs du DFSP initiés par le PISP.
 
 ##  3.1 <a id='Pre-linking'></a>Pré-liaison
 
@@ -131,7 +131,7 @@ Dans cette phase, un PISP demande à un DFSP spécifique de démarrer le process
 La demande de consentement du PISP doit inclure plusieurs éléments importants :
 
 - Les canaux d’authentification acceptables pour l’utilisateur
-- Les périmètres nécessaires dans le cadre du consentement (ici, presque toujours, seulement la possibilité de voir le solde d’un compte spécifique et d’envoyer des fonds depuis un compte).
+- Les étendues nécessaires dans le cadre du consentement (ici, presque toujours, seulement la possibilité de voir le solde d’un compte spécifique et d’envoyer des fonds depuis un compte).
 
 Certaines informations dépendent du canal d’authentification utilisé (Web ou OTP). Si le canal Web est utilisé, les informations supplémentaires suivantes sont requises :
 
@@ -188,13 +188,13 @@ Cette phase consiste exclusivement à ce que le DFSP demande à ce qu’un nouve
 
 ![Octroi du consentement](./assets/diagrams/linking/4-grant-consent.svg)
 
-## 3.6 <a id='Credentialregistration'></a>Enregistrement de l'identifiant
+## 3.6 <a id='Credentialregistration'></a>Enregistrement du justificatif
 
-Une fois la ressource de consentement créée, le PISP tentera d’établir avec le DFSP l'identifiant qui devra être utilisé pour vérifier que l'utilisateur donne son consentement pour chaque transfert futur.
+Une fois la ressource de consentement créée, le PISP tentera d’établir avec le DFSP le justificatif qui devra être utilisé pour vérifier que l'utilisateur donne son consentement pour chaque transfert futur.
 
-Cela se fera en stockant un identifiant FIDO (par exemple, une clé publique) sur le service Auth à l'intérieur de la ressource de consentement. Lors des futurs transferts, il sera demandé que ces transferts soient signés numériquement par le credential FIDO (ici la clé privée) pour être considérés comme valides.
+Cela se fera en stockant un justificatif FIDO (par exemple, une clé publique) sur le service Auth à l'intérieur de la ressource de consentement. Lors des futurs transferts, il sera demandé que ces transferts soient signés numériquement par le credential FIDO (ici la clé privée) pour être considérés comme valides.
 
-Cet enregistrement d’identifiant est composé de trois phases : (1) dériver le challenge, (2) enregistrer l’identifiant, et (3) finaliser le consentement.
+Cet enregistrement du justificatif est composé de trois phases : (1) dériver le challenge, (2) enregistrer le justificatif, et (3) finaliser le consentement.
 
 ### 3.6.1 <a id='Derivingthechallenge'></a>Dérivation du challenge
 
@@ -217,16 +217,16 @@ Le PISP doit dériver le challenge qui sera utilisé comme entrée dans l’éta
 
 La sortie de cet algorithme, `challenge`, sera utilisée comme défi lors du [flux d'enregistrement FIDO](https://webauthn.guide/#registration)
 
-### 3.6.2 <a id='Registeringthecredential'></a>Enregistrement de l'identifiant
+### 3.6.2 <a id='Registeringthecredential'></a>Enregistrement du justificatif
 
-Une fois le challenge dérivé, le PISP générera un nouvel identifiant sur le dispositif, signera numériquement le challenge, et fournira des informations supplémentaires sur l'identifiant dans la ressource Consent :
+Une fois le challenge dérivé, le PISP générera un nouveau justificatif sur le dispositif, signera numériquement le challenge, et fournira des informations supplémentaires sur le justificatif dans la ressource Consent :
 
 1. L’objet `PublicKeyCredential` — qui contient l’ID de la clé et une [AuthenticatorAttestationResponse](https://w3c.github.io/webauthn/#iface-authenticatorattestationresponse) contenant la clé publique
 2. Un champ `credentialType` à la valeur `FIDO`
 3. Un champ `status` avec la valeur `PENDING`
 
-> **Remarque :** Objets génériques Credential  
-> Bien que nous soyons concentrés d’abord sur FIDO, il est possible que certains PISP souhaitent offrir des services aux utilisateurs via d’autres canaux, par ex. USSD ou SMS. L’API supporte donc aussi un type `GENERIC`, par exemple :  
+> **Remarque :** Objets Credential génériques  
+> Bien que nous soyons concentrés d’abord sur FIDO, il est possible que certains PISP souhaitent offrir des services aux utilisateurs via d’autres canaux, par ex. USSD ou SMS. L’API prend donc aussi en charge un type `GENERIC`, par exemple :  
 >```
 > CredentialTypeGeneric {
 >   credentialType: 'GENERIC'
@@ -238,24 +238,24 @@ Une fois le challenge dérivé, le PISP générera un nouvel identifiant sur le 
 > }
 >```
 
-Le DFSP reçoit l’appel **PUT /consents/**_{ID}_ du PISP, et valide éventuellement l'objet Credential inclus dans la requête. Le DFSP demande ensuite au service Auth de créer l’objet `Consent` et de valider l’identifiant.
+Le DFSP reçoit l’appel **PUT /consents/**_{ID}_ du PISP, et valide éventuellement l'objet Credential inclus dans la requête. Le DFSP demande ensuite au service Auth de créer l’objet `Consent` et de valider le justificatif.
 
-Si le DFSP reçoit un rappel **PUT /consents/**_{ID}_ du service Auth, avec un `credential.status` à `VERIFIED`, il sait que l’identifiant est valide selon le service Auth.
+Si le DFSP reçoit un rappel **PUT /consents/**_{ID}_ du service Auth, avec un `credential.status` à `VERIFIED`, il sait que le justificatif est valide selon le service Auth.
 
-Sinon, s’il reçoit un rappel **PUT /consents/**_{ID}_**/error**, il sait que quelque chose a mal tourné lors de l’enregistrement du consentement et l'identifiant associé, et peut informer le PISP en conséquence.
+Sinon, s’il reçoit un rappel **PUT /consents/**_{ID}_**/error**, il sait que quelque chose a mal tourné lors de l’enregistrement du consentement et du justificatif associé, et peut informer le PISP en conséquence.
 
 Le service Auth est ensuite responsable d'appeler **POST /participants/CONSENTS/**_{ID}_.
 Cet appel associera le `consentId` au `participantId` du service Auth et permettra de retrouver plus tard le service Auth correspondant.
 
-![Enregistrement de l’identifiant : Enregistrement](./assets/diagrams/linking/5a-credential-registration.svg)
+![Enregistrement du justificatif : Enregistrement](./assets/diagrams/linking/5a-credential-registration.svg)
 
 ### 3.6.3 <a id='FinalizingtheConsent'></a>Finalisation du consentement
 
-Une fois que le DFSP est sûr que l’identifiant est valide, il appelle **POST /participants/THIRD_PARTY_LINK/**_{ID}_ pour chaque compte dans la liste `Consent.scopes`. Cette entrée représente le lien entre le compte du PISP et celui du DFSP, que le PISP pourra utiliser pour spécifier la _source des fonds_ lors de la demande de transaction.
+Une fois que le DFSP est sûr que le justificatif est valide, il appelle **POST /participants/THIRD_PARTY_LINK/**_{ID}_ pour chaque compte dans la liste `Consent.scopes`. Cette entrée représente le lien entre le compte du PISP et celui du DFSP, que le PISP pourra utiliser pour spécifier la _source des fonds_ lors de la demande de transaction.
 
 Enfin, le DFSP appelle **PUT /consent/**_{ID}_ avec l'objet Consent finalisé reçu du service Auth.
 
-![Enregistrement de l'identifiant : Finalisation](./assets/diagrams/linking/5b-finalize_consent.svg)
+![Enregistrement du justificatif : Finalisation](./assets/diagrams/linking/5b-finalize_consent.svg)
 
 
 # 4. <a id='Unlinking'></a>Déliaison
@@ -266,7 +266,7 @@ Pour rendre cela possible, il suffit de fournir un moyen à un membre du réseau
 
 Nous devons gérer 2 scénarios avec une requête **DELETE /consents/**_{ID}_ :
 1. Un service Auth hébergé par le DFSP, où aucun détail du consentement n’est stocké dans le Switch ;
-2. Un service Auth hébergé par le Switch, où ce service est considéré comme la source autoritaire pour l’objet `Consent`.
+2. Un service Auth hébergé par le Switch, où ce service est considéré comme la source faisant autorité pour l’objet `Consent`.
 
 ## 4.1 <a id='UnlinkingwithoutaSwitchHostedAuthService'></a>Déliaison sans service d'authentification hébergé par le Switch
 
@@ -280,7 +280,7 @@ Dans le cas où la déliaison est demandée depuis le côté DFSP, celui-ci peut
 
 Dans cette instance, le PISP adresse toujours son appel **DELETE /consents/22222222-0000-0000-0000-000000000000** au DFSP via l’en-tête `FSPIOP-Destination`.
 
-En interne, le Switch recherchera la source autoritaire de l’objet `Consent` via l’appel ALS, **GET /participants/CONSENT/**_{ID}_. S’il est déterminé qu’un service Auth hébergé par le Switch « possède » ce consentement, l’appel HTTP **DELETE /consents/**_{ID}_ sera redirigé vers le service Auth.
+En interne, le Switch recherchera la source faisant autorité de l’objet `Consent` via l’appel ALS, **GET /participants/CONSENT/**_{ID}_. S’il est déterminé qu’un service Auth hébergé par le Switch « possède » ce consentement, l’appel HTTP **DELETE /consents/**_{ID}_ sera redirigé vers le service Auth.
 
 ![Déliaison — Switch hébergé](./assets/diagrams/linking/6b-unlinking-hub-hosted.svg)
 
@@ -297,7 +297,7 @@ le DFSP répond avec le code d’erreur `6205` via **PUT /accounts/**_{ID}_**/er
 
 Lorsque le DFSP reçoit la requête **POST /consentRequests** du PISP, les erreurs suivantes peuvent survenir :
 
-1. Le DFSP ne supporte pas les périmètres (scopes) spécifiés : `6101`. Par exemple, le `userId` spécifié ne correspond pas aux comptes mentionnés, ou le champ `scope.actions` contient des permissions que ce DFSP ne supporte pas.
+1. Le DFSP ne prend pas en charge les étendues (scopes) spécifiées : `6101`. Par exemple, le `userId` spécifié ne correspond pas aux comptes mentionnés, ou le champ `scope.actions` contient des permissions que ce DFSP ne prend pas en charge.
 2. Le PISP a envoyé un mauvais callbackUri : `6204`. Par exemple, le schéma de callbackUri pourrait être http, ce que le DFSP pourrait choisir de ne pas accepter.
 3. Tout autre contrôle ou validation côté DFSP échoue : `6104`. Par exemple, le compte de l’utilisateur pourrait être inactif ou suspendu.
 

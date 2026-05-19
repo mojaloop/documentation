@@ -1,4 +1,9 @@
-# GET Participants
+---
+sidebarTitle: GET — Participants
+title: GET — Participants
+---
+
+# GET — Participants
 
 Conception de la récupération d’un participant par un DFSP.
 

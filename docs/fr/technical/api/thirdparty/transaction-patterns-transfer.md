@@ -35,13 +35,13 @@ Les conventions suivantes sont utilisées dans ce document pour identifier les t
 |Type d’information|Convention|Exemple|
 |---|---|---|
 |**Éléments de l’API, comme les ressources**|Gras|**/authorization**|
-|**Variables**|Italique avec chevrons|_{ID}_|
-|**Termes de glossaire**|Italique à la première occurrence ; défini dans le _Glossaire_|Le but de l'API est de permettre les transactions financières interopérables entre un _Payeur_ (un payeur de fonds électroniques dans une transaction de paiement) situé dans un _FSP_ (une entité qui fournit un service financier numérique à un utilisateur final) et un _Bénéficiaire_ (un destinataire de fonds électroniques dans une transaction de paiement) situé dans un autre FSP.|
-|**Documents de bibliothèque**|Italique|Les informations utilisateur ne devraient, en général, pas être utilisées par les déploiements d'API ; les mesures de sécurité détaillées dans _Signature API et Chiffrement API_ devraient être utilisées à la place.|
+|**Variables**|Italique entre chevrons|_{ID}_|
+|**Termes du glossaire**|Italique à la première occurrence ; défini dans le _Glossaire_|Le but de l'API est de permettre les transactions financières interopérables entre un _Payeur_ (un payeur de fonds électroniques dans une transaction de paiement) situé dans un _FSP_ (une entité qui fournit un service financier numérique à un utilisateur final) et un _Bénéficiaire_ (un destinataire de fonds électroniques dans une transaction de paiement) situé dans un autre FSP.|
+|**Documents de référence**|Italique|Les informations utilisateur ne devraient, en général, pas être utilisées par les déploiements d'API ; les mesures de sécurité détaillées dans _Signature API et Chiffrement API_ devraient être utilisées à la place.|
 
 ##  1.2. <a id='DocumentVersionInformation'></a>Informations sur la version du document
 
-| Version | Date | Description du changement |
+| Version | Date | Description des modifications |
 | --- | --- | --- |
 | **1.0** | 2021-10-03    | Version initiale
 
@@ -68,8 +68,8 @@ La spécification de l’API Tiers Mojaloop inclut les documents suivants:
 - [Modèles de données](./data-models.md)
 - [Modèles de transaction - Liaison](./transaction-patterns-linking.md)
 - [Modèles de transaction - Transfert](./transaction-patterns-transfer.md)
-- [Définition Open API Tiers – DFSP](./thirdparty-dfsp-v1.0.yaml)
-- [Définition Open API Tiers – PISP](./thirdparty-dfsp-v1.0.yaml)
+- [Définition de l'API ouverte tierce partie – DFSP](./thirdparty-dfsp-v1.0.yaml)
+- [Définition de l'API ouverte tierce partie – PISP](./thirdparty-pisp-v1.0.yaml)
 
 
 # <a id='Transfers'></a>3. Transferts
@@ -77,18 +77,18 @@ La spécification de l’API Tiers Mojaloop inclut les documents suivants:
 Les transferts sont divisés en sections séparées :
 1. **Découverte** : Le PISP recherche le bénéficiaire auquel envoyer des fonds
 
-2. **Accord** : Le PISP confirme le bénéficiaire, et recherche les conditions de la transaction. Si l'Utilisateur accepte les conditions de la transaction, il signe la transaction avec l'identifiant établi lors du flux d’API de liaison
+2. **Accord** : Le PISP confirme le bénéficiaire, et recherche les conditions de la transaction. Si l'Utilisateur accepte les conditions de la transaction, il signe la transaction avec le justificatif établi lors du flux d’API de liaison
 
 3. **Transfert** : Le DFSP du payeur initie la transaction et informe le PISP du résultat de celle-ci.
 
 ##  <a id='Discovery'></a>3.1 Découverte
 
-Dans cette phase, un utilisateur saisit l'identifiant de l'utilisateur à qui il souhaite envoyer des fonds. Le PISP exécute un appel **GET /parties/**_{Type}/{ID}_** (ou **GET /parties/**_{Type}/{ID}/{SubId}_) et attend un rappel (callback) du switch Mojaloop. [Section 6.3](https://github.com/mojaloop/mojaloop-specification/blob/master/fspiop-api/documents/v1.1-document-set/API%20Definition%20v1.1.md#63-api-resource-parties)
+Dans cette phase, un utilisateur saisit l'identifiant de l'utilisateur à qui il souhaite envoyer des fonds. Le PISP exécute un appel **GET /parties/**_{Type}/{ID}_** (ou **GET /parties/**_{Type}/{ID}/{SubId}_) et attend un callback du switch Mojaloop. [Section 6.3](https://github.com/mojaloop/mojaloop-specification/blob/master/fspiop-api/documents/v1.1-document-set/API%20Definition%20v1.1.md#63-api-resource-parties)
 de la Réf. 1 décrit la ressource **/parties** en détail.
 
-Si la demande **GET /parties/**_{Type}/{ID}_ réussit, le PISP recevra un rappel **PUT /parties** du switch Mojaloop. Le PISP confirme alors le bénéficiaire avec son utilisateur.
+Si la demande **GET /parties/**_{Type}/{ID}_ réussit, le PISP recevra un callback **PUT /parties** du switch Mojaloop. Le PISP confirme alors le bénéficiaire avec son utilisateur.
 
-Si le PISP reçoit un rappel **PUT /parties/**_{Type}/{ID}_**/error** (ou **PUT /parties/**_{Type}/{ID}/{SubId}_**/error**), il doit afficher l’erreur pertinente à l'utilisateur.
+Si le PISP reçoit un callback **PUT /parties/**_{Type}/{ID}_**/error** (ou **PUT /parties/**_{Type}/{ID}/{SubId}_**/error**), il doit afficher l’erreur pertinente à l'utilisateur.
 
 
 ![Discovery](./assets/diagrams/transfer/1-1-discovery.svg)
@@ -103,7 +103,7 @@ Si l'utilisateur a associé plus d'un compte avec l'application PISP, le PISP pe
 1. le `FSPIOP-Destination` comme le DFSP avec lequel le compte de l'utilisateur est associé
 2. Le champ `payer` du corps de la requête **POST /thirdpartyRequests/transactions**. `partyIdType` est `THIRD_PARTY_LINK`, `fspId` est le fspId du DFSP qui a émis la liaison, et `partyIdentifier` est l’`accountId` spécifié dans le corps **POST /consents#scopes**.
 
-> Voir [Accorder consentement](./transaction-patterns-linking.md#Grantconsent) pour plus d’informations.
+> Voir [Octroi du consentement](./transaction-patterns-linking.md#Grantconsent) pour plus d’informations.
 
 Le PISP génère ensuite un `transactionRequestId` aléatoire de type UUID (voir [RFC 4122 UUID](https://tools.ietf.org/html/rfc4122)).
 
@@ -123,13 +123,13 @@ Si la validation échoue, le DFSP doit envoyer un appel **PUT /thirdpartyRequest
 
 ### <a id='ThirdpartyAuthorizationRequest'></a>3.2.2 Demande d’autorisation tierce
 
-Le DFSP payeur (c’est-à-dire, l’institution envoyant des fonds à la demande du PISP) peut alors émettre une demande de devis (**POST /quotes**) au DFSP bénéficiaire (l’institution recevant les fonds). Après réception du rappel **PUT /quotes/**_{ID}_ du DFSP bénéficiaire, le DFSP payeur doit confirmer les détails de la transaction auprès du PISP.
+Le DFSP payeur (c’est-à-dire, l’institution envoyant des fonds à la demande du PISP) peut alors émettre une demande de devis (**POST /quotes**) au DFSP bénéficiaire (l’institution recevant les fonds). Après réception du callback **PUT /quotes/**_{ID}_ du DFSP bénéficiaire, le DFSP payeur doit confirmer les détails de la transaction auprès du PISP.
 
 Il utilise l’appel d’API **POST /thirdpartyRequests/authorizations**. Le corps de la requête contient les champs suivants :
 
 - `transactionRequestId` – l'identifiant original de **POST /thirdpartyRequests/transactions**. Utilisé par le PISP pour corréler une demande d’autorisation à une demande de transaction tierce.
 - `authorizationRequestId` – un UUID aléatoire généré par le DFSP pour identifier cette demande d’autorisation tierce
-- `challenge` – le challenge est une `BinaryString` qui sera signée par la clé privée sur l'appareil de l'utilisateur. Bien qu'il puisse s'agir d'une chaîne aléatoire, il est recommandé qu’elle soit dérivée à partir de quelque chose de _significatif_ pour les acteurs de la transaction, qui ne puisse être prédit à l’avance par le PISP. Voir [Section 4.1](#DerivingtheChallenge) pour un exemple de dérivation du challenge.
+- `challenge` – le challenge est une `BinaryString` qui sera signé par la clé privée sur l'appareil de l'utilisateur. Bien qu'il puisse s'agir d'une chaîne aléatoire, il est recommandé qu’elle soit dérivée à partir de quelque chose de _significatif_ pour les acteurs de la transaction, qui ne puisse être prédit à l’avance par le PISP. Voir [Section 4.1](#DerivingtheChallenge) pour un exemple de dérivation du challenge.
 - `transactionType` – le champ `transactionType` de la demande initiale **POST /thirdpartyRequests/transactions**
 
 ![1-2-2-authorization](./assets/diagrams/transfer/1-2-2-authorization.svg)
@@ -141,7 +141,7 @@ Une fois la requête **POST /thirdpartyRequests/authorizations** reçue du DFSP 
 Les résultats de la demande d'autorisation sont retournés au DFSP via **PUT /thirdpartyRequests/authorizations/**_{ID}_, où
 _{ID}_ est le `authorizationRequestId`.
 
-Si l’utilisateur rejette la transaction, le payload envoyé dans **PUT /thirdpartyRequests/authorizations/**_{ID}_ est :
+Si l’utilisateur rejette la transaction, la charge utile envoyée dans **PUT /thirdpartyRequests/authorizations/**_{ID}_ est :
 
 ```json
 {
@@ -151,7 +151,7 @@ Si l’utilisateur rejette la transaction, le payload envoyé dans **PUT /thirdp
 
 ![1-2-3-rejected-authorization](./assets/diagrams/transfer/1-2-3-rejected-authorization.svg)
 
-Si l’utilisateur accepte la transaction, le payload dépend du `credentialType` du `Consent.credential` :
+Si l’utilisateur accepte la transaction, la charge utile dépend du `credentialType` du `Consent.credential` :
 
 1. Si `FIDO`, le PISP demande à l’utilisateur de compléter le flux [FIDO Assertion](https://webauthn.guide/#authentication) pour signer le challenge.
    Le `signedPayload.fidoSignedPayload` est le `FIDOPublicKeyCredentialAssertion` renvoyé suite au processus FIDO. Voir [3.2.3.1 Signature du challenge FIDO](#SigningTheChallengeFIDO)
@@ -244,7 +244,7 @@ Après validation du challenge signé, le DFSP peut lancer une transaction Mojal
 
 Après avoir reçu l’appel **PUT /transfers/**_{ID}_ du switch, le DFSP recherche le ThirdpartyTransactionRequestId du transfert donné puis envoie un appel **PATCH /thirdpartyRequests/transactions/**_{ID}_ au PISP.
 
-Une fois ce rappel reçu, le PISP sait que le transfert est réussi et peut en informer son utilisateur.
+Une fois ce callback reçu, le PISP sait que le transfert est réussi et peut en informer son utilisateur.
 
 ![1-3-transfer](./assets/diagrams/transfer/1-3-transfer.svg)
 
@@ -280,31 +280,31 @@ Un PISP peut effectuer un **GET /thirdpartyRequests/transactions/**_{ID}_ pour o
 
 # <a id='ErrorConditions'></a>5. Conditions d’erreur
 
-Après que le PISP a initié la demande de transaction tierce via **POST /thirdpartyRequests/transactions**, le DFSP doit envoyer soit un **PUT /thirdpartyRequests/transactions/**_{ID}_**/error** soit un rappel **PATCH /thirdpartyRequests/transactions/**_{ID}_ pour informer le PISP du statut final.
+Après que le PISP a initié la demande de transaction tierce via **POST /thirdpartyRequests/transactions**, le DFSP doit envoyer soit un **PUT /thirdpartyRequests/transactions/**_{ID}_**/error** soit un callback **PATCH /thirdpartyRequests/transactions/**_{ID}_ pour informer le PISP du statut final.
 
 - **PATCH /thirdpartyRequests/transactions/**_{ID}_ est utilisé pour informer le PISP du statut final. Il peut s’agir soit d’un rejet par l’utilisateur, soit d’une approbation ayant abouti à un transfert réussi.
 - **PUT /thirdpartyRequests/transactions/**_{ID}_**/error** informe le PISP en cas d’échec de la demande.
-- Si le PISP ne reçoit aucun de ces rappels avant l’expiration `expiration` spécifiée dans la requête **POST /thirdpartyRequests/transactions**, il peut considérer la demande comme échouée et en informer son utilisateur.
+- Si le PISP ne reçoit aucun de ces callbacks avant l’expiration `expiration` spécifiée dans la requête **POST /thirdpartyRequests/transactions**, il peut considérer la demande comme échouée et en informer son utilisateur.
 
 
 ## <a id='badpayeelookup'></a> 5.1 Recherche de bénéficiaire infructueuse
 
-Quand le PISP effectue une recherche de bénéficiaire (**GET /parties/**_{Type}/{ID}_), il peut recevoir le rappel **PUT /parties/**_{Type}/{ID}_**/error**. 
+Quand le PISP effectue une recherche de bénéficiaire (**GET /parties/**_{Type}/{ID}_), il peut recevoir le callback **PUT /parties/**_{Type}/{ID}_**/error**. 
 
-Voir [6.3.4 Parties Error Callbacks](https://docs.mojaloop.io/mojaloop-specification/documents/API%20Definition%20v1.0.html#634-error-callbacks) de la Définition d’API FSPIOP pour plus d’informations sur ce rappel d’erreur.
+Voir [6.3.4 Parties Error Callbacks](https://docs.mojaloop.io/mojaloop-specification/documents/API%20Definition%20v1.0.html#634-error-callbacks) de la Définition d’API FSPIOP pour plus d’informations sur ce callback d’erreur.
 
 Dans ce cas, le PISP peut vouloir afficher un message d’erreur à l’utilisateur, en l’invitant à essayer avec un autre identifiant ou plus tard.
 
 ## <a id='badtptr'></a> 5.2 Mauvaise demande de transaction tierce
 
 Quand le DFSP reçoit le **POST /thirdpartyRequests/transactions** du PISP, les erreurs suivantes peuvent se produire :
-1. Le `payer.partyIdType` ou `payer.partyIdentifier` est invalide ou pas lié à un **Consent** valide connu du DFSP
+1. Le `payer.partyIdType` ou `payer.partyIdentifier` est invalide ou pas lié à un consentement valide connu du DFSP
 2. Le compte utilisateur identifié par `payer.partyIdentifier` n'a pas assez de fonds
 3. La devise précisée dans `amount.currency` n’est pas prise en charge par le compte de l’utilisateur
 4. `payee.partyIdInfo.fspId` n’est pas défini — il s’agit d’une propriété optionnelle, mais le fspId bénéficiaire sera requis pour adresser correctement la demande de devis
 5. Tout autre contrôle ou vérification côté DFSP échoue
 
-Dans ce cas, le DFSP doit informer le PISP de l’échec en envoyant un rappel **PUT /thirdpartyRequests/transactions/**_{ID}_**/error**.
+Dans ce cas, le DFSP doit informer le PISP de l’échec en envoyant un callback **PUT /thirdpartyRequests/transactions/**_{ID}_**/error**.
 
 ![3-2-1-bad-tx-request](./assets/diagrams/transfer/3-2-1-bad-tx-request.svg)
 
@@ -314,7 +314,7 @@ Le PISP peut alors informer son utilisateur de l’échec, et proposer de relanc
 
 Le DFSP peut ne pas vouloir, ou ne pas être en mesure, d’exposer des détails sur les échecs API FSPIOP aval au PISP.
 
-Par exemple, avant d’émettre un **POST /thirdpartyRequests/authorizations** au PISP, si le **POST /quotes** avec le FSP bénéficiaire échoue, le DFSP envoie un rappel **PUT /thirdpartyRequests/transactions/**_{ID}_**/error** au PISP.
+Par exemple, avant d’émettre un **POST /thirdpartyRequests/authorizations** au PISP, si le **POST /quotes** avec le FSP bénéficiaire échoue, le DFSP envoie un callback **PUT /thirdpartyRequests/transactions/**_{ID}_**/error** au PISP.
 
 ![3-3-1-bad-quote-request](./assets/diagrams/transfer/3-3-1-bad-quote-request.svg)
 
@@ -325,7 +325,7 @@ Un autre exemple : si la requête **POST /transfers** échoue :
 
 ## <a id='invalidsignedchallenge'></a> 5.4 Challenge signé invalide
 
-Après réception d’un **POST /thirdpartyRequests/authorizations** du DFSP, le PISP demande à l'utilisateur de signer le `challenge` via l’identifiant enregistré lors du flux de liaison de comptes.
+Après réception d’un **POST /thirdpartyRequests/authorizations** du DFSP, le PISP demande à l'utilisateur de signer le `challenge` via le justificatif enregistré lors du flux de liaison de comptes.
 
 Le challenge signé est retourné au DFSP via **PUT /thirdpartyRequest/authorizations/**_{ID}_.
 
@@ -345,7 +345,7 @@ Si le challenge signé est invalide, le DFSP appelle alors **PUT /thirdpartyRequ
 
 ## <a id='thirdpartytransactionrequesttimeout'></a> 5.5 Expiration de la demande de transaction tierce
 
-Si le PISP ne reçoit aucun des rappels ci-dessus avant la date d’expiration `expiration` définie dans **POST /thirdpartyRequests/transactions**, il peut considérer la demande comme échouée et en informer immédiatement l'utilisateur.
+Si le PISP ne reçoit aucun des callbacks ci-dessus avant la date d’expiration `expiration` définie dans **POST /thirdpartyRequests/transactions**, il peut considérer la demande comme échouée et en informer immédiatement l'utilisateur.
 
 
 ![3-6-tpr-timeout](./assets/diagrams/transfer/3-6-tpr-timeout.svg)
@@ -354,7 +354,7 @@ Si le PISP ne reçoit aucun des rappels ci-dessus avant la date d’expiration `
 
 ## <a id='DerivingtheChallenge'></a>6.1 Dérivation du challenge
 
-1. _Soit `quote` la valeur du corps de la réponse du **PUT /quotes/**_{ID}_ _
+1. _Soit `quote` la valeur du corps de la réponse de l’appel **PUT /quotes/**_{ID}_
 2. _La fonction `CJSON()` est l’implémentation du JSON Canonical vers une chaîne, conforme à [RFC-8785 - Canonical JSON format](https://tools.ietf.org/html/rfc8785)_
 3. _La fonction `SHA256()` est la fonction de hachage SHA-256, conforme à [RFC-6234](https://tools.ietf.org/html/rfc6234)_
 4. Le DFSP doit générer la valeur `jsonString` en appliquant `CJSON(quote)`
