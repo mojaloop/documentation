@@ -4,9 +4,9 @@ sidebarTitle: Développement en cours
 
 # Développement en cours
 
-Aucun logiciel n’est jamais « terminé », et Mojaloop ne fait pas exception : nouvelles fonctionnalités, nouvelles API, nouveaux portails, maintenance continue, et une vigilance constante en matière de sécurité.
+Aucun logiciel n’est jamais « terminé », et Mojaloop ne fait pas exception : nouvelles fonctionnalités, nouvelles API, nouveaux portails, et bien sûr il y a toujours une maintenance continue, tandis que la sécurité exige une vigilance constante.
 
-La feuille de route Mojaloop priorise ces besoins dans le temps sous forme de *workstreams*. Chaque flux de travail a un responsable, chargé de le définir, le piloter et le livrer à la communauté Mojaloop, avec le soutien de contributeurs (ingénierie, documentation, cadrage des besoins, etc.).
+La feuille de route Mojaloop identifie et priorise ces besoins dans le temps sous forme de *workstreams*. Chaque flux de travail a un responsable, chargé de le définir, le piloter et le livrer à la communauté Mojaloop, avec le soutien de contributeurs (ingénierie, documentation, cadrage des besoins, etc.).
 
 ## Workstreams actifs
 

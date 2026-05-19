@@ -42,7 +42,7 @@ La journalisation standard des conteneurs (*stdout*, *stderr*) est utilisée par
 
 1. Prise en charge de JWS.
 
-2. TLS mutuellement authentifié (x.509) en version 1.2 recommandé entre participants et hub.
+2. TLS mutuellement authentifié (x.509) en version 1.2 doit être pris en charge entre participants et hub.
 
 ## Généralités
 
@@ -50,7 +50,7 @@ La journalisation standard des conteneurs (*stdout*, *stderr*) est utilisée par
 
 2. Tous les messages de journal contiennent des informations contextuelles.
 
-3. Les défaillances sont anticipées et gérées le plus gracieusement possible.
+3. Les défaillances sont anticipées et gérées de la manière la plus élégante possible.
 
 4. Les requêtes inter-processus / réseau ne demandent que les données nécessaires.
 

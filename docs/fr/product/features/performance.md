@@ -6,7 +6,7 @@ sidebarTitle: Performance
 
 Le débit des transactions — souvent exprimé en transactions par seconde — est une métrique clé pour les adoptants, qui doivent être assurés que Mojaloop répond à leurs besoins, qu’il s’agisse d’un déploiement national, sectoriel ou multinational.
 
-Pour cette raison, la communauté Mojaloop a défini une base de référence en matière de performance et affine en continu l’efficacité du traitement des transactions.
+Pour cette raison, la communauté Mojaloop a défini une base de référence en matière de performance et travaille continuellement à affiner et améliorer l’efficacité du traitement des transactions.
 
 ## Base de référence
 

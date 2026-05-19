@@ -16,7 +16,7 @@ Si le DFSP payeur souhaite poursuivre, il envoie une confirmation. Le DFSP bén�
 
 Si le DFSP payeur accepte les conditions du DFSP bénéficiaire, il présente les conditions du transfert au payeur, y compris le total à payer selon le modèle retenu.
 
-| Modèle de facturation | Paye le payeur | Reçoit le bénéficiaire |
+| Modèle de facturation | Payeur paie | Bénéficiaire reçoit |
 | -------------- | ---------------------- | -------------------- |
 | Frais à charge de l’émetteur | Montant + frais DFSP payeur + frais DFSP bénéficiaire | Montant |
 | Frais à charge du bénéficiaire | Montant + frais DFSP payeur | Montant − frais DFSP bénéficiaire |
@@ -25,7 +25,7 @@ Si le payeur accepte et souhaite poursuivre, le montant convenu du transfert est
 
 À l’issue du transfert, le DFSP bénéficiaire retient ses frais convenus et crédite le compte du bénéficiaire du reliquat.
 
-Ainsi, tous les frais sont regroupés dans une seule devis : le payeur connaît le coût exact avant de valider, y compris si les frais du DFSP bénéficiaire sont payés par le payeur ou le bénéficiaire.
+Ainsi, tous les frais sont regroupés dans un seul devis : le payeur connaît le coût exact avant de valider, y compris si les frais du DFSP bénéficiaire sont payés par le payeur ou le bénéficiaire.
 
 ## Rules Handler — frais d’interchange
 
