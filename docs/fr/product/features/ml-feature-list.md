@@ -4,33 +4,33 @@ sidebarTitle: Introduction Mojaloop
 
 # Introduction à Mojaloop 
 
-Mojaloop est un logiciel open source de paiements instantanés qui interconnecte des institutions financières disparates de manière à favoriser l’inclusion financière et à offrir une gestion robuste des risques pour tous les participants. Il est disponible pour toute entité souhaitant l’utiliser pour mettre en œuvre et exploiter un système de paiements instantanés inclusif (SPII, *Inclusive Instant Payment System*).
+Mojaloop est un logiciel open source de paiements instantanés qui interconnecte des institutions financières variées avec pour objectif l’inclusion financière tout en limitant le risque systémique pour tous les participants. La plateforme peut être téléchargée pour toute entité souhaitant l’utiliser pour mettre en œuvre et exploiter un système de paiements instantanés inclusif (SPII, *Système de paiement instantané inclusif*).
 
 ## Point de vue des régulateurs et des opérateurs
-Mojaloop fournit les fondations nécessaires pour qu’un opérateur établisse un système de paiements instantanés inclusif (SPII), et est conçu pour s’intégrer à un partenaire de règlement. Ce partenaire peut être le RTGS national, bien que d’autres mécanismes de règlement soient également pris en charge. Ainsi, Mojaloop permet d’offrir un service complet d’interopérabilité de paiements aux institutions financières (IF) participantes.
+Mojaloop fournit les fondations nécessaires pour qu’un opérateur de paiement national établisse un système de paiements instantanés inclusif (SPII). La plateforme est conçue pour s’intégrer à une chambre de compensation interbancaire publique ou privee. Ce partenaire peut être le RTGS national, bien que d’autres mécanismes de compensation soient également Supportés. Ainsi, Mojaloop permet d’offrir un service complet d’interopérabilité de paiements aux institutions financières (IF) participantes.
 
-Une fois déployé, Mojaloop permet à l’opérateur de schéma de :
-- intégrer, suspendre ou réactiver les IF participantes selon les besoins ;
+Une fois déployé, Mojaloop permet à l’opérateur du schéma de :
+- intégrer, suspendre ou réactiver les institutions financières participantes selon les besoins ;
 - fixer des plafonds de débit net par participant afin de gérer le risque et la liquidité ;
-- choisir et exploiter le modèle de règlement le plus adapté aux exigences du schéma et nationales ;
-- définir plusieurs périodes de règlement dans la journée opérationnelle, la clôture de chaque période générant un fichier de règlement (selon le modèle retenu) pour action du partenaire de règlement.
+- choisir et exploiter le implémenter une compensation adaptée au besoin du schéma le plus adapté aux exigences du schéma ;
+- définir plusieurs périodes de compensation au sein de la journée, la clôture de chaque période générant un fichier de compensation (selon le modèle retenu) qui sera consommee par la chambre de compensation.
 
-Le Hub Mojaloop soutient ces fonctions en :
-- traitant en continu 24h/24 et 7j/7 les paiements entre IF débitrices et créditrices ;
+Le Hub Mojaloop Supportent ces fonctions en :
+- traitant en continu 24h/24 et 7j/7 les paiements entre institutions financières débitrices et créditrices ;
 - mettant à jour en temps réel la position de chaque participant à chaque débit et crédit ;
 - validant chaque paiement (liquidité suffisante, respect du plafond de débit net du participant), en rejetant les transactions non conformes ;
-- mettant à jour les positions des participants à la clôture de chaque fenêtre de règlement pour refléter la valeur des fonds réglés.
+- mettant à jour les positions des participants à la clôture de chaque fenêtre de compensation pour refléter la valeur des fonds réglés.
 
-Mojaloop prend aussi en charge un **modèle de participation indirecte**, pour élargir l’accès aux petites institutions — notamment des acteurs non bancaires comme les IMF — non éligibles à une participation directe au RTGS national. Cela garantit ainsi une large inclusion au sein de l’écosystème de paiements, tout en préservant la stabilité financière.
+Mojaloop prend aussi en charge un **modèle de participation indirecte**, pour élargir l’accès aux petites institutions — notamment des acteurs non bancaires comme les IMF — non éligibles à une participation directe au RTGS(Système de compensation brut en temps réel) national. Cela garantit ainsi une large inclusion au sein de l’écosystème de paiements, tout en préservant la stabilité financière.
 
 
 ## Perspective technique
 
 Pour délivrer le SPII décrit ci-dessus, Mojaloop met en œuvre un ensemble de fonctions cœur :
 
-  |Résolution d’alias|Compensation|Règlement|
+  |Résolution d’alias|Compensation|compensation|
 |:--------------:|:--------------:|:--------------:|
-|Résolution d’adresse ou **d’alias** du bénéficiaire, pour identifier de façon fiable l’institution détentrice du compte — et donc le bon compte bénéficiaire|**Compensation** des paiements de bout en bout, grâce à des mécanismes robustes qui lèvent tout doute quant au succès d’une transaction|Orchestration du **règlement** des transactions compensées entre institutions selon un modèle convenu entre elles et un calendrier prédéfini.|
+|Résolution d’adresse ou **d’alias** du bénéficiaire, pour identifier de façon fiable l’institution détentrice du compte — et donc le bon compte bénéficiaire|**Compensation** des paiements de bout en bout, grâce à des mécanismes robustes qui lèvent tout doute quant au succès d’une transaction|Orchestration du **compensation** des transactions compensées entre institutions selon un modèle convenu entre elles et un calendrier prédéfini.|
 
 &nbsp;
 
@@ -70,7 +70,7 @@ Autour du cœur illustré ci-dessus s’ajoutent des services superposés, eux a
 
 Ce document présente une liste de fonctionnalités couvrant les aspects suivants de Mojaloop :
 
--   [**Cas d’usage**](./use-cases.md), pour les cas pris en charge par tout déploiement Mojaloop.
+-   [**Cas d’usage**](./use-cases.md), pour les cas Supportés par tout déploiement Mojaloop.
 -   [**Transactions**](./transaction.md), pour les API Mojaloop, le déroulement d’une transaction et les particularités adaptées à un service de paiements instantanés inclusif.
 
 -   [**Gestion des risques**](./risk.md), pour les mesures évitant tout risque de contrepartie entre DFSP d’un schéma Mojaloop et protégeant l’intégrité du schéma.
