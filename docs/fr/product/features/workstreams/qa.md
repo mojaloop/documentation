@@ -4,7 +4,7 @@ sidebarTitle: Cadre QA
 
 # Workstream Cadre QA
 
-L’objectif est de développer un cadre QA pour valider la configuration, les fonctionnalités, la sécurité, la préparation à l’interopérabilité et les performances d’un déploiement. Il pourra servir à l’auto-évaluation des adoptants ou à un examen externe pour rassurer autorités de tutelle et participants.
+L’objectif est de développer un cadre QA pour valider la configuration, les fonctionnalités, la sécurité, la préparation à l’interopérabilité et les performances d’un déploiement. Il pourra servir à l’auto-évaluation des adopteurs ou à un examen externe pour rassurer autorités de tutelle et participants.
 
 # Justification métier
 
@@ -21,7 +21,7 @@ Un cadre QA offre une approche cohérente pour évaluer qualité et maturité de
 | Moses Kipchirchir | Denis Mariru <br>Brian Njoroge<br>Ei Nghon Phoo<br>Sam Kummary |
 
 ## Dernière mise à jour (résumé)
-L’ébauche du cadre QA est publiée sur GitHub et Slack et utilisable immédiatement par la communauté. Les retours des adoptants guideront les affinements. Des discussions explorent une version automatisée du cadre dans le pipeline de déploiement ; l’automatisation complète reste un objectif à plus long terme.
+L’ébauche du cadre QA est publiée sur GitHub et Slack et utilisable immédiatement par la communauté. Les retours des adopteurs guideront les affinements. Des discussions explorent une version automatisée du cadre dans le pipeline de déploiement ; l’automatisation complète reste un objectif à plus long terme.
 
 ## Applicabilité
 

@@ -4,7 +4,7 @@ sidebarTitle: Adressage LEI
 
 # Workstream Adressage LEI
 
-Ce workstream soutient les transactions commerçants nationales et transfrontalières par l’adoption de l’identifiant international LEI. C’est une collaboration entre la Mojaloop Foundation et GLEIF, devant aboutir à un pilote avec un adoptant Mojaloop.
+Ce workstream soutient les transactions commerçants nationales et transfrontalières par l’adoption de l’identifiant international LEI. C’est une collaboration entre la Mojaloop Foundation et GLEIF, devant aboutir à un pilote avec un adopteur Mojaloop.
 
 # Justification métier
 

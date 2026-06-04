@@ -149,7 +149,7 @@ Pour le détail de chaque outil de déploiement, voir la documentation [Outils d
 <td>N/A</td>
 </tr>
 <tr>
-<td>Adoptant potentiel</td>
+<td>Adopteur potentiel</td>
 <td class="green">Empreinte : machine unique, p. ex. portable ou VM unique.<br>SLA : aucun</td>
 <td class="amber">Empreinte :<br>- Faible consommation de ressources, cluster unique<br>- Environnement proche de la production (bac à sable ? SLA inférieur à la prod)<br>SLA :<br>- Inférieur à la prod mais possibilité de tester les exigences non fonctionnelles.</td>
 <td class="amber">Empreinte :<br>- Faible consommation de ressources, cluster unique<br>- Environnement proche de la production (bac à sable ? SLA inférieur à la prod)<br>SLA :<br>- Inférieur à la prod mais possibilité de tester les exigences non fonctionnelles.</td>
@@ -215,7 +215,7 @@ Pour le détail de chaque outil de déploiement, voir la documentation [Outils d
 <td>L’utilisateur doit durcir son propre cluster Kubernetes.</td>
 <td>- Documentation orientée développeurs<br>- Documentation semi-technique / orientée analyste métier pour l’expérimentation et les tests de cas d’usage.<br>- Documentation produit pour expliquer les fonctionnalités (rôle et pertinence).</td>
 <td>- Doit permettre d’atteindre des SLA (pour une configuration matérielle de référence) :<br>  - Disponibilité :<br>    - ? 4 ou 5 neufs ?<br>  - RTO/RPO : ? aussi proche de zéro que possible.<br>  - Débit / performance<br>    - TPS : 1000+ (soutenu pendant 1 heure)<br>    - Latence (percentiles) (hors latences externes) :<br>      - Compensation : 99 % &lt; 1 seconde.<br>      - Recherche : 99 % &lt; 1 seconde.<br>      - Accord sur les conditions : 99 % &lt; 1 seconde.<br>  - Gestion des données :<br>    - Mesures contre la perte de données (réplication, reprise après sinistre).<br>    - Conservation (audit, conformité)<br>    - Archivage.<br><br>NB : la stratégie privilégie la haute disponibilité par rapport à la reprise après sinistre.</td>
-<td>- Peut être utilisé en production.<br>- Adapté au traitement d’opérations en argent réel.<br>- L’utilisateur / adoptant doit déployer et configurer sa propre infrastructure, y compris cluster(s) Kubernetes, entrée/sortie, pare-feu, etc.<br>- La sécurité se limite à ce que fournissent les charts HELM ; une conception et une configuration de sécurité complémentaires sont nécessaires.</td>
+<td>- Peut être utilisé en production.<br>- Adapté au traitement d’opérations en argent réel.<br>- L’utilisateur / adopteur doit déployer et configurer sa propre infrastructure, y compris cluster(s) Kubernetes, entrée/sortie, pare-feu, etc.<br>- La sécurité se limite à ce que fournissent les charts HELM ; une conception et une configuration de sécurité complémentaires sont nécessaires.</td>
 </tr>
 <tr>
 <td class="red"><a href="./tools.md#infrastructure-as-code-iac">Infrastructure as Code</a></td>

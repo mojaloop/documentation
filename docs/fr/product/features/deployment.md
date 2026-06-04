@@ -4,7 +4,7 @@ sidebarTitle: Déploiement
 
 # Déployer Mojaloop
 
-Les raisons de déployer Mojaloop sont multiples : apprendre à le connaître, évaluer son adéquation à un besoin, faire évoluer ou tester des fonctionnalités par des développeurs, permettre à un adoptant d’examiner fonctionnalités et connectivité, ou encore mettre en production un système national de paiements.
+Les raisons de déployer Mojaloop sont multiples : apprendre à le connaître, évaluer son adéquation à un besoin, faire évoluer ou tester des fonctionnalités par des développeurs, permettre à un adopteur d’examiner fonctionnalités et connectivité, ou encore mettre en production un système national de paiements.
 
 ## Guide de déploiement
 
@@ -16,7 +16,7 @@ Une fois l’outil adapté à vos besoins identifié, le [guide des outils de d�
 
 ## Préparation à la production
 
-La communauté a élaboré une matrice d’auto-évaluation permettant aux adoptants d’évaluer la maturité de leur déploiement Mojaloop et de leur organisation pour passer en production. Ce document ne constitue pas la base d’une évaluation formelle de la préparation à la production ; il propose un ensemble de contrôles de base sur des aspects importants d’un système en production. L’évaluation complète de l’adéquation opérationnelle d’un déploiement Mojaloop reste de la responsabilité exclusive de l’opérateur du système.
+La communauté a élaboré une matrice d’auto-évaluation permettant aux adopteurs d’évaluer la maturité de leur déploiement Mojaloop et de leur organisation pour passer en production. Ce document ne constitue pas la base d’une évaluation formelle de la préparation à la production ; il propose un ensemble de contrôles de base sur des aspects importants d’un système en production. L’évaluation complète de l’adéquation opérationnelle d’un déploiement Mojaloop reste de la responsabilité exclusive de l’opérateur du système.
 
 Vous pouvez [consulter la matrice ici](./Production_Readiness_Technical_Assessment.md) ; le formulaire est [téléchargeable ici](https://github.com/mojaloop/product-council/tree/main/Documentation/Deployment%20Readiness) lorsque vous souhaitez lancer une évaluation.
 

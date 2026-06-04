@@ -4,7 +4,7 @@ sidebarTitle: Outils de participation
 
 # Workstream Outils de participation
 
-L’objectif global du workstream Outils de participation est de constituer une offre « outils DFSP » pour aider les DFSP et les intégrateurs à raccorder leurs systèmes à un Hub Mojaloop. Au-delà de solutions semi-finales, le portefeuille comprend les outils nécessaires à l’intégration et des implémentations exemplaires adaptées à différents profils de DFSP.
+L’objectif global du workstream Outils de participation est de constituer une offre « outils DFSP » pour aider les DFSP et les intégrateurs à intégrer leurs systèmes à un Hub Mojaloop. Au-delà de solutions semi-finales, le portefeuille comprend les outils nécessaires à l’intégration et des implémentations exemplaires adaptées à différents profils de DFSP.
 
 Il convient de rappeler à tous les DFSP que les bénéfices d’une solution de paiement instantané inclusive comme Mojaloop reposent sur une démarche « écosystème complet » : étendre la portée du service Mojaloop dans leurs environnements pour offrir à eux et à leurs clients finalité des transactions, coûts réduits et exécution fiable de chaque transaction valide.
 

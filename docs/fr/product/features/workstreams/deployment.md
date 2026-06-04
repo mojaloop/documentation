@@ -4,7 +4,7 @@ sidebarTitle: Workstream déploiement
 
 # Workstream Outils de déploiement
 
-Ce workstream fournit outils, documentation et accompagnement pour permettre aux adoptants de déployer Mojaloop dans des environnements variés, cloud et sur site.
+Ce workstream fournit outils, documentation et accompagnement pour permettre aux adopteurs de déployer Mojaloop dans des environnements variés, cloud et sur site.
 
 # Justification métier
 
