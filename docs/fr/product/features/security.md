@@ -77,7 +77,7 @@ Le lecteur peut trouver des informations plus détaillées et techniques sur le 
 
 Des membres de la communauté Mojaloop développent un **cadre d’évaluation de la qualité**, dont le but est de développer une boîte à outils pour valider la configuration, les fonctionnalités, la sécurité, la préparation à l’interopérabilité et les performances d’un déploiement.
 
-Il pourra servir à l’auto-certification des adoptants ou à un examen externe pour renforcer l’assurance auprès des autorités de tutelle et des participants.
+Il pourra servir à l’auto-certification des adopteurs ou à un examen externe pour renforcer l’assurance auprès des autorités de tutelle et des participants.
 
 ## Applicabilité
 

@@ -74,7 +74,7 @@ Pour explorer les éléments de l’écosystème Mojaloop qui le rendent possibl
 
 3. La manière dont l’interconnexion / l’inter-schéma et le change sont combinés pour soutenir les [**transactions transfrontalières**](./CrossBorder.md).
 ## Autres ; paiements par carte
-De nombreux adoptants potentiels se demandent s’il est possible d’utiliser Mojaloop pour commuter des transactions carte. La réponse est que, techniquement, commuter une transaction carte est tout à fait envisageable ; le numéro de compte personnel (PAN) de la carte peut servir d’alias pour initier une RTP, d’autant que le numéro d’identification bancaire (BIN), partie du PAN, identifie le DFSP qui détient le compte du client, vers lequel la RTP doit être routée.
+De nombreux adopteurs potentiels se demandent s’il est possible d’utiliser Mojaloop pour commuter des transactions carte. La réponse est que, techniquement, commuter une transaction carte est tout à fait envisageable ; le numéro de compte personnel (PAN) de la carte peut servir d’alias pour initier une RTP, d’autant que le numéro d’identification bancaire (BIN), partie du PAN, identifie le DFSP qui détient le compte du client, vers lequel la RTP doit être routée.
 
 En pratique toutefois, le terminal point de vente (PoS) carte devrait être adapté pour router les transactions en conséquence : transactions domestiques via une RTP vers le commutateur Mojaloop, le reste vers le réseau carte émetteur. Ces terminaux appartiennent souvent aux banques acquéreuses, peu enclines à en ouvrir l’accès (les grandes enseignes, qui possèdent souvent leurs propres PoS, souvent intégrés, peuvent être plus favorables).
 
@@ -84,7 +84,7 @@ Enfin, une telle approche se rapproche davantage d’une transaction RTP Mojaloo
 
 ## Cas d’usage étendus
 
-Outre ces cas d’usage standard, Mojaloop permet aux adoptants de mettre en œuvre des cas d’usage plus complexes, qui ajoutent des fonctionnalités et se superposent aux cas standard.
+Outre ces cas d’usage standard, Mojaloop permet aux adopteurs de mettre en œuvre des cas d’usage plus complexes, qui ajoutent des fonctionnalités et se superposent aux cas standard.
 
 Ces cas propres à un schéma peuvent être ajoutés aisément par chaque opérateur de schéma.
 

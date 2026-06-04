@@ -8,7 +8,7 @@ Démontrer les performances de Mojaloop dans diverses configurations de déploie
 
 # Justification métier
 
-Un livre blanc montrant que Mojaloop dépasse les exigences de performance des adoptants serait un atout majeur pour la communauté.
+Un livre blanc montrant que Mojaloop dépasse les exigences de performance des adopteurs serait un atout majeur pour la communauté.
 
 ## Contributeurs
 |Responsable du workstream|Contributeurs|

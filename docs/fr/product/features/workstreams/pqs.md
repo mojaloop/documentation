@@ -8,7 +8,7 @@ Le workstream PQS est dédié à l’évaluation, au maintien et aux renforcemen
 
 # Justification métier
 
-Maintenir la qualité et la sécurité de la plateforme Mojaloop ; assurer la gestion des vulnérabilités et planifier les correctifs. Travailler avec adoptants et membres de la communauté pour améliorer progressivement sécurité et qualité. Fournir des fonctionnalités favorisant la conformité et combler les lacunes.
+Maintenir la qualité et la sécurité de la plateforme Mojaloop ; assurer la gestion des vulnérabilités et planifier les correctifs. Travailler avec adopteurs et membres de la communauté pour améliorer progressivement sécurité et qualité. Fournir des fonctionnalités favorisant la conformité et combler les lacunes.
 
 ## Contributeurs
 |Responsable du workstream|Contributeurs|

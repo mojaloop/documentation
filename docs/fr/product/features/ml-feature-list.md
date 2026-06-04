@@ -12,16 +12,16 @@ Mojaloop fournit les fondations nécessaires pour qu’un opérateur de paiement
 Une fois déployé, Mojaloop permet à l’opérateur du schéma de :
 - intégrer, suspendre ou réactiver les institutions financières participantes selon les besoins ;
 - fixer des plafonds de débit net par participant afin de gérer le risque et la liquidité ;
-- choisir et exploiter le implémenter une compensation adaptée au besoin du schéma le plus adapté aux exigences du schéma ;
-- définir plusieurs périodes de compensation au sein de la journée, la clôture de chaque période générant un fichier de compensation (selon le modèle retenu) qui sera consommee par la chambre de compensation.
+- implémenter une compensation adaptée au besoin du schéma ;
+- définir plusieurs périodes de compensation interbancaire au sein de la journée, la clôture de chaque période générant un fichier de compensation interbancaire qui sera consommé par la chambre de compensation.
 
-Le Hub Mojaloop Supportent ces fonctions en :
+Le Hub Mojaloop supporte ces fonctions en :
 - traitant en continu 24h/24 et 7j/7 les paiements entre institutions financières débitrices et créditrices ;
 - mettant à jour en temps réel la position de chaque participant à chaque débit et crédit ;
 - validant chaque paiement (liquidité suffisante, respect du plafond de débit net du participant), en rejetant les transactions non conformes ;
-- mettant à jour les positions des participants à la clôture de chaque fenêtre de compensation pour refléter la valeur des fonds réglés.
+- mettant à jour les positions des participants à la clôture de chaque fenêtre de compensation interbancaire pour refléter la valeur des fonds compensés.
 
-Mojaloop prend aussi en charge un **modèle de participation indirecte**, pour élargir l’accès aux petites institutions — notamment des acteurs non bancaires comme les IMF — non éligibles à une participation directe au RTGS(Système de compensation brut en temps réel) national. Cela garantit ainsi une large inclusion au sein de l’écosystème de paiements, tout en préservant la stabilité financière.
+Mojaloop prend aussi en charge un **modèle de participation indirecte**, pour élargir l’accès aux petites institutions — notamment des acteurs non bancaires comme les IMF — non éligibles à une participation directe au RTGS (système de règlement brut en temps réel). Cela garantit ainsi une large inclusion au sein de l’écosystème de paiements, tout en préservant la stabilité financière.
 
 
 ## Perspective technique
@@ -45,9 +45,9 @@ Ces fonctions s’appuient sur des [caractéristiques distinctives](./transactio
 &nbsp;
 
 2.  **La non-répudiation de bout en bout** garantit à chaque partie destinataire qu’un message n’a pas été altéré et qu’il émane bien de l’expéditeur présumé. Mojaloop s’en sert pour n’engager une transaction que si *les deux* DFSP payeur et bénéficiaire l’acceptent, sans qu’aucun puisse la nier. Aucun tiers ne peut non plus altérer la transaction.
-3.  **L’API PISP est exposée par le Hub Mojaloop**, et non par chaque DFSP. Une fintech se connecte au Hub et accède **immédiatement** à **tous** les DFSP raccordés. 
+3.  **L’API PISP est exposée par le Hub Mojaloop**, et non par chaque DFSP. Une fintech se connecte au Hub et accède **immédiatement** à **toutes** les institutions financières intégrées (DFSP). 
 
-**Note** Dans le vocabulaire Mojaloop, un DFSP (*Digital Financial Service Provider*) désigne toute institution financière, quelle que soit sa taille ou son statut, capable d’opérer par voie numérique — de la plus grande banque internationale à la plus petite IMF ou opérateur de portefeuille mobile. Le terme « DFSP » est utilisé dans tout ce document.   
+**Note** Dans le vocabulaire Mojaloop, une **IF** (*institution financière*) désigne tout établissement participant au schéma — banque, établissement de paiement ou autre acteur habilité. Le terme « IF » est utilisé dans la perspective régulateurs et opérateurs. Un **DFSP** (*Digital Financial Service Provider*) désigne toute institution financière, quelle que soit sa taille ou son statut, capable d’opérer par voie numérique — de la plus grande banque internationale à la plus petite IMF ou opérateur de portefeuille mobile. Le terme « DFSP » est utilisé dans le reste de ce document.   
 &nbsp;
 
 # L’écosystème Mojaloop
@@ -80,7 +80,7 @@ Ce document présente une liste de fonctionnalités couvrant les aspects suivant
 -  [**Portails et fonctions opérationnelles**](./product.md) : portails de gestion des utilisateurs et des services, configuration et exploitation d’un Hub Mojaloop.
 -  [**Frais et tarifs**](./tariffs.md) : mécanismes pour différents modèles tarifaires et possibilités de facturation pour participants et opérateurs de hub.
 
--  [**Performance**](./performance.md), pour les ordres de grandeur de performance transactionnelle que les adoptants peuvent raisonnablement anticiper. 
+-  [**Performance**](./performance.md), pour les ordres de grandeur de performance transactionnelle que les adopteurs peuvent raisonnablement anticiper. 
 - [**Déploiement**](./deployment.md), pour les modes de déploiement selon l’objectif et les outils associés. 
 - [**Sécurité**](./security.md), pour la sécurité des transactions entre DFSP et Hub, celle du Hub (y compris portails opérateur), et le cadre QA en cours pour valider sécurité et qualité d’un déploiement.
 - [**Principes d’ingénierie**](./engineering.md) : respect de la spécification Mojaloop, qualité du code, pratiques de sécurité, schémas d’évolutivité et de performance, etc.
@@ -99,7 +99,7 @@ Vous pouvez consulter l’état actuel des workstreams et leurs derniers comptes
 
 ## Objectif
 
-Ce document recense les fonctionnalités de Mojaloop, indépendamment de l’implémentation. Il vise à informer les adoptants potentiels des capacités attendues et, le cas échéant, du fonctionnement prévu, ainsi qu’à informer les développeurs des exigences pour qu’une implémentation soit reconnue comme instance officielle Mojaloop.
+Ce document recense les fonctionnalités de Mojaloop, indépendamment de l’implémentation. Il vise à informer les adopteurs potentiels des capacités attendues et, le cas échéant, du fonctionnement prévu, ainsi qu’à informer les développeurs des exigences pour qu’une implémentation soit reconnue comme instance officielle Mojaloop.
 
 La Mojaloop Foundation (MLF) définit comme instance officielle Mojaloop une implémentation qui met en œuvre **toutes** les fonctionnalités, sans exception, et réussit la batterie de tests standard Mojaloop.
 
