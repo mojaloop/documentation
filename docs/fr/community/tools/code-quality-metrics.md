@@ -4,7 +4,7 @@
 
 ### Métriques des tests unitaires
 
-Une couverture élevée et des dépendances faibles indiquent que le code est testable, donc bien isolé et facile à maintenir. Une faible complexité rend le code lisible et maintenable et favorise le principe de responsabilité unique. Les vrais tests unitaires s’exécutent très rapidement car ils n’appellent pas de composants externes.
+Une couverture élevée et des dépendances faibles indiquent que le code est testable, donc bien isolé et facile à maintenir. Une faible complexité rend le code lisible et maintenable et contribue à imposer le respect du principe de responsabilité unique. Les vrais tests unitaires s’exécutent très rapidement car ils n’appellent pas de composants externes.
 
 | Métriques de qualité du code | Code nouveau et code du projet |
 | :--- | :--- |

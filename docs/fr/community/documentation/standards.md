@@ -2,11 +2,11 @@
 
 ### Vue d’ensemble
 
-Mojaloop a défini plusieurs standards afin d’assurer que la documentation au sein du projet reste cohérente et à jour.
+Mojaloop a défini plusieurs standards afin de garantir que la documentation à travers l’ensemble du projet reste cohérente et à jour.
 
 * Toute la documentation pertinente pour les contributeurs est conservée dans le dépôt "documentation".
 * Le dépôt "documentation" est synchronisé avec GitBook et tout le contenu est consultable dans un format facilement lisible à l’adresse : [https://www.gitbook.com/mojaloop](https://www.gitbook.com/mojaloop)
-* Toute documentation doit inclure :
+* Toute documentation devrait inclure :
   * Vue d’ensemble : contexte métier pour expliquer la valeur ou la raison d’être de la page de documentation
   * Détails : informations de synthèse appropriées pour soutenir la documentation
 
@@ -16,7 +16,7 @@ Mojaloop a défini plusieurs standards afin d’assurer que la documentation au 
 
 ### Guide de style de la documentation
 
-Toute nouvelle documentation doit être conforme aux normes et styles discutés [ici](style-guide.md).
+Toute nouvelle documentation devrait être conforme à la documentation et aux styles discutés [ici](style-guide.md).
 
 ### Guide de style du code
 

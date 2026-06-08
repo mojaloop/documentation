@@ -1,6 +1,6 @@
 # Publications
 
-Les publications sont stockées dans le [répertoire Github Documentation Artifacts](https://github.com/mojaloop/documentation-artifacts).
+Les publications sont stockées dans le [dépôt Github Documentation Artifacts](https://github.com/mojaloop/documentation-artifacts).
 
 Voir ci-dessous la liste des publications actuellement disponibles.
 

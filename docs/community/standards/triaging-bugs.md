@@ -16,7 +16,7 @@ There is a bug [template](https://github.com/mojaloop/project/issues/new?assigne
 
 ### Triage
 
-1. The discussion regarding the issue is open to a public for normal bugs / issues
+1. The discussion regarding the issue is open to the public for normal bugs / issues
 2. Based on the discussions, a final call on the priority and severity of the issue is made by the Core team in consultation with the reporter(s).
 3. The list and the process will be updated as it evolves.
 4. Mojaloop bug triage slack channel #[ml-oss-bug-triage](https://mojaloop.slack.com/archives/CMCVBHPUH)

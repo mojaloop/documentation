@@ -1,6 +1,6 @@
 # Guide de style de la documentation
 
-Dans la plupart des cas, Mojaloop suit la dernière édition de l’Associated Press Stylebook. Les lignes directrices suivantes sont spécifiques à la fondation, légèrement modifiées et mises à jour.
+Dans la plupart des cas, Mojaloop suit la dernière édition de l’Associated Press Stylebook. Les lignes directrices suivantes sont spécifiques à la fondation, mises à jour et légèrement modifiées.
 
 #### Acronymes
 
@@ -57,7 +57,7 @@ En rédigeant une légende, présentez les personnes figurant sur l’image et e
 
 Si un des co-présidents figure sur une photo avec d’autres personnes, veillez à l’identifier dans la légende. N’assumez pas que tout le monde sait à quoi ressemblent nos co-présidents.
 
-#### Citations et références
+#### Citations
 
 La majorité des disciplines ont leurs propres conventions de citation. Adoptez celles du domaine concerné. Si ces conventions ne sont pas disponibles ou claires, référez-vous au “Chicago Manual of Style”.
 
@@ -100,7 +100,7 @@ N’ajoutez pas d’espace avant ou après le tiret.
 
 Exemples : _Nous œuvrons pour rendre les services financiers sûrs et abordables—en particulier les comptes d’épargne—plus accessibles aux populations des pays en développement._
 
-_Au cours de l’élection présidentielle de 2004, 76 pour cent des diplômés des universités américaines âgés de 25 à 44 ans ont voté._
+_Au cours de l’élection présidentielle de 2004, 76 pour cent des diplômés de l’enseignement supérieur américain âgés de 25 à 44 ans ont voté._
 
 #### Dollars ($)
 
@@ -168,11 +168,11 @@ Si la fondation possède l’image que vous utilisez, il n’est pas nécessaire
 
 #### Langage clair
 
-Nous pouvons relever quelques constructions inutiles. Par exemple, remplacer “afin de” par simplement “pour”.
+Nous pouvons relever quelques constructions inutilement verbeuses. Par exemple, chez Ripple, nous corrigeons fréquemment “afin de” en simplement “pour”.
 
 #### Guillemets
 
-Utilisez les guillemets doubles pour les dialogues et la citation de sources imprimées. Limitez l’utilisation des guillemets de distanciation—destinés à attirer l’attention sur un mot/expression employé(e) dans un sens particulier, ironique, idiomatique ou erroné. Exemple : _La fondation a de plus en plus utilisé les “investissements liés aux programmes” ces dernières années._
+Utilisez les guillemets doubles pour les dialogues et la citation de sources imprimées. Limitez l’utilisation des guillemets de distanciation—destinés à attirer l’attention sur un mot/expression employé(e) dans un sens spécialisé, particulier, ironique, idiomatique ou erroné. Exemple : _La fondation a de plus en plus utilisé les “investissements liés aux programmes” ces dernières années._
 
 #### Chaînes citées et ponctuation
 
@@ -184,7 +184,7 @@ Mettez les noms scientifiques en italique et majuscule selon les conventions du 
 
 #### Virgule de série
 
-Dans les listes de trois éléments ou plus, ajoutez une virgule avant la conjonction de coordination “et” ou “ou”. Exemple : _Les trois axes d’intervention de la fondation sont Global Development, Global Health et United States._
+Dans les listes de trois éléments ou plus, ajoutez une virgule avant la conjonction de coordination “et” ou “ou”. Exemple : _Les trois axes d’intervention de la fondation sont Global Development, Global Health, et le United States Program._
 
 #### Espaces après la ponctuation
 

@@ -8,15 +8,15 @@ Ce document présente les lignes directrices de la stratégie de versionnement d
 
 
 #### Référence à partir de PI-11
-1. À partir de PI-11 (27 juillet 2020), la directive est d’adopter un versionnement aligné sur le [SemVer](https://semver.org/) en supprimant la dépendance PI/Sprint. À partir de 11.x.x, la proposition est donc de passer à un [SemVer](https://semver.org/) strict.
-2. En résumé, on conserve le format vX.Y.Z : X = version majeure, Y = mineure, Z = correctif. Les correctifs mineurs incrémentent Z ; les évolutions non rupturistes modifient Y ; les changements rupturistes modifient X.
-3. Des suffixes tels que « -snapshot », « -patch », « -hotfix » sont utilisés selon les besoins (prise en charge par la config CI).
+1. À partir de PI-11 (27 juillet 2020), la directive de versionnement est de migrer vers un système étroitement aligné sur le [SemVer](https://semver.org/) en supprimant la dépendance PI/Sprint. À partir de 11.x.x, la proposition est donc de passer à un [SemVer](https://semver.org/) strict.
+2. À haut niveau, on conserve le format vX.Y.Z, où X représente la version 'Major', Y la version 'Minor' et Z la version 'patch'. Les corrections mineures et patchs incrémentent Z ; les évolutions fonctionnelles non rupturistes modifient Y ; les changements rupturistes modifient X.
+3. Des suffixes tels que « -snapshot », « -patch », « -hotfix » sont utilisés lorsque pertinent et selon les besoins (pris en charge par la configuration CI).
 4. À partir de 11.0.0 (principalement pour Helm, mais aussi pour les services individuels) pour PI-11, la proposition est de passer à un [SemVer](https://semver.org/) pur.
-5. Cela implique que toute nouvelle release d’un paquet ou service avec X &lt; 11 (pour les dépôts existants, pas les nouveaux) sera d’abord alignée sur v11.0.0, puis suivra le SemVer standard décrit ci-dessus. Pour les nouveaux projets ou dépôts, le versionnement peut commencer à v1.0.0 (une fois le statut de release atteint).
+5. Cela implique que toute nouvelle release d’un paquet ou service avec X &lt; 11 (pour les dépôts existants, pas les nouveaux) sera d’abord portée à v11.0.0 comme version de base, puis suivra les règles SemVer standard évoquées ci-dessus. Pour les nouveaux projets ou dépôts, le versionnement peut commencer à v1.0.0 (une fois qu’ils ont atteint le statut de release).
 
 
 #### Stratégie utilisée jusqu’à PI-10
-1. Le versionnement Mojaloop (jusqu’à PI-10) s’inspire du [versionnement sémantique](https://semver.org/).
+1. Le versionnement Mojaloop (jusqu’à PI-10) s'inspire du système de numérotation des releases du [versionnement sémantique](https://semver.org/).
 2. Il est toutefois adapté pour refléter le calendrier du projet Mojaloop, selon les numéros d’incrément de programme (PI) et de sprint.
 3. Par exemple, le numéro de release v5.1.0 indique la première release du sprint 5.1, où Sprint 5.1 est le premier sprint du PI-5. Pour une version vX.Y.Z, X.Y est le numéro de sprint (X = numéro de PI) et Z le numéro de release pour ce dépôt. Exemple : v4.4.4 = quatrième release sur quatre dans le sprint 4.4 (du PI-4).
 
@@ -56,7 +56,7 @@ Ci-dessous le calendrier des sprints du Program Increment 12, qui se termine par
 |**Sprint 12.3**|30/11/2020|13/12/2020|2 semaines | |
 |**Sprint 12.4**|14/12/2020|27/12/2020|2 semaines | |
 |**Sprint 12.5**|28/12/2020|10/01/2021|2 semaines | |
-|**Sprint 12.6**|11/01/2020|24/01/2020|2 semaines | |
+|**Sprint 12.6**|11/01/2021|24/01/2021|2 semaines | |
 |**Lancement Phase-5 / PI-13**|25/01/2021|29/01/2021|5 jours| À confirmer |
 
 ### Calendriers de sprints antérieurs :
@@ -80,7 +80,7 @@ Ci-dessous le calendrier des sprints du Program Increment 11, qui se termine par
 
 #### Calendrier des sprints PI-10
 
-Ci-dessous le calendrier du Program Increment 10, qui se termine par l’événement PI 11. À utiliser comme référence pour le versionnement et les releases.
+Ci-dessous le calendrier du Program Increment 10, qui se termine par l’événement PI 11. Veuillez utiliser ceci comme guide lors des processus de versionnement et de release.
 
 |Phase / jalon|Début|Fin|Semaines|Notes|
 |---|---|---|---|---|
@@ -105,7 +105,7 @@ Ci-dessous le calendrier du Program Increment 10, qui se termine par l’événe
 |**Sprint 9.3**|02/03/2020|15/03/2020|2 semaines| |
 |**Sprint 9.4**|16/03/2020|29/03/2020|2 semaines| |
 |**Sprint 9.5**|30/03/2020|12/04/2020|2 semaines| |
-|**Sprint 9.6**|13/03/2020|19/04/2020|1 semaine | |
+|**Sprint 9.6**|13/04/2020|19/04/2020|1 semaine | |
 |**Phase-4 PI 10 virtuelle**|21/04/2020|23/04/2020|5 jours| Webinaires Zoom virtuels |
 
 #### PI-8

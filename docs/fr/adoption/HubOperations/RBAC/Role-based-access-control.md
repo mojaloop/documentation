@@ -9,9 +9,9 @@ La conception RBAC pour un opérateur de hub décrit les points de contrôle de 
 
 Ce document couvre :
 1. Vue d'ensemble du RBAC.<br>
-Où nous discutons des principes RBAC et des structures organisationnelles.
+Dans lequel nous discutons des principes RBAC et des structures organisationnelles.
 2. Implémentation technique des contrôles RBAC.<br>
-Spécifiquement ce qui est important pour une implémentation Mojaloop et comment l'appliquer techniquement.
+Ce qui est spécifiquement important pour une implémentation Mojaloop et comment l'appliquer techniquement.
 3. Recommandations de rôles
 4. Exigences et approche de surveillance.
 
@@ -52,7 +52,7 @@ Un individu qui a besoin d'accéder aux différents portails de gestion du Hub M
 Le processus d'enregistrement implique la vérification d'identité, la vérification des antécédents, etc. L'individu reçoit ensuite des identifiants - un identifiant de compte de connexion/identité numérique et au moins une méthode d'authentification, qui peut inclure un mot de passe et une authentification à deux facteurs (2FA).
 
 ::: tip NOTE
-La portée de ce document ne se limite pas aux opérateurs du Hub Mojaloop. Il aborde également les aspects de l'accès des opérateurs DFSP aux portails Payment Manager.
+Le champ d'application de ce document ne se limite pas aux opérateurs du Hub Mojaloop. Il aborde également les aspects de l'accès des opérateurs DFSP aux portails Payment Manager.
 :::
 
 ### Considérations relatives à la 2FA
@@ -64,7 +64,7 @@ Il convient de noter que la 2FA via un téléphone mobile peut être inappropri�
 Mojaloop aura 2 grandes catégories d'utilisateurs :
 
 1. **Humains** <br>
-Ce sont les utilisateurs du hub et des DFSP qui, à travers diverses interfaces, interagiront avec Mojaloop. Les utilisateurs DFSP interagiront avec Mojaloop à travers le Payment Manager et les portails qui seront mis à disposition pendant le processus d'intégration.
+Ce sont les utilisateurs du hub et des DFSP qui, à travers diverses interfaces, interagiront avec Mojaloop. Les utilisateurs DFSP interagiront avec Mojaloop à travers le Payment Manager et les portails qui seront mis à disposition pendant le processus d'onboarding.
 2. **Non-humains** <br> 
 Ceux-ci automatiseront les processus métier et les tâches qui seraient autrement effectuées par un humain. Ils communiqueront via des appels API qui effectueront des actions pour répondre aux exigences métier.
 
@@ -76,7 +76,7 @@ Le « cycle de vie du compte utilisateur » définit les processus de gestion co
 
 ### Intégration
 
-Le processus d'intégration comprendra certaines activités impliquant la création d'utilisateurs tant du côté DFSP que du Hub. Celles-ci seront les suivantes :
+Le processus d'onboarding comprendra certaines activités impliquant la création d'utilisateurs tant du côté DFSP que du Hub. Celles-ci seront les suivantes :
 
 1. Hub : Les utilisateurs suivants seront créés
    - Opérateurs du Hub
@@ -98,7 +98,7 @@ Le processus d'intégration comprendra certaines activités impliquant la créat
 
 | **Rôles et Permissions**  **Matrice** | Utilisateurs Hub | Administrateur | Utilisateur Maker Standard | Utilisateur Checker Standard | Lecture Seule Standard | Utilisateurs DFSP | Administrateur | Utilisateur Maker Standard | Utilisateur Checker Standard | Lecture Seule Standard |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Rôles d'intégration | X | | | | | | | | | |
+| Rôles d'onboarding | X | | | | | | | | | |
 | Créer un compte utilisateur | X | | | | | | | | | |
 | Créer un profil DFSP | X | | | | | | | | | |
 | Créer un utilisateur DFSP | X | | | | | | | | | |
@@ -117,7 +117,7 @@ Le processus d'intégration comprendra certaines activités impliquant la créat
 ### Meilleures pratiques pour le RBAC et la gestion des identités Mojaloop
 
 1. Tous les identifiants d'utilisateurs doivent être uniques et avoir un format unique qui peut être corrélé dans le hub mais pas significatif pour les personnes extérieures.
-2. Les utilisateurs DFSP n'auront accès à aucun rôle administratif du Hub
+2. Les utilisateurs DFSP n'auront accès à aucun rôle administratif au sein du Hub
 3. Tous les utilisateurs non-humains doivent être empêchés de se connecter aux interfaces applicatives.
 4. Les utilisateurs DFSP seront formés sur les rôles et les meilleures pratiques
 5. Appliquer le provisionnement automatisé des utilisateurs et la gestion du cycle de vie.
@@ -127,7 +127,7 @@ Le processus d'intégration comprendra certaines activités impliquant la créat
    - Journalisation d'audit avec alertes
    - Désactivation / blocage automatique du profil utilisateur
 8. Mojaloop surveillera l'inactivité des utilisateurs et désactivera les utilisateurs inactifs sur une période spécifiée
-9. Appliquer une politique centralisée d'application à travers les identités, par ex. politique de mots de passe, politiques de connexion, MFA, authentification basée sur le risque, etc.
+9. Faire respecter de manière centralisée les politiques applicables à l'ensemble des identités, par ex. politique de mots de passe, politiques de connexion, MFA, authentification basée sur le risque, etc.
 10. Identifier et surveiller de près les identités privilégiées qui ont des permissions pour effectuer des actions sensibles. 
 Les éléments suivants s'appliquent aux utilisateurs privilégiés :
     - Les privilèges avancés doivent être demandés et approuvés au cas par cas ;
@@ -171,9 +171,9 @@ Actuellement, il n'existe pas de solution intégrée de gestion des identités e
 - **Portail Financier :** <br>
 Il a deux fonctions principales : la gestion des opérations de règlement, et la gestion de la position de liquidité des DFSP individuels (et en relation avec cela, leur valeur de plafond de débit net (NDC)).
 L'accès au portail financier est actuellement limité à une simple fonction de contrôle d'accès par nom d'utilisateur/mot de passe.
-- **Cycle de vie des participants :** <br>
+- **Cycle de vie du participant :** <br>
 Contrôle et configuration de l'accès au Hub par les DFSP.
-D'un point de vue technique, cela est actuellement réalisé par l'utilisation du Mojaloop Connection Manager (MCM). Cependant, il est prévu que le MCM lui-même sera développé pour présenter une API, qui pourra être utilisée pour développer une interface utilisateur disponible pour les opérateurs du Hub et pour les DFSP.
+D'un point de vue technique, cela est actuellement réalisé par l'utilisation du Mojaloop Connection Manager (MCM). Cependant, il est prévu que le MCM lui-même sera développé pour exposer une API, qui pourra être utilisée pour développer une interface utilisateur disponible pour les opérateurs du Hub et pour les DFSP.
 - **Opérations du Hub :** <br>
 Celles-ci comprennent les recherches de transactions, la surveillance de l'état et des performances, les tableaux de bord et l'ensemble des opérations techniques.
 Actuellement, celles-ci sont réalisées grâce à l'utilisation de Prometheus/Grafana et d'une gamme d'autres outils, avec un contrôle d'accès standard intégré dans ces outils eux-mêmes. Il est prévu que cela sera migré vers la solution Ory/Keycloak, au fur et à mesure de son développement.
@@ -189,9 +189,9 @@ En plus de ces portails, il existe deux autres moyens principaux d'accéder au H
 
 Les contrôles d'accès autour des paiements individuels ou en masse ne sont donc pas abordés davantage dans ce document.
 
-### Payment Manager pour l'intégration
+### Payment Manager pour l'onboarding
 
-Payment Manager est actuellement l'un des principaux mécanismes d'intégration des DFSP à un Hub Mojaloop. Alors que le Hub est unique dans un schéma, il existe une instance distincte de Payment Manager pour chaque DFSP. Les portails offerts par Payment Manager doivent donc être sécurisés au moyen du RBAC pour limiter l'accès aux représentants autorisés du DFSP.
+Payment Manager est actuellement l'un des principaux mécanismes d'onboarding des DFSP à un Hub Mojaloop. Alors que le Hub est unique dans un schéma, il existe une instance distincte de Payment Manager pour chaque DFSP. Les portails offerts par Payment Manager doivent donc être sécurisés au moyen du RBAC pour limiter l'accès aux représentants autorisés du DFSP.
 
 Dans l'environnement Payment Manager, le RBAC est implémenté uniquement via Keycloak.
 
@@ -206,11 +206,11 @@ Il est possible d'investiguer les requêtes de transactions en utilisant le port
 
 ### Comptes fondamentaux
 
-Au moment où un Hub est mis en place pour la première fois, Ory/Keycloak sera utilisé pour créer un compte utilisateur fondamental avec des privilèges d'administrateur. Un administrateur système se verra attribuer ce compte. Notez que l'administrateur système ne se verra attribuer aucun rôle opérationnel au-delà de ceux d'un administrateur système.
+Au moment où un Hub est déployé pour la première fois, Ory/Keycloak sera utilisé pour créer un compte utilisateur fondamental avec des privilèges d'administrateur. Un administrateur système se verra attribuer ce compte. Notez que l'administrateur système ne se verra attribuer aucun rôle opérationnel au-delà de ceux d'un administrateur système.
 
 Toutes les fonctions exécutées à l'aide d'Ory/Keycloak sont soumises à une journalisation au niveau du système à des fins d'audit.
 
-L'administrateur système utilisera ensuite Ory/Keycloak pour créer d'autres comptes utilisateurs, sous réserve de vérifications d'identité et de contrôles d'antécédents standard pour chaque individu (définis dans les règles du système associées à un déploiement Mojaloop particulier) avant que leurs comptes ne soient créés.
+L'administrateur système utilisera ensuite Ory/Keycloak pour créer d'autres comptes utilisateurs, sous réserve de vérifications d'identité et de contrôles d'antécédents standard pour chaque individu (définis dans les règles de schéma associées à un déploiement Mojaloop particulier) avant que leurs comptes ne soient créés.
 
 Ces nouveaux comptes utilisateurs se verront attribuer l'un de ces rôles :
 
@@ -221,7 +221,7 @@ Un compte utilisateur ne peut pas avoir à la fois les rôles OPERATOR et MANAGE
 
 ### Comptes supplémentaires
 
-En plus de l'administrateur système, les comptes fondamentaux auront la possibilité d'utiliser Ory/Keycloak pour ajouter d'autres comptes. Cependant, pour ces utilisateurs, cette activité sera soumise à des contrôles maker/checker. Un utilisateur avec le rôle OPERATOR pourra créer un compte utilisateur (avec des processus en place pour garantir que la diligence raisonnable en matière de vérification d'identité et de contrôle des antécédents a été effectuée). Cependant, ce compte ne sera pas activé tant qu'une personne avec le rôle MANAGER ne l'aura pas approuvé.
+En plus de l'administrateur système, les comptes fondamentaux auront la possibilité d'utiliser Ory/Keycloak pour ajouter d'autres comptes. Cependant, pour ces utilisateurs, cette activité sera soumise à des contrôles maker/checker. Un utilisateur avec le rôle OPERATOR pourra mettre en place un compte utilisateur (avec des processus en place pour garantir que la diligence raisonnable en matière de vérification d'identité et de contrôle des antécédents a été effectuée). Cependant, ce compte ne sera pas activé tant qu'une personne avec le rôle MANAGER ne l'aura pas approuvé.
 
 Un rôle sera attribué à chacun de ces comptes lors de leur création. En plus des rôles associés aux comptes fondamentaux, les rôles suivants peuvent être attribués aux nouveaux comptes utilisateurs :
 
@@ -234,10 +234,10 @@ Un compte utilisateur ne peut pas avoir plus d'un des rôles OPERATOR, MANAGER, 
 - Les rôles d'opérateur et de gestionnaire dans les fonctions maker/checker
 
 ::: tip NOTE
-L'attribution des rôles ADMINISTRATOR ou FINANCE_MANAGER est soumise à un degré plus élevé de vérification d'identité et de contrôle des antécédents que tout autre rôle, en raison de la nature sensible des fonctions associées. Ces vérifications supplémentaires sont définies dans les règles du système.
+L'attribution des rôles ADMINISTRATOR ou FINANCE_MANAGER est soumise à un degré plus élevé de vérification d'identité et de contrôle des antécédents que tout autre rôle, en raison de la nature sensible des fonctions associées. Ces vérifications supplémentaires sont définies dans les règles de schéma.
 :::
 
-### Portail Financier / Cadre opérationnel métier
+### Portail Financier / Business Operational Framework
 
 De nombreuses fonctions (telles que la visualisation des positions des DFSP, l'état des fenêtres de règlement, etc.) du portail financier sont disponibles pour tous les utilisateurs connectés, quel que soit leur rôle. Cependant, les fonctions suivantes ne peuvent être exécutées que par des utilisateurs ayant des rôles spécifiques :
 
@@ -250,9 +250,9 @@ De nombreuses fonctions (telles que la visualisation des positions des DFSP, l'�
 
 Toutes ces fonctions sont soumises à des contrôles maker/checker, de sorte qu'un utilisateur avec le rôle ADMINISTRATOR peut initier l'action, mais elle doit être approuvée par un utilisateur avec le rôle FINANCE_MANAGER.
 
-### Cycle de vie des participants
+### Cycle de vie du participant
 
-Ce portail fournit une interface unique pour qu'un opérateur du Hub ajoute et maintienne les DFSP sur les écosystèmes du Hub.
+Ce portail fournit une interface unique pour qu'un opérateur du Hub ajoute et maintienne les DFSP sur l'écosystème du Hub.
 
 Il existe certaines fonctions standardisées qui sont soumises au RBAC :
 
@@ -262,7 +262,7 @@ Il existe certaines fonctions standardisées qui sont soumises au RBAC :
 
 Chacune de ces fonctions est soumise à des contrôles maker/checker, de sorte qu'un utilisateur avec le rôle OPERATOR peut mettre en place les modifications, et elles doivent être approuvées par un utilisateur avec le rôle MANAGER.
 
-De plus, il y a une charge de travail importante dans l'intégration technique d'un DFSP, en particulier autour de l'établissement de l'environnement technique d'exploitation (certificats, etc.). Cela n'est pas soumis au RBAC. Cela n'est pas considéré comme un risque significatif, car il n'y a pas de valeur sans pouvoir créer un DFSP et les comptes associés sur le Hub lui-même - activités qui sont soumises au RBAC.
+De plus, il y a une charge de travail importante dans l'onboarding technique d'un DFSP, en particulier autour de l'établissement de l'environnement technique d'exploitation (certificats, etc.). Cela n'est pas soumis au RBAC. Cela n'est pas considéré comme un risque significatif, car il n'y a pas de valeur sans pouvoir créer un DFSP et les comptes associés sur le Hub lui-même - activités qui sont soumises au RBAC.
 
 ### Opérations du Hub
 
@@ -282,7 +282,7 @@ Lors du déploiement de Payment Manager, un seul compte utilisateur administrate
 
 Toutes les fonctions exécutées à l'aide de Keycloak sont soumises à une journalisation au niveau du système à des fins d'audit.
 
-L'utilisateur administrateur utilisera Keycloak pour créer d'autres comptes utilisateurs, sous réserve de vérifications d'identité et de contrôles d'antécédents standard pour chaque individu (définis dans les règles du système associées à un déploiement Mojaloop particulier) avant que leurs comptes ne soient créés.
+L'utilisateur administrateur utilisera Keycloak pour créer d'autres comptes utilisateurs, sous réserve de vérifications d'identité et de contrôles d'antécédents standard pour chaque individu (définis dans les règles de schéma associées à un déploiement Mojaloop particulier) avant que leurs comptes ne soient créés.
 
 Ces nouveaux comptes utilisateurs se verront attribuer l'un des rôles suivants :
 
@@ -304,8 +304,8 @@ La visualisation des paramètres de la connexion Payment Manager/Hub est disponi
 La réalisation d'investigations de transactions à l'aide des fonctionnalités du portail Payment Manager est une activité contrôlée, en raison du potentiel de révélation de données PII. Elle n'est donc disponible que pour les utilisateurs connectés/authentifiés ayant le rôle MANAGER.
 
 ## Surveillance
-La surveillance est le quatrième pilier de l'atténuation du risque RBAC. Sa conception et sa configuration dépendent fortement de la maturité du schéma, des règles du système, des cas d'utilisation employés et des classes de participants.
+La surveillance est le quatrième pilier de l'atténuation du risque RBAC. Sa conception et sa configuration dépendent fortement de la maturité du schéma, des règles de schéma, des cas d'utilisation employés et des classes de participants.
 Comme point de départ pour concevoir votre surveillance, considérez ces catégories :
 1. Surveillance des menaces de sécurité externes
 1. Surveillance des menaces de sécurité internes, par ex. l'audit
-1. Surveillance de l'application des règles du système
+1. Surveillance de l'application des règles de schéma

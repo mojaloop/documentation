@@ -39,7 +39,7 @@ Le processus de gestion des incidents se termine :
 
 Les limites de la gestion des incidents stipulent que le processus prend en compte les prérequis suivants :
 
-* Un accord de niveau de service (SLA) entre la communauté (par exemple, Mojaloop), les sociétés holding (par exemple, le Hub) et les prestataires de services financiers numériques (DFSP) est en place.
+* Un accord de niveau de service (SLA) entre la communauté (par exemple, Mojaloop), les sociétés mères (par exemple, le Hub) et les fournisseurs de services financiers numériques (DFSP) est en place.
 * Un SLA entre le partenaire d'implémentation (le Hub) et les fournisseurs de logiciels tiers (par exemple, Microsoft, Oracle, etc.) est en place.
 * Il existe un accord de niveau opérationnel (OLA) existant. Cet accord décrit les responsabilités de chaque groupe de support interne envers les autres groupes de support, y compris le processus et le délai de livraison de leurs services.
 
@@ -83,14 +83,14 @@ Voici quelques exemples de catégories de service :
 * Infrastructure
 * Mojaloop
 * Sécurité
-* Règlements
-* Intégration
+* Settlement
+* Onboarding
 
 La sévérité d'un incident peut être déterminée à l'aide d'une [matrice de catégorisation](#incident-categorization-matrix). En fonction de leur sévérité, les incidents peuvent être catégorisés comme :
 
 * Critique = S1
 * Grave = S2
-* Moyen = S3
+* Moyenne = S3
 * Mineur = S4
 
 Une fois l'incident catégorisé, il est automatiquement acheminé vers un ingénieur de support L1 possédant l'expertise pertinente.
@@ -323,7 +323,7 @@ Cette section décrit la procédure qu'il est recommandé à un opérateur du Hu
 <li><p>Déployer un anti-malware si nécessaire.</p></li>
 <li><p>Examiner les procédures opérationnelles standard de sécurité (SOP) (le cas échéant) pour toute étape supplémentaire qui pourrait être nécessaire.</p></li>
 </ul>
-<p>Si les mesures d'atténuation prises réussissent à résoudre le problème signalé, la sécurité L1 mettra à jour le ticket et passera à l'étape 8 (Clôturer le problème).</p></td>
+<p>Si les mesures d'atténuation prises réussissent à résoudre le problème signalé, la sécurité L1 mettra à jour le ticket et passera à l'étape 8 (Clôturer l'incident).</p></td>
 <td><p>L1/L2 ISO</p></td>
 </tr>
 <tr class="odd">
@@ -512,7 +512,7 @@ Cette section décrit la procédure qu'il est recommandé à un opérateur du Hu
 <td><p>L3 ISO</p></td>
 </tr>
 <tr class="even">
-<td><p><strong>Étape 8</strong> : Clôturer le problème.</p></td>
+<td><p><strong>Étape 8</strong> : Clôturer l'incident.</p></td>
 <td><p><strong>Étape 8a</strong> :</p>
 <p>Restaurer les systèmes affectés.</p></td>
 <td></td>
@@ -549,7 +549,7 @@ Cette section décrit la procédure qu'il est recommandé à un opérateur du Hu
 <tr class="odd">
 <td></td>
 <td><p><strong>Étape 8f</strong> :</p>
-<p>Clôturer le problème.</p></td>
+<p>Clôturer l'incident.</p></td>
 <td></td>
 <td><p>L1 / L2 / L3 ISO</p></td>
 </tr>
@@ -624,7 +624,7 @@ Cette fonction de support est composée d'ingénieurs ou d'experts métier en la
 * Documenter les étapes suivies pour résoudre l'incident et soumettre des articles de base de connaissances. (Pour chaque incident, l'équipe de support met à jour la base de connaissances. L'objectif des articles de base de connaissances est de permettre aux utilisateurs finaux et au personnel de support de résoudre les problèmes par eux-mêmes.)
 * Traiter les incidents intermédiaires, par exemple les incidents liés aux applications, à l'infrastructure, à l'analyse des journaux, à l'analyse des transactions, etc.
 * Si l'incident est résolu, confirmer la résolution avec l'utilisateur final.
-* Soutenir l'intégration des DFSP.
+* Soutenir l'onboarding des DFSP.
 
 ### Équipe niveau 3 (Support application, infrastructure et sécurité L3) (Équipe de support technique)
 
@@ -665,7 +665,7 @@ Il s'agit du propriétaire du processus suivi pour la gestion des incidents. Ce 
 
 * Responsable de la qualité globale du processus. Supervise la gestion et la conformité aux procédures, modèles de données, politiques et technologies associés au processus.
 * Propriétaire du processus et de la documentation de soutien pour le processus d'un point de vue stratégique et tactique.
-* S'assure que le processus de gestion des incidents s'aligne sur les autres politiques de l'organisation, par exemple la politique RH, la politique de sécurité, les principes directeurs de niveau un, etc.
+* S'assure que le processus de gestion des incidents s'aligne sur les autres politiques de l'organisation, par exemple la politique RH, la politique de sécurité, les principes directeurs de niveau 1, etc.
 * Définit les [indicateurs clés de performance (KPI)](key-terms-kpis.md) et les aligne sur les facteurs critiques de succès (CSF), et s'assure que ces objectifs sont atteints.
 * Conçoit, documente, examine et améliore les processus.
 * Établit l'amélioration continue du service (CSI) et s'assure que les procédures, politiques, rôles, technologies et autres aspects du processus de gestion des incidents sont examinés et améliorés.
@@ -677,11 +677,11 @@ Le processus de gestion des incidents produit les résultats suivants. Notez que
 
 * Incidents résolus ou clôturés. Il s'agit du résultat le plus souhaité du processus de gestion des incidents. L'enregistrement d'incident clôturé contient des détails précis sur les attributs de l'incident et les étapes prises pour la résolution ou la solution de contournement.
 * Demandes de changement (RFC).
-* Métriques de résolution (temps moyen entre les pannes, temps moyen de réparation, temps moyen d'accusé de réception et temps moyen jusqu'à la défaillance). Pour les détails sur les KPI, voir le [Glossaire](key-terms-kpis.md).
+* Métriques de résolution (temps moyen entre les pannes, temps moyen de réparation, temps moyen de prise en compte et temps moyen jusqu'à la défaillance). Pour les détails sur les KPI, voir le [Glossaire](key-terms-kpis.md).
 * Changement mis en œuvre avec succès à travers le processus de gestion des changements.
 * Document RCA conforme au modèle RCA.
 * Service restauré.
-* Base de données de la base de connaissances mise à jour.
+* Base de connaissances mise à jour.
 * Notification par divers canaux (Service Desk, courriel, appel, etc.) sur l'initiation, la résolution et la clôture d'un incident S1 aux différentes parties prenantes.
 * Rapport d'opérations quotidiennes et rapport de gestion mis à jour pour vérifier les décisions prises concernant les améliorations de service, l'allocation/réaffectation des ressources.
 * Détails d'interruption de service et/ou de composant enregistrés avec précision (par exemple, début, fin, durée, classification de l'interruption, etc.).
@@ -691,5 +691,5 @@ Le processus de gestion des incidents produit les résultats suivants. Notez que
 Le processus de gestion des incidents interagit avec un certain nombre d'autres processus, alimentant et impactant chacun d'entre eux :
 
 * **Processus de gestion des changements** : L'objectif du processus de gestion des changements est de s'assurer que des méthodes et procédures standardisées sont utilisées pour le traitement efficace et rapide de tous les changements, afin de minimiser l'impact des incidents liés aux changements sur la disponibilité ou la qualité du service, et par conséquent d'améliorer les opérations quotidiennes de l'organisation.
-* **Processus de gestion des mises en production** : La gestion des mises en production et du déploiement est définie comme le processus de gestion, de planification et de programmation du déploiement des services informatiques, des mises à jour et des versions dans l'environnement de production. L'objectif principal de ce processus est de s'assurer que l'intégrité de l'environnement de production est protégée et que les composants corrects et les fonctionnalités validées sont mis à disposition pour l'utilisation par les clients.
+* **Processus de gestion des versions** : La gestion des versions et du déploiement est définie comme le processus de gestion, de planification et de programmation du déploiement des services informatiques, des mises à jour et des versions dans l'environnement de production. L'objectif principal de ce processus est de s'assurer que l'intégrité de l'environnement de production est protégée et que les composants corrects et les fonctionnalités validées sont mis à disposition pour l'utilisation par les clients.
 * **Processus de communication des incidents** : La communication des incidents est le processus d'alerte des utilisateurs qu'un service connaît un type d'interruption ou une performance dégradée. Cela est particulièrement important pour les services où une disponibilité 24h/24 et 7j/7 est attendue. La communication des incidents est importante pour tous les partenaires, clients et leurs clients.

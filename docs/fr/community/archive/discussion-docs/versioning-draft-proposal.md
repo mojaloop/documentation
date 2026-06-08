@@ -29,7 +29,7 @@ Comment les systèmes actuels gèrent-ils le versionnement ? Aperçu rapide.
 ### Approches de déploiement sans interruption avec Kubernetes [5]
 
 Observations clés :
-* pour permettre les retours arrière, les services doivent être compatibles avant et arrière.
+* pour permettre les retours arrière, les services doivent être compatibles en avant et en arrière.
 les versions d’application consécutives doivent être compatibles au niveau schéma
 * « Ne jamais déployer de changements de schéma rupteurs », les séparer en plusieurs déploiements
 
@@ -170,7 +170,7 @@ Par exemple : Mojaloop 1.0 inclut
 
 1. La stratégie privilégie la simplicité. Une version donnée — Mojaloop v1.0 — sert de référence commune aux trois APIs — FSPIOP, Settlements, Admin — ainsi qu’à la version Helm qui regroupe des services compatibles déployables ensemble.
 Avec cela, les versions de schéma DB et messagerie interne indiquent si des changements ont eu lieu depuis la release précédente.
-2. L’autre avantage est de servir à la fois les besoins de niveau élevé et détaillé. Grâce aux versions majeure et mineure, utilisateurs et adopteurs peuvent mieux comprendre les questions de compatibilité.
+2. L’autre avantage, évident, est de répondre aux besoins de toutes les parties prenantes, qu’elles s’intéressent à une vue d’ensemble ou au détail. Grâce à la nature des versions majeures et mineures, utilisateurs et adopteurs pourront plus aisément appréhender les questions de compatibilité.
 
 ### Compatibilité
 Comme décrit dans [la section 3.3 de l’API Definition v1.0](https://github.com/mojaloop/mojaloop-specification/blob/master/documents/API%20Definition%20v1.0.md#33-api-versioning), la compatibilité arrière est
@@ -224,7 +224,7 @@ Nous utilisons actuellement le protocole lime pour les formats Kafka : https://l
 
 Voir aussi le readme mojaloop/central-services-stream pour le format des messages.
 
-Le protocole lime prévoit un champ type, qui supporte des déclarations de type MIME. On pourrait gérer les messages comme pour l’API (ex. application/vnd.specific+json). Versionner ainsi impose que les consommateurs soient compatibles avant et arrière (versions consécutives compatibles schéma).
+Le protocole lime prévoit un champ type, qui supporte des déclarations de type MIME. On pourrait gérer les messages comme pour l’API (ex. application/vnd.specific+json). Versionner ainsi implique que les consommateurs soient compatibles en avant et en arrière (versions consécutives compatibles schéma).
 * Q. mettre la version dans le topic Kafka ?
     * Ex. ml-api-adapter publie sur le topic prepare
     * Avec versionnement, ml-api-adapter:v10.0.0 publie sur prepare_v10.0, et une nouvelle instance
@@ -235,7 +235,7 @@ Le protocole lime prévoit un champ type, qui supporte des déclarations de type
 
 Cela permettrait des changements de schéma incrémentaux pendant la montée de version des services.
 
-Peu de littérature trouvée sur ce sujet ; il faudra y revenir.
+En somme, je n’ai pas trouvé grand-chose sur ce sujet ; il faudra y revenir ultérieurement.
 
 ## Négociation de version
 todo : @sam discuter de la stratégie de négociation de version
@@ -247,7 +247,7 @@ Mentionner le (manque de) LTS actuel, le rythme des PI
 
 ## Annexe A : définitions
 
-* **service** : Mojaloop suit une approche microservices ; ici Service désigne une application conteneurisée dans un déploiement Mojaloop, typiquement un conteneur Docker dans un cluster Kubernetes. ex. mojaloop/central-ledger est le service central-ledger
+* **service** : Mojaloop suit une approche orientée microservices, où une grande application est décomposée en services plus petits. Dans ce contexte, Service désigne une application conteneurisée dans un déploiement Mojaloop, typiquement un conteneur Docker dans un cluster Kubernetes. ex. mojaloop/central-ledger est le service central-ledger
 * **version de service** : version du service. Ne suit pas encore le versionnement sémantique ; pourrait évoluer
  ex. mojaloop/central-ledger:v10.0.1. Voir le [doc
  Versioning](https://github.com/mojaloop/documentation/blob/master/contributors-guide/standards/versioning.md).

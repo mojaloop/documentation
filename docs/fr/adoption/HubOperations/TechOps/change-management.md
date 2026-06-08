@@ -10,7 +10,7 @@ Les processus décrits dans cette section représentent les bonnes pratiques et 
 
 Les objectifs de la gestion des changements sont de :
 
-* Répondre aux exigences métier changeantes tout en maximisant la valeur et en réduisant les incidents et les reprises de travail
+* Répondre aux exigences métier changeantes tout en maximisant la valeur et en réduisant les incidents et les retravail
 * Répondre aux demandes de changement (RFC) qui aligneront les services sur les besoins métier
 * S'assurer que les changements sont enregistrés et évalués, et que les changements autorisés sont gérés de manière contrôlée
 * Optimiser le risque métier global
@@ -72,7 +72,7 @@ Les autres responsabilités d'un initiateur du changement comprennent :
 
 ### Exécutant du changement
 
-Il s'agit de la personne désignée comme propriétaire de la demande de changement tout au long du cycle de vie de la demande. La mise en œuvre d'un changement nécessite une approbation de type réalisateur/vérificateur, c'est-à-dire que tous les changements nécessitent une personne pour effectuer le changement et une autre pour le valider.
+Il s'agit de la personne désignée comme propriétaire de la demande de changement tout au long du cycle de vie de la demande. La mise en œuvre d'un changement nécessite une approbation maker/checker, c'est-à-dire que tous les changements nécessitent une personne pour effectuer le changement et une autre pour le valider.
 
 Les responsabilités d'un exécutant du changement comprennent :
 
@@ -97,7 +97,7 @@ Les responsabilités d'un approbateur du changement comprennent :
 * S'assurer que la demande de changement a atteint le niveau de préparation nécessaire pour justifier une décision du responsable des changements et du CAB
 * Examiner et commenter le contenu de l'enregistrement de changement, à savoir : plan de changement, mise en œuvre, plan de test et de remédiation, et calendrier
 * Accorder l'approbation une fois satisfait que tous les critères pertinents ont été remplis et les préoccupations traitées OU rejeter l'approbation en donnant des préoccupations et réserves claires concernant le contenu de l'enregistrement de changement
-* Le résultat des changements échoués lorsque le résultat négatif est le résultat d'une approbation non déterminée
+* Le résultat des changements échoués lorsque le issue négative est le résultat d'une approbation indéterminée
 
 ### Expert technique (SME)
 
@@ -131,7 +131,7 @@ Le processus de gestion des changements traite les types de changements suivants
 
 ### Changements standard
 
-Un changement standard est un changement apporté à un service ou à un autre élément de configuration qui a été pré-autorisé et n'a donc pas besoin de passer par le processus d'approbation. Pour être considéré comme candidat à devenir un changement standard, au moins trois changements mineurs réussis doivent avoir été mis en œuvre. Une demande de changement standard doit ensuite être soumise au comité consultatif des changements pour approbation.
+Un changement standard est un changement apporté à un service ou à un autre élément de configuration qui a été préautorisé et n'a donc pas besoin de passer par le processus d'approbation. Pour être considéré comme candidat à devenir un changement standard, au moins trois changements mineurs réussis doivent avoir été mis en œuvre. Une demande de changement standard doit ensuite être soumise au comité consultatif des changements pour approbation.
 
 Le risque d'un changement standard doit être faible et bien compris, les tâches doivent être bien connues, documentées et éprouvées, et il doit y avoir un déclencheur défini pour l'initier, tel qu'un événement ou une demande de service.
 
@@ -149,13 +149,13 @@ Pour qu'un changement soit classé comme changement mineur, il doit avoir un dé
 
 Un changement majeur est un changement à haut risque et à fort impact qui pourrait interrompre les environnements de production en direct s'il n'est pas correctement planifié. L'évaluation du changement est cruciale pour déterminer le calendrier et le flux d'approbation. Un changement majeur nécessite l'approbation de la direction en plus de l'approbation du CAB. La demande de changement (RFC) d'un changement majeur doit contenir une proposition détaillée sur l'analyse coût-bénéfice, l'analyse risque-impact et les implications financières, le cas échéant.
 
-En pratique, tous les changements qui impliquent un temps d'arrêt, en particulier un temps d'arrêt qui affecte l'intégration des DFSP et les activités de test sur les environnements inférieurs, doivent être classés comme changements majeurs et doivent être examinés par le CAB. Ces changements doivent être mis en œuvre en coordination avec le chef de projet technique.
+En pratique, tous les changements qui impliquent un temps d'arrêt, en particulier un temps d'arrêt qui affecte l'onboarding des DFSP et les activités de test sur les environnements non productifs, doivent être classés comme changements majeurs et doivent être examinés par le CAB. Ces changements doivent être mis en œuvre en coordination avec le chef de projet technique.
 
 Pour qu'un changement soit classé comme changement majeur, il doit avoir un délai de préparation de 5 jours ou plus.
 
 ### Changements d'urgence
 
-Un changement d'urgence est un changement qui doit être effectué dès que possible. Un changement d'urgence ne sera accepté que s'il est lié à un incident de sévérité 1, qui a un ticket S1 correspondant dans l'outil Service Desk. Le responsable de service initiera l'ouverture d'un changement d'urgence et demandera à l'expert technique de le créer.
+Un changement d'urgence est un changement qui doit être effectué dès que possible. Un changement d'urgence ne sera accepté que s'il est lié à un incident de sévérité 1, qui a un ticket S1 correspondant dans l'outil Service Desk. Le responsable de service initie l'ouverture d'un changement d'urgence et demandera à l'expert technique de le créer.
 
 ### Résumé des délais de préparation et matrice d'approbation
 
@@ -212,7 +212,7 @@ Il y a des membres permanents du CAB qui sont invités à toutes les réunions, 
 
 La réunion du CAB peut se tenir en personne ou par voie électronique. Il peut être plus pratique de tenir des réunions électroniques, cependant il peut être plus difficile de traiter les questions de cette façon. Ce sera la responsabilité du président du CAB de décider en fonction de la situation. Il est prévu que les réunions du CAB soient électroniques en raison des contraintes de délais.
 
-Une réunion du CAB est une réunion formelle avec une structure désignée. Avant toute réunion du CAB, les changements à discuter doivent être distribués à tous les membres. Le président du CAB est responsable de s'assurer que cela est effectué, mais peut déléguer la tâche au vice-président du CAB ou à tout membre du CAB.
+Une réunion du CAB est une réunion formelle avec une structure désignée. Avant toute réunion du CAB, les changements à discuter doivent être distribués à tous les membres. Le président du CAB est responsable de s'assurer que cela est effectué, mais peut déléguer la tâche au co-président du CAB ou à tout membre du CAB.
 
 Tous les représentants des changements doivent assister ou envoyer un délégué. En cas d'absence, le changement ne sera pas discuté et donc pas approuvé. Tous les participants au CAB doivent venir à la réunion préparés à discuter des changements qu'ils représentent et à exprimer des opinions et avis basés sur le domaine particulier qu'ils représentent.
 
@@ -242,15 +242,15 @@ La figure suivante fournit un résumé de la première étape du processus de ge
 
 #### Prérequis
 
-Les prérequis pour les changements doivent être alignés sur les exigences des mises en production telles que décrites dans le [processus de gestion des mises en production](release-management.md). Les éléments suivants doivent être clairement capturés dans l'outil Service Desk lors de la préparation de l'enregistrement de changement :
+Les prérequis pour les changements doivent être alignés sur les exigences des releases telles que décrites dans le [processus de gestion des versions](release-management.md). Les éléments suivants doivent être clairement capturés dans l'outil Service Desk lors de la préparation de l'enregistrement de changement :
 
 * Transfert de l'équipe concernée à l'équipe des opérations, y compris une revue complète des éléments suivants :
-    * Ticket de changement ou enregistrement de changement : Raison du changement incluant l'impact, les risques, les limitations. La matrice de catégorisation du changement peut être la même que celle des incidents. Pour les détails sur la matrice de catégorisation des incidents, voir [Matrice de catégorisation des incidents](incident-management.md#incident-categorization-matrix).
+    * Ticket de changement ou Enregistrement de changement : Raison du changement incluant l'impact, les risques, les limitations. La matrice de catégorisation du changement peut être la même que celle des incidents. Pour les détails sur la matrice de catégorisation des incidents, voir [Matrice de catégorisation des incidents](incident-management.md#incident-categorization-matrix).
     * Runbook de changement : Étapes requises pour effectuer le changement et annuler le changement si nécessaire
     * Résultats de tests de l'environnement inférieur : Preuve que le changement a été testé avec succès et ne cause pas de régression
     * Plan de test pour l'environnement supérieur : Quels tests spécifiques doivent être exécutés pour valider le changement
     * Toute la documentation connexe, y compris l'architecture, les diagrammes de flux, les informations de configuration/paramétrage, etc., a été mise à jour
-* Tests pré-changement : Vérifier la stabilité de l'environnement en examinant les derniers résultats de test du parcours de référence (GP)
+* Tests pré-changement : Vérifier la stabilité de l'environnement en examinant les derniers résultats des tests du Golden Path (GP)
 * Tests post-changement : Exécution des tests convenus pour valider le changement, et exécution des tests GP complets pour confirmer l'absence de régression sur l'environnement
 
 #### Entrées
@@ -373,11 +373,11 @@ Changements clôturés.
 
 Les directives suivantes s'appliquent à la communication des changements :
 
-* Les changements standard seront communiqués aux parties prenantes internes.
-* Les changements majeurs, mineurs et d'urgence seront communiqués à toutes les parties prenantes métier et techniques concernées.
-* Les changements seront communiqués après les approbations du CAB.
-* Au début de la fenêtre de changement approuvée, une mise à jour par courriel et une notification Slack (ou similaire) doivent être envoyées aux parties prenantes concernées.
-* À la fin de la fenêtre de changement approuvée, une mise à jour par courriel et une notification Slack (ou similaire) doivent être envoyées aux parties prenantes concernées.
+* Les changements standard doivent être communiqués aux parties prenantes internes.
+* Les changements majeurs, mineurs et d'urgence doivent être communiqués à toutes les parties prenantes métier et techniques concernées.
+* Les changements doivent être communiqués après les approbations du CAB.
+* Au début de la fenêtre de changement approuvée, une mise à jour par courriel et une notification Slack (ou similaire) devraient être envoyées aux parties prenantes concernées.
+* À la fin de la fenêtre de changement approuvée, une mise à jour par courriel et une notification Slack (ou similaire) devraient être envoyées aux parties prenantes concernées.
 * La communication externe aux clients (DFSP) et aux partenaires du Hub sera effectuée par le responsable de service.
 
 La notification doit inclure les détails suivants :

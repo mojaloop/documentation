@@ -27,7 +27,7 @@ Transfert de règlement : flux de fonds entre DFSP visant à rapprocher les gran
 </tr>
 <tr class="even">
 <td><p>DFSP Settlement Ledger</p></td>
-<td><p>Compte de liquidité du DFSP tenu à la banque de règlement, reflété dans le Hub. Sert de compte de rapprochement et reflète les mouvements de fonds réels.</p></td>
+<td><p>Compte de liquidité du DFSP détenu à la banque de règlement, reflété dans le Hub. Sert de compte de rapprochement et reflète les mouvements de fonds réels.</p></td>
 <td><p>Transfert de fonds (entrant et sortant) : mouvement de fonds initié par le DFSP ou confirmation par la banque de règlement que le règlement est terminé.</p></td>
 </tr>
 <tr class="odd">
@@ -55,7 +55,7 @@ Le même transfert est enregistré par le Hub comme un crédit (CR) du côté du
 
 Enregistrer une transaction sur deux comptes sous forme d’écritures de débit et de crédit opposées (de montants égaux) correspond à ce qu’on appelle en comptabilité la « partie double ».
 
-En appliquant ces principes comptables à un dépôt effectué par un DFSP sur son compte de liquidité, le montant crée un passif du point de vue du Hub (l’argent doit être remboursé). Le montant saisi dans le Hub est donc négatif. Ainsi, à tout moment, le montant que le Hub doit à un DFSP peut être calculé rapidement en additionnant la Position du DFSP au solde de son compte de liquidité. L’écriture en partie double pour le DFSP Settlement Ledger est ajoutée au Hub Reconciliation Ledger.
+En appliquant ces principes comptables à un dépôt effectué par un DFSP sur son compte de liquidité, le montant crée un passif du point de vue du Hub (l’argent doit être remboursé). Le montant saisi dans le Hub est donc négatif. Ainsi, à tout moment, le montant que le Hub doit à un DFSP peut être calculé rapidement en additionnant la Position du DFSP au solde de son compte de liquidité. L’écriture en partie double du DFSP Settlement Ledger est ajoutée au Hub Reconciliation Ledger.
 
 ## Règlement : un exemple
 
@@ -63,7 +63,7 @@ Cette section montre comment une transaction est enregistrée dans les différen
 
 Prenons l’exemple suivant : DFSP1 envoie 50 USD à DFSP2. Voici comment cette transaction d’exemple est enregistrée dans les grands livres du Hub.
 
-### Étape 1a : Réserver le montant du transfert pour l’émetteur dans le grand livre de Position
+### Étape 1a : Réserver le montant du transfert pour l’émetteur dans le Position Ledger
 
 Le DFSP Position Ledger sert à suivre les variations de la Position d’un DFSP. Une fois qu’une fenêtre de règlement est fermée et que le processus de règlement est lancé, le montant du transfert est réservé dans les grands livres de Position du Hub tenus pour les DFSP ainsi que dans le Hub Multilateral Net Settlement Ledger. Réserver le montant du transfert pour le DFSP payeur (DFSP1) garantit que les fonds ne peuvent pas être utilisés pour un autre transfert.
 
@@ -96,7 +96,7 @@ Le DFSP Position Ledger sert à suivre les variations de la Position d’un DFSP
 </tbody>
 </table>
 
-### Étape 1b : Réserver le montant du transfert pour le bénéficiaire dans le grand livre de Position
+### Étape 1b : Réserver le montant du transfert pour le bénéficiaire dans le Position Ledger
 
 De même, la Position du DFSP bénéficiaire est suivie via le DFSP Position Ledger du DFSP.
 
@@ -129,7 +129,7 @@ De même, la Position du DFSP bénéficiaire est suivie via le DFSP Position Led
 </tbody>
 </table>
 
-### Étape 2a : Comptabiliser le montant du transfert pour l’émetteur dans le grand livre de Position
+### Étape 2a : Comptabiliser le montant du transfert pour l’émetteur dans le Position Ledger
 
 Après la réservation du montant du transfert, l’étape suivante consiste à comptabiliser le montant dans les mêmes grands livres qu’auparavant.
 
@@ -162,7 +162,7 @@ Après la réservation du montant du transfert, l’étape suivante consiste à 
 </tbody>
 </table>
 
-### Étape 2b : Comptabiliser le montant du transfert pour le bénéficiaire dans le grand livre de Position
+### Étape 2b : Comptabiliser le montant du transfert pour le bénéficiaire dans le Position Ledger
 
 La comptabilisation du montant du transfert pour le DFSP bénéficiaire (DFSP2) permet au DFSP d’envoyer des fonds vers d’autres DFSP s’il le souhaite.
 

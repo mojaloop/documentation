@@ -1,4 +1,4 @@
-# Modèle de règles commerciales du schéma
+# Modèle de règles métier du schéma
 
 - Version : 4.0 
     - Auteur : Carol Coye Benson (Glenbrook)
@@ -7,11 +7,11 @@
 
 ---
 
-## **À propos du projet de documents commerciaux de la communauté Mojaloop**
+## **À propos du projet de documents métier de la communauté Mojaloop**
 
-Ce document fait partie du projet de documents commerciaux de la communauté Mojaloop. Le projet est destiné à soutenir les entités (pays, régions, associations de fournisseurs ou entreprises commerciales) mettant en œuvre de nouveaux systèmes de paiement utilisant le code Mojaloop. Ces entités devront également rédiger des règles commerciales que les participants au système suivront.
+Ce document fait partie du projet de documents métier de la communauté Mojaloop. Le projet est destiné à soutenir les entités (pays, régions, associations de fournisseurs ou entreprises commerciales) mettant en œuvre de nouveaux systèmes de paiement utilisant le code Mojaloop. Ces entités devront également rédiger des règles métier que les participants au système suivront.
 
-Le projet de documents commerciaux de la communauté Mojaloop fournit des modèles pour les règles commerciales et les documents associés. De nombreux choix sont impliqués dans la mise en œuvre d'un nouveau système de paiement : les modèles présentent certains de ces choix et, le cas échéant, des commentaires sont fournis sur la manière dont le choix particulier est lié aux objectifs d'un système aligné sur Level One.
+Le projet de documents métier de la communauté Mojaloop fournit des modèles pour les règles métier et les documents associés. De nombreux choix sont impliqués dans la mise en œuvre d'un nouveau système de paiement : les modèles présentent certains de ces choix et, le cas échéant, des commentaires sont fournis sur la manière dont le choix particulier est lié aux objectifs d'un système conforme Level One.
 
 Les documents suivants font partie du projet :
 
@@ -19,33 +19,33 @@ Les documents suivants font partie du projet :
 
 - Modèle d'accord de participation au schéma
 
-- Modèle de règles commerciales du schéma
+- Modèle de règles métier du schéma
 
 - Modèle de directive opérationnelle de la plateforme
 
 - Modèle de directive opérationnelle de gestion des exceptions
 
-- Glossaire uniforme
+- Glossaire standard
 
 ## **Introduction**
 
-Des schémas de paiement à travers le monde sont en cours de mise en œuvre, ou envisagent la mise en œuvre, de systèmes de paiement basés sur Mojaloop. Mojaloop est un logiciel open source pour les sociétés de services financiers, les régulateurs gouvernementaux et d'autres acteurs relevant les défis de l'interopérabilité et de l'inclusion financière. La Fondation Bill & Melinda Gates a fourni un financement et un soutien pour Mojaloop à travers le Level One Project, une vision pour les marchés financiers numériques basée sur les principes d'interopérabilité, de collaboration et d'inclusion.
+Des systèmes de paiement à travers le monde sont en cours de mise en œuvre, ou envisagent la mise en œuvre, de systèmes de paiement basés sur Mojaloop. Mojaloop est un logiciel open source pour les sociétés de services financiers, les régulateurs gouvernementaux et d'autres acteurs relevant les défis de l'interopérabilité et de l'inclusion financière. La Fondation Bill & Melinda Gates a fourni un financement et un soutien à Mojaloop à travers le Level One Project, une vision pour les marchés financiers numériques basée sur les principes d'interopérabilité, de collaboration et d'inclusion.
 
-Les schémas mettant en œuvre Mojaloop devront rédiger des règles commerciales qui régissent les droits et responsabilités des participants au système. Ce document fournit un modèle pour ces règles commerciales. Le modèle est structuré sous forme de plan détaillé : la formulation réelle des règles sera déterminée par les schémas qui les mettent en œuvre et les juridictions dans lesquelles ils opèrent. Dans de nombreuses parties du document, nous suggérons simplement un sujet sur lequel un schéma pourrait vouloir envisager de rédiger une règle : encore une fois, les spécificités de la règle varieront selon le schéma.
+Les systèmes mettant en œuvre Mojaloop devront rédiger des règles métier qui régissent les droits et responsabilités des participants au système. Ce document fournit un modèle pour ces règles métier. Le modèle est structuré sous forme de plan détaillé : la formulation réelle des règles sera déterminée par les schémas qui les mettent en œuvre et les juridictions dans lesquelles ils opèrent. Dans de nombreuses parties du document, nous suggérons simplement un sujet sur lequel un schéma pourrait vouloir envisager de rédiger une règle : encore une fois, les spécificités de la règle varieront selon le schéma.
 
-Avant la rédaction des règles commerciales, les schémas doivent prendre des décisions commerciales majeures sur le fonctionnement du système et de ses partenaires de l'écosystème. Ces décisions sont décrites dans un document séparé au sein du projet de documents commerciaux de la communauté Mojaloop, « Choix clés du schéma ». Les lecteurs sont encouragés à lire ce document en premier.
+Avant la rédaction des règles métier, les schémas doivent prendre des décisions commerciales majeures sur le fonctionnement du système et de ses partenaires de l'écosystème. Ces décisions sont décrites dans un document séparé au sein du projet de documents métier de la communauté Mojaloop, « Choix clés du schéma ». Les lecteurs sont encouragés à lire ce document en premier.
 
-Modèle de règles commerciales du schéma
+Modèle de règles métier du schéma
 
 ## **Table des matières**
 
-[1 - À propos de ces règles commerciales du schéma](#_1-a-propos-de-ces-regles-commerciales-du-schema)
+[1 - À propos de ces règles métier du schéma](#_1-a-propos-de-ces-regles-metier-du-schema)
 
 [2 - Objectifs du schéma](#_2-objectifs-du-schema)
 
 [3 - Participation au schéma](#_3-participation-au-schema)
 
-[4 - Règles commerciales du schéma](#_4-regles-commerciales-du-schema)
+[4 - Règles métier du schéma](#_4-regles-metier-du-schema)
 
 [5 - Responsabilités et obligations du schéma](#_5-responsabilites-et-obligations-du-schema)
 
@@ -75,9 +75,9 @@ Modèle de règles commerciales du schéma
 
 Les titres de section et les entrées à puces sous les titres de section sont des formulations réellement proposées, ou des sections suggérées pour un document de règles. Le texte en italique constitue des commentaires qui peuvent être utilisés lorsqu'un schéma rédige la formulation réelle d'un document de règles.
 
-## 1. À propos de ces règles commerciales du schéma
+## 1. À propos de ces règles métier du schéma
 
-### 1.1 Ceci constitue les règles commerciales du schéma
+### 1.1 Ceci constitue les règles métier du schéma
 
 ::: tip NOTE
 Le logiciel Mojaloop peut être utilisé pour des échanges bilatéraux entre DFSP, ainsi que dans une structure de schéma qui utilise un commutateur. Ce document suppose cette dernière option ; que le schéma fournit, engage ou organise autrement l'échange de transactions interopérables via un commutateur. Certains concepts de ces règles ne s'appliquent qu'à cette configuration ; d'autres seraient utiles dans des accords bilatéraux également.
@@ -91,19 +91,19 @@ Le logiciel Mojaloop peut être utilisé pour des échanges bilatéraux entre DF
 
 - Ces règles incluent les documents associés répertoriés dans une annexe à ces règles. Les documents associés font partie des règles opérationnelles et ont la force de celles-ci.
 
-<ul><i>Les documents associés devraient inclure la directive opérationnelle de la plateforme et le glossaire uniforme. Cela n'inclut pas les divers documents techniques qui peuvent être référencés dans les règles commerciales ou la directive opérationnelle de la plateforme.</i></ul>
+<ul><i>Les documents associés devraient inclure la directive opérationnelle de la plateforme et le glossaire standard. Cela n'inclut pas les divers documents techniques qui peuvent être référencés dans les règles métier ou la directive opérationnelle de la plateforme.</i></ul>
 
-### 1.4 Les règles commerciales du schéma sont contraignantes pour les participants
+### 1.4 Les règles métier du schéma sont contraignantes pour les participants
 
-<ul><i>Cela répète la disposition de l'accord de participation au schéma. Notez que les règles commerciales du schéma ne sont contraignantes que pour les DFSP qui participent au schéma. Le schéma peut rédiger des règles exigeant que certaines dispositions de ces règles soient transmises aux clients des participants (par exemple, les commerçants) ou aux partenaires (par exemple, les processeurs) - mais il s'agit d'une obligation du participant envers le schéma, et non des autres parties.</i></ul>
+<ul><i>Cela répète la disposition de l'accord de participation au schéma. Notez que les règles métier du schéma ne sont contraignantes que pour les DFSP qui participent au schéma. Le schéma peut rédiger des règles exigeant que certaines dispositions de ces règles soient transmises aux clients des participants (par exemple, les commerçants) ou aux partenaires (par exemple, les processeurs) - mais il s'agit d'une obligation du participant envers le schéma, et non des autres parties.</i></ul>
 
 ### 1.5 Les règles peuvent être modifiées
 
 <ul><i>Les détails du processus de modification sont spécifiés ailleurs.</i></ul>
 
-### 1.6 Les termes sont définis dans le glossaire uniforme
+### 1.6 Les termes sont définis dans le glossaire standard
 
-<ul><i>Le glossaire est un document séparé, plutôt qu'interne au document des règles commerciales. Cela permet d'assurer la cohérence de la terminologie à mesure que le service évolue et que la directive opérationnelle de la plateforme change.</i></ul>
+<ul><i>Le glossaire est un document séparé, plutôt qu'interne au document des règles métier. Cela permet d'assurer la cohérence de la terminologie à mesure que le service évolue et que la directive opérationnelle de la plateforme change.</i></ul>
 
 ## 2. Objectifs du schéma
 
@@ -125,9 +125,9 @@ Le logiciel Mojaloop peut être utilisé pour des échanges bilatéraux entre DF
 
 <ul><i>Ce concept peut ou non s'appliquer lorsque l'opérateur du schéma est une entité gouvernementale. Si le concept de licence n'est pas inclus dans les règles, il doit y avoir une disposition dans la section « Éligibilité à la participation » concernant la résiliation d'un participant.</i></ul>
 
-- Un participant se voit accorder une licence pour participer au schéma et utiliser la propriété du schéma conformément aux règles commerciales du schéma.
+- Un participant se voit accorder une licence pour participer au schéma et utiliser la propriété du schéma conformément aux règles métier du schéma.
 
-- Un participant ne peut utiliser la propriété du schéma que conformément aux règles commerciales du schéma. Les licences limiteront l'utilisation de la propriété du schéma à la fourniture de services par le participant en lien avec le schéma et conformément aux règles.
+- Un participant ne peut utiliser la propriété du schéma que conformément aux règles métier du schéma. Les licences limiteront l'utilisation de la propriété du schéma à la fourniture de services par le participant en lien avec le schéma et conformément aux règles.
 
 - Les licences ne seront pas exclusives.
 
@@ -143,9 +143,9 @@ Le logiciel Mojaloop peut être utilisé pour des échanges bilatéraux entre DF
 
 <ul><i>Dispositions permettant aux participants de mettre fin à leur participation au schéma.</i></ul>
 
-## 4. Règles commerciales du schéma
+## 4. Règles métier du schéma
 
-### 4.1 Portée des règles commerciales du schéma
+### 4.1 Portée des règles métier du schéma
 
 - Ces règles s'appliquent à chaque participant et régissent les droits et responsabilités des participants et du schéma.
 
@@ -155,7 +155,7 @@ Le logiciel Mojaloop peut être utilisé pour des échanges bilatéraux entre DF
 
 <ul><i>Des dispositions devraient être prises pour la résolution des litiges entre participants ou entre les participants et le schéma.</i></ul>
 
-### 4.2 Modifications des règles commerciales du schéma
+### 4.2 Modifications des règles métier du schéma
 
 - Les participants peuvent de temps à autre fournir des suggestions ou des demandes de modification des règles.
 
@@ -163,7 +163,7 @@ Le logiciel Mojaloop peut être utilisé pour des échanges bilatéraux entre DF
 
 - Les modifications des règles seront effectuées selon une procédure consultative :
 
-- Un ou plusieurs participants ou le schéma peuvent proposer une modification des règles commerciales du schéma.
+- Un ou plusieurs participants ou le schéma peuvent proposer une modification des règles métier du schéma.
 
 - Le schéma publiera les propositions à tous les participants et demandera des commentaires et suggestions à ce sujet ; tous les commentaires reçus seront publiés à tous les participants.
 
@@ -199,7 +199,7 @@ Le logiciel Mojaloop peut être utilisé pour des échanges bilatéraux entre DF
 
 ### 5.2 Rédaction, mise à jour et maintenance des règles
 
-- Le schéma rédige, met à jour et maintient les règles commerciales.
+- Le schéma rédige, met à jour et maintient les règles métier.
 
 - Le schéma est responsable d'informer les participants de toute modification des règles, de tous les frais, des politiques susceptibles d'affecter l'utilisation du schéma par les participants, ou de toute autre information importante et pertinente.
 
@@ -209,7 +209,7 @@ Le logiciel Mojaloop peut être utilisé pour des échanges bilatéraux entre DF
 
 ### 5.3 Autres responsabilités du schéma
 
-- Le schéma administre les processus d'intégration et de sortie des participants. Ces processus sont répertoriés dans une annexe à ces règles.
+- Le schéma administre les processus d'onboarding et de sortie des participants. Ces processus sont répertoriés dans une annexe à ces règles.
 
 - Le schéma surveille l'éligibilité continue des participants selon les exigences établies pour la participation.
 
@@ -231,11 +231,11 @@ Le logiciel Mojaloop peut être utilisé pour des échanges bilatéraux entre DF
 
 ## 6. Responsabilités et obligations des participants
 
-- Les participants sont tenus de se conformer à ces règles commerciales et aux documents associés à ces règles.
+- Les participants sont tenus de se conformer à ces règles métier et aux documents associés à ces règles.
 
 - Les participants doivent se conformer à toute loi applicable en ce qui concerne leur participation au schéma dans les territoires dans lesquels ils opèrent et dans lesquels ils utilisent les services du schéma. Le schéma n'assume aucune responsabilité quant à la conformité des participants à la loi applicable.
 
-- Les participants sont tenus de permettre l'utilisation et la divulgation d'informations personnelles comme l'exigent ces règles commerciales et de fournir des informations à leurs clients et d'obtenir les consentements nécessaires concernant cette utilisation et divulgation d'informations personnelles comme l'exige la loi applicable.
+- Les participants sont tenus de permettre l'utilisation et la divulgation d'informations personnelles comme l'exigent ces règles métier et de fournir des informations à leurs clients et d'obtenir les consentements nécessaires concernant cette utilisation et divulgation d'informations personnelles comme l'exige la loi applicable.
 
 - Les participants acceptent de payer des frais au schéma et aux autres participants comme spécifié dans ces règles.
 
@@ -271,11 +271,11 @@ Le logiciel Mojaloop peut être utilisé pour des échanges bilatéraux entre DF
 
 - Un participant payeur est tenu de régler un transfert lors de la soumission d'une demande de transfert, à moins que cette demande de transfert ne soit refusée par le DFSP bénéficiaire ou n'expire sans exécution.
 
-- Le participant payeur garantit, lors de la soumission de chaque demande de transfert, que le transfert provient d'un compte conforme aux exigences KYC et AML et est exécuté conformément à la loi applicable, et que le payeur a reçu toutes les informations et a donné tous les consentements nécessaires pour effectuer le transfert conformément à ces règles commerciales et à la loi applicable.
+- Le participant payeur garantit, lors de la soumission de chaque demande de transfert, que le transfert provient d'un compte conforme aux exigences KYC et AML et est exécuté conformément à la loi applicable, et que le payeur a reçu toutes les informations et a donné tous les consentements nécessaires pour effectuer le transfert conformément à ces règles métier et à la loi applicable.
 
-- Le participant payeur garantit, lors de la soumission d'une demande de transfert, que la demande de transfert a été autorisée par son payeur, et que ses communications avec son payeur ont été correctement authentifiées conformément à ces règles commerciales et à la loi applicable.
+- Le participant payeur garantit, lors de la soumission d'une demande de transfert, que la demande de transfert a été autorisée par son payeur, et que ses communications avec son payeur ont été correctement authentifiées conformément à ces règles métier et à la loi applicable.
 
-- Le participant payeur reconnaît que la plateforme rejettera une demande de transfert si le transfert proposé violerait ces règles commerciales, comme le dépassement du plafond de débit net du participant payeur.
+- Le participant payeur reconnaît que la plateforme rejettera une demande de transfert si le transfert proposé violerait ces règles métier, comme le dépassement du plafond de débit net du participant payeur.
 
 ### 6.2 Responsabilités et obligations des participants en tant que DFSP bénéficiaires
 
@@ -313,7 +313,7 @@ Le logiciel Mojaloop peut être utilisé pour des échanges bilatéraux entre DF
 
 - Chaque participant est responsable des erreurs commises par lui, et de la fraude commise par ses employés ou sous-traitants, conformément à la loi applicable.
 
-- Le schéma ne sera pas tenu responsable et chaque participant indemnisera et défendra le schéma contre les réclamations découlant des actions ou omissions des participants, de leurs clients ou sous-traitants.
+- Le système (ou le scheme) ne sera pas tenu responsable et chaque participant indemnisera et défendra le schéma contre les réclamations découlant des actions ou omissions des participants, de leurs clients ou sous-traitants.
 
 - Le schéma peut choisir de défendre toute réclamation dans les circonstances où le schéma détermine que la résolution d'une réclamation pourrait avoir un impact défavorable sur les finances, les opérations ou la réputation du schéma.
 
@@ -397,7 +397,7 @@ Le logiciel Mojaloop peut être utilisé pour des échanges bilatéraux entre DF
 
 ## 11. Annexe : Documents associés
 
-- Glossaire uniforme
+- Glossaire standard
 
 - Directive opérationnelle de la plateforme
 

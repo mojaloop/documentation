@@ -1,14 +1,14 @@
 # Documentation des API
 
-Toutes les API doivent être documentées en RAML ou Swagger, voir [Architecture-Documentation-Guidelines](Architecture-Documentation-Guidelines.md).
+Toutes les API devraient être documentées en RAML ou Swagger, voir [Architecture-Documentation-Guidelines](Architecture-Documentation-Guidelines.md).
 
-**Titres des sections**
+**En-têtes de section**
 
 * Ne numérotez pas les titres de sections - par exemple, utilisez « Préparer et Exécuter », et non « C - Préparer et Exécuter »
 * Assurez-vous que les titres de section (\#) correspondent à ceux du PDF complet (généré à partir du [fichier de configuration dactyl](https://github.com/Mojaloop/Docs/blob/master/ExportDocs/dactyl-config.yml))
 * N’incluez pas le mot « documentation » dans les titres
 
-#### Accessibilité
+#### Repérabilité
 
 * Pour les sections qui contiennent de nombreux sous-ensembles de points de terminaison ou méthodes, fournissez une table des matières au début de la section
 * N’utilisez pas le mot « projet » ; préférez des termes comme composant, microservice, interface, etc.

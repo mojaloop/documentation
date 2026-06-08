@@ -1,12 +1,12 @@
 # Normes
 
-> *Note :* Ces normes ne sont pas gravées dans le marbre ; en tant que communauté, nous souhaitons les faire évoluer et améliorer Mojaloop. Pour proposer une modification ou des améliorations, contactez le canal Design Authority sur le Slack Mojaloop (#design-authority).
+> *Note :* Ces normes ne sont en aucun cas figées dans le marbre ; en tant que communauté, nous souhaitons toujours les faire évoluer et améliorer Mojaloop. Pour proposer une modification de ces normes ou suggérer des améliorations supplémentaires, n’hésitez pas à contacter le canal Design Authority sur le Slack Mojaloop (#design-authority).
 
 ## Invariants Mojaloop
 
 Mojaloop définit des [invariants](./invariants.md) importants à comprendre et à respecter lorsque vous contribuez à la base de code.
 
-Ces invariants découlent des [principes Level One](https://www.leveloneproject.org/wp-content/uploads/2020/07/L1P_Guide_2019_Final.pdf) et d’autres exigences métier fixées par le conseil de gouvernance technique Mojaloop, le comité de contrôle des changements d’API, l’autorité de conception et le conseil produit. Ils visent à ce que la plateforme conserve des caractéristiques adaptées à une exploitation de type infrastructure nationale.
+Ces invariants découlent des [principes Level One](https://www.leveloneproject.org/wp-content/uploads/2020/07/L1P_Guide_2019_Final.pdf) et d’autres exigences métier telles qu’arrêtées par le conseil de gouvernance technique Mojaloop, le comité de contrôle des changements d’API, la Design Authority et le conseil produit. Ils visent à ce que la plateforme conserve des caractéristiques adaptées à une exploitation de type infrastructure nationale.
 
 Assurez-vous de connaître ces invariants avant de contribuer.
 
@@ -18,7 +18,7 @@ Les normes d’exécution suivantes s’appliquent à Mojaloop.
 
 1. Javascript
 
-    NodeJS est l’environnement d’exécution standard pour tous les services et composants Mojaloop exécutant du code Javascript.
+    NodeJS est l’environnement d’exécution standard pour tous les services et composants Mojaloop pour l’exécution des fichiers de code source Javascript.
 
     Notre objectif est que tous les services NodeJS tournent sur la dernière version `Active LTS` (*Long Time Support*) de NodeJS, conformément au [cycle de release NodeJS](https://nodejs.org/en/about/releases/).
 
@@ -120,7 +120,7 @@ Les normes d’exécution suivantes s’appliquent à Mojaloop.
         CMD ["npm", "run", "start"]
         ```
 
-### Pipelines CI (*intégration continue*)
+### Pipelines CI (Intégration Continue)
 
 Les jobs CI Mojaloop s’exécutent sur la version Ubuntu LTS courante selon le [cycle de release Ubuntu](https://ubuntu.com/about/release-cycle).
 
@@ -132,20 +132,20 @@ Les charts Helm Mojaloop ([mojaloop/helm](https://github.com/mojaloop/helm), [mo
 
 La communauté Mojaloop fournit des lignes directrices pour le style de code. Elles contribuent à maintenir une base de code de qualité, maintenable et cohérente.
 
-Ces guides sont choisis car ils peuvent être appliqués et vérifiés avec des outils courants et peu de personnalisation. Nous savons que chaque développeur a des préférences qui peuvent entrer en conflit avec ces règles ; nous privilégions la cohérence au [bike-shedding](https://en.wikipedia.org/wiki/Law_of_triviality).
+Ces guides sont choisis car ils peuvent être appliqués et vérifiés avec des outils courants et peu de personnalisation. Bien que nous reconnaissions que les développeurs ont des préférences personnelles pouvant entrer en conflit avec ces règles, nous privilégions la cohérence au [bike-shedding](https://en.wikipedia.org/wiki/Law_of_triviality).
 
-L’objectif est de faciliter le flux de travail des développeurs et de limiter les commits où le style prime sur le fond. Moins de bruit dans les diffs simplifie la revue.
+L’objectif est de faciliter le flux de travail des développeurs et de réduire les commits dont les changements sont motivés par le seul style plutôt que par le fond. En réduisant le bruit dans les diffs, on facilite le travail des relecteurs.
 
 ## Style de code
 
 ### Conventions de nommage
 
-Pour éviter la confusion et garantir l’interopération entre langages :
+Pour éviter toute confusion et garantir la cohérence des conventions entre les différents langages :
 
 - N’utilisez pas d’abréviations ou de contractions dans les identifiants. Ex. : `SettlementWindow` plutôt que `SetWin`.
 - N’utilisez pas d’acronymes non universellement acceptés en informatique.
 - Lorsque c’est pertinent, utilisez des acronymes reconnus pour raccourcir. Ex. : `UI` pour *User Interface*.
-- Utilisez Pascal case ou camel case selon le contexte (classes vs variables). Ex. : `SettlementWindow` (classe) ou `settlementWindow` (variable).
+- Utilisez le Pascal case ou le camel case pour les noms de plus de deux caractères, selon le contexte (classes vs variables). Ex. : `SettlementWindow` (classe) ou `settlementWindow` (variable).
 - Mettez en majuscules les acronymes de deux lettres isolés, ex. `ID` plutôt que `Id`. Ex. : `/transfer/{{ID}}` plutôt que `/transfer/{{Id}}` pour un paramètre d’URI.
 - Évitez les abréviations dans les identifiants ou paramètres. Si vous devez en utiliser, camel case pour les abréviations de plus de deux caractères, même si cela diverge de l’abréviation usuelle.
 - Utilisez le SCREAMING_SNAKE_CASE pour les énumérations. Ex. : `RECORD_FUNDS_OUT_PREPARE_RESERVE`.
@@ -183,7 +183,7 @@ window.alert('hi');  // ✗ avoid
 
 > *Note : Standard et Typescript*
 >
-> À mesure que nous introduisons plus de Typescript, Standard devient moins adapté et peut nuire au flux de travail si l’on applique Standard au Javascript compilé depuis Typescript.
+> À mesure que nous introduisons davantage de TypeScript dans la base de code, Standard devient moins adapté et peut même nuire à notre flux de travail si l’on tente d’appliquer Standard au Javascript compilé depuis TypeScript.
 > Il faudra évaluer d’autres options pour Typescript, par ex. Prettier + ESLint.
 
 Voir le dépôt [template-typescript-public](https://github.com/mojaloop/template-typescript-public) pour la configuration Typescript de référence.
@@ -233,7 +233,7 @@ Le script utilisera le `bash` défini dans l’environnement plutôt qu’un che
 
 - Pour référencer d’autres fichiers, évitez les chemins relatifs simples :
 
-L’exécution depuis un autre répertoire que celui du script casserait souvent le script.
+En effet, si quelqu'un exécute le script depuis un répertoire différent de celui où il se trouve, le script risque fort de ne pas fonctionner.
 
 ```bash
 # MAUVAIS :
@@ -249,15 +249,15 @@ Autres bonnes pratiques bash : [Best Practices for Writing Shell Scripts](https:
 ## Documentation
 
 - Rédiger la documentation en Markdown.
-- Les schémas dessinés à la main : SVG éditable (architecture / composants / blocs / états), exportés depuis [diagrams.net](https://app.diagrams.net)
+- Les schémas dessinés à la main doivent utiliser un format SVG éditable (ex. : architecture / composants / blocs / diagrammes de transition d'état), exportés depuis [diagrams.net](https://app.diagrams.net)
   > NOTE : intégrez le diagramme éditable lors de l’export SVG depuis [diagrams.net](https://app.diagrams.net) !
 - Diagrammes de séquence : PlantUML
-- Documents de discussion : `/community/archive/discussion-docs`
-- Éviter Google Docs et outils privés pour la collaboration à l’échelle de la communauté
+- Les documents de discussion doivent être placés dans `/community/archive/discussion-docs`.
+- Il est déconseillé d’utiliser Google Docs et autres outils propriétaires pour la collaboration à l’échelle de la communauté.
 
 ## Structure de répertoires
 
-Outre le style de code, la communauté recommande la structure suivante pour que les développeurs passent facilement d’un projet à l’autre et pour porter outils et configs (`.circleci/config.yml`, `Dockerfile`, etc.) avec peu de changements.
+Outre le style de code, la communauté recommande la structure suivante afin que les développeurs puissent passer facilement d’un projet à l’autre, et que nos outils et configurations (`.circleci/config.yml`, `Dockerfiles`, etc.) puissent être portés d’un projet à l’autre avec des modifications mineures.
 
 Structure attendue :
 
@@ -432,7 +432,7 @@ Configuration Typescript détaillée (`package.json`, `jest.config.js`, etc.) : 
 
 ### Mises à jour des dépendances
 
-Il est important d’utiliser les dépendances à jour pour limiter les problèmes de sécurité.
+Il est important d’utiliser des dépendances à jour afin d’atténuer les risques de sécurité.
 
 #### NodeJS
 
@@ -583,7 +583,7 @@ La communauté OSS Mojaloop privilégie les outils et frameworks suivants :
 - **Couverture de tests :** [`nyc`](https://github.com/istanbuljs/nyc)
 - **CI :** [`CircleCI`](https://circleci.com/)
 
-Ces outils maintiennent cohérence et maintenabilité sur la base de code. Nous n’imposons pas leur usage aux dépôts fournis en contribution, mais d’autres choix peuvent alourdir la maintenance pour la communauté.
+En utilisant ces outils et frameworks, nous maintenons un haut niveau de cohérence et de maintenabilité sur l’ensemble de la base de code, ce qui permet à nos développeurs de rester productifs et sereins. Nous n’imposons pas leur usage aux dépôts fournis en contribution, mais d’autres choix peuvent alourdir la maintenance pour la communauté.
 
 ## Adopter des contributions open source dans Mojaloop
 
@@ -649,4 +649,4 @@ Voir la politique [License](https://github.com/mojaloop/mojaloop/blob/master/con
 
 **2. Ces normes sont dépassées et un outil (ou framework, méthode, langage) plus récent résoudrait le problème *x*. Comment mettre à jour les normes ?**
 
-  La qualité du code évolue constamment ; nous restons ouverts aux outils qui améliorent la base OSS Mojaloop. Écrivez-nous sur le canal Slack design authority (`#design-authority`) avec votre recommandation.
+  Écrire du code de qualité est une cible en constante évolution, et nous cherchons toujours activement de nouveaux outils susceptibles d’améliorer la base de code OSS Mojaloop. N’hésitez donc pas à nous en parler sur le canal Slack design authority (`#design-authority`) si vous avez une recommandation.

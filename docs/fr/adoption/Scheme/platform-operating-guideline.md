@@ -7,11 +7,11 @@
 
 ---
 
-## **À propos du projet de documents commerciaux de la communauté Mojaloop**
+## **À propos du projet de documents métier de la communauté Mojaloop**
 
-Ce document fait partie du projet de documents commerciaux de la communauté Mojaloop. Le projet est destiné à soutenir les entités (pays, régions, associations de fournisseurs ou entreprises commerciales) mettant en œuvre de nouveaux systèmes de paiement utilisant le code Mojaloop. Ces entités devront également rédiger des règles commerciales que les participants au système suivront.
+Ce document fait partie du projet de documents métier de la communauté Mojaloop. Le projet est destiné à soutenir les entités (pays, régions, associations de fournisseurs ou entreprises commerciales) mettant en œuvre de nouveaux systèmes de paiement utilisant le code Mojaloop. Ces entités devront également rédiger des règles métier que les participants au système suivront.
 
-Le projet de documents commerciaux de la communauté Mojaloop fournit des modèles pour les règles commerciales et les documents associés. De nombreux choix sont impliqués dans la mise en œuvre d'un nouveau système de paiement : les modèles présentent certains de ces choix et, le cas échéant, des commentaires sont fournis sur la manière dont le choix particulier est lié aux objectifs d'un système aligné sur Level One.
+Le projet de documents métier de la communauté Mojaloop fournit des modèles pour les règles métier et les documents associés. De nombreux choix sont impliqués dans la mise en œuvre d'un nouveau système de paiement : les modèles présentent certains de ces choix et, le cas échéant, des commentaires sont fournis sur la manière dont le choix particulier est lié aux objectifs d'un système conforme Level One.
 
 Les documents suivants font partie du projet :
 
@@ -19,23 +19,23 @@ Les documents suivants font partie du projet :
 
 - Modèle d'accord de participation au schéma
 
-- Modèle de règles commerciales du schéma
+- Modèle de règles métier du schéma
 
 - Modèle de directive opérationnelle de la plateforme
 
 - Modèle de directive opérationnelle de gestion des exceptions
 
-- Glossaire uniforme
+- Glossaire standard
 
 ## **Introduction**
 
-Un schéma mettant en œuvre un système aligné sur Level One, y compris ceux utilisant le code de référence Mojaloop dans la plateforme, devra rédiger des règles commerciales pour le schéma. Un modèle pour ces règles commerciales est inclus dans ce projet. Les règles commerciales introduisent le concept de documents associés, qui font partie des règles commerciales et ont la même force — les DFSP signant les règles commerciales sont également tenus de suivre les dispositions des documents associés.
+Un schéma mettant en œuvre un système conforme Level One, y compris ceux utilisant le code de référence Mojaloop dans la plateforme, devra rédiger des règles métier pour le schéma. Un modèle pour ces règles métier est inclus dans ce projet. Les règles métier introduisent le concept de documents associés, qui font partie des règles métier et ont la même force — les DFSP signant les règles métier sont également tenus de suivre les dispositions des documents associés.
 
 La directive opérationnelle de la plateforme est un document associé important qui décrit comment la plateforme du schéma fonctionnera et précise les obligations et responsabilités du schéma, de l'opérateur de la plateforme et des DFSP.
 
 Ce document est un modèle pour une telle directive opérationnelle de la plateforme. Cependant, de nombreuses dispositions varieront en fonction des choix effectués par le schéma : certains de ces choix sont décrits dans le document « Choix clés du schéma » qui fait partie de ce projet.
 
-Le modèle de règles commerciales qui fait partie de ce projet peut être utilisé indépendamment du choix de plateforme d'un schéma. Cette directive opérationnelle de la plateforme est plus spécifique à l'utilisation de Mojaloop comme plateforme.
+Le modèle de règles métier qui fait partie de ce projet peut être utilisé indépendamment du choix de plateforme d'un schéma. Cette directive opérationnelle de la plateforme est plus spécifique à l'utilisation de Mojaloop comme plateforme.
 
 ## **Table des matières — Modèle de directive opérationnelle de la plateforme**
 
@@ -73,7 +73,7 @@ Le modèle de règles commerciales qui fait partie de ce projet peut être utili
 
 [4.2 - Demande de transfert](#_4-2-demande-de-transfert)
 
-[4.3 - Demande de paiement](#_4-3-demande-de-paiement)
+[4.3 - Request to pay](#_4-3-request-to-pay)
 
 [5 - Le service de règlement](#_5-le-service-de-reglement)
 
@@ -129,7 +129,7 @@ Certaines règles et spécifications opérationnelles varient selon les cas d'ut
 
 ### 1.4 Identifiants pris en charge par le schéma
 
-Le schéma prend en charge certains identifiants, ou adresses de paiement, à utiliser pour effectuer des transferts. L'identifiant identifie le bénéficiaire dont le compte de transaction est crédité pour le transfert. Les identifiants pris en charge par le schéma sont répertoriés dans une annexe aux règles commerciales.
+Le schéma prend en charge certains identifiants, ou adresses de paiement, à utiliser pour effectuer des transferts. L'identifiant identifie le bénéficiaire dont le compte de transaction est crédité pour le transfert. Les identifiants pris en charge par le schéma sont répertoriés dans une annexe aux règles métier.
 
 Pour chaque identifiant pris en charge par le schéma, ce document doit spécifier ce qu'est l'identifiant et comment il est résolu (comment il est déterminé quel DFSP bénéficiaire est responsable du compte de transaction associé à cet identifiant).
 
@@ -367,7 +367,7 @@ Le schéma peut définir des éléments de données clés supplémentaires qui s
 
     - De libérer immédiatement tout fonds réservé si un transfert a été refusé ou annulé
 
-### 4.3 Demande de paiement 
+### 4.3 Request to pay 
 
 _Cette section n'a pas encore été rédigée._
 
@@ -427,7 +427,7 @@ Notez que le schéma peut être en mesure d'automatiser le calcul de la valeur d
 
 - \[_Option de règlement net uniquement_\] La banque de règlement comptabilisera les écritures de règlement sur le compte bancaire de règlement de chaque DFSP, et enverra une confirmation à la plateforme de l'achèvement de ce processus.
 
-Les règles du système devront tenir compte des dispositions et procédures en cas d'échec du processus décrit ci-dessus.
+Les règles de schéma devront tenir compte des dispositions et procédures en cas d'échec du processus décrit ci-dessus.
 
 #### 5.1.6 Processus de gestion du compte de règlement
 
@@ -521,7 +521,7 @@ _Cette section n'a pas encore été rédigée, mais devrait inclure les sections
 
 ## 8. Annexe : Cas d'utilisation pris en charge par le schéma et paramètres système
 
-_Il s'agit du même tableau que celui qui apparaît dans le document des règles commerciales, mais il a ajouté les codes systémiques nécessaires pour que la plateforme reconnaisse une transaction comme appartenant à un cas d'utilisation ou un cas d'utilisation secondaire donné. Un schéma ne définirait des cas d'utilisation secondaires que s'il souhaitait rédiger des règles et/ou spécifier des frais propres à ce cas d'utilisation secondaire._
+_Il s'agit du même tableau que celui qui apparaît dans le document des règles métier, mais il a ajouté les codes systémiques nécessaires pour que la plateforme reconnaisse une transaction comme appartenant à un cas d'utilisation ou un cas d'utilisation secondaire donné. Un schéma ne définirait des cas d'utilisation secondaires que s'il souhaitait rédiger des règles et/ou spécifier des frais propres à ce cas d'utilisation secondaire._
 
 _Ce tableau est un exemple de tableau de cas d'utilisation et de cas d'utilisation secondaires qu'un schéma pourrait prendre en charge._
 

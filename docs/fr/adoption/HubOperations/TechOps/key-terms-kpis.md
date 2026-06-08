@@ -21,19 +21,19 @@ Cette section sert de glossaire des termes des opérations techniques et fournit
 
 **Priorité :** Une catégorie utilisée pour identifier l'importance relative d'un incident ou d'un changement. La priorité est utilisée pour identifier les délais requis pour les actions à entreprendre.
 
-**Gestion des mises en production :** La gestion des mises en production est le processus de gestion, de planification, de programmation, de mise en œuvre et de contrôle d'une version logicielle à travers différentes étapes et environnements, dans le but de fournir des fonctionnalités aux clients ou aux utilisateurs finaux.
+**Gestion des versions :** La gestion des versions est le processus de gestion, de planification, de programmation, de mise en œuvre et de contrôle d'une version logicielle à travers différentes étapes et environnements, dans le but de fournir des fonctionnalités aux clients ou aux utilisateurs finaux.
 
-**Demande de changement (RFC) :** La demande de changement (ou simplement demande de modification) est une demande formelle pour la mise en œuvre d'un changement. La RFC est un précurseur de l'« enregistrement de changement » et contient toutes les informations nécessaires pour approuver et exécuter un changement.
+**Demande de changement (RFC) :** La demande de changement (ou simplement demande de modification) est une demande formelle pour la mise en œuvre d'un changement. La RFC est un précurseur de l'« Enregistrement de changement » et contient toutes les informations nécessaires pour approuver et exécuter un changement.
 
 **Rôle :** Un ensemble de responsabilités, d'activités et d'autorisations accordées à une personne ou une équipe. Les rôles sont utilisés pour attribuer des propriétaires aux différents processus de gestion des incidents et pour définir les responsabilités des activités dans les définitions détaillées des processus.
 
-**Analyse des causes premières (RCA) :** La RCA est un terme collectif qui décrit un large éventail d'approches, d'outils et de techniques utilisés pour découvrir les causes des incidents. Elle est invoquée lors de chaque incident urgent et chaque fois qu'un incident se produit plus d'une fois.
+**Analyse des causes premières (RCA) :** La RCA est un terme collectif qui décrit un large éventail d'approches, d'outils et de techniques utilisés pour découvrir les causes des incidents. Elle est déclenchée lors de chaque incident urgent et chaque fois qu'un incident se produit plus d'une fois.
 
 **Accord de niveau de service (SLA) :** Un accord entre un fournisseur de services informatiques et un client. Le SLA décrit le service informatique, documente les objectifs de niveau de service et précise les responsabilités du fournisseur de services informatiques et du client.
 
 **Sévérité :** Une mesure de l'effet d'un incident sur les processus métier.
 
-**TAT (Délai de traitement) :** Il s'agit du temps écoulé entre le moment où l'incident est signalé et le moment où il est résolu et clôturé. Il comprend le temps d'intervention garanti (GIT) et le temps de résolution garanti (GRT).
+**TAT (Turnaround Time) :** Il s'agit du temps écoulé entre le moment où l'incident est signalé et le moment où il est résolu et clôturé. Il comprend le temps d'intervention garanti (GIT) et le temps de résolution garanti (GRT).
 
 ## Indicateurs clés de performance (KPI)
 
@@ -55,11 +55,11 @@ Cette section sert de glossaire des termes des opérations techniques et fournit
 
 **Temps moyen entre les pannes (MTBF) :** Le temps moyen entre les pannes réparables d'un produit technologique. Cette métrique est utilisée pour suivre à la fois la disponibilité et la fiabilité d'un service informatique ou de tout autre élément de configuration, afin d'évaluer s'ils peuvent remplir leur fonction convenue sans interruption. Plus le temps entre les pannes est élevé, plus le système est fiable.
 
-**Temps moyen d'accusé de réception (MTTA) :** Le temps moyen entre le déclenchement d'une alerte et le début du travail sur le problème. Cela mesure le temps qu'il faut à une organisation pour répondre aux plaintes, pannes ou incidents dans tous les départements en moyenne. Cette métrique est utile pour suivre la réactivité d'une équipe et l'efficacité d'un système d'alerte.
+**Temps moyen de prise en compte (MTTA) :** Le temps moyen entre le déclenchement d'une alerte et le début du travail sur le problème. Cela mesure le temps qu'il faut à une organisation pour répondre aux plaintes, pannes ou incidents dans tous les départements en moyenne. Cette métrique est utile pour suivre la réactivité d'une équipe et l'efficacité d'un système d'alerte.
 
 **Temps moyen de détection (MTTD) – « Actions proactives » :** La différence entre le début de tout événement considéré comme ayant un impact sur les revenus et sa détection effective par le technicien qui initie ensuite une action spécifique pour rétablir l'événement à son état d'origine. Ce n'est pas la même chose que de démarrer le chronomètre du temps moyen de réparation (MTTR) (c'est-à-dire une fois que le technicien reçoit un ticket). Le début de tout événement ayant un impact sur les revenus est presque toujours enregistré à un moment précis par un équipement spécifique. L'élément clé est d'intégrer l'outil de détection dans l'environnement du technicien, puis de mesurer la différence entre l'horodatage de l'événement et la première action du technicien indiquant la reconnaissance de l'événement (MTTD).
 
-**Temps moyen jusqu'à la défaillance (MTTF) :** Le temps moyen entre les pannes non réparables d'un produit technologique (principalement le matériel).
+**Temps moyen avant défaillance (MTTF) :** Le temps moyen entre les pannes non réparables d'un produit technologique (principalement le matériel).
 
 **Temps moyen de réparation (MTTR) :** Fait référence au temps moyen nécessaire pour réparer un système et le restaurer à sa pleine fonctionnalité. \
 \
@@ -67,7 +67,7 @@ Le chronomètre MTTR commence à tourner lorsque les réparations commencent et 
 
 **Temps moyen de récupération :** Le temps moyen de récupération est une mesure du temps entre le moment où la panne est découverte pour la première fois et le moment où le service reprend son fonctionnement. Ainsi, en plus du temps de réparation, de la période de test et du retour à la condition de fonctionnement normal, il capture le temps de notification de la panne et le diagnostic.
 
-**Arriéré d'anciens incidents :** Nombre d'incidents ouverts de plus de 28 jours (ou tout autre délai donné) par rapport à tous les incidents ouverts.
+**Backlog d'incidents anciens :** Nombre d'incidents ouverts de plus de 28 jours (ou tout autre délai donné) par rapport à tous les incidents ouverts.
 
 **Pourcentage d'incidents résolus dans les délais/objectifs :** Nombre d'incidents clôturés dans le délai autorisé, par rapport au nombre total d'incidents clôturés sur une période donnée. Un délai est appliqué à chaque incident lors de sa réception et fixe une limite au temps disponible pour résoudre l'incident. Le délai appliqué est dérivé des accords conclus avec le client concernant la résolution des incidents.
 

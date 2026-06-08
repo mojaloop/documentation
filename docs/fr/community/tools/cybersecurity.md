@@ -12,7 +12,7 @@ Outre les initiatives de cybersécurité gérées par la Fondation Mojaloop, la 
 
 Figure 1 - Couches de l’architecture de cybersécurité Mojaloop
 
-_Bien que la Fondation Mojaloop et la communauté Mojaloop s’efforcent de fournir un logiciel sécurisé par conception et exploitable de manière sécurisée, les adoptants restent pleinement responsables de la sécurité de leurs opérations. La Fondation Mojaloop recommande vivement aux adoptants de faire appel à des experts en cybersécurité afin de respecter les bonnes pratiques et l’ensemble des normes et réglementations applicables._
+_À noter que bien que la Fondation Mojaloop et la communauté Mojaloop s’efforcent de fournir un logiciel sécurisé par conception et exploitable de manière sécurisée, les adoptants assument la responsabilité ultime de la sécurité de leurs opérations. La Fondation Mojaloop recommande vivement aux adoptants de faire appel à des experts en cybersécurité afin de respecter les bonnes pratiques et l’ensemble des normes et réglementations applicables._
 
 
 ## Sécurisé par conception
@@ -25,10 +25,10 @@ La Fondation Mojaloop et la communauté gèrent et exploitent plusieurs processu
 
 
 1. Le conseil de gouvernance technique Mojaloop fixe les objectifs techniques de haut niveau en matière de cybersécurité pour le projet Mojaloop ; ils sont mis en œuvre par d’autres instances et processus de la communauté.
-2. La communauté Mojaloop exploite une autorité de conception : un groupe structuré d’experts du secteur élus qui se réunissent chaque semaine pour examiner les aspects techniques du logiciel de plateforme, y compris la cybersécurité.
-3. La communauté Mojaloop exploite un comité de contrôle des changements d’API : un groupe structuré d’experts du secteur élus qui se réunissent chaque semaine pour examiner les aspects internes et externes des API de la plateforme. Ce groupe a la responsabilité spécifique de veiller à ce que toutes les API Mojaloop soient sécurisées par conception et conformes aux dernières bonnes pratiques du secteur pour sécuriser les déploiements de la plateforme Mojaloop.
+2. La communauté Mojaloop exploite une autorité de conception : un groupe structuré d’experts du secteur élus qui se réunissent chaque semaine pour examiner les aspects techniques du logiciel de plateforme, y compris, mais sans s’y limiter, la cybersécurité.
+3. La communauté Mojaloop exploite un comité de contrôle des changements d’API : un groupe structuré d’experts du secteur élus qui se réunissent chaque semaine pour examiner les aspects internes et externes des API de la plateforme. Ce groupe a la responsabilité spécifique de veiller à ce que toutes les API Mojaloop soient sécurisées par conception et conformes aux normes industrielles les plus récentes et les plus avancées pour sécuriser les déploiements de la plateforme Mojaloop.
 4. La communauté Mojaloop exploite un conseil produit : un groupe structuré d’experts du secteur élus qui se réunissent chaque semaine pour examiner les conceptions de fonctionnalités produit. Ce groupe contribue à l’architecture globale de cybersécurité du ou des produits Mojaloop en examinant et en créant des exigences et spécifications pour la plateforme Mojaloop et sa sécurité.
-5. Les normes de la communauté Mojaloop exigent des revues de conception de fonctionnalités et de code par des membres de la communauté et de la fondation experts dans les domaines concernés du système avant l’acceptation des changements ou du nouveau code des contributeurs dans les versions officielles.
+5. Les normes de la communauté Mojaloop exigent des revues de conception de fonctionnalités et de code par des membres de la communauté et de la fondation experts dans les domaines concernés du système avant que les changements ou le nouveau code soumis par des contributeurs soient acceptés dans les versions officielles.
 
 
 ## Contrôles techniques
@@ -69,7 +69,7 @@ Des membres de la communauté Mojaloop réalisent périodiquement des tests d’
 
 #### Expertise et soutien de la communauté
 
-La communauté Mojaloop, suivant les principes et processus décrits dans ce document, fournit une plateforme logicielle qui intègre de nombreuses fonctionnalités et capacités de cybersécurité. Pour toutefois atteindre les meilleures opérations sécurisées possibles, les adoptants de la technologie Mojaloop doivent déployer et exploiter le logiciel de manière sécurisée — tâche souvent difficile compte tenu des nombreuses normes et réglementations applicables. La communauté Mojaloop comporte des organisations disposant d’une connaissance et d’une expérience approfondies sur ces sujets et pouvant être sollicitées pour de l’assistance.
+La communauté Mojaloop, suivant les principes et processus décrits dans ce document, fournit une plateforme logicielle qui intègre de nombreuses fonctionnalités et capacités de cybersécurité. Pour toutefois concrétiser les meilleures opérations sécurisées possibles, les adoptants de la technologie Mojaloop doivent déployer et exploiter le logiciel de manière sécurisée — tâche souvent difficile et intimidante compte tenu des nombreuses normes et réglementations applicables. La communauté Mojaloop comporte des organisations disposant d’une connaissance et d’une expérience approfondies sur ces sujets et pouvant être sollicitées pour de l’assistance.
 
 
 ## Divulgation coordonnée des vulnérabilités

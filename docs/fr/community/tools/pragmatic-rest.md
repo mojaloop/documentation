@@ -2,7 +2,7 @@
 
 ## REST pragmatique pour le projet Mojaloop
 
-Avec l’émergence de la stratégie API comme levier de montée en charge pour les services Internet, l’attention portée aux technologies d’interconnexion a évolué. S’appuyant sur les principes qui ont permis au Web de se structurer et de scaler, REST (Representational State Transfer) est devenu un choix de conception privilégié pour les API de services Internet. Mais si les principes REST, proposés dans la thèse de Roy Fielding qui les a définis, ont une valeur académique pour la recherche, un design REST pur n’est pas aujourd’hui praticable pour la plupart des applications. Nous défendons une forme de REST pragmatique — un patron de conception qui adopte les éléments utiles du design RESTful sans exiger une pureté académique stricte.
+Avec l’émergence de la stratégie API comme levier de montée en charge pour les services Internet, l’attention portée aux technologies d’interconnexion a évolué. S’appuyant sur les principes qui ont permis au Web de se structurer et de scaler, REST (Representational State Transfer) est devenu un choix de conception privilégié pour les API de services Internet. Mais si les principes REST, proposés dans la thèse de doctorat de Roy Fielding qui les a définis, ont une valeur académique pour la recherche, un design REST pur n’est pas aujourd’hui praticable pour la plupart des applications. Nous préconisons une forme de REST pragmatique — un patron de conception qui adopte les éléments utiles du design RESTful sans exiger une pureté académique stricte.
 
 ### Le modèle de maturité de Richardson
 
@@ -10,25 +10,25 @@ Martin Fowler a cité un modèle structuré d’adoption RESTful élaboré par L
 
 <!-- ![](./assets/diagrams/rest/glory-of-rest.png) -->
 
-Martin Fowler, en référence à [Rest in Practice](https://www.amazon.com/gp/product/0596805829?ie=UTF8&tag=martinfowlerc-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0596805829), résume ainsi l’origine du design RESTful :
+Martin Fowler, en référence à [Rest in Practice](https://www.amazon.com/gp/product/0596805829?ie=UTF8&tag=martinfowlerc-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0596805829)², résume ainsi la genèse du design RESTful :
 
 > utiliser des services web RESTful pour traiter une grande partie des problèmes d’intégration auxquels les entreprises sont confrontées. Au cœur du propos se trouve l’idée que le Web est une preuve par l’existence d’un système distribué massivement scalable qui fonctionne très bien, et que nous pouvons en tirer des idées pour construire des systèmes intégrés plus facilement.
 
-Une approche pragmatique du design RESTful emprunte les meilleures parties du cadre conceptuel de Fielding pour permettre aux développeurs et intégrateurs de comprendre rapidement ce qu’ils peuvent faire avec l’API, sans code superflu.
+Une approche pragmatique du design RESTful emprunte les meilleures parties du cadre conceptuel de Fielding pour permettre aux développeurs et intégrateurs de comprendre aussi rapidement que possible ce qu’ils peuvent faire avec l’API, sans avoir à écrire de code superflu.
 
 Au plus fondamental, un design RESTful est centré sur les ressources et utilise les verbes HTTP. Au plus avancé, un design REST académique pur applique HATEOAS via des contrôles hypermédia. Nous recommandons un design RESTful de niveau 2 pour Mojaloop.
 
 ### Pourquoi pas les contrôles hypermédia ?
 
-Bien que HATEOAS soit un principe fascinant — il préconise qu’un serveur réponde à chaque action client par une liste de toutes les actions possibles menant au prochain état applicatif — et que les clients _ne doivent pas_ s’appuyer sur des informations hors bande (comme une spécification API écrite) pour savoir quelles actions sont possibles sur quelles ressources ni sur le format des URI.
+Bien que HATEOAS soit un principe fascinant — il préconise qu’un serveur réponde à chaque action client par une liste de toutes les actions possibles menant le client vers son prochain état applicatif — et que les clients _ne doivent pas_ s’appuyer sur des informations hors bande (comme une spécification API écrite) pour savoir quelles actions sont possibles sur quelles ressources ni sur le format des URI.
 
-C’est cette dernière interdiction qui fait échouer le test du REST pragmatique : si HATEOAS est une approche théorique intéressante pour limiter le couplage, elle ne s’applique pas facilement à Mojaloop (ni à tout autre design d’API contractuelle). Si l’on considère le public des API d’interconnexion, on trouve des acteurs commerciaux soumis à des règles de schéma très précises. Les interactions entre participants, et entre participant et hub central, sont fortement spécifiées pour fixer un risque commercial acceptable, pouvant être tarifé à très faible coût pour les utilisateurs finaux. Cela exige une prévisibilité _ex ante_ de l’API, incompatible avec le principe HATEOAS défini par Fielding.
+C’est cette dernière interdiction qui fait échouer le test du REST pragmatique : si HATEOAS est une approche théorique intéressante pour limiter le couplage, elle ne s’applique pas facilement à Mojaloop (ni à tout autre design d’API contractuelle). Si l’on considère le public des API d’interconnexion, on trouve des acteurs commerciaux soumis à des règles de schéma très précises. Les interactions entre participants, et entre participant et hub de services central, sont fortement spécifiées pour fixer un risque commercial acceptable, pour proposer aux utilisateurs finaux des transactions tarifées à très faible coût. Cela exige une prévisibilité _ex ante_ de l’API, incompatible avec le principe HATEOAS défini par Fielding.
 
 ### Principes REST pragmatiques
 
 #### Les URI définissent les ressources
 
-Un schéma d’URI bien conçu rend une API facile à consommer, à découvrir et à étendre, comme une API soignée dans un langage classique. Le REST pur dédaigne ce principe au profit de HATEOAS. Le REST pragmatique suit un schéma d’URI habituel pour faciliter la compréhension humaine, même si des principes HATEOAS sont employés pour la découverte.
+Un schéma d’URI bien conçu rend une API facile à consommer, à découvrir et à étendre, comme une API soignée dans un langage classique. Le REST pur dédaigne ce principe au profit de HATEOAS. Mais le REST pragmatique suit un schéma d’URI habituel pour faciliter la compréhension humaine, même si des principes HATEOAS sont employés pour la découverte.
 
 Les chemins d’URI qui désignent une collection d’objets doivent être un nom pluriel, p. ex. `/customers`, pour un ensemble de clients. Lorsqu’une collection ne peut avoir qu’une seule instance, on utilise le singulier pour éviter la confusion. P. ex. `GET /transfers/:id/fulfillment` est correct, car il n’y a qu’un objet fulfillment par transfert identifié.
 
@@ -58,7 +58,7 @@ On a signalé que snake_case serait légèrement plus lisible que camelCase dans
 
 Utiliser un ensemble standard et prévisible de paramètres optionnels de manière cohérente.
 
-Un ensemble standard de paramètres de requête doit servir pour les collections afin de laisser l’appelant contrôler la portion de collection retournée. P. ex. « count » pour le nombre d’objets, « start » pour le point de départ dans le résultat, et « q » comme requête de recherche libre. Nous définirons l’ensemble standard au fil du temps et l’appliquerons de façon uniforme.
+Un ensemble standard de paramètres de requête doit servir pour les collections afin de laisser l’appelant contrôler la portion de collection retournée. « count » pour définir le nombre d’objets à retourner, « start » pour définir le point de départ dans le jeu de résultats, et « q » comme requête de recherche libre. Nous définirons l’ensemble standard au fil du temps et l’appliquerons de façon uniforme.
 
 #### Verbes
 
@@ -68,7 +68,7 @@ Les collections doivent prendre en charge GET pour lire tout ou partie d’une c
 
 Les objets singuliers peuvent prendre en charge POST pour modifier leur état de façon déterminée. Poster un document JSON vers l’URI d’un objet singulier peut mettre à jour des champs sélectionnés ou déclencher un changement d’état ou une action sans remplacer tout l’objet.
 
-GET doit être implémenté de manière _nullipotente_ — c’est-à-dire que GET ne provoque jamais d’effets de bord ni ne modifie l’état visible par le client (hors journalisation ou instrumentation).
+GET doit être implémenté de manière _nullipotente_ — c’est-à-dire que GET ne provoque jamais d’effets de bord ni ne modifie l’état visible par le client hors journalisation ou mise à jour des métriques d’instrumentation.
 
 PUT et DELETE doivent être implémentés de manière _idempotente_ — les changements s’appliquent de façon cohérente aux données du système en ne dépendant que de l’état de la ressource et des entrées, rien d’autre. L’action n’a pas d’effet supplémentaire si elle est répétée avec les mêmes paramètres et ne dépend pas de l’ordre d’autres opérations sur une collection ou d’autres ressources. Par exemple, retirer une ressource d’une collection peut être idempotent sur la collection. Utiliser PUT pour remplacer (ou créer) entièrement une ressource identifiée de façon unique lorsque l’URI est entièrement connue du client est aussi idempotent. Le système peut donc réordonner les opérations pour gagner en efficacité ; le client n’a pas besoin de savoir si la ressource existe avant de tenter un remplacement.
 
@@ -76,7 +76,7 @@ POST et PATCH ne sont pas des opérations idempotentes. POST sert à créer des 
 
 #### Format des données
 
-Nous privilégions les formats liés à [JSON](http://json.org/) plutôt que XML (voir note 4). Dans certains cas, les formats seront binaires ou XML, selon des normes préexistantes, et seront précisément spécifiés. Les formats binaires doivent avoir une syntaxe formelle pour éviter des traductions ambiguës (jeux de caractères, endianness des valeurs numériques, etc.).
+Nous privilégions les formats liés à [JSON](http://json.org/) plutôt que XML (voir note 4). Dans certains cas, les formats seront binaires ou XML, selon des normes préexistantes, et seront précisément spécifiés. Les formats binaires doivent avoir une syntaxe formelle pour éviter des ambiguïtés de représentation (jeux de caractères, représentations big-endian ou little-endian des valeurs numériques, etc.).
 
 Les dates et heures utilisées dans les API doivent respecter la norme ISO 8601, avec le profil du document W3C sur les formats date et heure (voir note 5). Cette note W3C doit réduire la complexité et les erreurs lorsque des composants échangent des dates et heures concrètes. Il existera des cas où un format non ISO sera requis par une norme externe, p. ex. dates d’expiration ISO 7813.
 
@@ -104,7 +104,7 @@ Bien que le contrat de version d’une API soit influencé par les niveaux majeu
 
 En revanche, dans les environnements de préproduction, on prévoit qu’une combinaison de suffixes mineur, correctif, pré-release et métadonnées puisse être prise en charge dans les requêtes client (comme défini dans _semver_ [3]) et _peut_ figurer dans les URI de _préproduction_ pour faciliter le développement et l’intégration.
 
-### Il faudra peut-être laisser REST se reposer
+### Il sera peut-être temps de mettre REST de côté
 
 En concevant les API d’interconnexion entre composants et systèmes participants, nous pourrions rencontrer des exigences qui ne correspondent pas exactement au modèle REST pragmatique défini ici. Nous évaluerons au cas par cas et choisirons ce qui sert le mieux les objectifs du projet.
 

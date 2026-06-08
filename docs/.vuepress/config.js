@@ -158,7 +158,7 @@ module.exports = {
               ]
             },
             {
-              title: 'Roled-Based Access Control',
+              title: 'Role-Based Access Control',
               collapsable: true,
               // path: './HubOperations/RBAC/Role-based-access-control',
               sidebarDepth: 2,

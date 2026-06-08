@@ -1,11 +1,11 @@
 # Intégration technique des DFSP
 
-À un niveau élevé, l'intégration à un Hub Mojaloop nécessite qu'un DFSP concentre ses efforts sur les jalons majeurs suivants :
+À un niveau élevé, l'onboarding à un Hub Mojaloop nécessite qu'un DFSP concentre ses efforts sur les jalons majeurs suivants :
 
 * [Intégration](#integration-api) de son backend principal avec le Hub Mojaloop au niveau de l'API (cela implique à la fois le codage et les tests).
 * [Connexion](#connexion-aux-environnements-mojaloop) aux environnements de pré-production et de production en suivant les exigences rigoureuses de sécurité de Mojaloop.
 
-En plus des étapes nécessitant l'implication du DFSP, l'opérateur du Hub doit également effectuer certaines activités d'intégration dans son [backend](#integration-dans-le-backend-du-hub) indépendamment des DFSP.
+En plus des étapes nécessitant l'implication du DFSP, l'opérateur du Hub doit également effectuer certaines activités d'onboarding dans son [backend](#integration-dans-le-backend-du-hub) indépendamment des DFSP.
 
 Cette section fournit une vue d'ensemble de haut niveau de tous ces jalons.
 
@@ -72,7 +72,7 @@ Si l'opérateur du Hub le souhaite, il peut assumer le rôle d'intégrateur de s
 
 ## Connexion aux environnements Mojaloop
 
-Une fois que le DFSP a terminé le codage, il teste son intégration contre une instance de laboratoire dans un environnement de test fourni par le Hub. C'est là que la phase de connexion du parcours d'intégration technique commence, avec un nouvel ensemble de responsabilités pour l'opérateur du Hub.
+Une fois que le DFSP a terminé le codage, il teste son intégration contre une instance de laboratoire dans un environnement de test fourni par le Hub. C'est là que la phase de connexion du parcours d'onboarding technique commence, avec un nouvel ensemble de responsabilités pour l'opérateur du Hub.
 
 Les exigences relatives à la connexion sont dictées par les multiples protocoles de sécurité que tout Hub Mojaloop et les DFSP participants doivent implémenter :
 
@@ -214,7 +214,7 @@ Le Hub Mojaloop utilise les technologies WSO2 pour l'intégration entre le Hub e
 
 ## Intégration dans le backend du Hub
 
-L'intégration comprend certaines étapes qui ne nécessitent aucune action de la part des DFSP et sont de la seule responsabilité de l'opérateur du Hub. Ces étapes sont les suivantes :
+L'onboarding comprend certaines étapes qui ne nécessitent aucune action de la part des DFSP et sont de la seule responsabilité de l'opérateur du Hub. Ces étapes sont les suivantes :
 
 1. Configurer les passerelles API du Hub qui gèrent les flux de données entrants et sortants depuis/vers les DFSP. Mojaloop utilise les technologies WSO2 pour l'accès aux passerelles, ainsi que l'autorisation et l'authentification des DFSP pour le passage des messages via les passerelles. La pile de produits WSO2 peut être déployée à partir du code en utilisant une solution d'intégration et de déploiement continus (CI/CD), le provisionnement peut être effectué par des scripts d'automatisation.
 1. Créer des utilisateurs et des comptes, configurer le contrôle d'accès basé sur les rôles.
@@ -235,7 +235,7 @@ L'intégration comprend certaines étapes qui ne nécessitent aucune action de l
 
 ## Tests et validation
 
-Au fur et à mesure que les DFSP avancent dans leur parcours d'intégration, ils sont tenus d'effectuer des tests dans chaque environnement. Les exigences de validation métier et technique doivent être satisfaites lors des tests. Les détails de la validation métier sont définis dans les règles du système.
+Au fur et à mesure que les DFSP avancent dans leur parcours d'onboarding, ils sont tenus d'effectuer des tests dans chaque environnement. Les exigences de validation métier et technique doivent être satisfaites lors des tests. Les détails de la validation métier sont définis dans les règles de schéma.
 
 Voici quelques exemples d'activités de test que les DFSP sont censés effectuer dans les différents environnements de pré-production :
 
