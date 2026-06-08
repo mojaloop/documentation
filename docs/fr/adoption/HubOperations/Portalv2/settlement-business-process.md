@@ -21,28 +21,28 @@ Il est important de définir un processus métier autour de la gestion des règl
 </tr>
 <tr class="even">
 <td><p>2</p></td>
-<td><p>L'Opérateur du Hub récupère un rapport de règlement DFSP pour chaque DFSP actif dans la fenêtre de règlement.</p></td>
+<td><p>L'Opérateur du Hub récupère un rapport de règlement du DFSP pour chaque DFSP actif dans la fenêtre de règlement.</p></td>
 </tr>
 <tr class="odd">
 <td><p>3</p></td>
-<td><p>L'Opérateur du Hub envoie par courriel le rapport de règlement DFSP aux points de contact désignés de chaque DFSP.</p></td>
+<td><p>L'Opérateur du Hub envoie par courriel le rapport de règlement du DFSP aux points de contact désignés de chaque DFSP.</p></td>
 </tr>
 <tr class="even">
 <td><p>4</p></td>
 <td><p>Les DFSP examinent leur rapport et rapprochent les transactions avec leurs propres enregistrements dans les meilleurs délais.</p>
-<p>Le rapport fournit des informations sur la position de règlement bilatérale du DFSP avec chaque DFSP avec lequel il a effectué des transactions (soit en tant que DFSP Payeur, soit en tant que DFSP Bénéficiaire) dans la ou les fenêtres de règlement en cours de règlement. Il fournit également le total des montants de transfert envoyés et reçus par le DFSP dans la ou les fenêtres de règlement.</p></td>
+<p>Le rapport fournit des informations sur la position de règlement bilatérale du DFSP avec chaque DFSP avec lequel il a effectué des transactions (soit en tant que DFSP Payer ou DFSP Payee) dans la ou les fenêtres de règlement en cours de règlement. Il fournit également le total des montants de transfert envoyés et reçus par le DFSP dans la ou les fenêtres de règlement.</p></td>
 </tr>
 <tr class="odd">
 <td><p>5</p></td>
-<td><p>L'Opérateur du Hub récupère le rapport bancaire de règlement.</p></td>
+<td><p>L'Opérateur du Hub récupère le rapport de la banque de règlement.</p></td>
 </tr>
 <tr class="even">
 <td><p>6</p></td>
-<td><p>L'Opérateur du Hub informe les points de contact de la banque de règlement que le règlement peut être effectué, en partageant le rapport bancaire de règlement.</p><p>Le rapport sert d'instructions de paiement à la banque et fournit la position de règlement bilatérale de chaque DFSP par rapport à chaque autre DFSP ayant effectué des transactions dans la ou les fenêtres de règlement en cours de règlement. Il fournit également le total des montants de transfert envoyés et reçus par chaque DFSP.</p></td>
+<td><p>L'Opérateur du Hub informe les points de contact de la banque de règlement que le règlement peut être effectué, en partageant le rapport de la banque de règlement.</p><p>Le rapport sert d'instructions de paiement à la banque et fournit la position de règlement bilatérale de chaque DFSP par rapport à chaque autre DFSP ayant effectué des transactions dans la ou les fenêtres de règlement en cours de règlement. Il fournit également le total des montants de transfert envoyés et reçus par chaque DFSP.</p></td>
 </tr>
 <tr class="odd">
 <td><p>7</p></td>
-<td><p>La banque de règlement transfère les fonds entre le compte de règlement et les comptes de liquidité des DFSP, conformément aux Positions nettes agrégées indiquées dans le rapport bancaire de règlement.</p></td>
+<td><p>La banque de règlement transfère les fonds entre le compte de règlement et les comptes de liquidité des DFSP, conformément aux Positions nettes agrégées indiquées dans le rapport de la banque de règlement.</p></td>
 </tr>
 <tr class="even">
 <td><p>8</p></td>
@@ -58,11 +58,11 @@ Il est important de définir un processus métier autour de la gestion des règl
 </tr>
 <tr class="odd">
 <td><p>11</p></td>
-<td><p>L'Opérateur du Hub récupère un rapport de résultat de règlement DFSP pour chaque DFSP.</p></td>
+<td><p>L'Opérateur du Hub récupère un rapport de résultat de règlement du DFSP pour chaque DFSP.</p></td>
 </tr>
 <tr class="even">
 <td><p>12</p></td>
-<td><p>L'Opérateur du Hub informe chaque DFSP du résultat du règlement et du solde de son compte de liquidité en envoyant le rapport de résultat de règlement DFSP à chaque DFSP.</p></td>
+<td><p>L'Opérateur du Hub informe chaque DFSP du résultat du règlement et du solde de son compte de liquidité en envoyant le rapport de résultat de règlement du DFSP à chaque DFSP.</p></td>
 </tr>
 </tbody>
 </table>

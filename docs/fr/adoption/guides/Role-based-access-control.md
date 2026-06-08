@@ -27,7 +27,7 @@ Quelques définitions contextuelles incluent
 
 Mojaloop aura 2 grandes catégories d'utilisateurs :
 
-1. Humains – Ce sont les utilisateurs du hub et des DFSP qui, à travers diverses interfaces, interagiront avec Mojaloop. Les utilisateurs DFSP interagiront avec Mojaloop à travers le Payment Manager et les portails qui seront mis à disposition pendant le processus d'intégration.
+1. Humains – Ce sont les utilisateurs du hub et des DFSP qui, à travers diverses interfaces, interagiront avec Mojaloop. Les utilisateurs DFSP interagiront avec Mojaloop à travers le Payment Manager et les portails qui seront mis à disposition pendant le processus d'onboarding.
 2. Non-humains – Ceux-ci automatiseront les processus métier et les tâches qui seraient autrement effectuées par un humain. Ils communiqueront via des appels API qui effectueront des actions pour répondre aux exigences métier.
 
 Le contexte de ce document se concentrera uniquement sur les utilisateurs humains.
@@ -38,7 +38,7 @@ Le &quot;cycle de vie du compte utilisateur&quot; définit les processus de gest
 
 ## Intégration
 
-Le processus d'intégration comprendra certaines activités impliquant la création d'utilisateurs tant du côté DFSP que du Hub. Celles-ci seront les suivantes :
+Le processus d'onboarding comprendra certaines activités impliquant la création d'utilisateurs tant du côté DFSP que du Hub. Celles-ci seront les suivantes :
 
 1. Hub : Les utilisateurs suivants seront créés
   1.1 Opérateurs du Hub
@@ -73,7 +73,7 @@ La conception inhérente de Mojaloop implémentera une approche Zero Trust dans 
 
 | **Rôles et Permissions**  **Matrice** | Utilisateurs Hub | Administrateur | Utilisateur Maker Standard | Utilisateur Checker Standard | Lecture Seule Standard | Utilisateurs DFSP | Administrateur | Utilisateur Maker Standard | Utilisateur Checker Standard | Lecture Seule Standard |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Rôles d'intégration | X | | | | | | | | | |
+| Rôles d'onboarding | X | | | | | | | | | |
 | Créer un compte utilisateur | X | | | | | | | | | |
 | Créer un profil DFSP | X | | | | | | | | | |
 | Créer un utilisateur DFSP | X | | | | | | | | | |
@@ -92,7 +92,7 @@ La conception inhérente de Mojaloop implémentera une approche Zero Trust dans 
 ## Meilleures pratiques pour le RBAC et la gestion des identités Mojaloop
 
 1. Tous les identifiants d'utilisateurs doivent être uniques et avoir un format unique qui peut être corrélé dans le hub mais pas significatif pour les personnes extérieures.
-2. Les utilisateurs DFSP n'auront accès à aucun rôle administratif du Hub
+2. Les utilisateurs DFSP n'auront accès à aucun rôle administratif au sein du Hub
 3. Tous les utilisateurs non-humains doivent être empêchés de se connecter aux interfaces applicatives.
 4. Les utilisateurs DFSP seront formés sur les rôles et les meilleures pratiques
 5. Appliquer le provisionnement automatisé des utilisateurs et la gestion du cycle de vie.
@@ -102,7 +102,7 @@ La conception inhérente de Mojaloop implémentera une approche Zero Trust dans 
   7.2 Journalisation d'audit avec alertes
   7.3 Désactivation / blocage automatique du profil utilisateur
 8. Mojaloop surveillera l'inactivité des utilisateurs et désactivera les utilisateurs inactifs sur une période spécifiée
-9. Appliquer une politique centralisée d'application à travers les identités, par ex. politique de mots de passe, politiques de connexion, MFA, authentification basée sur le risque, etc.
+9. Faire respecter de manière centralisée les politiques applicables à l'ensemble des identités, par ex. politique de mots de passe, politiques de connexion, MFA, authentification basée sur le risque, etc.
 10. Identifier et surveiller de près les identités privilégiées qui ont des permissions pour effectuer des actions sensibles. Les éléments suivants s'appliquent aux utilisateurs privilégiés :
   10.1 Les privilèges avancés doivent être demandés et approuvés au cas par cas ;
   10.2 Les administrateurs doivent avoir leurs permissions privilégiées pour le minimum de temps possible ;
@@ -176,9 +176,9 @@ En plus de ces portails, il existe deux autres moyens principaux d'accéder au H
 
 Les contrôles d'accès autour des paiements individuels ou en masse ne sont donc pas abordés davantage dans ce document.
 
-## Payment Manager pour l'intégration
+## Payment Manager pour l'onboarding
 
-Payment Manager est actuellement l'un des principaux mécanismes d'intégration des DFSP à un Hub Mojaloop. Alors que le Hub est unique dans un schéma, il existe une instance distincte de Payment Manager pour chaque DFSP. Les portails offerts par Payment Manager doivent donc être sécurisés au moyen du RBAC pour limiter l'accès aux représentants autorisés du DFSP.
+Payment Manager est actuellement l'un des principaux mécanismes d'onboarding des DFSP à un Hub Mojaloop. Alors que le Hub est unique dans un schéma, il existe une instance distincte de Payment Manager pour chaque DFSP. Les portails offerts par Payment Manager doivent donc être sécurisés au moyen du RBAC pour limiter l'accès aux représentants autorisés du DFSP.
 
 Dans l'environnement Payment Manager, le RBAC est implémenté uniquement via Keycloak.
 
@@ -203,7 +203,7 @@ Au moment où un Hub est mis en place pour la première fois, Ory/Keycloak sera 
 
 Toutes les fonctions exécutées à l'aide d'Ory/Keycloak sont soumises à une journalisation au niveau du système à des fins d'audit.
 
-L'administrateur système utilisera ensuite Ory/Keycloak pour créer d'autres comptes utilisateurs, sous réserve de vérifications d'identité et de contrôles d'antécédents standard pour chaque individu (définis dans les règles du système associées à un déploiement Mojaloop particulier) avant que leurs comptes ne soient créés.
+L'administrateur système utilisera ensuite Ory/Keycloak pour créer d'autres comptes utilisateurs, sous réserve de vérifications d'identité et de contrôles d'antécédents standard pour chaque individu (définis dans les règles de schéma associées à un déploiement Mojaloop particulier) avant que leurs comptes ne soient créés.
 
 Ces nouveaux comptes utilisateurs se verront attribuer l'un de ces rôles :
 
@@ -255,7 +255,7 @@ Il existe certaines fonctions standardisées qui sont soumises au RBAC :
 
 Chacune de ces fonctions est soumise à des contrôles maker/checker, de sorte qu'un utilisateur avec le rôle OPERATOR peut mettre en place les modifications, et elles doivent être approuvées par un utilisateur avec le rôle MANAGER.
 
-De plus, il y a une charge de travail importante dans l'intégration technique d'un DFSP, en particulier autour de l'établissement de l'environnement technique d'exploitation (certificats, etc.). Cela n'est pas soumis au RBAC. Cela n'est pas considéré comme un risque significatif, car il n'y a pas de valeur sans pouvoir créer un DFSP et les comptes associés sur le Hub lui-même - activités qui sont soumises au RBAC.
+De plus, il y a une charge de travail importante dans l'onboarding technique d'un DFSP, en particulier autour de l'établissement de l'environnement technique d'exploitation (certificats, etc.). Cela n'est pas soumis au RBAC. Cela n'est pas considéré comme un risque significatif, car il n'y a pas de valeur sans pouvoir créer un DFSP et les comptes associés sur le Hub lui-même - activités qui sont soumises au RBAC.
 
 #### Opérations du Hub
 
@@ -275,7 +275,7 @@ Lors du déploiement de Payment Manager, un seul compte utilisateur administrate
 
 Toutes les fonctions exécutées à l'aide de Keycloak sont soumises à une journalisation au niveau du système à des fins d'audit.
 
-L'utilisateur administrateur utilisera Keycloak pour créer d'autres comptes utilisateurs, sous réserve de vérifications d'identité et de contrôles d'antécédents standard pour chaque individu (définis dans les règles du système associées à un déploiement Mojaloop particulier) avant que leurs comptes ne soient créés.
+L'utilisateur administrateur utilisera Keycloak pour créer d'autres comptes utilisateurs, sous réserve de vérifications d'identité et de contrôles d'antécédents standard pour chaque individu (définis dans les règles de schéma associées à un déploiement Mojaloop particulier) avant que leurs comptes ne soient créés.
 
 Ces nouveaux comptes utilisateurs se verront attribuer l'un des rôles suivants :
 

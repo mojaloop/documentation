@@ -1,4 +1,4 @@
-# Modèle de glossaire uniforme
+# Modèle de glossaire standard
 
 - Version : 1.0 
     - Auteur : Carol Coye Benson (Glenbrook)
@@ -7,11 +7,11 @@
 
 ---
 
-## **À propos du projet de documents commerciaux de la communauté Mojaloop**
+## **À propos du projet de documents métier de la communauté Mojaloop**
 
-Ce document fait partie du projet de documents commerciaux de la communauté Mojaloop. Le projet est destiné à soutenir les entités (pays, régions, associations de fournisseurs ou entreprises commerciales) mettant en œuvre de nouveaux systèmes de paiement utilisant le code Mojaloop. Ces entités devront également rédiger des règles commerciales que les participants au système suivront.
+Ce document fait partie du projet de documents métier de la communauté Mojaloop. Le projet est destiné à soutenir les entités (pays, régions, associations de fournisseurs ou entreprises commerciales) mettant en œuvre de nouveaux systèmes de paiement utilisant le code Mojaloop. Ces entités devront également rédiger des règles métier que les participants au système suivront.
 
-Le projet de documents commerciaux de la communauté Mojaloop fournit des modèles pour les règles commerciales et les documents associés. De nombreux choix sont impliqués dans la mise en œuvre d'un nouveau système de paiement : les modèles présentent certains de ces choix et, le cas échéant, des commentaires sont fournis sur la manière dont le choix particulier est lié aux objectifs d'un système aligné sur Level One.
+Le projet de documents métier de la communauté Mojaloop fournit des modèles pour les règles métier et les documents associés. De nombreux choix sont impliqués dans la mise en œuvre d'un nouveau système de paiement : les modèles présentent certains de ces choix et, le cas échéant, des commentaires sont fournis sur la manière dont le choix particulier est lié aux objectifs d'un système conforme Level One.
 
 Les documents suivants font partie du projet :
 
@@ -19,19 +19,19 @@ Les documents suivants font partie du projet :
 
 - Modèle d'accord de participation au schéma
 
-- Modèle de règles commerciales du schéma
+- Modèle de règles métier du schéma
 
 - Modèle de directive opérationnelle de la plateforme
 
 - Modèle de directive opérationnelle de gestion des exceptions
 
-- Glossaire uniforme
+- Glossaire standard
 
 ## **Introduction**
 
-Ceci est un glossaire des termes utilisés dans le projet de documents commerciaux de la communauté Mojaloop, et contient d'autres termes liés aux sujets commerciaux. Un glossaire technique plus détaillé est disponible dans le cadre de la spécification Open API for FSP Interoperability.
+Ceci est un glossaire des termes utilisés dans le projet de documents métier de la communauté Mojaloop, et contient d'autres termes liés aux sujets commerciaux. Un glossaire technique plus détaillé est disponible dans le cadre de la spécification Open API for FSP Interoperability.
 
-# Modèle de glossaire uniforme
+# Modèle de glossaire standard
 
 | Terme   | Définition                                                                                      |
 | :----- | :---------------------------------------------------------------------------------------------- | 
@@ -47,7 +47,7 @@ Ceci est un glossaire des termes utilisés dans le projet de documents commercia
 | Caisse d'agent | Une caisse d'agent est une « ligne » enregistrée émise par le fournisseur, soit une carte SIM spéciale, soit une machine TPV, utilisée pour effectuer des transactions d'inscription, d'encaissement et de décaissement pour les clients. La législation nationale dicte quels fournisseurs de services financiers peuvent émettre des caisses d'agent. |
 | Encaissement initié par l'agent | Un cas d'utilisation défini dans le document des spécifications API. |
 | Décaissement initié par l'agent | Un cas d'utilisation défini dans le document des spécifications API. |
-| Agrégateur | Une forme spécialisée de fournisseur de services aux commerçants, qui gère généralement les transactions de paiement pour un grand nombre de petits commerçants. Les règles du système précisent souvent ce que les agrégateurs sont autorisés à faire. |
+| Agrégateur | Une forme spécialisée de fournisseur de services aux commerçants, qui gère généralement les transactions de paiement pour un grand nombre de petits commerçants. Les règles de schéma précisent souvent ce que les agrégateurs sont autorisés à faire. |
 | Alias | Un identifiant de bénéficiaire qui est mappé à un DFSP bénéficiaire et à un numéro de compte de transaction. |
 | Lutte contre le blanchiment d'argent (AML) | La lutte contre le blanchiment d'argent fait référence au droit applicable et, dans la mesure expressément adoptée par le schéma, aux guides de bonnes pratiques, concernant l'atténuation des risques de blanchiment d'argent. |
 | API | Interface de programmation d'applications : une interface technique mise en œuvre par un protocole logiciel qui permet aux systèmes d'interagir les uns avec les autres via des structures standard, sans qu'un système utilisateur ait besoin de connaître les détails de mise en œuvre interne du système avec lequel il interagit. |
@@ -93,7 +93,7 @@ Ceci est un glossaire des termes utilisés dans le projet de documents commercia
 | Corridor | Désigne deux pays quelconques dans une transaction transfrontalière et la direction du transfert. |
 | Contrepartie | L'autre partie dans une transaction de paiement ou de crédit. Un bénéficiaire est la contrepartie d'un payeur, et vice versa. |
 | Coupon | Un jeton qui donne droit au porteur à une réduction ou qui peut être échangé contre des biens ou des services. |
-| Virement | Un paiement ou un transfert de fonds initié par le DFSP payeur au DFSP bénéficiaire. Un virement est souvent appelé « transfert de crédit par poussée » car les fonds sont « poussés » depuis le compte de transaction du payeur. Le virement contraste avec le prélèvement automatique. |
+| Virement | Un paiement ou un transfert de fonds initié par le DFSP payeur au DFSP bénéficiaire. Un virement est souvent appelé « transfert credit-push » car les fonds sont transférés depuis le compte de transaction du payeur. Le virement contraste avec le prélèvement automatique. |
 | Transfrontalier | Un transfert d'un DFSP payeur domicilié dans un pays, vers un DFSP bénéficiaire domicilié dans un autre pays. |
 | Transfert multi-devises | Transfert impliquant plusieurs devises, y compris un calcul de change. |
 | Position actuelle | La position nette actuelle d'un participant dans le grand livre de position pour une devise donnée. |
@@ -105,7 +105,7 @@ Ceci est un glossaire des termes utilisés dans le projet de documents commercia
 | Numérique | Communications électroniques entre deux individus ou entités pouvant se produire sur divers appareils électroniques (par ex. mobile, tablette, ordinateur). |
 | Liquidité numérique | Une pratique consistant à conserver la valeur sous forme numérique, plutôt que d'échanger la valeur numérique contre des espèces (forme physique). |
 | Paiement numérique | Un terme large incluant tout paiement exécuté électroniquement. Comprend les paiements initiés par téléphone mobile ou ordinateur. Les paiements par carte dans certaines circonstances sont considérés comme des paiements numériques. Le terme « paiement mobile » est tout aussi large et comprend une grande variété de types de transactions qui utilisent d'une manière ou d'une autre un téléphone mobile. |
-| Prélèvement automatique | Un paiement ou un transfert de fonds initié par le DFSP bénéficiaire au DFSP payeur. Un prélèvement automatique est souvent appelé « transfert de débit par tirage » car les fonds sont « tirés » du compte de transaction du payeur. Le prélèvement automatique contraste avec le virement. |
+| Prélèvement automatique | Un paiement ou un transfert de fonds initié par le DFSP bénéficiaire au DFSP payeur. Un prélèvement automatique est souvent appelé « transfert debit-pull » car les fonds sont prélevés du compte de transaction du payeur. Le prélèvement automatique contraste avec le virement. |
 | Répertoire | Un registre centralisé ou décentralisé d'identifiants de paiement à utiliser pour l'adressage, accessible par le système de paiement ou les DFSP. |
 | Résolution des litiges | Un processus spécifié par un fournisseur ou par les règles d'un schéma de paiement pour résoudre les problèmes entre les utilisateurs finaux et les fournisseurs, ou entre un utilisateur final et sa contrepartie. |
 | Domestique | Décrit une transaction entre deux DFSP domiciliés dans le même pays. |
@@ -135,12 +135,12 @@ Ceci est un glossaire des termes utilisés dans le projet de documents commercia
 | Gouvernance | L'ensemble des approches de gestion, des décisions et des fonctions de surveillance au sein du schéma. La gouvernance du schéma peut donner le ton de tout ce qui se passe dans le schéma. |
 | Agence gouvernementale | Tout titulaire de compte de transaction qui est une sorte d'agence ou de département gouvernemental. |
 | Services d'acceptation des paiements gouvernementaux | Services qui permettent aux gouvernements de collecter des impôts et des frais auprès des individus et des entreprises. |
-| Règlement brut | Une méthode de règlement des obligations financières entre les DFSP et un schéma. Le règlement brut traite chaque transaction individuellement. Les détails du modèle de règlement brut sont spécifiés dans les règles du système. Le règlement brut contraste avec le règlement net. |
+| Règlement brut | Une méthode de règlement des obligations financières entre les DFSP et un schéma. Le règlement brut traite chaque transaction individuellement. Les détails du modèle de règlement brut sont spécifiés dans les règles de schéma. Le règlement brut contraste avec le règlement net. |
 | Hub | Un terme qui peut être utilisé pour l'entité qui exploite la plateforme au nom du schéma. |
 | Service d'identifiant | La manière dont le processus de recherche de compte fonctionne pour un type d'identifiant donné. |
 | Identité | Un justificatif d'identité de quelque sorte qui identifie un utilisateur final. Les identités nationales sont délivrées par les gouvernements nationaux. Dans certains pays, une identité financière est délivrée par les fournisseurs de services financiers. |
 | Transfert de fonds immédiat | Un paiement numérique qui est reçu par le bénéficiaire presque immédiatement après que le payeur a initié la transaction. |
-| Interchange | Une structure au sein de certains schémas de paiement qui oblige un fournisseur à payer à l'autre fournisseur des frais sur certaines transactions. Généralement utilisé dans les schémas de cartes pour effectuer le paiement d'un frais d'un commerçant à la banque émettrice de la carte du consommateur. |
+| Interchange | Une structure au sein de certains systèmes de paiement qui obligent un fournisseur à payer à l'autre fournisseur des frais sur certaines transactions. Généralement utilisé dans les schémas de cartes pour effectuer le paiement d'un frais d'un commerçant à la banque émettrice de la carte du consommateur. |
 | Interledger | Le protocole Interledger est un protocole pour transférer de la valeur monétaire à travers plusieurs réseaux de paiement déconnectés en utilisant une chorégraphie de transferts conditionnels sur chaque réseau. |
 | Transfert de fonds international | Effectuer et recevoir des paiements vers une autre personne dans un autre pays. |
 | Interopérabilité | La capacité d'un client disposant d'un compte de transaction chez un participant à échanger une transaction avec un client qui a un compte de transaction chez un participant différent. |
@@ -161,7 +161,7 @@ Ceci est un glossaire des termes utilisés dans le projet de documents commercia
 | Achat initié par le commerçant | Un cas d'utilisation défini dans le document des spécifications API. |
 | Achat initié par le commerçant via TPV/OTP | Un cas d'utilisation défini dans le document des spécifications API. |
 | Achat initié par le commerçant via QR | Un cas d'utilisation défini dans le document des spécifications API. |
-| Institution de microfinance (IMF) | Une entité qui offre des services financiers aux populations à faible revenu. Presque toutes les IMF accordent des prêts à leurs membres, et beaucoup offrent des services d'assurance, de dépôt et autres. Les IMF sont considérées comme des DFSP dans un système Level One si elles fournissent des comptes de transaction à leurs clients. Les IMF qui ne sont pas des DFSP peuvent se connecter directement à une plateforme Level One, par le biais d'une relation avec un DFSP. Les règles du système préciseront comment ces IMF peuvent interagir avec la plateforme. |
+| Institution de microfinance (IMF) | Une entité qui offre des services financiers aux populations à faible revenu. Presque toutes les IMF accordent des prêts à leurs membres, et beaucoup offrent des services d'assurance, de dépôt et autres. Les IMF sont considérées comme des DFSP dans un système Level One si elles fournissent des comptes de transaction à leurs clients. Les IMF qui ne sont pas des DFSP peuvent se connecter directement à une plateforme Level One, par le biais d'une relation avec un DFSP. Les règles de schéma préciseront comment ces IMF peuvent interagir avec la plateforme. |
 | Opérateur de réseau mobile (ORM) | Une entreprise qui vend des services de téléphonie mobile, y compris les communications vocales et de données. |
 | Opérateur de transfert d'argent | Un fournisseur spécialisé de services financiers numériques qui gère les transferts de fonds nationaux et/ou internationaux. |
 | MSISDN | Numéro identifiant de manière unique un abonnement dans un réseau de téléphonie mobile. Ces numéros utilisent la norme E.164 qui définit le plan de numérotation pour un réseau téléphonique public commuté (RTPC) mondial. |
@@ -182,7 +182,7 @@ Ceci est un glossaire des termes utilisés dans le projet de documents commercia
 | Achat en ligne | Un cas d'utilisation secondaire P2B. |
 | Spécification Open API | La spécification Open API for FSP Interoperability. |
 | Boucle ouverte | Un système ou schéma de paiement conçu pour que plusieurs fournisseurs y participent. Les règles du système de paiement ou la législation nationale peuvent restreindre la participation à certaines catégories de fournisseurs. |
-| Règles opérationnelles | Règles rédigées par un schéma qui lient les participants au schéma. Parfois appelées « règles commerciales ». |
+| Règles opérationnelles | Règles rédigées par un schéma qui lient les participants au schéma. Parfois appelées « règles métier ». |
 | Gestion des risques opérationnels | Outils pour gérer les risques des fournisseurs dans l'exploitation d'un système de services financiers numériques. |
 | Opérateur | Une entité qui fournit et/ou gère la plateforme d'un système de paiement. |
 | Organisation | Une entité telle qu'une entreprise, une œuvre de bienfaisance ou un département gouvernemental qui utilise la monnaie mobile comme service ; par exemple, recevoir des paiements de factures, effectuer des paiements de factures et verser des salaires. |
@@ -207,19 +207,19 @@ Ceci est un glossaire des termes utilisés dans le projet de documents commercia
 | Dispositif de paiement | Le dispositif de paiement est la notion abstraite d'un appareil électronique, autre que le propre appareil du payeur, capable de permettre à un payeur d'accepter une transaction via l'utilisation d'un identifiant (une sorte d'OTP). Des exemples de dispositifs (de paiement) sont les GAB et les TPV. |
 | Système de paiement | Un terme large pour décrire le système global, y compris le schéma, les services du schéma et les participants au schéma. |
 | Opérateur de système de paiement | L'entité qui exploite un système ou schéma de paiement. |
-| Prestataire de services de paiement (PSP) | Un terme utilisé de deux manières : généralement, pour toute entreprise impliquée dans la fourniture de services de paiement (y compris les DFSP) ; ou pour un fournisseur qui offre des produits ou services de marque aux utilisateurs finaux, y compris les commerçants. Les PSP peuvent se connecter directement à une plateforme Level One, par le biais d'une relation avec un DFSP. Les règles du système préciseront comment les PSP peuvent interagir avec la plateforme. |
+| Prestataire de services de paiement (PSP) | Un terme utilisé de deux manières : généralement, pour toute entreprise impliquée dans la fourniture de services de paiement (y compris les DFSP) ; ou pour un fournisseur qui offre des produits ou services de marque aux utilisateurs finaux, y compris les commerçants. Les PSP peuvent se connecter directement à une plateforme Level One, par le biais d'une relation avec un DFSP. Les règles de schéma préciseront comment les PSP peuvent interagir avec la plateforme. |
 | Informations personnelles | Informations relatives à toute personne individuelle, y compris les clients ou les employés du schéma ou d'un participant, à partir desquelles l'individu peut être identifié ou reconnu, quelle que soit la forme de ces informations. |
-| Plateforme | L'ensemble des capacités opérationnelles, incluant souvent un commutateur, qui mettent en œuvre l'échange de paiements dans un système de paiement interopérable aligné sur Level One. |
+| Plateforme | L'ensemble des capacités opérationnelles, incluant souvent un commutateur, qui mettent en œuvre l'échange de paiements dans un système de paiement interopérable conforme Level One. |
 | Plateforme | Un terme utilisé pour décrire le logiciel ou le service utilisé par un fournisseur, un schéma ou un commutateur pour gérer les comptes des utilisateurs finaux et envoyer et recevoir des transactions de paiement. |
 | Compte de règlement mutualisé | Un compte bancaire à la banque, détenu conjointement par les participants au schéma. |
 | Grand livre de position | Un grand livre tenu par la plateforme qui enregistre les écritures de règlement provisoires et définitives pour un participant dans une devise donnée. |
 | Comptabilisation | L'acte du fournisseur d'enregistrer une écriture de débit ou de crédit dans le relevé de compte de l'utilisateur final. |
 | Frais de traitement | Frais facturés par le schéma aux participants pour le traitement effectué par la plateforme du schéma. |
-| Processeur | Une entreprise qui gère, sur une base externalisée, diverses fonctions pour un DFSP. Ces fonctions peuvent inclure la gestion des transactions, la gestion de la base de données clients et la gestion des risques. Les processeurs peuvent également effectuer des fonctions pour le compte de systèmes de paiement, de schémas ou de commutateurs. Les processeurs peuvent se connecter directement à une plateforme Level One, agissant au nom d'un DFSP. Les règles du système préciseront comment les processeurs peuvent interagir avec la plateforme. |
+| Processeur | Une entreprise qui gère, sur une base externalisée, diverses fonctions pour un DFSP. Ces fonctions peuvent inclure la gestion des transactions, la gestion de la base de données clients et la gestion des risques. Les processeurs peuvent également effectuer des fonctions pour le compte de systèmes de paiement, de schémas ou de commutateurs. Les processeurs peuvent se connecter directement à une plateforme Level One, agissant au nom d'un DFSP. Les règles de schéma préciseront comment les processeurs peuvent interagir avec la plateforme. |
 | Débit provisoire | Un enregistrement dans le grand livre de position du schéma d'une demande de transfert qui n'a pas été exécutée ; enregistré uniquement dans le grand livre de position du DFSP payeur. |
 | PSP | Prestataire de services de paiement. |
-| Paiement par tirage | Un type de transaction initiée par le DFSP du bénéficiaire. Les prélèvements automatiques, les chèques et les paiements par carte sont tous des paiements par tirage. Les paiements par tirage peuvent être rejetés ou échouer pour insuffisance de fonds sauf si une autorisation séparée est effectuée (par ex. cartes). |
-| Paiement par poussée | Un type de transaction initié par le DFSP payeur. Ceci est parfois appelé un virement. |
+| Paiement pull | Un type de transaction initiée par le DFSP du bénéficiaire. Les prélèvements automatiques, les chèques et les paiements par carte sont tous des paiements pull. Les paiements pull peuvent être rejetés ou échouer pour insuffisance de fonds sauf si une autorisation séparée est effectuée (par ex. cartes). |
+| Paiement push | Un type de transaction initié par le DFSP payeur. Ceci est parfois appelé un virement. |
 | Achat par code QR | Un cas d'utilisation secondaire P2B. |
 | Code QR (Quick-Response) | Une méthode d'encodage et de visualisation de données sous forme lisible par machine. Il existe de multiples modèles de QR. |
 | Devis | Un processus par lequel un DFSP bénéficiaire reconnaît la validité du compte du bénéficiaire pour accepter un transfert, et définit les termes (et éventuellement les frais) liés à ce transfert. |
@@ -234,19 +234,19 @@ Ceci est un glossaire des termes utilisés dans le projet de documents commercia
 | Régulateur | Une organisation gouvernementale investie du pouvoir par la législation nationale de fixer et d'appliquer des normes et des pratiques. Les banques centrales, les départements des finances et du trésor, les régulateurs des télécommunications et les autorités de protection des consommateurs sont tous des régulateurs impliqués dans les services financiers numériques. |
 | Demande de devis | Un appel API qui initie une transaction par laquelle le DFSP payeur demande au DFSP bénéficiaire des informations concernant un transfert proposé. |
 | Demande de transfert | Un message qui est transmis d'un DFSP payeur via la plateforme à un DFSP bénéficiaire, qui demande qu'un transfert soit effectué du payeur au bénéficiaire. |
-| Demande de paiement | Un message par lequel un bénéficiaire « demande » un paiement à un payeur. Une demande de paiement dans un système Level One est souvent utilisée pour décrire un commerçant qui demande un paiement par poussée à un utilisateur final. |
+| Request to pay | Un message par lequel un bénéficiaire « demande » un paiement à un payeur. Une request to pay dans un système Level One est souvent utilisée pour décrire un commerçant qui demande un paiement push à un utilisateur final. |
 | Réservation | Partie d'une opération de transfert en deux phases dans laquelle les fonds à transférer sont bloqués (les fonds ne peuvent être utilisés à aucune fin jusqu'à ce qu'ils soient annulés ou engagés). Cela est généralement fait pour une durée prédéterminée, dont l'expiration entraîne l'annulation de la réservation. |
 | Paiement de détail | Un paiement ou un transfert entre utilisateurs finaux, généralement de faible valeur. Le terme est souvent utilisé pour décrire les paiements P2P, B2P ou P2B. |
 | Annulation | Le processus d'annulation d'un transfert terminé. |
-| Gestion des risques | Les pratiques que les entreprises mettent en œuvre pour comprendre, détecter, prévenir et gérer divers types de risques. La gestion des risques se fait chez les fournisseurs, dans les systèmes et schémas de paiement, chez les processeurs et chez de nombreux commerçants ou accepteurs de paiements. |
+| Gestion des risques | Les pratiques que les entreprises mettent en œuvre pour comprendre, détecter, prévenir et gérer divers types de risques. La gestion des risques se fait chez les fournisseurs, dans les systèmes de paiement, chez les processeurs et chez de nombreux commerçants ou accepteurs de paiements. |
 | Approche fondée sur les risques | Une approche réglementaire et/ou de gestion commerciale qui crée différents niveaux d'obligation en fonction du risque de la transaction ou du client sous-jacent. |
 | Annulation | L'annulation signifie que les fonds électroniques qui étaient précédemment réservés sont remis dans leur état d'origine. La transaction financière est annulée. Les fonds électroniques ne sont plus bloqués pour utilisation. |
-| Règles | Les pratiques et normes nécessaires au fonctionnement des services de paiement définies par le schéma. Les règles sont parfois appelées règles du système, règles commerciales ou règles opérationnelles. |
+| Règles | Les pratiques et normes nécessaires au fonctionnement des services de paiement définies par le schéma. Les règles sont parfois appelées règles de schéma, règles métier ou règles opérationnelles. |
 | Modification des règles | Tous les changements, ajouts, suppressions ou autres modifications des règles opérationnelles du schéma ou de tout document associé. |
 | Épargne et investissement | Conserver des fonds pour les besoins futurs et le rendement financier. |
 | Produits d'épargne | Un compte chez un fournisseur bancaire ou non bancaire, qui stocke des fonds dans le but d'aider les utilisateurs finaux à économiser de l'argent. |
 | Schéma | Un ensemble de règles, pratiques et normes nécessaires au fonctionnement des services de paiement. |
-| Cas d'utilisation secondaire | Un sous-ensemble d'un cas d'utilisation. Des règles commerciales ou des directives opérationnelles spécifiques peuvent s'appliquer aux cas d'utilisation secondaires. |
+| Cas d'utilisation secondaire | Un sous-ensemble d'un cas d'utilisation. Des règles métier ou des directives opérationnelles spécifiques peuvent s'appliquer aux cas d'utilisation secondaires. |
 | Élément sécurisé | Une puce sécurisée sur un téléphone qui peut être utilisée pour stocker des données de paiement. |
 | Code d'accès de sécurité | Un numéro d'identification personnel (PIN), un mot de passe/mot de passe à usage unique (OTP), une reconnaissance biométrique, un code ou tout autre dispositif fournissant un moyen d'accès certifié au compte d'un client aux fins, entre autres, d'initier un transfert électronique de fonds. |
 | Incident de sécurité | (i) Accès non autorisé ou divulgation d'informations personnelles ou de données de transaction relatives aux clients éligibles pour initier ou recevoir des transferts via le schéma qui s'est produit ou dont on soupçonne raisonnablement qu'il s'est produit ; ou (ii) une violation confirmée des réseaux ou systèmes d'un participant ou des réseaux ou systèmes de son fournisseur qui expose des informations personnelles ou des données de transaction relatives au schéma qui s'est produite ou dont on s'attend raisonnablement à ce qu'elle se soit produite. |
@@ -263,14 +263,14 @@ Ceci est un glossaire des termes utilisés dans le projet de documents commercia
 | Smartphone | Un appareil qui combine un téléphone mobile avec un ordinateur. |
 | Banques à charte spéciale | Banques dans un pays qui sont autorisées à effectuer un ensemble limité de fonctions, tel que déterminé par la réglementation. Les banques à charte spéciale qui ne peuvent qu'accepter des dépôts et gérer des paiements sont considérées comme des DFSP dans un système Level One. |
 | Sponsor | Un arrangement entre un émetteur de monnaie électronique et une banque, utilisé pour le paiement et la collecte des frais d'interchange par les émetteurs de monnaie électronique. |
-| Organisme de normalisation | Une organisation qui crée des normes utilisées par les fournisseurs, les schémas de paiement et les systèmes de paiement. |
+| Organisme de normalisation | Une organisation qui crée des normes utilisées par les fournisseurs, les systèmes de paiement. |
 | Compte de valeur stockée | Compte dans lequel les fonds sont conservés dans un format électronique sécurisé. Peut être un compte bancaire ou un compte de monnaie électronique. |
 | Rapport de transaction suspecte | Si une institution financière remarque quelque chose de suspect dans une transaction ou une activité, elle peut déposer un rapport auprès de la cellule de renseignement financier qui l'analysera et le recoupera avec d'autres informations. Les informations dans un RTS varient selon la juridiction. |
 | Commutateur | Une entité de traitement dans un système de paiement qui achemine une transaction d'un DFSP à un autre DFSP. Un système peut exploiter son propre commutateur, ou cette fonction peut être effectuée par un ou plusieurs tiers. |
 | Système | Un terme utilisé pour décrire le schéma, les services, la plateforme et les participants alignés sur un Level One Project. |
 | Risque systémique | Dans les systèmes de paiement, le risque d'effondrement d'un système financier entier ou d'un marché entier, par opposition au risque associé à un fournisseur individuel ou un utilisateur final individuel. |
 | Le Level One Project | Une initiative de la Fondation Bill & Melinda Gates, au sein du programme Services financiers pour les pauvres, qui travaille à soutenir les pays ou régions construisant des systèmes de services financiers numériques interopérables et à faible coût pour intégrer les personnes et les commerçants à faible revenu dans l'économie formelle. |
-| Accès par paliers | Une disposition établie dans les règles du système qui permet à un DFSP de participer au système sous le parrainage d'un autre DFSP. |
+| Accès par paliers | Une disposition établie dans les règles de schéma qui permet à un DFSP de participer au système sous le parrainage d'un autre DFSP. |
 | Achat par numéro de caisse | Un cas d'utilisation secondaire P2B. |
 | Transaction | Un ensemble d'appels API connexes qui sont échangés entre les participants via le schéma, y compris un transfert. |
 | Compte de transaction | Un compte bancaire ou un portefeuille offert à un client par un DFSP. |
@@ -287,7 +287,7 @@ Ceci est un glossaire des termes utilisés dans le projet de documents commercia
 | Ubiquité | Un terme utilisé pour décrire la capacité de payer n'importe qui et d'être payé par n'importe qui. |
 | Non bancarisé | Les personnes non bancarisées n'ont pas de compte de transaction. Les personnes sous-bancarisées peuvent avoir un compte de transaction mais ne l'utilisent pas activement. Sous-desservi est un terme large désignant les personnes qui sont les cibles des initiatives d'inclusion financière. Il est également parfois utilisé pour désigner une personne qui a un compte de transaction mais ne dispose pas de services supplémentaires de services financiers numériques. |
 | Pertes non couvertes | Obligations de règlement qui ne sont pas satisfaites par le DFSP responsable et ne sont pas acquittées par le biais de garanties ou d'autres mécanismes. |
-| Cas d'utilisation | Un terme utilisé pour décrire l'objet du paiement. Des règles commerciales ou des directives opérationnelles spécifiques peuvent s'appliquer aux cas d'utilisation. |
+| Cas d'utilisation | Un terme utilisé pour décrire l'objet du paiement. Des règles métier ou des directives opérationnelles spécifiques peuvent s'appliquer aux cas d'utilisation. |
 | Identifiant utilisateur | Un identifiant unique d'un utilisateur. Il peut s'agir d'un MSISDN, d'un compte bancaire, d'une forme d'identifiant fourni par le DFSP, d'une identité nationale, etc. Dans une transaction, l'argent est généralement adressé à un identifiant utilisateur et non directement à un identifiant de compte. |
 | USSD | Une technologie de communication utilisée pour envoyer du texte entre un téléphone mobile et un programme d'application dans le réseau. |
 | Services à valeur ajoutée | Services ou produits fournis aux utilisateurs finaux que les utilisateurs finaux paieront pour utiliser ou accéder, souvent utilisés en coordination avec les adjacences. |

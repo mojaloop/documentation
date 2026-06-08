@@ -17,8 +17,8 @@ La procédure de gestion des problèmes garantit que :
 
 Un problème est déclaré par la partie prenante concernée de la gestion des services dans les situations suivantes :
 
-* lorsqu'il y a un incident dont le propriétaire de l'incident ne peut pas établir la cause dans le cadre de l'accord de niveau de service défini
-* lorsqu'il y a des occurrences répétées d'un incident avec un impact considérable sur l'activité
+* lorsqu'il y a un incident dont le propriétaire de l'incident ne peut pas établir la cause dans les délais définis par l'accord de niveau de service
+* lorsqu'il y a des occurrences répétées d'un incident avec un impact important sur l'activité
 * lorsqu'il y a une dégradation du service ou un écart par rapport au comportement attendu susceptible d'affecter l'activité à l'avenir s'il n'est pas atténué, et dont l'atténuation n'est pas bien établie
 
 Dans l'un des scénarios ci-dessus, ou tout autre scénario que le responsable des problèmes peut juger applicable, un enregistrement de problème sera ouvert et le processus de gestion des problèmes sera lancé.
@@ -42,7 +42,7 @@ La priorité attribuée à un problème déterminera la rapidité avec laquelle 
 
 Le tableau ci-dessous fournit des orientations sur la façon de classifier un problème. Pour savoir comment lire ce tableau, voir les exemples suivants :
 
-* Un problème de sévérité élevée et d'impact faible sera classé comme un problème de priorité moyenne (vérifier la cellule à l'intersection de sévérité élevée et impact faible).
+* Un problème de sévérité élevée et impact faible sera classé comme un problème de priorité moyenne (vérifier la cellule à l'intersection de sévérité élevée et impact faible).
 * Un problème de sévérité moyenne et d'impact élevé sera classé comme un problème de priorité élevée (vérifier la cellule à l'intersection de sévérité moyenne et impact élevé).
 
 <table>
@@ -85,7 +85,7 @@ Le problème affecte un ou deux membres du personnel.</p>
 <td><p>Moyenne</p></td>
 </tr>
 <tr class="odd">
-<td><p><strong>Moyen</strong><br />
+<td><p><strong>Moyenne</strong><br />
 <br />
 Niveaux de service dégradés mais ne respectant pas les contraintes SLA ou ne pouvant fournir qu'un niveau minimum de service.</p>
 <p>La cause du problème semble affecter plusieurs domaines fonctionnels.</p></td>
@@ -94,7 +94,7 @@ Niveaux de service dégradés mais ne respectant pas les contraintes SLA ou ne p
 <td><p>Élevée</p></td>
 </tr>
 <tr class="even">
-<td><p><strong>Élevé</strong><br />
+<td><p><strong>Élevée</strong><br />
 <br />
 Tous les utilisateurs d'un service spécifique sont affectés.</p>
 <p>Un service destiné aux clients est indisponible.</p></td>
@@ -114,15 +114,15 @@ Une solution de contournement définit un moyen temporaire de surmonter les effe
 
 Les solutions de contournement doivent être documentées et communiquées au Service Desk afin qu'elles puissent être ajoutées à la base de connaissances. Cela garantira que les solutions de contournement sont accessibles au Service Desk pour faciliter la résolution lors de récurrences futures de l'incident.
 
-Dans les cas où une solution de contournement est trouvée, il est important de documenter tous les détails de la solution de contournement dans l'enregistrement du problème et que l'enregistrement du problème reste ouvert.
+Dans les cas où une solution de contournement est trouvée, il est important de documenter tous les détails de la solution de contournement dans l'Enregistrement de problème et que l'Enregistrement de problème reste ouvert.
 
 ## Documentation des erreurs connues
 
-Lorsqu'un diagnostic est établi pour identifier un problème et ses symptômes, un enregistrement d'erreur connue doit être créé et placé dans la documentation des erreurs connues. Si des incidents ou des problèmes récurrents surviennent, ils peuvent être identifiés et le service restauré plus rapidement. Toute solution de contournement ou résolution doit également être documentée dans l'enregistrement d'erreur connue du problème concerné.
+Lorsqu'un diagnostic est établi pour identifier un problème et ses symptômes, un Enregistrement d'erreur connue doit être créé et placé dans la documentation des erreurs connues. Si des incidents ou des problèmes récurrents surviennent, ils peuvent être identifiés et le service restauré plus rapidement. Toute solution de contournement ou résolution doit également être documentée dans l'Enregistrement d'erreur connue du problème concerné.
 
-Dans certains cas, il peut être avantageux de créer un enregistrement d'erreur connue encore plus tôt dans le processus global – à titre informatif par exemple – même si le diagnostic n'est pas terminé ou qu'une solution de contournement n'a pas encore été trouvée.
+Dans certains cas, il peut être avantageux de créer un Enregistrement d'erreur connue encore plus tôt dans le processus global – à titre informatif par exemple – même si le diagnostic n'est pas terminé ou qu'une solution de contournement n'a pas encore été trouvée.
 
-L'enregistrement d'erreur connue doit contenir tous les symptômes connus afin que, lorsqu'un nouvel incident survient, une recherche dans les erreurs connues puisse être effectuée et la correspondance appropriée trouvée.
+L'Enregistrement d'erreur connue doit contenir tous les symptômes connus afin que, lorsqu'un nouvel incident survient, une recherche dans les erreurs connues puisse être effectuée et la correspondance appropriée trouvée.
 
 ## Processus
 
