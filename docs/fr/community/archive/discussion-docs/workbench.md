@@ -151,7 +151,7 @@ Comme indiqué dans nos hypothèses, nous ne traitons pas ici les opérateurs de
 
 ### 7.3 Fintech propulsée par Mojaloop
 
->_Une fintech « Mojaloop-powered » opère ou souhaite opérer au-dessus d’un switch Mojaloop. Le chevauchement avec les DFSP existe, mais nous nous concentrons sur les fintechs au troisième niveau des « Mojaloop Spokes »._
+>_Une fintech « Mojaloop-powered » opère ou souhaite opérer au-dessus d’un switch Mojaloop. Il existera inévitablement un chevauchement entre les fintechs et les DFSP dans cette classification, mais nous nous concentrons sur les fintechs au troisième niveau des « Mojaloop Spokes »._
 
 **7.3.1 Cas d’usage :**
 - 1\. Valider des hypothèses sur Mojaloop
@@ -229,8 +229,8 @@ Consensus général :
   - 2.1 S’ils jugent Mojaloop viable pour un futur produit, quel investissement temps / ressources ?
   - 2.2 Quelles alternatives ? (cas par cas)
 
-- 3\. Un certain « garde-fou » technique est-il souhaitable ou non ? (question plus philosophique)
-  - 3.1 Si l’accès est trop facile, seuls les plus motivés restent — auto-sélection « positive »
+- 3\. Un certain niveau de contrôle d’accès technique est-il souhaitable ou non ? (question plus philosophique)
+  - 3.1 Si démarrer est trop difficile, seuls les acteurs intéressés et déterminés utilisent Mojaloop — ce qui crée une auto-sélection vers une meilleure communauté (en quelque sorte)
   - 3.2 Mais cela exclut des profils peu à l’aise avec Kubernetes, Docker, etc., pourtant expérimentés en services financiers
 
 - 4\. Problème œuf / poule entre DFSP et opérateurs de hub : d’abord les DFSP ou d’abord les hubs ?

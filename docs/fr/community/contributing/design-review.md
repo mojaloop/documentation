@@ -1,18 +1,18 @@
 # Revue de conception technique et revue de code
 
-Le logiciel Mojaloop est conçu pour constituer l’épine dorsale de schémas de paiements instantanés inclusifs à l’échelle nationale. Ces schémas sont des éléments majeurs d’infrastructure financière nationale qui soutiennent des activités quotidiennes essentielles pour de nombreuses personnes. Les adoptants et utilisateurs exigent un niveau très élevé de qualité, sécurité, fiabilité et résilience.
+Le logiciel Mojaloop est conçu pour constituer l’épine dorsale de schémas de paiements instantanés inclusifs à l’échelle nationale. Ces schémas sont des éléments majeurs d’infrastructure financière nationale réglementée qui soutiennent des activités quotidiennes vitales pour de nombreuses personnes, comme l’achat de nourriture ou d’eau potable. Les adoptants et utilisateurs du logiciel Mojaloop exigent et méritent un niveau très élevé de qualité, sécurité, fiabilité et résilience.
 
-Pour préserver ces qualités et atténuer les risques, la Fondation Mojaloop applique un processus d’ingénierie produit structuré : contrôle des changements et traçabilité, revues de conception et de code, seuils de tests élevés et plusieurs niveaux d’assurance qualité.
+Pour préserver ces qualités et atténuer les risques, la Fondation Mojaloop applique un processus d’ingénierie produit structuré, fondé sur les meilleures pratiques éprouvées du secteur pour les logiciels financiers réglementés, incluant : contrôle des changements et traçabilité, revues de conception et de code, seuils de tests élevés et plusieurs niveaux d’assurance qualité.
 
 Ces processus aident les contributeurs à identifier et réduire les risques tout en améliorant les produits.
 
-Lisez attentivement les définitions et l’application à votre travail **avant de commencer**.
+Veuillez lire attentivement les informations suivantes pour vous assurer de bien comprendre nos définitions et la façon dont ces processus s’appliquent au travail que vous souhaitez réaliser, **avant de commencer**.
 
-**Si vous ne suivez pas ces processus, il pourra vous être demandé de refaire le travail, ou la contribution pourra être refusée si elle ne respecte pas nos normes, avec des retards importants pour une release officielle Mojaloop. Voir les explications sur le [processus de don externe](product-engineering-process.md#non-official-workstreams-and-external-contributions).**
+**Si vous ne suivez pas ces processus, il pourra vous être demandé de refaire le travail, ou la contribution pourra être purement et simplement rejetée si elle ne respecte pas nos normes, avec des retards importants pour une release officielle Mojaloop. Veuillez consulter nos explications sur le [processus de don externe](product-engineering-process.md#non-official-workstreams-and-external-contributions).**
 
 ## Qu’est-ce que la revue de conception technique ?
 
-La « revue de conception technique » est un processus par lequel un ou plusieurs ingénieurs experts du domaine, membres de la Design Authority Mojaloop, connaissant les zones du système concernées, examinent les changements proposés avec les contributeurs et les représentants produit **avant le début de l’implémentation**, pour :
+La « revue de conception technique » est un processus par lequel un ou plusieurs ingénieurs seniors experts du domaine, membres de la Design Authority Mojaloop, familiers des zones du système concernées, discutent des changements proposés avec les contributeurs et les représentants produit **avant le début de l’implémentation**, pour :
 
 - Gestion des risques
     - Identifier et atténuer les risques techniques et/ou métier pour les parties prenantes, utilisateurs ou autres contributeurs.
@@ -21,14 +21,14 @@ La « revue de conception technique » est un processus par lequel un ou plusieu
 - Normes et cohérence
     - Orienter vers les normes Mojaloop (outils, composants tiers, motifs de conception) pour préserver la cohérence de la base de code.
 
-Pour les changements non triviaux, le processus consiste à collaborer avec la Design Authority pour produire un document de conception détaillant le changement. Après implémentation, ce document enrichit la documentation communautaire et explique les décisions historiques.
+Pour les changements non triviaux, le processus consiste à collaborer avec la Design Authority pour produire un document de conception détaillant le changement. Après implémentation, ce document vient enrichir la documentation communautaire et aide à comprendre le raisonnement derrière les décisions de conception prises au fil de l’évolution du logiciel.
 
 ## Qu’est-ce que la revue de code ?
 
 La « revue de code » est un processus par lequel un ou plusieurs ingénieurs examinent des changements de code proposés **avant fusion dans la branche principale**, pour :
 
 - Assurance qualité
-    - Détecter défauts, bugs ou pistes d’amélioration avant fusion ; logiciel de meilleure qualité.
+    - Les revues de code contribuent à garantir la qualité de la base de code en permettant aux autres membres de l’équipe d’identifier les problèmes potentiels, bugs ou pistes d’amélioration avant la fusion. Cela peut conduire à un logiciel de meilleure qualité, avec moins de défauts.
 - Partage des connaissances
     - Apprendre des approches des pairs, bonnes pratiques et motifs ; diffusion de l’expertise.
 - Cohérence
@@ -44,15 +44,15 @@ La « revue de code » est un processus par lequel un ou plusieurs ingénieurs e
 
 Le processus dépend de la nature du changement et de son impact sur les utilisateurs et le système.
 
-Identifiez la catégorie ci-dessous et suivez le processus correspondant. En tant que contributeur, vous devez appliquer le bon processus ; l’accord de contributeur confirme le respect de ces exigences.
+Identifiez la catégorie ci-dessous et suivez le processus correspondant. En tant que contributeur, il est de votre responsabilité d’appliquer le processus approprié ; vous devrez signer un accord de contributeur attestant de votre engagement à respecter ces exigences.
 
-En cas de doute, consultez la Design Authority sur Slack : [#design-authority](https://mojaloop.slack.com/archives/CARJFMH3Q). Engagez la revue de conception requise **avant** tout code pour éviter un travail à refaire.
+En cas de doute, consultez la Design Authority sur Slack : [#design-authority](https://mojaloop.slack.com/archives/CARJFMH3Q). Veuillez noter qu’il est important d’engager tout processus de revue de conception requis avant de procéder à des modifications de code, afin d’éviter de gaspiller vos propres efforts si la Design Authority venait à demander un travail à refaire.
 
 ### Changements non conséquentiels
 
 #### Définition et caractéristiques
 
-Un changement de code non conséquentiel est une modification petite et très isolée sur du code existant. Il n’affecte pas la structure interne ou externe ni la fonctionnalité au niveau local (entrées/sorties) ; il vise souvent la lisibilité, le style ou de petites optimisations. Risque faible.
+Un changement de code non conséquentiel est une modification petite et très isolée sur du code existant. Il n’affecte pas la structure interne ou externe ni la fonctionnalité au niveau local (entrées/sorties) ; il vise souvent la lisibilité, le style ou de petites optimisations. Les changements non conséquentiels sont simples à traiter et présentent un faible risque.
 
 Il ne modifie pas les interfaces externes, la fonctionnalité ou le comportement observable externe d’un ou plusieurs composants.
 
@@ -70,7 +70,7 @@ _Note importante : si votre changement est une optimisation qui modifie l’impl
 
 #### Processus de revue de conception et de code requis
 
-1. Pas de revue de conception obligatoire, mais possible en cas de doute.
+1. Aucune revue de conception n’est obligatoire, mais elle peut être entreprise si vous avez le moindre doute quant aux conséquences de vos changements.
 2. Au moins une approbation d’un « code owner » sur tous les fichiers modifiés.
     1. S’il n’y a pas de code owners pour certains fichiers, ouvrez un ticket auprès de {coordonnées} pour en définir. Tous les fichiers de l’organisation GitHub Mojaloop devraient avoir des code owners.
 3. Revues par les pairs supplémentaires souhaitées ; plus il y a de regards, mieux c’est.

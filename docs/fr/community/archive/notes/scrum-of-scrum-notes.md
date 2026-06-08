@@ -3,7 +3,7 @@
 ## Réunion OSS Scrum du jeudi **7 mai** 2020
 
 1. Coil - Don :
-   a. Performance : Problème de « Grand Écart » ; modifications sur cs-stream ; résultats modifiés ; préparation d’un document avec les changements pour relecture ; travail de Joran sur le traitement concurrent des messages sur les topics Kafka → essais à venir ; atteint 40-50% de débit ;
+   a. Performance : Problème de « Grand Écart » ; modifications sur cs-stream ; résultats modifiés ; préparation d’un document récapitulant les changements pour examen / révision technique ; travail de Joran sur le traitement concurrent des messages sur les topics Kafka → essais à venir ; observation d’un débit de 40-50% ;
    b. Adaptateur LPS : Collaboration avec Renjith (Applied Payments) ; mise en place d’un labo / environnement pour les équipes partenaires ; exploration d’une collaboration avec le GSMA lab.
 2. Crosslake - Lewis :
    a. Performance : Rapport présenté à Confluent avec Nakul, fin de l’engagement ; diffusion des documents produits par Nakul ;
@@ -23,7 +23,7 @@
    b. Paula H - Directrice exécutive de la Fondation Mojaloop.
 5. Fondation Mojaloop - Simeon :
    a. Demande de retours sur l’enquête communautaire ;
-   b. Hackathon probablement en début juin en collaboration avec Google ;
+   b. Hackathon envisagé dans le courant du début juin, en collaboration avec Google ;
    c. Lancement la semaine prochaine de la Newsletter Mojaloop avec des articles intéressants comme la Spec v1.1 ML FSPIOP, la release Helm v10.1.0, etc.
 
 ## Réunion OSS Scrum du jeudi **16 avril** 2020
@@ -67,9 +67,9 @@
    e. Lewis D : Standards du code – mis à jour ;
    f. Lewis D : Qualité & sécurité du code : Utilisation de HSM, démo, sécurité dans l’écosystème OSS ;
    g. Lewis D : Scans de conteneurs fonctionnels – collaboration avec Victor, premiers benchmarks ;
-   h. Lewis D : Mise à jour versionnage ;
+   h. Lewis D : Pour finir – mise à jour sur le versionnage ;
 3. Mifos :
-   a. Ed C : Travail sur Payment Hub, intégration avec Kafka, transactions ML fonctionnelles, usage d’Elastic Search pour monitoring back office ;
+   a. Ed C : Travail sur Payment Hub, intégration avec Kafka, transactions ML fonctionnelles, usage d’Elastic Search pour le monitoring des opérations back-office ;
    b. Ed C : Préparation Démo pour PI10 ;
 4. Core team :
    a. Sam K : Performance : Rédaction de rapports, migration de métriques et autres améliorations sur master ;

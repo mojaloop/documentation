@@ -2,11 +2,11 @@
 
 La Fondation Mojaloop et la communauté prennent très au sérieux la sécurité du logiciel Mojaloop et mettent en œuvre plusieurs processus pour en faire une plateforme sûre pour les activités économiques. Voir aussi notre [documentation sur l’architecture de cybersécurité](../tools/cybersecurity.md).
 
-La Fondation Mojaloop applique un processus de [« divulgation coordonnée des vulnérabilités »](https://github.com/ossf/oss-vulnerability-guide/blob/main/finder-guide.md#what-is-coordinated-vulnerability-disclosure) : une vulnérabilité ou un problème n’est rendu public qu’après que les parties responsables et concernées ont eu le temps de corriger ou de remédier au problème. Ce modèle vise à limiter l’impact pour nos adoptants.
+La Fondation Mojaloop applique un processus de [« divulgation coordonnée des vulnérabilités »](https://github.com/ossf/oss-vulnerability-guide/blob/main/finder-guide.md#what-is-coordinated-vulnerability-disclosure) : une vulnérabilité ou un problème n’est rendu public qu’après que les parties responsables et concernées ont eu le temps de corriger ou de remédier au problème. En appliquant ce modèle, la Fondation Mojaloop et la communauté visent à minimiser l’impact potentiel de ces problèmes sur nos adoptants.
 
 ## Politique de divulgation coordonnée des vulnérabilités de la Fondation Mojaloop
 
-Les sections suivantes définissent les exigences et attentes des parties impliquées dans la découverte et la correction des vulnérabilités du logiciel Mojaloop. Tous les membres de la communauté Mojaloop sont tenus de respecter cette politique, quel que soit le rôle joué dans un scénario donné. Participer à la communauté Mojaloop implique l’acceptation et le respect de ces politiques.
+Les sections suivantes définissent les exigences et attentes des différentes parties impliquées dans la découverte et la remédiation des vulnérabilités de sécurité du logiciel Mojaloop. Tous les membres de la communauté Mojaloop sont tenus de respecter cette politique, quel que soit le rôle joué dans un scénario donné. Participer à la communauté Mojaloop implique l’acceptation et le respect de ces politiques.
 
 ### Terminologie
 
@@ -124,7 +124,7 @@ La Fondation Mojaloop traitera de bonne foi les rapporteurs qui découvrent, tes
 
 #### Traitement des cas
 
-* La Fondation Mojaloop PEUT, à sa discrétion, refuser de coordonner ou de publier un rapport de vulnérabilité (souvent selon le périmètre et la gravité, et la valeur ajoutée de la coordination).
+* La Fondation Mojaloop PEUT, à sa discrétion, refuser de coordonner ou de publier un rapport de vulnérabilité. Cette décision est généralement fondée sur le périmètre et la gravité de la vulnérabilité ainsi que sur la capacité de la Fondation à apporter une valeur ajoutée au processus de coordination et de divulgation.
 
 * Si la Fondation Mojaloop refuse de coordonner, le rapporteur PEUT coordonner avec d’autres fournisseurs affectés et PEUT procéder à une divulgation publique à sa discrétion.
 
@@ -140,7 +140,7 @@ La Fondation Mojaloop traitera de bonne foi les rapporteurs qui découvrent, tes
 
 * La Fondation Mojaloop PEUT contacter le rapporteur pour des informations complémentaires.
 
-* La Fondation Mojaloop informera le rapporteur des résultats de la validation, le cas échéant, et fournira des mises à jour pendant la remédiation.
+* La Fondation Mojaloop informera le rapporteur des résultats de sa validation, le cas échéant, et lui fournira des mises à jour régulières tout au long de la remédiation de la vulnérabilité.
 
 * La Fondation Mojaloop créditera le rapporteur dans toute publication sauf demande contraire.
 
@@ -180,7 +180,7 @@ La Fondation Mojaloop traitera de bonne foi les rapporteurs qui découvrent, tes
 
 * La Fondation Mojaloop PEUT faire appel à un service tiers (ex. CERT/CC, DHS CISA) pour résoudre des conflits avec le rapporteur.
 
-* La Fondation Mojaloop PEUT, à sa discrétion, communiquer des informations à toute partie pouvant contribuer à la solution et avec laquelle elle a une relation de confiance (fournisseurs, experts communauté, sponsors, sites d’infrastructure critique à risque).
+* La Fondation Mojaloop PEUT, à sa discrétion, communiquer des informations sur les vulnérabilités à toute partie pouvant contribuer à la solution et avec laquelle elle entretient une relation de confiance, notamment des fournisseurs (y compris souvent des fournisseurs dont les produits ne sont pas vulnérables), prestataires de services, experts de la communauté, sponsors et sites faisant partie d’une infrastructure nationale critique, si elle estime que ces sites sont à risque.
 
 #### Divulgation publique
 
@@ -192,7 +192,7 @@ La Fondation Mojaloop traitera de bonne foi les rapporteurs qui découvrent, tes
 
 * La Fondation Mojaloop PEUT consulter le rapporteur et les fournisseurs affectés sur le calendrier et le détail de la divulgation publique.
 
-* La Fondation Mojaloop équilibrera le besoin d’information du public avec le besoin de temps de réponse des fournisseurs et des utilisateurs du logiciel open source Mojaloop.
+* La Fondation Mojaloop équilibrera le besoin du public d’être informé des vulnérabilités de sécurité avec le besoin des fournisseurs et des utilisateurs du logiciel open source Mojaloop de disposer du temps nécessaire pour répondre efficacement.
 
 * La décision finale sur le calendrier de publication sera fondée sur le meilleur intérêt global de la communauté.
 
@@ -200,6 +200,6 @@ La Fondation Mojaloop traitera de bonne foi les rapporteurs qui découvrent, tes
 
 * La Fondation Mojaloop PEUT divulguer au public l’existence antérieure de vulnérabilités déjà corrigées, y compris des détails ou indicateurs, ou la nature (mais pas le contenu) des informations rendues accessibles.
 
-* La Fondation Mojaloop fondera ses décisions sur des facteurs tels que : divulgation publique préalable, gravité, impact sur l’infrastructure critique, menace pour la santé publique, atténuations immédiates, réactivité du fournisseur et faisabilité d’un correctif, estimation du délai pour que les clients obtiennent, testent et appliquent le correctif. Exploitation active ou menaces graves peuvent accélérer ou retarder la divulgation.
+* La Fondation Mojaloop fondera ses décisions sur des facteurs pertinents tels que, sans s’y limiter : divulgation publique préalable, gravité de la vulnérabilité, impact potentiel sur l’infrastructure critique, menace possible pour la santé publique et la sécurité, atténuations immédiates disponibles, réactivité du fournisseur et faisabilité de la création d’une mise à niveau ou d’un correctif, et estimation du délai nécessaire pour que les clients obtiennent, testent et appliquent le correctif. Exploitation active ou menaces graves peuvent accélérer ou retarder la divulgation.
 
 * La Fondation Mojaloop PEUT divulguer des vulnérabilités produit 30 jours après le premier contact si le produit est affecté et que le fournisseur ne répond pas ou n’établit pas un délai raisonnable de remédiation, indépendamment de l’existence de correctifs ou contournements.

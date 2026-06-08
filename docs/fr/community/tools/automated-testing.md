@@ -10,9 +10,9 @@ Sommaire :
 6. [Commandes Newman](#commandes-newman)
 
 ## Sujets de régression
-Pour qu’un système déployé soit robuste, l’une des dernières étapes consiste à vérifier que l’environnement dans lequel il est déployé est sain et que toutes les fonctionnalités exposées fonctionnent exactement comme prévu.
+Pour qu’un système déployé soit robuste, l’un des derniers points de contrôle consiste à vérifier que l’environnement de déploiement est sain et que toutes les fonctionnalités exposées fonctionnent exactement conformément aux spécifications.
 
-Auparavant, de nombreuses disciplines doivent être mises en place pour garantir un contrôle maximal.
+Auparavant, on doit mettre en place un certain nombre de disciplines pour garantir un contrôle maximal.
 
 Pour illustrer comment le projet Mojaloop atteint cet objectif, nous présentons les différents points de contrôle mis en place.
 
@@ -20,7 +20,7 @@ Pour illustrer comment le projet Mojaloop atteint cet objectif, nous présentons
 Pour chaque composant et module, dans la base de code, vous trouverez un dossier nommé « test » qui contient trois types de tests.
 + D’abord, le *test de couverture* qui signale le code inaccessible ou redondant
 + Les tests unitaires, qui vérifient que la fonctionnalité prévue se comporte comme attendu
-+ Les tests d’intégration, qui ne testent pas le bout en bout mais la coopération avec les voisins immédiats
++ Les tests d’intégration, qui ne testent pas le bout en bout mais les interactions avec les composants adjacents
 + Des vérifications automatiques des normes de code implémentées via des paquets intégrés à la base de code
 
 Ces tests sont exécutés via des instructions en ligne de commande par le développeur pendant le développement. Ils sont également lancés automatiquement à chaque *commit* et lors de l’ouverture d’une pull request GitHub pour intégrer le code au projet.
@@ -32,13 +32,13 @@ Une fois qu’un développeur a écrit une nouvelle fonctionnalité ou étendu u
 Lorsque le code a passé toutes ces étapes et est déployé dans le cadre des processus CI/CD de notre flux de travail, les nouveaux composants sont acceptés sur les différents hébergeurs, déploiements cloud ou sur site. Ces hébergeurs vont des plateformes de développement jusqu’aux environnements de production.
 
 ### Postman et Newman
-En parallèle du déploiement se maintient le cadre de tests [Postman](https://github.com/mojaloop/postman.git "Postman"). Lors d’une nouvelle release, les notes de version publiées dans le flux de travail listent les fonctionnalités nouvelles ou améliorées. L’équipe QA s’en sert pour étendre et enrichir les collections Postman existantes, où des tests sont écrits dans les scripts requête/réponse pour couvrir les scénarios positifs et négatifs par rapport au comportement attendu. Ces tests sont ensuite exécutés ainsi :
-+ Manuellement, pour vérifier que les tests couvrent tous les aspects du comportement positif et que les tests négatifs vérifient les flux alternatifs corrects lorsqu’un problème imprévu survient
+En parallèle du déploiement, l’entretien et la maintenance du cadre de tests se poursuivent [Postman](https://github.com/mojaloop/postman.git "Postman"). Lors d’une nouvelle release, les notes de version publiées dans le flux de travail listent les fonctionnalités nouvelles ou améliorées. L’équipe QA s’en sert pour étendre et enrichir les collections Postman existantes, où des tests sont écrits dans les scripts requête/réponse pour couvrir les scénarios positifs et négatifs par rapport au comportement attendu. Ces tests sont ensuite exécutés ainsi :
++ Manuellement, pour vérifier que les tests couvrent tous les aspects et angles de la fonctionnalité, les tests positifs pour valider par assertion le comportement attendu, et les tests négatifs pour vérifier que les flux alternatifs corrects s’appliquent en cas de problème imprévu
 + De façon planifiée — dans le cadre de la régression — pour reproduire la même intention que le manuel mais entièrement automatisée (avec le *paquet Newman*), avec rapports et journaux pour signaler tout comportement non voulu et avertir lorsque le comportement connu a changé par rapport à une exécution précédente.
 
 Pour faciliter les tests automatisés et planifiés d’une collection Postman, plusieurs méthodes existent ; celle implémentée pour Mojaloop est expliquée plus bas dans ce document.
 
-Un dépôt complet contient tous les scripts, procédures d’installation et éléments nécessaires pour mettre en place un [cadre automatisé de tests QA et de régression](https://github.com/mojaloop/ml-qa-regression-testing.git "QA and Regression Testing Framework"). Ce cadre permet de cibler n’importe quelle collection Postman, de préciser l’environnement d’exécution et une liste d’adresses e-mail séparées par des virgules pour recevoir le rapport généré. Ce cadre est utilisé quotidiennement par Mojaloop sur une instance EC2 AWS hébergeant Node, Docker, SMTP, Newman, ainsi que des scripts Bash et des modèles pour exécuter automatiquement les collections prévues chaque jour. Ce guide permet à tout le monde de déployer son propre cadre.
+Un dépôt complet contient tous les scripts, procédures d’installation et éléments nécessaires pour mettre en place un [cadre automatisé de tests QA et de régression](https://github.com/mojaloop/ml-qa-regression-testing.git "QA and Regression Testing Framework"). Ce cadre permet de cibler n’importe quelle collection Postman, de préciser l’environnement d’exécution et une liste d’adresses e-mail séparées par des virgules pour recevoir le rapport généré. Ce cadre est utilisé quotidiennement par Mojaloop sur une instance EC2 AWS hébergeant Node, Docker, un serveur de messagerie et Newman, ainsi que des scripts Bash et des modèles pour exécuter automatiquement les collections prévues chaque jour. Ce guide permet à tout le monde de déployer son propre cadre.
 
 #### Collections Postman
 
@@ -47,8 +47,8 @@ Plusieurs collections Postman sont utilisées selon les processus :
 Pour le simulateur Mojaloop :
 
 + [MojaloopHub_Setup](https://github.com/mojaloop/postman/blob/master/MojaloopHub_Setup.postman_collection.json) : à exécuter une fois après un nouveau déploiement, en général par le responsable de release. Elle configure un hub Mojaloop vide, notamment la devise du hub et les comptes de règlement.
-+ [MojaloopSims_Onboarding](https://github.com/mojaloop/postman/blob/master/MojaloopSims_Onboarding.postman_collection.json) : configure les simulateurs DFSP et des éléments telles que les URL de callback pour que le hub Mojaloop sache où envoyer les requêtes.
-+ [Golden_Path_Mojaloop](https://github.com/mojaloop/postman/blob/master/Golden_Path_Mojaloop.postman_collection.json) : pack de régression bout en bout qui exerce l’ensemble des fonctionnalités déployées. Peut être lancé manuellement mais est conçu pour une exécution automatisée du début à la fin, les valeurs de réponse étant chaînées entre requêtes. (L’équipe cœur s’en sert pour valider releases et déploiements)
++ [MojaloopSims_Onboarding](https://github.com/mojaloop/postman/blob/master/MojaloopSims_Onboarding.postman_collection.json) : configure les simulateurs DFSP ainsi que les URLs des points de terminaison pour que le hub Mojaloop sache où envoyer les callbacks de requête.
++ [Golden_Path_Mojaloop](https://github.com/mojaloop/postman/blob/master/Golden_Path_Mojaloop.postman_collection.json) : pack de régression bout en bout qui exerce l’ensemble des fonctionnalités déployées. Peut être lancé manuellement mais est véritablement conçu pour une exécution automatisée du début à la fin, les valeurs de réponse étant transmises de chaque requête à la suivante. (L’équipe cœur s’en sert pour valider releases et déploiements)
     + Remarques : dans certains cas, un délai de `250 ms` à `500 ms` est nécessaire si l’exécution passe par le Test Runner de l’interface Postman, pour laisser le temps aux tests de valider les requêtes contre le simulateur. Ce n’est pas toujours nécessaire.
 + [Bulk_API_Transfers_MojaSims](https://github.com/mojaloop/postman/blob/master/Bulk_API_Transfers_MojaSims.postman_collection.json) : peut servir à tester les transferts de masse ciblant le simulateur Mojaloop.
 
@@ -84,7 +84,7 @@ En suivant les exigences et instructions détaillées dans le dépôt [QA and Re
 + Les cas de test `p2p_money_transfer` de la collection [Golden_Path](https://github.com/mojaloop/postman/blob/master/Golden_Path.postman_collection.json) sont un bon point de départ.
 
 ##### Étapes pour exécuter le script bash qui lance Newman / Postman en CLI
-+ Pour cette méthode, vous devez disposer du fichier PEM du serveur sur lequel le cadre QA et de régression Mojaloop a été déployé sur une instance EC2.
++ Pour cette méthode, vous devez être en possession du fichier PEM du serveur sur lequel le cadre a été déployé sur une instance EC2 sur Amazon Cloud.
 
 + Connectez-vous en SSH à l’instance EC2 ; l’exécution du script lancera les commandes dans un conteneur Docker instancié.
 

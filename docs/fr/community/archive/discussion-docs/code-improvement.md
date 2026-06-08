@@ -17,7 +17,7 @@ Canal Slack : `#code_security`
 ### Modifier Dockerfile et processus CI/CD pour renforcer la sécurité des conteneurs
 - Créer un utilisateur non root dans le Dockerfile
 - Activer docker-content-trust sur l’hôte Docker (dans CircleCI)
-- Lancer les builds avec `--no-cache` à l’étape CircleCI pour récupérer les correctifs de sécurité à chaque fois (le cache d’images Docker n’est de toute façon pas activé dans notre CircleCI)
+- Lancer les builds avec `--no-cache` à l’étape CircleCI pour récupérer les correctifs de sécurité à chaque fois (cela ne devrait pas poser de problème majeur puisque le cache d’images Docker n’est de toute façon pas activé dans notre CircleCI)
 
 ### Passer de Javascript à Typescript
 - Transition vers Typescript (coexistence js/ts) pour plus de sécurité et de qualité

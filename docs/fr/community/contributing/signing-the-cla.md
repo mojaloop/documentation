@@ -1,24 +1,24 @@
 # Signer la CLA
 
-Mojaloop dispose d’une [Contributor License Agreement (CLA)](https://github.com/mojaloop/mojaloop/blob/master/CONTRIBUTOR_LICENSE_AGREEMENT.md) qui précise les droits de propriété intellectuelle sur les contributions des personnes physiques ou morales.
+Mojaloop dispose d’une [Contributor License Agreement (CLA)](https://github.com/mojaloop/mojaloop/blob/master/CONTRIBUTOR_LICENSE_AGREEMENT.md) qui clarifie les droits de propriété intellectuelle relatifs sur les contributions des personnes physiques ou morales.
 
-Pour vérifier que chaque développeur a signé la CLA, nous utilisons [CLA Assistant](https://cla-assistant.io/), un outil open source maintenu qui exige la signature de la CLA avant fusion d’une pull request.
+Pour vérifier que chaque développeur a signé la CLA, nous utilisons [CLA Assistant](https://cla-assistant.io/), un outil open source bien maintenu qui vérifie que le contributeur a signé la CLA avant d’autoriser la fusion d’une pull request.
 
 ## Comment signer la CLA
 
 1. Ouvrez une pull request sur n’importe quel dépôt Mojaloop.
-2. Lors des vérifications habituelles, le contrôle `license/cla` s’affiche et invite à signer la CLA :
+2. Lors des vérifications habituelles, le contrôle `license/cla` s’affiche et demande à l'utilisateur de signer la CLA :
 
 <img src="../assets/cla/cla_1.png" width=600>
 
-3. Cliquez sur « Details » : vous accédez à CLA Assistant pour lire la CLA, renseigner vos informations et signer.
+3. Cliquez sur « Details » : vous serez redirigé vers CLA Assistant, où vous pourrez lire la CLA, renseigner quelques informations personnelles et signer.
 
 <img src="../assets/cla/cla_2_1.png" width=700 />
 </br>
 <img src="../assets/cla/cla_2_2.png" width=700 />
 
 
-4. Après « I agree », retournez sur la pull request : le contrôle CLA Assistant doit être vert.
+4. Après « I agree », retournez sur la pull request : vérifiez que le contrôle CLA Assistant est bien passé.
 
 <img src="../assets/cla/cla_3.png" width=600 />
 
@@ -26,7 +26,7 @@ Pour vérifier que chaque développeur a signé la CLA, nous utilisons [CLA Assi
 
 ### Signature pour une entreprise
 
-La section 3 de la [CLA Mojaloop](https://github.com/mojaloop/mojaloop/blob/master/CONTRIBUTOR_LICENSE_AGREEMENT.md) couvre les contributions individuelles et celles faites pour le compte d’un employeur. Si vous contribuez pour votre employeur, indiquez son nom dans le champ « Company or Organization ». Sinon, vous pouvez indiquer « OSS Contributor » et laisser le champ « role » vide.
+La section 3 de la [CLA Mojaloop](https://github.com/mojaloop/mojaloop/blob/master/CONTRIBUTOR_LICENSE_AGREEMENT.md) couvre les contributions individuelles et celles faites pour le compte d’un employeur. Si vous contribuez au nom de votre employeur, veuillez saisir le nom de celui-ci dans le champ « Company or Organization ». Sinon, n’hésitez pas à indiquer « OSS Contributor » et laisser le champ « role » vide.
 
 
 ## Administration de l’outil CLA
@@ -51,7 +51,7 @@ L’outil CLA est simple à installer ; tout administrateur GitHub peut le lier 
 
 > Référence : [request-more-information-from-the-cla-signer](https://github.com/cla-assistant/cla-assistant#request-more-information-from-the-cla-signer)
 
-Vous pouvez ajouter un fichier `metadata` au gist de la CLA pour personnaliser le formulaire :
+Vous pouvez également ajouter un fichier `metadata` au gist de la CLA pour créer un formulaire personnalisé pour l’outil CLA :
 
 ```json
 {
@@ -91,7 +91,7 @@ Vous pouvez ajouter un fichier `metadata` au gist de la CLA pour personnaliser l
 }
 ```
 
-Exemple de formulaire obtenu :
+Le formulaire généré est le suivant :
 
 <img src="../assets/cla/cla_2_2.png" width=750 />
 

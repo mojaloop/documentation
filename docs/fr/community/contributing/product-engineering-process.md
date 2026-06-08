@@ -2,15 +2,15 @@
 
 ## Introduction
 
-Le logiciel Mojaloop est conçu pour constituer l’épine dorsale de schémas de paiements instantanés inclusifs à l’échelle nationale. Ces schémas sont des éléments majeurs d’infrastructure financière réglementée qui soutiennent des activités quotidiennes essentielles pour de nombreuses personnes (achat de nourriture, d’eau potable, etc.). Les adoptants, leurs régulateurs et les utilisateurs des schémas Mojaloop exigent et méritent un niveau très élevé de qualité, sécurité, fiabilité et résilience.
+Le logiciel Mojaloop est conçu pour constituer l’épine dorsale de schémas de paiements instantanés inclusifs à l’échelle nationale. Ces schémas sont des éléments majeurs d’infrastructure financière nationale réglementée qui soutiennent des activités quotidiennes vitales pour un grand nombre de personnes (achat de nourriture, d’eau potable, etc.). Nos adoptants, leurs régulateurs et les personnes effectuant des transactions via les schémas Mojaloop exigent et méritent un niveau très élevé de qualité, sécurité, fiabilité et résilience.
 
-Pour préserver ces qualités et atténuer les risques métier et techniques, la Fondation Mojaloop applique un processus d’ingénierie produit structuré, fondé sur les bonnes pratiques du secteur pour les logiciels financiers réglementés : contrôle des changements et traçabilité techniques et processus, revues de conception et de code, seuils de tests élevés et plusieurs niveaux d’assurance qualité.
+Pour préserver ces qualités et atténuer les risques métier et techniques, la Fondation Mojaloop applique un processus d’ingénierie produit structuré, fondé sur les meilleures pratiques éprouvées du secteur pour les logiciels financiers réglementés, incluant un contrôle des changements géré et traçable, piloté à la fois par des processus et des mécanismes techniques, revues de conception et de code, seuils de tests élevés et plusieurs niveaux d’assurance qualité.
 
 Ce processus aide les contributeurs à identifier et réduire les risques tout en améliorant les produits, au bénéfice de toute la communauté Mojaloop.
 
 ## Évolution du processus
 
-Depuis 2017 et les premières lignes de code, le modèle a évolué pour passer d’une seule équipe d’ingénierie à plusieurs fils de travail alimentés par la communauté, chacun centré sur des parties du large portefeuille produit.
+Depuis 2017 et les premières lignes de code, le modèle a évolué pour s’adapter à la transition d’une seule équipe d’ingénierie vers plusieurs fils de travail dotés en ressources par la communauté, chacun centré sur des parties du large portefeuille produit.
 
 Le modèle actuel s’appuie sur le [Scaled Agile Framework](https://scaledagileframework.com/) pour permettre à plusieurs équipes de travailler aussi indépendamment que possible tout en livrant un ensemble coordonné de résultats de feuille de route sur l’ensemble du périmètre produit.
 
@@ -46,7 +46,7 @@ Les fils Mojaloop ont un modèle de gouvernance et des exigences d’exploitatio
 
 1. Nom clair et concis reflétant l’objectif du fil.
 2. Un responsable désigné en permanence ; dans certains cas, la fonction peut être partagée entre deux personnes si aucune n’a assez de disponibilité.
-3. Une personne désignée comme lien avec la Design Authority Mojaloop (éventuellement les mêmes que le ou les responsables du fil).
+3. Une personne désignée comme liaison avec la Design Authority Mojaloop (il peut s’agir du ou des responsables du fil, ou d’une autre personne spécifiquement nommée à cet effet).
 4. Publication et mise à jour sur Community Central d’une description : objectif, buts et périmètre pour chaque incrément de programme.
 5. Au moins deux contributeurs actifs nommés.
 6. Au moins une réunion en ligne par semaine.
@@ -78,7 +78,7 @@ Pour être responsable (ou co-responsable) de fil, une personne devrait :
 Les responsables de fil doivent notamment :
 
 1. Servir de point de contact principal pour les questions.
-2. Planifier, tenir, enregistrer et publier réunions et comptes rendus.
+2. Planifier, tenir, enregistrer et publier les enregistrements et comptes rendus des réunions du fil.
 3. Faciliter la liaison entre contributeurs du fil, autres fils et le reste de la communauté.
 4. Créer, publier sur Community Central et maintenir une charte d’équipe du fil.
 5. Rendre compte de l’avancement…
@@ -100,7 +100,7 @@ Les responsables de fil doivent notamment :
 
 Les fils doivent définir et enregistrer publiquement (issues GitHub/Zenhub) le travail prévu et l’avancement :
 
-1. Les éléments de travail doivent être des issues GitHub ; Zenhub est fortement recommandé.
+1. Les éléments de travail doivent être des issues GitHub ; L’utilisation de Zenhub n’est pas obligatoire, mais est fortement encouragée.
     1. Chaque fil a son projet GitHub et son espace Zenhub.
 2. Les éléments (« user stories ») devraient suivre le style « En tant que… je veux… afin de… » du [développement piloté par le comportement](https://www.agilealliance.org/glossary/user-story-template/).
 3. Ils devraient inclure des critères d’acceptation détaillés au format « étant donné, quand, alors » du [BDD](https://www.agilealliance.org/glossary/given-when-then/).
@@ -126,10 +126,10 @@ Modèle de charte : [mojaloop-workstream-team-charter-template.pptx](assets/moja
 
 ### Obtenir du soutien
 
-En cas de blocage entre contributeurs du fil, la Fondation Mojaloop propose des mécanismes d’aide. Contactez le directeur communauté de la Fondation Mojaloop pour être orienté vers une résolution.
+Lorsque les choses ne se déroulent pas comme prévu et qu’aucune résolution ne peut être trouvée au sein des contributeurs du fil, la Fondation Mojaloop met à disposition des mécanismes de soutien. Contactez le directeur communauté de la Fondation Mojaloop pour être orienté vers une résolution.
 
 ## Fils non officiels et contributions externes
 
 Lorsqu’aucun fil existant ne convient et que le besoin ne justifie pas un nouveau fil officiel, les contributeurs peuvent travailler en dehors des processus communautaires. Dans ce cas, notre [processus de don externe](../standards/guide.md#adopting-open-source-contributions-into-mojaloop) doit être suivi avant que code, documentation ou autres artefacts ne soient adoptés par la Fondation Mojaloop.
 
-Tout travail réalisé hors des fils officiels est soumis au [processus de don externe](../standards/guide.md#adopting-open-source-contributions-into-mojaloop), afin d’assurer une revue rigoureuse et le respect de nos normes avant inclusion dans une release officielle Mojaloop.
+Veuillez noter que tout travail réalisé hors des fils officiels Mojaloop est soumis au [processus de don externe](../standards/guide.md#adopting-open-source-contributions-into-mojaloop). Ceci afin de garantir un niveau de revue rigoureuse approprié et le respect de nos normes avant toute inclusion dans une release officielle Mojaloop.

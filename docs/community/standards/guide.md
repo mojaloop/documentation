@@ -120,7 +120,7 @@ The following runtime standards apply to Mojaloop.
         CMD ["npm", "run", "start"]
         ```
 
-### CI (*Continuos Integration*) Pipelines
+### CI (*Continuous Integration*) Pipelines
 
 Mojaloop's CI Jobs are executed against the current Ubuntu LTS version following the official [Ubuntu Release Cycle](https://ubuntu.com/about/release-cycle).
 
@@ -572,7 +572,7 @@ For more information, refer to the FAQ [below](#faqs).
 
 ## Tools + Frameworks
 
-In the Mojaloop OSS Community, we are prefer the following tools and frameworks:
+In the Mojaloop OSS Community, we prefer the following tools and frameworks:
 
 - **Web Server:** [`HapiJS`](https://github.com/hapijs/hapi)
 - **Web UI Framework:** [`ReactJS`](https://reactjs.org/)
