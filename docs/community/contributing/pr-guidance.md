@@ -55,8 +55,11 @@ A pull request should do exactly one thing: fix one bug, implement one feature, 
 - A bug fix and a refactor
 - A feature and unrelated test clean-up
 - Dependency updates and functional changes
+- Whitespace changes with functional changes
 
 If you find yourself writing "and also..." in the PR description, that is a signal to split the PR.
+
+Note that changes to lots of whitespace e.g. reindenting, can obscure the purpose of an underlying change. Separate large whitespace changes into their own PRs to ease the review process.
 
 ### 3.2 Target an Appropriate Diff Size
 
