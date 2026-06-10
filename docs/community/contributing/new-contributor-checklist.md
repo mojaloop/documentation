@@ -43,20 +43,7 @@ This guide summarizes the steps needed to get up and running as a contributor to
 
 ## 3. Opening your First PR 
 
-> Complete this part of the guide once you have been added to the Mojaloop GitHub organization. If you don't have access, reach out to us on the `#general` or `#help-mojaloop`
-
-- Sign up for [Zenhub](https://www.zenhub.com/), and connect it to the Mojaloop Organisation, Search for the _'project'_ workspace
-- Install the [Zenhub Browser extension](https://www.zenhub.com/extension) for Chrome or Firefox, and browse the (Mojaloop Project Kanban board](https://github.com/mojaloop/project#zenhub)
-
-- When your branch is ready for review, open a new pull request from your repository back into the mojaloop project.
-  >_Note: if the CI/CD pipelines don't run, this may be because your Github account isn't added to the Mojaloop repo_
-- Ensure the following:
-  - A good description of the feature/bugfix you implemented
-  - The PR is _assigned_ to yourself
-  - You have assigned two or more _reviewers_. GitHub often has suggested reviewers, but if you don't know who to assign, feel free to ask whoever created the issue.
-
-- (Optional) Post a link to your PR on the `#ml-oss-devs` channel in Slack so everyone can share in the fun
-
+Please see our guidelines on creating pull requests [here](pr-guidance.md).
 
 ## 4. Signing the CLA
 
