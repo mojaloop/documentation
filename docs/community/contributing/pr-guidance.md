@@ -184,7 +184,7 @@ AI tools may not be used to make or delegate architectural or design decisions. 
 
 ### 5.4 Automated Agent Submissions Are Prohibited
 
-PRs may not be submitted by fully autonomous AI agents. All PRs must be opened by a human contributor. The only exception is officially sanctioned GitHub-native automation already integrated into Mojaloop workflows (e.g. Dependabot). Automated agent submissions will be dismissed without review.
+PRs may not be submitted by fully autonomous AI agents. All PRs must be opened by a human contributor. The only exception is officially sanctioned GitHub-native automation already integrated into Mojaloop workflows (e.g. Dependabot, Snyk, Mojaloop Foundation Automated tooling for maintenance). Automated agent submissions will be dismissed without review.
 
 ---
 
