@@ -203,7 +203,7 @@ Before marking a PR ready for review, confirm the following:
 - Dependency changes are justified and minimal
 - Any breaking changes are clearly flagged
 - The PR description explains what, why, and how to test
-- AI assistance disclosure is included if applicable (see Section 4.1)
+- AI assistance disclosure is included if applicable (see Section 5.1)
 - You have read, understood, and can defend every line of the diff
 
 ---
