@@ -1,0 +1,114 @@
+@startuml Interscheme-ErrorCases
+
+title Inter-schéma — cas d'erreur
+
+participant "DFSP payeur" as payerDFSP
+box "Schéma A" #LightBlue
+    participant "ALS\nSchéma A" as schemeA
+    participant "Cache proxy\nSchéma A" as pc_A
+end box
+participant "Proxy AB" as xnp
+box "Schéma B" #d1e0c3
+    participant "ALS\nSchéma B" as schemeB
+    participant "Cache proxy\nSchéma B" as pc_B
+end box
+participant "DFSP bénéficiaire" as payeeDFSP
+
+autonumber 1 "<b>[0]"
+
+== Phase POST ==
+payerDFSP ->> schemeA: POST/GET/PATCH/PUT /xxx
+note left
+en-tête
+  source : payerDFSP
+  destination : payeeDFSP
+end note
+
+alt en cas d'erreur OpenAPI 
+    schemeA -->> payerDFSP: 400 requête incorrecte
+end
+schemeA-->>payerDFSP: 202 OK
+
+    alt en cas d'erreur dans schémaA
+        schemeA ->> payerDFSP: PUT /xxx/{ID}/error
+        note right
+        Codes d'erreur : 2xxx, 3xxx, 4xxx, 5xxx        
+        end note
+        payerDFSP -->> schemeA: 200 OK
+    end
+
+    schemeA -> pc_A: recherche du proxy pour payeeDFSP = Proxy AB
+    alt si absent du cache proxy
+        schemeA ->> payerDFSP: PUT /xxx/{ID}/error
+        note right
+        Code d'erreur : 3201
+        end note
+        payerDFSP -->> schemeA: 200 OK
+    end
+    schemeA ->> xnp: POST/GET/PATCH/PUT /xxx
+    
+    alt en cas d'erreur dans le proxy xnp
+      xnp -->> schemeA: 503 { ErrorCode: 3100}
+
+        xnp ->> schemeA: PUT /xxx/{ID}/error
+        note right
+        en-tête
+        source : Proxy AB
+        destination : payerDFSP
+        JWS signé par Proxy AB  
+        Codes d'erreur : 3100
+        end note
+        schemeA -->> xnp: 200 OK
+        schemeA ->> payerDFSP: PUT /xxx/{ID}/error
+        payerDFSP -->> schemeA: 200 OK
+    end
+    
+    xnp->xnp: Ajouter l'en-tête
+    note left
+    fxpiop-proxy = "Proxy AB"
+    end note
+
+    xnp ->> schemeB: POST/GET/PATCH/PUT /xxx
+    schemeB -->> xnp: 202 OK
+    xnp -->> schemeA: 202 OK
+    
+    alt en cas d'erreur dans schémaB
+        schemeB ->> xnp: PUT /xxx/{ID}/error
+        note right
+        Codes d'erreur : 2xxx, 3xxx, 4xxx, 5xxx        
+        end note
+        xnp->xnp: Ajouter l'en-tête
+        note left
+        fxpiop-proxy = "Proxy AB"
+        end note
+        xnp ->> schemeA: PUT /xxx/{ID}/error
+        schemeA -->> xnp: 200 OK
+        xnp -->> schemeB: 200 OK
+        schemeA ->> payerDFSP: PUT /xxx/{ID}/error
+        payerDFSP -->> schemeA: 200 OK
+    end
+    
+    schemeB ->> payeeDFSP: POST/GET/PATCH/PUT /xxx
+    payeeDFSP -->> schemeB: 200 OK
+    
+    alt en cas d'erreur dans payeeDFSP
+        payeeDFSP->> schemeB: PUT /xxx/{ID}/error
+        note right
+        en-tête destination : PayerDFSP
+        Codes d'erreur : 5xxx
+        end note
+        schemeB -->> payeeDFSP: 200 OK
+        schemeB -> schemeB: Recherche du proxy pour payerDFSP = Proxy AB
+        schemeB ->> xnp: PUT /xxx/{ID}/error
+        xnp->xnp: Ajouter l'en-tête
+        note left
+        fxpiop-proxy = "Proxy AB"
+        end note
+        xnp ->> schemeA: PUT /xxx/{ID}/error
+        schemeA -->> xnp: 200 OK
+        xnp -->> schemeB: 200 OK
+        schemeA ->> payerDFSP: PUT /xxx/{ID}/error
+        payerDFSP -->> schemeA: 200 OK
+    end
+
+@enduml

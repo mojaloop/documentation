@@ -1,0 +1,149 @@
+/'*****
+ License
+ --------------
+ Copyright © 2017 Bill & Melinda Gates Foundation
+ The Mojaloop files are made available by the Bill & Melinda Gates Foundation under the Apache License, Version 2.0 (the "License") and you may not use these files except in compliance with the License. You may obtain a copy of the License at
+ http://www.apache.org/licenses/LICENSE-2.0
+ Unless required by applicable law or agreed to in writing, the Mojaloop files are distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+ Contributors
+ --------------
+ This is the official list of the Mojaloop project contributors for this file.
+ Names of the original copyright holders (individuals or organizations)
+ should be listed with a '*' in the first column. People who have
+ contributed from an organization can be listed under the organization
+ that actually holds the copyright for their contributions (see the
+ Gates Foundation organization for an example). Those individuals should have
+ their names indented and be marked with a '-'. Email address can be added
+ optionally within square brackets <email>.
+ * Gates Foundation
+ - Name Surname <name.surname@gatesfoundation.com>
+
+ * Shashikant Hirugade <shashikant.hirugade@modusbox.com>
+ --------------
+ ******'/
+
+
+@startuml
+' declate title
+title 3.1.0 Ajout des détails de rappel du participant
+
+autonumber
+' Actor Keys:
+' boundary - APIs/Interfaces, etc
+' collections - Kafka Topics
+' control - Kafka Consumers
+' entity - Database Access Objects
+' database - Database Persistance Store
+
+' declare actors
+actor "Opérateur HUB" as OPERATOR
+boundary "API du service central" as CSAPI
+control "Gestionnaire des participants" as PARTICIPANT_HANDLER
+entity "API du service central" as CSAPI
+entity "DAO participant" as PARTICIPANT_DAO
+database "Stockage central" as DB
+
+box "Services centraux" #LightYellow
+participant CSAPI
+participant PARTICIPANT_HANDLER
+participant PARTICIPANT_DAO
+participant DB
+end box
+
+' start flow
+
+activate OPERATOR
+group Ajouter les détails de rappel (callback)
+    OPERATOR -> CSAPI: Demande d'ajouter les détails de rappel — POST - /paticipants/{name}/endpoints
+    note right of OPERATOR #yellow
+        Message :
+        {
+            payload: {
+                endpoint: {
+                    type: <typeValue>,
+                    value: <endpointValue>
+               }
+            }
+        }
+    end note
+
+    activate CSAPI
+    CSAPI -> PARTICIPANT_HANDLER: Ajouter les détails de rappel du participant
+    activate PARTICIPANT_HANDLER
+    PARTICIPANT_HANDLER ->PARTICIPANT_DAO: Récupérer le participant \n<color #FF0000><b>Code d'erreur :</b> 3200</color>
+
+    activate PARTICIPANT_DAO
+    PARTICIPANT_DAO -> DB: Récupérer le participant
+    activate DB
+    hnote over DB #lightyellow
+        participant
+    end note
+    DB --> PARTICIPANT_DAO: Participant récupéré
+    deactivate DB
+    PARTICIPANT_DAO --> PARTICIPANT_HANDLER: Renvoyer le participant
+    deactivate PARTICIPANT_DAO
+    PARTICIPANT_HANDLER ->PARTICIPANT_HANDLER: Valider le DFSP
+    alt Valider le participant (succès)
+        PARTICIPANT_HANDLER ->PARTICIPANT_DAO: Ajouter les détails de rappel du participant \n<color #FF0000><b>Code d'erreur :</b> 2003/<b>Msg :</b> Service unavailable </color> \n<color #FF0000><b>Code d'erreur :</b> 2001/<b>Msg :</b> Internal Server Error </color>
+        activate PARTICIPANT_DAO
+        PARTICIPANT_DAO -> DB: Persister l'endpoint participant
+        activate DB
+        hnote over DB #lightyellow
+            participantEndpoint
+        end note
+        deactivate DB
+        note right of PARTICIPANT_DAO #lightgrey
+            Si (endpoint existe && isActive = 1)
+                oldEndpoint.isActive = 0
+                insérer endpoint
+            Sinon
+                insérer endpoint
+            Fin
+                
+        end note
+        PARTICIPANT_DAO --> PARTICIPANT_HANDLER: Renvoyer le statut
+        deactivate PARTICIPANT_DAO
+        PARTICIPANT_HANDLER -> PARTICIPANT_HANDLER: Valider le statut
+        alt Valider le statut (succès)
+            PARTICIPANT_HANDLER -->CSAPI: Renvoyer le code statut 201
+            deactivate PARTICIPANT_HANDLER
+            CSAPI -->OPERATOR: Renvoyer le code statut 201
+        else Valider le statut (échec) / erreur
+            note right of PARTICIPANT_HANDLER #red: Erreur !
+            activate PARTICIPANT_HANDLER
+            note right of PARTICIPANT_HANDLER #yellow
+            Message :
+                {
+                    "errorInformation": {
+                        "errorCode": <Error Code>,
+                        "errorDescription": <Msg>,
+                    }
+                }
+            end note
+            PARTICIPANT_HANDLER -->CSAPI: Renvoyer <color #FF0000><b>Code d'erreur</b></color>
+           ' deactivate PARTICIPANT_HANDLER
+            CSAPI -->OPERATOR: Renvoyer <color #FF0000><b>Code d'erreur</b></color>
+            
+        end
+
+    else Valider le participant (échec)
+        note right of PARTICIPANT_HANDLER #red: Échec de validation !
+        activate PARTICIPANT_HANDLER
+        note right of PARTICIPANT_HANDLER #yellow
+            Message :
+                {
+                    "errorInformation": {
+                        "errorCode": 3200,
+                        "errorDescription": "Identifiant FSP introuvable",
+                    }
+                }
+        end note
+        PARTICIPANT_HANDLER -->CSAPI: Renvoyer <color #FF0000><b>Code d'erreur :</b> 3200</color>
+        deactivate PARTICIPANT_HANDLER
+        CSAPI -->OPERATOR: Renvoyer <color #FF0000><b>Code d'erreur :</b> 3200</color>
+
+    end
+    deactivate CSAPI
+    deactivate OPERATOR
+end
+@enduml

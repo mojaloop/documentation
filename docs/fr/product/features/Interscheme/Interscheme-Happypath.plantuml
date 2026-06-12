@@ -1,0 +1,106 @@
+@startuml Interscheme-Happypath
+
+title Inter-schéma — schéma général
+
+participant "DFSP payeur" as payerDFSP
+box "Schéma A" #LightBlue
+    participant "Gestionnaire\nSchéma A" as schemeA
+    participant "Cache proxy\nSchéma A" as pc_A
+end box
+participant "Proxy AB" as xnp
+box "Schéma B" #d1e0c3
+    participant "Gestionnaire\nSchéma B" as schemeB
+    participant "Cache proxy\nSchéma B" as pc_B
+end box
+participant "DFSP bénéficiaire" as payeeDFSP
+
+autonumber 1 "<b>[0]"
+
+== Phase POST ==
+payerDFSP ->> schemeA: POST /xxx
+note left
+en-tête
+  source : payerDFSP
+  destination : payeeDFSP
+corps
+ {ID: 1234}
+end note
+schemeA-->>payerDFSP: réponse HTTP 202
+schemeA -> pc_A: Destination hors schéma :\n payeeDFSP a un proxy mappé\n envoyer vers « Proxy AB »
+schemeA ->> xnp: POST /xxx
+xnp->xnp: Ajouter l'en-tête
+    note left
+    fxpiop-proxy = "Proxy AB"
+    end note
+xnp ->> schemeB: POST /xxx
+note left
+Message transmis à schéma B sans modification
+end note
+    
+schemeB -->> xnp: 202 OK
+xnp -->> schemeA: 202 OK
+
+schemeB ->> payeeDFSP: POST /xxx
+payeeDFSP-->>schemeB: réponse HTTP 202
+
+== Phase GET ==
+payerDFSP -> schemeA: GET /xxx/{ID} \nsans destination
+note left
+  source : payerDFSP
+end note
+schemeA-->>payerDFSP: réponse HTTP 202
+
+schemeA->schemeA: recherche du résultat par ID et déclenchement du PUT
+
+payerDFSP -> schemeA: GET /xxx/{ID} \navec destination
+note left
+  source : payerDFSP
+  destination : payeeDFSP
+end note
+schemeA-->>payerDFSP: réponse HTTP 202
+
+schemeA -> pc_A: Destination hors schéma :\n payeeDFSP a un proxy mappé\n envoyer vers « Proxy AB »
+schemeA ->> xnp: GET /xxx
+xnp->xnp: Ajouter l'en-tête
+    note left
+    fxpiop-proxy = "Proxy AB"
+    end note
+xnp ->> schemeB: GET /xxx
+note left
+Message transmis à schéma B sans modification
+end note
+schemeB -->> xnp: 202 OK
+xnp -->> schemeA: 202 OK
+
+schemeB ->> payeeDFSP: GET /xxx
+payeeDFSP-->>schemeB: réponse HTTP 202
+
+
+
+== Phase PUT ==
+
+
+payeeDFSP -> schemeB: PUT /xxx
+note right
+    source: payeeDFSP
+    destination: payerDFSP
+end note
+schemeB-->>payeeDFSP: réponse HTTP 200
+
+schemeB -> pc_B: Destination hors schéma :\n payerDFSP a un proxy mappé\n envoyer vers « Proxy AB »
+schemeB -> xnp: PUT /xxx
+xnp->xnp: Ajouter l'en-tête
+    note left
+    fxpiop-proxy = "Proxy AB"
+    end note
+xnp -> schemeA: PUT /xxx
+note right
+Message transmis à schéma A sans modification
+end note
+schemeA -->> xnp: 200 OK
+xnp -->> schemeB: 200 OK
+
+schemeA -> payerDFSP: PUT /xxx
+payerDFSP-->>schemeA: réponse HTTP 200
+
+@enduml

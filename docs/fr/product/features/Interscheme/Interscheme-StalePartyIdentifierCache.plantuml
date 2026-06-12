@@ -1,0 +1,90 @@
+@startuml Interscheme-StalePartyIdentifierCache
+
+title Cache d'identifiants de partie obsolètes
+
+participant "DFSP payeur" as payerDFSP
+box "Schéma A" #LightBlue
+    participant "ALS\nSchéma A" as ALS_A
+    participant "Oracle\nSchéma A" as Oracle_A
+    participant "Cache proxy\nSchéma A" as pc_A    
+end box
+participant "Proxy AB" as xnp
+box "Schéma B" #d1e0c3
+    participant "ALS\nSchéma B" as ALS_B
+    participant "Oracle\nSchéma B" as Oracle_B
+    participant "Cache proxy\nSchéma B" as pc_B    
+end box
+participant "DFSP bénéficiaire" as payeeDFSP
+
+autonumber 1 "<b>[0]"
+
+payerDFSP ->> ALS_A: **GET** /parties/{Type}/{ID}
+note left
+ en-tête source = payerDFSP
+end note
+
+  ALS_A-> Oracle_A: **GET** /participant/{ID}
+  Oracle_A--> ALS_A: DFSP trouvé = payeeDFSP
+  ALS_A ->> ALS_A: DFSP absent du schéma
+  ALS_A -> pc_A: Quel est le proxy du DFSP bénéficiaire ?
+  alt représentant du proxy introuvable
+  pc_A --> ALS_A: Proxy introuvable
+  ALS_A -> Oracle_A: Supprimer le mappage dans Oracle\n **DELETE** \participants\{Type}\{ID} 
+  note left
+  **Autoréparation** si le proxy 
+  de référence est introuvable
+  end note
+  ALS_A ->> ALS_A: Redémarrer le processus ALS get parties
+  else
+  pc_A --> ALS_A: transmettre vers Proxy AB
+  end
+
+  ALS_A ->> xnp: **GET** /parties/{Type}/{ID}
+    xnp->xnp: Ajouter l'en-tête
+    note left
+    fxpiop-proxy = "Proxy AB"
+    end note
+
+  xnp ->> ALS_B: **GET** /parties/{Type}/{ID}  
+  ALS_B ->> pc_B: Source hors schéma : \nfxpiop-proxy = "Proxy AB"\nAjouter « DFSP payeur » au mappage « Proxy AB »
+alt hors périmètre MVP
+  pc_B -> pc_B: Vérifier la signature JWS
+end
+  pc_B -> pc_B: Ajouter un nouveau mappage au cache
+note left
+DFSP payeur : Proxy AB
+end note        
+ALS_B-> Oracle_B: **GET** /participant/{ID}
+  Oracle_B--> ALS_B: dfsp = payeeDFSP
+ alt si le dfsp est membre du schéma B
+  ALS_B ->> payeeDFSP: **GET** /parties/{Type}/{ID}
+  payeeDFSP ->> ALS_B: **PUT** /parties/{ID}/error
+  note right
+   en-tête destination = payerDFSP
+  end note
+  end
+  ALS_B -> pc_B: Recherche du proxy payerDFSP
+  ALS_B ->> xnp: **PUT** /parties/{ID}/error
+  xnp->xnp: Ajouter l'en-tête
+    note left
+    fxpiop-proxy = "Proxy AB"
+    end note
+  xnp ->> ALS_A: **PUT** /parties/{ID}/error
+  alt message du proxy et erreur et pas de cache de message proxy
+  note left ALS_A
+   **Autoréparation** en cas d'erreur de routage
+    fxpiop-proxy = "Proxy AB"
+    PUT /parties error
+    SentToProxies[{ID}] list undefined
+  end note
+  ALS_A -> Oracle_A: Supprimer le mappage dans Oracle\n **DELETE** \participants\{Type}\{ID} 
+  ALS_A ->> payerDFSP: **PUT** /parties/{ID}/error
+  note right 
+  {ErrorCode: "2003"} 
+  (Service indisponible)
+  end note
+  else
+  ALS_A->>payerDFSP: **PUT** /parties/{ID}/error
+end
+
+@enduml
