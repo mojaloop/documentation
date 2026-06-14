@@ -1,4 +1,4 @@
-# Qu’est-ce qui fait un écosystème financier réussi ?
+# Qu’est-ce qui fait le succès d’un écosystème financier ?
 
 <iframe 
   width="100%" 

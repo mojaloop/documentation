@@ -13,7 +13,7 @@ Pour vous aider à bien démarrer avec Mojaloop, choisissez l’option ci-dessou
 
     7.1. [Pourquoi Mojaloop ?](./demos/why-mojaloop.md)
 
-    7.2. [Travailler avec Mojaloop ?](./demos/working-with-mojaloop.md)
+    7.2. [Comment travailler avec Mojaloop ?](./demos/working-with-mojaloop.md)
 
     7.3. [Inclusion financière 101](./demos/financial-inclusion-101.md)
 
