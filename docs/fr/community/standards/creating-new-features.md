@@ -136,21 +136,6 @@ Il est recommandé d’exécuter `npm test` après chaque étape pour éviter d�
 
 ## Ouvrir une pull request (PR)
 
-Lorsque votre fonctionnalité est prête pour review, ouvrez une PR depuis votre branche vers la branche `master` du dépôt Mojaloop. Si vous débutez avec GitHub ou les PR, voir [ce guide](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests).
+Lorsque votre fonctionnalité est prête pour revue, créez une pull request depuis votre branche de fonctionnalité vers la branche `main` du dépôt Mojaloop.
 
-### Titres des pull requests
-
-Mojaloop utilise [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) pour l’outillage automatisé de releases et déploiements. Le titre de votre PR **doit** respecter la spécification des commits conventionnels pour passer les contrôles CI/CD dans CircleCI.
-
-Avec Conventional Commits et le versionnement sémantique, une nouvelle version peut être publiée automatiquement pour un composant, avec incrément `MAJOR`, `MINOR` ou correctif selon les titres de PR, et génération de changelogs détaillés. (Voir [cet exemple](https://github.com/mojaloop/thirdparty-scheme-adapter/releases/tag/v11.20.0) de changelog auto-généré.)
-
-> **Note** :
-> Lors de la fusion (avec squash), GitHub utilise le *titre* de la PR comme message de commit. Pour indiquer un changement rupturiste, utilisez le format avec `!` :
-> « Si inclus dans le préfixe type/scope, les changements rupturistes DOIVENT être indiqués par un ! immédiatement avant les deux-points. Si ! est utilisé, BREAKING CHANGE: peut être omis du pied de page, et la description du commit DOIT décrire le changement rupturiste. »
-
-#### Exemples de bons titres de PR
-
-- feat(api): add ability to handle `PUT /thirdpartyRequests/trasactions/{ID}` endpoint
-- fix: update outdated node modules
-- feat(models)!: change database schema
-- chore: tidy up readme
+Consultez nos directives pour les exigences spécifiques lors de la création de pull requests [ici](../contributing/pr-guidance.md).

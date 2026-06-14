@@ -2135,6 +2135,7 @@ module.exports = {
             ['contributing/consequential-change-process', 'Processus de changement conséquent'],
             ['contributing/critical-change-process', 'Processus de changement critique'],
             ['contributing/new-contributor-checklist', 'Liste de contrôle du nouveau contributeur'],
+            ['contributing/pr-guidance', 'Directives pour les pull requests'],
             ['contributing/code-of-conduct', 'Code de conduite'],
             ['contributing/signing-the-cla', 'Signature de la CLA'],
             ['contributing/cvd', 'Divulgation des vulnérabilités de sécurité'],
