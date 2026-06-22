@@ -305,7 +305,8 @@ module.exports = {
               ['technical/deployment-guide/', 'Deploying Mojaloop'],
               'technical/deployment-guide/deployment-troubleshooting',
               'technical/deployment-guide/upgrade-strategy-guide',
-              'technical/deployment-guide/mojaloop-repository-update-guide'
+              'technical/deployment-guide/mojaloop-repository-update-guide',
+              'technical/deployment-guide/iac-deployment-guide'
             ]
           },
           {
