@@ -7,7 +7,7 @@ Updated Mojaloop specification documents, and POC implementation of a PISP
 
 ## Action Items:
 
-- Revisit /authorizaitons resource: [Michael] and raise with CCB
+- Revisit /authorizations resource: [Michael] and raise with CCB
 - Identity provider research and follow-up: [Matt de Haast]
 - Share all sequence diagrams: [JJ]
 - Outline proposal at high level including new API calls - Unassigned

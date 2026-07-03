@@ -13,7 +13,7 @@ Wednesday, March 11, 2020
 
 Test the impact or a direct replace of the mysql DB with an shared memory network service like redis (using redlock alg if locks are required)
 
-Test a different method of sharing state, using a light version of event-drive with some CQRS
+Test a different method of sharing state, using a light version of event-driven with some CQRS
 
 ## Resources:
 
@@ -26,10 +26,10 @@ Test a different method of sharing state, using a light version of event-drive w
 - What Kafka metrics (client & server side) should we be reviewing? - Confluent to assist
 - Explore Locking and position settlement - Sybrin to assist
   1. Review RedLock - pessimistic locking vs automatic locking
-  2. Remove the shared DB in the middle (automatic locking on Reddis)
+  2. Remove the shared DB in the middle (automatic locking on Redis)
 
 - Combine prepare/position handler w/ distributed DB
-- Review node.js client and how it impact kafka, configuration of Node and ultimate Kafka client - Nakul
+- Review node.js client and how it impacts kafka, configuration of Node and ultimate Kafka client - Nakul
 - Turn back on tracing to see how latency and applications are behaving
 - Ensure the call counts have been rationalized (at a deeper level)
 - Validate the processing times on the handlers and we are hitting the cache  
@@ -79,7 +79,7 @@ Test a different method of sharing state, using a light version of event-drive w
 
 5. Future algorithm would do a bulk 
         
-- One transfer is handler by one position handler
+- One transfer is handled by one position handler
     - Transfers are all pre-funded
 
 1. Reduced settlement costs     

@@ -1,0 +1,88 @@
+@startuml
+
+Title Engagement à fournir de la liquidité — flux de messages ISO 20022
+participant PayerDFSP as "DFSP payeur"
+participant Mojaloop as "Mojaloop"
+participant FXP as "Fournisseur de change"
+
+autonumber
+
+PayerDFSP -> Mojaloop: POST /fxTransfers
+note left
+**pacs.009.001.12**
+**Exécution du transfert de crédit interinstitutions**
+{
+"GrpHdr":{
+    "MsgId":"01JBVM1BW4J0RJZSQ539QB9TKT",
+    "CreDtTm":"2024-11-04T12:57:44.580Z",
+    "NbOfTxs":"1",
+    "SttlmInf":{"SttlmMtd":"CLRG"},
+    "PmtInstrXpryDtTm":"2024-11-04T12:58:44.579Z"},
+"CdtTrfTxInf":{
+    "PmtId":{"TxId":"01JBVM16V1ZXP2DM34BQT40NWA",
+             "EndToEndId":"01JBVM13SQYP507JB1DYBZVCMF"},
+    "Dbtr":{"FinInstnId":{"Othr":{"Id":"payer-dfsp"}}},
+    "UndrlygCstmrCdtTrf":{
+            "Dbtr":{"Id":{"OrgId":{"Othr":{"Id":"payer-dfsp"}}}},
+            "DbtrAgt":{"FinInstnId":{"Othr":{"Id":"payer-dfsp"}}},
+            "Cdtr":{"Id":{"OrgId":{"Othr":{"Id":"fxp"}}}},
+            "CdtrAgt":{"FinInstnId":{"Othr":{"Id":"fxp"}}},
+            "InstdAmt":{"Ccy":"ZMW",
+                "ActiveOrHistoricCurrencyAndAmount":"21"}},
+            "Cdtr":{"FinInstnId":{"Othr":{"Id":"fxp"}}},
+            "IntrBkSttlmAmt":{"Ccy":"MWK",
+                "ActiveCurrencyAndAmount":"1080"},
+            "VrfctnOfTerms":{"Sh256Sgntr":"KVHFmdTD6A..."}}
+}
+end note
+Mojaloop -> FXP: POST /fxTransfers
+FXP -> FXP: Vérifier si la liquidité pour le transfert peut encore être fournie.  
+alt si le FXP peut fournir la liquidité du paiement
+FXP -> Mojaloop: PUT /fxTransfers/{ID}
+note right
+**pacs.002.001.15**
+**D'une institution financière à une autre** 
+**Rapport d'état de paiement**
+{
+"GrpHdr": {
+    "MsgId":"01JBVM1CGC5A18XQVYYRF68FD1",
+    "CreDtTm":"2024-11-04T12:57:45.228Z"},
+"TxInfAndSts":{
+    "ExctnConf":"ou1887jmG-l...",
+    "PrcgDt":{"DtTm":"2024-11-04T12:57:45.213Z"},
+    "TxSts":"RESV"}
+}
+end note
+Mojaloop -> PayerDFSP: PUT /fxTransfers/{ID}
+
+else
+
+FXP -> Mojaloop: PUT /fxTransfers/{ID}/error 
+note right
+**pacs.002.001.15**
+**D'une institution financière à une autre** 
+**Rapport d'état de paiement**
+"GrpHdr": {
+    "MsgId":"01JBVM1CGC5A18XQVYYRF68FD1",
+    "CreDtTm":"2024-11-04T12:57:45.228Z"},
+"TxInfAndSts":{"StsRsnInf":{"Rsn": {"Prtry":"ErrorCode"}}
+end note
+Mojaloop -> PayerDFSP: PUT /fxTransfer/{ID}/error 
+end
+
+Mojaloop -> Mojaloop: Lorsque le transfert déterminant est engagé, \n la conversion de devises est engagée.
+
+Mojaloop->FXP: PATCH /fxTransfers/{ID}
+note left
+**pacs.002.001.15**
+**D'une institution financière à une autre**
+**Rapport d'état de paiement**
+"GrpHdr":{
+    "MsgId":"01JBVM1E2CRWFZFPN7W4AZJ976",
+    "CreDtTm":"2024-11-04T12:57:46.828Z"},
+"TxInfAndSts":{"PrcgDt":{
+        "DtTm":"2024-11-04T12:57:46.812Z"},
+        "TxSts":"COMM"}}"        
+end note
+
+@enduml

@@ -1,0 +1,1072 @@
+{
+	"info": {
+		"_postman_id": "52f405c0-bec3-4915-8c43-c250208623aa",
+		"name": "OSS-Custom-FSP-Onboaring-SchemeAdapter-Setup",
+		"description": "Author: Sridevi Miriyala\nPurpose: Used to add new FSP and relevant Callback Information",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "FSP Onboarding",
+			"item": [
+				{
+					"name": "safsp (p2p transfers)",
+					"item": [
+						{
+							"name": "Add payerfsp - TRANSFERS",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "76c222f4-969b-4081-b4d7-133ebe48f50f",
+										"exec": [
+											"pm.test(\"Status code is 201\", function () {",
+											"    pm.response.to.have.status(201);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"name\": \"safsp\",\"currency\": \"{{currency}}\"}"
+								},
+								"url": {
+									"raw": "{{HOST_CENTRAL_LEDGER}}/participants",
+									"host": [
+										"{{HOST_CENTRAL_LEDGER}}"
+									],
+									"path": [
+										"participants"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add initial position and limits - payerfsp",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "d767079d-a9dd-401a-8d6a-5f94654c4259",
+										"exec": [
+											"pm.test(\"Status code is 201\", function () {",
+											"    pm.response.to.have.status(201);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"currency\": \"{{currency}}\",\n\t\"limit\": {\n\t  \"type\": \"NET_DEBIT_CAP\",\n\t  \"value\": 1000000\n\t},\n\t\"initialPosition\": 0\n}"
+								},
+								"url": {
+									"raw": "{{HOST_CENTRAL_LEDGER}}/participants/safsp/initialPositionAndLimits",
+									"host": [
+										"{{HOST_CENTRAL_LEDGER}}"
+									],
+									"path": [
+										"participants",
+										"safsp",
+										"initialPositionAndLimits"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add payerfsp callback - PARTICIPANT PUT",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "bb928ca3-8904-4cff-94fa-9629ccf2418d",
+										"exec": [
+											"pm.test(\"Status code is 201\", function () {",
+											"    pm.response.to.have.status(201);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"type\": \"FSPIOP_CALLBACK_URL_PARTICIPANT_PUT\",\n  \"value\": \"{{SCHEME_ADAPTER_ENDPOINT}}/participants/{{partyIdType}}/{{partyIdentifier}}\"\n}"
+								},
+								"url": {
+									"raw": "{{HOST_CENTRAL_LEDGER}}/participants/safsp/endpoints",
+									"host": [
+										"{{HOST_CENTRAL_LEDGER}}"
+									],
+									"path": [
+										"participants",
+										"safsp",
+										"endpoints"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add payerfsp callback - PARTICIPANT PUT Error",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "bb928ca3-8904-4cff-94fa-9629ccf2418d",
+										"exec": [
+											"pm.test(\"Status code is 201\", function () {",
+											"    pm.response.to.have.status(201);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"type\": \"FSPIOP_CALLBACK_URL_PARTICIPANT_PUT_ERROR\",\n  \"value\": \"{{SCHEME_ADAPTER_ENDPOINT}}/participants/{{partyIdType}}/{{partyIdentifier}}/error\"\n}"
+								},
+								"url": {
+									"raw": "{{HOST_CENTRAL_LEDGER}}/participants/safsp/endpoints",
+									"host": [
+										"{{HOST_CENTRAL_LEDGER}}"
+									],
+									"path": [
+										"participants",
+										"safsp",
+										"endpoints"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add payerfsp callback - PARTICIPANT PUT Batch",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "bb928ca3-8904-4cff-94fa-9629ccf2418d",
+										"exec": [
+											"pm.test(\"Status code is 201\", function () {",
+											"    pm.response.to.have.status(201);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"type\": \"FSPIOP_CALLBACK_URL_PARTICIPANT_BATCH_PUT\",\n  \"value\": \"{{SCHEME_ADAPTER_ENDPOINT}}/participants/{{requestId}}\"\n}"
+								},
+								"url": {
+									"raw": "{{HOST_CENTRAL_LEDGER}}/participants/safsp/endpoints",
+									"host": [
+										"{{HOST_CENTRAL_LEDGER}}"
+									],
+									"path": [
+										"participants",
+										"safsp",
+										"endpoints"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add payerfsp callback - PARTICIPANT PUT Batch Error",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "bb928ca3-8904-4cff-94fa-9629ccf2418d",
+										"exec": [
+											"pm.test(\"Status code is 201\", function () {",
+											"    pm.response.to.have.status(201);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"type\": \"FSPIOP_CALLBACK_URL_PARTICIPANT_BATCH_PUT_ERROR\",\n  \"value\": \"{{SCHEME_ADAPTER_ENDPOINT}}/participants/{{requestId}}/error\"\n}"
+								},
+								"url": {
+									"raw": "{{HOST_CENTRAL_LEDGER}}/participants/safsp/endpoints",
+									"host": [
+										"{{HOST_CENTRAL_LEDGER}}"
+									],
+									"path": [
+										"participants",
+										"safsp",
+										"endpoints"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add payerfsp callback - PARTIES GET",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "bb928ca3-8904-4cff-94fa-9629ccf2418d",
+										"exec": [
+											"pm.test(\"Status code is 201\", function () {",
+											"    pm.response.to.have.status(201);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"type\": \"FSPIOP_CALLBACK_URL_PARTIES_GET\",\n  \"value\": \"{{SCHEME_ADAPTER_ENDPOINT}}/parties/{{partyIdType}}/{{partyIdentifier}}\"\n}"
+								},
+								"url": {
+									"raw": "{{HOST_CENTRAL_LEDGER}}/participants/safsp/endpoints",
+									"host": [
+										"{{HOST_CENTRAL_LEDGER}}"
+									],
+									"path": [
+										"participants",
+										"safsp",
+										"endpoints"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add payerfsp callback - PARTIES PUT",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "bb928ca3-8904-4cff-94fa-9629ccf2418d",
+										"exec": [
+											"pm.test(\"Status code is 201\", function () {",
+											"    pm.response.to.have.status(201);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"type\": \"FSPIOP_CALLBACK_URL_PARTIES_PUT\",\n  \"value\": \"{{SCHEME_ADAPTER_ENDPOINT}}/parties/{{partyIdType}}/{{partyIdentifier}}\"\n}"
+								},
+								"url": {
+									"raw": "{{HOST_CENTRAL_LEDGER}}/participants/safsp/endpoints",
+									"host": [
+										"{{HOST_CENTRAL_LEDGER}}"
+									],
+									"path": [
+										"participants",
+										"safsp",
+										"endpoints"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add payerfsp callback - PARTIES PUT Error",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "bb928ca3-8904-4cff-94fa-9629ccf2418d",
+										"exec": [
+											"pm.test(\"Status code is 201\", function () {",
+											"    pm.response.to.have.status(201);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"type\": \"FSPIOP_CALLBACK_URL_PARTIES_PUT_ERROR\",\n  \"value\": \"{{SCHEME_ADAPTER_ENDPOINT}}/parties/{{partyIdType}}/{{partyIdentifier}}/error\"\n}"
+								},
+								"url": {
+									"raw": "{{HOST_CENTRAL_LEDGER}}/participants/safsp/endpoints",
+									"host": [
+										"{{HOST_CENTRAL_LEDGER}}"
+									],
+									"path": [
+										"participants",
+										"safsp",
+										"endpoints"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add payerfsp callback - QUOTES PUT",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "bb928ca3-8904-4cff-94fa-9629ccf2418d",
+										"exec": [
+											"pm.test(\"Status code is 201\", function () {",
+											"    pm.response.to.have.status(201);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"type\": \"FSPIOP_CALLBACK_URL_QUOTES\",\n  \"value\": \"{{SCHEME_ADAPTER_ENDPOINT}}\"\n}"
+								},
+								"url": {
+									"raw": "{{HOST_CENTRAL_LEDGER}}/participants/safsp/endpoints",
+									"host": [
+										"{{HOST_CENTRAL_LEDGER}}"
+									],
+									"path": [
+										"participants",
+										"safsp",
+										"endpoints"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add payerfsp callback - TRANSFER POST",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "bb928ca3-8904-4cff-94fa-9629ccf2418d",
+										"exec": [
+											"pm.test(\"Status code is 201\", function () {",
+											"    pm.response.to.have.status(201);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"type\": \"FSPIOP_CALLBACK_URL_TRANSFER_POST\",\n  \"value\": \"{{SCHEME_ADAPTER_ENDPOINT}}/transfers\"\n}"
+								},
+								"url": {
+									"raw": "{{HOST_CENTRAL_LEDGER}}/participants/safsp/endpoints",
+									"host": [
+										"{{HOST_CENTRAL_LEDGER}}"
+									],
+									"path": [
+										"participants",
+										"safsp",
+										"endpoints"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add payerfsp callback - TRANSFER PUT",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "bb928ca3-8904-4cff-94fa-9629ccf2418d",
+										"exec": [
+											"pm.test(\"Status code is 201\", function () {",
+											"    pm.response.to.have.status(201);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"type\": \"FSPIOP_CALLBACK_URL_TRANSFER_PUT\",\n  \"value\": \"{{SCHEME_ADAPTER_ENDPOINT}}/transfers/{{transferId}}\"\n}"
+								},
+								"url": {
+									"raw": "{{HOST_CENTRAL_LEDGER}}/participants/safsp/endpoints",
+									"host": [
+										"{{HOST_CENTRAL_LEDGER}}"
+									],
+									"path": [
+										"participants",
+										"safsp",
+										"endpoints"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add payerfsp callback - TRANSFER ERROR",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "bb928ca3-8904-4cff-94fa-9629ccf2418d",
+										"exec": [
+											"pm.test(\"Status code is 201\", function () {",
+											"    pm.response.to.have.status(201);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"type\": \"FSPIOP_CALLBACK_URL_TRANSFER_ERROR\",\n  \"value\": \"{{SCHEME_ADAPTER_ENDPOINT}}/transfers/{{transferId}}/error\"\n}"
+								},
+								"url": {
+									"raw": "{{HOST_CENTRAL_LEDGER}}/participants/safsp/endpoints",
+									"host": [
+										"{{HOST_CENTRAL_LEDGER}}"
+									],
+									"path": [
+										"participants",
+										"safsp",
+										"endpoints"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "9. Set Endpoint-NET_DEBIT_CAP_ADJUSTMENT_EMAIL Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "83984619-0430-4a4c-87ec-671bf97894de",
+										"exec": [
+											"pm.test(\"Status code is 201\", function () {",
+											"    pm.response.to.have.status(201);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{BEARER_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cache-Control",
+										"value": "no-cache"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"type\": \"NET_DEBIT_CAP_ADJUSTMENT_EMAIL\",\n  \"value\": \"sridevi.miriyala@modusbox.com\"\n}"
+								},
+								"url": {
+									"raw": "{{HOST_CENTRAL_LEDGER}}/participants/safsp/endpoints",
+									"host": [
+										"{{HOST_CENTRAL_LEDGER}}"
+									],
+									"path": [
+										"participants",
+										"safsp",
+										"endpoints"
+									]
+								},
+								"description": "Generated from a curl request: \ncurl -i -X POST     {{HOST_CENTRAL_LEDGER}}/participants/testfsp2/initialPositionAndLimits     -H 'Cache-Control: no-cache'     -H 'Content-Type: application/json'     -d '{\n    \\\"currency\\\": \\\"USD\\\",\n    \\\"limit\\\": {\n      \\\"type\\\": \\\"NET_DEBIT_CAP\\\",\n      \\\"value\\\": 1000\n    },\n    \\\"initialPosition\\\": 0\n  }'"
+							},
+							"response": [
+								{
+									"name": "2. Create Initial Position and Limits",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Cache-Control",
+												"value": "no-cache"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"currency\": \"USD\",\n    \"limit\": {\n      \"type\": \"NET_DEBIT_CAP\",\n      \"value\": 1000\n    },\n    \"initialPosition\": 0\n  }"
+										},
+										"url": {
+											"raw": "http://{{HOST_CENTRAL_LEDGER}}/participants/testfsp/initialPositionAndLimits",
+											"protocol": "http",
+											"host": [
+												"{{HOST_CENTRAL_LEDGER}}"
+											],
+											"path": [
+												"participants",
+												"testfsp",
+												"initialPositionAndLimits"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "Text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						},
+						{
+							"name": "Set Endpoint-SETTLEMENT_TRANSFER_POSITION_CHANGE_EMAIL Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "16f8d261-3f2d-470b-986b-c8e23602605b",
+										"exec": [
+											"pm.test(\"Status code is 201\", function () {",
+											"    pm.response.to.have.status(201);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{BEARER_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cache-Control",
+										"value": "no-cache"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"type\": \"SETTLEMENT_TRANSFER_POSITION_CHANGE_EMAIL\",\n  \"value\": \"sridevi.miriyala@modusbox.com\"\n}"
+								},
+								"url": {
+									"raw": "{{HOST_CENTRAL_LEDGER}}/participants/safsp/endpoints",
+									"host": [
+										"{{HOST_CENTRAL_LEDGER}}"
+									],
+									"path": [
+										"participants",
+										"safsp",
+										"endpoints"
+									]
+								},
+								"description": "Generated from a curl request: \ncurl -i -X POST     {{HOST_CENTRAL_LEDGER}}/participants/testfsp2/initialPositionAndLimits     -H 'Cache-Control: no-cache'     -H 'Content-Type: application/json'     -d '{\n    \\\"currency\\\": \\\"USD\\\",\n    \\\"limit\\\": {\n      \\\"type\\\": \\\"NET_DEBIT_CAP\\\",\n      \\\"value\\\": 1000\n    },\n    \\\"initialPosition\\\": 0\n  }'"
+							},
+							"response": [
+								{
+									"name": "2. Create Initial Position and Limits",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Cache-Control",
+												"value": "no-cache"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"currency\": \"USD\",\n    \"limit\": {\n      \"type\": \"NET_DEBIT_CAP\",\n      \"value\": 1000\n    },\n    \"initialPosition\": 0\n  }"
+										},
+										"url": {
+											"raw": "http://{{HOST_CENTRAL_LEDGER}}/participants/testfsp/initialPositionAndLimits",
+											"protocol": "http",
+											"host": [
+												"{{HOST_CENTRAL_LEDGER}}"
+											],
+											"path": [
+												"participants",
+												"testfsp",
+												"initialPositionAndLimits"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "Text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						},
+						{
+							"name": "DFSP Endpoint-NET_DEBIT_CAP_THRESHOLD_BREACH_EMAIL Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "67082524-b658-4f1c-90c4-af6fc24adb3e",
+										"exec": [
+											"pm.test(\"Status code is 201\", function () {",
+											"    pm.response.to.have.status(201);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{BEARER_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cache-Control",
+										"value": "no-cache"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"type\": \"NET_DEBIT_CAP_THRESHOLD_BREACH_EMAIL\",\n  \"value\": \"sridevi.miriyala@modusbox.com\"\n}"
+								},
+								"url": {
+									"raw": "{{HOST_CENTRAL_LEDGER}}/participants/safsp/endpoints",
+									"host": [
+										"{{HOST_CENTRAL_LEDGER}}"
+									],
+									"path": [
+										"participants",
+										"safsp",
+										"endpoints"
+									]
+								},
+								"description": "Generated from a curl request: \ncurl -i -X POST     {{HOST_CENTRAL_LEDGER}}/participants/testfsp2/initialPositionAndLimits     -H 'Cache-Control: no-cache'     -H 'Content-Type: application/json'     -d '{\n    \\\"currency\\\": \\\"USD\\\",\n    \\\"limit\\\": {\n      \\\"type\\\": \\\"NET_DEBIT_CAP\\\",\n      \\\"value\\\": 1000\n    },\n    \\\"initialPosition\\\": 0\n  }'"
+							},
+							"response": [
+								{
+									"name": "2. Create Initial Position and Limits",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Cache-Control",
+												"value": "no-cache"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"currency\": \"USD\",\n    \"limit\": {\n      \"type\": \"NET_DEBIT_CAP\",\n      \"value\": 1000\n    },\n    \"initialPosition\": 0\n  }"
+										},
+										"url": {
+											"raw": "http://{{HOST_CENTRAL_LEDGER}}/participants/testfsp/initialPositionAndLimits",
+											"protocol": "http",
+											"host": [
+												"{{HOST_CENTRAL_LEDGER}}"
+											],
+											"path": [
+												"participants",
+												"testfsp",
+												"initialPositionAndLimits"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "Text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						},
+						{
+							"name": "Record Funds In - payerfsp ",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "802139ed-ec95-40f8-99a7-d88f0e77e49d",
+										"exec": [
+											"pm.test(\"Status code is 202\", function () {",
+											"    pm.response.to.have.status(202);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "461d34bc-33f6-4031-bbc4-b26489ff1953",
+										"exec": [
+											"var uuid = require('uuid');",
+											"var generatedUUID = uuid.v4();",
+											"pm.environment.set('fundsInPrepareTransferId', generatedUUID);",
+											"pm.environment.set('fundsInPrepareAmount', 5000);",
+											"",
+											"",
+											"const payerfspGetStatusRequest = {",
+											"  url: pm.environment.get(\"HOST_CENTRAL_LEDGER\")+pm.environment.get(\"BASE_CENTRAL_LEDGER_ADMIN\")+'/participants/'+pm.environment.get(\"payerfsp\")+'/accounts',",
+											"  method: 'GET',",
+											"  header: {",
+											"      \"Authorization\":\"Bearer \"+pm.environment.get(\"HUB_OPERATOR_BEARER_TOKEN\"),",
+											"      \"FSPIOP-Source\": pm.environment.get(\"hub_operator\"),",
+											"      \"Content-Type\": \"application/json\"",
+											"  }",
+											"};",
+											"pm.sendRequest(payerfspGetStatusRequest, function (err, response) {",
+											"    console.log(response.json())",
+											"    var jsonData = response.json()",
+											"    for(var i in jsonData) {",
+											"        if((jsonData[i].ledgerAccountType === 'SETTLEMENT') && (jsonData[i].currency === pm.environment.get(\"currency\"))) {",
+											"            pm.environment.set(\"payerfspSettlementAccountId\",jsonData[i].id)",
+											"            pm.environment.set(\"payerfspSettlementAccountBalanceBeforeFundsIn\",jsonData[i].value)",
+											"        }",
+											"    }",
+											"});",
+											"",
+											"const hubGetStatusRequest = {",
+											"  url: pm.environment.get(\"HOST_CENTRAL_LEDGER\")+pm.environment.get(\"BASE_CENTRAL_LEDGER_ADMIN\")+'/participants/hub/accounts',",
+											"  method: 'GET',",
+											"  header: {",
+											"      \"Authorization\":\"Bearer \"+pm.environment.get(\"BEARER_TOKEN\"),",
+											"      \"FSPIOP-Source\": pm.environment.get(\"payerfsp\"),",
+											"      \"Content-Type\": \"application/json\"",
+											"  }",
+											"};",
+											"pm.sendRequest(hubGetStatusRequest, function (err, response) {",
+											"    console.log(response.json())",
+											"    var jsonData = response.json()",
+											"    for(var i in jsonData) {",
+											"        if((jsonData[i].ledgerAccountType === 'HUB_RECONCILIATION') && (jsonData[i].currency === pm.environment.get(\"currency\"))) {",
+											"            pm.environment.set(\"hubReconAccountBalanceBeforeFundsIn\",jsonData[i].value)",
+											"        }",
+											"    }",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{BEARER_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "FSPIOP-Source",
+										"value": "{{payerfsp}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"transferId\": \"{{fundsInPrepareTransferId}}\",\n  \"externalReference\": \"string\",\n  \"action\": \"recordFundsIn\",\n  \"reason\": \"string\",\n  \"amount\": {\n    \"amount\":\"{{fundsInPrepareAmount}}\" ,\n    \"currency\": \"{{currency}}\"\n  },\n  \"extensionList\": {\n    \"extension\": [\n      {\n        \"key\": \"string\",\n        \"value\": \"string\"\n      }\n    ]\n  }\n}"
+								},
+								"url": {
+									"raw": "{{HOST_CENTRAL_LEDGER}}/participants/safsp/accounts/{{payerfspSettlementAccountId}}",
+									"host": [
+										"{{HOST_CENTRAL_LEDGER}}"
+									],
+									"path": [
+										"participants",
+										"safsp",
+										"accounts",
+										"{{payerfspSettlementAccountId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "e5ffaeb6-241f-4b10-af63-b52b064ff44f",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "efb91eb5-c6c5-460c-89b0-a424f39dcf9a",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "a29d64a2-7a89-4cc9-ac33-2a630283471d",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "7bcf1b8c-ce85-4b11-ac83-899cc81ce501",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "402cb439-04ee-4add-9a65-f4b3f9dafa58",
+				"type": "text/javascript",
+				"exec": [
+					"",
+					"// Ensure that the following variables are not set in the environment",
+					"// This is a fix for the following issue: https://github.com/mojaloop/project/issues/903",
+					"// This will ensure that templates are not replaced in the endpoint configs:",
+					"pm.environment.unset('partyIdType')",
+					"pm.environment.unset('partyIdentifier')",
+					"pm.environment.unset('requestId')",
+					"pm.environment.unset('transferId')",
+					"",
+					"pm.globals.unset('partyIdType')",
+					"pm.globals.unset('partyIdentifier')",
+					"pm.globals.unset('requestId')",
+					"pm.globals.unset('transferId')"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "e73fb24a-c94a-4551-ac31-fb7ceb250579",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

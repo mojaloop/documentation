@@ -1,0 +1,466 @@
+@startuml FXAPI_Payer_Transfer
+
+!$simplified = false
+!$shortCutSingleFXP = false
+!$hideSwitchDetail = false
+!$advancedCoreConnectorFlow = false
+!$senderName = "John"
+!$senderLastName = ""
+!$senderDOB = "1966-06-16"
+!$receiverName = "Yaro"
+!$receiverFirstName = "Yaro"
+!$receiverMiddleName = ""
+!$receiverLastName = ""
+!$receiverDOB = "1966-06-16"
+!$payerCurrency = "BWP"
+!$payeeCurrency = "TZS"
+!$payerFSPID = "PayerFSP"
+!$payeeFSPID = "PayeeFSP"
+!$fxpID = "FDH_FX"
+!$payerMSISDN = "26787654321"
+!$payeeMSISDN = "2551234567890"
+!$payeeReceiveAmount = "44000"
+!$payerSendAmount = "300"
+!$payeeFee = "4000"
+!$targetAmount = "48000"
+!$fxpChargesSource = "33"
+!$fxpChargesTarget = "6000"
+!$fxpSourceAmount = "300"
+!$fxpTargetAmount = "48000"
+!$totalChargesSourceCurrency = "55"
+!$totalChargesTargetCurrency = "10000"
+!$conversionRequestId = "828cc75f1654415e8fcddf76cc"
+!$conversionId = "581f68efb54f416f9161ac34e8"
+!$homeTransactionId = "string"
+!$quoteId = "382987a875ce4037b500c475e0"
+!$transactionId = "d9ce59d4359843968630581bb0"
+!$quotePayerExpiration = "2021-08-25T14:17:09.663+01:00"
+!$quotePayeeExpiration = "2021-08-25T14:17:09.663+01:00"
+!$commitRequestId = "77c9d78dc26a44748b3c99b96a"
+!$determiningTransferId = "d9ce59d4359843968630581bb0"
+!$transferId = "d9ce59d4359843968630581bb0"
+!$fxCondition = "GRzLaTP7DJ9t4P-a_B..."
+!$condition = "HOr22-H3AfTDHrSkP..."
+
+title Phase de transfert — connecteur Mojaloop
+actor "$senderName" as A1
+  participant "CBS payeur" as PayerCBS
+box "DFSP payeur" #LightBlue  
+  participant "Connecteur principal" as PayerCC
+  participant "Connecteur Mojaloop\npayeur" as D1
+end box
+
+participant "Commutateur Mojaloop" as S1
+
+'box "Service de découverte" #LightYellow
+'  participant "Oracle ALS" as ALS
+'end box
+
+box "Fournisseur de change"  
+  participant "Connecteur\nFXP" as FXP
+  participant "API FX backend" as FXPBackend
+end box
+
+box "DFSP bénéficiaire" #LightBlue   
+  participant "Connecteur Mojaloop\nbénéficiaire" as D2
+  participant "Connecteur principal" as PayeeCC
+end box
+
+actor "$receiverName" as A2
+autonumber
+
+!if ($advancedCoreConnectorFlow != true)
+PayerCC->D1: Poursuivre le transfert\nPUT /transfers
+note left
+{"acceptQuote": true}
+end note
+!else
+PayerCC->D1: Poursuivre le transfert\n**POST /fxTransfers**
+    !if ($simplified != true)
+    note left
+    {
+        "homeTransactionId": "$homeTransactionId",
+        "commitRequestId": "$commitRequestId",
+        "determiningTransferId": "$determiningTransferId",
+        "initiatingFsp": "$payerFSPID",
+        "counterPartyFsp": "$fxpID",
+        "amountType": "SEND",
+        "sourceAmount": {
+            "currency": "$payerCurrency",
+            "amount": "$fxpSourceAmount"},
+        "targetAmount": {
+            "currency": "$payeeCurrency",
+            "amount": "$fxpTargetAmount"},
+        "condition": "$fxCondition"
+    }
+    end note
+    !endif
+!endif
+
+!if ($advancedCoreConnectorFlow != true)
+D1->D1:D'abord, activer la conversion
+!endif
+D1->>S1:Merci de confirmer votre part du transfert
+note left
+**POST /fxTransfers**
+{
+    "commitRequestId": "$commitRequestId",
+    "determiningTransferId": "$determiningTransferId",
+    "initiatingFsp": "$payerFSPID",
+    "counterPartyFsp": "$fxpID",
+    "amountType": "SEND",
+    "sourceAmount": {
+        "currency": "$payerCurrency",
+        "amount": "$fxpSourceAmount"},
+    "targetAmount": {
+        "currency": "$payeeCurrency",
+        "amount": "$fxpTargetAmount"},
+    "condition": "$fxCondition"
+}
+end note
+activate S1
+!if ($simplified != true)
+S1-->>D1:202 — Je vous recontacte
+!endif
+deactivate D2
+!if ($hideSwitchDetail != true)
+S1->S1:OK, il s'agit d'une confirmation FX.
+S1->S1: Existe-t-il un transfert avec determiningTransactionId ?\nNon.
+!endif
+S1->S1: Contrôle de liquidité et réserve sur le compte du DFSP payeur
+!if ($hideSwitchDetail != true)
+note over S1
+Réservations :
+
+**$payerFSPID a une réservation de $fxpSourceAmount $payerCurrency**
+end note
+!endif
+S1->>FXP:Merci de confirmer la partie conversion de devises du transfert\n** POST /fxTransfers**
+activate FXP
+!if ($simplified != true)
+FXP-->>S1:202 — Je vous recontacte
+!endif
+deactivate S1
+FXP->FXPBackend:Réserver les fonds pour la conversion FX
+note left
+**POST /fxTransfers**
+{
+    "homeTransactionId": "$homeTransactionId",
+    "commitRequestId": "$commitRequestId",
+    "determiningTransferId": "$determiningTransferId",
+    "initiatingFsp": "$payerFSPID",
+    "counterPartyFsp": "$fxpID",
+    "amountType": "SEND",
+    "sourceAmount": {
+        "currency": "$payerCurrency",
+        "amount": "$fxpSourceAmount"},
+    "targetAmount": {
+        "currency": "$payeeCurrency",
+        "amount": "$fxpTargetAmount"},
+    "condition": "$fxCondition"
+}
+end note
+FXPBackend-->FXP:Succès
+note right
+{
+  "homeTransactionId": "$homeTransactionId",
+  "completedTimestamp": "2021-08-25T14:17:08.175+01:00",
+  "conversionState": "RESERVED"
+}
+end note
+FXP->>S1:Confirmé. Voici l'exécution (fulfilment)
+note right
+**PUT /fxTransfers/$commitRequestId**
+{
+  "fulfilment": "188909ceb6cd5c35d5c6b394f0a9e5a0571199c332fbd013dc1e6b8a2d5fff42",
+  "completedTimestamp": "2021-08-25T14:17:08.175+01:00",
+  "conversionState": "RESERVED"
+}
+end note
+activate S1
+!if ($simplified != true)
+S1-->>FXP:200 — OK
+!endif
+deactivate FXP
+!if ($simplified != true)
+S1->S1:Vérifier que l'exécution correspond et annuler sinon.
+alt Échec de la conversion
+S1->FXP:Désolé. La conversion a échoué
+note right
+**PATCH /fxTransfers/$commitRequestId**
+{
+  "completedTimestamp": "2021-08-25T14:17:08.175+01:00",
+  "conversionState": "ABORTED"
+}
+end note
+activate FXP
+FXP-->S1:Accusé de réception
+FXP->FXPBackend:Supprimer les réservations ou obligations
+note left
+**PUT /fxTransfers/$commitRequestId**
+{
+  "completedTimestamp": "2021-08-25T14:17:08.175+01:00",
+  "conversionState": "ABORTED"
+}
+end note
+FXPBackend-->FXP:Ok
+deactivate FXP
+
+S1->>D1:Désolé. La conversion a échoué
+note right
+**PUT /fxTransfers/$commitRequestId/error**
+{
+    "errorCode": "9999", 
+    "errorDescription": "Description de l'erreur (variable)"
+}
+end note
+else Conversion réussie
+S1->D1:Conversion réussie sous réserve du succès du transfert\n**PUT /fxTransfers/77c9d78d-c26a-4474-8b3c-99b96a814bfc**
+
+end
+!else
+S1->D1:Conversion réussie sous réserve du succès du transfert\n**PUT /fxTransfers/77c9d78d-c26a-4474-8b3c-99b96a814bfc**
+!endif
+activate D1
+!if ($simplified != true)
+D1-->S1:200 — OK
+!endif
+deactivate S1
+
+!if ($advancedCoreConnectorFlow != true)
+    D1->D1:OK, tout est bon\nJe peux maintenant envoyer le transfert proprement dit
+    ' TODO : ajouter ici la réponse PUT /transfers
+!else
+    D1-->PayerCC:Confirmé. Vous pouvez poursuivre le transfert.
+    note right of PayerCC
+    **PUT /fxTransfers/$commitRequestId**
+    {
+        "fulfilment": "188909ceb6cd5c35d5c6b394f0a9e5a0571199c332fbd013dc1e6b8a2d5fff42",
+        "completedTimestamp": "2021-08-25T14:17:08.175+01:00",
+        "conversionState": "RESERVED"
+    }
+    end note
+
+    PayerCC-->D1:Merci d'effectuer le transfert **POST /simpleTransfers**
+    !if ($simplified != true)
+    note right of PayerCC
+    {
+        "fspId": "$payeeFSPID",
+        "transfersPostRequest": {
+            "transferId": "$transferId",
+            "payeeFsp": "$payeeFSPID",
+            "payerFsp": "$payerFSPID",
+            "amount": {
+                "currency": "$payeeCurrency",
+                "amount": "$targetAmount"
+            },
+            "ilpPacket": "<Objet de transaction encodé>",
+            "condition": "$condition",
+            "expiration": "2016-05-24T08:38:08.699-04:00"
+        }
+    }
+    end note
+    !endif
+!endif
+
+D1->S1:Merci d'effectuer le transfert **POST /transfers**
+!if ($simplified != true)
+note over D1
+**POST /transfers**
+{
+    "transferId": "$transferId",
+    "payeeFsp": "$payeeFSPID",
+    "payerFsp": "$payerFSPID",
+    "amount": {
+        "currency": "$payeeCurrency",
+        "amount": "$targetAmount"},
+    "ilpPacket": "<Objet de transaction encodé>",
+    "condition": "$condition",
+    "expiration": "2016-05-24T08:38:08.699-04:00"
+}
+end note
+!endif
+activate S1
+!if ($simplified != true)
+S1-->D1:202 — Je vous recontacte
+!endif
+deactivate D1
+!if ($hideSwitchDetail != true)
+S1->S1:Y a-t-il un transfert dépendant ? Oui
+!endif
+S1->S1:Effectuer le contrôle de liquidité et réserver les fonds\nen faveur de la partie créancière du transfert dépendant
+note over S1
+Réservations :
+
+$payerFSPID a une réservation de $fxpSourceAmount $payerCurrency
+**$fxpID a une réservation de $targetAmount $payeeCurrency**
+end note
+
+S1->D2:Merci d'effectuer le transfert\n**POST /transfers**
+activate D2
+!if ($simplified != true)
+D2-->S1:202 — Je vous recontacte
+!endif
+deactivate S1
+D2->D2:Je vérifie que les conditions du transfert dépendant\ncorrespondent à celles auxquelles j'ai souscrit\net que l'exécution et la condition concordent
+
+D2->PayeeCC:Merci de créditer le compte de $receiverName de $payeeReceiveAmount $payeeCurrency
+!if ($simplified != true)
+note left
+**POST /transfers**
+{
+  "transferId": "$transferId",
+  "amount": "$targetAmount",
+  "currency": "$payeeCurrency",
+  "amountType": "SEND",
+  "from": {
+    "displayName": "$senderName",
+    "fspId": "$payerFSPID",
+    "idType": "MSISDN",
+    "idValue": "$payerMSISDN"},
+  "to": {
+    "displayName": "$receiverName",
+    "fspId": "$payeeFSPID",
+    "idType": "MSISDN",
+    "idValue": "$payeeMSISDN"},
+  "quote": {
+    "quoteId": "$quoteId",
+    "transactionId": "$transactionId",
+    "payeeFspFeeAmount": "$payeeFee",
+    "payeeFspFeeAmountCurrency": "$payeeCurrency",
+    "payeeReceiveAmount": "$payeeReceiveAmount",
+    "payeeReceiveAmountCurrency": "$payeeCurrency",
+    "transferAmount": "$targetAmount",
+    "transferAmountCurrency": "$payeeCurrency"
+    "expiration": "$quotePayeeExpiration"},
+  "transactionType": "TRANSFER",
+  "ilpPacket": {"data": <decoded ilpPacket>}
+}
+end note
+!endif
+
+PayeeCC-->D2:Fait
+PayeeCC->A2:Vous avez reçu $payeeReceiveAmount $payeeCurrency
+!if ($simplified != true)
+note right of D2
+{
+    "homeTransactionId": "string",
+    "completedTimestamp": "2021-08-25T14:17:08.227+01:00",
+    "fulfilment": "mhPUT9ZAwd-BXLfeSd7-YPh46rBWRNBiTCSWjpku90s",
+    **Note: fulfilment is optional: SDK will create if not found**
+    "transferState": "COMMITTED"
+}
+end note
+!endif
+
+D2->>S1:Transfert confirmé, voici l'exécution (fulfilment)
+note over D2
+**PUT /transfers/$commitRequestId**
+{
+    "completedTimestamp": "2021-08-25T14:17:08.227+01:00",
+    "fulfilment": "mhPUT9ZAwd-BXLfeSd7-YPh46rBWRNBiTCSWjpku90s",
+    "transferState": "COMMITTED"
+}
+end note
+activate S1
+!if ($simplified != true)
+S1-->>D2:200 — OK
+!endif
+deactivate D2
+!if ($hideSwitchDetail != true)
+S1->S1:Y a-t-il un transfert dépendant ?\nOui.
+S1->S1:Cette dépendance concerne-t-elle \nle débiteur du transfert ?\nOui.
+S1->S1:Créer une obligation du\ndébiteur vers la partie nommée dans la dépendance (le FXP)
+S1->S1:Le transfert est-il libellé dans\nla devise du montant reçu par le bénéficiaire ?\nOui.
+S1->S1:Créer une obligation de la \npartie nommée dans la dépendance\nvers le créancier du transfert
+!else
+S1->S1:Créer des obligations du payeur vers le FXP et du FXP vers le bénéficiaire
+!endif
+S1->>FXP:Le transfert a réussi.\nVous pouvez le compenser dans vos livres
+note over S1
+**PATCH /fxTransfers/$commitRequestId**
+{
+    "completedTimestamp": "2021-08-25T14:17:08.227+01:00",
+    "fulfilment": "mhPUT9ZAwd-BXLfeSd7-YPh46rBWRNBiTCSWjpku90s",
+    "transferState": "COMMITTED"
+}
+end note
+activate FXP
+FXP->FXP:Vérifions : cela correspond-il à ce que j'ai envoyé ?
+FXP->FXP:Oui. Parfait. Je compense la conversion
+FXP-->>S1:200 — OK
+deactivate FXP
+note over S1
+    Ledger positions:
+    $payerFSPID a un débit de $fxpSourceAmount $payerCurrency
+    $fxpID a un crédit de $fxpSourceAmount $payerCurrency
+    $fxpID a un débit de $fxpTargetAmount $payeeCurrency
+    $payeeFSPID a un crédit de $targetAmount $payeeCurrency
+end note
+S1->>D1:Transfert terminé\n**PUT /transfers/$commitRequestId**
+activate D1
+!if ($simplified != true)
+D1-->S1:200 — OK
+!endif
+deactivate S1
+!if ($advancedCoreConnectorFlow != true)
+    D1-->PayerCC:Le transfert s'est terminé avec succès
+    note right of PayerCC
+    **POST/PUT /transfers/** response
+    {
+        "transferId": "$transferId",
+            "homeTransactionId": "$homeTransactionId",
+            "from": {
+                "displayName": "$senderName",
+                "fspId": "$payerFSPID",
+                "idType": "MSISDN",
+                "idValue": "$payerMSISDN"},
+            "to": {
+                "type": "CONSUMER",
+                "idType": "MSISDN",
+                "idValue": "$payeeMSISDN",
+                "displayName": "$receiverName",
+                "fspId": "$payeeFSPID"
+                "supportedCurrencies": [ "$payeeCurrency" ]},
+            "amountType": "SEND",
+            "currency": "$payerCurrency",
+            "amount": "$payerSendAmount"
+            "currentState": "**COMPLETED**",
+            "getPartiesResponse": {<Same as the previous responses>},
+            "conversionRequestId": "$conversionRequestId",
+            "fxQuotesResponse": {<Same as the previous responses>},
+            "fxQuotesResponseSource": "$payeeFSPID",
+            "quoteId": "$quoteId",
+            "quoteResponse": {<Same as the previous responses>},
+            "quoteResponseSource": "$payeeFSPID",
+            "fulfil": {
+                "body": {
+                    "completedTimestamp": "2021-08-25T14:17:08.227+01:00",
+                    "fulfilment": "mhPUT9ZAwd-BXLfeSd7-YPh46rBWRNBiTCSWjpku90s",
+                    "transferState": "COMMITTED"},},
+        }
+    end note
+!else
+   D1-->PayerCC:Le transfert s'est terminé avec succès
+    !if ($simplified != true)
+        note right of PayerCC
+        {
+            "transfer": {
+                "body": {
+                    "completedTimestamp": "2021-08-25T14:17:08.227+01:00",
+                    "fulfilment": "mhPUT9ZAwd-BXLfeSd7-YPh46rBWRNBiTCSWjpku90s",
+                    "transferState": "COMMITTED"
+                },
+                "headers": {}
+            },
+            "currentState": "COMPLETED"
+        }
+        end note
+    !endif
+!endif
+
+PayerCC->PayerCBS:Le transfert s'est terminé avec succès
+PayerCBS->PayerCBS:Comptabiliser les fonds dans mes livres
+PayerCBS->A1:Votre transfert a réussi
+deactivate D1
+@enduml

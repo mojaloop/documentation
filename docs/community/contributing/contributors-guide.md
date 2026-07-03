@@ -18,7 +18,7 @@ gathering.
 
 - #### Hub Operators
 
-Typically these or organizations or individuals or government agencies that are interested in setting up their own
+Typically these are organizations, individuals or government agencies that are interested in setting up their own
 Mojaloop Switch to become part of the ecosystem.
 
 - #### Implementation Teams

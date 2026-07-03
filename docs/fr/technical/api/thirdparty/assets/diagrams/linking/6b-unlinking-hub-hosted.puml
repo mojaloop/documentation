@@ -1,0 +1,105 @@
+@startuml
+
+' declaring skinparam
+skinparam shadowing false
+skinparam defaultFontName Verdana
+skinparam monochrome true
+skinparam SequenceLifeLineBackgroundColor WhiteSmoke
+skinparam SequenceLifeLineBorderColor Black
+skinparam ParticipantFontStyle Bold
+skinparam ParticipantFontSize 20
+skinparam ParticipantBackgroundColor WhiteSmoke
+skinparam ArrowColor Black
+
+hide footbox
+
+!pragma teoz true
+
+title Liaison PISP : Dissociation
+
+participant "PISP" as PISP
+
+box "Mojaloop"
+    participant Switch
+    participant "Account Lookup Service" as ALS
+    participant "Auth Service" as Auth
+end box
+
+participant "DFSP" as DFSP
+
+autonumber 1 "<b>UNLINK-B-#</b>"
+
+activate PISP
+
+...
+
+note over PISP, DFSP
+  Dans ce scénario, il n'y a pas de service d'authentification hébergé par le hub. Le DFSP est l'autorité sur l'objet ""Consent"".
+end note
+
+...
+
+PISP -> Switch ++: ""DELETE /consents/22222222-0000-0000-0000-000000000000""\n\
+""  FSIOP-Source: pispa""\n\
+""  FSIOP-Destination: dfspa""
+Switch --> PISP: ""202 Accepted""
+deactivate PISP
+
+Switch -> ALS: ""GET /participants/CONSENT/22222222-0000-0000-0000-000000000000""
+ALS --> Switch: ""200 OK""\n\
+"" { "fspId": "central-auth" }""
+
+rnote over Switch #LightGray
+  Le hub a déterminé que « central-auth » est responsable du ""Consent"" 22222222-0000-0000-0000-000000000000
+end note
+
+Switch -> Auth ++:  ""DELETE /consents/22222222-0000-0000-0000-000000000000""
+Auth --> Switch: ""202 Accepted""
+deactivate Switch
+
+Auth -> Auth: Marquer l'objet ""Consent"" comme « REVOKED »
+
+Auth -> Switch ++: ""PATCH /consents/22222222-0000-0000-0000-000000000000""\n\
+""  FSPIOP-Source: central-auth""\n\
+""  FSPIOP-Destination: pispa""\n\
+""{ ""\n\
+""  status: "REVOKED",""\n\
+""  revokedAt: "2020-06-15T13:00:00.000"""\n\
+""}""
+Switch --> Auth: ""200 OK""
+deactivate Auth
+
+Switch -> PISP ++: ""PATCH /consents/22222222-0000-0000-0000-000000000000""\n\
+""  FSPIOP-Source: central-auth""\n\
+""  FSPIOP-Destination: pispa""\n\
+""{ ""\n\
+""  status: "REVOKED",""\n\
+""  revokedAt: "2020-06-15T13:00:00.000"""\n\
+""}""
+PISP --> Switch: ""200 OK""
+
+
+rnote over Auth #LightGray
+  Le Auth Service doit également informer le DFSP du statut mis à jour
+end note
+
+Auth -> Switch ++: ""PATCH /consents/22222222-0000-0000-0000-000000000000""\n\
+""  FSPIOP-Source: central-auth""\n\
+""  FSPIOP-Destination: dfspa""\n\
+""{ ""\n\
+""  status: "REVOKED",""\n\
+""  revokedAt: "2020-06-15T13:00:00.000"""\n\
+""}""
+Switch --> Auth: ""200 OK""
+deactivate Auth
+
+Switch -> DFSP ++: ""PATCH /consents/22222222-0000-0000-0000-000000000000""\n\
+""  FSPIOP-Source: central-auth""\n\
+""  FSPIOP-Destination: dfspa""\n\
+""{ ""\n\
+""  status: "REVOKED",""\n\
+""  revokedAt: "2020-06-15T13:00:00.000"""\n\
+""}""
+DFSP --> Switch: ""200 OK""
+
+@enduml

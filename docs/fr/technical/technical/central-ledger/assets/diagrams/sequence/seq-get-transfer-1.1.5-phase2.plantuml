@@ -1,0 +1,167 @@
+/'*****
+ License
+ --------------
+ Copyright © 2017 Bill & Melinda Gates Foundation
+ The Mojaloop files are made available by the Bill & Melinda Gates Foundation under the Apache License, Version 2.0 (the "License") and you may not use these files except in compliance with the License. You may obtain a copy of the License at
+ http://www.apache.org/licenses/LICENSE-2.0
+ Unless required by applicable law or agreed to in writing, the Mojaloop files are distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+ Contributors
+ --------------
+ This is the official list of the Mojaloop project contributors for this file.
+ Names of the original copyright holders (individuals or organizations)
+ should be listed with a '*' in the first column. People who have
+ contributed from an organization can be listed under the organization
+ that actually holds the copyright for their contributions (see the
+ Gates Foundation organization for an example). Those individuals should have
+ their names indented and be marked with a '-'. Email address can be added
+ optionally within square brackets <email>.
+ * Gates Foundation
+ - Name Surname <name.surname@gatesfoundation.com>
+
+ * Samuel Kummary <sam@modusbox.com>
+ --------------
+ ******'/
+
+@startuml
+' declate title
+title 1.1.5. Demande de statut de transfert (getTransferStatusById) — version phase 2
+
+autonumber
+
+' declare actors
+actor "DFSP(n)\nParticipant" as DFSP
+control "Gestionnaire d'événements de notification ML API" as NOTIFY_HANDLER
+boundary "API du service central" as CSAPI
+collections "Rubrique d'événements" as TOPIC_EVENTS
+entity "DAO transfert" as TRANSFER_DAO
+database "Stockage central" as DB
+
+box "Fournisseur de services financiers" #lightGray
+	participant DFSP
+end box
+
+box "Service adaptateur ML API" #LightBlue
+	participant NOTIFY_HANDLER
+end box
+
+box "Service central" #LightYellow
+    participant CSAPI
+    participant TOPIC_EVENTS
+    participant TRANSFER_DAO
+    participant DB
+end box
+
+' start flow
+group Demander le statut du transfert
+    activate DFSP
+    DFSP -> NOTIFY_HANDLER: URL de demande de statut de transfert (callback) — GET - /transfers/{ID}
+'alt invalid tansferId
+'    activate NOTIFY_HANDLER
+'    NOTIFY_HANDLER -> NOTIFY_HANDLER: Validate TransferId
+'    break
+'        note right of NOTIFY_HANDLER #yellow
+'            {
+'                "errorInformation": {
+'                    "errorCode": <integer>,
+'                    "errorDescription": "Charge utile ou état invalide"
+'                }
+'            }
+'        end note
+'        DFSP <-- NOTIFY_HANDLER: Respond HTTP - 4xx (Bad Request)
+'    end
+'else valid transfer
+    |||
+    group Persister les informations d'événement
+'        hnote over NOTIFY_HANDLER #Pink
+'        Do we need to write the event to the Event-Topic?
+'        Not transaction related.
+'        end hnote
+        NOTIFY_HANDLER -> CSAPI: Demander les informations de transfert — GET - /transfers/{ID}
+        activate CSAPI
+
+        activate TOPIC_EVENTS
+        CSAPI -> TOPIC_EVENTS: Publier les informations d'événement
+        |||
+        ref over TOPIC_EVENTS :  Consommation du gestionnaire d'événements\n
+        |||
+        CSAPI <-- TOPIC_EVENTS: Renvoyer le succès
+        deactivate TOPIC_EVENTS
+        CSAPI --> NOTIFY_HANDLER: Renvoyer le succès
+        deactivate CSAPI
+    end
+        DFSP <-- NOTIFY_HANDLER: Répondre HTTP — 200 (OK)
+'end
+    NOTIFY_HANDLER -> CSAPI: Demander les détails du transfert — GET - /transfers/{ID}\n<color #FF0000><b>Code d'erreur :</b> 2003</color>
+    activate CSAPI
+    CSAPI -> TRANSFER_DAO: Demander le statut du transfert\n<color #FF0000><b>Code d'erreur :</b> 2003</color>
+    activate TRANSFER_DAO
+    TRANSFER_DAO -> DB: Récupérer le statut du transfert
+    activate DB
+    hnote over DB #lightyellow
+        SELECT transferId, transferStateId
+        FROM **transferStateChange**
+        WHERE transferId = {ID}
+        ORDER BY transferStateChangeId desc limit 1
+    end note
+    deactivate DB
+    CSAPI <-- TRANSFER_DAO: Renvoyer le statut du transfert
+    deactivate TRANSFER_DAO
+    NOTIFY_HANDLER <-- CSAPI: Renvoyer le statut du transfert\n<color #FF0000><b>Codes d'erreur :</b> 3202, 3203</color>
+    deactivate CSAPI
+
+    alt Un transfert avec l'ID donné est-il enregistré dans le système ?
+        alt Oui ET transferState vaut COMMITTED\nCela signifie qu'un transfert réussi avec l'ID donné est enregistré
+            note left of NOTIFY_HANDLER #yellow
+                {
+                    "fulfilment": "WLctttbu2HvTsa1XWvUoGRcQozHsqeu9Ahl2JW9Bsu8",
+                    "completedTimestamp": "2018-09-24T08:38:08.699-04:00",
+                    "transferState": "COMMITTED",
+                    extensionList:
+                        {
+                        extension:
+                        [
+                            {
+                            "key": "Description",
+                            "value": "Description plus détaillée"
+                            }
+                        ]
+                    }
+                }
+            end note
+            DFSP <- NOTIFY_HANDLER: callback PUT sur /transfers/{ID}
+        else transferState dans [RECEIVED, RESERVED, ABORTED]
+            note left of NOTIFY_HANDLER #yellow
+                {
+                    "transferState": "RECEIVED",
+                    extensionList:
+                        {
+                        extension:
+                        [
+                            {
+                            "key": "Description",
+                            "value": "Description plus détaillée"
+                            }
+                        ]
+                    }
+                }
+            end note
+            DFSP <- NOTIFY_HANDLER: callback PUT sur /transfers/{ID}
+        end
+        note right of NOTIFY_HANDLER #lightgray
+            Journaliser l'événement ERROR
+        end note
+    else Aucun transfert avec l'ID donné dans le système, ou requête invalide
+        note left of NOTIFY_HANDLER #yellow
+            {
+                "errorInformation": {
+                    "errorCode": <integer>,
+                    "errorDescription": "Description d'erreur client"
+                }
+            }
+        end note
+        DFSP <- NOTIFY_HANDLER: callback PUT sur /transfers/{ID}/error
+    end
+    deactivate NOTIFY_HANDLER
+deactivate DFSP
+end
+@enduml
