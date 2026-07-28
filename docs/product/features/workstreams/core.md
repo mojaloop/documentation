@@ -12,15 +12,7 @@ The management of the Mojaloop Core and the releases of the open source platform
 | Sam Kummary | Shashi Hirugade<br>Juan Correa |
 
 ## Latest Update (Summary)
-The codebase for 17.2.0 RC passes ~80% of automated tests across eight major collections; remaining tests are blocked by security-related changes to the Testing Toolkit. Once resolved, and once all security vulnerabilities are cleared, the release will proceed.
-
-Version 17.2.0 will deliver:
-- Major performance enhancements
-- LEI support in merchant services
-- Inclusion of Connection Manager in Helm
-- Significant DRPP-originating bug fixes
-
-The team will evaluate in early 2026 whether the next release will be a minor revision or the TigerBeetle-based v18.
+The Core and Releases workstream has prepared the 17.3.0 release by incorporating a range of stability and performance improvements, including fixes for long-running resource leaks identified through extended performance testing. Early results indicate that performance remains comparable despite the introduction of additional security measures such as Istio and mutual TLS. Planning for Version 18 is also underway, with emphasis on extensive adopter validation of the TigerBeetle-based architecture before production release.
 
 ## Applicability
 
@@ -29,5 +21,6 @@ This version of this document relates to Mojaloop [Version 17.1.0](https://githu
 ## Document History
   |Version|Date|Author|Detail|
 |:--------------:|:--------------:|:--------------:|:--------------:|
+|1.2|28th July 2026| Paul Makin|Added latest update|
 |1.1|4th December 2025| Paul Makin|Added latest update|
 |1.0|25th November 2025| Paul Makin|Initial version|

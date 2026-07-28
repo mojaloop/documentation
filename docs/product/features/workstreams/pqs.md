@@ -10,14 +10,15 @@ This ensures the Mojaloop platform quality & security is maintained; vulnerabili
 | Sam Kummary | Juan Correa<br>Devarsh Shah<br>Shuchita Prakash<br>Shashi Hirugade |
 
 ## Latest Update (Summary)
-The team is working toward a year-end release candidate of 17.2.0, focusing on security hardening, dependency updates, and CI reliability. AI-powered tooling is now generating automated PRs for dependency updates across Mojaloop’s internal packages, significantly reducing manual workload. The Finance Portal requires a more comprehensive rewrite due to outdated technology. The workstream also assessed the Mojaloop IAC sandbox against the new QA Framework.
+The Platform Quality and Security workstream redirected effort during the PI to conduct a detailed review of Mojaloop’s software supply chain security following wider industry supply chain attacks, arising from the application of AI in this area. This resulted in significant improvements to the licence scanning process through adoption of the Linux Foundation’s SPDX licence standard and remediation of weaknesses in existing tooling. With this work largely complete, the team has returned to routine vulnerability management while preparing repositories for the next release candidate.
 
 ## Applicability
 
-This version of this document relates to Mojaloop [Version 17.1.0](https://github.com/mojaloop/helm/releases/tag/v17.1.0)
+This version of this document relates to Mojaloop [Version 17.2.0](https://github.com/mojaloop/helm/releases/tag/v17.1.0)
 
 ## Document History
   |Version|Date|Author|Detail|
 |:--------------:|:--------------:|:--------------:|:--------------:|
+|1.2|28th July 2026| Paul Makin|Added latest update|
 |1.1|4th December 2025| Paul Makin|Added latest update|
 |1.0|25th November 2025| Paul Makin|Initial version|

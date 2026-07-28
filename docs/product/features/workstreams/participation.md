@@ -9,18 +9,18 @@ By making it easier for different types of DFSP to join a Mojaloop-based payment
 ## Contributors
 |Workstream Lead|Contributors|
 |:--------------:|:--------------:|
-| James Bush | Sam Kummary<br>Yevhen Kryiukha<br>Paul Baker<br>Vijay Kumar<br>Phil Green<br>Steve Haley<br>Paul Makin |
+| James Bush | Sam Kummary<br>Yevhen Kryiukha<br>Paul Baker<br>Vijay Kumar<br>Steve Haley<br>Paul Makin |
 
 ## Latest Update (Summary)
-The workstream continues to make progress on participant onboarding, driven by improvements to the Mojaloop Connection Manager (MCM). With MCM now decoupled from the IAC codebase, schemes can adopt it independently, broadening its utility. Documentation has emerged as the most urgent need; a dedicated technical writer is preparing comprehensive materials spanning MCM, Payment Manager, and the Integration Toolkit. Donated documentation from Infitx will be generalised for broader community use. New mini-guides have been published to simplify navigation of Mojaloop tooling.
-
+The Participation Tools workstream has concentrated on completing integration of the refactored Mojaloop Connection Manager with both IaC Lite and the multi-scheme IaC framework, including integration with the BizOps security and RBAC components. Broader participation tooling has remained stable, with maintenance and security updates continuing while feedback from production deployments of the SDK, Payment Manager and Integration Toolkit is gathered to inform future improvements in usability and developer experience.
 
 ## Applicability
 
-This version of this document relates to Mojaloop [Version 17.1.0](https://github.com/mojaloop/helm/releases/tag/v17.1.0)
+This version of this document relates to Mojaloop [Version 17.2.0](https://github.com/mojaloop/helm/releases/tag/v17.1.0)
 
 ## Document History
   |Version|Date|Author|Detail|
 |:--------------:|:--------------:|:--------------:|:--------------:|
+|1.2|28th July 2026| Paul Makin|Added latest update|
 |1.1|4th December 2025| Paul Makin|Added latest update|
 |1.0|25th November 2025| Paul Makin|Initial version|
