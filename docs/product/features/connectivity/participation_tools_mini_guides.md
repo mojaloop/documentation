@@ -60,7 +60,7 @@ There are two broad groups of participation tools; first, Payment Manager, which
 Also known as Payment Manager for Mojaloop (PM4ML), Payment Manager is a full-function Mojaloop participation tool that offers all the features a large corporate bank would expect. It can be deployed either in the cloud or in a bank’s data centre, and supports all of the DR options such a bank would expect. It also has comprehensive management and reporting capabilities.  
 
  <p align="center">
- 	<img src="./images/PM4ML_system_architecture.png" alt="PM4ML Architecture">
+ 	<img src="./images/PM4ML_system_architecture.svg" alt="Payment Manager Architecture">
  </p> 
 **Figure 1: Payment Manager Architecture**
 
@@ -80,7 +80,7 @@ The Integration Toolkit set of participation tools is architected to allow signi
 ### Overview
 
  <p align="center">
- 	<img src="./images/ITK_architecture.png" alt="ITK Architecture">
+ 	<img src="./images/ITK_architecture.svg" alt="ITK Architecture">
  </p> 
 **Figure 2: ITK Architecture**
 

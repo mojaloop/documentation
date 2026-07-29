@@ -9,17 +9,18 @@ The aim is to enable adopters to deploy Mojaloop easily, in the environment of t
 ## Contributors
 |Workstream Lead|Contributors|
 |:--------------:|:--------------:|
-| James Bush | Tony Williams<br>Vanda Illyes<br>Sam Kummary<br>Paul Makin<br>Paul Baker<br>Michael Richards|
+| James Bush | Yevhen Kyriukha<br>Nathan Delma<br> Sam Kummary<br>Paul Makin<br>Michael Richards|
 
 ## Latest Update (Summary)
-Recent DRPP contributions to IaC increased infrastructure costs by optimising for high-scale multi-instance deployments. To address the needs of smaller schemes, the team has developed a lightweight alternative—provisionally “IAC Lite.” Test deployments are running in AWS and on Foundation lab equipment. The objective is to deliver a streamlined, low-overhead, open-source deployment experience requiring minimal manual steps.
+The Deployment Tools workstream is nearing completion of the core implementation of IaC Lite, with successful deployments demonstrated in both the Mojaloop Foundation’s on-premise laboratory and AWS environments. Current activity is focused on testing, refining deployment behaviour and completing integration of the Mojaloop Connection Manager. Attention is expected to shift towards documentation, training and closer integration with the QA Framework, which will use IaC Lite deployments to validate its automated assessment capabilities.
 
 ## Applicability
 
-This version of this document relates to Mojaloop [Version 17.1.0](https://github.com/mojaloop/helm/releases/tag/v17.1.0)
+This version of this document relates to Mojaloop [Version 17.2.0](https://github.com/mojaloop/helm/releases/tag/v17.1.0)
 
 ## Document History
   |Version|Date|Author|Detail|
 |:--------------:|:--------------:|:--------------:|:--------------:|
+|1.2|28th July 2026| Paul Makin|Added latest update|
 |1.1|4th December 2025| Paul Makin|Added latest update|
 |1.0|25th November 2025| Paul Makin|Initial version|

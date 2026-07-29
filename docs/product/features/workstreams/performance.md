@@ -7,19 +7,18 @@ A whitepaper that demonstrates how Mojaloop exceeds the performance requirements
 ## Contributors
 |Workstream Lead|Contributors|
 |:--------------:|:--------------:|
-| James Bush | Julie Guetta<br>Shashi Hirugade<br>Sam Kummary<br>Nathan Delma<br>Ablipay (Jerome, team)|
+| James Bush | Shashi Hirugade<br>Sam Kummary<br>Nathan Delma<br>Ablipay (Jerome, team)|
 
 ## Latest Update (Summary)
-The workstream achieved a major milestone by reaching 1,000 TPS prior to the Nairobi convening. With replication enabled, throughput remains high (950 TPS). The team is now scaling to 2,000 and 2,500 TPS as part of the performance white paper, which will include concrete hardware sizing recommendations. Early TigerBeetle tests suggest dramatic performance improvement and reduced infrastructure cost.
-
-Long-term storage tiering requirements were flagged as essential for regulatory data-retention obligations in high-volume schemes.
+The Performance workstream has concentrated on improving the reproducibility of published benchmark results across adopter environments. Investigation identified deployment configuration differences, particularly around Kubernetes gateway configuration, as the primary cause of performance discrepancies reported by system integrators. Performance testing has been temporarily paused while platform-wide security remediation was completed, after which testing will resume with the aim of publishing an updated performance report. Initial results remain close to the previously demonstrated throughput of approximately 2,000 transactions per second.
 
 ## Applicability
 
-This version of this document relates to Mojaloop [Version 17.1.0](https://github.com/mojaloop/helm/releases/tag/v17.1.0)
+This version of this document relates to Mojaloop [Version 17.2.0](https://github.com/mojaloop/helm/releases/tag/v17.1.0)
 
 ## Document History
   |Version|Date|Author|Detail|
 |:--------------:|:--------------:|:--------------:|:--------------:|
+|1.2|28th July 2026| Paul Makin|Added latest update|
 |1.1|4th December 2025| Paul Makin|Added latest update|
 |1.0|25th November 2025| Paul Makin|Initial version|
