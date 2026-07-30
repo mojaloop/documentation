@@ -13,11 +13,11 @@ This workstream has strategic importance; TigerBeetle is the next generation led
 
 ## Latest Update (Summary)
 ### Forensic Audit
-The forensic audit redesign is ready for implementation but awaits funding from forthcoming adoption projects. No significant progress is expected until mid-Q1 2026.
+This aspect has been moved into [its own workstream](./audit.html).
 ### New Accounting Model
 The new accounting model is broadly agreed and represents a major shift toward alignment with international accounting standards. This addresses concerns raised by global institutions and enhances Mojaloop’s credibility as a financial infrastructure platform. The initial target is TigerBeetle, though the team has not yet decided whether a MySQL version of the new model will also be produced.
 ### TigerBeetle Integration
-Given the accounting model’s increased complexity, TigerBeetle is the preferred ledger engine. Integration planning is underway, with work expected to begin before Christmas. 
+The Mojaloop Evolution workstream continues to progress TigerBeetle integration, with development approaching code completion and current effort focused on integration testing. The implementation supports operation against both MySQL and TigerBeetle ledgers, allowing a gradual migration path while maintaining compatibility with existing deployments. The principal remaining work is validation of the integration test suite before an experimental community release becomes available.
 ### Settlement v3
 Settlement v3 introduces deterministic settlement batches, addressing long-standing reconciliation challenges and enabling multi-scheme scalability. TigerBeetle will store settlement batch keys, while SQL components and admin APIs will require substantial enhancement to support model configuration, batch tracking, and settlement operations.
 
@@ -28,5 +28,6 @@ This version of this document relates to Mojaloop [Version 17.1.0](https://githu
 ## Document History
   |Version|Date|Author|Detail|
 |:--------------:|:--------------:|:--------------:|:--------------:|
+|1.2|28th July 2026| Paul Makin|Added latest update|
 |1.1|4th December 2025| Paul Makin|Added latest update|
 |1.0|25th November 2025| Paul Makin|Initial version|
