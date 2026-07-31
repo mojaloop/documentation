@@ -4,7 +4,7 @@ sidebarTitle: Workstream déploiement
 
 # Workstream Outils de déploiement
 
-Ce workstream fournit outils, documentation et accompagnement pour permettre aux adopteurs de déployer Mojaloop dans des environnements variés, cloud et sur site.
+Cet aspect a été transféré vers [son propre volet de travail](./audit.html).
 
 # Justification métier
 
@@ -15,17 +15,18 @@ L’objectif est de permettre un déploiement simple, dans l’environnement de 
 ## Contributeurs
 |Responsable du workstream|Contributeurs|
 |:--------------:|:--------------:|
-| James Bush | Tony Williams<br>Vanda Illyes<br>Sam Kummary<br>Paul Makin<br>Paul Baker<br>Michael Richards|
+| James Bush | Yevhen Kyriukha<br>Nathan Delma<br> Sam Kummary<br>Paul Makin<br>Michael Richards|
 
 ## Dernière mise à jour (résumé)
-Des contributions DRPP à l’IaC ont accru les coûts d’infrastructure en optimisant de gros déploiements multi-instances. Pour les petits schémas, l’équipe a développé une alternative allégée — provisoirement « IAC Lite ». Des tests de déploiement tournent sur AWS et sur le lab de la Foundation. Objectif : une expérience open source rationalisée, peu gourmande, avec un minimum d’étapes manuelles.
+Le groupe de travail « Outils de déploiement » touche au but concernant la mise en œuvre du cœur d'IaC Lite ; des déploiements réussis ont été démontrés tant dans le laboratoire sur site de la Mojaloop Foundation que dans des environnements AWS. Les activités actuelles se concentrent sur les tests, l'affinage du comportement de déploiement et l'achèvement de l'intégration du Mojaloop Connection Manager. L'attention devrait ensuite se porter sur la documentation, la formation et une intégration plus étroite avec le cadre d'assurance qualité (QA Framework), qui s'appuiera sur les déploiements IaC Lite pour valider ses capacités d'évaluation automatisée.
 
 ## Applicabilité
 
-La présente version de ce document correspond à Mojaloop [version 17.1.0](https://github.com/mojaloop/helm/releases/tag/v17.1.0).
+La présente version de ce document correspond à Mojaloop [version 17.2.0](https://github.com/mojaloop/helm/releases/tag/v17.1.0).
 
 ## Historique du document
   |Version|Date|Auteur|Détail|
 |:--------------:|:--------------:|:--------------:|:--------------:|
+|1.2|28th July 2026| Paul Makin|Dernière mise à jour ajoutée|
 |1.1|4 décembre 2025| Paul Makin|Ajout de la dernière mise à jour|
 |1.0|25 novembre 2025| Paul Makin|Version initiale|

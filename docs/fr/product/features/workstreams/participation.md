@@ -15,17 +15,18 @@ En réduisant les obstacles de temps, de coût et de complexité — techniques 
 ## Contributeurs
 |Responsable du workstream|Contributeurs|
 |:--------------:|:--------------:|
-| James Bush | Sam Kummary<br>Yevhen Kryiukha<br>Paul Baker<br>Vijay Kumar<br>Phil Green<br>Steve Haley<br>Paul Makin |
+| James Bush | Sam Kummary<br>Yevhen Kryiukha<br>Paul Baker<br>Vijay Kumar<br>Steve Haley<br>Paul Makin |
 
 ## Dernière mise à jour (résumé)
-Le workstream progresse sur l’intégration des participants, notamment grâce au Mojaloop Connection Manager (MCM). Découplé du code IaC, le MCM peut être adopté séparément par les schémas, ce qui élargit son usage. La documentation est la priorité la plus urgente ; un rédacteur technique prépare des contenus couvrant MCM, Payment Manager et l’Integration Toolkit. De la documentation donnée par Infitx sera généralisée pour la communauté. De nouveaux mini-guides ont été publiés pour faciliter la navigation dans les outils Mojaloop.
+Le volet « Outils de participation » s'est concentré sur l'intégration complète du Connection Manager de Mojaloop (dans sa version refondue) avec IaC Lite et le framework IaC multi-schémas, y compris l'intégration aux composants de sécurité et de contrôle d'accès basé sur les rôles (RBAC) de BizOps. Les outils de participation plus larges sont restés stables ; leur maintenance et les mises à jour de sécurité se poursuivent, tandis que les retours d'expérience issus des déploiements en production du SDK, du Payment Manager et de l'Integration Toolkit sont recueillis pour orienter les futures améliorations en matière d'ergonomie et d'expérience développeur.
 
 ## Applicabilité
 
-La présente version de ce document correspond à Mojaloop [version 17.1.0](https://github.com/mojaloop/helm/releases/tag/v17.1.0).
+La présente version de ce document correspond à Mojaloop [version 17.2.0](https://github.com/mojaloop/helm/releases/tag/v17.1.0).
 
 ## Historique du document
   |Version|Date|Auteur|Détail|
 |:--------------:|:--------------:|:--------------:|:--------------:|
+|1.2|28th July 2026| Paul Makin|Dernière mise à jour ajoutée|
 |1.1|4 décembre 2025| Paul Makin|Ajout de la dernière mise à jour|
 |1.0|25 novembre 2025| Paul Makin|Version initiale|

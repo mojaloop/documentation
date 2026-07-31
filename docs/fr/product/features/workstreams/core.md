@@ -35,5 +35,6 @@ La présente version de ce document correspond à Mojaloop [version 17.1.0](http
 ## Historique du document
   |Version|Date|Auteur|Détail|
 |:--------------:|:--------------:|:--------------:|:--------------:|
+|1.2|28th July 2026| Paul Makin|Dernière mise à jour ajoutée|
 |1.1|4 décembre 2025| Paul Makin|Ajout de la dernière mise à jour|
 |1.0|25 novembre 2025| Paul Makin|Version initiale|

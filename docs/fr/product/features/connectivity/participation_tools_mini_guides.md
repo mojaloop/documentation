@@ -64,7 +64,7 @@ On distingue deux grandes familles d’outils de participation : d’abord Payme
 Également connu sous le nom de Payment Manager for Mojaloop (PM4ML), Payment Manager est un outil de participation Mojaloop complet qui offre toutes les fonctionnalités qu’attendrait une grande banque. Il peut être déployé dans le cloud ou dans le centre de données de la banque et prend en charge toutes les options de reprise après sinistre habituelles dans ce contexte. Il dispose aussi de capacités étendues de gestion et de reporting.
 
  <p align="center">
- 	<img src="./images/PM4ML_system_architecture.png" alt="Architecture PM4ML">
+ 	<img src="./images/PM4ML_system_architecture.svg" alt="Payment Manager Architecture">
  </p> 
 **Figure 1 : architecture de Payment Manager**
 
@@ -84,7 +84,7 @@ La famille d’outils de participation Integration Toolkit est conçue pour offr
 ### Vue d’ensemble
 
  <p align="center">
- 	<img src="./images/ITK_architecture.png" alt="Architecture ITK">
+ 	<img src="./images/ITK_architecture.svg" alt="Architecture ITK">
  </p> 
 **Figure 2 : architecture ITK**
 
