@@ -38,7 +38,7 @@ Notez que le mode de déploiement de l’ITK influe sur le type de service qu’
 
 ## Applicabilité
 
-La présente version de ce document se rapporte à Mojaloop version [17.1.0](https://github.com/mojaloop/helm/releases/tag/v17.1.0).
+La présente version de ce document se rapporte à Mojaloop version [17.2.0](https://github.com/mojaloop/helm/releases/tag/v17.1.0).
 
 ## Historique du document
   |Version|Date|Auteur|Détail|
