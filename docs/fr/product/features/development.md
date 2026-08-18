@@ -12,17 +12,18 @@ La feuille de route Mojaloop identifie et priorise ces besoins dans le temps sou
 
 Les workstreams actuellement actifs sont :
 
-- [Outils de participation](./workstreams/participation.md)
-- [Outils de participation pour les fintechs](./workstreams/fintech_participation.md)
-- [Outils de déploiement](./workstreams/deployment.md)
-- [Cadre QA](./workstreams/qa.md)
-- [Gestion des litiges](./workstreams/dispute.md)
-- [Adressage LEI](./workstreams/lei.md)
-- [Affinage ISO 20022](./workstreams/iso20022.md)
-- [Évolution Mojaloop](./workstreams/evolution.md)
-- [Performance](./workstreams/performance.md)
-- [Qualité et sécurité de plateforme](./workstreams/pqs.md)
-- [Cœur et versions](./workstreams/core.md)
+- [Outils de déploiement](./workstreams/deployment.html)
+- [Outils de participation](./workstreams/participation.html)
+- [Cadre d'assurance qualité (QA)](./workstreams/qa.html)
+- [Audit d'investigation](./workstreams/audit.html)
+- [Localisation](./workstreams/localisation.html)
+- [PISP 2.0](./workstreams/pisp2.html)
+- [Adressage LEI](./workstreams/lei.html)
+- [Affinement de la norme ISO 20022](./workstreams/iso20022.html)
+- [Évolution de Mojaloop](./workstreams/evolution.html)
+- [Performance](./workstreams/performance.html)
+- [Qualité et sécurité de la plateforme](./workstreams/pqs.html)
+- [Cœur du système et versions](./workstreams/core.html)
 
 Cliquez sur chaque lien pour les objectifs et les contributeurs.
 
@@ -30,7 +31,6 @@ Cliquez sur chaque lien pour les objectifs et les contributeurs.
 
 Outre les workstreams actifs, plusieurs sont identifiés comme « suiveurs rapprochés » : priorité élevée, mais capacité insuffisante dans la communauté pour l’instant. Il s’agit notamment de :
 
-- Mise en œuvre de PISP V2.0
 - Mise en œuvre de Settlement V3.0
 - Améliorations du portail opérateur (interface, fonctionnalités manquantes perçues)
 - Renforcement de l’audit forensic
@@ -45,5 +45,6 @@ La présente version de ce document correspond à Mojaloop [version 17.1.0](http
 ## Historique du document
   |Version|Date|Auteur|Détail|
 |:--------------:|:--------------:|:--------------:|:--------------:|
+|1.2|28th July 2026| Paul Makin|Reviewed/amended the list of candidate workstreams|
 |1.1|25 novembre 2025| Paul Makin|Relecture / mise à jour de la liste des workstreams candidats|
 |1.0|4 novembre 2025| Paul Makin|Version initiale|

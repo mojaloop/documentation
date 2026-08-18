@@ -15,17 +15,18 @@ Elle renforce aussi la crédibilité sur les paiements commerçants transfrontal
 ## Contributeurs
 |Responsable du workstream|Contributeurs|
 |:--------------:|:--------------:|
-| Clare Rowley<br>Ololade Osunsanya | Michael Richards<br>Paul Makin<br>Shuchita Prakash<br>Sam Kummary<br>James Bush<br>Xiaodi Wang |
+| Clare Rowley<br>Ololade Osunsanya | Michael Richards<br>Paul Makin<br>Sam Kummary<br>James Bush<br>Xiaodi Wang |
 
 ## Dernière mise à jour (résumé)
-La documentation est la priorité : intégration des flux LEI dans l’introduction à Mojaloop, et préparation de la collaboration avec le workstream ISO 20022 sur des exemples de messages, notamment un cas P2B avec LEI comme identifiant bénéficiaire. Les questions plus larges sur l’application des LEI aux identités DFSP sont reportées compte tenu de la complexité et des implications réglementaires.
+Le groupe de travail « LEI Addressing » a affiné son modèle d'assurance d'identité à plusieurs niveaux et s'apprête à passer du stade du développement technique à celui d'une validation plus large. La prochaine étape repose sur une collaboration avec l'équipe de mise sur le marché, via une série de séances d'examen visant à évaluer l'applicabilité opérationnelle de l'approche et à affiner le modèle avant la poursuite des travaux de mise en œuvre.
 
 ## Applicabilité
 
-La présente version de ce document correspond à Mojaloop [version 17.1.0](https://github.com/mojaloop/helm/releases/tag/v17.1.0).
+La présente version de ce document correspond à Mojaloop [version 17.2.0](https://github.com/mojaloop/helm/releases/tag/v17.1.0).
 
 ## Historique du document
   |Version|Date|Auteur|Détail|
 |:--------------:|:--------------:|:--------------:|:--------------:|
+|1.2|28th July 2026| Paul Makin|Dernière mise à jour ajoutée|
 |1.1|4 décembre 2025| Paul Makin|Ajout de la dernière mise à jour|
 |1.0|25 novembre 2025| Paul Makin|Version initiale|
