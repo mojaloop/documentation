@@ -1,7 +1,9 @@
 # Mojaloop Documentation Translation Rules & Guidelines
 
-> **Status:** Draft
+> **Status:** Release 1.0
+> 
 > **Applies to:** Everyone translating, reviewing, or merging localized content in the `mojaloop/documentation` repository.
+> 
 > **Companion documents:** Contributing guide, Contributors guide, PR guidance, AI usage policy.
 
 These guidelines establish the normative framework for the creation and lifecycle of localized content. **Part 1** details universal principles that remain binding across all locales for every contributor, reviewer, and maintainer. **Part 2** outlines the mandatory composition of locale-specific annexes, which codify regional standards for register, typography, and authoritative terminology. Onboarding a new language requires providing a guide that adheres to Part 1 without superseding or conflicting with its general rules.
