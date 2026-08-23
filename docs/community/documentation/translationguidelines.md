@@ -54,7 +54,7 @@ Each locale lives under `docs/<locale>/` and mirrors the English tree exactly:
 - Component, repository, and service names: `central-ledger`, `ml-api-adapter`, `sdk-scheme-adapter`, `account-lookup-service`
 - Product, organisation, and standards names: Mojaloop, Mojaloop Foundation, FSPIOP, ISO 20022, Kubernetes, Helm, Docker
 - Conventional Commit types (`feat:`, `fix:`, `chore:`) and Git/GitHub UI terms rendered as literals
-- Licence headers and the Apache-2.0 licence text
+- License headers and the Apache-2.0 license text
 - Slack channel names (`#general`, `#help-mojaloop`) and GitHub labels
 
 **Judgement calls:** an English technical term used as a term of art in the target language may stay in English (see the French annex, [§A.3](#a3-terms-kept-in-english)). Decide once, record it in the glossary, apply it everywhere.
