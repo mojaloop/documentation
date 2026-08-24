@@ -27,6 +27,8 @@ The various connectivity tools available to onboard a DFSP to a Mojaloop Hub are
 
 All DFSPs should be aware that reaping the benefits of an inclusive instant payments solution such as Mojaloop relies on the implementation of a "whole ecosystem" approach - and this means extending the reach of the Mojaloop service into the DFSPs' domains, giving them and their customers the advantages of assurance of transaction finality, lower cost and the reliable delivery of every valid transaction.
 
+The [Security architecture guidance for DFSP infrastructure](./dfsp-infrastructure-security.md) describes how schemes can evaluate the hardware and host environments on which DFSPs operate connectivity and signing workloads.
+
 Note that the mode of deployment of the ITK affects the type of service a DFSP can provide to their customers, as highlighted in the [Mini Guides](./connectivity/participation_tools_mini_guides.md). The most resource intense options are suitable for DFSPs with high throughout and reliability requirements, a moderate deployment option places some limits on throughput and availability and may be best suited to medium or small DFSPs, and the most frugal option places strict limits on throughput and availability and removes the ability to initiate bulk payments, and so may only be suitable for small DFSPs.
 
 ## Applicability
@@ -36,6 +38,7 @@ This version of this document relates to Mojaloop Version [17.1.0](https://githu
 ## Document History
   |Version|Date|Author|Detail|
 |:--------------:|:--------------:|:--------------:|:--------------:|
+|1.5|21st August 2026| Yevhen Kyriukha|Linked DFSP infrastructure security guidance|
 |1.4|17th December 2025| Paul Makin |Added link to the Mini Guides; clarified the text to highlight the role of the ITK|
 |1.3|6th November 2025| Paul Makin|Linked to Thitsaworks' DFSP Onboarding Playbook|
 |1.2|9th June 2025| Tony Williams|Added reference to participant feature matrix|

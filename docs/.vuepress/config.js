@@ -1171,6 +1171,28 @@ module.exports = {
             ['features/performance', 'Performance'],
             ['features/deployment', 'Deploying Mojaloop'],
             ['features/security', 'Mojaloop Security'],
+            ['features/dfsp-infrastructure-security', 'DFSP Infrastructure Security'],
+            ['features/engineering', 'Engineering Principles'],
+            ['features/invariants', 'Invariants'],
+            ['features/development', 'Continuous Development']]
+        }
+      ],
+      '/fr/product/': [
+        {
+          title: 'Mojaloop Features',
+          collapsable: false,
+          sidebarDepth: 2,
+          children: [
+            ['features/ml-feature-list', 'About Mojaloop'],
+            ['features/use-cases', 'Use Cases'],
+            ['features/transaction', 'Transactions'],
+            ['features/risk', 'Risk Management'],
+            ['features/connectivity', 'Onboarding DFSPs'],
+            ['features/product', 'Portals and Operational Features'],
+            ['features/tariffs', 'Fees and Tariffs'],
+            ['features/performance', 'Performance'],
+            ['features/deployment', 'Deploying Mojaloop'],
+            ['features/security', 'Mojaloop Security'],
             ['features/engineering', 'Engineering Principles'],
             ['features/invariants', 'Invariants'],
             ['features/development', 'Continuous Development']]
