@@ -18,7 +18,7 @@ Acceda al repositorio https://github.com/mojaloop/mock-pathfinder para descargar
 
 ## 3. ¿Debo registrar el DFSP mediante la url http://central-directory/commands/register o necesito actualizar la configuración en default.json?
 
-Debe registrarlo usando la API proporcionada, con postman o curl. El cliente está usando código de LevelOne. Es necesario implementar la versión actual de Mojaloop con los scripts actuales de Postman.
+Debería registrarlo usando la API proporcionada, con postman o curl. El cliente está usando código de LevelOne. Es necesario implementar la versión actual de Mojaloop con los scripts actuales de Postman.
 
 ## 4. ¿El estado del pod pi3-kafka-0 sigue en CrashLoopBackOff?
 
@@ -53,7 +53,7 @@ Por el momento, la implementación del Mojaloop Open Source Switch *no* almacena
 Por el momento no, pero podría hacerlo en el futuro. En cuanto a correlacionar las solicitudes relacionadas con una transferencia concreta, puede consultar el endpoint o recurso ‘transaction’ en la Especificación para obtener más información al respecto. Además, puedo comentar que hay trabajo en curso sobre la especificación para hacer esta correlación más directa y sencilla, es decir, para correlacionar las solicitudes de cotización y de transferencia que forman parte de una misma transacción.
 
 
-## 10. ¿Cómo registrar una nueva parte (party) en Mojaloop?
+## 10. ¿Cómo registrar una nueva party en Mojaloop?
 
 No existe  POST en el recurso /parties, como se indica en la sección 6.1.1 de la API Defintion. Consulte la sección: 6.2.2.3 `POST /participants/<Type>/<ID>` en la API Defintion.
 
@@ -143,7 +143,7 @@ Si utiliza la CLI, busque la columna 'Host' en `kubectl describe ingress moja-ce
 
 ## 25. ¿Por qué no se permiten las reversiones en Mojaloop?
 
-La *irrevocabilidad* es un principio fundamental de Level One (editado) y no permitir reversiones es esencial para lograrla. Este es el apartado de la API Definition que lo aborda:
+La *irrevocabilidad* es un principio fundamental de Level One (editado) y no permitir reversiones es esencial para lograrla. Este es el sección de la API Definition que lo aborda:
 
 _*6.7.1.2 Irrevocabilidad de las transacciones*_
 _La API está diseñada para soportar únicamente transacciones financieras irrevocables; esto significa que una transacción financiera no se puede modificar, cancelar ni revertir una vez creada. El objetivo es simplificar y reducir los costos para los FSP que usan la API. Un porcentaje elevado de los costos operativos de un sistema financiero típico se debe a las reversiones de transacciones._
@@ -154,7 +154,7 @@ No obstante, los *reembolsos* son un caso de uso soportado por la API.
 ## 26. ¿Error "MountVolume.SetUp failed" en la instalación de microk8s?
 
 Parecería un problema de espacio, pero se habían asignado más de 100GiB de almacenamiento EBS.
-El problema se resolvió solo al cabo de 45 minutos. La implementación inicial del proyecto mojaloop puede tardar un tiempo en estabilizarse.
+El problema se resolvió por sí solo al cabo de 45 minutos. La implementación inicial del proyecto mojaloop puede tardar un tiempo en estabilizarse.
 
 ## 27. ¿Por qué recibo este error al intentar crear un participante: "Hub reconciliation account for the specified currency does not exist"?
 

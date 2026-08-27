@@ -34,7 +34,7 @@ Los proveedores que intentan llegar a mercados en desarrollo con servicios finan
 
 ## 5. ¿Quién está detrás? 
 
-Mojaloop se construyó en colaboración con un grupo de empresas líderes en tecnología y fintech: [Ripple](https://github.com/ripple), [Dwolla](https://github.com/dwolla), [Software Group](http://www.softwaregroup-bg.com/), [ModusBox](http://www.modusbox.com/) y [Crosslake Technologies](http://www.crosslaketech.com/). Mojaloop fue creado por Mojaloop de la Fundación Gates, cuyo objetivo es nivelar el terreno económico atrayendo experiencia y recursos para construir modelos de pago inclusivos en beneficio de las personas más pobres del mundo. Es de acceso público como software de código abierto bajo la [Licencia Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0).
+Mojaloop se construyó en colaboración con un grupo de empresas líderes en tecnología y fintech: [Ripple](https://github.com/ripple), [Dwolla](https://github.com/dwolla), [Software Group](http://www.softwaregroup-bg.com/), [ModusBox](http://www.modusbox.com/) y [Crosslake Technologies](http://www.crosslaketech.com/). Mojaloop fue creado por Mojaloop de la Gates Foundation, cuyo objetivo es nivelar el terreno económico atrayendo experiencia y recursos para construir modelos de pago inclusivos en beneficio de las personas más pobres del mundo. Es de acceso público como software de código abierto bajo la [Licencia Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0).
 
 ## 6. ¿En qué plataformas funciona Mojaloop? 
 
@@ -42,7 +42,7 @@ La plataforma Mojaloop se desarrolló para entornos modernos de computación en 
 
 ## 7. ¿Es realmente de código abierto? 
 
-Sí, es realmente de código abierto. Todos los módulos centrales, la documentación y los documentos técnicos están disponibles bajo una [Licencia Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0). Mojaloop se apoya en software de código abierto de uso común, incluidos node.js, MuleCE, Java y PostgreSQL. Mojaloop también utiliza el [Protocolo Interledger](https://github.com/interledger) para coordinar transferencias de dinero seguras. Las licencias de todas estas plataformas y de sus dependencias importadas permiten muchos usos viables del software.
+Sí, es realmente de código abierto. Todos los módulos centrales, la documentación y los documentos técnicos están disponibles bajo una [Licencia Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0). Mojaloop se apoya en software de código abierto de uso común, incluidos node.js, MuleCE, Java y PostgreSQL. Mojaloop también utiliza el [Interledger Protocol](https://github.com/interledger) para coordinar transferencias de dinero seguras. Las licencias de todas estas plataformas y de sus dependencias importadas permiten muchos usos viables del software.
 
 ## 8. ¿Cómo puedo contribuir a Mojaloop?
 

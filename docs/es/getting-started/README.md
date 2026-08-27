@@ -17,7 +17,7 @@ Para ayudarle a empezar con Mojaloop, elija cuál de las siguientes opciones se 
 
     7.1. [¿Por qué Mojaloop?](./demos/why-mojaloop.md)
 
-    7.2. [Trabajar con Mojaloop](./demos/working-with-mojaloop.md)
+    7.2. [¿Trabajar con Mojaloop?](./demos/working-with-mojaloop.md)
 
     7.3. [Inclusión financiera 101 ](./demos/financial-inclusion-101.md)
 
@@ -25,4 +25,4 @@ Para ayudarle a empezar con Mojaloop, elija cuál de las siguientes opciones se 
 
     7.5. [¿Qué hace que un ecosistema financiero tenga éxito?](./demos/what-makes-a-successful-financial-ecosystem.md)
     
-    7.6. [Dentro del bucle](./demos/inside-the-loop.md)
+    7.6. [Dentro del circuito](./demos/inside-the-loop.md)
