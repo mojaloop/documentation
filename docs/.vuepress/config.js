@@ -87,10 +87,10 @@ module.exports = {
         editLinkText: 'Editar esta página en GitHub',
         lastUpdated: 'Última actualización',
         nav: [
-          { text: 'Adopción', link: '/adoption/' },
-          { text: 'Comunidad', link: '/community/' },
-          { text: 'Técnico', link: '/technical/' },
-          { text: 'Producto', link: '/product/' },
+          { text: 'Adopción', link: '/es/adoption/' },
+          { text: 'Comunidad', link: '/es/community/' },
+          { text: 'Técnico', link: '/es/technical/' },
+          { text: 'Producto', link: '/es/product/' },
           { text: 'Programa de formación', link: 'https://mojaloop.io/mojaloop-training-program/' }
         ],
       },

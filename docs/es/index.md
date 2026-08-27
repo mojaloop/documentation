@@ -20,7 +20,7 @@ tagline: Esta es la documentación oficial del proyecto Mojaloop
 
 | | | | |
 |:----:|:----:|:----:|:----:|
-|<h1> **[Adopción](/adoption/)** </h1>|<h1> **[Comunidad](/community/)** </h1>|<h1> **[Producto](/product/)** </h1>|<h1> **[Técnico](/technical/)** </h1>|
+|<h1> **[Adopción](adoption/)** </h1>|<h1> **[Comunidad](community/)** </h1>|<h1> **[Producto](product/)** </h1>|<h1> **[Técnico](technical/)** </h1>|
 | Presentar la justificación de negocio de Mojaloop | Conozca la comunidad detrás de la tecnología | Funcionalidades, requisitos y hoja de ruta del producto Mojaloop | ¡Explore los distintos componentes y despliegue Mojaloop usted mismo! |
 
 </br>
