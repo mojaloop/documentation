@@ -81,6 +81,19 @@ module.exports = {
           { text: 'Programme de formation', link: 'https://mojaloop.io/mojaloop-training-program/' }
         ],
       },
+      '/es/': {
+        selectText: 'Idiomas',
+        label: 'Español',
+        editLinkText: 'Editar esta página en GitHub',
+        lastUpdated: 'Última actualización',
+        nav: [
+          { text: 'Adopción', link: '/es/adoption/' },
+          { text: 'Comunidad', link: '/es/community/' },
+          { text: 'Técnico', link: '/es/technical/' },
+          { text: 'Producto', link: '/es/product/' },
+          { text: 'Programa de formación', link: 'https://mojaloop.io/mojaloop-training-program/' }
+        ],
+      },
     },
     nav: [
       { text: 'Adoption', link: '/adoption/' },
@@ -2278,6 +2291,11 @@ module.exports = {
       lang: 'fr-FR',
       title: 'Documentation Mojaloop',
       description: 'Documentation officielle du projet Mojaloop',
+    },
+    '/es/': {
+      lang: 'es-419',
+      title: 'Documentación de Mojaloop',
+      description: 'Documentación oficial del proyecto Mojaloop',
     },
   },
 };
