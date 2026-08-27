@@ -1,3 +1,7 @@
+---
+syncRef: c0bf10c36348cff1ff3a2afe84968a90c5f50014
+---
+
 # Preguntas frecuentes técnicas
 
 Este documento reúne algunas de las preguntas técnicas más frecuentes de la comunidad.

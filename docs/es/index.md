@@ -13,6 +13,7 @@ tagline: Esta es la documentación oficial del proyecto Mojaloop
 #   details: See inside the different components, and deploy Mojaloop for yourself!
 # - title: Product
 #   details: Mojaloop product features, requirements and roadmap
+syncRef: 1eb3801421fa135cd011462a44537e078488cd12
 ---
 
 </br>

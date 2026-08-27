@@ -1,3 +1,7 @@
+---
+syncRef: 8091be8c5ed6372790e9b0262a57cc7d81bbb125
+---
+
 # Instalar Mojaloop
 
 Mojaloop se empaqueta y publica como un conjunto de [Helm Charts](https://github.com/mojaloop/helm) con distintas opciones de despliegue y personalización.  

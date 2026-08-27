@@ -1,3 +1,7 @@
+---
+syncRef: 1eb3801421fa135cd011462a44537e078488cd12
+---
+
 # LICENCIA
 
 Copyright © 2020-2024 Mojaloop Foundation

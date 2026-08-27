@@ -1,3 +1,7 @@
+---
+syncRef: 1eb3801421fa135cd011462a44537e078488cd12
+---
+
 # Su primera acción
 
 Para ayudarle a empezar con Mojaloop, elija cuál de las siguientes opciones se ajusta mejor a sus necesidades:
