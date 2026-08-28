@@ -6,7 +6,7 @@ syncRef: c0bf10c36348cff1ff3a2afe84968a90c5f50014
 
 Este documento reúne algunas de las preguntas técnicas frecuentes de la comunidad.
 
-## 1. ¿Qué está soportado?
+## 1. ¿Qué se admite?
 
 Actualmente el equipo da soporte a los componentes del Central ledger. Los componentes de DFSP están desactualizados, por lo que el entorno de extremo a extremo y la instalación completa resultan difíciles de montar.
 
@@ -42,7 +42,7 @@ Debería poder instalarlo en distintas VM o máquinas físicas. La distribución
 
 ## 7. ¿Podemos esperar que todos los endpoints definidos en el documento de la API estén implementados en Mojaloop?
 
-La API de la Especificación de Mojaloop para transferencias y la implementación del Mojaloop Open Source Switch son flujos de trabajo independientes, aunque obviamente la implementación se basa en la Especificación. La implementación se realizará en función de los casos de uso priorizados para un periodo determinado y de los endpoints necesarios para dar soporte a esos casos de uso. Si algunos endpoints no se priorizan, es posible que su implementación no esté disponible. No obstante, creo que el objetivo es llegar a soportar todos los endpoints especificados, aunque pueda llevar tiempo. Gracias por la colección. Tenemos algunas de estas en el repositorio ‘postman’ de la organización mojaloop en GitHub.
+La API de la Especificación de Mojaloop para transferencias y la implementación del Mojaloop Open Source Switch son flujos de trabajo independientes, aunque obviamente la implementación se basa en la Especificación. La implementación se realizará en función de los casos de uso priorizados para un periodo determinado y de los endpoints necesarios para dar soporte a esos casos de uso. Si algunos endpoints no se priorizan, es posible que su implementación no esté disponible. No obstante, creo que el objetivo es llegar a admitir todos los endpoints especificados, aunque pueda llevar tiempo. Gracias por la colección. Tenemos algunas de estas en el repositorio ‘postman’ de la organización mojaloop en GitHub.
 
 ## 8. ¿Mojaloop almacena la información de cotización y estado del FSP que inicia el pago?
 
@@ -82,7 +82,7 @@ Según el README.md del repositorio oficial de kubernetes en github, el enlace m
 
 ## 14. ¿Al instalar nginx-ingress para balanceo de carga y acceso externo se obtiene "Error: no available release name found"?
 
-Consulte lo siguiente, que aborda un problema similar. En resumen, lo más probable es que sea un problema de RBAC. Consulte la documentación para configurar Tiller con RBAC. https://docs.helm.sh/using_helm/#role-based-access-control lo explica en detalle. La incidencia registrada: helm/helm#3839.
+Consulte lo siguiente, que aborda un problema similar. En resumen, lo más probable es que sea un problema de RBAC. Consulte la documentación para configurar Tiller con RBAC. https://docs.helm.sh/using_helm/#role-based-access-control lo explica en detalle. El problema registrado: helm/helm#3839.
 
 ## 15. Recibí "ImportError: librdkafka.so.1: cannot open shared object file: No such file or directory" al ejecutar el comando `npm start'.
 
@@ -116,7 +116,7 @@ La Especificación es bastante estándar y cuenta con buenos estándares de segu
 
 ## 19. ¿Cuáles son los beneficios de usar mojaloop como plataforma de interoperabilidad?
 
-Beneficios: ahora mismo, por ejemplo, un usuario de dinero móvil de Airtel solo puede transferir a otro usuario de dinero móvil de Airtel. Con esto, puede transferir a cualquier proveedor de servicios financieros, como otro proveedor de dinero móvil, o a cualquier otra cuenta bancaria o comercio conectado al Hub, con independencia de su implementación. Solo necesitan estar conectados al mismo Switch. Además, está diseñado para teléfonos básicos, de modo que todo el mundo pueda usarlo.
+Beneficios: en este momento, por ejemplo, un usuario de dinero móvil de Airtel solo puede transferir a otro usuario de dinero móvil de Airtel. Con esto, puede transferir a cualquier proveedor de servicios financieros, como otro proveedor de dinero móvil, o a cualquier otra cuenta bancaria o comercio conectado al Hub, con independencia de su implementación. Solo necesitan estar conectados al mismo Switch. Además, está diseñado para teléfonos básicos, de modo que todo el mundo pueda usarlo.
 
 ## 20. ¿Cuáles son los principales retos que enfrentan las empresas al usar mojaloop?
 
@@ -133,7 +133,7 @@ Hay un diagrama de arquitectura que ofrece una buena visión de la integración 
 
 ## 23. ¿Existe algún convertidor o conector ISO8583-OpenAPI de código abierto disponible?
 
-No creo que exista actualmente una integración genérica ISO8583 `<-> Mojaloop. Estamos trabajando en algunas integraciones de "canales de pago tradicionales" con Mojaloop (POS y cajeros automáticos) que esperamos demostrar en la próxima reunión. Estas servirían de base para una integración ISO8583 que podríamos construir y añadir a la pila de código abierto, pero tenga en cuenta que estas integraciones serán muy específicas de cada caso de uso.
+No creo que exista actualmente una integración genérica ISO8583 `<-> Mojaloop. Estamos trabajando en algunas integraciones de "canales de pago tradicionales" con Mojaloop (POS y cajeros automáticos) que esperamos demostrar en la próxima reunión. Estas servirían de base para una integración ISO8583 que podríamos construir y agregar a la pila de código abierto, pero tenga en cuenta que estas integraciones serán muy específicas de cada caso de uso.
 
 ## 24. ¿Cómo conozco los endpoints para configurar postman y probar el despliegue?
 
@@ -146,10 +146,10 @@ Si utiliza la CLI, busque la columna 'Host' en `kubectl describe ingress moja-ce
 La *irrevocabilidad* es un principio fundamental de Level One (editado) y no permitir reversiones es esencial para lograrla. Este es el sección de la API Definition que lo aborda:
 
 _*6.7.1.2 Irrevocabilidad de las transacciones*_
-_La API está diseñada para soportar únicamente transacciones financieras irrevocables; esto significa que una transacción financiera no se puede modificar, cancelar ni revertir una vez creada. El objetivo es simplificar y reducir los costos para los FSP que usan la API. Un porcentaje elevado de los costos operativos de un sistema financiero típico se debe a las reversiones de transacciones._
+_La API está diseñada para admitir únicamente transacciones financieras irrevocables; esto significa que una transacción financiera no se puede modificar, cancelar ni revertir una vez creada. El objetivo es simplificar y reducir los costos para los FSP que usan la API. Un porcentaje elevado de los costos operativos de un sistema financiero típico se debe a las reversiones de transacciones._
 _En cuanto un FSP pagador envía una transacción financiera a un FSP beneficiario (es decir, mediante POST /transfers incluyendo la transacción financiera de extremo a extremo), la transacción es irrevocable desde la perspectiva del FSP pagador. La transacción todavía podría ser rechazada por el FSP beneficiario, pero el FSP pagador ya no puede rechazarla ni modificarla. Una excepción sería que se superara el tiempo de expiración de la transferencia antes de que respondiera el FSP beneficiario (consulte las Secciones 6.7.1.3 y 6.7.1.5 para obtener más información). En cuanto el FSP beneficiario acepta la transacción financiera, esta es irrevocable para todas las partes._
 
-No obstante, los *reembolsos* son un caso de uso soportado por la API.
+No obstante, los *reembolsos* son un caso de uso admitido por la API.
 
 ## 26. ¿Error "MountVolume.SetUp failed" en la instalación de microk8s?
 

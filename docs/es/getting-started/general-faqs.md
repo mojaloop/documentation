@@ -50,7 +50,7 @@ Puede contribuir ayudándonos a crear nuevas funcionalidades de nuestra hoja de 
     
 ## 9. ¿Usar Mojaloop para realizar pagos con criptomonedas?
 
-No con la Especificación actual ni con esta plataforma. Actualmente esto se limita a las monedas listadas en la norma ISO 4217. Dado que la especificación y la plataforma tratan sobre transferencias digitales, debería ser posible investigar un caso de uso para este posible requisito. Como alternativa, supongo que un FSP puede ofrecer esa conversión (como muchos ya hacen, de cripto a una de las monedas listadas).
+No con la Especificación actual ni con esta plataforma. Actualmente esto se limita a las monedas que figuran en la ISO 4217. Dado que la especificación y la plataforma tratan sobre transferencias digitales, debería ser posible investigar un caso de uso para este posible requisito. Como alternativa, supongo que un FSP puede ofrecer esa conversión (como muchos ya hacen, de cripto a una de las monedas indicadas).
 
 ## 10. ¿Cómo se accede al código fuente de Mojaloop?
 

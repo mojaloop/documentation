@@ -9,7 +9,7 @@ Para ayudarle a empezar con Mojaloop, elija cuál de las siguientes opciones se 
 <!-- 1. [Mojaloop Overview](./demos/mojaloop-overview.md) -->
 1. [Preguntas frecuentes](./faqs)
 2. [Licencia](./license.md)
-3. [Consultar las APIs de Mojaloop](/api/)
+3. [Consultar las API de Mojaloop](/api/)
 4. [Realizar un programa de formación](https://mojaloop.io/mojaloop-training-program/)
 5. [Contribuir a Mojaloop](/community/)
 6. [Instalar Mojaloop](./installation/installing-mojaloop.md)
