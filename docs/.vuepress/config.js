@@ -2269,6 +2269,17 @@ module.exports = {
           ]
         }
       ],
+      '/es/community/': [
+        {
+          title: 'Comunidad',
+          collapsable: false,
+          sidebarDepth: 2,
+          children: [
+            ['mojaloop-roadmap', 'Hoja de ruta del producto'],
+            ['mojaloop-publications', 'Publicaciones de Mojaloop']
+          ]
+        }
+      ],
     }
   },
 
