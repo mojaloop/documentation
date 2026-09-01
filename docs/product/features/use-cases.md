@@ -29,7 +29,7 @@ In all types of merchant payment, a payment can be facilitated using merchant ID
 As well as push payments, Mojaloop supports Request To Pay (RTP) transactions, in which a payee requests a payment from a payer, and _when the payer consents_ their DFSP pushes the payment to the payee on their behalf. This supports the following use cases:
 
 - **Merchant payments**, in a face to face environment, for example using a QR code;
-    - 	The practicalities of configuring Mojaloop's Merchant Payments solution, including the content of QR codes, are explored in [**How to Configure Merchant Payments for Mojaloop**](./merchant-payments.md).
+    - 	The practicalities of configuring Mojaloop's Merchant Payments solution, including the content of QR codes, are explored in [**this guide to using the Merchant Payments overlay with Mojaloop**](./Merchant_Payments/Merchant_Payments_Overview_V1_0), which addresses merchant registration, Merchant IDs, QR codes (static and dynamic), and LEIs.
     - In all types of face to face merchant payment, a payment can be facilitated using merchant IDs (for USSD) or QR codes (smartphones).
 - **e-Commerce**, sometimes also known as remote merchant payments, when for example a checkout page (web page or mobile app) would include a "pay from my bank account" button, which would trigger an RTP. 
 
