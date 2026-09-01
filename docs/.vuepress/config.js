@@ -2278,6 +2278,16 @@ module.exports = {
             ['mojaloop-roadmap', 'Hoja de ruta del producto'],
             ['mojaloop-publications', 'Publicaciones de Mojaloop']
           ]
+        },
+        {
+          title: 'Documentación',
+          collapsable: false,
+          sidebarDepth: 2,
+          children: [
+            ['documentation/standards', 'Estándares'],
+            ['documentation/api-documentation', 'Documentación de la API'],
+            ['documentation/style-guide', 'Guía de estilo']
+          ]
         }
       ],
     }
