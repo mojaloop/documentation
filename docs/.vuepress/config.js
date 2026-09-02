@@ -2275,8 +2275,26 @@ module.exports = {
           collapsable: false,
           sidebarDepth: 2,
           children: [
+            ['contributing/contributors-guide', 'Bienvenido a la comunidad'],
             ['mojaloop-roadmap', 'Hoja de ruta del producto'],
             ['mojaloop-publications', 'Publicaciones de Mojaloop']
+          ]
+        },
+        {
+          title: 'Contribuir',
+          collapsable: false,
+          sidebarDepth: 2,
+          children: [
+            ['contributing/contributors-guide', 'Guía del contribuyente'],
+            ['contributing/product-engineering-process', 'Proceso de ingeniería de producto'],
+            ['contributing/design-review', 'Revisión técnica y de código'],
+            ['contributing/consequential-change-process', 'Proceso de cambios con consecuencias'],
+            ['contributing/critical-change-process', 'Proceso de cambios críticos'],
+            ['contributing/new-contributor-checklist', 'Lista de verificación para nuevos contribuyentes'],
+            ['contributing/pr-guidance', 'Directrices para los pull requests'],
+            ['contributing/code-of-conduct', 'Código de conducta'],
+            ['contributing/signing-the-cla', 'Firmar el CLA'],
+            ['contributing/cvd', 'Divulgación de vulnerabilidades de seguridad'],
           ]
         },
         {
