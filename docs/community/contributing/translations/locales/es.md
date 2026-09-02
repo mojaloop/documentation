@@ -306,6 +306,7 @@ exception is the compound *Interoperability Scheme*, where the qualifier replace
 | Organization | Organización | | |
 | OTP | OTP | | |
 | Over The Counter Services | Servicios en ventanilla (OTC) | | «ventanilla» evokes a bank teller; the definition is agent-assisted. To a bank audience bare OTC means extrabursátil. |
+| Overview | Descripción general | Visión general, Resumen, Panorama general | Appears 76 times in the corpus. *Resumen* is a summary, which is a different thing. One rendering repo-wide, so the section heading and the page title match. |
 | P2P | P2P | | |
 | Participant | Participante | | |
 | Participant Discretionary Net Debit Cap Margin | Margen discrecional del participante sobre el límite de débito neto | | |
