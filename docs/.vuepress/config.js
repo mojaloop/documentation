@@ -81,6 +81,21 @@ module.exports = {
           { text: 'Programme de formation', link: 'https://mojaloop.io/mojaloop-training-program/' }
         ],
       },
+      // Section links stay on the English pages, marked "(em inglês)", until
+      // each area is translated.
+      '/pt/': {
+        selectText: 'Idiomas',
+        label: 'Português',
+        editLinkText: 'Editar esta página no GitHub',
+        lastUpdated: 'Última atualização',
+        nav: [
+          { text: 'Adoção (em inglês)', link: '/adoption/' },
+          { text: 'Comunidade (em inglês)', link: '/community/' },
+          { text: 'Técnico (em inglês)', link: '/technical/' },
+          { text: 'Produto (em inglês)', link: '/product/' },
+          { text: 'Programa de formação', link: 'https://mojaloop.io/mojaloop-training-program/' }
+        ],
+      },
     },
     nav: [
       { text: 'Adoption', link: '/adoption/' },
@@ -2256,6 +2271,11 @@ module.exports = {
           ]
         }
       ],
+      // Populated per area, in the same PR as the pages they list.
+      '/pt/adoption/': [],
+      '/pt/community/': [],
+      '/pt/product/': [],
+      '/pt/technical/': [],
     }
   },
 
@@ -2278,6 +2298,11 @@ module.exports = {
       lang: 'fr-FR',
       title: 'Documentation Mojaloop',
       description: 'Documentation officielle du projet Mojaloop',
+    },
+    '/pt/': {
+      lang: 'pt-PT',
+      title: 'Documentação Mojaloop',
+      description: 'Documentação oficial do projeto Mojaloop',
     },
   },
 };
