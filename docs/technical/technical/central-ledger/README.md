@@ -25,7 +25,7 @@ The central ledger is a series of services that facilitate clearing and settleme
 
 ### Note
 
-The tables *Grey* colored tables are specific to the transfer process. The *Blue* and *Green* color tables are used for reference purposes during the Transfer process.
+The grey-colored tables are specific to the transfer process. The blue- and green-colored tables are used for reference purposes during the transfer process.
 
 Summary of the tables specific to the transfer process;
 
@@ -35,9 +35,9 @@ Summary of the tables specific to the transfer process;
 - `transferErrorDuplicateCheck` - used to identify duplication error transfer processes;
 - `transferExtensions` - stores information on the transfer extension data;
 - `transferFulfilment` - stores data for transfers that have completed the prepare transfer process;
-- `transferFulfilmentDuplicateCheck` - used the identify duplicate transfer fulfil requests;
+- `transferFulfilmentDuplicateCheck` - used to identify duplicate transfer fulfilment requests;
 - `transferParticipant` - participant information related to the transfer process;
-- `transferStateChange` - use to track state changes of each individual transfer, creating and audit trail for a specific transfer request;
+- `transferStateChange` - used to track state changes of each individual transfer, creating an audit trail for a specific transfer request;
 - `transferTimeout` - stores information of transfers that encountered a timeout exception during the process;
 - `ilpPacket` - stores the ilp package for the transfer;
 

@@ -1,11 +1,11 @@
 # SDK Support for Bulk Transfers - API
-The Payer SDK Scheme Adapter enhancements have been added to the API under the \BulkTransactions endpoint. 
+The Payer SDK Scheme Adapter enhancements have been added to the API under the /BulkTransactions endpoint. 
 - **POST** /bulkTransactions 
 - **PUT** /bulkTransactions 
 - **PUT** /bulkTransactions callback
 
-The Outbound Open API definition can be found [here](https://github.com/mojaloop/api-snippets/blob/master/sdk-scheme-adapter/v2_0_0/outbound/openapi.yaml).
-The Inbound Open API definition can be found [here](https://github.com/mojaloop/api-snippets/blob/master/sdk-scheme-adapter/v2_0_0/inbound/openapi.yaml).
+The Outbound OpenAPI definition can be found [here](https://github.com/mojaloop/api-snippets/blob/master/sdk-scheme-adapter/v2_0_0/outbound/openapi.yaml).
+The Inbound OpenAPI definition can be found [here](https://github.com/mojaloop/api-snippets/blob/master/sdk-scheme-adapter/v2_0_0/inbound/openapi.yaml).
 
 
 ## Technical Sequence Diagram

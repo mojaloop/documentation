@@ -26,7 +26,7 @@ All of the Pillars have their own workstreams. For PI 23, the following technica
 * Support for On Premise Deployment
     * Improve support for non-Cloud deployment of Mojaloop, where this is required due to regulatory or other reasons
 * Participation Tools
-    * Ensure there is a range of options for Participating DFSPs to connect to a Mojaloop Hub, and that these options off comparable connectivity capabilities
+    * Ensure there is a range of options for Participating DFSPs to connect to a Mojaloop Hub, and that these options offer comparable connectivity capabilities
 
 ## Achieve Scale
 * Merchant Payments
@@ -43,7 +43,7 @@ All of the Pillars have their own workstreams. For PI 23, the following technica
 * Performance Characterisation
     * Identify and implement changes to the Mojaloop Hub core software that can improve performance, as we move towards a number of national deployments.
 * Adopt Tigerbeetle
-    * Use Tigerbeetle for ledger updates during transaction processing to achieve even greater performance (we don’t expect his to be in place before the release of Mojaloop Baobab)
+    * Use Tigerbeetle for ledger updates during transaction processing to achieve even greater performance (we don’t expect this to be in place before the release of Mojaloop Baobab)
 * Core Team
     * Maintains the Mojaloop core through fixes to critical bugs, prioritized feature enhancements and upgrades in dependencies, and undertakes the Release process of the core services and some adjacent services or products that are part of the Mojaloop Platform.
 * Platform Quality and Security

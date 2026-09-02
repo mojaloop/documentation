@@ -1,0 +1,100 @@
+@startuml PayerDFSPBulkDoubleIntegrationApiPattern
+/'*****
+--------------
+******'/
+
+skinparam activityFontSize 4
+skinparam activityDiamondFontSize 30
+skinparam activityArrowFontSize 22
+skinparam defaultFontSize 22
+skinparam noteFontSize 22
+skinparam monochrome true
+' declare title
+' title PayerDFSPBulkDoubleIntegrationApi
+' declare actors
+participant "Core banking solution" as CBS
+box "Payment Manager\nPayer DFSP" #LightGrey
+participant "Core\nConnector" as CC 
+participant "Mojaloop\nConnector" as MC 
+end box
+participant "Mojaloop\nSwitch" as Switch
+autonumber 1 1 "<b>[0]"
+
+== Payer DFSP integration - 2 phase commit - with user confirmation ==
+
+CBS->CC: **POST** /bulkTransactions\n(AUTO_ACCEPT_PARTY = true, AUTO_ACCEPT_QUOTES = **false**, synchronous = false)
+Loop n times  (in parallel)
+    hnote left of CC
+        For each individual transfer
+        in bulk message
+    end hnote
+    CC -> CC: validate MSISDN & Prefix
+end Loop
+CC->MC: **POST** /bulkTransactions\n(AUTO_ACCEPT_PARTY = true, AUTO_ACCEPT_QUOTES = **false**, synchronous = false)
+activate MC
+loop N times & within bulkExpiration timelimit  (in parallel)
+hnote left of MC
+        For each transfer
+        in bulk message
+end hnote
+  activate MC
+  MC->Switch: **GET** /parties/{Type}/{ID}/{SubId}
+  Switch-->MC: HTTP 202 response
+  Switch->Switch: Determine Payee DFSP using oracle
+  Switch->Switch: Lookup Payee Information from Payee DFSP\n using **GET** /parties
+  Switch->MC: **PUT** /parties/{Type}/{ID}/{SubId}
+  MC-->Switch: HTTP 200 Response
+end Loop
+
+rnote left MC
+  Accept Party
+endrnote
+
+loop Quote Processing (M times & within bulkExpiration timelimit in parallel)
+  hnote left of MC
+          For each payee DFSP
+          in bulk message
+  end hnote
+  MC->MC: Check bulkExpiration
+  MC->MC: Create bulkTransactionId
+  MC -> MC: Calculate bulk expiry \nbased on both expirySeconds config and \nbulkExpiration
+  MC->Switch: **POST** /bulkquotes
+  Switch-->MC: HTTP 202 response
+  Switch->Switch: Pass on quote to Payee DFSP\n using **POST** /bulkquotes
+  Switch->MC: **PUT** /bulkquotes/{Id}
+  MC-->Switch: HTTP 200 Response
+end loop
+  MC->CC: **PUT** /bulkTransactions/{Id}
+
+  deactivate MC
+  CC->CBS: **PUT** /bulkTransactions/{Id}
+
+
+CBS->CBS: Obtain concent from Payer on Fees and Payee Info
+CBS->CBS: Reserve funds
+CBS->CC: **PUT** /bulkTransactions/{bulkhometransferId}
+CC->MC: **PUT** /bulkTransactions/{bulktransactionId}
+
+loop Transfer Processing (M times & within bulkExpiration timelimit  in parallel)
+  hnote left of MC
+        For each payee DFSP
+        in bulk message
+  end hnote
+
+  activate MC
+  MC->Switch: **POST** /bulktransfers
+  Switch-->MC: HTTP 202 response
+  Switch->Switch: Reserve Payer DFSP funds
+  Switch->Switch: Pass on transfer to Payee DFSP\n using **POST** /bulktransfers
+  Switch->Switch: Commit Payer DFSP funds
+  Switch->MC: **PUT** /bulktransfers/{Id}
+  MC-->Switch: HTTP 200 Response
+end loop  
+
+MC->CC: **PUT** /bulkTransactions/{Id}
+
+deactivate MC
+CC->CBS: **PUT** /bulkTransactions/{Id}
+CBS->CBS: Commit funds
+
+@enduml

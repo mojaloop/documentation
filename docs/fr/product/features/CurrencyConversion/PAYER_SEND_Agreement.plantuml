@@ -1,0 +1,182 @@
+@startuml PAYER_SEND_Agreement
+
+!$simplified = true
+!$hideSwitchDetail = false
+!$advancedCoreConnectorFlow = true
+!$senderName = "John"
+!$senderLastName = ""
+!$senderDOB = "1966-06-16"
+!$receiverName = "Yaro"
+!$receiverFirstName = "Yaro"
+!$receiverMiddleName = ""
+!$receiverLastName = ""
+!$receiverDOB = "1966-06-16"
+!$payerCurrency = "BWP"
+!$payeeCurrency = "TZS"
+!$payerFSPID = "PayerFSP"
+!$payeeFSPID = "PayeeFSP"
+!$fxpID = "FDH_FX"
+!$payerMSISDN = "26787654321"
+!$payeeMSISDN = "2551234567890"
+!$payeeReceiveAmount = "44000"
+!$payerSendAmount = "300"
+!$payeeFee = "4000"
+!$targetAmount = "48000"
+!$fxpChargesSource = "33"
+!$fxpChargesTarget = "6000"
+!$fxpSourceAmount = "300"
+!$fxpTargetAmount = "48000"
+!$totalChargesSourceCurrency = "55"
+!$totalChargesTargetCurrency = "10000"
+!$conversionRequestId = "828cc75f1654415e8fcddf76cc"
+!$conversionId = "581f68efb54f416f9161ac34e8"
+!$homeTransactionId = "string"
+!$quoteId = "382987a875ce4037b500c475e0"
+!$transactionId = "d9ce59d4359843968630581bb0"
+!$quotePayerExpiration = "2021-08-25T14:17:09.663+01:00"
+!$quotePayeeExpiration = "2021-08-25T14:17:09.663+01:00"
+!$commitRequestId = "77c9d78dc26a44748b3c99b96a"
+!$determiningTransferId = "d9ce59d4359843968630581bb0"
+!$transferId = "d9ce59d4359843968630581bb0"
+!$fxCondition = "GRzLaTP7DJ9t4P-a_B..."
+!$condition = "HOr22-H3AfTDHrSkP..."
+
+
+title Le DFSP payeur demande un devis au DFSP bénéficiaire
+'actor "$senderName" as A1
+box "DFSP payeur" #LightBlue  
+  participant "DFSP payeur" as D1
+end box
+
+participant "Commutateur Mojaloop" as S1
+
+'box "Service de découverte" #LightYellow
+'  participant "Oracle ALS" as ALS
+'end box
+
+'box "Fournisseur de change"  
+'  participant "Connecteur\nFXP" as FXP
+'end box
+
+box "DFSP bénéficiaire" #LightBlue   
+  participant "Connecteur Mojaloop\nbénéficiaire" as D2
+end box
+
+'actor "$receiverName" as A2
+autonumber
+
+
+D1->>S1:Veuillez coter un transfert qui envoie $fxpTargetAmount $payeeCurrency.\n**POST /quotes**
+deactivate D1
+!if ($simplified != true)
+note left
+POST /quotes
+
+    {
+        "quoteId": "$quoteId",
+        "transactionId": "$transactionId",
+        "payee": {
+            "partyIdInfo": {
+                "partyIdType": "MSISDN",
+                "partyIdentifier": "$payeeMSISDN",
+                "fspId": "$payeeFSPID"
+            },
+            "name": "$receiverName",
+            "personalInfo": {
+                "complexName": {
+                "firstName": "$receiverFirstName",
+                "middleName": "$receiverMiddleName",
+                "lastName": "$receiverLastName"
+                },
+                "dateOfBirth": "$receiverDOB",
+                "kycInformation": "<Données KYC chiffrées>"
+            },
+            "supportedCurrencies": [ "$payeeCurrency" ]
+        },
+        "payer": {
+            "partyIdInfo": {
+                "partyIdType": "MSISDN",
+                "partyIdentifier": "$payerMSISDN",
+                "fspId": "$payerFSPID"
+            },
+            "name": "$senderName",
+            "personalInfo": {
+                "complexName": {
+                "firstName": "$senderFirstName",
+                "middleName": "$senderMiddleName",
+                "lastName": "$senderLastName"
+                },
+                "dateOfBirth": "$senderDOB"
+            }
+        },
+        "amountType": "SEND",
+        "amount": {
+            "currency": "$payeeCurrency",
+            "amount": "$fxpTargetAmount"
+        },
+        "converter": "PAYER",
+        "expiration": "$quotePayerExpiration"
+    }
+end note
+!endif
+activate S1
+!if ($simplified != true)
+S1-->>D1:202 — Je vous recontacte
+!endif
+
+S1->>D2:**POST /quotes**
+deactivate S1
+activate D2
+!if ($simplified != true)
+D2-->>S1:202 — Je vous recontacte
+!endif
+
+D2->D2:OK, je facturerai $payeeFee $payeeCurrency pour cela.\nJe crée maintenant les conditions du transfert
+!if ($simplified != true)
+note right of D2
+{
+    "quoteId": "$quoteId",
+    "transactionId": "$transactionId",
+    "payeeFspFeeAmount": "$payeeFee",
+    "payeeFspFeeAmountCurrency": "$payeeCurrency",
+    "payeeReceiveAmount": "$payeeReceiveAmount",
+    "payeeReceiveAmountCurrency": "$payeeCurrency",
+    "transferAmount": "$targetAmount",
+    "transferAmountCurrency": "$payeeCurrency"
+    "expiration": "$quotePayerExpiration"
+}
+end note
+!endif
+D2->D2:Je signe maintenant l'objet de transaction
+D2->>S1:Voici le devis signé
+note right
+    **put /quotes/$quoteId**
+    {
+        "transferAmount": {
+            "currency": "$payeeCurrency",
+            "amount": "$targetAmount"},
+        "payeeReceiveAmount": {
+            "currency": "$payeeCurrency",
+            "amount": "$payeeReceiveAmount"},
+        "payeeFspFee": {
+            "currency": "$payeeCurrency",
+            "amount": "$payeeFee"},
+        "expiration": "$payeeQuoteExpiration",
+        "ilpPacket": "<Objet de transaction encodé>",
+        "condition": "$condition"
+    }
+end note
+deactivate D2
+activate S1
+!if ($simplified != true)
+S1-->>D2:200 — OK
+!endif
+S1->>D1:Voici le devis signé\n**PUT /quotes/$quoteId**
+deactivate S1
+activate D1
+!if ($simplified != true)
+D1-->>S1:200 — OK
+!endif
+D1->D1:OK, je vois qu'il y aura $payeeFee $payeeCurrency de frais.
+
+@enduml

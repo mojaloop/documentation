@@ -1,0 +1,227 @@
+/'*****
+ License
+ --------------
+ Copyright © 2017 Bill & Melinda Gates Foundation
+ The Mojaloop files are made available by the Bill & Melinda Gates Foundation under the Apache License, Version 2.0 (the "License") and you may not use these files except in compliance with the License. You may obtain a copy of the License at
+ http://www.apache.org/licenses/LICENSE-2.0
+ Unless required by applicable law or agreed to in writing, the Mojaloop files are distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+ Contributors
+ --------------
+ This is the official list of the Mojaloop project contributors for this file.
+ Names of the original copyright holders (individuals or organizations)
+ should be listed with a '*' in the first column. People who have
+ contributed from an organization can be listed under the organization
+ that actually holds the copyright for their contributions (see the
+ Gates Foundation organization for an example). Those individuals should have
+ their names indented and be marked with a '-'. Email address can be added
+ optionally within square brackets <email>.
+ * Gates Foundation
+ - Name Surname <name.surname@gatesfoundation.com>
+
+ * ModusBox
+ - Georgi Georgiev <georgi.georgiev@modusbox.com>
+ - Rajiv Mothilal <rajiv.mothilal@modusbox.com>
+ --------------
+ ******'/
+
+@startuml
+' declare title
+title 2.3.2. Gestionnaire de temporisation
+
+autonumber
+
+' Actor Keys:
+'   boundary - APIs/Interfaces, etc
+'   collections - Kafka Topics
+'   control - Kafka Consumers
+'   entity - Database Access Objects
+'   database - Database Persistance Store
+
+' declare actors
+control "Gestionnaire de temporisation du transfert" as TIMEOUT_HANDLER
+collections "topic-\ntransfer-timeout" as TOPIC_TRANSFER_TIMEOUT
+collections "topic-\ntransfer-position" as TOPIC_TRANSFER_POSITION
+collections "topic-\nnotification" as NOTIFICATIONS_TOPIC
+collections "topic-event" as EVENT_TOPIC
+entity "Timeout DAO" as TIMEOUT_DAO
+database "Stockage central" as DB
+
+box "Service central" #lightyellow
+    participant TOPIC_TRANSFER_TIMEOUT
+    participant TIMEOUT_HANDLER
+    participant TOPIC_TRANSFER_POSITION
+    participant NOTIFICATIONS_TOPIC
+    participant EVENT_TOPIC
+    participant TIMEOUT_DAO
+    participant DB
+end box
+
+' start flow
+
+group Consommation du gestionnaire de temporisation
+    activate TIMEOUT_HANDLER
+    TOPIC_TRANSFER_TIMEOUT <- TIMEOUT_HANDLER: Consommer le message
+    activate TOPIC_TRANSFER_TIMEOUT
+    deactivate TOPIC_TRANSFER_TIMEOUT
+
+    group Persister les informations d'événement
+        TIMEOUT_HANDLER -> EVENT_TOPIC: Publier les informations d'événement
+        ref over TIMEOUT_HANDLER, EVENT_TOPIC:  Consommation du gestionnaire d'événements\n
+    end
+    
+    group Obtenir les infos du transfert
+        TIMEOUT_HANDLER -> TIMEOUT_DAO: Acquérir les informations du transfert\n<color #red><b>Code d'erreur :</b> 2003</color>
+        activate TIMEOUT_DAO
+        TIMEOUT_DAO -> DB: Obtenir les données et l'état du transfert
+        activate DB
+        hnote over DB #lightyellow
+            transfer
+            transferParticipant
+            participantCurrency
+            participant
+            transferStateChange
+        end note
+        TIMEOUT_DAO <-- DB: Renvoyer **transferInfo**
+        deactivate DB
+        TIMEOUT_HANDLER <-- TIMEOUT_DAO: Renvoyer **transferInfo**
+        deactivate TIMEOUT_DAO
+    end
+
+    alt transferInfo.transferStateId == 'RECEIVED_PREPARE'
+        TIMEOUT_HANDLER -> TIMEOUT_DAO: Définir l'état EXPIRED_PREPARED\n<color #red><b>Code d'erreur :</b> 2003</color>
+        activate TIMEOUT_DAO
+        TIMEOUT_DAO -> DB: Insérer le changement d'état
+        activate DB
+        deactivate DB
+        hnote over DB #lightyellow
+            transferStateChange
+        end note
+        TIMEOUT_HANDLER <-- TIMEOUT_DAO: Renvoyer le succès
+        deactivate TIMEOUT_DAO
+
+        note right of TIMEOUT_HANDLER #yellow
+            Message :
+            {
+                id: <transferId>,
+                from: <payerParticipantId>,
+                to: <payeeParticipantId>,
+                type: application/json,
+                content: {
+                    <color #red>headers:</color> {
+                        Content-Length: <Content-Length>,
+                        Content-Type: <Content-Type>,
+                        Date: <Date>,
+                        X-Forwarded-For: <X-Forwarded-For>,
+                        FSPIOP-Source: <FSPIOP-Source>,
+                        FSPIOP-Destination: <FSPIOP-Destination>,
+                        FSPIOP-Encryption: <FSPIOP-Encryption>,
+                        FSPIOP-Signature: <FSPIOP-Signature>,
+                        FSPIOP-URI: <FSPIOP-URI>,
+                        FSPIOP-HTTP-Method: <FSPIOP-HTTP-Method>
+                    },
+                    payload: {
+                            "errorInformation": {
+                                "errorCode": 3303,
+                                "errorDescription": "Transfert expiré",
+                                "extensionList": <transferMessage.extensionList>
+                            }
+                    }
+                },
+                metadata: {
+                    event: {
+                        id: <uuid>,
+                        type: notification,
+                        action: timeout-received,
+                        createdAt: <timestamp>,
+                        state: {
+                            status: 'error',
+                            code: <errorInformation.errorCode>
+                            description: <errorInformation.errorDescription>
+                        }
+                    }
+                }
+            }
+        end note
+        TIMEOUT_HANDLER -> NOTIFICATIONS_TOPIC: Publier l'événement de notification
+        activate NOTIFICATIONS_TOPIC
+        deactivate NOTIFICATIONS_TOPIC
+    else transferInfo.transferStateId == 'RESERVED'
+        TIMEOUT_HANDLER -> TIMEOUT_DAO: Définir l'état RESERVED_TIMEOUT\n<color #red><b>Code d'erreur :</b> 2003</color>
+        activate TIMEOUT_DAO
+        TIMEOUT_DAO -> DB: Insérer le changement d'état
+        activate DB
+        deactivate DB
+        hnote over DB #lightyellow
+            transferStateChange
+        end note
+        TIMEOUT_HANDLER <-- TIMEOUT_DAO: Renvoyer le succès
+        deactivate TIMEOUT_DAO
+        
+        note right of TIMEOUT_HANDLER #yellow
+            Message :
+            {
+                id: <transferId>,
+                from: <payerParticipantId>,
+                to: <payeeParticipantId>,
+                type: application/json,
+                content: {
+                    <color #red>headers:</color> {
+                        Content-Length: <Content-Length>,
+                        Content-Type: <Content-Type>,
+                        Date: <Date>,
+                        X-Forwarded-For: <X-Forwarded-For>,
+                        FSPIOP-Source: <FSPIOP-Source>,
+                        FSPIOP-Destination: <FSPIOP-Destination>,
+                        FSPIOP-Encryption: <FSPIOP-Encryption>,
+                        FSPIOP-Signature: <FSPIOP-Signature>,
+                        FSPIOP-URI: <FSPIOP-URI>,
+                        FSPIOP-HTTP-Method: <FSPIOP-HTTP-Method>
+                    },
+                    payload: {
+                        "errorInformation": {
+                            "errorCode": 3303,
+                            "errorDescription": "Transfert expiré",
+                            "extensionList": <transferMessage.extensionList>
+                        }
+                    }
+                },
+                metadata: {
+                    event: {
+                        id: <uuid>,
+                        type: position,
+                        action: timeout-reserved,
+                        createdAt: <timestamp>,
+                        state: {
+                            status: 'error',
+                            code: <errorInformation.errorCode>
+                            description: <errorInformation.errorDescription>
+                        }
+                    }
+                }
+            }
+        end note
+        TIMEOUT_HANDLER -> TOPIC_TRANSFER_POSITION: Acheminer et publier l'événement de position\n<color #red><b>Code d'erreur :</b> 2003</color>
+        activate TOPIC_TRANSFER_POSITION
+        deactivate TOPIC_TRANSFER_POSITION
+    else
+        note right of TIMEOUT_HANDLER #lightgrey
+            Tout autre état est ignoré
+        end note
+    end
+
+    group Nettoyage
+        TIMEOUT_HANDLER -> TIMEOUT_DAO: Nettoyer le transfert expirant traité\n<color #red><b>Code d'erreur :</b> 2003</color>
+        activate TIMEOUT_DAO
+        TIMEOUT_DAO -> DB: Supprimer l'enregistrement
+        activate DB
+        deactivate DB
+        hnote over DB #lightyellow
+            expiringTransfer
+        end note
+        TIMEOUT_HANDLER <-- TIMEOUT_DAO: Renvoyer le succès
+        deactivate TIMEOUT_DAO
+    end
+
+    deactivate TIMEOUT_HANDLER
+end
+@enduml

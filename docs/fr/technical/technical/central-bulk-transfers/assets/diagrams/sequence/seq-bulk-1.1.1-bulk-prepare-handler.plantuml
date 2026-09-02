@@ -1,0 +1,320 @@
+/'*****
+ License
+ --------------
+ Copyright © 2017 Bill & Melinda Gates Foundation
+ The Mojaloop files are made available by the Bill & Melinda Gates Foundation under the Apache License, Version 2.0 (the "License") and you may not use these files except in compliance with the License. You may obtain a copy of the License at
+ http://www.apache.org/licenses/LICENSE-2.0
+ Unless required by applicable law or agreed to in writing, the Mojaloop files are distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+ Contributors
+ --------------
+ This is the official list of the Mojaloop project contributors for this file.
+ Names of the original copyright holders (individuals or organizations)
+ should be listed with a '*' in the first column. People who have
+ contributed from an organization can be listed under the organization
+ that actually holds the copyright for their contributions (see the
+ Gates Foundation organization for an example). Those individuals should have
+ their names indented and be marked with a '-'. Email address can be added
+ optionally within square brackets <email>.
+ * Gates Foundation
+ - Name Surname <name.surname@gatesfoundation.com>
+
+ * Samuel Kummary <sam@modusbox.com>
+ --------------
+ ******'/
+
+@startuml
+' declare title
+title 1.1.1. Bulk Prepare Handler Consume
+
+autonumber
+
+' Actor Keys:
+'   boundary - APIs/Interfaces, etc
+'   collections - Kafka Topics
+'   control - Kafka Consumers
+'   entity - Database Access Objects
+'   database - Database Persistance Store
+
+' declare actors
+collections "topic-\nbulk-prepare" as TOPIC_BULK_PREPARE
+collections "mojaloop-\nobject-store\n(**MLOS**)" as OBJECT_STORE
+control "Bulk Prepare \nHandler" as BULK_PREP_HANDLER
+collections "topic-\ntransfer-prepare" as TOPIC_TRANSFER_PREPARE
+collections "topic-event" as TOPIC_EVENTS
+collections "topic-\nnotification" as TOPIC_NOTIFICATIONS
+collections "topic-bulk-\nprocessing" as TOPIC_BULK_PROCESSING
+entity "Bulk DAO" as BULK_DAO
+entity "Participant DAO" as PARTICIPANT_DAO
+database "Central Store" as DB
+
+box "Central Service" #LightYellow
+    participant OBJECT_STORE
+    participant TOPIC_BULK_PREPARE
+    participant BULK_PREP_HANDLER
+    participant TOPIC_TRANSFER_PREPARE
+    participant TOPIC_EVENTS
+    participant TOPIC_NOTIFICATIONS
+    participant TOPIC_BULK_PROCESSING
+    participant BULK_DAO
+    participant PARTICIPANT_DAO
+    participant DB
+end box
+
+' start flow
+activate BULK_PREP_HANDLER
+group Bulk Prepare Handler Consume
+    TOPIC_BULK_PREPARE <- BULK_PREP_HANDLER: Consume Bulk Prepare message
+    activate TOPIC_BULK_PREPARE
+    deactivate TOPIC_BULK_PREPARE
+    group Validate Bulk Prepare Transfer 
+        group Duplicate Check
+            note right of BULK_PREP_HANDLER #cyan
+                The Specification doesn't touch on the duplicate handling
+                of bulk transfers, so the current design mostly follows the
+                strategy used for individual transfers, except in two places:
+
+                1. For duplicate requests where hash matches, the current design
+                includes only the status of the bulk & timestamp (if completed),
+                but not the individual transfers (for which a GET should be used).
+
+                2. For duplicate requests where hash matches, but are not in a
+                finalized state, only the state of the bulkTransfer is sent.
+            end note
+            |||
+            BULK_PREP_HANDLER -> DB: Request Duplicate Check
+            ref over BULK_PREP_HANDLER, DB:  Request Duplicate Check (using message.content.payload)\n
+            DB --> BULK_PREP_HANDLER: Return { hasDuplicateId: Boolean, hasDuplicateHash: Boolean }
+        end
+
+        alt hasDuplicateId == TRUE && hasDuplicateHash == TRUE
+            break Return TRUE & Log ('Not implemented')
+            end
+        else hasDuplicateId == TRUE && hasDuplicateHash == FALSE
+            note right of BULK_PREP_HANDLER #yellow
+                {
+                    id: <messageId>,
+                    from: <ledgerName>,
+                    to: <payerFspName>,
+                    type: "application/json",
+                    content: {
+                        headers: <bulkTransferHeaders>,
+                        payload: {
+                            errorInformation: {
+                                errorCode: "3106",
+                                errorDescription: "Modified request",
+                                extensionList: {
+                                    extension: [
+                                        {
+                                            key: "_cause",
+                                            value: <FSPIOPError>
+                                        }
+                                    ]
+                                }
+                            },
+                            uriParams: {
+                                id: <bulkTransferId>
+                            }
+                        }
+                    },
+                    metadata: {
+                        correlationId: <uuid>,
+                        event: {
+                            id: <uuid>,
+                            type: "notification",
+                            action: "bulk-prepare",
+                            createdAt: <timestamp>,
+                            state: {
+                                status: "error",
+                                code: "3106",
+                                description: "Modified request"
+                            },
+                            responseTo: <uuid>
+                        }
+                    }
+                }
+            end note
+            BULK_PREP_HANDLER -> TOPIC_NOTIFICATIONS: Publish Notification (failure) event for Payer\n<color #FF0000><b>Error codes:</b> 3106</color>
+            activate TOPIC_NOTIFICATIONS
+            deactivate TOPIC_NOTIFICATIONS
+        else hasDuplicateId == FALSE
+            group Validate Bulk Transfer Prepare Request
+                BULK_PREP_HANDLER <-> BULK_PREP_HANDLER: FSPIOP Source matches Payer
+                BULK_PREP_HANDLER <-> BULK_PREP_HANDLER: Check expiration
+                BULK_PREP_HANDLER <-> BULK_PREP_HANDLER: Payer and Payee FSP's are different
+                group Validate Payer
+                    BULK_PREP_HANDLER -> PARTICIPANT_DAO: Request to retrieve Payer Participant details (if it exists)
+                    activate PARTICIPANT_DAO
+                    PARTICIPANT_DAO -> DB: Request Participant details
+                    hnote over DB #lightyellow
+                        participant
+                        participantCurrency
+                    end note
+                    activate DB
+                    PARTICIPANT_DAO <-- DB: Return Participant details if it exists
+                    deactivate DB
+                    PARTICIPANT_DAO --> BULK_PREP_HANDLER: Return Participant details if it exists
+                    deactivate PARTICIPANT_DAO
+                    BULK_PREP_HANDLER <-> BULK_PREP_HANDLER: Validate Payer\n<color #FF0000><b>Error codes:</b> 3202</color>
+                end
+                group Validate Payee
+                    BULK_PREP_HANDLER -> PARTICIPANT_DAO: Request to retrieve Payee Participant details (if it exists)
+                    activate PARTICIPANT_DAO
+                    PARTICIPANT_DAO -> DB: Request Participant details
+                    hnote over DB #lightyellow
+                        participant
+                        participantCurrency
+                    end note
+                    activate DB
+                    PARTICIPANT_DAO <-- DB: Return Participant details if it exists
+                    deactivate DB
+                    PARTICIPANT_DAO --> BULK_PREP_HANDLER: Return Participant details if it exists
+                    deactivate PARTICIPANT_DAO
+                    BULK_PREP_HANDLER <-> BULK_PREP_HANDLER: Validate Payee\n<color #FF0000><b>Error codes:</b> 3203</color>
+                end
+            end
+            |||
+            alt Validate Bulk Transfer Prepare Request  (success)
+                group Persist Bulk Transfer State (with bulkTransferState='RECEIVED')
+                    BULK_PREP_HANDLER -> BULK_DAO: Request to persist bulk transfer\n<color #FF0000><b>Error codes:</b> 2003</color>
+                    activate BULK_DAO
+                    BULK_DAO -> DB: Persist bulkTransfer
+                    hnote over DB #lightyellow
+                        bulkTransfer
+                        bulkTransferExtension
+                        bulkTransferStateChange
+                    end note
+                    activate DB
+                    deactivate DB
+                    BULK_DAO --> BULK_PREP_HANDLER: Return state
+                    deactivate BULK_DAO
+                end
+            else Validate Bulk Transfer Prepare Request (failure)
+                group Persist Bulk Transfer State (with bulkTransferState='INVALID') (Introducing a new status INVALID to mark these entries)
+                    BULK_PREP_HANDLER -> BULK_DAO: Request to persist bulk transfer\n(when Payee/Payer/crypto-condition validation fails)\n<color #FF0000><b>Error codes:</b> 2003</color>
+                    activate BULK_DAO
+                    BULK_DAO -> DB: Persist transfer
+                    hnote over DB #lightyellow
+                        bulkTransfer
+                        bulkTransferExtension
+                        bulkTransferStateChange
+                        bulkTransferError
+                    end note
+                    activate DB
+                    deactivate DB
+                    BULK_DAO --> BULK_PREP_HANDLER: Return state
+                    deactivate BULK_DAO
+                end
+            end
+        end
+    end
+    alt Validate Bulk Prepare Transfer (success)
+        loop for each individual transfer in the bulk
+            BULK_PREP_HANDLER -> OBJECT_STORE: Retrieve individual transfers from the bulk using\nreference: **MLOS.individualTransfers.messageId**
+            activate OBJECT_STORE
+            note right of OBJECT_STORE #lightgrey
+                Add elements such as Expiry time, Payer FSP, Payee FSP, etc. to each
+                transfer to make their format similar to a single transfer
+            end note
+            OBJECT_STORE --> BULK_PREP_HANDLER: Stream bulk's individual transfers
+            deactivate OBJECT_STORE
+
+            group Insert Bulk Transfer Association (with bulkProcessingState='RECEIVED')
+                BULK_PREP_HANDLER -> BULK_DAO: Request to persist bulk transfer association\n<color #FF0000><b>Error codes:</b> 2003</color>
+                activate BULK_DAO
+                BULK_DAO -> DB: Insert bulkTransferAssociation
+                hnote over DB #lightyellow
+                    bulkTransferAssociation
+                    bulkTransferStateChange
+                end note
+                activate DB
+                deactivate DB
+                BULK_DAO --> BULK_PREP_HANDLER: Return state
+                deactivate BULK_DAO
+            end
+
+            note right of BULK_PREP_HANDLER #yellow
+                Message:
+                {
+                    id: <messageId>
+                    from: <payerFspName>,
+                    to: <payeeFspName>,
+                    type: application/json
+                    content: {
+                        headers: <transferHeaders>,
+                        payload: <transferMessage>
+                    },
+                    metadata: {
+                        event: {
+                            id: <uuid>,
+                            responseTo: <previous.uuid>,
+                            type: "prepare",
+                            action: "bulk-prepare",
+                            createdAt: <timestamp>,
+                            state: {
+                                status: "success",
+                                code: 0,
+                                description:"action successful"
+                            }
+                        }
+                    }
+                }
+            end note
+            BULK_PREP_HANDLER -> TOPIC_TRANSFER_PREPARE: Route & Publish Prepare event to the Payee for the Individual Transfer\n<color #FF0000><b>Error codes:</b> 2003</color>
+            activate TOPIC_TRANSFER_PREPARE
+            deactivate TOPIC_TRANSFER_PREPARE
+        end
+    else Validate Bulk Prepare Transfer (failure)
+        note right of BULK_PREP_HANDLER #yellow
+            Message:
+            {
+                id: <messageId>
+                from: <ledgerName>,
+                to: <bulkTransferMessage.payerFsp>,
+                type: "application/json",
+                content: {
+                    headers: <bulkTransferHeaders>,
+                    payload: {
+                        "errorInformation": {
+                            "errorCode": <possible codes: [2003, 3100, 3105, 3106, 3202, 3203, 3300, 3301]>
+                            "errorDescription": "<refer to section 7.6 for description>",
+                            "extensionList": <transferMessage.extensionList>
+                    }
+                },
+                metadata: {
+                    event: {
+                        id: <uuid>,
+                        responseTo: <previous.uuid>,
+                        type: "bulk-processing",
+                        action: "bulk-abort",
+                        createdAt: <timestamp>,
+                        state: {
+                            status: "error",
+                            code: <errorInformation.errorCode>
+                            description: <errorInformation.errorDescription>
+                        }
+                    }
+                }
+            }
+        end note
+        BULK_PREP_HANDLER -> TOPIC_BULK_PROCESSING: Publish Processing (failure) event for Payer\n<color #FF0000><b>Error codes:</b> 2003</color>
+        activate TOPIC_BULK_PROCESSING
+        deactivate TOPIC_BULK_PROCESSING
+        group Insert Bulk Transfer Association (with bulkProcessingState='INVALID')
+            BULK_PREP_HANDLER -> BULK_DAO: Request to persist bulk transfer association\n<color #FF0000><b>Error codes:</b> 2003</color>
+            activate BULK_DAO
+            BULK_DAO -> DB: Insert bulkTransferAssociation
+            hnote over DB #lightyellow
+                bulkTransferAssociation
+                bulkTransferStateChange
+            end note
+            activate DB
+            deactivate DB
+            BULK_DAO --> BULK_PREP_HANDLER: Return state
+            deactivate BULK_DAO
+        end
+
+    end
+end
+deactivate BULK_PREP_HANDLER
+@enduml
+

@@ -1,0 +1,164 @@
+/'*****
+ License
+ --------------
+ Copyright © 2017 Bill & Melinda Gates Foundation
+ The Mojaloop files are made available by the Bill & Melinda Gates Foundation under the Apache License, Version 2.0 (the "License") and you may not use these files except in compliance with the License. You may obtain a copy of the License at
+ http://www.apache.org/licenses/LICENSE-2.0
+ Unless required by applicable law or agreed to in writing, the Mojaloop files are distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+ Contributors
+ --------------
+ This is the official list of the Mojaloop project contributors for this file.
+ Names of the original copyright holders (individuals or organizations)
+ should be listed with a '*' in the first column. People who have
+ contributed from an organization can be listed under the organization
+ that actually holds the copyright for their contributions (see the
+ Gates Foundation organization for an example). Those individuals should have
+ their names indented and be marked with a '-'. Email address can be added
+ optionally within square brackets <email>.
+ * Gates Foundation
+ - Name Surname <name.surname@gatesfoundation.com>
+
+ * Shashikant Hirugade <shashikant.hirugade@modusbox.com>
+ * Samuel Kummary <sam@modusbox.com>
+ --------------
+ ******'/
+
+@startuml
+' declate title
+title 4.1.0 Détails de position d'un participant
+
+autonumber
+
+' Actor Keys:
+'   boundary - APIs/Interfaces, etc
+'   collections - Kafka Topics
+'   control - Kafka Consumers
+'   entity - Database Access Objects
+'   database - Database Persistance Store
+
+' declare actors
+entity "Opérateur HUB" as OPERATOR
+boundary "API du service central" as CSAPI
+control "Gestionnaire des participants" as PARTICIPANT_HANDLER
+entity "API du service central" as CSAPI
+entity "DAO participant" as PARTICIPANT_DAO
+entity "Façade de position" as POSITION_DAO
+database "Stockage central" as DB
+box "Opérateur HUB" #LightBlue
+participant OPERATOR
+end box
+
+box "Service central" #LightYellow
+participant CSAPI
+participant PARTICIPANT_HANDLER
+participant PARTICIPANT_DAO
+participant POSITION_DAO
+participant DB
+end box
+
+' start flow
+
+activate OPERATOR
+group Obtenir les détails de position
+    OPERATOR -> CSAPI: Demande d'obtenir les positions — GET — /participants/{name}/positions?currency={currencyId}
+    activate CSAPI
+    CSAPI -> PARTICIPANT_HANDLER: Récupérer les positions du participant
+    activate PARTICIPANT_HANDLER
+    PARTICIPANT_HANDLER ->PARTICIPANT_DAO: Récupérer le participant \n<color #FF0000><b>Code d'erreur :</b> 2003,3201 </color>
+
+    activate PARTICIPANT_DAO
+    PARTICIPANT_DAO ->DB: Récupérer le participant
+    activate DB
+    hnote over DB #lightyellow
+        participant
+    end note
+    DB --> PARTICIPANT_DAO: Participant récupéré
+    deactivate DB
+    PARTICIPANT_DAO -->PARTICIPANT_HANDLER: Renvoyer le participant
+    deactivate PARTICIPANT_DAO
+    PARTICIPANT_HANDLER ->PARTICIPANT_HANDLER: Valider le DFSP \n<color #FF0000><b>Code d'erreur :</b> 3201</color>
+    alt Valider le participant (succès)
+        PARTICIPANT_HANDLER ->PARTICIPANT_HANDLER: Paramètre currency fourni ?
+
+        alt Paramètre currency fourni
+
+            PARTICIPANT_HANDLER ->POSITION_DAO: Récupérer la position du participant pour un identifiant de devise\n<color #FF0000><b>Code d'erreur :</b> 2003 </color>
+            activate POSITION_DAO
+            POSITION_DAO ->DB: Récupérer la position du participant pour un identifiant de devise
+            activate DB
+            hnote over DB #lightyellow
+                participantCurrency
+                participantPosition
+            end note
+            DB --> POSITION_DAO: Position du participant récupérée pour un identifiant de devise
+            deactivate DB
+            POSITION_DAO -->PARTICIPANT_HANDLER: Renvoyer les positions du participant
+            deactivate POSITION_DAO
+            note right of PARTICIPANT_HANDLER #yellow
+                Message :
+                {
+                    {
+                        currency: <currencyId>,
+                        value: <positionValue>,
+                        updatedTime: <timeStamp1>
+                    }
+                }
+            end note
+            PARTICIPANT_HANDLER -->CSAPI: Renvoyer la position du participant pour un identifiant de devise
+            CSAPI -->OPERATOR: Renvoyer la position du participant pour un identifiant de devise
+        else Paramètre currency non fourni
+            PARTICIPANT_HANDLER ->POSITION_DAO: Récupérer les positions du participant pour toutes les devises\n<color #FF0000><b>Code d'erreur :</b> 2003 </color>
+            activate POSITION_DAO
+            POSITION_DAO ->DB: Récupérer les positions du participant pour toutes les devises
+            activate DB
+            hnote over DB #lightyellow
+                participantCurrency
+                participantPosition
+            end note
+            DB --> POSITION_DAO: Positions du participant récupérées pour toutes les devises
+            deactivate DB
+            POSITION_DAO -->PARTICIPANT_HANDLER: Renvoyer les positions du participant pour toutes les devises
+            deactivate POSITION_DAO
+            note right of PARTICIPANT_HANDLER #yellow
+                Message :
+                {
+                    [
+                        {
+                            currency: <currencyId1>,
+                            value: <positionValue1>,
+                            updatedTime: <timeStamp1>
+                        },
+                        {
+                            currency: <currencyId2>,
+                            value: <positionValue2>,
+                            updatedTime: <timeStamp2>
+                        }
+                    ]
+                }
+            end note
+            PARTICIPANT_HANDLER -->CSAPI: Renvoyer les positions du participant pour toutes les devises
+            CSAPI -->OPERATOR: Renvoyer les positions du participant pour toutes les devises
+        end
+    else Valider le participant (échec)
+        note right of PARTICIPANT_HANDLER #red: Échec de validation !
+        activate PARTICIPANT_HANDLER
+        note right of PARTICIPANT_HANDLER #yellow
+            Message :
+            {
+                "errorInformation": {
+                "errorCode": 3201,
+                "errorDescription": "Identifiant FSP introuvable",
+                }
+            }
+        end note
+        PARTICIPANT_HANDLER -->CSAPI: Renvoyer <color #FF0000><b>Code d'erreur :</b> 3201</color>
+        deactivate PARTICIPANT_HANDLER
+        CSAPI -->OPERATOR: Renvoyer <color #FF0000><b>Code d'erreur :</b> 3201</color>
+    end
+
+end
+
+deactivate CSAPI
+deactivate OPERATOR
+
+@enduml

@@ -1,0 +1,164 @@
+/'*****
+ License
+ --------------
+ Copyright © 2020 Mojaloop Foundation
+ The Mojaloop files are made available by the Mojaloop Foundation under the Apache License, Version 2.0
+ (the "License") and you may not use these files except in compliance with the [License](http://www.apache.org/licenses/LICENSE-2.0). 
+ You may obtain a copy of the License at [http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)
+ Unless required by applicable law or agreed to in writing, the Mojaloop files are distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the [License](http://www.apache.org/licenses/LICENSE-2.0).
+ 
+ Contributors
+ --------------
+ This is the official list of the Mojaloop project contributors for this file.
+ Names of the original copyright holders (individuals or organizations)
+ should be listed with a '*' in the first column. People who have
+ contributed from an organization can be listed under the organization
+ that actually holds the copyright for their contributions (see the
+ Gates Foundation organization for an example). Those individuals should have
+ their names indented and be marked with a '-'. Email address can be added
+ optionally within square brackets <email>.
+ * Gates Foundation
+ - Name Surname <name.surname@gatesfoundation.com>
+
+ * Steven Oderayi <steven.oderayi@infitx.com>
+ --------------
+******'/
+
+@startuml fx-conversion-abort-request
+
+title 2.2.0.a. FXP1 envoie un appel PUT sur le l'endpoint /error pour une demande de conversion FX
+
+autonumber
+
+actor "DFSP1\nPayeur" as DFSP1
+control "FXP1\nFXP" as FXP1
+boundary "Adaptateur ML API" as MLAPI
+control "Gestionnaire d’événements de notification ML API" as NOTIFY_HANDLER
+boundary "API du service central" as CSAPI
+collections "transfer-fulfil-topic" as TOPIC_FULFIL
+control "Gestionnaire d’événements Fulfil" as FULF_HANDLER
+collections "topic-transfer-position" as TOPIC_TRANSFER_POSITION
+control "Gestionnaire d’événements Position" as POS_HANDLER
+collections "Notification-Topic" as TOPIC_NOTIFICATIONS
+
+box "Fournisseurs de services financiers" #lightGray
+	participant DFSP1
+	participant FXP1
+end box
+
+box "Service adaptateur ML API" #LightBlue
+	participant MLAPI
+	participant NOTIFY_HANDLER
+end box
+
+box "Service central" #LightYellow
+    participant CSAPI
+	participant TOPIC_FULFIL
+    participant FULF_HANDLER
+    participant TOPIC_TRANSFER_POSITION
+    participant POS_HANDLER
+    participant TOPIC_NOTIFICATIONS
+end box
+
+activate NOTIFY_HANDLER
+activate FULF_HANDLER
+activate POS_HANDLER
+group FXP1 signale une erreur pour la demande de conversion FX
+    FXP1 <-> FXP1: Lors du traitement d’une requête entrante\nPOST /fxTransfers, une erreur de\ntraitement s’est produite et un rappel d’erreur (Error callback) est effectué
+    note right of FXP1 #yellow
+        En-têtes - transferHeaders: {
+            Content-Length: <Content-Length>,
+            Content-Type: <Content-Type>,
+            Date: <Date>,
+            X-Forwarded-For: <X-Forwarded-For>,
+            FSPIOP-Source: <FSPIOP-Source>,
+            FSPIOP-Destination: <FSPIOP-Destination>,
+            FSPIOP-Encryption: <FSPIOP-Encryption>,
+            FSPIOP-Signature: <FSPIOP-Signature>,
+            FSPIOP-URI: <FSPIOP-URI>,
+            FSPIOP-HTTP-Method: <FSPIOP-HTTP-Method>
+        }
+
+        Charge utile - errorMessage:
+        {
+            errorInformation
+            {
+                "errorCode": <errorCode>,
+                "errorDescription": <errorDescription>
+                "extensionList": {
+                    "extension": [
+                        {
+                            "key": <string>,
+                            "value": <string>
+                        }
+                    ]
+                }
+            }
+        }
+    end note
+    FXP1 ->> MLAPI: PUT - /fxTransfers/<ID>/error
+    activate MLAPI
+    MLAPI -> MLAPI: Validation de schéma
+    alt Échec de la validation de schéma
+        MLAPI -> FXP1: Réponse HTTP - 400 (Bad Request)
+    end
+    MLAPI -> MLAPI: Valider le message entrant (p. ex. le code d’erreur est valide)\n<color #FF0000>**Codes d’erreur :** 3100</color>
+    note right of MLAPI #yellow
+        Message :
+        {
+            id: <ID>,
+            from: <transferHeaders.FSPIOP-Source>,
+            to: <transferHeaders.FSPIOP-Destination>,
+            type: application/json,
+            content: {
+                headers: <transferHeaders>,
+                payload: <errorMessage>
+            },
+            metadata: {
+                event: {
+                    id: <uuid>,
+                    type: fulfil,
+                    action: fx_abort,
+                    createdAt: <timestamp>,
+                    state: {
+                        status: "success",
+                        code: 0
+                    }
+                }
+            }
+        }
+    end note
+    MLAPI -> TOPIC_FULFIL: Router et publier l’événement Abort/Reject pour le FXP\n<color #FF0000><b>Code d’erreur :</b> 2001</color>
+    activate TOPIC_FULFIL
+    TOPIC_FULFIL <-> TOPIC_FULFIL: Vérifier que l’événement est répliqué selon la configuration (ACKS=all)\n<color #FF0000><b>Code d’erreur :</b> 2001</color>
+    TOPIC_FULFIL --> MLAPI: Répondre que les accusés de réplication ont été reçus
+    deactivate TOPIC_FULFIL
+    MLAPI -->> FXP1: Réponse HTTP - 200 (OK)
+    deactivate MLAPI
+    TOPIC_FULFIL <- FULF_HANDLER: Consommer le message
+    ref over TOPIC_FULFIL, TOPIC_TRANSFER_POSITION: Consommation du gestionnaire Fulfil (Reject/Abort)\n
+    FULF_HANDLER -> TOPIC_TRANSFER_POSITION: Produire un message
+    |||
+    TOPIC_TRANSFER_POSITION <- POS_HANDLER: Consommer le message
+    ref over TOPIC_TRANSFER_POSITION, TOPIC_NOTIFICATIONS: Consommation du gestionnaire Position (Abort)\n
+    POS_HANDLER -> TOPIC_NOTIFICATIONS: Produire un message
+    |||
+    TOPIC_NOTIFICATIONS <- NOTIFY_HANDLER: Consommer le message
+    opt action == 'fx_abort'
+        |||
+        ref over DFSP1, TOPIC_NOTIFICATIONS: Envoi de notification au participant (payeur)\n
+        NOTIFY_HANDLER -> DFSP1: Envoyer la notification de rappel (callback)
+    end
+    |||
+    TOPIC_NOTIFICATIONS <- NOTIFY_HANDLER: Consommer le message
+    opt action == 'fx_abort'
+        |||
+        ref over FXP1, TOPIC_NOTIFICATIONS: Envoi de notification au participant (FXP)\n
+        NOTIFY_HANDLER -> FXP1: Envoyer la notification de rappel (callback)
+    end
+    |||
+end
+deactivate POS_HANDLER
+deactivate FULF_HANDLER
+deactivate NOTIFY_HANDLER
+@enduml

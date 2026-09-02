@@ -145,6 +145,15 @@ jobs:
           environment:
             TERRAFORM_VERSION: 1.11.4
       - run:
+          name: Clear stale state lock (if present)
+          command: |
+            cd ./infra/src
+            terraform init \
+              -backend-config="bucket=docs.mojaloop.io-state" \
+              -backend-config="region=eu-west-2" \
+              -backend-config="dynamodb_table=docs.mojaloop.io-lock"
+            terraform force-unlock -force 7232e661-3027-02c3-49da-f8cd72eefc89 || true
+      - run:
           name: Update infrastructure
           command: |
             cd ./infra/src

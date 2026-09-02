@@ -1,0 +1,309 @@
+/'*****
+ License
+ --------------
+ Copyright © 2020 Mojaloop Foundation
+ The Mojaloop files are made available by the Mojaloop Foundation under the Apache License, Version 2.0
+ (the "License") and you may not use these files except in compliance with the [License](http://www.apache.org/licenses/LICENSE-2.0). 
+ You may obtain a copy of the License at [http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)
+ Unless required by applicable law or agreed to in writing, the Mojaloop files are distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the [License](http://www.apache.org/licenses/LICENSE-2.0).
+ 
+ Contributors
+ --------------
+ This is the official list of the Mojaloop project contributors for this file.
+ Names of the original copyright holders (individuals or organizations)
+ should be listed with a '*' in the first column. People who have
+ contributed from an organization can be listed under the organization
+ that actually holds the copyright for their contributions (see the
+ Gates Foundation organization for an example). Those individuals should have
+ their names indented and be marked with a '-'. Email address can be added
+ optionally within square brackets <email>.
+ * Gates Foundation
+ - Name Surname <name.surname@gatesfoundation.com>
+
+ * Steven Oderayi <steven.oderayi@infitx.com>
+ --------------
+ ******'/
+
+@startuml position-handler-consume
+title 1.1.2.a. Consommation du gestionnaire Position (message unique)
+
+autonumber
+
+collections "topic-transfer-position" as TOPIC_TRANSFER_POSITION
+control "Gestionnaire d’événements Position" as POS_HANDLER
+entity "DAO Position" as POS_DAO
+entity "DAO Règlement" as SETTLEMENT_DAO
+collections "Notification-Topic" as TOPIC_NOTIFICATIONS
+entity "DAO Participant" as PARTICIPANT_DAO
+database "Stockage central" as DB
+
+box "Service central" #LightYellow
+    participant TOPIC_TRANSFER_POSITION
+    participant POS_HANDLER
+    participant TOPIC_NOTIFICATIONS
+    participant POS_DAO
+    participant PARTICIPANT_DAO
+    participant SETTLEMENT_DAO
+    participant DB
+end box
+
+activate POS_HANDLER
+group Consommation du gestionnaire Position
+    note left of POS_HANDLER #lightgrey
+        L’événement est automatiquement répliqué
+        vers le topic des événements (topic-events)
+    end note
+    TOPIC_TRANSFER_POSITION <- POS_HANDLER: Consommer le message d’événement Position pour le payeur
+    activate TOPIC_TRANSFER_POSITION
+    deactivate TOPIC_TRANSFER_POSITION
+
+    break
+        group Valider l’événement
+            POS_HANDLER <-> POS_HANDLER: Valider l’événement - Règle : type == 'position' && action == 'fx_prepare'
+            POS_HANDLER -> POS_HANDLER: Valider que 'payload.commitRequestId' ou 'message.value.content.uriParams.id' n’est pas vide\n<color #red>**Code d’erreur :** 2003</color>
+        end
+    end
+
+    alt Calculer et valider la position la plus récente (succès)
+        group Calculer la position et persister le changement
+            POS_HANDLER -> SETTLEMENT_DAO: Demander les modèles de règlement actifs
+            activate SETTLEMENT_DAO
+            SETTLEMENT_DAO -> DB: Récupérer les modèles de règlement actifs
+            activate DB
+            hnote over DB #lightyellow
+                settlementModel
+            end note
+            DB --> SETTLEMENT_DAO: Retour des modèles de règlement actifs
+            deactivate DB
+            SETTLEMENT_DAO --> POS_HANDLER: Retour des modèles de règlement actifs
+            deactivate SETTLEMENT_DAO
+            POS_HANDLER -> POS_HANDLER: Sélectionner la devise correspondante ou le modèle de règlement par défaut pour le type de compte grand livre POSITION\n<color #red>**Code d’erreur :** 6000</color>
+            
+            POS_HANDLER -> PARTICIPANT_DAO: Demander le compte de position du participant payeur par nom et devise
+            activate PARTICIPANT_DAO
+            PARTICIPANT_DAO -> DB: Récupérer le compte de position du participant payeur par nom et devise
+            activate DB
+            hnote over DB #lightyellow
+                participant
+                participantCurrency
+            end note
+            DB --> PARTICIPANT_DAO: Retour du compte de position du participant payeur par nom et devise
+            deactivate DB
+            PARTICIPANT_DAO --> POS_HANDLER: Retour du compte de position du participant payeur par nom et devise
+            deactivate PARTICIPANT_DAO
+
+            POS_HANDLER -> DB: Récupérer l’état du transfert en base via 'commitRequestId'
+            activate DB
+            hnote over DB #lightyellow
+                fxTransferStateChange
+            end note
+            DB --> POS_HANDLER: Récupérer l’état du transfert en base
+            deactivate DB
+            DB --> POS_HANDLER: Retour de l’état du transfert
+            
+            POS_HANDLER -> PARTICIPANT_DAO: Demander les plafonds de position pour le participant payeur
+            activate PARTICIPANT_DAO
+            PARTICIPANT_DAO -> DB: Demander les plafonds de position pour le participant payeur
+            activate DB
+            hnote over DB #lightyellow
+                participant
+                participantLimit
+            end note
+            DB --> PARTICIPANT_DAO: Retour des plafonds de position
+            deactivate DB
+            deactivate DB
+            PARTICIPANT_DAO --> POS_HANDLER: Retour des plafonds de position
+            deactivate PARTICIPANT_DAO
+
+            alt Valider l’état du transfert (transferState='RECEIVED_PREPARE')
+                POS_HANDLER <-> POS_HANDLER: Mettre à jour l’état du transfert vers RESERVED
+                POS_HANDLER <-> POS_HANDLER: Calculer la position la plus récente pour la préparation
+                POS_HANDLER <-> POS_HANDLER: Valider la position la plus récente calculée (lpos) par rapport au plafond de débit net (netcap) - Règle : lpos < netcap
+                
+                POS_HANDLER -> POS_DAO: Demander la position du participant payeur pour la devise du transfert et la devise de règlement
+                activate POS_DAO
+                POS_DAO -> DB: Récupérer la position du participant payeur pour la devise du transfert et la devise de règlement
+                hnote over DB #lightyellow
+                    participantPosiiton
+                end note
+                activate DB
+                deactivate DB
+                POS_DAO --> POS_HANDLER: Retour de la position du participant payeur pour la devise du transfert et la devise de règlement
+                deactivate POS_DAO
+
+                POS_HANDLER <-> POS_HANDLER: Mettre à jour la position du participant (augmenter la position réservée du montant du transfert)
+                POS_HANDLER -> DB: Persister la position du participant payeur en base
+                activate DB
+                hnote over DB #lightyellow
+                    participantPosition
+                end note 
+                DB -> POS_HANDLER: Retour succès
+                deactivate DB
+
+                POS_HANDLER -> PARTICIPANT_DAO: Demander la limite du participant payeur par devise
+                activate PARTICIPANT_DAO
+                PARTICIPANT_DAO -> DB: Récupérer la limite du participant payeur par devise
+                activate DB
+                hnote over DB #lightyellow
+                    participant
+                    participantCurrency
+                    participantLimit
+                end note
+                DB --> PARTICIPANT_DAO: Retour de la limite du participant payeur par devise
+                deactivate DB
+                PARTICIPANT_DAO --> POS_HANDLER: Retour de la limite du participant payeur par devise
+                deactivate PARTICIPANT_DAO
+
+                POS_HANDLER <-> POS_HANDLER: Calculer la position disponible la plus récente selon la limite et la couverture de liquidité du payeur
+
+                alt Valider les plafonds de position (succès)
+                    POS_HANDLER <-> POS_HANDLER: Mettre à jour l’état du transfert vers RESERVED
+                    POS_HANDLER -> DB: Mettre à jour la position du participant
+                    activate DB
+                    hnote over DB #lightyellow
+                        participantPosition
+                    end note
+                    deactivate DB
+
+                    POS_HANDLER -> DB: Persister le changement d’état du transfert (RESERVED) en base
+                    activate DB
+                    hnote over DB #lightyellow
+                        fxTransferStateChange
+                    end note
+                    deactivate DB
+
+                    POS_HANDLER -> DB: Insérer l’enregistrement de changement de position du participant
+                    activate DB
+                    hnote over DB #lightyellow
+                        participantPositionChange
+                    end note
+                    deactivate DB
+                else Valider les plafonds de position (échec)
+                    POS_HANDLER -> DB: Persister le changement d’état du transfert (ABORTED_REJECTED) en base, <color #red>**Codes d’erreur :** 4001, 4200</color>
+                    activate DB
+                    hnote over DB #lightyellow
+                        fxTransferStateChange
+                    end note
+                    deactivate DB
+                end
+            else transferState !='RECEIVED_PREPARE'
+                POS_HANDLER <-> POS_HANDLER: Mettre à jour l’état du transfert vers ABORTED_REJECTED
+                POS_HANDLER -> DB: Persister l’état de transfert abandonné
+                activate DB
+                hnote over DB #lightyellow
+                    fxTransferStateChange
+                end note
+                deactivate DB
+            end
+
+            alt L’état du transfert est RESERVED
+                note right of POS_HANDLER #yellow
+                    Message :
+                    {
+                        id: <transferMessage.commitRequestId>
+                        from: <transferMessage.initiatingFsp>,
+                        to: <transferMessage.counterPartyFsp>,
+                        type: application/json
+                        content: {
+                            headers: <transferHeaders>,
+                            payload: <transferMessage>
+                        },
+                        metadata: {
+                            event: {
+                                id: <uuid>,
+                                responseTo: <previous.uuid>,
+                                type: transfer,
+                                action: prepare,
+                                createdAt: <timestamp>,
+                                state: {
+                                    status: "success",
+                                    code: 0
+                                }
+                            }
+                        }
+                    }
+                end note
+                POS_HANDLER -> TOPIC_NOTIFICATIONS: Publier l’événement de notification vers le FXP
+                activate TOPIC_NOTIFICATIONS
+                deactivate TOPIC_NOTIFICATIONS 
+            else
+                note right of POS_HANDLER #yellow
+                    Message :
+                    {
+                        id: <transferMessage.commitRequestId>
+                        from: <switch>,
+                        to: <transferMessage.initiatingFsp>,
+                        type: application/json
+                        content: {
+                            headers: <transferHeaders>,
+                            payload: {
+                                "errorInformation": {
+                                    "errorCode": <code d’erreur>,
+                                    "errorDescription": "<description de l’erreur>",
+                                    "extensionList": <transferMessage.extensionList>
+                                }
+                            }
+                        },
+                        metadata: {
+                            event: {
+                                id: <uuid>,
+                                responseTo: <previous.uuid>,
+                                type: notification,
+                                action: prepare,
+                                createdAt: <timestamp>,
+                                state: {
+                                    status: 'error',
+                                    code: <errorInformation.errorCode>
+                                    description: <errorInformation.errorDescription>
+                                }
+                            }
+                        }
+                    }
+                end note
+                POS_HANDLER -> TOPIC_NOTIFICATIONS: Publier l’événement de notification (échec) pour le payeur. <color #red>**Code d’erreur :** 2001</color>
+                activate TOPIC_NOTIFICATIONS
+                deactivate TOPIC_NOTIFICATIONS
+            end
+            
+        end
+    else Calculer et valider la position la plus récente (échec) 
+        note right of POS_HANDLER #yellow
+            Message :
+            {
+                id: <transferMessage.transferId>
+                from: <ledgerName>,
+                to: <transferMessage.payerFsp>,
+                type: application/json
+                content: {
+                    headers: <transferHeaders>,
+                    payload: {
+                        "errorInformation": {
+                            "errorCode": <code d’erreur>,
+                            "errorDescription": "<description de l’erreur>",
+                            "extensionList": <transferMessage.extensionList>
+                    }
+                },
+                metadata: {
+                    event: {
+                        id: <uuid>,
+                        responseTo: <previous.uuid>,
+                        type: notification,
+                        action: prepare,
+                        createdAt: <timestamp>,
+                        state: {
+                            status: 'error',
+                            code: <errorInformation.errorCode>
+                            description: <errorInformation.errorDescription>
+                        }
+                    }
+                }
+            }
+        end note
+        POS_HANDLER -> TOPIC_NOTIFICATIONS: Publier l’événement de notification (échec) pour le payeur <color #red>**Codes d’erreur :** 4001, 4200</color>
+        activate TOPIC_NOTIFICATIONS
+        deactivate TOPIC_NOTIFICATIONS
+        deactivate POS_HANDLER
+    end
+end
+deactivate POS_HANDLER
+@enduml

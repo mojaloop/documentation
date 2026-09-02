@@ -1,0 +1,169 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="1337px" preserveAspectRatio="none" style="width:864px;height:1337px;background:#FFFFFF;" version="1.1" viewBox="0 0 864 1337" width="864px" zoomAndPan="magnify">
+  <title>Service des demandes de transaction — Consultation</title>
+  <defs/>
+  <g>
+    <text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="420.5195" x="220.6204" y="27.9951">Service des demandes de transaction — Consultation</text>
+    <rect fill="none" height="1011.5313" style="stroke:#000000;stroke-width:1.5;" width="836.4312" x="9" y="257.5547"/>
+    <rect fill="none" height="694.5313" style="stroke:#000000;stroke-width:1.5;" width="804.4312" x="31" y="459.3516"/>
+    <rect fill="none" height="311.1328" style="stroke:#000000;stroke-width:1.5;" width="784.4312" x="41" y="634.1484"/>
+    <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="125" x2="125" y1="89.8906" y2="1286.0859"/>
+    <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="409.9639" x2="409.9639" y1="89.8906" y2="1286.0859"/>
+    <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="733.3335" x2="733.3335" y1="89.8906" y2="1286.0859"/>
+    <rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="92.8252" x="79" y="58.5938"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="78.8252" x="86" y="78.5889">FSP payeur</text>
+    <rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="92.8252" x="79" y="1285.0859"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="78.8252" x="86" y="1305.0811">FSP payeur</text>
+    <rect fill="#E2E2F0" height="46.5938" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="214.1563" x="302.9639" y="42.2969"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="97.2891" x="361.3975" y="62.292">Commutateur</text>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="200.1563" x="309.9639" y="78.5889">transaction-requests-service</text>
+    <rect fill="#E2E2F0" height="46.5938" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="214.1563" x="302.9639" y="1285.0859"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="97.2891" x="361.3975" y="1305.0811">Commutateur</text>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="200.1563" x="309.9639" y="1321.3779">transaction-requests-service</text>
+    <rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="126.0615" x="670.3335" y="58.5938"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="112.0615" x="677.3335" y="78.5889">FSP bénéficiaire</text>
+    <rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="126.0615" x="670.3335" y="1285.0859"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="112.0615" x="677.3335" y="1305.0811">FSP bénéficiaire</text>
+    <path d="M284,104.8906 L284,144.8906 L857,144.8906 L857,114.8906 L847,104.8906 L284,104.8906 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M847,104.8906 L847,114.8906 L857,114.8906 L847,104.8906 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="552.7603" x="290" y="121.9575">Le FSP bénéficiaire demande le statut d&apos;une demande de transaction au FSP payeur.</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="431.6914" x="290" y="137.0903">L&apos;ID est celui d&apos;une demande de transaction créée précédemment</text>
+    <polygon fill="#181818" points="421.042,167.2891,411.042,171.2891,421.042,171.2891" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="410.042" x2="732.3643" y1="171.2891" y2="171.2891"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="427.042" y="166.2231">1</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="203.106" x="440.0874" y="166.2231">GET /transactionRequests/{ID}</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="410.042" x2="452.042" y1="200.4219" y2="200.4219"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="452.042" x2="452.042" y1="200.4219" y2="213.4219"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="411.042" x2="452.042" y1="213.4219" y2="213.4219"/>
+    <polygon fill="#181818" points="421.042,209.4219,411.042,213.4219,421.042,217.4219,417.042,213.4219" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="417.042" y="195.356">2</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="252.916" x="430.0874" y="195.356">Valider GET /transactionRequests/{ID}</text>
+    <polygon fill="#181818" points="721.3643,242.5547,731.3643,242.5547,721.3643,246.5547" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="410.042" x2="732.3643" y1="242.5547" y2="242.5547"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="417.042" y="237.4888">3</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="89.7305" x="430.0874" y="237.4888">202 Accepted</text>
+    <path d="M9,257.5547 L73.4429,257.5547 L73.4429,264.6875 L63.4429,274.6875 L9,274.6875 L9,257.5547 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="1011.5313" style="stroke:#000000;stroke-width:1.5;" width="836.4312" x="9" y="257.5547"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="19.4429" x="24" y="270.6216">alt</text>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="238.3906" x="88.4429" y="269.7651">[la requête de consultation est valide]</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="410.042" x2="452.042" y1="295.8203" y2="295.8203"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="452.042" x2="452.042" y1="295.8203" y2="308.8203"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="411.042" x2="452.042" y1="308.8203" y2="308.8203"/>
+    <polygon fill="#181818" points="421.042,304.8203,411.042,308.8203,421.042,312.8203,417.042,308.8203" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="417.042" y="290.7544">4</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="256.3691" x="430.0874" y="290.7544">Récupérer les endpoints du FSP payeur</text>
+    <path d="M19,321.8203 L19,346.8203 L515,346.8203 L515,331.8203 L505,321.8203 L19,321.8203 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M505,321.8203 L505,331.8203 L515,331.8203 L505,321.8203 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="475.998" x="25" y="338.8872">Le commutateur transmet GET /transactionRequests/{ID} au FSP payeur</text>
+    <polygon fill="#181818" points="136.4126,369.0859,126.4126,373.0859,136.4126,373.0859" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="125.4126" x2="409.042" y1="373.0859" y2="373.0859"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="142.4126" y="368.02">5</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="203.106" x="155.458" y="368.02">GET /transactionRequests/{ID}</text>
+    <polygon fill="#181818" points="398.042,402.2188,408.042,402.2188,398.042,406.2188" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="125.4126" x2="409.042" y1="402.2188" y2="402.2188"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="132.4126" y="397.1528">6</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="89.7305" x="145.458" y="397.1528">202 Accepted</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="125.4126" x2="167.4126" y1="431.3516" y2="431.3516"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="167.4126" x2="167.4126" y1="431.3516" y2="444.3516"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="126.4126" x2="167.4126" y1="444.3516" y2="444.3516"/>
+    <polygon fill="#181818" points="136.4126,440.3516,126.4126,444.3516,136.4126,448.3516,132.4126,444.3516" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="132.4126" y="426.2856">7</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="246.5176" x="145.458" y="426.2856">Récupérer la demande de transaction</text>
+    <path d="M31,459.3516 L95.4429,459.3516 L95.4429,466.4844 L85.4429,476.4844 L31,476.4844 L31,459.3516 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="694.5313" style="stroke:#000000;stroke-width:1.5;" width="804.4312" x="31" y="459.3516"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="19.4429" x="46" y="472.4185">alt</text>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="402.6494" x="110.4429" y="471.562">[le FSP payeur récupère avec succès la demande de transaction]</text>
+    <path d="M51,481.4844 L51,521.4844 L484,521.4844 L484,491.4844 L474,481.4844 L51,481.4844 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M474,481.4844 L474,491.4844 L484,491.4844 L474,481.4844 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="229.7344" x="148.1929" y="498.5513">Le FSP payeur répond par le rappel</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="202.1729" x="148.1929" y="513.6841">PUT /transactionRequests/{ID}</text>
+    <polygon fill="#181818" points="398.042,543.8828,408.042,547.8828,398.042,547.8828" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="125.4126" x2="409.042" y1="547.8828" y2="547.8828"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="132.4126" y="542.8169">8</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="202.1729" x="145.458" y="542.8169">PUT /transactionRequests/{ID}</text>
+    <polygon fill="#181818" points="136.4126,577.0156,126.4126,577.0156,136.4126,581.0156" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="125.4126" x2="409.042" y1="577.0156" y2="577.0156"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="142.4126" y="571.9497">9</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="46.7061" x="155.458" y="571.9497">200 Ok</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="410.042" x2="452.042" y1="606.1484" y2="606.1484"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="452.042" x2="452.042" y1="606.1484" y2="619.1484"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="411.042" x2="452.042" y1="619.1484" y2="619.1484"/>
+    <polygon fill="#181818" points="421.042,615.1484,411.042,619.1484,421.042,623.1484,417.042,619.1484" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="417.042" y="601.0825">10</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="251.9829" x="439.1328" y="601.0825">Valider PUT /transactionRequests/{ID}</text>
+    <path d="M41,634.1484 L105.4429,634.1484 L105.4429,641.2813 L95.4429,651.2813 L41,651.2813 L41,634.1484 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="311.1328" style="stroke:#000000;stroke-width:1.5;" width="784.4312" x="41" y="634.1484"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="19.4429" x="56" y="647.2153">alt</text>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="139.627" x="120.4429" y="646.3589">[la réponse est valide]</text>
+    <path d="M327,656.2813 L327,681.2813 L815,681.2813 L815,666.2813 L805,656.2813 L327,656.2813 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M805,656.2813 L805,666.2813 L815,666.2813 L805,656.2813 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="349.375" x="392.0281" y="673.3481">Le commutateur relaie la réponse au FSP bénéficiaire</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="410.042" x2="452.042" y1="707.5469" y2="707.5469"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="452.042" x2="452.042" y1="707.5469" y2="720.5469"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="411.042" x2="452.042" y1="720.5469" y2="720.5469"/>
+    <polygon fill="#181818" points="421.042,716.5469,411.042,720.5469,421.042,724.5469,417.042,720.5469" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="417.042" y="702.481">11</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="287.2314" x="439.1328" y="702.481">Récupérer les endpoints du FSP bénéficiaire</text>
+    <polygon fill="#181818" points="721.3643,745.6797,731.3643,749.6797,721.3643,749.6797" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="410.042" x2="732.3643" y1="749.6797" y2="749.6797"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="417.042" y="744.6138">12</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="202.1729" x="439.1328" y="744.6138">PUT /transactionRequests/{ID}</text>
+    <polygon fill="#181818" points="421.042,778.8125,411.042,778.8125,421.042,782.8125" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="410.042" x2="732.3643" y1="778.8125" y2="778.8125"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="427.042" y="773.7466">13</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="46.7061" x="449.1328" y="773.7466">200 Ok</text>
+    <line style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="41" x2="825.4312" y1="787.8125" y2="787.8125"/>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="113.1099" x="46" y="798.0229">[réponse invalide]</text>
+    <path d="M51,806.6172 L51,831.6172 L484,831.6172 L484,816.6172 L474,806.6172 L51,806.6172 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M474,806.6172 L474,816.6172 L484,816.6172 L474,806.6172 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="331.4302" x="97.345" y="823.6841">Le commutateur renvoie une erreur au FSP payeur</text>
+    <polygon fill="#181818" points="136.4126,853.8828,126.4126,857.8828,136.4126,857.8828" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="125.4126" x2="409.042" y1="857.8828" y2="857.8828"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="142.4126" y="852.8169">14</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="238.5386" x="164.5034" y="852.8169">PUT /transactionRequests/{ID}/error</text>
+    <polygon fill="#181818" points="398.042,887.0156,408.042,887.0156,398.042,891.0156" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="125.4126" x2="409.042" y1="887.0156" y2="887.0156"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="132.4126" y="881.9497">15</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="46.7061" x="154.5034" y="881.9497">200 Ok</text>
+    <path d="M51,900.0156 L51,940.0156 L484,940.0156 L484,910.0156 L474,900.0156 L51,900.0156 " fill="#EC7063" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M474,900.0156 L474,910.0156 L484,910.0156 L474,900.0156 " fill="#EC7063" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="239.4971" x="143.3115" y="917.0825">Dans ce scénario, le FSP bénéficiaire</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="211.377" x="143.3115" y="932.2153">peut ne pas recevoir de réponse</text>
+    <line style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="31" x2="835.4312" y1="953.2813" y2="953.2813"/>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="407.4619" x="36" y="963.4917">[le FSP payeur ne peut pas récupérer la demande de transaction]</text>
+    <path d="M51,972.0859 L51,997.0859 L484,997.0859 L484,982.0859 L474,972.0859 L51,972.0859 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M474,972.0859 L474,982.0859 L484,982.0859 L474,972.0859 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="331.4302" x="97.345" y="989.1528">Le FSP payeur renvoie une erreur au commutateur</text>
+    <polygon fill="#181818" points="398.042,1019.3516,408.042,1023.3516,398.042,1023.3516" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="125.4126" x2="409.042" y1="1023.3516" y2="1023.3516"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="132.4126" y="1018.2856">16</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="238.5386" x="154.5034" y="1018.2856">PUT /transactionRequests/{ID}/error</text>
+    <polygon fill="#181818" points="136.4126,1052.4844,126.4126,1052.4844,136.4126,1056.4844" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="125.4126" x2="409.042" y1="1052.4844" y2="1052.4844"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="142.4126" y="1047.4185">17</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="47.7026" x="164.5034" y="1047.4185">200 OK</text>
+    <path d="M327,1065.4844 L327,1090.4844 L815,1090.4844 L815,1075.4844 L805,1065.4844 L327,1065.4844 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M805,1065.4844 L805,1075.4844 L815,1075.4844 L805,1065.4844 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="362.2925" x="385.5693" y="1082.5513">Le commutateur renvoie une erreur au FSP bénéficiaire</text>
+    <polygon fill="#181818" points="721.3643,1112.75,731.3643,1116.75,721.3643,1116.75" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="410.042" x2="732.3643" y1="1116.75" y2="1116.75"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="417.042" y="1111.6841">18</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="238.5386" x="439.1328" y="1111.6841">PUT /transactionRequests/{ID}/error</text>
+    <polygon fill="#181818" points="421.042,1145.8828,411.042,1145.8828,421.042,1149.8828" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="410.042" x2="732.3643" y1="1145.8828" y2="1145.8828"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="427.042" y="1140.8169">19</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="47.7026" x="449.1328" y="1140.8169">200 OK</text>
+    <line style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="9" x2="845.4312" y1="1161.8828" y2="1161.8828"/>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="252.2964" x="14" y="1172.0933">[la demande de transaction est invalide]</text>
+    <path d="M327,1180.6875 L327,1205.6875 L815,1205.6875 L815,1190.6875 L805,1180.6875 L327,1180.6875 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M805,1180.6875 L805,1190.6875 L815,1190.6875 L805,1180.6875 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="362.2925" x="385.5693" y="1197.7544">Le commutateur renvoie une erreur au FSP bénéficiaire</text>
+    <polygon fill="#181818" points="721.3643,1227.9531,731.3643,1231.9531,721.3643,1231.9531" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="410.042" x2="732.3643" y1="1231.9531" y2="1231.9531"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="417.042" y="1226.8872">20</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="238.5386" x="439.1328" y="1226.8872">PUT /transactionRequests/{ID}/error</text>
+    <polygon fill="#181818" points="421.042,1261.0859,411.042,1261.0859,421.042,1265.0859" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="410.042" x2="732.3643" y1="1261.0859" y2="1261.0859"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="427.042" y="1256.02">21</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="47.7026" x="449.1328" y="1256.02">200 OK</text>
+  </g>
+</svg>
