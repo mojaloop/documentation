@@ -2298,6 +2298,19 @@ module.exports = {
           ]
         },
         {
+          title: 'Estándares',
+          collapsable: false,
+          sidebarDepth: 2,
+          children: [
+            ['standards/guide', 'Nuestros estándares'],
+            ['standards/invariants', 'Invariantes de Mojaloop'],
+            ['standards/versioning', 'Versionado'],
+            ['standards/creating-new-features', 'Crear funcionalidades nuevas'],
+            ['standards/triaging-bugs', 'Triaje de errores'],
+            ['standards/ai_policy', 'Política de IA'],
+          ]
+        },
+        {
           title: 'Herramientas y tecnologías',
           collapsable: false,
           sidebarDepth: 2,

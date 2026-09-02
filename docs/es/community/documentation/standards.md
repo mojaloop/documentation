@@ -26,7 +26,7 @@ Toda la documentación nueva debería ajustarse a la documentación y los estilo
 
 Toda la documentación nueva debería redactarse en inglés y luego puede traducirse a otros idiomas; actualmente también está disponible en francés. Se está trabajando en la traducción de la documentación al español y al portugués.
 
-El equipo de localización ha elaborado directrices para los traductores, que se aplican a todos los pares de idiomas. Estas [directrices de traducción están disponibles aquí](translationguidelines.md).
+El equipo de localización ha elaborado directrices para los traductores, que se aplican a todos los pares de idiomas. Estas [directrices de traducción están disponibles aquí, en inglés](../../../community/documentation/translationguidelines.md).
 
 ### Guía de estilo de código
 
