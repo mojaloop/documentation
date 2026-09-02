@@ -18,6 +18,12 @@ Mojaloop has set forth several standards to ensure that documentation throughout
 
 All new documentation should conform to the documentation and styles as discussed [here](style-guide.md).
 
+### Documentation Language
+
+All new documentation should be written in English, and may then be translated into other languages - it is currently available in French as well. Work is proceeding to translate the documentation into Spanish and Portuguese.
+
+The Localisation team have developed guidelines for translators, which apply to all language pairs. These [Translation Guidelines are available here](translationguidelines.md).
+
 ### Code Style Guide
 
 #### NodeJS

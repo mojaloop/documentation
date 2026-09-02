@@ -82,6 +82,7 @@ This document presents a feature list which covers the following aspects of Moja
 -  [**Performance**](./performance.md), outlining the transaction processing performance adopters might expect. 
 - [**Deployment**](./deployment.md), describing the different ways to deploy Mojaloop for a range of different purposes, and the tools that facilitate these deployment types. 
 - [**Security**](./security.md), covering the security of the transactions between connected DFSPs and the Mojaloop Hub, the security of the Hub itself (including the operator portals), and the QA Framework currently being developed to validate the security and quality of a Mojaloop deployment.
+- [**DFSP Infrastructure Security**](./dfsp-infrastructure-security.md), providing guidance for schemes evaluating the hardware and host environments on which DFSPs run connectivity, signing, and certificate-management workloads.
 - [**Engineering Principles**](./engineering.md), such as algorithmic adherence to the Mojaloop specification, code quality, security practices, scalability and performance patterns (amongst others).
 
 -   [**Invariants**](./invariants.md), setting out the development and operational principles to which any Mojaloop implementation must adhere. This includes the principles which ensure the security and integrity of a Mojaloop deployment.
@@ -112,6 +113,7 @@ This version of this document relates to Mojaloop Version [17.0.0](https://githu
 ## Document History
   |Version|Date|Author|Detail|
 |:--------------:|:--------------:|:--------------:|:--------------:|
+|1.6|21st August 2026| Yevhen Kyriukha|Added DFSP infrastructure security guidance|
 |1.5|4th December 2025| Paul Makin|Added the "Continuous Development" sub-section|
 |1.4|28th August 2025| Paul Makin|Added the "Regulators' and Operators' Perspective"|
 |1.3|23rd June 2025| Paul Makin|Added the ecosystem text and diagram|

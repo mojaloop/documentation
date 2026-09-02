@@ -17,6 +17,8 @@ It can be broken down into three areas of scope:
 - The security of the Hub's operations, as reflected in the activities of the operational staff;
 - The quality and security of the Mojaloop Hub deployment.
 
+This page focuses on security mechanisms and processes within Mojaloop and its connections. The hardware and host environment operated within a DFSP's domain has a separate trust boundary. Schemes evaluating that infrastructure should also consult the [Security architecture guidance for DFSP infrastructure](./dfsp-infrastructure-security.md).
+
 How Mojaloop approaches each of these areas is explored in the following sections.
 
 ## DFSP Connection Security
@@ -73,6 +75,7 @@ This document relates to Mojaloop Version 17.1.0
 ## Document History
   |Version|Date|Author|Detail|
 |:--------------:|:--------------:|:--------------:|:--------------:|
+|1.3|21st August 2026| Yevhen Kyriukha|Linked DFSP infrastructure security guidance|
 |1.2|13th October 2025| Paul Makin|Added the "Open Source and Security" introductory section.|
 |1.1|15th July 2025| Paul Makin|Added the "Maintaining Security" section.|
 |1.0|24th June 2025| Paul Makin|Initial version|
