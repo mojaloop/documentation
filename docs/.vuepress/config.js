@@ -2280,6 +2280,18 @@ module.exports = {
           ]
         },
         {
+          title: 'Herramientas y tecnologías',
+          collapsable: false,
+          sidebarDepth: 2,
+          children: [
+            ['tools/tools-and-technologies', 'Herramientas'],
+            ['tools/pragmatic-rest', 'Pragmatic Rest'],
+            ['tools/code-quality-metrics', 'Métricas de calidad del código'],
+            ['tools/automated-testing', 'Pruebas automatizadas'],
+            ['tools/cybersecurity', 'Ciberseguridad'],
+          ]
+        },
+        {
           title: 'Documentación',
           collapsable: false,
           sidebarDepth: 2,
