@@ -53,7 +53,7 @@ Por el momento, la implementación del Mojaloop Open Source Switch *no* almacena
 Por el momento no, pero podría hacerlo en el futuro. En cuanto a correlacionar las solicitudes relacionadas con una transferencia concreta, puede consultar el endpoint o recurso ‘transaction’ en la Especificación para obtener más información al respecto. Además, puedo comentar que hay trabajo en curso sobre la especificación para hacer esta correlación más directa y sencilla, es decir, para correlacionar las solicitudes de cotización y de transferencia que forman parte de una misma transacción.
 
 
-## 10. ¿Cómo registrar una nueva party en Mojaloop?
+## 10. ¿Cómo registrar una nueva parte en Mojaloop?
 
 No existe  POST en el recurso /parties, como se indica en la sección 6.1.1 de la API Defintion. Consulte la sección: 6.2.2.3 `POST /participants/<Type>/<ID>` en la API Defintion.
 
