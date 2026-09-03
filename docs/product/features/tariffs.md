@@ -24,8 +24,8 @@ without requiring every type of fee to be treated as a separate payment or settl
 
 The three principal fee types are recommended to be handled as follows:
 
-|  Fee type  |     Obligation   |  Calculation   |    Accounting |          Discharge|
-|---|---|---|-------|
+|Fee type|Obligation|Calculation|Accounting |Discharge|
+|---|---|---|-------|------|
   |Customer transaction fee|Customer → DFSP|DFSP tariff/ Agreement of Terms|Local to the DFSP|Collected or retained by the DFSP|
 |Interchange fee|DFSP → DFSP|Scheme tariff/ Rules Handler|Mojaloop interchange fee accounts|Periodic settlement|
 | Hub/operator fee| DFSP → Hub operator| Scheme/ operator tariff|Hub billing /accounting|Payment to the Hub, normally initiated through RTP|
@@ -57,8 +57,7 @@ Then, for a USD 100 transaction:
 -   the tariff calculation produces an interchange fee of USD 0.60;
 -   the USD 0.60 creates a financial obligation from the payer DFSP to the payee DFSP.
 
-The interchange fee should not require a separate USD 0.60 payment to be executed alongside the original transaction. Instead, Mojaloop records the obligation in the participants'
-interchange fee accounts.
+The interchange fee should not require a separate USD 0.60 payment to be executed alongside the original transaction. Instead, Mojaloop records the obligation in the participants' interchange fee accounts.
 
 ## Tariff Calculation
 
@@ -117,6 +116,8 @@ settlement process.
 Interchange is consequently treated as a **ledger and settlement
 obligation**, rather than as a second payment attached to every
 transaction.
+
+(**Note:** This capability may be dependent on the implementation of Settlement V3, which is currently an outstanding task.)
 
 # Hub and Scheme Operator Fees
 
@@ -234,3 +235,14 @@ This separation provides a flexible tariff framework while preserving
 Mojaloop's underlying model in which the Hub facilitates clearing and
 settlement without unnecessarily becoming principal to participant
 financial obligations.
+
+
+## Applicability
+
+This version of this document relates to Mojaloop Version [17.2.0](https://github.com/mojaloop/helm/releases/tag/v17.02.0)
+
+## Document History
+  |Version|Date|Author|Detail|
+|:--------------:|:--------------:|:--------------:|:--------------:|
+|2.0|3rd September 2026| Paul Makin|Updated and extended following discussions between the MLF and implementors|
+|1.0|17th July 2025| Paul Makin|Initial version|
