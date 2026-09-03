@@ -24,7 +24,7 @@ In both configurations, the Merchant Payments Overlay preserves separation of co
 ## Merchant Registration
 As noted earlier, the operation of a merchant payments scheme extends significantly beyond the execution of a funds transfer, a core prerequisite being the formal registration of each participating merchant, together with the generation and controlled use of a unique (“unique” being a term that is revisited later in this document) Merchant Identifier (Merchant ID) for routing and addressing purposes. The following diagram illustrates the high-level architectural elements of the merchant registration aspects. Note that, as merchant payments is an overlay service, adoption of the merchant payments overlay does not impact on the operation of the Mojaloop-enabled IIPS that executes the associated payments.
 
-<img src="media/Merchant_Registration.svg" style="width:6.25345in;height:4.79746in" />
+<img src="./media/Merchant_Registration.svg" style="width:6.25345in;height:4.79746in">
 
 **<center>Figure 1: Merchant Registration and the Mojaloop Ecosystem</center>**
 
@@ -234,7 +234,7 @@ The payer’s DFSP then initiates a transfer addressed to the Merchant ID via th
 
 This process is summarised in the following diagram.
 
-<img src="media/Make_a_Payment.svg" style="width:6.37105in;height:2.58472in" />
+<img src="./media/Make_a_Payment.svg" style="width:6.37105in;height:2.58472in" />
 
 **<center>Figure 2: Payment Processing</center>**
 
