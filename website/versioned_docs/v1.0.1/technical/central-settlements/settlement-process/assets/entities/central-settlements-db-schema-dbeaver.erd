@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<diagram version="1" name="central-settlements-db-schema-dbeaver.erd">
+	<entities>
+		<data-source id="mysql5-174e86e72d0-75180efbf2e629">
+			<entity id="1" name="transferStateChange" fq-name="central_ledger.transferStateChange" order="0" color-bg="153,152,153" x="8" y="9">
+				<path name="central_ledger"/>
+			</entity>
+			<entity id="2" name="transfer" fq-name="central_ledger.transfer" order="1" color-bg="153,152,153" x="36" y="186">
+				<path name="central_ledger"/>
+			</entity>
+			<entity id="3" name="participantCurrency" fq-name="central_ledger.participantCurrency" order="2" color-bg="116,251,75" x="228" y="205">
+				<path name="central_ledger"/>
+			</entity>
+			<entity id="4" name="ledgerEntryType" fq-name="central_ledger.ledgerEntryType" order="3" color-bg="67,151,247" x="481" y="8">
+				<path name="central_ledger"/>
+			</entity>
+			<entity id="5" name="transferParticipantRoleType" fq-name="central_ledger.transferParticipantRoleType" order="4" color-bg="67,151,247" x="682" y="7">
+				<path name="central_ledger"/>
+			</entity>
+			<entity id="6" name="transferParticipant" fq-name="central_ledger.transferParticipant" order="5" color-bg="153,152,153" x="228" y="11">
+				<path name="central_ledger"/>
+			</entity>
+			<entity id="7" name="settlementTransferParticipant" fq-name="central_ledger.settlementTransferParticipant" order="6" color-bg="234,71,37" x="486" y="256">
+				<path name="central_ledger"/>
+			</entity>
+			<entity id="8" name="settlementParticipantCurrency" fq-name="central_ledger.settlementParticipantCurrency" order="7" color-bg="234,71,37" x="767" y="215">
+				<path name="central_ledger"/>
+			</entity>
+			<entity id="9" name="settlementWindow" fq-name="central_ledger.settlementWindow" order="8" color-bg="234,71,37" x="21" y="546">
+				<path name="central_ledger"/>
+			</entity>
+			<entity id="10" name="settlementSettlementWindow" fq-name="central_ledger.settlementSettlementWindow" order="9" color-bg="234,71,37" x="199" y="394">
+				<path name="central_ledger"/>
+			</entity>
+			<entity id="11" name="settlement" fq-name="central_ledger.settlement" order="10" color-bg="234,71,37" x="785" y="504">
+				<path name="central_ledger"/>
+			</entity>
+			<entity id="12" name="settlementParticipantCurrencyStateChange" fq-name="central_ledger.settlementParticipantCurrencyStateChange" order="11" color-bg="234,71,37" x="1057" y="176">
+				<path name="central_ledger"/>
+			</entity>
+			<entity id="13" name="transferFulfilment" fq-name="central_ledger.transferFulfilment" order="12" color-bg="153,152,153" x="19" y="360">
+				<path name="central_ledger"/>
+			</entity>
+			<entity id="14" name="settlementWindowStateChange" fq-name="central_ledger.settlementWindowStateChange" order="13" color-bg="234,71,37" x="17" y="771">
+				<path name="central_ledger"/>
+			</entity>
+			<entity id="15" name="settlementWindowState" fq-name="central_ledger.settlementWindowState" order="14" color-bg="67,151,247" x="698" y="786">
+				<path name="central_ledger"/>
+			</entity>
+			<entity id="16" name="settlementStateChange" fq-name="central_ledger.settlementStateChange" order="15" color-bg="234,71,37" x="942" y="785">
+				<path name="central_ledger"/>
+			</entity>
+			<entity id="17" name="settlementState" fq-name="central_ledger.settlementState" order="16" color-bg="67,151,247" x="1187" y="785">
+				<path name="central_ledger"/>
+			</entity>
+			<entity id="18" name="settlementModel" fq-name="central_ledger.settlementModel" order="17" color-bg="234,71,37" x="976" y="437">
+				<path name="central_ledger"/>
+			</entity>
+			<entity id="19" name="settlementDelay" fq-name="central_ledger.settlementDelay" order="18" color-bg="66,150,246" x="1235" y="490">
+				<path name="central_ledger"/>
+			</entity>
+			<entity id="20" name="settlementGranularity" fq-name="central_ledger.settlementGranularity" order="19" color-bg="66,150,246" border-width="3" x="1200" y="342">
+				<path name="central_ledger"/>
+			</entity>
+			<entity id="21" name="settlementInterchange" fq-name="central_ledger.settlementInterchange" order="20" color-bg="66,150,246" x="1195" y="635">
+				<path name="central_ledger"/>
+			</entity>
+			<entity id="22" name="ledgerAccountType" fq-name="central_ledger.ledgerAccountType" order="21" color-bg="66,150,246" x="942" y="4">
+				<path name="central_ledger"/>
+			</entity>
+			<entity id="23" name="settlementWindowContent" fq-name="central_ledger.settlementWindowContent" order="22" color-bg="233,70,36" x="364" y="746">
+				<path name="central_ledger"/>
+			</entity>
+			<entity id="24" name="settlementWindowContentStateChange" fq-name="central_ledger.settlementWindowContentStateChange" order="23" color-bg="233,70,36" x="202" y="541">
+				<path name="central_ledger"/>
+			</entity>
+			<entity id="25" name="settlementContentAggregation" fq-name="central_ledger.settlementContentAggregation" order="24" color-bg="233,70,36" x="513" y="488">
+				<path name="central_ledger"/>
+			</entity>
+		</data-source>
+	</entities>
+	<notes>
+		<note id="26" order="25" x="1145" y="18" w="230" h="104">COLOR LEGEND:
+Green - subject specific entity
+Gray - transfer specific entity
+Red - settlement specific entity
+Blue - lookup entity</note>
+	</notes>
+	<relations>
+		<relation name="transferstatechange_transferid_foreign" fq-name="central_ledger.transferStateChange.transferstatechange_transferid_foreign" type="fk" pk-ref="2" fk-ref="1"/>
+		<relation name="transferparticipant_transferid_foreign" fq-name="central_ledger.transferParticipant.transferparticipant_transferid_foreign" type="fk" pk-ref="2" fk-ref="6"/>
+		<relation name="transferparticipant_participantcurrencyid_foreign" fq-name="central_ledger.transferParticipant.transferparticipant_participantcurrencyid_foreign" type="fk" pk-ref="3" fk-ref="6"/>
+		<relation name="settlementtransferparticipant_participantcurrencyid_foreign" fq-name="central_ledger.settlementTransferParticipant.settlementtransferparticipant_participantcurrencyid_foreign" type="fk" pk-ref="3" fk-ref="7"/>
+		<relation name="settlementparticipantcurrency_participantcurrencyid_foreign" fq-name="central_ledger.settlementParticipantCurrency.settlementparticipantcurrency_participantcurrencyid_foreign" type="fk" pk-ref="3" fk-ref="8"/>
+		<relation name="settlementcontentaggregation_participantcurrencyid_foreign" fq-name="central_ledger.settlementContentAggregation.settlementcontentaggregation_participantcurrencyid_foreign" type="fk" pk-ref="3" fk-ref="25"/>
+		<relation name="transferparticipant_ledgerentrytypeid_foreign" fq-name="central_ledger.transferParticipant.transferparticipant_ledgerentrytypeid_foreign" type="fk" pk-ref="4" fk-ref="6"/>
+		<relation name="settlementtransferparticipant_ledgerentrytypeid_foreign" fq-name="central_ledger.settlementTransferParticipant.settlementtransferparticipant_ledgerentrytypeid_foreign" type="fk" pk-ref="4" fk-ref="7"/>
+		<relation name="settlementcontentaggregation_ledgerentrytypeid_foreign" fq-name="central_ledger.settlementContentAggregation.settlementcontentaggregation_ledgerentrytypeid_foreign" type="fk" pk-ref="4" fk-ref="25"/>
+		<relation name="transferparticipant_transferparticipantroletypeid_foreign" fq-name="central_ledger.transferParticipant.transferparticipant_transferparticipantroletypeid_foreign" type="fk" pk-ref="5" fk-ref="6"/>
+		<relation name="stp_transferparticipantroletypeid_foreign" fq-name="central_ledger.settlementTransferParticipant.stp_transferparticipantroletypeid_foreign" type="fk" pk-ref="5" fk-ref="7"/>
+		<relation name="sca_transferparticipantroletypeid_foreign" fq-name="central_ledger.settlementContentAggregation.sca_transferparticipantroletypeid_foreign" type="fk" pk-ref="5" fk-ref="25"/>
+		<relation name="spcsc_settlementparticipantcurrencyid_foreign" fq-name="central_ledger.settlementParticipantCurrencyStateChange.spcsc_settlementparticipantcurrencyid_foreign" type="fk" pk-ref="8" fk-ref="12"/>
+		<relation name="settlementtransferparticipant_settlementwindowid_foreign" fq-name="central_ledger.settlementTransferParticipant.settlementtransferparticipant_settlementwindowid_foreign" type="fk" pk-ref="9" fk-ref="7"/>
+		<relation name="settlementsettlementwindow_settlementwindowid_foreign" fq-name="central_ledger.settlementSettlementWindow.settlementsettlementwindow_settlementwindowid_foreign" type="fk" pk-ref="9" fk-ref="10"/>
+		<relation name="transferfulfilment_settlementwindowid_foreign" fq-name="central_ledger.transferFulfilment.transferfulfilment_settlementwindowid_foreign" type="fk" pk-ref="9" fk-ref="13"/>
+		<relation name="settlementwindowstatechange_settlementwindowid_foreign" fq-name="central_ledger.settlementWindowStateChange.settlementwindowstatechange_settlementwindowid_foreign" type="fk" pk-ref="9" fk-ref="14"/>
+		<relation name="settlementwindowcontent_settlementwindowid_foreign" fq-name="central_ledger.settlementWindowContent.settlementwindowcontent_settlementwindowid_foreign" type="fk" pk-ref="9" fk-ref="23"/>
+		<relation name="settlementtransferparticipant_settlementid_foreign" fq-name="central_ledger.settlementTransferParticipant.settlementtransferparticipant_settlementid_foreign" type="fk" pk-ref="11" fk-ref="7"/>
+		<relation name="settlementparticipantcurrency_settlementid_foreign" fq-name="central_ledger.settlementParticipantCurrency.settlementparticipantcurrency_settlementid_foreign" type="fk" pk-ref="11" fk-ref="8"/>
+		<relation name="settlementsettlementwindow_settlementid_foreign" fq-name="central_ledger.settlementSettlementWindow.settlementsettlementwindow_settlementid_foreign" type="fk" pk-ref="11" fk-ref="10"/>
+		<relation name="settlementstatechange_settlementid_foreign" fq-name="central_ledger.settlementStateChange.settlementstatechange_settlementid_foreign" type="fk" pk-ref="11" fk-ref="16"/>
+		<relation name="settlementwindowcontent_settlementid_foreign" fq-name="central_ledger.settlementWindowContent.settlementwindowcontent_settlementid_foreign" type="fk" pk-ref="11" fk-ref="23"/>
+		<relation name="settlementcontentaggregation_settlementid_foreign" fq-name="central_ledger.settlementContentAggregation.settlementcontentaggregation_settlementid_foreign" type="fk" pk-ref="11" fk-ref="25"/>
+		<relation name="spc_currentstatechangeid_foreign" fq-name="central_ledger.settlementParticipantCurrency.spc_currentstatechangeid_foreign" type="fk" pk-ref="12" fk-ref="8"/>
+		<relation name="settlementwindow_currentstatechangeid_foreign" fq-name="central_ledger.settlementWindow.settlementwindow_currentstatechangeid_foreign" type="fk" pk-ref="14" fk-ref="9"/>
+		<relation name="settlementwindowstatechange_settlementwindowstateid_foreign" fq-name="central_ledger.settlementWindowStateChange.settlementwindowstatechange_settlementwindowstateid_foreign" type="fk" pk-ref="15" fk-ref="14"/>
+		<relation name="sws1_settlementwindowstateid_foreign" fq-name="central_ledger.settlementWindowContentStateChange.sws1_settlementwindowstateid_foreign" type="fk" pk-ref="15" fk-ref="24"/>
+		<relation name="settlementcontentaggregation_currentstateid_foreign" fq-name="central_ledger.settlementContentAggregation.settlementcontentaggregation_currentstateid_foreign" type="fk" pk-ref="15" fk-ref="25"/>
+		<relation name="settlement_currentstatechangeid_foreign" fq-name="central_ledger.settlement.settlement_currentstatechangeid_foreign" type="fk" pk-ref="16" fk-ref="11"/>
+		<relation name="spcsc_settlementstateid_foreign" fq-name="central_ledger.settlementParticipantCurrencyStateChange.spcsc_settlementstateid_foreign" type="fk" pk-ref="17" fk-ref="12"/>
+		<relation name="settlementstatechange_settlementstateid_foreign" fq-name="central_ledger.settlementStateChange.settlementstatechange_settlementstateid_foreign" type="fk" pk-ref="17" fk-ref="16"/>
+		<relation name="settlement_settlementmodelid_foreign" fq-name="central_ledger.settlement.settlement_settlementmodelid_foreign" type="fk" pk-ref="18" fk-ref="11"/>
+		<relation name="settlementmodel_settlementdelayid_foreign" fq-name="central_ledger.settlementModel.settlementmodel_settlementdelayid_foreign" type="fk" pk-ref="19" fk-ref="18"/>
+		<relation name="settlementmodel_settlementgranularityid_foreign" fq-name="central_ledger.settlementModel.settlementmodel_settlementgranularityid_foreign" type="fk" pk-ref="20" fk-ref="18"/>
+		<relation name="settlementmodel_settlementinterchangeid_foreign" fq-name="central_ledger.settlementModel.settlementmodel_settlementinterchangeid_foreign" type="fk" pk-ref="21" fk-ref="18"/>
+		<relation name="participantcurrency_ledgeraccounttypeid_foreign" fq-name="central_ledger.participantCurrency.participantcurrency_ledgeraccounttypeid_foreign" type="fk" pk-ref="22" fk-ref="3"/>
+		<relation name="ledgerentrytype_ledgeraccounttypeid_foreign" fq-name="central_ledger.ledgerEntryType.ledgerentrytype_ledgeraccounttypeid_foreign" type="fk" pk-ref="22" fk-ref="4"/>
+		<relation name="settlementmodel_ledgeraccounttypeid_foreign" fq-name="central_ledger.settlementModel.settlementmodel_ledgeraccounttypeid_foreign" type="fk" pk-ref="22" fk-ref="18"/>
+		<relation name="settlementwindowcontent_ledgeraccounttypeid_foreign" fq-name="central_ledger.settlementWindowContent.settlementwindowcontent_ledgeraccounttypeid_foreign" type="fk" pk-ref="22" fk-ref="23"/>
+		<relation name="swc_settlementwindowcontentid_foreign" fq-name="central_ledger.settlementWindowContentStateChange.swc_settlementwindowcontentid_foreign" type="fk" pk-ref="23" fk-ref="24"/>
+		<relation name="settlementcontentaggregation_settlementwindowcontentid_foreign" fq-name="central_ledger.settlementContentAggregation.settlementcontentaggregation_settlementwindowcontentid_foreign" type="fk" pk-ref="23" fk-ref="25"/>
+		<relation name="settlementwindowcontent_currentstatechangeid_foreign" fq-name="central_ledger.settlementWindowContent.settlementwindowcontent_currentstatechangeid_foreign" type="fk" pk-ref="24" fk-ref="23"/>
+	</relations>
+</diagram>
