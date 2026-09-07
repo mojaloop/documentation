@@ -1,5 +1,5 @@
 ---
-syncRef: 10fb6286c2fca63aad808dfdf10fc034e3dd84d3
+i18n_source_sha: d0b25a50ce19d01062712caeefa6c5dca6bc342e
 ---
 
 # Pipelines de CI/CD

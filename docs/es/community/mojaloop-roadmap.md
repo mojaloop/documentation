@@ -1,5 +1,5 @@
 ---
-syncRef: af8ece4296e987223de16f4e0311366cb5e8d623
+i18n_source_sha: 1abbfb2438eb43ed71458d266c545449b50b7402
 ---
 
 # La hoja de ruta de Mojaloop

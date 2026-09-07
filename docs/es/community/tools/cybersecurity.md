@@ -1,5 +1,5 @@
 ---
-syncRef: 495ee8c9f800de5678b077bf421a3643a8dd1543
+i18n_source_sha: 9ea975a43d8f0ee95ffcd61522445dccdfd15d1e
 ---
 
 ## Arquitectura de ciberseguridad de Mojaloop

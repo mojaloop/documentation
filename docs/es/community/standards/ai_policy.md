@@ -1,5 +1,5 @@
 ---
-syncRef: e505b7585ca44397eb35cfd7cbec157c06afd257
+i18n_source_sha: 344575b0687e2c3430fe66f41a44360892a0415f
 ---
 
 # Política sobre el uso responsable de herramientas de inteligencia artificial (IA) por parte de los miembros de la comunidad

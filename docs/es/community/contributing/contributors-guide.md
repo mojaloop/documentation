@@ -1,5 +1,5 @@
 ---
-syncRef: af8ece4296e987223de16f4e0311366cb5e8d623
+i18n_source_sha: c79c6f9f0442f7e9038bdd492711783190441b20
 ---
 
 # Guía del contribuyente

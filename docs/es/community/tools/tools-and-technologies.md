@@ -1,5 +1,5 @@
 ---
-syncRef: af8ece4296e987223de16f4e0311366cb5e8d623
+i18n_source_sha: b9b3acfa21a2fb65986ea6c3319cfb95db3a5cb0
 ---
 
 # Herramientas y tecnologías

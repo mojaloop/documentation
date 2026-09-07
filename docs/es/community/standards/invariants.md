@@ -1,5 +1,5 @@
 ---
-syncRef: 023dd70c4103948a435dfd00c9f334b6a08bca99
+i18n_source_sha: 2dea2117611b8228894998c17b90e2113a803a5c
 ---
 
 # Invariantes de Mojaloop

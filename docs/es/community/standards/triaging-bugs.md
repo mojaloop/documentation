@@ -1,5 +1,5 @@
 ---
-syncRef: af8ece4296e987223de16f4e0311366cb5e8d623
+i18n_source_sha: 44bb91484905b26b5179bd9c0c9b9690d77890f1
 ---
 
 # Triaje de errores del OSS de Mojaloop

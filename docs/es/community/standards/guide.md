@@ -1,5 +1,5 @@
 ---
-syncRef: af8ece4296e987223de16f4e0311366cb5e8d623
+i18n_source_sha: 035d61b2307785d4129863069cfab714e69addec
 ---
 
 # Estándares

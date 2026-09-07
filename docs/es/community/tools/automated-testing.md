@@ -1,5 +1,5 @@
 ---
-syncRef: d1ebdbc578997e1efadd8855deb26d4245a15d3c
+i18n_source_sha: 39651c0add4b6b0813aabfa290d0d3ff6da8df06
 ---
 
 # Pruebas de QA y de regresión en Mojaloop

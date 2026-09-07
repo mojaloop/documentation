@@ -1,5 +1,5 @@
 ---
-syncRef: e10d4c6990d4e76f61fe6cfdd2e6cd54f8b8d41c
+i18n_source_sha: 1e447aa02780818cd02decf1a0079084554ee033
 ---
 
 # Directrices para los pull requests

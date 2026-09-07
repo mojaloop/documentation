@@ -1,5 +1,5 @@
 ---
-syncRef: af8ece4296e987223de16f4e0311366cb5e8d623
+i18n_source_sha: d9f8aed1ca297efbccca84dad6d8a16211e29e7b
 ---
 
 # Guía de estilo de la documentación

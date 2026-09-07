@@ -1,4 +1,5 @@
 ---
+i18n_source_sha: 29dda5cd4367996474e73b7a2f774f751c45aa54
 home: true
 heroImage: /mojaloop_logo_med.png
 tagline: Esta es la documentación oficial del proyecto Mojaloop

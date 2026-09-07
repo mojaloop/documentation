@@ -1,5 +1,5 @@
 ---
-syncRef: 4888976aa9244c7dbac452eac8e5115bc8d7ddc9
+i18n_source_sha: 1818851e2a2a719166706f01778ceaa41054d37b
 ---
 
 # Proceso de ingeniería de producto de Mojaloop

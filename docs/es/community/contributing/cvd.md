@@ -1,5 +1,5 @@
 ---
-syncRef: af8ece4296e987223de16f4e0311366cb5e8d623
+i18n_source_sha: 5ba3111c9485c598b7cb0762998654ca3b0d506f
 ---
 
 # Divulgar y recibir información sobre vulnerabilidades de seguridad

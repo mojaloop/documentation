@@ -1,5 +1,5 @@
 ---
-syncRef: 10fb6286c2fca63aad808dfdf10fc034e3dd84d3
+i18n_source_sha: 641649471ec361def0ee9e9cef37e38421185749
 ---
 
 # Código de conducta de Mojaloop

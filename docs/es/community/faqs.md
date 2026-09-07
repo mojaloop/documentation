@@ -1,5 +1,5 @@
 ---
-syncRef: 10fb6286c2fca63aad808dfdf10fc034e3dd84d3
+i18n_source_sha: 71ac45b7706943cfb4a10cfe6598477e516804f8
 ---
 
 # Uso de Vue en Markdown

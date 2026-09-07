@@ -1,5 +1,5 @@
 ---
-syncRef: af8ece4296e987223de16f4e0311366cb5e8d623
+i18n_source_sha: daf52b3ed71aa9dd62c1aba177769beed2292c07
 ---
 
 # Bienvenido a la comunidad de Mojaloop

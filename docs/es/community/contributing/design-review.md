@@ -1,5 +1,5 @@
 ---
-syncRef: af8ece4296e987223de16f4e0311366cb5e8d623
+i18n_source_sha: 5e3d41835b9444468849a91fb5119694831257a9
 ---
 
 # Revisión técnica del diseño y revisión del código

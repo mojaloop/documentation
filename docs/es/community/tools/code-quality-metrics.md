@@ -1,5 +1,5 @@
 ---
-syncRef: 10fb6286c2fca63aad808dfdf10fc034e3dd84d3
+i18n_source_sha: f155be68fd20e2fa92f620355a58ce20c92aefbf
 ---
 
 # Métricas de calidad del código
