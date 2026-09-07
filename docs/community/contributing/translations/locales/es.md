@@ -499,7 +499,7 @@ Every Spanish pull request needs a language reviewer and a domain reviewer. Wher
 
 | Role | Reviewer | Status |
 | --- | --- | --- |
-| Language | *to be designated* | |
+| Language | Jaime Federico Gonzalez Gasque | Designated |
 | Domain | *to be designated* | |
 
 **Review in this order.** Each stage can stop the review; there is no point polishing the Spanish of a paragraph that has dropped a clause.
