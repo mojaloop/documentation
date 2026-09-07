@@ -2331,6 +2331,64 @@ module.exports = {
             ['documentation/api-documentation', 'Documentación de la API'],
             ['documentation/style-guide', 'Guía de estilo']
           ]
+        },
+        {
+          title: 'Archivo',
+          collapsable: false,
+          sidebarDepth: 4,
+          children: [
+            {
+              title: 'Archivo de notas',
+              collapsable: true,
+              path: 'archive/notes/',
+              children: [
+                ['archive/notes/ccb-notes', 'Notas del CCB'],
+                ['archive/notes/da-notes', 'Notas de reuniones'],
+                ['archive/notes/scrum-of-scrum-notes', 'Notas de scrum']
+              ]
+            },
+            {
+              title: 'Archivo de documentos de debate',
+              collapsable: true,
+              path: 'archive/discussion-docs/',
+              children: [
+                {
+                  title: 'PI 10',
+                  collapsable: true,
+                  children: [
+                    ['archive/discussion-docs/performance-project', 'Proyecto de rendimiento'],
+                    ['archive/discussion-docs/code-improvement', 'Proyecto de mejora del código'],
+                    ['archive/discussion-docs/cross-border', 'Proyecto transfronterizo'],
+                    ['archive/discussion-docs/psip-project', 'Proyecto PSIP']
+                  ]
+                },
+                {
+                  title: 'PI 9',
+                  collapsable: true,
+                  children: [
+                    ['archive/discussion-docs/versioning-draft-proposal', 'Propuesta preliminar de versionado'],
+                  ]
+                },
+                {
+                  title: 'PI 8',
+                  collapsable: true,
+                  children: [
+                    ['archive/discussion-docs/cross-border-day-1', 'Notas de la reunión CB, día 1'],
+                    ['archive/discussion-docs/cross-border-day-2', 'Notas de la reunión CB, día 2'],
+                    ['archive/discussion-docs/iso-integration', 'Descripción general de la integración con ISO'],
+                    ['archive/discussion-docs/mojaloop-decimal', 'Tipo decimal de Mojaloop']
+                  ]
+                },
+                {
+                  title: 'PI 7',
+                  collapsable: true,
+                  children: [
+                    ['archive/discussion-docs/workbench', 'Flujo de trabajo Workbench'],
+                  ]
+                }
+              ]
+            },
+          ]
         }
       ],
     }
