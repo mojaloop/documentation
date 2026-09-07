@@ -89,7 +89,7 @@ module.exports = {
         editLinkText: 'Editar esta página no GitHub',
         lastUpdated: 'Última atualização',
         nav: [
-          { text: 'Adoção (em inglês)', link: '/adoption/' },
+          { text: 'Adoção', link: '/pt/adoption/' },
           { text: 'Comunidade (em inglês)', link: '/community/' },
           { text: 'Técnico (em inglês)', link: '/technical/' },
           { text: 'Produto (em inglês)', link: '/product/' },
@@ -2272,7 +2272,25 @@ module.exports = {
         }
       ],
       // Populated per area, in the same PR as the pages they list.
-      '/pt/adoption/': [],
+      '/pt/adoption/': [
+        {
+          title: 'Guia de Operações do Hub',
+          collapsable: false,
+          sidebarDepth: 1,
+          children: [
+            {
+              title: 'Guia de gestão da liquidação',
+              collapsable: true,
+              sidebarDepth: 2,
+              children: [
+                'HubOperations/Settlement/settlement-management-introduction',
+                'HubOperations/Settlement/settlement-basic-concepts',
+                'HubOperations/Settlement/ledgers-in-the-hub',
+              ]
+            }
+          ]
+        }
+      ],
       '/pt/community/': [],
       '/pt/product/': [],
       '/pt/technical/': [],
