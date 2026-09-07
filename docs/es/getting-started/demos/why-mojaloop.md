@@ -1,5 +1,5 @@
 ---
-syncRef: d73e3a5a24bdca813aaa84f889028c7a1aa99599
+i18n_source_sha: 5230c5e03b8e30f84e930ffb9d4094842e3f9115
 ---
 
 # ¿Por qué Mojaloop?

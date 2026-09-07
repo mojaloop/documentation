@@ -1,5 +1,5 @@
 ---
-syncRef: d73e3a5a24bdca813aaa84f889028c7a1aa99599
+i18n_source_sha: febc571b9abbef844e2397cc494e5278c5509438
 ---
 
 # Trabajar con Mojaloop

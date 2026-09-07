@@ -1,5 +1,5 @@
 ---
-syncRef: d73e3a5a24bdca813aaa84f889028c7a1aa99599
+i18n_source_sha: feaab07f2a445ed54b3aef21881d9d7ea2696425
 ---
 
 # Inclusión financiera 101

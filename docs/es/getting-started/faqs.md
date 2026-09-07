@@ -1,5 +1,5 @@
 ---
-syncRef: 10fb6286c2fca63aad808dfdf10fc034e3dd84d3
+i18n_source_sha: 7193a2036a1b568ad97da9a096cc4d225050c6e4
 ---
 
 # Preguntas frecuentes

@@ -1,5 +1,5 @@
 ---
-syncRef: d73e3a5a24bdca813aaa84f889028c7a1aa99599
+i18n_source_sha: 3943471965a23b668d2c919bfba5e76b2900dbc5
 ---
 
 # ¿Qué es RTP?

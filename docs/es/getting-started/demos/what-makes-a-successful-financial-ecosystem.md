@@ -1,5 +1,5 @@
 ---
-syncRef: d73e3a5a24bdca813aaa84f889028c7a1aa99599
+i18n_source_sha: 45c0b43fca57c1a9c3855ef3f44df04ab6927dc6
 ---
 
 # ¿Qué hace que un ecosistema financiero tenga éxito?
