@@ -24,7 +24,7 @@ beneficio de toda la comunidad de Mojaloop.
 ## Evolución de nuestro proceso
 
 Desde 2017, cuando el proyecto Mojaloop escribió su primer código, nuestro modelo de proceso ha evolucionado para hacer frente a la
-transición de un único equipo de ingeniería a varios flujos de trabajo dotados por la comunidad, cada uno centrado en desarrollar
+transición de un único equipo de ingeniería a varios workstreams dotados por la comunidad, cada uno centrado en desarrollar
 áreas concretas de un conjunto amplio de productos.
 
 Nuestro modelo actual se basa en el [Scaled Agile Framework](https://scaledagileframework.com/), que usamos para facilitar
@@ -32,7 +32,7 @@ que varios equipos trabajen de la forma más independiente posible para entregar
 espacio de producto.
 
 Nuestro modelo es un ciclo de "[incrementos de programa](https://v5.scaledagileframework.com/program-increment/)", cada uno de
-aproximadamente cuatro meses naturales. Al final de cada incremento, los flujos de trabajo presentan sus logros en una
+aproximadamente cuatro meses naturales. Al final de cada incremento, los workstreams presentan sus logros en una
 reunión de la comunidad, se publica código nuevo y comienza la planificación del siguiente incremento.
 
 ![Incrementos de programa de Mojaloop](./assets/mojaloop-product-engineering-process-overview.jpg)
@@ -51,57 +51,57 @@ Las solicitudes de funcionalidades y los requisitos nuevos vienen de diversas fu
 
 El product council de Mojaloop recopila y analiza estos requisitos nuevos y solicitudes de funcionalidades. Si hay una demanda suficiente
 y una disposición evidente a contribuir, se incorporan a la hoja de ruta del producto Mojaloop y se asignan a un
-flujo de trabajo oficial de Mojaloop. Si no existe un flujo de trabajo apropiado, se puede crear uno nuevo y la comunidad puede dotarlo de recursos.
+workstream oficial de Mojaloop. Si no existe un workstream apropiado, se puede crear uno nuevo y la comunidad puede dotarlo de recursos.
 
-Los flujos de trabajo suelen tener un conjunto de objetivos definidos al principio de cada incremento de programa de Mojaloop, pero las solicitudes de funcionalidades de
+Los workstreams suelen tener un conjunto de objetivos definidos al principio de cada incremento de programa de Mojaloop, pero las solicitudes de funcionalidades de
 alta prioridad se pueden insertar durante un incremento.
 
-Los flujos de trabajo entregan su resultado a un proceso controlado que periódicamente hace versiones oficiales del
+Los workstreams entregan su resultado a un proceso controlado que periódicamente hace versiones oficiales del
 software de Mojaloop. El proceso de versiones de Mojaloop tiende a alinearse con los incrementos de programa; las versiones mayores, que
 incluyen funcionalidades nuevas, suelen hacerse cerca del final de un incremento. Las versiones menores y de parche se hacen con más
 frecuencia y pueden incluir, por ejemplo, funcionalidades de alta prioridad, correcciones de errores o parches de seguridad.
 
-## Flujos de trabajo de Mojaloop
+## Workstreams de Mojaloop
 
-Los flujos de trabajo oficiales son las "líneas de producción" de la fábrica de software de la comunidad de Mojaloop; aquí es donde ocurre el grueso del
-trabajo de desarrollo de producto. Normalmente hay muchos flujos de trabajo en marcha en paralelo, cada uno centrado en áreas o funcionalidades
+Los workstreams oficiales son las "líneas de producción" de la fábrica de software de la comunidad de Mojaloop; aquí es donde ocurre el grueso del
+trabajo de desarrollo de producto. Normalmente hay muchos workstreams en marcha en paralelo, cada uno centrado en áreas o funcionalidades
 concretas de la plataforma.
 
 ### Modelo de gobernanza y requisitos operativos
 
-Los flujos de trabajo de Mojaloop tienen un modelo de gobernanza y unos requisitos operativos claramente definidos para minimizar los riesgos para todas las
+Los workstreams de Mojaloop tienen un modelo de gobernanza y unos requisitos operativos claramente definidos para minimizar los riesgos para todas las
 partes interesadas:
 
-1. Los flujos de trabajo deben tener un nombre claro y conciso que refleje su propósito.
-2. Los flujos de trabajo deben tener en todo momento a una persona nombrada como responsable; en algunas circunstancias, el puesto de responsable del flujo de trabajo
+1. Los workstreams deben tener un nombre claro y conciso que refleje su propósito.
+2. Los workstreams deben tener en todo momento a una persona nombrada como responsable; en algunas circunstancias, el puesto de responsable del workstream
    lo pueden compartir dos personas si ninguna dispone de tiempo suficiente para contribuir.
-3. Los flujos de trabajo deben tener a una persona nombrada como enlace con la Mojaloop Design Authority. Puede ser la misma
-   persona que el responsable del flujo de trabajo o una persona distinta designada.
-4. Los flujos de trabajo deben publicar y mantener en community central una descripción que explique su propósito, objetivos y alcance para cada
+3. Los workstreams deben tener a una persona nombrada como enlace con la Mojaloop Design Authority. Puede ser la misma
+   persona que el responsable del workstream o una persona distinta designada.
+4. Los workstreams deben publicar y mantener en community central una descripción que explique su propósito, objetivos y alcance para cada
    incremento de programa.
-5. Los flujos de trabajo deben tener un mínimo de dos contribuyentes nombrados y activos.
-6. Los flujos de trabajo deben celebrar un mínimo de una reunión en línea por semana.
-    1. Las reuniones de los flujos de trabajo deberían considerarse abiertas para que otros miembros de la comunidad puedan observarlas.
-    2. Las reuniones de los flujos de trabajo deberían grabarse y las grabaciones deberían publicarse públicamente.
-7. Los flujos de trabajo con más de dos contribuyentes activos deberían celebrar una reunión en línea de stand-up al estilo scrum.
+5. Los workstreams deben tener un mínimo de dos contribuyentes nombrados y activos.
+6. Los workstreams deben celebrar un mínimo de una reunión en línea por semana.
+    1. Las reuniones de los workstreams deberían considerarse abiertas para que otros miembros de la comunidad puedan observarlas.
+    2. Las reuniones de los workstreams deberían grabarse y las grabaciones deberían publicarse públicamente.
+7. Los workstreams con más de dos contribuyentes activos deberían celebrar una reunión en línea de stand-up al estilo scrum.
     1. Las reuniones de stand-up deberían ser diarias, salvo que el volumen de trabajo sea bajo, en cuyo caso puede ser aceptable una
        cadencia menos frecuente.
-8. Los flujos de trabajo deben mantener un repositorio público de github que contenga todo el código, la documentación y los elementos de trabajo relacionados.
-9. Los flujos de trabajo deben cumplir todos los [procesos de revisión de diseño y de código de Mojaloop](./design-review.md) antes, durante
+8. Los workstreams deben mantener un repositorio público de github que contenga todo el código, la documentación y los elementos de trabajo relacionados.
+9. Los workstreams deben cumplir todos los [procesos de revisión de diseño y de código de Mojaloop](./design-review.md) antes, durante
    y después de que se haya completado el trabajo.
-10. Los flujos de trabajo deben obtener y usar un hashtag específico en community central cuando hagan publicaciones.
-11. Los flujos de trabajo deben ser revisados por el Mojaloop Product Council antes del comienzo de cada incremento de programa.
-    1. Los objetivos del flujo de trabajo deben estar alineados con la hoja de ruta del producto Mojaloop.
-    2. Los objetivos del flujo de trabajo deben estar alineados con la misión de la Mojaloop Foundation.
+10. Los workstreams deben obtener y usar un hashtag específico en community central cuando hagan publicaciones.
+11. Los workstreams deben ser revisados por el Mojaloop Product Council antes del comienzo de cada incremento de programa.
+    1. Los objetivos del workstream deben estar alineados con la hoja de ruta del producto Mojaloop.
+    2. Los objetivos del workstream deben estar alineados con la misión de la Mojaloop Foundation.
 
-### Criterios y responsabilidades del liderazgo de un flujo de trabajo
+### Criterios y responsabilidades del liderazgo de un workstream
 
 La Mojaloop Foundation nombra a responsables que normalmente son voluntarios de la comunidad con un alto nivel de
 conocimiento o experiencia pertinentes.
 
-Para poder ser (co)responsable de un flujo de trabajo, las personas deberían cumplir los siguientes criterios:
+Para poder ser (co)responsable de un workstream, las personas deberían cumplir los siguientes criterios:
 
-1. Compromiso y capacidad para cumplir todas las responsabilidades del responsable de un flujo de trabajo (véase más abajo).
+1. Compromiso y capacidad para cumplir todas las responsabilidades del responsable de un workstream (véase más abajo).
 2. Capacidad organizativa demostrable.
 3. Capacidad de liderazgo demostrable.
 4. Capacidad técnica pertinente demostrable.
@@ -109,12 +109,12 @@ Para poder ser (co)responsable de un flujo de trabajo, las personas deberían cu
 6. Compromiso durante toda la duración del PI.
 7. Compromiso con el código de conducta de Mojaloop y cumplimiento de este
 
-Los (co)responsables de un flujo de trabajo deben aceptar las siguientes responsabilidades:
+Los (co)responsables de un workstream deben aceptar las siguientes responsabilidades:
 
 1. Ser un punto de contacto principal para las consultas.
-2. Programar y celebrar las reuniones del flujo de trabajo, grabarlas y publicar las grabaciones y las actas.
-3. Facilitar el enlace entre los contribuyentes del flujo de trabajo, otros flujos de trabajo y el resto de la comunidad.
-4. Crear, publicar en community central y mantener un documento de team charter del flujo de trabajo.
+2. Programar y celebrar las reuniones del workstream, grabarlas y publicar las grabaciones y las actas.
+3. Facilitar el enlace entre los contribuyentes del workstream, otros workstreams y el resto de la comunidad.
+4. Crear, publicar en community central y mantener un documento de team charter del workstream.
 5. Informar del progreso a...
     1. ...la comunidad, con regularidad, en Community Central, usando el hashtag asignado.
     2. ...el Product Manager o el Product Council.
@@ -123,24 +123,24 @@ Los (co)responsables de un flujo de trabajo deben aceptar las siguientes respons
 7. Asegurar que todo el trabajo cumple los estándares de calidad de Mojaloop, como el estilo, la cobertura de pruebas y la documentación.
 8. Asegurar que todo el trabajo se sigue en GitHub/Zenhub y que los plazos y el progreso se actualizan.
 9. Asegurar que el equipo principal prueba todo el resultado técnico antes de integrarlo en el proceso oficial de versiones. Para
-   los flujos de trabajo no técnicos, el resultado debería revisarlo el director de producto de la Mojaloop Foundation.
+   los workstreams no técnicos, el resultado debería revisarlo el director de producto de la Mojaloop Foundation.
 10. Facilitar la construcción de funcionalidades nuevas y escribir código según sea necesario.
 11. Hacer triaje y revisar contribuciones y problemas, y responder a los usuarios.
-12. Presentar informes de errores y correcciones, y resolver conflictos en el flujo de trabajo.
+12. Presentar informes de errores y correcciones, y resolver conflictos en el workstream.
 13. Gestionar de forma proactiva la deuda técnica y mejorar el código existente, cumpliendo
     todos los [procesos de revisión de diseño y de código de Mojaloop](./design-review.md).
 14. Asegurar que la documentación cumple los estándares requeridos.
-15. Guiar la dirección estratégica del flujo de trabajo en colaboración con el director de producto de la Mojaloop Foundation y el Product
+15. Guiar la dirección estratégica del workstream en colaboración con el director de producto de la Mojaloop Foundation y el Product
     Council.
 16. Definir objetivos SMART al principio de cada PI.
 
 ### Definir el trabajo
 
-Los flujos de trabajo deben definir y registrar públicamente, mediante problemas de github/zenhub, el trabajo que planean emprender y el
+Los workstreams deben definir y registrar públicamente, mediante problemas de github/zenhub, el trabajo que planean emprender y el
 progreso que logran durante la implementación:
 
 1. Los elementos de trabajo deben registrarse en GitHub como problemas del proyecto; el uso de zenhub no es obligatorio, pero se recomienda encarecidamente.
-    1. Cada flujo de trabajo tiene su propio proyecto de GitHub y su propio espacio de trabajo de zenhub para gestionar los elementos de trabajo.
+    1. Cada workstream tiene su propio proyecto de GitHub y su propio espacio de trabajo de zenhub para gestionar los elementos de trabajo.
 2. Los elementos de trabajo, también conocidos como "historias de usuario", deberían definirse con
    el estilo “As a... I want to... So That...”
    [de desarrollo guiado por el comportamiento](https://www.agilealliance.org/glossary/user-story-template/).
@@ -156,42 +156,42 @@ Aquí hay disponible una plantilla de ticket de github/zenhub: [github-work-item
 
 ### Sacar el trabajo adelante
 
-Los flujos de trabajo de Mojaloop deberían seguir por defecto un modelo de proceso similar a [scrum](https://www.scrum.org/resources/what-scrum-module),
+Los workstreams de Mojaloop deberían seguir por defecto un modelo de proceso similar a [scrum](https://www.scrum.org/resources/what-scrum-module),
 con una cadencia de sprints de dos semanas. Dados los estrictos requisitos de gestión de riesgos de los entornos regulatorios
 de nuestros usuarios y las mejores prácticas demostradas para el software financiero, nuestro proceso del día a día difiere de algunas
 metodologías ágiles típicas en que implementamos funciones de supervisión obligatorias y mecanismos de control de cambios más estrictos,
 más propios de organizaciones técnicas grandes que construyen y operan infraestructura crítica.
 
-Los flujos de trabajo tienen flexibilidad para ajustar los métodos de trabajo a sus circunstancias particulares, dentro de unos límites
-sensatos y apropiados para nuestra misión y nuestro dominio regulatorio. La Mojaloop Foundation orienta a los flujos de trabajo
+Los workstreams tienen flexibilidad para ajustar los métodos de trabajo a sus circunstancias particulares, dentro de unos límites
+sensatos y apropiados para nuestra misión y nuestro dominio regulatorio. La Mojaloop Foundation orienta a los workstreams
 para asegurar que se mantengan dentro de los estándares operativos que exigimos.
 
-Los flujos de trabajo deberían celebrar con regularidad actividades programadas de standup, refinamiento del backlog, planificación del sprint, revisión del sprint y
+Los workstreams deberían celebrar con regularidad actividades programadas de standup, refinamiento del backlog, planificación del sprint, revisión del sprint y
 retrospectiva.
 
-![Proceso de sprint del flujo de trabajo de Mojaloop](./assets/mojaloop-workstream-sprint-process.jpg)
+![Proceso de sprint del workstream de Mojaloop](./assets/mojaloop-workstream-sprint-process.jpg)
 
-Se exige que cada flujo de trabajo defina y mantenga un documento de "team charter" para comunicar de forma clara e inequívoca
+Se exige que cada workstream defina y mantenga un documento de "team charter" para comunicar de forma clara e inequívoca
 las formas de trabajar acordadas para todos los contribuyentes.
 
-Aquí se puede descargar una plantilla de team charter para un flujo de trabajo:
+Aquí se puede descargar una plantilla de team charter para un workstream:
 [mojaloop-workstream-team-charter-template.pptx](assets/mojaloop-workstream-team-charter-template.pptx)
 
 ### Obtener apoyo
 
-Cuando las cosas no salen según lo previsto y no se encuentra una solución entre los contribuyentes de un flujo de trabajo, la Mojaloop Foundation
+Cuando las cosas no salen según lo previsto y no se encuentra una solución entre los contribuyentes de un workstream, la Mojaloop Foundation
 ofrece mecanismos de apoyo. Contacte con el director de comunidad de la Mojaloop Foundation, que le orientará para encontrar una
 solución.
 
-## Flujos de trabajo no oficiales y contribuciones externas
+## Workstreams no oficiales y contribuciones externas
 
-Cuando puede que no exista un flujo de trabajo apropiado y el apoyo no basta para justificar la creación de un nuevo
-flujo de trabajo oficial, los contribuyentes pueden decidir trabajar en funcionalidades o cambios fuera de los procesos de la comunidad. En
+Cuando puede que no exista un workstream apropiado y el apoyo no basta para justificar la creación de un nuevo
+workstream oficial, los contribuyentes pueden decidir trabajar en funcionalidades o cambios fuera de los procesos de la comunidad. En
 estas circunstancias
 se debe seguir nuestro [proceso de donación externa](../standards/guide.md#adopcion-de-contribuciones-de-codigo-abierto-en-mojaloop)
 antes de que la Mojaloop Foundation pueda adoptar el código, la documentación u otros artefactos.
 
-Tenga en cuenta que todo el trabajo hecho fuera de los procesos oficiales de los flujos de trabajo de Mojaloop está sujeto a
+Tenga en cuenta que todo el trabajo hecho fuera de los procesos oficiales de los workstreams de Mojaloop está sujeto a
 nuestro [proceso de donación externa](../standards/guide.md#adopcion-de-contribuciones-de-codigo-abierto-en-mojaloop). Esto es para
 asegurar un grado apropiado de revisión rigurosa que garantice que se cumplen nuestros estándares antes de la inclusión en cualquier
 versión oficial de Mojaloop.

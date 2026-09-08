@@ -2383,7 +2383,7 @@ module.exports = {
                   title: 'PI 7',
                   collapsable: true,
                   children: [
-                    ['archive/discussion-docs/workbench', 'Flujo de trabajo Workbench'],
+                    ['archive/discussion-docs/workbench', 'Workstream Workbench'],
                   ]
                 }
               ]

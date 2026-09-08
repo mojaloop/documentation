@@ -7,7 +7,7 @@ i18n_source_sha: daf52b3ed71aa9dd62c1aba177769beed2292c07
 ## ¿Cómo empiezo?
 
 * Un buen punto de partida es la [Guía para contribuyentes](./contributing/contributors-guide.md), que ofrece información sobre cómo puede contribuir al proyecto.
-* Si desea obtener una visión general de las tecnologías utilizadas en el proyecto, consulte la sección [Herramientas y tecnologías](./tools/tools-and-technologies.md).
+* Si desea obtener una descripción general de las tecnologías utilizadas en el proyecto, consulte la sección [Herramientas y tecnologías](./tools/tools-and-technologies.md).
 * Para hacerse una idea de las funcionalidades que estamos construyendo, consulte la [Hoja de ruta del producto](./mojaloop-roadmap.md).
 * El [Tablero del proyecto](https://github.com/mojaloop/project#zenhub) muestra en qué se está trabajando actualmente; puede empezar por un [good first issue](https://github.com/mojaloop/project/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22).
 

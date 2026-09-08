@@ -2,7 +2,7 @@
 i18n_source_sha: 4deec6f8db992d12849b2c63b4a9ed53d2661c47
 ---
 
-**Reunión del flujo de trabajo transfronterizo**
+**Reunión del workstream transfronterizo**
 
 10 y 11 de marzo (Londres/remoto)
 

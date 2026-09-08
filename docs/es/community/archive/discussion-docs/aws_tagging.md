@@ -28,7 +28,7 @@ Proponemos las 2 _claves_ de etiqueta siguientes:
 
 ### `mojaloop/cost_center`
 
-`mojaloop/cost_center` es un desglose de los distintos recursos de AWS según el flujo de trabajo o el proyecto que incurre en los costos asociados.
+`mojaloop/cost_center` es un desglose de los distintos recursos de AWS según el workstream o el proyecto que incurre en los costos asociados.
 
 Sigue de forma aproximada el formato `<account>-<purpose>[-subpurpose]`, donde account es algo como `oss`, `tips` o `woccu`.
 > Nota: es probable que la mayoría de los recursos estén bajo la "cuenta" `oss`, pero conseguí encontrar algunos recursos más antiguos que caen en las categorías `tips` y `woccu`. También queremos prever los tipos de recursos que se puedan lanzar en el futuro.
@@ -36,7 +36,7 @@ Sigue de forma aproximada el formato `<account>-<purpose>[-subpurpose]`, donde a
 Algunos valores posibles para `mojaloop/cost_center` son:
 
 - `oss-qa`: trabajo de QA de código abierto, como los entornos dev1 y dev2 existentes
-- `oss-perf`: trabajo de rendimiento de código abierto, como el flujo de trabajo de rendimiento en curso
+- `oss-perf`: trabajo de rendimiento de código abierto, como el workstream de rendimiento en curso
 - `oss-perf-poc`: prueba de concepto de rendimiento y arquitectura
 
 También reservamos algunos valores especiales:

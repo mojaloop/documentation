@@ -24,7 +24,7 @@ al trabajo que quiere realizar **antes de empezar**.
 **Tenga en cuenta que, si no sigue estos procesos, es posible que se le pida rehacer su contribución, o que esta se
 rechace directamente si no cumple nuestros estándares. Esto puede provocar retrasos importantes para incorporar su trabajo a una
 versión oficial de Mojaloop. Lea nuestras declaraciones sobre
-el [proceso de donación externa](product-engineering-process.md#flujos-de-trabajo-no-oficiales-y-contribuciones-externas).**
+el [proceso de donación externa](product-engineering-process.md#workstreams-no-oficiales-y-contribuciones-externas).**
 
 ## ¿Qué es la revisión técnica del diseño?
 

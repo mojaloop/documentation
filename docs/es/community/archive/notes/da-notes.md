@@ -30,7 +30,7 @@ Debatimos más a fondo https://github.com/mojaloop/design-authority/issues/51 en
 
 Se anotaron algunos puntos clave:
 
-Para aprovechar Typescript y ayudar a acelerar el desarrollo, el flujo de trabajo del PISP ya ha separado el thirdparty-scheme-adapter.
+Para aprovechar Typescript y ayudar a acelerar el desarrollo, el workstream del PISP ya ha separado el thirdparty-scheme-adapter.
 
 Uno de los retos identificados con el enfoque del "multi-scheme-adapter" eran los casos en los que hay recursos compartidos entre las API, como GET /parties/{type}/{id}.
 
@@ -84,7 +84,7 @@ El equipo de TIPS hizo una presentación del diseño y la implementación de un 
 Consulte el enlace del tablero de la Design Authority aquí: https://github.com/mojaloop/design-authority/issues/53 para ver un planteamiento detallado del problema, el avance de las reuniones en las notas y observaciones y también, si está completada, la decisión posterior.
 
 # Reunión de la DA - 1 de julio de 2020
-Como parte del flujo de trabajo de "versionado", se está llevando a cabo una prueba de concepto de una "propuesta de despliegue sin tiempo de inactividad" y los comentarios de ese proyecto se han presentado en forma de planteamiento del problema, solución y demostración. El equipo que trabaja actualmente en ello son Lewis Daly, Mat de Haast y Sam Kummary. Los comentarios fueron bien recibidos y, como este trabajo está en curso, la DA hará seguimiento de los elementos de acción que surjan de la próxima presentación de este flujo de trabajo en la reunión del PI 11.
+Como parte del workstream de "versionado", se está llevando a cabo una prueba de concepto de una "propuesta de despliegue sin tiempo de inactividad" y los comentarios de ese proyecto se han presentado en forma de planteamiento del problema, solución y demostración. El equipo que trabaja actualmente en ello son Lewis Daly, Mat de Haast y Sam Kummary. Los comentarios fueron bien recibidos y, como este trabajo está en curso, la DA hará seguimiento de los elementos de acción que surjan de la próxima presentación de este workstream en la reunión del PI 11.
 Consulte el enlace del tablero de la Design Authority aquí: https://github.com/mojaloop/design-authority/issues/54 para ver un planteamiento detallado del problema, el avance de las reuniones en las notas y observaciones y también, si está completada, la decisión posterior.
 
 # Reunión de la DA (ad hoc) - 29 de junio de 2020
@@ -109,12 +109,12 @@ Siga el avance de las decisiones de diseño en torno a este problema en el table
 
 # Reunión de la DA - 17 de junio de 2020
 El tema debatido fue: entender y definir los roles de Mojaloop para los casos de uso de PISP, entre redes, etc.
-A la DA le parece bien que los flujos de trabajo avancen y separen nuevas API y definiciones de rol (p. ej. Thirdparty API, CNP API, etc.)
+A la DA le parece bien que los workstreams avancen y separen nuevas API y definiciones de rol (p. ej. Thirdparty API, CNP API, etc.)
 Consulte el enlace del tablero de la Design Authority aquí: https://github.com/mojaloop/design-authority/issues/44 para ver un planteamiento detallado del problema y la decisión posterior.
 
 # Reunión de la DA - 10 de junio de 2020
 Esta semana la DA debatió: debatir el simulador de PISP: https://github.com/mojaloop/design-authority/issues/46
-Se tomó la decisión de que, por el momento, el flujo de trabajo del PISP trabajará en su propia rama del sdk-scheme-adapter, y esa división o abstracción del sdk-scheme-adapter se retomará más adelante (véase #51)
+Se tomó la decisión de que, por el momento, el workstream del PISP trabajará en su propia rama del sdk-scheme-adapter, y esa división o abstracción del sdk-scheme-adapter se retomará más adelante (véase #51)
 
 # Reunión de la DA - 3 de junio de 2020
 Continuamos el debate iniciado la semana pasada sobre la API separada para el PISP y decidimos optar por la opción 4: separación máxima de las API, con archivos swagger/open api comunes para la definición y la reutilización del modelo de datos:

@@ -2,7 +2,7 @@
 i18n_source_sha: 58f3ee075258a90e4935acfcf0fdaa86260d85d7
 ---
 
-# Flujo de trabajo de rendimiento
+# Workstream de rendimiento
 
 Miércoles, 11 de marzo de 2020
 

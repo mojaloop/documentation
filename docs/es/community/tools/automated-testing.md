@@ -75,7 +75,7 @@ _Consejos:_
 ### Ejecución de la prueba de regresión
 Concretamente para el marco de pruebas de QA y de regresión de Mojaloop, la prueba de regresión de Postman se puede ejecutar entrando en la instancia EC2 por SSH, para lo cual necesita el archivo PEM, y ejecutando después uno o varios scripts.
 
-Siguiendo los requisitos y las instrucciones tal como se detallan en [QA and Regression Testing Framework](https://github.com/mojaloop/ml-qa-regression-testing.git "QA and Regression Testing Framework"), cualquiera podrá crear su propio marco y obtener acceso a su instancia para ejecutar pruebas contra cualquier colección de Postman dirigida a cualquier entorno sobre el que tenga control.
+Siguiendo los requisitos y las instrucciones tal como se detallan en [marco de pruebas de QA y de regresión](https://github.com/mojaloop/ml-qa-regression-testing.git "QA and Regression Testing Framework"), cualquiera podrá crear su propio marco y obtener acceso a su instancia para ejecutar pruebas contra cualquier colección de Postman dirigida a cualquier entorno sobre el que tenga control.
 
 ##### Pasos para ejecutar el script a través de la interfaz de Postman
 + Importe la colección deseada en su interfaz de Postman. Puede descargar la colección del repositorio o, como alternativa, usar el enlace `RAW` e importarla directamente mediante la opción **import link**.

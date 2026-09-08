@@ -147,7 +147,7 @@ Más información aquí: [Definición de procesamiento directo](https://www.inve
 Mojaloop está diseñado para funcionar como parte de un sistema de pagos instantáneos jurisdiccional. Por tanto, debe cumplir de forma demostrable los estándares de rendimiento y resiliencia que se exigen a esos sistemas.
 
 
-### 1. El sistema de referencia, demostrado en hardware mínimo, admite la compensación de 1.000 transferencias por segundo, sostenidas durante una hora, sin que más del 1% (de la etapa de transferencia) tarde más de 1 segundo en pasar por el Hub.
+### 1. El sistema de referencia, demostrado en hardware mínimo, admite la compensación de 1,000 transferencias por segundo, sostenidas durante una hora, sin que más del 1% (de la etapa de transferencia) tarde más de 1 segundo en pasar por el Hub.
 #### Notas:
 1. Esta medición incluye todos los componentes de hardware y software necesarios, con seguridad y persistencia de datos de nivel de producción.
 2. Esta medición incluye las tres etapas de la transferencia: descubrimiento, acuerdo y transferencia.

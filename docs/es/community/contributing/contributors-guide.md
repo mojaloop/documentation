@@ -48,13 +48,13 @@ Los equipos de implementación pueden ayudar a bancos, oficinas gubernamentales,
 
 Mojaloop sigue un [proceso de ingeniería de producto](./product-engineering-process.md) estructurado y mantenemos activamente
 una [hoja de ruta](../mojaloop-roadmap.md) de desarrollos de nuevas funcionalidades y de trabajo de mantenimiento. Puede encontrar información sobre nuestros
-flujos de trabajo oficiales actualmente en marcha en
-nuestra [página central de flujos de trabajo de la comunidad](https://community.mojaloop.io/pi-24-workstreams).
+workstreams oficiales actualmente en marcha en
+nuestra [página central de workstreams de la comunidad](https://community.mojaloop.io/pi-24-workstreams).
 
-Cada flujo de trabajo de Mojaloop mantiene un backlog de elementos de trabajo en GitHub y un espacio de trabajo de ZenHub; escriba al
-responsable del flujo de trabajo o publique un mensaje en el canal de slack del flujo de trabajo para presentarse y encontrar un buen ticket con el que empezar.
-Encontrará los datos de contacto de los responsables de los flujos de trabajo y la información de los canales de slack en
-nuestra [página central de flujos de trabajo de la comunidad](https://community.mojaloop.io/pi-24-workstreams).
+Cada workstream de Mojaloop mantiene un backlog de elementos de trabajo en GitHub y un espacio de trabajo de ZenHub; escriba al
+responsable del workstream o publique un mensaje en el canal de slack del workstream para presentarse y encontrar un buen ticket con el que empezar.
+Encontrará los datos de contacto de los responsables de los workstreams y la información de los canales de slack en
+nuestra [página central de workstreams de la comunidad](https://community.mojaloop.io/pi-24-workstreams).
 
 ## ¿Dónde obtengo ayuda?
 

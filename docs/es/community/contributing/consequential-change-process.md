@@ -27,7 +27,7 @@ siguiente proceso:
     2. Una vez completado el proceso de revisión de diseño, puede continuar con su cambio.
 4. Implemente y revise sus cambios de código:
     1. Cree elementos de trabajo en github/zenhub y trabaje en ellos, dentro de
-       su [proceso de flujo de trabajo](./product-engineering-process.md#flujos-de-trabajo-de-mojaloop), según sea necesario. Asegúrese de
+       su [proceso de workstream](./product-engineering-process.md#workstreams-de-mojaloop), según sea necesario. Asegúrese de
        hacer referencia al ticket del product council y al ticket de la propuesta de cambio con consecuencias en las descripciones de sus elementos, para permitir
        la trazabilidad futura.
     2. Cuando esté listo para hacer pull requests en uno o varios repositorios de código, contacte con el miembro o los miembros de la design authority

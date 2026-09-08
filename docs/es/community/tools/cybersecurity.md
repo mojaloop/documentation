@@ -68,7 +68,7 @@ Mojaloop emplea varios mecanismos técnicos para realizar una evaluación automa
 
 #### Pruebas de penetración
 
-Los miembros de la comunidad de Mojaloop realizan periódicamente pruebas de penetración sobre sus despliegues usando marcos habituales de pruebas de seguridad y comparten los resultados con la Mojaloop Foundation bajo un proceso de divulgación coordinada de vulnerabilidades, por el cual cualquier riesgo recién identificado puede mitigarse mediante los flujos de trabajo técnicos o los adoptantes antes de que terceros puedan abusar de las vulnerabilidades.
+Los miembros de la comunidad de Mojaloop realizan periódicamente pruebas de penetración sobre sus despliegues usando marcos habituales de pruebas de seguridad y comparten los resultados con la Mojaloop Foundation bajo un proceso de divulgación coordinada de vulnerabilidades, por el cual cualquier riesgo recién identificado puede mitigarse mediante los workstreams técnicos o los adoptantes antes de que terceros puedan abusar de las vulnerabilidades.
 
 
 #### Experiencia y apoyo de la comunidad

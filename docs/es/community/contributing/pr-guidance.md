@@ -236,4 +236,4 @@ Para las correcciones críticas de seguridad o los errores que rompen producció
 
 ---
 
-*Para preguntas sobre estas directrices, publique en el canal de Slack del flujo de trabajo correspondiente o abra un problema de GitHub en el [repositorio de documentación](https://github.com/mojaloop/documentation).*
+*Para preguntas sobre estas directrices, publique en el canal de Slack del workstream correspondiente o abra un problema de GitHub en el [repositorio de documentación](https://github.com/mojaloop/documentation).*

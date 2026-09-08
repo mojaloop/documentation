@@ -27,5 +27,5 @@ i18n_source_sha: 67fffae5f8e92d27e5766d390c9dab815ad5866b
 
 ## PI 7
 
-- [Flujo de trabajo Workbench](./workbench.md)
+- [Workstream Workbench](./workbench.md)
 
