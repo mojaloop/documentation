@@ -116,7 +116,7 @@ Para facilitar a reconciliação e a liquidação dos DFSP no banco de liquidaç
 
 ## Finance Portal
 
-O [Finance Portal (em inglês)](../../../../adoption/HubOperations/Portalv2/busops-portal-introduction.md) (habitualmente designado por «Finance Portal v2») é um portal web utilizado pelo Operador do Hub para gerir diariamente os processos relacionados com a liquidação. O portal disponibiliza funcionalidades para:
+O [Finance Portal](busops-portal-introduction.md) (habitualmente designado por «Finance Portal v2») é um portal web utilizado pelo Operador do Hub para gerir diariamente os processos relacionados com a liquidação. O portal disponibiliza funcionalidades para:
 
 - monitorizar detalhes como o saldo, a [Posição](#posicao) e o [Net Debit Cap](#gestao-de-liquidez-net-debit-cap) dos DFSP
 - atualizar o [Net Debit Cap](#gestao-de-liquidez-net-debit-cap) de um DFSP
