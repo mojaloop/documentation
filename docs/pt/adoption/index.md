@@ -15,26 +15,26 @@ Ferramentas disponíveis para os adotantes:
 
 ## Escolhas do scheme
 
-O [Modelo de Diretrizes de Operação da Plataforma (em inglês)](../../adoption/Scheme/platform-operating-guideline.md) fornece um modelo para descrever como a Plataforma do Scheme irá operar e para especificar as obrigações e responsabilidades do Scheme, do Operador da Plataforma e dos DFSP.
+O [Modelo de Diretrizes de Operação da Plataforma](./Scheme/platform-operating-guideline.md) fornece um modelo para descrever como a Plataforma do Scheme irá operar e para especificar as obrigações e responsabilidades do Scheme, do Operador da Plataforma e dos DFSP.
 
-O [Modelo de Regras de Negócio do Scheme (em inglês)](../../adoption/Scheme/scheme-business-rules.md) fornece um modelo para definir as Regras de Negócio que regem os direitos e as responsabilidades dos participantes num scheme Mojaloop.
+O [Modelo de Regras de Negócio do Scheme](./Scheme/scheme-business-rules.md) fornece um modelo para definir as Regras de Negócio que regem os direitos e as responsabilidades dos participantes num scheme Mojaloop.
 
-O documento [Escolhas-Chave do Scheme (em inglês)](../../adoption/Scheme/scheme-key-choices.md) descreve e analisa algumas das escolhas de negócio e de conceção mais significativas, que afetam tanto a implementação técnica do Mojaloop como as Regras de Negócio que o Scheme irá redigir e que os DFSP participantes aceitarão cumprir.
+O documento [Escolhas-Chave do Scheme](./Scheme/scheme-key-choices.md) descreve e analisa algumas das escolhas de negócio e de conceção mais significativas, que afetam tanto a implementação técnica do Mojaloop como as Regras de Negócio que o Scheme irá redigir e que os DFSP participantes aceitarão cumprir.
 
-O [Modelo de Acordo de Participação no Scheme (em inglês)](../../adoption/Scheme/scheme-participation-agreement.md) fornece um modelo do Acordo de Participação no Scheme que contém as disposições mínimas necessárias para comprovar a candidatura de um DFSP à adesão ao Scheme e ao cumprimento das suas Regras de Negócio.
+O [Modelo de Acordo de Participação no Scheme](./Scheme/scheme-participation-agreement.md) fornece um modelo do Acordo de Participação no Scheme que contém as disposições mínimas necessárias para comprovar a candidatura de um DFSP à adesão ao Scheme e ao cumprimento das suas Regras de Negócio.
 
-O [Modelo de Glossário Uniforme (em inglês)](../../adoption/Scheme/scheme-uniform-glossary.md) funciona como um glossário de termos de negócio.
+O [Modelo de Glossário Uniforme](./Scheme/scheme-uniform-glossary.md) funciona como um glossário de termos de negócio.
 
 ## Operações do Hub
 
 Estes documentos podem servir de referência para os adotantes desenvolverem e personalizarem os portais de operações do hub e, posteriormente, criarem os seus próprios, conforme necessário.
 
-O [Guia de Operações Técnicas (em inglês)](../../adoption/HubOperations/TechOps/tech-ops-introduction.md) descreve os processos operacionais que permitem ao Operador do Hub tratar de todos os aspetos da gestão de um serviço em produção, tais como a gestão de incidentes, a gestão de problemas, a gestão da mudança, a gestão de versões e a triagem de defeitos.
+O [Guia de Operações Técnicas](./HubOperations/TechOps/tech-ops-introduction.md) descreve os processos operacionais que permitem ao Operador do Hub tratar de todos os aspetos da gestão de um serviço em produção, tais como a gestão de incidentes, a gestão de problemas, a gestão da mudança, a gestão de versões e a triagem de defeitos.
 
 O [Guia de gestão da liquidação](./HubOperations/Settlement/settlement-management-introduction.md) descreve como as liquidações são geridas pelo Hub Mojaloop e pelo(s) banco(s) de liquidação parceiro(s), e apresenta os principais blocos constituintes do processamento da liquidação.
 
-O [Guia do Finance Portal v2 (em inglês)](../../adoption/HubOperations/Portalv2/busops-portal-introduction.md) destina-se ao Operador de um Hub Mojaloop e fornece informação sobre o Finance Portal, que facilita a gestão diária dos processos relacionados com a liquidação.
+O [Guia do Finance Portal v2](./HubOperations/Portalv2/busops-portal-introduction.md) destina-se ao Operador de um Hub Mojaloop e fornece informação sobre o Finance Portal, que facilita a gestão diária dos processos relacionados com a liquidação.
 
-O documento [Controlo de Acesso Baseado em Funções (em inglês)](../../adoption/HubOperations/RBAC/Role-based-access-control.md) aborda o mecanismo de segurança utilizado para controlar o acesso a vários aspetos de uma instância operacional de um Hub Mojaloop.
+O documento [Controlo de Acesso Baseado em Funções](./HubOperations/RBAC/Role-based-access-control.md) aborda o mecanismo de segurança utilizado para controlar o acesso a vários aspetos de uma instância operacional de um Hub Mojaloop.
 
-O [Guia de Onboarding para o Operador do Hub (em inglês)](../../adoption/HubOperations/Onboarding/onboarding-introduction.md) destina-se ao Operador de um Hub Mojaloop e fornece informação sobre o processo de onboarding dos DFSP. Apresenta uma visão geral do percurso de onboarding seguido pelos DFSP, funcionando como uma lista de verificação das atividades de onboarding.
+O [Guia de Onboarding para o Operador do Hub](./HubOperations/Onboarding/onboarding-introduction.md) destina-se ao Operador de um Hub Mojaloop e fornece informação sobre o processo de onboarding dos DFSP. Apresenta uma visão geral do percurso de onboarding seguido pelos DFSP, funcionando como uma lista de verificação das atividades de onboarding.

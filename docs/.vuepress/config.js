@@ -2274,10 +2274,38 @@ module.exports = {
       // Populated per area, in the same PR as the pages they list.
       '/pt/adoption/': [
         {
+          title: 'Guia do Scheme',
+          collapsable: false,
+          sidebarDepth: 2,
+          children: [
+            ['Scheme/platform-operating-guideline', 'Modelo de Diretrizes de Operação da Plataforma'],
+            ['Scheme/scheme-business-rules', 'Modelo de Regras de Negócio do Scheme'],
+            ['Scheme/scheme-key-choices', 'Escolhas-Chave do Scheme'],
+            ['Scheme/scheme-participation-agreement', 'Modelo de Acordo de Participação no Scheme'],
+            ['Scheme/scheme-uniform-glossary', 'Modelo de Glossário Uniforme'],
+          ]
+        },
+        {
           title: 'Guia de Operações do Hub',
           collapsable: false,
           sidebarDepth: 1,
           children: [
+            {
+              title: 'Guia de Operações Técnicas',
+              collapsable: true,
+              sidebarDepth: 2,
+              children: [
+                'HubOperations/TechOps/tech-ops-introduction',
+                'HubOperations/TechOps/incident-management',
+                'HubOperations/TechOps/problem-management',
+                'HubOperations/TechOps/change-management',
+                'HubOperations/TechOps/release-management',
+                'HubOperations/TechOps/defect-triage',
+                'HubOperations/TechOps/key-terms-kpis',
+                'HubOperations/TechOps/incident-management-escalation-matrix',
+                'HubOperations/TechOps/service-level-agreements'
+              ]
+            },
             {
               title: 'Guia de gestão da liquidação',
               collapsable: true,
@@ -2286,6 +2314,42 @@ module.exports = {
                 'HubOperations/Settlement/settlement-management-introduction',
                 'HubOperations/Settlement/settlement-basic-concepts',
                 'HubOperations/Settlement/ledgers-in-the-hub',
+              ]
+            },
+            {
+              title: 'Guia do Finance Portal v2',
+              collapsable: true,
+              sidebarDepth: 2,
+              children: [
+                'HubOperations/Portalv2/busops-portal-introduction',
+                'HubOperations/Portalv2/settlement-business-process',
+                'HubOperations/Portalv2/accessing-the-portal',
+                'HubOperations/Portalv2/managing-windows',
+                'HubOperations/Portalv2/settling',
+                'HubOperations/Portalv2/checking-settlement-details',
+                'HubOperations/Portalv2/monitoring-dfsp-financial-details',
+                'HubOperations/Portalv2/enabling-disabling-transactions',
+                'HubOperations/Portalv2/recording-funds-in-out',
+                'HubOperations/Portalv2/updating-ndc',
+                'HubOperations/Portalv2/searching-for-transfer-data'
+              ]
+            },
+            {
+              title: 'Controlo de Acesso Baseado em Funções',
+              collapsable: true,
+              sidebarDepth: 2,
+              children: [
+                'HubOperations/RBAC/Role-based-access-control'
+              ]
+            },
+            {
+              title: 'Guia de Onboarding para o Operador do Hub',
+              collapsable: true,
+              sidebarDepth: 2,
+              children: [
+                'HubOperations/Onboarding/onboarding-introduction',
+                'HubOperations/Onboarding/business-onboarding',
+                'HubOperations/Onboarding/technical-onboarding',
               ]
             }
           ]
