@@ -1,0 +1,21 @@
+# URLs that are intentionally allowed to 404.
+#
+# Pages listed here were removed with no successor, so a redirect would send
+# readers somewhere they did not ask for. scripts/_test_redirects.js consults
+# this list when a branch deletes or renames a page.
+#
+# One URL per line. Add an entry only when there is genuinely nothing to point at.
+
+# Placeholder pages from the original 2021 VuePress scaffold (removed in af8ece42)
+/quickstarts/one.html
+/quickstarts/two.html
+
+# Test/accidental pages that were never real content
+/product/features/invariants2.html
+/product/features/ml-feature-list OLD.html
+
+# Superseded by /product/features/transaction.html (singular)
+/product/features/transactions.html
+
+# Folded back into the deployment guide (removed in b9edbdaf)
+/technical/technical/deployment-guide/upgrade-commands.html

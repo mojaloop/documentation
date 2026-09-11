@@ -6,7 +6,7 @@ title: Service de devis
 
 # Vue d’ensemble du service de devis
 
-Le **Quoting Service** (**QS**) — *(voir la section `5.1`) conformément à la [spécification Mojaloop {{ $page.frontmatter.version }}](/api)* — met en œuvre la phase de devis des différents cas d’usage.
+Le **Quoting Service** (**QS**) — *(voir la section `5.1`) conformément à la [spécification Mojaloop {{ $page.frontmatter.version }}](/fr/technical/api/)* — met en œuvre la phase de devis des différents cas d’usage.
 
 _Note : outre les devis individuelles, le service de devis prend aussi en charge les devis groupés (*bulk quotes*)._
 

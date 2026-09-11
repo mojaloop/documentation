@@ -83,6 +83,12 @@ jobs:
       - run:
           name: build
           command: npm run build
+      # Gates the `infra` job, which applies the CloudFront redirect function to
+      # production on every branch. Catches size-limit, loop and dead-target errors
+      # here rather than at `terraform apply`.
+      - run:
+          name: test redirects
+          command: node scripts/_test_redirects.js
 
   build-legacy:
     executor: legacy-docker

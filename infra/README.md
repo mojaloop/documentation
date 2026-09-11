@@ -86,4 +86,44 @@ links to updated pages in order to avoid broken links once we switch over to doc
 For this, we use cloudfront functions, which are lightweight Javascript functions that allow you 
 to control the behaviour of requests and responses of the CDN.
 
-The redirect behaviour can be configured in `./src/redirect/index.js`
+The redirect behaviour can be configured in `./src/redirect/index.js`. **That file is the source
+of truth — edit it directly.** It used to be generated from a `link_list.txt` via a shell script;
+those files drifted years out of date and were removed, so do not reintroduce a generator.
+
+Two rule tables:
+
+- `X` — exact path matches, checked first, first match wins.
+- `P` — prefix matches, longest match wins, with the rest of the path carried across. A prefix
+  rule never fires on a path already under its own target, which keeps self-nesting rules
+  (`Iso20022/` → `Iso20022/v1.0/`) loop-safe.
+
+Paths are matched with any `/pr/<n>` preview prefix stripped and re-applied to the `Location`,
+so redirects behave the same on the site and in PR previews.
+
+### Before you push
+
+Run the test suite:
+
+```bash
+node scripts/_test_redirects.js
+```
+
+This is not optional. The CircleCI `infra` job has no branch filter, so it runs
+`terraform apply --auto-approve` on **every branch** — pushing a redirect change deploys it
+straight to production CloudFront with no staging step. The suite checks the 10 KB function size
+limit, duplicate keys, redirect loops, that every rule lands on a page that exists, and that no
+live page is redirected away.
+
+### Moving or deleting a page
+
+Add a rule to `index.js`, or, if the page genuinely has no successor and should 404, add its URL
+to `./src/redirect/no-redirect.txt`. The test suite fails the build if a branch removes or renames
+a page without doing one of the two — this is what stops a restructure from silently orphaning
+URLs, as happened in 2024.
+
+### Rolling out a batch of new rules
+
+`index.js` has a single `var S` at the top holding the status code. Land new rules with `S = 302`,
+verify them in production, then flip to `S = 301` in a follow-up. There is no CloudFront
+invalidation in this repo and browsers cache 301s near-permanently, so a wrong 301 is very hard
+to take back.
