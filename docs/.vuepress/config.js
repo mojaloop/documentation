@@ -2269,6 +2269,128 @@ module.exports = {
           ]
         }
       ],
+      '/es/community/': [
+        {
+          title: 'Comunidad',
+          collapsable: false,
+          sidebarDepth: 2,
+          children: [
+            ['contributing/contributors-guide', 'Bienvenido a la comunidad'],
+            ['mojaloop-roadmap', 'Hoja de ruta del producto'],
+            ['mojaloop-publications', 'Publicaciones de Mojaloop']
+          ]
+        },
+        {
+          title: 'Contribuir',
+          collapsable: false,
+          sidebarDepth: 2,
+          children: [
+            ['contributing/contributors-guide', 'Guía del contribuyente'],
+            ['contributing/product-engineering-process', 'Proceso de ingeniería de producto'],
+            ['contributing/design-review', 'Revisión técnica y de código'],
+            ['contributing/consequential-change-process', 'Proceso de cambios con consecuencias'],
+            ['contributing/critical-change-process', 'Proceso de cambios críticos'],
+            ['contributing/new-contributor-checklist', 'Lista de verificación para nuevos contribuyentes'],
+            ['contributing/pr-guidance', 'Directrices para los pull requests'],
+            ['contributing/code-of-conduct', 'Código de conducta'],
+            ['contributing/signing-the-cla', 'Firmar el CLA'],
+            ['contributing/cvd', 'Divulgación de vulnerabilidades de seguridad'],
+          ]
+        },
+        {
+          title: 'Estándares',
+          collapsable: false,
+          sidebarDepth: 2,
+          children: [
+            ['standards/guide', 'Nuestros estándares'],
+            ['standards/invariants', 'Invariantes de Mojaloop'],
+            ['standards/versioning', 'Versionado'],
+            ['standards/creating-new-features', 'Crear funcionalidades nuevas'],
+            ['standards/triaging-bugs', 'Triaje de errores'],
+            ['standards/ai_policy', 'Política de IA'],
+          ]
+        },
+        {
+          title: 'Herramientas y tecnologías',
+          collapsable: false,
+          sidebarDepth: 2,
+          children: [
+            ['tools/tools-and-technologies', 'Herramientas'],
+            ['tools/pragmatic-rest', 'Pragmatic Rest'],
+            ['tools/code-quality-metrics', 'Métricas de calidad del código'],
+            ['tools/automated-testing', 'Pruebas automatizadas'],
+            ['tools/cybersecurity', 'Ciberseguridad'],
+          ]
+        },
+        {
+          title: 'Documentación',
+          collapsable: false,
+          sidebarDepth: 2,
+          children: [
+            ['documentation/standards', 'Estándares'],
+            ['documentation/api-documentation', 'Documentación de la API'],
+            ['documentation/style-guide', 'Guía de estilo']
+          ]
+        },
+        {
+          title: 'Archivo',
+          collapsable: false,
+          sidebarDepth: 4,
+          children: [
+            {
+              title: 'Archivo de notas',
+              collapsable: true,
+              path: 'archive/notes/',
+              children: [
+                ['archive/notes/ccb-notes', 'Notas del CCB'],
+                ['archive/notes/da-notes', 'Notas de reuniones'],
+                ['archive/notes/scrum-of-scrum-notes', 'Notas de scrum']
+              ]
+            },
+            {
+              title: 'Archivo de documentos de debate',
+              collapsable: true,
+              path: 'archive/discussion-docs/',
+              children: [
+                {
+                  title: 'PI 10',
+                  collapsable: true,
+                  children: [
+                    ['archive/discussion-docs/performance-project', 'Proyecto de rendimiento'],
+                    ['archive/discussion-docs/code-improvement', 'Proyecto de mejora del código'],
+                    ['archive/discussion-docs/cross-border', 'Proyecto transfronterizo'],
+                    ['archive/discussion-docs/psip-project', 'Proyecto PSIP']
+                  ]
+                },
+                {
+                  title: 'PI 9',
+                  collapsable: true,
+                  children: [
+                    ['archive/discussion-docs/versioning-draft-proposal', 'Propuesta preliminar de versionado'],
+                  ]
+                },
+                {
+                  title: 'PI 8',
+                  collapsable: true,
+                  children: [
+                    ['archive/discussion-docs/cross-border-day-1', 'Notas de la reunión CB, día 1'],
+                    ['archive/discussion-docs/cross-border-day-2', 'Notas de la reunión CB, día 2'],
+                    ['archive/discussion-docs/iso-integration', 'Descripción general de la integración con ISO'],
+                    ['archive/discussion-docs/mojaloop-decimal', 'Tipo decimal de Mojaloop']
+                  ]
+                },
+                {
+                  title: 'PI 7',
+                  collapsable: true,
+                  children: [
+                    ['archive/discussion-docs/workbench', 'Workstream Workbench'],
+                  ]
+                }
+              ]
+            },
+          ]
+        }
+      ],
     }
   },
 
