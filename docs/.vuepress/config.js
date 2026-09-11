@@ -1169,7 +1169,7 @@ module.exports = {
         {
           title: 'Mojaloop Features',
           collapsable: false,
-          sidebarDepth: 2,
+          sidebarDepth: 3,
           children: [
             ['features/ml-feature-list', 'About Mojaloop'],
             ['features/use-cases', 'Use Cases'],
@@ -1191,7 +1191,7 @@ module.exports = {
         {
           title: 'Mojaloop Features',
           collapsable: false,
-          sidebarDepth: 2,
+          sidebarDepth: 3,
           children: [
             ['features/ml-feature-list', 'About Mojaloop'],
             ['features/use-cases', 'Use Cases'],
