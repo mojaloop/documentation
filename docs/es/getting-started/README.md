@@ -11,7 +11,7 @@ Para ayudarle a empezar con Mojaloop, elija cuál de las siguientes opciones se 
 2. [Licencia](./license.md)
 3. [Consultar las API de Mojaloop](/api/)
 4. [Realizar un programa de formación](https://mojaloop.io/mojaloop-training-program/)
-5. [Contribuir a Mojaloop](/community/)
+5. [Contribuir a Mojaloop](/es/community/)
 6. [Instalar Mojaloop](./installation/installing-mojaloop.md)
 7. [Demostraciones](./demos/mojaloop-overview.md)
 
