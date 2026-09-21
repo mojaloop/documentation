@@ -1,0 +1,70 @@
+@startuml
+
+skinparam TitleFontColor #819FF7
+skinparam TitleFontSize 23
+
+title Regression Test Life Cycle\n(Self-contained Test Server on EC2)
+
+skinparam backgroundColor #353B42
+skinparam activity {
+  StartColor #40FF00
+  EndColor #FF0000
+  BackgroundColor #2E9AFE
+  BorderColor #A9D0F5
+  LineColor #AAAAAA
+}
+
+skinparam Arrow{
+    Color #BFA350
+    FontSize 10
+    FontColor #6CBF50
+}
+
+start
+
+:Test is triggered;
+note right: This could be a manual trigger, \nscheduler timer or \nan external action like a Pull Request \nfrom the Source Control System
+
+if (Validate run parameters as expected?) then (yes)
+  :Prepare environment for required run;
+  note left: Set Timestamp\nPostmanCollection to execute\nList of email recipients\nEnvironment Variables\nExecution Timestamp\nOutput FileName
+else (no)
+  -[#red]->
+  :Abort run with Note stating incorrect Run Parameters;
+  -[#red]->
+  stop
+endif
+
+:Create Simulator Docker Container;
+:Create Regression Test Docker Container;
+note left: This container has node\nNewman\email SMTP Server
+
+while (More Postman Requests to run?)  is (Yes)
+  :Perform Pre-Request Script;
+  note right: Set up any variables for\npreparation of the request to follow
+  :Execute Postman Request;
+  :Perform Test;
+  :Log Results;
+  note right: Inspect the response \nagainst variables set previously during\nthe run to determine if expected results are obtained
+  if (Assertion Test Failed?) then (yes)
+    if (Run Parameter requested 'Abort at First Error'?) then (yes)
+      -[#red]->
+      (A)
+      detach
+    else (no)
+    endif
+  else (no)
+  endif
+endwhile (No)
+
+(A)
+:Destroy Simulator Docker Container;
+:Finalise Report;
+:Prepare Notification(s);
+:Attach Reports;
+:Send out Notification(s);
+note right: The Attachment (Generated Report) \nis sent as an attachment \nto the different notification channels.
+:Destroy Regression Test Docker Container;
+stop
+
+@enduml
