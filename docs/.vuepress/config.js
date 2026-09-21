@@ -216,6 +216,7 @@ module.exports = {
             ['contributing/critical-change-process', 'Critical Change Process'],
             ['contributing/new-contributor-checklist', 'New Contributor Checklist'],
             ['contributing/pr-guidance', 'Pull Request Guidance'],
+            ['contributing/translations/locales/es', 'Spanish Locale Guide'],
             ['contributing/code-of-conduct', 'Code of Conduct'],
             ['contributing/signing-the-cla', 'Signing the CLA'],
             ['contributing/cvd', 'Disclosing Security Vulnerabilities'],
