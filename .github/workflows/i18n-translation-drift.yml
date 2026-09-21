@@ -1,0 +1,160 @@
+name: i18n translation drift
+
+on:
+  pull_request:
+    paths:
+      - "docs/**/*.md"
+      - "docs/.vuepress/config.js"
+      - "scripts/i18n-drift-check.mjs"
+  push:
+    branches:
+      - master
+    paths:
+      - "docs/**/*.md"
+      - "docs/.vuepress/config.js"
+      - "scripts/i18n-drift-check.mjs"
+
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+
+jobs:
+  report-pr:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Generate i18n drift report
+        run: |
+          node scripts/i18n-drift-check.mjs \
+            --base "${{ github.event.pull_request.base.sha }}" \
+            --head "${{ github.event.pull_request.head.sha }}" \
+            --json-out i18n-report.json \
+            --markdown-out i18n-report.md
+
+      - name: Upsert pull request comment
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require("fs");
+            const body = fs.readFileSync("i18n-report.md", "utf8");
+            const marker = "<!-- i18n-translation-drift -->";
+            const finalBody = `${marker}\n${body}`;
+
+            const { owner, repo } = context.repo;
+            const issue_number = context.issue.number;
+
+            const comments = await github.paginate(github.rest.issues.listComments, {
+              owner,
+              repo,
+              issue_number,
+              per_page: 100,
+            });
+
+            const existing = comments.find((comment) =>
+              comment.user?.type === "Bot" && comment.body?.includes(marker)
+            );
+
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner,
+                repo,
+                comment_id: existing.id,
+                body: finalBody,
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner,
+                repo,
+                issue_number,
+                body: finalBody,
+              });
+            }
+
+      - name: Upload i18n report artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: i18n-report-pr
+          path: |
+            i18n-report.json
+            i18n-report.md
+
+  create-issue-on-master:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Generate i18n drift report
+        run: |
+          node scripts/i18n-drift-check.mjs \
+            --base "${{ github.event.before }}" \
+            --head "${{ github.sha }}" \
+            --json-out i18n-report.json \
+            --markdown-out i18n-report.md
+
+      - name: Create issue when drift exists
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require("fs");
+            const report = JSON.parse(fs.readFileSync("i18n-report.json", "utf8"));
+            const md = fs.readFileSync("i18n-report.md", "utf8");
+
+            if (!report.hasDrift) {
+              core.info("No translation drift detected; no issue created.");
+              return;
+            }
+
+            const { owner, repo } = context.repo;
+
+            const baseLabels = [
+              { name: "i18n", color: "e4e669" },
+              { name: "translation-needed", color: "e4e669" },
+            ];
+            const localeLabels = report.locales.map((locale) => ({
+              name: `locale:${locale}`,
+              color: "0075ca",
+            }));
+            const allLabels = [...baseLabels, ...localeLabels];
+
+            for (const label of allLabels) {
+              try {
+                await github.rest.issues.createLabel({ owner, repo, ...label });
+              } catch {
+                // label already exists
+              }
+            }
+
+            const title = `i18n: translation updates required for ${context.sha.slice(0, 7)}`;
+            const body = [
+              "This issue was auto-created after source documentation changes were merged to `master`.",
+              "",
+              md,
+              "",
+              "Please coordinate locale updates with maintainers/reviewers.",
+            ].join("\n");
+
+            await github.rest.issues.create({
+              owner,
+              repo,
+              title,
+              body,
+              labels: allLabels.map((l) => l.name),
+            });
+
+      - name: Upload i18n report artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: i18n-report-master
+          path: |
+            i18n-report.json
+            i18n-report.md
