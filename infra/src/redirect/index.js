@@ -13,7 +13,7 @@
 // Moving or deleting a page? Add a rule here, or list it in no-redirect.txt.
 // Verify before pushing -- `node scripts/_test_redirects.js` -- because the CircleCI
 // `infra` job applies terraform on EVERY branch, straight to production.
-var S = 302 // flip to 301 once a new batch of rules has been verified in production
+var S = 302 // TODO: flip to 301 once a new batch of rules has been verified in production
 
 var X = [
   ["/mojaloop-specification/","/technical/api/"],
