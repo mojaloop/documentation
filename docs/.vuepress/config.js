@@ -1068,6 +1068,16 @@ module.exports = {
               ]
             },
             {
+              title: 'ISO-20022 API',
+              collapsable: true,
+              sidebarDepth: 4,
+              children: [
+                {
+                  title: 'Overview',
+                  path: 'api/iso20022/',
+                },]
+            },
+            {
               title: 'Administration API',
               collapsable: true,
               sidebarDepth: 2,
@@ -1159,7 +1169,7 @@ module.exports = {
         {
           title: 'Mojaloop Features',
           collapsable: false,
-          sidebarDepth: 2,
+          sidebarDepth: 3,
           children: [
             ['features/ml-feature-list', 'About Mojaloop'],
             ['features/use-cases', 'Use Cases'],
@@ -1181,7 +1191,7 @@ module.exports = {
         {
           title: 'Mojaloop Features',
           collapsable: false,
-          sidebarDepth: 2,
+          sidebarDepth: 3,
           children: [
             ['features/ml-feature-list', 'About Mojaloop'],
             ['features/use-cases', 'Use Cases'],

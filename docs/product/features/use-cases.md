@@ -17,20 +17,22 @@ These are described in more detail below. When reading these descriptions, it sh
 ## "Push Payment" Use Cases
 A Mojaloop Hub directly supports the following use cases, which are all "flavours" of push payments:
 - Person to Person (**P2P**);
-- Person to Business (**P2B**), including simple forms of merchant payments, both face to face and remote (online);
+- Person to Business (**P2B**)
+  - including many forms of **merchant payments**, both face to face and remote (online);
 - Business to Business (**B2B**);
 - Business to Government (**B2G**);
 - Simple forms of Person to Government (**P2G**) payments
 
-In all types of merchant payment, a payment can be facilitated using merchant IDs (for USSD) or QR codes (smartphones).
+### Merchant Payments
+In all types of **merchant payment**, a payment can be facilitated using merchant IDs (for USSD) or QR codes (smartphones).
+
+The practicalities of configuring Mojaloop's merchant payments overlay, including the content of QR codes, are explored in [**this guide to using the Merchant Payments overlay with Mojaloop**](./Merchant_Payments/Merchant_Payments_Overview_V1_0.md), which addresses merchant registration, Merchant IDs, QR codes (static and dynamic), and LEIs.
 
 ## "Request To Pay" Use Cases
 
 As well as push payments, Mojaloop supports Request To Pay (RTP) transactions, in which a payee requests a payment from a payer, and _when the payer consents_ their DFSP pushes the payment to the payee on their behalf. This supports the following use cases:
 
-- **Merchant payments**, in a face to face environment, for example using a QR code;
-    - 	The practicalities of configuring Mojaloop's Merchant Payments solution, including the content of QR codes, are explored in [**How to Configure Merchant Payments for Mojaloop**](./merchant-payments.md).
-    - In all types of face to face merchant payment, a payment can be facilitated using merchant IDs (for USSD) or QR codes (smartphones).
+- **Merchant payments**, in a face to face environment, for example using a QR code (as described above);
 - **e-Commerce**, sometimes also known as remote merchant payments, when for example a checkout page (web page or mobile app) would include a "pay from my bank account" button, which would trigger an RTP. 
 
 - **Collections**, including P2G, P2B, B2B and B2G. This would commonly used for the payment of utility bills. This can also be achieved through the fintech/3PPI interface described below - the decision is a matter for a scheme operator. 
