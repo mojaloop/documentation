@@ -196,7 +196,7 @@ Further reading can be found [here](https://github.com/mojaloop/helm/blob/master
 1. Deploy backend
 
    ```bash
-   helm ---namespace demo install backend mojaloop/example-mojaloop-backend --create-namespace
+   helm --namespace demo install backend mojaloop/example-mojaloop-backend --create-namespace
    ```
 
 #### 5.2. Mojaloop Helm Deployment

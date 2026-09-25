@@ -1,0 +1,95 @@
+/'*****
+ License
+ --------------
+ Copyright © 2017 Bill & Melinda Gates Foundation
+ The Mojaloop files are made available by the Bill & Melinda Gates Foundation under the Apache License, Version 2.0 (the "License") and you may not use these files except in compliance with the License. You may obtain a copy of the License at
+ http://www.apache.org/licenses/LICENSE-2.0
+ Unless required by applicable law or agreed to in writing, the Mojaloop files are distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+ Contributors
+ --------------
+ This is the official list of the Mojaloop project contributors for this file.
+ Names of the original copyright holders (individuals or organizations)
+ should be listed with a '*' in the first column. People who have
+ contributed from an organization can be listed under the organization
+ that actually holds the copyright for their contributions (see the
+ Gates Foundation organization for an example). Those individuals should have
+ their names indented and be marked with a '-'. Email address can be added
+ optionally within square brackets <email>.
+ * Gates Foundation
+ - Name Surname <name.surname@gatesfoundation.com>
+
+ * Samuel Kummary <sam@modusbox.com>
+ --------------
+ ******'/
+
+@startuml
+' declate title
+title 9.1.0. Gestionnaire d'événements (espace réservé)
+
+autonumber
+
+' Actor Keys:
+'   boundary - APIs/Interfaces, etc
+'   collections - Kafka Topics
+'   control - Kafka Consumers
+'   entity - Database Access Objects
+'   database - Database Persistance Store
+
+' declare actors
+control "Gestionnaire d'événements\n(espace réservé)" as EVENT_HANDLER
+
+box "Gestionnaire d'événements (espace réservé)" #LightGray
+    participant EVENT_HANDLER
+end box
+
+collections "Topic Événements" as TOPIC_EVENTS
+
+' start flow
+activate EVENT_HANDLER
+
+group Gestionnaire d'événements (espace réservé)
+    EVENT_HANDLER -> TOPIC_EVENTS : Consommer le message d'événement \n <color #FF0000><b>Code d'erreur :</b> 2001 </color>
+    note right of EVENT_HANDLER #yellow
+        Message :
+        {
+            from: <transferHeaders.FSPIOP-Source>,
+            to: <transferHeaders.FSPIOP-Destination>,
+            type: application/json,
+            content: {
+                headers: <transferHeaders>,
+                payload: <transferMessage>
+            },
+            metadata: {
+                event: {
+                    id: <uuid>,
+                    type: INFO,
+                    action: AUDIT,
+                    createdAt: <timestamp>,
+                    state: {
+                        status: "success",
+                        code: 0
+                    }
+                }
+            }
+        }
+    end note
+    note right of EVENT_HANDLER #LightGray
+        Le « type » serait une énumération (ENUM) avec les valeurs :
+            [INFO, DEBUG, ERROR, WARN, FATAL, TRACE]
+        Les valeurs possibles pour « action » seraient
+            [AUDIT, EXCEPTION]
+        Les messages d'événement peuvent être traités en fonction des valeurs
+        de ces deux variables (lorsque l'espace réservé est étendu).
+    end note
+    EVENT_HANDLER -> EVENT_HANDLER : Auto-commit \n <color #FF0000><b>Code d'erreur :</b> 2001 </color>
+    note right of EVENT_HANDLER #lightBlue
+                Pour l'instant, les événements ne sont publiés que dans le cadre
+                de l'espace réservé. Ce comportement pourra évoluer pour ajouter
+                les fonctionnalités pertinentes.
+            end note
+    activate TOPIC_EVENTS
+    deactivate TOPIC_EVENTS
+end
+deactivate EVENT_HANDLER
+
+@enduml

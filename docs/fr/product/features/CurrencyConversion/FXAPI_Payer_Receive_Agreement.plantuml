@@ -1,0 +1,241 @@
+@startuml FXAPI_Payer_Receive_Agreement
+
+!$simplified = false
+!$shortCutSingleFXP = false
+!$hideSwitchDetail = false
+!$senderName = "Keeya"
+!$receiverName = "Yaro"
+!$payerCurrency = "BWP"
+!$payeeCurrency = "TZS"
+!$payerFSPID = "PayerFSP"
+!$payeeFSPID = "PayeeFSP"
+!$payerMSISDN = "26787654321"
+!$payeeMSISDN = "2551234567890"
+!$payeeReceiveAmount = "50000"
+!$payeeFee = "4000"
+!$targetAmount = "54000"
+!$fxpChargesSource = "33"
+!$fxpChargesTarget = "6000"
+!$fxpSourceAmount = "330"
+!$fxpTargetAmount = "54000"
+!$totalChargesSourceCurrency = "55"
+
+
+title Accord — conversion de devises avec type de montant RÉCEPTION
+'actor "$senderName" as A1
+box "DFSP payeur" #LightBlue  
+'  participant "CBS payeur" as PayerCBS
+  participant "Connecteur Mojaloop\npayeur" as D1
+end box
+
+participant "Commutateur Mojaloop" as S1
+
+'box "Service de découverte" #LightYellow
+'  participant "Oracle ALS" as ALS
+'end box
+
+box "Fournisseur de change"  
+  participant "Connecteur\nFXP" as FXP
+  participant "API FX backend" as FXPBackend
+end box
+
+box "DFSP bénéficiaire" #LightBlue   
+  participant "Connecteur Mojaloop\nbénéficiaire" as D2
+'  participant "CBS bénéficiaire" as PayeeCBS
+end box
+
+'actor "$receiverName" as A2
+autonumber
+
+D1->>S1:Merci de coter un paiement\nde $payeeReceiveAmount $payeeCurrency.\n**POST /quotes**
+!if ($simplified != true)
+note left
+    **POST /quotes**
+    {
+        "quoteId": "382987a875ce...",
+        "transactionId": "d9ce59d43598...",
+        "payee": {
+            "partyIdInfo": {
+            "partyIdType": "MSISDN",
+            "partyIdentifier": "$payeeMSISDN" }}
+        "payer": {
+            "partyIdInfo": {
+                "partyIdType": "MSISDN",
+                "partyIdentifier": "$payerMSISDN"}},
+        "amountType": **"RECEIVE"**,
+        "amount": {
+            "currency": "$payeeCurrency",
+            "amount": "$payeeReceiveAmount"}
+        "validity": "2021-08-25T14:17:09.663+01:00"
+    }
+end note
+!endif
+!if ($simplified != true)
+S1-->>D1:202 — Je vous recontacte
+!endif
+deactivate D1
+S1->>D2:**POST /quotes**
+activate D2
+!if ($simplified != true)
+D2-->>S1:202 — Je vous recontacte
+deactivate S1
+!endif
+D2->D2: Je vais obtenir un devis pour la conversion
+!if ($shortCutSingleFXP != true)
+
+
+D2->D2:OK, je facturerai $payeeFee $payeeCurrency pour cela.\nJe crée maintenant les conditions du transfert \net je signe l'objet de transaction
+D2->>S1:Voici le devis signé
+note right
+**put /quotes/382987a875ce...**
+{
+  "transferAmount": {
+    "currency": "$payeeCurrency",
+    "amount": "$targetAmount" },
+  "payeeReceiveAmount": {
+    "currency": "$payeeCurrency",
+    "amount": "$payeeReceiveAmount"},
+  "payeeFspFee": {
+    "currency": "$payeeCurrency",
+    "amount": "$payeeFee"},
+  "expiration": "2021-08-25T14:17:09.663+01:00,
+  "transaction": {
+    "transactionId": "d9ce59d43598...",
+    "quoteId": "382987a875ce...",
+    "payee": {
+      "fspId": "$payeeFSPID",
+      "partyIdInfo": {
+        "partyIdType": "MSISDN",
+        "partyIdentifier": "$payeeMSISDN"}},
+    "payer": {
+      "fspId": "$payerFSPID",
+      "partyIdInfo": {
+        "partyIdType": "MSISDN",
+        "partyIdentifier": "$payerMSISDN"}},
+    "amount": {
+      "currency": "$payeeCurrency",
+      "amount": "$targetAmount"},
+    "payeeReceiveAmount": {
+      "currency": "$payeeCurrency",
+      "amount": "$payeeReceiveAmount"},
+    "converter": "PAYER"},
+  "condition": "BfNFPRgfKF8Ke9kpo..."
+}
+end note
+activate S1
+!if ($simplified != true)
+S1-->>D2:200 — OK
+!endif
+deactivate D2
+S1->>D1:Voici le devis signé\n**PUT /quotes/382987a875ce...**
+activate D1
+!if ($simplified != true)
+D1-->>S1:200 — OK
+!endif
+deactivate S1
+D1->D1:OK, je vois qu'il y aura\n $payeeFee $payeeCurrency de frais et \nque je dois envoyer $targetAmount $payeeCurrency pour \neffectuer ce transfert
+
+group Conversion de devises 
+D1->D1:Je dois maintenant connaître le \ntaux de change
+deactivate S1
+D1->D1:Je vais demander à FDH FX\nd'effectuer ma conversion
+
+!if ($shortCutSingleFXP != true)
+D1->>S1:Voici la version initiale \ndu transfert. Merci de me coter\n la conversion de devises.
+!else
+D1->>FXP:Voici la version initiale\n du transfert. Merci de me coter\n la conversion de devises.
+!endif
+note left
+    **post /fxQuotes**
+    {
+      "conversionRequestId": "828cc75f1654...",
+      "conversionTerms": {
+        "conversionId": "581f68efb54f...",
+        "counterPartyFsp": "FDH_FX",
+        "amountType": "RECEIVE",
+        "sourceAmount": {
+          "currency": "$payerCurrency"},
+        "targetAmount": {
+          "currency": "$payeeCurrency",
+          "amount": "$targetAmount"},
+        "validity": "2021-08-25T14:17:09.663+01:00"}
+    }
+end note
+!if ($shortCutSingleFXP != true)
+activate S1
+!if ($simplified != true)
+S1-->>D1:202 — Je vous recontacte
+!endif
+deactivate D1
+S1->>FXP:Voici la version initiale\n du transfert. Merci de me coter\n la conversion de devises.\n**POST /fxQuote**
+activate FXP
+!if ($simplified != true)
+FXP-->>S1:202 — Je vous recontacte
+!endif
+deactivate S1
+!else
+!endif
+FXP->FXPBackend:Consulter le taux de change
+FXPBackend-->FXP:Renvoyer le taux de change
+' !if ($shortCutSingleFXP != true)
+
+note right
+    J'ajoute des frais de $fxpChargesSource $payerCurrency pour 
+    la conversion. Je fixe maintenant une heure d'expiration, 
+    je signe l'objet de devis, je crée un paquet ILP prepare
+    et je le renvoie dans l'objet intermédiaire.
+
+    **REMARQUE :** le paquet ILP prepare contient les éléments 
+    suivants, tous encodés :
+    - Le montant envoyé (c.-à-d. dans la devise source)
+    - Une heure d'expiration
+    - La condition
+    - Le nom du FXP
+    - Le contenu des conditions de conversion
+
+    **PUT /fxQuotes/828cc75f1654...**
+    {
+        "condition": "bdbcf517cfc7e...",
+        "conversionTerms": {
+            "conversionId": "581f68efb54f...",
+            "initiatingFsp": "$payerFSPID"
+            "sourceAmount": {
+                "currency": "$payerCurrency",
+                "amount": "$fxpSourceAmount"
+            },
+            "targetAmount": {
+                "currency": "$payeeCurrency"",
+                "amount": "$fxpTargetAmount"
+            },
+            "charges": [{
+                    "chargeType": "Conversion fee", 
+                    "sourceAmount": {
+                        "currency": "$payerCurrency",
+                        "amount": "$fxpChargesSource"},
+                    "targetAmount": {
+                        "currency": "$payeeCurrency",
+                        "amount": "$fxpChargesTarget"}}],
+            "validity": "2021-08-25T14:17:09.663+01:00"}
+    }
+end note
+!if ($shortCutSingleFXP != true)
+FXP->>S1:Voici l'objet \nde conversion signé
+activate S1
+!if ($simplified != true)
+S1-->>FXP:200 — OK
+!endif
+deactivate FXP
+S1->>D1:Voici l'objet de conversion signé\n**PUT /fxQuotes/828cc75f1654...**
+activate D1
+!if ($simplified != true)
+D1-->>S1:Compris
+!endif
+deactivate S1
+!else
+FXP-->>D1:Voici l'objet de conversion signé\n**PUT /fxQuotes/828cc75f1654...**
+activate D1
+!endif
+
+end group
+
+@enduml

@@ -1,292 +1,175 @@
-<svg xmlns="http://www.w3.org/2000/svg" height="1304" preserveAspectRatio="none" style="width:1517px;height:1304px" width="1517">
-  <defs>
-    <filter height="300%" id="a" width="300%" x="-1" y="-1">
-      <feGaussianBlur result="blurOut" stdDeviation="2"/>
-      <feColorMatrix in="blurOut" result="blurOut2" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/>
-      <feOffset dx="4" dy="4" in="blurOut2" result="blurOut3"/>
-      <feBlend in="SourceGraphic" in2="blurOut3"/>
-    </filter>
-  </defs>
-  <text font-family="sans-serif" font-size="18" lengthAdjust="spacingAndGlyphs" textLength="379" x="567.25" y="28.708">
-    2.1.2. Settlement Model Handler Consume
-  </text>
-  <path fill="#FFFFE0" stroke="#a80036" d="M26 40.953h1328v1257.508H26z"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="111" x="634.5" y="53.02">
-    Central Service
-  </text>
-  <path fill="#FFF" filter="url(#a)" stroke="#a80036" d="M97.5 219.211h10v30h-10zM318.5 134.68h10v1086.188h-10zM892 583.672h10v561.258h-10zM1297 636.938h10v62.266h-10zM1297 791.602h10v62.266h-10zM1297 907.133h10v30h-10zM1297 1016.531h10v30h-10z"/>
-  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M10 141.68h1493.5v1072.188H10z"/>
-  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M20 165.813h1473.5v1041.055H20z"/>
-  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M239.5 264.211h549v105.531h-549z"/>
-  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M249.5 288.344h529v74.398h-529zM249.5 383.742h589v156.664h-589zM808.5 598.672h675v518.125h-675z"/>
-  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M818.5 714.203h655v395.594h-655z"/>
-  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M828.5 868.867h635v233.93h-635z"/>
-  <path fill="#FFF" d="M828.5 993.398h635v109.398h-635zM20 1152.93h1473.5v53.938H20z"/>
-  <path stroke="#a80036" stroke-dasharray="5,5" d="M102 124.68v1106.187M323.5 124.68v1106.187M778.5 124.68v1106.187M896.5 124.68v1106.187M1302 124.68v1106.187"/>
-  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M34 69.086h137v46.594H34z"/>
-  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M30 73.086h137v46.594H30z"/>
-  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="39" x="79" y="93.081">
-    topic-
-  </text>
-  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="123" x="37" y="109.378">
-    settlement-model
-  </text>
-  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M34 1229.867h137v46.594H34z"/>
-  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M30 1233.867h137v46.594H30z"/>
-  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="39" x="79" y="1253.862">
-    topic-
-  </text>
-  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="123" x="37" y="1270.159">
-    settlement-model
-  </text>
-  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="122" x="259.5" y="105.081">
-    Settlement Model
-  </text>
-  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="53" x="294" y="121.378">
-    Handler
-  </text>
-  <circle cx="323.5" cy="76.086" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
-  <path fill="#A80036" stroke="#a80036" d="M319.5 64.086l6-5-2 5 2 5-6-5z"/>
-  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="122" x="259.5" y="1242.862">
-    Settlement Model
-  </text>
-  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="53" x="294" y="1259.159">
-    Handler
-  </text>
-  <circle cx="323.5" cy="1278.461" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
-  <path fill="#A80036" stroke="#a80036" d="M319.5 1266.46l6-5-2 5 2 5-6-5z"/>
-  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M732.5 85.383h92v30.297h-92z"/>
-  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M728.5 89.383h92v30.297h-92z"/>
-  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="78" x="735.5" y="109.378">
-    topic-event
-  </text>
-  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M732.5 1229.867h92v30.297h-92z"/>
-  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M728.5 1233.867h92v30.297h-92z"/>
-  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="78" x="735.5" y="1253.862">
-    topic-event
-  </text>
-  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="111" x="838.5" y="121.378">
-    Settlement DAO
-  </text>
-  <circle cx="897" cy="92.383" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
-  <path stroke="#a80036" stroke-width="2" d="M885 106.383h24"/>
-  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="111" x="838.5" y="1242.862">
-    Settlement DAO
-  </text>
-  <circle cx="897" cy="1262.164" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
-  <path stroke="#a80036" stroke-width="2" d="M885 1276.164h24"/>
-  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="90" x="1254" y="121.378">
-    Central Store
-  </text>
-  <path d="M1284 72.383c0-10 18-10 18-10s18 0 18 10v26c0 10-18 10-18 10s-18 0-18-10v-26" fill="#FEFECE" filter="url(#a)" stroke="#000" stroke-width="1.5"/>
-  <path d="M1284 72.383c0 10 18 10 18 10s18 0 18-10" fill="none" stroke="#000" stroke-width="1.5"/>
-  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="90" x="1254" y="1242.862">
-    Central Store
-  </text>
-  <path d="M1284 1256.164c0-10 18-10 18-10s18 0 18 10v26c0 10-18 10-18 10s-18 0-18-10v-26" fill="#FEFECE" filter="url(#a)" stroke="#000" stroke-width="1.5"/>
-  <path d="M1284 1256.164c0 10 18 10 18 10s18 0 18-10" fill="none" stroke="#000" stroke-width="1.5"/>
-  <path fill="#FFF" filter="url(#a)" stroke="#a80036" d="M97.5 219.211h10v30h-10zM318.5 134.68h10v1086.188h-10zM892 583.672h10v561.258h-10zM1297 636.938h10v62.266h-10zM1297 791.602h10v62.266h-10zM1297 907.133h10v30h-10zM1297 1016.531h10v30h-10z"/>
-  <path d="M10 141.68h312v7l-10 10H10v-17" fill="#EEE" stroke="#000"/>
-  <path fill="none" stroke="#000" stroke-width="2" d="M10 141.68h1493.5v1072.188H10z"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="267" x="25" y="154.747">
-    Settlement Model Handler Consume
-  </text>
-  <path d="M20 165.813h64v7l-10 10H20v-17" fill="#EEE" stroke="#000"/>
-  <path fill="none" stroke="#000" stroke-width="2" d="M20 165.813h1473.5v1041.055H20z"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19" x="35" y="178.879">
-    alt
-  </text>
-  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="174" x="99" y="178.023">
-    [Consume Single Message]
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M118.5 215.21l-10 4 10 4-4-4z"/>
-  <path stroke="#a80036" d="M112.5 219.211h205"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="124.5" y="206.579">
-    1
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="179" x="137.5" y="199.012">
-    Consume settlement model
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="99" x="137.5" y="214.145">
-    event message
-  </text>
-  <path d="M239.5 264.21h88v7l-10 10h-78v-17" fill="#EEE" stroke="#000"/>
-  <path fill="none" stroke="#000" stroke-width="2" d="M239.5 264.211h549v105.531h-549z"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="43" x="254.5" y="277.278">
-    break
-  </text>
-  <path d="M249.5 288.344h152v7l-10 10h-142v-17" fill="#EEE" stroke="#000"/>
-  <path fill="none" stroke="#000" stroke-width="2" d="M249.5 288.344h529v74.398h-529z"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="107" x="264.5" y="301.411">
-    Validate Event
-  </text>
-  <path stroke="#a80036" d="M328.5 341.742h42M370.5 341.742v13M329.5 354.742h41"/>
-  <path fill="#A80036" stroke="#a80036" d="M339.5 350.742l-10 4 10 4-4-4z"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="335.5" y="329.11">
-    2
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="418" x="348.5" y="321.543">
-    Validate event - Rule: type == &apos;setmodel&apos; &amp;&amp; action == &apos;commit&apos;
-  </text>
-  <text fill="red" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="90" x="348.5" y="336.676">
-    Error codes:
-  </text>
-  <text fill="red" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="32" x="442.5" y="336.676">
-    2001
-  </text>
-  <path d="M249.5 383.742h232v7l-10 10h-222v-17" fill="#EEE" stroke="#000"/>
-  <path fill="none" stroke="#000" stroke-width="2" d="M249.5 383.742h589v156.664h-589z"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="187" x="264.5" y="396.809">
-    Persist Event Information
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M766.5 443.008l10 4-10 4 4-4z"/>
-  <path stroke="#a80036" d="M328.5 447.008h444"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="335.5" y="441.942">
-    3
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="162" x="348.5" y="441.942">
-    Publish event information
-  </text>
-  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M256.5 455.008h571v55.398h-571z"/>
-  <path fill="#EEE" stroke="#000" stroke-width="2" d="M256.5 455.008h66v7l-10 10h-56v-17z"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="21" x="269.5" y="469.075">
-    ref
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="155" x="466.5" y="488.075">
-    Event Handler Consume
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M880 579.672l10 4-10 4 4-4z"/>
-  <path stroke="#a80036" d="M328.5 583.672H886"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="335.5" y="571.04">
-    4
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="213" x="348.5" y="563.473">
-    Assign transferParicipant state(s)
-  </text>
-  <text fill="red" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="82" x="348.5" y="578.606">
-    Error code:
-  </text>
-  <text fill="red" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="32" x="434.5" y="578.606">
-    2003
-  </text>
-  <path d="M808.5 598.672h173v7l-10 10h-163v-17" fill="#EEE" stroke="#000"/>
-  <path fill="none" stroke="#000" stroke-width="2" d="M808.5 598.672h675v518.125h-675z"/>
-  <text fill="#00F" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="128" x="823.5" y="611.739">
-    DB TRANSACTION
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M1285 632.938l10 4-10 4 4-4z"/>
-  <path stroke="#a80036" d="M902 636.938h389"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="909" y="631.872">
-    5
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="209" x="922" y="631.872">
-    Fetch transfer participant entries
-  </text>
-  <path fill="#FFFFE0" filter="url(#a)" stroke="#a80036" d="M1241 649.938h122l10 11-10 12h-122l-10-12 10-11z"/>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="118" x="1243" y="666.004">
-    transferParticipant
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M913 695.203l-10 4 10 4-4-4z"/>
-  <path stroke="#a80036" stroke-dasharray="2,2" d="M907 699.203h394"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="919" y="694.137">
-    6
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="42" x="932" y="694.137">
-    Return
-  </text>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="200" x="978" y="694.137">
-    transferParticipantRecords
-  </text>
-  <path d="M818.5 714.203h77v7l-10 10h-67v-17" fill="#EEE" stroke="#000"/>
-  <path fill="none" stroke="#000" stroke-width="2" d="M818.5 714.203h655v395.594h-655z"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="32" x="833.5" y="727.27">
-    loop
-  </text>
-  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="188" x="910.5" y="726.414">
-    [for each transferParticipant]
-  </text>
-  <path d="M907 736.336v25h308v-15l-10-10H907" fill="#D3D3D3" filter="url(#a)" stroke="#a80036"/>
-  <path d="M1205 736.336v10h10l-10-10" fill="#D3D3D3" stroke="#a80036"/>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="287" x="913" y="753.403">
-    Settlement models caching to be considered
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M1285 787.602l10 4-10 4 4-4z"/>
-  <path stroke="#a80036" d="M902 791.602h389"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="909" y="786.536">
-    7
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="328" x="922" y="786.536">
-    Get settlement model by currency and ledger entry
-  </text>
-  <path fill="#FFFFE0" filter="url(#a)" stroke="#a80036" d="M1246 804.602h112l10 11-10 12h-112l-10-12 10-11z"/>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="108" x="1248" y="820.668">
-    settlementModel
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M913 849.867l-10 4 10 4-4-4z"/>
-  <path stroke="#a80036" stroke-dasharray="2,2" d="M907 853.867h394"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="919" y="848.801">
-    8
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="42" x="932" y="848.801">
-    Return
-  </text>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="125" x="978" y="848.801">
-    settlementModel
-  </text>
-  <path d="M828.5 868.867h70v7l-10 10h-60v-17" fill="#EEE" stroke="#000"/>
-  <path fill="none" stroke="#000" stroke-width="2" d="M828.5 868.867h635v233.93h-635z"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="25" x="843.5" y="881.934">
-    opt
-  </text>
-  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="545" x="913.5" y="881.078">
-    [settlementModel.delay == &apos;IMMEDIATE&apos; &amp;&amp; settlementModel.granularity == &apos;GROSS&apos;]
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M1285 903.133l10 4-10 4 4-4z"/>
-  <path stroke="#a80036" d="M902 907.133h389"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="909" y="902.067">
-    9
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="363" x="922" y="902.067">
-    Set states: CLOSED-&gt;PENDING_SETTLEMENT-&gt;SETTLED
-  </text>
-  <path fill="#FFFFE0" filter="url(#a)" stroke="#a80036" d="M1199 950.133h206l10 19-10 19h-206l-10-19 10-19z"/>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="202" x="1201" y="966.2">
-    transferParticipantStateChange
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="118" x="1201" y="981.332">
-    transferParticipant
-  </text>
-  <path stroke="#000" stroke-dasharray="2,2" d="M828.5 994.398h635"/>
-  <path fill="#A80036" stroke="#a80036" d="M1285 1012.531l10 4-10 4 4-4z"/>
-  <path stroke="#a80036" d="M902 1016.531h389"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="909" y="1011.465">
-    10
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="103" x="931" y="1011.465">
-    Set state: OPEN
-  </text>
-  <path fill="#FFFFE0" filter="url(#a)" stroke="#a80036" d="M1199 1059.531h206l10 19-10 19h-206l-10-19 10-19z"/>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="202" x="1201" y="1075.598">
-    transferParticipantStateChange
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="118" x="1201" y="1090.731">
-    transferParticipant
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M339.5 1140.93l-10 4 10 4-4-4z"/>
-  <path stroke="#a80036" stroke-dasharray="2,2" d="M333.5 1144.93H896"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="345.5" y="1139.864">
-    11
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="97" x="367.5" y="1139.864">
-    Return success
-  </text>
-  <path stroke="#000" stroke-dasharray="2,2" d="M20 1153.93h1473.5"/>
-  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="178" x="25" y="1164.14">
-    [Consume Batch Messages]
-  </text>
-  <path d="M94 1172.734v25h215v-15l-10-10H94" fill="#ADD8E6" filter="url(#a)" stroke="#a80036"/>
-  <path d="M299 1172.734v10h10l-10-10" fill="#ADD8E6" stroke="#a80036"/>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="194" x="100" y="1189.801">
-    To be delivered by future story
-  </text>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="1301px" preserveAspectRatio="none" style="width:1518px;height:1301px;background:#FFFFFF;" version="1.1" viewBox="0 0 1518 1301" width="1518px" zoomAndPan="magnify">
+  <title>2.1.2. Settlement Model Handler Consume</title>
+  <defs/>
+  <g>
+    <text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="335.1318" x="593.3059" y="27.9951">2.1.2. Settlement Model Handler Consume</text>
+    <rect fill="#FFFFE0" height="1247.1797" style="stroke:#181818;stroke-width:0.5;" width="1351.4312" x="26" y="43.2969"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="112.0361" x="645.6975" y="55.3638">Central Service</text>
+    <rect fill="#FFFFFF" height="30" style="stroke:#181818;stroke-width:1.0;" width="10" x="96.3232" y="221.5547"/>
+    <rect fill="#FFFFFF" height="1075.8594" style="stroke:#181818;stroke-width:1.0;" width="10" x="318.6294" y="137.0234"/>
+    <rect fill="#FFFFFF" height="557.2578" style="stroke:#181818;stroke-width:1.0;" width="10" x="910.4912" y="583.6875"/>
+    <rect fill="#FFFFFF" height="62.2656" style="stroke:#181818;stroke-width:1.0;" width="10" x="1319.063" y="636.9531"/>
+    <rect fill="#FFFFFF" height="62.2656" style="stroke:#181818;stroke-width:1.0;" width="10" x="1319.063" y="787.6172"/>
+    <rect fill="#FFFFFF" height="30" style="stroke:#181818;stroke-width:1.0;" width="10" x="1319.063" y="903.1484"/>
+    <rect fill="#FFFFFF" height="30" style="stroke:#181818;stroke-width:1.0;" width="10" x="1319.063" y="1012.5469"/>
+    <rect fill="none" height="1061.8594" style="stroke:#000000;stroke-width:1.5;" width="1502.7437" x="10" y="144.0234"/>
+    <rect fill="none" height="1030.7266" style="stroke:#000000;stroke-width:1.5;" width="1482.7437" x="20" y="168.1563"/>
+    <rect fill="none" height="105.5313" style="stroke:#000000;stroke-width:1.5;" width="568.4634" x="238.5898" y="266.5547"/>
+    <rect fill="none" height="74.3984" style="stroke:#000000;stroke-width:1.5;" width="548.4634" x="248.5898" y="290.6875"/>
+    <rect fill="none" height="154.3359" style="stroke:#000000;stroke-width:1.5;" width="607.1904" x="248.5898" y="386.0859"/>
+    <rect fill="none" height="514.125" style="stroke:#000000;stroke-width:1.5;" width="666.9634" x="825.7803" y="598.6875"/>
+    <rect fill="none" height="391.5938" style="stroke:#000000;stroke-width:1.5;" width="646.9634" x="835.7803" y="714.2188"/>
+    <rect fill="none" height="233.9297" style="stroke:#000000;stroke-width:1.5;" width="626.9634" x="845.7803" y="864.8828"/>
+    <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="101" x2="101" y1="127.0234" y2="1222.8828"/>
+    <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="323.5898" x2="323.5898" y1="127.0234" y2="1222.8828"/>
+    <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="796.3262" x2="796.3262" y1="127.0234" y2="1222.8828"/>
+    <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="914.7803" x2="914.7803" y1="127.0234" y2="1222.8828"/>
+    <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="1323.6948" x2="1323.6948" y1="127.0234" y2="1222.8828"/>
+    <rect fill="#E2E2F0" height="46.5938" style="stroke:#181818;stroke-width:0.5;" width="138.6465" x="34" y="75.4297"/>
+    <rect fill="#E2E2F0" height="46.5938" style="stroke:#181818;stroke-width:0.5;" width="138.6465" x="30" y="79.4297"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="39.5801" x="79.5332" y="99.4248">topic-</text>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="124.6465" x="37" y="115.7217">settlement-model</text>
+    <rect fill="#E2E2F0" height="46.5938" style="stroke:#181818;stroke-width:0.5;" width="138.6465" x="34" y="1221.8828"/>
+    <rect fill="#E2E2F0" height="46.5938" style="stroke:#181818;stroke-width:0.5;" width="138.6465" x="30" y="1225.8828"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="39.5801" x="79.5332" y="1245.8779">topic-</text>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="124.6465" x="37" y="1262.1748">settlement-model</text>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="124.0791" x="258.5898" y="107.4248">Settlement Model</text>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="55.125" x="293.0669" y="123.7217">Handler</text>
+    <ellipse cx="323.6294" cy="78.4297" fill="#E2E2F0" rx="12" ry="12" style="stroke:#181818;stroke-width:0.5;"/>
+    <polygon fill="#181818" points="319.6294,66.4297,325.6294,61.4297,323.6294,66.4297,325.6294,71.4297,319.6294,66.4297" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="124.0791" x="258.5898" y="1234.8779">Settlement Model</text>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="55.125" x="293.0669" y="1251.1748">Handler</text>
+    <ellipse cx="323.6294" cy="1270.4766" fill="#E2E2F0" rx="12" ry="12" style="stroke:#181818;stroke-width:0.5;"/>
+    <polygon fill="#181818" points="319.6294,1258.4766,325.6294,1253.4766,323.6294,1258.4766,325.6294,1263.4766,319.6294,1258.4766" style="stroke:#181818;stroke-width:1.0;"/>
+    <rect fill="#E2E2F0" height="30.2969" style="stroke:#181818;stroke-width:0.5;" width="93.4541" x="752.3262" y="91.7266"/>
+    <rect fill="#E2E2F0" height="30.2969" style="stroke:#181818;stroke-width:0.5;" width="93.4541" x="748.3262" y="95.7266"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="79.4541" x="755.3262" y="115.7217">topic-event</text>
+    <rect fill="#E2E2F0" height="30.2969" style="stroke:#181818;stroke-width:0.5;" width="93.4541" x="752.3262" y="1221.8828"/>
+    <rect fill="#E2E2F0" height="30.2969" style="stroke:#181818;stroke-width:0.5;" width="93.4541" x="748.3262" y="1225.8828"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="79.4541" x="755.3262" y="1245.8779">topic-event</text>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="113.4219" x="855.7803" y="123.7217">Settlement DAO</text>
+    <ellipse cx="915.4912" cy="94.7266" fill="#E2E2F0" rx="12" ry="12" style="stroke:#181818;stroke-width:0.5;"/>
+    <line style="stroke:#181818;stroke-width:0.5;" x1="903.4912" x2="927.4912" y1="108.7266" y2="108.7266"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="113.4219" x="855.7803" y="1234.8779">Settlement DAO</text>
+    <ellipse cx="915.4912" cy="1254.1797" fill="#E2E2F0" rx="12" ry="12" style="stroke:#181818;stroke-width:0.5;"/>
+    <line style="stroke:#181818;stroke-width:0.5;" x1="903.4912" x2="927.4912" y1="1268.1797" y2="1268.1797"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="92.7363" x="1274.6948" y="123.7217">Central Store</text>
+    <path d="M1306.063,74.7266 C1306.063,64.7266 1324.063,64.7266 1324.063,64.7266 C1324.063,64.7266 1342.063,64.7266 1342.063,74.7266 L1342.063,100.7266 C1342.063,110.7266 1324.063,110.7266 1324.063,110.7266 C1324.063,110.7266 1306.063,110.7266 1306.063,100.7266 L1306.063,74.7266 " fill="#E2E2F0" style="stroke:#181818;stroke-width:1.5;"/>
+    <path d="M1306.063,74.7266 C1306.063,84.7266 1324.063,84.7266 1324.063,84.7266 C1324.063,84.7266 1342.063,84.7266 1342.063,74.7266 " fill="none" style="stroke:#181818;stroke-width:1.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="92.7363" x="1274.6948" y="1234.8779">Central Store</text>
+    <path d="M1306.063,1248.1797 C1306.063,1238.1797 1324.063,1238.1797 1324.063,1238.1797 C1324.063,1238.1797 1342.063,1238.1797 1342.063,1248.1797 L1342.063,1274.1797 C1342.063,1284.1797 1324.063,1284.1797 1324.063,1284.1797 C1324.063,1284.1797 1306.063,1284.1797 1306.063,1274.1797 L1306.063,1248.1797 " fill="#E2E2F0" style="stroke:#181818;stroke-width:1.5;"/>
+    <path d="M1306.063,1248.1797 C1306.063,1258.1797 1324.063,1258.1797 1324.063,1258.1797 C1324.063,1258.1797 1342.063,1258.1797 1342.063,1248.1797 " fill="none" style="stroke:#181818;stroke-width:1.5;"/>
+    <rect fill="#FFFFFF" height="30" style="stroke:#181818;stroke-width:1.0;" width="10" x="96.3232" y="221.5547"/>
+    <rect fill="#FFFFFF" height="1075.8594" style="stroke:#181818;stroke-width:1.0;" width="10" x="318.6294" y="137.0234"/>
+    <rect fill="#FFFFFF" height="557.2578" style="stroke:#181818;stroke-width:1.0;" width="10" x="910.4912" y="583.6875"/>
+    <rect fill="#FFFFFF" height="62.2656" style="stroke:#181818;stroke-width:1.0;" width="10" x="1319.063" y="636.9531"/>
+    <rect fill="#FFFFFF" height="62.2656" style="stroke:#181818;stroke-width:1.0;" width="10" x="1319.063" y="787.6172"/>
+    <rect fill="#FFFFFF" height="30" style="stroke:#181818;stroke-width:1.0;" width="10" x="1319.063" y="903.1484"/>
+    <rect fill="#FFFFFF" height="30" style="stroke:#181818;stroke-width:1.0;" width="10" x="1319.063" y="1012.5469"/>
+    <path d="M10,144.0234 L319.7163,144.0234 L319.7163,151.1563 L309.7163,161.1563 L10,161.1563 L10,144.0234 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="1061.8594" style="stroke:#000000;stroke-width:1.5;" width="1502.7437" x="10" y="144.0234"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="264.7163" x="25" y="157.0903">Settlement Model Handler Consume</text>
+    <path d="M20,168.1563 L84.4429,168.1563 L84.4429,175.2891 L74.4429,185.2891 L20,185.2891 L20,168.1563 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="1030.7266" style="stroke:#000000;stroke-width:1.5;" width="1482.7437" x="20" y="168.1563"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="19.4429" x="35" y="181.2231">alt</text>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="167.3633" x="99.4429" y="180.3667">[Consume Single Message]</text>
+    <polygon fill="#181818" points="117.3232,217.5547,107.3232,221.5547,117.3232,225.5547,113.3232,221.5547" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="111.3232" x2="317.6294" y1="221.5547" y2="221.5547"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="123.3232" y="208.9224">1</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="180.2607" x="136.3687" y="201.356">Consume settlement model</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="99.582" x="136.3687" y="216.4888">event message</text>
+    <path d="M238.5898,266.5547 L325.5415,266.5547 L325.5415,273.6875 L315.5415,283.6875 L238.5898,283.6875 L238.5898,266.5547 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="105.5313" style="stroke:#000000;stroke-width:1.5;" width="568.4634" x="238.5898" y="266.5547"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="41.9517" x="253.5898" y="279.6216">break</text>
+    <path d="M248.5898,290.6875 L400.6113,290.6875 L400.6113,297.8203 L390.6113,307.8203 L248.5898,307.8203 L248.5898,290.6875 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="74.3984" style="stroke:#000000;stroke-width:1.5;" width="548.4634" x="248.5898" y="290.6875"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="107.0215" x="263.5898" y="303.7544">Validate Event</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="328.6294" x2="370.6294" y1="344.0859" y2="344.0859"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="370.6294" x2="370.6294" y1="344.0859" y2="357.0859"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="329.6294" x2="370.6294" y1="357.0859" y2="357.0859"/>
+    <polygon fill="#181818" points="338.6294,340.0859,328.6294,344.0859,338.6294,348.0859,334.6294,344.0859" style="stroke:#181818;stroke-width:1.0;"/>
+    <polygon fill="#181818" points="339.6294,353.0859,329.6294,357.0859,339.6294,361.0859,335.6294,357.0859" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="335.6294" y="331.4536">2</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="426.3784" x="348.6748" y="323.8872">Validate event - Rule: type == &apos;setmodel&apos; &amp;&amp; action == &apos;commit&apos;</text>
+    <text fill="#FF0000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="89.2671" x="348.6748" y="339.02">Error codes:</text>
+    <text fill="#FF0000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="33.084" x="442.0742" y="339.02">2001</text>
+    <path d="M248.5898,386.0859 L481.4487,386.0859 L481.4487,393.2188 L471.4487,403.2188 L248.5898,403.2188 L248.5898,386.0859 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="154.3359" style="stroke:#000000;stroke-width:1.5;" width="607.1904" x="248.5898" y="386.0859"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="187.8589" x="263.5898" y="399.1528">Persist Event Information</text>
+    <polygon fill="#181818" points="785.0532,445.3516,795.0532,449.3516,785.0532,453.3516,789.0532,449.3516" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="328.6294" x2="791.0532" y1="449.3516" y2="449.3516"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="335.6294" y="444.2856">3</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="167.1147" x="348.6748" y="444.2856">Publish event information</text>
+    <rect fill="none" height="53.0703" style="stroke:#000000;stroke-width:1.5;" width="593.1904" x="255.5898" y="457.3516"/>
+    <path d="M255.5898,457.3516 L320.5898,457.3516 L320.5898,464.3516 L310.5898,474.3516 L255.5898,474.3516 L255.5898,457.3516 " fill="#EEEEEE" style="stroke:#000000;stroke-width:2.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="20.8838" x="268.5898" y="471.4185">ref</text>
+    <text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="145.5117" x="479.4292" y="489.4902">Event Handler Consume</text>
+    <text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="3.8145" x="550.2778" y="503.459"> </text>
+    <polygon fill="#181818" points="898.4912,579.6875,908.4912,583.6875,898.4912,587.6875,902.4912,583.6875" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="328.6294" x2="904.4912" y1="583.6875" y2="583.6875"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="335.6294" y="571.0552">4</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="217.0708" x="348.6748" y="563.4888">Assign transferParicipant state(s)</text>
+    <text fill="#FF0000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="81.5293" x="348.6748" y="578.6216">Error code:</text>
+    <text fill="#FF0000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="33.084" x="434.3364" y="578.6216">2003</text>
+    <path d="M825.7803,598.6875 L1000.4248,598.6875 L1000.4248,605.8203 L990.4248,615.8203 L825.7803,615.8203 L825.7803,598.6875 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="514.125" style="stroke:#000000;stroke-width:1.5;" width="666.9634" x="825.7803" y="598.6875"/>
+    <text fill="#0000FF" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="129.6445" x="840.7803" y="611.7544">DB TRANSACTION</text>
+    <polygon fill="#181818" points="1307.063,632.9531,1317.063,636.9531,1307.063,640.9531,1311.063,636.9531" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="920.4912" x2="1313.063" y1="636.9531" y2="636.9531"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="927.4912" y="631.8872">5</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="215.3442" x="940.5366" y="631.8872">Fetch transfer participant entries</text>
+    <polygon fill="#FFFFE0" points="1261,649.9531,1386,649.9531,1396,660.9531,1386,672.9531,1261,672.9531,1251,660.9531,1261,649.9531" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="121.5132" x="1263" y="666.02">transferParticipant</text>
+    <polygon fill="#181818" points="931.4912,695.2188,921.4912,699.2188,931.4912,703.2188,927.4912,699.2188" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="925.4912" x2="1323.063" y1="699.2188" y2="699.2188"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="937.4912" y="694.1528">6</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="43.9512" x="950.5366" y="694.1528">Return</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="199.2847" x="998.6201" y="694.1528">transferParticipantRecords</text>
+    <path d="M835.7803,714.2188 L912.4043,714.2188 L912.4043,721.3516 L902.4043,731.3516 L835.7803,731.3516 L835.7803,714.2188 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="391.5938" style="stroke:#000000;stroke-width:1.5;" width="646.9634" x="835.7803" y="714.2188"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="31.624" x="850.7803" y="727.2856">loop</text>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="183.4873" x="927.4043" y="726.4292">[for each transferParticipant]</text>
+    <path d="M925,736.3516 L925,761.3516 L1237,761.3516 L1237,746.3516 L1227,736.3516 L925,736.3516 " fill="#D3D3D3" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M1227,736.3516 L1227,746.3516 L1237,746.3516 L1227,736.3516 " fill="#D3D3D3" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="291.4399" x="931" y="753.4185">Settlement models caching to be considered</text>
+    <polygon fill="#181818" points="1307.063,783.6172,1317.063,787.6172,1307.063,791.6172,1311.063,787.6172" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="920.4912" x2="1313.063" y1="787.6172" y2="787.6172"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="927.4912" y="782.5513">7</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="336.5337" x="940.5366" y="782.5513">Get settlement model by currency and ledger entry</text>
+    <polygon fill="#FFFFE0" points="1267,800.6172,1380,800.6172,1390,811.6172,1380,823.6172,1267,823.6172,1257,811.6172,1267,800.6172" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="109.605" x="1269" y="816.6841">settlementModel</text>
+    <polygon fill="#181818" points="931.4912,845.8828,921.4912,849.8828,931.4912,853.8828,927.4912,849.8828" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="925.4912" x2="1323.063" y1="849.8828" y2="849.8828"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="937.4912" y="844.8169">8</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="43.9512" x="950.5366" y="844.8169">Return</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="124.5347" x="998.6201" y="844.8169">settlementModel</text>
+    <path d="M845.7803,864.8828 L915.2314,864.8828 L915.2314,872.0156 L905.2314,882.0156 L845.7803,882.0156 L845.7803,864.8828 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="233.9297" style="stroke:#000000;stroke-width:1.5;" width="626.9634" x="845.7803" y="864.8828"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="24.4512" x="860.7803" y="877.9497">opt</text>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="537.5122" x="930.2314" y="877.0933">[settlementModel.delay == &apos;IMMEDIATE&apos; &amp;&amp; settlementModel.granularity == &apos;GROSS&apos;]</text>
+    <polygon fill="#181818" points="1307.063,899.1484,1317.063,903.1484,1307.063,907.1484,1311.063,903.1484" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="920.4912" x2="1313.063" y1="903.1484" y2="903.1484"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="927.4912" y="898.0825">9</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="366.5264" x="940.5366" y="898.0825">Set states: CLOSED-&gt;PENDING_SETTLEMENT-&gt;SETTLED</text>
+    <polygon fill="#FFFFE0" points="1219,946.1484,1428,946.1484,1438,965.1484,1428,984.1484,1219,984.1484,1209,965.1484,1219,946.1484" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="205.6958" x="1221" y="962.2153">transferParticipantStateChange</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="121.5132" x="1221" y="977.3481">transferParticipant</text>
+    <line style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="845.7803" x2="1472.7437" y1="990.4141" y2="990.4141"/>
+    <polygon fill="#181818" points="1307.063,1008.5469,1317.063,1012.5469,1307.063,1016.5469,1311.063,1012.5469" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="920.4912" x2="1313.063" y1="1012.5469" y2="1012.5469"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="927.4912" y="1007.481">10</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="102.9336" x="949.582" y="1007.481">Set state: OPEN</text>
+    <polygon fill="#FFFFE0" points="1219,1055.5469,1428,1055.5469,1438,1074.5469,1428,1093.5469,1219,1093.5469,1209,1074.5469,1219,1055.5469" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="205.6958" x="1221" y="1071.6138">transferParticipantStateChange</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="121.5132" x="1221" y="1086.7466">transferParticipant</text>
+    <polygon fill="#181818" points="339.6294,1136.9453,329.6294,1140.9453,339.6294,1144.9453,335.6294,1140.9453" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="333.6294" x2="914.4912" y1="1140.9453" y2="1140.9453"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="345.6294" y="1135.8794">11</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="98.9346" x="367.7202" y="1135.8794">Return success</text>
+    <line style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="20" x2="1502.7437" y1="1149.9453" y2="1149.9453"/>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="170.6987" x="25" y="1160.1558">[Consume Batch Messages]</text>
+    <path d="M90,1168.75 L90,1193.75 L312,1193.75 L312,1178.75 L302,1168.75 L90,1168.75 " fill="#ADD8E6" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M302,1168.75 L302,1178.75 L312,1178.75 L302,1168.75 " fill="#ADD8E6" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="201.8682" x="96" y="1185.8169">To be delivered by future story</text>
+  </g>
 </svg>

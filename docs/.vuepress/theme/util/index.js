@@ -5,7 +5,7 @@ export const outboundRE = /^(https?:|mailto:|tel:)/
 
 const normalizedMap = new Map()
 
-export function normalize (path) {
+export function normalize(path) {
   if (normalizedMap.has(path)) {
     return normalizedMap.get(path)
   }
@@ -16,26 +16,26 @@ export function normalize (path) {
   return result
 }
 
-export function getHash (path) {
+export function getHash(path) {
   const match = path.match(hashRE)
   if (match) {
     return match[0]
   }
 }
 
-export function isExternal (path) {
+export function isExternal(path) {
   return outboundRE.test(path)
 }
 
-export function isMailto (path) {
+export function isMailto(path) {
   return /^mailto:/.test(path)
 }
 
-export function isTel (path) {
+export function isTel(path) {
   return /^tel:/.test(path)
 }
 
-export function ensureExt (path) {
+export function ensureExt(path) {
   if (isExternal(path)) {
     return path
   }
@@ -49,7 +49,7 @@ export function ensureExt (path) {
   return normalized + '.html' + hash
 }
 
-export function isActive (route, path) {
+export function isActive(route, path) {
   const routeHash = route.hash
   const linkHash = getHash(path)
   if (linkHash && routeHash !== linkHash) {
@@ -60,7 +60,7 @@ export function isActive (route, path) {
   return routePath === pagePath
 }
 
-export function resolvePage (pages, rawPath, base) {
+export function resolvePage(pages, rawPath, base) {
   if (!resolvePage.cache) {
     resolvePage.cache = new Map()
     pages.forEach((page, i) => {
@@ -89,7 +89,7 @@ export function resolvePage (pages, rawPath, base) {
   return {}
 }
 
-function resolvePath (relative, base, append) {
+function resolvePath(relative, base, append) {
   const firstChar = relative.charAt(0)
   if (firstChar === '/') {
     return relative
@@ -134,7 +134,7 @@ function resolvePath (relative, base, append) {
  * @param { string } localePath
  * @returns { SidebarGroup }
  */
-export function resolveSidebarItems (page, regularPath, site, localePath, versions) {
+export function resolveSidebarItems(page, regularPath, site, localePath, versions) {
   const { pages } = site
   let themeConfig = site.themeConfig
 
@@ -172,7 +172,7 @@ export function resolveSidebarItems (page, regularPath, site, localePath, versio
  * @param { Page } page
  * @returns { SidebarGroup }
  */
-function resolveHeaders (page) {
+function resolveHeaders(page) {
   const headers = groupHeaders(page.headers || [])
   return [{
     type: 'group',
@@ -189,7 +189,7 @@ function resolveHeaders (page) {
   }]
 }
 
-export function groupHeaders (headers) {
+export function groupHeaders(headers) {
   // group h3s under h2
   headers = headers.map(h => Object.assign({}, h))
   let lastH2
@@ -203,13 +203,13 @@ export function groupHeaders (headers) {
   return headers.filter(h => h.level === 2)
 }
 
-export function resolveNavLinkItem (linkItem) {
+export function resolveNavLinkItem(linkItem) {
   return Object.assign(linkItem, {
     type: linkItem.items && linkItem.items.length ? 'links' : 'link'
   })
 }
 
-export function versionifyUserNav (navConfig, currentPage, currentVersion, localePath, routes) {
+export function versionifyUserNav(navConfig, currentPage, currentVersion, localePath, routes) {
   return navConfig.map(item => {
     // assign item to new object so we don't override the original values
     item = Object.assign({}, item)
@@ -232,12 +232,16 @@ export function versionifyUserNav (navConfig, currentPage, currentVersion, local
   })
 }
 
+/** Doc paths under these prefixes reuse the default-locale sidebar keys; base is rewritten for resolvePath. */
+// const SIDEBAR_LOCALE_PREFIXES = ['/fr']
+const LOCALES = ['fr', 'en']
+
 /**
  * @param { Route } route
  * @param { Array<string|string[]> | Array<SidebarGroup> | [link: string]: SidebarConfig } config
  * @returns { base: string, config: SidebarConfig }
  */
-export function resolveMatchingConfig (regularPath, config) {
+export function resolveMatchingConfig(regularPath, config) {
   if (Array.isArray(config)) {
     return {
       base: '/',
@@ -252,27 +256,83 @@ export function resolveMatchingConfig (regularPath, config) {
       }
     }
   }
+  const localePrefix = LOCALES.find(
+    (l) =>
+      regularPath === `/${l}` ||
+      regularPath === `/${l}/` ||
+      regularPath.startsWith(`/${l}/`)
+  )
+
+  if (!localePrefix) {
+    return {}
+  }
+
+  const rest = regularPath.slice(localePrefix.length + 1)
+
+  const pathWithoutLocale =
+    !rest || rest === '/' ? '/' : rest.startsWith('/') ? rest : `/${rest}`
+
+  for (const base in config) {
+    if (ensureEndingSlash(pathWithoutLocale).indexOf(base) === 0) {
+      return {
+        base: `/${localePrefix}${base}`,
+        config: config[base]
+      }
+    }
+  }
   return {}
 }
 
-function ensureEndingSlash (path) {
+function ensureEndingSlash(path) {
   return /(\.html|\/)$/.test(path)
     ? path
     : path + '/'
 }
 
-function resolveItem (item, pages, base, groupDepth = 1) {
+function isSidebarLocaleBase(base) {
+  if (!base) {
+    return false
+  }
+  return LOCALES.some(
+    locale => base === `/${locale}/` || base.startsWith(`/${locale}/`)
+  )
+}
+
+/**
+ * For localized doc trees (e.g. /fr/...), prefer each page's title or frontmatter.sidebarTitle
+ * over the English label from themeConfig.
+ */
+function sidebarTitleForResolvedPage(resolved, base, fallbackTitle) {
+  if (resolved.type !== 'page') {
+    return fallbackTitle
+  }
+  const frontmatter = resolved.frontmatter || {}
+
+  if (frontmatter.sidebarTitle) {
+    return frontmatter.sidebarTitle
+  }
+
+  if (isSidebarLocaleBase(base)) {
+    return resolved.title || fallbackTitle
+  }
+
+  return fallbackTitle || resolved.title
+}
+
+function resolveItem(item, pages, base, groupDepth = 1) {
   if (typeof item === 'string') {
     return resolvePage(pages, item, base)
   } else if (Array.isArray(item)) {
-    return Object.assign(resolvePage(pages, item[0], base), {
-      title: item[1]
+    const resolved = resolvePage(pages, item[0], base)
+    return Object.assign(resolved, {
+      title: sidebarTitleForResolvedPage(resolved, base, item[1])
     })
   } else {
     const children = item.children || []
     if (children.length === 0 && item.path) {
-      return Object.assign(resolvePage(pages, item.path, base), {
-        title: item.title
+      const resolved = resolvePage(pages, item.path, base)
+      return Object.assign(resolved, {
+        title: sidebarTitleForResolvedPage(resolved, base, item.title)
       })
     }
     return {
@@ -286,7 +346,7 @@ function resolveItem (item, pages, base, groupDepth = 1) {
   }
 }
 
-export function calculateCurrentAnchor (sidebarLinks) {
+export function calculateCurrentAnchor(sidebarLinks) {
   const anchors = [].slice
     .call(document.querySelectorAll('.header-anchor'))
     .filter(anchor => sidebarLinks.some(sidebarLink => sidebarLink.hash === anchor.hash))

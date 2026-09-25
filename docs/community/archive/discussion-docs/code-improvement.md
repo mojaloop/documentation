@@ -1,7 +1,7 @@
 # Code_Improvement Project
 
 ## Overview
-Purpose to improve code quality and security for the Mojaloop project.  Includes analysis and introduction of new open sources tools, process improvments, gates checks (w/in pull requests and builds) along with documentation.
+The purpose is to improve code quality and security for the Mojaloop project.  Includes analysis and introduction of new open sources tools, process improvments, gates checks (w/in pull requests and builds) along with documentation.
 
 Scope: project is focused on quality and security but can lead to other areas such as test automation and DevOps automation and tools.
 

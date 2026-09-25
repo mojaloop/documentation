@@ -1,0 +1,174 @@
+/'*****
+ License
+ --------------
+ Copyright © 2017 Bill & Melinda Gates Foundation
+ The Mojaloop files are made available by the Bill & Melinda Gates Foundation under the Apache License, Version 2.0 (the "License") and you may not use these files except in compliance with the License. You may obtain a copy of the License at
+ http://www.apache.org/licenses/LICENSE-2.0
+ Unless required by applicable law or agreed to in writing, the Mojaloop files are distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+ Contributors
+ --------------
+ This is the official list of the Mojaloop project contributors for this file.
+ Names of the original copyright holders (individuals or organizations)
+ should be listed with a '*' in the first column. People who have
+ contributed from an organization can be listed under the organization
+ that actually holds the copyright for their contributions (see the
+ Gates Foundation organization for an example). Those individuals should have
+ their names indented and be marked with a '-'. Email address can be added
+ optionally within square brackets <email>.
+ * Gates Foundation
+ - Name Surname <name.surname@gatesfoundation.com>
+
+ * Samuel Kummary <sam@modusbox.com>
+ * Shashikant Hirugade <shashikant.hirugade@modusbox.com>
+ --------------
+ ******'/
+
+@startuml
+' declare title
+title 1.1.0 Gestion des limites participant
+
+autonumber
+
+' declare actors
+actor "Opérateur HUB" as OPERATOR
+boundary "API du service central" as CSAPI
+control "Gestionnaire des participants" as PARTICIPANT_HANDLER
+entity "API du service central" as CSAPI
+entity "DAO participant" as PARTICIPANT_DAO
+database "Stockage central" as DB
+
+box "Services centraux" #LightYellow
+participant PARTICIPANT_HANDLER
+participant PARTICIPANT_DAO
+participant DB
+end box
+
+' start flow
+
+activate OPERATOR
+group Gérer le plafond de débit net
+    OPERATOR -> CSAPI: Demande d'ajuster la limite d'un participant pour une devise — POST - /participants/{name}/limits
+    note right of OPERATOR #yellow
+        Message :
+        {
+            payload: {
+                currency: <string>,
+                limit: {
+                    type: <string>,
+                    value: <Id>
+                }
+            }
+        }
+    end note
+
+    activate CSAPI
+    CSAPI -> PARTICIPANT_HANDLER: Ajuster la limite du participant
+    activate PARTICIPANT_HANDLER
+    PARTICIPANT_HANDLER ->PARTICIPANT_DAO: Récupérer participant/devise \n<color #FF0000><b>Code d'erreur :</b> 3200</color>
+    activate PARTICIPANT_DAO
+    PARTICIPANT_DAO -> DB: Récupérer participant/devise
+    activate DB
+    hnote over DB #lightyellow
+        participant
+        participantCurrency
+    end note
+    DB --> PARTICIPANT_DAO: Participant/devise récupéré
+    deactivate DB
+    PARTICIPANT_DAO --> PARTICIPANT_HANDLER: Renvoyer participant/devise
+    deactivate PARTICIPANT_DAO
+    PARTICIPANT_HANDLER -> PARTICIPANT_HANDLER: Valider le DFSP
+    alt Valider le participant (succès)
+                PARTICIPANT_HANDLER ->PARTICIPANT_DAO:  (for ParticipantCurrency) Récupérer ParticipantLimit \n<color #FF0000><b>Code d'erreur :</b> 3200</color>
+                activate PARTICIPANT_DAO
+                PARTICIPANT_DAO -> DB: Récupérer ParticipantLimit
+                activate DB
+                hnote over DB #lightyellow
+                    participantLimit
+                end note
+                DB --> PARTICIPANT_DAO: ParticipantLimit récupéré
+                deactivate DB
+                PARTICIPANT_DAO --> PARTICIPANT_HANDLER: Renvoyer ParticipantLimit
+                deactivate PARTICIPANT_DAO
+                PARTICIPANT_HANDLER -> PARTICIPANT_HANDLER: Valider ParticipantLimit
+                alt Valider participantLimit (succès)
+                    group IMPLÉMENTATION TRANSACTION BD — verrou sur la table ParticipantLimit avec UPDATE
+                    note right of PARTICIPANT_DAO #lightgrey
+                        Si (enregistrement existe && isActive = 1)
+                            oldIsActive.isActive = 0
+                            insérer l'enregistrement
+                        Else
+                            insérer l'enregistrement
+                        End
+
+                    end note
+
+                    PARTICIPANT_HANDLER ->PARTICIPANT_DAO:  (for ParticipantLimit) Insérer un nouveau ParticipantLimit \n<color #FF0000><b>Code d'erreur :</b> 3200</color>
+
+                    activate PARTICIPANT_DAO
+
+                    PARTICIPANT_DAO -> DB: Insérer ParticipantLimit
+                    activate DB
+                    hnote over DB #lightyellow
+                        participantLimit
+                    end note
+                    DB --> PARTICIPANT_DAO: ParticipantLimit inséré
+                    deactivate DB
+                    PARTICIPANT_DAO --> PARTICIPANT_HANDLER: Renvoyer ParticipantLimit
+
+
+                    deactivate PARTICIPANT_DAO
+            ' Libérer le verrou sur la table ParticipantLimit
+                end
+
+         else Valider participantLimit (échec)
+                    note right of PARTICIPANT_HANDLER #red: Échec de validation !
+
+                    note right of PARTICIPANT_HANDLER #yellow
+                        Message :
+                            {
+                                "errorInformation": {
+                                    "errorCode": 3200,
+                                    "errorDescription": "ParticipantLimit introuvable",
+                                }
+                            }
+                    end note
+                end
+            PARTICIPANT_HANDLER --> CSAPI: Renvoyer les nouvelles valeurs de limite et statut 200
+                note right of PARTICIPANT_HANDLER #yellow
+                    Message :
+                    {
+                        "currency": "EUR",
+                        "limit": {
+                            "participantLimitId": <number>,
+                            "participantLimitTypeId": <number>,
+                            "type": <string>,
+                            "value": <string>,
+                            "isActive": 1
+                        }
+                    }
+                end note
+            CSAPI --> OPERATOR: Renvoyer les nouvelles valeurs de limite et statut 200
+
+    else Valider le participant (échec)
+        note right of PARTICIPANT_HANDLER #red: Échec de validation !
+
+        note right of PARTICIPANT_HANDLER #yellow
+            Message :
+                {
+                    "errorInformation": {
+                        "errorCode": 3200,
+                        "errorDescription": "Identifiant FSP introuvable",
+                    }
+                }
+        end note
+
+    end
+        PARTICIPANT_HANDLER -->CSAPI: Renvoyer <color #FF0000><b>Code d'erreur :</b> 3200</color>
+        deactivate PARTICIPANT_HANDLER
+        CSAPI -->OPERATOR: Renvoyer <color #FF0000><b>Code d'erreur :</b> 3200</color>
+
+    deactivate PARTICIPANT_HANDLER
+    deactivate CSAPI
+    deactivate OPERATOR
+end
+@enduml

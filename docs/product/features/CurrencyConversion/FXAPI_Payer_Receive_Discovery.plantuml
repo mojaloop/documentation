@@ -1,0 +1,112 @@
+@startuml FXAPI_Payer_Receive_Discovery
+
+!$simplified = false
+!$shortCutSingleFXP = false
+!$hideSwitchDetail = false
+!$senderName = "Keeya"
+!$receiverName = "Yaro"
+!$payerCurrency = "BWP"
+!$payeeCurrency = "TZS"
+!$payerFSPID = "PayerFSP"
+!$payeeFSPID = "PayeeFSP"
+!$payerMSISDN = "267876..."
+!$payeeMSISDN = "255123..."
+!$payeeReceiveAmount = "50000"
+!$payeeFee = "4000"
+!$targetAmount = "54000"
+!$fxpChargesSource = "33"
+!$fxpChargesTarget = "6000"
+!$fxpSourceAmount = "330"
+!$fxpTargetAmount = "54000"
+!$totalChargesSourceCurrency = "55"
+
+
+title Discovery - Currency Conversion with Amount Type RECEIVE
+actor "$senderName" as A1
+box "Payer DFSP" #LightBlue  
+  participant "Payer CBS" as PayerCBS
+  participant "Payer\nMojaloop\nConnector" as D1
+end box
+
+participant "Mojaloop Switch" as S1
+
+box "Discovery Service" #LightYellow
+  participant "ALS Oracle" as ALS
+end box
+
+'box "FX provider"  
+'  participant "FXP\nConnector" as FXP
+'  participant "Backend FX API" as FXPBackend
+'end box
+
+box "Payee DFSP" #LightBlue   
+  participant "Payee\nMojaloop\nConnector" as D2
+  participant "Payee CBS" as PayeeCBS
+end box
+
+'actor "$receiverName" as A2
+autonumber
+
+A1->PayerCBS:I'd like to pay $receiverName\n$payeeReceiveAmount $payeeCurrency for \nhis latest book, please
+PayerCBS->D1: Initiate merchant payment
+activate D1
+D1->>S1:I want to send to MSISDN $payeeMSISDN\n**GET /parties/MSISDN/$payeeMSISDN**
+activate S1
+!if ($simplified != true)
+S1-->>D1:202 I'll get back to you
+!endif
+deactivate D1
+S1->ALS:Who owns MSISDN $payeeMSISDN?
+activate ALS
+ALS-->S1:It's $payeeFSPID
+deactivate ALS
+S1->>D2:Do you own MSISDN $payeeMSISDN?
+activate D2
+!if ($simplified != true)
+D2-->>S1:202 I'll get back to you
+!endif
+deactivate S1
+D2->D2: Check Sanction list status \n& trigger a refresh of the status
+D2->PayeeCBS: Check account and get\n currency type
+!if ($simplified != true)
+PayeeCBS-->D2: Result
+!endif
+D2->>S1:Yes, it's $receiverName. He can receive in $payeeCurrency,\n and I can convert from $payerCurrency\n**PUT /parties/MSISDN/$payeeMSISDN**
+!if ($simplified != true)
+note right
+    **PUT /parties**
+    {
+    "party": {
+      "partyIdInfo": {
+        "partyIdType": "MSISDN",
+        "partyIdentifier": "$payeeMSISDN"},
+      "name": "$receiverName",
+      "supportedCurrencies":["$payeeCurrency"]}
+    }
+end note
+!else
+note over D2
+    Payee Info with Encrypted KYC Data
+end note
+!endif
+activate S1
+!if ($simplified != true)
+S1-->>D2:200 Gotcha
+!endif
+deactivate D2
+S1->>D1:Yes, it's $receiverName. He can receive in $payeeCurrency\n**PUT /parties/MSISDN/$payeeMSISDN**
+activate D1
+!if ($simplified != true)
+D1-->>S1:200 Gotcha
+!endif
+deactivate S1
+
+D1->D1: I will need to perform currency conversion.
+note left
+I need to calculate 
+how much currency I need. 
+Let me find a currency 
+conversion provider before I start.
+end note
+
+@enduml

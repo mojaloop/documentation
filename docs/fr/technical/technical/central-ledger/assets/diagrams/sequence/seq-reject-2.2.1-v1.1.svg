@@ -1,0 +1,386 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="3118px" preserveAspectRatio="none" style="width:2431px;height:3118px;background:#FFFFFF;" version="1.1" viewBox="0 0 2431 3118" width="2431px" zoomAndPan="magnify">
+  <title>2.2.1. Consommation par le gestionnaire d&apos;exécution (interruption/rejet)</title>
+  <defs/>
+  <g>
+    <text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="574.9297" x="929.5823" y="27.9951">2.2.1. Consommation par le gestionnaire d&apos;exécution (interruption/rejet)</text>
+    <rect fill="#FFFFE0" height="3061.875" style="stroke:#181818;stroke-width:0.5;" width="2278.5005" x="26" y="43.2969"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="110.2017" x="1110.1494" y="55.3638">Service central</text>
+    <rect fill="#FFFFFF" height="30" style="stroke:#181818;stroke-width:1.0;" width="10" x="72.083" y="204.125"/>
+    <rect fill="#FFFFFF" height="2895.1484" style="stroke:#181818;stroke-width:1.0;" width="10" x="540.2021" y="134.7266"/>
+    <rect fill="#FFFFFF" height="30" style="stroke:#181818;stroke-width:1.0;" width="10" x="1246.7944" y="2425.6797"/>
+    <rect fill="#FFFFFF" height="30" style="stroke:#181818;stroke-width:1.0;" width="10" x="1632.396" y="2906.9375"/>
+    <rect fill="#FFFFFF" height="150.7969" style="stroke:#181818;stroke-width:1.0;" width="10" x="1787.0166" y="682.7578"/>
+    <rect fill="#FFFFFF" height="135.6641" style="stroke:#181818;stroke-width:1.0;" width="10" x="1787.0166" y="944.0859"/>
+    <rect fill="#FFFFFF" height="121.3984" style="stroke:#181818;stroke-width:1.0;" width="10" x="1787.0166" y="1510.5625"/>
+    <rect fill="#FFFFFF" height="1176.1797" style="stroke:#181818;stroke-width:1.0;" width="10" x="1787.0166" y="1854.6953"/>
+    <rect fill="#FFFFFF" height="92.5313" style="stroke:#181818;stroke-width:1.0;" width="10" x="2233.4141" y="711.8906"/>
+    <rect fill="#FFFFFF" height="77.3984" style="stroke:#181818;stroke-width:1.0;" width="10" x="2233.4141" y="973.2188"/>
+    <rect fill="#FFFFFF" height="30" style="stroke:#181818;stroke-width:1.0;" width="10" x="2233.4141" y="1539.6953"/>
+    <rect fill="#FFFFFF" height="30" style="stroke:#181818;stroke-width:1.0;" width="10" x="2233.4141" y="1883.8281"/>
+    <rect fill="none" height="2881.1484" style="stroke:#000000;stroke-width:1.5;" width="2415.0942" x="10" y="141.7266"/>
+    <rect fill="none" height="2850.0156" style="stroke:#000000;stroke-width:1.5;" width="2395.0942" x="20" y="165.8594"/>
+    <rect fill="none" height="105.5313" style="stroke:#000000;stroke-width:1.5;" width="721.4434" x="382.4722" y="249.125"/>
+    <rect fill="none" height="74.3984" style="stroke:#000000;stroke-width:1.5;" width="701.4434" x="392.4722" y="273.2578"/>
+    <rect fill="none" height="90.3672" style="stroke:#000000;stroke-width:1.5;" width="1151.606" x="392.4722" y="368.6563"/>
+    <rect fill="none" height="100.2031" style="stroke:#000000;stroke-width:1.5;" width="1348.2417" x="392.4722" y="473.0234"/>
+    <rect fill="none" height="1059.7344" style="stroke:#000000;stroke-width:1.5;" width="2042.6221" x="362.4722" y="587.2266"/>
+    <rect fill="none" height="749.2734" style="stroke:#000000;stroke-width:1.5;" width="1996.9189" x="372.4722" y="890.6875"/>
+    <rect fill="none" height="357.7422" style="stroke:#000000;stroke-width:1.5;" width="1368.2417" x="382.4722" y="1094.75"/>
+    <rect fill="none" height="59.2656" style="stroke:#000000;stroke-width:1.5;" width="400.6152" x="392.4722" y="1118.8828"/>
+    <rect fill="none" height="75.2031" style="stroke:#000000;stroke-width:1.5;" width="1348.2417" x="392.4722" y="1206.9531"/>
+    <rect fill="none" height="59.2656" style="stroke:#000000;stroke-width:1.5;" width="356.2896" x="392.4722" y="1310.9609"/>
+    <rect fill="none" height="59.2656" style="stroke:#000000;stroke-width:1.5;" width="483.0903" x="392.4722" y="1386.2266"/>
+    <rect fill="none" height="1297.9766" style="stroke:#000000;stroke-width:1.5;" width="1975.0503" x="372.4722" y="1660.9609"/>
+    <rect fill="none" height="1174.7734" style="stroke:#000000;stroke-width:1.5;" width="1955.0503" x="382.4722" y="1777.1641"/>
+    <rect fill="none" height="213.0625" style="stroke:#000000;stroke-width:1.5;" width="1935.0503" x="392.4722" y="1801.2969"/>
+    <rect fill="none" height="459.4531" style="stroke:#000000;stroke-width:1.5;" width="1348.2417" x="392.4722" y="2485.4844"/>
+    <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="77" x2="77" y1="124.7266" y2="3039.875"/>
+    <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="544.4722" x2="544.4722" y1="124.7266" y2="3039.875"/>
+    <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="1251.1074" x2="1251.1074" y1="124.7266" y2="3039.875"/>
+    <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="1440.4814" x2="1440.4814" y1="124.7266" y2="3039.875"/>
+    <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="1637.0781" x2="1637.0781" y1="124.7266" y2="3039.875"/>
+    <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="1791.7139" x2="1791.7139" y1="124.7266" y2="3039.875"/>
+    <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="2238.3276" x2="2238.3276" y1="124.7266" y2="3039.875"/>
+    <rect fill="#E2E2F0" height="30.2969" style="stroke:#181818;stroke-width:0.5;" width="90.166" x="34" y="89.4297"/>
+    <rect fill="#E2E2F0" height="30.2969" style="stroke:#181818;stroke-width:0.5;" width="90.166" x="30" y="93.4297"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="76.166" x="37" y="113.4248">Fulfil-Topic</text>
+    <rect fill="#E2E2F0" height="30.2969" style="stroke:#181818;stroke-width:0.5;" width="90.166" x="34" y="3038.875"/>
+    <rect fill="#E2E2F0" height="30.2969" style="stroke:#181818;stroke-width:0.5;" width="90.166" x="30" y="3042.875"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="76.166" x="37" y="3062.8701">Fulfil-Topic</text>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="279.46" x="402.4722" y="121.4248">Gestionnaire d&apos;événements d&apos;exécution</text>
+    <ellipse cx="545.2021" cy="92.4297" fill="#E2E2F0" rx="12" ry="12" style="stroke:#181818;stroke-width:0.5;"/>
+    <polygon fill="#181818" points="541.2021,80.4297,547.2021,75.4297,545.2021,80.4297,547.2021,85.4297,541.2021,80.4297" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="279.46" x="402.4722" y="3051.8701">Gestionnaire d&apos;événements d&apos;exécution</text>
+    <ellipse cx="545.2021" cy="3071.1719" fill="#E2E2F0" rx="12" ry="12" style="stroke:#181818;stroke-width:0.5;"/>
+    <polygon fill="#181818" points="541.2021,3059.1719,547.2021,3054.1719,545.2021,3059.1719,547.2021,3064.1719,541.2021,3059.1719" style="stroke:#181818;stroke-width:1.0;"/>
+    <rect fill="#E2E2F0" height="30.2969" style="stroke:#181818;stroke-width:0.5;" width="169.374" x="1169.1074" y="89.4297"/>
+    <rect fill="#E2E2F0" height="30.2969" style="stroke:#181818;stroke-width:0.5;" width="169.374" x="1165.1074" y="93.4297"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="155.374" x="1172.1074" y="113.4248">topic-transfer-position</text>
+    <rect fill="#E2E2F0" height="30.2969" style="stroke:#181818;stroke-width:0.5;" width="169.374" x="1169.1074" y="3038.875"/>
+    <rect fill="#E2E2F0" height="30.2969" style="stroke:#181818;stroke-width:0.5;" width="169.374" x="1165.1074" y="3042.875"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="155.374" x="1172.1074" y="3062.8701">topic-transfer-position</text>
+    <rect fill="#E2E2F0" height="30.2969" style="stroke:#181818;stroke-width:0.5;" width="181.5967" x="1352.4814" y="89.4297"/>
+    <rect fill="#E2E2F0" height="30.2969" style="stroke:#181818;stroke-width:0.5;" width="181.5967" x="1348.4814" y="93.4297"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="167.5967" x="1355.4814" y="113.4248">Rubrique d&apos;événements</text>
+    <rect fill="#E2E2F0" height="30.2969" style="stroke:#181818;stroke-width:0.5;" width="181.5967" x="1352.4814" y="3038.875"/>
+    <rect fill="#E2E2F0" height="30.2969" style="stroke:#181818;stroke-width:0.5;" width="181.5967" x="1348.4814" y="3042.875"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="167.5967" x="1355.4814" y="3062.8701">Rubrique d&apos;événements</text>
+    <rect fill="#E2E2F0" height="30.2969" style="stroke:#181818;stroke-width:0.5;" width="182.6357" x="1548.0781" y="89.4297"/>
+    <rect fill="#E2E2F0" height="30.2969" style="stroke:#181818;stroke-width:0.5;" width="182.6357" x="1544.0781" y="93.4297"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="168.6357" x="1551.0781" y="113.4248">Rubrique de notification</text>
+    <rect fill="#E2E2F0" height="30.2969" style="stroke:#181818;stroke-width:0.5;" width="182.6357" x="1548.0781" y="3038.875"/>
+    <rect fill="#E2E2F0" height="30.2969" style="stroke:#181818;stroke-width:0.5;" width="182.6357" x="1544.0781" y="3042.875"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="168.6357" x="1551.0781" y="3062.8701">Rubrique de notification</text>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="96.6055" x="1740.7139" y="121.4248">DAO transfert</text>
+    <ellipse cx="1792.0166" cy="92.4297" fill="#E2E2F0" rx="12" ry="12" style="stroke:#181818;stroke-width:0.5;"/>
+    <line style="stroke:#181818;stroke-width:0.5;" x1="1780.0166" x2="1804.0166" y1="106.4297" y2="106.4297"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="96.6055" x="1740.7139" y="3051.8701">DAO transfert</text>
+    <ellipse cx="1792.0166" cy="3071.1719" fill="#E2E2F0" rx="12" ry="12" style="stroke:#181818;stroke-width:0.5;"/>
+    <line style="stroke:#181818;stroke-width:0.5;" x1="1780.0166" x2="1804.0166" y1="3085.1719" y2="3085.1719"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="118.1729" x="2176.3276" y="121.4248">Stockage central</text>
+    <path d="M2220.4141,72.4297 C2220.4141,62.4297 2238.4141,62.4297 2238.4141,62.4297 C2238.4141,62.4297 2256.4141,62.4297 2256.4141,72.4297 L2256.4141,98.4297 C2256.4141,108.4297 2238.4141,108.4297 2238.4141,108.4297 C2238.4141,108.4297 2220.4141,108.4297 2220.4141,98.4297 L2220.4141,72.4297 " fill="#E2E2F0" style="stroke:#181818;stroke-width:1.5;"/>
+    <path d="M2220.4141,72.4297 C2220.4141,82.4297 2238.4141,82.4297 2238.4141,82.4297 C2238.4141,82.4297 2256.4141,82.4297 2256.4141,72.4297 " fill="none" style="stroke:#181818;stroke-width:1.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="118.1729" x="2176.3276" y="3051.8701">Stockage central</text>
+    <path d="M2220.4141,3065.1719 C2220.4141,3055.1719 2238.4141,3055.1719 2238.4141,3055.1719 C2238.4141,3055.1719 2256.4141,3055.1719 2256.4141,3065.1719 L2256.4141,3091.1719 C2256.4141,3101.1719 2238.4141,3101.1719 2238.4141,3101.1719 C2238.4141,3101.1719 2220.4141,3101.1719 2220.4141,3091.1719 L2220.4141,3065.1719 " fill="#E2E2F0" style="stroke:#181818;stroke-width:1.5;"/>
+    <path d="M2220.4141,3065.1719 C2220.4141,3075.1719 2238.4141,3075.1719 2238.4141,3075.1719 C2238.4141,3075.1719 2256.4141,3075.1719 2256.4141,3065.1719 " fill="none" style="stroke:#181818;stroke-width:1.5;"/>
+    <rect fill="#FFFFFF" height="30" style="stroke:#181818;stroke-width:1.0;" width="10" x="72.083" y="204.125"/>
+    <rect fill="#FFFFFF" height="2895.1484" style="stroke:#181818;stroke-width:1.0;" width="10" x="540.2021" y="134.7266"/>
+    <rect fill="#FFFFFF" height="30" style="stroke:#181818;stroke-width:1.0;" width="10" x="1246.7944" y="2425.6797"/>
+    <rect fill="#FFFFFF" height="30" style="stroke:#181818;stroke-width:1.0;" width="10" x="1632.396" y="2906.9375"/>
+    <rect fill="#FFFFFF" height="150.7969" style="stroke:#181818;stroke-width:1.0;" width="10" x="1787.0166" y="682.7578"/>
+    <rect fill="#FFFFFF" height="135.6641" style="stroke:#181818;stroke-width:1.0;" width="10" x="1787.0166" y="944.0859"/>
+    <rect fill="#FFFFFF" height="121.3984" style="stroke:#181818;stroke-width:1.0;" width="10" x="1787.0166" y="1510.5625"/>
+    <rect fill="#FFFFFF" height="1176.1797" style="stroke:#181818;stroke-width:1.0;" width="10" x="1787.0166" y="1854.6953"/>
+    <rect fill="#FFFFFF" height="92.5313" style="stroke:#181818;stroke-width:1.0;" width="10" x="2233.4141" y="711.8906"/>
+    <rect fill="#FFFFFF" height="77.3984" style="stroke:#181818;stroke-width:1.0;" width="10" x="2233.4141" y="973.2188"/>
+    <rect fill="#FFFFFF" height="30" style="stroke:#181818;stroke-width:1.0;" width="10" x="2233.4141" y="1539.6953"/>
+    <rect fill="#FFFFFF" height="30" style="stroke:#181818;stroke-width:1.0;" width="10" x="2233.4141" y="1883.8281"/>
+    <path d="M10,141.7266 L432.5142,141.7266 L432.5142,148.8594 L422.5142,158.8594 L10,158.8594 L10,141.7266 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="2881.1484" style="stroke:#000000;stroke-width:1.5;" width="2415.0942" x="10" y="141.7266"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="377.5142" x="25" y="154.7935">Consommation du gestionnaire d&apos;exécution (échec)</text>
+    <path d="M20,165.8594 L84.4429,165.8594 L84.4429,172.9922 L74.4429,182.9922 L20,182.9922 L20,165.8594 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="2850.0156" style="stroke:#000000;stroke-width:1.5;" width="2395.0942" x="20" y="165.8594"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="19.4429" x="35" y="178.9263">alt</text>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="207.9526" x="99.4429" y="178.0698">[Consommer un message unique]</text>
+    <polygon fill="#181818" points="93.083,200.125,83.083,204.125,93.083,208.125,89.083,204.125" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="87.083" x2="539.2021" y1="204.125" y2="204.125"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="99.083" y="199.0591">1</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="426.0737" x="112.1284" y="199.0591">Consommer le message d&apos;événement d&apos;exécution pour le payeur</text>
+    <path d="M382.4722,249.125 L469.4238,249.125 L469.4238,256.2578 L459.4238,266.2578 L382.4722,266.2578 L382.4722,249.125 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="105.5313" style="stroke:#000000;stroke-width:1.5;" width="721.4434" x="382.4722" y="249.125"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="41.9517" x="397.4722" y="262.1919">break</text>
+    <path d="M392.4722,273.2578 L584.7251,273.2578 L584.7251,280.3906 L574.7251,290.3906 L392.4722,290.3906 L392.4722,273.2578 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="74.3984" style="stroke:#000000;stroke-width:1.5;" width="701.4434" x="392.4722" y="273.2578"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="147.2529" x="407.4722" y="286.3247">Valider l&apos;événement</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="550.2021" x2="592.2021" y1="326.6563" y2="326.6563"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="592.2021" x2="592.2021" y1="326.6563" y2="339.6563"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="551.2021" x2="592.2021" y1="339.6563" y2="339.6563"/>
+    <polygon fill="#181818" points="560.2021,322.6563,550.2021,326.6563,560.2021,330.6563,556.2021,326.6563" style="stroke:#181818;stroke-width:1.0;"/>
+    <polygon fill="#181818" points="561.2021,335.6563,551.2021,339.6563,561.2021,343.6563,557.2021,339.6563" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="557.2021" y="314.0239">2</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="501.668" x="570.2476" y="306.4575">Valider l&apos;événement — règle : type == &apos;fulfil&apos; &amp;&amp; ( action IN [&apos;reject&apos;,&apos;abort&apos;] )</text>
+    <text fill="#FF0000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="117.9902" x="570.2476" y="321.5903">Codes d&apos;erreur :</text>
+    <text fill="#FF0000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="33.084" x="692.3701" y="321.5903">2001</text>
+    <path d="M392.4722,368.6563 L727.1094,368.6563 L727.1094,375.7891 L717.1094,385.7891 L392.4722,385.7891 L392.4722,368.6563 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="90.3672" style="stroke:#000000;stroke-width:1.5;" width="1151.606" x="392.4722" y="368.6563"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="289.6372" x="407.4722" y="381.7231">Persister les informations d&apos;événement</text>
+    <polygon fill="#181818" points="1429.2798,402.9219,1439.2798,406.9219,1429.2798,410.9219,1433.2798,406.9219" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="550.2021" x2="1435.2798" y1="406.9219" y2="406.9219"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="557.2021" y="401.856">3</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="243.458" x="570.2476" y="401.856">Publier les informations d&apos;événement</text>
+    <rect fill="none" height="39.1016" style="stroke:#000000;stroke-width:1.5;" width="1137.606" x="399.4722" y="414.9219"/>
+    <path d="M399.4722,414.9219 L464.4722,414.9219 L464.4722,421.9219 L454.4722,431.9219 L399.4722,431.9219 L399.4722,414.9219 " fill="#EEEEEE" style="stroke:#000000;stroke-width:2.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="20.8838" x="412.4722" y="428.9888">ref</text>
+    <text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="277.5586" x="829.4958" y="447.0605">Consommation du gestionnaire d&apos;événements</text>
+    <path d="M392.4722,473.0234 L639.9688,473.0234 L639.9688,480.1563 L629.9688,490.1563 L392.4722,490.1563 L392.4722,473.0234 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="100.2031" style="stroke:#000000;stroke-width:1.5;" width="1348.2417" x="392.4722" y="473.0234"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="202.4966" x="407.4722" y="486.0903">Valider la signature FSPIOP</text>
+    <rect fill="none" height="53.0703" style="stroke:#000000;stroke-width:1.5;" width="1334.2417" x="399.4722" y="515.1563"/>
+    <path d="M399.4722,515.1563 L464.4722,515.1563 L464.4722,522.1563 L454.4722,532.1563 L399.4722,532.1563 L399.4722,515.1563 " fill="#EEEEEE" style="stroke:#000000;stroke-width:2.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="20.8838" x="412.4722" y="529.2231">ref</text>
+    <text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="205.8223" x="903.4827" y="547.2949">Valider message.content.headers.</text>
+    <text fill="#000000" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="120.3984" x="1109.3049" y="547.2949">FSPIOP-Signature</text>
+    <text fill="#FF0000" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="108.9141" x="994.9592" y="561.2637">Codes d&apos;erreur :</text>
+    <text fill="#FF0000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="30.5391" x="1107.6877" y="561.2637">2001</text>
+    <path d="M362.4722,587.2266 L812.1606,587.2266 L812.1606,594.3594 L802.1606,604.3594 L362.4722,604.3594 L362.4722,587.2266 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="1059.7344" style="stroke:#000000;stroke-width:1.5;" width="2042.6221" x="362.4722" y="587.2266"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="404.6885" x="377.4722" y="600.2935">Valider le contrôle de doublon d&apos;exécution du transfert</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="550.2021" x2="592.2021" y1="625.4922" y2="625.4922"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="592.2021" x2="592.2021" y1="625.4922" y2="638.4922"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="551.2021" x2="592.2021" y1="638.4922" y2="638.4922"/>
+    <polygon fill="#181818" points="561.2021,634.4922,551.2021,638.4922,561.2021,642.4922,557.2021,638.4922" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="557.2021" y="620.4263">4</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="225.3418" x="570.2476" y="620.4263">Générer l&apos;uuid transferFulfilmentId</text>
+    <polygon fill="#181818" points="1775.0166,678.7578,1785.0166,682.7578,1775.0166,686.7578,1779.0166,682.7578" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="550.2021" x2="1781.0166" y1="682.7578" y2="682.7578"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="557.2021" y="670.1255">5</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="413.7275" x="570.2476" y="662.5591">Demande de récupérer les hachages d&apos;exécution par transferId</text>
+    <text fill="#FF0000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="110.2524" x="570.2476" y="677.6919">Code d&apos;erreur :</text>
+    <text fill="#FF0000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="33.084" x="684.6323" y="677.6919">2003</text>
+    <polygon fill="#181818" points="2221.4141,707.8906,2231.4141,711.8906,2221.4141,715.8906,2225.4141,711.8906" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="1797.0166" x2="2227.4141" y1="711.8906" y2="711.8906"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="1804.0166" y="706.8247">6</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="404.3521" x="1817.062" y="706.8247">Demander les hachages de messages d&apos;exécution en doublon</text>
+    <polygon fill="#FFFFE0" points="2091,724.8906,2385,724.8906,2395,750.8906,2385,777.8906,2091,777.8906,2081,750.8906,2091,724.8906" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="146.9038" x="2093" y="740.9575">SELET transferId, hash</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="37.959" x="2093" y="756.0903">FROM</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="248.0029" x="2135.0913" y="756.0903">transferFulfilmentDuplicateCheck</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="253.6016" x="2093" y="771.2231">WHERE transferId = request.params.id</text>
+    <polygon fill="#181818" points="1808.0166,800.4219,1798.0166,804.4219,1808.0166,808.4219,1804.0166,804.4219" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="1802.0166" x2="2237.4141" y1="804.4219" y2="804.4219"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="1814.0166" y="799.356">7</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="214.5635" x="1827.062" y="799.356">Renvoyer les hachages existants</text>
+    <polygon fill="#181818" points="561.2021,829.5547,551.2021,833.5547,561.2021,837.5547,557.2021,833.5547" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="555.2021" x2="1791.0166" y1="833.5547" y2="833.5547"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="567.2021" y="828.4888">8</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="375.0322" x="580.2476" y="828.4888">Renvoyer la ou les empreintes des messages d&apos;exécution</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="550.2021" x2="592.2021" y1="862.6875" y2="862.6875"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="592.2021" x2="592.2021" y1="862.6875" y2="875.6875"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="551.2021" x2="592.2021" y1="875.6875" y2="875.6875"/>
+    <polygon fill="#181818" points="561.2021,871.6875,551.2021,875.6875,561.2021,879.6875,557.2021,875.6875" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="557.2021" y="857.6216">9</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="659.5469" x="570.2476" y="857.6216">Parcourir la liste des hachages renvoyés et comparer chaque entrée au hachage du message calculé</text>
+    <path d="M372.4722,890.6875 L436.915,890.6875 L436.915,897.8203 L426.915,907.8203 L372.4722,907.8203 L372.4722,890.6875 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="749.2734" style="stroke:#000000;stroke-width:1.5;" width="1996.9189" x="372.4722" y="890.6875"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="19.4429" x="387.4722" y="903.7544">alt</text>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="158.2056" x="451.915" y="902.8979">[Hachage correspondant]</text>
+    <polygon fill="#181818" points="1775.0166,940.0859,1785.0166,944.0859,1775.0166,948.0859,1779.0166,944.0859" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="550.2021" x2="1781.0166" y1="944.0859" y2="944.0859"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="557.2021" y="931.4536">10</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="362.502" x="579.293" y="923.8872">Demande de récupérer l&apos;exécution du transfert et l&apos;état</text>
+    <text fill="#FF0000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="110.2524" x="579.293" y="939.02">Code d&apos;erreur :</text>
+    <text fill="#FF0000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="33.084" x="693.6777" y="939.02">2003</text>
+    <polygon fill="#181818" points="2221.4141,969.2188,2231.4141,973.2188,2221.4141,977.2188,2225.4141,973.2188" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="1797.0166" x2="2227.4141" y1="973.2188" y2="973.2188"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="1804.0166" y="968.1528">11</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="362.502" x="1826.1074" y="968.1528">Demande de récupérer l&apos;exécution du transfert et l&apos;état</text>
+    <polygon fill="#FFFFE0" points="2168,986.2188,2307,986.2188,2317,1005.2188,2307,1024.2188,2168,1024.2188,2158,1005.2188,2168,986.2188" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="116.4668" x="2170" y="1002.2856">transferFulfilment</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="135.5225" x="2170" y="1017.4185">transferStateChange</text>
+    <polygon fill="#181818" points="1808.0166,1046.6172,1798.0166,1050.6172,1808.0166,1054.6172,1804.0166,1050.6172" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="1802.0166" x2="2237.4141" y1="1050.6172" y2="1050.6172"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="1814.0166" y="1045.5513">12</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="273.146" x="1836.1074" y="1045.5513">Renvoyer l&apos;exécution du transfert et l&apos;état</text>
+    <polygon fill="#181818" points="561.2021,1075.75,551.2021,1079.75,561.2021,1083.75,557.2021,1079.75" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="555.2021" x2="1791.0166" y1="1079.75" y2="1079.75"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="567.2021" y="1074.6841">13</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="273.146" x="589.293" y="1074.6841">Renvoyer l&apos;exécution du transfert et l&apos;état</text>
+    <path d="M382.4722,1094.75 L446.915,1094.75 L446.915,1101.8828 L436.915,1111.8828 L382.4722,1111.8828 L382.4722,1094.75 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="357.7422" style="stroke:#000000;stroke-width:1.5;" width="1368.2417" x="382.4722" y="1094.75"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="19.4429" x="397.4722" y="1107.8169">alt</text>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="203.2583" x="461.915" y="1106.9604">[transferFulfilment.isValid == 0]</text>
+    <path d="M392.4722,1118.8828 L479.4238,1118.8828 L479.4238,1126.0156 L469.4238,1136.0156 L392.4722,1136.0156 L392.4722,1118.8828 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="59.2656" style="stroke:#000000;stroke-width:1.5;" width="400.6152" x="392.4722" y="1118.8828"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="41.9517" x="407.4722" y="1131.9497">break</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="550.2021" x2="592.2021" y1="1157.1484" y2="1157.1484"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="592.2021" x2="592.2021" y1="1157.1484" y2="1170.1484"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="551.2021" x2="592.2021" y1="1170.1484" y2="1170.1484"/>
+    <polygon fill="#181818" points="560.2021,1153.1484,550.2021,1157.1484,560.2021,1161.1484,556.2021,1157.1484" style="stroke:#181818;stroke-width:1.0;"/>
+    <polygon fill="#181818" points="561.2021,1166.1484,551.2021,1170.1484,561.2021,1174.1484,557.2021,1170.1484" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="557.2021" y="1152.0825">14</text>
+    <text fill="#FF0000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="154.5781" x="579.293" y="1152.0825">Gestion des erreurs :</text>
+    <text fill="#FF0000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="33.084" x="738.0034" y="1152.0825">3105</text>
+    <line style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="382.4722" x2="1750.7139" y1="1186.1484" y2="1186.1484"/>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="279.9521" x="387.4722" y="1196.3589">[transferState IN [&apos;COMMITTED&apos;, &apos;ABORTED&apos;]]</text>
+    <path d="M392.4722,1206.9531 L479.4238,1206.9531 L479.4238,1214.0859 L469.4238,1224.0859 L392.4722,1224.0859 L392.4722,1206.9531 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="75.2031" style="stroke:#000000;stroke-width:1.5;" width="1348.2417" x="392.4722" y="1206.9531"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="41.9517" x="407.4722" y="1220.02">break</text>
+    <rect fill="none" height="53.0703" style="stroke:#000000;stroke-width:1.5;" width="1334.2417" x="399.4722" y="1224.0859"/>
+    <path d="M399.4722,1224.0859 L464.4722,1224.0859 L464.4722,1231.0859 L454.4722,1241.0859 L399.4722,1241.0859 L399.4722,1224.0859 " fill="#EEEEEE" style="stroke:#000000;stroke-width:2.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="20.8838" x="412.4722" y="1238.1528">ref</text>
+    <text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="318.1582" x="907.5139" y="1256.2246">Envoyer une notification au participant (bénéficiaire)</text>
+    <text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="3.8145" x="1064.6858" y="1270.1934"> </text>
+    <line style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="382.4722" x2="1750.7139" y1="1290.1563" y2="1290.1563"/>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="199.0366" x="387.4722" y="1300.3667">[transferState NOT &apos;RESERVED&apos;]</text>
+    <path d="M392.4722,1310.9609 L479.4238,1310.9609 L479.4238,1318.0938 L469.4238,1328.0938 L392.4722,1328.0938 L392.4722,1310.9609 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="59.2656" style="stroke:#000000;stroke-width:1.5;" width="356.2896" x="392.4722" y="1310.9609"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="41.9517" x="407.4722" y="1324.0278">break</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="550.2021" x2="592.2021" y1="1349.2266" y2="1349.2266"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="592.2021" x2="592.2021" y1="1349.2266" y2="1362.2266"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="551.2021" x2="592.2021" y1="1362.2266" y2="1362.2266"/>
+    <polygon fill="#181818" points="560.2021,1345.2266,550.2021,1349.2266,560.2021,1353.2266,556.2021,1349.2266" style="stroke:#181818;stroke-width:1.0;"/>
+    <polygon fill="#181818" points="561.2021,1358.2266,551.2021,1362.2266,561.2021,1366.2266,557.2021,1362.2266" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="557.2021" y="1344.1606">15</text>
+    <text fill="#FF0000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="110.2524" x="579.293" y="1344.1606">Code d&apos;erreur :</text>
+    <text fill="#FF0000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="33.084" x="693.6777" y="1344.1606">2001</text>
+    <line style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="382.4722" x2="1750.7139" y1="1378.2266" y2="1378.2266"/>
+    <path d="M392.4722,1386.2266 L479.4238,1386.2266 L479.4238,1393.3594 L469.4238,1403.3594 L392.4722,1403.3594 L392.4722,1386.2266 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="59.2656" style="stroke:#000000;stroke-width:1.5;" width="483.0903" x="392.4722" y="1386.2266"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="41.9517" x="407.4722" y="1399.2935">break</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="550.2021" x2="592.2021" y1="1424.4922" y2="1424.4922"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="592.2021" x2="592.2021" y1="1424.4922" y2="1437.4922"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="551.2021" x2="592.2021" y1="1437.4922" y2="1437.4922"/>
+    <polygon fill="#181818" points="560.2021,1420.4922,550.2021,1424.4922,560.2021,1428.4922,556.2021,1424.4922" style="stroke:#181818;stroke-width:1.0;"/>
+    <polygon fill="#181818" points="561.2021,1433.4922,551.2021,1437.4922,561.2021,1441.4922,557.2021,1437.4922" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="557.2021" y="1419.4263">16</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="274.2695" x="579.293" y="1419.4263">Laisser la requête précédente se terminer</text>
+    <line style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="372.4722" x2="2369.3911" y1="1460.4922" y2="1460.4922"/>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="185.2544" x="377.4722" y="1470.7026">[Hachage non correspondant]</text>
+    <polygon fill="#181818" points="1775.0166,1506.5625,1785.0166,1510.5625,1775.0166,1514.5625,1779.0166,1510.5625" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="550.2021" x2="1781.0166" y1="1510.5625" y2="1510.5625"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="557.2021" y="1497.9302">17</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="301.7104" x="579.293" y="1490.3638">Demande de persister le hachage du transfert</text>
+    <text fill="#FF0000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="117.9902" x="579.293" y="1505.4966">Codes d&apos;erreur :</text>
+    <text fill="#FF0000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="33.084" x="701.4155" y="1505.4966">2003</text>
+    <polygon fill="#181818" points="2221.4141,1535.6953,2231.4141,1539.6953,2221.4141,1543.6953,2225.4141,1539.6953" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="1797.0166" x2="2227.4141" y1="1539.6953" y2="1539.6953"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="1804.0166" y="1534.6294">18</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="132.4629" x="1826.1074" y="1534.6294">Persister le hachage</text>
+    <polygon fill="#FFFFE0" points="2127,1582.6953,2349,1582.6953,2359,1593.6953,2349,1605.6953,2127,1605.6953,2117,1593.6953,2127,1582.6953" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="218.3911" x="2129" y="1598.7622">transferFulfilmentDuplicateCheck</text>
+    <polygon fill="#181818" points="561.2021,1627.9609,551.2021,1631.9609,561.2021,1635.9609,557.2021,1631.9609" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="555.2021" x2="1791.0166" y1="1631.9609" y2="1631.9609"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="567.2021" y="1626.895">19</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="125.9058" x="589.293" y="1626.895">Renvoyer le succès</text>
+    <path d="M372.4722,1660.9609 L436.915,1660.9609 L436.915,1668.0938 L426.915,1678.0938 L372.4722,1678.0938 L372.4722,1660.9609 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="1297.9766" style="stroke:#000000;stroke-width:1.5;" width="1975.0503" x="372.4722" y="1660.9609"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="19.4429" x="387.4722" y="1674.0278">alt</text>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="353.606" x="451.915" y="1673.1714">[Appel action==&apos;reject&apos; effectué sur PUT /transfers/{ID}]</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="550.2021" x2="592.2021" y1="1699.2266" y2="1699.2266"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="592.2021" x2="592.2021" y1="1699.2266" y2="1712.2266"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="551.2021" x2="592.2021" y1="1712.2266" y2="1712.2266"/>
+    <polygon fill="#181818" points="561.2021,1708.2266,551.2021,1712.2266,561.2021,1716.2266,557.2021,1712.2266" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="557.2021" y="1694.1606">20</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="200.0146" x="579.293" y="1694.1606">Consigner le message d&apos;erreur</text>
+    <path d="M555,1725.2266 L555,1750.2266 L1017,1750.2266 L1017,1735.2266 L1007,1725.2266 L555,1725.2266 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M1007,1725.2266 L1007,1735.2266 L1017,1735.2266 L1007,1725.2266 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="441.9556" x="561" y="1742.2935">l&apos;action REJECT n&apos;est pas autorisée dans le gestionnaire d&apos;exécution</text>
+    <line style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="372.4722" x2="2347.5225" y1="1756.3594" y2="1756.3594"/>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="207.9204" x="377.4722" y="1766.5698">[action==&apos;abort&apos; Rappel d&apos;erreur]</text>
+    <path d="M382.4722,1777.1641 L446.915,1777.1641 L446.915,1784.2969 L436.915,1794.2969 L382.4722,1794.2969 L382.4722,1777.1641 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="1174.7734" style="stroke:#000000;stroke-width:1.5;" width="1955.0503" x="382.4722" y="1777.1641"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="19.4429" x="397.4722" y="1790.231">alt</text>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="122.1172" x="461.915" y="1789.3745">[Validation réussie]</text>
+    <path d="M392.4722,1801.2969 L901.9429,1801.2969 L901.9429,1808.4297 L891.9429,1818.4297 L392.4722,1818.4297 L392.4722,1801.2969 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="213.0625" style="stroke:#000000;stroke-width:1.5;" width="1935.0503" x="392.4722" y="1801.2969"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="464.4707" x="407.4722" y="1814.3638">Persister l&apos;état du transfert (transferState=&apos;RECEIVED_ERROR&apos;)</text>
+    <polygon fill="#181818" points="1775.0166,1850.6953,1785.0166,1854.6953,1775.0166,1858.6953,1779.0166,1854.6953" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="550.2021" x2="1781.0166" y1="1854.6953" y2="1854.6953"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="557.2021" y="1842.063">21</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="323.1338" x="579.293" y="1834.4966">Demande de persister le transfert state and Error</text>
+    <text fill="#FF0000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="110.2524" x="579.293" y="1849.6294">Code d&apos;erreur :</text>
+    <text fill="#FF0000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="33.084" x="693.6777" y="1849.6294">2003</text>
+    <polygon fill="#181818" points="2221.4141,1879.8281,2231.4141,1883.8281,2221.4141,1887.8281,2225.4141,1883.8281" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="1797.0166" x2="2227.4141" y1="1883.8281" y2="1883.8281"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="1804.0166" y="1878.7622">22</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="357.5825" x="1826.1074" y="1878.7622">Persister l&apos;état du transfert et les informations d&apos;erreur</text>
+    <polygon fill="#FFFFE0" points="2168,1926.8281,2307,1926.8281,2317,1952.8281,2307,1979.8281,2168,1979.8281,2158,1952.8281,2168,1926.8281" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="135.5225" x="2170" y="1942.895">transferStateChange</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="83.5415" x="2170" y="1958.0278">transferError</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="115.1592" x="2170" y="1973.1606">transferExtension</text>
+    <polygon fill="#181818" points="561.2021,2002.3594,551.2021,2006.3594,561.2021,2010.3594,557.2021,2006.3594" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="555.2021" x2="1786.0166" y1="2006.3594" y2="2006.3594"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="567.2021" y="2001.2935">23</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="125.9058" x="589.293" y="2001.2935">Renvoyer le succès</text>
+    <path d="M555,2026.3594 L555,2399.3594 L874,2399.3594 L874,2036.3594 L864,2026.3594 L555,2026.3594 " fill="#FFFF00" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M864,2026.3594 L864,2036.3594 L874,2036.3594 L864,2026.3594 " fill="#FFFF00" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="65.4888" x="561" y="2043.4263">Message :</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8.271" x="561" y="2058.5591">{</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="60.1377" x="577.5293" y="2073.6919">id: &lt;ID&gt;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="269.6484" x="577.5293" y="2088.8247">from: &lt;transferHeaders.FSPIOP-Source&gt;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="281.8232" x="577.5293" y="2103.9575">to: &lt;transferHeaders.FSPIOP-Destination&gt;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="144.3521" x="577.5293" y="2119.0903">type: application/json,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="66.5552" x="577.5293" y="2134.2231">content: {</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="192.4482" x="594.0586" y="2149.356">headers: &lt;transferHeaders&gt;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="190.3091" x="594.0586" y="2164.4888">payload: &lt;transferMessage&gt;</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="12.4033" x="577.5293" y="2179.6216">},</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="79.79" x="577.5293" y="2194.7544">metadata: {</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="53.8091" x="594.0586" y="2209.8872">event: {</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="74.6357" x="610.5879" y="2225.02">id: &lt;uuid&gt;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="197.9961" x="610.5879" y="2240.1528">responseTo: &lt;previous.uuid&gt;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="93.1772" x="610.5879" y="2255.2856">type: position,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="87.2739" x="610.5879" y="2270.4185">action: abort,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="168.3462" x="610.5879" y="2285.5513">createdAt: &lt;timestamp&gt;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="49.7148" x="610.5879" y="2300.6841">state: {</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="115.4004" x="627.1172" y="2315.8169">status: &quot;success&quot;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="48.1343" x="627.1172" y="2330.9497">code: 0</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8.271" x="610.5879" y="2346.0825">}</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8.271" x="594.0586" y="2361.2153">}</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8.271" x="577.5293" y="2376.3481">}</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8.271" x="561" y="2391.481">}</text>
+    <polygon fill="#181818" points="1234.7944,2421.6797,1244.7944,2425.6797,1234.7944,2429.6797,1238.7944,2425.6797" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="550.2021" x2="1240.7944" y1="2425.6797" y2="2425.6797"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="557.2021" y="2420.6138">24</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="397.3442" x="579.293" y="2420.6138">Acheminer et publier l&apos;événement de position pour le payeur</text>
+    <line style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="382.4722" x2="2337.5225" y1="2464.6797" y2="2464.6797"/>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="249.7183" x="387.4722" y="2474.8901">[Message d&apos;erreur de transfert invalide]</text>
+    <path d="M392.4722,2485.4844 L479.4238,2485.4844 L479.4238,2492.6172 L469.4238,2502.6172 L392.4722,2502.6172 L392.4722,2485.4844 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="459.4531" style="stroke:#000000;stroke-width:1.5;" width="1348.2417" x="392.4722" y="2485.4844"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="41.9517" x="407.4722" y="2498.5513">break</text>
+    <path d="M555,2507.6172 L555,2880.6172 L874,2880.6172 L874,2517.6172 L864,2507.6172 L555,2507.6172 " fill="#FFFF00" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M864,2507.6172 L864,2517.6172 L874,2517.6172 L864,2507.6172 " fill="#FFFF00" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="65.4888" x="561" y="2524.6841">Message :</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8.271" x="561" y="2539.8169">{</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="60.1377" x="577.5293" y="2554.9497">id: &lt;ID&gt;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="269.6484" x="577.5293" y="2570.0825">from: &lt;transferHeaders.FSPIOP-Source&gt;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="281.8232" x="577.5293" y="2585.2153">to: &lt;transferHeaders.FSPIOP-Destination&gt;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="144.3521" x="577.5293" y="2600.3481">type: application/json,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="66.5552" x="577.5293" y="2615.481">content: {</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="192.4482" x="594.0586" y="2630.6138">headers: &lt;transferHeaders&gt;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="190.3091" x="594.0586" y="2645.7466">payload: &lt;transferMessage&gt;</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="12.4033" x="577.5293" y="2660.8794">},</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="79.79" x="577.5293" y="2676.0122">metadata: {</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="53.8091" x="594.0586" y="2691.145">event: {</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="74.6357" x="610.5879" y="2706.2778">id: &lt;uuid&gt;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="197.9961" x="610.5879" y="2721.4106">responseTo: &lt;previous.uuid&gt;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="93.1772" x="610.5879" y="2736.5435">type: position,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="87.2739" x="610.5879" y="2751.6763">action: abort,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="168.3462" x="610.5879" y="2766.8091">createdAt: &lt;timestamp&gt;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="49.7148" x="610.5879" y="2781.9419">state: {</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="96.5352" x="627.1172" y="2797.0747">status: &quot;error&quot;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="48.1343" x="627.1172" y="2812.2075">code: 1</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8.271" x="610.5879" y="2827.3403">}</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8.271" x="594.0586" y="2842.4731">}</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8.271" x="577.5293" y="2857.606">}</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8.271" x="561" y="2872.7388">}</text>
+    <polygon fill="#181818" points="1620.396,2902.9375,1630.396,2906.9375,1620.396,2910.9375,1624.396,2906.9375" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="550.2021" x2="1626.396" y1="2906.9375" y2="2906.9375"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="557.2021" y="2901.8716">25</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="449.8203" x="579.293" y="2901.8716">Acheminer et publier l&apos;événement de notification pour le bénéficiaire</text>
+    <line style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="20" x2="2415.0942" y1="2966.9375" y2="2966.9375"/>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="228.6904" x="25" y="2977.1479">[Consommer des messages groupés]</text>
+    <path d="M322,2985.7422 L322,3010.7422 L534,3010.7422 L534,2995.7422 L524,2985.7422 L322,2985.7422 " fill="#ADD8E6" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M524,2985.7422 L524,2995.7422 L534,2995.7422 L524,2985.7422 " fill="#ADD8E6" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="191.2231" x="328" y="3002.8091">À livrer dans une future story</text>
+  </g>
+</svg>

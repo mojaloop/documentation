@@ -1,0 +1,216 @@
+@startuml FXAPI_Discovery
+
+!$simplified = false
+!$shortCutSingleFXP = false
+!$hideSwitchDetail = false
+!$advancedCoreConnectorFlow = false
+!$senderName = "John"
+!$senderLastName = ""
+!$senderDOB = "1966-06-16"
+!$receiverName = "Yaro"
+!$receiverFirstName = "Yaro"
+!$receiverMiddleName = ""
+!$receiverLastName = ""
+!$receiverDOB = "1966-06-16"
+!$payerCurrency = "BWP"
+!$payeeCurrency = "TZS"
+!$payerFSPID = "PayerFSP"
+!$payeeFSPID = "PayeeFSP"
+!$fxpID = "FDH_FX"
+!$payerMSISDN = "26787654321"
+!$payeeMSISDN = "2551234567890"
+!$payeeReceiveAmount = "44000"
+!$payerSendAmount = "300"
+!$payeeFee = "4000"
+!$targetAmount = "48000"
+!$fxpChargesSource = "33"
+!$fxpChargesTarget = "6000"
+!$fxpSourceAmount = "300"
+!$fxpTargetAmount = "48000"
+!$totalChargesSourceCurrency = "55"
+!$totalChargesTargetCurrency = "10000"
+!$conversionRequestId = "828cc75f1654415e8fcddf76cc"
+!$conversionId = "581f68efb54f416f9161ac34e8"
+!$homeTransactionId = "string"
+!$quoteId = "382987a875ce4037b500c475e0"
+!$transactionId = "d9ce59d4359843968630581bb0"
+!$quotePayerExpiration = "2021-08-25T14:17:09.663+01:00"
+!$quotePayeeExpiration = "2021-08-25T14:17:09.663+01:00"
+!$commitRequestId = "77c9d78dc26a44748b3c99b96a"
+!$determiningTransferId = "d9ce59d4359843968630581bb0"
+!$transferId = "d9ce59d4359843968630581bb0"
+!$fxCondition = "GRzLaTP7DJ9t4P-a_B..."
+!$condition = "HOr22-H3AfTDHrSkP..."
+
+title Découverte — intégration du connecteur Mojaloop
+actor "$senderName" as A1
+  participant "CBS payeur" as PayerCBS
+box "DFSP payeur" #LightBlue  
+  participant "Connecteur principal" as PayerCC
+  participant "Connecteur Mojaloop\npayeur" as D1
+end box
+
+participant "Commutateur Mojaloop" as S1
+
+box "Service de découverte" #LightYellow
+  participant "Oracle ALS" as ALS
+end box
+
+'box "Fournisseur de change"  
+'  participant "Connecteur\nFXP" as FXP
+'  participant "API FX backend" as FXPBackend
+'end box
+
+box "DFSP bénéficiaire" #LightBlue   
+  participant "Connecteur Mojaloop\nbénéficiaire" as D2
+  participant "Connecteur principal" as PayeeCC
+end box
+
+'actor "$receiverName" as A2
+autonumber
+
+A1->PayerCBS:Je voudrais payer $receiverName\n$payerSendAmount $payerCurrency, s'il vous plaît
+PayerCBS->PayerCC: Lancer le transfert de fonds
+!if ($advancedCoreConnectorFlow != true)
+    PayerCC->D1: **POST /transfers**
+    !if ($simplified != true)
+        note left
+        {
+            "homeTransactionId": "$homeTransactionId",
+            "from": {
+                "dateOfBirth": "$senderDOB",
+                "displayName": "$senderName",
+                "firstName": "$senderFirstName",
+                "middleName": "$senderMiddleName",
+                "lastName": "$senderLastName"
+                "fspId": "$payerFSPID",
+                "idType": "MSISDN",
+                "idValue": "$payerMSISDN"
+            },
+            "to": {
+                "idType": "MSISDN",
+                "idValue": "$payeeMSISDN"
+            },
+            "amountType": "SEND",
+            "currency": "$payerCurrency",
+            "amount": "$payerSendAmount"
+        }
+        end note
+    !endif
+!else
+PayerCC->D1: **GET /parties/MSISDN/$payeeMSISDN**
+!endif
+
+activate D1
+D1->>S1:Je veux envoyer vers le MSISDN $payeeMSISDN\n**GET /parties/MSISDN/$payeeMSISDN**
+activate S1
+!if ($simplified != true)
+S1-->>D1:202 — Je vous recontacte
+!endif
+S1->ALS:À qui appartient le MSISDN $payeeMSISDN ?
+activate ALS
+ALS-->S1:C'est $payeeFSPID
+deactivate ALS
+S1->>D2:Le MSISDN $payeeMSISDN vous appartient-il ?
+activate D2
+!if ($simplified != true)
+D2-->>S1:202 — Je vous recontacte
+deactivate S1
+!endif
+D2->PayeeCC: **GET** /parties
+PayeeCC->PayeeCC: Valider si la partie \n peut recevoir le transfert
+PayeeCC->PayeeCC: Vérifier le compte et\nobtenir le type de devise
+!if ($simplified != true)
+PayeeCC-->D2: Résultat
+!endif
+deactivate S1
+D2->>S1:Oui, c'est $receiverName.\n Il peut recevoir en $payeeCurrency\n**PUT /parties/MSISDN/$payeeMSISDN**
+!if ($simplified != true)
+note right
+    PUT /parties
+    {
+        "partyIdInfo": {
+            "partyIdType": "MSISDN",
+            "partyIdentifier": "$payeeMSISDN",
+            "fspId": "$payeeFSPID"
+        },
+        "name": "$receiverName"
+        },
+        "supportedCurrencies": [ "$payeeCurrency" ]
+    }
+end note
+!else
+!endif
+activate S1
+!if ($simplified != true)
+S1-->>D2:200 — OK
+!endif
+deactivate D2
+S1->>D1:Oui, c'est $receiverName. \nIl peut recevoir en $payeeCurrency\n**PUT /parties/MSISDN/$payeeMSISDN**
+!if ($simplified != true)
+D1-->>S1:200 — OK
+!endif
+deactivate S1
+
+!if ($advancedCoreConnectorFlow != true)
+    D1-->PayerCC: Voici les informations sur la partie\net les devises prises en charge
+    note right
+    {
+        "transferId": "$transferId",
+            "homeTransactionId": "$homeTransactionId",
+            "from": {
+                "displayName": "$senderName",
+                "fspId": "$payerFSPID",
+                "idType": "MSISDN",
+                "idValue": "$payerMSISDN"
+            },
+            "to": {
+                "type": "CONSUMER",
+                "idType": "MSISDN",
+                "idValue": "$payeeMSISDN",
+                "displayName": "$receiverName",
+                "fspId": "$payeeFSPID"
+                "supportedCurrencies": [ "$payeeCurrency" ]
+            },
+            "amountType": "SEND",
+            "currency": "$payerCurrency",
+            "amount": "$payerSendAmount"
+            "currentState": "**WAITING_FOR_PARTY_ACCEPTANCE**",
+            "getPartiesResponse": {
+                "body": {
+                    "partyIdInfo": {
+                        "partyIdType": "MSISDN",
+                        "partyIdentifier": "$payeeMSISDN",
+                        "fspId": "$payeeFSPID"
+                    },
+                    "name": "$receiverName",
+                    "supportedCurrencies": [ "$payeeCurrency" ]
+                }
+            }
+        }
+    end note
+!else
+    D1-->PayerCC: Voici les informations sur la partie\net les devises prises en charge
+    !if ($simplified != true)
+        note right of PayerCC
+        {
+            "party": {
+                "body": {
+                    "partyIdInfo": {
+                        "partyIdType": "MSISDN",
+                        "partyIdentifier": "$payeeMSISDN",
+                        "fspId": "$payeeFSPID"
+                    },
+                    "name": "$receiverName",
+                    "supportedCurrencies": [ "$payeeCurrency" ]
+                }
+            },
+            "currentState": "COMPLETED"
+        }
+        end note
+    !endif
+!endif
+deactivate D1
+PayerCC-->PayerCBS:Voici les \ndétails du bénéficiaire
+PayerCBS->A1:Bonjour, $senderName : \nLe numéro appartient à $receiverName \nDites-moi si vous souhaitez\n continuer
+@enduml

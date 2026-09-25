@@ -15,7 +15,7 @@ This documentation describes how the SDK Scheme Adaptor supports the request to 
 2. The Payee DFSP optionally can validate the Payer. 
 3. The Payer DFSP executes the R2P request with a **POST** /requestToPayTransfer API call. If the Authentication type is not provided in this call, then the flow assumes that the Payer will confirm the transfer and terms through a **PUT** /requestToPayTransfer, otherwise the appropriate authentication flow is executed. 
 
-The diagram summarises this flow.
+The following diagram summarises this flow.
 
 
 ![R2P Sequence Diagram](./assets/sequence/requestToPaySDK-R2P-SequenceDiagram.svg)

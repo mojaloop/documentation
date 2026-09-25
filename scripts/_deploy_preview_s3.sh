@@ -11,8 +11,7 @@
 # "Using a REST API endpoint as the origin, with access restricted by an OAI"
 
 # The website should be available at:
-# http://mojaloop-docs-preview.s3-website.eu-west-2.amazonaws.com
-# or http://docs-preview.moja-lab.live/
+# https://docs.mojaloop.io/pr/<number>
 
 # Required tools:
 # - aws-cli
@@ -21,8 +20,10 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 NVM_DIR=$HOME/.nvm
 export AWS_REGION="${AWS_REGION:-eu-west-2}"
-export BUCKET_NAME="${BUCKET_NAME:-mojaloop-docs-preview}"
-export DOMAIN="${DOMAIN:-docs-preview.moja-lab.live}"
+export BUCKET_NAME="${BUCKET_NAME:-docs.mojaloop.io-root}"
+export DOMAIN="${DOMAIN:-docs.mojaloop.io}"
+export IS_PR="${IS_PR:-false}"
+export PR_NUMBER="${PR_NUMBER:-}"
 
 set -e
 set -u
@@ -34,8 +35,23 @@ aws s3 ls s3://${BUCKET_NAME}
 rm -rf ${DIR}/../build
 cd ${DIR}/../
 npm ci
+# Pass environment variables to VuePress build
+export VUEPRESS_IS_PR="${IS_PR}"
+export VUEPRESS_PR_NUMBER="${PR_NUMBER}"
 npm run build
 mv ${DIR}/../docs/.vuepress/dist ${DIR}/../build
+
+# Copy assets from nested directories to build output
+echo "Copying assets from nested directories..."
+find ${DIR}/../docs -name "assets" -type d | while read asset_dir; do
+  # Get the relative path from docs directory
+  rel_path=$(echo "$asset_dir" | sed "s|${DIR}/../docs/||")
+  # Create the target directory in build output
+  target_dir="${DIR}/../build/${rel_path}"
+  mkdir -p "$target_dir"
+  # Copy all files from the asset directory
+  cp -r "$asset_dir"/* "$target_dir/" 2>/dev/null || true
+done
 
 
 # build legacy docs - will be removed once all docs are migrated to v2.0
@@ -52,10 +68,49 @@ mv ${DIR}/../legacy/_book ${DIR}/../build/legacy
 
 # TODO: can we be smart about docs versions here? maybe every minor version we can keep...
 
-# upload built files to s3 
-aws s3 sync ${DIR}/../build s3://${BUCKET_NAME} \
-  --acl public-read
+# Determine the target path based on whether this is a PR or not
+if [ "$IS_PR" = "true" ] && [ -n "$PR_NUMBER" ]; then
+  TARGET_PATH="pr/${PR_NUMBER}"
+else
+  TARGET_PATH=""
+fi
 
-echo "go to: "
-echo "http://${BUCKET_NAME}.s3-website.${AWS_REGION}.amazonaws.com"
-echo "or http://${DOMAIN}/ to see the live site!"
+# upload built files to s3
+if [ -n "$TARGET_PATH" ]; then
+  aws s3 sync ${DIR}/../build s3://${BUCKET_NAME}/${TARGET_PATH} \
+    --acl public-read
+else
+  # `--delete` below makes a bad build destructive rather than merely useless, so
+  # refuse to sync anything that doesn't look like a complete site. `set -e` only
+  # catches a build that *fails*, not one that succeeds and produces nothing.
+  for required in index.html 404.html legacy; do
+    if [ ! -e "${DIR}/../build/${required}" ]; then
+      echo "build/${required} is missing - refusing to sync" >&2
+      exit 1
+    fi
+  done
+  FILE_COUNT=$(find ${DIR}/../build -type f | wc -l)
+  if [ "${FILE_COUNT}" -lt 1000 ]; then
+    echo "only ${FILE_COUNT} files in build/ - refusing to sync" >&2
+    exit 1
+  fi
+
+  # --delete removes objects that are no longer part of the build, i.e. pages left
+  # behind by past restructures. Without it the bucket accumulates stale copies of
+  # the site forever, which is how /api/ and /technical/<service>/ stayed live for
+  # two years after they moved.
+  #
+  # --exclude "pr/*" is MANDATORY. PR previews live in this same bucket under
+  # pr/<number>/ and are NOT part of build/, so an unfiltered --delete destroys
+  # every open preview on each master deploy.
+  aws s3 sync ${DIR}/../build s3://${BUCKET_NAME} \
+    --acl public-read \
+    --delete \
+    --exclude "pr/*"
+fi
+
+if [ "$IS_PR" = "true" ] && [ -n "$PR_NUMBER" ]; then
+  echo "Preview deployment is available at: https://${DOMAIN}/pr/${PR_NUMBER}"
+else
+  echo "Deployment is available at: https://${DOMAIN}"
+fi

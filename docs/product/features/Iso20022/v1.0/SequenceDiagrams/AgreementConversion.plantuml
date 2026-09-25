@@ -1,0 +1,92 @@
+@startuml
+
+Title Agreement phase on providing liquidity ISO 20022 Message Flow
+participant PayerDFSP as "Payer DFSP"
+participant Mojaloop as "Mojaloop"
+participant FXP as "Foreign Exchange Provider"
+
+autonumber
+
+PayerDFSP -> Mojaloop: POST /fxQuotes
+note left
+**pacs.091.001.01**
+**Financial Institution Credit Transfer Quote Request**
+"GrpHdr": {
+    "MsgId": "01JBVM16V3Q4MSV8KTG0BRJGZ2",
+    "CreDtTm": "2024-11-04T12:57:39.427Z",
+    "NbOfTxs": "1",
+    "SttlmInf": { "SttlmMtd": "CLRG" },
+    "PmtInstrXpryDtTm": "2024-11-04T12:58:39.425Z"
+},
+"CdtTrfTxInf": {
+    "PmtId": {
+        "TxId": "01JBVM16V1ZXP2DM34BQT40NW9",
+        "InstrId": "01JBVM16V1ZXP2DM34BQT40NWA",
+        "EndToEndId": "01JBVM13SQYP507JB1DYBZVCMF" },
+    "Dbtr": { "FinInstnId": { "Othr": { "Id": **"payer-dfsp"** } } },
+    "UndrlygCstmrCdtTrf": {
+        "Dbtr": {"Id": {"OrgId": {"Othr": {"Id": "payer-dfsp"}}}},
+        "DbtrAgt": {"FinInstnId": {"Othr": {"Id": "payer-dfsp"}}},
+        "Cdtr": {"Id": {"OrgId": {"Othr": {"Id": "fxp"}}}},
+        "CdtrAgt": {"FinInstnId": {"Othr": {"Id": "fxp"}}},
+        "InstdAmt": {"Ccy": **"ZMW"**,
+            "ActiveOrHistoricCurrencyAndAmount": **"21"**}},
+    "Cdtr": {"FinInstnId": {"Othr": {"Id": **"fxp"**}}},
+    "IntrBkSttlmAmt": { "Ccy": **"MWK"**,
+        "ActiveCurrencyAndAmount": "0"},
+    "InstrForCdtrAgt": {"InstrInf": **"SEND"**}}
+}
+end note
+Mojaloop -> FXP: POST /fxQuotes
+FXP -> FXP: Check to see if liqidity can be provided \n and provide rates.
+alt if FXP can provide the payment liquidity
+FXP -> Mojaloop: PUT /fxQuotes/{ID}
+note right
+**pacs.092.001.01**
+**Financial Institution Credit Transfer Quote Response**
+{
+"GrpHdr": {
+    "MsgId": "01JBVM176FTHB9F2ZQJJ7AFCN8",
+    "CreDtTm": "2024-11-04T12:57:39.791Z",
+    "NbOfTxs": "1",
+    "SttlmInf": { "SttlmMtd": "CLRG" },
+    "PmtInstrXpryDtTm": "2024-11-04T12:58:39.425Z"},
+"CdtTrfTxInf": {
+   "VrfctnOfTerms": {"Sh256Sgntr": **"KVHFmdTD6A..."**},
+    "PmtId": {"InstrId": "01JBVM16V1ZXP2DM34BQT40NWA",
+        "TxId": "01JBVM13SQYP507JB1DYBZVCMF"},
+    "Dbtr": {"FinInstnId": {"Othr": {"Id": **"payer-dfsp"**}}},
+    "UndrlygCstmrCdtTrf": {
+        "Dbtr": {"Id": {"OrgId": {"Othr": {"Id": "payer-dfsp"}}}},
+        "DbtrAgt": {"FinInstnId": {"Othr": {"Id": "payer-dfsp"}}},
+        "Cdtr": {"Id": {"OrgId": {"Othr": {"Id": "fxp"}}}},
+        "CdtrAgt": {"FinInstnId": {"Othr": {"Id": "fxp"}}},
+        "InstdAmt": { "Ccy": **"ZMW"**,
+            "ActiveOrHistoricCurrencyAndAmount": **"21"**}},
+    "Cdtr": {"FinInstnId": {"Othr": {"Id": **"fxp"**}}},
+    "IntrBkSttlmAmt": {"Ccy": **"MWK"**,
+        "ActiveCurrencyAndAmount": **"1080"**},
+    "InstrForCdtrAgt": {"InstrInf": **"SEND"**}}
+}
+end note
+Mojaloop -> PayerDFSP: PUT /fxQuotes/{ID}
+
+else
+
+FXP -> Mojaloop: PUT /fxQuotes/{ID}/error 
+note right
+**pacs.002.001.15**
+**Financial Institution to Financial Institution** 
+**Payment Status Report**
+{
+"GrpHdr": {
+    "MsgId":"01JBVM1CGC5A18XQVYYRF68FD1",
+    "CreDtTm":"2024-11-04T12:57:45.228Z"},
+"TxInfAndSts":{"StsRsnInf":{"Rsn": {"Prtry":"ErrorCode"}}}
+}
+end note
+Mojaloop -> PayerDFSP: PUT /fxQuotes/{ID}/error 
+end
+
+
+@enduml

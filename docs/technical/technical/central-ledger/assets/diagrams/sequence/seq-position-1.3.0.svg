@@ -1,301 +1,188 @@
-<svg xmlns="http://www.w3.org/2000/svg" height="1684" preserveAspectRatio="none" style="width:1124px;height:1684px" width="1124">
-  <defs>
-    <filter height="300%" id="a" width="300%" x="-1" y="-1">
-      <feGaussianBlur result="blurOut" stdDeviation="2"/>
-      <feColorMatrix in="blurOut" result="blurOut2" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/>
-      <feOffset dx="4" dy="4" in="blurOut2" result="blurOut3"/>
-      <feBlend in="SourceGraphic" in2="blurOut3"/>
-    </filter>
-  </defs>
-  <text font-family="sans-serif" font-size="18" lengthAdjust="spacingAndGlyphs" textLength="443" x="338.5" y="28.708">
-    1.3.0. Position Handler Consume (single message)
-  </text>
-  <path fill="#FFFFE0" stroke="#a80036" d="M26 40.953h1068v1637.313H26z"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="111" x="504.5" y="53.02">
-    Central Service
-  </text>
-  <path fill="#FFF" filter="url(#a)" stroke="#a80036" d="M112 187.781h10v30h-10zM112 666.445h10v30h-10zM112 1145.109h10v30h-10zM436 118.383h10v1498.586h-10z"/>
-  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M10 125.383h1100v1484.586H10z"/>
-  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M20 149.516h1080v1453.453H20z"/>
-  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M362 232.781h535v105.531H362z"/>
-  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M372 256.914h515v74.398H372zM372 352.313h577v156.664H372z"/>
-  <path fill="#FFF" d="M20 630.508h1080v478.664H20z"/>
-  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M362 711.445h534v105.531H362z"/>
-  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M372 735.578h514v74.398H372zM372 830.977h577v156.664H372z"/>
-  <path fill="#FFF" d="M20 1109.172h1080v493.797H20z"/>
-  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M362 1190.109h415v120.664H362z"/>
-  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M372 1214.242h395v89.531H372zM372 1324.773h577v156.664H372z"/>
-  <path stroke="#a80036" stroke-dasharray="5,5" d="M117 108.383v1518.586M441 108.383v1518.586M887 108.383v1518.586M1019 108.383v1518.586"/>
-  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M34 69.086h166v30.297H34z"/>
-  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M30 73.086h166v30.297H30z"/>
-  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="152" x="37" y="93.081">
-    topic-transfer-position
-  </text>
-  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M34 1625.969h166v30.297H34z"/>
-  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M30 1629.969h166v30.297H30z"/>
-  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="152" x="37" y="1649.964">
-    topic-transfer-position
-  </text>
-  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="112" x="382" y="105.081">
-    Position Handler
-  </text>
-  <circle cx="441" cy="76.086" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
-  <path fill="#A80036" stroke="#a80036" d="M437 64.086l6-5-2 5 2 5-6-5z"/>
-  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="112" x="382" y="1638.964">
-    Position Handler
-  </text>
-  <circle cx="441" cy="1658.266" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
-  <path fill="#A80036" stroke="#a80036" d="M437 1646.266l6-5-2 5 2 5-6-5z"/>
-  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M839 69.086h96v30.297h-96z"/>
-  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M835 73.086h96v30.297h-96z"/>
-  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="82" x="842" y="93.081">
-    Event-Topic
-  </text>
-  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M839 1625.969h96v30.297h-96z"/>
-  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M835 1629.969h96v30.297h-96z"/>
-  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="82" x="842" y="1649.964">
-    Event-Topic
-  </text>
-  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M953 69.086h133v30.297H953z"/>
-  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M949 73.086h133v30.297H949z"/>
-  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="119" x="956" y="93.081">
-    Notification-Topic
-  </text>
-  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M953 1625.969h133v30.297H953z"/>
-  <path fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="1.5" d="M949 1629.969h133v30.297H949z"/>
-  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="119" x="956" y="1649.964">
-    Notification-Topic
-  </text>
-  <path fill="#FFF" filter="url(#a)" stroke="#a80036" d="M112 187.781h10v30h-10zM112 666.445h10v30h-10zM112 1145.109h10v30h-10zM436 118.383h10v1498.586h-10z"/>
-  <path d="M10 125.383h240v7l-10 10H10v-17" fill="#EEE" stroke="#000"/>
-  <path fill="none" stroke="#000" stroke-width="2" d="M10 125.383h1100v1484.586H10z"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="195" x="25" y="138.45">
-    Position Handler Consume
-  </text>
-  <path d="M20 149.516h64v7l-10 10H20v-17" fill="#EEE" stroke="#000"/>
-  <path fill="none" stroke="#000" stroke-width="2" d="M20 149.516h1080v1453.453H20z"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19" x="35" y="162.583">
-    alt
-  </text>
-  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="246" x="99" y="161.726">
-    [Consume Prepare message for Payer]
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M133 183.781l-10 4 10 4-4-4z"/>
-  <path stroke="#a80036" d="M127 187.781h308"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="139" y="182.715">
-    1
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="279" x="152" y="182.715">
-    Consume Position event message for Payer
-  </text>
-  <path d="M362 232.781h88v7l-10 10h-78v-17" fill="#EEE" stroke="#000"/>
-  <path fill="none" stroke="#000" stroke-width="2" d="M362 232.781h535v105.531H362z"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="43" x="377" y="245.848">
-    break
-  </text>
-  <path d="M372 256.914h152v7l-10 10H372v-17" fill="#EEE" stroke="#000"/>
-  <path fill="none" stroke="#000" stroke-width="2" d="M372 256.914h515v74.398H372z"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="107" x="387" y="269.981">
-    Validate Event
-  </text>
-  <path stroke="#a80036" d="M446 310.313h42M488 310.313v13M447 323.313h41"/>
-  <path fill="#A80036" stroke="#a80036" d="M457 319.313l-10 4 10 4-4-4z"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="453" y="297.68">
-    2
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="409" x="466" y="290.114">
-    Validate event - Rule: type == &apos;position&apos; &amp;&amp; action == &apos;prepare&apos;
-  </text>
-  <text fill="red" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="90" x="466" y="305.247">
-    Error codes:
-  </text>
-  <text fill="red" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="32" x="560" y="305.247">
-    2001
-  </text>
-  <path d="M372 352.313h232v7l-10 10H372v-17" fill="#EEE" stroke="#000"/>
-  <path fill="none" stroke="#000" stroke-width="2" d="M372 352.313h577v156.664H372z"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="187" x="387" y="365.379">
-    Persist Event Information
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M875 411.578l10 4-10 4 4-4z"/>
-  <path stroke="#a80036" d="M446 415.578h435"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="453" y="410.512">
-    3
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="162" x="466" y="410.512">
-    Publish event information
-  </text>
-  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M379 423.578h559v55.398H379z"/>
-  <path fill="#EEE" stroke="#000" stroke-width="2" d="M379 423.578h66v7l-10 10h-56v-17z"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="21" x="392" y="437.645">
-    ref
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="155" x="583" y="456.645">
-    Event Handler Consume
-  </text>
-  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M379 540.977h231v55.398H379z"/>
-  <path fill="#EEE" stroke="#000" stroke-width="2" d="M379 540.977h66v7l-10 10h-56v-17z"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="21" x="392" y="555.043">
-    ref
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="223" x="385" y="574.043">
-    Prepare Position Handler Consume
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M1007.5 618.508l10 4-10 4 4-4z"/>
-  <path stroke="#a80036" d="M446 622.508h567.5"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="453" y="617.442">
-    4
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="115" x="466" y="617.442">
-    Produce message
-  </text>
-  <path stroke="#000" stroke-dasharray="2,2" d="M20 631.508h1080"/>
-  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="232" x="25" y="641.718">
-    [Consume Fulfil message for Payee]
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M133 662.445l-10 4 10 4-4-4z"/>
-  <path stroke="#a80036" d="M127 666.445h308"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="139" y="661.379">
-    5
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="282" x="152" y="661.379">
-    Consume Position event message for Payee
-  </text>
-  <path d="M362 711.445h88v7l-10 10h-78v-17" fill="#EEE" stroke="#000"/>
-  <path fill="none" stroke="#000" stroke-width="2" d="M362 711.445h534v105.531H362z"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="43" x="377" y="724.512">
-    break
-  </text>
-  <path d="M372 735.578h152v7l-10 10H372v-17" fill="#EEE" stroke="#000"/>
-  <path fill="none" stroke="#000" stroke-width="2" d="M372 735.578h514v74.398H372z"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="107" x="387" y="748.645">
-    Validate Event
-  </text>
-  <path stroke="#a80036" d="M446 788.977h42M488 788.977v13M447 801.977h41"/>
-  <path fill="#A80036" stroke="#a80036" d="M457 797.977l-10 4 10 4-4-4z"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="453" y="776.344">
-    6
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="408" x="466" y="768.778">
-    Validate event - Rule: type == &apos;position&apos; &amp;&amp; action == &apos;commit&apos;
-  </text>
-  <text fill="red" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="90" x="466" y="783.911">
-    Error codes:
-  </text>
-  <text fill="red" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="32" x="560" y="783.911">
-    2001
-  </text>
-  <path d="M372 830.977h232v7l-10 10H372v-17" fill="#EEE" stroke="#000"/>
-  <path fill="none" stroke="#000" stroke-width="2" d="M372 830.977h577v156.664H372z"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="187" x="387" y="844.043">
-    Persist Event Information
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M875 890.242l10 4-10 4 4-4z"/>
-  <path stroke="#a80036" d="M446 894.242h435"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="453" y="889.176">
-    7
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="162" x="466" y="889.176">
-    Publish event information
-  </text>
-  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M379 902.242h559v55.398H379z"/>
-  <path fill="#EEE" stroke="#000" stroke-width="2" d="M379 902.242h66v7l-10 10h-56v-17z"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="21" x="392" y="916.309">
-    ref
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="155" x="583" y="935.309">
-    Event Handler Consume
-  </text>
-  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M379 1019.641h209v55.398H379z"/>
-  <path fill="#EEE" stroke="#000" stroke-width="2" d="M379 1019.64h66v7l-10 10h-56v-17z"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="21" x="392" y="1033.707">
-    ref
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="201" x="385" y="1052.707">
-    Fulfil Position Handler Consume
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M1007.5 1097.172l10 4-10 4 4-4z"/>
-  <path stroke="#a80036" d="M446 1101.172h567.5"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="453" y="1096.106">
-    8
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="115" x="466" y="1096.106">
-    Produce message
-  </text>
-  <path stroke="#000" stroke-dasharray="2,2" d="M20 1110.172h1080"/>
-  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="168" x="25" y="1120.382">
-    [Consume Abort message]
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M133 1141.11l-10 4 10 4-4-4z"/>
-  <path stroke="#a80036" d="M127 1145.109h308"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="139" y="1140.043">
-    9
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="218" x="152" y="1140.043">
-    Consume Position event message
-  </text>
-  <path d="M362 1190.11h88v7l-10 10h-78v-17" fill="#EEE" stroke="#000"/>
-  <path fill="none" stroke="#000" stroke-width="2" d="M362 1190.109h415v120.664H362z"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="43" x="377" y="1203.176">
-    break
-  </text>
-  <path d="M372 1214.242h152v7l-10 10H372v-17" fill="#EEE" stroke="#000"/>
-  <path fill="none" stroke="#000" stroke-width="2" d="M372 1214.242h395v89.531H372z"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="107" x="387" y="1227.309">
-    Validate Event
-  </text>
-  <path stroke="#a80036" d="M446 1282.773h42M488 1282.773v13M447 1295.773h41"/>
-  <path fill="#A80036" stroke="#a80036" d="M457 1291.773l-10 4 10 4-4-4z"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="453" y="1262.575">
-    10
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="280" x="475" y="1247.442">
-    Validate event - Rule: type == &apos;position&apos; &amp;&amp;
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="269" x="475" y="1262.575">
-    action IN [&apos;timeout-reserved&apos;, &apos;reject&apos;, &apos;fail&apos;]
-  </text>
-  <text fill="red" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="90" x="475" y="1277.707">
-    Error codes:
-  </text>
-  <text fill="red" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="32" x="569" y="1277.707">
-    2001
-  </text>
-  <path d="M372 1324.773h232v7l-10 10H372v-17" fill="#EEE" stroke="#000"/>
-  <path fill="none" stroke="#000" stroke-width="2" d="M372 1324.773h577v156.664H372z"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="187" x="387" y="1337.84">
-    Persist Event Information
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M875 1384.04l10 4-10 4 4-4z"/>
-  <path stroke="#a80036" d="M446 1388.039h435"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="453" y="1382.973">
-    11
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="162" x="475" y="1382.973">
-    Publish event information
-  </text>
-  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M379 1396.039h559v55.398H379z"/>
-  <path fill="#EEE" stroke="#000" stroke-width="2" d="M379 1396.04h66v7l-10 10h-56v-17z"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="21" x="392" y="1410.106">
-    ref
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="155" x="583" y="1429.106">
-    Event Handler Consume
-  </text>
-  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M379 1513.438h216v55.398H379z"/>
-  <path fill="#EEE" stroke="#000" stroke-width="2" d="M379 1513.438h66v7l-10 10h-56v-17z"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="21" x="392" y="1527.504">
-    ref
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="208" x="385" y="1546.504">
-    Abort Position Handler Consume
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M1007.5 1590.969l10 4-10 4 4-4z"/>
-  <path stroke="#a80036" d="M446 1594.969h567.5"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="453" y="1589.903">
-    12
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="115" x="475" y="1589.903">
-    Produce message
-  </text>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="1672px" preserveAspectRatio="none" style="width:1138px;height:1672px;background:#FFFFFF;" version="1.1" viewBox="0 0 1138 1672" width="1138px" zoomAndPan="magnify">
+  <title>1.3.0. Position Handler Consume (single message)</title>
+  <defs/>
+  <g>
+    <text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="398.1523" x="371.5093" y="27.9951">1.3.0. Position Handler Consume (single message)</text>
+    <rect fill="#FFFFE0" height="1623.3438" style="stroke:#181818;stroke-width:0.5;" width="1090.1709" x="26" y="43.2969"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="112.0361" x="515.0674" y="55.3638">Central Service</text>
+    <rect fill="#FFFFFF" height="30" style="stroke:#181818;stroke-width:1.0;" width="10" x="111.687" y="190.125"/>
+    <rect fill="#FFFFFF" height="30" style="stroke:#181818;stroke-width:1.0;" width="10" x="111.687" y="664.1328"/>
+    <rect fill="#FFFFFF" height="30" style="stroke:#181818;stroke-width:1.0;" width="10" x="111.687" y="1138.1406"/>
+    <rect fill="#FFFFFF" height="1484.6172" style="stroke:#181818;stroke-width:1.0;" width="10" x="439.2373" y="120.7266"/>
+    <rect fill="none" height="1470.6172" style="stroke:#000000;stroke-width:1.5;" width="1122.1709" x="10" y="127.7266"/>
+    <rect fill="none" height="1439.4844" style="stroke:#000000;stroke-width:1.5;" width="1102.1709" x="20" y="151.8594"/>
+    <rect fill="none" height="105.5313" style="stroke:#000000;stroke-width:1.5;" width="556.8794" x="363.9453" y="235.125"/>
+    <rect fill="none" height="74.3984" style="stroke:#000000;stroke-width:1.5;" width="536.8794" x="373.9453" y="259.2578"/>
+    <rect fill="none" height="154.3359" style="stroke:#000000;stroke-width:1.5;" width="597.2539" x="373.9453" y="354.6563"/>
+    <rect fill="none" height="105.5313" style="stroke:#000000;stroke-width:1.5;" width="554.8608" x="363.9453" y="709.1328"/>
+    <rect fill="none" height="74.3984" style="stroke:#000000;stroke-width:1.5;" width="534.8608" x="373.9453" y="733.2656"/>
+    <rect fill="none" height="154.3359" style="stroke:#000000;stroke-width:1.5;" width="597.2539" x="373.9453" y="828.6641"/>
+    <rect fill="none" height="120.6641" style="stroke:#000000;stroke-width:1.5;" width="433.4238" x="363.9453" y="1183.1406"/>
+    <rect fill="none" height="89.5313" style="stroke:#000000;stroke-width:1.5;" width="413.4238" x="373.9453" y="1207.2734"/>
+    <rect fill="none" height="154.3359" style="stroke:#000000;stroke-width:1.5;" width="597.2539" x="373.9453" y="1317.8047"/>
+    <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="116" x2="116" y1="110.7266" y2="1615.3438"/>
+    <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="443.9453" x2="443.9453" y1="110.7266" y2="1615.3438"/>
+    <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="910.4502" x2="910.4502" y1="110.7266" y2="1615.3438"/>
+    <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="1041.1992" x2="1041.1992" y1="110.7266" y2="1615.3438"/>
+    <rect fill="#E2E2F0" height="30.2969" style="stroke:#181818;stroke-width:0.5;" width="169.374" x="34" y="75.4297"/>
+    <rect fill="#E2E2F0" height="30.2969" style="stroke:#181818;stroke-width:0.5;" width="169.374" x="30" y="79.4297"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="155.374" x="37" y="99.4248">topic-transfer-position</text>
+    <rect fill="#E2E2F0" height="30.2969" style="stroke:#181818;stroke-width:0.5;" width="169.374" x="34" y="1614.3438"/>
+    <rect fill="#E2E2F0" height="30.2969" style="stroke:#181818;stroke-width:0.5;" width="169.374" x="30" y="1618.3438"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="155.374" x="37" y="1638.3389">topic-transfer-position</text>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="114.584" x="383.9453" y="107.4248">Position Handler</text>
+    <ellipse cx="444.2373" cy="78.4297" fill="#E2E2F0" rx="12" ry="12" style="stroke:#181818;stroke-width:0.5;"/>
+    <polygon fill="#181818" points="440.2373,66.4297,446.2373,61.4297,444.2373,66.4297,446.2373,71.4297,440.2373,66.4297" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="114.584" x="383.9453" y="1627.3389">Position Handler</text>
+    <ellipse cx="444.2373" cy="1646.6406" fill="#E2E2F0" rx="12" ry="12" style="stroke:#181818;stroke-width:0.5;"/>
+    <polygon fill="#181818" points="440.2373,1634.6406,446.2373,1629.6406,444.2373,1634.6406,446.2373,1639.6406,440.2373,1634.6406" style="stroke:#181818;stroke-width:1.0;"/>
+    <rect fill="#E2E2F0" height="30.2969" style="stroke:#181818;stroke-width:0.5;" width="96.749" x="864.4502" y="75.4297"/>
+    <rect fill="#E2E2F0" height="30.2969" style="stroke:#181818;stroke-width:0.5;" width="96.749" x="860.4502" y="79.4297"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="82.749" x="867.4502" y="99.4248">Event-Topic</text>
+    <rect fill="#E2E2F0" height="30.2969" style="stroke:#181818;stroke-width:0.5;" width="96.749" x="864.4502" y="1614.3438"/>
+    <rect fill="#E2E2F0" height="30.2969" style="stroke:#181818;stroke-width:0.5;" width="96.749" x="860.4502" y="1618.3438"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="82.749" x="867.4502" y="1638.3389">Event-Topic</text>
+    <rect fill="#E2E2F0" height="30.2969" style="stroke:#181818;stroke-width:0.5;" width="136.9717" x="975.1992" y="75.4297"/>
+    <rect fill="#E2E2F0" height="30.2969" style="stroke:#181818;stroke-width:0.5;" width="136.9717" x="971.1992" y="79.4297"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="122.9717" x="978.1992" y="99.4248">Notification-Topic</text>
+    <rect fill="#E2E2F0" height="30.2969" style="stroke:#181818;stroke-width:0.5;" width="136.9717" x="975.1992" y="1614.3438"/>
+    <rect fill="#E2E2F0" height="30.2969" style="stroke:#181818;stroke-width:0.5;" width="136.9717" x="971.1992" y="1618.3438"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="122.9717" x="978.1992" y="1638.3389">Notification-Topic</text>
+    <rect fill="#FFFFFF" height="30" style="stroke:#181818;stroke-width:1.0;" width="10" x="111.687" y="190.125"/>
+    <rect fill="#FFFFFF" height="30" style="stroke:#181818;stroke-width:1.0;" width="10" x="111.687" y="664.1328"/>
+    <rect fill="#FFFFFF" height="30" style="stroke:#181818;stroke-width:1.0;" width="10" x="111.687" y="1138.1406"/>
+    <rect fill="#FFFFFF" height="1484.6172" style="stroke:#181818;stroke-width:1.0;" width="10" x="439.2373" y="120.7266"/>
+    <path d="M10,127.7266 L248.54,127.7266 L248.54,134.8594 L238.54,144.8594 L10,144.8594 L10,127.7266 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="1470.6172" style="stroke:#000000;stroke-width:1.5;" width="1122.1709" x="10" y="127.7266"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="193.54" x="25" y="140.7935">Position Handler Consume</text>
+    <path d="M20,151.8594 L84.4429,151.8594 L84.4429,158.9922 L74.4429,168.9922 L20,168.9922 L20,151.8594 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="1439.4844" style="stroke:#000000;stroke-width:1.5;" width="1102.1709" x="20" y="151.8594"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="19.4429" x="35" y="164.9263">alt</text>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="239.3467" x="99.4429" y="164.0698">[Consume Prepare message for Payer]</text>
+    <polygon fill="#181818" points="132.687,186.125,122.687,190.125,132.687,194.125,128.687,190.125" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="126.687" x2="438.2373" y1="190.125" y2="190.125"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="138.687" y="185.0591">1</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="282.8516" x="151.7324" y="185.0591">Consume Position event message for Payer</text>
+    <path d="M363.9453,235.125 L450.897,235.125 L450.897,242.2578 L440.897,252.2578 L363.9453,252.2578 L363.9453,235.125 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="105.5313" style="stroke:#000000;stroke-width:1.5;" width="556.8794" x="363.9453" y="235.125"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="41.9517" x="378.9453" y="248.1919">break</text>
+    <path d="M373.9453,259.2578 L525.9668,259.2578 L525.9668,266.3906 L515.9668,276.3906 L373.9453,276.3906 L373.9453,259.2578 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="74.3984" style="stroke:#000000;stroke-width:1.5;" width="536.8794" x="373.9453" y="259.2578"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="107.0215" x="388.9453" y="272.3247">Validate Event</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="449.2373" x2="491.2373" y1="312.6563" y2="312.6563"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="491.2373" x2="491.2373" y1="312.6563" y2="325.6563"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="450.2373" x2="491.2373" y1="325.6563" y2="325.6563"/>
+    <polygon fill="#181818" points="459.2373,308.6563,449.2373,312.6563,459.2373,316.6563,455.2373,312.6563" style="stroke:#181818;stroke-width:1.0;"/>
+    <polygon fill="#181818" points="460.2373,321.6563,450.2373,325.6563,460.2373,329.6563,456.2373,325.6563" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="456.2373" y="300.0239">2</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="419.542" x="469.2827" y="292.4575">Validate event - Rule: type == &apos;position&apos; &amp;&amp; action == &apos;prepare&apos;</text>
+    <text fill="#FF0000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="89.2671" x="469.2827" y="307.5903">Error codes:</text>
+    <text fill="#FF0000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="33.084" x="562.6821" y="307.5903">2001</text>
+    <path d="M373.9453,354.6563 L606.8042,354.6563 L606.8042,361.7891 L596.8042,371.7891 L373.9453,371.7891 L373.9453,354.6563 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="154.3359" style="stroke:#000000;stroke-width:1.5;" width="597.2539" x="373.9453" y="354.6563"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="187.8589" x="388.9453" y="367.7231">Persist Event Information</text>
+    <polygon fill="#181818" points="898.8247,413.9219,908.8247,417.9219,898.8247,421.9219,902.8247,417.9219" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="449.2373" x2="904.8247" y1="417.9219" y2="417.9219"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="456.2373" y="412.856">3</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="167.1147" x="469.2827" y="412.856">Publish event information</text>
+    <rect fill="none" height="53.0703" style="stroke:#000000;stroke-width:1.5;" width="583.2539" x="380.9453" y="425.9219"/>
+    <path d="M380.9453,425.9219 L445.9453,425.9219 L445.9453,432.9219 L435.9453,442.9219 L380.9453,442.9219 L380.9453,425.9219 " fill="#EEEEEE" style="stroke:#000000;stroke-width:2.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="20.8838" x="393.9453" y="439.9888">ref</text>
+    <text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="145.5117" x="599.8164" y="458.0605">Event Handler Consume</text>
+    <text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="3.8145" x="670.665" y="472.0293"> </text>
+    <rect fill="none" height="53.0703" style="stroke:#000000;stroke-width:1.5;" width="216.9395" x="380.9453" y="540.9922"/>
+    <path d="M380.9453,540.9922 L445.9453,540.9922 L445.9453,547.9922 L435.9453,557.9922 L380.9453,557.9922 L380.9453,540.9922 " fill="#EEEEEE" style="stroke:#000000;stroke-width:2.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="20.8838" x="393.9453" y="555.0591">ref</text>
+    <text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="208.9395" x="384.9453" y="573.1309">Prepare Position Handler Consume</text>
+    <text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="3.8145" x="487.5078" y="587.0996"> </text>
+    <polygon fill="#181818" points="1029.6851,616.1953,1039.6851,620.1953,1029.6851,624.1953,1033.6851,620.1953" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="449.2373" x2="1035.6851" y1="620.1953" y2="620.1953"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="456.2373" y="615.1294">4</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="115.3306" x="469.2827" y="615.1294">Produce message</text>
+    <line style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="20" x2="1122.1709" y1="629.1953" y2="629.1953"/>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="223.6953" x="25" y="639.4058">[Consume Fulfil message for Payee]</text>
+    <polygon fill="#181818" points="132.687,660.1328,122.687,664.1328,132.687,668.1328,128.687,664.1328" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="126.687" x2="438.2373" y1="664.1328" y2="664.1328"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="138.687" y="659.0669">5</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="285.5049" x="151.7324" y="659.0669">Consume Position event message for Payee</text>
+    <path d="M363.9453,709.1328 L450.897,709.1328 L450.897,716.2656 L440.897,726.2656 L363.9453,726.2656 L363.9453,709.1328 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="105.5313" style="stroke:#000000;stroke-width:1.5;" width="554.8608" x="363.9453" y="709.1328"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="41.9517" x="378.9453" y="722.1997">break</text>
+    <path d="M373.9453,733.2656 L525.9668,733.2656 L525.9668,740.3984 L515.9668,750.3984 L373.9453,750.3984 L373.9453,733.2656 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="74.3984" style="stroke:#000000;stroke-width:1.5;" width="534.8608" x="373.9453" y="733.2656"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="107.0215" x="388.9453" y="746.3325">Validate Event</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="449.2373" x2="491.2373" y1="786.6641" y2="786.6641"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="491.2373" x2="491.2373" y1="786.6641" y2="799.6641"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="450.2373" x2="491.2373" y1="799.6641" y2="799.6641"/>
+    <polygon fill="#181818" points="459.2373,782.6641,449.2373,786.6641,459.2373,790.6641,455.2373,786.6641" style="stroke:#181818;stroke-width:1.0;"/>
+    <polygon fill="#181818" points="460.2373,795.6641,450.2373,799.6641,460.2373,803.6641,456.2373,799.6641" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="456.2373" y="774.0317">6</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="417.5234" x="469.2827" y="766.4653">Validate event - Rule: type == &apos;position&apos; &amp;&amp; action == &apos;commit&apos;</text>
+    <text fill="#FF0000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="89.2671" x="469.2827" y="781.5981">Error codes:</text>
+    <text fill="#FF0000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="33.084" x="562.6821" y="781.5981">2001</text>
+    <path d="M373.9453,828.6641 L606.8042,828.6641 L606.8042,835.7969 L596.8042,845.7969 L373.9453,845.7969 L373.9453,828.6641 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="154.3359" style="stroke:#000000;stroke-width:1.5;" width="597.2539" x="373.9453" y="828.6641"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="187.8589" x="388.9453" y="841.731">Persist Event Information</text>
+    <polygon fill="#181818" points="898.8247,887.9297,908.8247,891.9297,898.8247,895.9297,902.8247,891.9297" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="449.2373" x2="904.8247" y1="891.9297" y2="891.9297"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="456.2373" y="886.8638">7</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="167.1147" x="469.2827" y="886.8638">Publish event information</text>
+    <rect fill="none" height="53.0703" style="stroke:#000000;stroke-width:1.5;" width="583.2539" x="380.9453" y="899.9297"/>
+    <path d="M380.9453,899.9297 L445.9453,899.9297 L445.9453,906.9297 L435.9453,916.9297 L380.9453,916.9297 L380.9453,899.9297 " fill="#EEEEEE" style="stroke:#000000;stroke-width:2.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="20.8838" x="393.9453" y="913.9966">ref</text>
+    <text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="145.5117" x="599.8164" y="932.0684">Event Handler Consume</text>
+    <text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="3.8145" x="670.665" y="946.0371"> </text>
+    <rect fill="none" height="53.0703" style="stroke:#000000;stroke-width:1.5;" width="198.834" x="380.9453" y="1015"/>
+    <path d="M380.9453,1015 L445.9453,1015 L445.9453,1022 L435.9453,1032 L380.9453,1032 L380.9453,1015 " fill="#EEEEEE" style="stroke:#000000;stroke-width:2.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="20.8838" x="393.9453" y="1029.0669">ref</text>
+    <text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="190.834" x="384.9453" y="1047.1387">Fulfil Position Handler Consume</text>
+    <text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="3.8145" x="478.4551" y="1061.1074"> </text>
+    <polygon fill="#181818" points="1029.6851,1090.2031,1039.6851,1094.2031,1029.6851,1098.2031,1033.6851,1094.2031" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="449.2373" x2="1035.6851" y1="1094.2031" y2="1094.2031"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="456.2373" y="1089.1372">8</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="115.3306" x="469.2827" y="1089.1372">Produce message</text>
+    <line style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="20" x2="1122.1709" y1="1103.2031" y2="1103.2031"/>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="163.8774" x="25" y="1113.4136">[Consume Abort message]</text>
+    <polygon fill="#181818" points="132.687,1134.1406,122.687,1138.1406,132.687,1142.1406,128.687,1138.1406" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="126.687" x2="438.2373" y1="1138.1406" y2="1138.1406"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="138.687" y="1133.0747">9</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="219.8701" x="151.7324" y="1133.0747">Consume Position event message</text>
+    <path d="M363.9453,1183.1406 L450.897,1183.1406 L450.897,1190.2734 L440.897,1200.2734 L363.9453,1200.2734 L363.9453,1183.1406 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="120.6641" style="stroke:#000000;stroke-width:1.5;" width="433.4238" x="363.9453" y="1183.1406"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="41.9517" x="378.9453" y="1196.2075">break</text>
+    <path d="M373.9453,1207.2734 L525.9668,1207.2734 L525.9668,1214.4063 L515.9668,1224.4063 L373.9453,1224.4063 L373.9453,1207.2734 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="89.5313" style="stroke:#000000;stroke-width:1.5;" width="413.4238" x="373.9453" y="1207.2734"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="107.0215" x="388.9453" y="1220.3403">Validate Event</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="449.2373" x2="491.2373" y1="1275.8047" y2="1275.8047"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="491.2373" x2="491.2373" y1="1275.8047" y2="1288.8047"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="450.2373" x2="491.2373" y1="1288.8047" y2="1288.8047"/>
+    <polygon fill="#181818" points="459.2373,1271.8047,449.2373,1275.8047,459.2373,1279.8047,455.2373,1275.8047" style="stroke:#181818;stroke-width:1.0;"/>
+    <polygon fill="#181818" points="460.2373,1284.8047,450.2373,1288.8047,460.2373,1292.8047,456.2373,1288.8047" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="456.2373" y="1255.606">10</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="287.041" x="478.3281" y="1240.4731">Validate event - Rule: type == &apos;position&apos; &amp;&amp;</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="279.6714" x="478.3281" y="1255.606">action IN [&apos;timeout-reserved&apos;, &apos;reject&apos;, &apos;fail&apos;]</text>
+    <text fill="#FF0000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="89.2671" x="478.3281" y="1270.7388">Error codes:</text>
+    <text fill="#FF0000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="33.084" x="571.7275" y="1270.7388">2001</text>
+    <path d="M373.9453,1317.8047 L606.8042,1317.8047 L606.8042,1324.9375 L596.8042,1334.9375 L373.9453,1334.9375 L373.9453,1317.8047 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="154.3359" style="stroke:#000000;stroke-width:1.5;" width="597.2539" x="373.9453" y="1317.8047"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="187.8589" x="388.9453" y="1330.8716">Persist Event Information</text>
+    <polygon fill="#181818" points="898.8247,1377.0703,908.8247,1381.0703,898.8247,1385.0703,902.8247,1381.0703" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="449.2373" x2="904.8247" y1="1381.0703" y2="1381.0703"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="456.2373" y="1376.0044">11</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="167.1147" x="478.3281" y="1376.0044">Publish event information</text>
+    <rect fill="none" height="53.0703" style="stroke:#000000;stroke-width:1.5;" width="583.2539" x="380.9453" y="1389.0703"/>
+    <path d="M380.9453,1389.0703 L445.9453,1389.0703 L445.9453,1396.0703 L435.9453,1406.0703 L380.9453,1406.0703 L380.9453,1389.0703 " fill="#EEEEEE" style="stroke:#000000;stroke-width:2.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="20.8838" x="393.9453" y="1403.1372">ref</text>
+    <text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="145.5117" x="599.8164" y="1421.209">Event Handler Consume</text>
+    <text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="3.8145" x="670.665" y="1435.1777"> </text>
+    <rect fill="none" height="53.0703" style="stroke:#000000;stroke-width:1.5;" width="202.9063" x="380.9453" y="1504.1406"/>
+    <path d="M380.9453,1504.1406 L445.9453,1504.1406 L445.9453,1511.1406 L435.9453,1521.1406 L380.9453,1521.1406 L380.9453,1504.1406 " fill="#EEEEEE" style="stroke:#000000;stroke-width:2.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="20.8838" x="393.9453" y="1518.2075">ref</text>
+    <text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="194.9063" x="384.9453" y="1536.2793">Abort Position Handler Consume</text>
+    <text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="3.8145" x="480.4912" y="1550.248"> </text>
+    <polygon fill="#181818" points="1029.6851,1579.3438,1039.6851,1583.3438,1029.6851,1587.3438,1033.6851,1583.3438" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="449.2373" x2="1035.6851" y1="1583.3438" y2="1583.3438"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="456.2373" y="1578.2778">12</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="115.3306" x="478.3281" y="1578.2778">Produce message</text>
+  </g>
 </svg>

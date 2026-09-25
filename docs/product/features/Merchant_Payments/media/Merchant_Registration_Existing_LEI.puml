@@ -1,0 +1,56 @@
+@startuml
+
+title Phase 1: Merchants with an existing LEI
+
+actor M as "Merchant Representative\n(Natural Person)"
+actor A as "DFSP Registering Agent:\n(Natural Person)"
+participant RP as "Merchant\nRegistration\nPortal"
+database D as "Merchant Registry"
+Participant NCR as "National\nCompanies\nRegistry"
+participant GL as "\n<font color=white>GLEIF\n<font color=white>Services\n" #28989A
+
+autonumber
+M -> M: Assemble\ndocuments
+note left: Merchant wishes\nto register to\naccept payments
+M -> A: Provide LEI and\nadditional documentation\nto Registrar
+A -> RP: Access Portal\nand login
+RP -> A: Verify credentials,\npresent home screen\nif accepted
+A -> RP: Select merchant\nregistration
+RP -> A: Present merchant\nregistration portal
+A -> RP: Enter LEI,\nother merchant\ndocumentation details
+RP -> D: Record data\nas a temporary\nregistry entry
+RP -> GL: Submit LEI,\nrequest GLEIF\nData
+GL -> RP: Return GLEIF data\nfor this LEI
+RP -> D: Add GLEIF data to\ntemporary registry entry
+RP -> NCR: Request company\nregistration data
+NCR -> RP: Return company\nregistration data
+RP -> D: Add company registration data\nto temporary registry entry
+RP -> A: Present combined\ndata to Registrar
+note left: Registrar checks that the documentation\nprovided by the merchant, the GLEIF data,\nand the company registration data all match
+alt Data all matches
+    A -> M: Verify merchant's ID matches\nthat of the company owner
+    note right: Still need to be sure that this\nperson SHOULD be registering
+    alt Identity matches
+        A -> RP: Record Merchant\nidentity data
+        RP -> D: Add Merchant identity data\nto temporary registry entry
+        A -> RP: Approve new\nmerchant registry entry
+        RP -> D: Generate new merchant ID\nand add it to the Registry entry
+        note left: Merchant ID should be prefixed with a\nshort numeric code that identifies the\nregistrar's DFSP, to ensure uniqueness
+        RP -> D: Finalise merchant registry\nentry
+        RP -> A: Notify Registrar of\nregistry entry details
+        A -> RP: Request static QR code
+        RP <-> D: Build static QR code
+        RP -> A: Deliver QR code for printing
+        A -> A: Print static QR code
+        A -> M: Share static QR code, Merchant ID\nand other registration details
+    else This is not the company owner
+        RP -> D: Delete temporary\nregistry entry
+        RP -> A: Re-present\nhome screen
+    end
+else There's a match failure
+    A -> RP: Cancel registration
+    RP -> GL: Report mismatch of GLEIF data\nand the company registration\ndata to GLEIF
+    RP -> D: Delete temporary\nregistry entry
+    RP -> A: Re-present\nhome screen
+end
+@enduml

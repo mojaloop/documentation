@@ -1,448 +1,240 @@
-<svg xmlns="http://www.w3.org/2000/svg" height="1758" preserveAspectRatio="none" style="width:1864px;height:1758px" width="1864">
-  <defs>
-    <filter height="300%" id="a" width="300%" x="-1" y="-1">
-      <feGaussianBlur result="blurOut" stdDeviation="2"/>
-      <feColorMatrix in="blurOut" result="blurOut2" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/>
-      <feOffset dx="4" dy="4" in="blurOut2" result="blurOut3"/>
-      <feBlend in="SourceGraphic" in2="blurOut3"/>
-    </filter>
-  </defs>
-  <text font-family="sans-serif" font-size="18" lengthAdjust="spacingAndGlyphs" textLength="324" x="768" y="28.708">
-    4.1.0 Get Participant Position Details
-  </text>
-  <path fill="#ADD8E6" stroke="#a80036" d="M36 40.953h126v1711.969H36z"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="102" x="48" y="53.02">
-    HUB Operator
-  </text>
-  <path fill="#FFFFE0" stroke="#a80036" d="M628 40.953h1170v1711.969H628z"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="111" x="1157.5" y="53.02">
-    Central Service
-  </text>
-  <path fill="#FFF" filter="url(#a)" stroke="#a80036" d="M94 132.383h10v1545.242H94zM694 177.648h10v1499.977h-10zM1034 206.781h10v1419.711h-10zM1259 251.047h10v120.531h-10zM1383 563.508h10v135.664h-10zM1383 961.57h10v135.664h-10zM1741 280.18h10v62.266h-10zM1741 592.641h10v77.398h-10zM1741 990.703h10v77.398h-10z"/>
-  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M10 139.383h1840v1531.242H10z"/>
-  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M20 443.844h1820v1219.781H20z"/>
-  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M30 510.109h1800v904.383H30z"/>
-  <path fill="#FFF" d="M30 910.5h1800v503.992H30zM20 1421.492h1820v242.133H20z"/>
-  <path stroke="#a80036" stroke-dasharray="5,5" d="M99 122.383v1565.242M699 122.383v1565.242M1038.5 122.383v1565.242M1263.5 122.383v1565.242M1387.5 122.383v1565.242M1746 122.383v1565.242"/>
-  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="112" x="40" y="119.081">
-    HUB OPERATOR
-  </text>
-  <circle cx="99" cy="90.086" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
-  <path stroke="#a80036" stroke-width="2" d="M87 104.086h24"/>
-  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="112" x="40" y="1699.62">
-    HUB OPERATOR
-  </text>
-  <circle cx="99" cy="1718.922" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
-  <path stroke="#a80036" stroke-width="2" d="M87 1732.922h24"/>
-  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="128" x="632" y="119.081">
-    Central Service API
-  </text>
-  <path d="M678.5 78.086v24m0-12h17" fill="none" filter="url(#a)" stroke="#a80036" stroke-width="2"/>
-  <circle cx="707.5" cy="90.086" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
-  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="128" x="632" y="1699.62">
-    Central Service API
-  </text>
-  <path d="M678.5 1706.922v24m0-12h17" fill="none" filter="url(#a)" stroke="#a80036" stroke-width="2"/>
-  <circle cx="707.5" cy="1718.922" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
-  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="129" x="971.5" y="119.081">
-    Participant Handler
-  </text>
-  <circle cx="1039" cy="90.086" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
-  <path fill="#A80036" stroke="#a80036" d="M1035 78.086l6-5-2 5 2 5-6-5z"/>
-  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="129" x="971.5" y="1699.62">
-    Participant Handler
-  </text>
-  <circle cx="1039" cy="1718.922" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
-  <path fill="#A80036" stroke="#a80036" d="M1035 1706.922l6-5-2 5 2 5-6-5z"/>
-  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="107" x="1207.5" y="119.081">
-    Participant DAO
-  </text>
-  <circle cx="1264" cy="90.086" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
-  <path stroke="#a80036" stroke-width="2" d="M1252 104.086h24"/>
-  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="107" x="1207.5" y="1699.62">
-    Participant DAO
-  </text>
-  <circle cx="1264" cy="1718.922" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
-  <path stroke="#a80036" stroke-width="2" d="M1252 1732.922h24"/>
-  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="109" x="1330.5" y="119.081">
-    Position Facade
-  </text>
-  <circle cx="1388" cy="90.086" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
-  <path stroke="#a80036" stroke-width="2" d="M1376 104.086h24"/>
-  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="109" x="1330.5" y="1699.62">
-    Position Facade
-  </text>
-  <circle cx="1388" cy="1718.922" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
-  <path stroke="#a80036" stroke-width="2" d="M1376 1732.922h24"/>
-  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="90" x="1698" y="119.081">
-    Central Store
-  </text>
-  <path d="M1728 70.086c0-10 18-10 18-10s18 0 18 10v26c0 10-18 10-18 10s-18 0-18-10v-26" fill="#FEFECE" filter="url(#a)" stroke="#000" stroke-width="1.5"/>
-  <path d="M1728 70.086c0 10 18 10 18 10s18 0 18-10" fill="none" stroke="#000" stroke-width="1.5"/>
-  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="90" x="1698" y="1699.62">
-    Central Store
-  </text>
-  <path d="M1728 1712.922c0-10 18-10 18-10s18 0 18 10v26c0 10-18 10-18 10s-18 0-18-10v-26" fill="#FEFECE" filter="url(#a)" stroke="#000" stroke-width="1.5"/>
-  <path d="M1728 1712.922c0 10 18 10 18 10s18 0 18-10" fill="none" stroke="#000" stroke-width="1.5"/>
-  <path fill="#FFF" filter="url(#a)" stroke="#a80036" d="M94 132.383h10v1545.242H94zM694 177.648h10v1499.977h-10zM1034 206.781h10v1419.711h-10zM1259 251.047h10v120.531h-10zM1383 563.508h10v135.664h-10zM1383 961.57h10v135.664h-10zM1741 280.18h10v62.266h-10zM1741 592.641h10v77.398h-10zM1741 990.703h10v77.398h-10z"/>
-  <path d="M10 139.383h191v7l-10 10H10v-17" fill="#EEE" stroke="#000"/>
-  <path fill="none" stroke="#000" stroke-width="2" d="M10 139.383h1840v1531.242H10z"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="146" x="25" y="152.45">
-    Get Position Details
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M682 173.648l10 4-10 4 4-4z"/>
-  <path stroke="#a80036" d="M104 177.648h584"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="111" y="172.583">
-    1
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="558" x="124" y="172.583">
-    Request to get positions - GET - /participants/{name}/positions?currency={currencyId}
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M1022 202.781l10 4-10 4 4-4z"/>
-  <path stroke="#a80036" d="M704 206.781h324"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="711" y="201.715">
-    2
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="189" x="724" y="201.715">
-    Fetch Positions for Participant
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M1247 247.047l10 4-10 4 4-4z"/>
-  <path stroke="#a80036" d="M1044 251.047h209"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="1051" y="238.415">
-    3
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="107" x="1064" y="230.848">
-    Fetch Participant
-  </text>
-  <text fill="red" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="82" x="1064" y="245.981">
-    Error code:
-  </text>
-  <text fill="red" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="68" x="1150" y="245.981">
-    2003,3201
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M1729 276.18l10 4-10 4 4-4z"/>
-  <path stroke="#a80036" d="M1269 280.18h466"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="1276" y="275.114">
-    4
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="107" x="1289" y="275.114">
-    Fetch Participant
-  </text>
-  <path fill="#FFFFE0" filter="url(#a)" stroke="#a80036" d="M1710 293.18h72l10 11-10 12h-72l-10-12 10-11z"/>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="68" x="1712" y="309.247">
-    participant
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M1280 338.445l-10 4 10 4-4-4z"/>
-  <path stroke="#a80036" stroke-dasharray="2,2" d="M1274 342.445h471"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="1286" y="337.379">
-    5
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="132" x="1299" y="337.379">
-    Retrieved Participant
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M1055 367.578l-10 4 10 4-4-4z"/>
-  <path stroke="#a80036" stroke-dasharray="2,2" d="M1049 371.578h214"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="1061" y="366.512">
-    6
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="114" x="1074" y="366.512">
-    Return Participant
-  </text>
-  <path stroke="#a80036" d="M1044 415.844h42M1086 415.844v13M1045 428.844h41"/>
-  <path fill="#A80036" stroke="#a80036" d="M1055 424.844l-10 4 10 4-4-4z"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="1051" y="403.211">
-    7
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="90" x="1064" y="395.645">
-    Validate DFSP
-  </text>
-  <text fill="red" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="82" x="1064" y="410.778">
-    Error code:
-  </text>
-  <text fill="red" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="32" x="1150" y="410.778">
-    3201
-  </text>
-  <path d="M20 443.844h64v7l-10 10H20v-17" fill="#EEE" stroke="#000"/>
-  <path fill="none" stroke="#000" stroke-width="2" d="M20 443.844h1820v1219.781H20z"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19" x="35" y="456.911">
-    alt
-  </text>
-  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="202" x="99" y="456.054">
-    [Validate participant (success)]
-  </text>
-  <path stroke="#a80036" d="M1044 482.109h42M1086 482.109v13M1045 495.109h41"/>
-  <path fill="#A80036" stroke="#a80036" d="M1055 491.11l-10 4 10 4-4-4z"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="1051" y="477.043">
-    8
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="188" x="1064" y="477.043">
-    currency parameter passed ?
-  </text>
-  <path d="M30 510.11h64v7l-10 10H30v-17" fill="#EEE" stroke="#000"/>
-  <path fill="none" stroke="#000" stroke-width="2" d="M30 510.109h1800v904.383H30z"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19" x="45" y="523.176">
-    alt
-  </text>
-  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="185" x="109" y="522.32">
-    [currency parameter passed]
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M1371 559.508l10 4-10 4 4-4z"/>
-  <path stroke="#a80036" d="M1044 563.508h333"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="1051" y="550.875">
-    9
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="268" x="1064" y="543.309">
-    Fetch Participant position for a currency id
-  </text>
-  <text fill="red" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="82" x="1064" y="558.442">
-    Error code:
-  </text>
-  <text fill="red" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="32" x="1150" y="558.442">
-    2003
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M1729 588.64l10 4-10 4 4-4z"/>
-  <path stroke="#a80036" d="M1393 592.641h342"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1400" y="587.575">
-    10
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="268" x="1422" y="587.575">
-    Fetch Participant position for a currency id
-  </text>
-  <path fill="#FFFFE0" filter="url(#a)" stroke="#a80036" d="M1681 605.64h129l10 19-10 19h-129l-10-19 10-19z"/>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="125" x="1683" y="621.707">
-    participantCurrency
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="118" x="1683" y="636.84">
-    participantPosition
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M1404 666.04l-10 4 10 4-4-4z"/>
-  <path stroke="#a80036" stroke-dasharray="2,2" d="M1398 670.039h347"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1410" y="664.973">
-    11
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="293" x="1432" y="664.973">
-    Retrieved Participant position for a currency id
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M1055 695.172l-10 4 10 4-4-4z"/>
-  <path stroke="#a80036" stroke-dasharray="2,2" d="M1049 699.172h338"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1061" y="694.106">
-    12
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="196" x="1083" y="694.106">
-    Return Positions for Participant
-  </text>
-  <path d="M1049 712.172v131h247v-121l-10-10h-237" fill="#FF0" filter="url(#a)" stroke="#a80036"/>
-  <path d="M1286 712.172v10h10l-10-10" fill="#FF0" stroke="#a80036"/>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="61" x="1055" y="729.239">
-    Message:
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="1055" y="744.372">
-    {
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="1071" y="759.504">
-    {
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="155" x="1087" y="774.637">
-    currency: &lt;currencyId&gt;,
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="154" x="1087" y="789.77">
-    value: &lt;positionValue&gt;,
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="194" x="1087" y="804.903">
-    updatedTime: &lt;timeStamp1&gt;
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="1071" y="820.036">
-    }
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="1055" y="835.168">
-    }
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M715 869.367l-10 4 10 4-4-4z"/>
-  <path stroke="#a80036" stroke-dasharray="2,2" d="M709 873.367h324"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="721" y="868.301">
-    13
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="275" x="743" y="868.301">
-    Return Participant position for a currency id
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M115 898.5l-10 4 10 4-4-4z"/>
-  <path stroke="#a80036" stroke-dasharray="2,2" d="M109 902.5h584"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="121" y="897.434">
-    14
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="275" x="143" y="897.434">
-    Return Participant position for a currency id
-  </text>
-  <path stroke="#000" stroke-dasharray="2,2" d="M30 911.5h1800"/>
-  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="210" x="35" y="921.71">
-    [currency parameter not passed]
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M1371 957.57l10 4-10 4 4-4z"/>
-  <path stroke="#a80036" d="M1044 961.57h333"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1051" y="948.938">
-    15
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="277" x="1073" y="941.372">
-    Fetch Participant Positions for all currencies
-  </text>
-  <text fill="red" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="82" x="1073" y="956.504">
-    Error code:
-  </text>
-  <text fill="red" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="32" x="1159" y="956.504">
-    2003
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M1729 986.703l10 4-10 4 4-4z"/>
-  <path stroke="#a80036" d="M1393 990.703h342"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1400" y="985.637">
-    16
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="277" x="1422" y="985.637">
-    Fetch Participant Positions for all currencies
-  </text>
-  <path fill="#FFFFE0" filter="url(#a)" stroke="#a80036" d="M1681 1003.703h129l10 19-10 19h-129l-10-19 10-19z"/>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="125" x="1683" y="1019.77">
-    participantCurrency
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="118" x="1683" y="1034.903">
-    participantPosition
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M1404 1064.102l-10 4 10 4-4-4z"/>
-  <path stroke="#a80036" stroke-dasharray="2,2" d="M1398 1068.102h347"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1410" y="1063.036">
-    17
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="302" x="1432" y="1063.036">
-    Retrieved Participant Positions for all currencies
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M1055 1093.234l-10 4 10 4-4-4z"/>
-  <path stroke="#a80036" stroke-dasharray="2,2" d="M1049 1097.234h338"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="1061" y="1092.168">
-    18
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="284" x="1083" y="1092.168">
-    Return Participant Positions for all currencies
-  </text>
-  <path d="M1049 1110.234v236h263v-226l-10-10h-253" fill="#FF0" filter="url(#a)" stroke="#a80036"/>
-  <path d="M1302 1110.234v10h10l-10-10" fill="#FF0" stroke="#a80036"/>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="61" x="1055" y="1127.301">
-    Message:
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="1055" y="1142.434">
-    {
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="5" x="1071" y="1157.567">
-    [
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="1087" y="1172.7">
-    {
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="163" x="1103" y="1187.832">
-    currency: &lt;currencyId1&gt;,
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="162" x="1103" y="1202.965">
-    value: &lt;positionValue1&gt;,
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="194" x="1103" y="1218.098">
-    updatedTime: &lt;timeStamp1&gt;
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="12" x="1087" y="1233.231">
-    },
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="1087" y="1248.364">
-    {
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="163" x="1103" y="1263.497">
-    currency: &lt;currencyId2&gt;,
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="162" x="1103" y="1278.629">
-    value: &lt;positionValue2&gt;,
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="194" x="1103" y="1293.762">
-    updatedTime: &lt;timeStamp2&gt;
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="1087" y="1308.895">
-    }
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="5" x="1071" y="1324.028">
-    ]
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="1055" y="1339.161">
-    }
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M715 1373.36l-10 4 10 4-4-4z"/>
-  <path stroke="#a80036" stroke-dasharray="2,2" d="M709 1377.359h324"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="721" y="1372.293">
-    19
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="284" x="743" y="1372.293">
-    Return Participant Positions for all currencies
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M115 1402.492l-10 4 10 4-4-4z"/>
-  <path stroke="#a80036" stroke-dasharray="2,2" d="M109 1406.492h584"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="121" y="1401.426">
-    20
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="284" x="143" y="1401.426">
-    Return Participant Positions for all currencies
-  </text>
-  <path stroke="#000" stroke-dasharray="2,2" d="M20 1422.492h1820"/>
-  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="193" x="25" y="1432.703">
-    [Validate participant (failure)]
-  </text>
-  <path d="M1049 1441.297v25h132v-15l-10-10h-122" fill="red" filter="url(#a)" stroke="#a80036"/>
-  <path d="M1171 1441.297v10h10l-10-10" fill="red" stroke="#a80036"/>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="111" x="1055" y="1458.364">
-    Validation failure!
-  </text>
-  <path d="M1049 1480.43v115h387v-105l-10-10h-377" fill="#FF0" filter="url(#a)" stroke="#a80036"/>
-  <path d="M1426 1480.43v10h10l-10-10" fill="#FF0" stroke="#a80036"/>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="61" x="1055" y="1497.497">
-    Message:
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="1055" y="1512.629">
-    {
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="130" x="1071" y="1527.762">
-    &quot;errorInformation&quot;: {
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="118" x="1071" y="1542.895">
-    &quot;errorCode&quot;: 3201,
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="350" x="1071" y="1558.028">
-    &quot;errorDescription&quot;: &quot;FSP id does not exist or not found&quot;,
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="1071" y="1573.161">
-    }
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="1055" y="1588.293">
-    }
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M715 1622.492l-10 4 10 4-4-4z"/>
-  <path stroke="#a80036" stroke-dasharray="2,2" d="M709 1626.492h329"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="721" y="1621.426">
-    21
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="42" x="743" y="1621.426">
-    Return
-  </text>
-  <text fill="red" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="82" x="789" y="1621.426">
-    Error code:
-  </text>
-  <text fill="red" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="32" x="875" y="1621.426">
-    3201
-  </text>
-  <path fill="#A80036" stroke="#a80036" d="M115 1651.625l-10 4 10 4-4-4z"/>
-  <path stroke="#a80036" stroke-dasharray="2,2" d="M109 1655.625h584"/>
-  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="121" y="1650.559">
-    22
-  </text>
-  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="42" x="143" y="1650.559">
-    Return
-  </text>
-  <text fill="red" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="82" x="189" y="1650.559">
-    Error code:
-  </text>
-  <text fill="red" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="32" x="275" y="1650.559">
-    3201
-  </text>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="1752px" preserveAspectRatio="none" style="width:1909px;height:1752px;background:#FFFFFF;" version="1.1" viewBox="0 0 1909 1752" width="1909px" zoomAndPan="magnify">
+  <title>4.1.0 Get Participant Position Details</title>
+  <defs/>
+  <g>
+    <text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="293.6377" x="809.5161" y="27.9951">4.1.0 Get Participant Position Details</text>
+    <rect fill="#ADD8E6" height="1695.9688" style="stroke:#181818;stroke-width:0.5;" width="125.7402" x="36" y="43.2969"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="101.7847" x="47.9778" y="55.3638">HUB Operator</text>
+    <rect fill="#FFFFE0" height="1695.9688" style="stroke:#181818;stroke-width:0.5;" width="1210.3765" x="640.5244" y="43.2969"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="112.0361" x="1189.6946" y="55.3638">Central Service</text>
+    <rect fill="#FFFFFF" height="1529.2422" style="stroke:#181818;stroke-width:1.0;" width="10" x="93.8701" y="134.7266"/>
+    <rect fill="#FFFFFF" height="1483.9766" style="stroke:#181818;stroke-width:1.0;" width="10" x="709.4072" y="179.9922"/>
+    <rect fill="#FFFFFF" height="1403.7109" style="stroke:#181818;stroke-width:1.0;" width="10" x="1059.0454" y="209.125"/>
+    <rect fill="#FFFFFF" height="120.5313" style="stroke:#181818;stroke-width:1.0;" width="10" x="1297.187" y="253.3906"/>
+    <rect fill="#FFFFFF" height="135.6641" style="stroke:#181818;stroke-width:1.0;" width="10" x="1423.8198" y="565.8516"/>
+    <rect fill="#FFFFFF" height="135.6641" style="stroke:#181818;stroke-width:1.0;" width="10" x="1423.8198" y="959.9141"/>
+    <rect fill="#FFFFFF" height="62.2656" style="stroke:#181818;stroke-width:1.0;" width="10" x="1792.5327" y="282.5234"/>
+    <rect fill="#FFFFFF" height="77.3984" style="stroke:#181818;stroke-width:1.0;" width="10" x="1792.5327" y="594.9844"/>
+    <rect fill="#FFFFFF" height="77.3984" style="stroke:#181818;stroke-width:1.0;" width="10" x="1792.5327" y="989.0469"/>
+    <rect fill="none" height="1515.2422" style="stroke:#000000;stroke-width:1.5;" width="1893.6699" x="10" y="141.7266"/>
+    <rect fill="none" height="1203.7813" style="stroke:#000000;stroke-width:1.5;" width="1873.6699" x="20" y="446.1875"/>
+    <rect fill="none" height="896.3828" style="stroke:#000000;stroke-width:1.5;" width="1853.6699" x="30" y="512.4531"/>
+    <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="98" x2="98" y1="124.7266" y2="1673.9688"/>
+    <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="713.5244" x2="713.5244" y1="124.7266" y2="1673.9688"/>
+    <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="1063.4722" x2="1063.4722" y1="124.7266" y2="1673.9688"/>
+    <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="1301.4878" x2="1301.4878" y1="124.7266" y2="1673.9688"/>
+    <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="1427.8862" x2="1427.8862" y1="124.7266" y2="1673.9688"/>
+    <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="1797.1646" x2="1797.1646" y1="124.7266" y2="1673.9688"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="111.7402" x="40" y="121.4248">HUB OPERATOR</text>
+    <ellipse cx="98.8701" cy="92.4297" fill="#E2E2F0" rx="12" ry="12" style="stroke:#181818;stroke-width:0.5;"/>
+    <line style="stroke:#181818;stroke-width:0.5;" x1="86.8701" x2="110.8701" y1="106.4297" y2="106.4297"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="111.7402" x="40" y="1685.9639">HUB OPERATOR</text>
+    <ellipse cx="98.8701" cy="1705.2656" fill="#E2E2F0" rx="12" ry="12" style="stroke:#181818;stroke-width:0.5;"/>
+    <line style="stroke:#181818;stroke-width:0.5;" x1="86.8701" x2="110.8701" y1="1719.2656" y2="1719.2656"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="133.7656" x="644.5244" y="121.4248">Central Service API</text>
+    <path d="M693.9072,80.4297 L693.9072,104.4297 M693.9072,92.4297 L710.9072,92.4297 " fill="none" style="stroke:#181818;stroke-width:0.5;"/>
+    <ellipse cx="722.9072" cy="92.4297" fill="#E2E2F0" rx="12" ry="12" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="133.7656" x="644.5244" y="1685.9639">Central Service API</text>
+    <path d="M693.9072,1693.2656 L693.9072,1717.2656 M693.9072,1705.2656 L710.9072,1705.2656 " fill="none" style="stroke:#181818;stroke-width:0.5;"/>
+    <ellipse cx="722.9072" cy="1705.2656" fill="#E2E2F0" rx="12" ry="12" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="135.1465" x="993.4722" y="121.4248">Participant Handler</text>
+    <ellipse cx="1064.0454" cy="92.4297" fill="#E2E2F0" rx="12" ry="12" style="stroke:#181818;stroke-width:0.5;"/>
+    <polygon fill="#181818" points="1060.0454,80.4297,1066.0454,75.4297,1064.0454,80.4297,1066.0454,85.4297,1060.0454,80.4297" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="135.1465" x="993.4722" y="1685.9639">Participant Handler</text>
+    <ellipse cx="1064.0454" cy="1705.2656" fill="#E2E2F0" rx="12" ry="12" style="stroke:#181818;stroke-width:0.5;"/>
+    <polygon fill="#181818" points="1060.0454,1693.2656,1066.0454,1688.2656,1064.0454,1693.2656,1066.0454,1698.2656,1060.0454,1693.2656" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="111.3984" x="1243.4878" y="121.4248">Participant DAO</text>
+    <ellipse cx="1302.187" cy="92.4297" fill="#E2E2F0" rx="12" ry="12" style="stroke:#181818;stroke-width:0.5;"/>
+    <line style="stroke:#181818;stroke-width:0.5;" x1="1290.187" x2="1314.187" y1="106.4297" y2="106.4297"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="111.3984" x="1243.4878" y="1685.9639">Participant DAO</text>
+    <ellipse cx="1302.187" cy="1705.2656" fill="#E2E2F0" rx="12" ry="12" style="stroke:#181818;stroke-width:0.5;"/>
+    <line style="stroke:#181818;stroke-width:0.5;" x1="1290.187" x2="1314.187" y1="1719.2656" y2="1719.2656"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="109.8672" x="1370.8862" y="121.4248">Position Facade</text>
+    <ellipse cx="1428.8198" cy="92.4297" fill="#E2E2F0" rx="12" ry="12" style="stroke:#181818;stroke-width:0.5;"/>
+    <line style="stroke:#181818;stroke-width:0.5;" x1="1416.8198" x2="1440.8198" y1="106.4297" y2="106.4297"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="109.8672" x="1370.8862" y="1685.9639">Position Facade</text>
+    <ellipse cx="1428.8198" cy="1705.2656" fill="#E2E2F0" rx="12" ry="12" style="stroke:#181818;stroke-width:0.5;"/>
+    <line style="stroke:#181818;stroke-width:0.5;" x1="1416.8198" x2="1440.8198" y1="1719.2656" y2="1719.2656"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="92.7363" x="1748.1646" y="121.4248">Central Store</text>
+    <path d="M1779.5327,72.4297 C1779.5327,62.4297 1797.5327,62.4297 1797.5327,62.4297 C1797.5327,62.4297 1815.5327,62.4297 1815.5327,72.4297 L1815.5327,98.4297 C1815.5327,108.4297 1797.5327,108.4297 1797.5327,108.4297 C1797.5327,108.4297 1779.5327,108.4297 1779.5327,98.4297 L1779.5327,72.4297 " fill="#E2E2F0" style="stroke:#181818;stroke-width:1.5;"/>
+    <path d="M1779.5327,72.4297 C1779.5327,82.4297 1797.5327,82.4297 1797.5327,82.4297 C1797.5327,82.4297 1815.5327,82.4297 1815.5327,72.4297 " fill="none" style="stroke:#181818;stroke-width:1.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="92.7363" x="1748.1646" y="1685.9639">Central Store</text>
+    <path d="M1779.5327,1699.2656 C1779.5327,1689.2656 1797.5327,1689.2656 1797.5327,1689.2656 C1797.5327,1689.2656 1815.5327,1689.2656 1815.5327,1699.2656 L1815.5327,1725.2656 C1815.5327,1735.2656 1797.5327,1735.2656 1797.5327,1735.2656 C1797.5327,1735.2656 1779.5327,1735.2656 1779.5327,1725.2656 L1779.5327,1699.2656 " fill="#E2E2F0" style="stroke:#181818;stroke-width:1.5;"/>
+    <path d="M1779.5327,1699.2656 C1779.5327,1709.2656 1797.5327,1709.2656 1797.5327,1709.2656 C1797.5327,1709.2656 1815.5327,1709.2656 1815.5327,1699.2656 " fill="none" style="stroke:#181818;stroke-width:1.5;"/>
+    <rect fill="#FFFFFF" height="1529.2422" style="stroke:#181818;stroke-width:1.0;" width="10" x="93.8701" y="134.7266"/>
+    <rect fill="#FFFFFF" height="1483.9766" style="stroke:#181818;stroke-width:1.0;" width="10" x="709.4072" y="179.9922"/>
+    <rect fill="#FFFFFF" height="1403.7109" style="stroke:#181818;stroke-width:1.0;" width="10" x="1059.0454" y="209.125"/>
+    <rect fill="#FFFFFF" height="120.5313" style="stroke:#181818;stroke-width:1.0;" width="10" x="1297.187" y="253.3906"/>
+    <rect fill="#FFFFFF" height="135.6641" style="stroke:#181818;stroke-width:1.0;" width="10" x="1423.8198" y="565.8516"/>
+    <rect fill="#FFFFFF" height="135.6641" style="stroke:#181818;stroke-width:1.0;" width="10" x="1423.8198" y="959.9141"/>
+    <rect fill="#FFFFFF" height="62.2656" style="stroke:#181818;stroke-width:1.0;" width="10" x="1792.5327" y="282.5234"/>
+    <rect fill="#FFFFFF" height="77.3984" style="stroke:#181818;stroke-width:1.0;" width="10" x="1792.5327" y="594.9844"/>
+    <rect fill="#FFFFFF" height="77.3984" style="stroke:#181818;stroke-width:1.0;" width="10" x="1792.5327" y="989.0469"/>
+    <path d="M10,141.7266 L200.5073,141.7266 L200.5073,148.8594 L190.5073,158.8594 L10,158.8594 L10,141.7266 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="1515.2422" style="stroke:#000000;stroke-width:1.5;" width="1893.6699" x="10" y="141.7266"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="145.5073" x="25" y="154.7935">Get Position Details</text>
+    <polygon fill="#181818" points="697.4072,175.9922,707.4072,179.9922,697.4072,183.9922,701.4072,179.9922" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="103.8701" x2="703.4072" y1="179.9922" y2="179.9922"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="110.8701" y="174.9263">1</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="573.4917" x="123.9155" y="174.9263">Request to get positions - GET - /participants/{name}/positions?currency={currencyId}</text>
+    <polygon fill="#181818" points="1047.0454,205.125,1057.0454,209.125,1047.0454,213.125,1051.0454,209.125" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="719.4072" x2="1053.0454" y1="209.125" y2="209.125"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="726.4072" y="204.0591">2</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="194.2573" x="739.4526" y="204.0591">Fetch Positions for Participant</text>
+    <polygon fill="#181818" points="1285.187,249.3906,1295.187,253.3906,1285.187,257.3906,1289.187,253.3906" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="1069.0454" x2="1291.187" y1="253.3906" y2="253.3906"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="1076.0454" y="240.7583">3</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="110.2651" x="1089.0908" y="233.1919">Fetch Participant</text>
+    <text fill="#FF0000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="81.5293" x="1089.0908" y="248.3247">Error code:</text>
+    <text fill="#FF0000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="70.3003" x="1174.7524" y="248.3247">2003,3201</text>
+    <polygon fill="#181818" points="1780.5327,278.5234,1790.5327,282.5234,1780.5327,286.5234,1784.5327,282.5234" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="1307.187" x2="1786.5327" y1="282.5234" y2="282.5234"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="1314.187" y="277.4575">4</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="110.2651" x="1327.2324" y="277.4575">Fetch Participant</text>
+    <polygon fill="#FFFFE0" points="1760,295.5234,1834,295.5234,1844,306.5234,1834,318.5234,1760,318.5234,1750,306.5234,1760,295.5234" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="70.5859" x="1762" y="311.5903">participant</text>
+    <polygon fill="#181818" points="1318.187,340.7891,1308.187,344.7891,1318.187,348.7891,1314.187,344.7891" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="1312.187" x2="1796.5327" y1="344.7891" y2="344.7891"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="1324.187" y="339.7231">5</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="137.3315" x="1337.2324" y="339.7231">Retrieved Participant</text>
+    <polygon fill="#181818" points="1080.0454,369.9219,1070.0454,373.9219,1080.0454,377.9219,1076.0454,373.9219" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="1074.0454" x2="1301.187" y1="373.9219" y2="373.9219"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="1086.0454" y="368.856">6</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="118.2568" x="1099.0908" y="368.856">Return Participant</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="1069.0454" x2="1111.0454" y1="418.1875" y2="418.1875"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="1111.0454" x2="1111.0454" y1="418.1875" y2="431.1875"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="1070.0454" x2="1111.0454" y1="431.1875" y2="431.1875"/>
+    <polygon fill="#181818" points="1080.0454,427.1875,1070.0454,431.1875,1080.0454,435.1875,1076.0454,431.1875" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="1076.0454" y="405.5552">7</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="91.1079" x="1089.0908" y="397.9888">Validate DFSP</text>
+    <text fill="#FF0000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="81.5293" x="1089.0908" y="413.1216">Error code:</text>
+    <text fill="#FF0000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="33.084" x="1174.7524" y="413.1216">3201</text>
+    <path d="M20,446.1875 L84.4429,446.1875 L84.4429,453.3203 L74.4429,463.3203 L20,463.3203 L20,446.1875 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="1203.7813" style="stroke:#000000;stroke-width:1.5;" width="1873.6699" x="20" y="446.1875"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="19.4429" x="35" y="459.2544">alt</text>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="195.6636" x="99.4429" y="458.3979">[Validate participant (success)]</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="1069.0454" x2="1111.0454" y1="484.4531" y2="484.4531"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="1111.0454" x2="1111.0454" y1="484.4531" y2="497.4531"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="1070.0454" x2="1111.0454" y1="497.4531" y2="497.4531"/>
+    <polygon fill="#181818" points="1080.0454,493.4531,1070.0454,497.4531,1080.0454,501.4531,1076.0454,497.4531" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="1076.0454" y="479.3872">8</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="191.0962" x="1089.0908" y="479.3872">currency parameter passed ?</text>
+    <path d="M30,512.4531 L94.4429,512.4531 L94.4429,519.5859 L84.4429,529.5859 L30,529.5859 L30,512.4531 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="896.3828" style="stroke:#000000;stroke-width:1.5;" width="1853.6699" x="30" y="512.4531"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="19.4429" x="45" y="525.52">alt</text>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="180.834" x="109.4429" y="524.6636">[currency parameter passed]</text>
+    <polygon fill="#181818" points="1411.8198,561.8516,1421.8198,565.8516,1411.8198,569.8516,1415.8198,565.8516" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="1069.0454" x2="1417.8198" y1="565.8516" y2="565.8516"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="1076.0454" y="553.2192">9</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="277.2783" x="1089.0908" y="545.6528">Fetch Participant position for a currency id</text>
+    <text fill="#FF0000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="81.5293" x="1089.0908" y="560.7856">Error code:</text>
+    <text fill="#FF0000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="33.084" x="1174.7524" y="560.7856">2003</text>
+    <polygon fill="#181818" points="1780.5327,590.9844,1790.5327,594.9844,1780.5327,598.9844,1784.5327,594.9844" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="1433.8198" x2="1786.5327" y1="594.9844" y2="594.9844"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="1440.8198" y="589.9185">10</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="277.2783" x="1462.9106" y="589.9185">Fetch Participant position for a currency id</text>
+    <polygon fill="#FFFFE0" points="1730,607.9844,1863,607.9844,1873,626.9844,1863,645.9844,1730,645.9844,1720,626.9844,1730,607.9844" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="129.6699" x="1732" y="624.0513">participantCurrency</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="121.6655" x="1732" y="639.1841">participantPosition</text>
+    <polygon fill="#181818" points="1444.8198,668.3828,1434.8198,672.3828,1444.8198,676.3828,1440.8198,672.3828" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="1438.8198" x2="1796.5327" y1="672.3828" y2="672.3828"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="1450.8198" y="667.3169">11</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="304.3447" x="1472.9106" y="667.3169">Retrieved Participant position for a currency id</text>
+    <polygon fill="#181818" points="1080.0454,697.5156,1070.0454,701.5156,1080.0454,705.5156,1076.0454,701.5156" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="1074.0454" x2="1427.8198" y1="701.5156" y2="701.5156"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="1086.0454" y="696.4497">12</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="202.249" x="1108.1362" y="696.4497">Return Positions for Participant</text>
+    <path d="M1074,714.5156 L1074,845.5156 L1324,845.5156 L1324,724.5156 L1314,714.5156 L1074,714.5156 " fill="#FFFF00" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M1314,714.5156 L1314,724.5156 L1324,724.5156 L1314,714.5156 " fill="#FFFF00" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="61.3564" x="1080" y="731.5825">Message:</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8.271" x="1080" y="746.7153">{</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8.271" x="1096.5293" y="761.8481">{</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="160.8242" x="1113.0586" y="776.981">currency: &lt;currencyId&gt;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="158.1392" x="1113.0586" y="792.1138">value: &lt;positionValue&gt;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="196.4409" x="1113.0586" y="807.2466">updatedTime: &lt;timeStamp1&gt;</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8.271" x="1096.5293" y="822.3794">}</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8.271" x="1080" y="837.5122">}</text>
+    <polygon fill="#181818" points="730.4072,867.7109,720.4072,871.7109,730.4072,875.7109,726.4072,871.7109" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="724.4072" x2="1058.0454" y1="871.7109" y2="871.7109"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="736.4072" y="866.645">13</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="285.27" x="758.498" y="866.645">Return Participant position for a currency id</text>
+    <polygon fill="#181818" points="114.8701,896.8438,104.8701,900.8438,114.8701,904.8438,110.8701,900.8438" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="108.8701" x2="708.4072" y1="900.8438" y2="900.8438"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="120.8701" y="895.7778">14</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="285.27" x="142.9609" y="895.7778">Return Participant position for a currency id</text>
+    <line style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="30" x2="1883.6699" y1="909.8438" y2="909.8438"/>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="205.3101" x="35" y="920.0542">[currency parameter not passed]</text>
+    <polygon fill="#181818" points="1411.8198,955.9141,1421.8198,959.9141,1411.8198,963.9141,1415.8198,959.9141" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="1069.0454" x2="1417.8198" y1="959.9141" y2="959.9141"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="1076.0454" y="947.2817">15</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="285.5557" x="1098.1362" y="939.7153">Fetch Participant Positions for all currencies</text>
+    <text fill="#FF0000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="81.5293" x="1098.1362" y="954.8481">Error code:</text>
+    <text fill="#FF0000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="33.084" x="1183.7979" y="954.8481">2003</text>
+    <polygon fill="#181818" points="1780.5327,985.0469,1790.5327,989.0469,1780.5327,993.0469,1784.5327,989.0469" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="1433.8198" x2="1786.5327" y1="989.0469" y2="989.0469"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="1440.8198" y="983.981">16</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="285.5557" x="1462.9106" y="983.981">Fetch Participant Positions for all currencies</text>
+    <polygon fill="#FFFFE0" points="1730,1002.0469,1863,1002.0469,1873,1021.0469,1863,1040.0469,1730,1040.0469,1720,1021.0469,1730,1002.0469" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="129.6699" x="1732" y="1018.1138">participantCurrency</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="121.6655" x="1732" y="1033.2466">participantPosition</text>
+    <polygon fill="#181818" points="1444.8198,1062.4453,1434.8198,1066.4453,1444.8198,1070.4453,1440.8198,1066.4453" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="1438.8198" x2="1796.5327" y1="1066.4453" y2="1066.4453"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="1450.8198" y="1061.3794">17</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="312.6221" x="1472.9106" y="1061.3794">Retrieved Participant Positions for all currencies</text>
+    <polygon fill="#181818" points="1080.0454,1091.5781,1070.0454,1095.5781,1080.0454,1099.5781,1076.0454,1095.5781" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="1074.0454" x2="1427.8198" y1="1095.5781" y2="1095.5781"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="1086.0454" y="1090.5122">18</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="293.5474" x="1108.1362" y="1090.5122">Return Participant Positions for all currencies</text>
+    <path d="M1074,1108.5781 L1074,1344.5781 L1341,1344.5781 L1341,1118.5781 L1331,1108.5781 L1074,1108.5781 " fill="#FFFF00" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M1331,1108.5781 L1331,1118.5781 L1341,1118.5781 L1331,1108.5781 " fill="#FFFF00" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="61.3564" x="1080" y="1125.645">Message:</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8.271" x="1080" y="1140.7778">{</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="5.0718" x="1096.5293" y="1155.9106">[</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8.271" x="1113.0586" y="1171.0435">{</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="169.0952" x="1129.5879" y="1186.1763">currency: &lt;currencyId1&gt;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="166.4102" x="1129.5879" y="1201.3091">value: &lt;positionValue1&gt;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="196.4409" x="1129.5879" y="1216.4419">updatedTime: &lt;timeStamp1&gt;</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="12.4033" x="1113.0586" y="1231.5747">},</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8.271" x="1113.0586" y="1246.7075">{</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="169.0952" x="1129.5879" y="1261.8403">currency: &lt;currencyId2&gt;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="166.4102" x="1129.5879" y="1276.9731">value: &lt;positionValue2&gt;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="196.4409" x="1129.5879" y="1292.106">updatedTime: &lt;timeStamp2&gt;</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8.271" x="1113.0586" y="1307.2388">}</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="5.0718" x="1096.5293" y="1322.3716">]</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8.271" x="1080" y="1337.5044">}</text>
+    <polygon fill="#181818" points="730.4072,1367.7031,720.4072,1371.7031,730.4072,1375.7031,726.4072,1371.7031" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="724.4072" x2="1058.0454" y1="1371.7031" y2="1371.7031"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="736.4072" y="1366.6372">19</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="293.5474" x="758.498" y="1366.6372">Return Participant Positions for all currencies</text>
+    <polygon fill="#181818" points="114.8701,1396.8359,104.8701,1400.8359,114.8701,1404.8359,110.8701,1400.8359" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="108.8701" x2="708.4072" y1="1400.8359" y2="1400.8359"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="120.8701" y="1395.77">20</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="293.5474" x="142.9609" y="1395.77">Return Participant Positions for all currencies</text>
+    <line style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="20" x2="1893.6699" y1="1416.8359" y2="1416.8359"/>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="188.1548" x="25" y="1427.0464">[Validate participant (failure)]</text>
+    <path d="M1074,1435.6406 L1074,1460.6406 L1210,1460.6406 L1210,1445.6406 L1200,1435.6406 L1074,1435.6406 " fill="#FF0000" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M1200,1435.6406 L1200,1445.6406 L1210,1445.6406 L1200,1435.6406 " fill="#FF0000" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="115.8955" x="1080" y="1452.7075">Validation failure!</text>
+    <path d="M1074,1470.7734 L1074,1585.7734 L1473,1585.7734 L1473,1480.7734 L1463,1470.7734 L1074,1470.7734 " fill="#FFFF00" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M1463,1470.7734 L1463,1480.7734 L1473,1480.7734 L1463,1470.7734 " fill="#FFFF00" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="61.3564" x="1080" y="1487.8403">Message:</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8.271" x="1080" y="1502.9731">{</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="136.208" x="1096.5293" y="1518.106">&quot;errorInformation&quot;: {</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="122.9541" x="1096.5293" y="1533.2388">&quot;errorCode&quot;: 3201,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="362.2354" x="1096.5293" y="1548.3716">&quot;errorDescription&quot;: &quot;FSP id does not exist or not found&quot;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8.271" x="1096.5293" y="1563.5044">}</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8.271" x="1080" y="1578.6372">}</text>
+    <polygon fill="#181818" points="730.4072,1608.8359,720.4072,1612.8359,730.4072,1616.8359,726.4072,1612.8359" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="724.4072" x2="1063.0454" y1="1612.8359" y2="1612.8359"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="736.4072" y="1607.77">21</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="43.9512" x="758.498" y="1607.77">Return</text>
+    <text fill="#FF0000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="81.5293" x="806.5815" y="1607.77">Error code:</text>
+    <text fill="#FF0000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="33.084" x="892.2432" y="1607.77">3201</text>
+    <polygon fill="#181818" points="114.8701,1637.9688,104.8701,1641.9688,114.8701,1645.9688,110.8701,1641.9688" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="108.8701" x2="708.4072" y1="1641.9688" y2="1641.9688"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="120.8701" y="1636.9028">22</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="43.9512" x="142.9609" y="1636.9028">Return</text>
+    <text fill="#FF0000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="81.5293" x="191.0444" y="1636.9028">Error code:</text>
+    <text fill="#FF0000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="33.084" x="276.7061" y="1636.9028">3201</text>
+  </g>
 </svg>

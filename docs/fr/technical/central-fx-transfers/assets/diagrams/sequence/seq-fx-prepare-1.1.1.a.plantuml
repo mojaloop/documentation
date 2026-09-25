@@ -1,0 +1,269 @@
+/'*****
+ License
+ --------------
+ Copyright © 2020 Mojaloop Foundation
+ The Mojaloop files are made available by the Mojaloop Foundation under the Apache License, Version 2.0
+ (the "License") and you may not use these files except in compliance with the [License](http://www.apache.org/licenses/LICENSE-2.0). 
+ You may obtain a copy of the License at [http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)
+ Unless required by applicable law or agreed to in writing, the Mojaloop files are distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the [License](http://www.apache.org/licenses/LICENSE-2.0).
+ 
+ Contributors
+ --------------
+ This is the official list of the Mojaloop project contributors for this file.
+ Names of the original copyright holders (individuals or organizations)
+ should be listed with a '*' in the first column. People who have
+ contributed from an organization can be listed under the organization
+ that actually holds the copyright for their contributions (see the
+ Gates Foundation organization for an example). Those individuals should have
+ their names indented and be marked with a '-'. Email address can be added
+ optionally within square brackets <email>.
+ * Gates Foundation
+ - Name Surname <name.surname@gatesfoundation.com>
+
+ * Steven Oderayi <steven.oderayi@infitx.com>
+ --------------
+ ******'/
+
+@startuml prepare-handler-consume
+title 1.1.1.a. Consommation du gestionnaire Prepare FX (message unique)
+
+autonumber
+
+collections "topic-transfer-prepare" as TOPIC_TRANSFER_PREPARE
+control "Gestionnaire d’événements Prepare" as PREP_HANDLER
+collections "topic-transfer-position" as TOPIC_TRANSFER_POSITION
+collections "Notification-Topic" as TOPIC_NOTIFICATIONS
+entity "DAO Position" as POS_DAO
+entity "DAO Participant" as PARTICIPANT_DAO
+database "Stockage central" as DB
+
+box "Service central" #LightYellow
+    participant TOPIC_TRANSFER_PREPARE
+    participant PREP_HANDLER
+    participant TOPIC_TRANSFER_POSITION
+    participant TOPIC_NOTIFICATIONS
+    participant POS_DAO
+    participant PARTICIPANT_DAO
+    participant DB
+end box
+
+activate PREP_HANDLER
+group Consommation du gestionnaire Prepare
+    note left of PREP_HANDLER #lightgrey
+        L’événement est automatiquement répliqué
+        vers le topic des événements (topic-events)
+    end note
+
+    TOPIC_TRANSFER_PREPARE <- PREP_HANDLER: Consommer le message d’événement Prepare
+    activate TOPIC_TRANSFER_PREPARE
+    deactivate TOPIC_TRANSFER_PREPARE
+
+    break
+        group Filtrer l’événement
+            PREP_HANDLER <-> PREP_HANDLER: Filtrer l’événement - Règles : type == 'prepare' && action == 'fx_prepare'\n<color #FF0000><b>Codes d’erreur :</b> 2001</color>
+        end
+    end
+
+    group Valider le transfert Prepare 
+        PREP_HANDLER <-> PREP_HANDLER: <color #AAA>Validation de schéma du message entrant</color>
+        PREP_HANDLER <-> PREP_HANDLER: <color #AAA>Vérifier la signature du message (à confirmer dans une exigence ultérieure)</color>
+        note right of PREP_HANDLER #lightgrey
+            Les étapes de validation ci-dessus sont déjà traitées par
+            le ML-Adapter pour l’implémentation open source.
+            Elles pourront devoir être ajoutées ultérieurement pour des adaptateurs personnalisés.
+        end note
+
+        group Contrôle des doublons
+            |||
+            PREP_HANDLER -> DB: Demander le contrôle des doublons
+            ref over PREP_HANDLER, DB: Demande de contrôle des doublons\n
+            DB --> PREP_HANDLER: Retour { hasDuplicateId: Boolean, hasDuplicateHash: Boolean }
+        end
+
+        alt hasDuplicateId == TRUE
+            group Traiter la duplication
+                alt hasDuplicateId == TRUE && hasDuplicateHash == FALSE
+                    note right of PREP_HANDLER #lightgrey
+                        Valider le transfert Prepare (échec) - Requête modifiée
+                    end note
+                else hasDuplicateId == TRUE && hasDuplicateHash == TRUE
+                    break
+                        PREP_HANDLER -> DB: stateRecord = await getFxTransferById(commitRequestId)
+                        activate DB
+                        hnote over DB #lightyellow
+                            fxTransferStateChange
+                        end note
+                        DB --> PREP_HANDLER: Retour stateRecord
+                        deactivate DB
+                        alt [COMMITTED, ABORTED].includes(stateRecord.transferStateEnumeration)
+                            |||
+                           
+                            PREP_HANDLER -> TOPIC_NOTIFICATIONS: Produire un message [functionality = TRANSFER, action = PREPAPE_DUPLICATE]
+                        else
+                            note right of PREP_HANDLER #lightgrey
+                                Ignorer - renvoi en cours
+                            end note
+                        end
+                    end 
+                end
+            end
+        else hasDuplicateId == FALSE
+            group Valider la requête Prepare
+                group Valider le payeur
+                    PREP_HANDLER -> PREP_HANDLER: Valider que l’en-tête FSPIOP-Source correspond à initiatingFsp
+                    PREP_HANDLER -> PREP_HANDLER: Valider l’échelle et la précision de payload.sourceAmount et payload.targetAmount
+                    PREP_HANDLER -> PARTICIPANT_DAO: Demander les détails du participant payeur (s’il existe)
+                    activate PARTICIPANT_DAO
+                    PARTICIPANT_DAO -> DB: Demander les détails du participant
+                    hnote over DB #lightyellow
+                        participant
+                        participantCurrency
+                    end note
+                    activate DB
+                    PARTICIPANT_DAO <-- DB: Retour des détails du participant s’ils existent
+                    deactivate DB
+                    PARTICIPANT_DAO --> PREP_HANDLER: Retour des détails du participant s’ils existent
+                    deactivate PARTICIPANT_DAO
+                    PREP_HANDLER <-> PREP_HANDLER: Valider que le participant payeur est actif
+                    PREP_HANDLER <-> PREP_HANDLER: Valider le compte de position du participant payeur pour la devise source [existe, actif]
+                end
+                group Valider le bénéficiaire
+                    PREP_HANDLER -> PARTICIPANT_DAO: Demander les détails du participant bénéficiaire (s’il existe)
+                    activate PARTICIPANT_DAO
+                    PARTICIPANT_DAO -> DB: Demander les détails du participant
+                    hnote over DB #lightyellow
+                        participant
+                        participantCurrency
+                    end note
+                    activate DB
+                    PARTICIPANT_DAO <-- DB: Retour des détails du participant s’ils existent
+                    deactivate DB
+                    PARTICIPANT_DAO --> PREP_HANDLER: Retour des détails du participant s’ils existent
+                    deactivate PARTICIPANT_DAO
+                    PREP_HANDLER <-> PREP_HANDLER: Valider que le participant bénéficiaire est actif
+                    PREP_HANDLER <-> PREP_HANDLER: Valider le compte de position du participant bénéficiaire pour la devise cible [existe, actif]
+                end
+                group Valider la condition et l’expiration
+                    PREP_HANDLER <-> PREP_HANDLER: Valider la condition cryptographique
+                    PREP_HANDLER <-> PREP_HANDLER: Valider l’expiration [payload.expiration est une date ISO valide et non passée]
+                end
+                group Valider des FSP distincts (si ENABLE_ON_US_TRANSFER == false)
+                    PREP_HANDLER <-> PREP_HANDLER: Valider que les FSP payeur et bénéficiaire sont différents
+                end
+                alt Valider le transfert Prepare (succès)
+                    group Persister l’état du transfert (avec transferState='RECEIVED-PREPARE')
+                        PREP_HANDLER -> DB: Demander la persistance du transfert\n<color #FF0000><b>Codes d’erreur :</b> 2003</color>
+                        activate DB
+                        hnote over DB #lightyellow
+                            fxTransfer
+                            fxTransferParticipant
+                            fxTransferStateChange
+                            fxTransferExtension
+                        end note
+                        DB --> PREP_HANDLER: Retour succès
+                        deactivate DB
+                    end
+                else Valider le transfert Prepare (échec)
+                    group Persister l’état du transfert (avec transferState='INVALID') (introduction d’un nouveau statut INVALID pour marquer ces entrées)
+                        PREP_HANDLER -> DB: Demander la persistance du transfert\n(lorsque la validation payeur/bénéficiaire/condition crypto échoue)\n<color #FF0000><b>Codes d’erreur :</b> 2003</color>
+                        activate DB
+                        hnote over DB #lightyellow
+                            fxTransfer
+                            fxTransferParticipant
+                            fxTransferStateChange
+                            fxTransferExtension
+                            fxTransferError
+                        end note
+                        DB --> PREP_HANDLER: Retour succès
+                        deactivate DB
+                    end
+                end
+            end
+        end
+    end
+
+    alt Valider le transfert Prepare (succès)
+        group Hydrater le message Prepare du transfert
+            PREP_HANDLER -> PARTICIPANT_DAO: Obtenir participant et devise pour le transfert FX (avec 'payload.determiningTransferId')
+            activate PARTICIPANT_DAO
+            PARTICIPANT_DAO -> DB: Demander participant et devise
+            hnote over DB #lightyellow
+                participant
+                participantCurrency
+            end note
+            activate DB
+            PARTICIPANT_DAO <-- DB: Retour participant et devise
+            deactivate DB
+            PARTICIPANT_DAO --> PREP_HANDLER: Retour participant et devise
+            deactivate PARTICIPANT_DAO
+
+        end
+        note right of PREP_HANDLER #yellow
+            Message :
+            {
+                id: <transferMessage.commitRequestId>
+                from: <transferMessage.initiatingFsp>,
+                to: <transferMessage.counterPartyFsp>,
+                type: application/json
+                content: {
+                    headers: <transferHeaders>,
+                    payload: <hydratedTransferMessage>
+                },
+                metadata: {
+                    event: {
+                        id: <uuid>,
+                        responseTo: <previous.uuid>,
+                        type: position,
+                        action: fx_prepare,
+                        createdAt: <timestamp>,
+                        state: {
+                            status: "success",
+                            code: 0
+                        }
+                    }
+                }
+            }
+        end note
+        PREP_HANDLER -> TOPIC_TRANSFER_POSITION: Router et publier l’événement Position pour le payeur\n<color #FF0000><b>Codes d’erreur :</b> 2003</color>
+        activate TOPIC_TRANSFER_POSITION
+        deactivate TOPIC_TRANSFER_POSITION
+    else Valider le transfert Prepare (échec)
+        note right of PREP_HANDLER #yellow
+            Message :
+            {
+                id: <transferMessage.commitRequestId>
+                from: <ledgerName>,
+                to: <transferMessage.initiatingFsp>,
+                type: application/json
+                content: {
+                    headers: <transferHeaders>,
+                    payload: {
+                        "errorInformation": {
+                            "errorCode": <codes possibles : [2003, 3100, 3105, 3106, 3202, 3203, 3300, 3301]>
+                            "errorDescription": "<voir la section 35.1.3 pour la description>",
+                            "extensionList": <transferMessage.extensionList>
+                    }
+                },
+                metadata: {
+                    event: {
+                        id: <uuid>,
+                        responseTo: <previous.uuid>,
+                        type: notification,
+                        action: fx_prepare,
+                        createdAt: <timestamp>,
+                        state: {
+                            status: 'error',
+                            code: <errorInformation.errorCode>
+                            description: <errorInformation.errorDescription>
+                        }
+                    }
+                }
+            }
+        end note
+        PREP_HANDLER -> TOPIC_NOTIFICATIONS: Publier l’événement de notification (échec) pour le payeur\n<color #FF0000><b>Codes d’erreur :</b> 2003</color>
+        activate TOPIC_NOTIFICATIONS
+        deactivate TOPIC_NOTIFICATIONS
+    end
+end
+deactivate PREP_HANDLER
+@enduml

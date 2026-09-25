@@ -1,0 +1,59 @@
+@startuml
+
+Title Discovery ISO 20022 Message Flow
+participant PayerDFSP as "Payer DFSP"
+participant Mojaloop as "Mojaloop"
+participant PayeeDFSP as "Payee DFSP"
+
+autonumber
+
+PayerDFSP -> Mojaloop: GET /parties/{type}/{PartyIdentifier}
+Mojaloop -> PayeeDFSP: GET /parties/{type}/{PartyIdentifier}
+PayeeDFSP -> PayeeDFSP: Validate payees account status.
+alt if account active
+PayeeDFSP -> Mojaloop: PUT /parties/{type}/{PartyIdentifier} \n Returns supported currencies and account owner details.
+note right
+**acmt.024.001.04**
+**Account Identification Verification Report**
+{
+"Assgnmt": {
+    "MsgId": "01JBVM14S6SC453EY9XB9GXQB5",
+    "CreDtTm": "2024-11-04T12:57:37.318Z",
+    "Assgnr": { "Agt": { "FinInstnId": { "Othr": { "Id": **"payee-dfps"** }}}},
+    "Assgne": { "Agt": { "FinInstnId": { "Othr": { "Id": **"payer-dfsp"** }}}}}
+"Rpt": {
+    "Vrfctn": true,
+    "OrgnlId": **"MSISDN/16665551002"**,
+    "UpdtdPtyAndAcctId": {"Pty": {"Id": {"PrvtId": {"Othr": {"SchmeNm": {"Prtry": **"MSISDN"**},
+                                                                                   "Id": **"16665551002"**}}},
+                                                "Nm": **"Chikondi Banda"**},
+                                      "Agt": { "FinInstnId": { "Othr": { "Id": **"payee-dfsp"** }}},
+                                      "Acct": { "Ccy": **"MWK"** }}
+}
+end note
+Mojaloop -> PayerDFSP: PUT /parties/{type}/{PartyIdentifier}
+
+else if account inactive
+
+PayeeDFSP -> Mojaloop: PUT /parties/{type}/{PartyIdentifier}/error \n Returns error code 3204 Party not found.
+note right
+**acmt.024.001.04**
+**Account Identification Verification Report**
+{
+  "Assgnmt": {
+    "Id": 123,
+    "CreDtTm": "2013-03-07T16:30:00",
+    "Assgnr": { "Agt": { "FinInstnId": { "Othr": { "Id": **"payee-dfsp"** }}}},
+    "Assgne": { "Agt": { "FinInstnId": { "Othr": { "Id": **"payer-dfsp"** }}}}},
+  "Rpt": {
+    "Vrfctn": false,
+    "OrgnlId": **"MSISDN/16665551002"**,
+    "CreDtTm": "2013-03-07T16:30:00",
+    "Rsn": { "Prtry": **3204** }}
+}
+end note
+Mojaloop -> PayerDFSP: PUT /parties/{type}/{PartyIdentifier}/error
+
+end
+
+@enduml

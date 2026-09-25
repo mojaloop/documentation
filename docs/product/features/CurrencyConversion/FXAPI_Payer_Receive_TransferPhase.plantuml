@@ -1,0 +1,254 @@
+@startuml FXAPI_Payer_Receive_TransferPhase
+
+!$simplified = false
+!$shortCutSingleFXP = false
+!$hideSwitchDetail = false
+!$senderName = "Keeya"
+!$receiverName = "Yaro"
+!$payerCurrency = "BWP"
+!$payeeCurrency = "TZS"
+!$payerFSPID = "PayerFSP"
+!$payeeFSPID = "PayeeFSP"
+!$payerMSISDN = "26787654321"
+!$payeeMSISDN = "2551234567890"
+!$payeeReceiveAmount = "50000"
+!$payeeFee = "4000"
+!$targetAmount = "54000"
+!$fxpChargesSource = "33"
+!$fxpChargesTarget = "6000"
+!$fxpSourceAmount = "330"
+!$fxpTargetAmount = "54000"
+!$totalChargesSourceCurrency = "55"
+
+
+title Transfer - Currency Conversion with Amount Type RECEIVE
+actor "$senderName" as A1
+box "Payer DFSP" #LightBlue  
+'  participant "Payer CBS" as PayerCBS
+  participant "Payer\nMojaloop\nConnector" as D1
+end box
+
+participant "Mojaloop Switch" as S1
+
+'box "Discovery Service" #LightYellow
+'  participant "ALS Oracle" as ALS
+'end box
+
+box "FX provider"  
+  participant "FXP\nConnector" as FXP
+  participant "Backend FX API" as FXPBackend
+end box
+
+box "Payee DFSP" #LightBlue   
+  participant "Payee\nMojaloop\nConnector" as D2
+end box
+  participant "Payee CBS" as PayeeCBS
+
+'actor "$receiverName" as A2
+autonumber
+
+D1->D1:First, activate the conversion
+D1->>S1:Please confirm your\n part of the transfer
+note left
+**POST /fxTransfers**
+{
+  "commitRequestId": "77c9d78dc26a4474...",
+  "determiningTransactionId": "d9ce59d435...",
+  "requestingFsp": "$payerFSPID",
+  "respondingFxp": "FDH_FX",
+  "sourceAmount": {
+    "currency": "$payerCurrency",
+    "amount": "$fxpSourceAmount"},
+  "targetAmount": {
+    "currency": "$payeeCurrency",
+    "amount": "$fxpTargetAmount"},
+  "condition": "bdbcf517cfc7..."
+}
+end note
+activate S1
+!if ($simplified != true)
+S1-->>D1:202 I'll get back to you
+!endif
+deactivate D1
+!if ($hideSwitchDetail != true)
+S1->S1:OK, so this is an FX confirmation.
+S1->S1: Does the sender have an account \nin this currency? Yes, it does.
+!endif
+S1->S1: Liquidity check and reserve on\n Payer DFSP's account
+!if ($hideSwitchDetail != true)
+note over S1
+Reservations:
+
+**$payerFSPID has a reservation of $fxpSourceAmount $payerCurrency**
+end note
+!endif
+S1->>FXP:Please confirm the currency \nconversion part of the transfer\n **POST /fxTransfers**
+activate FXP
+!if ($simplified != true)
+FXP-->>S1:202 I'll get back to you
+!endif
+deactivate S1
+FXP->FXPBackend:Reserve funds for\n FX conversion
+FXPBackend->FXP:Success
+FXP->>S1:Confirmed. Here's the fulfilment
+note right
+**PUT /fxTransfers/77c9d78dc26a...**
+{
+  "fulfilment": "188909ceb6cd5c...", 
+  "completedTimeStamp": "2021-08-25T14:17:08.175+01:00"
+  "conversionState": "RESERVED"
+}
+end note
+activate S1
+!if ($simplified != true)
+S1-->>FXP:200 Gotcha
+!endif
+deactivate FXP
+!if ($simplified != true)
+S1->S1:Check fulfilment \nmatches and cancel if not.
+alt Conversion failed
+S1->FXP:Sorry. Conversion failed
+note left
+**PATCH /fxTransfers/77c9d78dc26a...**
+{
+  "fulfilment": "188909ceb6cd5c35...",
+  "completedTimeStamp": "2021-08-25T14:17:08.175+01:00",
+  "conversionState": "ABORTED"
+}
+end note
+activate FXP
+FXP-->S1:Acknowledged
+FXP->FXP:Remove any reservations\nor obligations
+deactivate FXP
+
+S1->>D1:Sorry. Conversion failed
+note right
+**PUT /fxTransfers/77c9d78dc26a.../error**
+{
+  "errorCode": "9999",
+  "errorDescription": "Whatever the error was"
+}
+end note
+activate D1
+else Conversion succeeded
+S1->D1:Conversion succeeded subject\n to transfer success\n**PUT /fxTransfers/77c9d78dc26a...**
+
+end
+!else
+S1->D1:Conversion succeeded subject\n to transfer success\n**PUT /fxTransfers/77c9d78dc26a...**
+!endif
+activate D1
+!if ($simplified != true)
+D1-->S1:200 Gotcha
+!endif
+deactivate S1
+D1->D1:OK, so that's all right\nNow I can send the transfer itself
+
+D1->S1:Please do the transfer \n**POST /transfers**
+!if ($simplified != true)
+note left
+**POST /transfers**
+{
+  "transferId": "c720ae14fc72...",
+  "payeeFsp": "$payeeFSPID",
+  "payerFsp": "$payerFSPID",
+  "amount": {
+    "currency": "$payeeCurrency",
+    "amount": "$targetAmount"},
+  "transaction": {
+    "transactionId": "d9ce59d43598...",
+    "quoteId": "382987a875ce...",
+    "payee": {
+      "fspId": "$payeeFSPID",
+      "partyIdInfo": {
+        "partyIdType": "MSISDN",
+        "partyIdentifier": "$payeeMSISDN"}},
+    "payer": {
+      "fspId": "$payerFSPID",
+      "partyIdInfo": {
+        "partyIdType": "MSISDN",
+        "partyIdentifier": "$payerMSISDN"}}
+  }
+}
+end note
+!endif
+activate S1
+!if ($simplified != true)
+S1-->D1:202 I'll get back to you
+!endif
+deactivate D1
+!if ($hideSwitchDetail != true)
+S1->S1:Is there a dependent transfer? Yes
+!endif
+S1->S1:Perform liquidity check and\n reserve funds against creditor\n party to dependent transfer
+note over S1
+**Reservations:**
+
+$payerFSPID has a reservation of $fxpSourceAmount $payerCurrency
+**FDH_FX has a reservation of $targetAmount $payeeCurrency**
+end note
+
+S1->D2:Please do the transfer\n**POST /transfers**
+activate D2
+!if ($simplified != true)
+D2-->S1:202 I'll get back to you
+!endif
+deactivate S1
+D2->D2:Let me check that the terms \nof the dependent transfer are\n the same as the ones I agreed\n to and that the fulfilment\n and condition match
+D2->D2:Yes, they do. \nI approve the transfer
+D2->PayeeCBS:Please credit $receiverName's account\n with $payeeReceiveAmount $payeeCurrency
+D2->S1:Transfer is confirmed, here's the fulfilment
+note right
+**PUT /transfers/c720ae14fc72...**
+{
+  "fulfilment": "mhPUT9ZAwdXLfe...",
+  "completedTimestamp": "2021-08-25T14:17:08.227+01:00",
+  "transferState": "COMMITTED"
+}
+end note
+activate S1
+!if ($simplified != true)
+S1-->D2:200 Gotcha
+!endif
+deactivate D2
+!if ($hideSwitchDetail != true)
+S1->S1:Is there a dependent transfer?\nYes, there is.
+S1->S1:Is this dependency against the\n debtor party to the transfer?\nYes, it is.
+S1->S1:Create an obligation from the\n debtor party to the party named\n in the dependency (the FXP)
+S1->S1:Is the transfer denominated in\n the currency of the payee \nreceive amount? Yes, it is.
+S1->S1:Create an obligation from the\n party named in the dependency\nto the creditor party for the transfer
+!else
+S1->S1:Create obligations from the\n payer to the FXP and from \nFXP to the payee
+!endif
+S1->FXP:The transfer succeeded.\nYou can clear it in your ledgers
+note left
+**PATCH /fxTransfers/77c9d78dc26a...**
+{
+  "fulfilment": "2e6870fb4ed...",
+  "completedTimeStamp": "2021-08-25T14:17:08.175+01:00",
+  "conversionState": "COMMITTED"
+}
+end note
+activate FXP
+FXP->FXP:Let's just check: does \nthis match the stuff I sent?
+FXP->FXP:It does. Great. \nI'll clear the conversion
+FXP-->S1:200 Gotcha
+deactivate FXP
+note over S1
+    **Ledger positions:**
+    $payerFSPID has a debit of $fxpSourceAmount $payerCurrency
+    FDH_FX has a credit of $fxpSourceAmount $payerCurrency
+    FDH_FX has a debit of $fxpTargetAmount $payeeCurrency
+    $payeeFSPID has a credit of $targetAmount $payeeCurrency
+end note
+S1->D1:Transfer is complete\n**PUT /transfers/c720ae14fc72...**
+activate D1
+!if ($simplified != true)
+D1-->S1:200 Gotcha
+!endif
+deactivate S1
+D1->D1:Commit the funds in my ledgers
+D1->A1:Transfer was completed successfully
+deactivate D1
+
+@enduml

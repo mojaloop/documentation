@@ -1,6 +1,6 @@
 # Meeting Notes from Weekly Scrum-of-scrum meetings
 
-## OSS Scrum or scrum calls Thu **May 7th** 2020
+## OSS Scrum-of-scrum call, Thu **May 7th** 2020
 
 1. Coil - Don:
   a Performance: 'Big Gap' problem; changes to cs-stream; changed results; putting together a doc with changes for review; Joran's work on concurrent message processing on Kafka topics -> try to test it; seeing 40-50% throughput;
@@ -26,11 +26,11 @@
   b. Hackathon possible in early June time-frame in collaboration with Google
   c. Mojaloop Newsletter with interesting items such as ML FSPIOP v1.1 Spec, Helm v10.1.0 release, etc. to be launched next week.
 
-## OSS Scrum or scrum calls Thu **April 16th** 2020
+## OSS Scrum-of-scrum call, Thu **April 16th** 2020
 
 1. Coil:
-  a. Don C: Perf - preliminary results - got some numbers - got individual handler numbers, to compare with individual handlers - focusing on DB - a thrid of time for one leg spent on perf
-  b. Don C: HSM: Renjit's team demo'ed the demo for next week - event prep
+  a. Don C: Perf - preliminary results - got some numbers - got individual handler numbers, to compare with individual handlers - focusing on DB - a third of time for one leg spent on perf
+  b. Don C: HSM: Renjith's team presented the demo scheduled for next week - event prep
 2. Crosslake:
   a. Lewis D: PISP - Sprint planning - iterating designs
   b. Lewis D: Hackathons - Discussed a few concepts with Innocent K (HiPiPo)
@@ -53,7 +53,7 @@
 7. Mojaloop Community:
   a. Community update by Simeon
 
-## OSS Scrum or scrum calls Thu **April 9th** 2020
+## OSS Scrum-of-scrum call, Thu **April 9th** 2020
 
 1. Coil:
   a. Don C: perf testing - Under utilization of resources - more tweaking to be done
@@ -69,7 +69,7 @@
   g. Lewis D: Container scans working - will work with Victor, early benchmarks
   h. Lewis D: Finally - versioning update
 3. Mifos:
-  a. Ed C: Work on Payment Hub, integrating with Kafka, ML transactions going through, usiing Elastic Search, for backoffice ops moniring
+  a. Ed C: Work on Payment Hub, integrating with Kafka, ML transactions going through, using Elastic Search for back-office ops monitoring
   b. Ed C: Demo Prep for PI10 meetings
 4. Core team:
   a. Sam K: Performance: Drafting reports, Moving metrics, other enhancements to master branches
@@ -82,7 +82,7 @@
   h. Sam K: Testing toolkit: Usage guide in progress along with adding Golden path related tests
   i. Sam K: CCB: V1.1 of the ML FSPIOP API Definition - First draft done, waiting for review
 
-## OSS Scrum or scrum calls Thu **April 2nd** 2020
+## OSS Scrum-of-scrum call, Thu **April 2nd** 2020
 
 1. Mifos:
   a. Ed C: Team continuing work on Payment Hub EE, Focus on Operational UI , capabilities for DFSP backends, Error event handling framework
@@ -131,7 +131,7 @@
   g. Sam K: Testing toolkit: Assertions being added for API resources, JWS in progress. Usage guide in progress
   h. Sam K: CCB: V1.1 of the ML FSPIOP API Definition - drafting in progress
 
-## OSS Scrum or scrum call Thu **March 19th** 2020
+## OSS Scrum-of-scrum call, Thu **March 19th** 2020
 
 1. Coil:
   a. Don C: Looking at performance, network hops (avoid dup checks etc)
@@ -141,7 +141,7 @@
   b. Kim W: April Community event is happening but will be a Virtual event. Kim has a planning event and will confirm details: Suggestions welcome
   c. Lewis D: Performance - to include Don in other discussions
   d. Lewis D: Code quality - GDPR requirements proposal
-  e: Lewis D: Versioning - iinitial draft made as PR - will be presented to DA next week
+  e: Lewis D: Versioning - initial draft submitted as a PR - will be presented to DA next week
 3. Mifos:
   a. Ed C, Istvan M: Payment Hub, envt in Azure, 
   b. Ed C, Istvan M: Transactions now going through
