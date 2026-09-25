@@ -2,34 +2,56 @@
 import { hashRE } from '../util'
 
 export default {
-  functional: true,
+  name: 'SidebarLink',
 
+  // NOTE: only `item` is declared, matching the previous functional component,
+  // so header depth resolution is unchanged.
   props: ['item'],
 
-  render (
-    h,
-    {
-      parent: {
-        $page,
-        $site,
-        $route,
-        $themeConfig,
-        $themeLocaleConfig
-      },
-      props: {
-        item,
-        sidebarDepth
+  data () {
+    return {
+      // true = user collapsed the headers of the active page
+      collapsed: false
+    }
+  },
+
+  watch: {
+    // Re-expand when navigating to a different page (hash changes on the
+    // same page, e.g. clicking a sub-header, do not reset it).
+    '$route.path' () {
+      this.collapsed = false
+    }
+  },
+
+  methods: {
+    // Registered in the CAPTURE phase on the wrapper, so it runs before
+    // RouterLink navigates - `item.active` still reflects the page we are on.
+    onClickCapture (e) {
+      const pageLink = this.$el && this.$el.firstElementChild
+      if (!pageLink || !pageLink.contains(e.target)) return // sub-header click
+      // Only the link of the page you are already on acts as a toggle.
+      if (this.item.active) {
+        this.collapsed = !this.collapsed
       }
     }
-  ) {
+  },
+
+  render (h) {
+    const { $page, $route, $themeConfig, $themeLocaleConfig, item } = this
     const active = item.active
+
+    const hasHeaders = item.type === 'auto' ||
+      (item.headers && item.headers.length && !hashRE.test(item.path))
+
     const link = item.type === 'external'
       ? renderExternal(h, item.path, item.title || item.path)
-      : renderLink(h, item.path, item.title || item.path, active)
+      : renderLink(h, item.path, item.title || item.path, active, undefined, {
+        toggle: active && hasHeaders,
+        collapsed: this.collapsed
+      })
 
     const maxDepth = [
       $page.frontmatter.sidebarDepth,
-      sidebarDepth,
       $themeLocaleConfig.sidebarDepth,
       $themeConfig.sidebarDepth,
       1
@@ -38,17 +60,24 @@ export default {
     const displayAllHeaders = $themeLocaleConfig.displayAllHeaders ||
       $themeConfig.displayAllHeaders
 
-    if (item.type === 'auto') {
-      return [link, renderChildren(h, item.children, item.basePath, $route, maxDepth)]
-    } else if ((active || displayAllHeaders) && item.headers && !hashRE.test(item.path)) {
-      return [link, renderChildren(h, item.children, item.path, $route, maxDepth)]
-    } else {
-      return link
+    let children = null
+    if (!this.collapsed) {
+      if (item.type === 'auto') {
+        children = renderChildren(h, item.children, item.basePath, $route, maxDepth)
+      } else if ((active || displayAllHeaders) && item.headers && !hashRE.test(item.path)) {
+        children = renderChildren(h, item.children, item.path, $route, maxDepth)
+      }
     }
+
+    // Stateful components need a single root element.
+    return h('div', {
+      class: 'sidebar-link-wrapper',
+      on: { '!click': this.onClickCapture } // '!' = capture phase
+    }, [link, children])
   }
 }
 
-function renderLink (h, to, text, active, level) {
+function renderLink (h, to, text, active, level, toggle) {
   const component = {
     props: {
       to,
@@ -57,7 +86,9 @@ function renderLink (h, to, text, active, level) {
     },
     class: {
       active,
-      'sidebar-link': true
+      'sidebar-link': true,
+      'sidebar-link-toggle': toggle && toggle.toggle,
+      collapsed: toggle && toggle.toggle && toggle.collapsed
     }
   }
   if (level > 2) {
@@ -121,4 +152,22 @@ a.sidebar-link
     border-left none
     &.active
       font-weight 500
+
+// caret on the active page link that can be collapsed/expanded
+a.sidebar-link.sidebar-link-toggle
+  position relative
+  padding-right 1.75rem
+  &::after
+    content ''
+    position absolute
+    right 0.75rem
+    top 50%
+    width 0.4rem
+    height 0.4rem
+    border-right 2px solid currentColor
+    border-bottom 2px solid currentColor
+    transform translateY(-70%) rotate(45deg)
+    transition transform .15s ease
+  &.collapsed::after
+    transform translateY(-50%) rotate(-45deg)
 </style>
