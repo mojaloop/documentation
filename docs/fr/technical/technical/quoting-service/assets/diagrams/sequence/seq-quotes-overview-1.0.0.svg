@@ -1,0 +1,182 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="1477px" preserveAspectRatio="none" style="width:802px;height:1477px;background:#FFFFFF;" version="1.1" viewBox="0 0 802 1477" width="802px" zoomAndPan="magnify">
+  <title>Séquences du service de devis</title>
+  <defs/>
+  <g>
+    <text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="242.3818" x="281.1943" y="27.9951">Séquences du service de devis</text>
+    <rect fill="none" height="1134.1953" style="stroke:#000000;stroke-width:1.5;" width="786.7705" x="9" y="258.7188"/>
+    <rect fill="none" height="802.0625" style="stroke:#000000;stroke-width:1.5;" width="636.8311" x="19" y="475.6484"/>
+    <rect fill="none" height="391.6641" style="stroke:#000000;stroke-width:1.5;" width="616.8311" x="29" y="635.3125"/>
+    <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="125" x2="125" y1="106.1875" y2="1409.9141"/>
+    <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="319.9102" x2="319.9102" y1="106.1875" y2="1409.9141"/>
+    <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="572.7695" x2="572.7695" y1="106.1875" y2="1409.9141"/>
+    <rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="92.8252" x="79" y="74.8906"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="78.8252" x="86" y="94.8857">FSP payeur</text>
+    <rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="92.8252" x="79" y="1408.9141"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="78.8252" x="86" y="1428.9092">FSP payeur</text>
+    <rect fill="#E2E2F0" height="62.8906" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="87.6914" x="276.9102" y="42.2969"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="46.2861" x="297.6128" y="62.292">Switch</text>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="73.6914" x="283.9102" y="78.5889">Service de</text>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="36.9688" x="302.2715" y="94.8857">devis</text>
+    <rect fill="#E2E2F0" height="62.8906" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="87.6914" x="276.9102" y="1408.9141"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="46.2861" x="297.6128" y="1428.9092">Switch</text>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="73.6914" x="283.9102" y="1445.2061">Service de</text>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="36.9688" x="302.2715" y="1461.5029">devis</text>
+    <rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="126.0615" x="509.7695" y="74.8906"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="112.0615" x="516.7695" y="94.8857">FSP bénéficiaire</text>
+    <rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="126.0615" x="509.7695" y="1408.9141"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="112.0615" x="516.7695" y="1428.9092">FSP bénéficiaire</text>
+    <path d="M35,121.1875 L35,146.1875 L409,146.1875 L409,131.1875 L399,121.1875 L35,121.1875 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M399,121.1875 L399,131.1875 L409,131.1875 L399,121.1875 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="353.666" x="41" y="138.2544">Le FSP payeur demande une devis au FSP bénéficiaire</text>
+    <polygon fill="#181818" points="308.7559,168.4531,318.7559,172.4531,308.7559,172.4531" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="125.4126" x2="319.7559" y1="172.4531" y2="172.4531"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="132.4126" y="167.3872">1</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="87.0898" x="145.458" y="167.3872">POST /quotes</text>
+    <polygon fill="#181818" points="136.4126,201.5859,126.4126,201.5859,136.4126,205.5859" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="125.4126" x2="319.7559" y1="201.5859" y2="201.5859"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="142.4126" y="196.52">2</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="89.7305" x="155.458" y="196.52">202 Accepted</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="320.7559" x2="362.7559" y1="230.7188" y2="230.7188"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="362.7559" x2="362.7559" y1="230.7188" y2="243.7188"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="321.7559" x2="362.7559" y1="243.7188" y2="243.7188"/>
+    <polygon fill="#181818" points="331.7559,239.7188,321.7559,243.7188,331.7559,247.7188,327.7559,243.7188" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="327.7559" y="225.6528">3</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="185.7324" x="340.8013" y="225.6528">Valider la demande de devis</text>
+    <path d="M9,258.7188 L73.4429,258.7188 L73.4429,265.8516 L63.4429,275.8516 L9,275.8516 L9,258.7188 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="1134.1953" style="stroke:#000000;stroke-width:1.5;" width="786.7705" x="9" y="258.7188"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="19.4429" x="24" y="271.7856">alt</text>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="84.1758" x="88.4429" y="270.9292">[devis valide]</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="320.7559" x2="362.7559" y1="296.9844" y2="296.9844"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="362.7559" x2="362.7559" y1="296.9844" y2="309.9844"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="321.7559" x2="362.7559" y1="309.9844" y2="309.9844"/>
+    <polygon fill="#181818" points="331.7559,305.9844,321.7559,309.9844,331.7559,313.9844,327.7559,309.9844" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="327.7559" y="291.9185">4</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="197.7231" x="340.8013" y="291.9185">Persister les données de devis</text>
+    <path d="M268,322.9844 L268,362.9844 L624,362.9844 L624,332.9844 L614,322.9844 L268,322.9844 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M614,322.9844 L614,332.9844 L624,332.9844 L614,322.9844 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="335.4038" x="274" y="340.0513">Le Switch transmet la demande au FSP bénéficiaire</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="147.4053" x="274" y="355.1841">&lt;Règles côté payeur&gt;</text>
+    <polygon fill="#181818" points="560.8003,385.3828,570.8003,389.3828,560.8003,389.3828" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="320.7559" x2="571.8003" y1="389.3828" y2="389.3828"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="327.7559" y="384.3169">5</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="87.0898" x="340.8013" y="384.3169">POST /quotes</text>
+    <polygon fill="#181818" points="331.7559,418.5156,321.7559,418.5156,331.7559,422.5156" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="320.7559" x2="571.8003" y1="418.5156" y2="418.5156"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="337.7559" y="413.4497">6</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="89.7305" x="350.8013" y="413.4497">202 Accepted</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="572.8003" x2="614.8003" y1="447.6484" y2="447.6484"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="614.8003" x2="614.8003" y1="447.6484" y2="460.6484"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="573.8003" x2="614.8003" y1="460.6484" y2="460.6484"/>
+    <polygon fill="#181818" points="583.8003,456.6484,573.8003,460.6484,583.8003,464.6484,579.8003,460.6484" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="579.8003" y="442.5825">7</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="190.9248" x="592.8457" y="442.5825">Calculer frais et commissions</text>
+    <path d="M19,475.6484 L83.4429,475.6484 L83.4429,482.7813 L73.4429,492.7813 L19,492.7813 L19,475.6484 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="802.0625" style="stroke:#000000;stroke-width:1.5;" width="636.8311" x="19" y="475.6484"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="19.4429" x="34" y="488.7153">alt</text>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="302.4946" x="98.4429" y="487.8589">[le FSP bénéficiaire calcule le devis avec succès]</text>
+    <path d="M269,497.7813 L269,522.7813 L622,522.7813 L622,507.7813 L612,497.7813 L269,497.7813 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M612,497.7813 L612,507.7813 L622,507.7813 L612,497.7813 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="325.7554" x="278.5828" y="514.8481">Le FSP bénéficiaire répond à la demande de devis</text>
+    <polygon fill="#181818" points="331.7559,545.0469,321.7559,549.0469,331.7559,549.0469" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="320.7559" x2="571.8003" y1="549.0469" y2="549.0469"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="337.7559" y="543.981">8</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="112.8867" x="350.8013" y="543.981">PUT /quotes/{ID}</text>
+    <polygon fill="#181818" points="560.8003,578.1797,570.8003,578.1797,560.8003,582.1797" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="320.7559" x2="571.8003" y1="578.1797" y2="578.1797"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="327.7559" y="573.1138">9</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="46.7061" x="340.8013" y="573.1138">200 Ok</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="320.7559" x2="362.7559" y1="607.3125" y2="607.3125"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="362.7559" x2="362.7559" y1="607.3125" y2="620.3125"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="321.7559" x2="362.7559" y1="620.3125" y2="620.3125"/>
+    <polygon fill="#181818" points="331.7559,616.3125,321.7559,620.3125,331.7559,624.3125,327.7559,620.3125" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="327.7559" y="602.2466">10</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="176.9219" x="349.8467" y="602.2466">Valider la réponse de devis</text>
+    <path d="M29,635.3125 L93.4429,635.3125 L93.4429,642.4453 L83.4429,652.4453 L29,652.4453 L29,635.3125 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="391.6641" style="stroke:#000000;stroke-width:1.5;" width="616.8311" x="29" y="635.3125"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="19.4429" x="44" y="648.3794">alt</text>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="101.5083" x="108.4429" y="647.5229">[réponse valide]</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="320.7559" x2="362.7559" y1="673.5781" y2="673.5781"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="362.7559" x2="362.7559" y1="673.5781" y2="686.5781"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="321.7559" x2="362.7559" y1="686.5781" y2="686.5781"/>
+    <polygon fill="#181818" points="331.7559,682.5781,321.7559,686.5781,331.7559,690.5781,327.7559,686.5781" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="327.7559" y="668.5122">11</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="215.9536" x="349.8467" y="668.5122">Persister les données de réponse</text>
+    <path d="M64,699.5781 L64,739.5781 L380,739.5781 L380,709.5781 L370,699.5781 L64,699.5781 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M370,699.5781 L370,709.5781 L380,709.5781 L370,699.5781 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="295.731" x="70" y="716.645">Le Switch transmet la réponse au FSP payeur</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="276.2119" x="70" y="731.7778">&lt;Règle bénéficiaire — requête complète&gt;</text>
+    <polygon fill="#181818" points="136.4126,761.9766,126.4126,765.9766,136.4126,765.9766" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="125.4126" x2="319.7559" y1="765.9766" y2="765.9766"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="142.4126" y="760.9106">12</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="112.8867" x="164.5034" y="760.9106">PUT /quotes/{ID}</text>
+    <polygon fill="#181818" points="308.7559,795.1094,318.7559,795.1094,308.7559,799.1094" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="125.4126" x2="319.7559" y1="795.1094" y2="795.1094"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="132.4126" y="790.0435">13</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="46.7061" x="154.5034" y="790.0435">200 Ok</text>
+    <path d="M39,808.1094 L39,863.1094 L210,863.1094 L210,818.1094 L200,808.1094 L39,808.1094 " fill="#3498DB" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M200,808.1094 L200,818.1094 L210,818.1094 L200,808.1094 " fill="#3498DB" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="150.2109" x="45" y="825.1763">Le FSP payeur poursuit</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="140.8989" x="45" y="840.3091">le transfert si le devis</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="108.437" x="45" y="855.4419">est acceptable…</text>
+    <line style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="29" x2="645.8311" y1="869.5078" y2="869.5078"/>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="113.1099" x="34" y="879.7183">[réponse invalide]</text>
+    <path d="M269,888.3125 L269,913.3125 L622,913.3125 L622,898.3125 L612,888.3125 L269,888.3125 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M612,888.3125 L612,898.3125 L622,898.3125 L612,888.3125 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="316.8623" x="283.0293" y="905.3794">Le Switch renvoie une erreur au FSP bénéficiaire</text>
+    <polygon fill="#181818" points="560.8003,935.5781,570.8003,939.5781,560.8003,939.5781" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="320.7559" x2="571.8003" y1="939.5781" y2="939.5781"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="327.7559" y="934.5122">14</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="149.2524" x="349.8467" y="934.5122">PUT /quotes/{ID}/error</text>
+    <polygon fill="#181818" points="331.7559,968.7109,321.7559,968.7109,331.7559,972.7109" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="320.7559" x2="571.8003" y1="968.7109" y2="968.7109"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="337.7559" y="963.645">15</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="46.7061" x="359.8467" y="963.645">200 Ok</text>
+    <path d="M269,981.7109 L269,1021.7109 L622,1021.7109 L622,991.7109 L612,981.7109 L269,981.7109 " fill="#EC7063" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M612,981.7109 L612,991.7109 L622,991.7109 L612,981.7109 " fill="#EC7063" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="208.6348" x="335.772" y="998.7778">Dans ce scénario, le FSP payeur</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="211.377" x="335.772" y="1013.9106">peut ne pas recevoir de réponse</text>
+    <line style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="19" x2="655.8311" y1="1034.9766" y2="1034.9766"/>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="301.791" x="24" y="1045.187">[échec du calcul ou rejet par le FSP bénéficiaire]</text>
+    <path d="M269,1053.7813 L269,1078.7813 L622,1078.7813 L622,1063.7813 L612,1053.7813 L269,1053.7813 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M612,1053.7813 L612,1063.7813 L622,1063.7813 L612,1053.7813 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="316.8623" x="283.0293" y="1070.8481">Le FSP bénéficiaire renvoie une erreur au Switch</text>
+    <polygon fill="#181818" points="331.7559,1101.0469,321.7559,1105.0469,331.7559,1105.0469" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="320.7559" x2="571.8003" y1="1105.0469" y2="1105.0469"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="337.7559" y="1099.981">16</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="149.2524" x="359.8467" y="1099.981">PUT /quotes/{ID}/error</text>
+    <polygon fill="#181818" points="560.8003,1134.1797,570.8003,1134.1797,560.8003,1138.1797" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="320.7559" x2="571.8003" y1="1134.1797" y2="1134.1797"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="327.7559" y="1129.1138">17</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="47.7026" x="349.8467" y="1129.1138">200 OK</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="320.7559" x2="362.7559" y1="1163.3125" y2="1163.3125"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="362.7559" x2="362.7559" y1="1163.3125" y2="1176.3125"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="321.7559" x2="362.7559" y1="1176.3125" y2="1176.3125"/>
+    <polygon fill="#181818" points="331.7559,1172.3125,321.7559,1176.3125,331.7559,1180.3125,327.7559,1176.3125" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="327.7559" y="1158.2466">18</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="195.6665" x="349.8467" y="1158.2466">Persister les données d’erreur</text>
+    <path d="M69,1189.3125 L69,1214.3125 L376,1214.3125 L376,1199.3125 L366,1189.3125 L69,1189.3125 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M366,1189.3125 L366,1199.3125 L376,1199.3125 L366,1189.3125 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="286" x="75" y="1206.3794">Le Switch renvoie une erreur au FSP payeur</text>
+    <polygon fill="#181818" points="136.4126,1236.5781,126.4126,1240.5781,136.4126,1240.5781" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="125.4126" x2="319.7559" y1="1240.5781" y2="1240.5781"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="142.4126" y="1235.5122">19</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="149.2524" x="164.5034" y="1235.5122">PUT /quotes/{ID}/error</text>
+    <polygon fill="#181818" points="308.7559,1269.7109,318.7559,1269.7109,308.7559,1273.7109" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="125.4126" x2="319.7559" y1="1269.7109" y2="1269.7109"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="132.4126" y="1264.645">20</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="47.7026" x="154.5034" y="1264.645">200 OK</text>
+    <line style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="9" x2="795.7705" y1="1285.7109" y2="1285.7109"/>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="95.7773" x="14" y="1295.9214">[devis invalide]</text>
+    <path d="M69,1304.5156 L69,1329.5156 L376,1329.5156 L376,1314.5156 L366,1304.5156 L69,1304.5156 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M366,1304.5156 L366,1314.5156 L376,1314.5156 L366,1304.5156 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="286" x="75" y="1321.5825">Le Switch renvoie une erreur au FSP payeur</text>
+    <polygon fill="#181818" points="136.4126,1351.7813,126.4126,1355.7813,136.4126,1355.7813" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="125.4126" x2="319.7559" y1="1355.7813" y2="1355.7813"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="142.4126" y="1350.7153">21</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="149.2524" x="164.5034" y="1350.7153">PUT /quotes/{ID}/error</text>
+    <polygon fill="#181818" points="308.7559,1384.9141,318.7559,1384.9141,308.7559,1388.9141" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="125.4126" x2="319.7559" y1="1384.9141" y2="1384.9141"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="132.4126" y="1379.8481">22</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="47.7026" x="154.5034" y="1379.8481">200 OK</text>
+  </g>
+</svg>

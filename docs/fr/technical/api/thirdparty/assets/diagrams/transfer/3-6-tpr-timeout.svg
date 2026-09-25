@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="857px" preserveAspectRatio="none" style="width:956px;height:857px;background:#FFFFFF;" version="1.1" viewBox="0 0 956 857" width="956px" zoomAndPan="magnify">
+  <title>Transfert : 3. Expiration de la demande de transaction tiers</title>
+  <defs/>
+  <g>
+    <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="471.4541" x="239.3774" y="27.9951">Transfert : 3. Expiration de la demande de transaction tiers</text>
+    <rect fill="#DDDDDD" height="801.2813" style="stroke:#181818;stroke-width:0.5;" width="168.6602" x="125" y="43.2969"/>
+    <text fill="#000000" font-family="Verdana" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="33.2554" x="192.7024" y="55.3638">PISP</text>
+    <rect fill="#DDDDDD" height="801.2813" style="stroke:#181818;stroke-width:0.5;" width="97.3906" x="528.3579" y="43.2969"/>
+    <text fill="#000000" font-family="Verdana" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="66.7202" x="543.6931" y="55.3638">Mojaloop</text>
+    <rect fill="#DDDDDD" height="801.2813" style="stroke:#181818;stroke-width:0.5;" width="119.1387" x="831.0703" y="43.2969"/>
+    <text fill="#000000" font-family="Verdana" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="53.1489" x="864.0652" y="55.3638">DFSP A</text>
+    <line style="stroke:#000000;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="209" x2="209" y1="123.9922" y2="707.375"/>
+    <line style="stroke:#000000;stroke-width:1.0;stroke-dasharray:1.0,4.0;" x1="209" x2="209" y1="707.375" y2="748.1797"/>
+    <line style="stroke:#000000;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="209" x2="209" y1="748.1797" y2="850.5781"/>
+    <line style="stroke:#000000;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="576.3579" x2="576.3579" y1="123.9922" y2="707.375"/>
+    <line style="stroke:#000000;stroke-width:1.0;stroke-dasharray:1.0,4.0;" x1="576.3579" x2="576.3579" y1="707.375" y2="748.1797"/>
+    <line style="stroke:#000000;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="576.3579" x2="576.3579" y1="748.1797" y2="850.5781"/>
+    <line style="stroke:#000000;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="890.0703" x2="890.0703" y1="123.9922" y2="707.375"/>
+    <line style="stroke:#000000;stroke-width:1.0;stroke-dasharray:1.0,4.0;" x1="890.0703" x2="890.0703" y1="707.375" y2="748.1797"/>
+    <line style="stroke:#000000;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="890.0703" x2="890.0703" y1="748.1797" y2="850.5781"/>
+    <rect fill="#F5F5F5" height="37.2813" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="160.6602" x="129" y="85.7109"/>
+    <text fill="#000000" font-family="Verdana" font-size="20" font-weight="bold" lengthAdjust="spacing" textLength="146.6602" x="136" y="111.2754">Serveur PISP</text>
+    <rect fill="#F5F5F5" height="37.2813" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="89.3906" x="532.3579" y="85.7109"/>
+    <text fill="#000000" font-family="Verdana" font-size="20" font-weight="bold" lengthAdjust="spacing" textLength="75.3906" x="539.3579" y="111.2754">Switch</text>
+    <rect fill="#F5F5F5" height="60.5625" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="111.1387" x="835.0703" y="62.4297"/>
+    <text fill="#000000" font-family="Verdana" font-size="20" font-weight="bold" lengthAdjust="spacing" textLength="81.7676" x="849.7559" y="87.9941">DFSP A</text>
+    <text fill="#000000" font-family="Verdana" font-size="20" font-weight="bold" lengthAdjust="spacing" textLength="97.1387" x="842.0703" y="111.2754">(Payeur)</text>
+    <rect fill="#D3D3D3" height="446" style="stroke:#181818;stroke-width:0.5;" width="475" x="214" y="138.9922"/>
+    <text fill="#000000" font-family="monospace" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="289.5864" x="218" y="155.0591">POST /thirdpartyRequests/transactions</text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="156.5332" x="218" y="170.1919">FSPIOP-Source: pispa</text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="195.6665" x="218" y="185.3247">FSPIOP-Destination: dfspa</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.271" x="218" y="200.4575">{</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="458.9102" x="226.2646" y="215.5903">&quot;transactionRequestId&quot;: &quot;00000000-0000-0000-0000-000000000000&quot;,</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="68.6499" x="226.2646" y="230.7231">&quot;payee&quot;: {</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="99.7852" x="234.5293" y="245.856">&quot;partyIdInfo&quot;: {</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="166.1753" x="242.7939" y="260.9888">&quot;partyIdType&quot;: &quot;MSISDN&quot;,</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="223.082" x="242.7939" y="276.1216">&quot;partyIdentifier&quot;: &quot;+4412345678&quot;,</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="100.2231" x="242.7939" y="291.2544">&quot;fspId&quot;: &quot;dfspb&quot;</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.271" x="234.5293" y="306.3872">}</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="12.4033" x="226.2646" y="321.52">},</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="65.9966" x="226.2646" y="336.6528">&quot;payer&quot;: {</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="239.4526" x="234.5293" y="351.7856">&quot;partyIdType&quot;: &quot;THIRD_PARTY_LINK&quot;,</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="220.543" x="234.5293" y="366.9185">&quot;partyIdentifier&quot;: &quot;qwerty-56789&quot;,</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="99.9375" x="234.5293" y="382.0513">&quot;fspId&quot;: &quot;dfspa&quot;</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="12.4033" x="226.2646" y="397.1841">},</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="154.8066" x="226.2646" y="412.3169">&quot;amountType&quot;: &quot;SEND&quot;,</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="78.9014" x="226.2646" y="427.4497">&quot;amount&quot;: {</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="111.5347" x="234.5293" y="442.5825">&quot;amount&quot;: &quot;100&quot;,</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="117.3618" x="234.5293" y="457.7153">&quot;currency&quot;: &quot;USD&quot;</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="12.4033" x="226.2646" y="472.8481">},</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="134.0625" x="226.2646" y="487.981">&quot;transactionType&quot;: {</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="160.1641" x="234.5293" y="503.1138">&quot;scenario&quot;: &quot;TRANSFER&quot;,</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="129.0161" x="234.5293" y="518.2466">&quot;initiator&quot;: &quot;PAYER&quot;,</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="190.1123" x="234.5293" y="533.3794">&quot;initiatorType&quot;: &quot;CONSUMER&quot;</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="12.4033" x="226.2646" y="548.5122">},</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="311.1748" x="226.2646" y="563.645">&quot;expiration&quot;: &quot;2020-06-15T22:17:28.985-01:00&quot;</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.271" x="218" y="578.7778">}</text>
+    <polygon fill="#000000" points="565.0532,607.9766,575.0532,611.9766,565.0532,615.9766,569.0532,611.9766" style="stroke:#000000;stroke-width:1.0;"/>
+    <line style="stroke:#000000;stroke-width:1.0;" x1="209.3301" x2="571.0532" y1="611.9766" y2="611.9766"/>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="289.5864" x="248.3984" y="606.9106">POST /thirdpartyRequests/transactions</text>
+    <polygon fill="#000000" points="220.3301,637.1094,210.3301,641.1094,220.3301,645.1094,216.3301,641.1094" style="stroke:#000000;stroke-width:1.0;"/>
+    <line style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="214.3301" x2="576.0532" y1="641.1094" y2="641.1094"/>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="93.9199" x="346.2317" y="636.0435">202 Accepted</text>
+    <polygon fill="#000000" points="878.6396,666.2422,888.6396,670.2422,878.6396,674.2422,882.6396,670.2422" style="stroke:#000000;stroke-width:1.0;"/>
+    <line style="stroke:#000000;stroke-width:1.0;" x1="577.0532" x2="884.6396" y1="670.2422" y2="670.2422"/>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="289.5864" x="589.0532" y="665.1763">POST /thirdpartyRequests/transactions</text>
+    <polygon fill="#000000" points="588.0532,695.375,578.0532,699.375,588.0532,703.375,584.0532,699.375" style="stroke:#000000;stroke-width:1.0;"/>
+    <line style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="582.0532" x2="889.6396" y1="699.375" y2="699.375"/>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="93.9199" x="686.8865" y="694.3091">202 Accepted</text>
+    <text fill="#000000" font-family="Verdana" font-size="11" lengthAdjust="spacing" textLength="285.3501" x="409.0581" y="731.5854">Le DFSP ne répond pas pour une raison quelconque</text>
+    <line style="stroke:#000000;stroke-width:1.0;" x1="209.3301" x2="251.3301" y1="769.3125" y2="769.3125"/>
+    <line style="stroke:#000000;stroke-width:1.0;" x1="251.3301" x2="251.3301" y1="769.3125" y2="782.3125"/>
+    <line style="stroke:#000000;stroke-width:1.0;" x1="210.3301" x2="251.3301" y1="782.3125" y2="782.3125"/>
+    <polygon fill="#000000" points="220.3301,778.3125,210.3301,782.3125,220.3301,786.3125,216.3301,782.3125" style="stroke:#000000;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="353.7231" x="216.3301" y="764.2466">Expiration de la demande de transaction tiers atteinte</text>
+    <path d="M5,795.3125 L5,835.3125 L414,835.3125 L414,805.3125 L404,795.3125 L5,795.3125 " fill="#FAFAFA" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M404,795.3125 L404,805.3125 L414,805.3125 L404,795.3125 " fill="#FAFAFA" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="388.3179" x="11" y="812.3794">Le PISP informe son utilisateur que la transaction a échoué.</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="4.1323" x="11" y="827.5122"> </text>
+  </g>
+</svg>

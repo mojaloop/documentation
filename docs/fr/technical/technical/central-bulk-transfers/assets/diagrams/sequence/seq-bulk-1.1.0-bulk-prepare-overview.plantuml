@@ -1,0 +1,217 @@
+/'*****
+ License
+ --------------
+ Copyright © 2017 Bill & Melinda Gates Foundation
+ The Mojaloop files are made available by the Bill & Melinda Gates Foundation under the Apache License, Version 2.0 (the "License") and you may not use these files except in compliance with the License. You may obtain a copy of the License at
+ http://www.apache.org/licenses/LICENSE-2.0
+ Unless required by applicable law or agreed to in writing, the Mojaloop files are distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+ Contributors
+ --------------
+ This is the official list of the Mojaloop project contributors for this file.
+ Names of the original copyright holders (individuals or organizations)
+ should be listed with a '*' in the first column. People who have
+ contributed from an organization can be listed under the organization
+ that actually holds the copyright for their contributions (see the
+ Gates Foundation organization for an example). Those individuals should have
+ their names indented and be marked with a '-'. Email address can be added
+ optionally within square brackets <email>.
+ * Gates Foundation
+ - Name Surname <name.surname@gatesfoundation.com>
+
+ * Samuel Kummary <sam@modusbox.com>
+ --------------
+ ******'/
+
+@startuml
+' declare title
+title 1.1.0. DFSP1 sends a Bulk Prepare Transfer request to DFSP2
+
+autonumber
+
+' Actor Keys:
+'   boundary - APIs/Interfaces, etc
+'   collections - Kafka Topics
+'   control - Kafka Consumers
+'   entity - Database Access Objects
+'   database - Database Persistance Store
+
+' declare actors
+actor "DFSP1\nPayer" as DFSP1
+actor "DFSP2\nPayee" as DFSP2
+boundary "Bulk API Adapter" as BULK_API
+control "Bulk API Notification \nHandler" as NOTIFY_HANDLER
+collections "mojaloop-\nobject-store\n(**MLOS**)" as OBJECT_STORE
+boundary "Central Service API" as CSAPI
+collections "topic-\nbulk-prepare" as TOPIC_BULK_PREPARE
+control "Bulk Prepare\nHandler" as BULK_PREP_HANDLER
+collections "topic-\ntransfer-prepare" as TOPIC_TRANSFER_PREPARE
+control "Prepare Handler" as PREP_HANDLER
+collections "topic-\ntransfer-position" as TOPIC_TRANSFER_POSITION
+control "Position Handler" as POS_HANDLER
+collections "topic-\nbulk-processing" as TOPIC_BULK_PROCESSING
+control "Bulk Processing\nHandler" as BULK_PROC_HANDLER
+collections "topic-\nnotifications" as TOPIC_NOTIFICATIONS
+
+box "Financial Service Providers" #lightGray
+	participant DFSP1
+	participant DFSP2
+end box
+
+box "Bulk API Adapter Service" #LightBlue
+	participant BULK_API
+	participant NOTIFY_HANDLER
+end box
+
+box "Central Service" #LightYellow
+    participant OBJECT_STORE
+    participant CSAPI
+	participant TOPIC_BULK_PREPARE
+    participant BULK_PREP_HANDLER
+    participant TOPIC_TRANSFER_PREPARE
+    participant PREP_HANDLER
+    participant TOPIC_TRANSFER_POSITION
+    participant POS_HANDLER
+    participant TOPIC_BULK_PROCESSING
+    participant BULK_PROC_HANDLER
+    participant TOPIC_NOTIFICATIONS
+end box
+
+' start flow
+activate NOTIFY_HANDLER
+activate BULK_PREP_HANDLER
+activate PREP_HANDLER
+activate POS_HANDLER
+activate BULK_PROC_HANDLER
+group DFSP1 sends a Bulk Prepare Transfer request to DFSP2
+    note right of DFSP1 #yellow
+        Headers - transferHeaders: {
+            Content-Length: <int>,
+            Content-Type: <string>,
+            Date: <date>,
+            FSPIOP-Source: <string>,
+            FSPIOP-Destination: <string>,
+            FSPIOP-Encryption: <string>,
+            FSPIOP-Signature: <string>,
+            FSPIOP-URI: <uri>,
+            FSPIOP-HTTP-Method: <string>
+        }
+
+        Payload - bulkTransferMessage:
+        {
+            bulkTransferId: <uuid>,
+            bulkQuoteId: <uuid>, 
+            payeeFsp: <string>,
+            payerFsp: <string>,
+            individualTransfers: [
+                {
+                    transferId: <uuid>, 
+                    transferAmount: 
+                    { 
+                        currency: <string>, 
+                        amount: <string> 
+                    }, 
+                    ilpPacket: <string>,
+                    condition: <string>,
+                    extensionList: { extension: [ 
+                        { key: <string>, value: <string> }
+                    ] }
+                }
+            ],
+            extensionList: { extension: [ 
+                { key: <string>, value: <string> }
+            ] },
+            expiration: <string>
+        }
+    end note
+    DFSP1 ->> BULK_API: POST - /bulkTransfers
+    activate BULK_API
+    BULK_API -> BULK_API: Validate incoming message\n<color #FF0000><b>Error codes:</b> 3000-3002, 3100-3107</color>
+    loop
+        BULK_API -> OBJECT_STORE: Persist individual transfers in the bulk to\nobject store: **MLOS.individualTransfers**
+        activate OBJECT_STORE
+        OBJECT_STORE --> BULK_API: Return messageId reference to the stored object(s)
+        deactivate OBJECT_STORE
+    end
+    note right of BULK_API #yellow
+        Message:
+        {
+            id: <messageId>
+            to: <payeeFspName>,
+            from: <payerFspName>,
+            type: "application/json"
+            content: {
+                headers: <bulkTransferHeaders>,
+                payload: {
+                    bulkTransferId: <uuid>,
+                    bulkQuoteId": <uuid>,
+                    payerFsp: <string>,
+                    payeeFsp: <string>,
+                    expiration: <timestamp>,
+                    hash: <string>
+                }
+            },
+            metadata: {
+                event: {
+                    id: <uuid>,
+                    type: "bulk-prepare",
+                    action: "bulk-prepare",
+                    createdAt: <timestamp>,
+                    state: {
+                        status: "success",
+                        code: 0
+                    }
+                }
+            }
+        }
+    end note
+    BULK_API -> TOPIC_BULK_PREPARE: Route & Publish Bulk Prepare event \nfor Payer\n<color #FF0000><b>Error code:</b> 2003</color>
+    activate TOPIC_BULK_PREPARE
+    TOPIC_BULK_PREPARE <-> TOPIC_BULK_PREPARE: Ensure event is replicated \nas configured (ACKS=all)\n<color #FF0000><b>Error code:</b> 2003</color>
+    TOPIC_BULK_PREPARE --> BULK_API: Respond replication acknowledgements \nhave been received
+    deactivate TOPIC_BULK_PREPARE
+    BULK_API -->> DFSP1: Respond HTTP - 202 (Accepted)
+    deactivate BULK_API
+    |||
+    TOPIC_BULK_PREPARE <- BULK_PREP_HANDLER: Consume message
+    ref over TOPIC_BULK_PREPARE, BULK_PREP_HANDLER, TOPIC_TRANSFER_PREPARE:  Bulk Prepare Handler Consume \n
+    alt Success
+        BULK_PREP_HANDLER -> TOPIC_TRANSFER_PREPARE: Produce (stream) single transfer message\nfor each individual transfer [loop]
+    else Failure
+        BULK_PREP_HANDLER --> TOPIC_NOTIFICATIONS: Produce single message for the entire bulk
+    end
+    |||
+    TOPIC_TRANSFER_PREPARE <- PREP_HANDLER: Consume message
+    ref over TOPIC_TRANSFER_PREPARE, PREP_HANDLER, TOPIC_TRANSFER_POSITION:  Prepare Handler Consume\n
+    alt Success
+        PREP_HANDLER -> TOPIC_TRANSFER_POSITION: Produce message
+    else Failure
+        PREP_HANDLER --> TOPIC_BULK_PROCESSING: Produce message
+    end
+    |||
+    TOPIC_TRANSFER_POSITION <- POS_HANDLER: Consume message
+    ref over TOPIC_TRANSFER_POSITION, POS_HANDLER, TOPIC_BULK_PROCESSING: Position Handler Consume\n
+    POS_HANDLER -> TOPIC_BULK_PROCESSING: Produce message
+    |||
+    TOPIC_BULK_PROCESSING <- BULK_PROC_HANDLER: Consume message
+    ref over TOPIC_BULK_PROCESSING, BULK_PROC_HANDLER, TOPIC_NOTIFICATIONS: Bulk Processing Handler Consume\n
+    BULK_PROC_HANDLER -> OBJECT_STORE: Persist bulk message by destination to the\nobject store: **MLOS.bulkTransferResults**
+    activate OBJECT_STORE
+    OBJECT_STORE --> BULK_PROC_HANDLER: Return the reference to the stored \nnotification object(s): **messageId**
+    deactivate OBJECT_STORE
+    BULK_PROC_HANDLER -> TOPIC_NOTIFICATIONS: Send Bulk Prepare notification
+    |||
+    TOPIC_NOTIFICATIONS <- NOTIFY_HANDLER: Consume message
+    NOTIFY_HANDLER -> OBJECT_STORE: Retrieve bulk notification(s) by reference & destination:\n**MLOS.bulkTransferResults.messageId + destination**
+    activate OBJECT_STORE
+    OBJECT_STORE --> NOTIFY_HANDLER: Return notification(s) payload
+    deactivate OBJECT_STORE
+    ref over DFSP2, TOPIC_NOTIFICATIONS: Send notification to Participant (Payee)\n
+    NOTIFY_HANDLER -> DFSP2: Send Bulk Prepare notification to Payee
+    |||
+end
+deactivate POS_HANDLER
+deactivate BULK_PREP_HANDLER
+deactivate PREP_HANDLER
+deactivate BULK_PROC_HANDLER
+deactivate NOTIFY_HANDLER
+@enduml

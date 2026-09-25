@@ -148,7 +148,7 @@ For other uses of hyphens—compound modifiers, prefixes and suffixes, fractions
 
 #### Numerals
 
-When referring to dollar figures, spell out million and billion. Use figures and decimals \(not fractions\). Do not go beyond two decimal places. Example: _The foundation granted .45 million to United Way._
+When referring to dollar figures, spell out million and billion. Use figures and decimals \(not fractions\). Do not go beyond two decimal places. Example: _The foundation granted 0.45 million to United Way._
 
 When using numbers that have nothing to do with dollar figures or percentages, write them out if they are under 10, and use numerals if they are 10 or over. Example: Four program officers went on 13 site visits.
 

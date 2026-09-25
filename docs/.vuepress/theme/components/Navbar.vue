@@ -1,45 +1,37 @@
 <template>
 
-  <header class="navbar">
-    <!-- Add a banner here when we want  -->
-    <!-- <div class="banner-content">
+  <header class="navbar" :style="{ '--navbar-total-height': navbarTotalHeight }">
+    <div class="banner-content" v-if="$site.themeConfig.isPrPreview">
       <PreviewBanner />
-    </div> -->
+    </div>
     <div class="navbar-content">
-    <SidebarButton @toggle-sidebar="$emit('toggle-sidebar')"/>
-
-    <RouterLink
-      :to="$localePath"
-      class="home-link"
-    >
-      <img
-        v-if="$site.themeConfig.logo"
-        class="logo"
-        :src="$withBase($site.themeConfig.logo)"
-        :alt="$siteTitle"
-      >
-    </RouterLink>
-
-    <div v-if="hasVersions && isVersionedPage" class="versions-dropdown can-hide">
-      <DropdownLink :item="versionsDropdown"/>
-    </div>
-
-    <div
-      class="links"
-      :style="linksWrapMaxWidth ? {
-        'max-width': linksWrapMaxWidth + 'px'
-      } : {}"
-    >
-      <AlgoliaSearchBox
-        v-if="isAlgoliaSearch"
-        :options="algolia"
-      />
-      <SearchBoxWrapper v-else-if="$site.themeConfig.search !== false && $page.frontmatter.search !== false" />
-      <NavLinks class="can-hide" />
-    </div>
-
-    <ContentSidebarButton v-if="$page.contentSidebar" @toggle-content-sidebar="$emit('toggle-content-sidebar')"/>
+      <div class="navbar-left">
+        <SidebarButton @toggle-sidebar="$emit('toggle-sidebar')"/>
+        <RouterLink
+          :to="$localePath"
+          class="home-link"
+        >
+          <img
+            v-if="$site.themeConfig.logo"
+            class="logo"
+            :src="$withBase($site.themeConfig.logo)"
+            :alt="$siteTitle"
+          >
+        </RouterLink>
+        <div v-if="hasVersions && isVersionedPage" class="versions-dropdown can-hide">
+          <DropdownLink :item="versionsDropdown"/>
         </div>
+      </div>
+      <div class="navbar-right">
+        <AlgoliaSearchBox
+          v-if="isAlgoliaSearch"
+          :options="algolia"
+        />
+        <SearchBoxWrapper v-else-if="$site.themeConfig.search !== false && $page.frontmatter.search !== false" />
+        <NavLinks class="can-hide" />
+        <ContentSidebarButton v-if="$page.contentSidebar" @toggle-content-sidebar="$emit('toggle-content-sidebar')"/>
+      </div>
+    </div>
 
   </header>
   <!-- </div> -->
@@ -125,6 +117,12 @@ export default {
           return item
         })
       }
+    },
+
+    navbarTotalHeight () {
+      const banner = '2.5rem';
+      const navbar = '4rem';
+      return this.$site.themeConfig.isPrPreview ? `calc(${banner} + ${navbar})` : navbar;
     }
   },
 
@@ -158,58 +156,86 @@ $navbar-vertical-padding = 0.7rem
 $navbar-horizontal-padding = 1.5rem
 
 .navbar
+  display: flex
+  flex-direction: column
   padding $navbar-vertical-padding $navbar-horizontal-padding
   line-height $navbarHeight - 1.4rem
 
   .navbar-content
-    // background-color red
+    display: flex
+    align-items: center
+    justify-content: space-between
     line-height: 1.5rem
-    margin-top $navbar-banner-height
+    margin-top 0
+    width: 100%
+    box-sizing: border-box
+
+    .navbar-left,
+    .navbar-right
+      display: flex
+      align-items: center
+
+    .navbar-left
+      // left-aligned items (sidebar, logo, version)
+      > *
+        margin-right: 1rem
+      > *:last-child
+        margin-right: 0
+
+    .navbar-right
+      // right-aligned items (search, links, content sidebar)
+      > *
+        margin-left: 1rem
+      > *:first-child
+        margin-left: 0
 
     a, span, img
       display inline-block
-  .navbar-content .logo
-    height $navbarHeight - $navbar-banner-height - 1.4rem
-    min-width $navbarHeight - 1.4rem
-    margin-right 0.8rem
-    vertical-align top
-  .navbar-content .site-name
-    font-size 1.3rem
-    font-weight 600
-    color $textColor
-    position relative
-  .navbar-content .links
-    padding-left 1.5rem
-    box-sizing border-box
-    background-color white
-    white-space nowrap
-    font-size 0.9rem
-    position absolute
-    right $navbar-horizontal-padding
-    top $navbar-vertical-padding + $navbar-banner-height
-    // top $navbar-banner-height
-    display flex
-    .search-box
-      flex: 0 0 auto
+
+    .logo
+      height $navbarHeight - $navbar-banner-height - 1.4rem
+      min-width $navbarHeight - 1.4rem
+      margin-right 0.8rem
       vertical-align top
 
-  .navbar-content .versions-dropdown
-    display inline-block
-    position relative
-    margin-left 1.5rem
-    .dropdown-wrapper
-      .nav-dropdown
-        left -1.25rem
-        right inherit
-        .dropdown-item
-          a
-            color $textColor
-            &:hover
-              color $accentColor
-            &.router-link-active
-              color $accentColor
+    .site-name
+      font-size 1.3rem
+      font-weight 600
+      color $textColor
+      position relative
+
+    .links
+      padding-left 0
+      box-sizing border-box
+      background-color white
+      white-space nowrap
+      font-size 0.9rem
+      position static
+      right auto
+      top auto
+      display flex
+
+      .search-box
+        flex: 0 0 auto
+        vertical-align top
+
+    .versions-dropdown
+      display inline-block
+      position relative
+      margin-left 1.5rem
+      .dropdown-wrapper
+        .nav-dropdown
+          left -1.25rem
+          right inherit
+          .dropdown-item
+            a
+              color $textColor
               &:hover
                 color $accentColor
+              &.router-link-active
+                color $accentColor
+                &:hover
+                  color $accentColor
 
 @media (max-width: $MQMobile)
   .navbar
@@ -218,6 +244,14 @@ $navbar-horizontal-padding = 1.5rem
       .can-hide
         display none
     .navbar-content
+      flex-direction: column
+      align-items: stretch
+      .navbar-left,
+      .navbar-right
+        flex-direction: row
+        flex-wrap: wrap
+        width: 100%
+        justify-content: flex-start
       .can-hide
         display none
       .links
@@ -227,4 +261,19 @@ $navbar-horizontal-padding = 1.5rem
         overflow hidden
         white-space nowrap
         text-overflow ellipsis
+
+// Ensure navbar navigation links font size is correct
+.navbar-right .nav-links
+  font-size: 0.9rem
+
+.banner-content
+  width: 100%
+  display: block
+  box-sizing: border-box
+  padding: 1rem 0
+  min-height: 2.5rem
+  position: static // Ensure normal flow
+
+.navbar-content
+  // ... existing code ...
 </style>

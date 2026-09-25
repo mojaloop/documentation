@@ -24,6 +24,14 @@ PUML_MATCH=${PUML_MATCH:=*.p*uml}
 # if MODE=ALL, then search the whole repo
 MODE=${MODE:=ALL}
 
+# Pre-commit hook: do not require Docker when no PlantUML sources were staged.
+if [[ "${MODE}" == "STAGED_GIT" ]]; then
+  if ! git diff --staged --name-only | grep -Eq '\.(puml|plantuml)$'; then
+    echo "No staged PlantUML sources; skipping render."
+    exit 0
+  fi
+fi
+
 trap ctrl_c INT
 function ctrl_c() {
   echo "exit early - stopping docker"

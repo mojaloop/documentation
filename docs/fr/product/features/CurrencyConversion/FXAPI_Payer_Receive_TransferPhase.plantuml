@@ -1,0 +1,254 @@
+@startuml FXAPI_Payer_Receive_TransferPhase
+
+!$simplified = false
+!$shortCutSingleFXP = false
+!$hideSwitchDetail = false
+!$senderName = "Keeya"
+!$receiverName = "Yaro"
+!$payerCurrency = "BWP"
+!$payeeCurrency = "TZS"
+!$payerFSPID = "PayerFSP"
+!$payeeFSPID = "PayeeFSP"
+!$payerMSISDN = "26787654321"
+!$payeeMSISDN = "2551234567890"
+!$payeeReceiveAmount = "50000"
+!$payeeFee = "4000"
+!$targetAmount = "54000"
+!$fxpChargesSource = "33"
+!$fxpChargesTarget = "6000"
+!$fxpSourceAmount = "330"
+!$fxpTargetAmount = "54000"
+!$totalChargesSourceCurrency = "55"
+
+
+title Transfert — conversion de devises avec type de montant RÉCEPTION
+actor "$senderName" as A1
+box "DFSP payeur" #LightBlue  
+'  participant "CBS payeur" as PayerCBS
+  participant "Connecteur Mojaloop\npayeur" as D1
+end box
+
+participant "Commutateur Mojaloop" as S1
+
+'box "Service de découverte" #LightYellow
+'  participant "Oracle ALS" as ALS
+'end box
+
+box "Fournisseur de change"  
+  participant "Connecteur\nFXP" as FXP
+  participant "API FX backend" as FXPBackend
+end box
+
+box "DFSP bénéficiaire" #LightBlue   
+  participant "Connecteur Mojaloop\nbénéficiaire" as D2
+end box
+  participant "CBS bénéficiaire" as PayeeCBS
+
+'actor "$receiverName" as A2
+autonumber
+
+D1->D1:D'abord, activer la conversion
+D1->>S1:Merci de confirmer votre\npart du transfert
+note left
+**POST /fxTransfers**
+{
+  "commitRequestId": "77c9d78dc26a4474...",
+  "determiningTransactionId": "d9ce59d435...",
+  "requestingFsp": "$payerFSPID",
+  "respondingFxp": "FDH_FX",
+  "sourceAmount": {
+    "currency": "$payerCurrency",
+    "amount": "$fxpSourceAmount"},
+  "targetAmount": {
+    "currency": "$payeeCurrency",
+    "amount": "$fxpTargetAmount"},
+  "condition": "bdbcf517cfc7..."
+}
+end note
+activate S1
+!if ($simplified != true)
+S1-->>D1:202 — Je vous recontacte
+!endif
+deactivate D1
+!if ($hideSwitchDetail != true)
+S1->S1:OK, il s'agit d'une confirmation FX.
+S1->S1: L'émetteur a-t-il un compte \ndans cette devise ? Oui.
+!endif
+S1->S1: Contrôle de liquidité et réserve sur\nle compte du DFSP payeur
+!if ($hideSwitchDetail != true)
+note over S1
+Réservations :
+
+**$payerFSPID a une réservation de $fxpSourceAmount $payerCurrency**
+end note
+!endif
+S1->>FXP:Merci de confirmer la partie\nconversion de devises du transfert\n **POST /fxTransfers**
+activate FXP
+!if ($simplified != true)
+FXP-->>S1:202 — Je vous recontacte
+!endif
+deactivate S1
+FXP->FXPBackend:Réserver les fonds pour\n la conversion FX
+FXPBackend->FXP:Succès
+FXP->>S1:Confirmé. Voici l'exécution (fulfilment)
+note right
+**PUT /fxTransfers/77c9d78dc26a...**
+{
+  "fulfilment": "188909ceb6cd5c...", 
+  "completedTimeStamp": "2021-08-25T14:17:08.175+01:00"
+  "conversionState": "RESERVED"
+}
+end note
+activate S1
+!if ($simplified != true)
+S1-->>FXP:200 — OK
+!endif
+deactivate FXP
+!if ($simplified != true)
+S1->S1:Vérifier que l'exécution \ncorrespond et annuler sinon.
+alt Échec de la conversion
+S1->FXP:Désolé. La conversion a échoué
+note left
+**PATCH /fxTransfers/77c9d78dc26a...**
+{
+  "fulfilment": "188909ceb6cd5c35...",
+  "completedTimeStamp": "2021-08-25T14:17:08.175+01:00",
+  "conversionState": "ABORTED"
+}
+end note
+activate FXP
+FXP-->S1:Accusé de réception
+FXP->FXP:Supprimer les réservations\nou obligations
+deactivate FXP
+
+S1->>D1:Désolé. La conversion a échoué
+note right
+**PUT /fxTransfers/77c9d78dc26a.../error**
+{
+  "errorCode": "9999",
+  "errorDescription": "Description de l'erreur (variable)"
+}
+end note
+activate D1
+else Conversion réussie
+S1->D1:Conversion réussie sous réserve\ndu succès du transfert\n**PUT /fxTransfers/77c9d78dc26a...**
+
+end
+!else
+S1->D1:Conversion réussie sous réserve\ndu succès du transfert\n**PUT /fxTransfers/77c9d78dc26a...**
+!endif
+activate D1
+!if ($simplified != true)
+D1-->S1:200 — OK
+!endif
+deactivate S1
+D1->D1:OK, tout est bon\nJe peux maintenant envoyer le transfert proprement dit
+
+D1->S1:Merci d'effectuer le transfert \n**POST /transfers**
+!if ($simplified != true)
+note left
+**POST /transfers**
+{
+  "transferId": "c720ae14fc72...",
+  "payeeFsp": "$payeeFSPID",
+  "payerFsp": "$payerFSPID",
+  "amount": {
+    "currency": "$payeeCurrency",
+    "amount": "$targetAmount"},
+  "transaction": {
+    "transactionId": "d9ce59d43598...",
+    "quoteId": "382987a875ce...",
+    "payee": {
+      "fspId": "$payeeFSPID",
+      "partyIdInfo": {
+        "partyIdType": "MSISDN",
+        "partyIdentifier": "$payeeMSISDN"}},
+    "payer": {
+      "fspId": "$payerFSPID",
+      "partyIdInfo": {
+        "partyIdType": "MSISDN",
+        "partyIdentifier": "$payerMSISDN"}}
+  }
+}
+end note
+!endif
+activate S1
+!if ($simplified != true)
+S1-->D1:202 — Je vous recontacte
+!endif
+deactivate D1
+!if ($hideSwitchDetail != true)
+S1->S1:Y a-t-il un transfert dépendant ? Oui
+!endif
+S1->S1:Effectuer le contrôle de liquidité et\nréserver les fonds en faveur de la partie\ncréancière du transfert dépendant
+note over S1
+**Réservations :**
+
+$payerFSPID a une réservation de $fxpSourceAmount $payerCurrency
+**FDH_FX a une réservation de $targetAmount $payeeCurrency**
+end note
+
+S1->D2:Merci d'effectuer le transfert\n**POST /transfers**
+activate D2
+!if ($simplified != true)
+D2-->S1:202 — Je vous recontacte
+!endif
+deactivate S1
+D2->D2:Je vérifie que les conditions \ndu transfert dépendant sont\n les mêmes que celles acceptées\n et que l'exécution\n et la condition concordent
+D2->D2:Oui. \nJ'approuve le transfert
+D2->PayeeCBS:Merci de créditer le compte de $receiverName\nde $payeeReceiveAmount $payeeCurrency
+D2->S1:Transfert confirmé, voici l'exécution
+note right
+**PUT /transfers/c720ae14fc72...**
+{
+  "fulfilment": "mhPUT9ZAwdXLfe...",
+  "completedTimestamp": "2021-08-25T14:17:08.227+01:00",
+  "transferState": "COMMITTED"
+}
+end note
+activate S1
+!if ($simplified != true)
+S1-->D2:200 — OK
+!endif
+deactivate D2
+!if ($hideSwitchDetail != true)
+S1->S1:Y a-t-il un transfert dépendant ?\nOui.
+S1->S1:Cette dépendance concerne-t-elle le\ndébiteur du transfert ?\nOui.
+S1->S1:Créer une obligation du\ndébiteur vers la partie nommée\ndans la dépendance (le FXP)
+S1->S1:Le transfert est-il libellé dans\nla devise du montant \nreçu par le bénéficiaire ? Oui.
+S1->S1:Créer une obligation de la\npartie nommée dans la dépendance\nvers le créancier du transfert
+!else
+S1->S1:Créer des obligations du\npayeur vers le FXP et du \nFXP vers le bénéficiaire
+!endif
+S1->FXP:Le transfert a réussi.\nVous pouvez le compenser dans vos livres
+note left
+**PATCH /fxTransfers/77c9d78dc26a...**
+{
+  "fulfilment": "2e6870fb4ed...",
+  "completedTimeStamp": "2021-08-25T14:17:08.175+01:00",
+  "conversionState": "COMMITTED"
+}
+end note
+activate FXP
+FXP->FXP:Vérifions : \ncela correspond-il à ce que j'ai envoyé ?
+FXP->FXP:Oui. Parfait. \nJe compense la conversion
+FXP-->S1:200 — OK
+deactivate FXP
+note over S1
+    **Positions du grand livre :**
+    $payerFSPID a un débit de $fxpSourceAmount $payerCurrency
+    FDH_FX a un crédit de $fxpSourceAmount $payerCurrency
+    FDH_FX a un débit de $fxpTargetAmount $payeeCurrency
+    $payeeFSPID a un crédit de $targetAmount $payeeCurrency
+end note
+S1->D1:Transfert terminé\n**PUT /transfers/c720ae14fc72...**
+activate D1
+!if ($simplified != true)
+D1-->S1:200 — OK
+!endif
+deactivate S1
+D1->D1:Comptabiliser les fonds dans mes livres
+D1->A1:Le transfert s'est terminé avec succès
+deactivate D1
+
+@enduml

@@ -1,0 +1,67 @@
+@startuml
+Title Séquences du service de devis
+participant "FSP payeur"
+participant "Switch\nService de\ndevis" as Switch
+participant "FSP bénéficiaire"
+
+autonumber
+note over "FSP payeur", Switch: Le FSP payeur demande une devis au FSP bénéficiaire
+"FSP payeur" -\ Switch: POST /quotes
+Switch --/ "FSP payeur": 202 Accepted
+Switch -> Switch: Valider la demande de devis
+
+alt devis valide
+    
+    Switch -> Switch: Persister les données de devis
+    note over Switch, "FSP bénéficiaire": Le Switch transmet la demande au FSP bénéficiaire\n<Règles côté payeur> 
+    Switch -\ "FSP bénéficiaire": POST /quotes
+    "FSP bénéficiaire" --/ Switch: 202 Accepted
+    "FSP bénéficiaire" -> "FSP bénéficiaire": Calculer frais et commissions
+    
+    alt le FSP bénéficiaire calcule le devis avec succès
+    
+        note over "FSP bénéficiaire", Switch: Le FSP bénéficiaire répond à la demande de devis
+        "FSP bénéficiaire" -\ Switch: PUT /quotes/{ID}
+        Switch --/ "FSP bénéficiaire": 200 Ok
+        
+        Switch -> Switch: Valider la réponse de devis
+        
+        alt réponse valide
+            Switch -> Switch: Persister les données de réponse
+            
+            note over Switch, "FSP payeur": Le Switch transmet la réponse au FSP payeur\n<Règle bénéficiaire — requête complète>
+            
+            Switch -\ "FSP payeur": PUT /quotes/{ID}
+            "FSP payeur" --/ Switch: 200 Ok
+            
+            note over "FSP payeur" #3498db: Le FSP payeur poursuit\nle transfert si le devis\nest acceptable…
+        else réponse invalide
+        
+            note over Switch, "FSP bénéficiaire": Le Switch renvoie une erreur au FSP bénéficiaire
+        
+            Switch -\ "FSP bénéficiaire": PUT /quotes/{ID}/error
+            "FSP bénéficiaire" --/ Switch : 200 Ok
+            
+            note over Switch, "FSP bénéficiaire" #ec7063: Dans ce scénario, le FSP payeur\npeut ne pas recevoir de réponse
+        
+        end
+    else échec du calcul ou rejet par le FSP bénéficiaire
+    
+        note over "FSP bénéficiaire", Switch: Le FSP bénéficiaire renvoie une erreur au Switch
+    
+        "FSP bénéficiaire" -\ Switch: PUT /quotes/{ID}/error
+        Switch --/ "FSP bénéficiaire": 200 OK
+        Switch -> Switch: Persister les données d’erreur
+        
+        note over "FSP payeur", Switch: Le Switch renvoie une erreur au FSP payeur
+        
+        Switch -\ "FSP payeur": PUT /quotes/{ID}/error
+        "FSP payeur" --/ Switch: 200 OK
+    
+    end
+else devis invalide
+    note over "FSP payeur", Switch: Le Switch renvoie une erreur au FSP payeur
+    Switch -\ "FSP payeur": PUT /quotes/{ID}/error
+    "FSP payeur" --/ Switch: 200 OK
+end
+@enduml

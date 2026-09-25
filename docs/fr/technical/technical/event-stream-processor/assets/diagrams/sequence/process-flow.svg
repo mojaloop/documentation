@@ -1,0 +1,577 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="4240px" preserveAspectRatio="none" style="width:3762px;height:4240px;background:#FFFFFF;" version="1.1" viewBox="0 0 3762 4240" width="3762px" zoomAndPan="magnify">
+  <title>Event Streaming Processor flow</title>
+  <defs/>
+  <g>
+    <text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="252.6699" x="1756.3213" y="27.9951">Event Streaming Processor flow</text>
+    <rect fill="#D3D3D3" height="4184.4375" style="stroke:#181818;stroke-width:0.5;" width="145.3076" x="25" y="43.2969"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="119.7739" x="37.7668" y="55.3638">Central Services</text>
+    <rect fill="#ADD8E6" height="4184.4375" style="stroke:#181818;stroke-width:0.5;" width="2984.4922" x="230.1938" y="43.2969"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="176.0269" x="1634.4265" y="55.3638">Event Stream Processor</text>
+    <rect fill="#B0C4DE" height="4184.4375" style="stroke:#181818;stroke-width:0.5;" width="116.7646" x="3439.4521" y="43.2969"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="44.0908" x="3475.7891" y="55.3638">Cache</text>
+    <rect fill="#FFFFE0" height="4184.4375" style="stroke:#181818;stroke-width:0.5;" width="192.0957" x="3558.2168" y="43.2969"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="96.9224" x="3605.8035" y="55.3638">Elasticsearch</text>
+    <rect fill="#FFFFFF" height="30" style="stroke:#181818;stroke-width:1.0;" width="10" x="92.6538" y="179.9922"/>
+    <rect fill="#FFFFFF" height="816.2422" style="stroke:#181818;stroke-width:1.0;" width="10" x="293.126" y="179.9922"/>
+    <rect fill="#FFFFFF" height="83.5313" style="stroke:#181818;stroke-width:1.0;" width="10" x="577.0933" y="996.2344"/>
+    <rect fill="#FFFFFF" height="1601.9609" style="stroke:#181818;stroke-width:1.0;" width="10" x="805.1123" y="1079.7656"/>
+    <rect fill="#FFFFFF" height="767.1875" style="stroke:#181818;stroke-width:1.0;" width="10" x="1579.3452" y="2681.7266"/>
+    <rect fill="#FFFFFF" height="475.7266" style="stroke:#181818;stroke-width:1.0;" width="10" x="2139.8779" y="3448.9141"/>
+    <rect fill="#FFFFFF" height="228.7969" style="stroke:#181818;stroke-width:1.0;" width="10" x="2741.8418" y="3924.6406"/>
+    <rect fill="none" height="4003.7109" style="stroke:#000000;stroke-width:1.5;" width="3747.3125" x="9" y="141.7266"/>
+    <rect fill="none" height="1678.4922" style="stroke:#000000;stroke-width:1.5;" width="3130.377" x="500.8398" y="1011.2344"/>
+    <rect fill="none" height="1237.3047" style="stroke:#000000;stroke-width:1.5;" width="2904.5283" x="716.6885" y="1401.1563"/>
+    <rect fill="none" height="154.9297" style="stroke:#000000;stroke-width:1.5;" width="301.2783" x="726.6885" y="1569.8203"/>
+    <rect fill="none" height="231.0625" style="stroke:#000000;stroke-width:1.5;" width="686.3335" x="726.6885" y="1738.75"/>
+    <rect fill="none" height="130.5313" style="stroke:#000000;stroke-width:1.5;" width="470.644" x="3091.5728" y="2500.9297"/>
+    <rect fill="none" height="774.1875" style="stroke:#000000;stroke-width:1.5;" width="2174.5977" x="1427.6191" y="2703.7266"/>
+    <rect fill="none" height="671.7891" style="stroke:#000000;stroke-width:1.5;" width="2154.5977" x="1437.6191" y="2799.125"/>
+    <rect fill="none" height="640.6563" style="stroke:#000000;stroke-width:1.5;" width="2134.5977" x="1447.6191" y="2823.2578"/>
+    <rect fill="none" height="494.9922" style="stroke:#000000;stroke-width:1.5;" width="2114.5977" x="1457.6191" y="2961.9219"/>
+    <rect fill="none" height="130.5313" style="stroke:#000000;stroke-width:1.5;" width="470.644" x="3091.5728" y="3015.1875"/>
+    <rect fill="none" height="130.5313" style="stroke:#000000;stroke-width:1.5;" width="470.644" x="3091.5728" y="3290.25"/>
+    <rect fill="none" height="454.7266" style="stroke:#000000;stroke-width:1.5;" width="1547.7124" x="2014.5044" y="3491.9141"/>
+    <rect fill="none" height="394.4609" style="stroke:#000000;stroke-width:1.5;" width="814.5786" x="2024.5044" y="3545.1797"/>
+    <rect fill="none" height="176.6641" style="stroke:#000000;stroke-width:1.5;" width="440.8252" x="2034.5044" y="3653.5781"/>
+    <rect fill="none" height="103.3984" style="stroke:#000000;stroke-width:1.5;" width="420.8252" x="2044.5044" y="3719.8438"/>
+    <rect fill="none" height="88.3984" style="stroke:#000000;stroke-width:1.5;" width="784.5786" x="2044.5044" y="3844.2422"/>
+    <rect fill="none" height="177.7969" style="stroke:#000000;stroke-width:1.5;" width="976.6162" x="2654.6006" y="3960.6406"/>
+    <rect fill="none" height="75.3984" style="stroke:#000000;stroke-width:1.5;" width="956.6162" x="2664.6006" y="3984.7734"/>
+    <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="97" x2="97" y1="124.7266" y2="4162.4375"/>
+    <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="297.1938" x2="297.1938" y1="124.7266" y2="4162.4375"/>
+    <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="581.8398" x2="581.8398" y1="124.7266" y2="4162.4375"/>
+    <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="809.6885" x2="809.6885" y1="124.7266" y2="4162.4375"/>
+    <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="1583.6191" x2="1583.6191" y1="124.7266" y2="4162.4375"/>
+    <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="2144.5044" x2="2144.5044" y1="124.7266" y2="4162.4375"/>
+    <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="2746.6006" x2="2746.6006" y1="124.7266" y2="4162.4375"/>
+    <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="3021.062" x2="3021.062" y1="124.7266" y2="4162.4375"/>
+    <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="3155.5728" x2="3155.5728" y1="124.7266" y2="4162.4375"/>
+    <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="3497.4521" x2="3497.4521" y1="124.7266" y2="4162.4375"/>
+    <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="3586.2168" x2="3586.2168" y1="124.7266" y2="4162.4375"/>
+    <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="3683.2168" x2="3683.2168" y1="124.7266" y2="4162.4375"/>
+    <rect fill="#E2E2F0" height="30.2969" style="stroke:#181818;stroke-width:0.5;" width="133.3076" x="33" y="89.4297"/>
+    <rect fill="#E2E2F0" height="30.2969" style="stroke:#181818;stroke-width:0.5;" width="133.3076" x="29" y="93.4297"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="119.3076" x="36" y="113.4248">Notification topic</text>
+    <rect fill="#E2E2F0" height="30.2969" style="stroke:#181818;stroke-width:0.5;" width="133.3076" x="33" y="4161.4375"/>
+    <rect fill="#E2E2F0" height="30.2969" style="stroke:#181818;stroke-width:0.5;" width="133.3076" x="29" y="4165.4375"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="119.3076" x="36" y="4185.4326">Notification topic</text>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="121.8643" x="234.1938" y="121.4248">Topic Observable</text>
+    <ellipse cx="298.126" cy="92.4297" fill="#E2E2F0" rx="12" ry="12" style="stroke:#181818;stroke-width:0.5;"/>
+    <polygon fill="#181818" points="294.126,80.4297,300.126,75.4297,298.126,80.4297,300.126,85.4297,294.126,80.4297" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="121.8643" x="234.1938" y="4174.4326">Topic Observable</text>
+    <ellipse cx="298.126" cy="4193.7344" fill="#E2E2F0" rx="12" ry="12" style="stroke:#181818;stroke-width:0.5;"/>
+    <polygon fill="#181818" points="294.126,4181.7344,300.126,4176.7344,298.126,4181.7344,300.126,4186.7344,294.126,4181.7344" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="136.5068" x="510.8398" y="121.4248">Tracing Observable</text>
+    <ellipse cx="582.0933" cy="92.4297" fill="#E2E2F0" rx="12" ry="12" style="stroke:#181818;stroke-width:0.5;"/>
+    <polygon fill="#181818" points="578.0933,80.4297,584.0933,75.4297,582.0933,80.4297,584.0933,85.4297,578.0933,80.4297" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="136.5068" x="510.8398" y="4174.4326">Tracing Observable</text>
+    <ellipse cx="582.0933" cy="4193.7344" fill="#E2E2F0" rx="12" ry="12" style="stroke:#181818;stroke-width:0.5;"/>
+    <polygon fill="#181818" points="578.0933,4181.7344,584.0933,4176.7344,582.0933,4181.7344,584.0933,4186.7344,578.0933,4181.7344" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="140.8477" x="736.6885" y="121.4248">Caching Observable</text>
+    <ellipse cx="810.1123" cy="92.4297" fill="#E2E2F0" rx="12" ry="12" style="stroke:#181818;stroke-width:0.5;"/>
+    <polygon fill="#181818" points="806.1123,80.4297,812.1123,75.4297,810.1123,80.4297,812.1123,85.4297,806.1123,80.4297" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="140.8477" x="736.6885" y="4174.4326">Caching Observable</text>
+    <ellipse cx="810.1123" cy="4193.7344" fill="#E2E2F0" rx="12" ry="12" style="stroke:#181818;stroke-width:0.5;"/>
+    <polygon fill="#181818" points="806.1123,4181.7344,812.1123,4176.7344,810.1123,4181.7344,812.1123,4186.7344,806.1123,4181.7344" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="227.4521" x="1467.6191" y="121.4248">Check For Last Span Observable</text>
+    <ellipse cx="1584.3452" cy="92.4297" fill="#E2E2F0" rx="12" ry="12" style="stroke:#181818;stroke-width:0.5;"/>
+    <polygon fill="#181818" points="1580.3452,80.4297,1586.3452,75.4297,1584.3452,80.4297,1586.3452,85.4297,1580.3452,80.4297" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="227.4521" x="1467.6191" y="4174.4326">Check For Last Span Observable</text>
+    <ellipse cx="1584.3452" cy="4193.7344" fill="#E2E2F0" rx="12" ry="12" style="stroke:#181818;stroke-width:0.5;"/>
+    <polygon fill="#181818" points="1580.3452,4181.7344,1586.3452,4176.7344,1584.3452,4181.7344,1586.3452,4186.7344,1580.3452,4181.7344" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="174.7471" x="2054.5044" y="121.4248">Create Trace Observable</text>
+    <ellipse cx="2144.8779" cy="92.4297" fill="#E2E2F0" rx="12" ry="12" style="stroke:#181818;stroke-width:0.5;"/>
+    <polygon fill="#181818" points="2140.8779,80.4297,2146.8779,75.4297,2144.8779,80.4297,2146.8779,85.4297,2140.8779,80.4297" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="174.7471" x="2054.5044" y="4174.4326">Create Trace Observable</text>
+    <ellipse cx="2144.8779" cy="4193.7344" fill="#E2E2F0" rx="12" ry="12" style="stroke:#181818;stroke-width:0.5;"/>
+    <polygon fill="#181818" points="2140.8779,4181.7344,2146.8779,4176.7344,2144.8779,4181.7344,2146.8779,4186.7344,2140.8779,4181.7344" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="138.4824" x="2674.6006" y="121.4248">Send Trace Handler</text>
+    <ellipse cx="2746.8418" cy="92.4297" fill="#E2E2F0" rx="12" ry="12" style="stroke:#181818;stroke-width:0.5;"/>
+    <polygon fill="#181818" points="2742.8418,80.4297,2748.8418,75.4297,2746.8418,80.4297,2748.8418,85.4297,2742.8418,80.4297" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="138.4824" x="2674.6006" y="4174.4326">Send Trace Handler</text>
+    <ellipse cx="2746.8418" cy="4193.7344" fill="#E2E2F0" rx="12" ry="12" style="stroke:#181818;stroke-width:0.5;"/>
+    <polygon fill="#181818" points="2742.8418,4181.7344,2748.8418,4176.7344,2746.8418,4181.7344,2748.8418,4186.7344,2742.8418,4181.7344" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="134.5107" x="2951.062" y="121.4248">Send Span Handler</text>
+    <ellipse cx="3021.3174" cy="92.4297" fill="#E2E2F0" rx="12" ry="12" style="stroke:#181818;stroke-width:0.5;"/>
+    <polygon fill="#181818" points="3017.3174,80.4297,3023.3174,75.4297,3021.3174,80.4297,3023.3174,85.4297,3017.3174,80.4297" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="134.5107" x="2951.062" y="4174.4326">Send Span Handler</text>
+    <ellipse cx="3021.3174" cy="4193.7344" fill="#E2E2F0" rx="12" ry="12" style="stroke:#181818;stroke-width:0.5;"/>
+    <polygon fill="#181818" points="3017.3174,4181.7344,3023.3174,4176.7344,3021.3174,4181.7344,3023.3174,4186.7344,3017.3174,4181.7344" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="103.1133" x="3101.5728" y="121.4248">Cache Handler</text>
+    <ellipse cx="3156.1294" cy="92.4297" fill="#E2E2F0" rx="12" ry="12" style="stroke:#181818;stroke-width:0.5;"/>
+    <polygon fill="#181818" points="3152.1294,80.4297,3158.1294,75.4297,3156.1294,80.4297,3158.1294,85.4297,3152.1294,80.4297" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="103.1133" x="3101.5728" y="4174.4326">Cache Handler</text>
+    <ellipse cx="3156.1294" cy="4193.7344" fill="#E2E2F0" rx="12" ry="12" style="stroke:#181818;stroke-width:0.5;"/>
+    <polygon fill="#181818" points="3152.1294,4181.7344,3158.1294,4176.7344,3156.1294,4181.7344,3158.1294,4186.7344,3152.1294,4181.7344" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="102.7646" x="3443.4521" y="121.4248">Cache Storage</text>
+    <path d="M3479.8345,72.4297 C3479.8345,62.4297 3497.8345,62.4297 3497.8345,62.4297 C3497.8345,62.4297 3515.8345,62.4297 3515.8345,72.4297 L3515.8345,98.4297 C3515.8345,108.4297 3497.8345,108.4297 3497.8345,108.4297 C3497.8345,108.4297 3479.8345,108.4297 3479.8345,98.4297 L3479.8345,72.4297 " fill="#E2E2F0" style="stroke:#181818;stroke-width:1.5;"/>
+    <path d="M3479.8345,72.4297 C3479.8345,82.4297 3497.8345,82.4297 3497.8345,82.4297 C3497.8345,82.4297 3515.8345,82.4297 3515.8345,72.4297 " fill="none" style="stroke:#181818;stroke-width:1.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="102.7646" x="3443.4521" y="4174.4326">Cache Storage</text>
+    <path d="M3479.8345,4187.7344 C3479.8345,4177.7344 3497.8345,4177.7344 3497.8345,4177.7344 C3497.8345,4177.7344 3515.8345,4177.7344 3515.8345,4187.7344 L3515.8345,4213.7344 C3515.8345,4223.7344 3497.8345,4223.7344 3497.8345,4223.7344 C3497.8345,4223.7344 3479.8345,4223.7344 3479.8345,4213.7344 L3479.8345,4187.7344 " fill="#E2E2F0" style="stroke:#181818;stroke-width:1.5;"/>
+    <path d="M3479.8345,4187.7344 C3479.8345,4197.7344 3497.8345,4197.7344 3497.8345,4197.7344 C3497.8345,4197.7344 3515.8345,4197.7344 3515.8345,4187.7344 " fill="none" style="stroke:#181818;stroke-width:1.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="30.0986" x="3568.6675" y="121.4248">APM</text>
+    <path d="M3566.2168,80.4297 L3566.2168,104.4297 M3566.2168,92.4297 L3583.2168,92.4297 " fill="none" style="stroke:#181818;stroke-width:0.5;"/>
+    <ellipse cx="3595.2168" cy="92.4297" fill="#E2E2F0" rx="12" ry="12" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="30.0986" x="3568.6675" y="4174.4326">APM</text>
+    <path d="M3566.2168,4181.7344 L3566.2168,4205.7344 M3566.2168,4193.7344 L3583.2168,4193.7344 " fill="none" style="stroke:#181818;stroke-width:0.5;"/>
+    <ellipse cx="3595.2168" cy="4193.7344" fill="#E2E2F0" rx="12" ry="12" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="119.0957" x="3621.2168" y="121.4248">Elasticsearch API</text>
+    <path d="M3663.2646,80.4297 L3663.2646,104.4297 M3663.2646,92.4297 L3680.2646,92.4297 " fill="none" style="stroke:#181818;stroke-width:0.5;"/>
+    <ellipse cx="3692.2646" cy="92.4297" fill="#E2E2F0" rx="12" ry="12" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="119.0957" x="3621.2168" y="4174.4326">Elasticsearch API</text>
+    <path d="M3663.2646,4181.7344 L3663.2646,4205.7344 M3663.2646,4193.7344 L3680.2646,4193.7344 " fill="none" style="stroke:#181818;stroke-width:0.5;"/>
+    <ellipse cx="3692.2646" cy="4193.7344" fill="#E2E2F0" rx="12" ry="12" style="stroke:#181818;stroke-width:0.5;"/>
+    <rect fill="#FFFFFF" height="30" style="stroke:#181818;stroke-width:1.0;" width="10" x="92.6538" y="179.9922"/>
+    <rect fill="#FFFFFF" height="816.2422" style="stroke:#181818;stroke-width:1.0;" width="10" x="293.126" y="179.9922"/>
+    <rect fill="#FFFFFF" height="83.5313" style="stroke:#181818;stroke-width:1.0;" width="10" x="577.0933" y="996.2344"/>
+    <rect fill="#FFFFFF" height="1601.9609" style="stroke:#181818;stroke-width:1.0;" width="10" x="805.1123" y="1079.7656"/>
+    <rect fill="#FFFFFF" height="767.1875" style="stroke:#181818;stroke-width:1.0;" width="10" x="1579.3452" y="2681.7266"/>
+    <rect fill="#FFFFFF" height="475.7266" style="stroke:#181818;stroke-width:1.0;" width="10" x="2139.8779" y="3448.9141"/>
+    <rect fill="#FFFFFF" height="228.7969" style="stroke:#181818;stroke-width:1.0;" width="10" x="2741.8418" y="3924.6406"/>
+    <path d="M9,141.7266 L271.4517,141.7266 L271.4517,148.8594 L261.4517,158.8594 L9,158.8594 L9,141.7266 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="4003.7109" style="stroke:#000000;stroke-width:1.5;" width="3747.3125" x="9" y="141.7266"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="217.4517" x="24" y="154.7935">New Event Message Received</text>
+    <polygon fill="#181818" points="281.126,175.9922,291.126,179.9922,281.126,183.9922,285.126,179.9922" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="102.6538" x2="287.126" y1="179.9922" y2="179.9922"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="109.6538" y="174.9263">1</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="163.4268" x="122.6992" y="174.9263">Consume Event Message</text>
+    <path d="M19,222.9922 L19,897.9922 L576,897.9922 L576,232.9922 L566,222.9922 L19,222.9922 " fill="#FFFF00" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M566,222.9922 L566,232.9922 L576,232.9922 L566,222.9922 " fill="#FFFF00" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="61.3564" x="25" y="240.0591">Message:</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8.271" x="33.2646" y="255.1919">{</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="126.6104" x="41.5293" y="270.3247">&quot;from&quot;: &quot;payeefsp&quot;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="106.4692" x="41.5293" y="285.4575">&quot;to&quot;: &quot;payerfsp&quot;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="315.1421" x="41.5293" y="300.5903">&quot;id&quot;: &quot;659ee338-c8f8-4c06-8aff-944e6c5cd694&quot;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="78.5142" x="41.5293" y="315.7231">&quot;content&quot;: {</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="81.3135" x="49.7939" y="330.856">&quot;headers&quot;: {</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="503.0518" x="58.0586" y="345.9888">&quot;content-type&quot;: &quot;applicationvnd.interoperability.transfers+json;version=1.0&quot;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="245.6035" x="58.0586" y="361.1216">&quot;date&quot;: &quot;2019-05-28T16:34:41.000Z&quot;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="183.6377" x="58.0586" y="376.2544">&quot;fspiop-source&quot;: &quot;payeefsp&quot;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="206.2354" x="58.0586" y="391.3872">&quot;fspiop-destination&quot;: &quot;payerfsp&quot;</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="12.4033" x="49.7939" y="406.52">},</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="145.647" x="49.7939" y="421.6528">&quot;payload&quot;: &lt;payload&gt;</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="12.4033" x="41.5293" y="436.7856">},</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="168.27" x="41.5293" y="451.9185">&quot;type&quot;: &quot;application/json&quot;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="91.749" x="41.5293" y="467.0513">&quot;metadata&quot;: {</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="65.7681" x="49.7939" y="482.1841">&quot;event&quot;: {</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="318.0747" x="58.0586" y="497.3169">&quot;id&quot;: &quot;3920382d-f78c-4023-adf9-0d7a4a2a3a2f&quot;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="99.1567" x="58.0586" y="512.4497">&quot;type&quot;: &quot;trace&quot;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="107.8086" x="58.0586" y="527.5825">&quot;action&quot;: &quot;span&quot;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="280.084" x="58.0586" y="542.7153">&quot;createdAt&quot;: &quot;2019-05-29T23:18:32.935Z&quot;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="61.6738" x="58.0586" y="557.8481">&quot;state&quot;: {</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="127.3594" x="66.3232" y="572.981">&quot;status&quot;: &quot;success&quot;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="64.2256" x="66.3232" y="588.1138">&quot;code&quot;: 0,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="216.1377" x="66.3232" y="603.2466">&quot;description&quot;: &quot;action successful&quot;</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="12.4033" x="58.0586" y="618.3794">},</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="384.1348" x="58.0586" y="633.5122">&quot;responseTo&quot;: &quot;1a396c07-47ab-4d68-a7a0-7a1ea36f0012&quot;</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="12.4033" x="49.7939" y="648.645">},</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="62.2959" x="49.7939" y="663.7778">&quot;trace&quot;: {</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="284.8701" x="58.0586" y="678.9106">&quot;service&quot;: &quot;central-ledger-prepare-handler&quot;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="212.1387" x="58.0586" y="694.0435">&quot;traceId&quot;: &quot;bbd7b2c7bbd7b2c7&quot;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="222.022" x="58.0586" y="709.1763">&quot;parentSpanId&quot;: &quot;44ba9bbc5840&quot;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="176.8013" x="58.0586" y="724.3091">&quot;spanId&quot;: &quot;2aa9cd0a7e87&quot;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="344.3477" x="58.0586" y="739.4419">&quot;startTimestamp&quot;: &quot;2015-08-29T11:22:09.815479Z&quot;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="349.1211" x="58.0586" y="754.5747">&quot;finishTimestamp&quot;: &quot;2015-08-29T11:22:09.815479Z&quot;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="56.8306" x="58.0586" y="769.7075">&quot;tags&quot;: {</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="380.834" x="66.3232" y="784.8403">&quot;transctionId&quot;: &quot;659ee338-c8f8-4c06-8aff-944e6c5cd694&quot;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="185.2563" x="66.3232" y="799.9731">&quot;transctionType&quot;: &quot;transfer&quot;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="232.064" x="66.3232" y="815.106">&quot;parentEventType&quot;: &quot;bulk-prepare&quot;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="204.6675" x="66.3232" y="830.2388">&quot;parentEventAction&quot;: &quot;prepare&quot;</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8.271" x="58.0586" y="845.3716">}</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8.271" x="49.7939" y="860.5044">}</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8.271" x="41.5293" y="875.6372">}</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8.271" x="33.2646" y="890.77">}</text>
+    <polygon fill="#181818" points="3671.7646,920.9688,3681.7646,924.9688,3671.7646,928.9688,3675.7646,924.9688" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="303.126" x2="3677.7646" y1="924.9688" y2="924.9688"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="310.126" y="919.9028">2</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="314.0884" x="323.1714" y="919.9028">Send message for log purposes to custom index</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="303.126" x2="345.126" y1="954.1016" y2="954.1016"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="345.126" x2="345.126" y1="954.1016" y2="967.1016"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="304.126" x2="345.126" y1="967.1016" y2="967.1016"/>
+    <polygon fill="#181818" points="314.126,963.1016,304.126,967.1016,314.126,971.1016,310.126,967.1016" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="310.126" y="949.0356">3</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="209.79" x="323.1714" y="949.0356">Verify its tracing event Message</text>
+    <polygon fill="#181818" points="565.0933,992.2344,575.0933,996.2344,565.0933,1000.2344,569.0933,996.2344" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="298.126" x2="571.0933" y1="996.2344" y2="996.2344"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="305.126" y="991.1685">4</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="241.9219" x="318.1714" y="991.1685">Send Message to Tracing Observable</text>
+    <path d="M500.8398,1011.2344 L631.1523,1011.2344 L631.1523,1018.3672 L621.1523,1028.3672 L500.8398,1028.3672 L500.8398,1011.2344 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="1678.4922" style="stroke:#000000;stroke-width:1.5;" width="3130.377" x="500.8398" y="1011.2344"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="85.3125" x="515.8398" y="1024.3013">Cache Span</text>
+    <polygon fill="#181818" points="793.1123,1075.7656,803.1123,1079.7656,793.1123,1083.7656,797.1123,1079.7656" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="582.0933" x2="799.1123" y1="1079.7656" y2="1079.7656"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="589.0933" y="1059.5669">5</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="129.0034" x="602.1387" y="1044.4341">Send Span Context,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="185.9736" x="602.1387" y="1059.5669">metadata.State and Content</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="91.6475" x="602.1387" y="1074.6997">from Message</text>
+    <path d="M587,1092.7656 L587,1359.7656 L1001,1359.7656 L1001,1102.7656 L991,1092.7656 L587,1092.7656 " fill="#FFFF00" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M991,1092.7656 L991,1102.7656 L1001,1102.7656 L991,1092.7656 " fill="#FFFF00" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8.271" x="593" y="1109.8325">{</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="99.1694" x="601.2646" y="1124.9653">spanContext: {</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="272.9111" x="609.5293" y="1140.0981">service: &quot;central-ledger-prepare-handler&quot;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="200.1797" x="609.5293" y="1155.231">traceId: &quot;bbd7b2c7bbd7b2c7&quot;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="210.063" x="609.5293" y="1170.3638">parentSpanId: &quot;44ba9bbc5840&quot;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="164.8423" x="609.5293" y="1185.4966">spanId: &quot;2aa9cd0a7e87&quot;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="332.3887" x="609.5293" y="1200.6294">startTimestamp: &quot;2015-08-29T11:22:09.815479Z&quot;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="337.1621" x="609.5293" y="1215.7622">finishTimestamp: &quot;2015-08-29T11:22:09.815479Z&quot;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="44.8716" x="609.5293" y="1230.895">tags: {</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="368.875" x="617.7939" y="1246.0278">transctionId: &quot;659ee338-c8f8-4c06-8aff-944e6c5cd694&quot;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="173.2974" x="617.7939" y="1261.1606">transctionType: &quot;transfer&quot;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="220.105" x="617.7939" y="1276.2935">parentEventType: &quot;bulk-prepare&quot;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="192.7085" x="617.7939" y="1291.4263">parentEventAction: &quot;prepare&quot;</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="12.4033" x="609.5293" y="1306.5591">},</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="145.647" x="601.2646" y="1321.6919">state: metadata.state,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="49.772" x="601.2646" y="1336.8247">content</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8.271" x="593" y="1351.9575">}</text>
+    <polygon fill="#181818" points="826.1123,1382.1563,816.1123,1386.1563,826.1123,1390.1563,822.1123,1386.1563" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="820.1123" x2="3496.8345" y1="1386.1563" y2="1386.1563"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="832.1123" y="1381.0903">6</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="180.2988" x="845.1577" y="1381.0903">Get cachedTrace by traceId</text>
+    <path d="M716.6885,1401.1563 L781.1313,1401.1563 L781.1313,1408.2891 L771.1313,1418.2891 L716.6885,1418.2891 L716.6885,1401.1563 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="1237.3047" style="stroke:#000000;stroke-width:1.5;" width="2904.5283" x="716.6885" y="1401.1563"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="19.4429" x="731.6885" y="1414.2231">alt</text>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="200.4492" x="796.1313" y="1413.3667">[the span should not be cached]</text>
+    <polygon fill="#181818" points="3009.3174,1435.4219,3019.3174,1439.4219,3009.3174,1443.4219,3013.3174,1439.4219" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="815.1123" x2="3015.3174" y1="1439.4219" y2="1439.4219"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="822.1123" y="1434.356">7</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="80.1201" x="835.1577" y="1434.356">currentSpan</text>
+    <polygon fill="#181818" points="3574.7168,1464.5547,3584.7168,1468.5547,3574.7168,1472.5547,3578.7168,1468.5547" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="3021.3174" x2="3580.7168" y1="1468.5547" y2="1468.5547"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="3028.3174" y="1463.4888">8</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="82.4307" x="3041.3628" y="1463.4888">store to APM</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="815.1123" x2="857.1123" y1="1497.6875" y2="1497.6875"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="857.1123" x2="857.1123" y1="1497.6875" y2="1510.6875"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="816.1123" x2="857.1123" y1="1510.6875" y2="1510.6875"/>
+    <polygon fill="#181818" points="826.1123,1506.6875,816.1123,1510.6875,826.1123,1514.6875,822.1123,1510.6875" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="822.1123" y="1492.6216">9</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="62.6514" x="835.1577" y="1492.6216">Complete</text>
+    <line style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="716.6885" x2="3621.2168" y1="1519.6875" y2="1519.6875"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="815.1123" x2="857.1123" y1="1541.8203" y2="1541.8203"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="857.1123" x2="857.1123" y1="1541.8203" y2="1554.8203"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="816.1123" x2="857.1123" y1="1554.8203" y2="1554.8203"/>
+    <polygon fill="#181818" points="825.1123,1537.8203,815.1123,1541.8203,825.1123,1545.8203,821.1123,1541.8203" style="stroke:#181818;stroke-width:1.0;"/>
+    <polygon fill="#181818" points="826.1123,1550.8203,816.1123,1554.8203,826.1123,1558.8203,822.1123,1554.8203" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="822.1123" y="1536.7544">10</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="718.1421" x="844.2031" y="1536.7544">Validate transactionType, TransactionAction and service to match Config.START_CRITERIA &amp;&amp; !parentSpandId</text>
+    <path d="M726.6885,1569.8203 L791.1313,1569.8203 L791.1313,1576.9531 L781.1313,1586.9531 L726.6885,1586.9531 L726.6885,1569.8203 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="154.9297" style="stroke:#000000;stroke-width:1.5;" width="301.2783" x="726.6885" y="1569.8203"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="19.4429" x="741.6885" y="1582.8872">alt</text>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="93.0327" x="806.1313" y="1582.0308">[!cachedTrace]</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="815.1123" x2="857.1123" y1="1608.0859" y2="1608.0859"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="857.1123" x2="857.1123" y1="1608.0859" y2="1621.0859"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="816.1123" x2="857.1123" y1="1621.0859" y2="1621.0859"/>
+    <polygon fill="#181818" points="826.1123,1617.0859,816.1123,1621.0859,826.1123,1625.0859,822.1123,1621.0859" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="822.1123" y="1603.02">11</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="161.7637" x="844.2031" y="1603.02">Create new cachedTrace</text>
+    <path d="M820,1634.0859 L820,1719.0859 L964,1719.0859 L964,1644.0859 L954,1634.0859 L820,1634.0859 " fill="#FFFF00" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M954,1634.0859 L954,1644.0859 L964,1644.0859 L954,1634.0859 " fill="#FFFF00" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8.271" x="826" y="1651.1528">{</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="67.1899" x="834.2646" y="1666.2856">spans: {},</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="114.8989" x="834.2646" y="1681.4185">masterSpan: null,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="88.3721" x="834.2646" y="1696.5513">lastSpan: null</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8.271" x="826" y="1711.6841">}</text>
+    <path d="M726.6885,1738.75 L791.1313,1738.75 L791.1313,1745.8828 L781.1313,1755.8828 L726.6885,1755.8828 L726.6885,1738.75 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="231.0625" style="stroke:#000000;stroke-width:1.5;" width="686.3335" x="726.6885" y="1738.75"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="19.4429" x="741.6885" y="1751.8169">alt</text>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="87.3931" x="806.1313" y="1750.9604">[!parentSpan]</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="815.1123" x2="857.1123" y1="1777.0156" y2="1777.0156"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="857.1123" x2="857.1123" y1="1777.0156" y2="1790.0156"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="816.1123" x2="857.1123" y1="1790.0156" y2="1790.0156"/>
+    <polygon fill="#181818" points="825.1123,1773.0156,815.1123,1777.0156,825.1123,1781.0156,821.1123,1777.0156" style="stroke:#181818;stroke-width:1.0;"/>
+    <polygon fill="#181818" points="826.1123,1786.0156,816.1123,1790.0156,826.1123,1794.0156,822.1123,1790.0156" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="822.1123" y="1771.9497">12</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="154.0386" x="844.2031" y="1771.9497">Generate MasterSpanId</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="815.1123" x2="857.1123" y1="1834.2813" y2="1834.2813"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="857.1123" x2="857.1123" y1="1834.2813" y2="1847.2813"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="816.1123" x2="857.1123" y1="1847.2813" y2="1847.2813"/>
+    <polygon fill="#181818" points="825.1123,1830.2813,815.1123,1834.2813,825.1123,1838.2813,821.1123,1834.2813" style="stroke:#181818;stroke-width:1.0;"/>
+    <polygon fill="#181818" points="826.1123,1843.2813,816.1123,1847.2813,826.1123,1851.2813,822.1123,1847.2813" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="822.1123" y="1821.6489">13</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="264.5894" x="844.2031" y="1814.0825">Make received span child of masterSpan</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="390.457" x="844.2031" y="1829.2153">merge({ parentSpanId: MasterSpanId }, { ...spanContext })</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="815.1123" x2="857.1123" y1="1906.6797" y2="1906.6797"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="857.1123" x2="857.1123" y1="1906.6797" y2="1919.6797"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="816.1123" x2="857.1123" y1="1919.6797" y2="1919.6797"/>
+    <polygon fill="#181818" points="825.1123,1902.6797,815.1123,1906.6797,825.1123,1910.6797,821.1123,1906.6797" style="stroke:#181818;stroke-width:1.0;"/>
+    <polygon fill="#181818" points="826.1123,1915.6797,816.1123,1919.6797,826.1123,1923.6797,822.1123,1919.6797" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="822.1123" y="1886.481">14</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="542.6865" x="844.2031" y="1871.3481">Create MasterSpanContext merge({ tags: { ...tags, masterSpan: MasterSpanId } },</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="123.7222" x="844.2031" y="1886.481">{ ...spanContext },</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="460.1289" x="844.2031" y="1901.6138">{ spanId: MasterSpanId, service: `master-${tags.transactionType}` })</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="815.1123" x2="857.1123" y1="1948.8125" y2="1948.8125"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="857.1123" x2="857.1123" y1="1948.8125" y2="1961.8125"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="816.1123" x2="857.1123" y1="1961.8125" y2="1961.8125"/>
+    <polygon fill="#181818" points="825.1123,1944.8125,815.1123,1948.8125,825.1123,1952.8125,821.1123,1948.8125" style="stroke:#181818;stroke-width:1.0;"/>
+    <polygon fill="#181818" points="826.1123,1957.8125,816.1123,1961.8125,826.1123,1965.8125,822.1123,1961.8125" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="822.1123" y="1943.7466">15</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="212.5449" x="844.2031" y="1943.7466">Add masterSpan to cachedTrace</text>
+    <polygon fill="#181818" points="826.1123,1993.9453,816.1123,1997.9453,826.1123,2001.9453,822.1123,1997.9453" style="stroke:#181818;stroke-width:1.0;"/>
+    <polygon fill="#181818" points="3144.1294,1993.9453,3154.1294,1997.9453,3144.1294,2001.9453,3148.1294,1997.9453" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="820.1123" x2="3150.1294" y1="1997.9453" y2="1997.9453"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="832.1123" y="1992.8794">16</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="165.2231" x="854.2031" y="1992.8794">Add span to cachedTrace</text>
+    <path d="M820,2010.9453 L820,2458.9453 L1254,2458.9453 L1254,2020.9453 L1244,2010.9453 L820,2010.9453 " fill="#FFFF00" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M1244,2010.9453 L1244,2020.9453 L1254,2020.9453 L1244,2010.9453 " fill="#FFFF00" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8.271" x="826" y="2028.0122">{</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="54.7866" x="834.2646" y="2043.145">spans: {</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="113.7056" x="842.5293" y="2058.2778">2aa9cd0a7e87: {</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="37.064" x="842.5293" y="2073.4106">state,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="49.772" x="842.5293" y="2088.5435">content</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="99.1694" x="842.5293" y="2103.6763">spanContext: {</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="284.8701" x="850.7939" y="2118.8091">&quot;service&quot;: &quot;central-ledger-prepare-handler&quot;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="212.1387" x="850.7939" y="2133.9419">&quot;traceId&quot;: &quot;bbd7b2c7bbd7b2c7&quot;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="104.0317" x="850.7939" y="2149.0747">&quot;parentSpanId&quot;:</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="101.7275" x="958.958" y="2149.0747">MasterSpanId</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="4.1323" x="1060.6855" y="2149.0747">,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="176.8013" x="850.7939" y="2164.2075">&quot;spanId&quot;: &quot;2aa9cd0a7e87&quot;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="344.3477" x="850.7939" y="2179.3403">&quot;startTimestamp&quot;: &quot;2015-08-29T11:22:09.815479Z&quot;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="349.1211" x="850.7939" y="2194.4731">&quot;finishTimestamp&quot;: &quot;2015-08-29T11:22:09.815479Z&quot;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="56.8306" x="850.7939" y="2209.606">&quot;tags&quot;: {</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="380.834" x="859.0586" y="2224.7388">&quot;transctionId&quot;: &quot;659ee338-c8f8-4c06-8aff-944e6c5cd694&quot;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="185.2563" x="859.0586" y="2239.8716">&quot;transctionType&quot;: &quot;transfer&quot;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="232.064" x="859.0586" y="2255.0044">&quot;parentEventType&quot;: &quot;bulk-prepare&quot;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="204.6675" x="859.0586" y="2270.1372">&quot;parentEventAction&quot;: &quot;prepare&quot;</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8.271" x="850.7939" y="2285.27">}</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8.271" x="842.5293" y="2300.4028">}</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="12.4033" x="834.2646" y="2315.5356">},</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8.2646" x="826" y="2330.6685">  </text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="106.9263" x="834.2646" y="2330.6685">MasterSpanId:</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8.271" x="945.3232" y="2330.6685">{</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="37.064" x="842.5293" y="2345.8013">state,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="53.9043" x="842.5293" y="2360.9341">content,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="128.2607" x="842.5293" y="2376.0669">MasterSpanContext</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8.271" x="834.2646" y="2391.1997">}</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="12.4033" x="826" y="2406.3325">},</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="82.9321" x="826" y="2421.4653">masterSpan:</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="144.9424" x="913.0645" y="2421.4653">MasterSpanContext</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="4.1323" x="1058.0068" y="2421.4653">,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="88.3721" x="826" y="2436.5981">lastSpan: null</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8.271" x="826" y="2451.731">}</text>
+    <polygon fill="#181818" points="3144.1294,2481.9297,3154.1294,2485.9297,3144.1294,2489.9297,3148.1294,2485.9297" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="815.1123" x2="3150.1294" y1="2485.9297" y2="2485.9297"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="822.1123" y="2480.8638">17</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="196.1045" x="844.2031" y="2480.8638">Update cachedTrace to Cache</text>
+    <path d="M3091.5728,2500.9297 L3156.0156,2500.9297 L3156.0156,2508.0625 L3146.0156,2518.0625 L3091.5728,2518.0625 L3091.5728,2500.9297 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="130.5313" style="stroke:#000000;stroke-width:1.5;" width="470.644" x="3091.5728" y="2500.9297"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="19.4429" x="3106.5728" y="2513.9966">alt</text>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="222.2559" x="3171.0156" y="2513.1401">[cachedTrace not staled or expired]</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="3156.1294" x2="3198.1294" y1="2539.1953" y2="2539.1953"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="3198.1294" x2="3198.1294" y1="2539.1953" y2="2552.1953"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="3157.1294" x2="3198.1294" y1="2552.1953" y2="2552.1953"/>
+    <polygon fill="#181818" points="3167.1294,2548.1953,3157.1294,2552.1953,3167.1294,2556.1953,3163.1294,2552.1953" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="3163.1294" y="2534.1294">18</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="182.7554" x="3185.2202" y="2534.1294">unsubscribe from Scheduler</text>
+    <polygon fill="#181818" points="3485.8345,2577.3281,3495.8345,2581.3281,3485.8345,2585.3281,3489.8345,2581.3281" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="3156.1294" x2="3491.8345" y1="2581.3281" y2="2581.3281"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="3163.1294" y="2576.2622">19</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="129.3208" x="3185.2202" y="2576.2622">record cachedTrace</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="3156.1294" x2="3198.1294" y1="2610.4609" y2="2610.4609"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="3198.1294" x2="3198.1294" y1="2610.4609" y2="2623.4609"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="3157.1294" x2="3198.1294" y1="2623.4609" y2="2623.4609"/>
+    <polygon fill="#181818" points="3166.1294,2606.4609,3156.1294,2610.4609,3166.1294,2614.4609,3162.1294,2610.4609" style="stroke:#181818;stroke-width:1.0;"/>
+    <polygon fill="#181818" points="3167.1294,2619.4609,3157.1294,2623.4609,3167.1294,2627.4609,3163.1294,2623.4609" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="3163.1294" y="2605.395">20</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="305.6143" x="3185.2202" y="2605.395">Reschedule scheduler for handling stale traces</text>
+    <polygon fill="#181818" points="1567.3452,2677.7266,1577.3452,2681.7266,1567.3452,2685.7266,1571.3452,2681.7266" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="810.1123" x2="1573.3452" y1="2681.7266" y2="2681.7266"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="817.1123" y="2669.0942">21</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="341.0596" x="839.2031" y="2661.5278">Send traceId to check if last span has been received</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="75.3403" x="839.2031" y="2676.6606">and cached</text>
+    <path d="M1427.6191,2703.7266 L1613.4102,2703.7266 L1613.4102,2710.8594 L1603.4102,2720.8594 L1427.6191,2720.8594 L1427.6191,2703.7266 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="774.1875" style="stroke:#000000;stroke-width:1.5;" width="2174.5977" x="1427.6191" y="2703.7266"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="140.791" x="1442.6191" y="2716.7935">Check for last span</text>
+    <polygon fill="#181818" points="1600.3452,2737.9922,1590.3452,2741.9922,1600.3452,2745.9922,1596.3452,2741.9922" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="1594.3452" x2="3496.8345" y1="2741.9922" y2="2741.9922"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="1606.3452" y="2736.9263">22</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="180.2988" x="1628.436" y="2736.9263">Get cachedTrace by traceId</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="1589.3452" x2="1631.3452" y1="2771.125" y2="2771.125"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="1631.3452" x2="1631.3452" y1="2771.125" y2="2784.125"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="1590.3452" x2="1631.3452" y1="2784.125" y2="2784.125"/>
+    <polygon fill="#181818" points="1600.3452,2780.125,1590.3452,2784.125,1600.3452,2788.125,1596.3452,2784.125" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="1596.3452" y="2766.0591">23</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="196.2378" x="1618.436" y="2766.0591">Sort spans by startTimestamp</text>
+    <path d="M1437.6191,2799.125 L1514.2432,2799.125 L1514.2432,2806.2578 L1504.2432,2816.2578 L1437.6191,2816.2578 L1437.6191,2799.125 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="671.7891" style="stroke:#000000;stroke-width:1.5;" width="2154.5977" x="1437.6191" y="2799.125"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="31.624" x="1452.6191" y="2812.1919">loop</text>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="207.5498" x="1529.2432" y="2811.3354">[for currentSpan of SortedSpans]</text>
+    <path d="M1447.6191,2823.2578 L1512.062,2823.2578 L1512.062,2830.3906 L1502.062,2840.3906 L1447.6191,2840.3906 L1447.6191,2823.2578 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="640.6563" style="stroke:#000000;stroke-width:1.5;" width="2134.5977" x="1447.6191" y="2823.2578"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="19.4429" x="1462.6191" y="2836.3247">alt</text>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="82.3765" x="1527.062" y="2835.4683">[parentSpan]</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="1589.3452" x2="1631.3452" y1="2891.7891" y2="2891.7891"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="1631.3452" x2="1631.3452" y1="2891.7891" y2="2904.7891"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="1590.3452" x2="1631.3452" y1="2904.7891" y2="2904.7891"/>
+    <polygon fill="#181818" points="1600.3452,2900.7891,1590.3452,2904.7891,1600.3452,2908.7891,1596.3452,2904.7891" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="1596.3452" y="2871.5903">24</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="227.8047" x="1618.436" y="2856.4575">isError = (errorCode in parentSpan</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="220.0415" x="1618.436" y="2871.5903">OR parentSpan status === failed</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="145.374" x="1618.436" y="2886.7231">OR status === failed)</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="1589.3452" x2="1631.3452" y1="2933.9219" y2="2933.9219"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="1631.3452" x2="1631.3452" y1="2933.9219" y2="2946.9219"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="1590.3452" x2="1631.3452" y1="2946.9219" y2="2946.9219"/>
+    <polygon fill="#181818" points="1600.3452,2942.9219,1590.3452,2946.9219,1600.3452,2950.9219,1596.3452,2946.9219" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="1596.3452" y="2928.856">25</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="504.4419" x="1618.436" y="2928.856">apply masterSpan and error tags from parent to current span in cachedTrace</text>
+    <path d="M1457.6191,2961.9219 L1522.062,2961.9219 L1522.062,2969.0547 L1512.062,2979.0547 L1457.6191,2979.0547 L1457.6191,2961.9219 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="494.9922" style="stroke:#000000;stroke-width:1.5;" width="2114.5977" x="1457.6191" y="2961.9219"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="19.4429" x="1472.6191" y="2974.9888">alt</text>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="82.6772" x="1537.062" y="2974.1323">[!isLastSpan]</text>
+    <polygon fill="#181818" points="3144.1294,2996.1875,3154.1294,3000.1875,3144.1294,3004.1875,3148.1294,3000.1875" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="1589.3452" x2="3150.1294" y1="3000.1875" y2="3000.1875"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="1596.3452" y="2995.1216">26</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="196.1045" x="1618.436" y="2995.1216">Update cachedTrace to Cache</text>
+    <path d="M3091.5728,3015.1875 L3156.0156,3015.1875 L3156.0156,3022.3203 L3146.0156,3032.3203 L3091.5728,3032.3203 L3091.5728,3015.1875 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="130.5313" style="stroke:#000000;stroke-width:1.5;" width="470.644" x="3091.5728" y="3015.1875"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="19.4429" x="3106.5728" y="3028.2544">alt</text>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="222.2559" x="3171.0156" y="3027.3979">[cachedTrace not staled or expired]</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="3156.1294" x2="3198.1294" y1="3053.4531" y2="3053.4531"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="3198.1294" x2="3198.1294" y1="3053.4531" y2="3066.4531"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="3157.1294" x2="3198.1294" y1="3066.4531" y2="3066.4531"/>
+    <polygon fill="#181818" points="3167.1294,3062.4531,3157.1294,3066.4531,3167.1294,3070.4531,3163.1294,3066.4531" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="3163.1294" y="3048.3872">27</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="182.7554" x="3185.2202" y="3048.3872">unsubscribe from Scheduler</text>
+    <polygon fill="#181818" points="3485.8345,3091.5859,3495.8345,3095.5859,3485.8345,3099.5859,3489.8345,3095.5859" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="3156.1294" x2="3491.8345" y1="3095.5859" y2="3095.5859"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="3163.1294" y="3090.52">28</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="129.3208" x="3185.2202" y="3090.52">record cachedTrace</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="3156.1294" x2="3198.1294" y1="3124.7188" y2="3124.7188"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="3198.1294" x2="3198.1294" y1="3124.7188" y2="3137.7188"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="3157.1294" x2="3198.1294" y1="3137.7188" y2="3137.7188"/>
+    <polygon fill="#181818" points="3166.1294,3120.7188,3156.1294,3124.7188,3166.1294,3128.7188,3162.1294,3124.7188" style="stroke:#181818;stroke-width:1.0;"/>
+    <polygon fill="#181818" points="3167.1294,3133.7188,3157.1294,3137.7188,3167.1294,3141.7188,3163.1294,3137.7188" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="3163.1294" y="3119.6528">29</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="305.6143" x="3185.2202" y="3119.6528">Reschedule scheduler for handling stale traces</text>
+    <line style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="1457.6191" x2="3572.2168" y1="3153.7188" y2="3153.7188"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="1589.3452" x2="1631.3452" y1="3190.9844" y2="3190.9844"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="1631.3452" x2="1631.3452" y1="3190.9844" y2="3203.9844"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="1590.3452" x2="1631.3452" y1="3203.9844" y2="3203.9844"/>
+    <polygon fill="#181818" points="1600.3452,3199.9844,1590.3452,3203.9844,1600.3452,3207.9844,1596.3452,3203.9844" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="1596.3452" y="3178.3521">30</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="418.4756" x="1618.436" y="3170.7856">Validate transactionType, TransactionAction, service and isError</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="346.3853" x="1618.436" y="3185.9185">to match Config.START_CRITERIA &amp;&amp; !parentSpandId</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="1589.3452" x2="1631.3452" y1="3233.1172" y2="3233.1172"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="1631.3452" x2="1631.3452" y1="3233.1172" y2="3246.1172"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="1590.3452" x2="1631.3452" y1="3246.1172" y2="3246.1172"/>
+    <polygon fill="#181818" points="1600.3452,3242.1172,1590.3452,3246.1172,1600.3452,3250.1172,1596.3452,3246.1172" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="1596.3452" y="3228.0513">31</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="329.2339" x="1618.436" y="3228.0513">cachedTrace.lastSpan = currentSpan.spanContext</text>
+    <polygon fill="#181818" points="3144.1294,3271.25,3154.1294,3275.25,3144.1294,3279.25,3148.1294,3275.25" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="1589.3452" x2="3150.1294" y1="3275.25" y2="3275.25"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="1596.3452" y="3270.1841">32</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="196.1045" x="1618.436" y="3270.1841">Update cachedTrace to Cache</text>
+    <path d="M3091.5728,3290.25 L3156.0156,3290.25 L3156.0156,3297.3828 L3146.0156,3307.3828 L3091.5728,3307.3828 L3091.5728,3290.25 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="130.5313" style="stroke:#000000;stroke-width:1.5;" width="470.644" x="3091.5728" y="3290.25"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="19.4429" x="3106.5728" y="3303.3169">alt</text>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="222.2559" x="3171.0156" y="3302.4604">[cachedTrace not staled or expired]</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="3156.1294" x2="3198.1294" y1="3328.5156" y2="3328.5156"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="3198.1294" x2="3198.1294" y1="3328.5156" y2="3341.5156"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="3157.1294" x2="3198.1294" y1="3341.5156" y2="3341.5156"/>
+    <polygon fill="#181818" points="3167.1294,3337.5156,3157.1294,3341.5156,3167.1294,3345.5156,3163.1294,3341.5156" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="3163.1294" y="3323.4497">33</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="182.7554" x="3185.2202" y="3323.4497">unsubscribe from Scheduler</text>
+    <polygon fill="#181818" points="3485.8345,3366.6484,3495.8345,3370.6484,3485.8345,3374.6484,3489.8345,3370.6484" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="3156.1294" x2="3491.8345" y1="3370.6484" y2="3370.6484"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="3163.1294" y="3365.5825">34</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="129.3208" x="3185.2202" y="3365.5825">record cachedTrace</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="3156.1294" x2="3198.1294" y1="3399.7813" y2="3399.7813"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="3198.1294" x2="3198.1294" y1="3399.7813" y2="3412.7813"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="3157.1294" x2="3198.1294" y1="3412.7813" y2="3412.7813"/>
+    <polygon fill="#181818" points="3166.1294,3395.7813,3156.1294,3399.7813,3166.1294,3403.7813,3162.1294,3399.7813" style="stroke:#181818;stroke-width:1.0;"/>
+    <polygon fill="#181818" points="3167.1294,3408.7813,3157.1294,3412.7813,3167.1294,3416.7813,3163.1294,3412.7813" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="3163.1294" y="3394.7153">35</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="305.6143" x="3185.2202" y="3394.7153">Reschedule scheduler for handling stale traces</text>
+    <polygon fill="#181818" points="2127.8779,3444.9141,2137.8779,3448.9141,2127.8779,3452.9141,2131.8779,3448.9141" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="1584.3452" x2="2133.8779" y1="3448.9141" y2="3448.9141"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="1591.3452" y="3443.8481">36</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="82.5132" x="1613.436" y="3443.8481">Send traceId</text>
+    <path d="M2014.5044,3491.9141 L2312.2617,3491.9141 L2312.2617,3499.0469 L2302.2617,3509.0469 L2014.5044,3509.0469 L2014.5044,3491.9141 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="454.7266" style="stroke:#000000;stroke-width:1.5;" width="1547.7124" x="2014.5044" y="3491.9141"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="252.7573" x="2029.5044" y="3504.981">Recreate Trace from Cached Trace</text>
+    <polygon fill="#181818" points="2160.8779,3526.1797,2150.8779,3530.1797,2160.8779,3534.1797,2156.8779,3530.1797" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="2154.8779" x2="3496.8345" y1="3530.1797" y2="3530.1797"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="2166.8779" y="3525.1138">37</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="181.3208" x="2188.9688" y="3525.1138">get cachedTrace by TraceId</text>
+    <path d="M2024.5044,3545.1797 L2088.9473,3545.1797 L2088.9473,3552.3125 L2078.9473,3562.3125 L2024.5044,3562.3125 L2024.5044,3545.1797 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="394.4609" style="stroke:#000000;stroke-width:1.5;" width="814.5786" x="2024.5044" y="3545.1797"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="19.4429" x="2039.5044" y="3558.2466">alt</text>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="337.5195" x="2103.9473" y="3557.3901">[cachedTrace.lastSpan AND cachedTrace.masterSpan]</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="2149.8779" x2="2191.8779" y1="3583.4453" y2="3583.4453"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="2191.8779" x2="2191.8779" y1="3583.4453" y2="3596.4453"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="2150.8779" x2="2191.8779" y1="3596.4453" y2="3596.4453"/>
+    <polygon fill="#181818" points="2160.8779,3592.4453,2150.8779,3596.4453,2160.8779,3600.4453,2156.8779,3596.4453" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="2156.8779" y="3578.3794">38</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="155.4351" x="2178.9688" y="3578.3794">currentSpan = lastSpan</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="2149.8779" x2="2191.8779" y1="3625.5781" y2="3625.5781"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="2191.8779" x2="2191.8779" y1="3625.5781" y2="3638.5781"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="2150.8779" x2="2191.8779" y1="3638.5781" y2="3638.5781"/>
+    <polygon fill="#181818" points="2160.8779,3634.5781,2150.8779,3638.5781,2160.8779,3642.5781,2156.8779,3638.5781" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="2156.8779" y="3620.5122">39</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="158.9199" x="2178.9688" y="3620.5122">resultTrace = [lastSpan]</text>
+    <path d="M2034.5044,3653.5781 L2111.1284,3653.5781 L2111.1284,3660.7109 L2101.1284,3670.7109 L2034.5044,3670.7109 L2034.5044,3653.5781 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="176.6641" style="stroke:#000000;stroke-width:1.5;" width="440.8252" x="2034.5044" y="3653.5781"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="31.624" x="2049.5044" y="3666.645">loop</text>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="281.8267" x="2126.1284" y="3665.7886">[for i = 0; i &lt; cachedTrace.spans.length; i++]</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="2149.8779" x2="2191.8779" y1="3691.8438" y2="3691.8438"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="2191.8779" x2="2191.8779" y1="3691.8438" y2="3704.8438"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="2150.8779" x2="2191.8779" y1="3704.8438" y2="3704.8438"/>
+    <polygon fill="#181818" points="2160.8779,3700.8438,2150.8779,3704.8438,2160.8779,3708.8438,2156.8779,3704.8438" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="2156.8779" y="3686.7778">40</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="202.0015" x="2178.9688" y="3686.7778">get parentSpan of currentSpan</text>
+    <path d="M2044.5044,3719.8438 L2108.9473,3719.8438 L2108.9473,3726.9766 L2098.9473,3736.9766 L2044.5044,3736.9766 L2044.5044,3719.8438 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="103.3984" style="stroke:#000000;stroke-width:1.5;" width="420.8252" x="2044.5044" y="3719.8438"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="19.4429" x="2059.5044" y="3732.9106">alt</text>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="82.3765" x="2123.9473" y="3732.0542">[parentSpan]</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="2149.8779" x2="2191.8779" y1="3758.1094" y2="3758.1094"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="2191.8779" x2="2191.8779" y1="3758.1094" y2="3771.1094"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="2150.8779" x2="2191.8779" y1="3771.1094" y2="3771.1094"/>
+    <polygon fill="#181818" points="2160.8779,3767.1094,2150.8779,3771.1094,2160.8779,3775.1094,2156.8779,3771.1094" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="2156.8779" y="3753.0435">41</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="264.3608" x="2178.9688" y="3753.0435">insert parent span in resultTrace in front</text>
+    <line style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="2044.5044" x2="2465.3296" y1="3780.1094" y2="3780.1094"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="2149.8779" x2="2191.8779" y1="3802.2422" y2="3802.2422"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="2191.8779" x2="2191.8779" y1="3802.2422" y2="3815.2422"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="2150.8779" x2="2191.8779" y1="3815.2422" y2="3815.2422"/>
+    <polygon fill="#181818" points="2160.8779,3811.2422,2150.8779,3815.2422,2160.8779,3819.2422,2156.8779,3815.2422" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="2156.8779" y="3797.1763">42</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="68.9927" x="2178.9688" y="3797.1763">break loop</text>
+    <path d="M2044.5044,3844.2422 L2108.9473,3844.2422 L2108.9473,3851.375 L2098.9473,3861.375 L2044.5044,3861.375 L2044.5044,3844.2422 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="88.3984" style="stroke:#000000;stroke-width:1.5;" width="784.5786" x="2044.5044" y="3844.2422"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="19.4429" x="2059.5044" y="3857.3091">alt</text>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="324.7524" x="2123.9473" y="3856.4526">[cachedTrace.masterSpan === currentSpan.spanId]</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="2149.8779" x2="2191.8779" y1="3882.5078" y2="3882.5078"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="2191.8779" x2="2191.8779" y1="3882.5078" y2="3895.5078"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="2150.8779" x2="2191.8779" y1="3895.5078" y2="3895.5078"/>
+    <polygon fill="#181818" points="2160.8779,3891.5078,2150.8779,3895.5078,2160.8779,3899.5078,2156.8779,3895.5078" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="2156.8779" y="3877.4419">43</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="545.873" x="2178.9688" y="3877.4419">masterSpan.finishTimestamp = resultTrace[resultTrace.length - 1].finishTimestamp</text>
+    <polygon fill="#181818" points="2729.8418,3920.6406,2739.8418,3924.6406,2729.8418,3928.6406,2733.8418,3924.6406" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="2144.8779" x2="2735.8418" y1="3924.6406" y2="3924.6406"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="2151.8779" y="3919.5747">44</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="108.856" x="2173.9688" y="3919.5747">send resultTrace</text>
+    <path d="M2654.6006,3960.6406 L2779.8159,3960.6406 L2779.8159,3967.7734 L2769.8159,3977.7734 L2654.6006,3977.7734 L2654.6006,3960.6406 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="177.7969" style="stroke:#000000;stroke-width:1.5;" width="976.6162" x="2654.6006" y="3960.6406"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="80.2153" x="2669.6006" y="3973.7075">send Trace</text>
+    <path d="M2664.6006,3984.7734 L2741.2246,3984.7734 L2741.2246,3991.9063 L2731.2246,4001.9063 L2664.6006,4001.9063 L2664.6006,3984.7734 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="75.3984" style="stroke:#000000;stroke-width:1.5;" width="956.6162" x="2664.6006" y="3984.7734"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="31.624" x="2679.6006" y="3997.8403">loop</text>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="103.2217" x="2756.2246" y="3996.9839">[trace elements]</text>
+    <polygon fill="#181818" points="3009.3174,4019.0391,3019.3174,4023.0391,3009.3174,4027.0391,3013.3174,4023.0391" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="2751.8418" x2="3015.3174" y1="4023.0391" y2="4023.0391"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="2758.8418" y="4017.9731">45</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="102.1084" x="2780.9326" y="4017.9731">send each span</text>
+    <polygon fill="#181818" points="3574.7168,4048.1719,3584.7168,4052.1719,3574.7168,4056.1719,3578.7168,4052.1719" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="3021.3174" x2="3580.7168" y1="4052.1719" y2="4052.1719"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="3028.3174" y="4047.106">46</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="115.8892" x="3050.4082" y="4047.106">send span to APM</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="2751.8418" x2="2793.8418" y1="4088.3047" y2="4088.3047"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="2793.8418" x2="2793.8418" y1="4088.3047" y2="4101.3047"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="2752.8418" x2="2793.8418" y1="4101.3047" y2="4101.3047"/>
+    <polygon fill="#181818" points="2762.8418,4097.3047,2752.8418,4101.3047,2762.8418,4105.3047,2758.8418,4101.3047" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="2758.8418" y="4083.2388">47</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="218.3848" x="2780.9326" y="4083.2388">unsubscribe scheduler for traceId</text>
+    <polygon fill="#181818" points="3485.8345,4126.4375,3495.8345,4130.4375,3485.8345,4134.4375,3489.8345,4130.4375" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="2751.8418" x2="3491.8345" y1="4130.4375" y2="4130.4375"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="2758.8418" y="4125.3716">48</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="117.0825" x="2780.9326" y="4125.3716">drop cachedTrace</text>
+  </g>
+</svg>

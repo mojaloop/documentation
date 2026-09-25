@@ -4,11 +4,34 @@
  * https://v1.vuepress.vuejs.org/guide/basic-config.html#app-level-enhancements
  */
 
+const LOCALE_STORAGE_KEY = 'mojaloop-docs-locale-redirected'
+
+function getBrowserLang () {
+  if (typeof navigator === 'undefined') return 'en'
+  const lang = navigator.language || navigator.userLanguage || ''
+  return lang.toLowerCase().split('-')[0]
+}
+
 export default ({
-  Vue, // the version of Vue being used in the VuePress app
-  options, // the options for the root Vue instance
-  router, // the router instance for the app
-  siteData // site metadata
+  Vue,
+  options,
+  router,
+  siteData,
+  isServer
 }) => {
-  // ...apply enhancements for the site.
+  if (isServer) return
+
+  router.afterEach((to) => {
+    const alreadyRedirected = sessionStorage.getItem(LOCALE_STORAGE_KEY)
+    if (alreadyRedirected) return
+
+    sessionStorage.setItem(LOCALE_STORAGE_KEY, '1')
+
+    const browserLang = getBrowserLang()
+    const isOnFrenchPage = to.path.startsWith('/fr/')
+
+    if (browserLang === 'fr' && !isOnFrenchPage) {
+      return router.replace('/fr' + to.path)
+    }
+  })
 }

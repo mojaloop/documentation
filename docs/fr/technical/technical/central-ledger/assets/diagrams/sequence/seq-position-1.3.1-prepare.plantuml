@@ -1,0 +1,283 @@
+/'*****
+ License
+ --------------
+ Copyright © 2017 Bill & Melinda Gates Foundation
+ The Mojaloop files are made available by the Bill & Melinda Gates Foundation under the Apache License, Version 2.0 (the "License") and you may not use these files except in compliance with the License. You may obtain a copy of the License at
+ http://www.apache.org/licenses/LICENSE-2.0
+ Unless required by applicable law or agreed to in writing, the Mojaloop files are distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+ Contributors
+ --------------
+ This is the official list of the Mojaloop project contributors for this file.
+ Names of the original copyright holders (individuals or organizations)
+ should be listed with a '*' in the first column. People who have
+ contributed from an organization can be listed under the organization
+ that actually holds the copyright for their contributions (see the
+ Gates Foundation organization for an example). Those individuals should have
+ their names indented and be marked with a '-'. Email address can be added
+ optionally within square brackets <email>.
+ * Gates Foundation
+ - Name Surname <name.surname@gatesfoundation.com>
+
+ * Georgi Georgiev <georgi.georgiev@modusbox.com>
+ * Rajiv Mothilal <rajiv.mothilal@modusbox.com>
+ * Miguel de Barros <miguel.debarros@modusbox.com>
+ --------------
+ ******'/
+
+@startuml
+' declate title
+title 1.3.1. Consommation par le gestionnaire de position (préparation)
+
+autonumber
+
+' Actor Keys:
+'   boundary - APIs/Interfaces, etc
+'   collections - Kafka Topics
+'   control - Kafka Consumers
+'   entity - Database Access Objects
+'   database - Database Persistence Store
+
+' declare actors
+control "Gestionnaire de position" as POS_HANDLER
+
+entity "Façade de gestion\nde position" as POS_MGMT
+collections "Rubrique de notification" as TOPIC_NOTIFICATIONS
+entity "DAO de position" as POS_DAO
+database "Stockage central" as DB
+
+box "Service central" #LightYellow
+    participant POS_HANDLER
+    participant TOPIC_NOTIFICATIONS
+    participant POS_MGMT
+    participant POS_DAO
+    participant DB
+end box
+
+' start flow
+activate POS_HANDLER
+group Consommation par le gestionnaire de position (préparation)
+    POS_HANDLER -> POS_MGMT: Demander le traitement des transferts
+    activate POS_MGMT
+    POS_MGMT -> POS_MGMT: Vérifier le 1er transfert pour sélectionner le participant et la devise
+    group <color #blue>TRANSACTION BD</color>
+        ' Transaction BD : C'est ici que débuterait la 1re transaction BD dans le futur modèle à 2 transactions BD pour la mise à l'échelle horizontale
+        POS_MGMT -> POS_MGMT: Parcourir le lot et construire la liste des transferIds et calculer sumTransfersInBatch,\nen vérifiant que tous les éléments du lot concernent le bon participant et la bonne devise\n<color #FF0000><b>Code d'erreur :</b> 2001, 3100</color>
+        POS_MGMT -> DB: Récupérer l'état actuel de tous les transferts du tableau depuis la BD avec select whereIn\n(Info : le modèle à 2 transactions BD doit ajouter une mini-étape d'état ici (RECEIVED_PREPARE => RECEIVED_PREPARE_PROCESSING) pour ne pas toucher aux transferts si le traitement a commencé)
+        activate DB
+        hnote over DB #lightyellow
+            transferStateChange
+            transferParticipant
+        end note
+        DB --> POS_MGMT: Renvoyer l'état actuel de tous les transferts sélectionnés depuis la BD
+        deactivate DB
+        POS_MGMT <-> POS_MGMT: Valider l'état actuel (transferStateChange.transferStateId == 'RECEIVED_PREPARE')\n<color #FF0000><b>Code d'erreur :</b> 2001</color> pour les transferts en échec\nLe lot n'est pas rejeté dans son ensemble.
+
+        note right of POS_MGMT #lightgray
+            Liste des transferts utilisés lors du traitement
+            **reservedTransfers** est la liste des transferts à traiter dans le lot
+            **abortedTransfers** est la liste des transferts dans un état incorrect avant le traitement. Actuellement, transferStateChange est défini à ABORTED — cela ne doit être fait que si l'état final n'est pas déjà atteint (idempotence)
+            **processedTransfers** est la liste des transferts ayant traversé l'algorithme de gestion des positions. Les transferts réussis et échoués apparaissent ici car l'ordre et la "position courante" de chacun sont nécessaires pour la réconciliation
+
+            Valeurs scalaires intermédiaires utilisées dans l'algorithme
+            **transferAmount** = payload.amount.amount
+            **sumTransfersInBatch** = SOMME des montants de chaque transfert du lot
+            **currentPosition** = participantPosition.value
+            **reservedPosition** = participantPosition.{original}reservedValue
+            **effectivePosition** = currentPosition + reservedPosition
+            **heldPosition** = effectivePosition + sumTransfersInBatch
+            **availablePosition** = //si le délai du modèle de règlement est IMMÉDIAT :// settlementBalance + participantLimit(NetDebitCap) - effectivePosition, //sinon :// participantLimit(NetDebitCap) - effectivePosition
+            **sumReserved** = SOMME des transferts ayant satisfait les critères de règle et traités
+        end note
+        note over POS_MGMT,DB
+            Réserver la somme des transferts valides du lot par rapport à la position du participant dans la devise de ce lot
+            et calculer la position disponible pour le participant
+        end note
+        POS_MGMT -> DB: Sélectionner effectivePosition FOR UPDATE depuis la BD pour le payeur
+        activate DB
+        hnote over DB #lightyellow
+            participantPosition
+        end note
+        DB --> POS_MGMT: Renvoyer effectivePosition (currentPosition et reservedPosition) depuis la BD pour le payeur
+        deactivate DB
+        POS_MGMT -> POS_MGMT: Incrémenter reservedValue vers heldPosition\n(reservedValue = reservedPosition + sumTransfersInBatch)
+        POS_MGMT -> DB: Persister reservedValue
+        activate DB
+        hnote over DB #lightyellow
+            UPDATE **participantPosition**
+            SET reservedValue += sumTransfersInBatch
+        end note
+        deactivate DB
+        ' Transaction BD : C'est ici que se terminerait la 1re transaction BD dans le futur modèle à 2 transactions BD pour la mise à l'échelle horizontale
+
+
+        POS_MGMT -> DB: Demander les limites de position du participant payeur
+        activate DB
+        hnote over DB #lightyellow
+            FROM **participantLimit**
+            WHERE participantLimit.limitTypeId = 'NET-DEBIT-CAP'
+            AND participantLimit.participantId = payload.payerFsp
+            AND participantLimit.currencyId = payload.amount.currency
+        end note
+        DB --> POS_MGMT: Renvoyer les limites de position
+        deactivate DB
+        POS_MGMT <-> POS_MGMT: **availablePosition** = //si le délai du modèle de règlement est IMMÉDIAT ://\n settlementBalance + participantLimit(NetDebitCap) - effectivePosition\n //sinon ://\n participantLimit(NetDebitCap) - effectivePosition\n(équivalent à = (settlementBalance?) + netDebitCap - currentPosition - reservedPosition)
+        note over POS_MGMT,DB
+            Pour chaque transfert du lot, valider la disponibilité de la position pour couvrir le montant du transfert
+            conformément à l'algorithme de position documenté ci-dessous
+        end note
+        POS_MGMT <-> POS_MGMT: Valider availablePosition pour chaque transfert (voir algorithme ci-dessous)\n<color #FF0000><b>Code d'erreur :</b> 4001</color>
+        note right of POS_MGMT #lightgray
+            01: sumReserved = 0 // Enregistrer la somme des transferts autorisés à progresser vers RESERVED
+            02: sumProcessed = 0 // Enregistrer la somme des transferts déjà traités dans ce lot
+            03: processedTransfers = {} // La liste des transferts traités — pour stocker les informations supplémentaires liées à la décision. En particulier la position "courante"
+            04: pour chaque transfert dans reservedTransfers
+                05: sumProcessed += transfer.amount // le total traité jusqu'ici **(À METTRE À JOUR DANS LE CODE)**
+                06: si availablePosition >= transfer.amount
+                    07: transfer.state = "RESERVED"
+                    08: availablePosition -= preparedTransfer.amount
+                    09: sumRESERVED += preparedTransfer.amount
+                10: sinon
+                    11: preparedTransfer.state = "ABORTED"
+                    12: preparedTransfer.reason = "Plafond de débit net dépassé par cette demande, veuillez réessayer ultérieurement"
+                13: fin si
+                14: runningPosition = currentPosition + sumReserved // la valeur initiale de la position du participant plus la valeur totale acceptée dans le lot jusqu'ici
+                15: runningReservedValue = sumTransfersInBatch - sumProcessed + reservedPosition **(À METTRE À JOUR DANS LE CODE)** // la réduction progressive de la valeur réservée totale au début du lot.
+                16: Ajouter le transfert à la liste processedTransfer en enregistrant l'état et les positions courantes { transferState, transfer, rawMessage, transferAmount, runningPosition, runningReservedValue }
+            16: fin pour
+        end note
+        note over POS_MGMT,DB
+            Une fois le résultat de tous les transferts connu, mettre à jour la position du participant et retirer le montant réservé associé au lot
+            (S'il existe des seuils d'alarme, les traiter en renvoyant les limites dont le seuil a été franchi)
+            Effectuer une insertion groupée des transferStateChanges liés au traitement, en utilisant le résultat pour compléter participantPositionChange et l'insérer en lot afin de persister la position courante
+        end note
+        POS_MGMT->POS_MGMT: Évaluer les seuils de limite sur la position finale\nen les ajoutant à la liste d'alarmes si déclenchés
+
+        ' Transaction BD : C'est ici que débuterait la 2e transaction BD dans le futur modèle à 2 transactions BD pour la mise à l'échelle horizontale
+        POS_MGMT->DB: Persister la dernière **valeur** et **reservedValue** en BD pour le payeur
+            hnote over DB #lightyellow
+                UPDATE **participantPosition**
+                SET value += sumRESERVED,
+                reservedValue -= sumTransfersInBatch
+            end note
+            activate DB
+            deactivate DB
+
+        POS_MGMT -> DB: Persister en lot les transferStateChange pour tous les processedTransfers
+        hnote over DB #lightyellow
+                batch INSERT **transferStateChange**
+                select for update from transfer table where transferId in ([transferBatch.transferId,...])
+                build list of transferStateChanges from transferBatch
+
+        end note
+        activate DB
+        deactivate DB
+
+        POS_MGMT->POS_MGMT: Remplir batchParticipantPositionChange à partir du transferStateChange résultant et de la liste processedTransfer précédente
+
+        note right of POS_MGMT #lightgray
+            En pratique :
+                SET transferStateChangeId = processedTransfer.transferStateChangeId,
+                participantPositionId = preparedTransfer.participantPositionId,
+                value = preparedTransfer.positionValue,
+                reservedValue = preparedTransfer.positionReservedValue
+        end note
+        POS_MGMT -> DB: Persister en lot le changement de position du participant pour tous les processedTransfers
+        hnote over DB #lightyellow
+                batch INSERT **participantPositionChange**
+        end note
+        activate DB
+        deactivate DB
+        ' Transaction BD : C'est ici que se terminerait la 2e transaction BD dans le futur modèle à 2 transactions BD pour la mise à l'échelle horizontale
+    end
+    POS_MGMT --> POS_HANDLER: Renvoyer une map des transferIds et leurs transferStateChanges
+    deactivate POS_MGMT
+    alt Calcul et validation dernière position préparation (succès)
+        note right of POS_HANDLER #yellow
+            Message :
+            {
+                id: <transferMessage.transferId>
+                from: <transferMessage.payerFsp>,
+                to: <transferMessage.payeeFsp>,
+                type: application/json
+                content: {
+                    headers: <transferHeaders>,
+                    payload: <transferMessage>
+                },
+                metadata: {
+                    event: {
+                        id: <uuid>,
+                        responseTo: <previous.uuid>,
+                        type: transfer,
+                        action: prepare,
+                        createdAt: <timestamp>,
+                        state: {
+                            status: "success",
+                            code: 0
+                        }
+                    }
+                }
+            }
+        end note
+        POS_HANDLER -> TOPIC_NOTIFICATIONS: Publier l'événement de notification\n<color #FF0000><b>Code d'erreur :</b> 2003</color>
+        activate TOPIC_NOTIFICATIONS
+        deactivate TOPIC_NOTIFICATIONS
+   else Calcul et validation dernière position préparation (échec)
+        note right of POS_HANDLER #red: Échec de validation !
+
+        group Persister l'état du transfert (transferState='ABORTED' si contrôle de position échoué)
+            POS_HANDLER -> POS_DAO: Demande de persister le transfert\n<color #FF0000><b>Code d'erreur :</b> 2003</color>
+            activate POS_DAO
+            note right of POS_HANDLER #lightgray
+                transferStateChange.state = "ABORTED",
+                transferStateChange.reason = "Net Debit Cap exceeded by this request at this time, please try again later"
+            end note
+            POS_DAO -> DB: Persister l'état du transfert
+            hnote over DB #lightyellow
+                transferStateChange
+            end note
+            activate DB
+            deactivate DB
+            POS_DAO --> POS_HANDLER: Renvoyer le succès
+            deactivate POS_DAO
+        end
+
+        note right of POS_HANDLER #yellow
+            Message :
+            {
+                id: <transferMessage.transferId>
+                from: <ledgerName>,
+                to: <transferMessage.payerFsp>,
+                type: application/json
+                content: {
+                    headers: <transferHeaders>,
+                    payload: {
+                        "errorInformation": {
+                            "errorCode": 4001,
+                            "errorDescription": "Payer FSP insufficient liquidity",
+                            "extensionList": <transferMessage.extensionList>
+                    }
+                },
+                metadata: {
+                    event: {
+                        id: <uuid>,
+                        responseTo: <previous.uuid>,
+                        type: notification,
+                        action: prepare,
+                        createdAt: <timestamp>,
+                        state: {
+                            status: 'error',
+                            code: <errorInformation.errorCode>
+                            description: <errorInformation.errorDescription>
+                        }
+                    }
+                }
+            }
+        end note
+        POS_HANDLER -> TOPIC_NOTIFICATIONS: Publier l'événement de notification (échec) pour le payeur\n<color #FF0000><b>Code d'erreur :</b> 2003</color>
+        activate TOPIC_NOTIFICATIONS
+        deactivate TOPIC_NOTIFICATIONS
+        deactivate POS_HANDLER
+   end
+end
+deactivate POS_HANDLER
+@enduml
