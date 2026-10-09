@@ -2270,6 +2270,89 @@ module.exports = {
           ]
         }
       ],
+      '/es/adoption/': [
+        {
+          title: 'Guía del esquema de pagos',
+          collapsable: false,
+          sidebarDepth: 2,
+          children: [
+            ['Scheme/platform-operating-guideline', 'Plantilla de directriz de operación de la plataforma'],
+            ['Scheme/scheme-business-rules', 'Plantilla de reglas de negocio del esquema de pagos'],
+            ['Scheme/scheme-key-choices', 'Decisiones clave del esquema de pagos'],
+            ['Scheme/scheme-participation-agreement', 'Plantilla de acuerdo de participación en el esquema de pagos'],
+            ['Scheme/scheme-uniform-glossary', 'Plantilla de glosario uniforme'],
+          ]
+        },
+        {
+          title: 'Guía de operaciones del Hub',
+          collapsable: false,
+          sidebarDepth: 1,
+          children: [
+            {
+              title: 'Guía de operaciones técnicas',
+              collapsable: true,
+              sidebarDepth: 2,
+              children: [
+                'HubOperations/TechOps/tech-ops-introduction',
+                'HubOperations/TechOps/incident-management',
+                'HubOperations/TechOps/problem-management',
+                'HubOperations/TechOps/change-management',
+                'HubOperations/TechOps/release-management',
+                'HubOperations/TechOps/defect-triage',
+                'HubOperations/TechOps/key-terms-kpis',
+                'HubOperations/TechOps/incident-management-escalation-matrix',
+                'HubOperations/TechOps/service-level-agreements'
+              ]
+            },
+            {
+              title: 'Guía de gestión de la liquidación',
+              collapsable: true,
+              sidebarDepth: 2,
+              children: [
+                'HubOperations/Settlement/settlement-management-introduction',
+                'HubOperations/Settlement/settlement-basic-concepts',
+                'HubOperations/Settlement/ledgers-in-the-hub',
+              ]
+            },
+            {
+              title: 'Guía del Finance Portal v2',
+              collapsable: true,
+              sidebarDepth: 2,
+              children: [
+                'HubOperations/Portalv2/busops-portal-introduction',
+                'HubOperations/Portalv2/settlement-business-process',
+                'HubOperations/Portalv2/accessing-the-portal',
+                'HubOperations/Portalv2/managing-windows',
+                'HubOperations/Portalv2/settling',
+                'HubOperations/Portalv2/checking-settlement-details',
+                'HubOperations/Portalv2/monitoring-dfsp-financial-details',
+                'HubOperations/Portalv2/enabling-disabling-transactions',
+                'HubOperations/Portalv2/recording-funds-in-out',
+                'HubOperations/Portalv2/updating-ndc',
+                'HubOperations/Portalv2/searching-for-transfer-data'
+              ]
+            },
+            {
+              title: 'Control de acceso basado en roles',
+              collapsable: true,
+              sidebarDepth: 2,
+              children: [
+                'HubOperations/RBAC/Role-based-access-control'
+              ]
+            },
+            {
+              title: 'Guía de incorporación para el Operador del Hub',
+              collapsable: true,
+              sidebarDepth: 2,
+              children: [
+                'HubOperations/Onboarding/onboarding-introduction',
+                'HubOperations/Onboarding/business-onboarding',
+                'HubOperations/Onboarding/technical-onboarding',
+              ]
+            }
+          ]
+        }
+      ],
       '/es/community/': [
         {
           title: 'Comunidad',
