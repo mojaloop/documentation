@@ -13,6 +13,12 @@
   "scripts": {
     "dev": "NODE_OPTIONS=--openssl-legacy-provider npx npx vuepress dev docs",
     "build": "NODE_OPTIONS='--max-old-space-size=8192' npx npx vuepress build docs",
+    "i18n:check": "node scripts/i18n-drift-check.mjs --base origin/master --working-tree --markdown-out i18n-report.md --json-out i18n-report.json",
+    "i18n:audit": "node scripts/i18n-drift-check.mjs --audit",
+    "i18n:baseline": "node scripts/i18n-drift-check.mjs --audit --update-baseline",
+    "i18n:stamp": "node scripts/i18n-drift-check.mjs --stamp",
+    "i18n:explain": "node scripts/i18n-drift-check.mjs --explain",
+    "i18n:test": "node --test scripts/i18n-drift-check.test.mjs",
     "build:plantuml:all": "./scripts/_build_plantuml.sh",
     "build:plantuml:diff": "MODE=STAGED_GIT ./scripts/_build_plantuml.sh",
     "lint": "npx markdownlint './docs/**/*.md' --ignore node_modules --config markdownlint.yaml",
