@@ -2392,6 +2392,28 @@ module.exports = {
           ]
         }
       ],
+      '/es/product/': [
+        {
+          title: 'Funcionalidades de Mojaloop',
+          collapsable: false,
+          sidebarDepth: 2,
+          children: [
+            ['features/ml-feature-list', 'Acerca de Mojaloop'],
+            ['features/use-cases', 'Casos de uso'],
+            ['features/transaction', 'Transacciones'],
+            ['features/risk', 'Gestión de riesgos'],
+            ['features/connectivity', 'Incorporación de DFSP'],
+            ['features/product', 'Portales y funcionalidades operativas'],
+            ['features/tariffs', 'Tarifas y reglas tarifarias'],
+            ['features/performance', 'Rendimiento'],
+            ['features/deployment', 'Despliegue de Mojaloop'],
+            ['features/security', 'Seguridad de Mojaloop'],
+            ['features/dfsp-infrastructure-security', 'Seguridad de la infraestructura del DFSP'],
+            ['features/engineering', 'Principios de ingeniería'],
+            ['features/invariants', 'Invariantes'],
+            ['features/development', 'Desarrollo continuo']]
+        }
+      ],
     }
   },
 

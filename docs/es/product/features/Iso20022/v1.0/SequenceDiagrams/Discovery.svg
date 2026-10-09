@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="842px" preserveAspectRatio="none" style="width:1462px;height:842px;background:#FFFFFF;" version="1.1" viewBox="0 0 1462 842" width="1462px" zoomAndPan="magnify">
+  <title>Discovery ISO 20022 Message Flow</title>
+  <defs/>
+  <g>
+    <text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="278.6875" x="592.8452" y="27.9951">Discovery ISO 20022 Message Flow</text>
+    <rect fill="none" height="599.3203" style="stroke:#000000;stroke-width:1.5;" width="1445.3779" x="10" y="190.9922"/>
+    <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="67" x2="67" y1="73.5938" y2="807.3125"/>
+    <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="382.2842" x2="382.2842" y1="73.5938" y2="807.3125"/>
+    <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="796.7813" x2="796.7813" y1="73.5938" y2="807.3125"/>
+    <rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="94.2881" x="20" y="42.2969"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="80.2881" x="27" y="62.292">Payer DFSP</text>
+    <rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="94.2881" x="20" y="806.3125"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="80.2881" x="27" y="826.3076">Payer DFSP</text>
+    <rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="77.0205" x="344.2842" y="42.2969"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="63.0205" x="351.2842" y="62.292">Mojaloop</text>
+    <rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="77.0205" x="344.2842" y="806.3125"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="63.0205" x="351.2842" y="826.3076">Mojaloop</text>
+    <rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="97.1455" x="748.7813" y="42.2969"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="83.1455" x="755.7813" y="62.292">Payee DFSP</text>
+    <rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="97.1455" x="748.7813" y="806.3125"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="83.1455" x="755.7813" y="826.3076">Payee DFSP</text>
+    <polygon fill="#181818" points="370.7944,100.7266,380.7944,104.7266,370.7944,108.7266,374.7944,104.7266" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="67.144" x2="376.7944" y1="104.7266" y2="104.7266"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="74.144" y="99.6606">1</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="243.1724" x="87.1895" y="99.6606">GET /parties/{type}/{PartyIdentifier}</text>
+    <polygon fill="#181818" points="785.354,129.8594,795.354,133.8594,785.354,137.8594,789.354,133.8594" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="382.7944" x2="791.354" y1="133.8594" y2="133.8594"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="389.7944" y="128.7935">2</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="243.1724" x="402.8398" y="128.7935">GET /parties/{type}/{PartyIdentifier}</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="797.354" x2="839.354" y1="162.9922" y2="162.9922"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="839.354" x2="839.354" y1="162.9922" y2="175.9922"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="798.354" x2="839.354" y1="175.9922" y2="175.9922"/>
+    <polygon fill="#181818" points="808.354,171.9922,798.354,175.9922,808.354,179.9922,804.354,175.9922" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="804.354" y="157.9263">3</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="208.3428" x="817.3994" y="157.9263">Validate payees account status.</text>
+    <path d="M10,190.9922 L74.4429,190.9922 L74.4429,198.125 L64.4429,208.125 L10,208.125 L10,190.9922 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="599.3203" style="stroke:#000000;stroke-width:1.5;" width="1445.3779" x="10" y="190.9922"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="19.4429" x="25" y="204.0591">alt</text>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="112.8145" x="89.4429" y="203.2026">[if account active]</text>
+    <polygon fill="#181818" points="393.7944,356.8867,383.7944,360.8867,393.7944,364.8867,389.7944,360.8867" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="387.7944" x2="796.354" y1="360.8867" y2="360.8867"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="399.7944" y="348.2544">4</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="242.2393" x="412.8398" y="340.688">PUT /parties/{type}/{PartyIdentifier}</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="373.3818" x="416.9722" y="355.8208">Returns supported currencies and account owner details.</text>
+    <path d="M802,213.125 L802,480.125 L1440,480.125 L1440,223.125 L1430,213.125 L802,213.125 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M1430,213.125 L1430,223.125 L1440,223.125 L1430,213.125 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="123.4175" x="808" y="230.1919">acmt.024.001.04</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="305.9189" x="808" y="245.3247">Account Identification Verification Report</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8.271" x="808" y="260.4575">{</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="85.4331" x="808" y="275.5903">&quot;Assgnmt&quot;: {</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="296.4229" x="824.5293" y="290.7231">&quot;MsgId&quot;: &quot;01JBVM14S6SC453EY9XB9GXQB5&quot;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="274.4219" x="824.5293" y="305.856">&quot;CreDtTm&quot;: &quot;2024-11-04T12:57:37.318Z&quot;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="318.9507" x="824.5293" y="320.9888">&quot;Assgnr&quot;: { &quot;Agt&quot;: { &quot;FinInstnId&quot;: { &quot;Othr&quot;: { &quot;Id&quot;:</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="95.1323" x="1147.6123" y="320.9888">&quot;payee-dfps&quot;</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="37.2163" x="1246.877" y="320.9888">}}}},</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="321.604" x="824.5293" y="336.1216">&quot;Assgne&quot;: { &quot;Agt&quot;: { &quot;FinInstnId&quot;: { &quot;Othr&quot;: { &quot;Id&quot;:</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="92.7266" x="1150.2656" y="336.1216">&quot;payer-dfsp&quot;</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="41.355" x="1247.1245" y="336.1216">}}}}}</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="51.124" x="808" y="351.2544">&quot;Rpt&quot;: {</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="90.5811" x="824.5293" y="366.3872">&quot;Vrfctn&quot;: true,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="64.105" x="824.5293" y="381.52">&quot;OrgnlId&quot;:</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="175.9634" x="892.7666" y="381.52">&quot;MSISDN/16665551002&quot;</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="4.1323" x="1068.73" y="381.52">,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="512.2432" x="824.5293" y="396.6528">&quot;UpdtdPtyAndAcctId&quot;: {&quot;Pty&quot;: {&quot;Id&quot;: {&quot;PrvtId&quot;: {&quot;Othr&quot;: {&quot;SchmeNm&quot;: {&quot;Prtry&quot;:</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="71.7158" x="1340.9048" y="396.6528">&quot;MSISDN&quot;</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="12.4033" x="1412.6206" y="396.6528">},</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="28.4248" x="1150.9829" y="411.7856">&quot;Id&quot;:</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="113.0454" x="1183.54" y="411.7856">&quot;16665551002&quot;</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="28.9453" x="1296.5854" y="411.7856">}}},</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="38.7271" x="1006.3516" y="426.9185">&quot;Nm&quot;:</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="127.9307" x="1049.2109" y="426.9185">&quot;Chikondi Banda&quot;</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="12.4033" x="1177.1416" y="426.9185">},</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="241.8013" x="965.0283" y="442.0513">&quot;Agt&quot;: { &quot;FinInstnId&quot;: { &quot;Othr&quot;: { &quot;Id&quot;:</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="95.1323" x="1210.9619" y="442.0513">&quot;payee-dfsp&quot;</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="28.9453" x="1310.2266" y="442.0513">}}},</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="101.4165" x="965.0283" y="457.1841">&quot;Acct&quot;: { &quot;Ccy&quot;:</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="50.8955" x="1070.5771" y="457.1841">&quot;MWK&quot;</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="16.542" x="1125.605" y="457.1841">}}</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8.271" x="808" y="472.3169">}</text>
+    <polygon fill="#181818" points="78.144,502.5156,68.144,506.5156,78.144,510.5156,74.144,506.5156" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="72.144" x2="381.7944" y1="506.5156" y2="506.5156"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="84.144" y="501.4497">5</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="242.2393" x="97.1895" y="501.4497">PUT /parties/{type}/{PartyIdentifier}</text>
+    <line style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="10" x2="1455.3779" y1="515.5156" y2="515.5156"/>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="124.416" x="15" y="525.7261">[if account inactive]</text>
+    <polygon fill="#181818" points="393.7944,655.3828,383.7944,659.3828,393.7944,663.3828,389.7944,659.3828" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="387.7944" x2="796.354" y1="659.3828" y2="659.3828"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="399.7944" y="646.7505">6</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="278.605" x="412.8398" y="639.1841">PUT /parties/{type}/{PartyIdentifier}/error</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="268.563" x="416.9722" y="654.3169">Returns error code 3204 Party not found.</text>
+    <path d="M802,534.3203 L802,755.3203 L1307,755.3203 L1307,544.3203 L1297,534.3203 L802,534.3203 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M1297,534.3203 L1297,544.3203 L1307,544.3203 L1297,534.3203 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="123.4175" x="808" y="551.3872">acmt.024.001.04</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="305.9189" x="808" y="566.52">Account Identification Verification Report</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8.271" x="808" y="581.6528">{</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="85.4331" x="816.2646" y="596.7856">&quot;Assgnmt&quot;: {</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="61.5024" x="824.5293" y="611.9185">&quot;Id&quot;: 123,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="236.5708" x="824.5293" y="627.0513">&quot;CreDtTm&quot;: &quot;2013-03-07T16:30:00&quot;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="318.9507" x="824.5293" y="642.1841">&quot;Assgnr&quot;: { &quot;Agt&quot;: { &quot;FinInstnId&quot;: { &quot;Othr&quot;: { &quot;Id&quot;:</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="95.1323" x="1147.6123" y="642.1841">&quot;payee-dfsp&quot;</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="37.2163" x="1246.877" y="642.1841">}}}},</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="321.604" x="824.5293" y="657.3169">&quot;Assgne&quot;: { &quot;Agt&quot;: { &quot;FinInstnId&quot;: { &quot;Othr&quot;: { &quot;Id&quot;:</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="92.7266" x="1150.2656" y="657.3169">&quot;payer-dfsp&quot;</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="45.4873" x="1247.1245" y="657.3169">}}}}},</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="51.124" x="816.2646" y="672.4497">&quot;Rpt&quot;: {</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="94.8276" x="824.5293" y="687.5825">&quot;Vrfctn&quot;: false,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="64.105" x="824.5293" y="702.7153">&quot;OrgnlId&quot;:</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="175.9634" x="892.7666" y="702.7153">&quot;MSISDN/16665551002&quot;</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="4.1323" x="1068.73" y="702.7153">,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="236.5708" x="824.5293" y="717.8481">&quot;CreDtTm&quot;: &quot;2013-03-07T16:30:00&quot;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="104.5776" x="824.5293" y="732.981">&quot;Rsn&quot;: { &quot;Prtry&quot;:</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="36.1816" x="933.2393" y="732.981">3204</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="16.542" x="973.5532" y="732.981">}}</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8.271" x="808" y="748.1138">}</text>
+    <polygon fill="#181818" points="78.144,778.3125,68.144,782.3125,78.144,786.3125,74.144,782.3125" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="72.144" x2="381.7944" y1="782.3125" y2="782.3125"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="84.144" y="777.2466">7</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="278.605" x="97.1895" y="777.2466">PUT /parties/{type}/{PartyIdentifier}/error</text>
+  </g>
+</svg>

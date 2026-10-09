@@ -115,19 +115,24 @@ exception is the compound *Interoperability Scheme*, where the qualifier replace
 | Account Lookup Service | Account Lookup Service (ALS) | Servicio de Consulta de Cuentas | The Mojaloop component, `account-lookup-service`. Kept in English and owns the acronym ALS. |
 | Account Lookup System | Account Lookup System | Sistema de Consulta de Cuentas | The abstract entity named in both source glossaries. Kept in English. The acronym ALS belongs to Account Lookup Service, not to this entry. |
 | Account Validation | Validación de cuenta | | |
+| Acquirer | Adquirente |  | Also «DFSP adquirente». Consistent with Merchant Acquisition → Afiliación de comercios. |
 | Active User | Usuario activo | | |
 | Addressing | Direccionamiento | | |
 | Adjacencies | Servicios adyacentes | | |
+| Adopter | Adoptante |  |  |
 | Agent | Agente | | |
 | Agent Outlet | Punto de atención del agente | | «punto de agente» is non-standard in LatAm agent-banking literature. |
 | Agent Till | Línea del agente | | The source covers a registered SIM line or a POS machine, so the term has to cover both. |
 | Agent-Initiated Cash-In | Depósito de efectivo iniciado por el agente | | |
 | Agent-Initiated Cash-Out | Retiro de efectivo iniciado por el agente | | |
 | Aggregator | Agregador | | |
+| Agreement of Terms | Acuerdo de términos |  | The Mojaloop transaction phase. Kept lowercase in running prose. |
+| Agreement Phase | Fase de acuerdo |  |  |
 | Alias | Alias | | |
 | Anti-Money Laundering | Prevención del lavado de dinero | | Uses «lavado de dinero». «lavado de activos» is the GAFILAT regional wording and is acceptable in country-specific material. |
 | Anti-Money Laundering (AML) | Prevención del lavado de dinero (PLD) | | Same choice as the entry above; the abbreviation PLD follows it. |
 | API | API | | Universal, not translated. |
+| Applicability | Aplicabilidad |  | Recurring section heading across the product corpus. |
 | Applicable Law | Ley aplicable | | Broader than «legislación»; the definition spans treaties, directives and guidance. |
 | Applicant | Solicitante | | |
 | Application Program Interface (API) | Interfaz de programación de aplicaciones (API) | | |
@@ -140,6 +145,7 @@ exception is the compound *Interoperability Scheme*, where the qualifier replace
 | Authorized /institution entity | Entidad o institución autorizada | | |
 | Automated Clearing House | Cámara de compensación automatizada (ACH) | | ACH circulates untranslated in LatAm. |
 | B2P | B2P | | |
+| Back office | Back office |  | Kept in English: «el back office». |
 | Bank | Banco | | |
 | Bank Account | Cuenta bancaria | | |
 | Bank Account Identifier | Identificador de cuenta bancaria | | |
@@ -148,6 +154,7 @@ exception is the compound *Interoperability Scheme*, where the qualifier replace
 | Bank to Wallet | Banco a billetera | | |
 | Bank-Led Model | Modelo liderado por bancos | | |
 | Basic Phone | Teléfono básico | | |
+| Beneficial owner | Beneficiario final |  | Distinct from Payee → Beneficiario. Standard GAFI term. |
 | Bill Payment | Pago de facturas | | «pago de servicios» narrows to utilities; Biller appears in adjacent definitions. |
 | Biometric Authentication | Autenticación biométrica | | |
 | Blacklist | Lista negra | | Established AML term of art, and pairs with «lista blanca». |
@@ -161,20 +168,28 @@ exception is the compound *Interoperability Scheme*, where the qualifier replace
 | Bulk upload service | Servicio de carga masiva | | |
 | Bundling | Empaquetamiento de servicios | | |
 | Business | Empresa | compañía | |
+| Cache | Caché |  | Also «almacenado en caché», «caché obsoleta». |
 | Cash Management | Gestión de efectivo | | |
 | Cash-In | Depósito de efectivo | | |
 | Cash-Out | Retiro de efectivo | | |
 | Certificate Signing Request | Solicitud de firma de certificado (CSR) | | CSR is the acronym practitioners use. |
+| Chaos testing | Pruebas de caos |  |  |
+| Charging model | Modelo de cobro |  |  |
 | Chip Card | Tarjeta con chip | | |
 | Clearing | Compensación | liquidación | Careful with settlement. These two are a false-friend pair: clearing is compensación, settlement is liquidación. Swapping them changes the meaning. |
 | Clearing House | Cámara de compensación | | |
 | Client Authentication | Autenticación de cliente | | This is TLS client auth, not the Customer. |
 | Closed-Loop | Circuito cerrado | | |
+| Cluster | Clúster |  |  |
 | Combatting Financing of Terrorism (CFT) | Combate al financiamiento del terrorismo (CFT) | | |
 | Combatting Terrorist Financing | Combate al financiamiento del terrorismo | | Same term as Combatting Financing of Terrorism (CFT); both source glossaries define them identically. |
 | Commission | Comisión | | |
 | Commit | Confirmación (commit) | | |
+| Commodity hardware | Hardware básico |  |  |
+| Compliance (regulatory) | Cumplimiento normativo |  |  |
 | Condition | Condición (condition) | | Interledger API field name; matches how Commit is glossed. |
+| Contributors | Contribuyentes |  | Matches docs/es/community/contributing/contributors-guide.md. |
+| Core banking system | Sistema de core bancario |  |  |
 | Corridor | Corredor | | |
 | Counterparty | Contraparte | | |
 | Coupon | Cupón | | |
@@ -185,6 +200,7 @@ exception is the compound *Interoperability Scheme*, where the qualifier replace
 | Cross Border Trade Finance Services | Servicios de financiamiento del comercio transfronterizo | | |
 | Cross-Border | Transfronterizo | | |
 | Cross-FX Transfer | Transferencia con conversión de divisas (cross-FX) | | «cambio de divisa» suggests a bureau de change. |
+| Currency conversion | Conversión de moneda |  | The operation itself. «Conversión de divisas» is used for FX and cross-FX contexts; see Cross-FX Transfer. |
 | Current Position | Posición actual | | |
 | Customer | Cliente | | |
 | Customer Database Management | Gestión de la base de datos de clientes | | |
@@ -192,9 +208,11 @@ exception is the compound *Interoperability Scheme*, where the qualifier replace
 | Customer-Initiated Cash-Out | Retiro de efectivo iniciado por el cliente | | Reuses the defined term «retiro de efectivo» verbatim. |
 | Customer-Initiated Purchase | Compra iniciada por el cliente | | |
 | Customer-Initiated Purchase via QR | Compra iniciada por el cliente mediante QR | | |
+| Dashboard | Tablero |  |  |
 | Data Controller | Responsable del tratamiento de datos | | |
 | Data Portability | Portabilidad de datos | | |
 | Data Protection | Protección de datos | | |
+| Deployment | Despliegue | Implementación | «Implementación» is reserved for Implementation. |
 | Deposit Guarantee System | Sistema de garantía de depósitos | | |
 | DFSP (Digital Financial Services Provider) | DFSP (Proveedor de servicios financieros digitales) | | |
 | Diffie-Hellman solution | Solución Diffie-Hellman | | |
@@ -204,27 +222,37 @@ exception is the compound *Interoperability Scheme*, where the qualifier replace
 | Digital Payment | Pago digital | | |
 | Direct Debit | Débito directo | | |
 | Directory | Directorio | | |
+| Discovery Phase | Fase de descubrimiento |  |  |
 | Dispute Resolution | Resolución de disputa | | |
+| Document History | Historial del documento |  | Recurring section heading. Column heads: Versión, Fecha, Autor, Detalle. |
 | Domestic | Nacional | doméstica | «doméstico» is a false friend in payments; it reads as household. |
+| Downtime | Tiempo de inactividad |  |  |
+| Due diligence | Debida diligencia |  |  |
 | Electronic consent | Consentimiento electrónico | | |
 | eMoney | Dinero electrónico | | |
 | eMoney Accounts and Transaction Services | Cuentas de dinero electrónico y servicios transaccionales | | |
 | eMoney Issuer | Emisor de dinero electrónico | | |
 | Encryption | Cifrado | | |
+| End to end | De extremo a extremo |  | Also «no repudio de extremo a extremo», extending No repudio. |
 | End User | Usuario final | | |
 | End-User Fees | Tarifas al usuario final | | Follows Fees; GSMA/CGAP Spanish splits agente=comisión, cliente=tarifa. |
 | Enterprise | Persona jurídica | | The source is any non-individual customer of a DFSP, which is what «persona jurídica» names. Keeps «empresa» free for Business. |
 | Escrow or Trust Account | Cuenta de depósito en garantía (escrow) o cuenta fiduciaria | | |
 | Exceptions | Excepciones | | |
+| Exchange rate | Tipo de cambio |  |  |
 | External Account | Cuenta externa | | |
 | FATF | GAFI (Grupo de Acción Financiera Internacional) | | GAFI is the established Spanish acronym used by LatAm regulators. |
 | Feature Phone | Teléfono no inteligente (feature phone) | | Was too close to Basic Phone «teléfono básico», a separate entry. |
 | Fees | Tarifas | | Was «comisiones», colliding with Commission, which is a different concept. Separates cleanly from Commission («comisión»), which is the agent incentive. |
+| Fees and Tariffs | Tarifas y reglas tarifarias | Tarifas y aranceles | Page title only. «Fees» and «tariff» both map to «tarifa», so the literal is nonsense; the page's own definition of tariff (the rule that sets how a charge is calculated) disambiguates. «Aranceles» means customs duties and is wrong. |
 | Fiat Currencies | Monedas fiduciarias | | |
 | Financial Inclusion | Inclusión financiera | | |
 | Financial Literacy | Alfabetización financiera | | The definition is about consumers *having* skills, not being taught. |
 | Fintech | Fintech | | |
 | Float | Flotante | | |
+| Foreign exchange | Cambio de divisas |  | The domain. See Currency conversion for the operation. |
+| Foreign Exchange Provider (FXP) | Proveedor de cambio de divisas (FXP) | Proveedor de divisas | The acronym FXP is kept and never pluralised. |
+| Forensic audit | Auditoría forense |  |  |
 | Fraud | Fraude | | |
 | Fraud Risk Management | Gestión del riesgo de fraude | | |
 | FSP | FSP | PSF | Acronym stays in English. Gloss it on first use in a page as «FSP (proveedor de servicios financieros)», then use FSP alone. |
@@ -233,15 +261,22 @@ exception is the compound *Interoperability Scheme*, where the qualifier replace
 | Fulfillment | Fulfilment | cumplimiento | Interledger term of art (the SHA-256 preimage) so it stays in English, spelled «fulfilment» as the API does. |
 | FX | FX (divisas) | | |
 | G2P | G2P | | |
+| Gateway | Gateway | Puerta de enlace | Kept in English with a Spanish article: «el gateway». |
 | Governance | Gobernanza | | |
 | Government Agency | Organismo público | | |
 | Government Payments Acceptance Services | Servicios de aceptación de pagos para organismos públicos | | «pagos gubernamentales» reads as payments made by government, not collected by it. Consistent with Government Agency, «organismo público». |
 | Gross Settlement | Liquidación bruta | | |
 | HCE | HCE | | |
+| Header (HTTP) | Encabezado | Cabecera | «Cabecera» is Peninsular. |
 | Hub | Hub | concentrador | Kept in English, as the Mojaloop component name. |
+| Hub Operator | Operador del Hub |  |  |
+| Idempotency | Idempotencia |  | Also «idempotente». |
 | Identifier Service | Servicio de identificadores | | |
 | Identity | Identidad | | |
+| Identity assurance | Aseguramiento de identidad |  |  |
 | Immediate Funds Transfer | Transferencia inmediata de fondos | | |
+| Inclusive Instant Payments System (IIPS) | Sistema de pagos instantáneos inclusivo (IIPS) |  |  |
+| Infrastructure as Code (IaC) | Infraestructura como código (IaC) |  |  |
 | Insurance Products | Productos de seguros | | |
 | Insuring Lives or assets | Aseguramiento de vidas o bienes | | |
 | Interchange | Tasa de intercambio | | The definition describes a fee; bare «intercambio» is generic. |
@@ -251,18 +286,28 @@ exception is the compound *Interoperability Scheme*, where the qualifier replace
 | Interoperability Scheme | Esquema de interoperabilidad | | A named compound in the FSPIOP API text, so the qualifier replaces «de pagos» rather than stacking on it. Bare «Esquema» is still not permitted. |
 | Interoperability Service for Transfers (IST) | Servicio de interoperabilidad para transferencias | | |
 | Interoperability settlement bank | Banco liquidador de interoperabilidad | | «banco liquidador» is the standard CPMI/CEMLA rendering. Parentheses made the qualifier look optional, colliding with Settlement Bank. |
+| Interscheme | Interscheme | Interesquema | Kept in English as the feature name. Lowercase adjectivally: «una transacción interscheme». |
 | Investment Products | Productos de inversión | | |
 | Irrevocable | Irrevocable | | |
 | JSON | JSON | | |
+| Know Your Business (KYB) | Conocimiento de la empresa (KYB) |  | Parallel to KYC. Acronym kept in English. |
 | Know Your Customer | Conocimiento del cliente | | |
 | Know Your Customer (KYC) | Conocimiento del cliente (KYC) | | |
 | Ledger | Libro mayor | | «Libro mayor» is the standard accounting term and pairs with Libro mayor de posiciones. |
+| Ledger entry | Asiento del libro mayor |  | Pairs with Ledger → Libro mayor. |
+| Legal Entity Identifier (LEI) | Identificador de entidad jurídica (LEI) |  | Acronym LEI kept in English. |
 | Level One Project | Level One Project | | |
 | Liability | Responsabilidad | | |
 | License | Licencia | | |
 | Liquidity | Liquidez | | |
+| Liquidity cover | Cobertura de liquidez |  |  |
+| Load balancer | Balanceador de carga |  |  |
+| Load test | Prueba de carga |  |  |
 | Loans | Préstamos | | |
 | M2C | M2C | | |
+| Machine-readable | Legible por máquina |  |  |
+| Maintainability | Mantenibilidad |  |  |
+| Market Practice Document | Documento de práctica de mercado |  |  |
 | mCommerce | Comercio móvil | | |
 | Merchant | Comercio | | |
 | Merchant Acquisition | Afiliación de comercios | | Standard LatAm term; «adquirencia» names the business, not the process. |
@@ -276,16 +321,20 @@ exception is the compound *Interoperability Scheme*, where the qualifier replace
 | Merchant-Initiated Purchase via POS/OTP | Compra iniciada por el comercio mediante POS/OTP | | |
 | Merchant-Initiated Purchase via QR | Compra iniciada por el comercio mediante QR | | |
 | Microfinance Institution (MFI) | Institución microfinanciera (MFI) | | Kept the English acronym. «IMF» is the LatAm one but could be read as Fondo Monetario Internacional. |
+| Mini Guides | Miniguías |  |  |
 | Mobile Network Operator | Operador de red móvil | | |
 | Mobile Network Operator (MNO) | Operador de red móvil (MNO) | | |
 | Money Transfer Operator | Operador de transferencia de dinero | | |
+| Monitoring | Monitoreo |  |  |
 | MSISDN | MSISDN | | |
+| Multi-Factor Authentication (MFA) | Autenticación multifactor (MFA) |  |  |
 | Multilateral Net Settlement | Liquidación neta multilateral | | |
 | Mutual Authentication | Autenticación mutua | | |
 | National Identity Document | Documento nacional de identidad | | Avoids reading as the country-specific DNI. «identidad nacional» reads as nationhood; the credential is «documento nacional de identidad». |
 | Near Field Communication | Comunicación de campo cercano (NFC) | | |
 | Net Debit Cap | Límite de débito neto | | |
 | Net Debit Cap Margin | Margen del límite de débito neto | | |
+| Net Debit Cap (NDC) | Límite de débito neto (NDC) |  | Adds the acronym to the existing phrase. |
 | Net Position | Posición neta | | |
 | Net Settlement | Liquidación neta | | |
 | Netting | Neteo | | «compensación» is clearing, so it collided with the Clearing entry. |
@@ -296,16 +345,21 @@ exception is the compound *Interoperability Scheme*, where the qualifier replace
 | Not-for-Loss | Sin pérdidas (modelo de recuperación de costos) | | A cost-recovery model. «A fondo perdido» means non-repayable grant funding, so a negated form of it would read as the opposite. |
 | Notification | Notificación | | |
 | Off-Us Payments | Pagos off-us | | |
+| On-premises | Instalaciones propias |  |  |
 | On-Us Payments | Pagos on-us | | |
 | Online Purchase | Compra en línea | | |
 | Open API Specification | Open API Specification | | |
+| Open source | Código abierto |  |  |
 | Open-Loop | Circuito abierto | | |
 | Operating Rules | Reglas operativas | | |
 | Operations Risk Management | Gestión del riesgo operativo | | |
 | Operator | Operador | | |
+| Oracle (generic) | Oráculo |  | The Mojaloop `Oracle` component name stays in English. |
 | Organization | Organización | | |
+| Originator | Originador |  | Official GAFI wording. Not «ordenante», which is banned under Payer. |
 | OTP | OTP | | |
 | Over The Counter Services | Servicios en ventanilla (OTC) | | «ventanilla» evokes a bank teller; the definition is agent-assisted. To a bank audience bare OTC means extrabursátil. |
+| Overlay service | Servicio de superposición |  | Also «superposición» alone in prose. |
 | Overview | Descripción general | Visión general, Resumen, Panorama general | Appears 76 times in the corpus. *Resumen* is a summary, which is a different thing. One rendering repo-wide, so the section heading and the page title match. |
 | P2P | P2P | | |
 | Participant | Participante | | |
@@ -325,17 +379,22 @@ exception is the compound *Interoperability Scheme*, where the qualifier replace
 | Payer DFSP | DFSP pagador | | |
 | Payer FSP | FSP pagador | | |
 | Paying for Purchases | Pago por compras | | |
+| Payload | Carga útil |  | Also «cuerpo de la carga útil» for payload body. |
 | Payment | Pago | | |
 | Payment Device | Dispositivo de pago | | |
+| Payment Initiation Service Provider (PISP) | Proveedor de servicios de iniciación de pagos (PISP) |  | Acronym PISP kept in English. |
 | Payment Instruction | Instrucción de pago | | |
 | Payment System | Sistema de pagos | | |
 | Payment System Operator | Operador del sistema de pagos | | |
 | Payments Service Provider (PSP) | Proveedor de servicios de pago (PSP) | | |
 | Peer FSP | FSP contraparte | | |
+| Penetration test | Prueba de penetración |  |  |
 | PEP | PEP (persona expuesta políticamente) | | |
 | Personal Information | Datos personales | | «datos personales» is the established term in LatAm data-protection law. |
 | Platform | Plataforma | | |
+| Point of Sale (PoS) | Punto de venta (PoS) |  |  |
 | Pooled Settlement Account | Cuenta de liquidación común | | «común» rather than «mancomunada», which implies joint-signature authority rather than pooled funds. |
+| Portfolio | Portafolio |  |  |
 | Position Ledger | Libro mayor de posiciones | | |
 | Posting | Contabilización | | «posting» is the act of recording; «registro contable» names the record. |
 | Pre-approval | Preaprobación | | |
@@ -344,9 +403,12 @@ exception is the compound *Interoperability Scheme*, where the qualifier replace
 | Processing Fees | Tarifas de procesamiento | | |
 | Processing of Personal/Consumer Data | Tratamiento de datos personales o del consumidor | | |
 | Processor | Procesador | | |
+| Production readiness | Preparación para producción |  |  |
 | Promotion | Promoción | | |
+| Proof of concept | Prueba de concepto |  |  |
 | Provisional Debit | Débito provisional | | |
 | PSP | PSP | | |
+| Public Key Infrastructure (PKI) | Infraestructura de clave pública (PKI) |  |  |
 | Pull Payment | Pago tipo pull | | |
 | Pull Payments | Pagos tipo pull | | |
 | Push Payment | Pago tipo push | | |
@@ -364,6 +426,9 @@ exception is the compound *Interoperability Scheme*, where the qualifier replace
 | Refund | Reembolso | | |
 | Registration | Registro | | |
 | Regulator | Regulador | | |
+| Release candidate | Candidato a versión |  | Follows Release → Versión. |
+| Release process | Proceso de publicación de versiones |  |  |
+| Remediation | Remediación |  |  |
 | Request for Quote | Solicitud de cotización | | Both source glossaries define this and Quote Request identically, so both map to the same term. |
 | Request for Transfer | Solicitud de transferencia | | Both source glossaries define this and Transfer Request identically, so both map to the same term. |
 | Request to Pay | Solicitud de pago | | |
@@ -372,12 +437,15 @@ exception is the compound *Interoperability Scheme*, where the qualifier replace
 | Reversal | Reversión | | |
 | Risk Management | Gestión de riesgos | | |
 | Risk-based Approach | Enfoque basado en riesgo (EBR) | | GAFI/GAFILAT official Spanish uses the singular. |
+| Role Based Access Control (RBAC) | Control de acceso basado en roles (RBAC) |  |  |
 | Roll back | Deshacer la reserva | | Per the source this undoes a reservation, so it stays distinct from Reversal. |
+| Routing | Enrutamiento |  | Also «enrutamiento dinámico». |
 | Rules | Reglas | | |
 | Rules Modification | Modificación de las reglas | | |
 | Saving and Investing | Ahorro e inversión | | |
 | Savings Products | Productos de ahorro | | |
 | Scheme | Esquema de pagos | esquema (solo), plan, régimen | The highest-frequency term in the corpus. Bare «esquema» is a false friend, reading as a diagram. The one exception is the compound Interoperability Scheme. |
+| Scheme Operator | Operador del esquema de pagos |  |  |
 | Secondary Use Case | Caso de uso secundario | | |
 | Secure Element | Elemento seguro | | |
 | Security Access Code | Código de acceso de seguridad | | |
@@ -385,33 +453,52 @@ exception is the compound *Interoperability Scheme*, where the qualifier replace
 | Security Level | Nivel de seguridad | | |
 | Send Amount | Monto a enviar | | |
 | Sensitive Consumer Data | Datos sensibles del consumidor | | |
+| Separation of concerns | Separación de responsabilidades |  |  |
 | Services | Servicios | | |
 | Settlement | Liquidación | asentamiento, acuerdo, compensación | asentamiento and acuerdo are literal false friends and wrong. compensación is clearing, not settlement. |
 | Settlement Bank | Banco liquidador | | |
 | Settlement Bank Account | Cuenta en el banco liquidador | | |
+| Settlement batch | Lote de liquidación |  |  |
 | Settlement Instruction | Instrucción de liquidación | | |
+| Settlement model | Modelo de liquidación |  |  |
 | Settlement Obligation | Obligación de liquidación | | |
+| Settlement partner | Socio de liquidación |  |  |
 | Settlement System | Sistema de liquidación | | |
 | Settlement Window | Ventana de liquidación | | |
 | Shared Service | Servicio compartido | | |
 | Short Message Service | Servicio de mensajes cortos (SMS) | | |
 | SIM Card | Tarjeta SIM | | |
+| SLA | SLA |  | Invariable: «los SLA». |
 | Smart Phone | Teléfono inteligente | | |
+| Soak test | Prueba de resistencia prolongada |  |  |
+| Source currency | Moneda de origen |  | Pairs with Target currency → Moneda de destino. |
+| Source of truth | Fuente de verdad definitiva |  | Reused from docs/es/community/standards/invariants.md. |
 | Special Charter Banks | Bancos con licencia especial | | |
 | Sponsor | Acuerdo de patrocinio | | The definition describes an arrangement, not the entity. Previous gloss just restated the headword. |
+| Stakeholders | Partes interesadas |  |  |
 | Standards Body | Organismo de normalización | | |
 | Stored Value Account | Cuenta de valor almacenado | | |
 | Storing Funds | Almacenamiento de fondos | | |
+| Straight-through processing | Procesamiento directo |  | Reused from docs/es/community/standards/invariants.md. |
+| Sub-phase | Subfase |  |  |
 | Super-Agent | Superagente | | |
 | Supplier Payment | Pago a proveedores | | |
+| Supply chain | Cadena de suministro |  |  |
 | Suspicious Transaction Report | Reporte de operación sospechosa (ROS) | | ROS is the established GAFILAT acronym. |
 | Switch | Switch | interruptor | Kept in English as the component name. «conmutador» is reserved for the switchboard metaphor; see section A.5. |
 | System | Sistema | | |
+| System integrator (SI) | Integrador de sistemas (SI) |  | Acronym invariable: «los SI». |
 | Systemic Risk | Riesgo sistémico | | |
+| Tamper-evident | Con evidencia de manipulación |  |  |
+| Target currency | Moneda de destino |  | Pairs with Source currency → Moneda de origen. |
+| Tariff | Tarifa |  | The rule that determines how a charge is calculated. Adjectivally «regla tarifaria», «estructura tarifaria», «marco tarifario». Distinct from Interchange → Tasa de intercambio. |
 | Tax Payment | Pago de impuestos | | |
+| Third Party Payment Initiation (3PPI) | Iniciación de pagos por terceros (3PPI) |  |  |
+| Throughput | Rendimiento |  |  |
 | Tiered Acess | Acceso escalonado | | The English headword is misspelled in the source glossary. Kept as-is so the mapping still matches. |
 | Til Number Purchase | Compra con número de caja | | A till number identifies the merchant's till. |
 | Tokenization | Tokenización | | |
+| Toolkit | Kit de herramientas |  | Named toolkits such as Testing Toolkit (TTK) stay in English. |
 | Trading | Comercio internacional | | Was «comercio», colliding with Merchant. The definition is the cross-border exchange of capital, goods and services. |
 | Transaction | Transacción | | |
 | Transaction Account | Cuenta transaccional | | |
@@ -421,29 +508,37 @@ exception is the compound *Interoperability Scheme*, where the qualifier replace
 | Transaction Accounts | Cuentas transaccionales | | |
 | Transaction Cost | Costo de transacción | | Concept-level term; the article made it read as one specific transaction. |
 | Transaction Fees | Tarifas por transacción | | |
+| Transaction finality | Firmeza de la transacción |  |  |
 | Transaction Request | Solicitud de transacción | | |
 | Transfer | Transferencia | | |
 | Transfer Amount | Monto de la transferencia | | |
 | Transfer Funds | Transferencia de fondos | | |
+| Transfer Phase | Fase de transferencia |  |  |
 | Transfer Request | Solicitud de transferencia | | Both source glossaries define this and Request for Transfer identically, so both map to the same term. |
 | Transfer Response | Respuesta a la solicitud de transferencia | | |
 | Transport Layer Security | Transport Layer Security (TLS) | | |
 | Trust Account | Cuenta fiduciaria | | |
+| Trust boundary | Límite de confianza |  |  |
 | Trusted Execution Environment | Entorno de ejecución confiable (TEE) | | |
 | Ubiquity | Ubicuidad | | The source is bidirectional: the ability to pay anyone and be paid by anyone. |
+| ULID | ULID |  | Invariable: «los ULID». |
 | Unbanked | No bancarizado | | |
 | Uncovered Losses | Pérdidas no cubiertas | | |
+| Uptime | Tiempo de actividad |  |  |
 | Use Case | Caso de uso | | |
 | User ID | ID de usuario | | |
 | USSD | USSD | | |
 | Value-Added Services | Servicios de valor agregado | | «valor añadido» is Peninsular; LatAm uses «valor agregado». |
 | Vostro Account | Cuenta vostro | | |
 | Voucher | Vale | | |
+| Vulnerability | Vulnerabilidad |  |  |
 | Wallet | Billetera | | |
 | Wallet to Bank | Billetera a banco | | |
 | Wallet to Wallet | Billetera a billetera | | |
 | Whitelist | Lista blanca | | Pairs with «lista negra» as the definition contrasts them. |
 | Women's Economic Empowerment (WEE) | Empoderamiento económico de las mujeres (WEE) | | |
+| Workstream | Workstream | Línea de trabajo, flujo de trabajo | Kept in English, masculine: «el workstream», «los workstreams». Already the established form across docs/es/community. |
+| Workstream Lead | Responsable del workstream |  |  |
 
 ---
 
