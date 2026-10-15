@@ -106,9 +106,9 @@ Todo el código asistido por IA:
 - DEBE ser revisado a fondo por la persona que lo envía.
 - DEBE ser comprendido por completo por quien lo envía.
 - DEBE cumplir los estándares de codificación y los principios arquitectónicos de Mojaloop.
-- DEBE pasar todas las pruebas automatizadas y los pipelines de validación.
+- DEBE pasar todas las pruebas automatizadas y los procesos de validación.
 
-El código que es claramente generado por IA y que no ha sido debidamente revisado, validado y comprendido por el autor humano no se aceptará en el código base.
+El código que es claramente generado por IA y que no ha sido debidamente revisado, validado y comprendido por el autor humano no se aceptará en la base de código.
 
 El contribuyente humano que envía el PR conserva la responsabilidad plena de:
 

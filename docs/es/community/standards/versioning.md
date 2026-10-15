@@ -13,7 +13,7 @@ Este documento ofrece directrices sobre la estrategia de versionado que se usa p
 
 #### Estándar para PI-11 en adelante
 1. A partir de PI-11 (27 de julio de 2020), la orientación de versionado es pasar a un sistema de versiones estrechamente alineado con el versionado semántico, eliminando la dependencia del PI y del sprint. Así que, a partir de 11.x.x, la propuesta es pasar a [SemVer](https://semver.org/) puro.
-2. A alto nivel, seguiremos usando el formato vX.Y.Z, pero X representa la versión ‘mayor’, Y representa la versión ‘menor’ y Z representa la versión de ‘parche’. Las correcciones menores y los parches afectan a los incrementos de ‘Z’, mientras que los cambios de funcionalidad no incompatibles afectan a los cambios de ‘Y; los cambios incompatibles afectan a la versión ‘X’.
+2. A alto nivel, seguiremos usando el formato vX.Y.Z, donde X representa la versión ‘mayor’, Y representa la versión ‘menor’ y Z representa la versión de ‘parche’. Las correcciones menores y los parches afectan a los incrementos de ‘Z’, mientras que los cambios de funcionalidad que no rompan la compatibilidad afectan a los cambios de ‘Y; los cambios que rompan la compatibilidad afectan a la versión ‘X’.
 3. Junto con esto, se usan sufijos como “-snapshot”, “-patch” y “-hotfix” según corresponda y cuando hace falta (con soporte en la configuración de CI).
 4. Así que, a partir de 11.0.0 (principalmente para Helm, pero también para los servicios individuales) en PI-11, la propuesta es pasar a [SemVer](https://semver.org/) puro.
 5. Esto implica que cualquier versión nueva de un paquete o servicio por debajo de X=11 (en los repositorios existentes, no en los nuevos) se establecerá primero como línea base en la v11.0.0 y, a partir de ahí, seguirá las directrices estándar de SemVer indicadas arriba. En los proyectos o repositorios nuevos, el versionado puede empezar en la v1.0.0 (una vez que alcanzan el estado de versión publicada)
@@ -21,7 +21,7 @@ Este documento ofrece directrices sobre la estrategia de versionado que se usa p
 
 #### Estrategia de versionado usada hasta PI-10
 1. El sistema de versionado de Mojaloop (hasta PI-10) se inspira en el sistema de numeración de [versionado semántico](https://semver.org/) para las versiones publicadas.
-2. Sin embargo, está personalizado para reflejar los plazos del proyecto Mojaloop, según los números de incremento de programa \(PI\) y de sprint
+2. Sin embargo, está personalizado para reflejar los plazos del proyecto Mojaloop, según el incremento de programa \(PI\) y los números de sprint
 3. Por ejemplo, el número de versión v5.1.0 implica que esta versión fue la primera hecha durante el sprint 5.1, donde el sprint 5.1 es el primer sprint del PI-5. Así que, para una versión vX.Y.Z, X.Y es el número de sprint, donde X es el número de PI y Z representa el número de versión para ese repositorio concreto. El ejemplo v4.4.4 implica que la versión actual es la cuarta de cuatro versiones hechas en el sprint 4.4 \(del PI-4\)
 
 
@@ -32,7 +32,7 @@ La información sobre la versión actual de Mojaloop se puede encontrar [aquí](
 
 ### Calendario de sprints para PI-13
 
-A continuación está el calendario de sprints del incremento de programa 13, que termina con el evento comunitario del PI-14 en abril de 2021.
+A continuación está el calendario de sprints del incremento de programa 13, que termina con el evento de la comunidad del PI-14 en abril de 2021.
 
 |Fase/hito|Inicio|Fin|Semanas|Notas|
 |---|---|---|---|---|
@@ -47,7 +47,7 @@ A continuación está el calendario de sprints del incremento de programa 13, qu
 
 ### Calendario de sprints para PI-12
 
-A continuación está el calendario de sprints del incremento de programa 12, que termina con el evento comunitario del PI-13 en enero de 2021.
+A continuación está el calendario de sprints del incremento de programa 12, que termina con el evento de la comunidad del PI-13 en enero de 2021.
 
 |Fase/hito|Inicio|Fin|Semanas|Notas|
 |---|---|---|---|---|

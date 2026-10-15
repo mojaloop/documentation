@@ -4,17 +4,17 @@ i18n_source_sha: 2dea2117611b8228894998c17b90e2113a803a5c
 
 # Invariantes de Mojaloop
 
-Los siguientes invariantes se han establecido a lo largo del desarrollo de la plataforma y a partir de los requisitos técnicos deducidos de los [principios del Level One Project](https://www.leveloneproject.org/project_guide/level-one-project-design-principles/) y de las mejores prácticas aplicables del sector.
+Los siguientes invariantes se han establecido a lo largo del desarrollo de la plataforma y a partir de los requisitos técnicos deducidos de los [principios del Level One Project](https://www.leveloneproject.org/project_guide/level-one-project-design-principles/) y de las mejores prácticas aplicables de la industria.
 Estos invariantes deberían guiar cualquier debate de diseño de producto y técnico relacionado con la arquitectura de la plataforma.
 
 ## Principios generales
 
-### 1. La función principal de la plataforma es compensar pagos de crédito tipo push en tiempo real y facilitar la liquidación periódica, antes del final del día de valor.
+### 1. La función principal de la plataforma es compensar pagos de crédito tipo push en tiempo real y facilitar la liquidación periódica, a más tardar al final de la fecha de valor.
 #### Notas:
 1. La plataforma permite que los participantes compensen fondos de inmediato hacia sus clientes manteniendo al mínimo los riesgos y costos asociados.
 2. La plataforma admite comprobaciones de liquidez disponible por transferencia cuando hacen falta para respaldar el primer objetivo.
 3. El Hub está optimizado para la ruta crítica.
-4. Liquidación automatizada intradía, configurada por esquema de pagos y por implementación usando los modelos de liquidación recomendados para las infraestructuras del mercado financiero.
+4. Liquidación automatizada intradía, configurada por esquema de pagos e implementación usando los modelos de liquidación recomendados para las infraestructuras del mercado financiero.
 
 
 ### 2. El Hub admite el procesamiento directo totalmente automático.
@@ -36,7 +36,7 @@ Más información aquí: [Definición de procesamiento directo](https://www.inve
 
 ### 4. La lógica de configuración de la transacción, que es específica de cada caso de uso, está separada de la transferencia de dinero libre de políticas.
 #### Notas:
-1. Los detalles de la transacción y las reglas de negocio deberían recogerse y aplicarse entre las contrapartes antes de la fase de acuerdo de los términos y quedan fuera del alcance de Mojaloop.
+1. Los detalles de la transacción y las reglas de negocio deberían capturarse y aplicarse entre las contrapartes antes de la fase de acuerdo de los términos y quedan fuera del alcance de Mojaloop.
 2. La fase de acuerdo establece un objeto de transacción firmado y específico del caso de uso que incorpora todos los detalles específicos de la transacción.
 3. La fase de transferencia orquesta la transferencia de valor minorista entre instituciones en beneficio de las contrapartes (es decir, solo se aplican comprobaciones de límites del sistema) y sin referencia a los detalles de la transacción.
 4. No hay procesamiento adicional específico de la transacción durante la fase de transferencia.
@@ -51,7 +51,7 @@ Más información aquí: [Definición de procesamiento directo](https://www.inve
 ### 6. La semántica de la transferencia de crédito tipo push se reduce a su forma más simple y se estandariza para todos los tipos de transacción.
 #### Notas:
 1. Simplifica la implementación y la integración de los participantes, ya que muchos tipos de transacción y casos de uso pueden reutilizar el mismo flujo de mensajes de transferencia de valor subyacente.
-2. Aparta la complejidad del caso de uso de la ruta crítica.
+2. Abstrae la complejidad del caso de uso de la ruta crítica.
 
 
 ### 7. Un hub de servicios de API basado en Internet no es un “conmutador de mensajes”.
@@ -67,7 +67,7 @@ Más información aquí: [Definición de procesamiento directo](https://www.inve
 1. Para maximizar el rendimiento del sistema.
 2. Para aislar los problemas de conectividad de los nodos hoja de forma que no afecten a otros usuarios finales.
 3. Para permitir que el sistema del Hub procese las solicitudes en su propio orden de prioridad y sin mantener una conexión activa por transferencia.
-4. Para gestionar numerosos procesos concurrentes de larga duración mediante agrupación y balanceo de carga internos.
+4. Para gestionar numerosos procesos concurrentes de larga duración mediante procesamiento por lotes y balanceo de carga internos.
 5. Para disponer de un único mecanismo de gestión de solicitudes (por ejemplo, transacciones masivas o que necesitan entrada del usuario final o que abarcan varios saltos).
 6. Para dar mejor soporte a las redes del mundo real, ya que los problemas de velocidad y fiabilidad de la conexión de un participante deberían tener un impacto mínimo en otros participantes o en la disponibilidad del sistema en general.
 
@@ -77,14 +77,14 @@ Más información aquí: [Definición de procesamiento directo](https://www.inve
     1. Las solicitudes duplicadas se reconocen y dan el mismo resultado (duplicados válidos) o se rechazan como duplicadas (cuando la especificación no lo permite) haciendo referencia a la original.
 
 
-### 10. Los registros de transferencias **_finalizadas_** se conservan durante un período configurable por el esquema de pagos, para dar soporte a procesos del esquema de pagos como la conciliación y la facturación, y con fines forenses
+### 10. Los registros de transferencias **_finalizadas_** se conservan durante un período configurable por el esquema de pagos, para dar soporte a procesos del mismo como la conciliación y la facturación, así como para fines forenses
 #### Notas:
 1. No es posible consultar el "subestado" de una transferencia en curso; la API ofrece un resultado determinista con aviso activo dentro del tiempo de servicio garantizado.
 
 
 ### 11. Los registros de las transferencias finalizadas se conservan indefinidamente en almacenamiento a largo plazo para dar soporte al análisis de negocio por parte del operador del esquema de pagos y de los participantes (a través de las interfaces apropiadas)
 #### Notas:
-1. La disponibilidad de los registros de transferencias puede ir por detrás de la firmeza del proceso en línea, para acomodar la separación entre el mantenimiento de registros y el procesamiento en tiempo real de las solicitudes de transferencia.
+1. La disponibilidad de los registros de transferencias puede ir por detrás de la finalización del proceso en línea, para acomodar la separación entre el mantenimiento de registros y el procesamiento en tiempo real de las solicitudes de transferencia.
 
 
 ### 12. El Hub debería hacer el mínimo análisis, almacenamiento y procesamiento de mensajes necesario para ejecutar los servicios que presta al esquema de pagos en su conjunto.
@@ -118,7 +118,7 @@ Más información aquí: [Definición de procesamiento directo](https://www.inve
 1. La API de Mojaloop asigna un significado de negocio importante, relacionado con el esquema de pagos, a determinados códigos de respuesta HTTP en varios puntos de los flujos de transacción:
     1. Ciertas respuestas HTTP, p. ej. "202 Accepted", están pensadas para dar garantías financieras a los participantes y, por tanto, solo deben enviarse una vez que la entidad receptora está segura de que ha dejado registros seguros y permanentes que sirven para:
         1. Facilitar la recuperación de todo el sistema a un estado coherente tras los fallos de uno o varios componentes o entidades distribuidos.
-        2. Procesos de liquidación exactos
+        2. Procesos de liquidación precisos
         3. Procesos de auditoría y de resolución de disputas
     2. Por ejemplo, un "200 OK" del Hub al participante beneficiario al recibir un mensaje de fulfilment de transferencia indica una garantía de liquidación de la transacción al beneficiario, pendiente de las comprobaciones de validación.
 2. La API de Mojaloop está diseñada para operar de forma segura en condiciones de red imperfectas y, por tanto, tiene soporte integrado para reintentos y sincronización de estado entre participantes.
@@ -163,7 +163,7 @@ Mojaloop está diseñado para funcionar como parte de un sistema de pagos instan
 #### Notas:
 1. Definición de "alta disponibilidad":
    1. En este caso definimos el término "_alta disponibilidad_" como "_la capacidad de proporcionar y mantener un nivel de servicio aceptable frente a fallos y desafíos al funcionamiento normal._"
-   2. Aunque los esquemas de pagos pueden determinar su propia definición de lo que constituye un "_nivel de servicio aceptable_", Mojaloop toma ciertas decisiones de compromiso que contribuyen a ello:
+   2. Aunque los esquemas de pagos pueden determinar su propia definición de lo que constituye un "_nivel de servicio aceptable_", Mojaloop toma ciertas decisiones de compensación que contribuyen a ello:
       1. Cuando los modos de fallo lo permiten, el servicio se degrada en toda la población de participantes en lugar de que participantes concretos sufran cortes totales mientras otros siguen operativos.
 2. El Hub no tiene ningún punto único de fallo, lo que significa que sigue funcionando con una degradación mínima del servicio si falla cualquier componente individual.
    1. Se despliegan varias instancias activas de cada componente de forma distribuida detrás de balanceadores de carga.
@@ -174,7 +174,7 @@ Mojaloop está diseñado para funcionar como parte de un sistema de pagos instan
 6. _Véanse también los puntos adicionales relativos a la resistencia a la pérdida de datos en caso de fallo._
 7. Dado que los esquemas de pagos de Mojaloop están pensados para formar parte de la infraestructura financiera nacional, deben tener un tiempo de inactividad lo más cercano posible a cero, dentro de unas restricciones de costo razonables.
 8. Cabe esperar fallos en los componentes de hardware y software, incluso en los componentes de mayor calidad disponibles. Las mejores prácticas sugieren que estos fallos deberían anticiparse y planificarse en la medida de lo posible en el diseño del Hub, con vistas a minimizar la pérdida o degradación del servicio o de los datos.
-9. Para evitar dudas, esto significa que los compromisos elegidos favorecen la disponibilidad general del servicio y la coherencia del estado por encima del rendimiento. Es decir:
+9. Para evitar dudas, esto significa que las compensaciones elegidas favorecen la disponibilidad general del servicio y la coherencia del estado por encima del rendimiento. Es decir:
    1. Todos los participantes pueden seguir transaccionando a un ritmo reducido, en lugar de que algunos participantes no puedan transaccionar en absoluto.
    2. Las incoherencias de estado entre las entidades del esquema de pagos se pueden resolver tras el restablecimiento del servicio mediante la API de Mojaloop, con una conciliación manual mínima, siendo el Hub la fuente de verdad definitiva.
 10. En situaciones en las que no se puede sostener un rendimiento suficiente para atender todas las solicitudes entrantes de forma puntual, el Hub priorizará el procesamiento de las transferencias en curso frente a las nuevas solicitudes entrantes.
@@ -205,10 +205,10 @@ Mojaloop está diseñado para funcionar como parte de un sistema de pagos instan
     4. Utiliza únicamente la familia ECMAScript de lenguajes y bibliotecas neutrales respecto de la arquitectura, conocida por millones de programadores web cualificados
 
 
-2. Usar una arquitectura distribuida de microservicios.
+2. Use una arquitectura distribuida de microservicios.
     1. [Ley de Demeter](https://en.wikipedia.org/wiki/Law_of_Demeter) o principio del mínimo conocimiento
     2. [Separación de intereses](https://en.wikipedia.org/wiki/Separation_of_concerns) asegurada mediante contratos entre módulos
-    3. La [arquitectura modular](https://en.wikipedia.org/wiki/Modular_programming) permite el desarrollo distribuido en un entorno comunitario y la mejora de los componentes con una alteración mínima de los componentes adyacentes
+    3. La [arquitectura modular](https://en.wikipedia.org/wiki/Modular_programming) permite el desarrollo distribuido en un entorno de comunidad y la mejora de los componentes con una alteración mínima de los componentes adyacentes
 
 
 3. [Apache Kafka](https://kafka.apache.org/intro) distribuido de [publicación–suscripción](https://en.wikipedia.org/wiki/Publish–subscribe_pattern) para la [separación comando–consulta (CQS)](https://en.wikipedia.org/wiki/Command–query_separation) entre módulos
@@ -219,7 +219,7 @@ Mojaloop está diseñado para funcionar como parte de un sistema de pagos instan
 
 5. Mojaloop usa API basadas en Open API 3.0.
     1. Expone recursos que se corresponden con la funcionalidad necesaria para dar soporte a los casos de uso definidos de la API.
-    2. Es práctica común para la especificación de API web
+    2. Práctica común para la especificación de API web
 
 
 ## Anexo A: descripción general de los principios de Level One
@@ -229,6 +229,6 @@ El [Level One Project](https://www.leveloneproject.org) propone un nuevo sistema
 * La adhesión a estándares internacionales bien definidos y adoptados
 * Una protección compartida contra el fraude y de seguridad adecuada en todo el sistema
 * Requisitos de identidad y de conocimiento del cliente (KYC) eficientes y proporcionales
-* Igualar o superar la comodidad, el costo y la utilidad del efectivo
+* Igualar o superar la conveniencia, el costo y la utilidad del efectivo
 
 Al utilizar un enfoque abierto y digital de las transacciones, y al asociarse con organizaciones de los sectores público y privado, el Level One Project busca dar acceso a una infraestructura compartida de servicios financieros digitales robusta y de bajo costo, impulsando la innovación de participantes nuevos y existentes, reduciendo el riesgo y generando un valor sustancial para los proveedores, las personas y las economías de los mercados en desarrollo. Se han creado recursos adicionales para ayudar a los gobiernos, las ONG y los proveedores de servicios financieros a implementar estos cambios con éxito.

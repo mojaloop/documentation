@@ -9,16 +9,16 @@ Contenido:
 1. [Requisitos de regresión](#temas-de-regresion)
 2. [Pruebas del desarrollador](#pruebas-del-desarrollador)
 3. [Pruebas con Postman y Newman](#pruebas-con-postman-y-newman)
-4. [Ejecución de la prueba de regresión](#ejecucion-de-la-prueba-de-regresion)
+4. [Ejecución de pruebas de regresión](#ejecucion-de-pruebas-de-regresion)
 5. [Flujo del proceso de una prueba programada típica](#flujo-del-proceso-de-una-prueba-programada-tipica)
 6. [Comandos de Newman](#comandos-de-newman)
 
 ## Temas de regresión
  Para que un sistema desplegado sea robusto, uno de los últimos puntos de control es determinar si el entorno en el que está desplegado se encuentra en un estado correcto y si toda la funcionalidad expuesta funciona exactamente como se pretendía.
 
- Antes de eso, sin embargo, hay bastantes disciplinas que se deben implantar para asegurar el máximo control.
+ Antes de eso, sin embargo, hay bastantes disciplinas que se deben establecer para asegurar el máximo control.
 
- Para ilustrar cómo alcanza el proyecto Mojaloop este objetivo, vamos a mostrarle los distintos puntos de control implantados.
+ Para ilustrar cómo alcanza el proyecto Mojaloop este objetivo, vamos a mostrarle los distintos puntos de control establecidos.
 
 ### Pruebas del desarrollador
  Si observa cada componente y módulo dentro del código base, encontrará una carpeta llamada "*test*" que contiene tres tipos de pruebas.
@@ -29,20 +29,20 @@ Contenido:
 
  El desarrollador ejecuta estas pruebas mediante instrucciones de línea de comandos durante el proceso de codificación. Además, las pruebas se ejecutan automáticamente cada vez que se hace un *check-in* y se emite un Github Pull-Request para integrar el código en el proyecto.
 
- El procedimiento descrito arriba queda fuera del ámbito del aseguramiento de la calidad (QA) y de las pruebas de regresión, que es lo que aborda este documento.
+ El procedimiento descrito arriba queda fuera del ámbito del aseguramiento de calidad (QA) y de las pruebas de regresión, que es lo que aborda este documento.
 
  Una vez que un desarrollador ha escrito funcionalidad nueva o ha ampliado la existente, y ha tenido que pasar por las rigurosas pruebas anteriores, se puede asumir que la funcionalidad en cuestión se ejecuta como se pretendía. ¿Cómo se asegura entonces que esta nueva porción de código no afecta negativamente al proyecto o al producto en su conjunto?
 
  Cuando el código ha superado todo lo anterior y se despliega como parte de los procesos de CI/CD implementados por nuestro flujo de trabajo, los nuevos componentes se aceptan en los distintos hosts, implementaciones en la nube o en local. Estos hosts van desde plataformas de desarrollo hasta entornos de producción.
 
 ### Pruebas con Postman y Newman
- En paralelo al proceso de despliegue está la conservación y el mantenimiento del marco de pruebas de colecciones de [Postman](https://github.com/mojaloop/postman.git "Postman"). Cuando se hace una nueva versión, como parte del flujo de trabajo se publican notas de la versión que enumeran toda la funcionalidad nueva o mejorada implementada como parte de esa versión. El equipo de QA usa estas notas para ampliar y mejorar las colecciones de Postman existentes, donde las pruebas se escriben detrás de los scripts de solicitud/respuesta para probar tanto los escenarios positivos como los negativos frente al comportamiento previsto. Después, estas pruebas se ejecutan de la siguiente manera:
+ En paralelo al proceso de despliegue está la conservación y el mantenimiento del marco de trabajo de pruebas de colecciones de [Postman](https://github.com/mojaloop/postman.git "Postman"). Cuando se hace una nueva versión, como parte del flujo de trabajo se publican notas de la versión que enumeran toda la funcionalidad nueva o mejorada implementada como parte de esa versión. El equipo de QA usa estas notas para ampliar y mejorar las colecciones de Postman existentes, donde las pruebas se escriben detrás de los scripts de solicitud/respuesta para probar tanto los escenarios positivos como los negativos frente al comportamiento previsto. Después, estas pruebas se ejecutan de la siguiente manera:
  + Manualmente, para determinar si las pruebas cubren todos los aspectos y ángulos de la funcionalidad, las positivas para confirmar el comportamiento previsto y las negativas para determinar si los flujos alternativos correctos funcionan como se pretendía cuando algo inesperado sale mal
  + Programadas, como parte del régimen de regresión, para hacer exactamente lo mismo que en la intención manual, pero de forma totalmente automatizada (con el *Newman Package*), con informes y registros que destacan cualquier comportamiento no previsto y que también avisan cuando un comportamiento conocido ha cambiado respecto de una ejecución anterior.
 
 Para facilitar las pruebas automatizadas y programadas de una colección de Postman, hay varios métodos que se pueden seguir y el implementado para su uso en Mojaloop se explica más adelante en este documento.
 
-Existe un repositorio completo que contiene todos los scripts, los procedimientos de configuración y todo lo necesario para montar un [marco de pruebas de QA y de regresión](https://github.com/mojaloop/ml-qa-regression-testing.git "QA and Regression Testing Framework") automatizado. Este marco permite apuntar a cualquier colección de Postman, especificando el entorno contra el que se pretende ejecutar, así como una lista separada por comas de los destinatarios de correo que recibirán el informe generado. Mojaloop usa este marco a diario y reside en una instancia EC2 en AWS, que aloja los componentes necesarios como Node, Docker, el servidor de correo y Newman, además de varios scripts de Bash y plantillas que el marco usa para ejecutar automáticamente cada día las colecciones previstas. Con esta guía cualquiera podrá montar su propio marco.
+Existe un repositorio completo que contiene todos los scripts, los procedimientos de configuración y todo lo necesario para montar un [marco de trabajo de pruebas de QA y de regresión](https://github.com/mojaloop/ml-qa-regression-testing.git "QA and Regression Testing Framework") automatizado. Este marco permite apuntar a cualquier colección de Postman, especificando el entorno contra el que se pretende ejecutar, así como una lista separada por comas de los destinatarios de correo que recibirán el informe generado. Mojaloop usa este marco a diario y reside en una instancia EC2 en AWS, que aloja los componentes necesarios como Node, Docker, el servidor de correo y Newman, además de varios scripts de Bash y plantillas que el marco usa para ejecutar a diario automáticamente las colecciones previstas. Con esta guía cualquiera podrá montar su propio marco.
 
 #### Colecciones de Postman
 
@@ -69,22 +69,22 @@ Tendrá que personalizar el siguiente archivo de configuración del entorno para
 + [Local Environment Config](https://github.com/mojaloop/postman/blob/master/environments/Mojaloop-Local.postman_environment.json)
 
 _Consejos:_ 
-- _Las configuraciones de host serán con toda probabilidad los cambios necesarios para que coincidan con su entorno. P. ej. `HOST_CENTRAL_LEDGER: http://central-ledger.local`_
+- _Las configuraciones de host serán con toda probabilidad los cambios requeridos para que coincidan con su entorno. P. ej. `HOST_CENTRAL_LEDGER: http://central-ledger.local`_
 - _Consulte los hosts de ingress que se han configurado en su `values.yaml` como parte de su despliegue de Helm._
 
-### Ejecución de la prueba de regresión
-Concretamente para el marco de pruebas de QA y de regresión de Mojaloop, la prueba de regresión de Postman se puede ejecutar entrando en la instancia EC2 por SSH, para lo cual necesita el archivo PEM, y ejecutando después uno o varios scripts.
+### Ejecución de pruebas de regresión
+Concretamente para el marco de trabajo de pruebas de QA y de regresión de Mojaloop, la prueba de regresión de Postman se puede ejecutar entrando en la instancia EC2 por SSH, para lo cual necesita el archivo PEM, y ejecutando después uno o varios scripts.
 
-Siguiendo los requisitos y las instrucciones tal como se detallan en [marco de pruebas de QA y de regresión](https://github.com/mojaloop/ml-qa-regression-testing.git "QA and Regression Testing Framework"), cualquiera podrá crear su propio marco y obtener acceso a su instancia para ejecutar pruebas contra cualquier colección de Postman dirigida a cualquier entorno sobre el que tenga control.
+Siguiendo los requisitos y las instrucciones tal como se detallan en el [marco de trabajo de pruebas de QA y de regresión](https://github.com/mojaloop/ml-qa-regression-testing.git "QA and Regression Testing Framework"), cualquiera podrá crear su propio marco y obtener acceso a su instancia para ejecutar pruebas contra cualquier colección de Postman dirigida a cualquier entorno sobre el que tenga control.
 
-##### Pasos para ejecutar el script a través de la interfaz de Postman
+##### Pasos para ejecutar el script a través de la interfaz de usuario de Postman
 + Importe la colección deseada en su interfaz de Postman. Puede descargar la colección del repositorio o, como alternativa, usar el enlace `RAW` e importarla directamente mediante la opción **import link**.
-+ Importe la configuración del entorno en su interfaz de Postman mediante la configuración de Environmental Config. Tenga en cuenta que tendrá que descargar la configuración del entorno a su máquina y personalizarla para su entorno.
++ Importe la configuración del entorno en su interfaz de usuario de Postman mediante la configuración de Environmental Config. Tenga en cuenta que tendrá que descargar la configuración del entorno a su máquina y personalizarla para su entorno.
 + Asegúrese de haber cargado previamente todos los datos de prueba requeridos antes de ejecutar transacciones (parte, cotizaciones, transferencias), según la colección de ejemplo [OSS-New-Deployment-FSP-Setup](https://github.com/mojaloop/postman/blob/master/OSS-New-Deployment-FSP-Setup.postman_collection.json):
   + Cuentas del Hub
   + Incorporación de FSP
   + Agregar cualquier dato de prueba al Simulator (si procede)
-  + Incorporación del Oracle
+  + Incorporación de Oracle
 + Los casos de prueba `p2p_money_transfer` de la colección [Golden_Path](https://github.com/mojaloop/postman/blob/master/Golden_Path.postman_collection.json) son un buen punto de partida.
 
 ##### Pasos para ejecutar el script de bash que lanza la prueba de Newman / Postman por CLI

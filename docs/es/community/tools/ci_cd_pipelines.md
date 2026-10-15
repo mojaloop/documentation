@@ -31,7 +31,7 @@ para que el código se pueda integrar.
 | pr-title-check  | Comprueba que el título del PR se ajusta a la especificación de conventional commits | Definido en un orb de CircleCI aquí: [mojaloop/ci-config](https://github.com/mojaloop/ci-config) |
 | test-coverage   | Ejecuta las pruebas unitarias y comprueba que la cobertura de código supera el límite especificado. | Normalmente es el 90% |
 | test-unit       | Ejecuta las pruebas unitarias. Falla si falla alguna prueba unitaria. | |
-| vulnerability-check | Ejecuta la herramienta `npm audit` para buscar vulnerabilidades en las dependencias | `npm audit` está lleno de falsos positivos, o de problemas de seguridad que no se aplican a nuestro código base. Usamos `npm-audit-resolver` para tener flexibilidad sobre las vulnerabilidades que se pueden ignorar, p. ej. `devDependencies` |
+| vulnerability-check | Ejecuta la herramienta `npm audit` para buscar vulnerabilidades en las dependencias | `npm audit` está lleno de falsos positivos, o de problemas de seguridad que no se aplican a nuestro código base. Usamos `npm-audit-resolver` para tener flexibilidad sobre las vulnerabilidades que se pueden ignorar, por ejemplo: `devDependencies` |
 | audit-licenses | Ejecuta el `license-scanner-tool` de mojaloop y falla si alguna licencia encontrada no coincide con una lista de permitidos especificada en el `license-scanner-tool` | [repositorio license-scanner-tool](https://github.com/mojaloop/license-scanner-tool) |
 
 
@@ -48,15 +48,15 @@ Este pipeline de CI/CD se ejecuta en la rama master/main:
 | test-unit       | Véase más arriba | |
 | vulnerability-check | Véase más arriba | |
 | audit-licenses | Véase más arriba | |
-| release | Ejecuta una publicación que crea una etiqueta de git y envía la etiqueta de git | |
-| github-release | Agrega los metadatos de la versión (p. ej. el changelog) a github, envía una alerta de slack a #announcements | |
+| release | Ejecuta una publicación que crea una etiqueta de git y envía al repositorio remoto la etiqueta de git | |
+| github-release | Agrega los metadatos de la versión (ejemplo: el changelog) a github, envía una alerta de slack a #announcements | |
 
 
 ### Flujo de etiquetas:
 
 Una vez que se envía una etiqueta de git al repositorio, se activa un flujo de trabajo que termina 
 publicando en `npm`. Es importante que todas las comprobaciones se vuelvan a ejecutar, para asegurar
-que nada haya cambiado (p. ej. las dependencias) entre main/master y el artefacto real
+que nada haya cambiado (ejemplo: las dependencias) entre main/master y el artefacto real
 que se publica en `npm`.
 
 ![](./assets/images/ci_cd_lib_tag.png)
@@ -88,7 +88,7 @@ para que el código se pueda integrar.
 | test-coverage       | Ejecuta las pruebas unitarias y comprueba que la cobertura de código supera el límite especificado. | Normalmente es el 90% |
 | test-unit           | Ejecuta las pruebas unitarias. Falla si falla alguna prueba unitaria. | |
 | test-integration    | Ejecuta las pruebas de integración. Normalmente compilando una imagen de docker localmente | |
-| vulnerability-check | Ejecuta la herramienta `npm audit` para buscar vulnerabilidades en las dependencias | `npm audit` está lleno de falsos positivos, o de problemas de seguridad que no se aplican a nuestro código base. Usamos `npm-audit-resolver` para tener flexibilidad sobre las vulnerabilidades que se pueden ignorar, p. ej. `devDependencies` |
+| vulnerability-check | Ejecuta la herramienta `npm audit` para buscar vulnerabilidades en las dependencias | `npm audit` está lleno de falsos positivos, o de problemas de seguridad que no se aplican a nuestro código base. Usamos `npm-audit-resolver` para tener flexibilidad sobre las vulnerabilidades que se pueden ignorar, por ejemplo: `devDependencies` |
 | audit-licenses | Ejecuta el `license-scanner-tool` de mojaloop y falla si alguna licencia encontrada no coincide con una lista de permitidos especificada en el `license-scanner-tool` | [repositorio license-scanner-tool](https://github.com/mojaloop/license-scanner-tool) |
 
 
@@ -106,8 +106,8 @@ Este pipeline de CI/CD se ejecuta en la rama master/main:
 | test-integration | Véase más arriba | |
 | vulnerability-check | Véase más arriba | |
 | audit-licenses | Véase más arriba | |
-| release | Ejecuta una publicación que crea una etiqueta de git y envía la etiqueta de git | |
-| github-release | Agrega los metadatos de la versión (p. ej. el changelog) a github, envía una alerta de slack a #announcements | |
+| release | Ejecuta una publicación que crea una etiqueta de git y envía al repositorio remoto la etiqueta de git | |
+| github-release | Agrega los metadatos de la versión (ejemplo: el changelog) a github, envía una alerta de slack a #announcements | |
 
 
 ### Flujo de etiquetas:

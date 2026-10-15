@@ -12,8 +12,8 @@ Existe una [plantilla](https://github.com/mojaloop/project/issues/new?assignees=
 
 ### Una vez registrado un error
 
-1. Normalmente, el error se tría inicialmente en el canal público [#ml-oss-bug-triage](https://mojaloop.slack.com/messages/CMCVBHPUH) del Slack de Mojaloop
-2. Para los problemas de seguridad y otros problemas sensibles, el error se tría en un canal privado con los contribuyentes actuales, antes de que la información se haga pública en el momento apropiado. Los detalles sobre los problemas de seguridad se cubren aquí: https://docs.mojaloop.io/community/contributing/cvd.html
+1. Normalmente, se hace el triaje inicial del error en el canal público [#ml-oss-bug-triage](https://mojaloop.slack.com/messages/CMCVBHPUH) del Slack de Mojaloop
+2. Para los problemas de seguridad y otros problemas sensibles, se hace triaje del error en un canal privado con los contribuyentes actuales, antes de que la información se haga pública en el momento apropiado. Los detalles sobre los problemas de seguridad se cubren aquí: https://docs.mojaloop.io/community/contributing/cvd.html
 3. Durante el triaje del error se le asignan prioridad y gravedad, tras el consenso de la mayoría y la consulta con quienes lo notificaron
 4. En función de la prioridad y la gravedad, el error lo asume el equipo principal u otros contribuyentes, en un esfuerzo colaborativo.
 5. Una vez asumido, la conversación y las actualizaciones ocurren en el problema de GitHub y en el canal de slack.
