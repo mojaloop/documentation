@@ -2,6 +2,8 @@
 
 **What to procure and how to deploy it for reliable, high-performance schemes**
 
+**AI Disclosure** This document includes content generated with assistance from Claude Opus 5.5. All content has been reviewed and validated by the author.
+
 ---
 
 ## About this document
