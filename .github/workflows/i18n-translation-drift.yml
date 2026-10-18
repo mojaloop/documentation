@@ -134,11 +134,42 @@ jobs:
               }
             }
 
-            const title = `i18n: translation updates required for ${context.sha.slice(0, 7)}`;
+            // One running issue, not one per push: the same marker lookup the PR job uses for
+            // its comment. Later pushes with drift add their report to it as a comment.
+            const marker = "<!-- i18n-translation-drift-issue -->";
+            const labels = allLabels.map((l) => l.name);
+            const commitUrl = `${context.serverUrl}/${owner}/${repo}/commit/${context.sha}`;
+            const section = [`**Changes merged in [${context.sha.slice(0, 7)}](${commitUrl})**`, "", md].join("\n");
+
+            const openIssues = await github.paginate(github.rest.issues.listForRepo, {
+              owner,
+              repo,
+              state: "open",
+              labels: "translation-needed",
+              per_page: 100,
+            });
+            const existing = openIssues.find((issue) =>
+              !issue.pull_request && issue.user?.type === "Bot" && issue.body?.includes(marker)
+            );
+
+            if (existing) {
+              await github.rest.issues.addLabels({ owner, repo, issue_number: existing.number, labels });
+              await github.rest.issues.createComment({
+                owner,
+                repo,
+                issue_number: existing.number,
+                body: section,
+              });
+              core.info(`Added the report to the open issue #${existing.number}.`);
+              return;
+            }
+
             const body = [
-              "This issue was auto-created after source documentation changes were merged to `master`.",
+              marker,
+              "This issue tracks translation updates needed after source documentation changes were merged to `master`.",
+              "Later merges that leave translations behind add their report here as a comment. Close it once the translations have caught up.",
               "",
-              md,
+              section,
               "",
               "Please coordinate locale updates with maintainers/reviewers.",
             ].join("\n");
@@ -146,9 +177,9 @@ jobs:
             await github.rest.issues.create({
               owner,
               repo,
-              title,
+              title: "i18n: translation updates required",
               body,
-              labels: allLabels.map((l) => l.name),
+              labels,
             });
 
       - name: Upload i18n report artifact

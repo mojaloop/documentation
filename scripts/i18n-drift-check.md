@@ -417,7 +417,7 @@ VuePress config, or the script change.
 | Event | What runs | Result |
 | --- | --- | --- |
 | Pull request | the check, over the commits of the pull request | one bot comment with the report, updated on each push |
-| Push to `master` | the check, over the pushed commits | if there is new drift, an issue labelled `i18n`, `translation-needed` and `locale:<language>` |
+| Push to `master` | the check, over the pushed commits | if there is new drift, one running issue labelled `i18n`, `translation-needed` and `locale:<language>`: created on the first drift, then each later push with drift adds its report to it as a comment, until someone closes it |
 
 This workflow runs on GitHub Actions, next to the repository's CircleCI pipeline
 (`.circleci/config.yml`) and independently of it: CircleCI builds and publishes the site,
