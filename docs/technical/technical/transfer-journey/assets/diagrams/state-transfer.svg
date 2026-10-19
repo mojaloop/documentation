@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="689px" preserveAspectRatio="none" style="width:926px;height:689px;background:#FFFFFF;" version="1.1" viewBox="0 0 926 689" width="926px" zoomAndPan="magnify">
+  <title>Transfer internal state machine (central-ledger)</title>
+  <defs/>
+  <g>
+    <text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="380.4268" x="266.0826" y="22.9951">Transfer internal state machine (central-ledger)</text>
+    <ellipse cx="687.8" cy="53.2969" fill="#222222" rx="10" ry="10" style="stroke:#222222;stroke-width:1.0;"/>
+    <rect fill="#F1F1F1" height="40" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="151.1348" x="421.24" y="140.2969"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="141.1348" x="426.24" y="165.1436">RECEIVED_PREPARE</text>
+    <rect fill="#F1F1F1" height="40" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="66.4648" x="809.57" y="210.2969"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="56.4648" x="814.57" y="235.1436">INVALID</text>
+    <rect fill="#F1F1F1" height="40" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="85.2363" x="203.19" y="280.2969"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="75.2363" x="208.19" y="305.1436">RESERVED</text>
+    <rect fill="#F1F1F1" height="40" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="154.6074" x="518.5" y="350.2969"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="144.6074" x="523.5" y="375.1436">ABORTED_REJECTED</text>
+    <rect fill="#F1F1F1" height="40" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="151.75" x="616.93" y="490.2969"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="141.75" x="621.93" y="515.1436">EXPIRED_PREPARED</text>
+    <rect fill="#F1F1F1" height="40" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="133.6074" x="7" y="420.2969"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="123.6074" x="12" y="445.1436">RECEIVED_FULFIL</text>
+    <rect fill="#F1F1F1" height="40" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="136.5742" x="178.52" y="420.2969"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="126.5742" x="183.52" y="445.1436">RECEIVED_ERROR</text>
+    <rect fill="#F1F1F1" height="40" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="155.6602" x="351.97" y="420.2969"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="145.6602" x="356.97" y="445.1436">RESERVED_TIMEOUT</text>
+    <rect fill="#F1F1F1" height="40" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="95.8115" x="56.9" y="560.2969"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="85.8115" x="61.9" y="585.1436">COMMITTED</text>
+    <rect fill="#F1F1F1" height="40" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="134.1543" x="203.73" y="560.2969"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="124.1543" x="208.73" y="585.1436">ABORTED_ERROR</text>
+    <rect fill="#F1F1F1" height="40" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="152.5977" x="380.5" y="560.2969"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="142.5977" x="385.5" y="585.1436">EXPIRED_RESERVED</text>
+    <ellipse cx="554.8" cy="672.2969" fill="none" rx="11" ry="11" style="stroke:#222222;stroke-width:1.0;"/>
+    <ellipse cx="554.8" cy="672.2969" fill="#222222" rx="6" ry="6" style="stroke:#222222;stroke-width:1.0;"/>
+    <g id="link_*start*_RECEIVED_PREPARE">
+      <path d="M679.1,59.0769 C653.48,73.1669 582.578,112.1466 537.208,137.0866 " fill="none" id="*start*-to-RECEIVED_PREPARE" style="stroke:#181818;stroke-width:1.0;"/>
+      <polygon fill="#181818" points="531.95,139.9769,541.7638,139.1467,536.3316,137.5683,537.9101,132.1361,531.95,139.9769" style="stroke:#181818;stroke-width:1.0;"/>
+      <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="144.5996" x="616.03" y="106.3638">H18 validation passed</text>
+    </g>
+    <g id="link_*start*_INVALID">
+      <path d="M697.41,56.8069 C713.83,61.5169 747.55,73.0669 768.8,93.2969 C804.24,127.0169 824.7117,175.8724 834.7317,204.5624 " fill="none" id="*start*-to-INVALID" style="stroke:#181818;stroke-width:1.0;"/>
+      <polygon fill="#181818" points="836.71,210.2269,837.5188,200.4113,835.0614,205.5065,829.9662,203.049,836.71,210.2269" style="stroke:#181818;stroke-width:1.0;"/>
+      <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="134.6021" x="783.99" y="106.3638">H18 validation failed</text>
+    </g>
+    <g id="link_RECEIVED_PREPARE_RESERVED">
+      <path d="M421.03,167.8169 C360.63,174.6269 282.68,187.5769 260.8,210.2969 C243.09,228.6969 241.4219,253.7622 242.8619,273.8922 " fill="none" id="RECEIVED_PREPARE-to-RESERVED" style="stroke:#181818;stroke-width:1.0;"/>
+      <polygon fill="#181818" points="243.29,279.8769,246.6376,270.6144,242.9332,274.8896,238.658,271.1852,243.29,279.8769" style="stroke:#181818;stroke-width:1.0;"/>
+      <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="166.8545" x="261.8" y="234.8638">H20 liquidity and NDC OK</text>
+    </g>
+    <g id="link_RECEIVED_PREPARE_ABORTED_REJECTED">
+      <path d="M482.94,180.4669 C471.51,198.7769 458.69,226.9669 468.8,250.2969 C487.91,294.3769 527.2615,326.303 558.1415,346.673 " fill="none" id="RECEIVED_PREPARE-to-ABORTED_REJECTED" style="stroke:#181818;stroke-width:1.0;"/>
+      <polygon fill="#181818" points="563.15,349.9769,557.8399,341.6822,558.9763,347.2237,553.4348,348.3601,563.15,349.9769" style="stroke:#181818;stroke-width:1.0;"/>
+      <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="199.3926" x="469.8" y="234.8638">H20 4001 / 4200 / wrong state</text>
+    </g>
+    <g id="link_RECEIVED_PREPARE_EXPIRED_PREPARED">
+      <path d="M572.78,173.3369 C614.6,181.6369 660.64,194.0869 673.8,210.2969 C741.68,293.8769 713.7451,431.9866 699.9751,484.0166 " fill="none" id="RECEIVED_PREPARE-to-EXPIRED_PREPARED" style="stroke:#181818;stroke-width:1.0;"/>
+      <polygon fill="#181818" points="698.44,489.8169,704.6095,482.1398,699.7192,484.9833,696.8757,480.093,698.44,489.8169" style="stroke:#181818;stroke-width:1.0;"/>
+      <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="104.4443" x="715.53" y="304.8638">timeout handler</text>
+    </g>
+    <g id="link_RESERVED_RECEIVED_FULFIL">
+      <path d="M202.79,305.3369 C170.58,310.5869 127.62,322.6269 100.8,350.2969 C82.49,369.1969 77.1183,394.1338 75.2183,414.1038 " fill="none" id="RESERVED-to-RECEIVED_FULFIL" style="stroke:#181818;stroke-width:1.0;"/>
+      <polygon fill="#181818" points="74.65,420.0769,79.4845,411.4962,75.1236,415.0994,71.5204,410.7385,74.65,420.0769" style="stroke:#181818;stroke-width:1.0;"/>
+      <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="125.4297" x="101.8" y="374.8638">H26 checks passed</text>
+    </g>
+    <g id="link_RESERVED_RECEIVED_ERROR">
+      <path d="M241.39,320.7369 C239.58,329.6869 237.7,340.4769 236.8,350.2969 C235.19,367.9969 235.02,372.6069 236.8,390.2969 C237.8,400.1469 238.5753,405.0827 240.5853,414.0327 " fill="none" id="RESERVED-to-RECEIVED_ERROR" style="stroke:#181818;stroke-width:1.0;"/>
+      <polygon fill="#181818" points="241.9,419.8869,243.8307,410.2291,240.8044,415.0084,236.0251,411.9821,241.9,419.8869" style="stroke:#181818;stroke-width:1.0;"/>
+      <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="106.4756" x="248.0197" y="367.3638">H26 payee error</text>
+      <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="126.915" x="237.8" y="382.4966">or validation failure</text>
+    </g>
+    <g id="link_RESERVED_RESERVED_TIMEOUT">
+      <path d="M288.78,311.3669 C314.1,318.9169 345.61,331.2769 368.8,350.2969 C385.2,363.7369 382.86,372.7769 394.8,390.2969 C401.52,400.1469 405.682,406.0692 412.132,415.0192 " fill="none" id="RESERVED-to-RESERVED_TIMEOUT" style="stroke:#181818;stroke-width:1.0;"/>
+      <polygon fill="#181818" points="415.64,419.8869,413.6231,410.2467,412.7167,415.8305,407.1329,414.924,415.64,419.8869" style="stroke:#181818;stroke-width:1.0;"/>
+      <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="104.4443" x="395.8" y="374.8638">timeout handler</text>
+    </g>
+    <g id="link_RECEIVED_FULFIL_COMMITTED">
+      <path d="M78.18,460.7769 C84.09,487.0769 93.2343,527.8129 99.1343,554.0629 " fill="none" id="RECEIVED_FULFIL-to-COMMITTED" style="stroke:#181818;stroke-width:1.0;"/>
+      <polygon fill="#181818" points="100.45,559.9169,102.379,550.2588,99.3535,555.0386,94.5737,552.0131,100.45,559.9169" style="stroke:#181818;stroke-width:1.0;"/>
+      <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="26.3174" x="93.99" y="514.8638">H28</text>
+    </g>
+    <g id="link_RECEIVED_ERROR_ABORTED_ERROR">
+      <path d="M245.79,460.6369 C245.27,478.8369 245.63,506.7269 250.8,530.2969 C253.05,540.5269 254.8037,545.8927 258.7837,554.7627 " fill="none" id="RECEIVED_ERROR-to-ABORTED_ERROR" style="stroke:#181818;stroke-width:1.0;"/>
+      <polygon fill="#181818" points="261.24,560.2369,261.205,550.3881,259.1931,555.6751,253.9061,553.6631,261.24,560.2369" style="stroke:#181818;stroke-width:1.0;"/>
+      <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="109.4082" x="264.143" y="507.3638">position handler,</text>
+      <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="134.0942" x="251.8" y="522.4966">reservation released</text>
+    </g>
+    <g id="link_RESERVED_TIMEOUT_EXPIRED_RESERVED">
+      <path d="M426.21,460.7869 C423.57,479.0769 421.44,507.0469 427.8,530.2969 C430.67,540.7869 433.1369,546.2913 438.7769,554.8813 " fill="none" id="RESERVED_TIMEOUT-to-EXPIRED_RESERVED" style="stroke:#181818;stroke-width:1.0;"/>
+      <polygon fill="#181818" points="442.07,559.8969,440.4741,550.1782,439.3258,555.7173,433.7867,554.569,442.07,559.8969" style="stroke:#181818;stroke-width:1.0;"/>
+      <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="109.4082" x="441.143" y="507.3638">position handler,</text>
+      <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="134.0942" x="428.8" y="522.4966">reservation released</text>
+    </g>
+    <g id="link_COMMITTED_*end*">
+      <path d="M153.13,592.9669 C163.87,595.4669 175.21,598.0369 185.8,600.2969 C326.8,630.3869 493.4529,660.3852 537.9929,668.3152 " fill="none" id="COMMITTED-to-*end*" style="stroke:#181818;stroke-width:1.0;"/>
+      <polygon fill="#181818" points="543.9,669.3669,535.7405,663.8512,538.9774,668.4904,534.3382,671.7274,543.9,669.3669" style="stroke:#181818;stroke-width:1.0;"/>
+    </g>
+    <g id="link_INVALID_*end*">
+      <path d="M845.53,250.4469 C849.07,277.0569 854.8,326.7269 854.8,369.2969 C854.8,369.2969 854.8,369.2969 854.8,581.2969 C854.8,642.8769 625.9395,665.4508 571.8195,669.9408 " fill="none" id="INVALID-to-*end*" style="stroke:#181818;stroke-width:1.0;"/>
+      <polygon fill="#181818" points="565.84,670.4369,575.1399,673.6791,570.8229,670.0235,574.4785,665.7065,565.84,670.4369" style="stroke:#181818;stroke-width:1.0;"/>
+    </g>
+    <g id="link_ABORTED_REJECTED_*end*">
+      <path d="M593.18,390.5169 C585.31,448.0669 562.9421,611.7321 557.0121,655.1421 " fill="none" id="ABORTED_REJECTED-to-*end*" style="stroke:#181818;stroke-width:1.0;"/>
+      <polygon fill="#181818" points="556.2,661.0869,561.3813,652.7111,556.8767,656.1329,553.4549,651.6283,556.2,661.0869" style="stroke:#181818;stroke-width:1.0;"/>
+    </g>
+    <g id="link_EXPIRED_PREPARED_*end*">
+      <path d="M683.71,530.4869 C671.07,555.7369 646.28,600.5169 615.8,631.2969 C600.12,647.1369 582.5122,657.3753 569.7022,663.9253 " fill="none" id="EXPIRED_PREPARED-to-*end*" style="stroke:#181818;stroke-width:1.0;"/>
+      <polygon fill="#181818" points="564.36,666.6569,574.1943,666.121,568.8118,664.3806,570.5522,658.9981,564.36,666.6569" style="stroke:#181818;stroke-width:1.0;"/>
+    </g>
+    <g id="link_ABORTED_ERROR_*end*">
+      <path d="M332.08,600.7169 C401.87,622.8269 504.9003,655.4845 538.7003,666.1945 " fill="none" id="ABORTED_ERROR-to-*end*" style="stroke:#181818;stroke-width:1.0;"/>
+      <polygon fill="#181818" points="544.42,668.0069,537.0487,661.4752,539.6536,666.4966,534.6322,669.1015,544.42,668.0069" style="stroke:#181818;stroke-width:1.0;"/>
+    </g>
+    <g id="link_EXPIRED_RESERVED_*end*">
+      <path d="M477.59,600.3869 C499.39,620.4069 528.0701,646.7493 542.8301,660.2993 " fill="none" id="EXPIRED_RESERVED-to-*end*" style="stroke:#181818;stroke-width:1.0;"/>
+      <polygon fill="#181818" points="547.25,664.3569,543.3252,655.3238,543.5667,660.9755,537.915,661.2171,547.25,664.3569" style="stroke:#181818;stroke-width:1.0;"/>
+    </g>
+  </g>
+</svg>

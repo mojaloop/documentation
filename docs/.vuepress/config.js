@@ -337,6 +337,19 @@ module.exports = {
               ]
             },
             {
+              title: "Transfer Journey",
+              collapsable: true,
+              sidebarDepth: 2,
+              children: [
+                ['technical/transfer-journey/', 'Overview'],
+                ['technical/transfer-journey/discovery', 'Phase 1 · Discovery'],
+                ['technical/transfer-journey/quote', 'Phase 2 · Quote'],
+                ['technical/transfer-journey/transfer-prepare', 'Phase 3 · Transfer Prepare'],
+                ['technical/transfer-journey/transfer-fulfil', 'Phase 3 · Fulfil and Commit'],
+                ['technical/transfer-journey/reference', 'Reference']
+              ]
+            },
+            {
               title: "Mojaloop Releases",
               path: "technical/releases"
             },
