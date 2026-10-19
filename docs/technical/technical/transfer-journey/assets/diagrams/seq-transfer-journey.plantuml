@@ -1,0 +1,86 @@
+/'*****
+ License
+ --------------
+ Copyright © 2020-2026 Mojaloop Foundation
+ The Mojaloop files are made available by the Mojaloop Foundation under the Apache License, Version 2.0 (the "License") and you may not use these files except in compliance with the License. You may obtain a copy of the License at
+ http://www.apache.org/licenses/LICENSE-2.0
+ Unless required by applicable law or agreed to in writing, the Mojaloop files are distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+ Contributors
+ --------------
+ This is the official list of the Mojaloop project contributors for this file.
+ Names of the original copyright holders (individuals or organizations)
+ should be listed with a '*' in the first column. People who have
+ contributed from an organization can be listed under the organization
+ that actually holds the copyright for their contributions (see the
+ Mojaloop Foundation for an example). Those individuals should have
+ their names indented and be marked with a '-'. Email address can be added
+ optionally within square brackets <email>.
+ * Mojaloop Foundation
+ - Shashikant Hirugade <shashi.pioneer1@gmail.com>
+ --------------
+ ******'/
+
+@startuml
+title Transfer journey: one P2P transfer, hop by hop (H1-H31)
+
+' Solid arrows are HTTP, dashed arrows are Kafka
+
+participant "pinebank\ncore" as CB
+participant "pinebank\nSDK" as PS
+boundary "ALS" as ALS
+database "Oracle" as OR
+boundary "quoting-service" as QS
+boundary "ml-api-adapter\nAPI" as MA
+collections "Kafka" as K
+control "prepare\nhandler" as PH
+control "position-batch\nhandler" as POS
+control "fulfil\nhandler" as FH
+control "notification\nhandler" as NH
+participant "riverwallet\nSDK" as RS
+participant "riverwallet\ncore" as RB
+
+== Phase 1: Discovery ==
+CB -> PS: [H1] POST /transfers (SDK outbound API)
+PS -> ALS: [H2] GET /parties/MSISDN/{ID}
+ALS -> OR: [H3] GET /participants/MSISDN/{ID}
+ALS -> RS: [H4] GET /parties/MSISDN/{ID}
+RS -> RB: [H5] GET /parties/MSISDN/{ID}
+RS -> ALS: [H6] PUT /parties/MSISDN/{ID}
+ALS -> PS: [H7] PUT /parties/MSISDN/{ID}
+note over PS: [H8] payee resolved
+
+== Phase 2: Quote ==
+PS -> QS: [H9] POST /quotes
+QS --> K: [H10] topic-quotes-post
+QS -> RS: [H11] POST /quotes
+RS -> RB: [H12] POST /quoterequests
+note over RS: ILP packet, condition, fulfilment
+RS -> QS: [H13] PUT /quotes/{ID}
+QS --> K: [H14] topic-quotes-put
+QS -> PS: [H15] PUT /quotes/{ID}
+
+== Phase 3: Transfer prepare ==
+PS -> MA: [H16] POST /transfers
+MA --> K: [H17] topic-transfer-prepare
+K --> PH: consume
+PH --> K: [H18] topic-transfer-position-batch\n(key = payer position account)
+K --> POS: [H19] consume
+note over POS: [H20] RESERVE
+POS --> K: [H21] topic-notification-event (prepare)
+K --> NH: consume
+NH -> RS: [H22] POST /transfers
+RS -> RB: [H23] POST /transfers
+
+== Phase 3: Transfer fulfil and commit ==
+RS -> MA: [H24] PUT /transfers/{ID} (fulfilment)
+MA --> K: [H25] topic-transfer-fulfil
+K --> FH: consume
+FH --> K: [H26] topic-transfer-position-batch\n(key = payee position account)
+K --> POS: [H27] consume
+note over POS: [H28] COMMIT
+POS --> K: [H29] topic-notification-event (commit)
+K --> NH: consume
+NH -> PS: [H30] PUT /transfers/{ID}
+PS -> CB: [H30] response to H1
+NH -> RS: [H31] PUT or PATCH /transfers/{ID}
+@enduml
