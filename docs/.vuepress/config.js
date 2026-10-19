@@ -90,7 +90,7 @@ module.exports = {
         lastUpdated: 'Última atualização',
         nav: [
           { text: 'Adoção (em inglês)', link: '/adoption/' },
-          { text: 'Comunidade (em inglês)', link: '/community/' },
+          { text: 'Comunidade', link: '/pt/community/' },
           { text: 'Técnico (em inglês)', link: '/technical/' },
           { text: 'Produto', link: '/pt/product/' },
           { text: 'Programa de formação', link: 'https://mojaloop.io/mojaloop-training-program/' }
@@ -2273,7 +2273,128 @@ module.exports = {
       ],
       // Populated per area, in the same PR as the pages they list.
       '/pt/adoption/': [],
-      '/pt/community/': [],
+      '/pt/community/': [
+        {
+          title: 'Comunidade',
+          collapsable: false,
+          sidebarDepth: 2,
+          children: [
+            ['contributing/contributors-guide', 'Bem-vindo à comunidade'],
+            ['mojaloop-roadmap', 'Roadmap do produto'],
+            ['mojaloop-publications', 'Publicações da Mojaloop']
+          ]
+        },
+        {
+          title: 'Contribuir',
+          collapsable: false,
+          sidebarDepth: 2,
+          children: [
+            ['contributing/contributors-guide', 'Guia do contribuidor'],
+            ['contributing/product-engineering-process', 'Processo de engenharia de produto'],
+            ['contributing/design-review', 'Revisão técnica e de código'],
+            ['contributing/consequential-change-process', 'Processo de alterações com consequências'],
+            ['contributing/critical-change-process', 'Processo de alterações críticas'],
+            ['contributing/new-contributor-checklist', 'Lista de verificação para novos contribuidores'],
+            ['contributing/pr-guidance', 'Diretrizes para pull requests'],
+            ['contributing/code-of-conduct', 'Código de conduta'],
+            ['contributing/signing-the-cla', 'Assinar o CLA'],
+            ['contributing/cvd', 'Divulgação de vulnerabilidades de segurança'],
+          ]
+        },
+        {
+          title: 'Normas',
+          collapsable: false,
+          sidebarDepth: 2,
+          children: [
+            ['standards/guide', 'As nossas normas'],
+            ['standards/invariants', 'Invariantes do Mojaloop'],
+            ['standards/versioning', 'Versionamento'],
+            ['standards/creating-new-features', 'Criar novas funcionalidades'],
+            ['standards/triaging-bugs', 'Triagem de bugs'],
+            ['standards/ai_policy', 'Política de IA'],
+          ]
+        },
+        {
+          title: 'Ferramentas e tecnologias',
+          collapsable: false,
+          sidebarDepth: 2,
+          children: [
+            ['tools/tools-and-technologies', 'Ferramentas'],
+            ['tools/pragmatic-rest', 'Pragmatic Rest'],
+            ['tools/code-quality-metrics', 'Métricas de qualidade do código'],
+            ['tools/automated-testing', 'Testes automatizados'],
+            ['tools/cybersecurity', 'Cibersegurança'],
+          ]
+        },
+        {
+          title: 'Documentação',
+          collapsable: false,
+          sidebarDepth: 2,
+          children: [
+            ['documentation/standards', 'Normas'],
+            ['documentation/api-documentation', 'Documentação da API'],
+            ['documentation/style-guide', 'Guia de estilo']
+          ]
+        },
+        {
+          title: 'Arquivo',
+          collapsable: false,
+          sidebarDepth: 4,
+          children: [
+            {
+              title: 'Arquivo de notas',
+              collapsable: true,
+              path: 'archive/notes/',
+              children: [
+                ['archive/notes/ccb-notes', 'Notas do CCB'],
+                ['archive/notes/da-notes', 'Notas de reuniões'],
+                ['archive/notes/scrum-of-scrum-notes', 'Notas de scrum']
+              ]
+            },
+            {
+              title: 'Arquivo de documentos de debate',
+              collapsable: true,
+              path: 'archive/discussion-docs/',
+              children: [
+                {
+                  title: 'PI 10',
+                  collapsable: true,
+                  children: [
+                    ['archive/discussion-docs/performance-project', 'Projeto de desempenho'],
+                    ['archive/discussion-docs/code-improvement', 'Projeto de melhoria do código'],
+                    ['archive/discussion-docs/cross-border', 'Projeto transfronteiriço'],
+                    ['archive/discussion-docs/psip-project', 'Projeto PSIP']
+                  ]
+                },
+                {
+                  title: 'PI 9',
+                  collapsable: true,
+                  children: [
+                    ['archive/discussion-docs/versioning-draft-proposal', 'Proposta preliminar de versionamento'],
+                  ]
+                },
+                {
+                  title: 'PI 8',
+                  collapsable: true,
+                  children: [
+                    ['archive/discussion-docs/cross-border-day-1', 'Notas da reunião CB, dia 1'],
+                    ['archive/discussion-docs/cross-border-day-2', 'Notas da reunião CB, dia 2'],
+                    ['archive/discussion-docs/iso-integration', 'Visão geral da integração ISO'],
+                    ['archive/discussion-docs/mojaloop-decimal', 'Tipo decimal do Mojaloop']
+                  ]
+                },
+                {
+                  title: 'PI 7',
+                  collapsable: true,
+                  children: [
+                    ['archive/discussion-docs/workbench', 'Workbench Workstream'],
+                  ]
+                }
+              ]
+            },
+          ]
+        }
+      ],
       '/pt/product/': [
         {
           title: 'Funcionalidades do Mojaloop',
