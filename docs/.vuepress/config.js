@@ -314,6 +314,7 @@ module.exports = {
               sidebarDepth: 2,
               children: [
                 ['technical/deployment-guide/', 'Deploying Mojaloop'],
+                ['technical/deployment-guide/Production_Infrastructure_Guide', 'Production Infrastructure Guide'],
                 'technical/deployment-guide/deployment-troubleshooting',
                 'technical/deployment-guide/upgrade-strategy-guide',
                 'technical/deployment-guide/mojaloop-repository-update-guide'
