@@ -1,0 +1,115 @@
+@startuml
+
+title Merchant Registration: Existing or New LEI
+
+actor M as "Merchant Representative\n(Natural Person)"
+actor A as "DFSP Registering Agent:\n(Natural Person)\n(LEI Validation Agent where applicable)"
+participant RP as "Merchant\nRegistration\nPortal"
+database D as "Merchant Registry"
+participant NCR as "National\nCompanies\nRegistry"
+participant LOU as "LEI Registrar\n(LOU)"
+participant GL as "\n<font color=white>GLEIF\n<font color=white>Services\n" #28989A
+
+autonumber
+
+note across: Merchant wishes to register to accept merchant payments
+M -> M: Assemble documentation
+M -> A: Provide merchant documentation\nand, if already held, LEI
+
+A -> RP: Access Portal and login
+RP -> A: Verify credentials; present\nhome screen if accepted
+A -> RP: Select merchant registration
+RP -> A: Present merchant\nregistration portal
+
+alt Merchant already has an LEI
+    A -> RP: Enter LEI and other\nmerchant documentation details
+else Merchant wishes to obtain an LEI
+    A -> RP: Enter merchant\ndocumentation details
+    note left: Must include company\nregistration details
+end
+
+RP -> D: Record data as a temporary\nregistry entry
+
+RP -> NCR: Request company\nregistration data
+NCR -> RP: Return company\nregistration data
+RP -> D: Add company registration data\nto temporary registry entry
+
+alt Merchant already has an LEI
+    RP -> GL: Submit LEI and request\nGLEIF data
+    GL -> RP: Return GLEIF data\nfor this LEI
+    RP -> D: Add GLEIF data to\ntemporary registry entry
+    RP -> A: Present merchant, company\nand GLEIF data to Registrar
+    note left: Registrar checks that the merchant documentation,\nGLEIF data and company registration data all match
+else Merchant wishes to obtain an LEI
+    RP -> A: Present merchant and company\ndata to Registrar
+    note left: Registrar checks that the merchant documentation\nand company registration data all match
+end
+
+alt Data all matches
+    A -> M: Verify merchant's ID matches\nthat of the company owner
+    note right: Registrar must establish that this person\nis authorised to register the merchant
+
+    alt Identity matches
+        A -> RP: Record merchant\nidentity data
+        RP -> D: Add merchant identity data\nto temporary registry entry
+        A -> RP: Approve new\nmerchant registry entry
+        RP -> D: Generate new Merchant ID\nand add it to registry entry
+        note left: Merchant ID should be prefixed with a short numeric\ncode identifying the registrar's DFSP, to ensure uniqueness
+
+        alt Merchant already has an LEI
+            note across: Existing LEI has already been captured and verified
+        else Merchant wishes to obtain an LEI
+            RP -> A: Present data for confirmation
+            A -> M: Request confirmation\nand payment
+            note right: LEI registration is chargeable
+            M -> A: Confirm and pay
+            A -> RP: Proceed with LEI registration
+            RP -> LOU: Submit merchant data to LOU
+            LOU -> LOU: Validate submitted data
+            LOU -> GL: If successful, register merchant\nand generate LEI
+            LOU -> RP: Report result and, if issued,\nreturn LEI
+
+            alt LEI issued
+                RP -> D: Add LEI to merchant\nregistry entry
+                RP -> A: Present LEI to Registrar
+                A -> M: Inform merchant of LEI
+            else LEI not issued
+                RP -> A: Inform Registrar of LEI failure
+                A -> M: Inform merchant of LEI failure
+                note across: Merchant registration may continue using Merchant ID as the routing identifier
+            end
+        end
+
+        RP -> D: Finalise merchant registry entry
+        RP -> A: Notify Registrar of\nregistry entry details
+        A -> RP: Request static QR code
+
+        alt LEI available in merchant registry entry
+            note across: Use LEI as the payment routing identifier
+            RP <-> D: Build static QR code\nusing LEI for routing
+        else No LEI available
+            note across: Use Merchant ID as the payment routing identifier
+            RP <-> D: Build static QR code\nusing Merchant ID for routing
+        end
+
+        RP -> A: Deliver QR code for printing
+        A -> A: Print static QR code
+        A -> M: Share static QR code, Merchant ID,\nLEI if available, and registration details
+
+    else Identity does not match / person not authorised
+        RP -> D: Delete temporary\nregistry entry
+        RP -> A: Re-present home screen
+    end
+
+else Data mismatch
+    A -> RP: Cancel registration
+
+    alt Merchant already has an LEI and mismatch involves LEI data
+        RP -> GL: Report mismatch between GLEIF data\nand company registration data
+    end
+
+    RP -> D: Delete temporary\nregistry entry
+    RP -> A: Re-present home screen
+end
+
+@enduml
