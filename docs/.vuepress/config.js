@@ -92,7 +92,7 @@ module.exports = {
           { text: 'Adoção (em inglês)', link: '/adoption/' },
           { text: 'Comunidade (em inglês)', link: '/community/' },
           { text: 'Técnico (em inglês)', link: '/technical/' },
-          { text: 'Produto (em inglês)', link: '/product/' },
+          { text: 'Produto', link: '/pt/product/' },
           { text: 'Programa de formação', link: 'https://mojaloop.io/mojaloop-training-program/' }
         ],
       },
@@ -2274,7 +2274,28 @@ module.exports = {
       // Populated per area, in the same PR as the pages they list.
       '/pt/adoption/': [],
       '/pt/community/': [],
-      '/pt/product/': [],
+      '/pt/product/': [
+        {
+          title: 'Funcionalidades do Mojaloop',
+          collapsable: false,
+          sidebarDepth: 2,
+          children: [
+            ['features/ml-feature-list', 'Sobre o Mojaloop'],
+            ['features/use-cases', 'Casos de uso'],
+            ['features/transaction', 'Transações'],
+            ['features/risk', 'Gestão de risco'],
+            ['features/connectivity', 'Onboarding de DFSP'],
+            ['features/product', 'Portais e funcionalidades operacionais'],
+            ['features/tariffs', 'Comissões e tarifas'],
+            ['features/performance', 'Desempenho'],
+            ['features/deployment', 'Deployment do Mojaloop'],
+            ['features/security', 'Segurança do Mojaloop'],
+            ['features/dfsp-infrastructure-security', 'Segurança da infraestrutura do DFSP'],
+            ['features/engineering', 'Princípios de engenharia'],
+            ['features/invariants', 'Invariantes'],
+            ['features/development', 'Desenvolvimento contínuo']]
+        }
+      ],
       '/pt/technical/': [],
     }
   },

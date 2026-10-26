@@ -139,6 +139,39 @@ One source term maps to exactly one target term across the locale. A reviewer ma
 | rollback | *not translated* | reversão, retrocesso | `o rollback` |
 | workstream | *not translated* | fluxo de trabalho, linha de trabalho | `o workstream`. `fluxo de trabalho` is `workflow`, a different thing |
 
+### A.4.1 Terms settled in the `product` section
+
+Decided while translating `docs/pt/product/**`; binding across the locale from here on.
+
+| English | Approved | Do not use | Notes |
+| --- | --- | --- | --- |
+| supported, unsupported (field, response, option) | **permitido**, **não permitido** | suportado | `suportar` is a false friend (A.5). For a feature: `compatível com` |
+| plural of retained acronyms | **os DFSPs**, **os FXPs**, **os PISPs**, **os SLAs** | os DFSP | English-style `-s`, per A.3 «agree in number» |
+| payer DFSP, payee DFSP | **DFSP pagador**, **DFSP beneficiário** | DFSP do pagador | `DFSP do pagador` only where the English has the possessive («Payer's DFSP») |
+| sender, receiver (person) | **remetente**, **destinatário** | emissor | Charging models: `Remetente paga` / `Beneficiário paga` |
+| charge | **encargo** | taxa, comissão | `fee` stays `comissão` |
+| currency conversion | **conversão cambial** | conversão de moeda | |
+| foreign exchange, FX | **câmbio (FX)** | troca de divisas | FXP → `fornecedor de câmbio (FXP)` once, then `FXP` |
+| cross-border | **transfronteiriço/a** | além-fronteiras | |
+| Agreement of Terms, Discovery, Transfer (phases) | **fase de acordo**, **fase de descoberta**, **fase de transferência** | | Lower case in prose |
+| use case | **caso de uso** | | |
+| merchant payment | **pagamento a comerciantes** | | |
+| end to end | **de ponta a ponta** | de extremo a extremo | |
+| non-repudiation | **não repúdio** | não-repúdio | AO90, no hyphen |
+| financial institution (FI), MFI | **instituição financeira (IF)**, **instituição de microfinanças (IMF)** | | Gloss on first use per page |
+| performance, throughput, latency | **desempenho**, **débito (throughput)**, **latência** | performance | |
+| adopter | **adotante** | adoptante | |
+| Hub Operator | **operador do hub** | | `Hub Mojaloop` keeps the capital when naming the product |
+| Market Practice Document (MPD) | **documento de práticas de mercado (Market Practice Document, MPD)** | | Page title: `Documento de práticas de mercado ISO 20022 do Mojaloop` |
+| payload, callback, release, roadmap, framework, pipeline, back office | *not translated* | carga útil | `o payload`, `o callback`, `a framework` |
+| billion | **mil milhões** | bilião | Already in A.5; repeated because `product/**` quotes volumes |
+
+**ISO 20022 element tables.** In `product/features/Iso20022/v1.0/script/*.md`, the `<tr class=required|optional|unsupported>` rows reproduce ISO 20022 data-dictionary definitions and stay in English, as in the `fr` locale. Everything around them is translated, including the legend (`Legenda do tipo de modelo de dados`; `obrigatório` / `opcional` / `não permitido`) and the table headers (`Campo ISO 20022` / `Modelo de dados` / `Descrição`).
+
+**Anchors.** VuePress strips accents when building heading anchors (`Detalhes do cabeçalho` → `#_3-3-1-detalhes-do-cabecalho`). Write in-page and cross-page fragments against that slug; `markdownlint` MD051 reports them because it uses GitHub slugs, which is a known, accepted difference.
+
+**Assets.** Per the ruling above, no image is duplicated under `docs/pt/`; pages reference the English asset with a relative path that leaves the locale (`../../../product/features/FXP.svg`), and translate the alt text.
+
 ## A.5 Language-specific pitfalls
 
 ### False friends
