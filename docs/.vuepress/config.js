@@ -203,6 +203,7 @@ module.exports = {
             ['contributing/critical-change-process', 'Critical Change Process'],
             ['contributing/new-contributor-checklist', 'New Contributor Checklist'],
             ['contributing/pr-guidance', 'Pull Request Guidance'],
+            ['contributing/triaging-bugs', 'Triaging Bugs'],
             ['contributing/code-of-conduct', 'Code of Conduct'],
             ['contributing/signing-the-cla', 'Signing the CLA'],
             ['contributing/cvd', 'Disclosing Security Vulnerabilities'],
@@ -217,7 +218,6 @@ module.exports = {
             ['standards/invariants', 'Mojaloop Invariants'],
             ['standards/versioning', 'Versioning'],
             ['standards/creating-new-features', 'Creating New Features'],
-            ['standards/triaging-bugs', 'Triaging Bugs'],
             ['standards/ai_policy', "AI Policy"],
           ]
         },
@@ -2182,6 +2182,7 @@ module.exports = {
             ['contributing/critical-change-process', 'Processus de changement critique'],
             ['contributing/new-contributor-checklist', 'Liste de contrôle du nouveau contributeur'],
             ['contributing/pr-guidance', 'Directives pour les pull requests'],
+            ['contributing/triaging-bugs', 'Tri des bogues'],
             ['contributing/code-of-conduct', 'Code de conduite'],
             ['contributing/signing-the-cla', 'Signature de la CLA'],
             ['contributing/cvd', 'Divulgation des vulnérabilités de sécurité'],
@@ -2196,7 +2197,6 @@ module.exports = {
             ['standards/invariants', 'Invariants Mojaloop'],
             ['standards/versioning', 'Gestion des versions'],
             ['standards/creating-new-features', 'Création de nouvelles fonctionnalités'],
-            ['standards/triaging-bugs', 'Tri des bogues'],
             ['standards/ai_policy', 'Politique sur l’usage responsable de l’IA'],
           ]
         },
