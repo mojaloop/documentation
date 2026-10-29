@@ -161,7 +161,7 @@ Insure you install a supported `Ingress Controller` version that matches your ta
 
 ### 4. Helm
 
-Please review [Mojaloop Helm Chart](../repositories/helm.md) to understand the relationships between the deployed Mojaloop helm charts.
+Please review [Mojaloop Helm Chart](https://docs.mojaloop.io/legacy/repositories/helm.html) to understand the relationships between the deployed Mojaloop helm charts.
 
 Refer to the official documentation on how to install the latest version of Helm: <https://helm.sh/docs/intro/install/>.
 
@@ -277,7 +277,7 @@ Further reading can be found [here](https://github.com/mojaloop/helm/blob/master
 
 #### 5.4. Testing Mojaloop
 
-The [Mojaloop Testing Toolkit](../../documentation/mojaloop-technical-overview/ml-testing-toolkit/README.md) (**TTK**) is used for testing deployments, and has been integrated into Helm utilizing its CLI to easily test any Mojaloop deployment.
+The [Mojaloop Testing Toolkit](../ml-testing-toolkit/README.md) (**TTK**) is used for testing deployments, and has been integrated into Helm utilizing its CLI to easily test any Mojaloop deployment.
 
 1. Validating Mojaloop using Helm
 
@@ -291,7 +291,7 @@ The [Mojaloop Testing Toolkit](../../documentation/mojaloop-technical-overview/m
    helm -n demo test moja --logs
    ```
 
-   This will automatically execute the following [test cases](https://github.com/mojaloop/testing-toolkit-test-cases) using the [Mojaloop Testing Toolkit](../../documentation/mojaloop-technical-overview/ml-testing-toolkit/README.md) (**TTK**) CLI:
+   This will automatically execute the following [test cases](https://github.com/mojaloop/testing-toolkit-test-cases) using the [Mojaloop Testing Toolkit](../ml-testing-toolkit/README.md) (**TTK**) CLI:
 
    - [TTK Hub setup and Simulator Provisioning Collection](https://github.com/mojaloop/testing-toolkit-test-cases/tree/master/collections/hub/provisioning).
 
@@ -344,11 +344,11 @@ The [Mojaloop Testing Toolkit](../../documentation/mojaloop-technical-overview/m
 
    One is able to manually load and execute the Testing Toolkit Collections using the UI which allows one to visually inspect the requests, responses and assertions in more detail. This is a great way to learn more about Mojaloop.
 
-   Refer to the [Mojaloop Testing Toolkit Documentation](../../documentation/mojaloop-technical-overview/ml-testing-toolkit/README.md) for more information and guides.
+   Refer to the [Mojaloop Testing Toolkit Documentation](../ml-testing-toolkit/README.md) for more information and guides.
 
 #### 5.5. Testing Mojaloop with Postman
 
-[Postman](https://www.postman.com/downloads) can be used as an alternative to the [Mojaloop Testing Toolkit](../../documentation/mojaloop-technical-overview/ml-testing-toolkit/README.md). Refer to the [Automated Testing Guide](../contributors-guide/tools-and-technologies/automated-testing.md) for more information.
+[Postman](https://www.postman.com/downloads) can be used as an alternative to the [Mojaloop Testing Toolkit](../ml-testing-toolkit/README.md). Refer to the [Automated Testing Guide](https://docs.mojaloop.io/community/tools/automated-testing.html) for more information.
 
 The available [Mojaloop Postman Collections](https://github.com/mojaloop/postman) are similar to the [Mojaloop Testing Toolkit's Test Cases](https://github.com/mojaloop/testing-toolkit-test-cases)'s as follows:
 
