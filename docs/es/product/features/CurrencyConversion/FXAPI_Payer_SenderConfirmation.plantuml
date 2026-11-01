@@ -1,0 +1,157 @@
+@startuml FXAPI_Payer_SenderConfirmation
+
+!$simplified = false
+!$shortCutSingleFXP = false
+!$hideSwitchDetail = false
+!$advancedCoreConnectorFlow = false
+!$senderName = "John"
+!$senderLastName = ""
+!$senderDOB = "1966-06-16"
+!$receiverName = "Yaro"
+!$receiverFirstName = "Yaro"
+!$receiverMiddleName = ""
+!$receiverLastName = ""
+!$receiverDOB = "1966-06-16"
+!$payerCurrency = "BWP"
+!$payeeCurrency = "TZS"
+!$payerFSPID = "PayerFSP"
+!$payeeFSPID = "PayeeFSP"
+!$fxpID = "FDH_FX"
+!$payerMSISDN = "26787654321"
+!$payeeMSISDN = "2551234567890"
+!$payeeReceiveAmount = "44000"
+!$payerSendAmount = "300"
+!$payeeFee = "4000"
+!$targetAmount = "48000"
+!$fxpChargesSource = "33"
+!$fxpChargesTarget = "6000"
+!$fxpSourceAmount = "300"
+!$fxpTargetAmount = "48000"
+!$totalChargesSourceCurrency = "55"
+!$totalChargesTargetCurrency = "10000"
+!$conversionRequestId = "828cc75f1654415e8fcddf76cc"
+!$conversionId = "581f68efb54f416f9161ac34e8"
+!$homeTransactionId = "string"
+!$quoteId = "382987a875ce4037b500c475e0"
+!$transactionId = "d9ce59d4359843968630581bb0"
+!$quotePayerExpiration = "2021-08-25T14:17:09.663+01:00"
+!$quotePayeeExpiration = "2021-08-25T14:17:09.663+01:00"
+!$commitRequestId = "77c9d78dc26a44748b3c99b96a"
+!$determiningTransferId = "d9ce59d4359843968630581bb0"
+!$transferId = "d9ce59d4359843968630581bb0"
+!$fxCondition = "GRzLaTP7DJ9t4P-a_B..."
+!$condition = "HOr22-H3AfTDHrSkP..."
+
+title Payer DFSP requests conversion with SEND amount
+actor "$senderName" as A1
+participant "Payer CBS" as PayerCBS
+
+box "Payer DFSP" #LightBlue  
+  participant "Core Connector" as PayerCC
+  participant "Payer\nMojaloop\nConnector" as D1
+end box
+
+'participant "Mojaloop Switch" as S1
+
+'box "Discovery Service" #LightYellow
+  'participant "ALS Oracle" as ALS
+'end box
+
+'box "FX provider"  
+'  participant "FXP\nConnector" as FXP
+'  participant "Backend FX API" as FXPBackend
+'end box
+
+'box "Payee DFSP" #LightBlue   
+'  participant "Payee\nMojaloop\nConnector" as D2
+'  participant "Core Connector" as PayeeCC
+'end box
+
+'actor "$receiverName" as A2
+autonumber
+
+
+!if ($advancedCoreConnectorFlow != true)    
+    D1-->PayerCC:Here's the quote for the transfer\nIt expires at $quotePayeeExpiration
+    note right
+    **POST/PUT /transfers** response
+    {
+        "transferId": "$transferId",
+            "homeTransactionId": "$homeTransactionId",
+            "from": {
+                "displayName": "$senderName",
+                "fspId": "$payerFSPID",
+                "idType": "MSISDN",
+                "idValue": "$payerMSISDN" },
+            "to": {
+                "type": "CONSUMER",
+                "idType": "MSISDN",
+                "idValue": "$payeeMSISDN",
+                "displayName": "$receiverName",
+                "fspId": "$payeeFSPID"
+                "supportedCurrencies": [ "$payeeCurrency" ] },
+            "amountType": "SEND",
+            "currency": "$payerCurrency",
+            "amount": "$payerSendAmount"
+            "currentState": "**WAITING_FOR_QUOTE_ACCEPTANCE**",
+            "getPartiesResponse": {<Same as the previous responses>},
+            "conversionRequestId": "$conversionRequestId",
+            "fxQuotesResponse": {<Same as the previous responses>},
+            "fxQuotesResponseSource": "$payeeFSPID",
+            "quoteId": "$quoteId",
+            "quoteResponse": {
+                "body": {
+                    "transferAmount": {
+                        "currency": "$payeeCurrency",
+                        "amount": "$targetAmount"},
+                    "payeeReceiveAmount": {
+                        "currency": "$payeeCurrency",
+                        "amount": "$payeeReceiveAmount"},
+                    "payeeFspFee": {
+                        "currency": "$payeeCurrency",
+                        "amount": "$payeeFee"},
+                    "expiration": "$payeeQuoteExpiration",
+                    "ilpPacket": "<This is encoded transaction object.>",
+                    "condition": "$condition"},},
+            "quoteResponseSource": "$payeeFSPID",
+        }
+    end note
+!else
+   D1-->PayerCC:Here's the quote for the transfer\nIt expires at $quotePayeeExpiration
+    !if ($simplified != true)
+        note right of PayerCC
+        {
+            "quotes": {
+                "body": {
+                    "transferAmount": {
+                        "currency": "$payeeCurrency",
+                        "amount": "$targetAmount"
+                    },
+                    "payeeReceiveAmount": {
+                        "currency": "$payeeCurrency",
+                        "amount": "$payeeReceiveAmount"
+                    },
+                    "payeeFspFee": {
+                        "currency": "$payeeCurrency",
+                        "amount": "$payeeFee"
+                    },
+                    "expiration": "$payeeQuoteExpiration",
+                    "ilpPacket": "
+                        <This is encoded transaction object. It contains data from quote request and response.>
+                    ",
+                    "condition": "$condition"
+                },
+                "headers": {}
+            },
+            "currentState": "COMPLETED"
+        }
+        end note
+    !endif
+!endif
+PayerCC->PayerCBS:Here's the quote
+PayerCBS->A1:Hi, $senderName: I can do the transfer.\nIt'll cost you $totalChargesSourceCurrency $payerCurrency($totalChargesTargetCurrency $payeeCurrency) in fees\nand $receiverName will receive\n$payeeReceiveAmount $payeeCurrency.\nLet me know if you want to go ahead
+A1->PayerCBS:Great! Yes please, go ahead
+
+PayerCBS->PayerCC: Payer has accepted the terms please proceed
+
+@enduml

@@ -1,0 +1,308 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="2357px" preserveAspectRatio="none" style="width:1667px;height:2357px;background:#FFFFFF;" version="1.1" viewBox="0 0 1667 2357" width="1667px" zoomAndPan="magnify">
+  <title>Remittance Transfer using Mojaloop FX APIs POC</title>
+  <defs/>
+  <g>
+    <text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="388.5615" x="640.5276" y="27.9951">Remittance Transfer using Mojaloop FX APIs POC</text>
+    <text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="409.0283" x="630.2942" y="44.292">Payer DFSP requests conversion with SEND amount</text>
+    <rect fill="#ADD8E6" height="2292.0703" style="stroke:#181818;stroke-width:0.5;" width="102.2881" x="305.0459" y="59.5938"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="85.0903" x="313.6448" y="71.6606">Payer DFSP</text>
+    <rect fill="#DDDDDD" height="2292.0703" style="stroke:#181818;stroke-width:0.5;" width="94.208" x="866.0942" y="59.5938"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="85.541" x="870.4277" y="71.6606">FX provider</text>
+    <rect fill="#ADD8E6" height="2292.0703" style="stroke:#181818;stroke-width:0.5;" width="94.208" x="1241.4722" y="59.5938"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="87.4961" x="1244.8281" y="71.6606">Payee DFSP</text>
+    <rect fill="#FFFFFF" height="101.5313" style="stroke:#181818;stroke-width:1.0;" width="10" x="351.1899" y="900.5313"/>
+    <rect fill="#FFFFFF" height="29.1328" style="stroke:#181818;stroke-width:1.0;" width="10" x="351.1899" y="2225.2344"/>
+    <rect fill="#FFFFFF" height="397.957" style="stroke:#181818;stroke-width:1.0;" width="10" x="632.0723" y="290.2461"/>
+    <rect fill="#FFFFFF" height="100.2305" style="stroke:#181818;stroke-width:1.0;" width="10" x="632.0723" y="800.3008"/>
+    <rect fill="#FFFFFF" height="254.4609" style="stroke:#181818;stroke-width:1.0;" width="10" x="632.0723" y="1002.0625"/>
+    <rect fill="#FFFFFF" height="751.8164" style="stroke:#181818;stroke-width:1.0;" width="10" x="632.0723" y="1473.418"/>
+    <rect fill="#FFFFFF" height="112.0977" style="stroke:#181818;stroke-width:1.0;" width="10" x="908.1982" y="688.2031"/>
+    <rect fill="#FFFFFF" height="139.0977" style="stroke:#181818;stroke-width:1.0;" width="10" x="908.1982" y="2041.8711"/>
+    <rect fill="#FFFFFF" height="216.8945" style="stroke:#181818;stroke-width:1.0;" width="10" x="1283.5762" y="1256.5234"/>
+    <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="134" x2="134" y1="142.6172" y2="2272.3672"/>
+    <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="356.0459" x2="356.0459" y1="142.6172" y2="2272.3672"/>
+    <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="636.1938" x2="636.1938" y1="142.6172" y2="2272.3672"/>
+    <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="913.0942" x2="913.0942" y1="142.6172" y2="2272.3672"/>
+    <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="1288.4722" x2="1288.4722" y1="142.6172" y2="2272.3672"/>
+    <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="1544.2412" x2="1544.2412" y1="142.6172" y2="2272.3672"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="30.4404" x="116" y="139.3154">John</text>
+    <ellipse cx="134.2202" cy="74.8203" fill="#E2E2F0" rx="8" ry="8" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M134.2202,82.8203 L134.2202,109.8203 M121.2202,90.8203 L147.2202,90.8203 M134.2202,109.8203 L121.2202,124.8203 M134.2202,109.8203 L147.2202,124.8203 " fill="none" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="30.4404" x="116" y="2284.3623">John</text>
+    <ellipse cx="134.2202" cy="2296.1641" fill="#E2E2F0" rx="8" ry="8" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M134.2202,2304.1641 L134.2202,2331.1641 M121.2202,2312.1641 L147.2202,2312.1641 M134.2202,2331.1641 L121.2202,2346.1641 M134.2202,2331.1641 L147.2202,2346.1641 " fill="none" style="stroke:#181818;stroke-width:0.5;"/>
+    <rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="94.2881" x="309.0459" y="111.3203"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="80.2881" x="316.0459" y="131.3154">Payer DFSP</text>
+    <rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="94.2881" x="309.0459" y="2271.3672"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="80.2881" x="316.0459" y="2291.3623">Payer DFSP</text>
+    <rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="127.7568" x="573.1938" y="111.3203"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="113.7568" x="580.1938" y="131.3154">Mojaloop Switch</text>
+    <rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="127.7568" x="573.1938" y="2271.3672"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="113.7568" x="580.1938" y="2291.3623">Mojaloop Switch</text>
+    <rect fill="#E2E2F0" height="46.5938" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="86.208" x="870.0942" y="95.0234"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="26.0859" x="900.1553" y="115.0186">FXP</text>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="72.208" x="877.0942" y="131.3154">Connector</text>
+    <rect fill="#E2E2F0" height="46.5938" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="86.208" x="870.0942" y="2271.3672"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="26.0859" x="900.1553" y="2291.3623">FXP</text>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="72.208" x="877.0942" y="2307.6592">Connector</text>
+    <rect fill="#E2E2F0" height="62.8906" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="86.208" x="1245.4722" y="78.7266"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="42.5332" x="1267.3096" y="98.7217">Payee</text>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="63.0205" x="1257.0659" y="115.0186">Mojaloop</text>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="72.208" x="1252.4722" y="131.3154">Connector</text>
+    <rect fill="#E2E2F0" height="62.8906" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="86.208" x="1245.4722" y="2271.3672"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="42.5332" x="1267.3096" y="2291.3623">Payee</text>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="63.0205" x="1257.0659" y="2307.6592">Mojaloop</text>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="72.208" x="1252.4722" y="2323.9561">Connector</text>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="31.4521" x="1526.2412" y="139.3154">Yaro</text>
+    <ellipse cx="1544.9673" cy="74.8203" fill="#E2E2F0" rx="8" ry="8" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M1544.9673,82.8203 L1544.9673,109.8203 M1531.9673,90.8203 L1557.9673,90.8203 M1544.9673,109.8203 L1531.9673,124.8203 M1544.9673,109.8203 L1557.9673,124.8203 " fill="none" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="31.4521" x="1526.2412" y="2284.3623">Yaro</text>
+    <ellipse cx="1544.9673" cy="2296.1641" fill="#E2E2F0" rx="8" ry="8" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M1544.9673,2304.1641 L1544.9673,2331.1641 M1531.9673,2312.1641 L1557.9673,2312.1641 M1544.9673,2331.1641 L1531.9673,2346.1641 M1544.9673,2331.1641 L1557.9673,2346.1641 " fill="none" style="stroke:#181818;stroke-width:0.5;"/>
+    <rect fill="#FFFFFF" height="101.5313" style="stroke:#181818;stroke-width:1.0;" width="10" x="351.1899" y="900.5313"/>
+    <rect fill="#FFFFFF" height="29.1328" style="stroke:#181818;stroke-width:1.0;" width="10" x="351.1899" y="2225.2344"/>
+    <rect fill="#FFFFFF" height="397.957" style="stroke:#181818;stroke-width:1.0;" width="10" x="632.0723" y="290.2461"/>
+    <rect fill="#FFFFFF" height="100.2305" style="stroke:#181818;stroke-width:1.0;" width="10" x="632.0723" y="800.3008"/>
+    <rect fill="#FFFFFF" height="254.4609" style="stroke:#181818;stroke-width:1.0;" width="10" x="632.0723" y="1002.0625"/>
+    <rect fill="#FFFFFF" height="751.8164" style="stroke:#181818;stroke-width:1.0;" width="10" x="632.0723" y="1473.418"/>
+    <rect fill="#FFFFFF" height="112.0977" style="stroke:#181818;stroke-width:1.0;" width="10" x="908.1982" y="688.2031"/>
+    <rect fill="#FFFFFF" height="139.0977" style="stroke:#181818;stroke-width:1.0;" width="10" x="908.1982" y="2041.8711"/>
+    <rect fill="#FFFFFF" height="216.8945" style="stroke:#181818;stroke-width:1.0;" width="10" x="1283.5762" y="1256.5234"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="630.0723" x2="620.0723" y1="290.2461" y2="286.2461"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="630.0723" x2="620.0723" y1="290.2461" y2="294.2461"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="356.1899" x2="631.0723" y1="290.2461" y2="290.2461"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="363.1899" y="277.6138">1</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="160.0117" x="376.2354" y="270.0474">Please confirm your part</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="93.4692" x="380.3677" y="285.1802">of the transfer</text>
+    <path d="M5,157.6172 L5,393.6172 L351,393.6172 L351,167.6172 L341,157.6172 L5,157.6172 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M341,157.6172 L341,167.6172 L351,167.6172 L341,157.6172 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="131.79" x="11" y="174.6841">POST /fxTransfers</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8.271" x="11" y="189.8169">{</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="252.2686" x="27.5293" y="204.9497">&quot;commitRequestId&quot;: &quot;77c9d78dc26...&quot;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="308.896" x="27.5293" y="220.0825">&quot;determiningTransferId&quot;: &quot;d9ce59d4359843...&quot;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="176.814" x="27.5293" y="235.2153">&quot;initiatingFsp&quot;: &quot;PayerFSP&quot;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="193.1719" x="27.5293" y="250.3481">&quot;counterPartyFsp&quot;: &quot;FDH_FX&quot;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="154.8066" x="27.5293" y="265.481">&quot;amountType&quot;: &quot;SEND&quot;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="123.2842" x="27.5293" y="280.6138">&quot;sourceAmount&quot;: {</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="123.3286" x="44.0586" y="295.7466">&quot;currency&quot;: &quot;BWP&quot;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="119.8057" x="44.0586" y="310.8794">&quot;amount&quot;: &quot;300&quot;},</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="119.5835" x="27.5293" y="326.0122">&quot;targetAmount&quot;: {</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="118.8154" x="44.0586" y="341.145">&quot;currency&quot;: &quot;TZS&quot;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="136.3477" x="44.0586" y="356.2778">&quot;amount&quot;: &quot;48000&quot;},</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="241.522" x="27.5293" y="371.4106">&quot;condition&quot;: &quot;GRzLaTP7DJ9t4P-a_B...&quot;</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8.271" x="11" y="386.5435">}</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="642.0723" x2="684.0723" y1="420.7422" y2="420.7422"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="684.0723" x2="684.0723" y1="420.7422" y2="433.7422"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="643.0723" x2="684.0723" y1="433.7422" y2="433.7422"/>
+    <polygon fill="#181818" points="653.0723,429.7422,643.0723,433.7422,653.0723,437.7422,649.0723,433.7422" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="649.0723" y="415.6763">2</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="215.6426" x="662.1177" y="415.6763">OK, so this is an FX confirmation.</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="642.0723" x2="684.0723" y1="493.1406" y2="493.1406"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="684.0723" x2="684.0723" y1="493.1406" y2="506.1406"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="643.0723" x2="684.0723" y1="506.1406" y2="506.1406"/>
+    <polygon fill="#181818" points="653.0723,502.1406,643.0723,506.1406,653.0723,510.1406,649.0723,506.1406" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="649.0723" y="472.9419">3</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="164.6328" x="662.1177" y="457.8091">Is there any transfer with</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="174.5732" x="662.1177" y="472.9419">determiningTransactionId?</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="90.8032" x="662.1177" y="488.0747">No, it does&apos;nt.</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="642.0723" x2="684.0723" y1="550.4063" y2="550.4063"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="684.0723" x2="684.0723" y1="550.4063" y2="563.4063"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="643.0723" x2="684.0723" y1="563.4063" y2="563.4063"/>
+    <polygon fill="#181818" points="653.0723,559.4063,643.0723,563.4063,653.0723,567.4063,649.0723,563.4063" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="649.0723" y="537.7739">4</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="179.6768" x="662.1177" y="530.2075">Liquidity check and reserve</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="161.1479" x="666.25" y="545.3403">on Payer DFSP&apos;s account</text>
+    <path d="M480,576.4063 L480,631.4063 L792,631.4063 L792,586.4063 L782,576.4063 L480,576.4063 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M782,576.4063 L782,586.4063 L792,586.4063 L782,576.4063 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="100.8325" x="486" y="593.4731">Reservations:</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="4.1323" x="486" y="608.606"> </text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="291.2622" x="486" y="623.7388">PayerFSP has a reservation of 300 BWP</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="906.1982" x2="896.1982" y1="688.2031" y2="684.2031"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="906.1982" x2="896.1982" y1="688.2031" y2="692.2031"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="637.0723" x2="907.1982" y1="688.2031" y2="688.2031"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="644.0723" y="668.0044">5</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="182.6094" x="657.1177" y="652.8716">Please confirm the currency</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="199.3481" x="657.1177" y="668.0044">conversion part of the transfer</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="4.1323" x="657.1177" y="683.1372"> </text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="131.79" x="661.25" y="683.1372">POST /fxTransfers</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="918.1982" x2="960.1982" y1="717.3359" y2="717.3359"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="960.1982" x2="960.1982" y1="717.3359" y2="730.3359"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="919.1982" x2="960.1982" y1="730.3359" y2="730.3359"/>
+    <polygon fill="#181818" points="929.1982,726.3359,919.1982,730.3359,929.1982,734.3359,925.1982,730.3359" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="925.1982" y="712.27">6</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="210.6597" x="938.2437" y="712.27">Reserve funds for FX conversion</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="643.0723" x2="653.0723" y1="800.3008" y2="796.3008"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="643.0723" x2="653.0723" y1="800.3008" y2="804.3008"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="642.0723" x2="912.1982" y1="800.3008" y2="800.3008"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="659.0723" y="795.2349">7</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="209.2695" x="672.1177" y="795.2349">Confirmed. Here&apos;s the fulfilment</text>
+    <path d="M923,743.3359 L923,843.3359 L1349,843.3359 L1349,753.3359 L1339,743.3359 L923,743.3359 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M1339,743.3359 L1339,753.3359 L1349,753.3359 L1339,743.3359 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="238.8369" x="929" y="760.4028">PUT /fxTransfers/77c9d78dc26...</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8.271" x="929" y="775.5356">{</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="243.9595" x="937.2646" y="790.6685">&quot;fulfilment&quot;: &quot;188909ceb6cd5c35d..&quot;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="397.6807" x="937.2646" y="805.8013">&quot;completedTimestamp&quot;: &quot;2021-08-25T14:17:08.175+01:00&quot;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="207.6572" x="937.2646" y="820.9341">&quot;conversionState&quot;: &quot;RESERVED&quot;</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8.271" x="929" y="836.0669">}</text>
+    <polygon fill="#181818" points="372.1899,896.5313,362.1899,900.5313,372.1899,904.5313,368.1899,900.5313" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="366.1899" x2="636.0723" y1="900.5313" y2="900.5313"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="378.1899" y="880.3325">8</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="198.0723" x="391.2354" y="865.1997">Conversion succeeded subject</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="123.5063" x="391.2354" y="880.3325">to transfer success</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="238.8369" x="391.2354" y="895.4653">PUT /fxTransfers/77c9d78dc26...</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="361.1899" x2="403.1899" y1="944.7969" y2="944.7969"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="403.1899" x2="403.1899" y1="944.7969" y2="957.7969"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="362.1899" x2="403.1899" y1="957.7969" y2="957.7969"/>
+    <polygon fill="#181818" points="372.1899,953.7969,362.1899,957.7969,372.1899,961.7969,368.1899,957.7969" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="368.1899" y="932.1646">9</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="136.627" x="381.2354" y="924.5981">OK, so that&apos;s all right</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="215.8965" x="381.2354" y="939.731">Now I can send the transfer itself</text>
+    <polygon fill="#181818" points="620.0723,998.0625,630.0723,1002.0625,620.0723,1006.0625,624.0723,1002.0625" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="356.1899" x2="626.0723" y1="1002.0625" y2="1002.0625"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="363.1899" y="989.4302">10</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="143.4634" x="385.2808" y="981.8638">Please do the transfer</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="4.1323" x="385.2808" y="996.9966"> </text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="115.0957" x="389.4131" y="996.9966">POST /transfers</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="642.0723" x2="684.0723" y1="1046.3281" y2="1046.3281"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="684.0723" x2="684.0723" y1="1046.3281" y2="1059.3281"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="643.0723" x2="684.0723" y1="1059.3281" y2="1059.3281"/>
+    <polygon fill="#181818" points="653.0723,1055.3281,643.0723,1059.3281,653.0723,1063.3281,649.0723,1059.3281" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="649.0723" y="1033.6958">11</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="198.3452" x="671.1631" y="1026.1294">Is there a dependent transfer?</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="22.7119" x="671.1631" y="1041.2622">Yes</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="642.0723" x2="684.0723" y1="1118.7266" y2="1118.7266"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="684.0723" x2="684.0723" y1="1118.7266" y2="1131.7266"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="643.0723" x2="684.0723" y1="1131.7266" y2="1131.7266"/>
+    <polygon fill="#181818" points="653.0723,1127.7266,643.0723,1131.7266,653.0723,1135.7266,649.0723,1131.7266" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="649.0723" y="1098.5278">12</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="178.6167" x="671.1631" y="1083.395">Perform liquidity check and</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="196.2822" x="671.1631" y="1098.5278">reserve funds against creditor</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="181.4668" x="675.2954" y="1113.6606">party to dependent transfer</text>
+    <path d="M481,1144.7266 L481,1214.7266 L791,1214.7266 L791,1154.7266 L781,1144.7266 L481,1144.7266 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M781,1144.7266 L781,1154.7266 L791,1154.7266 L781,1144.7266 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="100.8325" x="487" y="1161.7935">Reservations:</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="4.1323" x="487" y="1176.9263"> </text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="257.1245" x="487" y="1192.0591">PayerFSP has a reservation of 300 BWP</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="289.415" x="487" y="1207.1919">FDH_FX has a reservation of 48000 TZS</text>
+    <polygon fill="#181818" points="1271.5762,1252.5234,1281.5762,1256.5234,1271.5762,1260.5234,1275.5762,1256.5234" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="637.0723" x2="1277.5762" y1="1256.5234" y2="1256.5234"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="644.0723" y="1243.8911">13</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="143.4634" x="666.1631" y="1236.3247">Please do the transfer</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="115.0957" x="666.1631" y="1251.4575">POST /transfers</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="1293.5762" x2="1335.5762" y1="1346.1875" y2="1346.1875"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="1335.5762" x2="1335.5762" y1="1346.1875" y2="1359.1875"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="1294.5762" x2="1335.5762" y1="1359.1875" y2="1359.1875"/>
+    <polygon fill="#181818" points="1304.5762,1355.1875,1294.5762,1359.1875,1304.5762,1363.1875,1300.5762,1359.1875" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="1300.5762" y="1310.856">14</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="185.3325" x="1322.667" y="1280.5903">Let me check that the terms</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="167.9272" x="1326.7993" y="1295.7231">of the dependent transfer</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="173.71" x="1322.667" y="1310.856">are the same as the ones I</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="147.583" x="1322.667" y="1325.9888">agreed to and that the</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="200.3003" x="1322.667" y="1341.1216">fulfilment and condition match</text>
+    <polygon fill="#181818" points="1532.9673,1399.4531,1542.9673,1403.4531,1532.9673,1407.4531,1536.9673,1403.4531" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="1293.5762" x2="1538.9673" y1="1403.4531" y2="1403.4531"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="1300.5762" y="1390.8208">15</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="171.5771" x="1322.667" y="1383.2544">Hi Yaro&apos;s, you got inbound</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="126.0581" x="1322.667" y="1398.3872">transfer 44000 TZS</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="643.0723" x2="653.0723" y1="1473.418" y2="1469.418"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="643.0723" x2="653.0723" y1="1473.418" y2="1477.418"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="642.0723" x2="1287.5762" y1="1473.418" y2="1473.418"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="659.0723" y="1468.3521">16</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="278.6367" x="681.1631" y="1468.3521">Transfer is confirmed, here&apos;s the fulfilment</text>
+    <path d="M1298,1416.4531 L1298,1516.4531 L1660,1516.4531 L1660,1426.4531 L1650,1416.4531 L1298,1416.4531 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M1650,1416.4531 L1650,1426.4531 L1660,1426.4531 L1650,1416.4531 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="222.1426" x="1304" y="1433.52">PUT /transfers/77c9d78dc26...</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8.271" x="1304" y="1448.6528">{</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="332.7759" x="1312.2646" y="1463.7856">&quot;completedTimestamp&quot;: &quot;2021-08-25T14:17:08...&quot;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="261.1743" x="1312.2646" y="1478.9185">&quot;fulfilment&quot;: &quot;mhPUT9ZAwd-BXLfeSd...&quot;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="197.8628" x="1312.2646" y="1494.0513">&quot;transferState&quot;: &quot;COMMITTED&quot;</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8.271" x="1304" y="1509.1841">}</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="642.0723" x2="684.0723" y1="1558.5156" y2="1558.5156"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="684.0723" x2="684.0723" y1="1558.5156" y2="1571.5156"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="643.0723" x2="684.0723" y1="1571.5156" y2="1571.5156"/>
+    <polygon fill="#181818" points="653.0723,1567.5156,643.0723,1571.5156,653.0723,1575.5156,649.0723,1571.5156" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="649.0723" y="1545.8833">17</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="198.3452" x="671.1631" y="1538.3169">Is there a dependent transfer?</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="84.3032" x="671.1631" y="1553.4497">Yes, there is.</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="642.0723" x2="684.0723" y1="1630.9141" y2="1630.9141"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="684.0723" x2="684.0723" y1="1630.9141" y2="1643.9141"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="643.0723" x2="684.0723" y1="1643.9141" y2="1643.9141"/>
+    <polygon fill="#181818" points="653.0723,1639.9141,643.0723,1643.9141,653.0723,1647.9141,649.0723,1643.9141" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="649.0723" y="1610.7153">18</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="200.167" x="671.1631" y="1595.5825">Is this dependency against the</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="186.4053" x="675.2954" y="1610.7153">debtor party to the transfer?</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="58.335" x="671.1631" y="1625.8481">Yes, it is.</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="642.0723" x2="684.0723" y1="1703.3125" y2="1703.3125"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="684.0723" x2="684.0723" y1="1703.3125" y2="1716.3125"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="643.0723" x2="684.0723" y1="1716.3125" y2="1716.3125"/>
+    <polygon fill="#181818" points="653.0723,1712.3125,643.0723,1716.3125,653.0723,1720.3125,649.0723,1716.3125" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="649.0723" y="1683.1138">19</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="192.6387" x="671.1631" y="1667.981">Create an obligation from the</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="211.7705" x="675.2954" y="1683.1138">debtor party to the party named</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="185.4849" x="671.1631" y="1698.2466">in the dependency (the FXP)</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="642.0723" x2="684.0723" y1="1775.7109" y2="1775.7109"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="684.0723" x2="684.0723" y1="1775.7109" y2="1788.7109"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="643.0723" x2="684.0723" y1="1788.7109" y2="1788.7109"/>
+    <polygon fill="#181818" points="653.0723,1784.7109,643.0723,1788.7109,653.0723,1792.7109,649.0723,1788.7109" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="649.0723" y="1755.5122">20</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="197.9326" x="671.1631" y="1740.3794">Is the transfer denominated in</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="168.7905" x="675.2954" y="1755.5122">the currency of the payee</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="171.4502" x="671.1631" y="1770.645">receive amount? Yes, it is.</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="642.0723" x2="684.0723" y1="1863.2422" y2="1863.2422"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="684.0723" x2="684.0723" y1="1863.2422" y2="1876.2422"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="643.0723" x2="684.0723" y1="1876.2422" y2="1876.2422"/>
+    <polygon fill="#181818" points="653.0723,1872.2422,643.0723,1876.2422,653.0723,1880.2422,649.0723,1876.2422" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="649.0723" y="1835.4771">21</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="192.6387" x="671.1631" y="1812.7778">Create an obligation from the</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="125.0552" x="675.2954" y="1827.9106">party named in the</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="177.6011" x="675.2954" y="1843.0435">dependency to the creditor</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="137.2998" x="671.1631" y="1858.1763">party for the transfer</text>
+    <path d="M508,1889.2422 L508,1974.2422 L764,1974.2422 L764,1899.2422 L754,1889.2422 L508,1889.2422 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M754,1889.2422 L754,1899.2422 L764,1899.2422 L754,1889.2422 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="127.6895" x="514" y="1906.3091">Ledger positions:</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="216.3154" x="514" y="1921.4419">PayerFSP has a debit of 300 BWP</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="210.2915" x="514" y="1936.5747">FDH_FX has a credit of 300 BWP</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="218.0801" x="514" y="1951.7075">FDH_FX has a debit of 48000 TZS</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="235.2378" x="514" y="1966.8403">PayeeFSP has a credit of 48000 TZS</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="906.1982" x2="896.1982" y1="2041.8711" y2="2037.8711"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="906.1982" x2="896.1982" y1="2041.8711" y2="2045.8711"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="642.0723" x2="907.1982" y1="2041.8711" y2="2041.8711"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="649.0723" y="2029.2388">22</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="157.7202" x="671.1631" y="2021.6724">The transfer succeeded.</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="202.3696" x="671.1631" y="2036.8052">You can clear it in your ledgers</text>
+    <path d="M200,1984.9063 L200,2069.9063 L626,2069.9063 L626,1994.9063 L616,1984.9063 L200,1984.9063 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M616,1984.9063 L616,1994.9063 L626,1994.9063 L616,1984.9063 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="258.7622" x="206" y="2001.9731">PATCH /fxTransfers/77c9d78dc26...</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8.271" x="206" y="2017.106">{</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="397.6807" x="214.2646" y="2032.2388">&quot;completedTimestamp&quot;: &quot;2021-08-25T14:17:08.227+01:00&quot;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="197.8628" x="214.2646" y="2047.3716">&quot;transferState&quot;: &quot;COMMITTED&quot;</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8.271" x="206" y="2062.5044">}</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="918.1982" x2="960.1982" y1="2096.7031" y2="2096.7031"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="960.1982" x2="960.1982" y1="2096.7031" y2="2109.7031"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="919.1982" x2="960.1982" y1="2109.7031" y2="2109.7031"/>
+    <polygon fill="#181818" points="929.1982,2105.7031,919.1982,2109.7031,929.1982,2113.7031,925.1982,2109.7031" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="925.1982" y="2091.6372">23</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="319.2871" x="947.2891" y="2091.6372">Let&apos;s just check: does this match the stuff I sent?</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="918.1982" x2="960.1982" y1="2138.8359" y2="2138.8359"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="960.1982" x2="960.1982" y1="2138.8359" y2="2151.8359"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="919.1982" x2="960.1982" y1="2151.8359" y2="2151.8359"/>
+    <polygon fill="#181818" points="929.1982,2147.8359,919.1982,2151.8359,929.1982,2155.8359,925.1982,2151.8359" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="925.1982" y="2133.77">24</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="248.4346" x="947.2891" y="2133.77">It does. Great. I&apos;ll clear the conversion</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="643.0723" x2="653.0723" y1="2180.9688" y2="2176.9688"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="643.0723" x2="653.0723" y1="2180.9688" y2="2184.9688"/>
+    <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="642.0723" x2="912.1982" y1="2180.9688" y2="2180.9688"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="659.0723" y="2175.9028">25</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="75.4229" x="681.1631" y="2175.9028">200 Gotcha</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="362.1899" x2="372.1899" y1="2225.2344" y2="2221.2344"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="362.1899" x2="372.1899" y1="2225.2344" y2="2229.2344"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="361.1899" x2="636.0723" y1="2225.2344" y2="2225.2344"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="378.1899" y="2212.6021">26</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="133.5547" x="400.2808" y="2205.0356">Transfer is complete</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="222.1426" x="400.2808" y="2220.1685">PUT /transfers/77c9d78dc26...</text>
+    <polygon fill="#181818" points="145.2202,2250.3672,135.2202,2254.3672,145.2202,2258.3672,141.2202,2254.3672" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="139.2202" x2="355.1899" y1="2254.3672" y2="2254.3672"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="151.2202" y="2249.3013">27</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="170.8789" x="173.311" y="2249.3013">Your transfer is successful</text>
+  </g>
+</svg>

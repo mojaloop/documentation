@@ -1,0 +1,131 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="1231px" preserveAspectRatio="none" style="width:1431px;height:1231px;background:#FFFFFF;" version="1.1" viewBox="0 0 1431 1231" width="1431px" zoomAndPan="magnify">
+  <title>Transfer - ISO 20022 Message Flow</title>
+  <defs/>
+  <g>
+    <text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="278.7422" x="577.2583" y="27.9951">Transfer - ISO 20022 Message Flow</text>
+    <rect fill="none" height="406.0547" style="stroke:#000000;stroke-width:1.5;" width="1013.2588" x="411" y="545.0469"/>
+    <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="468" x2="468" y1="73.5938" y2="1196.6953"/>
+    <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="663.5991" x2="663.5991" y1="73.5938" y2="1196.6953"/>
+    <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="946.8052" x2="946.8052" y1="73.5938" y2="1196.6953"/>
+    <rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="94.2881" x="421" y="42.2969"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="80.2881" x="428" y="62.292">Payer DFSP</text>
+    <rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="94.2881" x="421" y="1195.6953"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="80.2881" x="428" y="1215.6904">Payer DFSP</text>
+    <rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="77.0205" x="625.5991" y="42.2969"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="63.0205" x="632.5991" y="62.292">Mojaloop</text>
+    <rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="77.0205" x="625.5991" y="1195.6953"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="63.0205" x="632.5991" y="1215.6904">Mojaloop</text>
+    <rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="97.1455" x="898.8052" y="42.2969"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="83.1455" x="905.8052" y="62.292">Payee DFSP</text>
+    <rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="97.1455" x="898.8052" y="1195.6953"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="83.1455" x="905.8052" y="1215.6904">Payee DFSP</text>
+    <polygon fill="#181818" points="652.1094,277.7539,662.1094,281.7539,652.1094,285.7539,656.1094,281.7539" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="468.144" x2="658.1094" y1="281.7539" y2="281.7539"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="475.144" y="276.688">1</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="100.8896" x="488.1895" y="276.688">POST /transfers</text>
+    <path d="M5,88.5938 L5,461.5938 L463,461.5938 L463,98.5938 L453,88.5938 L5,88.5938 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M453,88.5938 L453,98.5938 L463,98.5938 L453,88.5938 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="120.7007" x="11" y="105.6606">pacs.008.001.13</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="318.9189" x="11" y="120.7935">Financial Institution to Financial Institution</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="4.1323" x="329.9189" y="120.7935"> </text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="186.1768" x="11" y="135.9263">Customer Credit Transfer</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8.271" x="11" y="151.0591">{</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="71.6523" x="11" y="166.1919">&quot;GrpHdr&quot;:{</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="316.3354" x="27.5293" y="181.3247">&quot;MsgId&quot;:&quot;01JBVM1D2MR6D4WBWWYY3ZHGMM&quot;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="270.2896" x="27.5293" y="196.4575">&quot;CreDtTm&quot;:&quot;2024-11-04T12:57:45.812Z&quot;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="95.894" x="27.5293" y="211.5903">&quot;NbOfTxs&quot;:&quot;1&quot;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="211.396" x="27.5293" y="226.7231">&quot;SttlmInf&quot;:{&quot;SttlmMtd&quot;:&quot;CLRG&quot;},</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="341.2246" x="27.5293" y="241.856">&quot;PmtInstrXpryDtTm&quot;:&quot;2024-11-04T12:58:45.810Z&quot;},</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="97.1826" x="11" y="256.9888">&quot;CdtTrfTxInf&quot;:{</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="349.2036" x="27.5293" y="272.1216">&quot;PmtId&quot;:{&quot;TxId&quot;:&quot;01JBVM13SQYP507JB1DYBZVCMF&quot;},</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="113.9404" x="27.5293" y="287.2544">&quot;ChrgBr&quot;:&quot;CRED&quot;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="419.8784" x="27.5293" y="302.3872">&quot;Cdtr&quot;:{&quot;Id&quot;:{&quot;PrvtId&quot;:{&quot;Othr&quot;:{&quot;SchmeNm&quot;:{&quot;Prtry&quot;:&quot;MSISDN&quot;},</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="168.5811" x="159.7637" y="317.52">&quot;Id&quot;:&quot;16665551002&quot;}}}},</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="420.8115" x="27.5293" y="332.6528">&quot;Dbtr&quot;:{&quot;Id&quot;:{&quot;PrvtId&quot;:{&quot;Othr&quot;:{&quot;SchmeNm&quot;:{&quot;Prtry&quot;:&quot;MSISDN&quot;},</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="160.3101" x="159.7637" y="347.7856">&quot;Id&quot;:&quot;16135551001&quot;}}},</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="138.4805" x="60.5879" y="362.9185">&quot;Name&quot;:&quot;Joe Blogs&quot;},</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="358.1348" x="27.5293" y="378.0513">&quot;CdtrAgt&quot;:{&quot;FinInstnId&quot;:{&quot;Othr&quot;:{&quot;Id&quot;:&quot;payee-dfsp&quot;}}},</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="356.4146" x="27.5293" y="393.1841">&quot;DbtrAgt&quot;:{&quot;FinInstnId&quot;:{&quot;Othr&quot;:{&quot;Id&quot;:&quot;payer-dfsp&quot;}}},</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="213.8906" x="27.5293" y="408.3169">&quot;IntrBkSttlmAmt&quot;:{&quot;Ccy&quot;:&quot;MWK&quot;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="249.7803" x="60.5879" y="423.4497">&quot;ActiveCurrencyAndAmount&quot;:&quot;1080&quot;},</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="405.4819" x="27.5293" y="438.5825">&quot;VrfctnOfTerms&quot;:{&quot;IlpV4PrepPacket&quot;:&quot;DIICzQAAAAAAAaX...&quot;}}</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8.271" x="11" y="453.7153">}</text>
+    <polygon fill="#181818" points="935.3779,483.9141,945.3779,487.9141,935.3779,491.9141,939.3779,487.9141" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="664.1094" x2="941.3779" y1="487.9141" y2="487.9141"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="671.1094" y="482.8481">2</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="105.022" x="684.1548" y="482.8481">POST  /transfers</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="947.3779" x2="989.3779" y1="517.0469" y2="517.0469"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="989.3779" x2="989.3779" y1="517.0469" y2="530.0469"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="948.3779" x2="989.3779" y1="530.0469" y2="530.0469"/>
+    <polygon fill="#181818" points="958.3779,526.0469,948.3779,530.0469,958.3779,534.0469,954.3779,530.0469" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="954.3779" y="511.981">3</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="311.0732" x="967.4233" y="511.981">Check to see if Payee can receive the payment.</text>
+    <path d="M411,545.0469 L475.4429,545.0469 L475.4429,552.1797 L465.4429,562.1797 L411,562.1797 L411,545.0469 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="406.0547" style="stroke:#000000;stroke-width:1.5;" width="1013.2588" x="411" y="545.0469"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="19.4429" x="426" y="558.1138">alt</text>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="217.4058" x="490.4429" y="557.2573">[if Payee can receive the payment]</text>
+    <polygon fill="#181818" points="675.1094,665.543,665.1094,669.543,675.1094,673.543,671.1094,669.543" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="669.1094" x2="946.3779" y1="669.543" y2="669.543"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="681.1094" y="664.4771">4</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="126.6865" x="694.1548" y="664.4771">PUT /transfers/{ID}</text>
+    <path d="M952,567.1797 L952,758.1797 L1408,758.1797 L1408,577.1797 L1398,567.1797 L952,567.1797 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M1398,567.1797 L1398,577.1797 L1408,577.1797 L1398,567.1797 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="120.7007" x="958" y="584.2466">pacs.002.001.15</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="318.9189" x="958" y="599.3794">Financial Institution to Financial Institution</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="4.1323" x="1276.9189" y="599.3794"> </text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="170.9043" x="958" y="614.5122">Payment Status Report</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8.271" x="958" y="629.645">{</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="71.6523" x="958" y="644.7778">&quot;GrpHdr&quot;:{</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="293.1475" x="974.5293" y="659.9106">&quot;MsgId&quot;:&quot;01JBVM1E2CRWFZFPN7W4AZJ976&quot;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="278.5605" x="974.5293" y="675.0435">&quot;CreDtTm&quot;:&quot;2024-11-04T12:57:46.828Z&quot;},</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="102.4004" x="958" y="690.1763">&quot;TxInfAndSts&quot;:{</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="419.3516" x="974.5293" y="705.3091">&quot;ExctnConf&quot;:&quot;-rL3liKeLrsNy7GHJaKgAzeDL_8IVnvER5zUlP1YAoc&quot;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="324.4414" x="974.5293" y="720.4419">&quot;PrcgDt&quot;:{&quot;DtTm&quot;:&quot;2024-11-04T12:57:46.812Z&quot;},</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="114.0674" x="974.5293" y="735.5747">&quot;TxSts&quot;:&quot;COMM&quot;}</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8.271" x="958" y="750.7075">}</text>
+    <polygon fill="#181818" points="479.144,780.9063,469.144,784.9063,479.144,788.9063,475.144,784.9063" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="473.144" x2="663.1094" y1="784.9063" y2="784.9063"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="485.144" y="779.8403">5</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="122.5542" x="498.1895" y="779.8403">PUT/transfers/{ID}</text>
+    <line style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="411" x2="1424.2588" y1="793.9063" y2="793.9063"/>
+    <polygon fill="#181818" points="479.144,875.5703,469.144,879.5703,479.144,883.5703,475.144,879.5703" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="473.144" x2="663.1094" y1="879.5703" y2="879.5703"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="485.144" y="874.5044">6</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="158.9199" x="498.1895" y="874.5044">PUT/transfers/{ID}/error</text>
+    <path d="M669,799.9063 L669,945.9063 L1080,945.9063 L1080,809.9063 L1070,799.9063 L669,799.9063 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M1070,799.9063 L1070,809.9063 L1080,809.9063 L1070,799.9063 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="120.7007" x="675" y="816.9731">pacs.002.001.15</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="318.9189" x="675" y="832.106">Financial Institution to Financial Institution</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="4.1323" x="993.9189" y="832.106"> </text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="170.9043" x="675" y="847.2388">Payment Status Report</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8.271" x="675" y="862.3716">{</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="75.7847" x="675" y="877.5044">&quot;GrpHdr&quot;: {</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="293.0903" x="691.5293" y="892.6372">&quot;MsgId&quot;:&quot;01JBVM1CGC5A18XQVYYRF68FD1&quot;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="278.5605" x="691.5293" y="907.77">&quot;CreDtTm&quot;:&quot;2024-11-04T12:57:45.228Z&quot;},</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="390.5269" x="675" y="922.9028">&quot;TxInfAndSts&quot;:{&quot;StsRsnInf&quot;:{&quot;Rsn&quot;: {&quot;Prtry&quot;:&quot;ErrorCode&quot;}}}</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8.271" x="675" y="938.0356">}</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="664.1094" x2="706.1094" y1="994.3672" y2="994.3672"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="706.1094" x2="706.1094" y1="994.3672" y2="1007.3672"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="665.1094" x2="706.1094" y1="1007.3672" y2="1007.3672"/>
+    <polygon fill="#181818" points="675.1094,1003.3672,665.1094,1007.3672,675.1094,1011.3672,671.1094,1007.3672" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="671.1094" y="981.7349">7</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="185.0723" x="684.1548" y="974.1685">If transfer fails, is timed-out,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="252.0908" x="688.2871" y="989.3013">or is reserved PUT /transfers message.</text>
+    <polygon fill="#181818" points="935.3779,1103.5977,945.3779,1107.5977,935.3779,1111.5977,939.3779,1107.5977" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="664.1094" x2="941.3779" y1="1107.5977" y2="1107.5977"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="671.1094" y="1102.5317">8</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="144.917" x="684.1548" y="1102.5317">PATCH /transfers/{ID}</text>
+    <path d="M211,1020.3672 L211,1181.3672 L658,1181.3672 L658,1030.3672 L648,1020.3672 L211,1020.3672 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M648,1020.3672 L648,1030.3672 L658,1030.3672 L648,1020.3672 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="120.7007" x="217" y="1037.4341">pacs.002.001.15</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="318.9189" x="217" y="1052.5669">Financial Institution to Financial Institution</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="170.9043" x="217" y="1067.6997">Payment Status Report</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8.271" x="217" y="1082.8325">{</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="71.6523" x="217" y="1097.9653">&quot;GrpHdr&quot;:{</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="293.1475" x="233.5293" y="1113.0981">&quot;MsgId&quot;:&quot;01JBVM1E2CRWFZFPN7W4AZJ976&quot;,</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="278.5605" x="233.5293" y="1128.231">&quot;CreDtTm&quot;:&quot;2024-11-04T12:57:46.828Z&quot;},</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="426.8418" x="217" y="1143.3638">&quot;TxInfAndSts&quot;:{&quot;PrcgDt&quot;:{&quot;DtTm&quot;:&quot;2024-11-04T12:57:46.812Z&quot;},</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="128.3179" x="250.0586" y="1158.4966">&quot;TxSts&quot;:&quot;COMM&quot;}}&quot;</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8.271" x="217" y="1173.6294">}</text>
+  </g>
+</svg>

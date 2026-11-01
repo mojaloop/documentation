@@ -1,0 +1,57 @@
+@startuml FXAPI_Payer_Receive_SenderConfirmation
+
+!$simplified = false
+!$shortCutSingleFXP = false
+!$hideSwitchDetail = false
+!$senderName = "Keeya"
+!$receiverName = "Yaro"
+!$payerCurrency = "BWP"
+!$payeeCurrency = "TZS"
+!$payerFSPID = "PayerFSP"
+!$payeeFSPID = "PayeeFSP"
+!$payerMSISDN = "26787654321"
+!$payeeMSISDN = "2551234567890"
+!$payeeReceiveAmount = "50000"
+!$payeeFee = "4000"
+!$targetAmount = "54000"
+!$fxpChargesSource = "33"
+!$fxpChargesTarget = "6000"
+!$fxpSourceAmount = "330"
+!$fxpTargetAmount = "54000"
+!$totalChargesSourceCurrency = "55"
+
+
+title Currency Conversion with Amount Type RECEIVE
+actor "$senderName" as A1
+box "Payer DFSP" #LightBlue  
+  participant "Payer CBS" as PayerCBS
+  participant "Payer\nMojaloop\nConnector" as D1
+end box
+
+'participant "Mojaloop Switch" as S1
+
+'box "Discovery Service" #LightYellow
+'  participant "ALS Oracle" as ALS
+'end box
+
+'box "FX provider"  
+'  participant "FXP\nConnector" as FXP
+'  participant "Backend FX API" as FXPBackend
+'end box
+
+'box "Payee DFSP" #LightBlue   
+'  participant "Payee\nMojaloop\nConnector" as D2
+'  participant "Payee CBS" as PayeeCBS
+'end box
+
+'actor "$receiverName" as A2
+autonumber
+
+
+D1->PayerCBS:Here's the quote for the transfer\nIt expires at 2021-08-25T14:17:09.663+01:00
+PayerCBS->A1:Hi, $senderName: I can do the transfer.\nIt'll cost you $totalChargesSourceCurrency $payerCurrency in fees\n$fxpSourceAmount $payerCurrency will be deducted from your account,\nand $receiverName will receive\n$payeeReceiveAmount $payeeCurrency.\nLet me know if you want to go ahead
+A1-->PayerCBS:Great! Yes please, go ahead
+
+PayerCBS-->D1: Payer has accepted the terms please proceed
+
+@enduml
