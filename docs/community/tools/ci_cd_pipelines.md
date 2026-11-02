@@ -28,7 +28,7 @@ for the code to be merged in.
 | test-coverage   | Runs the unit-tests and checks that code coverage is above the specified limit. | Typically this is 90% |
 | test-unit       | Runs the unit-tests. Fails if any unit test fails. | |
 | vulnerability-check | Runs the `npm audit` tool to search for any vulnerabilities in dependencies | `npm audit` is full of false positives, or security issues that don't apply to our codebase. We use `npm-audit-resolver` to give us flexibility over vulnerabilities that may be ignored, e.g `devDependencies` |
-| audit-licenses | Runs the mojaloop `license-scanner-tool` and fails if any license found doesn't match an allowlist specified in the `license-scanner-tool` | [license-scanner-tool repo](https://github.com/mojaloop/license-scanner-tool) |
+| license-scan | Generates a CycloneDX SBOM of the project's dependencies and gates it with the mojaloop `license-scanner-tool`, failing if any dependency's license isn't on the allowlist. This does not scan the mojaloop docker images that we are shipping  | [license-scanner-tool repo](https://github.com/mojaloop/license-scanner-tool) |
 
 
 ### Master and Release Flow:
@@ -43,7 +43,7 @@ This CI/CD pipeline runs on the master/main branch:
 | test-coverage   | See above | |
 | test-unit       | See above | |
 | vulnerability-check | See above | |
-| audit-licenses | See above | |
+| license-scan | See above | |
 | release | Runs a release which creates a git tag and pushes the git tag | |
 | github-release | Adds the release metadata (e.g. changelog) to github, sends a slack alert to #announcements | |
 
@@ -63,7 +63,7 @@ artefact that is published to `npm`.
 | test-coverage   | See above | |
 | test-unit       | See above | |
 | vulnerability-check | See above | |
-| audit-licenses | See above | |
+| license-scan | See above | |
 | publish | Publishes the latest version of the library based on the git tag | |
 
 
@@ -85,7 +85,7 @@ for the code to be merged in.
 | test-unit           | Runs the unit-tests. Fails if any unit test fails. | |
 | test-integration    | Runs the integration-tests. Typically by building a docker image locally | |
 | vulnerability-check | Runs the `npm audit` tool to search for any vulnerabilities in dependencies | `npm audit` is full of false positives, or security issues that don't apply to our codebase. We use `npm-audit-resolver` to give us flexibility over vulnerabilities that may be ignored, e.g `devDependencies` |
-| audit-licenses | Runs the mojaloop `license-scanner-tool` and fails if any license found doesn't match an allowlist specified in the `license-scanner-tool` | [license-scanner-tool repo](https://github.com/mojaloop/license-scanner-tool) |
+| license-scan | Generates a CycloneDX SBOM of the project's dependencies and gates it with the mojaloop `license-scanner-tool`, failing if any dependency's license isn't on the allowlist | [license-scanner-tool repo](https://github.com/mojaloop/license-scanner-tool) |
 
 
 ### Master and Release Flow:
@@ -101,7 +101,7 @@ This CI/CD pipeline runs on the master/main branch:
 | test-unit       | See above | |
 | test-integration | See above | |
 | vulnerability-check | See above | |
-| audit-licenses | See above | |
+| license-scan | See above | |
 | release | Runs a release which creates a git tag and pushes the git tag | |
 | github-release | Adds the release metadata (e.g. changelog) to github, sends a slack alert to #announcements | |
 
@@ -120,7 +120,7 @@ and further scans are made on the docker image before the image is pushed.
 | test-coverage       | See above | |
 | test-unit           | See above | |
 | vulnerability-check | See above | |
-| audit-licenses      | See above | |
+| license-scan        | See above | |
 | build               | Builds the docker image | |
 | image-scan          | Runs `anchore/analyze_local_image` to scan the image | See [anchore-engine](https://circleci.com/developer/orbs/orb/anchore/anchore-engine) CircleCI Orb for more information. |
 | license-scan        | Runs the mojaloop `license-scanner-tool` on the licenses contained in the docker image | |
