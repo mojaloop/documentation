@@ -2521,6 +2521,884 @@ module.exports = {
             ['features/development', 'Desarrollo continuo']]
         }
       ],
+      '/es/technical/': [
+        {
+          title: 'Descripción general de Mojaloop',
+          collapsable: false,
+          sidebarDepth: 1,
+          children: [
+            {
+              title: 'Guía de despliegue',
+              // path: 'technical/deployment-guide/readme',
+              collapsible: true,
+              sidebarDepth: 2,
+              children: [
+                ['/technical/technical/deployment-guide/', 'Despliegue de Mojaloop (en inglés)'],
+                ['technical/deployment-guide/Production_Infrastructure_Guide', 'Guía de infraestructura de producción'],
+                'technical/deployment-guide/deployment-troubleshooting',
+                'technical/deployment-guide/upgrade-strategy-guide',
+                'technical/deployment-guide/mojaloop-repository-update-guide'
+              ]
+            },
+            {
+              title: 'Mojaloop Hub',
+              collapsable: true,
+              sidebarDepth: 2,
+              children: [
+                ['technical/overview/', 'Descripción general de los componentes de Mojaloop'],
+                'technical/overview/components-PI14',
+                'technical/overview/components-PI12',
+                'technical/overview/components-PI11',
+                'technical/overview/components-PI8',
+                'technical/overview/components-PI7',
+                'technical/overview/components-PI6',
+                'technical/overview/components-PI5',
+                'technical/overview/components-PI3'
+              ]
+            },
+            {
+              title: 'Trayecto de transferencia',
+              collapsable: true,
+              sidebarDepth: 2,
+              children: [
+                ['technical/transfer-journey/', 'Descripción general'],
+                ['technical/transfer-journey/discovery', 'Fase 1 · Exploración'],
+                ['technical/transfer-journey/quote', 'Fase 2 · Cotización'],
+                ['technical/transfer-journey/transfer-prepare', 'Fase 3 · Preparación de la transferencia'],
+                ['technical/transfer-journey/transfer-fulfil', 'Fase 3 · Cumplir y comprometerse'],
+                ['technical/transfer-journey/reference', 'Referencia']
+              ]
+            },
+            {
+              title: 'Novedades de Mojaloop',
+              path: "technical/releases"
+            },
+            {
+              title: 'Account Lookup Service (ALS)',
+              collapsable: true,
+              sidebarDepth: 2,
+              children: [
+                ['technical/account-lookup-service/', 'Descripción general'],
+                'technical/account-lookup-service/als-get-participants',
+                'technical/account-lookup-service/als-post-participants',
+                'technical/account-lookup-service/als-post-participants-batch',
+                'technical/account-lookup-service/als-del-participants',
+                'technical/account-lookup-service/als-get-parties',
+              ]
+            },
+            {
+              title: 'Servicio de cotizaciones',
+              collapsable: true,
+              sidebarDepth: 2,
+              children: [
+                ['technical/quoting-service/', 'Descripción general'],
+                'technical/quoting-service/qs-get-quotes',
+                'technical/quoting-service/qs-post-quotes',
+                'technical/quoting-service/qs-get-bulk-quotes',
+                'technical/quoting-service/qs-post-bulk-quotes'
+              ]
+            },
+            {
+              title: 'Libro mayor central',
+              collapsable: true,
+              sidebarDepth: 2,
+              children: [
+                {
+                  title: 'Descripción general',
+                  path: "technical/central-ledger/"
+                },
+                {
+                  title: 'Operaciones administrativas',
+                  collapsable: true,
+                  children: [
+                    {
+                      title: 'Descripción general',
+                      path: "technical/central-ledger/admin-operations/",
+                    },
+                    {
+                      title: 'Límite de participantes en POST',
+                      path: "technical/central-ledger/admin-operations/1.0.0-post-participant-position-limit"
+                    },
+                    {
+                      title: 'Obtener detalles sobre el límite de participantes',
+                      path: "technical/central-ledger/admin-operations/1.1.0-get-participant-limit-details"
+                    },
+                    {
+                      title: 'Obtener todos los límites de los participantes',
+                      path: "technical/central-ledger/admin-operations/1.0.0-get-limits-for-all-participants"
+                    },
+                    {
+                      title: 'Límites de participantes en el programa POST',
+                      path: "technical/central-ledger/admin-operations/1.1.0-post-participant-limits"
+                    },
+                    {
+                      title: 'Consultar el estado de la transferencia de dinero',
+                      path: "technical/central-ledger/admin-operations/1.1.5-get-transfer-status"
+                    },
+                    {
+                      title: 'Devolución de llamada a los participantes de POST',
+                      path: "technical/central-ledger/admin-operations/3.1.0-post-participant-callback-details"
+                    },
+                    {
+                      title: 'Recuperar la llamada de retorno del participante',
+                      path: "technical/central-ledger/admin-operations/3.1.0-get-participant-callback-details"
+                    },
+                    {
+                      title: 'Obtener el puesto de participante',
+                      path: "technical/central-ledger/admin-operations/4.1.0-get-participant-position-details"
+                    },
+                    {
+                      title: 'Obtener las posiciones de todos los participantes',
+                      path: "technical/central-ledger/admin-operations/4.2.0-get-positions-of-all-participants"
+                    }
+                  ]
+                },
+                {
+                  title: 'Operaciones de transferencias',
+                  collapsable: true,
+                  children: [
+                    {
+                      title: 'Descripción general',
+                      path: "technical/central-ledger/transfers/"
+                    },
+                    {
+                      title: 'Preparar el controlador',
+                      collapsable: true,
+                      children: [
+                        {
+                          title: 'Descripción general',
+                          path: "technical/central-ledger/transfers/1.1.0-prepare-transfer-request"
+                        },
+                        {
+                          title: 'Preparar, gestionar, consumir',
+                          path: "technical/central-ledger/transfers/1.1.1.a-prepare-handler-consume"
+                        }
+                      ]
+                    },
+                    {
+                      title: 'Preparar el gestor de posiciones',
+                      path: "technical/central-ledger/transfers/1.3.0-position-handler-consume"
+                    },
+                    {
+                      title: 'Preparación del gestor de posiciones v1.1',
+                      collapsable: true,
+                      children: [
+                        {
+                          title: 'Descripción general',
+                          path: "technical/central-ledger/transfers/1.3.0-position-handler-consume-v1.1"
+                        },
+                        {
+                          title: 'Preparar el gestor de posiciones',
+                          path: "technical/central-ledger/transfers/1.3.1-prepare-position-handler-consume"
+                        },
+                        {
+                          title: 'Posición, Gestor, Consumo',
+                          path: "technical/central-ledger/transfers/1.1.2.a-position-handler-consume"
+                        }
+                      ]
+                    },
+                    {
+                      title: 'Gestor de cumplimiento de Fulfilment',
+                      path: "technical/central-ledger/transfers/2.1.0-fulfil-transfer-request"
+                    },
+                    {
+                      title: 'Fulfil Handler v1.1',
+                      collapsable: true,
+                      children: [
+                        {
+                          title: 'Descripción general',
+                          path: "technical/central-ledger/transfers/2.1.0-fulfil-transfer-request-v1.1"
+                        },
+                        {
+                          title: 'Fulfilment, Gestion, Consumption',
+                          path: "technical/central-ledger/transfers/2.1.1-fulfil-handler-consume"
+                        },
+                        {
+                          title: 'Fulfilment Handler Consume v1.1',
+                          path: "technical/central-ledger/transfers/2.1.1-fulfil-handler-consume-v1.1"
+                        }
+                      ]
+                    },
+                    {
+                      title: 'Gestor de cumplimiento de pedidos',
+                      collapsable: true,
+                      children: [
+                        {
+                          title: 'Descripción general',
+                          path: "technical/central-ledger/transfers/1.3.0-position-handler-consume"
+                        },
+                        {
+                          title: 'Gestor de cumplimiento de pedidos',
+                          path: "technical/central-ledger/transfers/1.3.2-fulfil-position-handler-consume"
+                        },
+                        {
+                          title: 'Fulfilment Position Handler v1.1',
+                          path: "technical/central-ledger/transfers/1.3.2-fulfil-position-handler-consume-v1.1"
+                        }
+                      ]
+                    },
+                    {
+                      title: 'Aceptar, rechazar, transferir',
+                      collapsable: true,
+                      children: [
+                        {
+                          title: 'Descripción general',
+                          path: "technical/central-ledger/transfers/2.2.0-fulfil-reject-transfer"
+                        },
+                        {
+                          title: 'Transferencia de «Aceptar» a «Rechazar» (a)',
+                          path: "technical/central-ledger/transfers/2.2.0.a-fulfil-abort-transfer"
+                        },
+                        {
+                          title: 'Fulfilment handler (Rechazo-Aborto)',
+                          path: "technical/central-ledger/transfers/2.2.1-fulfil-reject-handler"
+                        }
+                      ]
+                    },
+                    {
+                      title: 'Transferencia completada v1.1',
+                      collapsable: true,
+                      children: [
+                        {
+                          title: 'Descripción general',
+                          path: "technical/central-ledger/transfers/2.2.0-fulfil-reject-transfer-v1.1"
+                        },
+                        {
+                          title: 'Transferencia «Aceptar/Rechazar» (a) v1.1',
+                          path: "technical/central-ledger/transfers/2.2.0.a-fulfil-abort-transfer-v1.1"
+                        },
+                        {
+                          title: 'Gestor de cumplimiento (Rechazo-Aborto) v1.1',
+                          path: "technical/central-ledger/transfers/2.2.1-fulfil-reject-handler-v1.1"
+                        }
+                      ]
+                    },
+                    {
+                      title: 'Notificaciones',
+                      collapsable: true,
+                      children: [
+                        {
+                          title: 'Notificación al Participante (a)',
+                          path: "technical/central-ledger/transfers/1.1.4.a-send-notification-to-participant"
+                        },
+                        {
+                          title: 'Notificación al Participante (a) - v1.1',
+                          path: "technical/central-ledger/transfers/1.1.4.a-send-notification-to-participant-v1.1"
+                        },
+                        {
+                          title: 'Notificación al Participante (b)',
+                          path: "technical/central-ledger/transfers/1.1.4.b-send-notification-to-participant"
+                        }
+                      ]
+                    },
+                    {
+                      title: 'Rechazar/Cancelar',
+                      collapsable: true,
+                      children: [
+                        {
+                          title: 'Manejador de posición de interrupción',
+                          path: "technical/central-ledger/transfers/1.3.3-abort-position-handler-consume"
+                        }
+                      ]
+                    },
+                    {
+                      title: 'Tiempo de espera',
+                      collapsable: true,
+                      children: [
+                        {
+                          title: 'Tiempo de espera de la transferencia de datos',
+                          path: "technical/central-ledger/transfers/2.3.0-transfer-timeout"
+                        },
+                        {
+                          title: 'Consumo del controlador de tiempo de espera',
+                          path: "technical/central-ledger/transfers/2.3.1-timeout-handler-consume"
+                        }
+                      ]
+                    },
+                  ]
+                },
+                {
+                  title: 'Operaciones de transferencia de divisas',
+                  collapsable: true,
+                  children: [
+                    {
+                      title: 'Descripción general',
+                      path: "central-fx-transfers/transfers/"
+                    },
+                    {
+                      title: 'Manejador de preparación de FX',
+                      collapsable: true,
+                      children: [
+                        {
+                          title: 'Descripción general',
+                          path: "central-fx-transfers/transfers/1.1.0-fx-prepare-transfer-request"
+                        },
+                        {
+                          title: 'FX: Preparar, Gestionar, Consumir',
+                          path: "central-fx-transfers/transfers/1.1.1.a-fx-prepare-handler-consume"
+                        }
+                      ]
+                    },
+                    {
+                      title: 'Gestor de posiciones de divisas FX',
+                      path: "central-fx-transfers/transfers/1.1.2.a-fx-position-handler-consume"
+                    },
+                    {
+                      title: 'Gestor de Fulfilment de FX',
+                      path: "central-fx-transfers/transfers/2.1.0-fx-fulfil-transfer-request"
+                    },
+                    {
+                      title: 'Proceso de notificaciones',
+                      path: "central-fx-transfers/transfers/1.1.4.a-send-notification-to-participant-v2.0"
+                    },
+                    {
+                      title: 'Rechazar/Cancelar',
+                      path: "central-fx-transfers/transfers/2.2.0-fx-fulfil-reject-transfer"
+                    }
+                  ]
+                },
+                {
+                  title: 'Operaciones de transferencias a granel',
+                  collapsable: true,
+                  children: [
+                    {
+                      title: 'Descripción general',
+                      path: "technical/central-bulk-transfers/"
+                    },
+                    {
+                      title: 'Preparación masiva',
+                      collapsable: true,
+                      children: [
+                        {
+                          title: 'Descripción general',
+                          path: "technical/central-bulk-transfers/transfers/1.1.0-bulk-prepare-transfer-request-overview"
+                        },
+                        {
+                          title: 'Manejador de preparación masiva',
+                          path: "technical/central-bulk-transfers/transfers/1.1.1-bulk-prepare-handler-consume"
+                        }
+                      ]
+                    },
+                    {
+                      title: 'Preparar el controlador',
+                      collapsable: true,
+                      path: "technical/central-bulk-transfers/transfers/1.2.1-prepare-handler-consume-for-bulk"
+                    },
+                    {
+                      title: 'Responsable de puestos',
+                      collapsable: true,
+                      children: [
+                        {
+                          title: 'Descripción general',
+                          path: "technical/central-bulk-transfers/transfers/1.3.0-position-handler-consume-overview"
+                        },
+                        {
+                          title: 'Preparar, gestionar la posición, consumir',
+                          path: "technical/central-bulk-transfers/transfers/1.3.1-prepare-position-handler-consume"
+                        },
+                        {
+                          title: 'Fulfilment, Gestion, Consumption',
+                          path: "technical/central-bulk-transfers/transfers/2.3.1-fulfil-position-handler-consume"
+                        },
+                        {
+                          title: 'Fulfilment, Abort, Position, Gestor, Consumption',
+                          path: "technical/central-bulk-transfers/transfers/2.3.2-position-consume-abort"
+                        }
+                      ]
+                    },
+                    {
+                      title: 'Gestor de Fulfilment masivo',
+                      collapsable: true,
+                      children: [
+                        {
+                          title: 'Descripción general',
+                          path: "technical/central-bulk-transfers/transfers/2.1.0-bulk-fulfil-transfer-request-overview"
+                        },
+                        {
+                          title: 'Fulfilment de pedidos masivos, tramitación y consumo',
+                          path: "technical/central-bulk-transfers/transfers/2.1.1-bulk-fulfil-handler-consume"
+                        },
+                        {
+                          title: 'Manejador de cumplimiento - Confirmación',
+                          path: "technical/central-bulk-transfers/transfers/2.2.1-fulfil-commit-for-bulk"
+                        },
+                        {
+                          title: 'Fulfilment handler - Rechazar/Cancelar',
+                          path: "technical/central-bulk-transfers/transfers/2.2.2-fulfil-abort-for-bulk"
+                        }
+                      ]
+                    },
+                    {
+                      title: 'Manejador de procesamiento masivo',
+                      path: "technical/central-bulk-transfers/transfers/1.4.1-bulk-processing-handler"
+                    },
+                    {
+                      title: 'Notificaciones',
+                      collapsable: true,
+                      children: [
+                        {
+                          title: 'Notificación al Participante (a)',
+                          path: "technical/central-ledger/transfers/1.1.4.a-send-notification-to-participant"
+                        },
+                        {
+                          title: 'Notificación al Participante (b)',
+                          path: "technical/central-ledger/transfers/1.1.4.b-send-notification-to-participant"
+                        }
+                      ]
+                    },
+                    {
+                      title: 'Tiempo de espera',
+                      collapsable: true,
+                      children: [
+                        {
+                          title: 'Descripción general',
+                          path: "technical/central-bulk-transfers/transfers/3.1.0-transfer-timeout-overview-for-bulk"
+                        },
+                        {
+                          title: 'Consumo del controlador de tiempo de espera',
+                          path: "technical/central-bulk-transfers/transfers/3.1.1-transfer-timeout-handler-consume"
+                        }
+                      ]
+                    },
+                    {
+                      title: 'Descripción general de la cancelación masiva',
+                      path: "technical/central-bulk-transfers/transfers/4.1.0-transfer-abort-overview-for-bulk"
+                    },
+                    {
+                      title: 'Consulte la descripción general de la transferencia masiva',
+                      path: "technical/central-bulk-transfers/transfers/5.1.0-transfer-get-overview-for-bulk"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              // TODO: Placeholder and temporary link for this section until it can be migrated from legacy docs.
+              title: 'Servicios Centrales de Liquidación',
+              path: 'https://docs.mojaloop.io/legacy/mojaloop-technical-overview/central-settlements/'
+            },
+            {
+              title: 'Servicio de solicitudes de transacciones',
+              collapsable: true,
+              sidebarDepth: 2,
+              children: [
+                {
+                  title: 'Descripción general',
+                  path: "technical/transaction-requests-service/"
+                },
+                {
+                  title: 'Solicitudes de transacciones GET',
+                  path: "technical/transaction-requests-service/transaction-requests-get"
+                },
+                {
+                  title: 'Solicitudes de transacciones POST',
+                  path: "technical/transaction-requests-service/transaction-requests-post"
+                },
+                {
+                  title: 'Autorizaciones',
+                  path: "technical/transaction-requests-service/authorizations"
+                }
+              ]
+            },
+            {
+              title: 'Servicio del procesador central de eventos',
+              collapsable: true,
+              sidebarDepth: 2,
+              children: [
+                {
+                  title: 'Descripción general',
+                  path: "technical/central-event-processor/"
+                },
+                {
+                  title: 'Manejador de eventos (marcador de posición)',
+                  path: "technical/central-event-processor/event-handler-placeholder"
+                },
+                {
+                  title: 'Gestor de notificaciones para los rechazos',
+                  path: "technical/central-event-processor/notification-handler-for-rejections"
+                },
+                {
+                  title: 'Validación de la firma',
+                  path: "technical/central-event-processor/signature-validation"
+                }
+              ]
+            },
+            {
+              title: 'Marco de eventos',
+              collapsable: true,
+              sidebarDepth: 2,
+              children: [
+                {
+                  title: 'Descripción general',
+                  path: "technical/event-framework/"
+                },
+                {
+                  title: 'Procesador de flujos de eventos',
+                  path: "technical/event-stream-processor/"
+                }
+              ]
+            },
+            {
+              title: 'Gestión de la seguridad y las vulnerabilidades',
+              collapsable: true,
+              sidebarDepth: 2,
+              children: [
+                {
+                  title: 'Descripción general sobre seguridad',
+                  path: "technical/security/security-overview"
+                },
+                {
+                  title: 'Gestión de vulnerabilidades en las dependencias',
+                  path: "technical/security/dependency-vulnerability-management"
+                }
+              ]
+            },
+            {
+              title: 'Adaptador de esquema de pagos SDK',
+              collapsable: true,
+              sidebarDepth: 2,
+              children: [
+                {
+                  title: 'Descripción general',
+                  path: "technical/sdk-scheme-adapter/"
+                },
+                {
+                  title: 'Patrones de flujo de integración',
+                  path: "technical/sdk-scheme-adapter/IntegrationFlowPatterns"
+                },
+                {
+                  title: 'Solicitud de pago - asistencia técnica',
+                  path: "technical/sdk-scheme-adapter/RequestToPay"
+                },
+                {
+                  title: 'Patrones de flujo de integración masiva',
+                  path: "technical/sdk-scheme-adapter/IntegrationBulkFlowPatterns"
+                },
+                {
+                  title: 'Pruebas de uso',
+                  path: "technical/sdk-scheme-adapter/usage/"
+                },
+                {
+                  title: 'Compatibilidad con transferencias masivas',
+                  collapsable: true,
+                  sidebarDepth: 2,
+                  children: [
+                    {
+                      title: 'Descripción general',
+                      path: "technical/sdk-scheme-adapter/BulkEnhancements/"
+                    },
+                    {
+                      title: 'API',
+                      path: "technical/sdk-scheme-adapter/BulkEnhancements/SDKBulk-API-Design"
+                    }, {
+                      title: 'Diseño de DDD y Event Sourcing',
+                      path: "technical/sdk-scheme-adapter/BulkEnhancements/SDKBulk-EventSourcing-Design"
+                    }, {
+                      title: 'Pruebas',
+                      path: "technical/sdk-scheme-adapter/BulkEnhancements/SDKBulk-Tests"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              title: 'Kit de herramientas de pruebas de aprendizaje automático',
+              collapsable: true,
+              children: [
+                {
+                  title: 'Descripción general',
+                  path: "technical/ml-testing-toolkit/"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          title: 'Arquitectura de referencia',
+          // path: './HubOperations/TechOps/tech-ops-introduction',
+          collapsable: true, // optional, defaults to true
+          sidebarDepth: 1,    // optional, defaults to 1
+          children: [
+            {
+              title: 'Contextos delimitados',
+              // path: 'reference-architecture/boundedContexts/',      // optional, link of the title, which should be an absolute path and must exist
+              //collapsable: false,
+              initialOpenGroupIndex: -1,
+              children: [
+                {
+                  title: 'Términos y convenciones habituales',
+                  path: 'reference-architecture/boundedContexts/commonTermsConventions/',      // optional, link of the title, which should be an absolute path and must exist
+                  // children: [ /* ... */ ],
+                },
+                {
+                  title: 'Búsqueda de cuenta y localización de cuentas',
+                  path: 'reference-architecture/boundedContexts/accountLookupAndDiscovery/',      // optional, link of the title, which should be an absolute path and must exist
+                  // children: [ /* ... */ ],
+                },
+                {
+                  title: 'Cuentas y saldos',
+                  path: 'reference-architecture/boundedContexts/accountsAndBalances/',      // optional, link of the title, which should be an absolute path and must exist
+                  // children: [ /* ... */ ],
+                },
+                {
+                  title: 'Cotizaciones/Acuerdos',
+                  path: 'reference-architecture/boundedContexts/quotingAgreement/',      // optional, link of the title, which should be an absolute path and must exist
+                  // children: [ /* ... */ ],
+                },
+                {
+                  title: 'Auditoría',
+                  path: 'reference-architecture/boundedContexts/auditing/',      // optional, link of the title, which should be an absolute path and must exist
+                  // children: [ /* ... */ ],
+                },
+                {
+                  title: 'API de interoperabilidad de FSP (en inglés)',
+                  path: '/technical/reference-architecture/boundedContexts/fspInteropApi/',      // optional, link of the title, which should be an absolute path and must exist
+                  // children: [ /* ... */ ],
+                },
+                {
+                  title: 'Tala de árboles',
+                  path: 'reference-architecture/boundedContexts/logging/',      // optional, link of the title, which should be an absolute path and must exist
+                  // children: [ /* ... */ ],
+                },
+                {
+                  title: 'Notificaciones y alertas',
+                  path: 'reference-architecture/boundedContexts/notificationsAndAlerts/',      // optional, link of the title, which should be an absolute path and must exist
+                  // children: [ /* ... */ ],
+                },
+                {
+                  title: 'Gestión del ciclo de vida de los participantes',
+                  path: 'reference-architecture/boundedContexts/participantLifecycleManagement/',      // optional, link of the title, which should be an absolute path and must exist
+                  // children: [ /* ... */ ],
+                },
+                //{
+                //  title: 'Monitoreo de plataformas',
+                //  path: '/boundedContexts/platformMonitoring/',      // optional, link of the title, which should be an absolute path and must exist
+                // children: [ /* ... */ ],
+                //},
+                {
+                  title: 'Informes',
+                  path: 'reference-architecture/boundedContexts/reporting/',      // optional, link of the title, which should be an absolute path and must exist
+                  // children: [ /* ... */ ],
+                },
+                {
+                  title: 'Planificación',
+                  path: 'reference-architecture/boundedContexts/scheduling/',      // optional, link of the title, which should be an absolute path and must exist
+                  // children: [ /* ... */ ],
+                },
+                {
+                  title: 'Seguridad',
+                  path: 'reference-architecture/boundedContexts/security/',      // optional, link of the title, which should be an absolute path and must exist
+                  // children: [ /* ... */ ],
+                },
+                {
+                  title: 'Asentamientos',
+                  path: 'reference-architecture/boundedContexts/settlements/',      // optional, link of the title, which should be an absolute path and must exist
+                  // children: [ /* ... */ ],
+                },
+                {
+                  title: 'API de terceros',
+                  path: 'reference-architecture/boundedContexts/thirdPartyApi/',      // optional, link of the title, which should be an absolute path and must exist
+                  // children: [ /* ... */ ],
+                },
+                {
+                  title: 'Transferencias',
+                  path: 'reference-architecture/boundedContexts/transfers/',      // optional, link of the title, which should be an absolute path and must exist
+                  // children: [ /* ... */ ],
+                },
+              ],
+            },
+            {
+              title: 'Lista de interfaces comunes',
+              path: 'reference-architecture/boundedContexts/commonInterfaces/',      // optional, link of the title, which should be an absolute path and must exist
+              // children: [ /* ... */ ],
+            },
+
+
+            {
+              title: 'Cómo llevarlo a cabo',
+              path: 'reference-architecture/howToImplement/',      // optional, link of the title, which should be an absolute path and must exist
+              // children: [ /* ... */ ],
+            },
+            {
+              title: 'Glosario',
+              path: 'reference-architecture/glossary/',      // optional, link of the title, which should be an absolute path and must exist
+              // children: [ /* ... */ ],
+            },
+            {
+              title: 'Lecturas recomendadas',
+              path: 'reference-architecture/furtherReading/',      // optional, link of the title, which should be an absolute path and must exist
+              // children: [ /* ... */ ],
+            }
+          ]
+        },
+        {
+          title: 'API de Mojaloop',
+          collapsable: false, // optional, defaults to true
+          sidebarDepth: 1,    // optional, defaults to 1
+          children: [
+            {
+              title: 'API de FSPIOP',
+              collapsable: true,
+              sidebarDepth: 4,
+              children: [
+                {
+                  title: 'Descripción general (en inglés)',
+                  path: '/technical/api/fspiop/',
+                },
+                {
+                  title: 'Definiciones de la API',
+                  collapsable: false,
+                  children: [
+                    {
+                      title: 'v1.1 (actual) (en inglés)',
+                      path: '/technical/api/fspiop/v1.1/api-definition'
+                    },
+                    {
+                      title: 'Versiones anteriores',
+                      children: [
+                        ['/technical/api/fspiop/v1.0/api-definition', 'v1.0 (en inglés)'],
+                      ]
+                    }
+                  ]
+                },
+                {
+                  title: 'Modelo lógico de datos (en inglés)',
+                  path: '/technical/api/fspiop/logical-data-model',
+                  collapsable: true
+                },
+                {
+                  title: 'Patrones de transacción genéricos (en inglés)',
+                  path: '/technical/api/fspiop/generic-transaction-patterns',
+                  collapsable: true
+                },
+                {
+                  title: 'Caso de uso (en inglés)',
+                  path: '/technical/api/fspiop/use-cases'
+                },
+                {
+                  title: 'Reglas de enlace JSON (en inglés)',
+                  path: '/technical/api/fspiop/json-binding-rules'
+                },
+                {
+                  title: 'Reglas del programa (en inglés)',
+                  path: '/technical/api/fspiop/scheme-rules',
+                },
+                {
+                  title: 'Prácticas recomendadas en materia de PKI (en inglés)',
+                  path: '/technical/api/fspiop/pki-best-practices',
+                },
+                {
+                  title: 'Firma (v1.1) (en inglés)',
+                  path: '/technical/api/fspiop/v1.1/signature',
+                },
+                {
+                  title: 'Cifrado (v1.1) (en inglés)',
+                  path: '/technical/api/fspiop/v1.1/encryption',
+                },
+                {
+                  title: 'Glosario (en inglés)',
+                  path: '/technical/api/fspiop/glossary',
+                },
+              ]
+            },
+            {
+              title: 'API ISO-20022',
+              collapsable: true,
+              sidebarDepth: 4,
+              children: [
+                {
+                  title: 'Descripción general (en inglés)',
+                  path: '/technical/api/iso20022/',
+                },]
+            },
+            {
+              title: 'API de administración',
+              collapsable: true,
+              sidebarDepth: 2,
+              children: [
+                {
+                  title: 'Descripción general (en inglés)',
+                  path: '/technical/api/administration/'
+                },
+                {
+                  title: 'API del libro mayor central (en inglés)',
+                  path: '/technical/api/administration/central-ledger-api',
+                },
+              ]
+            },
+            {
+              title: 'API de liquidación',
+              collapsable: true,
+              sidebarDepth: 2,
+              children: [
+                ['/technical/api/settlement/', 'Descripción general (en inglés)'],
+              ]
+            },
+            {
+              title: 'API de terceros',
+              collapsable: true,
+              sidebarDepth: 2,
+              children: [
+                {
+                  title: 'Descripción general (en inglés)',
+                  path: '/technical/api/thirdparty/',
+                },
+                {
+                  title: 'Patrones de transacción',
+                  collapsable: true,
+                  children: [
+                    {
+                      title: 'Vínculos entre patrones de transacción (en inglés)',
+                      path: '/technical/api/thirdparty/transaction-patterns-linking'
+                    },
+                    {
+                      title: 'Transferencia de patrones de transacción (en inglés)',
+                      path: '/technical/api/thirdparty/transaction-patterns-transfer'
+                    }
+                  ]
+                },
+                {
+                  title: 'Modelos de datos (en inglés)',
+                  path: '/technical/api/thirdparty/data-models',
+                  collapsable: true
+                },
+              ]
+            },
+            {
+              title: 'Varios',
+              collapsable: true,
+              children: [
+                ['/technical/api/fspiop/glossary', 'Glosario (en inglés)'],
+                ['/technical/api/license', 'Licencia (en inglés)'],
+              ],
+            }
+          ]
+        },
+        {
+          title: 'Operaciones del Hub de Mojaloop',
+          collapsable: true, // optional, defaults to true
+          sidebarDepth: 1,    // optional, defaults to 1
+          children: [
+            {
+              title: 'Contextos delimitados',
+              // path: 'reference-architecture/boundedContexts/',      // optional, link of the title, which should be an absolute path and must exist
+              //collapsable: false,
+              initialOpenGroupIndex: -1,
+              children: [
+                '',
+                'business-operations-framework/SecurityBC',
+                'business-operations-framework/Microfrontend-JAMStack',
+                'business-operations-framework/ReportingBC',
+                'business-operations-framework/ReportDeveloperGuide',
+                {
+                  title: 'Implementación de operaciones de liquidación',
+                  path: 'business-operations-framework/SettlementBC'
+                }
+              ]
+            }
+          ]
+        }
+      ],
     }
   },
 
