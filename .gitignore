@@ -21,6 +21,14 @@ devspace*
 i18n-report.json
 i18n-report.md
 
+# DeepL credentials for `npm run i18n:translate`. The key is personal and never belongs in
+# the repository.
+.env
+.env.*
+
+# Scratch directory the translate script makes while reading the drift audit.
+.i18n-translate-*
+
 # Add ignores
 *IGNORE*
 *ignore*
