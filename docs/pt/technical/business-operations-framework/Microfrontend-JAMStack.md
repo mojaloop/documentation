@@ -2,7 +2,7 @@
 i18n_source_sha: 666f21f27cad5ef3d3fe214ebf7bf74877a2f165
 ---
 
-# Micro-frontend - Concepção do JAMStack
+# Micro-frontend - Conceção do JAMStack
 ## Visão geral
 O objetivo do design de micro-frontend - JAMStack consiste em criar um framework que:
 

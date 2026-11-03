@@ -8,7 +8,7 @@ Este documento contém algumas das perguntas técnicas mais frequentes da comuni
 
 ## 1. O que é que é permitido?
 
-Atualmente, os componentes do livro-razão geral são permitidos pela equipa. Os componentes «DFSP» estão desatualizados e, por isso, a instalação do ambiente de ponta a ponta e da configuração integral apresenta dificuldades.
+Atualmente, os componentes do Central Ledger são permitidos pela equipa. Os componentes «DFSP» estão desatualizados e, por isso, a instalação do ambiente de ponta a ponta e da configuração integral apresenta dificuldades.
 
 ### 2. É possível estabelecer uma ligação direta ao Pathfinder num ambiente de desenvolvimento?
 

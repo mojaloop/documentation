@@ -102,11 +102,11 @@ As fontes de alimentação duplas são económicas de especificar na fase de aqu
 
 Esta única decisão determina, em grande medida, o seu RPO, o seu RTO e parte da sua latência.
 
-| Topologia | Sobrevive | RPO | RTO | Aspectos a ter em conta |
+| Topologia | Sobrevive | RPO | RTO | Aspetos a ter em conta |
 |---|---|---|---|---|
 | Um local, três domínios de falha (racks / zonas de alimentação) | Perda de um nó, rack, switch ou fonte de alimentação | 0 (transferências confirmadas) | Sem interrupção; breve paragem parcial (de alguns segundos a cerca de 1 minuto) | A perda total do local constitui uma interrupção do serviço |
 | Dois locais: principal + recuperação de desastres assíncrona | Perda do site, com failover manual | Segundos de atraso na replicação | Minutos a horas (uma decisão humana) | As transferências em curso necessitam de reconciliação |
-| Três locais: dois ativos + testemunha de quórum | Perda do site, automaticamente | 0 (transferências confirmadas) | De alguns segundos a cerca de 1 minuto (detecção de falhas no site) | Requer uma baixa latência entre locais (RTT de alguns ms); cada commit contribui para isso |
+| Três locais: dois ativos + testemunha de quórum | Perda do site, automaticamente | 0 (transferências confirmadas) | De alguns segundos a cerca de 1 minuto (deteção de falhas no site) | Requer uma baixa latência entre locais (RTT de alguns ms); cada commit contribui para isso |
 
 **Um site com três domínios de falha** (racks diferentes, zonas de alimentação diferentes) resiste à perda de um nó, de um rack, de um switch ou de uma fonte de alimentação. O RPO é zero para transferências confirmadas. Não há interrupção de serviço, apenas uma breve paragem de alguns segundos a cerca de um minuto para o tráfego que se encontrava no nó em falha. Isso inclui a base de dados, uma vez que o projeto de produção recomendado utiliza um Percona XtraDB Cluster de três nós ([Secção 6](#6-high-availability-rpo-and-rto)). A perda de todo o site constitui uma interrupção de serviço.
 
@@ -412,7 +412,7 @@ Uma pergunta frequente: com três réplicas de tudo, replicação em Kafka e um 
   - o cluster da base de dados mantiver o quórum.
 
 **RTO: uma breve paragem.** O tempo de recuperação é um caso à parte, porque qualquer mecanismo de failover tem, em primeiro lugar, de detetar a falha.
-- **Detecção de nós:** por predefinição, o Kubernetes demora cerca de 40 a 50 segundos a marcar um nó como «NotReady» e a retirar os seus pods de serviço.
+- **Deteção de nós:** por predefinição, o Kubernetes demora cerca de 40 a 50 segundos a marcar um nó como «NotReady» e a retirar os seus pods de serviço.
 - **Reequilíbrio do consumidor:** Kafka pod de consumidor nesse nó contém partições que permanecem por consumir até que o grupo se reequilibre, o que demora cerca de 45 segundos por predefinição.
 - **Efeito:** não há interrupção do serviço, mas a parte das transferências que passa pelo nó em falha fica em espera durante cerca de um minuto, e algumas atingem os tempos limite dos clientes. É isso que o nível DFSP experimenta.
 

@@ -94,7 +94,7 @@ Certifique-se de que está a deployar o Mojaloop Helm charts v10.x ou versões a
 
 Os meus pods não conseguem aceder à Internet nem comunicar entre si (mas o meu computador anfitrião do MicroK8s consegue).
 
-Um exemplo disso é o facto de os registos da razão geral indicarem que existe um erro no transporte do Broker, conforme se pode ver no exemplo seguinte:
+Um exemplo disso é o facto de os registos do Central Ledger indicarem que existe um erro no transporte do Broker, conforme se pode ver no exemplo seguinte:
 
 ```log
 2019-11-05T12:28:10.470Z - info: Server running at: 

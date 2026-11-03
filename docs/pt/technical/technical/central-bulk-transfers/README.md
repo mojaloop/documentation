@@ -2,7 +2,7 @@
 i18n_source_sha: c1d0b3d54570bbce490894e80257984c225f37e8
 ---
 
-# Concepção de transferências em massa
+# Conceção de transferências em massa
 
 O cenário «Transferências em massa» é descrito no documento de definição API relativo ao recurso /bulkTransfers. Para mais pormenores, _(consulte a secção `6.10`)_, de acordo com a [Mojaloop Specification](https://github.com/mojaloop/mojaloop-specification/blob/master/API%20Definition%20v1.0.pdf)
 
