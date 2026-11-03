@@ -175,7 +175,7 @@ O fluxo de trabalho proporcionado por esta UC permite que o BC recorra a um proc
     -   estado
     -   Contas[]
         -   ID da conta
-        -   tipo de conta do livro-razão
+        -   tipo de conta da razão geral
         -   moeda da conta
         -   isActive
         -   warningThreshold

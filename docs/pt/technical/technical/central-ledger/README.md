@@ -2,15 +2,15 @@
 i18n_source_sha: 103a61da42c413d100a62b89d79b1bd6080d4da3
 ---
 
-# Serviços de Razão Geral Centralizada
+# Serviços do Central Ledger
 
-A razão geral central consiste numa série de serviços que facilitam a compensação e a liquidação de transferências entre os DFSP, incluindo as seguintes funções:
+O Central Ledger consiste numa série de serviços que facilitam a compensação e a liquidação de transferências entre os DFSP, incluindo as seguintes funções:
 
 * Intermediação de mensagens em tempo real para a compensação de fundos
 * Manutenção de posições líquidas para uma liquidação líquida diferida
 * Atribuição de comissões ao nível do esquema e de comissões de transferência externa
 
-## 1. Concepção do processo da razão geral central
+## 1. Conceção do processo do Central Ledger
 
 ### 1.1 Visão geral da arquitetura
 
@@ -47,10 +47,10 @@ Resumo das tabelas específicas do processo de transferência;
 
 As tabelas restantes no ERD abaixo são tabelas de referência (azuis) ou específicas da liquidação (vermelhas) e estão incluídas como dependências diretas ou indiretas, a fim de ilustrar a relação entre as entidades específicas da transferência e as tabelas de transferência.
 
-A definição do esquema da base de dados do **Livro-razão central** [Definição do esquema da base de dados do Livro-razão central](./assets/database/central-ledger-ddl-MySQLWorkbench.sql).
+A definição do esquema da base de dados do **Central Ledger** [Definição do esquema da base de dados do Central Ledger](./assets/database/central-ledger-ddl-MySQLWorkbench.sql).
 
 ![Central-Ledger Database Diagram](./assets/database/central-ledger-schema.png)
 
 ## 4. Especificação API
 
-Consulte o **Livro-razão geral API** na secção [API Specifications](../../api/README.md#central-ledger-api)].
+Consulte o **Central Ledger API** na secção [API Specifications](../../api/README.md#central-ledger-api).

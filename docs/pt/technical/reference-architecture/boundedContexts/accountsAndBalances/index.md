@@ -105,7 +105,7 @@ Inserção de lançamentos contabilísticos a partir do [BC](../settlements/inde
 
 - Conta
   - accountId
-  - tipo de conta do livro-razão
+  - tipo de conta da razão geral
   - ledgerAccountState
   - limite de débito
   - limite de crédito

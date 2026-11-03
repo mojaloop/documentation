@@ -19,7 +19,7 @@ Existem duas bases de dados fundamentais para a elaboração de relatórios:
 1. **Base de dados de relatórios** 
 A base de dados de relatórios é uma base de dados relacional que mantém um registo do estado mais recente dos Mojaloop objetos e os disponibiliza através de uma interface de consulta eficiente. \
 \
-Na implementação deste esforço da workstream, será utilizada uma réplica dedicada da base de dados do livro-razão geral central para a elaboração de relatórios. Isto não se enquadra totalmente no modelo arquitetónico, uma vez que uma base de dados pertencente ao contexto delimitado de relatórios não deve ter dependências externas. Uma réplica da base de dados do livro-razão geral central depende do esquema do livro-razão geral central e, por conseguinte, apresenta uma dependência externa. 
+Na implementação deste esforço da workstream, será utilizada uma réplica dedicada da base de dados do Central Ledger para a elaboração de relatórios. Isto não se enquadra totalmente no modelo arquitetónico, uma vez que uma base de dados pertencente ao contexto delimitado de relatórios não deve ter dependências externas. Uma réplica da base de dados do Central Ledger depende do esquema do Central Ledger e, por conseguinte, apresenta uma dependência externa. 
 ::: aviso Dívida Técnica
 Isto deve ser reconhecido como **dívida técnica** que deverá ser liquidada à medida que a arquitetura de referência for sendo construída. 
 :::
@@ -46,7 +46,7 @@ Embora o contexto delimitado se refira à elaboração de relatórios e à audit
 
 É importante ter em conta a forma como este contexto delimitado irá evoluir à medida que for sendo implementada uma parte cada vez maior do projeto da arquitetura de referência.
 
-Os contextos delimitados deixarão — durante a implementação da arquitetura de referência — de armazenar dados nas bases de dados da razão geral.
+Os contextos delimitados deixarão — durante a implementação da arquitetura de referência — de armazenar dados nas bases de dados do Central Ledger.
 
 Existem três abordagens que podem ser adotadas para dar resposta a esta alteração. A forma como a arquitetura de referência for construída determinará qual é a melhor abordagem:
 1. Modificar a funcionalidade de sincronização para dar resposta ao novo armazenamento de dados do contexto delimitado.

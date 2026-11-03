@@ -4,7 +4,7 @@ i18n_source_sha: b9295912fed0bfc778c0d510e05d621ecea911b0
 
 # Obter cotação por ID
 
-Concepção para a consulta de uma cotação por um número FSP.
+Conceção para a consulta de uma cotação por um número FSP.
 
 ## Diagrama de sequência
 

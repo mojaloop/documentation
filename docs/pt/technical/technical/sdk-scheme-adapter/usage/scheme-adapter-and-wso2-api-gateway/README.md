@@ -19,7 +19,7 @@ Esta documentação destina-se a testar o adaptador de esquema num gateway WSO2 
 
 * Inicie sessão na sua loja WSO2 e aceda à secção «Aplicações» no menu. Crie uma nova aplicação e chaves de acesso, caso ainda não as tenha.
 * Em seguida, aceda ao menu «APIs»; deverá encontrar as seguintes aplicações. Subscreva estas duas APIs, selecionando a sua aplicação e o nível de serviço na página principal de cada uma delas (API).
-  * Administração da Razão Geral Central API — Iremos utilizar este endpoint para criar um novo FSP e configurar os endpoints para esse FSP. (Por favor, contacte a sua equipa de infraestrutura para obter os endpoints HTTPS adequados; a equipa terá de os provisionar no hub)
+  * Central Ledger Admin API — Iremos utilizar este endpoint para criar um novo FSP e configurar os endpoints para esse FSP. (Por favor, contacte a sua equipa de infraestrutura para obter os endpoints HTTPS adequados; a equipa terá de os provisionar no hub)
   * FSPIOP API - Este é o número principal API para consulta de contas, cotações e transferências
 * Pode experimentar efetuar algumas solicitações à API no separador «API Console», selecionando o token de acesso gerado.
 * Por favor, anote os URLs «API» relativos às duas APIs e ao token de acesso.

@@ -41,7 +41,7 @@ A configuração de encaminhamento basear-se-á no seguinte:
 O ALS Oracle, a ser implementado como um **Serviço** ou um **Adaptador** (a semântica depende da utilização — Mediação = Adaptador, Serviço = Implementação), irá fornecer um componente de registo de pesquisa com funcionalidades semelhantes às dos recursos `/participants`, Mojaloop e API. No entanto, baseia-se vagamente na especificação MLAPI, uma vez que a sua interface implementa um padrão de sincronização que reduz os requisitos de correlação/persistência do padrão de callback assíncrono implementado diretamente pela especificação MLAPI. Isto proporcionará a todos os Serviços/Adaptadores do ALS Oracle uma interface padrão que será mediada pelo ALS com base na sua configuração de encaminhamento.  
 Este componente (ou os sistemas de back-end) será também responsável pela persistência e preenchimento automático dos dados do participante.
 
-## 2. Concepção da pesquisa de participantes
+## 2. Conceção da pesquisa de participantes
 
 ### 2.1. Visão geral da arquitetura
 ![Architecture Flow Account-Lookup for Participants](./assets/diagrams/architecture/arch-flow-account-lookup-participants.svg)
@@ -66,7 +66,7 @@ _Nota: O caso de uso «Pesquisa de Participante» aplica-se igualmente a um caso
 
 - [Diagrama de sequência para os participantes do DEL](als-del-participants.md)
 
-## 3. Concepção da Pesquisa de Participantes
+## 3. Conceção da Pesquisa de Participantes
 
 ### 3.1. Visão geral da arquitetura
 ![Architecture Flow Account-Lookup for Parties](./assets/diagrams/architecture/arch-flow-account-lookup-parties.svg)
@@ -77,7 +77,7 @@ _Nota: O caso de uso «Pesquisa de Participante» aplica-se igualmente a um caso
 
 - [Diagrama de sequência para GET Parties](als-get-parties.md)
 
-## 4. Concepção da área de administração do ALS
+## 4. Conceção da área de administração do ALS
 
 ### 4.1. Visão geral da arquitetura
 ![Architecture Flow Account-Lookup for Admin Get Oracles](./assets/diagrams/architecture/arch-flow-account-lookup-admin.svg)
@@ -120,7 +120,7 @@ _Nota: O caso de uso «Pesquisa de Participante» aplica-se igualmente a um caso
 * [Serviço de Pesquisa de Contas DBeaver ERD](./assets/entities/AccountLookupDB-schema-DBeaver.erd)
 * [Serviço de Pesquisa de Contas MySQL Exportação do Workbench](./assets/entities/AccountLookup-ddl-MySQLWorkbench.sql)]
 
-## 6. Concepção do ALS Oracle
+## 6. Conceção do ALS Oracle
 
 A conceção detalhada do Oracle não faz parte do âmbito deste documento. A conceção e a implementação do Oracle são específicas para cada um dos requisitos do Oracle.
 
