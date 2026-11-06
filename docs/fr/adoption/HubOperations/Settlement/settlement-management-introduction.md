@@ -1,3 +1,7 @@
+---
+i18n_source_sha: b3b724d23776318a9b84bd5f467cfc4d5812d64f
+---
+
 # Introduction – Guide de gestion du Settlement
 
 Lorsqu’un paiement est effectué dans un système de paiements en temps réel comme Mojaloop, le DFSP qui est le détenteur du compte du bénéficiaire (le DFSP créancier) accepte de créditer le bénéficiaire des fonds immédiatement. Mais le DFSP créancier n’a pas encore reçu les fonds du DFSP qui est le détenteur du compte du débiteur : tout ce qui s’est produit jusqu’à présent, c’est que le DFSP débiteur a contracté une obligation de rembourser le DFSP créancier, et cette obligation a été enregistrée dans le Hub Mojaloop.

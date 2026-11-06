@@ -1,3 +1,7 @@
+---
+i18n_source_sha: c2e2462ca13ef27b8edfdc584d61969dad7699c6
+---
+
 # BC Settlements
 
 Le BC Settlements est essentiel pour le règlement des transferts des Participants, en utilisant soit la méthode de Règlement Net Différé (DNS), soit celle de Règlement Brut Immédiat (IGS). Il est responsable de la création des fenêtres de règlement, de l'identification et du déploiement de la méthode de règlement requise (DNS/IGS), du règlement, de la clôture et de la mise à jour des lots, ainsi que de l'enregistrement de tous les dépôts et retraits sur les comptes appropriés dans le BC Accounts & Balances.

@@ -1,3 +1,7 @@
+---
+i18n_source_sha: e2ea9a95cf6c62978d0525610038845a43e853df
+---
+
 # Processus des changements critiques
 
 _**Pour Mojaloop, le « processus des changements critiques » est proche du processus des changements conséquents, mais avec une supervision supplémentaire et une exigence de validation formelle, compte tenu de la nature hautement risquée de ces changements dans notre environnement d’exploitation.**_

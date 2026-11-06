@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 5accc7ec13dd7476c3337da388c97877f2623ab4
+---
+
 # SDK Scheme Adapter et cluster Kubernetes local
 
 Documentation pour tester un déploiement Mojaloop sur cluster Kubernetes avec le *scheme adapter* et un *mock backend* DFSP.

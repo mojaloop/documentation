@@ -1,3 +1,7 @@
+---
+i18n_source_sha: d0b25a50ce19d01062712caeefa6c5dca6bc342e
+---
+
 # Pipelines CI/CD
 
 La communauté Mojaloop utilise [CircleCI](https://circleci.com/) pour construire, tester et déployer automatiquement notre logiciel. Ce document décrit comment nous utilisons la CI/CD dans Mojaloop, les différentes vérifications effectuées sur le logiciel et la façon dont nous le distribuons.

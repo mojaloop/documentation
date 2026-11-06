@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 5ca3f0ad33625eff6a96454d164f0575f0d2dc38
+---
+
 # Documentation
 
 ### Vue d’ensemble

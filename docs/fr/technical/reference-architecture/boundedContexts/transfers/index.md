@@ -1,3 +1,7 @@
+---
+i18n_source_sha: cb839102af606813b475f0d995b237c18e15e862
+---
+
 # BC Transferts
 
 Le BC Transferts est responsable de l'orchestration des demandes de transfert. Il fonctionne en concert avec plusieurs autres BCs, notamment Settlements, Scheduling, Participant Lifecycle Management, Accounts & Balances, ainsi que le FSPIOP.

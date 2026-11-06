@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 103a61da42c413d100a62b89d79b1bd6080d4da3
+---
+
 # Services du registre central (*Central Ledger*)
 
 Le registre central est une série de services qui assurent la compensation et le règlement des transferts entre DFSP, notamment :

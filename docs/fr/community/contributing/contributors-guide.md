@@ -1,3 +1,7 @@
+---
+i18n_source_sha: c79c6f9f0442f7e9038bdd492711783190441b20
+---
+
 # Guide des contributeurs
 
 Nous sommes heureux que vous envisagiez de rejoindre la communauté Mojaloop.

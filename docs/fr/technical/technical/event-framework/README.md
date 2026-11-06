@@ -1,3 +1,7 @@
+---
+i18n_source_sha: d1a0f5ece0df733f0e340913310ae3fabc27f22b
+---
+
 # Infrastructure d’événements (Event Framework)
 
 L’**infrastructure d’événements** (*Event Framework*) vise à fournir une architecture unifiée et standard pour capturer tous les événements Mojaloop.

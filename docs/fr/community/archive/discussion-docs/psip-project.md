@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 6fe8e448dd5fb5668af6e2575fd6105abea7298d
+---
+
 # PISP (initiation de paiement par un tiers)
 
 ## Objectif

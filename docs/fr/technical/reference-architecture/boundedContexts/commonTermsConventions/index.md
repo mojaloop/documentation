@@ -1,3 +1,7 @@
+---
+i18n_source_sha: d188a1d1e524c22434cf46a63210b055851e5358
+---
+
 # Termes et conventions communs utilisés
 
 L’équipe de l’Architecture de Référence a utilisé des termes et conventions communs tout au long de la conception et la documentation du modèle d’Architecture de Référence Mojaloop 2.0.<br/><br/>Veuillez utiliser cette liste pour vous familiariser avec des termes qui pourraient vous sembler inconnus ou oubliés. La liste contient également des références à des articles et documents tiers disponibles dans la section “Pour aller plus loin” de ce document.

@@ -1,3 +1,7 @@
+---
+i18n_source_sha: a6fda7dcc67bd62684f5f33bd3b2f77515e17ade
+---
+
 # Intégration métier des DFSP
 
 Le parcours d'onboarding des DFSP comprend des étapes qui se déroulent en dehors du Hub Mojaloop. Elles sont liées au volet métier de l'onboarding, et il est utile pour l'opérateur du Hub d'en être informé.

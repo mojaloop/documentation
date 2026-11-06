@@ -1,3 +1,7 @@
+---
+i18n_source_sha: f03f6e0be25df6bc5c35d91969f475ee26cd3b79
+---
+
 # Transferts groupés
 
 ## Cas d’erreur

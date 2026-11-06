@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 1e5bbd5eb9a9efff431d412df77cdebfb632607f
+---
+
 # Contexte du RBAC
 Le Hub Mojaloop utilise une méthode de contrôle d'accès basé sur les rôles (RBAC) pour atténuer les risques.
 

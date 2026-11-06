@@ -1,3 +1,7 @@
+---
+i18n_source_sha: e53175ac0db31e33d7ec44f51bade322f1569631
+---
+
 # Notes de réunion des Scrum-of-scrum hebdomadaires
 
 ## Réunion OSS Scrum du jeudi **7 mai** 2020

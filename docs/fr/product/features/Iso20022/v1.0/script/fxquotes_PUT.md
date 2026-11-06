@@ -1,5 +1,6 @@
 ---
 sidebarTitle: "PUT /fxQuotes/{ID}"
+i18n_source_sha: 7f13e852dc904db3db5da7f0bf1d124f27623928
 ---
 
 ## 7.5 PUT /fxQuotes/{ID}

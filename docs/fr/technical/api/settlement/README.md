@@ -1,5 +1,6 @@
 ---
 showToc: false
+i18n_source_sha: 4fe520c990003709ca07b5cc04dbf3d5baf3b4e8
 ---
 # Settlement API
 

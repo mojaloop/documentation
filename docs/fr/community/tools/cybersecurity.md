@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 9ea975a43d8f0ee95ffcd61522445dccdfd15d1e
+---
+
 ## Architecture de cybersécurité Mojaloop
 
 ## Introduction

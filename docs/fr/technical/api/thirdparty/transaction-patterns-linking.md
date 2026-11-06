@@ -1,5 +1,6 @@
 ---
 footerCopyright: Attribution-NoDerivatives 4.0 International (CC BY-ND 4.0) | Ericsson, Huawei, Mahindra-Comviva, Telepin, and the Bill & Melinda Gates Foundation
+i18n_source_sha: 359d7b09e3c2e7d7ca5d566ec5e56a4ae18c630f
 ---
 
 # Modèles de transaction - Liaison

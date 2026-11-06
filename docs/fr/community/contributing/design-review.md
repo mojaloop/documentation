@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 5e3d41835b9444468849a91fb5119694831257a9
+---
+
 # Revue de conception technique et revue de code
 
 Le logiciel Mojaloop est conçu pour constituer l’épine dorsale de schémas de paiements instantanés inclusifs à l’échelle nationale. Ces schémas sont des éléments majeurs d’infrastructure financière nationale réglementée qui soutiennent des activités quotidiennes vitales pour de nombreuses personnes, comme l’achat de nourriture ou d’eau potable. Les adoptants et utilisateurs du logiciel Mojaloop exigent et méritent un niveau très élevé de qualité, sécurité, fiabilité et résilience.

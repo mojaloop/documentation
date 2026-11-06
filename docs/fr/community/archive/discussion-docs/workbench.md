@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 7a035d7467ce38bc1458145133761f8f7e410cb2
+---
+
 # Discussion Lab / établi Mojaloop
 
 ___Objectif :__ Ce document de discussion vise à exposer les arguments et à aligner la communauté autour du développement d’un environnement Lab Mojaloop à vocation pédagogique._

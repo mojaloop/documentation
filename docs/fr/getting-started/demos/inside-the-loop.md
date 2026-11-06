@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 8d7842c9edf0d39e702823ed3c464dd55578b7e0
+---
+
 # Dans la boucle
 
 

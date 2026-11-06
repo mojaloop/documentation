@@ -1,3 +1,7 @@
+---
+i18n_source_sha: e74a9152e43dce8b58b0ef8ca0f5ed1e21299609
+---
+
 # Signer la CLA
 
 Mojaloop dispose d’une [Contributor License Agreement (CLA)](https://github.com/mojaloop/mojaloop/blob/master/CONTRIBUTOR_LICENSE_AGREEMENT.md) qui clarifie les droits de propriété intellectuelle relatifs sur les contributions des personnes physiques ou morales.

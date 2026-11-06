@@ -1,3 +1,7 @@
+---
+i18n_source_sha: d4c4e3887b3b046ded1a257ffb737f57f9f2db28
+---
+
 # Composants actuels du Hub Mojaloop — PI14
 
 Le schéma de composants suivant présente la décomposition des services Mojaloop et leur architecture microservices pour PI14 :

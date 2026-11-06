@@ -1,3 +1,7 @@
+---
+i18n_source_sha: c30c25e6dc9ae32adf856fe3817dd8f8fb1d817f
+---
+
 # Enregistrement des entrées et sorties de fonds pour un DFSP
 
 La page **DFSP Financial Positions** vous permet d'enregistrer les entrées ou sorties de fonds dans les registres du Hub en cas de mouvement de fonds initié par le DFSP : un DFSP dépose des fonds sur son compte de liquidité ou retire des fonds de son compte de liquidité.

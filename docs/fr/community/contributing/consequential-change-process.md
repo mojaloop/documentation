@@ -1,3 +1,7 @@
+---
+i18n_source_sha: c4f0a3c03e03d1fdff57e944e0d4dbafbec97e40
+---
+
 # Processus des changements conséquents
 
 Pour les changements couverts par la [définition de changement conséquent](./design-review.md#consequential-changes), suivez ce processus :

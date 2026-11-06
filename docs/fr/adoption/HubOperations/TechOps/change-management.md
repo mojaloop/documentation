@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 205adaee810fae7c071b020ae149c1fb5a8daef5
+---
+
 # Gestion des changements
 
 L'objectif du processus de gestion des changements est de contrôler le cycle de vie de tous les changements, permettant d'effectuer des modifications avec un minimum de perturbation des services informatiques.

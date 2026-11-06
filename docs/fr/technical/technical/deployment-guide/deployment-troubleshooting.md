@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 80b6bd732ba2a78eda9d5f71e5cca707b855e1de
+---
+
 # Dépannage du déploiement
 
 ## 1. Problèmes connus

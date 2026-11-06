@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 333ed87296f52100e8e2fc477e9a0d390e2a2404
+---
+
 # Discussions d’intégration Mojaloop — ISO
 
 # Intégration Mojaloop — ISO

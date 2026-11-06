@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 54eebd7c5ed4ce4f6471bdd8838d8ff0c8ad7ba0
+---
+
 # DEL Participants
 
 Conception de la suppression d’un participant par un DFSP.

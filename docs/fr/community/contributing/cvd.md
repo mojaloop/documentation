@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 5ba3111c9485c598b7cb0762998654ca3b0d506f
+---
+
 # Divulgation et réception d’informations sur les vulnérabilités de sécurité
 
 La Fondation Mojaloop et la communauté prennent très au sérieux la sécurité du logiciel Mojaloop et mettent en œuvre plusieurs processus pour en faire une plateforme sûre pour les activités économiques. Voir aussi notre [documentation sur l’architecture de cybersécurité](../tools/cybersecurity.md).

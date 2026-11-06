@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 6e70d5a2185e59c1c6fa32d50cb4d7807bb1e05d
+---
+
 # Intégration des systèmes *core banking* via les transferts groupés
 
 Il existe trois modèles pour construire l’intégration du DFSP payeur dans le cadre des transferts groupés.

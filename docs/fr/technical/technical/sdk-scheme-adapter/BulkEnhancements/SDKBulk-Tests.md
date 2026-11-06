@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 790c710c770c7962348f721d945bc0f9d11cc3d3
+---
+
 # Prise en charge des transferts groupés par le SDK — tests
 
 ## Stratégie de test

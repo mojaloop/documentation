@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 920da7b7fde84c8eef96d11b1f9f4ed39a8e563d
+---
+
 # Services anti-fraude
 
 Artefacts de référence publique liés aux mesures de prévention et de limitation de la fraude au sein de l’écosystème.
