@@ -22,15 +22,15 @@ _Aviso legal: Se trata de una iniciativa experimental que se está llevando a ca
 
 ### 2.1 Descripción general
 
-![Event Framework Architecture](./assets/diagrams/architecture/architecture-event-framework.svg)
+![Event Framework Architecture](../../../../technical/technical/event-framework/assets/diagrams/architecture/architecture-event-framework.svg)
 
 ### 2.2 Módulos de microservicios
 
-![Pod Architecture](./assets/diagrams/architecture/architecture-event-sidecar.svg)
+![Pod Architecture](../../../../technical/technical/event-framework/assets/diagrams/architecture/architecture-event-sidecar.svg)
 
 ### 2.3 Flujo de eventos
 
-![Tracing Architecture](./assets/diagrams/architecture/architecture-event-trace.svg)
+![Tracing Architecture](../../../../technical/technical/event-framework/assets/diagrams/architecture/architecture-event-trace.svg)
 
 
 ## 3. Modelo de envolvente de eventos

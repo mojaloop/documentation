@@ -28,7 +28,7 @@ La idea consiste en combinar el adaptador Esquema de pagos con un backend simula
 
 Por favor, [haga clic aquí](./scheme-adapter-to-scheme-adapter/README.md)] para consultar la documentación.
 
-![SchemeAdapterToSchemeAdapter](./scheme-adapter-to-scheme-adapter/scheme-adapter-to-scheme-adapter-overview.png)
+![SchemeAdapterToSchemeAdapter](../../../../../technical/technical/sdk-scheme-adapter/usage/scheme-adapter-to-scheme-adapter/scheme-adapter-to-scheme-adapter-overview.png)
 
 ## [Adaptador Scheme + Backend simulado DFSP] -> [Clúster local de K8S]
 
@@ -36,7 +36,7 @@ Si, por lo tanto, deseamos incluir un Switch entre los DFSP, podemos simular ese
 
 Por favor, [haga clic aquí](./scheme-adapter-and-local-k8s/README.md)] para consultar la documentación.
 
-![SchemeAdapterAndK8S](./scheme-adapter-and-local-k8s/scheme-adapter-and-local-k8s-overview.png)
+![SchemeAdapterAndK8S](../../../../../technical/technical/sdk-scheme-adapter/usage/scheme-adapter-and-local-k8s/scheme-adapter-and-local-k8s-overview.png)
 
 ## [Adaptador Scheme + Simulador Mojaloop] -> [Mojaloop Switch alojado públicamente y compatible con WSO2]
 
@@ -45,4 +45,4 @@ Si dispone de acceso a WSO2 Mojaloop API, puede comprobarlo siguiendo la documen
 Por favor, [haga clic aquí](./scheme-adapter-and-wso2-api-gateway/README.md)] para consultar la documentación.
 
 
-![SchemeAdapterAndWSO2APIGateway](./scheme-adapter-and-wso2-api-gateway/scheme-adapter-and-wso2-api-gateway-overview.png)
+![SchemeAdapterAndWSO2APIGateway](../../../../../technical/technical/sdk-scheme-adapter/usage/scheme-adapter-and-wso2-api-gateway/scheme-adapter-and-wso2-api-gateway-overview.png)

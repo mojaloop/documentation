@@ -84,7 +84,7 @@ Dado que las dependencias del backend son comunes al despliegue actual y al de d
 
 ###### Ejemplo de despliegue al estilo Canary
 
-![Helm Canary Upgrade Strategy](./assets/diagrams/upgradeStrategies/helm-canary-upgrade-strategy.svg)
+![Helm Canary Upgrade Strategy](../../../../technical/technical/deployment-guide/assets/diagrams/upgradeStrategies/helm-canary-upgrade-strategy.svg)
 
 1. Personalice el archivo [Mojaloop values.yaml](https://github.com/mojaloop/helm/blob/master/mojaloop/values.yaml) para la versión Mojaloop de destino que desee:
    1. Asegúrese de que las configuraciones de backend estén ajustadas a las dependencias de backend existentes (compartidas) que se han desplegado.
@@ -131,7 +131,7 @@ Será necesario realizar una migración manual de los datos desde los almacenes 
 
 ##### Ejemplo de despliegue con el estilo «azul-verde»
 
-![Helm Blue-green Upgrade Strategy](./assets/diagrams/upgradeStrategies/helm-blue-green-upgrade-strategy.svg)
+![Helm Blue-green Upgrade Strategy](../../../../technical/technical/deployment-guide/assets/diagrams/upgradeStrategies/helm-blue-green-upgrade-strategy.svg)
 
 1. Personalice el archivo [Mojaloop values.yaml](https://github.com/mojaloop/helm/blob/master/mojaloop/values.yaml) para la versión Mojaloop de destino que desee:
    1. Asegúrese de que las configuraciones del backend estén ajustadas a las dependencias del backend de destino desplegado

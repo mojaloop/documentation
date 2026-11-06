@@ -22,12 +22,12 @@ Esta documentación describe cómo el adaptador de esquema SDK admite el caso de
 El siguiente diagrama resume este proceso.
 
 
-![R2P Sequence Diagram](./assets/sequence/requestToPaySDK-R2P-SequenceDiagram.svg)
+![R2P Sequence Diagram](../../../../technical/technical/sdk-scheme-adapter/assets/sequence/requestToPaySDK-R2P-SequenceDiagram.svg)
 
 ## Diagrama de secuencia detallado
 
 A continuación se muestra un diagrama de secuencia más detallado del caso de uso «Solicitud de pago» y de las llamadas que realiza el adaptador de esquema de pagos «SDK» API.
 
-![R2P Detailed Sequence Diagram](./assets/sequence/SDKrequestToPay.svg)
+![R2P Detailed Sequence Diagram](../../../../technical/technical/sdk-scheme-adapter/assets/sequence/SDKrequestToPay.svg)
 
 

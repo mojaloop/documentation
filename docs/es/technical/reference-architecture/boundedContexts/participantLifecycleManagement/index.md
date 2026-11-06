@@ -26,7 +26,7 @@ Términos con un significado específico y comúnmente aceptado dentro del conte
 
 Le rogamos que consulte la página de interfaces comunes para ver cómo se producen estas interacciones. [^1]
 
-![Use Case - Example REPLACE ME](./assets/ML2RA_PLM-bcOverviewFlowDiagram_Apr22-a_1429.png)
+![Use Case - Example REPLACE ME](../../../../../technical/reference-architecture/boundedContexts/participantLifecycleManagement/assets/ML2RA_PLM-bcOverviewFlowDiagram_Apr22-a_1429.png)
 >Diagrama de flujo de trabajo de BC: Descripción general funcional
 
 ## Caso de uso
@@ -39,8 +39,8 @@ El flujo de trabajo que ofrece esta UC permite al BC aplicar un proceso mediante
 
 #### Diagrama de flujo
 
-![Use Case - Create Pariticipant Initial](./assets/ML2RA_PLM-ucCreateParticipantInit_Apr22-a_P1-1429.png)
-![UC - Create Participant Approve](./assets/ML2RA_PLM-ucCreateParticipantAppro_Apr22-a_P2-1429.png)
+![Use Case - Create Pariticipant Initial](../../../../../technical/reference-architecture/boundedContexts/participantLifecycleManagement/assets/ML2RA_PLM-ucCreateParticipantInit_Apr22-a_P1-1429.png)
+![UC - Create Participant Approve](../../../../../technical/reference-architecture/boundedContexts/participantLifecycleManagement/assets/ML2RA_PLM-ucCreateParticipantAppro_Apr22-a_P2-1429.png)
 >Diagrama de flujo de trabajo de la UC: Crear Participante
 
 ### Gestionar fondos
@@ -51,8 +51,8 @@ El flujo de trabajo que ofrece esta UC permite a la BC aplicar un proceso median
 
 #### Diagrama de flujo
 
-![Use Case - Manage Funds - Initial](./assets/ML2RA_PLM-ucManageFundsInit_Apr22-a_P1-1429.png)
-![Use Case - Manage Funds - Approve](./assets/ML2RA_PLM-ucManageFundsAppro_Apr22-a_P2-1429.png)
+![Use Case - Manage Funds - Initial](../../../../../technical/reference-architecture/boundedContexts/participantLifecycleManagement/assets/ML2RA_PLM-ucManageFundsInit_Apr22-a_P1-1429.png)
+![Use Case - Manage Funds - Approve](../../../../../technical/reference-architecture/boundedContexts/participantLifecycleManagement/assets/ML2RA_PLM-ucManageFundsAppro_Apr22-a_P2-1429.png)
 >Diagrama de flujo de trabajo de la UC: Gestión de fondos
 
 ### Actualizar Endpoints
@@ -63,8 +63,8 @@ El flujo de trabajo que ofrece esta UC permite al BC aplicar un proceso mediante
 
 #### Diagrama de flujo
 
-![Use Case - Update Endpoints - Initial](./assets/ML2RA_PLM-ucUpdateEndpointsInit_Apr22-a_P1-1429.png)
-![Use Case - Update Endpoints - Initial](./assets/ML2RA_PLM-ucUpdateEndpointAppro_Apr22-a_P2-1429.png)
+![Use Case - Update Endpoints - Initial](../../../../../technical/reference-architecture/boundedContexts/participantLifecycleManagement/assets/ML2RA_PLM-ucUpdateEndpointsInit_Apr22-a_P1-1429.png)
+![Use Case - Update Endpoints - Initial](../../../../../technical/reference-architecture/boundedContexts/participantLifecycleManagement/assets/ML2RA_PLM-ucUpdateEndpointAppro_Apr22-a_P2-1429.png)
 >Diagrama de flujo de trabajo de UC: Actualización de Endpoints
 
 ### Actualizar el estado de los participantes
@@ -75,8 +75,8 @@ El flujo de trabajo que ofrece esta UC permite al BC aplicar un proceso mediante
 
 #### Diagrama de flujo
 
-![Use Case - Update Participant Status - Initial](./assets/ML2RA_PLM-ucUpdateParticipantStatusInit_Apr22-a_P1-1429.png)
-![Use Case - Update Participant Status - Approve](./assets/ML2RA_PLM-ucUpdateParticipantStatusAppro_Apr22-a_P2-1429.png)
+![Use Case - Update Participant Status - Initial](../../../../../technical/reference-architecture/boundedContexts/participantLifecycleManagement/assets/ML2RA_PLM-ucUpdateParticipantStatusInit_Apr22-a_P1-1429.png)
+![Use Case - Update Participant Status - Approve](../../../../../technical/reference-architecture/boundedContexts/participantLifecycleManagement/assets/ML2RA_PLM-ucUpdateParticipantStatusAppro_Apr22-a_P2-1429.png)
 >Diagrama de flujo de trabajo de la UC: Actualización del estado de los participantes
 
 ### Obtener participante
@@ -87,7 +87,7 @@ El flujo de trabajo que ofrece esta UC permite al BC aplicar un proceso mediante
 
 #### Diagrama de flujo
 
-![Use Case - Get Participant](./assets/ML2RA_PLM-ucGetParticipant_Apr22-a_1429.png)
+![Use Case - Get Participant](../../../../../technical/reference-architecture/boundedContexts/participantLifecycleManagement/assets/ML2RA_PLM-ucGetParticipant_Apr22-a_1429.png)
 >Diagrama de flujo de UC: Obtener participante
 
 ### Añadir cuentas de participantes
@@ -104,8 +104,8 @@ El flujo de trabajo que ofrece esta UC permite a la BC aplicar un proceso median
 
 <!-- Warning Note to Developers & Editors!!: The following two images are being rendered to the Accounts & Balances BC. -->
 
-![Use Case - Add Participant Accounts - Initial](./assets/ML2RA_PLM-ucAddParticipantAccountInit_Apr22-a_P1-1429.png)
-![Use Case - Add Participant Accounts - Approve](./assets/ML2RA_PLM-ucAddParticipantAccountAppro_Apr22-a_P2-1429.png)
+![Use Case - Add Participant Accounts - Initial](../../../../../technical/reference-architecture/boundedContexts/participantLifecycleManagement/assets/ML2RA_PLM-ucAddParticipantAccountInit_Apr22-a_P1-1429.png)
+![Use Case - Add Participant Accounts - Approve](../../../../../technical/reference-architecture/boundedContexts/participantLifecycleManagement/assets/ML2RA_PLM-ucAddParticipantAccountAppro_Apr22-a_P2-1429.png)
 >Diagrama de flujo de trabajo de la UC: Añadir cuentas de participantes
 
 ### Reserva de cobertura de liquidez
@@ -116,8 +116,8 @@ El flujo de trabajo que ofrece este UC permite al BC aplicar un proceso mediante
 
 #### Diagrama de flujo
 
-![Use Case - Reserve Liquidity Cover - Initial](./assets/ML2RA_PLM-ucLiquidityCoverReserveInit_Apr22-a_P1-1429.png)
-![Use Case - Reserve Liquidity Cover - Approve](./assets/ML2RA_PLM-ucLiquidityCoverReserveAppro_Apr22-a_P2-1429.png)
+![Use Case - Reserve Liquidity Cover - Initial](../../../../../technical/reference-architecture/boundedContexts/participantLifecycleManagement/assets/ML2RA_PLM-ucLiquidityCoverReserveInit_Apr22-a_P1-1429.png)
+![Use Case - Reserve Liquidity Cover - Approve](../../../../../technical/reference-architecture/boundedContexts/participantLifecycleManagement/assets/ML2RA_PLM-ucLiquidityCoverReserveAppro_Apr22-a_P2-1429.png)
 >Diagrama de flujo de la UC: Reserva de cobertura de liquidez
 
 ### Se ha superado el umbral de liquidez
@@ -128,7 +128,7 @@ El flujo de trabajo que ofrece esta UC permite a la BC aplicar un proceso median
 
 #### Diagrama de flujo
 
-![Use Case - Liquidity Threshold Exceeded](./assets/ML2RA_PLM-ucLiquidityThresholdExceeded_Apr22-a_1429.png)
+![Use Case - Liquidity Threshold Exceeded](../../../../../technical/reference-architecture/boundedContexts/participantLifecycleManagement/assets/ML2RA_PLM-ucLiquidityThresholdExceeded_Apr22-a_1429.png)
 >Diagrama de flujo de UC: Se ha superado el umbral de liquidez
 
 ### Se ha superado el límite de liquidez
@@ -139,7 +139,7 @@ El flujo de trabajo que ofrece este UC permite al BC aplicar un proceso mediante
 
 #### Diagrama de flujo
 
-![Use Case - Liquidity Limit Exceeded](./assets/ML2RA_PLM-ucLiquidityLimitedExceeded_Apr22-a_1429.png)
+![Use Case - Liquidity Limit Exceeded](../../../../../technical/reference-architecture/boundedContexts/participantLifecycleManagement/assets/ML2RA_PLM-ucLiquidityLimitedExceeded_Apr22-a_1429.png)
 >Diagrama de flujo de UC: Se ha superado el límite de liquidez
 
 ### Umbral de liquidez y restablecimiento de límites
@@ -150,7 +150,7 @@ El flujo de trabajo que ofrece esta UC permite al BC aplicar un proceso mediante
 
 #### Diagrama de flujo
 
-![Use Case - Liquidity Threshold & Limit Reset](./assets/ML2RA_PLM-ucLiquidityLimit&ThresholdReset_Apr22-a_1429.png)
+![Use Case - Liquidity Threshold & Limit Reset](../../../../../technical/reference-architecture/boundedContexts/participantLifecycleManagement/assets/ML2RA_PLM-ucLiquidityLimit&ThresholdReset_Apr22-a_1429.png)
 >Diagrama de flujo de UC: Umbral de liquidez y restablecimiento de límites
 
 ### Consulta sobre la cobertura de liquidez
@@ -163,7 +163,7 @@ El flujo de trabajo que ofrece esta UC permite al BC aplicar un proceso mediante
 
 <!-- Warning Note to Developers & Editors!!: The following two images are being rendered to the Accounts & Balances BC. -->
 
-![Use Case - Liquidity Cover Query](./assets/ML2RA_PLM-ucLiquidityCoverQuery_Apr22-a_1429.png)
+![Use Case - Liquidity Cover Query](../../../../../technical/reference-architecture/boundedContexts/participantLifecycleManagement/assets/ML2RA_PLM-ucLiquidityCoverQuery_Apr22-a_1429.png)
 >Diagrama de flujo de UC: Consultas sobre la cobertura de liquidez
 
 ## Modelo canónico

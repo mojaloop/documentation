@@ -8,5 +8,5 @@ Diseño para la actualización de un Endpoint de Oracle por parte de un Operador
 
 ## Diagrama de secuencia
 
-![](./assets/diagrams/sequence/seq-acct-lookup-admin-put-oracle-7.3.3.svg)
+![](../../../../technical/technical/account-lookup-service/assets/diagrams/sequence/seq-acct-lookup-admin-put-oracle-7.3.3.svg)
 

@@ -8,5 +8,5 @@ GET /transactionRequests y PUT /transactionRequests para admitir la «Solicitud 
 
 ## Diagrama de secuencia
 
-![](./assets/diagrams/sequence/seq-trx-req-service-get-2.0.0.svg)
+![](../../../../technical/technical/transaction-requests-service/assets/diagrams/sequence/seq-trx-req-service-get-2.0.0.svg)
 

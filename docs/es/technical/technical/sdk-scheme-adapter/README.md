@@ -18,7 +18,7 @@ Existen varias soluciones de terceros que ofrecen soporte, herramientas e integr
 
 «Payment Manager», una herramienta de código abierto*, es un ejemplo de ello. «Payment Manager» ofrece ventajas adicionales; puede encontrar más información [aquí](https://rtplex.io/). Los despliegues de «Payment Manager» pueden ser de tipo SaaS o autohospedados.
 
-![SDK-Scheme-Adapter Mode 1](./assets/SDKSchemeAdapterMode1.svg)
+![SDK-Scheme-Adapter Mode 1](../../../../technical/technical/sdk-scheme-adapter/assets/SDKSchemeAdapterMode1.svg)
 
 - SDK El adaptador del Esquema de pagos se utiliza directamente en su implementación de integración personalizada.
 - Dado que el SDK-Scheme-Adapter es mantenido por la comunidad, esta herramienta ofrece una vía de actualización para utilizar las nuevas versiones Mojaloop API.
@@ -35,7 +35,7 @@ Todos ellos están sujetos a la Licencia Apache v2.0. Se ha elegido específicam
 
 En este caso, la empresa «DFSP» opta por desarrollar un «Core Connector» personalizado entre su back-end y el adaptador «MojaloopSDK Esquema». Pueden utilizar las directrices de Código abierto para desarrollar dicho «Core Connector».
 
-![SDK-Scheme-Adapter Mode 2](./assets/SDKSchemeAdapterMode2.svg)
+![SDK-Scheme-Adapter Mode 2](../../../../technical/technical/sdk-scheme-adapter/assets/SDKSchemeAdapterMode2.svg)
 
 - SDK El adaptador del Esquema de pagos se utiliza directamente en su implementación de integración personalizada.
 - Dado que el SDK-Scheme-Adapter es mantenido por la comunidad, esta herramienta ofrece una vía de actualización para utilizar las nuevas versiones Mojaloop API.
@@ -47,7 +47,7 @@ En este caso, la empresa «DFSP» opta por desarrollar un «Core Connector» per
 
 No se utiliza ninguna conexión estándar y el DFSP opta por establecer su propia conexión con el Mojaloop Hub.
 
-![SDK-Scheme-Adapter Mode 3](./assets/SDKSchemeAdapterMode3.svg)
+![SDK-Scheme-Adapter Mode 3](../../../../technical/technical/sdk-scheme-adapter/assets/SDKSchemeAdapterMode3.svg)
 
 - Desarrollado a partir de documentación de diseño de Código abierto
 - Mojaloop. Apoyo a la comunidad

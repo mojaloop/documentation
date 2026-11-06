@@ -14,7 +14,7 @@ Estas pruebas se han redactado en tono jocoso y verifican, por ejemplo, el estad
 
 **Banco de pruebas para la integración del gestor de comandos**
 
-![Local Test Setup](../assets/CHIntegrationTestHarness.drawio.svg)
+![Local Test Setup](../../../../../technical/technical/sdk-scheme-adapter/assets/CHIntegrationTestHarness.drawio.svg)
 
 ### El conjunto de pruebas funcionales
 La prueba funcional utiliza el TTK, que simula los backends tanto del Pagador como del Beneficiario DFSP. 
@@ -23,7 +23,7 @@ La prueba funcional utiliza el TTK, que simula los backends tanto del Pagador co
 Este conjunto de pruebas comprueba tanto al Pagador n.º SDK como al Beneficiario n.º SDK.
 :::
 
-![Local Test Setup](../assets/bulk-functional-local-test-setup.drawio.svg)
+![Local Test Setup](../../../../../technical/technical/sdk-scheme-adapter/assets/bulk-functional-local-test-setup.drawio.svg)
 
 :::tip Nota
 Estas pruebas pueden ejecutarse en el monorepo local del que se ha realizado el check-out, se ejecutan en el proceso de integración continua (CI) y se incluyen en Helm como pruebas de Helm que se utilizan para confirmar el Despliegue.

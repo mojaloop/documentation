@@ -16,9 +16,9 @@ Asegúrese de haber creado el `mojatemplate` tal y como se describe en la docume
 ## 2. Descripción general de la arquitectura
 
 ### 2.1. Descripción general del flujo
-![Event Stream Processor flow overview](./assets/diagrams/architecture/event-stream-processor-overview.svg)
+![Event Stream Processor flow overview](../../../../technical/technical/event-stream-processor/assets/diagrams/architecture/event-stream-processor-overview.svg)
 
 
 ### 2.2 Diagrama de secuencia del flujo de procesamiento de trazas
-![](./assets/diagrams/sequence/process-flow.svg)
+![](../../../../technical/technical/event-stream-processor/assets/diagrams/sequence/process-flow.svg)
 

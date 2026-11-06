@@ -19,7 +19,7 @@ El escenario de «Transferencias masivas» se describe en el documento de defini
 ## 1. Introducción
 
 El proceso de «Transferencias masivas» se describe en la sección 6.10 del documento «API Definición 1.0», que se muestra en la figura 60, de la que se incluye a continuación una captura de pantalla.
-![Figure 60](./assets/diagrams/architecture/Figure60-Example-Bulk-Transfer-Process-Spec1.0.png)
+![Figure 60](../../../../technical/technical/central-bulk-transfers/assets/diagrams/architecture/Figure60-Example-Bulk-Transfer-Process-Spec1.0.png)
 
 Los aspectos clave que se desprenden de la especificación en su versión actual 1.0 son los siguientes:
 
@@ -46,7 +46,7 @@ De acuerdo con la figura 60 de la especificación, a continuación se exponen al
 
 A continuación se describen, a grandes rasgos, los pasos que hay que seguir para realizar transferencias masivas.
 
-![architecture diagram](./assets/diagrams/architecture/bulk-transfer-arch-flows.svg)
+![architecture diagram](../../../../technical/technical/central-bulk-transfers/assets/diagrams/architecture/bulk-transfer-arch-flows.svg)
 
 1. [1.0, 1.1, 1.2] Una solicitud de transferencia masiva entrante (POST /bulkTransfers) en el bulk-api-adapter se almacena en un almacén de objetos y se envía una notificación con una referencia al mensaje real a través del tema de Kafka «bulk-prepare», además de enviarse un código de estado 202 al Pagador FSP
 2. [1.3] El controlador «Bulk Prepare» procesa la solicitud y registra el estado como «RECEIVED»

@@ -14,16 +14,16 @@ El libro mayor central es un conjunto de servicios que facilitan la compensació
 
 ### 1.1 Descripción general de la arquitectura
 
-![Central-Ledger Architecture](./assets/diagrams/architecture/Arch-mojaloop-central-ledger.svg)
+![Central-Ledger Architecture](../../../../technical/technical/central-ledger/assets/diagrams/architecture/Arch-mojaloop-central-ledger.svg)
 
 ## 2. Arquitectura de transferencias de extremo a extremo
 
 
 ### 2.1 Arquitectura de transferencias de extremo a extremo para la versión 1.1
-![Transfers Architecture for Mojaloop FSP Interoperability API v1.1](./assets/diagrams/architecture/Transfers-Arch-End-to-End-v1.1.svg)
+![Transfers Architecture for Mojaloop FSP Interoperability API v1.1](../../../../technical/technical/central-ledger/assets/diagrams/architecture/Transfers-Arch-End-to-End-v1.1.svg)
 
 ### 2.2 Arquitectura de transferencias de extremo a extremo para la versión 1.0
-![Transfers Architecture for Mojaloop FSP Interoperability API v1.0](./assets/diagrams/architecture/Transfers-Arch-End-to-End-v1.0.svg)
+![Transfers Architecture for Mojaloop FSP Interoperability API v1.0](../../../../technical/technical/central-ledger/assets/diagrams/architecture/Transfers-Arch-End-to-End-v1.0.svg)
 
 ## 3. Diseño de bases de datos
 
@@ -47,10 +47,10 @@ Resumen de las tablas específicas del proceso de transferencia;
 
 Las tablas restantes del diagrama ERD que figura a continuación son tablas de referencia (azules) o específicas de la Liquidación (rojas), y se incluyen como dependencias directas o indirectas para representar la relación entre las entidades específicas de la Transferencia y las tablas de Transferencia.
 
-La definición del esquema de la base de datos del **Libro Mayor Central** [Definición del esquema de la base de datos del Libro Mayor Central](./assets/database/central-ledger-ddl-MySQLWorkbench.sql).
+La definición del esquema de la base de datos del **Libro Mayor Central** [Definición del esquema de la base de datos del Libro Mayor Central](../../../../technical/technical/central-ledger/assets/database/central-ledger-ddl-MySQLWorkbench.sql).
 
-![Central-Ledger Database Diagram](./assets/database/central-ledger-schema.png)
+![Central-Ledger Database Diagram](../../../../technical/technical/central-ledger/assets/database/central-ledger-schema.png)
 
 ## 4. Especificaciones del API
 
-Consulte el **Libro mayor central API** en la sección [API Specifications](../../api/README.md#central-ledger-api)].
+Consulte el **Libro mayor central API** en la sección [API Specifications](../../../../technical/api/README.md#central-ledger-api)].

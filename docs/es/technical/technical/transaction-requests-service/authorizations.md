@@ -8,5 +8,5 @@ GET /authorizations/{TransactionRequestID} y PUT /authorizations/{TransactionReq
 
 ## Diagrama de secuencia
 
-![](./assets/diagrams/sequence/seq-trx-req-authorizations-3.0.0.svg)
+![](../../../../technical/technical/transaction-requests-service/assets/diagrams/sequence/seq-trx-req-authorizations-3.0.0.svg)
 

@@ -8,5 +8,5 @@ Diseño para la consulta de una cotización por parte de un FSP.
 
 ## Diagrama de secuencia
 
-![](./assets/diagrams/sequence/seq-get-quotes-1.1.0.svg)
+![](../../../../technical/technical/quoting-service/assets/diagrams/sequence/seq-get-quotes-1.1.0.svg)
 

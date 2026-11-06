@@ -20,7 +20,7 @@ En este BC, también conocido como dominio, se utilizan los siguientes términos
 
 ## Descripción general de las funciones
 
-![Use Case - Functional Overview](./assets/settleFunctionalOverview_20210826.png)
+![Use Case - Functional Overview](../../../../../technical/reference-architecture/boundedContexts/settlements/assets/settleFunctionalOverview_20210826.png)
 >
 
 ## Caso de uso
@@ -32,7 +32,7 @@ Método para aplazar los pagos con el fin de permitir la liquidación en varios 
 
 #### Diagrama de flujo
 
-![Use Case - Deferred Net Settlement (DNS)](./assets/ML2RA_SET-ucDeferNetSettle_Mar22-a-P1-2.png)
+![Use Case - Deferred Net Settlement (DNS)](../../../../../technical/reference-architecture/boundedContexts/settlements/assets/ML2RA_SET-ucDeferNetSettle_Mar22-a-P1-2.png)
 >Diagrama de flujo de UC: Liquidación neta diferida - 19/10/2021
 
 ### Liquidación bruta inmediata (IGS)
@@ -42,7 +42,7 @@ Método que permite la liquidación inmediata de lotes.  Esto resulta útil en e
 
 #### Diagrama de flujo
 
-![Use Case - Immediate Gross Settlement (IGS)](./assets/ML2RA_SET-ucInstantGrossSettle_Mar22-a.png)
+![Use Case - Immediate Gross Settlement (IGS)](../../../../../technical/reference-architecture/boundedContexts/settlements/assets/ML2RA_SET-ucInstantGrossSettle_Mar22-a.png)
 >Diagrama de flujo de UC: Liquidación bruta inmediata
 
 ### Liquidación del acuerdo
@@ -52,7 +52,7 @@ Método que permite a la BC de liquidación interrumpir una liquidación cuando 
 
 #### Diagrama de flujo
 
-![Use Case - Abort Settlement](./assets/settleAbortSettle_20210827.png)
+![Use Case - Abort Settlement](../../../../../technical/reference-architecture/boundedContexts/settlements/assets/settleAbortSettle_20210827.png)
 >
 
 ### Crear/actualizar el modelo de liquidación (DNS/IGS)
@@ -62,7 +62,7 @@ Método que permite al BC de liquidación crear o actualizar el método de liqui
 
 #### Diagrama de flujo
 
-![Use Case - Create/Update the Settlement Model (DNS/IGS)](./assets/settleCreateUpdateModel_20210827.png)
+![Use Case - Create/Update the Settlement Model (DNS/IGS)](../../../../../technical/reference-architecture/boundedContexts/settlements/assets/settleCreateUpdateModel_20210827.png)
 >
 
 ### Modelo de liquidación inicial (arranque) mediante configuración
@@ -72,7 +72,7 @@ Método que configura el método de liquidación (DNS/IGS) en función de la con
 
 #### Diagrama de flujo
 
-![Use Case - Bootstrap (Startup) Settlement Model via Configuration](./assets/ML2RA_SET-ucBootStrapSettleModViaConfig_Mar22-b.png)
+![Use Case - Bootstrap (Startup) Settlement Model via Configuration](../../../../../technical/reference-architecture/boundedContexts/settlements/assets/ML2RA_SET-ucBootStrapSettleModViaConfig_Mar22-b.png)
 >Diagrama de flujo de trabajo de la UC: Modelo de liquidación inicial (Bootstrap) mediante configuración
 
 ### Cree cuentas relacionadas con la liquidación para los participantes de nueva creación
@@ -82,7 +82,7 @@ El sistema crea cuentas de liquidación para los nuevos participantes con el fin
 
 #### Diagrama de flujo
 
-![Use Case - Create Settlement related accounts for newly created Particpants](./assets/settleCreateSettleAccountsNewPart_20210827.png)
+![Use Case - Create Settlement related accounts for newly created Particpants](../../../../../technical/reference-architecture/boundedContexts/settlements/assets/settleCreateSettleAccountsNewPart_20210827.png)
 >
 
 <!-- Footnotes themselves at the bottom. -->

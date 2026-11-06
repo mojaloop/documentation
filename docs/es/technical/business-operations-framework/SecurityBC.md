@@ -94,7 +94,7 @@ Es el estándar que se ha elegido para interactuar con un sistema de gestión de
 A continuación se presenta una descripción general de alto nivel de la arquitectura de la implementación de esta actualización operativa RBAC API en la versión actual Mojaloop.
 
 
-![Architecture overview diagram of security bounded context implementation](../../.vuepress/public/BizOps-Framework-IaC-3.xx-&-Mojaloop-13.xx.png)
+![Architecture overview diagram of security bounded context implementation](../../../.vuepress/public/BizOps-Framework-IaC-3.xx-&-Mojaloop-13.xx.png)
 
 A continuación se muestra una tabla con los servicios y los roles que desempeñan.
 | Servicio | Responsable de | Implementa |
@@ -134,7 +134,7 @@ Hay aspectos del contexto delimitado de seguridad que se han incorporado en esta
 A continuación se muestra un diagrama que ilustra cómo sería la arquitectura de alto nivel si este diseño de implementación operativa RBAC API se aplicara en la próxima versión de IaC (versión IaC 4.xxx), que utiliza Keycloak y Ambassador/Envoy, entre otros cambios.
 
 
-![Architecture overview diagram of security bounded context implementation](../../.vuepress/public/BizOps-Framework-IaC-4.xx-&-Mojaloop-13.xx.png)  
+![Architecture overview diagram of security bounded context implementation](../../../.vuepress/public/BizOps-Framework-IaC-4.xx-&-Mojaloop-13.xx.png)  
 
 ## Caracterización del rendimiento de la implementación de RBAC
 
@@ -186,7 +186,7 @@ Este diagrama de secuencia ilustra los eventos que tienen lugar cuando un navega
 - Si el navegador no ha iniciado sesión, se activa un flujo de autorización OIDC estándar que comienza con una redirección.
 
 
-![Sequence diagram illustrating how a brower logs in](../../.vuepress/public/frontend.png) 
+![Sequence diagram illustrating how a brower logs in](../../../.vuepress/public/frontend.png) 
 
 ## Consulta de datos mediante el microfrontend operativo BC API
 
@@ -199,13 +199,13 @@ El siguiente diagrama de secuencia muestra más detalles sobre las interacciones
 
 El microfrontend se representa como un cliente.
 
-![Sequence diagram illustrating how an API client call has its authorization performed](../../.vuepress/public/client.png) 
+![Sequence diagram illustrating how an API client call has its authorization performed](../../../.vuepress/public/client.png) 
 
 En algunos casos, podría ser necesario que el API operativo realizara una comprobación de autorización más detallada. El siguiente diagrama de secuencia describe cómo se lleva a cabo.
 
 Es importante señalar que no todas las API operativas requerirán este nivel de Autorización, y que el control Ory Oathkeeper puede ser necesario o no en este Caso de uso.
 
-![Sequence diagram illustrating how an API client call has its authorization performed](../../.vuepress/public/clientgraphql.png) 
+![Sequence diagram illustrating how an API client call has its authorization performed](../../../.vuepress/public/clientgraphql.png) 
 
 ## Garantizar la separación de funciones
 
@@ -280,7 +280,7 @@ Cuando se asigna un rol a un usuario, la asignación de roles de usuario n.º AP
 
 Esta funcionalidad se ha implementado en el servicio «Roles API». El siguiente diagrama de secuencia describe cómo se consulta y se modifica el acceso al rol de usuario y a la participación del usuario a través del servicio «Roles API». 
 
-![Sequence diagram illustrating how roles and participant access is assigned to users](../../.vuepress/public/userroles.png) 
+![Sequence diagram illustrating how roles and participant access is assigned to users](../../../.vuepress/public/userroles.png) 
 
 ### RolesAPI
 
@@ -337,7 +337,7 @@ spec:
 ```
 El siguiente diagrama de secuencia ilustra cómo se actualiza Ory Keto.
 
-![Sequence diagram illustrating how roles and participant access is assigned to users](../../.vuepress/public/rolepermissions.png)
+![Sequence diagram illustrating how roles and participant access is assigned to users](../../../.vuepress/public/rolepermissions.png)
 
 ## Ory Keto: detalles de implementación
 

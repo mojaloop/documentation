@@ -35,7 +35,7 @@ El flujo de trabajo que ofrece esta UC permite al Switch gestionar las solicitud
 
 #### Diagrama de flujo
 
-![Use Case - PISP Gets supported DFSPs](./assets/ML2RA_3PaL_ucPispGetSupportedDFSPs_Feb22a.png)
+![Use Case - PISP Gets supported DFSPs](../../../../../technical/reference-architecture/boundedContexts/thirdPartyApi/assets/ML2RA_3PaL_ucPispGetSupportedDFSPs_Feb22a.png)
 >Diagrama de flujo de la UC: PISP: Obtención de los DFSP compatibles
 
 ### PISP: Obtiene la lista de cuentas correspondientes a un DFSP + identificador
@@ -46,7 +46,7 @@ El flujo de trabajo que ofrece esta UC permite al Switch gestionar los casos en 
 
 #### Diagrama de flujo
 
-![Use Case - PISP Gets list of accounts for a DFSP + Identifier](./assets/ML2RA_3PaL-ucPispGetDfspAccList&Id_Feb22-a.png)
+![Use Case - PISP Gets list of accounts for a DFSP + Identifier](../../../../../technical/reference-architecture/boundedContexts/thirdPartyApi/assets/ML2RA_3PaL-ucPispGetDfspAccList&Id_Feb22-a.png)
 >Diagrama de flujo de UC: PISP. Obtener la lista de cuentas para un DFSP + identificador
 
 ### PISP. Solicitud de consentimiento
@@ -57,7 +57,7 @@ El flujo de trabajo que ofrece esta UC permite al Switch gestionar los casos en 
 
 #### Diagrama de flujo
 
-![Use Case - PISP Consent Request](./assets/ML2RA_3PaL_ucPispConsentRequest_Feb22a.png)
+![Use Case - PISP Consent Request](../../../../../technical/reference-architecture/boundedContexts/thirdPartyApi/assets/ML2RA_3PaL_ucPispConsentRequest_Feb22a.png)
 >Diagrama de flujo de la UC: Solicitud de consentimiento n.º PISP
 
 ### DFSP. Consentimiento
@@ -70,7 +70,7 @@ El flujo de trabajo que ofrece esta UC permite al Switch gestionar los casos en 
 
 #### Diagrama de flujo
 
-![Use Case - DFSP Issue Consent](./assets/ML2RA_3PaL_ucDfspIssueConsent_Feb22a_P1&2.png)
+![Use Case - DFSP Issue Consent](../../../../../technical/reference-architecture/boundedContexts/thirdPartyApi/assets/ML2RA_3PaL_ucDfspIssueConsent_Feb22a_P1&2.png)
 >Diagrama de flujo de la UC - Consentimiento para la emisión de un número DFSP
 
 ### Desvincular cuentas: Autenticación alojada en Hub
@@ -81,7 +81,7 @@ El flujo de trabajo que ofrece esta UC permite al Switch gestionar una solicitud
 
 #### Diagrama de flujo
 
-![Use Case - Unlink Accounts - Hub Hosted Auth](./assets/ML2RA_3PaL_ucUnlinkAccounts-HubHostAuth_Feb22-a_P1&2.png)
+![Use Case - Unlink Accounts - Hub Hosted Auth](../../../../../technical/reference-architecture/boundedContexts/thirdPartyApi/assets/ML2RA_3PaL_ucUnlinkAccounts-HubHostAuth_Feb22-a_P1&2.png)
 >Diagrama de flujo de trabajo de UC: Desvincular cuentas - Autenticación alojada en el Hub
 
 ### Vincular cuentas: error al detectar la cuenta
@@ -92,7 +92,7 @@ El flujo de trabajo que ofrece este UC permite al Switch gestionar los casos en 
 
 #### Diagrama de flujo
 
-![Use Case - Link Accounts - Account Discovery Failure](./assets/ML2RA_3PaL-ucLinkAccnts-AccntDiscoveryFail_Mar22-a.png)
+![Use Case - Link Accounts - Account Discovery Failure](../../../../../technical/reference-architecture/boundedContexts/thirdPartyApi/assets/ML2RA_3PaL-ucLinkAccnts-AccntDiscoveryFail_Mar22-a.png)
 >Diagrama de flujo de UC: Vinculación de cuentas - Error en la detección de cuentas
 
 ### Vincular cuentas: DFSP rechazos de la solicitud de consentimiento
@@ -103,7 +103,7 @@ El flujo de trabajo que ofrece esta UC permite al Switch gestionar correctamente
 
 #### Diagrama de flujo
 
-![Use Case - Link Accounts - DFSP Rejects Consent Request](./assets/ML2RA_3PaL-ucLinkAccnts-DfspRejectConsentReq_Mar22-a.png)
+![Use Case - Link Accounts - DFSP Rejects Consent Request](../../../../../technical/reference-architecture/boundedContexts/thirdPartyApi/assets/ML2RA_3PaL-ucLinkAccnts-DfspRejectConsentReq_Mar22-a.png)
 >Diagrama de flujo de UC: Vincular cuentas - DFSP rechazos de la solicitud de consentimiento
 
 ### Error en el registro de las credenciales
@@ -114,7 +114,7 @@ El flujo de trabajo que ofrece esta UC permite al Switch gestionar los casos en 
 
 #### Diagrama de flujo
 
-![Use Case - Credential Registration Error](./assets/ML2RA_3PaL-ucCredentialRegError_Mar22-a_P1&2.png)
+![Use Case - Credential Registration Error](../../../../../technical/reference-architecture/boundedContexts/thirdPartyApi/assets/ML2RA_3PaL-ucCredentialRegError_Mar22-a_P1&2.png)
 >Diagrama de flujo de UC: Error en el registro de credenciales
 
 ### Desvincular cuentas: no se ha encontrado el consentimiento
@@ -125,7 +125,7 @@ El flujo de trabajo que ofrece esta UC permite al Switch gestionar los casos en 
 
 #### Diagrama de flujo
 
-![Use Case - Unlink Accounts - Consent not found](./assets/ML2RA_3PaL-ucUnlinkAccnts-ConsentNotFound_Mar22a.png)
+![Use Case - Unlink Accounts - Consent not found](../../../../../technical/reference-architecture/boundedContexts/thirdPartyApi/assets/ML2RA_3PaL-ucUnlinkAccnts-ConsentNotFound_Mar22a.png)
 >Diagrama de flujo de UC: Desvincular cuentas — No se ha encontrado el consentimiento
 
 ### El DSPF rechaza el token OTP/de autenticación de PISP
@@ -136,7 +136,7 @@ El flujo de trabajo que ofrece esta UC permite al Switch gestionar los casos en 
 
 #### Diagrama de flujo
 
-![Use Case - DFSP Rejects OTP/Auth Token from PISP](./assets/ML2RA_3PaL-ucDfspRejectsOtpAuthTokenFromPisp_Mar22-a_P1&2.png)
+![Use Case - DFSP Rejects OTP/Auth Token from PISP](../../../../../technical/reference-architecture/boundedContexts/thirdPartyApi/assets/ML2RA_3PaL-ucDfspRejectsOtpAuthTokenFromPisp_Mar22-a_P1&2.png)
 >Diagrama de flujo de UC: DFSP rechaza el token OTP/de autenticación procedente de PISP
 
 ### Desvincular cuentas: error en la fase posterior
@@ -147,7 +147,7 @@ El flujo de trabajo que ofrece esta UC permite al Switch gestionar aquellos caso
 
 #### Diagrama de flujo
 
-![Use Case - Unlink Accounts - Downstream Failure](./assets/ML2RA_3PaL-ucUnlinkAccntsDownstrmFail_Mar22-a_P1&2.png)
+![Use Case - Unlink Accounts - Downstream Failure](../../../../../technical/reference-architecture/boundedContexts/thirdPartyApi/assets/ML2RA_3PaL-ucUnlinkAccntsDownstrmFail_Mar22-a_P1&2.png)
 >Diagrama de flujo de UC: Desvincular cuentas — Fallo en la fase posterior
 
 ## Escenarios de transferencia de datos
@@ -168,7 +168,7 @@ Entre las aplicaciones sugeridas de la iniciativa de pago por terceros (UC) se i
 
 #### Diagrama de flujo
 
-![Use Case - Third Party Initiated Transaction Request](./assets/ML2RA_3PaT-ucThirdPartyInitTransactReq_Mar22-a_P1P2P3bP4.png)
+![Use Case - Third Party Initiated Transaction Request](../../../../../technical/reference-architecture/boundedContexts/thirdPartyApi/assets/ML2RA_3PaT-ucThirdPartyInitTransactReq_Mar22-a_P1P2P3bP4.png)
 >Diagrama de flujo de trabajo de la UC: Solicitud de transacción iniciada por un tercero
 
 ### PISP. Solicitud de transacción masiva
@@ -179,7 +179,7 @@ El flujo de trabajo que ofrece esta UC permite que el Switch autorice a los usua
 
 #### Diagrama de flujo
 
-![Use Case - Example REPLACE ME](./assets/ML2RA_3PaT-ucThirdPartyInitTransactReq_Mar22-a_P1P2P3bP4.png)
+![Use Case - Example REPLACE ME](../../../../../technical/reference-architecture/boundedContexts/thirdPartyApi/assets/ML2RA_3PaT-ucThirdPartyInitTransactReq_Mar22-a_P1P2P3bP4.png)
 >Diagrama de flujo de trabajo de la UC: Solicitud de transacción masiva n.º PISP
 
 ### Pagar a un PISP - PISP como Beneficiario
@@ -190,7 +190,7 @@ El flujo de trabajo que ofrece esta UC permite que el Switch autorice a los usua
 
 #### Diagrama de flujo
 
-![Use Case - Pay to a PISP - PISP as a Payee](./assets/ML2RA_3PaT-ucPayToPisp-PispAsPayee_Mar22-b_P1-2.png)
+![Use Case - Pay to a PISP - PISP as a Payee](../../../../../technical/reference-architecture/boundedContexts/thirdPartyApi/assets/ML2RA_3PaT-ucPayToPisp-PispAsPayee_Mar22-b_P1-2.png)
 >Diagrama de flujo de la UC: Pago a un PISP - PISP como Beneficiario
 
 ### Error en la solicitud de transacción con terceros: error en la búsqueda de la parte
@@ -201,7 +201,7 @@ El flujo de trabajo que ofrece esta UC permite al Switch gestionar los casos en 
 
 #### Diagrama de flujo
 
-![Use Case - Example REPLACE ME](./assets/ML2RA_3PaT-ucTransactReqFail-BadPartyLookup_Mar22-b.png)
+![Use Case - Example REPLACE ME](../../../../../technical/reference-architecture/boundedContexts/thirdPartyApi/assets/ML2RA_3PaT-ucTransactReqFail-BadPartyLookup_Mar22-b.png)
 >Diagrama de flujo de UC: Fallo en la solicitud de transacción con terceros — Error en la búsqueda de la parte implicada
 
 ### Error en la solicitud de transacción de terceros: solicitud de transacción incorrecta
@@ -212,7 +212,7 @@ El flujo de trabajo que ofrece esta UC permite al Switch gestionar los casos en 
 
 #### Diagrama de flujo
 
-![Use Case - Third Party Transaction Request Failed - Bad Transaction Request](./assets/ML2RA_3PaT-ucTransactReqFail-BadTransactReq_Mar22-b.png)
+![Use Case - Third Party Transaction Request Failed - Bad Transaction Request](../../../../../technical/reference-architecture/boundedContexts/thirdPartyApi/assets/ML2RA_3PaT-ucTransactReqFail-BadTransactReq_Mar22-b.png)
 >Diagrama de flujo de UC: Fallo en la solicitud de transacción de terceros — Solicitud de transacción incorrecta
 
 ### Error en la solicitud de transacción de terceros: error de FSPIOP en la fase posterior
@@ -222,7 +222,7 @@ El flujo de trabajo que ofrece esta UC permite al Switch gestionar los casos en 
 
 #### Diagrama de flujo
 
-![Use Case - Third Party Transaction Request Failed - downstream FSPIOP failure](./assets/ML2RA_3PaT-ucTransactReqFail-DownStreamFspiopFail_Mar22-b-P1-2.png)
+![Use Case - Third Party Transaction Request Failed - downstream FSPIOP failure](../../../../../technical/reference-architecture/boundedContexts/thirdPartyApi/assets/ML2RA_3PaT-ucTransactReqFail-DownStreamFspiopFail_Mar22-b-P1-2.png)
 >Diagrama de flujo de UC: Fallo en la solicitud de transacción de terceros - Fallo en la fase posterior (FSPIOP)
 
 ### Error en la solicitud de transacción de terceros: la Autorización no era válida
@@ -233,7 +233,7 @@ El flujo de trabajo que ofrece este UC permite al Switch gestionar los casos en 
 
 #### Diagrama de flujo
 
-![Use Case - Third Party Transaction Request Failed - authorization was invalid](./assets/ML2RA_3PaT-ucTransactReqFail-AuthInvalid_Mar22-a-P1-3.png)
+![Use Case - Third Party Transaction Request Failed - authorization was invalid](../../../../../technical/reference-architecture/boundedContexts/thirdPartyApi/assets/ML2RA_3PaT-ucTransactReqFail-AuthInvalid_Mar22-a-P1-3.png)
 >Diagrama de flujo de UC: Fallo en la solicitud de transacción de terceros — La Autorización no era válida
 
 ### Solicitud de transacción de terceros rechazada por el usuario
@@ -244,7 +244,7 @@ El flujo de trabajo que ofrece este UC permite al Switch gestionar los casos en 
 
 #### Diagrama de flujo
 
-![Use Case - Third Party Transaction Request Rejected by user](./assets/ML2RA_3PaT-ucTransactReqFail-rejectedByUser_Mar22-a-P1-3.png)
+![Use Case - Third Party Transaction Request Rejected by user](../../../../../technical/reference-architecture/boundedContexts/thirdPartyApi/assets/ML2RA_3PaT-ucTransactReqFail-rejectedByUser_Mar22-a-P1-3.png)
 >Diagrama de flujo de UC: Solicitud de transacción de terceros rechazada por el usuario
 
 ### Error en la solicitud de transacción de terceros: tiempo de espera de DFSP
@@ -255,7 +255,7 @@ El flujo de trabajo que ofrece esta UC permite al Switch gestionar los casos en 
 
 #### Diagrama de flujo
 
-![Use Case - Third Party Transaction Request Failed - DFSP timeout](./assets/ML2RA_3PaT-ucTransactReqFail-dfspTimeout_Mar22-a-P1-3.png)
+![Use Case - Third Party Transaction Request Failed - DFSP timeout](../../../../../technical/reference-architecture/boundedContexts/thirdPartyApi/assets/ML2RA_3PaT-ucTransactReqFail-dfspTimeout_Mar22-a-P1-3.png)
 >Diagrama de flujo de UC: Error en la solicitud de transacción de terceros — Tiempo de espera DFSP
 
 <!-- Footnotes themselves at the bottom. -->

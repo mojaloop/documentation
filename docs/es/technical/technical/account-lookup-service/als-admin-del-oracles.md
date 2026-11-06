@@ -8,5 +8,5 @@ Diseño para la eliminación de un Endpoint de Oracle por parte de un Operador d
 
 ## Diagrama de secuencia
 
-![](./assets/diagrams/sequence/seq-acct-lookup-admin-delete-oracle-7.3.4.svg)
+![](../../../../technical/technical/account-lookup-service/assets/diagrams/sequence/seq-acct-lookup-admin-delete-oracle-7.3.4.svg)
 

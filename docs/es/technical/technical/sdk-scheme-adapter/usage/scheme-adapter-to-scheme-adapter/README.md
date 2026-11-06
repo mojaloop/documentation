@@ -6,7 +6,7 @@ i18n_source_sha: b345958586d80898bb6667895659a812b2e387b4
 
 Una documentación detallada dirigida a los dfsps que deseen probar la transferencia de fondos de un adaptador de esquema de pagos a otro utilizando directamente los servicios de backend simulado y el simulador de Mojaloop.
 
-![Overview](scheme-adapter-to-scheme-adapter-overview.png)
+![Overview](../../../../../../technical/technical/sdk-scheme-adapter/usage/scheme-adapter-to-scheme-adapter/scheme-adapter-to-scheme-adapter-overview.png)
 
 ## Requisito previo
 

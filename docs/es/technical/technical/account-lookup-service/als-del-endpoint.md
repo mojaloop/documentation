@@ -8,5 +8,5 @@ Diseño para la desactivación de un servidor Oracle por parte del Operador del 
 
 ## Diagrama de secuencia
 
-![](./assets/diagrams/sequence/seq-acct-lookup-del-endpoint-cache-7.3.0.svg)
+![](../../../../technical/technical/account-lookup-service/assets/diagrams/sequence/seq-acct-lookup-del-endpoint-cache-7.3.0.svg)
 

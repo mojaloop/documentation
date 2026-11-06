@@ -17,7 +17,7 @@ En este BC, también conocido como dominio, se utilizan los siguientes términos
 
 ## Descripción general de las funciones
 
-![Use Case - Functional Overview](./assets/ML2RA_bc_accLookDiscvry_Apr22-b400.png)
+![Use Case - Functional Overview](../../../../../technical/reference-architecture/boundedContexts/accountLookupAndDiscovery/assets/ML2RA_bc_accLookDiscvry_Apr22-b400.png)
 >Diagrama funcional de BC: Descripción general de la búsqueda de cuenta y la identificación de cuentas
 
 ## Caso de uso
@@ -32,7 +32,7 @@ Cuando un participante DFSP solicita que un identificador de parte determinado s
 
 #### Diagrama de flujo
 
-![Use Case - Party/Participant Associate](./assets/aldPartyParticipantAssoc_20220919.png)
+![Use Case - Party/Participant Associate](../../../../../technical/reference-architecture/boundedContexts/accountLookupAndDiscovery/assets/aldPartyParticipantAssoc_20220919.png)
 >Diagrama de flujo de UC: Asociado de parte/participante
 
 ### Exclusión de una parte o de un participante
@@ -43,7 +43,7 @@ Cuando un participante DFSP solicita que se elimine una asociación existente en
 
 #### Diagrama de flujo
 
-![Use Case - Party/Participant Disassociate](./assets/aldPartyParticipantDisassoc_20220919.png)
+![Use Case - Party/Participant Disassociate](../../../../../technical/reference-architecture/boundedContexts/accountLookupAndDiscovery/assets/aldPartyParticipantDisassoc_20220919.png)
 >Diagrama de flujo de UC: Exclusión de una parte o participante
 
 
@@ -57,7 +57,7 @@ Cuando un participante DFSP solicita información sobre la asociación de un par
 
 #### Diagrama de flujo
 
-![Use Case - Get Participant](./assets/aldGetParticipant_20210825.png)
+![Use Case - Get Participant](../../../../../technical/reference-architecture/boundedContexts/accountLookupAndDiscovery/assets/aldGetParticipant_20210825.png)
 >Diagrama de flujo de UC: Obtener Participante
 
 ### Disfrute de la parte
@@ -68,7 +68,7 @@ Cuando un participante DFSP solicita a otro participante DFSP los datos de una p
 
 #### Diagrama de flujo
 
-![Use Case - Get Party](./assets/aldGetParty_20210825.png)
+![Use Case - Get Party](../../../../../technical/reference-architecture/boundedContexts/accountLookupAndDiscovery/assets/aldGetParty_20210825.png)
 >Diagrama de flujo de UC: Get Parte
 
 <!--## Notes -->

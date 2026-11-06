@@ -169,7 +169,7 @@ La siguiente tabla ofrece una visión detallada de Mojaloop repositorios y sus d
 
 El siguiente diagrama ilustra la secuencia de actualización recomendada para Mojaloop repositorios, teniendo en cuenta sus dependencias y relaciones:
 
-![Repository Update Sequence](./assets/diagrams/repositoryUpdate/repository-update-sequence.svg)
+![Repository Update Sequence](../../../../technical/technical/deployment-guide/assets/diagrams/repositoryUpdate/repository-update-sequence.svg)
 
 Este diagrama ofrece una representación visual de la secuencia de actualización, en la que se muestran:
 1. La agrupación lógica de los repositorios

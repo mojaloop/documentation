@@ -31,7 +31,7 @@ La función de inicio de sesión requiere que se envíen el ID de usuario y una 
 
 #### Diagrama de flujo
 
-![Use Case - BC User / Operator Login (AuthN)](./assets/ML2RA_SecAuth-ucUserOpsLogin(AuthN)_abr22_1829.png)
+![Use Case - BC User / Operator Login (AuthN)](../../../../../technical/reference-architecture/boundedContexts/security/assets/ML2RA_SecAuth-ucUserOpsLogin(AuthN)_Apr22_1829.png)
 > Diagrama de flujo de trabajo de UC: Inicio de sesión de usuario/Operador de BC (autenticación)
 
 ### Modelo de autorización de BC (AuthZ)
@@ -43,7 +43,7 @@ se verifica la firma (JWT) mediante la clave pública y se compara el rol propor
 
 #### Diagrama de flujo
 
-![Use Case - BC Authorization Model (AuthZ)](./assets/ML2RA_SecAuth-ucAuthModel_Apr22_1829.png)
+![Use Case - BC Authorization Model (AuthZ)](../../../../../technical/reference-architecture/boundedContexts/security/assets/ML2RA_SecAuth-ucAuthModel_Apr22_1829.png)
 > Diagrama de flujo de trabajo de UC: Modelo de autorización de BC (AuthZ)
 
 ### BC Bootstrap
@@ -54,7 +54,7 @@ Durante el proceso de arranque, el BC enviará la lista de posibles privilegios.
 
 #### Diagrama de flujo
 
-![Use Case - BC Bootstrap](./assets/ML2RA_SecAuth-ucBcBootstrap-OncePerNewVer_Apr22_1829.png)
+![Use Case - BC Bootstrap](../../../../../technical/reference-architecture/boundedContexts/security/assets/ML2RA_SecAuth-ucBcBootstrap-OncePerNewVer_Apr22_1829.png)
 > Diagrama de flujo de trabajo de UC: BC Bootstrap
 
 ### BC Startup
@@ -65,7 +65,7 @@ Al iniciarse, el BC solicitará las claves públicas de los emisores de autentic
 
 ##### Diagrama de flujo
 
-![Use Case - BC Startup](./assets/ML2RA_SecAuth-ucBcStartup_Apr22_1829.png)
+![Use Case - BC Startup](../../../../../technical/reference-architecture/boundedContexts/security/assets/ML2RA_SecAuth-ucBcStartup_Apr22_1829.png)
 > Diagrama de flujo de trabajo de UC: Puesta en marcha de BC
 
 ### Asociación entre roles y privilegios
@@ -76,7 +76,7 @@ Los roles están asociados a una serie de privilegios.
 
 #### Diagrama de flujo
 
-![Use Case - BC Startup](./assets/ML2RA_SecAuth-ucRolePriviledgeAssoc_Apr22_1829.png)
+![Use Case - BC Startup](../../../../../technical/reference-architecture/boundedContexts/security/assets/ML2RA_SecAuth-ucRolePriviledgeAssoc_Apr22_1829.png)
 > Diagrama de flujo de trabajo de la UC: Asociación entre roles y privilegios
 
 ### Ejemplo de consulta / llamada
@@ -88,7 +88,7 @@ Para utilizar el token de acceso, el cliente debe establecer el encabezado «Aut
 
 #### Diagrama de flujo
 
-![Use Case - Example API Query/Call](./assets/ML2RA_SecAuth-ucExampleApiQueryCall_Apr22_1829.png)
+![Use Case - Example API Query/Call](../../../../../technical/reference-architecture/boundedContexts/security/assets/ML2RA_SecAuth-ucExampleApiQueryCall_Apr22_1829.png)
 > Diagrama de flujo de trabajo de la UC: Ejemplo nAPI: Consulta/Llamada
 
 <!-- Footnotes themselves at the bottom. -->

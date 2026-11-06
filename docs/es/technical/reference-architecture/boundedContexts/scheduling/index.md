@@ -47,7 +47,7 @@ El flujo de trabajo que ofrece esta UC permite que el Switch gestione las solici
 
 #### Diagrama de flujo
 
-![Create Reminder](./assets/schedulingCreateReminder_20211021.png)
+![Create Reminder](../../../../../technical/reference-architecture/boundedContexts/scheduling/assets/schedulingCreateReminder_20211021.png)
 >
 ### Se ha activado un recordatorio
 
@@ -56,7 +56,7 @@ El flujo de trabajo que ofrece este UC permite que el Switch gestione los record
 
 #### Diagrama de flujo
 
-![Reminder Triggered](./assets/schedulingReminderTriggered_20211021.png)
+![Reminder Triggered](../../../../../technical/reference-architecture/boundedContexts/scheduling/assets/schedulingReminderTriggered_20211021.png)
 >
 ### Eliminar recordatorio (recurrente)
 
@@ -65,7 +65,7 @@ El flujo de trabajo que ofrece este UC permite que el Switch gestione los mensaj
 
 #### Diagrama de flujo
 
-![Delete (Recurring) Reminder](./assets/schedulingDeleteRecurringReminder_20211021.png)
+![Delete (Recurring) Reminder](../../../../../technical/reference-architecture/boundedContexts/scheduling/assets/schedulingDeleteRecurringReminder_20211021.png)
 >
 
 <!-- Footnotes themselves at the bottom. -->

@@ -8,5 +8,5 @@ Diseño para la búsqueda de un Participante por parte de un «DFSP».
 
 ## Diagrama de secuencia
 
-![](./assets/diagrams/sequence/seq-acct-lookup-get-participants-7.1.0.svg)
+![](../../../../technical/technical/account-lookup-service/assets/diagrams/sequence/seq-acct-lookup-get-participants-7.1.0.svg)
 

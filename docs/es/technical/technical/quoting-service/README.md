@@ -10,7 +10,7 @@ _Nota: Además de las cotizaciones individuales, el servicio de cotizaciones tam
 
 ## Diagrama de secuencia
 
-![](./assets/diagrams/sequence/seq-quotes-1.0.0.svg)
+![](../../../../technical/technical/quoting-service/assets/diagrams/sequence/seq-quotes-1.0.0.svg)
 
 ## Citas individuales
 

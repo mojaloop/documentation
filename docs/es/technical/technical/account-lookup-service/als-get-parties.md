@@ -8,5 +8,5 @@ Diseño para la búsqueda de una Parte mediante un «DFSP».
 
 ## Diagrama de secuencia
 
-![](./assets/diagrams/sequence/seq-acct-lookup-get-parties-7.2.0.svg)
+![](../../../../technical/technical/account-lookup-service/assets/diagrams/sequence/seq-acct-lookup-get-parties-7.2.0.svg)
 

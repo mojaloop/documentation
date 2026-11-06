@@ -19,7 +19,7 @@ En este BC, también conocido como dominio, se utilizan los siguientes términos
 
 ## Descripción general de las funciones - Transferencias - En bloque
 
-![Functional Overview - Transfers - Bulk](./assets/ML2RA_Trf_ucPerformTrfBulk_2022-03-22-a.png)
+![Functional Overview - Transfers - Bulk](../../../../../technical/reference-architecture/boundedContexts/transfers/assets/ML2RA_Trf_ucPerformTrfBulk_2022-03-22-a.png)
 >Diagrama de flujo de trabajo de la UC: Descripción general funcional - Transferencias - En bloque
 
 ## Caso de uso
@@ -32,7 +32,7 @@ El flujo de trabajo que ofrece esta UC permite al BC realizar una Transferencia 
 
 #### Diagrama de flujo
 
-![Perform Transfer (Universal Mode)](./assets/ML2RA_Trf_ucPerformTrfUniMode_Mar22a.png)
+![Perform Transfer (Universal Mode)](../../../../../technical/reference-architecture/boundedContexts/transfers/assets/ML2RA_Trf_ucPerformTrfUniMode_Mar22a.png)
 >Diagrama de flujo de UC: Realizar una transferencia (modo universal)
 
 ### Realizar una transferencia con confirmación del beneficiario
@@ -43,7 +43,7 @@ El flujo de trabajo que ofrece esta UC permite al BC realizar una Transferencia 
 
 #### Diagrama de flujo
 
-![Use Case - Perform Transfer with Payee Confirmation](./assets/ML2RA_Trf_ucPerformTrfPayeeConfirm_Mar22a-P1-2.png)
+![Use Case - Perform Transfer with Payee Confirmation](../../../../../technical/reference-architecture/boundedContexts/transfers/assets/ML2RA_Trf_ucPerformTrfPayeeConfirm_Mar22a-P1-2.png)
 >Diagrama de flujo de UC: Realizar una transferencia con confirmación del Beneficiario
 
 ### Transferencia de consulta (GET)
@@ -54,7 +54,7 @@ El flujo de trabajo que ofrece esta UC permite al BC aplicar un método mediante
 
 #### Diagrama de flujo
 
-![Use Case - Query (GET) Transfer](./assets/ML2RA_Trf_ucQueryTrfGET_Mar22a.png)
+![Use Case - Query (GET) Transfer](../../../../../technical/reference-architecture/boundedContexts/transfers/assets/ML2RA_Trf_ucQueryTrfGET_Mar22a.png)
 >Diagrama de flujo de UC: Transferencia de consultas (GET)
 
 ### Realizar transferencia: duplicar el envío (reenviar)
@@ -65,7 +65,7 @@ El flujo de trabajo que ofrece este UC permite al BC aplicar un procedimiento me
 
 #### Diagrama de flujo
 
-![Use Case - Perform Transfer - Duplicate POST (Resend)](./assets/ML2RA_Trf_ucPerformTrfDuplicPostResend_Mar22a.png)
+![Use Case - Perform Transfer - Duplicate POST (Resend)](../../../../../technical/reference-architecture/boundedContexts/transfers/assets/ML2RA_Trf_ucPerformTrfDuplicPostResend_Mar22a.png)
 >Diagrama de flujo de UC: Realizar transferencia - Duplicar POST (reenviar)
 
 ### Realizar transferencia - POST duplicado (Ignorar)
@@ -76,7 +76,7 @@ El flujo de trabajo que ofrece esta UC permite al BC aplicar un método mediante
 
 #### Diagrama de flujo
 
-![Use Case - Perform Transfer - Duplicate POST (Ignore)](./assets/ML2RA_Trf_ucPerformTrfDuplicPostIgnor_Mar22a.png)
+![Use Case - Perform Transfer - Duplicate POST (Ignore)](../../../../../technical/reference-architecture/boundedContexts/transfers/assets/ML2RA_Trf_ucPerformTrfDuplicPostIgnor_Mar22a.png)
 >Diagrama de flujo de UC: Realizar transferencia - Duplicar POST (Ignorar)
 
 ## Variaciones de los casos de uso que se desvían de la ruta ideal
@@ -89,7 +89,7 @@ El flujo de trabajo que ofrece esta UC permite al BC aplicar un procedimiento me
 
 #### Diagrama de flujo
 
-![Use Case - Perform Transfer - PayeeFSP Rejects Transfer](./assets/ML2RA_Trf_ucPerformTrfPayeeFspReject_Mar22a.png)
+![Use Case - Perform Transfer - PayeeFSP Rejects Transfer](../../../../../technical/reference-architecture/boundedContexts/transfers/assets/ML2RA_Trf_ucPerformTrfPayeeFspReject_Mar22a.png)
 >Diagrama de flujo de la UC: Realizar transferencia — El FSP del beneficiario rechaza la transferencia
 
 ### Realizar transferencia - Tiempo de espera (Preparación)
@@ -100,7 +100,7 @@ El flujo de trabajo que ofrece esta UC permite al BC aplicar un método para can
 
 #### Diagrama de flujo
 
-![Use Case - Perform Transfer - Timeout (Prepare)](./assets/ML2RA_Trf_ucPerformTrfTimeoutPrepare_Mar22a.png)
+![Use Case - Perform Transfer - Timeout (Prepare)](../../../../../technical/reference-architecture/boundedContexts/transfers/assets/ML2RA_Trf_ucPerformTrfTimeoutPrepare_Mar22a.png)
 >Diagrama de flujo de UC: Realizar transferencia - Tiempo de espera (Preparación)
 
 ### Realizar transferencia: tiempo de espera agotado (preconfirmada)
@@ -111,7 +111,7 @@ El flujo de trabajo que ofrece esta UC permite al BC aplicar un método mediante
 
 #### Diagrama de flujo
 
-![Use Case - Perform Transfer - Timeout (Pre-Committed)](./assets/ML2RA_Trf_ucPerformTrfTimeoutPreCommit_Mar22b-P1-2.png)
+![Use Case - Perform Transfer - Timeout (Pre-Committed)](../../../../../technical/reference-architecture/boundedContexts/transfers/assets/ML2RA_Trf_ucPerformTrfTimeoutPreCommit_Mar22b-P1-2.png)
 >Diagrama de flujo de UC: Realizar transferencia - Tiempo de espera (precompromiso)
 
 ### Realizar transferencia: tiempo de espera agotado (tras la confirmación)
@@ -122,7 +122,7 @@ El flujo de trabajo que ofrece esta UC permite al BC aplicar un método mediante
 
 #### Diagrama de flujo
 
-![Use Case - Perform Transfer - Timeout (Post-Committed)](./assets/ML2RA_Trf_ucPerformTrfTimeoutPostCommit_Mar22a.png)
+![Use Case - Perform Transfer - Timeout (Post-Committed)](../../../../../technical/reference-architecture/boundedContexts/transfers/assets/ML2RA_Trf_ucPerformTrfTimeoutPostCommit_Mar22a.png)
 >Diagrama de flujo de UC: Realizar transferencia — Tiempo de espera (tras la Confirmación (commit))
 
 ### Realizar transferencia - Duplicado en POST (sin coincidencias)
@@ -133,7 +133,7 @@ El flujo de trabajo que ofrece esta UC permite al BC aplicar un método mediante
 
 #### Diagrama de flujo
 
-![Use Case - Perform Transfer - Duplicate POST (None Matching)](./assets/ML2RA_Trf_ucPerformTrfTimeoutDuplicPostNoMatch_Mar22a.png)
+![Use Case - Perform Transfer - Duplicate POST (None Matching)](../../../../../technical/reference-architecture/boundedContexts/transfers/assets/ML2RA_Trf_ucPerformTrfTimeoutDuplicPostNoMatch_Mar22a.png)
 >Diagrama de flujo de UC: Realizar transferencia - Duplicar POST (sin coincidencias)
 
 ### Realizar transferencia - Pagador FSP: Liquidez insuficiente
@@ -144,7 +144,7 @@ El flujo de trabajo que ofrece esta UC permite al BC aplicar un procedimiento me
 
 #### Diagrama de flujo
 
-![Use Case - Perform Transfer - Payer FSP Insufficient Liquidity](./assets/ML2RA_Trf_ucPayerFspInsufficientLiquid_Mar22a.png)
+![Use Case - Perform Transfer - Payer FSP Insufficient Liquidity](../../../../../technical/reference-architecture/boundedContexts/transfers/assets/ML2RA_Trf_ucPayerFspInsufficientLiquid_Mar22a.png)
 >Diagrama de flujo de UC: Realizar transferencia — Pagador FSP: Liquidez insuficiente
 
 ### Realizar transferencia - Error de validación durante la preparación de la transferencia (participante del pagador no válido)
@@ -155,7 +155,7 @@ El flujo de trabajo que ofrece esta UC permite al BC aplicar un procedimiento me
 
 #### Diagrama de flujo
 
-![Use Case - Perform Transfer - Transfer Prepare Validation Failure (Invalid Payer Participant)](./assets/ML2RA_Trf_ucTransferPrepValidationFail-InvalidPayer_Mar22a.png)
+![Use Case - Perform Transfer - Transfer Prepare Validation Failure (Invalid Payer Participant)](../../../../../technical/reference-architecture/boundedContexts/transfers/assets/ML2RA_Trf_ucTransferPrepValidationFail-InvalidPayer_Mar22a.png)
 >Diagrama de flujo de trabajo de UC: Realizar transferencia - Fallo en la validación de la preparación de la transferencia (Participante del Pagador no válido)
 
 ### Realizar transferencia - Error de validación durante la preparación de la transferencia (participante beneficiario no válido)
@@ -166,7 +166,7 @@ El flujo de trabajo que ofrece esta UC permite al BC aplicar un procedimiento me
 
 #### Diagrama de flujo
 
-![Use Case - Perform Transfer - Transfer Prepare Validation Failure (Invalid Payee Participant)](./assets/ML2RA_Trf_ucTransferPrepValidationFail-InvalidPayee_Mar22a.png)
+![Use Case - Perform Transfer - Transfer Prepare Validation Failure (Invalid Payee Participant)](../../../../../technical/reference-architecture/boundedContexts/transfers/assets/ML2RA_Trf_ucTransferPrepValidationFail-InvalidPayee_Mar22a.png)
 >Diagrama de flujo de UC: Realizar transferencia - Error en la validación de la preparación de la transferencia (Participante no válido)
 
 ### Transferencia de consulta (GET) - Error de validación (Participante pagador no válido)

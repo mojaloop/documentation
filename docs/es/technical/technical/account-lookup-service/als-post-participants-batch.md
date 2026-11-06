@@ -14,5 +14,5 @@ Diseño para la creación de un Participante por parte de un «DFSP» mediante u
 
 ## Diagrama de secuencia
 
-![](./assets/diagrams/sequence/seq-acct-lookup-post-participants-batch-7.1.1.svg)
+![](../../../../technical/technical/account-lookup-service/assets/diagrams/sequence/seq-acct-lookup-post-participants-batch-7.1.1.svg)
 

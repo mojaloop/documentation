@@ -8,4 +8,4 @@ Diagrama de diseño de secuencias para el proceso de validación de firmas.
 
 ## Diagrama de secuencia
 
-![](./assets/diagrams/sequence/seq-signature-validation.svg)
+![](../../../../technical/technical/central-event-processor/assets/diagrams/sequence/seq-signature-validation.svg)

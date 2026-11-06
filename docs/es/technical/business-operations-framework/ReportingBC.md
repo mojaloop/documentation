@@ -11,7 +11,7 @@ Uno de los objetivos de este proyecto de Workstream es ofrecer la posibilidad de
 
 A continuación se presenta el diseño arquitectónico general.
 
-![Architecture overview diagram of reporting bounded context](../../.vuepress/public/Reporting-&-Auditing-Overview.png)
+![Architecture overview diagram of reporting bounded context](../../../.vuepress/public/Reporting-&-Auditing-Overview.png)
 
 En la versión Mojaloop, todos los servicios principales ya envían eventos a la versión Kafka en un tema (denominado «topic-event»).
 
@@ -250,7 +250,7 @@ Con el fin de realizar un seguimiento eficaz de una transferencia de extremo a e
 
 A continuación se presenta un flujo de trabajo empresarial que describe cómo se invocan los casos de uso.
 
-![Business workFlow](../../.vuepress/public/BusinessFlowView.png)
+![Business workFlow](../../../.vuepress/public/BusinessFlowView.png)
 
 ## Herramientas seleccionadas
 

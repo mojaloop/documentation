@@ -17,7 +17,7 @@ En este BC, también conocido como dominio, se utilizan los siguientes términos
 
 ## Descripción general de las funciones
 
-![Use Case - Functional Overview](./assets/qtaFunctionalOverview_20210825.png)
+![Use Case - Functional Overview](../../../../../technical/reference-architecture/boundedContexts/quotingAgreement/assets/qtaFunctionalOverview_20210825.png)
 
 ## Caso de uso
 
@@ -29,7 +29,7 @@ Este proceso obtiene una serie de datos relevantes sobre los participantes, incl
 
 #### Diagrama de flujo
 
-![Use Case - Calculate Quote - Happy Path](./assets/qtaCalculateQuoteHappyPath_20210825.png)
+![Use Case - Calculate Quote - Happy Path](../../../../../technical/reference-architecture/boundedContexts/quotingAgreement/assets/qtaCalculateQuoteHappyPath_20210825.png)
 
 ### Solicitar cotización - Happy Path
 
@@ -39,7 +39,7 @@ Proceso para obtener y facilitar los datos de las cotizaciones existentes a los 
 
 #### Diagrama de flujo
 
-![Use Case - Example REPLACE ME](./assets/qtaGetQuoteHappyPath.png)
+![Use Case - Example REPLACE ME](../../../../../technical/reference-architecture/boundedContexts/quotingAgreement/assets/qtaGetQuoteHappyPath.png)
 
 ### Calcular cotización - Solicitud de cotización no válida
 
@@ -49,7 +49,7 @@ Proceso que permite al sistema invalidar las solicitudes de cotización mediante
 
 #### Diagrama de flujo
 
-![Use Case - Calculate Quote - Invalid Quote Request](./assets/qtaCalculateQuoteInvalidQuoteRequest_20210825.png)
+![Use Case - Calculate Quote - Invalid Quote Request](../../../../../technical/reference-architecture/boundedContexts/quotingAgreement/assets/qtaCalculateQuoteInvalidQuoteRequest_20210825.png)
 
 ### Calcular cotización: FSP no válidos
 
@@ -59,7 +59,7 @@ Proceso que permite al sistema invalidar las solicitudes de cotización con cód
 
 #### Diagrama de flujo
 
-![Use Case - Calculate Quote - Invalid FSPs](./assets/qtaCalculateQuoteInvalidFSPs_20210825.png)
+![Use Case - Calculate Quote - Invalid FSPs](../../../../../technical/reference-architecture/boundedContexts/quotingAgreement/assets/qtaCalculateQuoteInvalidFSPs_20210825.png)
 
 ### Calcular cotización: se han detectado reglas del esquema de pagos no válidas en la solicitud
 
@@ -69,7 +69,7 @@ Proceso destinado a permitir que el sistema invalide las solicitudes de cotizaci
 
 #### Diagrama de flujo
 
-![Use Case - Calculate Quote - Invalid Scheme Rules detected in Request](./assets/qtaCalculateQuoteInvalidSchemeRulesRequest_20210825.png)
+![Use Case - Calculate Quote - Invalid Scheme Rules detected in Request](../../../../../technical/reference-architecture/boundedContexts/quotingAgreement/assets/qtaCalculateQuoteInvalidSchemeRulesRequest_20210825.png)
 
 ### Calcular cotización: se han detectado reglas del Esquema de pagos no válidas en la respuesta
 
@@ -79,7 +79,7 @@ Proceso destinado a permitir que el sistema invalide las respuestas a las cotiza
 
 #### Diagrama de flujo
 
-![Use Case - Calculate Quote - Invalid Scheme Rules detected in response](./assets/qtaCalculateQuoteInvalidSchemeRulesResponse_20210825.png)
+![Use Case - Calculate Quote - Invalid Scheme Rules detected in response](../../../../../technical/reference-architecture/boundedContexts/quotingAgreement/assets/qtaCalculateQuoteInvalidSchemeRulesResponse_20210825.png)
 
 ## Modelo canónico de citas
 

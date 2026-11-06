@@ -60,7 +60,7 @@ La división del frontend en microfrontends que pueden desarrollarse, probarse y
 
 A continuación se ofrece una visión general de cómo se pueden combinar las API operativas, las API de experiencia y los microfrontends para formar los componentes que conforman el marco de Operaciones Empresariales.
 
-![Architecture overview diagram compatible with the reference architecture](../../.vuepress/public/BizOps-Framework-BizOps-Framework.png) 
+![Architecture overview diagram compatible with the reference architecture](../../../.vuepress/public/BizOps-Framework-BizOps-Framework.png) 
 
 
 ## IaC 4.xx

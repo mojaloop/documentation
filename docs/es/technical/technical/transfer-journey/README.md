@@ -70,7 +70,7 @@ Los ejemplos parten de los valores predeterminados del Hub: `CACHE.CACHE_ENABLED
 
 Cada flecha representa un salto, numerado del H1 al H31 para que coincida con las páginas de fases. Las flechas continuas corresponden a HTTP; las flechas discontinuas, a Kafka.
 
-![Transfer journey sequence](./assets/diagrams/seq-transfer-journey.svg)
+![Transfer journey sequence](../../../../technical/technical/transfer-journey/assets/diagrams/seq-transfer-journey.svg)
 
 ## FSPIOP encabezados utilizados en los ejemplos
 

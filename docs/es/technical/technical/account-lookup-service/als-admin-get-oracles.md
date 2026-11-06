@@ -8,5 +8,5 @@ Diseño para obtener una lista de todos los Endpoints de Oracle mediante el Oper
 
 ## Diagrama de secuencia
 
-![](./assets/diagrams/sequence/seq-acct-lookup-admin-get-oracle-7.3.1.svg)
+![](../../../../technical/technical/account-lookup-service/assets/diagrams/sequence/seq-acct-lookup-admin-get-oracle-7.3.1.svg)
 

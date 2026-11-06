@@ -50,7 +50,7 @@ Términos con un significado específico y comúnmente aceptado dentro del conte
 
 ## Descripción general de las funciones
 
-![Reporting Functional Overview diagram](./assets/ML2RA_Rpts_functionalOverview_Apr22-b.png)
+![Reporting Functional Overview diagram](../../../../../technical/reference-architecture/boundedContexts/reporting/assets/ML2RA_Rpts_functionalOverview_Apr22-b.png)
 > Diagrama de funciones de BC: Descripción general funcional
 
 ## Caso de uso
@@ -63,7 +63,7 @@ Estrategia para alimentar el almacén de datos de informes mediante el component
 
 #### Diagrama de flujo
 
-![Event Based Reporting use case diagram](./assets/ML2RA_Rpts_eventBasedReporting_Apr22-b.png)
+![Event Based Reporting use case diagram](../../../../../technical/reference-architecture/boundedContexts/reporting/assets/ML2RA_Rpts_eventBasedReporting_Apr22-b.png)
 > Diagrama de flujo de trabajo de la UC: Informes basados en eventos (método recomendado)
 
 ### Informes basados en el sistema «pull»
@@ -74,7 +74,7 @@ Estrategia para alimentar el almacén de datos de informes haciendo que el compo
 
 #### Diagrama de flujo
 
-![Pull Based Reporting use case diagram](./assets/ML2RA_Rpts_pullReporting_Apr22-b.png)
+![Pull Based Reporting use case diagram](../../../../../technical/reference-architecture/boundedContexts/reporting/assets/ML2RA_Rpts_pullReporting_Apr22-b.png)
 > Diagrama de flujo de trabajo de la UC: Informes de extracción
 
 ### Informes basados en notificaciones push
@@ -85,7 +85,7 @@ Estrategia para alimentar el almacén de datos de informes mediante el envío, p
 
 #### Diagrama de flujo
 
-![Push Based Reporting use case diagram](./assets/ML2RA_Rpts_pushReporting_Apr22-b.png)
+![Push Based Reporting use case diagram](../../../../../technical/reference-architecture/boundedContexts/reporting/assets/ML2RA_Rpts_pushReporting_Apr22-b.png)
 > Diagrama de flujo de trabajo de la UC: Generación de informes
 
 ### Informe de usuarios y consumo del Tablero
@@ -96,7 +96,7 @@ Ejemplo de cómo un usuario puede consultar informes y tableros
 
 #### Diagrama de flujo
 
-![User Report and Dashboard Consumption diagram](./assets/ML2RA_Rpts_reportDashboardConsumption_Apr22-b.png)
+![User Report and Dashboard Consumption diagram](../../../../../technical/reference-architecture/boundedContexts/reporting/assets/ML2RA_Rpts_reportDashboardConsumption_Apr22-b.png)
 > Diagrama de flujo de trabajo de la UC: Tablero de control de informes y consumo de los usuarios
 
 <!-- Footnotes themselves at the bottom. -->

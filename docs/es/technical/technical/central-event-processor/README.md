@@ -14,4 +14,4 @@ En la versión actual, las reglas están configuradas para realizar el monitoreo
 
 A continuación, el CEP puede integrarse con un servicio de notificaciones para enviar notificaciones o alertas. En este caso, se integra con el servicio de notificaciones por correo electrónico para enviar alertas según los criterios mencionados anteriormente.
 
-![Central Event Processor Architecture](./assets/diagrams/architecture/CEPArchTechOverview.svg)
+![Central Event Processor Architecture](../../../../technical/technical/central-event-processor/assets/diagrams/architecture/CEPArchTechOverview.svg)

@@ -10,7 +10,7 @@ Tablas de referencia para el trayecto de transferencia. Los números de hop (H1�
 
 Estos son los estados internos (`TransferInternalState`, «central-services-shared» `src/enums/transfers.js`), almacenados en `transferStateChange` filas.
 
-![Transfer state machine](./assets/diagrams/state-transfer.svg)
+![Transfer state machine](../../../../technical/technical/transfer-journey/assets/diagrams/state-transfer.svg)
 
 | Estado interno | Estado API | Escrito por |
 |---|---|---|

@@ -8,4 +8,4 @@ Diagrama de diseño de secuencias para el proceso del gestor de eventos.
 
 ## Diagrama de secuencia
 
-![](./assets/diagrams/sequence/seq-event-9.1.0.svg)
+![](../../../../technical/technical/central-event-processor/assets/diagrams/sequence/seq-event-9.1.0.svg)

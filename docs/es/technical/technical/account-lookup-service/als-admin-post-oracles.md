@@ -8,5 +8,5 @@ Diseño para la creación de un Endpoint de Oracle por parte de un Operador del 
 
 ## Diagrama de secuencia
 
-![](./assets/diagrams/sequence/seq-acct-lookup-admin-post-oracle-7.3.2.svg)
+![](../../../../technical/technical/account-lookup-service/assets/diagrams/sequence/seq-acct-lookup-admin-post-oracle-7.3.2.svg)
 

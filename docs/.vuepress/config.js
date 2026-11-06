@@ -2533,7 +2533,7 @@ module.exports = {
               collapsible: true,
               sidebarDepth: 2,
               children: [
-                ['/technical/technical/deployment-guide/', 'Despliegue de Mojaloop (en inglés)'],
+                ['technical/deployment-guide/', 'Despliegue de Mojaloop'],
                 ['technical/deployment-guide/Production_Infrastructure_Guide', 'Guía de infraestructura de producción'],
                 'technical/deployment-guide/deployment-troubleshooting',
                 'technical/deployment-guide/upgrade-strategy-guide',
@@ -3151,8 +3151,8 @@ module.exports = {
                   // children: [ /* ... */ ],
                 },
                 {
-                  title: 'API de interoperabilidad de FSP (en inglés)',
-                  path: '/technical/reference-architecture/boundedContexts/fspInteropApi/',      // optional, link of the title, which should be an absolute path and must exist
+                  title: 'API de interoperabilidad de FSP',
+                  path: 'reference-architecture/boundedContexts/fspInteropApi/',      // optional, link of the title, which should be an absolute path and must exist
                   // children: [ /* ... */ ],
                 },
                 {

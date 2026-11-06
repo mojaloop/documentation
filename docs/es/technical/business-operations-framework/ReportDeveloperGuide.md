@@ -6,7 +6,7 @@ i18n_source_sha: fd6adf7ab15b4230d9128d120bcb27c8df4da61f
 Esta es una guía para desarrolladores sobre cómo crear e implementar informes para el servicio de informes REST, que forma parte del Despliegue en el Hub.
 
 ## Arquitectura
-![Architecture diagram of reporting service operator](../../.vuepress/public/RestReportingArchitecture.drawio.png)
+![Architecture diagram of reporting service operator](../../../.vuepress/public/RestReportingArchitecture.drawio.png)
 [Here](https://github.com/mojaloop/reporting) se encuentra el repositorio del operador del servicio de informes.
 El operador del servicio de informes se ha diseñado para que puedan acceder a él tanto un operador del Hub como un operador «DFSP».
 El acceso al informe se controla a través de la integración RBAC que forma parte del marco de operaciones empresariales. Ory Oathkeeper protege el punto final de generación de informes API, y el Operador del servicio de generación de informes comprueba Keto para otorgar una autorización más detallada específica para cada informe.

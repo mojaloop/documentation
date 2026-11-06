@@ -30,13 +30,13 @@ Términos con un significado específico y comúnmente aceptado dentro del conte
 
 #### Diagrama de flujo
 
-![Use Case - Send Async Notifications with Delivery Report](./assets/sendAsyncNotificationWithDeliveryReport.png)
+![Use Case - Send Async Notifications with Delivery Report](../../../../../technical/reference-architecture/boundedContexts/notificationsAndAlerts/assets/sendAsyncNotificationWithDeliveryReport.png)
 
 ### Enviar notificaciones sincrónicas con informe de entrega
 
 #### Diagrama de flujo
 
-![Use Case - Send Sync Notifications with Delivery Report](./assets/sendSyncNotificationWithDeliveryReport.png)
+![Use Case - Send Sync Notifications with Delivery Report](../../../../../technical/reference-architecture/boundedContexts/notificationsAndAlerts/assets/sendSyncNotificationWithDeliveryReport.png)
 
 <!-- Footnotes themselves at the bottom. -->
 
@@ -52,13 +52,13 @@ Los operadores del Hub o los subsistemas podrán llamar a la operación «Alert 
 
 #### Diagrama de flujo
 
-![Use Case - Send Sync Notifications with Delivery Report](./assets/alertRegistration.png)
+![Use Case - Send Sync Notifications with Delivery Report](../../../../../technical/reference-architecture/boundedContexts/notificationsAndAlerts/assets/alertRegistration.png)
 
 ### Notificaciones de alertas
 
 #### Diagrama de flujo
 
-![Use Case - Send Sync Notifications with Delivery Report](./assets/alertNotification.png)
+![Use Case - Send Sync Notifications with Delivery Report](../../../../../technical/reference-architecture/boundedContexts/notificationsAndAlerts/assets/alertNotification.png)
 
 <!-- Footnotes themselves at the bottom. -->
 <!--## Notes

@@ -73,7 +73,7 @@ El host incluye un motor interno encargado de cargar únicamente los elementos s
 Los microfrontends individuales no se cargarán cuando no sea necesario (por ejemplo, cuando el usuario no acceda a una página concreta).
 
 **Diagrama de secuencia de alto nivel que ilustra cómo se cargan los microservicios**
-![High level sequence diagram illustrating how microservices are loaded](../../.vuepress/public/microfrontendloading.png)
+![High level sequence diagram illustrating how microservices are loaded](../../../.vuepress/public/microfrontendloading.png)
 
 ### Repositorio de microfrontends
 Con el fin de contar con una autoridad centralizada encargada de supervisar que cada uno de los microfrontends cumpla los requisitos necesarios, se sugiere desarrollar una solución que funcione como un registro.
@@ -92,7 +92,7 @@ El siguiente diagrama de descripción general muestra el despliegue de los micro
 ::: consejo NOTA
 En este diagrama no se incluye el despliegue del contexto delimitado API.
 :::
-![Overview diagram showing deployment](../../.vuepress/public/BizOps-Framework-Micro-frontend-deploy.png)
+![Overview diagram showing deployment](../../../.vuepress/public/BizOps-Framework-Micro-frontend-deploy.png)
 
 Los microfrontends utilizan despliegues atómicos y nunca es necesario realizar una compilación completa.
 

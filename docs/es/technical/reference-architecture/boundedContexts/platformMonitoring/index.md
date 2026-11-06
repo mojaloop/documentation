@@ -18,7 +18,7 @@ Términos con un significado específico y comúnmente aceptado dentro del conte
 
 ### Realizar transferencia (modo universal)
 
-![Use Case - Example REPLACE ME](./assets/useCaseExample.png)
+![Use Case - Example REPLACE ME](../../../../../technical/reference-architecture/boundedContexts/platformMonitoring/assets/useCaseExample.png)
 > imagen de ejemplo - sustituir
 
 <!-- Footnotes themselves at the bottom. -->
