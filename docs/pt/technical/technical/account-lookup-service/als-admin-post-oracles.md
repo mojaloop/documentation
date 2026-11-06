@@ -8,5 +8,5 @@ Conceção para a criação de um Oracle endpoint por um operador do hub.
 
 ## Diagrama de sequência
 
-![](./assets/diagrams/sequence/seq-acct-lookup-admin-post-oracle-7.3.2.svg)
+![](../../../../technical/technical/account-lookup-service/assets/diagrams/sequence/seq-acct-lookup-admin-post-oracle-7.3.2.svg)
 

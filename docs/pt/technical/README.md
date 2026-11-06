@@ -13,7 +13,7 @@ O Mojaloop aborda estas questões de várias formas fundamentais:
 * Um conjunto padrão de interfaces que um «DFSP» pode implementar para se ligar ao sistema, bem como código de exemplo que demonstra como utilizar o sistema. Um «DFSP» que pretenda ligar-se pode adaptar o nosso código de exemplo ou implementar as interfaces padrão no seu próprio software. O objetivo é que seja o mais simples possível para um «DFSP» ligar-se à rede interoperável.
 * Implementações completas e funcionais de código aberto de ambos os lados das interfaces — um exemplo de «DFSP» capaz de enviar e ser destinatário de pagamentos e o cliente que um «DFSP» existente poderia hospedar para se ligar à rede.
 
-![Mojaloop End-to-end Architecture Flow PI5](./technical/assets/diagrams/architecture/Arch-Mojaloop-end-to-end-PI6.svg)
+![Mojaloop End-to-end Architecture Flow PI5](../../technical/technical/assets/diagrams/architecture/Arch-Mojaloop-end-to-end-PI6.svg)
 
 O hub Mojaloop é o principal recipiente e referência que utilizamos para descrever o ecossistema Mojaloop, que se divide nos seguintes domínios:
 * Mojaloop Serviços de Código Aberto - Núcleo Mojaloop Software de Código Aberto (OSS) que tem sido permitido pela Fundação Bill & Melinda Gates em parceria com a Comunidade de Código Aberto.

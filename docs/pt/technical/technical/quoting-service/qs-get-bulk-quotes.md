@@ -8,5 +8,5 @@ Conceção para a recuperação de uma cotação em massa por um FSP.
 
 ## Diagrama de sequência
 
-![](./assets/diagrams/sequence/seq-get-bulk-quotes-2.1.0.svg)
+![](../../../../technical/technical/quoting-service/assets/diagrams/sequence/seq-get-bulk-quotes-2.1.0.svg)
 

@@ -50,7 +50,7 @@ Termos com um significado específico e geralmente aceite no Contexto Delimitado
 
 ## Visão geral das funcionalidades
 
-![Reporting Functional Overview diagram](./assets/ML2RA_Rpts_functionalOverview_Apr22-b.png)
+![Reporting Functional Overview diagram](../../../../../technical/reference-architecture/boundedContexts/reporting/assets/ML2RA_Rpts_functionalOverview_Apr22-b.png)
 > Diagrama de funções do BC: Visão geral funcional
 
 ## Casos de uso
@@ -63,7 +63,7 @@ Estratégia para alimentar o Repositório de Dados de Relatórios, fazendo com q
 
 #### Diagrama de fluxo
 
-![Event Based Reporting use case diagram](./assets/ML2RA_Rpts_eventBasedReporting_Apr22-b.png)
+![Event Based Reporting use case diagram](../../../../../technical/reference-architecture/boundedContexts/reporting/assets/ML2RA_Rpts_eventBasedReporting_Apr22-b.png)
 > Diagrama de fluxo de trabalho da UC: Relatórios baseados em eventos (método recomendado)
 
 ### Relatórios baseados no método «pull»
@@ -74,7 +74,7 @@ Estratégia para alimentar o Repositório de Dados de Relatórios, fazendo com q
 
 #### Diagrama de fluxo
 
-![Pull Based Reporting use case diagram](./assets/ML2RA_Rpts_pullReporting_Apr22-b.png)
+![Pull Based Reporting use case diagram](../../../../../technical/reference-architecture/boundedContexts/reporting/assets/ML2RA_Rpts_pullReporting_Apr22-b.png)
 > Diagrama de fluxo de trabalho da UC: Relatórios «Pull»
 
 ### Relatórios baseados em notificações push
@@ -85,7 +85,7 @@ Estratégia para alimentar o Repositório de Dados de Relatórios, consistindo e
 
 #### Diagrama de fluxo
 
-![Push Based Reporting use case diagram](./assets/ML2RA_Rpts_pushReporting_Apr22-b.png)
+![Push Based Reporting use case diagram](../../../../../technical/reference-architecture/boundedContexts/reporting/assets/ML2RA_Rpts_pushReporting_Apr22-b.png)
 > Diagrama de fluxo de trabalho da UC: Relatórios de envio
 
 ### Relatório do utilizador e consumo do painel de controlo
@@ -96,7 +96,7 @@ Exemplo de como um utilizador pode aceder a relatórios e painéis de controlo
 
 #### Diagrama de fluxo
 
-![User Report and Dashboard Consumption diagram](./assets/ML2RA_Rpts_reportDashboardConsumption_Apr22-b.png)
+![User Report and Dashboard Consumption diagram](../../../../../technical/reference-architecture/boundedContexts/reporting/assets/ML2RA_Rpts_reportDashboardConsumption_Apr22-b.png)
 > Diagrama de fluxo de trabalho da UC: Painel de relatórios e consumo do utilizador
 
 <!-- Footnotes themselves at the bottom. -->

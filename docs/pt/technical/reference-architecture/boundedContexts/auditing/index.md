@@ -25,7 +25,7 @@ Termos com um significado específico e geralmente aceite no Contexto Delimitado
 
 ## Visão geral das funcionalidades
 
-![Use Case - Auditing System Functional Overview](./assets/ML2RA_Audit_bcFunctionalOverview_Mar22_1450.png)
+![Use Case - Auditing System Functional Overview](../../../../../technical/reference-architecture/boundedContexts/auditing/assets/ML2RA_Audit_bcFunctionalOverview_Mar22_1450.png)
 > Diagrama funcional da BC: Visão geral funcional do sistema de auditoria
 
 ## Casos de uso
@@ -38,7 +38,7 @@ O BC de Auditoria de Arranque UC é acionado durante o arranque (intervalos ou e
 
 #### Diagrama de fluxo
 
-![Use Case - Auditing BC Startup](./assets/ML2RA_Audit_ucAuditingBCStartup_Mar22_1450.png)
+![Use Case - Auditing BC Startup](../../../../../technical/reference-architecture/boundedContexts/auditing/assets/ML2RA_Audit_ucAuditingBCStartup_Mar22_1450.png)
 > Diagrama de fluxo de trabalho da UC: Auditoria do arranque do BC
 
 ### Auditoria de sincronização/RPC
@@ -49,7 +49,7 @@ A UC de Auditoria Sync/RPC é ativada para eventos passíveis de auditoria desen
 
 #### Diagrama de fluxo
 
-![Use Case - Sync/RPC Audit](./assets/ML2RA_Audit_ucSyncRPCAudit_Mar22_1450.png)
+![Use Case - Sync/RPC Audit](../../../../../technical/reference-architecture/boundedContexts/auditing/assets/ML2RA_Audit_ucSyncRPCAudit_Mar22_1450.png)
 >Diagrama de fluxo de trabalho da UC: Auditoria de sincronização/RPC
 
 ### Auditoria baseada em eventos
@@ -60,7 +60,7 @@ A UC de Auditoria Baseada em Eventos é acionada quando um BC participante inclu
 
 #### Diagrama de fluxo
 
-![Use Case - Event Based Audit](./assets/ML2RA_Audit_ucEventBasedAudit_Mar22_1450.png)
+![Use Case - Event Based Audit](../../../../../technical/reference-architecture/boundedContexts/auditing/assets/ML2RA_Audit_ucEventBasedAudit_Mar22_1450.png)
 > Diagrama de fluxo de trabalho da UC: Auditoria baseada em eventos
 
 <!-- Footnotes themselves at the bottom. -->

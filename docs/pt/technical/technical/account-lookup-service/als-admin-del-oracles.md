@@ -8,5 +8,5 @@ Conceção para a eliminação de um endpoint Oracle por um operador do hub.
 
 ## Diagrama de sequência
 
-![](./assets/diagrams/sequence/seq-acct-lookup-admin-delete-oracle-7.3.4.svg)
+![](../../../../technical/technical/account-lookup-service/assets/diagrams/sequence/seq-acct-lookup-admin-delete-oracle-7.3.4.svg)
 

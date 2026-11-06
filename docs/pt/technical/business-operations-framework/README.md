@@ -60,7 +60,7 @@ A divisão do front-end em micro-front-ends que podem ser desenvolvidos, testado
 
 Apresentamos aqui uma visão geral de como as APIs operacionais, as APIs de experiência e os micro-front-ends podem ser combinados para formar os componentes que constituem o framework de Operações Empresariais.
 
-![Architecture overview diagram compatible with the reference architecture](../../.vuepress/public/BizOps-Framework-BizOps-Framework.png) 
+![Architecture overview diagram compatible with the reference architecture](../../../.vuepress/public/BizOps-Framework-BizOps-Framework.png) 
 
 
 ## IaC 4.xx

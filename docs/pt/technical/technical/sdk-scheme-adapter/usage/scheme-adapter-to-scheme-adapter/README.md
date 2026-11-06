@@ -6,7 +6,7 @@ i18n_source_sha: b345958586d80898bb6667895659a812b2e387b4
 
 Uma documentação detalhada destinada aos dfsps que pretendam testar a transferência de fundos de um adaptador de esquema para outro, utilizando diretamente os serviços de backend simulado e do simulador Mojaloop.
 
-![Overview](scheme-adapter-to-scheme-adapter-overview.png)
+![Overview](../../../../../../technical/technical/sdk-scheme-adapter/usage/scheme-adapter-to-scheme-adapter/scheme-adapter-to-scheme-adapter-overview.png)
 
 ## Pré-requisito
 

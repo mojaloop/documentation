@@ -6,9 +6,9 @@ i18n_source_sha: 6e70d5a2185e59c1c6fa32d50cb4d7807bb1e05d
 Existem três modelos que podem ser utilizados na criação das integrações do pagador DFSP para transferências em massa.
 1. Integração da transferência **em três fases**. Isto está em consonância com as trêsMojaloop fases da transação: Descoberta, Acordo e Transferência.
 1. **Integração «Double API»**. Este padrão é descrito em pormenor no diagrama de sequência abaixo. Implica a combinação das fases de Descoberta e Acordo; na primeira fase, os resultados são apresentados ao Pagador para confirmação; em seguida, a fase de Transferência é executada como segunda fase.
-![Payer DFSP Double Integration API Flow Pattern](./assets/sequence/PayerDFSPBulkDoubleIntegrationApiPattern.svg)
+![Payer DFSP Double Integration API Flow Pattern](../../../../technical/technical/sdk-scheme-adapter/assets/sequence/PayerDFSPBulkDoubleIntegrationApiPattern.svg)
 1. **Integração «API» Única**. Este padrão é descrito em pormenor no diagrama de sequência abaixo. Aqui, as três fases são combinadas para produzir uma única chamada de transferência síncrona.
-![Payer DFSP Single Integration API Flow Pattern](./assets/sequence/PayerDFSPBulkSingleIntegrationApiPattern.svg)
+![Payer DFSP Single Integration API Flow Pattern](../../../../technical/technical/sdk-scheme-adapter/assets/sequence/PayerDFSPBulkSingleIntegrationApiPattern.svg)
 
 
 ::: tip Confirmação em duas fases
@@ -24,10 +24,10 @@ Caso um Beneficiário DFSP pretenda tirar partido da mensagem de transferência 
 
 Neste caso, as verificações AML e as comissões são calculadas na fase de acordo, e a fase de transferência é realizada em duas etapas, nomeadamente uma fase de reserva e uma fase de confirmação.
 
-![Payee DFSP Bulk Integration Ideal Pattern](./assets/sequence/PayeeDFSPBulkIdealPattern.svg)
+![Payee DFSP Bulk Integration Ideal Pattern](../../../../technical/technical/sdk-scheme-adapter/assets/sequence/PayeeDFSPBulkIdealPattern.svg)
 
 ## O fornecedor API permite apenas uma chamada «API»
 Se os sistemas bancários centrais permitirem apenas uma única chamada «API» para realizar todas as verificações e fases relacionadas com a transferência. Este é o padrão mais comummente permitido.
 ### Transferência de chamada na notificação de ligação
-![Payee DFSP Integration during Patch Notification](./assets/sequence/PayeeDFSPBulkSingleIntegrationApiOnPatch.svg)
+![Payee DFSP Integration during Patch Notification](../../../../technical/technical/sdk-scheme-adapter/assets/sequence/PayeeDFSPBulkSingleIntegrationApiOnPatch.svg)
 Uma falha a qualquer momento após a notificação PATCH **[Passo 19]** resultará num erro de reconciliação. Esta situação pode ser contornada através da implementação de métodos de compensação. Por exemplo, iniciar uma transferência de reembolso caso ocorra um erro após o passo 19.

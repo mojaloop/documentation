@@ -6,7 +6,7 @@ i18n_source_sha: fd6adf7ab15b4230d9128d120bcb27c8df4da61f
 Este é um guia para programadores sobre a criação e implementação de relatórios para o serviço de relatórios REST, que faz parte do deployment no hub.
 
 ## Arquitetura
-![Architecture diagram of reporting service operator](../../.vuepress/public/RestReportingArchitecture.drawio.png)
+![Architecture diagram of reporting service operator](../../../.vuepress/public/RestReportingArchitecture.drawio.png)
 [Aqui,](https://github.com/mojaloop/reporting) é o repositório do operador do serviço de relatórios.
 O operador do serviço de comunicação de dados foi concebido para ser acedido quer por um operador do hub, quer por um operador «DFSP».
 O acesso ao relatório é controlado através da integração RBAC que faz parte do framework de operações empresariais. O Ory Oathkeeper protege o ponto de acesso API do serviço de relatórios, e o Keto é verificado pelo operador do serviço de relatórios para uma autorização mais detalhada e específica para cada relatório.

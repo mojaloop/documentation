@@ -16,7 +16,7 @@ Foram identificados vários problemas centrais (melhorias) por parte de (Negóci
 
 #### Mapa de alto nível
 
-![Core Problems](./assets/ML2RA_in_RefArchOver_Core_Apr22c_1670.png)
+![Core Problems](../../../../technical/reference-architecture/refarch/assets/ML2RA_in_RefArchOver_Core_Apr22c_1670.png)
 > Arquitetura de Referência (Mojaloop): Problemas Fundamentais
 
 ### Problemas gerais
@@ -27,7 +27,7 @@ Foram identificados vários problemas genéricos (melhorias) por parte de (a ár
 
 #### Mapa de alto nível
 
-![Generic Problems](./assets/ML2RA_in_RefArchOver_Generic_Apr22c_1670.png)
+![Generic Problems](../../../../technical/reference-architecture/refarch/assets/ML2RA_in_RefArchOver_Generic_Apr22c_1670.png)
 > Arquitetura de Referência (Mojaloop): Problemas Genéricos
 
 ### Problemas de suporte
@@ -38,7 +38,7 @@ Foram identificados vários problemas de apoio (melhorias) por parte de (a área
 
 #### Mapa de alto nível
 
-![Supporting Problems](./assets/ML2RA_in_RefArchOver_Supporting_Apr22c_1670.png)
+![Supporting Problems](../../../../technical/reference-architecture/refarch/assets/ML2RA_in_RefArchOver_Supporting_Apr22c_1670.png)
 > Arquitetura de Referência (Mojaloop): Problemas de suporte
 
 ### Requisitos não funcionais
@@ -49,7 +49,7 @@ Foram identificados vários requisitos não funcionais por parte de (a empresa/o
 
 #### Mapa de alto nível
 
-![Non-Functional Requirements](./assets/ML2RA_in_RefArchOver_NFRs_Apr22c_1670.png)
+![Non-Functional Requirements](../../../../technical/reference-architecture/refarch/assets/ML2RA_in_RefArchOver_NFRs_Apr22c_1670.png)
 > Arquitetura de Referência (Mojaloop): Requisitos Não Funcionais
 
 ### Novo e não classificado (fora do domínio)
@@ -60,7 +60,7 @@ Foram identificados vários problemas novos e não classificados (não pertencen
 
 #### Mapa de alto nível
 
-![New & Unclassified Problems](./assets/ML2RA_in_RefArchOver_newUnclassified_Apr22c_1670.png)
+![New & Unclassified Problems](../../../../technical/reference-architecture/refarch/assets/ML2RA_in_RefArchOver_newUnclassified_Apr22c_1670.png)
 > Arquitetura de Referência (Mojaloop): Problemas novos e não classificados
 
 ## Espaço de Soluções (_Descrição de alto nível e mapa contextual_)
@@ -71,7 +71,7 @@ O Espaço de Soluções definido pela arquitetura DDD centra-se na forma como os
 
 #### Mapa de alto nível
 
-![Solution Space](./assets/ML2RA_in_RefArchOver_SolutionSpace_Apr22a.png)
+![Solution Space](../../../../technical/reference-architecture/refarch/assets/ML2RA_in_RefArchOver_SolutionSpace_Apr22a.png)
 > Arquitetura de Referência (Mojaloop): Espaço de Soluções
 
 ### Língua Ubíqua

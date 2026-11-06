@@ -11,5 +11,5 @@ Projeto para a eliminação de um participante por um DFSP.
 
 ## Diagrama de sequência
 
-![](./assets/diagrams/sequence/seq-acct-lookup-del-participants-7.1.2.svg)
+![](../../../../technical/technical/account-lookup-service/assets/diagrams/sequence/seq-acct-lookup-del-participants-7.1.2.svg)
 

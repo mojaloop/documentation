@@ -17,7 +17,7 @@ Os termos seguintes são utilizados neste BC, também conhecido como domínio.
 
 ## Visão geral das funcionalidades
 
-![Use Case - Functional Overview](./assets/qtaFunctionalOverview_20210825.png)
+![Use Case - Functional Overview](../../../../../technical/reference-architecture/boundedContexts/quotingAgreement/assets/qtaFunctionalOverview_20210825.png)
 
 ## Casos de uso
 
@@ -29,7 +29,7 @@ Este processo obtém um conjunto de dados relevantes relativos aos Participantes
 
 #### Diagrama de fluxo
 
-![Use Case - Calculate Quote - Happy Path](./assets/qtaCalculateQuoteHappyPath_20210825.png)
+![Use Case - Calculate Quote - Happy Path](../../../../../technical/reference-architecture/boundedContexts/quotingAgreement/assets/qtaCalculateQuoteHappyPath_20210825.png)
 
 ### Obter cotação - Happy Path
 
@@ -39,7 +39,7 @@ Processo para obter e fornecer os detalhes de uma cotação existente ao(s) part
 
 #### Diagrama de fluxo
 
-![Use Case - Example REPLACE ME](./assets/qtaGetQuoteHappyPath.png)
+![Use Case - Example REPLACE ME](../../../../../technical/reference-architecture/boundedContexts/quotingAgreement/assets/qtaGetQuoteHappyPath.png)
 
 ### Calcular Cotação - Pedido de Cotação Inválido
 
@@ -49,7 +49,7 @@ Processo que permite ao sistema invalidar pedidos de cotação, através da moni
 
 #### Diagrama de fluxo
 
-![Use Case - Calculate Quote - Invalid Quote Request](./assets/qtaCalculateQuoteInvalidQuoteRequest_20210825.png)
+![Use Case - Calculate Quote - Invalid Quote Request](../../../../../technical/reference-architecture/boundedContexts/quotingAgreement/assets/qtaCalculateQuoteInvalidQuoteRequest_20210825.png)
 
 ### Calcular Cotação - FSPs inválidos
 
@@ -59,7 +59,7 @@ Processo que permite ao sistema invalidar FSP pedidos de cotação nos quais FSP
 
 #### Diagrama de fluxo
 
-![Use Case - Calculate Quote - Invalid FSPs](./assets/qtaCalculateQuoteInvalidFSPs_20210825.png)
+![Use Case - Calculate Quote - Invalid FSPs](../../../../../technical/reference-architecture/boundedContexts/quotingAgreement/assets/qtaCalculateQuoteInvalidFSPs_20210825.png)
 
 ### Calcular Cotação - Foram detetadas regras inválidas do scheme no pedido
 
@@ -69,7 +69,7 @@ Processo que permite ao sistema invalidar pedidos de cotação nos casos em que 
 
 #### Diagrama de fluxo
 
-![Use Case - Calculate Quote - Invalid Scheme Rules detected in Request](./assets/qtaCalculateQuoteInvalidSchemeRulesRequest_20210825.png)
+![Use Case - Calculate Quote - Invalid Scheme Rules detected in Request](../../../../../technical/reference-architecture/boundedContexts/quotingAgreement/assets/qtaCalculateQuoteInvalidSchemeRulesRequest_20210825.png)
 
 ### Calcular Cotação - Foram detetadas regras de scheme inválidas na resposta
 
@@ -79,7 +79,7 @@ Processo que permite ao sistema invalidar respostas a cotações nos casos em qu
 
 #### Diagrama de fluxo
 
-![Use Case - Calculate Quote - Invalid Scheme Rules detected in response](./assets/qtaCalculateQuoteInvalidSchemeRulesResponse_20210825.png)
+![Use Case - Calculate Quote - Invalid Scheme Rules detected in response](../../../../../technical/reference-architecture/boundedContexts/quotingAgreement/assets/qtaCalculateQuoteInvalidSchemeRulesResponse_20210825.png)
 
 ## Modelo de Citação Canónica
 

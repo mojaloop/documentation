@@ -40,7 +40,7 @@ mojaloop-simulator:
 
 ### 1.3. Suporte para o Desktop Docker Kubernetes para o Mojaloop, versões v13.x - v14.0.x
 
-Caso esteja a instalar a versão Mojaloop `v13.x` - `v14.0.x` no Windows ou no macOS, recomenda-se que instale a versão [Docker Desktop v4.2.0](https://docs.docker.com/desktop/release-notes/#420), uma vez que esta inclui a versão Kubernetes v1.21.5, que cumpre os requisitos das versões Mojaloop `v13.x` - `v14.0.x`, em conformidade com as recomendações do [Guia de Implementação (1. Pré-requisitos)](README.md#1-pre-requisites).
+Caso esteja a instalar a versão Mojaloop `v13.x` - `v14.0.x` no Windows ou no macOS, recomenda-se que instale a versão [Docker Desktop v4.2.0](https://docs.docker.com/desktop/release-notes/#420), uma vez que esta inclui a versão Kubernetes v1.21.5, que cumpre os requisitos das versões Mojaloop `v13.x` - `v14.0.x`, em conformidade com as recomendações do [Guia de Implementação (1. Pré-requisitos)](../../../../technical/technical/deployment-guide/README.md#1-pre-requisites).
 
 ### 1.4. A release MojaloopHelm, na versão 10.x ou inferior, não é permitida para a versão Kubernetes, na versão 1.16 ou superior
 
@@ -82,7 +82,7 @@ Certifique-se de que está a deployar o Mojaloop Helm charts v10.x ou versões a
    helm list
    ```
 
-   Caso os gráficos do Helm não estejam listados, consulte a secção [Guia de Deployment - 5.1. Mojaloop Helm Deployment](./README.md#51-mojaloop-helm-deployment)] para instalar um gráfico.
+   Caso os gráficos do Helm não estejam listados, consulte a secção [Guia de Deployment - 5.1. Mojaloop Helm Deployment](../../../../technical/technical/deployment-guide/README.md#51-mojaloop-helm-deployment)] para instalar um gráfico.
 
 2. Certifique-se de que todos os Mojaloop Pods/Contentores foram iniciados corretamente e estão disponíveis através do Kubernetes. painel de controlo.
 

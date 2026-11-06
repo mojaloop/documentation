@@ -14,7 +14,7 @@ Estes testes foram escritos a título de brincadeira e verificam, por exemplo, o
 
 **Estrutura de testes de integração do gestor de comandos**
 
-![Local Test Setup](../assets/CHIntegrationTestHarness.drawio.svg)
+![Local Test Setup](../../../../../technical/technical/sdk-scheme-adapter/assets/CHIntegrationTestHarness.drawio.svg)
 
 ### O conjunto de testes funcionais
 O teste funcional recorre ao TTK, que simula os back-ends do pagador e do beneficiário DFSP. 
@@ -23,7 +23,7 @@ O teste funcional recorre ao TTK, que simula os back-ends do pagador e do benefi
 Este conjunto de testes verifica tanto o Pagador SDK como o Beneficiário SDK.
 :::
 
-![Local Test Setup](../assets/bulk-functional-local-test-setup.drawio.svg)
+![Local Test Setup](../../../../../technical/technical/sdk-scheme-adapter/assets/bulk-functional-local-test-setup.drawio.svg)
 
 :::tip Nota
 Estes testes podem ser executados no monorepo local que foi descarregado, são executados no pipeline de CI e estão incluídos no Helm como testes do Helm utilizados para confirmar o deployment.

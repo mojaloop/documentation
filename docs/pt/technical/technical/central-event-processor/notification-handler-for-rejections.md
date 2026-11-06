@@ -13,4 +13,4 @@ Diagrama de conceção da sequência para o processo «Gestor de Notificações 
 
 ## Diagrama de sequência
 
-![](;./assets/diagrams/sequence/seq-notification-reject-5.1.1.svg)
+![](../../../../technical/technical/central-event-processor/assets/diagrams/sequence/seq-notification-reject-5.1.1.svg)

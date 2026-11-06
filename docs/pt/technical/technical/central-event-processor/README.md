@@ -14,4 +14,4 @@ Na versão atual, as regras estão definidas para monitorizar três critérios:
 
 O CEP pode, então, ser integrado a um serviço de notificação, para enviar notificações ou alertas. Neste caso, integra-se com o serviço de notificação por e-mail para enviar alertas com base nos critérios acima referidos.
 
-![Central Event Processor Architecture](./assets/diagrams/architecture/CEPArchTechOverview.svg)
+![Central Event Processor Architecture](../../../../technical/technical/central-event-processor/assets/diagrams/architecture/CEPArchTechOverview.svg)

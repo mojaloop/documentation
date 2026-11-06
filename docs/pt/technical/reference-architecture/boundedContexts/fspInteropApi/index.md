@@ -17,7 +17,7 @@ O IOP FSP API interage com diversos contextos delimitados e, por isso, apresenta
 -   Transferências no Contexto Delimitado [^22]
 -   Contexto Delimitado pela Liquidação [^21]
 
-![Use Case - FSP Interoperability API Functional Overview](./assets/0-0-functional-overview.jpg)
+![Use Case - FSP Interoperability API Functional Overview](../../../../../technical/reference-architecture/boundedContexts/fspInteropApi/assets/0-0-functional-overview.jpg)
 
 > FSP Interoperabilidade API Visão geral funcional
 
@@ -49,7 +49,7 @@ As notificações dizem respeito a TODOS os casos de uso abaixo, em resposta a p
 
 #### Fluxograma
 
-![Use Case - Notifications BC - Send Notification](./assets/0-0-0-notifications.jpg)
+![Use Case - Notifications BC - Send Notification](../../../../../technical/reference-architecture/boundedContexts/fspInteropApi/assets/0-0-0-notifications.jpg)
 
 >
 
@@ -63,7 +63,7 @@ Realizar a transferência dos participantes e/ou das partes com base no pedido P
 
 #### Diagrama de fluxo
 
-![Use Case - Account Lookup & Discovery BC - Party/Participant Associate](./assets/0-1-party-participant-associate.jpg)
+![Use Case - Account Lookup & Discovery BC - Party/Participant Associate](../../../../../technical/reference-architecture/boundedContexts/fspInteropApi/assets/0-1-party-participant-associate.jpg)
 
 >
 
@@ -75,7 +75,7 @@ Desassociar participante(s) e/ou partes com base no pedido DELETE Participant [^
 
 #### Diagrama de fluxo
 
-![Use Case - Account Lookup & Discovery BC - Party/Participant Disassociate](./assets/0-2-party-participant-disassociate.jpg)
+![Use Case - Account Lookup & Discovery BC - Party/Participant Disassociate](../../../../../technical/reference-architecture/boundedContexts/fspInteropApi/assets/0-2-party-participant-disassociate.jpg)
 
 >
 
@@ -87,7 +87,7 @@ Recuperar informações sobre o participante com base no pedido GET Participant 
 
 #### Diagrama de fluxo
 
-![Use Case - Account Lookup & Discovery BC - Get Participant](./assets/0-3-get-participant.jpg)
+![Use Case - Account Lookup & Discovery BC - Get Participant](../../../../../technical/reference-architecture/boundedContexts/fspInteropApi/assets/0-3-get-participant.jpg)
 
 >
 
@@ -99,7 +99,7 @@ Recuperar informações sobre a parte com base no ID transmitido com o pedido GE
 
 #### Diagrama de fluxo
 
-![Use Case - Account Lookup & Discovery BC - Get Party](./assets/0-4-get-party.jpg)
+![Use Case - Account Lookup & Discovery BC - Get Party](../../../../../technical/reference-architecture/boundedContexts/fspInteropApi/assets/0-4-get-party.jpg)
 
 >
 
@@ -113,7 +113,7 @@ Quando uma cotação é enviada através do pedido POST Quote [^3] (POST /quotes
 
 #### Diagrama de fluxo
 
-![Use Case - Agreement BC - Calculate Quote - Happy Path](./assets/1-1-calculate-quote-happy-path.jpg)
+![Use Case - Agreement BC - Calculate Quote - Happy Path](../../../../../technical/reference-architecture/boundedContexts/fspInteropApi/assets/1-1-calculate-quote-happy-path.jpg)
 
 >
 
@@ -125,7 +125,7 @@ Isto permite que um FSP obtenha informações sobre uma cotação existente. O p
 
 #### Diagrama de fluxo
 
-![Use Case - Agreement BC -  Get Quote - Happy Path](./assets/1-2-get-quote-happy-path.jpg)
+![Use Case - Agreement BC -  Get Quote - Happy Path](../../../../../technical/reference-architecture/boundedContexts/fspInteropApi/assets/1-2-get-quote-happy-path.jpg)
 
 >
 
@@ -137,7 +137,7 @@ Quando é recebida uma solicitação de cotação POST [^3] (POST /quotes), o IO
 
 #### Diagrama de fluxo
 
-![Use Case - Agreement BC - Calculate Quote - Invalid Quote Request](./assets/1-3-calculate-quote-invalid-quote-request.jpg)
+![Use Case - Agreement BC - Calculate Quote - Invalid Quote Request](../../../../../technical/reference-architecture/boundedContexts/fspInteropApi/assets/1-3-calculate-quote-invalid-quote-request.jpg)
 
 >
 
@@ -149,7 +149,7 @@ Quando é enviada uma solicitação POST de cotação [^3] (POST /quotes), mas o
 
 #### Diagrama de fluxo
 
-![Use Case - Agreement BC - Calculate Quote - Invalid FSPs](./assets/1-4-calculate-quote-invalid-fsps.jpg)
+![Use Case - Agreement BC - Calculate Quote - Invalid FSPs](../../../../../technical/reference-architecture/boundedContexts/fspInteropApi/assets/1-4-calculate-quote-invalid-fsps.jpg)
 
 >
 
@@ -161,7 +161,7 @@ Quando o Pagador FSP envia um pedido POST de cotação [^3] (POST /quotes), o IO
 
 #### Diagrama de fluxo
 
-![Use Case - Agreement BC - Calculate Quote - Invalid Scheme Rules detected in Request](./assets/1-5-calculate-quote-invalid-scheme-rules-request.jpg)
+![Use Case - Agreement BC - Calculate Quote - Invalid Scheme Rules detected in Request](../../../../../technical/reference-architecture/boundedContexts/fspInteropApi/assets/1-5-calculate-quote-invalid-scheme-rules-request.jpg)
 
 >
 
@@ -173,7 +173,7 @@ Quando o Pagador FSP envia um pedido POST de cotação [^3] (POST /quotes), o IO
 
 #### Diagrama de fluxo 
 
-![Use Case - Agreement BC - Calculate Quote - Invalid Scheme Rules detected in Response](./assets/1-6-calculate-quote-invalid-scheme-rules-response.jpg)
+![Use Case - Agreement BC - Calculate Quote - Invalid Scheme Rules detected in Response](../../../../../technical/reference-architecture/boundedContexts/fspInteropApi/assets/1-6-calculate-quote-invalid-scheme-rules-response.jpg)
 
 > Acordo BC - Calcular Cotação - Foram detetadas regras de esquema inválidas na resposta
 
@@ -187,7 +187,7 @@ O pagador FSP envia um pedido POST de transferências [^9] (POST /transfers) par
 
 #### Diagrama de fluxo
 
-![Use Case - Transfers BC - Perform Transfer (Universal Mode)](./assets/2-1-perform-transfer-universal-mode.jpg)
+![Use Case - Transfers BC - Perform Transfer (Universal Mode)](../../../../../technical/reference-architecture/boundedContexts/fspInteropApi/assets/2-1-perform-transfer-universal-mode.jpg)
 
 >
 
@@ -199,7 +199,7 @@ O Pagador FSP envia um pedido POST de transferências [^9] (POST /transfers) par
 
 #### Diagrama de fluxo
 
-![Use Case - Transfers BC - Perform Transfer with Payee Confirmation](./assets/2-2-perform-transfer-payee-confirmation.jpg)
+![Use Case - Transfers BC - Perform Transfer with Payee Confirmation](../../../../../technical/reference-architecture/boundedContexts/fspInteropApi/assets/2-2-perform-transfer-payee-confirmation.jpg)
 
 >
 
@@ -211,7 +211,7 @@ Obtém as informações da transferência com base no ID da transferência utili
 
 #### Diagrama de fluxo
 
-![Use Case - Transfers BC - Query Get Transfer](./assets/2-3-query-get-transfer.jpg)
+![Use Case - Transfers BC - Query Get Transfer](../../../../../technical/reference-architecture/boundedContexts/fspInteropApi/assets/2-3-query-get-transfer.jpg)
 
 >
 
@@ -223,7 +223,7 @@ O pedido POST de transferências [^9] (POST /transfers) já foi processado e é 
 
 #### Diagrama de fluxo
 
-![Use Case - Transfers BC - Perform Transfer - Duplicate Post (Resend)](./assets/2-4-perform-transfer-duplicate-post.jpg)
+![Use Case - Transfers BC - Perform Transfer - Duplicate Post (Resend)](../../../../../technical/reference-architecture/boundedContexts/fspInteropApi/assets/2-4-perform-transfer-duplicate-post.jpg)
 
 > Transferências BC - Efetuar transferência - Lançamento duplicado (reenviar)
 
@@ -235,7 +235,7 @@ O pedido de transferências POST [^9] (POST /transfers) já foi processado, mas 
 
 #### Diagrama de fluxo
 
-![Use Case - Transfers BC - Perform Transfer - Duplicate Post (Ignore)](./assets/2-5-perform-transfer-duplicate-post-ignor.jpg)
+![Use Case - Transfers BC - Perform Transfer - Duplicate Post (Ignore)](../../../../../technical/reference-architecture/boundedContexts/fspInteropApi/assets/2-5-perform-transfer-duplicate-post-ignor.jpg)
 
 >
 
@@ -247,7 +247,7 @@ O Pagador FSP envia um pedido POST de transferências [^9] (POST /transfers) par
 
 #### Diagrama de fluxo
 
-![Use Case - Transfers BC - Perform Transfer - Payee DFSP Rejects Transfer](./assets/2-6-perform-transfer-payeefsp-rejects-transfer.jpg)
+![Use Case - Transfers BC - Perform Transfer - Payee DFSP Rejects Transfer](../../../../../technical/reference-architecture/boundedContexts/fspInteropApi/assets/2-6-perform-transfer-payeefsp-rejects-transfer.jpg)
 
 >
 
@@ -259,7 +259,7 @@ O pedido de transferências POST [^9] (POST /transfers) é rejeitado porque a tr
 
 #### Diagrama de fluxo
 
-![Use Case - Transfers BC - Perform Transfer - Timeout (Prepare)](./assets/2-7-perform-transfer-timeout-prepare.jpg)
+![Use Case - Transfers BC - Perform Transfer - Timeout (Prepare)](../../../../../technical/reference-architecture/boundedContexts/fspInteropApi/assets/2-7-perform-transfer-timeout-prepare.jpg)
 
 >
 
@@ -271,7 +271,7 @@ O Pagador FSP envia um pedido POST de transferências [^9] (POST /transfers) par
 
 #### Diagrama de fluxo
 
-![Use Case - Transfers BC - Perform Transfer - Timeout (Pre-Committed)](./assets/2-8-perform-transfer-timeout-pre-committed.jpg)
+![Use Case - Transfers BC - Perform Transfer - Timeout (Pre-Committed)](../../../../../technical/reference-architecture/boundedContexts/fspInteropApi/assets/2-8-perform-transfer-timeout-pre-committed.jpg)
 
 >
 
@@ -283,7 +283,7 @@ O Pagador FSP envia um pedido POST de transferências [^9] (POST /transfers) par
 
 #### Diagrama de fluxo
 
-![Use Case - Transfers BC - Perform Transfer - Timeout (Post-Committed)](./assets/2-9-perform-transfer-timeout-post-commit.jpg)
+![Use Case - Transfers BC - Perform Transfer - Timeout (Post-Committed)](../../../../../technical/reference-architecture/boundedContexts/fspInteropApi/assets/2-9-perform-transfer-timeout-post-commit.jpg)
 
 >
 
@@ -295,7 +295,7 @@ O pedido de transferências POST [^9] (POST /transfers) já foi processado e é 
 
 #### Diagrama de fluxo
 
-![Use Case - Example REPLACE ME](./assets/2-10-perform-transfer-duplicate-none-matching.jpg)
+![Use Case - Example REPLACE ME](../../../../../technical/reference-architecture/boundedContexts/fspInteropApi/assets/2-10-perform-transfer-duplicate-none-matching.jpg)
 
 >
 
@@ -307,7 +307,7 @@ O pagador FSP envia um pedido POST de transferências [^9] (POST /transfers) par
 
 #### Diagrama de fluxo
 
-![Use Case - Transfers BC - Perform Transfer - Payer FSP Insufficient Liquidity](./assets/2-11-perform-transfer-payer-insuficiant-liquidity.jpg)
+![Use Case - Transfers BC - Perform Transfer - Payer FSP Insufficient Liquidity](../../../../../technical/reference-architecture/boundedContexts/fspInteropApi/assets/2-11-perform-transfer-payer-insuficiant-liquidity.jpg)
 
 >
 
@@ -319,7 +319,7 @@ O Pagador FSP envia um pedido POST de transferências [^9] (POST /transfers) par
 
 #### Diagrama de fluxo
 
-![Use Case - Transfers BC - Perform Transfer - Transfer Prepare Rejected](./assets/2-12-perform-transfer-prepare-rejected.jpg)
+![Use Case - Transfers BC - Perform Transfer - Transfer Prepare Rejected](../../../../../technical/reference-architecture/boundedContexts/fspInteropApi/assets/2-12-perform-transfer-prepare-rejected.jpg)
 
 >
 
@@ -331,7 +331,7 @@ O Pagador FSP envia um pedido POST de transferências [^9] (POST /transfers) par
 
 #### Diagrama de fluxo
 
-![Use Case - Transfers BC - Perform Transfer - Transfer Prepare Validation Failure (Invalid Payer Participant)](./assets/2-13-perform-transfer-prepare-validation-failure-invalid-payer-participant.jpg)
+![Use Case - Transfers BC - Perform Transfer - Transfer Prepare Validation Failure (Invalid Payer Participant)](../../../../../technical/reference-architecture/boundedContexts/fspInteropApi/assets/2-13-perform-transfer-prepare-validation-failure-invalid-payer-participant.jpg)
 
 >
 
@@ -343,7 +343,7 @@ O Pagador FSP envia um pedido POST de transferências [^9] (POST /transfers) par
 
 #### Diagrama de fluxo
 
-![Use Case - Transfers BC - Perform Transfer - Transfer Prepare Validation Failure (Invalid Payer Participant)](./assets/2-14-perform-transfer-prepare-validation-failure-invalid-payee-participant.jpg)
+![Use Case - Transfers BC - Perform Transfer - Transfer Prepare Validation Failure (Invalid Payer Participant)](../../../../../technical/reference-architecture/boundedContexts/fspInteropApi/assets/2-14-perform-transfer-prepare-validation-failure-invalid-payee-participant.jpg)
 
 >
 

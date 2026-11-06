@@ -8,5 +8,5 @@ Estrutura para a pesquisa de uma Parte por um número DFSP.
 
 ## Diagrama de sequência
 
-![](./assets/diagrams/sequence/seq-acct-lookup-get-parties-7.2.0.svg)
+![](../../../../technical/technical/account-lookup-service/assets/diagrams/sequence/seq-acct-lookup-get-parties-7.2.0.svg)
 

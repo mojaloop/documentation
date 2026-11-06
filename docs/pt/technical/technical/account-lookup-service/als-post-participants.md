@@ -8,5 +8,5 @@ Esquema para a criação de um participante por parte de um «DFSP» através de
 
 ## Diagrama de sequência
 
-![](./assets/diagrams/sequence/seq-acct-lookup-post-participants-7.1.3.svg)
+![](../../../../technical/technical/account-lookup-service/assets/diagrams/sequence/seq-acct-lookup-post-participants-7.1.3.svg)
 

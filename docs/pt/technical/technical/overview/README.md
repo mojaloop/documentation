@@ -8,7 +8,7 @@ Existem vários componentes que constituem o ecossistema Mojaloop. O hub Mojaloo
 
 O diagrama de componentes que se segue apresenta a composição dos serviços «Mojaloop» e a sua arquitetura de microsserviços:
 
-![Current Mojaloop Architecture Overview](./assets/diagrams/architecture/Arch-Mojaloop-overview-PI18.svg)
+![Current Mojaloop Architecture Overview](../../../../technical/technical/overview/assets/diagrams/architecture/Arch-Mojaloop-overview-PI18.svg)
 
 _Nota: A codificação por cores indica a relação entre o armazenamento de dados e as ligações de transmissão de mensagens/adaptadores. Por exemplo, o `Central-Services` utiliza o `MySQL` como armazenamento de dados e recorre ao `Kafka` para a transmissão de mensagens_
 

@@ -49,7 +49,7 @@ Ao criar a versão inicial da Arquitetura de Referência, a equipa seguiu os seg
 
 O diagrama abaixo ilustra a posição que uma arquitetura de referência ocupa em relação a outros processos da Plataforma Mojaloop; o que esta deve integrar e ter em conta, não só a visão e os princípios, mas também os requisitos, a experiência anterior e até mesmo a inovação técnica da Forster.
 
-![Perform Transfer (Universal Mode)](./assets/process.png)
+![Perform Transfer (Universal Mode)](../../../../technical/reference-architecture/introduction/assets/process.png)
 > Introdução (Arquitetura de Referência Mojaloop 2.0): Como manter a Arquitetura de Referência atualizada
 
 
