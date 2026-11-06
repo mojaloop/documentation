@@ -1,3 +1,7 @@
+---
+i18n_source_sha: c5c439207a43a1c78b5e7bc07bd17f975a8c45da
+---
+
 # Hub Mojaloop
 
 Plusieurs composants constituent l’écosystème Mojaloop. Le Hub Mojaloop est le conteneur principal et la référence que nous utilisons pour décrire les composants centraux de Mojaloop.

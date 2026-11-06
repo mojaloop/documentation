@@ -1,3 +1,7 @@
+---
+i18n_source_sha: aafe06e92ef8eaa07bbe44e3b7c8e0d162cc67bd
+---
+
 # Service des demandes de transaction
 
 ## Diagramme de séquence

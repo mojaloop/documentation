@@ -1,3 +1,7 @@
+---
+i18n_source_sha: aa4e41b910723f1ae506429e241e095e01345ffc
+---
+
 # Règlement
 
 1. [Fermez la fenêtre de règlement](#closing-a-settlement-window) que vous souhaitez régler.

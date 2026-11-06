@@ -1,3 +1,7 @@
+---
+i18n_source_sha: fbbbfd799d1bcd697a01b4c4e4de89bed4d9acd4
+---
+
 # Discussion transfrontalière — jour 2
 
 >**Liens**

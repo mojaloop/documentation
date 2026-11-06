@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 95db9223e9844d02b291bba895bc698e631afaa4
+---
+
 # Service Event Stream Processor
 
 L’**Event Stream Processor** consomme les messages d’événements du topic `topic-events` en réponse aux messages publiés par le service [event-sidecar](https://github.com/mojaloop/event-sidecar). Pour plus d’informations sur l’architecture globale, consulter l’[infrastructure d’événements (Event Framework)](../event-framework/README.md).

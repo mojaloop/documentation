@@ -1,3 +1,7 @@
+---
+i18n_source_sha: d895c3a83acecffe6233260290e541607bb287b7
+---
+
 # BC Reporting
 
 ## Vue d'ensemble

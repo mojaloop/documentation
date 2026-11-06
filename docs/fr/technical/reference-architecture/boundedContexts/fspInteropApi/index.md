@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 8e275f1dcc0523d64f96eab8f41c42b7b01ac4a1
+---
+
 # BC de l'API d'Interopérabilité FSP
 
 Le Contexte Borné de l'API d'Interopérabilité FSP (FSP Interoperability API Bounded Context) permet l'accès aux opérations internes et aux ressources que l'écosystème Mojaloop met à la disposition d'un Participant donné. Ce Contexte Borné est responsable de fournir à un Participant des interfaces lui permettant d'exécuter des actions sur Mojaloop. Il est également responsable de la communication vers le Participant concernant différentes notifications et messages système que ce dernier doit recevoir.

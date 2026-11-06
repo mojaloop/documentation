@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 88251e17d6a6504b7277c046e3529ec154e74222
+---
+
 # Demande de paiement (R2P) — prise en charge du cas d’usage
 
 Cette documentation décrit comment le SDK Scheme Adapter prend en charge le cas d’usage *request to pay* (demande de paiement). Ce cas d’usage est à la base de tous les transferts initiés par le bénéficiaire. La prise en charge exige que chaque DFSP sur un commutateur Mojaloop traite automatiquement un transfert dès qu’une demande de transfert est reçue et validée. L’intégration de ce cas dans le SDK Scheme Adapter est importante car elle réduit l’effort de développement de chaque DFSP lorsqu’un schéma impose le support par les participants. Ce cas d’usage est particulièrement intéressant d’un point de vue test, car il permet des tests à distance en tant que DFSP payeur et DFSP bénéficiaire.

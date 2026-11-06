@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 80323e1b1e15a1f348632ffd7d509318ad9119d1
+---
+
 # API d'Administration
 
 L'API d'Administration comprend les documents suivants.

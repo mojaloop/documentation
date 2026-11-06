@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 94530245857ef67e8e2cbada73ede201d60e6766
+---
+
 # Introduction
 
 Rejoignez la collaboration pour construire un ensemble de processus métier fondamentaux permettant un **"démarrage rapide"**, faciles à personnaliser, à contribuer en open source et conformes aux meilleures pratiques.

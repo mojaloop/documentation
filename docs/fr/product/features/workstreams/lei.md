@@ -1,5 +1,6 @@
 ---
 sidebarTitle: Adressage LEI
+i18n_source_sha: 258e5adcd0b363af00e0c7b2eb8038609bf9620d
 ---
 
 # Workstream Adressage LEI

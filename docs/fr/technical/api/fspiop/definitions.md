@@ -1,5 +1,6 @@
 ---
 footerCopyright: Attribution-NoDerivatives 4.0 International (CC BY-ND 4.0) | Ericsson, Huawei, Mahindra-Comviva, Telepin, et la Fondation Bill & Melinda Gates
+i18n_source_sha: e89691b20b45dd79773cf42ab6b7ca59c653df3a
 ---
 
 # API FSPIOP

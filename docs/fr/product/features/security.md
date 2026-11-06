@@ -1,5 +1,6 @@
 ---
 sidebarTitle: Sécurité
+i18n_source_sha: d9f330550c11ae1780666ac8936639e15775dfe3
 ---
 
 # Sécurité

@@ -1,3 +1,7 @@
+---
+i18n_source_sha: cd76ddded4be445425a8d93f5030f78467371289
+---
+
 # Modèle de règles métier du schéma
 
 - Version : 4.0 

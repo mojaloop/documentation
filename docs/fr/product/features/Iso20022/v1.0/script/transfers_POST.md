@@ -1,5 +1,6 @@
 ---
 sidebarTitle: POST /transfers
+i18n_source_sha: 2fccb0fee18d1d216b8cf2438baa972d09c4a51e
 ---
 
 ## 7.14 POST /transfers

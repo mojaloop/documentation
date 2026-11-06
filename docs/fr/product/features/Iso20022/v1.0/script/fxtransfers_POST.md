@@ -1,5 +1,6 @@
 ---
 sidebarTitle: POST /fxTransfers
+i18n_source_sha: 1124263f3fe30f67329e07c021e1968fab09678a
 ---
 
 ## 7.10 POST /fxTransfers

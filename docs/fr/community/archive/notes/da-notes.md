@@ -1,3 +1,7 @@
+---
+i18n_source_sha: e0e85582c3db1376c4004c6ccbcddd8c351441f4
+---
+
 ## Réunions DA : Aperçu
 L’Authority Design (DA) se réunit chaque semaine pour une mise à jour hebdomadaire et tient également des sessions ad hoc ou détaillées sur des sujets spécifiques.
 

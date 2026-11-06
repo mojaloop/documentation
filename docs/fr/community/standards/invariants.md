@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 2dea2117611b8228894998c17b90e2113a803a5c
+---
+
 # Invariants Mojaloop
 
 Les invariants suivants ont été établis au fil du développement de la plateforme, sur la base des exigences techniques déduites des [principes du Level One Project](https://www.leveloneproject.org/project_guide/level-one-project-design-principles/) et des bonnes pratiques applicables du secteur.

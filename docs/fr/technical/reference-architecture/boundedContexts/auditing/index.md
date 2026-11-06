@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 76b8654c8f9e781900909073adf3270309ae3cd1
+---
+
 # BC Auditing
 
 Le BC Auditing est responsable du maintien d’un enregistrement immuable de toutes les transactions qui ont lieu sur le Switch. Son architecture est composée de cinq principaux composants :

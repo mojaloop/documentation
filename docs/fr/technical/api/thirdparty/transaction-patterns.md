@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 5110f83e0d7a495b379694f3722a323eb42f121d
+---
+
 ## Modèles de Transactions
 
 Les interactions et exemples illustrant comment un DFSP et un PISP interagissent via l’API Tierce Partie se trouvent dans les documents suivants sur les modèles de transaction :

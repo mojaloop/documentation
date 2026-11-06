@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 638edcb54a2e6de5878d5c0bb9a9269b9ce604fb
+---
+
 # Prise en charge des transferts groupés par le SDK — API
 
 Les évolutions du SDK Scheme Adapter côté payeur sont exposées dans l’API sous l’endpoint `BulkTransactions` :

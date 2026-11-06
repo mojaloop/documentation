@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 761369b799cf783bb9cc88c2c6e8118843f41fb1
+---
+
 # BC de Recherche et Découverte de Comptes
 
 Le BC de Recherche et Découverte de Comptes est responsable de la localisation et de l’association des participants et des parties avec les transactions initiées par une partie ou un participant.

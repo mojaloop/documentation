@@ -1,5 +1,6 @@
 ---
 sidebarTitle: Guides des outils de participation
+i18n_source_sha: 9cacf74a1548fa1cf9c110cd4d6dab191ed69743
 ---
 
 # Guide de sélection et d’utilisation des outils de participation

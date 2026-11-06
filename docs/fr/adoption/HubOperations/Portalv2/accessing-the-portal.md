@@ -1,3 +1,7 @@
+---
+i18n_source_sha: b47b21c7b14010803a21a5baf740a62efbbb571c
+---
+
 # Accéder au portail
 
 Lorsque vous accédez au portail, vous êtes invité à vous connecter. Saisissez vos identifiants sur la page de connexion.

@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 53d368de36941d1f020adc40deed5f2f216821ac
+---
+
 Le diagramme suivant illustre la séquence de mise à jour recommandée pour les dépôts Mojaloop, en tenant compte de leurs dépendances et relations :
 
 ```mermaid
