@@ -2,6 +2,10 @@
 
 The document is intended for an audience with a stable technical knowledge that would like to setup an environment for development, testing and contributing to the Mojaloop project.
 
+## Infrastructure
+
+For information regarding on-premises infrastructure requirements for operating Mojaloop in production, please see our [Production Infrastructure Guide](Production_Infrastructure_Guide.md).
+
 ## Deployment and Setup
 
 - [Mojaloop Deployment](#mojaloop-deployment)
