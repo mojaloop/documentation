@@ -18,7 +18,7 @@ Termos com um significado específico e geralmente aceite no Contexto Delimitado
 
 ### Efetuar transferência (modo universal)
 
-![Use Case - Example REPLACE ME](./assets/useCaseExample.png)
+![Use Case - Example REPLACE ME](../../../../../technical/reference-architecture/boundedContexts/platformMonitoring/assets/useCaseExample.png)
 > imagem de exemplo - substituir
 
 <!-- Footnotes themselves at the bottom. -->

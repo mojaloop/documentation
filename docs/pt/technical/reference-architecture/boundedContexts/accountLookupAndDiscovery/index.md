@@ -17,7 +17,7 @@ Os termos seguintes são utilizados neste BC, também conhecido como domínio.
 
 ## Visão geral das funcionalidades
 
-![Use Case - Functional Overview](./assets/ML2RA_bc_accLookDiscvry_Apr22-b400.png)
+![Use Case - Functional Overview](../../../../../technical/reference-architecture/boundedContexts/accountLookupAndDiscovery/assets/ML2RA_bc_accLookDiscvry_Apr22-b400.png)
 >Diagrama funcional do BC: Visão geral da pesquisa e identificação de contas
 
 ## Casos de uso
@@ -32,7 +32,7 @@ Quando um Participante DFSP solicita que um determinado ID de Parte seja associa
 
 #### Diagrama de fluxo
 
-![Use Case - Party/Participant Associate](./assets/aldPartyParticipantAssoc_20220919.png)
+![Use Case - Party/Participant Associate](../../../../../technical/reference-architecture/boundedContexts/accountLookupAndDiscovery/assets/aldPartyParticipantAssoc_20220919.png)
 >Diagrama de fluxo da UC: Associado da parte/participante
 
 ### Exclusão de uma parte/participante
@@ -43,7 +43,7 @@ Quando um Participante DFSP solicita que seja removida uma associação existent
 
 #### Diagrama de fluxo
 
-![Use Case - Party/Participant Disassociate](./assets/aldPartyParticipantDisassoc_20220919.png)
+![Use Case - Party/Participant Disassociate](../../../../../technical/reference-architecture/boundedContexts/accountLookupAndDiscovery/assets/aldPartyParticipantDisassoc_20220919.png)
 >Diagrama de fluxo de trabalho da UC: Desassociação de parte/participante
 
 
@@ -57,7 +57,7 @@ Quando um Participante DFSP solicita informações sobre a associação de um Pa
 
 #### Diagrama de fluxo
 
-![Use Case - Get Participant](./assets/aldGetParticipant_20210825.png)
+![Use Case - Get Participant](../../../../../technical/reference-architecture/boundedContexts/accountLookupAndDiscovery/assets/aldGetParticipant_20210825.png)
 >Diagrama de fluxo da UC: Obter participante
 
 ### Vá à festa
@@ -68,7 +68,7 @@ Quando um participante DFSP solicita a outro participante DFSP os detalhes de um
 
 #### Diagrama de fluxo
 
-![Use Case - Get Party](./assets/aldGetParty_20210825.png)
+![Use Case - Get Party](../../../../../technical/reference-architecture/boundedContexts/accountLookupAndDiscovery/assets/aldGetParty_20210825.png)
 >Diagrama de fluxo da UC: Obter Parte
 
 <!--## Notes -->

@@ -33,7 +33,7 @@ A definição «OpenAPI» está disponível no [repositório da especificação 
 
 ## Arquitetura de alto nível
 
-![High-level Settlement Architecture](../../.vuepress/public/BizOps-Framework-Settlements.png)
+![High-level Settlement Architecture](../../../.vuepress/public/BizOps-Framework-Settlements.png)
 
 ### Camada de experiência
 
@@ -78,7 +78,7 @@ Existem inúmeras outras abordagens para implementar a liquidação que seguem a
 Substituir o mecanismo de reequilíbrio pela importação de um extrato das transações da conta bancária de liquidação eliminaria os problemas de temporização e de reconciliação acima mencionados.
 
 ## Diagrama de sequência detalhado
-![Settlement Detailed Process](../../.vuepress/public/settlementProcessAPI.svg)
+![Settlement Detailed Process](../../../.vuepress/public/settlementProcessAPI.svg)
 
 Existem alguns processos no diagrama de sequência que merecem ser aprofundados.
 
@@ -155,7 +155,7 @@ ___
 
 **Diagrama de sequência detalhado do processo de liquidação**
 
-![Initiate Settlement Process with Errors](../../.vuepress/public/settlementProcessInitiationErrors.svg)
+![Initiate Settlement Process with Errors](../../../.vuepress/public/settlementProcessInitiationErrors.svg)
 
 **Códigos de erro na iniciação da liquidação**
 
@@ -173,7 +173,7 @@ ___
 
 **Diagrama de sequência detalhado do processo de finalização da liquidação**
 
-![Initiate Settlement Process with Errors](../../.vuepress/public/settlementProcessFinaliseErrors.svg)
+![Initiate Settlement Process with Errors](../../../.vuepress/public/settlementProcessFinaliseErrors.svg)
 
 **Códigos de erro na validação da liquidação final**
 

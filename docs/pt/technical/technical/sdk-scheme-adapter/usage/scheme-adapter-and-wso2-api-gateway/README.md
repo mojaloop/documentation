@@ -7,7 +7,7 @@ i18n_source_sha: f780e85bc88b8789742071e4ce1edf4ab84e8d1e
 Esta documentação destina-se a testar o adaptador de esquema num gateway WSO2 API alojado publicamente, com encriptação SSL e autenticação por token de portador.
 
 
-![Overview](scheme-adapter-and-wso2-api-gateway-overview.png)
+![Overview](../../../../../../technical/technical/sdk-scheme-adapter/usage/scheme-adapter-and-wso2-api-gateway/scheme-adapter-and-wso2-api-gateway-overview.png)
 
 ## Pré-requisito
 

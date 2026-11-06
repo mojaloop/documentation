@@ -22,12 +22,12 @@ Esta documentação descreve a forma como o Adaptador de Esquema SDK suporta o c
 O diagrama seguinte resume este fluxo.
 
 
-![R2P Sequence Diagram](./assets/sequence/requestToPaySDK-R2P-SequenceDiagram.svg)
+![R2P Sequence Diagram](../../../../technical/technical/sdk-scheme-adapter/assets/sequence/requestToPaySDK-R2P-SequenceDiagram.svg)
 
 ## Diagrama de sequência detalhado
 
 Apresenta-se abaixo um diagrama de sequência mais detalhado para o caso de uso «pedido de pagamento» e as chamadas que o Adaptador do Esquema SDK realiza ao API.
 
-![R2P Detailed Sequence Diagram](./assets/sequence/SDKrequestToPay.svg)
+![R2P Detailed Sequence Diagram](../../../../technical/technical/sdk-scheme-adapter/assets/sequence/SDKrequestToPay.svg)
 
 

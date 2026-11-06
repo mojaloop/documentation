@@ -8,5 +8,5 @@ Conceção para a desativação de um Oracle pelo operador do hub.
 
 ## Diagrama de sequência
 
-![](./assets/diagrams/sequence/seq-acct-lookup-del-endpoint-cache-7.3.0.svg)
+![](../../../../technical/technical/account-lookup-service/assets/diagrams/sequence/seq-acct-lookup-del-endpoint-cache-7.3.0.svg)
 

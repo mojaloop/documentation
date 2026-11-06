@@ -30,13 +30,13 @@ Termos com um significado específico e geralmente aceite no Contexto Delimitado
 
 #### Diagrama de fluxo
 
-![Use Case - Send Async Notifications with Delivery Report](./assets/sendAsyncNotificationWithDeliveryReport.png)
+![Use Case - Send Async Notifications with Delivery Report](../../../../../technical/reference-architecture/boundedContexts/notificationsAndAlerts/assets/sendAsyncNotificationWithDeliveryReport.png)
 
 ### Enviar notificações síncronas com relatório de entrega
 
 #### Diagrama de fluxo
 
-![Use Case - Send Sync Notifications with Delivery Report](./assets/sendSyncNotificationWithDeliveryReport.png)
+![Use Case - Send Sync Notifications with Delivery Report](../../../../../technical/reference-architecture/boundedContexts/notificationsAndAlerts/assets/sendSyncNotificationWithDeliveryReport.png)
 
 <!-- Footnotes themselves at the bottom. -->
 
@@ -52,13 +52,13 @@ Os operadores do hub ou subsistemas poderão chamar o Registo de Alertas API par
 
 #### Diagrama de fluxo
 
-![Use Case - Send Sync Notifications with Delivery Report](./assets/alertRegistration.png)
+![Use Case - Send Sync Notifications with Delivery Report](../../../../../technical/reference-architecture/boundedContexts/notificationsAndAlerts/assets/alertRegistration.png)
 
 ### Notificações de alerta
 
 #### Diagrama de fluxo
 
-![Use Case - Send Sync Notifications with Delivery Report](./assets/alertNotification.png)
+![Use Case - Send Sync Notifications with Delivery Report](../../../../../technical/reference-architecture/boundedContexts/notificationsAndAlerts/assets/alertNotification.png)
 
 <!-- Footnotes themselves at the bottom. -->
 <!--## Notes

@@ -73,7 +73,7 @@ O host inclui um mecanismo interno responsável por carregar apenas os elementos
 Os micro-front-ends individuais não serão carregados quando não for necessário (por exemplo, quando o utilizador não aceder a uma página específica).
 
 **Diagrama de sequência de alto nível que ilustra a forma como os microsserviços são carregados**
-![High level sequence diagram illustrating how microservices are loaded](../../.vuepress/public/microfrontendloading.png)
+![High level sequence diagram illustrating how microservices are loaded](../../../.vuepress/public/microfrontendloading.png)
 
 ### Repositório de micro-front-ends
 A fim de disponibilizar uma entidade centralizada responsável por garantir que cada um dos micro-front-ends cumpra os requisitos necessários, sugere-se a criação de uma solução que funcione como um registo.
@@ -92,7 +92,7 @@ O diagrama geral que se segue ilustra o deployment dos micro-front-ends numa CDN
 ::: dica NOTA
 O deployment do contexto delimitado API não é abordado neste diagrama.
 :::
-![Overview diagram showing deployment](../../.vuepress/public/BizOps-Framework-Micro-frontend-deploy.png)
+![Overview diagram showing deployment](../../../.vuepress/public/BizOps-Framework-Micro-frontend-deploy.png)
 
 Os micro-frontends utilizam deployments atómicas e nunca é necessária uma compilação completa.
 

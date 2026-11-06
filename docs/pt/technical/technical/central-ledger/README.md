@@ -14,16 +14,16 @@ O Central Ledger consiste numa série de serviços que facilitam a compensação
 
 ### 1.1 Visão geral da arquitetura
 
-![Central-Ledger Architecture](./assets/diagrams/architecture/Arch-mojaloop-central-ledger.svg)
+![Central-Ledger Architecture](../../../../technical/technical/central-ledger/assets/diagrams/architecture/Arch-mojaloop-central-ledger.svg)
 
 ## 2. Arquitetura de transferências de ponta a ponta
 
 
 ### 2.1 Arquitetura de transferências de ponta a ponta para a v1.1
-![Transfers Architecture for Mojaloop FSP Interoperability API v1.1](./assets/diagrams/architecture/Transfers-Arch-End-to-End-v1.1.svg)
+![Transfers Architecture for Mojaloop FSP Interoperability API v1.1](../../../../technical/technical/central-ledger/assets/diagrams/architecture/Transfers-Arch-End-to-End-v1.1.svg)
 
 ### 2.2 Arquitetura de transferências de ponta a ponta para a versão 1.0
-![Transfers Architecture for Mojaloop FSP Interoperability API v1.0](./assets/diagrams/architecture/Transfers-Arch-End-to-End-v1.0.svg)
+![Transfers Architecture for Mojaloop FSP Interoperability API v1.0](../../../../technical/technical/central-ledger/assets/diagrams/architecture/Transfers-Arch-End-to-End-v1.0.svg)
 
 ## 3. Conceção de bases de dados
 
@@ -47,10 +47,10 @@ Resumo das tabelas específicas do processo de transferência;
 
 As tabelas restantes no ERD abaixo são tabelas de referência (azuis) ou específicas da liquidação (vermelhas) e estão incluídas como dependências diretas ou indiretas, a fim de ilustrar a relação entre as entidades específicas da transferência e as tabelas de transferência.
 
-A definição do esquema da base de dados do **Central Ledger** [Definição do esquema da base de dados do Central Ledger](./assets/database/central-ledger-ddl-MySQLWorkbench.sql).
+A definição do esquema da base de dados do **Central Ledger** [Definição do esquema da base de dados do Central Ledger](../../../../technical/technical/central-ledger/assets/database/central-ledger-ddl-MySQLWorkbench.sql).
 
-![Central-Ledger Database Diagram](./assets/database/central-ledger-schema.png)
+![Central-Ledger Database Diagram](../../../../technical/technical/central-ledger/assets/database/central-ledger-schema.png)
 
 ## 4. Especificação API
 
-Consulte o **Central Ledger API** na secção [API Specifications](../../api/README.md#central-ledger-api).
+Consulte o **Central Ledger API** na secção [API Specifications](../../../../technical/api/README.md#central-ledger-api).

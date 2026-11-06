@@ -10,7 +10,7 @@ _Nota: Para além das cotações individuais, o serviço de cotação também pe
 
 ## Diagrama de sequência
 
-![](./assets/diagrams/sequence/seq-quotes-1.0.0.svg)
+![](../../../../technical/technical/quoting-service/assets/diagrams/sequence/seq-quotes-1.0.0.svg)
 
 ## Citações individuais
 

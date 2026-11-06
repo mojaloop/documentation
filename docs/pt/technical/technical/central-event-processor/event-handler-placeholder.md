@@ -8,4 +8,4 @@ Diagrama de conceção de sequências para o processo «Gestor de Eventos».
 
 ## Diagrama de sequência
 
-![](./assets/diagrams/sequence/seq-event-9.1.0.svg)
+![](../../../../technical/technical/central-event-processor/assets/diagrams/sequence/seq-event-9.1.0.svg)

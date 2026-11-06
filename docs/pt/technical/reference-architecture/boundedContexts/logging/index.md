@@ -14,7 +14,7 @@ Os Contextos Delimitados devem publicar os eventos num formato definido e utiliz
 
 #### Diagrama de fluxo
 
-![Use Case - Event Based Logging](./assets/ML2RA_Logging_ucEventBasedLogging_Apr22-b-1450.png)
+![Use Case - Event Based Logging](../../../../../technical/reference-architecture/boundedContexts/logging/assets/ML2RA_Logging_ucEventBasedLogging_Apr22-b-1450.png)
 >Diagrama de fluxo de trabalho da UC: Registo baseado em eventos
 
 <!-- Footnotes themselves at the bottom. -->

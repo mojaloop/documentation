@@ -14,5 +14,5 @@ Esquema para a criação de um participante por um «DFSP» através de um pedid
 
 ## Diagrama de sequência
 
-![](./assets/diagrams/sequence/seq-acct-lookup-post-participants-batch-7.1.1.svg)
+![](../../../../technical/technical/account-lookup-service/assets/diagrams/sequence/seq-acct-lookup-post-participants-batch-7.1.1.svg)
 

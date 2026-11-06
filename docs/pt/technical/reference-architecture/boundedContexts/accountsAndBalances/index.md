@@ -22,7 +22,7 @@ Termos com um significado específico e geralmente aceite no Contexto Delimitado
 
 ## Visão geral das funcionalidades - Contas e saldos
 
-![Functional Overview - Accounts and Balances](./assets/ML2RA_A&B-bcAccBal-FunctionalOverview_Mar22-c.png)
+![Functional Overview - Accounts and Balances](../../../../../technical/reference-architecture/boundedContexts/accountsAndBalances/assets/ML2RA_A&B-bcAccBal-FunctionalOverview_Mar22-c.png)
 >Diagrama funcional do BC: Visão geral das contas e saldos
 
 ## Casos de uso
@@ -41,13 +41,13 @@ Criação de conta a partir de [Gestão do Ciclo de Vida do Participante BC](../
 
 <!-- Warning Note to Developers & Editors!!: The following two images are being rendered from the Participant Lifecycle BC. -->
 
-![Use Case - PLCM BC](../participantLifecycleManagement/assets/ML2RA_PLM-ucAddParticipantAccountInit_Apr22-a_P1-1429.png)
-![Use Case - Add Participant Account - Approval (P2)](../participantLifecycleManagement/assets/ML2RA_PLM-ucAddParticipantAccountAppro_Apr22-a_P2-1429.png)
+![Use Case - PLCM BC](../../../../../technical/reference-architecture/boundedContexts/participantLifecycleManagement/assets/ML2RA_PLM-ucAddParticipantAccountInit_Apr22-a_P1-1429.png)
+![Use Case - Add Participant Account - Approval (P2)](../../../../../technical/reference-architecture/boundedContexts/participantLifecycleManagement/assets/ML2RA_PLM-ucAddParticipantAccountAppro_Apr22-a_P2-1429.png)
 >Diagrama de fluxo de trabalho da UC: Adicionar contas de participantes
 
 Criação de conta a partir de [Liquidações BC](../settlements/index.md)
 
-![Use Case - Settlements BC](../settlements/assets/ML2RA_SET-ucBootStrapSettleModViaConfig_Mar22-b.png)
+![Use Case - Settlements BC](../../../../../technical/reference-architecture/boundedContexts/settlements/assets/ML2RA_SET-ucBootStrapSettleModViaConfig_Mar22-b.png)
 >Diagrama de fluxo de trabalho da UC: Modelo de liquidação inicial (arranque) através da configuração
 
 ### Encerrar conta
@@ -68,7 +68,7 @@ Consultar os limites de liquidez CR/DR a partir de [Gestão do Ciclo de Vida dos
 
 <!-- Warning Note to Developers & Editors!!: The following two images are being rendered from the Participant Lifecycle BC. -->
 
-![Use Case - PLCM BC](../participantLifecycleManagement/assets/ML2RA_PLM-ucLiquidityCoverQuery_Apr22-a_1429.png)
+![Use Case - PLCM BC](../../../../../technical/reference-architecture/boundedContexts/participantLifecycleManagement/assets/ML2RA_PLM-ucLiquidityCoverQuery_Apr22-a_1429.png)
 >Diagrama de fluxo de trabalho da UC: Consultas relativas à cobertura de liquidez
 
 ### Consultar lançamentos contábeis
@@ -88,17 +88,17 @@ Responda indicando o saldo atualizado da conta.
 
 Inserção de lançamento contábil a partir de [Transferências BC](../transfers/index.md)
 
-![Use Case - Transfers BC](../transfers/assets/ML2RA_Trf_ucPerformTrfUniMode_Mar22a.png)
+![Use Case - Transfers BC](../../../../../technical/reference-architecture/boundedContexts/transfers/assets/ML2RA_Trf_ucPerformTrfUniMode_Mar22a.png)
 >Diagrama de fluxo de trabalho da UC: Efetuar transferência (modo universal)
 
 Inserção de lançamento contábil a partir de [Liquidações BC](../settlements/index.md), utilizando o modelo `Deferred Net Settlement` (DNS)
 
-![Use Case - Settlements BC](../settlements/assets/ML2RA_SET-ucDeferNetSettle_Mar22-a-P1-2.png)
+![Use Case - Settlements BC](../../../../../technical/reference-architecture/boundedContexts/settlements/assets/ML2RA_SET-ucDeferNetSettle_Mar22-a-P1-2.png)
 >Diagrama de fluxo de trabalho da UC: Liquidação líquida diferida - 19/10/2021
 
 Inserção de lançamentos contabilísticos a partir do [BC](../settlements/index.md), utilizando o modelo `Immediate Gross Settlement` (IGS)
 
-![Use Case - Settlements BC](../settlements/assets/ML2RA_SET-ucInstantGrossSettle_Mar22-a.png)
+![Use Case - Settlements BC](../../../../../technical/reference-architecture/boundedContexts/settlements/assets/ML2RA_SET-ucInstantGrossSettle_Mar22-a.png)
 >Diagrama de fluxo de trabalho da UC: Liquidação bruta imediata
 
 ## Modelo canónico

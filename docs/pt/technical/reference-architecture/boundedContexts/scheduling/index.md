@@ -47,7 +47,7 @@ O fluxo de trabalho proporcionado por esta UC permite que o switch processe os p
 
 #### Diagrama de fluxo
 
-![Create Reminder](./assets/schedulingCreateReminder_20211021.png)
+![Create Reminder](../../../../../technical/reference-architecture/boundedContexts/scheduling/assets/schedulingCreateReminder_20211021.png)
 >
 ### Lembrete acionado
 
@@ -56,7 +56,7 @@ O fluxo de trabalho proporcionado por esta UC permite que o switch processe lemb
 
 #### Diagrama de fluxo
 
-![Reminder Triggered](./assets/schedulingReminderTriggered_20211021.png)
+![Reminder Triggered](../../../../../technical/reference-architecture/boundedContexts/scheduling/assets/schedulingReminderTriggered_20211021.png)
 >
 ### Eliminar lembrete (recorrente)
 
@@ -65,7 +65,7 @@ O fluxo de trabalho proporcionado por esta UC permite que o switch processe mens
 
 #### Diagrama de fluxo
 
-![Delete (Recurring) Reminder](./assets/schedulingDeleteRecurringReminder_20211021.png)
+![Delete (Recurring) Reminder](../../../../../technical/reference-architecture/boundedContexts/scheduling/assets/schedulingDeleteRecurringReminder_20211021.png)
 >
 
 <!-- Footnotes themselves at the bottom. -->

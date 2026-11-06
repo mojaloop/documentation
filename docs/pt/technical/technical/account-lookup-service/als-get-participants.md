@@ -8,5 +8,5 @@ Conceção para a pesquisa de um participante por um DFSP.
 
 ## Diagrama de sequência
 
-![](./assets/diagrams/sequence/seq-acct-lookup-get-participants-7.1.0.svg)
+![](../../../../technical/technical/account-lookup-service/assets/diagrams/sequence/seq-acct-lookup-get-participants-7.1.0.svg)
 

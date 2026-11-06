@@ -8,5 +8,5 @@ Conceção para a consulta de uma cotação por um número FSP.
 
 ## Diagrama de sequência
 
-![](./assets/diagrams/sequence/seq-get-quotes-1.1.0.svg)
+![](../../../../technical/technical/quoting-service/assets/diagrams/sequence/seq-get-quotes-1.1.0.svg)
 

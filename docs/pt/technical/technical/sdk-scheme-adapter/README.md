@@ -18,7 +18,7 @@ Existem várias soluções de terceiros que oferecem suporte, ferramentas e inte
 
 O Payment Manager, uma ferramenta de código aberto*, é um exemplo disso. O Payment Manager oferece vantagens adicionais; pode encontrar mais informações [here](https://rtplex.io/). Os deployments do Payment Manager podem ser do tipo SaaS ou auto-hospedados.
 
-![SDK-Scheme-Adapter Mode 1](./assets/SDKSchemeAdapterMode1.svg)
+![SDK-Scheme-Adapter Mode 1](../../../../technical/technical/sdk-scheme-adapter/assets/SDKSchemeAdapterMode1.svg)
 
 - SDK O Scheme Adapter é utilizado diretamente na implementação da integração personalizada.
 - Uma vez que o SDK-Scheme-Adapter é mantido pela comunidade, esta ferramenta proporciona um percurso de atualização para a utilização das novas versões Mojaloop API.
@@ -35,7 +35,7 @@ Todos estes estão abrangidos pela Licença Apache v2.0. Esta foi especificament
 
 Neste caso, a empresa DFSP opta por desenvolver um «Core Connector» personalizado entre o seu back-end e o Adaptador de Esquema MojaloopSDK. Podem utilizar as diretrizes de código aberto para desenvolver o «Core Connector».
 
-![SDK-Scheme-Adapter Mode 2](./assets/SDKSchemeAdapterMode2.svg)
+![SDK-Scheme-Adapter Mode 2](../../../../technical/technical/sdk-scheme-adapter/assets/SDKSchemeAdapterMode2.svg)
 
 - SDK O Scheme Adapter é utilizado diretamente na implementação da integração personalizada.
 - Uma vez que o SDK-Scheme-Adapter é mantido pela comunidade, esta ferramenta proporciona um percurso de atualização para a utilização das novas versões Mojaloop API.
@@ -47,7 +47,7 @@ Neste caso, a empresa DFSP opta por desenvolver um «Core Connector» personaliz
 
 Não é utilizada nenhuma ligação padrão e o DFSP opta por estabelecer a sua própria ligação ao hub Mojaloop.
 
-![SDK-Scheme-Adapter Mode 3](./assets/SDKSchemeAdapterMode3.svg)
+![SDK-Scheme-Adapter Mode 3](../../../../technical/technical/sdk-scheme-adapter/assets/SDKSchemeAdapterMode3.svg)
 
 - Desenvolvido com base em documentação de projeto de código aberto
 - Mojaloop Apoio à comunidade

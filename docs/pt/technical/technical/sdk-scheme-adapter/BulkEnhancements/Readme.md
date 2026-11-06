@@ -47,7 +47,7 @@ Estas são as funcionalidades que se encontram atualmente implementadas:
 | Beneficiário SDK - Desmultiplexação de notificação de correção em massa | ainda não começou | |
 
 ### Diagrama funcional
-![Functional Diagram](../assets/BulkSDKEnhancements.drawio.svg)
+![Functional Diagram](../../../../../technical/technical/sdk-scheme-adapter/assets/BulkSDKEnhancements.drawio.svg)
 
 ## Diagrama arquitetónico
 A arquitetura de Event Sourcing dividiu a implementação em quatro componentes
@@ -60,10 +60,10 @@ O Gestor de Eventos de Comando processa eventos de comando e gera eventos de dom
 1. **FSPIOP API**:
 O FSPIOP API monitoriza eventos do domínio e gera as chamadas FSPIOP correspondentes, e monitoriza API callbacks para gerar os eventos do domínio correspondentes.
 
-![Architectural Diagram](../assets/BulkSDKEnhancements-Architecture.drawio.svg)
+![Architectural Diagram](../../../../../technical/technical/sdk-scheme-adapter/assets/BulkSDKEnhancements-Architecture.drawio.svg)
 
 
 ## Diagrama de sequências geral
 Apresentamos aqui um diagrama de sequência que descreve o papel que o Adaptador de Esquema SDK irá desempenhar numa chamada em massa, tanto para um Pagador DFSP como para um Beneficiário DFSP.
-![Bulk Transfer Sequence Diagram Overview](../assets/sequence/SDKBulkSequenceDiagram.svg)
+![Bulk Transfer Sequence Diagram Overview](../../../../../technical/technical/sdk-scheme-adapter/assets/sequence/SDKBulkSequenceDiagram.svg)
 

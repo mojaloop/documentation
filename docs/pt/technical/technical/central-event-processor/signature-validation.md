@@ -8,4 +8,4 @@ Diagrama de conceção da sequência para o processo de validação de assinatur
 
 ## Diagrama de sequência
 
-![](./assets/diagrams/sequence/seq-signature-validation.svg)
+![](../../../../technical/technical/central-event-processor/assets/diagrams/sequence/seq-signature-validation.svg)

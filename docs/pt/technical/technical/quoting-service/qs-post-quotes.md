@@ -8,5 +8,5 @@ Pedido de cotação para um projeto por parte de um FSP.
 
 ## Diagrama de sequência
 
-![](./assets/diagrams/sequence/seq-post-quotes-1.2.0.svg)
+![](../../../../technical/technical/quoting-service/assets/diagrams/sequence/seq-post-quotes-1.2.0.svg)
 

@@ -31,7 +31,7 @@ A função de início de sessão requer que o ID do utilizador e uma chave secre
 
 #### Diagrama de fluxo
 
-![Use Case - BC User / Operator Login (AuthN)](./assets/ML2RA_SecAuth-ucUserOpsLogin(AuthN) de abril de 1829.png)
+![Use Case - BC User / Operator Login (AuthN)](../../../../../technical/reference-architecture/boundedContexts/security/assets/ML2RA_SecAuth-ucUserOpsLogin(AuthN)_Apr22_1829.png)
 > Diagrama de fluxo de trabalho da UC: Início de sessão do utilizador/operador BC (AuthN)
 
 ### Modelo de Autorização BC (AuthZ)
@@ -43,7 +43,7 @@ O IAM irá fornecer associações entre utilizadores/grupos, funções e privil�
 
 #### Diagrama de fluxo
 
-![Use Case - BC Authorization Model (AuthZ)](./assets/ML2RA_SecAuth-ucAuthModel_Apr22_1829.png)
+![Use Case - BC Authorization Model (AuthZ)](../../../../../technical/reference-architecture/boundedContexts/security/assets/ML2RA_SecAuth-ucAuthModel_Apr22_1829.png)
 > Diagrama de fluxo de trabalho da UC: Modelo de autorização BC (AuthZ)
 
 ### BC Bootstrap
@@ -54,7 +54,7 @@ Na fase de inicialização, o BC enviará a lista de privilégios possíveis. Is
 
 #### Diagrama de fluxo
 
-![Use Case - BC Bootstrap](./assets/ML2RA_SecAuth-ucBcBootstrap-OncePerNewVer_Apr22_1829.png)
+![Use Case - BC Bootstrap](../../../../../technical/reference-architecture/boundedContexts/security/assets/ML2RA_SecAuth-ucBcBootstrap-OncePerNewVer_Apr22_1829.png)
 > Diagrama de fluxo de trabalho da UC: BC Bootstrap
 
 ### BC Startup
@@ -65,7 +65,7 @@ No arranque, o BC solicitará as chaves públicas do emissor de autenticação a
 
 ##### Diagrama de fluxo
 
-![Use Case - BC Startup](./assets/ML2RA_SecAuth-ucBcStartup_Apr22_1829.png)
+![Use Case - BC Startup](../../../../../technical/reference-architecture/boundedContexts/security/assets/ML2RA_SecAuth-ucBcStartup_Apr22_1829.png)
 > Diagrama de fluxo de trabalho da UC: Inicialização do BC
 
 ### Associação entre funções e privilégios
@@ -76,7 +76,7 @@ As funções estão associadas a uma série de privilégios.
 
 #### Diagrama de fluxo
 
-![Use Case - BC Startup](./assets/ML2RA_SecAuth-ucRolePriviledgeAssoc_Apr22_1829.png)
+![Use Case - BC Startup](../../../../../technical/reference-architecture/boundedContexts/security/assets/ML2RA_SecAuth-ucRolePriviledgeAssoc_Apr22_1829.png)
 > Diagrama de fluxo de trabalho da UC: Associação de funções e privilégios
 
 ### Exemplo de consulta / chamada
@@ -88,7 +88,7 @@ Para utilizar o token de acesso, o cliente deve definir o cabeçalho «Authoriza
 
 #### Diagrama de fluxo
 
-![Use Case - Example API Query/Call](./assets/ML2RA_SecAuth-ucExampleApiQueryCall_Apr22_1829.png)
+![Use Case - Example API Query/Call](../../../../../technical/reference-architecture/boundedContexts/security/assets/ML2RA_SecAuth-ucExampleApiQueryCall_Apr22_1829.png)
 > Diagrama de fluxo de trabalho da UC: Exemplo n.ºAPI: Consulta/Chamada
 
 <!-- Footnotes themselves at the bottom. -->

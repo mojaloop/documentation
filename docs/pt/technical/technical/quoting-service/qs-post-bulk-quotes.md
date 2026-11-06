@@ -8,5 +8,5 @@ Conceção de uma cotação em massa por um FSP.
 
 ## Diagrama de sequência
 
-![](./assets/diagrams/sequence/seq-post-bulk-quotes-2.2.0.svg)
+![](../../../../technical/technical/quoting-service/assets/diagrams/sequence/seq-post-bulk-quotes-2.2.0.svg)
 

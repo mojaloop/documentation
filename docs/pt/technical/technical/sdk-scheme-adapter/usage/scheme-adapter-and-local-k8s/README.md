@@ -6,7 +6,7 @@ i18n_source_sha: 5accc7ec13dd7476c3337da388c97877f2623ab4
 
 Uma documentação detalhada destinada aos dfsps que pretendam testar o deployment do cluster mojaloop com o adaptador scheme e um serviço de backend simulado.
 
-![Overview](scheme-adapter-and-local-k8s-overview.png)
+![Overview](../../../../../../technical/technical/sdk-scheme-adapter/usage/scheme-adapter-and-local-k8s/scheme-adapter-and-local-k8s-overview.png)
 
 ## Pré-requisito
 
@@ -125,8 +125,8 @@ docker-compose up -d
 
 ### Configurar novoFSP 
 Descarregue os seguintes ficheiros:
-* [Mojaloop-Local.postman_environment_modified.json](assets/postman_files/Mojaloop-Local.postman_environment_modified.json) — variáveis de ambiente modificadas que apontam para a sua configuração local
-* [OSS-Custom-FSP-Onboarding-SchemeAdapter-Setup.postman_collection.json](assets/postman_files/OSS-Custom-FSP-Onboaring-SchemeAdapter-Setup.postman_collection.json) - passos para configurar um novo FSP
+* [Mojaloop-Local.postman_environment_modified.json](../../../../../../technical/technical/sdk-scheme-adapter/usage/scheme-adapter-and-local-k8s/assets/postman_files/Mojaloop-Local.postman_environment_modified.json) — variáveis de ambiente modificadas que apontam para a sua configuração local
+* [OSS-Custom-FSP-Onboarding-SchemeAdapter-Setup.postman_collection.json](../../../../../../technical/technical/sdk-scheme-adapter/usage/scheme-adapter-and-local-k8s/assets/postman_files/OSS-Custom-FSP-Onboaring-SchemeAdapter-Setup.postman_collection.json) - passos para configurar um novo FSP
 
 A variável SCHEME_ADAPTER_ENDPOINT no ficheiro de ambiente deve apontar para o seu deployment local do scheme-adapter. No macOS, esta configuração já está definida como http://host.docker.internal:4000. Se estiver a utilizar o Linux, edite o ficheiro de ambiente de forma a que SCHEME_ADAPTER_ENDPOINT aponte para a sua interface docker0 (normalmente 172.17.0.1 — consulte as observações no passo anterior).
 

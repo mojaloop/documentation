@@ -6,7 +6,7 @@ i18n_source_sha: 4df1345f9fb598813c3948484477bb6231fd8e22
 ## Visão geral do projeto
 Este diagrama apresenta uma visão geral do projeto «SDK».
 
-![Design Overview](../assets/overview-drawio.png)
+![Design Overview](../../../../../technical/technical/sdk-scheme-adapter/assets/overview-drawio.png)
 
 Uma resposta HTTP 202 ao enviar um pedido assíncrono significa que o SDK aceitou o pedido e que este será processado, sendo posteriormente fornecida uma resposta. Devido aos potenciais atrasos prolongados envolvidos no processamento de um grande número de pagamentos em massa de forma assíncrona, foi necessária uma nova abordagem de conceção no SDK para satisfazer as expectativas associadas à resposta 202.
 
@@ -15,14 +15,14 @@ Foi optado por uma abordagem de Event Sourcing e Domain-Driven Design, uma vez q
 
 ## Adaptador do scheme do Pagador em Massa DFSP
 ### Diagrama de sequência de Event Sourcing de saída
-![Outbound sequence diagram](../assets/sequence/outbound-sequence.svg)
+![Outbound sequence diagram](../../../../../technical/technical/sdk-scheme-adapter/assets/sequence/outbound-sequence.svg)
 
 ## Adaptador do esquema SDK do beneficiário DFSP
 ### Diagrama de sequência de «event sourcing» para cotações em massa recebidas
-![Inbound bulk quotes sequence](../assets/sequence/inbound-bulk-quotes-sequence.svg)
+![Inbound bulk quotes sequence](../../../../../technical/technical/sdk-scheme-adapter/assets/sequence/inbound-bulk-quotes-sequence.svg)
 
 ### Diagrama de sequência de «event sourcing» para transferências em massa de entrada
-![Inbound bulk transfers sequence](../assets/sequence/inbound-bulk-transfers-sequence.svg)
+![Inbound bulk transfers sequence](../../../../../technical/technical/sdk-scheme-adapter/assets/sequence/inbound-bulk-transfers-sequence.svg)
 
 
 ## Redis Mapeamento de dados da loja para transferência em massa de saída

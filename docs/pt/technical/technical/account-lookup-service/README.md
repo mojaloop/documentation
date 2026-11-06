@@ -44,7 +44,7 @@ Este componente (ou os sistemas de back-end) será também responsável pela per
 ## 2. Conceção da pesquisa de participantes
 
 ### 2.1. Visão geral da arquitetura
-![Architecture Flow Account-Lookup for Participants](./assets/diagrams/architecture/arch-flow-account-lookup-participants.svg)
+![Architecture Flow Account-Lookup for Participants](../../../../technical/technical/account-lookup-service/assets/diagrams/architecture/arch-flow-account-lookup-participants.svg)
 
 _Nota: O caso de uso «Pesquisa de Participante» aplica-se igualmente a um caso de uso iniciado pelo beneficiário, como é o caso das «solicitações de transação». A diferença reside no facto de, no diagrama acima, ser o beneficiário a iniciar o processo._
 
@@ -69,7 +69,7 @@ _Nota: O caso de uso «Pesquisa de Participante» aplica-se igualmente a um caso
 ## 3. Conceção da Pesquisa de Participantes
 
 ### 3.1. Visão geral da arquitetura
-![Architecture Flow Account-Lookup for Parties](./assets/diagrams/architecture/arch-flow-account-lookup-parties.svg)
+![Architecture Flow Account-Lookup for Parties](../../../../technical/technical/account-lookup-service/assets/diagrams/architecture/arch-flow-account-lookup-parties.svg)
 
 ### 3.2. Diagrama de sequências
 
@@ -80,7 +80,7 @@ _Nota: O caso de uso «Pesquisa de Participante» aplica-se igualmente a um caso
 ## 4. Conceção da área de administração do ALS
 
 ### 4.1. Visão geral da arquitetura
-![Architecture Flow Account-Lookup for Admin Get Oracles](./assets/diagrams/architecture/arch-flow-account-lookup-admin.svg)
+![Architecture Flow Account-Lookup for Admin Get Oracles](../../../../technical/technical/account-lookup-service/assets/diagrams/architecture/arch-flow-account-lookup-admin.svg)
 
 ### 4.2. Diagrama de sequências
 
@@ -115,10 +115,10 @@ _Nota: O caso de uso «Pesquisa de Participante» aplica-se igualmente a um caso
 - `migration*` - Tabelas de metadados utilizadas pelo motor do Knex Framework.
 - Um `centralSwitchEndpoint` deve ser associado ao `OracleEndpoint` pelo Administrador API aquando da inserção de um novo registo `OracleEndpoint`. Se o `centralSwitchEndpoint` não for fornecido como parte do API Pedido, deve ser atribuído por predefinição. 
 
-![Acount Lookup Service ERD](./assets/entities/AccountLookupService-schema.png)
+![Acount Lookup Service ERD](../../../../technical/technical/account-lookup-service/assets/entities/AccountLookupService-schema.png)
 
-* [Serviço de Pesquisa de Contas DBeaver ERD](./assets/entities/AccountLookupDB-schema-DBeaver.erd)
-* [Serviço de Pesquisa de Contas MySQL Exportação do Workbench](./assets/entities/AccountLookup-ddl-MySQLWorkbench.sql)]
+* [Serviço de Pesquisa de Contas DBeaver ERD](../../../../technical/technical/account-lookup-service/assets/entities/AccountLookupDB-schema-DBeaver.erd)
+* [Serviço de Pesquisa de Contas MySQL Exportação do Workbench](../../../../technical/technical/account-lookup-service/assets/entities/AccountLookup-ddl-MySQLWorkbench.sql)]
 
 ## 6. Conceção do ALS Oracle
 
@@ -126,4 +126,4 @@ A conceção detalhada do Oracle não faz parte do âmbito deste documento. A co
 
 ### 6.1. Especificação API
 
-Consulte o **ALS Oracle API** na secção [API Especificações](../../api/README.md#als-oracle-api)].
+Consulte o **ALS Oracle API** na secção [API Especificações](../../../../technical/api/README.md#als-oracle-api)].

@@ -19,7 +19,7 @@ O cenário «Transferências em massa» é descrito no documento de definição 
 ## 1. Introdução
 
 O processo de Transferências em Massa é abordado na secção 6.10 do documento «API Definição 1.0», ilustrado na Figura 60, cuja imagem se apresenta abaixo.
-![Figure 60](./assets/diagrams/architecture/Figure60-Example-Bulk-Transfer-Process-Spec1.0.png)
+![Figure 60](../../../../technical/technical/central-bulk-transfers/assets/diagrams/architecture/Figure60-Example-Bulk-Transfer-Process-Spec1.0.png)
 
 Os pontos-chave previstos na especificação, na sua versão atual 1.0, são os seguintes:
 
@@ -46,7 +46,7 @@ De acordo com a Figura 60 da especificação, seguem-se algumas implicações fu
 
 A seguir, apresentam-se, em linhas gerais, os passos necessários para as transferências em massa.
 
-![architecture diagram](./assets/diagrams/architecture/bulk-transfer-arch-flows.svg)
+![architecture diagram](../../../../technical/technical/central-bulk-transfers/assets/diagrams/architecture/bulk-transfer-arch-flows.svg)
 
 1. [1.0, 1.1, 1.2] Um pedido de transferência em massa recebido (POST /bulkTransfers) no bulk-api-adapter é colocado num armazenamento de objetos e é enviada uma notificação com uma referência à mensagem propriamente dita através do tópico do Kafka «bulk-prepare», sendo enviado um código de resposta 202 ao pagador FSP
 2. [1.3] O manipulador «Bulk Prepare» processa o pedido e regista o estado como «RECEIVED»
