@@ -1,3 +1,7 @@
+---
+i18n_source_sha: f54ac4856b09e4e958799ffcfbe2f2fab3409796
+---
+
 # Composants hérités du Hub Mojaloop — PI5
 
 Le schéma de composants suivant présente la décomposition des services Mojaloop et leur architecture microservices pour PI5 :

@@ -1,5 +1,6 @@
 ---
 sidebarTitle: PUT /parties
+i18n_source_sha: 1fd19e0c0afb1331fa142498b10f885667c27487
 ---
 
 ## 7.2 PUT /Parties/{type}/{partyIdentifier}[/{subId}]

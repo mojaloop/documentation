@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 035d61b2307785d4129863069cfab714e69addec
+---
+
 # Normes
 
 > *Note :* Ces normes ne sont en aucun cas figées dans le marbre ; en tant que communauté, nous souhaitons toujours les faire évoluer et améliorer Mojaloop. Pour proposer une modification de ces normes ou suggérer des améliorations supplémentaires, n’hésitez pas à contacter le canal Design Authority sur le Slack Mojaloop (#design-authority).

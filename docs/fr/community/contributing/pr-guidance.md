@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 1e447aa02780818cd02decf1a0079084554ee033
+---
+
 # Directives pour les pull requests
 
 > **S’applique à :** Tous les contributeurs soumettant des pull requests aux dépôts de l’[organisation GitHub Mojaloop](https://github.com/mojaloop).

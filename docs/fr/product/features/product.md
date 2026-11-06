@@ -1,5 +1,6 @@
 ---
 sidebarTitle: Portails et exploitation
+i18n_source_sha: aa4bf0610f8ed07b4be39e030618bf48edc7f918
 ---
 
 # Portails et fonctions opérationnelles

@@ -1,3 +1,7 @@
+---
+i18n_source_sha: b44b23e26ad8f68c3936408dde860b36c7e9bccd
+---
+
 # Bienvenue dans la documentation produit Mojaloop
 
 Cette section est consacrée à la documentation produit de Mojaloop : elle présente, du point de vue fonctionnel, l’ensemble des fonctionnalités, les API, l'intégration des institutions financières (DFSP), la mise en place de schémas de paiement marchands basés sur Mojaloop, les transactions transfrontalières, ISO 20022, etc. — en résumé, tout ce qu’un adopteur potentiel doit savoir pour concevoir le schéma. Cette section ne couvre pas les détails techniques, disponibles ailleurs sur ce site.

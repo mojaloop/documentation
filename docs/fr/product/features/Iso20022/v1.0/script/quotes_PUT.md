@@ -1,5 +1,6 @@
 ---
 sidebarTitle: "PUT /quotes/{ID}"
+i18n_source_sha: c48d358c7ad667c77dc400baeba5d758137fdf96
 ---
 
 ## 7.8 PUT /quotes/{ID}

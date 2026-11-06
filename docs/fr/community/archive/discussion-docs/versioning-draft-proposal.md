@@ -5,6 +5,7 @@ Solution Proposal Status: Draft
 Created: 26-Feb-2020
 Last Updated: 17-Mar-2020
 Approved/Rejected Date: N/A
+i18n_source_sha: 33e36e14342549f829658be7246d6b01bbb5b7c6
 ---
 
 # Versionnement Mojaloop — une proposition

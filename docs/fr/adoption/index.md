@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 4f41f162ea3aad6dfde122cb78655af0e6bf0074
+---
+
 # À propos de la documentation sur l'adoption de Mojaloop
 
 Pour un opérateur de Hub ou une banque centrale souhaitant utiliser Mojaloop pour son système de paiement instantané inclusif (IIPS), le processus d'adoption et les étapes de la prise de décision diffèrent souvent fortement de celles consistant à faire appel à une entreprise pour fournir un logiciel propriétaire. Utiliser Mojaloop pour construire et posséder une plateforme offre davantage de contrôle mais aussi davantage de responsabilités. C'est exactement ce que cela signifie : ne pas dépendre d'un seul fournisseur.

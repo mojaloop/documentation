@@ -1,5 +1,6 @@
 ---
 sidebarTitle: "PUT /fxTransfers/{ID}/error"
+i18n_source_sha: 1e636b8c18c304a8d98668c46aa8de71b4d1b8b1
 ---
 
 ## 7.12 PUT /fxTransfers/{ID}/error

@@ -1,5 +1,6 @@
 ---
 footerCopyright: Attribution-NoDerivatives 4.0 International (CC BY-ND 4.0) | Ericsson, Huawei, Mahindra-Comviva, Telepin, et la Fondation Bill & Melinda Gates
+i18n_source_sha: 146f85b40e16697743af4beed9e7ffab2e5c7309
 ---
 
 # Modèle de Données Logique

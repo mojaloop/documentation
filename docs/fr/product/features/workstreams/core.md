@@ -1,5 +1,6 @@
 ---
 sidebarTitle: Cœur et versions
+i18n_source_sha: e9cf2bdf5a78178f86c2c044f945d2289f4dae04
 ---
 
 # Workstream Cœur et versions

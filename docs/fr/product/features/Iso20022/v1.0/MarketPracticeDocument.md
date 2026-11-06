@@ -1,5 +1,6 @@
 ---
 sidebarTitle: MPD ISO 20022 v1.0
+i18n_source_sha: 2eba5b06e778994a092a6a91182ab25b2df291aa
 ---
 
 # v1.0 : document de pratique de marché ISO 20022 Mojaloop

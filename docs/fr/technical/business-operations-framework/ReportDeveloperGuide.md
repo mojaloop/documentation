@@ -1,3 +1,7 @@
+---
+i18n_source_sha: fd6adf7ab15b4230d9128d120bcb27c8df4da61f
+---
+
 # Guide du développeur de rapports
 Ceci est un guide du développeur pour la construction et le déploiement de rapports pour le service REST de reporting qui fait partie du déploiement au niveau du Hub.
 

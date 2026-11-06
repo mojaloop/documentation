@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 7555e33f5924bc85e7e4cfb7b18bdcd8c807a67e
+---
+
 # Prise en charge des transferts groupés par le SDK — vue d’ensemble
 
 Ce document de conception décrit les évolutions du SDK Scheme Adapter pour le cas d’usage des transferts groupés.

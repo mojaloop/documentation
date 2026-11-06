@@ -1,3 +1,7 @@
+---
+i18n_source_sha: b9b3acfa21a2fb65986ea6c3319cfb95db3a5cb0
+---
+
 # Outils et technologies
 
 Nous documentons ici les raisons des choix d’outils, de technologies et de processus pour Mojaloop, ainsi que les liens et versions recommandés pour chacun.

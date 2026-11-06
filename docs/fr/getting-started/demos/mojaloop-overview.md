@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 46b479495f8ae653ef8960ca5fb6176f7fdcb0e2
+---
+
 # Présentation de Mojaloop
 
 <iframe 

@@ -1,3 +1,7 @@
+---
+i18n_source_sha: fede50285c02249b50684f64ec0d39ede764bcda
+---
+
 # Vérification des détails des fenêtres de règlement
 
 La page **Settlement Windows** vous permet de :
