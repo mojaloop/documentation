@@ -1,10 +1,14 @@
+---
+i18n_source_sha: 737ed39172a8823abc0c5f5bd6d79ed22e14e505
+---
+
 # Conceitos básicos
 
 Esta secção reúne os principais conceitos e elementos do processo de gestão da liquidação.
 
 ## Cobertura de liquidez
 
-Conforme descrito na [Introdução](settlement-management-introduction.md), uma das características de um sistema de pagamentos em tempo real é que os DFSP (Digital Financial Services Provider) credores têm de desembolsar fundos aos seus clientes antes de serem reembolsados pelo DFSP devedor. Para mitigar o risco de um DFSP credor não receber os fundos que lhe são devidos, o Mojaloop exige que os DFSP devedores apresentem prova credível de que dispõem de fundos efetivos suficientes para cumprir as obrigações que contraem em consequência de transacionarem no sistema.
+Conforme descrito na [Introdução](settlement-management-introduction.md), uma das características de um sistema de pagamentos em tempo real é que os DFSPs (Digital Financial Services Provider) credores têm de desembolsar fundos aos seus clientes antes de serem reembolsados pelo DFSP devedor. Para mitigar o risco de um DFSP credor não receber os fundos que lhe são devidos, o Mojaloop exige que os DFSPs devedores apresentem prova credível de que dispõem de fundos efetivos suficientes para cumprir as obrigações que contraem em consequência de transacionarem no sistema.
 
 Esta prova credível é designada por *cobertura de liquidez*. O sistema Mojaloop não estipula as formas que deve assumir; e, para um dado DFSP, pode assumir múltiplas formas. Pode ser:
 
@@ -18,7 +22,7 @@ No entanto, qualquer cobertura de liquidez utilizada num scheme Mojaloop (o conj
 - Tem de ser comprovada por prova fidedigna na posse do scheme Mojaloop.
 - Não pode ser convertida pelo DFSP noutras formas (por exemplo, através do levantamento de fundos de uma conta bancária ou da mobilização de fundos de uma linha de crédito) sem o conhecimento e a aprovação prévios do scheme Mojaloop.
 
-A cobertura de liquidez atribuída a um dado DFSP é cobertura de liquidez para um dado modelo de liquidação e moeda, e é imputável ao scheme no seu todo. Ou seja, o Mojaloop não permite que os participantes mantenham cobertura de liquidez aplicável apenas às suas transferências com um DFSP específico ou com DFSP específicos.
+A cobertura de liquidez atribuída a um dado DFSP é cobertura de liquidez para um dado modelo de liquidação e moeda, e é imputável ao scheme no seu todo. Ou seja, o Mojaloop não permite que os participantes mantenham cobertura de liquidez aplicável apenas às suas transferências com um DFSP específico ou com DFSPs específicos.
 
 Quando um DFSP solicita ao Hub Mojaloop a realização de uma transferência, o Hub Mojaloop verifica se o DFSP devedor dispõe de cobertura de liquidez suficiente para garantir que a transferência pode ser liquidada caso seja concluída com êxito. Fá-lo comparando o total de fundos efetivos do DFSP com a soma dos seguintes elementos:
 
@@ -61,7 +65,7 @@ Uma janela de liquidação pode ter os seguintes estados:
 - `OPEN`: a janela de liquidação está aberta, estão a ser aceites transferências na janela aberta atual.
 - `CLOSED`: a janela de liquidação está fechada. Não está a aceitar transferências adicionais e todas as novas transferências estão a ser alocadas a uma nova janela de liquidação aberta.
 - `PENDING_SETTLEMENT`: a janela de liquidação está fechada, as [Posições Líquidas de Liquidação Multilaterais](#posicoes-liquidas-de-liquidacao) foram calculadas para cada DFSP, mas a liquidação com o banco de liquidação parceiro ainda não ocorreu.
-- `SETTLED`: o banco de liquidação confirmou que todos os DFSP participantes que efetuaram transferências na janela de liquidação liquidaram os seus pagamentos, e o Operador do Hub liquidou a janela.
+- `SETTLED`: o banco de liquidação confirmou que todos os DFSPs participantes que efetuaram transferências na janela de liquidação liquidaram os seus pagamentos, e o Operador do Hub liquidou a janela.
 
 O fecho de uma janela de liquidação abre automaticamente a seguinte.
 
@@ -79,7 +83,7 @@ O Mojaloop lida com esta situação atribuindo sempre à janela de liquidação 
 
 Conforme descrito acima, o Mojaloop exige que os participantes pré-financiem as transferências em que são a parte devedora, apresentando ao Hub Mojaloop prova credível de que conseguem satisfazer todas as suas exigências de liquidação atuais. Pode haver, no entanto, circunstâncias em que um participante não pretenda que toda a sua cobertura de liquidez seja utilizada como cobertura para transferências. Por exemplo, um participante pode ser um recetor num canal de remessas e, por conseguinte, um credor líquido global; ou um participante pode depositar fundos adicionais para cobrir períodos em que as suas contas não estão abertas para receber fundos.
 
-Para cobrir estas possibilidades, o Mojaloop permite que os participantes ou os Administradores do Hub reservem parte da sua cobertura de liquidez disponível, de modo a que apenas parte dela possa ser utilizada para fornecer cobertura de liquidez para transferências. A isto chama-se Net Debit Cap (NDC). O NDC funciona como um limite ou um teto imposto aos fundos de um DFSP disponíveis para transacionar, e nunca pode exceder o saldo da conta de liquidez. Isto é necessário para assegurar que as responsabilidades de um DFSP podem ser satisfeitas com fundos imediatamente disponíveis para o banco de liquidação.
+Para cobrir estas possibilidades, o Mojaloop permite que os participantes ou os Administradores do Hub reservem parte da sua cobertura de liquidez disponível, de modo a que apenas parte dela possa ser utilizada para fornecer cobertura de liquidez para transferências. A isto chama-se Net Debit Cap (NDC). O NDC funciona como um limite ou um teto imposto aos fundos de um DFSPs disponíveis para transacionar, e nunca pode exceder o saldo da conta de liquidez. Isto é necessário para assegurar que as responsabilidades de um DFSP podem ser satisfeitas com fundos imediatamente disponíveis para o banco de liquidação.
 
 Ao calcular se uma transferência está ou não coberta pela liquidez disponível, o Hub tem em conta qualquer restrição ao montante de fundos disponíveis especificada pelo Net Debit Cap.
 
@@ -108,21 +112,21 @@ Se a liquidação for *bilateral*, um DFSP pode receber múltiplos valores como 
 
 ## Relatórios de liquidação
 
-Para facilitar a reconciliação e a liquidação dos DFSP no banco de liquidação, o Hub disponibiliza vários relatórios de liquidação. Um Scheme pode optar por ter vários relatórios diferentes para diferentes finalidades. Seguem-se alguns exemplos:
+Para facilitar a reconciliação e a liquidação dos DFSPs no banco de liquidação, o Hub disponibiliza vários relatórios de liquidação. Um Scheme pode optar por ter vários relatórios diferentes para diferentes finalidades. Seguem-se alguns exemplos:
 
 - Relatório de Liquidação do DFSP: um relatório emitido a um DFSP quando a liquidação é iniciada. Fornece a posição de liquidação bilateral do DFSP com cada DFSP com o qual transacionou (quer como DFSP pagador, quer como DFSP beneficiário) na(s) janela(s) de liquidação a liquidar. Fornece também a Posição Líquida de Liquidação Multilateral do DFSP (o total dos montantes de transferências enviados e recebidos pelo DFSP na(s) janela(s) de liquidação).
-- Relatório do Banco de Liquidação: um relatório emitido ao banco de liquidação quando a liquidação é iniciada. Fornece a posição de liquidação bilateral de cada DFSP face a todos os outros DFSP que transacionaram na(s) janela(s) de liquidação a liquidar. Fornece também a Posição Líquida de Liquidação Multilateral de cada DFSP (o total dos montantes de transferências enviados e recebidos pelo DFSP).
+- Relatório do Banco de Liquidação: um relatório emitido ao banco de liquidação quando a liquidação é iniciada. Fornece a posição de liquidação bilateral de cada DFSP face a todos os outros DFSPs que transacionaram na(s) janela(s) de liquidação a liquidar. Fornece também a Posição Líquida de Liquidação Multilateral de cada DFSP (o total dos montantes de transferências enviados e recebidos pelo DFSP).
 - Relatório de Resultado de Liquidação do DFSP: um relatório emitido a um DFSP quando a liquidação é finalizada. Fornece detalhes sobre o saldo da conta de liquidez do DFSP e os movimentos de fundos decorrentes do fecho da janela de liquidação.
 
 ## Finance Portal
 
-O [Finance Portal](busops-portal-introduction.md) (habitualmente designado por «Finance Portal v2») é um portal web utilizado pelo Operador do Hub para gerir diariamente os processos relacionados com a liquidação. O portal disponibiliza funcionalidades para:
+O [Finance Portal](../Portalv2/busops-portal-introduction.md) (habitualmente designado por «Finance Portal v2») é um portal web utilizado pelo Operador do Hub para gerir diariamente os processos relacionados com a liquidação. O portal disponibiliza funcionalidades para:
 
-- monitorizar detalhes como o saldo, a [Posição](#posicao) e o [Net Debit Cap](#gestao-de-liquidez-net-debit-cap) dos DFSP
+- monitorizar detalhes como o saldo, a [Posição](#posicao) e o [Net Debit Cap](#gestao-de-liquidez-net-debit-cap) dos DFSPs
 - atualizar o [Net Debit Cap](#gestao-de-liquidez-net-debit-cap) de um DFSP
 - gerir janelas de liquidação
 <!--* descarregar relatórios-->
-- registar depósitos ou levantamentos nas contas de liquidez dos DFSP
+- registar depósitos ou levantamentos nas contas de liquidez dos DFSPs
 
 ::: tip NOTA
 O Finance Portal apenas é atualmente compatível com processos de liquidação que assentam no modelo de Liquidação Líquida Diferida.
