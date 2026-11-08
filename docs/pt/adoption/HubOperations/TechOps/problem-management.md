@@ -1,3 +1,7 @@
+---
+i18n_source_sha: a5c10e25064761bdb94a754010cc994065a5ac3c
+---
+
 # Gestão de problemas
 
 O objetivo geral da gestão de problemas é chegar à causa raiz dos incidentes (incidentes de Severidade 1 ou incidentes que ocorreram mais do que uma vez) ou às causas potenciais de incidentes, e desencadear depois ações para melhorar ou corrigir a situação de imediato.
@@ -27,7 +31,7 @@ Se se verificar que um problema é causado por um defeito no produto, é aberto 
 
 ## Categorizar e priorizar problemas
 
-Para determinar se os SLA são cumpridos, é necessário categorizar e priorizar os problemas de forma rápida e correta.
+Para determinar se os SLAs são cumpridos, é necessário categorizar e priorizar os problemas de forma rápida e correta.
 
 O objetivo de uma categorização adequada é:
 
@@ -79,7 +83,7 @@ Um serviço, ou uma parte substancial de um serviço, está indisponível.</p></
 <td><p><strong>Baixo</strong><br />
 <br />
 O problema afeta um ou dois membros do pessoal.</p>
-<p>Níveis de serviço degradados, mas ainda com processamento dentro dos SLA.</p></td>
+<p>Níveis de serviço degradados, mas ainda com processamento dentro dos SLAs.</p></td>
 <td><p>Baixa</p></td>
 <td><p>Baixa</p></td>
 <td><p>Média</p></td>

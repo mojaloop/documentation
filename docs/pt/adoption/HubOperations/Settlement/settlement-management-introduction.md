@@ -1,3 +1,7 @@
+---
+i18n_source_sha: b3b724d23776318a9b84bd5f467cfc4d5812d64f
+---
+
 # Introdução – Guia de gestão da liquidação
 
 Quando um pagamento é efetuado num sistema de pagamentos em tempo real como o Mojaloop, o DFSP (Digital Financial Services Provider) que é o depositário da conta do beneficiário (o DFSP credor) aceita creditar imediatamente os fundos ao beneficiário. Mas o DFSP credor ainda não recebeu os fundos do DFSP que é o depositário da conta do devedor: tudo o que aconteceu até agora é que o DFSP devedor contraiu uma obrigação de reembolsar o DFSP credor, e essa obrigação foi registada no Hub Mojaloop.

@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 2c600508eabe2480bed0e3497ee2335950d464bb
+---
+
 # Anexo A: Matriz de escalamento da gestão de incidentes
 
 Esta secção fornece informação sobre as funções-chave a contactar quando ocorre um incidente.

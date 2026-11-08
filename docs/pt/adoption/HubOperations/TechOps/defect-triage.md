@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 4ee0332a0ff97b0f0a36de2efe885b9eb3a5b736
+---
+
 # Triagem de defeitos
 
 O objetivo do processo de triagem de defeitos é assegurar que todos os bugs identificados no ambiente de Produção do Operador do Hub são registados, avaliados e submetidos a uma equipa de Suporte Mojaloop, uma equipa dedicada à prestação de serviços de Suporte às operações técnicas de um Hub Mojaloop. Esta equipa pode ser interna ou externa (ou mesmo em parte interna e em parte externa), consoante o nível de especialização ou a capacidade existente na organização que aloja o scheme. Se for decidido externalizar esta função, existem organizações na comunidade Mojaloop que prestam diferentes níveis de suporte como serviço. (Para mais informação e indicações, contacte a Mojaloop Foundation.)

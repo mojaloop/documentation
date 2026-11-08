@@ -1,3 +1,7 @@
+---
+i18n_source_sha: bdd6cb294656c02aaf1226ad236c325512db2d27
+---
+
 # Pesquisar dados de transferências
 
 O Finance Portal disponibiliza uma página de pesquisa de transferências, que permite localizar dados de transferências com base em identificadores de DFSP, identificadores de utilizadores finais ou identificadores de transferência. É útil na resolução de problemas.
@@ -71,7 +75,7 @@ O subseparador **Quote Request** apresenta os seguintes detalhes sobre o pedido 
 
 * **quoteId**: o identificador único da cotação, decidido pelo DFSP Pagador.
 * **transactionReferenceId**: corresponde ao `transactionId` especificado no pedido de cotação.
-* **transactionRequestId**: opcional. ID comum entre os DFSP para o objeto de pedido de transação, decidido pelo DFSP Beneficiário.
+* **transactionRequestId**: opcional. ID comum entre os DFSPs para o objeto de pedido de transação, decidido pelo DFSP Beneficiário.
 * **note**: um memorando opcional associado à transferência.
 * **expirationDate**: uma data de expiração opcional do pedido de cotação, sob a forma de um carimbo temporal no formato [ISO-8601](https://www.iso.org/iso-8601-date-and-time-format.html).
 * **amount**: o montante para o qual a cotação está a ser pedida.

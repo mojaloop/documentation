@@ -1,3 +1,7 @@
+---
+i18n_source_sha: e2a9f33230f5f4eccf3135ea811acff38a180ec9
+---
+
 # Introdução – Guia de Operações Técnicas
 
 O Hub Mojaloop opera vários ambientes que necessitam de gestão e manutenção diárias. Os procedimentos padrão descritos neste documento descrevem os processos operacionais que permitem ao Operador do Hub tratar de todos os aspetos da gestão de um serviço em produção.
@@ -20,9 +24,9 @@ Segue-se uma breve descrição dos ambientes geridos pelo Operador do Hub:
 
 - **User Acceptance Testing (UAT)**: ambiente de teste para testes de aceitação pelo utilizador e testes de regressão, para validar as novas versões.
 
-- **Sandbox (SBX)**: ambiente de teste para validar a conetividade dos DFSP, tanto nos requisitos de API como nos de segurança.
+- **Sandbox (SBX)**: ambiente de teste para validar a conetividade dos DFSPs, tanto nos requisitos de API como nos de segurança.
 
-- **Staging (STG)**: ambiente de pré-produção que reproduz a produção tão fielmente quanto possível. Validação das novas versões e da integração dos DFSP.
+- **Staging (STG)**: ambiente de pré-produção que reproduz a produção tão fielmente quanto possível. Validação das novas versões e da integração dos DFSPs.
 
 - **Production (PRD)**: ambiente de produção compatível com a versão de produção.
 

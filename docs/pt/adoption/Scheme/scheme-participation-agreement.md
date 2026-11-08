@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 3fd84473e6a6181743a458fa4be00ac81c2626d7
+---
+
 # Modelo de Acordo de Participação no Scheme
 
 - Versão: 3.0

@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 7fc61af6083263963716177e919e083bd686aef4
+---
+
 # Glossário
 
 Esta secção funciona como um glossário de termos de Operações Técnicas e fornece definições de:

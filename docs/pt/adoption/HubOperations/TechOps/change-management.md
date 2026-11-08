@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 205adaee810fae7c071b020ae149c1fb5a8daef5
+---
+
 # Gestão da mudança
 
 O objetivo do processo de gestão da mudança é controlar o ciclo de vida de todas as alterações, permitindo que estas sejam efetuadas com a mínima perturbação dos serviços de TI.
@@ -19,7 +23,7 @@ Os objetivos da gestão da mudança são:
 
 O âmbito da gestão da mudança deve incluir alterações a todas as arquiteturas, processos, ferramentas, métricas e documentação, bem como alterações a todos os itens de configuração (CI) ao longo de todo o ciclo de vida do serviço.
 
-Todas as alterações têm de ser registadas e geridas num ambiente controlado, em todos os CI. Estes podem ser ativos físicos, como servidores ou redes, ativos virtuais, como servidores virtuais ou armazenamento, ou outros tipos de ativos, como acordos ou contratos.
+Todas as alterações têm de ser registadas e geridas num ambiente controlado, em todos os CIs. Estes podem ser ativos físicos, como servidores ou redes, ativos virtuais, como servidores virtuais ou armazenamento, ou outros tipos de ativos, como acordos ou contratos.
 
 A gestão da mudança não é responsável por coordenar todos os processos de gestão de serviço para assegurar a implementação harmoniosa dos projetos.
 
@@ -149,7 +153,7 @@ Para que uma alteração seja classificada como alteração menor, tem de ter um
 
 Uma alteração maior é uma alteração de risco elevado e impacto elevado que pode interromper ambientes de produção em funcionamento se não for devidamente planeada. A avaliação da alteração é crucial para determinar o calendário e o fluxo de aprovação. Uma alteração maior exige a aprovação da direção, além da aprovação do CAB. O Pedido de Alteração (RFC) de uma alteração maior tem de conter uma proposta detalhada sobre custo-benefício, análise de risco-impacto e implicações financeiras, caso existam.
 
-Na prática, todas as alterações que impliquem indisponibilidade, em especial a indisponibilidade que afete as atividades de onboarding e de teste dos DFSP em ambientes inferiores, devem ser classificadas como alterações maiores e devem ser revistas pelo CAB. Estas alterações devem ser implementadas em coordenação com o Gestor de Projeto Técnico.
+Na prática, todas as alterações que impliquem indisponibilidade, em especial a indisponibilidade que afete as atividades de onboarding e de teste dos DFSPs em ambientes inferiores, devem ser classificadas como alterações maiores e devem ser revistas pelo CAB. Estas alterações devem ser implementadas em coordenação com o Gestor de Projeto Técnico.
 
 Para que uma alteração seja classificada como alteração maior, tem de ter um prazo de antecedência de 5 dias ou mais.
 

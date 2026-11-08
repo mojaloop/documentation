@@ -1,3 +1,7 @@
+---
+i18n_source_sha: c07bd71d1a8e6361c283782dbff542667f48dc3a
+---
+
 # Anexo B: Acordos de Nível de Serviço
 
 Os prazos indicados na tabela seguinte são exemplos de tempos de resposta previstos para o tratamento de incidentes. Podem servir de ponto de partida para o Operador do Hub definir os seus próprios prazos.

@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 39dc18f9478ede02902170447c5174321dda45e8
+---
+
 # Consultar os detalhes da liquidação
 
 A página **Settlement > Settlements** permite consultar determinados detalhes das liquidações, tais como:
@@ -5,7 +9,7 @@ A página **Settlement > Settlements** permite consultar determinados detalhes d
 * o identificador da liquidação
 * o estado da liquidação
 * o valor total das transações
-* os identificadores dos DFSP envolvidos nas transações, bem como a Posição Líquida de Liquidação Multilateral associada no período escolhido
+* os identificadores dos DFSPs envolvidos nas transações, bem como a Posição Líquida de Liquidação Multilateral associada no período escolhido
 
 ![Consultar os detalhes da liquidação](../../../../.vuepress/public/check_settlement_details.png)
 

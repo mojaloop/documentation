@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 4f41f162ea3aad6dfde122cb78655af0e6bf0074
+---
+
 # Sobre os documentos de adoção do Mojaloop
 
 Para que um operador de hub ou um banco central utilize o Mojaloop no seu sistema de pagamentos instantâneos inclusivo (IIPS), o processo de adoção e as etapas da tomada de decisão são frequentemente muito diferentes dos de contratar uma empresa para fornecer software proprietário. Utilizar o Mojaloop para construir e deter uma plataforma proporciona maior controlo, mas também maior responsabilidade. Não ter dependência de um único fornecedor significa exatamente isso.
@@ -15,11 +19,11 @@ Ferramentas disponíveis para os adotantes:
 
 ## Escolhas do scheme
 
-O [Modelo de Diretrizes de Operação da Plataforma](./Scheme/platform-operating-guideline.md) fornece um modelo para descrever como a Plataforma do Scheme irá operar e para especificar as obrigações e responsabilidades do Scheme, do Operador da Plataforma e dos DFSP.
+O [Modelo de Diretrizes de Operação da Plataforma](./Scheme/platform-operating-guideline.md) fornece um modelo para descrever como a Plataforma do Scheme irá operar e para especificar as obrigações e responsabilidades do Scheme, do Operador da Plataforma e dos DFSPs.
 
 O [Modelo de Regras de Negócio do Scheme](./Scheme/scheme-business-rules.md) fornece um modelo para definir as Regras de Negócio que regem os direitos e as responsabilidades dos participantes num scheme Mojaloop.
 
-O documento [Escolhas-Chave do Scheme](./Scheme/scheme-key-choices.md) descreve e analisa algumas das escolhas de negócio e de conceção mais significativas, que afetam tanto a implementação técnica do Mojaloop como as Regras de Negócio que o Scheme irá redigir e que os DFSP participantes aceitarão cumprir.
+O documento [Escolhas-Chave do Scheme](./Scheme/scheme-key-choices.md) descreve e analisa algumas das escolhas de negócio e de conceção mais significativas, que afetam tanto a implementação técnica do Mojaloop como as Regras de Negócio que o Scheme irá redigir e que os DFSPs participantes aceitarão cumprir.
 
 O [Modelo de Acordo de Participação no Scheme](./Scheme/scheme-participation-agreement.md) fornece um modelo do Acordo de Participação no Scheme que contém as disposições mínimas necessárias para comprovar a candidatura de um DFSP à adesão ao Scheme e ao cumprimento das suas Regras de Negócio.
 
@@ -37,4 +41,4 @@ O [Guia do Finance Portal v2](./HubOperations/Portalv2/busops-portal-introductio
 
 O documento [Controlo de Acesso Baseado em Funções](./HubOperations/RBAC/Role-based-access-control.md) aborda o mecanismo de segurança utilizado para controlar o acesso a vários aspetos de uma instância operacional de um Hub Mojaloop.
 
-O [Guia de Onboarding para o Operador do Hub](./HubOperations/Onboarding/onboarding-introduction.md) destina-se ao Operador de um Hub Mojaloop e fornece informação sobre o processo de onboarding dos DFSP. Apresenta uma visão geral do percurso de onboarding seguido pelos DFSP, funcionando como uma lista de verificação das atividades de onboarding.
+O [Guia de Onboarding para o Operador do Hub](./HubOperations/Onboarding/onboarding-introduction.md) destina-se ao Operador de um Hub Mojaloop e fornece informação sobre o processo de onboarding dos DFSPs. Apresenta uma visão geral do percurso de onboarding seguido pelos DFSPs, funcionando como uma lista de verificação das atividades de onboarding.

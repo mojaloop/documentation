@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 31103b46ea3b4894f034556d3802822749a5bedc
+---
+
 # Processo de liquidação
 
 É importante definir um processo de negócio em torno da gestão da liquidação. O processo geral seguinte serve de exemplo, podendo ser adaptado às especificidades das necessidades de cada organização.
@@ -29,7 +33,7 @@
 </tr>
 <tr class="even">
 <td><p>4</p></td>
-<td><p>Os DFSP analisam o seu relatório e reconciliam as transações com os seus próprios registos em tempo útil.</p>
+<td><p>Os DFSPs analisam o seu relatório e reconciliam as transações com os seus próprios registos em tempo útil.</p>
 <p>O relatório fornece informação sobre a posição de liquidação bilateral do DFSP com cada DFSP com quem transacionou (enquanto DFSP Pagador ou DFSP Beneficiário) na(s) janela(s) de liquidação a liquidar. Fornece também o somatório dos montantes de transferência enviados e recebidos pelo DFSP na(s) janela(s) de liquidação.</p></td>
 </tr>
 <tr class="odd">
@@ -38,11 +42,11 @@
 </tr>
 <tr class="even">
 <td><p>6</p></td>
-<td><p>O Operador do Hub notifica os pontos de contacto do banco de liquidação de que a liquidação pode ser executada, partilhando o Relatório do Banco de Liquidação.</p><p>O relatório funciona como instruções de pagamento ao banco e fornece a posição de liquidação bilateral de cada DFSP face a todos os outros DFSP que transacionaram na(s) janela(s) de liquidação a liquidar. Fornece também o somatório dos montantes de transferência enviados e recebidos por cada DFSP.</p></td>
+<td><p>O Operador do Hub notifica os pontos de contacto do banco de liquidação de que a liquidação pode ser executada, partilhando o Relatório do Banco de Liquidação.</p><p>O relatório funciona como instruções de pagamento ao banco e fornece a posição de liquidação bilateral de cada DFSP face a todos os outros DFSPs que transacionaram na(s) janela(s) de liquidação a liquidar. Fornece também o somatório dos montantes de transferência enviados e recebidos por cada DFSP.</p></td>
 </tr>
 <tr class="odd">
 <td><p>7</p></td>
-<td><p>O banco de liquidação movimenta fundos entre a conta de liquidação e as contas de liquidez dos DFSP, em conformidade com as Posições líquidas agregadas indicadas no Relatório do Banco de Liquidação.</p></td>
+<td><p>O banco de liquidação movimenta fundos entre a conta de liquidação e as contas de liquidez dos DFSPs, em conformidade com as Posições líquidas agregadas indicadas no Relatório do Banco de Liquidação.</p></td>
 </tr>
 <tr class="even">
 <td><p>8</p></td>
@@ -54,7 +58,7 @@
 </tr>
 <tr class="even">
 <td><p>10</p></td>
-<td><p>O Operador do Hub <a href="monitoring-dfsp-financial-details.html">verifica os saldos das contas de liquidez dos DFSP face aos saldos apresentados no portal</a> e atualiza-os, se necessário, através da <a href="recording-funds-in-out.html">funcionalidade «add/withdraw funds» do portal</a>. Note-se que isto pode levar ao recálculo do NDC do DFSP, o que pode fazer com que as transações de saída do DFSP sejam recusadas pelo Hub.</p></td>
+<td><p>O Operador do Hub <a href="monitoring-dfsp-financial-details.html">verifica os saldos das contas de liquidez dos DFSPs face aos saldos apresentados no portal</a> e atualiza-os, se necessário, através da <a href="recording-funds-in-out.html">funcionalidade «add/withdraw funds» do portal</a>. Note-se que isto pode levar ao recálculo do NDC do DFSP, o que pode fazer com que as transações de saída do DFSP sejam recusadas pelo Hub.</p></td>
 </tr>
 <tr class="odd">
 <td><p>11</p></td>

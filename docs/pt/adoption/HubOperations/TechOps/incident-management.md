@@ -1,3 +1,7 @@
+---
+i18n_source_sha: be5e7bb5035dcd6ac98616e31f63b232b67253d5
+---
+
 # Gestão de incidentes
 
 O principal objetivo da gestão de incidentes é restabelecer o funcionamento normal do serviço o mais rapidamente possível e minimizar o impacto nas operações de negócio, assegurando assim a manutenção dos melhores níveis possíveis de qualidade e de disponibilidade do serviço. Entende-se aqui por «funcionamento normal do serviço» o funcionamento do serviço dentro dos [acordos de nível de serviço (SLA)](service-level-agreements.md).
@@ -112,7 +116,7 @@ A resolução de um incidente pode incluir qualquer uma das seguintes ações:
 
 Consoante a complexidade do incidente, este pode ter de ser decomposto em subtarefas ou tarefas. As tarefas são normalmente criadas quando a resolução de um incidente exige o contributo de vários técnicos de diferentes departamentos.
 
-Enquanto o incidente é processado, o Engenheiro de Suporte tem de assegurar que o Acordo de Nível de Serviço não é incumprido. Um SLA é o tempo aceitável dentro do qual um incidente carece de resposta (SLA de resposta) ou de resolução (SLA de resolução). Os SLA podem ser atribuídos aos incidentes com base nos seus parâmetros, como a categoria de serviço, o requerente, o impacto, a urgência, e assim por diante. Nos casos em que um SLA está prestes a ser incumprido ou já o foi, o incidente pode ser escalado funcional ou hierarquicamente, para assegurar que é resolvido o mais depressa possível.
+Enquanto o incidente é processado, o Engenheiro de Suporte tem de assegurar que o Acordo de Nível de Serviço não é incumprido. Um SLA é o tempo aceitável dentro do qual um incidente carece de resposta (SLA de resposta) ou de resolução (SLA de resolução). Os SLAs podem ser atribuídos aos incidentes com base nos seus parâmetros, como a categoria de serviço, o requerente, o impacto, a urgência, e assim por diante. Nos casos em que um SLA está prestes a ser incumprido ou já o foi, o incidente pode ser escalado funcional ou hierarquicamente, para assegurar que é resolvido o mais depressa possível.
 
 Um incidente é considerado resolvido quando a Equipa de Suporte L1/L2/L3 chegou a uma solução de contorno temporária ou a uma solução permanente para o problema. As soluções de contorno podem ser:
 
@@ -136,7 +140,7 @@ Um incidente pode ser encerrado assim que o problema estiver resolvido e o utili
 
 ## Matriz de categorização de incidentes
 
-Uma das fases mais importantes da gestão de incidentes é a categorização dos incidentes. Esta não só ajuda a organizar os tickets recebidos, como também assegura que os tickets são encaminhados para os Engenheiros de Suporte mais qualificados para trabalhar no problema. A categorização dos incidentes ajuda também o sistema de Service Desk a aplicar os SLA mais adequados aos incidentes e a comunicar essas prioridades aos utilizadores finais. Uma vez categorizado um incidente, os Engenheiros de Suporte podem diagnosticá-lo e fornecer uma resolução ao utilizador final.
+Uma das fases mais importantes da gestão de incidentes é a categorização dos incidentes. Esta não só ajuda a organizar os tickets recebidos, como também assegura que os tickets são encaminhados para os Engenheiros de Suporte mais qualificados para trabalhar no problema. A categorização dos incidentes ajuda também o sistema de Service Desk a aplicar os SLAs mais adequados aos incidentes e a comunicar essas prioridades aos utilizadores finais. Uma vez categorizado um incidente, os Engenheiros de Suporte podem diagnosticá-lo e fornecer uma resolução ao utilizador final.
 
 A tabela seguinte fornece orientações sobre como classificar a severidade de um incidente.
 
@@ -624,7 +628,7 @@ Esta função de suporte é composta por engenheiros ou Especialistas (SME) de O
 * Documentar as etapas seguidas para resolver o incidente e submeter artigos para a Base de Conhecimento. (Em cada incidente, a Equipa de Suporte atualiza a Base de Conhecimento. A finalidade dos artigos da Base de Conhecimento é permitir que os utilizadores finais e o pessoal de Suporte resolvam problemas autonomamente.)
 * Tratar incidentes intermédios, por exemplo, incidentes relacionados com Aplicações, Infraestrutura, Análise de Registos, Análise de Transações, e assim por diante.
 * Se o incidente for resolvido, confirmar a resolução com o utilizador final.
-* Apoiar o onboarding dos DFSP.
+* Apoiar o onboarding dos DFSPs.
 
 ### Equipa de Nível 3 (Suporte L3 de Aplicações, Infraestrutura e Segurança) (Equipa de Suporte Técnico)
 
@@ -652,7 +656,7 @@ O Gestor de Serviço monitoriza a eficácia do processo. O Gestor de Serviço ge
 * Planear e facilitar todas as atividades envolvidas no processo de gestão de incidentes.
 * Assegurar que é seguido o processo correto em todos os tickets e corrigir eventuais desvios.
 * Coordenar e comunicar com o Responsável pelo Processo.
-* Alinhar as expetativas dos clientes com os SLA, funcionando como interface entre os clientes e a equipa de Operações.
+* Alinhar as expetativas dos clientes com os SLAs, funcionando como interface entre os clientes e a equipa de Operações.
 * Identificar os incidentes que necessitam de revisão e realizar essa revisão.
 
 ### Responsável pelo Processo: Gestor de Operações Técnicas
@@ -677,7 +681,7 @@ O processo de gestão de incidentes produz as seguintes saídas. Note-se que a �
 
 * Incidentes resolvidos ou encerrados. É o resultado mais desejado do processo de gestão de incidentes. O registo de incidente encerrado contém detalhes exatos dos atributos do incidente e das etapas seguidas para a resolução ou a solução de contorno.
 * Pedidos de Alteração (RFC).
-* Métricas de resolução (Mean Time Between Failures, Mean Time To Repair, Mean Time To Acknowledge e Mean Time To Failure). Para mais detalhes sobre os KPI, consulte o [Glossário](key-terms-kpis.md).
+* Métricas de resolução (Mean Time Between Failures, Mean Time To Repair, Mean Time To Acknowledge e Mean Time To Failure). Para mais detalhes sobre os KPIs, consulte o [Glossário](key-terms-kpis.md).
 * Alteração implementada com êxito através do processo de gestão da mudança.
 * Documento de RCA em conformidade com o modelo de RCA.
 * Serviço reposto.

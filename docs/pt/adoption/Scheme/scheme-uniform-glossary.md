@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 2cd4d7d8b9961b5df89cf2980725ec4de3a82690
+---
+
 # Modelo de Glossário Uniforme
 
 - Versão: 1.0
@@ -45,7 +49,7 @@ As entradas mantêm a ordenação alfabética do documento original em inglês, 
 | Validação de Conta (Account Validation) | Um estado fornecido por uma chamada de API de Resposta a Cotação: um DFSP Beneficiário indica que uma conta está disponível para ser creditada com um montante de transferência proposto. |
 | Utilizador Ativo (Active User) | Termo utilizado por muitos prestadores para descrever quantos dos seus titulares de conta são utilizadores frequentes do seu serviço. |
 | Endereçamento (Addressing) | A utilização de um identificador para dirigir um Pagamento de um Pagador a um Beneficiário, habitualmente um número de telemóvel ou um endereço de e-mail. |
-| Adjacências (Adjacencies) | Formas pelas quais as entidades e/ou os DFSP obtêm receitas de serviços não diretamente associados a um Pagamento — por exemplo, empréstimos concedidos a titulares de Contas de Transação. |
+| Adjacências (Adjacencies) | Formas pelas quais as entidades e/ou os DFSPs obtêm receitas de serviços não diretamente associados a um Pagamento — por exemplo, empréstimos concedidos a titulares de Contas de Transação. |
 | Agente (Agent) | Uma entidade autorizada pelo prestador a desempenhar várias funções, tais como a inscrição de clientes, depósitos e levantamentos através de uma caixa de agente. |
 | Ponto de Agente (Agent Outlet) | Um local físico que dispõe de uma ou mais caixas de agente, permitindo-lhe realizar operações de inscrição, depósito e levantamento para clientes, em nome de um ou mais prestadores. A lei nacional define se um ponto de agente pode manter-se exclusivo de um prestador. Os pontos de agente podem ter outros negócios e funções de apoio. |
 | Caixa de Agente (Agent Till) | Uma caixa de agente é uma «linha» registada e emitida pelo prestador, seja um cartão SIM especial, seja uma máquina POS, utilizada para realizar operações de inscrição, depósito e levantamento para clientes. A lei nacional determina que prestadores de serviços financeiros podem emitir caixas de agente. |
@@ -105,14 +109,14 @@ As entradas mantêm a ordenação alfabética do documento original em inglês, 
 | Levantamento Iniciado pelo Cliente (Customer-Initiated Cash-Out) | Um Caso de Utilização definido no documento de Especificações da API. |
 | Compra Iniciada pelo Cliente (Customer-Initiated Purchase) | Um Caso de Utilização definido no documento de Especificações da API. |
 | Compra Iniciada pelo Cliente via QR (Customer-Initiated Purchase via QR) | Um Caso de Utilização definido no documento de Especificações da API. |
-| DFSP (Digital Financial Services Provider) | Um prestador de serviços financeiros licenciado por uma autoridade reguladora para disponibilizar Contas de Transação que detêm fundos de clientes e são utilizadas para efetuar e receber Pagamentos. Os DFSP têm relações com consumidores, comerciantes e outras empresas, e prestam serviços financeiros digitais aos Utilizadores Finais. Utilizado indistintamente com FSP (Financial Services Provider). |
+| DFSP (Digital Financial Services Provider) | Um prestador de serviços financeiros licenciado por uma autoridade reguladora para disponibilizar Contas de Transação que detêm fundos de clientes e são utilizadas para efetuar e receber Pagamentos. Os DFSPs têm relações com consumidores, comerciantes e outras empresas, e prestam serviços financeiros digitais aos Utilizadores Finais. Utilizado indistintamente com FSP (Financial Services Provider). |
 | Digital (Digital) | Comunicações eletrónicas entre duas pessoas ou entidades que podem ocorrer em vários dispositivos eletrónicos (por exemplo, telemóvel, tablet, computador). |
 | Liquidez Digital (Digital Liquidity) | A prática de manter o valor em forma Digital, em vez de trocar o valor Digital por numerário (forma física). |
 | Pagamento Digital (Digital Payment) | Termo amplo que inclui qualquer pagamento executado por via eletrónica. Inclui os pagamentos iniciados por telemóvel ou computador. Os pagamentos com cartão são, em certas circunstâncias, considerados pagamentos digitais. O termo «pagamento móvel» é igualmente amplo e inclui uma grande variedade de tipos de transação que, de algum modo, utilizam um telemóvel. |
 | Débito Direto (Direct Debit) | Um Pagamento ou uma Transferência de fundos iniciada pelo DFSP Beneficiário para o DFSP Pagador. Um Débito Direto é muitas vezes designado por «transferência pull a débito», porque os fundos são «puxados» da Conta de Transação do Pagador. O Débito Direto contrasta com a Transferência a Crédito. |
-| Diretório (Directory) | Um repositório centralizado ou descentralizado de identificadores de pagamento para utilização no Endereçamento, acessível ao sistema de pagamentos ou aos DFSP. |
+| Diretório (Directory) | Um repositório centralizado ou descentralizado de identificadores de pagamento para utilização no Endereçamento, acessível ao sistema de pagamentos ou aos DFSPs. |
 | Resolução de Litígios (Dispute Resolution) | Um processo definido por um prestador ou pelas regras de um scheme de pagamentos para resolver questões entre utilizadores finais e prestadores, ou entre um utilizador final e a sua contraparte. |
-| Doméstico (Domestic) | Descreve uma Transação entre dois DFSP domiciliados no mesmo país. |
+| Doméstico (Domestic) | Descreve uma Transação entre dois DFSPs domiciliados no mesmo país. |
 | eMoney | Fundos ou valor digitais detidos por um titular de Conta de Transação num dispositivo de pagamento, como um chip, um cartão pré-pago, um telemóvel, ou num sistema informático. A regulamentação nacional especifica que tipos de DFSP podem emitir eMoney. |
 | Emissor de eMoney (eMoney Issuer) | Um DFSP licenciado no país para atuar como Emissor de eMoney. |
 | Utilizador Final (End User) | O cliente de um DFSP. O cliente pode ser um consumidor, um comerciante, um governo ou outra forma de empresa. |
@@ -155,7 +159,7 @@ As entradas mantêm a ordenação alfabética do documento original em inglês, 
 | Level One Project | Uma iniciativa da Bill & Melinda Gates Foundation para promover a inclusão financeira. |
 | Responsabilidade (Liability) | Uma obrigação legal de uma parte perante outra; exigida pela lei nacional, pelas regras do scheme de pagamentos ou por acordos específicos entre prestadores. Algumas regras de scheme transferem responsabilidades por uma transação de um prestador para outro em determinadas condições. |
 | Licença (License) | A licença concedida a um Candidato pelo Scheme mediante a aceitação do Acordo de Participação no Scheme, que permite ao Participante participar no Scheme e utilizar Propriedade do Scheme em conformidade com as Regras. |
-| Liquidez (Liquidity) | A disponibilidade de ativos líquidos para suportar uma obrigação. Os bancos e os prestadores não bancários necessitam de liquidez para cumprir as suas obrigações. Os agentes necessitam de liquidez para satisfazer os levantamentos de consumidores e de pequenos comerciantes. |
+| Liquidez (Liquidity) | A disponibilidade de ativos líquidos para cumprir uma obrigação. Os bancos e os prestadores não bancários necessitam de liquidez para cumprir as suas obrigações. Os agentes necessitam de liquidez para satisfazer os levantamentos de consumidores e de pequenos comerciantes. |
 | Empréstimos (Loans) | Meios pelos quais os utilizadores finais podem contrair dinheiro emprestado. |
 | Comerciante (Merchant) | Uma empresa que vende bens ou serviços e recebe pagamentos por esses bens ou serviços. |
 | Angariação de Comerciantes (Merchant Acquisition) | O processo de habilitar um comerciante a receber pagamentos eletrónicos. |
@@ -165,7 +169,7 @@ As entradas mantêm a ordenação alfabética do documento original em inglês, 
 | Compra Iniciada pelo Comerciante (Merchant-Initiated Purchase) | Um Caso de Utilização definido no documento de Especificações da API. |
 | Compra Iniciada pelo Comerciante via POS/OTP (Merchant-Initiated Purchase via POS/OTP) | Um Caso de Utilização definido no documento de Especificações da API. |
 | Compra Iniciada pelo Comerciante via QR (Merchant-Initiated Purchase via QR) | Um Caso de Utilização definido no documento de Especificações da API. |
-| Instituição de Microfinanças (IMF) | Uma entidade que oferece serviços financeiros a populações de Baixos Rendimentos. Quase todas as IMF concedem empréstimos aos seus membros e muitas oferecem seguros, depósitos e outros serviços. As IMF são consideradas DFSP num Sistema Level One se disponibilizarem Contas de Transação aos seus clientes. As IMF que não são DFSP podem ligar-se diretamente a uma Plataforma Level One, através de uma relação com um DFSP. As regras do scheme especificarão como essas IMF podem interagir com a Plataforma. |
+| Instituição de Microfinanças (IMF) | Uma entidade que oferece serviços financeiros a populações de Baixos Rendimentos. Quase todas as IMFs concedem empréstimos aos seus membros e muitas oferecem seguros, depósitos e outros serviços. As IMFs são consideradas DFSP num Sistema Level One se disponibilizarem Contas de Transação aos seus clientes. As IMFs que não são DFSP podem ligar-se diretamente a uma Plataforma Level One, através de uma relação com um DFSP. As regras do scheme especificarão como essas IMF podem interagir com a Plataforma. |
 | Operador de Rede Móvel (MNO) | Uma empresa que vende serviços de telefonia móvel, incluindo comunicações de voz e de dados. |
 | Operador de Transferência de Fundos (Money Transfer Operator) | Um prestador especializado de DFS que trata de remessas domésticas e/ou internacionais. |
 | MSISDN | Número que identifica de forma única uma subscrição numa rede de telefonia móvel. Estes números seguem a norma E.164, que define o plano de numeração de uma rede telefónica pública comutada (PSTN) à escala mundial. |
@@ -202,7 +206,7 @@ As entradas mantêm a ordenação alfabética do documento original em inglês, 
 | Banco Parceiro (Partner Bank) | Instituição financeira que apoia o FSP e lhe dá acesso ao ecossistema bancário local. |
 | Parte (Party) | Uma entidade que utiliza Serviços do Scheme direta ou indiretamente. |
 | Identificador de Parte (Party Identifier) | Um elemento de informação que identifica de forma única um Cliente numa implementação de Interoperabilidade. |
-| Tipo de Identificador de Parte (Party Identifier Type) | Uma enumeração que distingue diferentes tipos de Identificador de Parte. A gama completa de Tipos de Identificador de Parte consta da Open API Specification; o subconjunto de Tipos de Identificador de Parte suportado por um dado Scheme consta das suas Regras de Operação. |
+| Tipo de Identificador de Parte (Party Identifier Type) | Uma enumeração que distingue diferentes tipos de Identificador de Parte. A gama completa de Tipos de Identificador de Parte consta da Open API Specification; o subconjunto de Tipos de Identificador de Parte permitido por um dado Scheme consta das suas Regras de Operação. |
 | Beneficiário (Payee) | Quem recebe fundos eletrónicos numa transação de pagamento. |
 | DFSP Beneficiário (Payee DFSP) | O papel de um Participante que recebe uma Transferência em nome do seu cliente Beneficiário. |
 | Pagador (Payer) | Quem paga fundos eletrónicos numa transação de pagamento. |
@@ -211,7 +215,7 @@ As entradas mantêm a ordenação alfabética do documento original em inglês, 
 | Dispositivo de Pagamento (Payment Device) | Dispositivo de pagamento é a noção abstrata de um dispositivo eletrónico, distinto do dispositivo do próprio Pagador, capaz de permitir que um Pagador aceite uma transação através da utilização de uma credencial (algum tipo de OTP). São exemplos de Dispositivos (de Pagamento) as caixas automáticas e os POS. |
 | Sistema de Pagamentos (Payment System) | Termo amplo que descreve o sistema global, incluindo o Scheme, os Serviços do Scheme e os Participantes do Scheme. |
 | Operador do Sistema de Pagamentos (Payment System Operator) | A entidade que opera um sistema ou scheme de pagamentos. |
-| Prestador de Serviços de Pagamento (PSP) | Termo utilizado de duas formas: em geral, qualquer empresa envolvida na prestação de serviços de pagamento (incluindo os DFSP); ou um prestador que oferece produtos ou serviços de marca a Utilizadores Finais, incluindo comerciantes. Os PSP podem ligar-se diretamente a uma Plataforma Level One, através de uma relação com um DFSP. As regras do scheme especificarão como os PSP podem interagir com a Plataforma. |
+| Prestador de Serviços de Pagamento (PSP) | Termo utilizado de duas formas: em geral, qualquer empresa envolvida na prestação de serviços de pagamento (incluindo os DFSPs); ou um prestador que oferece produtos ou serviços de marca a Utilizadores Finais, incluindo comerciantes. Os PSPs podem ligar-se diretamente a uma Plataforma Level One, através de uma relação com um DFSP. As regras do scheme especificarão como os PSPs podem interagir com a Plataforma. |
 | Informação Pessoal (Personal Information) | Informação relativa a qualquer pessoa singular, incluindo Clientes ou colaboradores do Scheme ou de um Participante, a partir da qual essa pessoa possa ser identificada ou reconhecida, independentemente da forma dessa informação. |
 | Plataforma (Platform) | O conjunto de capacidades operacionais, incluindo muitas vezes um Switch, que concretizam a troca de Pagamentos num sistema de pagamentos interoperável alinhado com os Level One. |
 | Plataforma (Platform) | Termo utilizado para descrever o software ou serviço utilizado por um prestador, um scheme ou um switch para gerir as contas dos utilizadores finais e para enviar e receber transações de pagamento. |
@@ -263,7 +267,7 @@ As entradas mantêm a ordenação alfabética do documento original em inglês, 
 | Instrução de Liquidação (Settlement Instruction) | Uma instrução dada a um sistema de liquidação por um participante desse sistema, ou por um operador de sistema de câmara de compensação de pagamentos em nome de um participante do sistema de liquidação do Banco Central, para efetuar a liquidação de uma ou mais obrigações de pagamento, ou para extinguir qualquer outra obrigação de um participante do sistema perante outro participante do sistema. |
 | Obrigação de Liquidação (Settlement Obligation) | Uma dívida devida por um participante de um sistema de liquidação a outro em resultado de uma ou mais instruções de liquidação. |
 | Janela de Liquidação (Settlement Window) | Um período de tempo entre duas Liquidações Líquidas sucessivas, conforme calendarizado nos termos das Diretrizes de Operação da Liquidação. |
-| Serviço Partilhado (Shared Service) | Um conjunto comum de serviços que os DFSP participantes colaboram para desenvolver e/ou utilizar. |
+| Serviço Partilhado (Shared Service) | Um conjunto comum de serviços que os DFSPs participantes colaboram para desenvolver e/ou utilizar. |
 | Telemóvel Inteligente (Smart Phone) | Um dispositivo que combina um telemóvel com um computador. |
 | Bancos com Autorização Especial (Special Charter Banks) | Bancos de um país autorizados a exercer um conjunto limitado de funções, conforme determinado pela regulamentação. Os Bancos com Autorização Especial que só podem aceitar depósitos e tratar de Pagamentos são considerados DFSP num Sistema Level One. |
 | Patrocínio (Sponsor) | Um acordo entre um emissor de moeda eletrónica e um banco, utilizado para o pagamento e a cobrança de comissões de intercâmbio pelos emissores de moeda eletrónica |

@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 380fed1f262ad13e1081427774bb1e81243c5ffe
+---
+
 # Gestão de versões
 
 A gestão de versões trata dos processos de gerir, planear, calendarizar e controlar uma alteração de software ao longo do deployment e dos testes nos vários ambientes.
@@ -58,7 +62,7 @@ Recomenda-se que a prática padrão para as versões de produto de extensões/co
 * Todas as novas versões de produto são disponibilizadas através de pacotes de versão e descritas nas notas de versão.
 * Um pacote de versão inclui testes ponta a ponta automatizados para cada versão de produto. As suítes de teste são versionadas, correspondendo o número de versão ao número de versão da versão do produto.
 * As versões de produto estão em linha com a cadência de versões do Mojaloop, uma vez em cada período de PI.
-* Todas as atualizações de manutenção, novas funcionalidades e correções de bugs dos produtos são disponibilizadas aos DFSP clientes das extensões/produtos adicionais no âmbito do ciclo de versões, uma vez em cada período de PI.
+* Todas as atualizações de manutenção, novas funcionalidades e correções de bugs dos produtos são disponibilizadas aos DFSPs clientes das extensões/produtos adicionais no âmbito do ciclo de versões, uma vez em cada período de PI.
 
 ## Bugs e hotfixes
 

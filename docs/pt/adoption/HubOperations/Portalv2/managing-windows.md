@@ -1,3 +1,7 @@
+---
+i18n_source_sha: fede50285c02249b50684f64ec0d39ede764bcda
+---
+
 # Consultar os detalhes das janelas de liquidação
 
 A página **Settlement Windows** permite:
@@ -11,7 +15,7 @@ Recorde-se que a liquidação tem de seguir este procedimento:
 
 * Fechar a janela de liquidação que se pretende liquidar.
 * Liquidar a(s) janela(s) fechada(s) à escolha. Isto cria uma nova liquidação.
-* Enviar os relatórios de liquidação aos DFSP e ao banco de liquidação e obter do banco a confirmação de que movimentou os fundos em conformidade com o relatório.
+* Enviar os relatórios de liquidação aos DFSPs e ao banco de liquidação e obter do banco a confirmação de que movimentou os fundos em conformidade com o relatório.
 * Finalizar a nova liquidação criada na Etapa 2.
 
 Uma vez que fechar uma janela e iniciar a liquidação através da liquidação de janelas selecionadas são parte integrante do processo de liquidação, estas operações são descritas numa secção dedicada à [liquidação](settling.md).
@@ -34,8 +38,8 @@ A opção **Clear** permite remover quaisquer filtros de data já aplicados.
 * **State**: disponibiliza uma lista pendente de estados da janela de liquidação:
     * **Open**: a janela de liquidação está aberta, estão a ser aceites transferências na janela aberta atual.
     * **Closed**: a janela de liquidação está fechada. Não está a aceitar transferências adicionais e todas as novas transferências estão a ser alocadas a uma nova janela de liquidação aberta.
-    * **Pending**: a janela de liquidação está fechada, mas ainda tem de ser liquidada. Uma janela só pode ser liquidada depois de o banco de liquidação ter confirmado que todos os DFSP participantes que efetuaram transferências na janela de liquidação liquidaram os seus pagamentos.
-    * **Settled**: o banco de liquidação confirmou que todos os DFSP afetados liquidaram as suas obrigações entre si. Após a confirmação, o Operador do Hub liquidou a janela de liquidação.
+    * **Pending**: a janela de liquidação está fechada, mas ainda tem de ser liquidada. Uma janela só pode ser liquidada depois de o banco de liquidação ter confirmado que todos os DFSPs participantes que efetuaram transferências na janela de liquidação liquidaram os seus pagamentos.
+    * **Settled**: o banco de liquidação confirmou que todos os DFSPs afetados liquidaram as suas obrigações entre si. Após a confirmação, o Operador do Hub liquidou a janela de liquidação.
     * **Aborted**: a janela de liquidação fazia parte de uma liquidação que foi abortada. É possível adicionar a janela abortada a uma nova liquidação.
     * **Clear**: permite remover quaisquer filtros de estado da janela já aplicados.
 * Botão **Clear Filters**: permite remover todos os filtros aplicados.

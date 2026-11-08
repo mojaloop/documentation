@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 8a174d79e8022471238ef29e303588faa249378e
+---
+
 # Modelo de Diretrizes de Operação da Plataforma
 
 - Versão: 2.0
@@ -29,9 +33,9 @@ Os documentos seguintes fazem parte do projeto:
 
 ## **Introdução**
 
-Um Scheme que implemente um sistema alinhado com os Level One, incluindo os que utilizam código de referência Mojaloop na plataforma, terá de redigir Regras de Negócio para o Scheme. Um modelo para essas Regras de Negócio faz parte deste projeto. As Regras de Negócio introduzem o conceito de Documentos Associados, que fazem parte das Regras de Negócio e têm a mesma força — os DFSP que subscrevem as Regras de Negócio ficam também vinculados a cumprir as disposições dos Documentos Associados.
+Um Scheme que implemente um sistema alinhado com os Level One, incluindo os que utilizam código de referência Mojaloop na plataforma, terá de redigir Regras de Negócio para o Scheme. Um modelo para essas Regras de Negócio faz parte deste projeto. As Regras de Negócio introduzem o conceito de Documentos Associados, que fazem parte das Regras de Negócio e têm a mesma força — os DFSPs que subscrevem as Regras de Negócio ficam também vinculados a cumprir as disposições dos Documentos Associados.
 
-As Diretrizes de Operação da Plataforma são um Documento Associado importante que descreve como a Plataforma do Scheme irá operar e especifica as obrigações e responsabilidades do Scheme, do Operador da Plataforma e dos DFSP.
+As Diretrizes de Operação da Plataforma são um Documento Associado importante que descreve como a Plataforma do Scheme irá operar e especifica as obrigações e responsabilidades do Scheme, do Operador da Plataforma e dos DFSPs.
 
 Este documento é um modelo para essas Diretrizes de Operação da Plataforma. Muitas das suas disposições variarão, porém, consoante as escolhas feitas pelo Scheme: algumas dessas escolhas estão descritas no documento «Escolhas-Chave do Scheme», que faz parte deste projeto.
 
@@ -47,7 +51,7 @@ O modelo de Regras de Negócio que faz parte deste projeto pode ser utilizado in
 
 [1.3 - Casos de Utilização do Scheme](#_1-3-casos-de-utilizacao-do-scheme)
 
-[1.4 - Identificadores suportados pelo Scheme](#_1-4-identificadores-suportados-pelo-scheme)
+[1.4 - Identificadores permitidos pelo Scheme](#_1-4-identificadores-permitidos-pelo-scheme)
 
 [2 - O Serviço de Consulta de Contas](#_2-o-servico-de-consulta-de-contas)
 
@@ -95,29 +99,29 @@ O modelo de Regras de Negócio que faz parte deste projeto pode ser utilizado in
 
 [7 - O Serviço de Gestão da Fraude](#_7-o-servico-de-gestao-da-fraude)
 
-[8 - Anexo: Casos de Utilização suportados pelo Scheme e parâmetros do sistema](#_8-anexo-casos-de-utilizacao-suportados-pelo-scheme-e-parametros-do-sistema)
+[8 - Anexo: Casos de Utilização permitidos pelo Scheme e parâmetros do sistema](#_8-anexo-casos-de-utilizacao-permitidos-pelo-scheme-e-parametros-do-sistema)
 
 [9 - Anexo: Códigos de Categoria de Comerciante](#_9-anexo-codigos-de-categoria-de-comerciante)
 
 ## 1. Sobre este documento
 
-Estas Diretrizes de Operação da Plataforma especificam os requisitos operacionais e técnicos aplicáveis aos DFSP e ao Scheme. De tempos a tempos, o Scheme emitirá Boletins Operacionais adicionais, que descreverão funcionalidades operacionais adicionais do Scheme e especificarão requisitos adicionais dos DFSP.
+Estas Diretrizes de Operação da Plataforma especificam os requisitos operacionais e técnicos aplicáveis aos DFSPs e ao Scheme. De tempos a tempos, o Scheme emitirá Boletins Operacionais adicionais, que descreverão funcionalidades operacionais adicionais do Scheme e especificarão requisitos adicionais dos DFSPs.
 
 ### 1.1 Serviços do Scheme
 
-- Os Serviços do Scheme são utilizados pelos DFSP para trocar transações interoperáveis e para gerir o seu envolvimento com o Scheme.
+- Os Serviços do Scheme são utilizados pelos DFSPs para trocar transações interoperáveis e para gerir o seu envolvimento com o Scheme.
 
-- O Serviço de Consulta de Contas do Scheme permite aos DFSP do sistema identificar o DFSP que gere a Conta de Transação de um Beneficiário pretendido ou de outra contraparte de uma Transferência.
+- O Serviço de Consulta de Contas do Scheme permite aos DFSPs do sistema identificar o DFSP que gere a Conta de Transação de um Beneficiário pretendido ou de outra contraparte de uma Transferência.
 
 - O Serviço de Transferências do Scheme permite a um DFSP Pagador enviar uma Transferência a um DFSP Beneficiário, concretizando assim uma transferência de fundos de um Pagador para um Beneficiário.
 
-- O Serviço de Liquidação do Scheme permite aos DFSP liquidar as suas obrigações financeiras perante o Scheme no que respeita às Transferências.
+- O Serviço de Liquidação do Scheme permite aos DFSPs liquidar as suas obrigações financeiras perante o Scheme no que respeita às Transferências.
 
-- O Serviço de Gestão do Scheme permite ao Scheme conceder e revogar o acesso ao Scheme por parte dos DFSP, gere as interações correntes dos DFSP com o Scheme, monitoriza o funcionamento eficaz do Scheme e fornece ferramentas para os DFSP gerirem o seu envolvimento com o Scheme.
+- O Serviço de Gestão do Scheme permite ao Scheme conceder e revogar o acesso ao Scheme por parte dos DFSPs, gere as interações correntes dos DFSPs com o Scheme, monitoriza o funcionamento eficaz do Scheme e fornece ferramentas para os DFSPs gerirem o seu envolvimento com o Scheme.
 
-- O Serviço de Gestão da Fraude do Scheme permite aos DFSP colaborar em certos elementos da gestão da fraude, de modo a reduzir custos e melhorar resultados.
+- O Serviço de Gestão da Fraude do Scheme permite aos DFSPs colaborar em certos elementos da gestão da fraude, de modo a reduzir custos e melhorar resultados.
 
-- Os DFSP são obrigados a seguir os procedimentos detalhados abaixo para utilizar o Scheme.
+- Os DFSPs são obrigados a seguir os procedimentos detalhados abaixo para utilizar o Scheme.
 
 ### 1.2 Open API Specification
 
@@ -125,11 +129,11 @@ Os protocolos do Scheme baseiam-se nos modelos operacionais e de dados definidos
 
 ### 1.3 Casos de Utilização do Scheme
 
-Algumas regras e especificações operacionais variam consoante os Casos de Utilização e os Casos de Utilização Secundários suportados pelo Scheme. O Scheme reconhece os Casos de Utilização e os Casos de Utilização Secundários através de uma combinação de componentes de dados exigidos e de inferência do sistema. Isto está detalhado num Anexo ao presente documento.
+Algumas regras e especificações operacionais variam consoante os Casos de Utilização e os Casos de Utilização Secundários permitidos pelo Scheme. O Scheme reconhece os Casos de Utilização e os Casos de Utilização Secundários através de uma combinação de componentes de dados exigidos e de inferência do sistema. Isto está detalhado num Anexo ao presente documento.
 
-### 1.4 Identificadores suportados pelo Scheme
+### 1.4 Identificadores permitidos pelo Scheme
 
-O Scheme suporta determinados Identificadores, ou endereços de pagamento, para utilização na realização de Transferências. O Identificador identifica o Beneficiário cuja Conta de Transação é creditada pela Transferência. Os Identificadores suportados pelo Scheme estão enumerados num Anexo às Regras de Negócio.
+O Scheme permite determinados Identificadores, ou endereços de pagamento, para utilização na realização de Transferências. O Identificador identifica o Beneficiário cuja Conta de Transação é creditada pela Transferência. Os Identificadores permitidos pelo Scheme estão enumerados num Anexo às Regras de Negócio.
 
 Para cada identificador suportado pelo scheme, este documento deve especificar o que é o identificador e como é resolvido (como se determina qual o DFSP Beneficiário responsável pela conta de transação associada a esse identificador.
 
@@ -137,7 +141,7 @@ Para cada identificador suportado pelo scheme, este documento deve especificar o
 
 Cada scheme terá as suas próprias diretrizes para cada identificador; as disposições abaixo podem variar significativamente consoante as escolhas feitas.
 
-- Os MSISDN são números de telemóvel globalmente únicos. Os MSISDN são o Identificador de Conta de Transação dos DFSP que são Operadores de Rede Móvel e que disponibilizam Contas de Transação aos seus clientes.
+- Os MSISDNs são números de telemóvel globalmente únicos. Os MSISDNs são o Identificador de Conta de Transação dos DFSPs que são Operadores de Rede Móvel e que disponibilizam Contas de Transação aos seus clientes.
 
 - A utilização do MSISDN como Identificador de Beneficiário está limitada às Contas de Transação disponibilizadas por DFSP que sejam o Operador de Rede Móvel responsável por esse MSISDN.
 
@@ -145,15 +149,15 @@ Cada scheme terá as suas próprias diretrizes para cada identificador; as dispo
 Se forem utilizados MSISDN para outras Contas de Transação, são alias, e tem de ser especificado um protocolo separado para a sua resolução.
 :::
 
-- Um Pedido de Parte relativo a um MSISDN é resolvido por um serviço de diretório de MSISDN determinado pelo Scheme. O Scheme pode especificar, de tempos a tempos, obrigações de manutenção do serviço de diretório para os DFSP que sejam Operadores de Rede Móvel.
+- Um Pedido de Parte relativo a um MSISDN é resolvido por um serviço de diretório de MSISDN determinado pelo Scheme. O Scheme pode especificar, de tempos a tempos, obrigações de manutenção do serviço de diretório para os DFSPs que sejam Operadores de Rede Móvel.
 
 #### 1.4.2 Exemplo: o Identificador de Número de Conta Bancária
 
 Cada scheme terá as suas próprias diretrizes para cada identificador; as disposições abaixo podem variar significativamente consoante as escolhas feitas.
 
-- Os números de Conta Bancária são atribuídos aos clientes pelos DFSP Bancários que disponibilizam Contas de Transação aos seus clientes.
+- Os números de Conta Bancária são atribuídos aos clientes pelos DFSPs Bancários que disponibilizam Contas de Transação aos seus clientes.
 
-- O Número de Conta Bancária, juntamente com um Código de Banco, formam o Identificador de Número de Conta Bancária do Scheme. Os DFSP Pagadores são responsáveis por formatar corretamente o Identificador de Número de Conta Bancária de acordo com os formatos que o Scheme especificar.
+- O Número de Conta Bancária, juntamente com um Código de Banco, formam o Identificador de Número de Conta Bancária do Scheme. Os DFSPs Pagadores são responsáveis por formatar corretamente o Identificador de Número de Conta Bancária de acordo com os formatos que o Scheme especificar.
 
 - A utilização do Identificador de Número de Conta Bancária está limitada às Contas de Transação disponibilizadas por DFSP que sejam Bancos.
 
@@ -165,7 +169,7 @@ Cada scheme terá as suas próprias diretrizes para cada identificador; as dispo
 
 - O ID de Comerciante é um identificador definido pelo Scheme utilizado para pagamentos de pessoa para empresa.
 
-- A utilização do ID de Comerciante está limitada aos DFSP que disponibilizam Contas de Transação a comerciantes, emissores de faturas, organismos públicos ou outras entidades empresariais que recebem pagamentos dos seus clientes através do Scheme. Pode ser utilizado tanto em pagamentos presenciais como remotos. O termo «comerciante» utilizado nesta secção inclui todos estes tipos de recetores de pagamentos.
+- A utilização do ID de Comerciante está limitada aos DFSPs que disponibilizam Contas de Transação a comerciantes, emissores de faturas, organismos públicos ou outras entidades empresariais que recebem pagamentos dos seus clientes através do Scheme. Pode ser utilizado tanto em pagamentos presenciais como remotos. O termo «comerciante» utilizado nesta secção inclui todos estes tipos de recetores de pagamentos.
 
 - A utilização do ID de Comerciante está limitada às Transferências dos Casos de Utilização P2B ou P2G
 
@@ -175,11 +179,11 @@ Cada scheme terá as suas próprias diretrizes para cada identificador; as dispo
 
 - O ID de Comerciante é emitido como um número, que pode ser apresentado pelo comerciante de forma física ou digital.
 
-- Os IDs de comerciante podem ser representados como códigos QR pelos DFSP ou pelos seus clientes comerciantes. Os códigos QR têm de ser representados de acordo com as diretrizes de formato e de marca emitidas pelo Scheme. Os DFSP estão proibidos de utilizar outros formatos de dados de código QR ou outras marcas para receber pagamentos através do Scheme.
+- Os IDs de comerciante podem ser representados como códigos QR pelos DFSPs ou pelos seus clientes comerciantes. Os códigos QR têm de ser representados de acordo com as diretrizes de formato e de marca emitidas pelo Scheme. Os DFSPs estão proibidos de utilizar outros formatos de dados de código QR ou outras marcas para receber pagamentos através do Scheme.
 
-- Os DFSP são obrigados a apresentar a identidade visual do Scheme. Os requisitos de marca do Scheme serão especificados pelo Scheme. A identidade visual do Scheme tem de estar visível para o cliente na loja do comerciante, ou no dispositivo que o cliente pagador está a utilizar para comprar remotamente.
+- Os DFSPs são obrigados a apresentar a identidade visual do Scheme. Os requisitos de marca do Scheme serão especificados pelo Scheme. A identidade visual do Scheme tem de estar visível para o cliente na loja do comerciante, ou no dispositivo que o cliente pagador está a utilizar para comprar remotamente.
 
-- Requisitos de registo. Os DFSP solicitarão um ID de Comerciante para um cliente através de uma API do Scheme específica para o efeito. Os DFSP terão de fornecer:
+- Requisitos de registo. Os DFSPs solicitarão um ID de Comerciante para um cliente através de uma API do Scheme específica para o efeito. Os DFSPs terão de fornecer:
 
     - O ID do DFSP
 
@@ -189,11 +193,11 @@ Cada scheme terá as suas próprias diretrizes para cada identificador; as dispo
 
     - O Nome do Comerciante
 
-- Os DFSP que solicitam um ID de Comerciante ao Scheme garantem que concluíram a informação de KYC exigida para a conta do comerciante no momento do pedido.
+- Os DFSPs que solicitam um ID de Comerciante ao Scheme garantem que concluíram a informação de KYC exigida para a conta do comerciante no momento do pedido.
 
-- Os DFSP são obrigados a fornecer informação de formação adequada aos seus clientes.
+- Os DFSPs são obrigados a fornecer informação de formação adequada aos seus clientes.
 
-- Desativação de IDs de Comerciante. Os DFSP podem solicitar a desativação de um ID de Comerciante. O Scheme desativará imediatamente esse ID de Comerciante, mas mantê-lo-á no sistema do Scheme para efeitos de reporte. Os Pedidos de Cotação ou Pedidos de Transferência dirigidos a este ID de Comerciante serão recusados pelo Scheme e devolvidos ao DFSP Pagador.
+- Desativação de IDs de Comerciante. Os DFSPs podem solicitar a desativação de um ID de Comerciante. O Scheme desativará imediatamente esse ID de Comerciante, mas mantê-lo-á no sistema do Scheme para efeitos de reporte. Os Pedidos de Cotação ou Pedidos de Transferência dirigidos a este ID de Comerciante serão recusados pelo Scheme e devolvidos ao DFSP Pagador.
 
 O Scheme pode querer prever algum mecanismo de portabilidade de um ID de Comerciante de um DFSP para outro.
 
@@ -203,7 +207,7 @@ Este ID seria semelhante ao ID de Comerciante acima, mas destinar-se-ia tanto a 
 
 - O ID do Scheme é um identificador definido pelo Scheme.
 
-- Os DFSP são obrigados a oferecer aos seus clientes a opção de solicitarem um ID do Scheme.
+- Os DFSPs são obrigados a oferecer aos seus clientes a opção de solicitarem um ID do Scheme.
 
 - Os IDs do Scheme podem assumir qualquer forma, sujeitos apenas às restrições de comprimento que o Scheme especificar de tempos a tempos. O Scheme reserva-se o direito de recusar a utilização de qualquer ID do Scheme solicitado em concreto.
 
@@ -211,7 +215,7 @@ Os Schemes podem querer permitir IDs do Scheme
 
 - Os clientes podem solicitar qualquer número de IDs do Scheme, sujeitos aos limites impostos pelo seu DFSP. Podem estar associados a uma única Conta de Transação vários IDs do Scheme. Cada ID do Scheme só pode, no entanto, estar associado a uma única Conta de Transação.
 
-- Requisitos de registo. Os DFSP solicitarão um ID do Scheme para um cliente através de uma API do Scheme específica para o efeito. Os DFSP terão de fornecer nesta API:
+- Requisitos de registo. Os DFSPs solicitarão um ID do Scheme para um cliente através de uma API do Scheme específica para o efeito. Os DFSPs terão de fornecer nesta API:
 
     - O ID do DFSP
 
@@ -221,9 +225,9 @@ Os Schemes podem querer permitir IDs do Scheme
 
     - Se o Titular da Conta de Transação for um comerciante ou uma empresa, o \[registo comercial ou número de identificação fiscal\] do Titular da Conta. Pode estar associado ao mesmo registo comercial ou número de identificação fiscal qualquer número de IDs do Scheme.
 
-- Os DFSP que solicitam um ID do Scheme ao Scheme garantem que concluíram a informação de KYC exigida para a conta do cliente no momento do pedido.
+- Os DFSPs que solicitam um ID do Scheme ao Scheme garantem que concluíram a informação de KYC exigida para a conta do cliente no momento do pedido.
 
-- Desativação de Identificadores do Scheme. Os DFSP podem solicitar a desativação de um ID do Scheme. O Scheme desativará imediatamente esse ID do Scheme, mas mantê-lo-á no sistema do Scheme para efeitos de reporte. Os Pedidos de Cotação ou Pedidos de Transferência dirigidos a este ID do Scheme serão recusados pelo Scheme e devolvidos ao DFSP Pagador.
+- Desativação de Identificadores do Scheme. Os DFSPs podem solicitar a desativação de um ID do Scheme. O Scheme desativará imediatamente esse ID do Scheme, mas mantê-lo-á no sistema do Scheme para efeitos de reporte. Os Pedidos de Cotação ou Pedidos de Transferência dirigidos a este ID do Scheme serão recusados pelo Scheme e devolvidos ao DFSP Pagador.
 
 O Scheme pode querer prever algum mecanismo de portabilidade de um ID do Scheme de um DFSP para outro.
 
@@ -233,11 +237,11 @@ As secções seguintes descrevem cada serviço e as obrigações e responsabilid
 
 ### 2.1 Descrição do Serviço de Consulta de Contas
 
-- O Serviço de Consulta de Contas permite aos DFSP mapear Identificadores específicos de clientes individuais para o DFSP que disponibiliza uma Conta de Transação a esse cliente. Os Identificadores servem para identificar particulares, comerciantes, emissores de faturas, organismos públicos ou outras empresas. Qualquer Tipo de Identificador suportado pelo Scheme tem um Serviço de Identificadores definido, cujos parâmetros constam da secção «Identificadores suportados pelo Scheme» do presente documento.
+- O Serviço de Consulta de Contas permite aos DFSPs mapear Identificadores específicos de clientes individuais para o DFSP que disponibiliza uma Conta de Transação a esse cliente. Os Identificadores servem para identificar particulares, comerciantes, emissores de faturas, organismos públicos ou outras empresas. Qualquer Tipo de Identificador permitido pelo Scheme tem um Serviço de Identificadores definido, cujos parâmetros constam da secção «Identificadores permitidos pelo Scheme» do presente documento.
 
 - Todos os Serviços de Identificadores asseguram que os Identificadores utilizados nas Transações do Scheme são únicos dentro do Scheme e estão associados a um único DFSP que disponibiliza a Conta de Transação pertinente para esse cliente. Qualquer Identificador tem de estar associado a uma única Conta de Transação.
 
-- Os DFSP têm de concluir o processo de Consulta de Contas imediatamente antes de iniciar um processo de Cotação, salvo se estas Diretrizes permitirem outra coisa.
+- Os DFSPs têm de concluir o processo de Consulta de Contas imediatamente antes de iniciar um processo de Cotação, salvo se estas Diretrizes permitirem outra coisa.
 
 ### 2.2 Pedido de Parte
 
@@ -357,9 +361,9 @@ O scheme pode definir elementos de dados essenciais adicionais que serão exigid
 
 - A Plataforma envia então uma confirmação da Transferência cumprida ao DFSP Pagador e ao DFSP Beneficiário.
 
-- Se a Plataforma não receber uma Resposta a Transferência assinada dentro do prazo de expiração indicado no Pedido de Transferência, a transferência será cancelada e o Scheme notificará disso os DFSP Beneficiário e Pagador.
+- Se a Plataforma não receber uma Resposta a Transferência assinada dentro do prazo de expiração indicado no Pedido de Transferência, a transferência será cancelada e o Scheme notificará disso os DFSPs Beneficiário e Pagador.
 
-- Os DFSP Pagador e Beneficiário são obrigados:
+- Os DFSPs Pagador e Beneficiário são obrigados:
 
     - A notificar atempadamente os seus clientes do estado de uma transferência
 
@@ -373,16 +377,16 @@ _Esta secção ainda não foi redigida._
 
 ## 5. O Serviço de Liquidação
 
-Este documento apresenta um modelo para os processos de liquidação, tanto das transferências como das comissões do scheme. Existem várias abordagens possíveis à liquidação, que são discutidas no documento «Escolhas-Chave» que faz parte deste projeto. O modelo abaixo abrange dois modelos: liquidação líquida e liquidação bruta contínua. O código de referência do Mojaloop suporta vários modelos de liquidação diferentes, incluindo estes.
+Este documento apresenta um modelo para os processos de liquidação, tanto das transferências como das comissões do scheme. Existem várias abordagens possíveis à liquidação, que são discutidas no documento «Escolhas-Chave» que faz parte deste projeto. O modelo abaixo abrange dois modelos: liquidação líquida e liquidação bruta contínua. O código de referência do Mojaloop é compatível com vários modelos de liquidação diferentes, incluindo estes.
 
 ### 5.1 Liquidação de transferências
 
 #### 5.1.1 Descrição do Serviço de Liquidação de Transferências
 
-- A Liquidação de Transferências é o meio pelo qual os DFSP liquidam entre si as suas obrigações financeiras. A Liquidação de Transferências comporta cinco processos: o Processo da Razão Geral, o Processo do Net Debit Cap, o Processo de Aprovação da Transferência, o Processo de Registo da Liquidação e
+- A Liquidação de Transferências é o meio pelo qual os DFSPs liquidam entre si as suas obrigações financeiras. A Liquidação de Transferências comporta cinco processos: o Processo da Razão Geral, o Processo do Net Debit Cap, o Processo de Aprovação da Transferência, o Processo de Registo da Liquidação e
 o Processo de Gestão da Conta de Liquidação.
 
-- \[_Opção de liquidação líquida_\] Os DFSP são obrigados a abrir uma conta no Banco de Liquidação junto do Banco de Liquidação do Scheme. \[_Opção de liquidação bruta contínua_\] Os DFSP são obrigados a tornar-se comproprietários da conta bancária de Liquidação Comum do Scheme no Banco de Liquidação do Scheme e a utilizar ou abrir as demais contas bancárias individuais no Banco de Liquidação do Scheme que sejam necessárias para transferir fundos para dentro e para fora da conta bancária de Liquidação Comum do Scheme.
+- \[_Opção de liquidação líquida_\] Os DFSPs são obrigados a abrir uma conta no Banco de Liquidação junto do Banco de Liquidação do Scheme. \[_Opção de liquidação bruta contínua_\] Os DFSPs são obrigados a tornar-se comproprietários da conta bancária de Liquidação Comum do Scheme no Banco de Liquidação do Scheme e a utilizar ou abrir as demais contas bancárias individuais no Banco de Liquidação do Scheme que sejam necessárias para transferir fundos para dentro e para fora da conta bancária de Liquidação Comum do Scheme.
 
 #### 5.1.2 A Razão Geral da Plataforma
 
@@ -396,7 +400,7 @@ o Processo de Gestão da Conta de Liquidação.
 
     - \[_Apenas na opção de liquidação líquida_\] Os Lançamentos de Liquidação entregues ao Banco de Liquidação do Scheme e por este aceites para esse DFSP.
 
-    - \[_Apenas na opção de liquidação bruta contínua_\] As transferências para dentro e para fora da Conta Bancária de Liquidação Comum do Scheme efetuadas pelos DFSP.
+    - \[_Apenas na opção de liquidação bruta contínua_\] As transferências para dentro e para fora da Conta Bancária de Liquidação Comum do Scheme efetuadas pelos DFSPs.
 
 - A Posição da Razão Geral do DFSP é a soma de todos os itens acima enumerados. É utilizada no Processo de Aprovação da Transferência.
 
@@ -432,23 +436,23 @@ As regras do scheme terão de prever disposições e procedimentos para o caso d
 
 #### 5.1.6 Processo de Gestão da Conta de Liquidação
 
-- \[_Opção de liquidação líquida_\] Os DFSP podem acrescentar fundos à sua Conta Bancária de Liquidação do Scheme ao seu critério. O Scheme fornecerá instruções sobre como o fazer. \[_Opção de liquidação bruta contínua_\] Os DFSP podem transferir fundos para a Conta Bancária de Liquidação Comum do Scheme ao seu critério. O Scheme fornecerá instruções sobre como o fazer.
+- \[_Opção de liquidação líquida_\] Os DFSPs podem acrescentar fundos à sua Conta Bancária de Liquidação do Scheme ao seu critério. O Scheme fornecerá instruções sobre como o fazer. \[_Opção de liquidação bruta contínua_\] Os DFSPs podem transferir fundos para a Conta Bancária de Liquidação Comum do Scheme ao seu critério. O Scheme fornecerá instruções sobre como o fazer.
 
-- \[_Apenas na opção de liquidação bruta contínua_\] O Scheme fornecerá aos DFSP um relatório de fim de dia que apresenta a sua quota de propriedade na Conta Bancária de Liquidação Comum do Scheme.
+- \[_Apenas na opção de liquidação bruta contínua_\] O Scheme fornecerá aos DFSPs um relatório de fim de dia que apresenta a sua quota de propriedade na Conta Bancária de Liquidação Comum do Scheme.
 
-- Os DFSP podem solicitar o levantamento de fundos da sua \[_Opção de liquidação líquida_\] Conta Bancária de Liquidação através do Portal do Scheme \[_Opção de liquidação bruta contínua_\] Os DFSP podem solicitar o levantamento de fundos da Conta Bancária de Liquidação Comum do Scheme através do Portal do Scheme. O scheme analisará o levantamento pedido e, se for aprovado, executará a transferência em nome do DFSP. A finalidade desta análise é assegurar que a quota do DFSP na Conta Bancária de Liquidação é suficiente para suportar as Transferências em curso: esta aprovação não será recusada sem motivo razoável.
+- Os DFSPs podem solicitar o levantamento de fundos da sua \[_Opção de liquidação líquida_\] Conta Bancária de Liquidação através do Portal do Scheme \[_Opção de liquidação bruta contínua_\] Os DFSPs podem solicitar o levantamento de fundos da Conta Bancária de Liquidação Comum do Scheme através do Portal do Scheme. O scheme analisará o levantamento pedido e, se for aprovado, executará a transferência em nome do DFSP. A finalidade desta análise é assegurar que a quota do DFSP na Conta Bancária de Liquidação é suficiente para cobrir as Transferências em curso: esta aprovação não será recusada sem motivo razoável.
 
 #### 5.1.7 Reporte de liquidação do Scheme
 
-- O scheme fornecerá, através do Portal DFSP do Scheme, informação para os DFSP que inclui, para cada DFSP:
+- O scheme fornecerá, através do Portal DFSP do Scheme, informação para os DFSPs que inclui, para cada DFSP:
 
     - O Net Debit Cap atual e as suas componentes
 
-    - A Posição atual da Razão Geral e as suas componentes, incluindo as Transferências Cumpridas de todos os DFSP e as Transferências Provisórias dos DFSP Pagadores
+    - A Posição atual da Razão Geral e as suas componentes, incluindo as Transferências Cumpridas de todos os DFSPs e as Transferências Provisórias dos DFSPs Pagadores
 
-    - Alertas a determinados níveis da Posição Atual da Razão Geral: estes níveis a determinar pelos DFSP e/ou pelo Scheme de tempos a tempos
+    - Alertas a determinados níveis da Posição Atual da Razão Geral: estes níveis a determinar pelos DFSPs e/ou pelo Scheme de tempos a tempos
 
-- Ferramentas que permitam aos DFSP prever o seu volume de transferências previsto com base em dados históricos
+- Ferramentas que permitam aos DFSPs prever o seu volume de transferências previsto com base em dados históricos
 
 ### 5.2 Liquidação de comissões: Comissões de Processamento
 
@@ -466,15 +470,15 @@ Existe um Serviço do Operador da Plataforma paralelo, necessário ao funcioname
 
 ### 6.1 Descrição do Serviço de Gestão do Scheme
 
-- O Serviço de Gestão do Scheme é prestado pelo Scheme para apoiar os DFSP na utilização dos Serviços do Scheme. Muitas destas funções são disponibilizadas através do Portal do Scheme, que é disponibilizado aos DFSP do Scheme.
+- O Serviço de Gestão do Scheme é prestado pelo Scheme para apoiar os DFSPs na utilização dos Serviços do Scheme. Muitas destas funções são disponibilizadas através do Portal do Scheme, que é disponibilizado aos DFSPs do Scheme.
 
 - Os processos seguintes fazem parte do Serviço de Gestão do Scheme:
 
 ### 6.2 O Processo de Registo
 
-- O Processo de Registo permite a candidatura dos DFSP à participação e o onboarding operacional e técnico. Abrange as seguintes áreas:
+- O Processo de Registo permite a candidatura dos DFSPs à participação e o onboarding operacional e técnico. Abrange as seguintes áreas:
 
-    - Formulários e processos de candidatura dos DFSP à Participação no Scheme.
+    - Formulários e processos de candidatura dos DFSPs à Participação no Scheme.
 
     - Formulários e processos para obtenção de certificados digitais e assinaturas digitais para utilização com a Plataforma.
 
@@ -486,21 +490,21 @@ Existe um Serviço do Operador da Plataforma paralelo, necessário ao funcioname
 
 ### 6.3 Apoio ao cliente DFSP
 
-- O scheme disponibilizará um serviço de apoio (help desk) aos DFSP, tanto em linha como por telefone.
+- O scheme disponibilizará um serviço de apoio (help desk) aos DFSPs, tanto em linha como por telefone.
 
-- O Portal do Scheme disponibilizará meios pelos quais os DFSP podem designar administradores e utilizadores do Portal e atualizar a informação do Perfil do DFSP.
+- O Portal do Scheme disponibilizará meios pelos quais os DFSPs podem designar administradores e utilizadores do Portal e atualizar a informação do Perfil do DFSP.
 
 ### 6.4 Gestão do sistema do Scheme
 
-- O scheme disponibilizará, através do Portal do Scheme, meios pelos quais os DFSP podem consultar a sua Razão Geral de Posição atual, o seu Net Debit Cap e a sua atividade recente e histórica com o Scheme.
+- O scheme disponibilizará, através do Portal do Scheme, meios pelos quais os DFSPs podem consultar a sua Razão Geral de Posição atual, o seu Net Debit Cap e a sua atividade recente e histórica com o Scheme.
 
-- O scheme disponibilizará, através do Portal do Scheme, meios pelos quais os DFSP podem utilizar dados históricos, incluindo o histórico das suas Posições e do seu Net Debit Cap, para prever os volumes futuros e os níveis de financiamento de liquidação necessários.
+- O scheme disponibilizará, através do Portal do Scheme, meios pelos quais os DFSPs podem utilizar dados históricos, incluindo o histórico das suas Posições e do seu Net Debit Cap, para prever os volumes futuros e os níveis de financiamento de liquidação necessários.
 
-- O scheme disponibilizará meios pelos quais os DFSP podem obter atualizações dos artefactos de software que tenham transferido anteriormente.
+- O scheme disponibilizará meios pelos quais os DFSPs podem obter atualizações dos artefactos de software que tenham transferido anteriormente.
 
-- O scheme disponibilizará, através do Portal do Scheme, meios pelos quais os DFSP podem solicitar um levantamento da sua quota na Conta Bancária de Liquidação do Scheme.
+- O scheme disponibilizará, através do Portal do Scheme, meios pelos quais os DFSPs podem solicitar um levantamento da sua quota na Conta Bancária de Liquidação do Scheme.
 
-- O scheme disponibilizará, através do Portal do Scheme, meios pelos quais os DFSP podem consultar a sua quota do saldo da Conta Bancária de Liquidação do Scheme.
+- O scheme disponibilizará, através do Portal do Scheme, meios pelos quais os DFSPs podem consultar a sua quota do saldo da Conta Bancária de Liquidação do Scheme.
 
 ## 7. O Serviço de Gestão da Fraude
 
@@ -521,7 +525,7 @@ seguintes secções:_
 
 7. _Opções de Interceção de Transações em Tempo Real_
 
-## 8. Anexo: Casos de Utilização suportados pelo Scheme e parâmetros do sistema
+## 8. Anexo: Casos de Utilização permitidos pelo Scheme e parâmetros do sistema
 
 _Esta é a mesma tabela que consta do documento de Regras de Negócio, mas com os códigos sistémicos necessários para que a Plataforma reconheça uma transação como pertencendo a um dado caso de utilização ou caso de utilização secundário. Um scheme só definiria Casos de Utilização Secundários se pretendesse redigir regras e/ou especificar comissões exclusivas desse Caso de Utilização Secundário._
 

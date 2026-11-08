@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 73bd59d639e11be27df39c218ab6d383f50b1a5d
+---
+
 # Desativar e reativar as transações de um DFSP
 
 Em certos casos, pode ser necessário tornar um DFSP inativo, temporária ou definitivamente. Um cenário exemplificativo é a observação de comportamento altamente suspeito cuja causa real necessita de investigação, sendo demasiado elevado o risco de perda de fundos.

@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 2e574a4c4d128e68b16e507f2684ffedd2732724
+---
+
 # Razões gerais no Hub
 
 ## Gestão do risco
@@ -32,14 +36,14 @@ Transferência de liquidação: o fluxo de fundos entre DFSP destinado a reconci
 </tr>
 <tr class="odd">
 <td><p>Razão Geral de Liquidação Líquida Multilateral do Hub (HMLNS)</p></td>
-<td><p>Utilizada para registar o lançamento de contrapartida relativo à liquidação líquida entre DFSP. Depois de uma janela de liquidação ter sido fechada e liquidada entre todos os DFSP, o seu saldo regressa a zero.</p></td>
+<td><p>Utilizada para registar o lançamento de contrapartida relativo à liquidação líquida entre DFSP. Depois de uma janela de liquidação ter sido fechada e liquidada entre todos os DFSPs, o seu saldo regressa a zero.</p></td>
 <td><p>Transferência de liquidação: o fluxo de fundos entre DFSP destinado a reconciliar as razões gerais e a atualizar as Posições para uma dada janela de liquidação.</p></td>
 </tr>
 <tr class="even">
 <td><p>Razão Geral de Reconciliação do Hub</p></td>
-<td><p>Assegura que os movimentos de entrada e saída das contas de liquidez e registados nas Razões Gerais de Liquidação estão equilibrados. O saldo é o montante que o Operador do Hub administra em todas as Razões Gerais de Liquidação dos DFSP participantes.<br />
+<td><p>Assegura que os movimentos de entrada e saída das contas de liquidez e registados nas Razões Gerais de Liquidação estão equilibrados. O saldo é o montante que o Operador do Hub administra em todas as Razões Gerais de Liquidação dos DFSPs participantes.<br />
 <br />
-Funciona como conta de controlo e acompanha o movimento de fundos em todas as Razões Gerais de Liquidação dos DFSP (que espelham o movimento de fundos reais).</p></td>
+Funciona como conta de controlo e acompanha o movimento de fundos em todas as Razões Gerais de Liquidação dos DFSPs (que espelham o movimento de fundos reais).</p></td>
 <td><p>Transferência de fundos (entrada e saída): o movimento de fundos iniciado pelo DFSP ou a confirmação pelo banco de liquidação de que a liquidação foi concluída.</p></td>
 </tr>
 </tbody>
@@ -65,7 +69,7 @@ Tomemos o seguinte exemplo: o DFSP1 envia 50 USD ao DFSP2. Eis como esta transa�
 
 ### Passo 1a: reservar o montante da transferência para o remetente na Razão Geral de Posição
 
-A Razão Geral de Posição do DFSP é utilizada para acompanhar as alterações na Posição de um DFSP. Uma vez fechada uma janela de liquidação e iniciado o processo de liquidação, o montante da transferência é reservado nas Razões Gerais de Posição do Hub mantidas para os DFSP, bem como na Razão Geral de Liquidação Líquida Multilateral do Hub. Reservar o montante da transferência para o DFSP pagador (DFSP1) garante que os fundos não podem ser utilizados noutra transferência.
+A Razão Geral de Posição do DFSP é utilizada para acompanhar as alterações na Posição de um DFSP. Uma vez fechada uma janela de liquidação e iniciado o processo de liquidação, o montante da transferência é reservado nas Razões Gerais de Posição do Hub mantidas para os DFSPs, bem como na Razão Geral de Liquidação Líquida Multilateral do Hub. Reservar o montante da transferência para o DFSP pagador (DFSP1) garante que os fundos não podem ser utilizados noutra transferência.
 
 <table>
 <colgroup>
@@ -164,7 +168,7 @@ Na sequência da reserva do montante da transferência, o passo seguinte é conf
 
 ### Passo 2b: confirmar o montante da transferência para o destinatário na Razão Geral de Posição
 
-Confirmar o montante da transferência para o DFSP beneficiário (DFSP2) permite que o DFSP envie fundos a outros DFSP, se assim o desejar.
+Confirmar o montante da transferência para o DFSP beneficiário (DFSP2) permite que o DFSP envie fundos a outros DFSPs, se assim o desejar.
 
 <table>
 <colgroup>
@@ -197,7 +201,7 @@ Confirmar o montante da transferência para o DFSP beneficiário (DFSP2) permite
 
 ### Passo 3: reservar o montante da transferência para o remetente na Razão Geral de Liquidação
 
-Uma vez que as Posições se encontram num estado controlado e que os correspondentes lançamentos de débito e crédito foram registados na Razão Geral de Liquidação Líquida Multilateral do Hub, a transação tem de ser registada e reservada também nas Razões Gerais de Liquidação dos DFSP e na Razão Geral de Reconciliação do Hub, para assegurar que os fundos não são libertados inadvertidamente para outra operação de Funds-Out.
+Uma vez que as Posições se encontram num estado controlado e que os correspondentes lançamentos de débito e crédito foram registados na Razão Geral de Liquidação Líquida Multilateral do Hub, a transação tem de ser registada e reservada também nas Razões Gerais de Liquidação dos DFSPs e na Razão Geral de Reconciliação do Hub, para assegurar que os fundos não são libertados inadvertidamente para outra operação de Funds-Out.
 
 <table>
 <colgroup>
@@ -230,7 +234,7 @@ Uma vez que as Posições se encontram num estado controlado e que os correspond
 
 ### Passo 4a: confirmar o montante da transferência para o destinatário na Razão Geral de Liquidação
 
-Uma vez movimentado dinheiro real nas contas de liquidez dos DFSP, os montantes das transferências podem ser confirmados nas Razões Gerais de Liquidação dos DFSP e na Razão Geral de Reconciliação do Hub. O movimento de fundos é registado primeiro para o DFSP beneficiário.
+Uma vez movimentado dinheiro real nas contas de liquidez dos DFSPs, os montantes das transferências podem ser confirmados nas Razões Gerais de Liquidação dos DFSPs e na Razão Geral de Reconciliação do Hub. O movimento de fundos é registado primeiro para o DFSP beneficiário.
 
 <table>
 <colgroup>
@@ -298,7 +302,7 @@ Por fim, o montante da transferência é também confirmado do lado do remetente
 
 ### Adicionar fundos
 
-Uma vez que os fundos das contas de liquidez flutuam, os DFSP adicionam fundos para financiar os seus envios líquidos ou procuram efetuar levantamentos. Os depósitos podem ocorrer sempre que se pretenda, mas a Razão Geral de Reconciliação do Hub tem de ser atualizada regularmente, para evitar problemas de reconciliação. Sempre que é feita uma alteração à conta externa (isto é, a conta de liquidez do DFSP), o Net Debit Cap tem também de ser avaliado.
+Uma vez que os fundos das contas de liquidez flutuam, os DFSPs adicionam fundos para financiar os seus envios líquidos ou procuram efetuar levantamentos. Os depósitos podem ocorrer sempre que se pretenda, mas a Razão Geral de Reconciliação do Hub tem de ser atualizada regularmente, para evitar problemas de reconciliação. Sempre que é feita uma alteração à conta externa (isto é, a conta de liquidez do DFSP), o Net Debit Cap tem também de ser avaliado.
 
 No exemplo seguinte, o DFSP1 adiciona 100 000 USD à sua conta de liquidez. É assim que o montante do depósito é registado nas razões gerais do Hub.
 

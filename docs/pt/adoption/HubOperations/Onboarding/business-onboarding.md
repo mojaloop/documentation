@@ -1,6 +1,10 @@
-# Onboarding de negócio dos DFSP
+---
+i18n_source_sha: a6fda7dcc67bd62684f5f33bd3b2f77515e17ade
+---
 
-O percurso de onboarding dos DFSP inclui etapas que ocorrem fora do Hub Mojaloop. Estão relacionadas com a vertente de negócio do onboarding e é útil que o Operador do Hub tenha conhecimento delas.
+# Onboarding de negócio dos DFSPs
+
+O percurso de onboarding dos DFSPs inclui etapas que ocorrem fora do Hub Mojaloop. Estão relacionadas com a vertente de negócio do onboarding e é útil que o Operador do Hub tenha conhecimento delas.
 
 ::: tip NOTA
 As etapas do processo de candidatura do DFSP e do percurso de onboarding de negócio são definidas pelo Scheme, em conformidade com os requisitos regulamentares financeiros locais.

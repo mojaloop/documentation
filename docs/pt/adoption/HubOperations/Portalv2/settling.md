@@ -1,8 +1,12 @@
+---
+i18n_source_sha: aa4e41b910723f1ae506429e241e095e01345ffc
+---
+
 # Liquidar
 
 1. [Fechar a janela de liquidação](#fechar-uma-janela-de-liquidacao) que se pretende liquidar.
 1. [Liquidar a(s) janela(s) fechada(s) à escolha](#liquidar-uma-janela-de-liquidacao-fechada). Isto cria uma nova liquidação.
-1. Enviar os relatórios de liquidação aos DFSP e ao banco de liquidação e obter do banco a confirmação de que movimentou os fundos em conformidade com o relatório.
+1. Enviar os relatórios de liquidação aos DFSPs e ao banco de liquidação e obter do banco a confirmação de que movimentou os fundos em conformidade com o relatório.
 1. [Finalizar a nova liquidação](#finalizar-uma-liquidacao) criada na Etapa 2.
 
 Esta secção descreve as etapas do processo (Etapas 1, 2 e 4) que são realizadas através do portal.
@@ -47,7 +51,7 @@ Para finalizar a liquidação, execute as seguintes etapas:
 
 **Pré-requisitos:**
 
-* O banco de liquidação confirmou que todas as Posições MLNS dos DFSP foram liquidadas.
+* O banco de liquidação confirmou que todas as Posições MLNS dos DFSPs foram liquidadas.
 
 **Etapas:**
 

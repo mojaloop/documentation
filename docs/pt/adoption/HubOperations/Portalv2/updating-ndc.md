@@ -1,3 +1,7 @@
+---
+i18n_source_sha: d8a8056ab5b5746a53f6251c903fa424438b155f
+---
+
 # Atualizar o Net Debit Cap de um DFSP
 
 A página **DFSP Financial Positions** permite atualizar o Net Debit Cap (NDC) de um DFSP.

@@ -1,3 +1,7 @@
+---
+i18n_source_sha: c30c25e6dc9ae32adf856fe3817dd8f8fb1d817f
+---
+
 # Registar entradas ou saídas de fundos de um DFSP
 
 A página **DFSP Financial Positions** permite registar entradas ou saídas de fundos nas razões gerais do Hub, no caso de movimentos de fundos iniciados pelo DFSP: um DFSP deposita fundos na sua conta de liquidez ou levanta fundos da sua conta de liquidez.

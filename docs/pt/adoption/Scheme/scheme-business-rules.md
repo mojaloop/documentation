@@ -1,3 +1,7 @@
+---
+i18n_source_sha: cd76ddded4be445425a8d93f5030f78467371289
+---
+
 # Modelo de Regras de Negócio do Scheme
 
 - Versão: 4.0
@@ -65,7 +69,7 @@ Modelo de Regras de Negócio do Scheme
 
 [13 - Anexo: Serviços do Scheme](#_13-anexo-servicos-do-scheme)
 
-[14 - Anexo: Casos de Utilização suportados pelo Scheme](#_14-anexo-casos-de-utilizacao-suportados-pelo-scheme)
+[14 - Anexo: Casos de Utilização permitidos pelo Scheme](#_14-anexo-casos-de-utilizacao-permitidos-pelo-scheme)
 
 [15 - Anexo: Tabela de Comissões do Scheme](#_15-anexo-tabela-de-comissoes-do-scheme)
 
@@ -95,7 +99,7 @@ O software Mojaloop pode ser utilizado para trocas bilaterais entre DFSP, bem co
 
 ### 1.4 As Regras de Negócio do Scheme são vinculativas para os Participantes
 
-<ul><i>Repete a disposição do Acordo de Participação no Scheme. Note-se que as Regras de Negócio do Scheme só são vinculativas para os DFSP que participam no Scheme. O Scheme pode redigir regras que exijam que certas disposições destas regras sejam repercutidas nos clientes do Participante (por exemplo, comerciantes) ou nos seus parceiros (por exemplo, processadores) — mas trata-se de uma obrigação do Participante perante o Scheme, e não das outras partes.</i></ul>
+<ul><i>Repete a disposição do Acordo de Participação no Scheme. Note-se que as Regras de Negócio do Scheme só são vinculativas para os DFSPs que participam no Scheme. O Scheme pode redigir regras que exijam que certas disposições destas regras sejam repercutidas nos clientes do Participante (por exemplo, comerciantes) ou nos seus parceiros (por exemplo, processadores) — mas trata-se de uma obrigação do Participante perante o Scheme, e não das outras partes.</i></ul>
 
 ### 1.5 As regras podem ser alteradas
 
@@ -191,7 +195,7 @@ O software Mojaloop pode ser utilizado para trocas bilaterais entre DFSP, bem co
 
 - Quanto ao Serviço de Liquidação do Scheme, o Scheme seleciona e contrata um ou mais Bancos de Liquidação para a Liquidação entre Participantes.
 
-- O Scheme estabelece um Limite de Valor de Transação que fixa o valor máximo de qualquer Transferência efetuada através da Plataforma do Scheme. Os DFSP podem fixar valores inferiores para os seus clientes.
+- O Scheme estabelece um Limite de Valor de Transação que fixa o valor máximo de qualquer Transferência efetuada através da Plataforma do Scheme. Os DFSPs podem fixar valores inferiores para os seus clientes.
 
 - O Scheme deve ponderar se garantirá ao DFSP Beneficiário qualquer Transferência Cumprida efetuada em conformidade com as presentes Regras
 
@@ -263,7 +267,7 @@ O software Mojaloop pode ser utilizado para trocas bilaterais entre DFSP, bem co
 
     <ul><i>Os Schemes podem ponderar se pretendem especificar que os Participantes proíbam contratualmente os clientes de utilizar os Serviços do Scheme para fins ilícitos e que cessem os Serviços do Scheme aos clientes que saibam, ou suspeitem, estarem a utilizar os Serviços do Scheme para iniciar ou receber transferências para fins ilícitos</i></ul>
 
-### 6.1 Responsabilidades e obrigações dos Participantes enquanto DFSP Pagadores
+### 6.1 Responsabilidades e obrigações dos Participantes enquanto DFSPs Pagadores
 
 - Um Participante que origina um Pedido de Cotação ou um Pedido de Transferência atua como Participante Pagador ao abrigo das presentes Regras.
 
@@ -277,7 +281,7 @@ O software Mojaloop pode ser utilizado para trocas bilaterais entre DFSP, bem co
 
 - O Participante Pagador reconhece que a Plataforma rejeitará um Pedido de Transferência se a Transferência proposta violar as presentes Regras de Negócio, designadamente por exceder o Net Debit Cap do Participante Pagador.
 
-### 6.2 Responsabilidades e obrigações dos Participantes enquanto DFSP Beneficiários
+### 6.2 Responsabilidades e obrigações dos Participantes enquanto DFSPs Beneficiários
 
 - Um Participante que recebe e responde a um Pedido de Cotação ou a um
  Pedido de Transferência atua como Participante Beneficiário ao abrigo das presentes Regras.
@@ -426,13 +430,13 @@ Os Serviços do Scheme incluem:
 
   - Utilitário de Gestão da Fraude
 
-## 14. Anexo: Casos de Utilização suportados pelo Scheme
+## 14. Anexo: Casos de Utilização permitidos pelo Scheme
 
 <ul><i>Os Casos de Utilização são definidos pelo tipo de cliente que paga a outro tipo de cliente e pela finalidade do pagamento. Os casos de utilização secundários são subconjuntos dos Casos de Utilização e servem para evidenciar diferenças mais finas entre transferências. Todas as transferências efetuadas através de Serviços do Scheme podem ser classificadas num, e apenas num, Caso de Utilização e Caso de Utilização Secundário.</i></ul>
 
 <ul><i>O Caso de Utilização e o Caso de Utilização Secundário de uma Transação podem exigir a aplicação de detalhes operacionais e técnicos diferentes, conforme especificado nas Diretrizes de Operação da Plataforma; a aplicação de comissões de intercâmbio diferentes, conforme especificado num Anexo às presentes regras; a aplicação de requisitos diferentes quanto aos procedimentos de gestão de exceções, conforme especificado num Documento Associado às presentes regras</i></ul>
 
-<ul><i>Todos os Casos de Utilização e Casos de Utilização Secundários suportados pelo Scheme são definidos por atributos das transações, especificados nas Diretrizes de Operação da Plataforma.</i></ul>
+<ul><i>Todos os Casos de Utilização e Casos de Utilização Secundários permitidos pelo Scheme são definidos por atributos das transações, especificados nas Diretrizes de Operação da Plataforma.</i></ul>
 
 <ul><i>Segue-se um exemplo de uma tabela de Casos de Utilização e de Casos de Utilização Secundários que um scheme poderá suportar.</i></ul>
 
@@ -499,7 +503,7 @@ Os Participantes têm de cumprir as seguintes práticas de qualidade de serviço
 
 - Os Participantes estabelecerão um quadro de gestão do risco para identificar, avaliar e controlar os riscos relativos à sua utilização do Scheme.
 
-- Os Participantes assegurarão que os sistemas, as aplicações e a rede que suportam a utilização do Scheme são concebidos e desenvolvidos de forma segura.
+- Os Participantes assegurarão que os sistemas, as aplicações e a rede que sustentam a utilização do Scheme são concebidos e desenvolvidos de forma segura.
 
 - Os Participantes implementarão processos para gerir de forma segura todos os sistemas e operações que suportam a utilização do Scheme.
 

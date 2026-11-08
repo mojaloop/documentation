@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 1e5bbd5eb9a9efff431d412df77cdebfb632607f
+---
+
 # Contexto do RBAC
 O Hub Mojaloop utiliza um método de Controlo de Acesso Baseado em Funções (RBAC) para mitigar o risco.
 
@@ -52,7 +56,7 @@ Uma pessoa que necessite de aceder aos vários portais de gestão do Hub Mojaloo
 O processo de registo envolve verificação de identidade, verificação de antecedentes, e assim por diante. São então emitidas credenciais à pessoa — um ID de conta de início de sessão/identidade digital e pelo menos um método de autenticação, que pode incluir uma palavra-passe e autenticação de dois fatores (2FA).
 
 ::: tip NOTA
-O âmbito deste documento não se limita aos operadores do Hub Mojaloop. Aborda também aspetos do acesso dos operadores dos DFSP aos portais do Payment Manager.
+O âmbito deste documento não se limita aos operadores do Hub Mojaloop. Aborda também aspetos do acesso dos operadores dos DFSPs aos portais do Payment Manager.
 :::
 
 ### Considerações sobre 2FA
@@ -64,7 +68,7 @@ Note-se que a 2FA através de telemóvel pode ser inadequada para algumas funç�
 O Mojaloop terá 2 grandes categorias de utilizadores:
 
 1. **Humanos** <br>
-São os utilizadores do hub e dos DFSP que interagirão com o Mojaloop através de várias interfaces. Os utilizadores dos DFSP interagirão com o Mojaloop através do Payment Manager e dos portais que serão disponibilizados durante o processo de onboarding.
+São os utilizadores do hub e dos DFSPs que interagirão com o Mojaloop através de várias interfaces. Os utilizadores dos DFSPs interagirão com o Mojaloop através do Payment Manager e dos portais que serão disponibilizados durante o processo de onboarding.
 2. **Não humanos** <br>
 Estes automatizarão os processos de negócio e as tarefas que de outro modo seriam realizadas por um humano. Comunicarão através de chamadas de API que produzirão ações para cumprir os requisitos de negócio.
 
@@ -117,9 +121,9 @@ O processo de onboarding terá algumas atividades que envolvem a criação de ut
 ### Boas práticas para o RBAC e a gestão de identidades no Mojaloop
 
 1. Todos os ids de utilizador devem ser únicos e ter um formato único que possa ser correlacionado no hub, mas que não tenha significado para terceiros.
-2. Os utilizadores dos DFSP não terão acesso a qualquer função administrativa do Hub
+2. Os utilizadores dos DFSPs não terão acesso a qualquer função administrativa do Hub
 3. Todos os utilizadores não humanos têm de ser impedidos de iniciar sessão nos front ends das aplicações.
-4. Os utilizadores dos DFSP receberão formação sobre as funções e as boas práticas
+4. Os utilizadores dos DFSPs receberão formação sobre as funções e as boas práticas
 5. Impor o aprovisionamento automatizado de utilizadores e a gestão do ciclo de vida.
 6. Classificar as ações executadas no Mojaloop para identificar ações de risco para o negócio que exijam controlos adicionais.
 7. Os controlos adicionais para mitigar os riscos de RBAC podem incluir:
@@ -143,7 +147,7 @@ O seguinte aplica-se aos utilizadores privilegiados:
 As ferramentas preferenciais para a gestão de utilizadores e de identidades num deployment Mojaloop são:
 
 1. **Motor de gestão de identidades KeyCloak** – Armazena e processa os controlos de autenticação de API e funciona também como gateway de API.
-2. **Motor de gestão de identidades WSO2** – Armazena e processa os perfis de função dos utilizadores e intermedeia o autoonboarding dos utilizadores dos DFSP.
+2. **Motor de gestão de identidades WSO2** – Armazena e processa os perfis de função dos utilizadores e intermedeia o autoonboarding dos utilizadores dos DFSPs.
 
 ## Conceber as funções dentro da sua organização
 
@@ -155,7 +159,7 @@ Deve ter-se cuidado ao atribuir várias funções a uma conta, ou várias contas
 
 ### Portais do ecossistema Mojaloop
 
-O ecossistema Mojaloop oferece vários portais, que suportam graus variáveis de controlo de acesso e de RBAC. Dividem-se em dois grupos:
+O ecossistema Mojaloop oferece vários portais, que permitem graus variáveis de controlo de acesso e de RBAC. Dividem-se em dois grupos:
 
 - Portais do Hub, relacionados com a operação do próprio Hub
 - Portais do Payment Manager, relacionados com a gestão da ligação de um DFSP específico ao Hub
@@ -172,8 +176,8 @@ Atualmente, não existe uma solução integrada de Gestão de Identidades e Aces
 Tem duas funções principais: a gestão das operações de liquidação e a gestão da posição de liquidez de cada DFSP (e, associado a isto, o respetivo valor de Net Debit Cap (NDC)).
 O acesso ao Finance Portal está atualmente limitado a uma simples função de controlo de acesso por nome de utilizador/palavra-passe.
 - **Ciclo de vida do participante:** <br>
-Controlo e configuração do acesso ao Hub por parte dos DFSP.
-Do ponto de vista técnico, isto é atualmente conseguido através da utilização do Mojaloop Connection Manager (MCM). No entanto, prevê-se que o próprio MCM venha a ser desenvolvido para apresentar uma API, que possa ser utilizada para desenvolver uma interface disponível para os Operadores do Hub e para os DFSP.
+Controlo e configuração do acesso ao Hub por parte dos DFSPs.
+Do ponto de vista técnico, isto é atualmente conseguido através da utilização do Mojaloop Connection Manager (MCM). No entanto, prevê-se que o próprio MCM venha a ser desenvolvido para apresentar uma API, que possa ser utilizada para desenvolver uma interface disponível para os Operadores do Hub e para os DFSPs.
 - **Operações do Hub:** <br>
 Incluem pesquisas de transações, monitorização de estado e de desempenho, dashboards e as operações técnicas em geral.
 Atualmente, estas funções são conseguidas através da utilização do Prometheus/Grafana e de um conjunto de outras ferramentas, com o controlo de acesso padrão incorporado nas próprias ferramentas. Prevê-se que isto venha a ser migrado para a solução Ory/Keycloak, à medida que esta se desenvolve.
@@ -185,13 +189,13 @@ Para além das medidas de controlo de acesso acima referidas, importa notar que 
 Além destes portais, existem duas outras formas principais de aceder ao Hub, nenhuma delas sujeita a RBAC:
 
 - A primeira são as transações, que são estritamente controladas de acordo com as suas próprias medidas de cibersegurança em múltiplas camadas.
-- E, em segundo lugar, os pagamentos em massa (do governo para a pessoa — G2P), que são suportados por meio de uma API sujeita aos mesmos controlos que as restantes transações individuais. Prevê-se que os pagamentos em massa venham a ser um serviço prestado aos DFSP (e aos seus clientes) por meio de uma API segura, cabendo ao DFSP operar um portal de pagamentos em massa para utilização pelos seus clientes. É possível que o operador de uma instância do Hub Mojaloop venha a disponibilizar um portal de pagamentos em massa white label, que comunique com a API de pagamentos em massa do Hub, para personalização por qualquer DFSP que pretenda oferecer o serviço aos seus clientes. (Note-se que esta não é uma abordagem única: foi proposta uma abordagem semelhante, por exemplo, para os pagamentos a comerciantes, com a disponibilização aos DFSP de uma aplicação white label para transações por código QR, para incorporação nas suas carteiras móveis.)
+- E, em segundo lugar, os pagamentos em massa (do governo para a pessoa — G2P), que são viabilizados por meio de uma API sujeita aos mesmos controlos que as restantes transações individuais. Prevê-se que os pagamentos em massa venham a ser um serviço prestado aos DFSPs (e aos seus clientes) por meio de uma API segura, cabendo ao DFSP operar um portal de pagamentos em massa para utilização pelos seus clientes. É possível que o operador de uma instância do Hub Mojaloop venha a disponibilizar um portal de pagamentos em massa white label, que comunique com a API de pagamentos em massa do Hub, para personalização por qualquer DFSP que pretenda oferecer o serviço aos seus clientes. (Note-se que esta não é uma abordagem única: foi proposta uma abordagem semelhante, por exemplo, para os pagamentos a comerciantes, com a disponibilização aos DFSPs de uma aplicação white label para transações por código QR, para incorporação nas suas carteiras móveis.)
 
 Os controlos de acesso relativos aos pagamentos individuais ou em massa não são, por conseguinte, abordados mais aprofundadamente neste documento.
 
 ### Payment Manager para integração
 
-O Payment Manager é atualmente um dos principais mecanismos de integração dos DFSP num Hub Mojaloop. Enquanto o Hub é único num scheme, existe uma instância separada do Payment Manager para cada DFSP. Os portais oferecidos pelo Payment Manager têm, por isso, de ser protegidos por meio de RBAC, para limitar o acesso a representantes autorizados do DFSP.
+O Payment Manager é atualmente um dos principais mecanismos de integração dos DFSPs num Hub Mojaloop. Enquanto o Hub é único num scheme, existe uma instância separada do Payment Manager para cada DFSP. Os portais oferecidos pelo Payment Manager têm, por isso, de ser protegidos por meio de RBAC, para limitar o acesso a representantes autorizados do DFSP.
 
 No ambiente do Payment Manager, o RBAC é implementado exclusivamente através do Keycloak.
 
@@ -239,12 +243,12 @@ A atribuição das funções ADMINISTRATOR ou FINANCE_MANAGER está sujeita a um
 
 ### Finance Portal / Quadro Operacional de Negócio
 
-Muitas funções do Finance Portal (como a consulta das posições dos DFSP, o estado das janelas de liquidação, e assim por diante) estão disponíveis para todos os utilizadores com sessão iniciada, independentemente da sua função. No entanto, as funções seguintes só podem ser executadas por utilizadores com funções específicas:
+Muitas funções do Finance Portal (como a consulta das posições dos DFSPs, o estado das janelas de liquidação, e assim por diante) estão disponíveis para todos os utilizadores com sessão iniciada, independentemente da sua função. No entanto, as funções seguintes só podem ser executadas por utilizadores com funções específicas:
 
 - Processamento da liquidação
   - Fechar a janela de liquidação
   - Iniciar a liquidação
-- Gestão da liquidez dos DFSP
+- Gestão da liquidez dos DFSPs
   - Adicionar/levantar fundos
   - Alterar o NDC
 
@@ -252,7 +256,7 @@ Todas estas estão sujeitas a controlos maker/checker, pelo que um utilizador co
 
 ### Ciclo de vida do participante
 
-Este portal fornece uma interface única para o Operador do Hub adicionar e manter os DFSP nos ecossistemas do Hub.
+Este portal fornece uma interface única para o Operador do Hub adicionar e manter os DFSPs nos ecossistemas do Hub.
 
 Existem algumas funções normalizadas que estão sujeitas a RBAC:
 

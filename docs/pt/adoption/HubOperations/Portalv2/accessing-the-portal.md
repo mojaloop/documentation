@@ -1,3 +1,7 @@
+---
+i18n_source_sha: b47b21c7b14010803a21a5baf740a62efbbb571c
+---
+
 # Aceder ao portal
 
 Ao aceder ao portal, é apresentado um pedido de autenticação. Introduza as suas credenciais na página de início de sessão.
@@ -59,7 +63,7 @@ A tabela seguinte enumera todas as funcionalidades disponíveis, os caminhos de 
 <td><p>✓</p></td>
 </tr>
 <tr class="odd">
-<td><p><a href="monitoring-dfsp-financial-details.html">Consultar os detalhes financeiros dos DFSP</a></p></td>
+<td><p><a href="monitoring-dfsp-financial-details.html">Consultar os detalhes financeiros dos DFSPs</a></p></td>
 <td><p><strong>Participants</strong> &gt; <strong>DFSP Financial Positions</strong></p></td>
 <td><p>✓</p></td>
 <td><p>✓</p></td>
@@ -71,7 +75,7 @@ A tabela seguinte enumera todas as funcionalidades disponíveis, os caminhos de 
 <td><p>✓</p></td>
 </tr>
 <tr class="odd">
-<td><p><a href="recording-funds-in-out.html">Registar depósitos ou levantamentos nas contas de liquidez dos DFSP</a></p></td>
+<td><p><a href="recording-funds-in-out.html">Registar depósitos ou levantamentos nas contas de liquidez dos DFSPs</a></p></td>
 <td><p><strong>Participants</strong> &gt; <strong>DFSP Financial Positions</strong></p></td>
 <td><p>✓</p></td>
 <td><p>✓</p></td>
