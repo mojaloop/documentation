@@ -2,166 +2,165 @@
 i18n_source_sha: 344575b0687e2c3430fe66f41a44360892a0415f
 ---
 
-# Policy on the Responsible Use of Artificial Intelligence (AI) Tools by Community Members
+# Política de utilização responsável de ferramentas de Inteligência Artificial (IA) pelos membros da comunidade
 
-- Version: 1.0
-- Effective Date: 2026-04-08
-- Author: James Bush (jbush@mojaloop.io)
-- Applies To: All contributors, maintainers, adopters, and participants in the Mojaloop community and its associated projects, including repositories under the Mojaloop GitHub organisation.
+- Versão: 1.0
+- Data de entrada em vigor: 2026-04-08
+- Autor: James Bush (jbush@mojaloop.io)
+- Aplica-se a: Todos os contribuidores, responsáveis pela manutenção, adotantes e participantes na comunidade Mojaloop e nos projetos associados, incluindo os repositórios da organização Mojaloop no GitHub.
 
-**AI Disclosure** This document includes content generated with assistance from ChatGPT 5.2. All content has been reviewed and validated by the author.
-
----
-
-## 1. Purpose
-
-This policy establishes clear and pragmatic guidelines for the responsible use of Artificial Intelligence (AI) tools within the Mojaloop community.
-
-The Mojaloop Foundation supports innovation and productivity enhancements, including the use of AI-assisted tools. However, transparency, accountability, and community trust remain paramount. This policy ensures that AI use enhances collaboration without undermining openness, authorship integrity, or technical quality.
+**Divulgação de IA** Este documento inclui conteúdo gerado com a assistência do ChatGPT 5.2. Todo o conteúdo foi revisto e validado pelo autor.
 
 ---
 
-## 2. Guiding Principles
+## 1. Objetivo
 
-All AI use within the Mojaloop community must adhere to the following principles:
+Esta política estabelece orientações claras e pragmáticas para a utilização responsável de ferramentas de Inteligência Artificial (IA) na comunidade Mojaloop.
 
-1. **Human Accountability** – A human contributor is always responsible for the final output.
-2. **Transparency** – Use of AI-generated content must be clearly disclosed.
-3. **Quality and Security** – AI-generated outputs must meet Mojaloop’s engineering and documentation standards.
-4. **Community Integrity** – AI must not be used in ways that disrupt or overwhelm community processes.
+A Mojaloop Foundation apoia a inovação e as melhorias de produtividade, incluindo a utilização de ferramentas assistidas por IA. No entanto, a transparência, a responsabilização e a confiança da comunidade continuam a ser primordiais. Esta política garante que a utilização de IA melhora a colaboração sem comprometer a abertura, a integridade da autoria ou a qualidade técnica.
 
 ---
 
-## 3. Permitted Uses of AI Tools
+## 2. Princípios orientadores
 
-### 3.1 AI as Note-Takers in Community Calls
+Toda a utilização de IA na comunidade Mojaloop deve cumprir os seguintes princípios:
 
-AI tools may be used to take notes during **public Mojaloop community calls**, subject to the following conditions:
-
-- The AI tool user **must be personally present** in the call unless prior authorisation is obtained from the meeting host.
-- AI note-taking tools may not join calls independently of a human participant without explicit prior authorisation from the meeting host.
-- Anonymous AI bots are not permitted. All AI bots must disclose publicly the human community member they represent.
-- AI note-taking tools may only join calls where call recording is enabled.
-
-**Rationale:**
-The Mojaloop community values open discussion and psychological safety. The presence of numerous unattended recording or summarisation bots may discourage participation and negatively affect collaboration.
+1. **Responsabilização humana** – Um contribuidor humano é sempre responsável pelo resultado final.
+2. **Transparência** – A utilização de conteúdo gerado por IA deve ser claramente divulgada.
+3. **Qualidade e segurança** – Os resultados gerados por IA devem cumprir as normas de engenharia e de documentação do Mojaloop.
+4. **Integridade da comunidade** – A IA não deve ser utilizada de formas que perturbem ou sobrecarreguem os processos da comunidade.
 
 ---
 
-### 3.2 AI Assistance in Documentation
+## 3. Utilizações permitidas das ferramentas de IA
 
-Community members may use AI tools to assist with:
+### 3.1 IA para tomar notas em chamadas da comunidade
 
-- Drafting documentation
-- Improving clarity or grammar
-- Reformatting content
-- Generating summaries
-- Translating content
+As ferramentas de IA podem ser utilizadas para tomar notas durante as **chamadas públicas da comunidade Mojaloop**, nas seguintes condições:
 
-However:
+- O utilizador da ferramenta de IA **tem de estar pessoalmente presente** na chamada, salvo autorização prévia do anfitrião da reunião.
+- As ferramentas de IA para tomar notas não podem entrar em chamadas independentemente de um participante humano sem autorização prévia explícita do anfitrião da reunião.
+- Não são permitidos bots de IA anónimos. Todos os bots de IA devem divulgar publicamente o membro humano da comunidade que representam.
+- As ferramentas de IA para tomar notas só podem entrar em chamadas em que a gravação da chamada esteja ativada.
 
-- Any document in which AI has generated **any portion of the content** must contain a clear statement in the document header specifying:
-  - That AI tools were used
-  - Which AI tool(s) were used
-
-**Example Disclosure Statement:**
-
-  _This document includes content generated with assistance from [Tool Name]. All content has been reviewed and validated by the author._
-
-Failure to disclose AI-assisted generation may result in the document being rejected or returned for correction.
-
-**Rationale:**
-Transparency maintains trust in authorship and allows readers to assess provenance appropriately.
+**Fundamentação:**
+A comunidade Mojaloop valoriza a discussão aberta e a segurança psicológica. A presença de numerosos bots de gravação ou de resumo sem acompanhamento pode desencorajar a participação e afetar negativamente a colaboração.
 
 ---
 
-### 3.3 AI Assistance in Code Creation and Debugging
+### 3.2 Assistência de IA na documentação
 
-AI tools may be used for:
+Os membros da comunidade podem utilizar ferramentas de IA para ajudar a:
 
-- Code generation
-- Code suggestions
-- Refactoring assistance
-- Debugging support
-- Test generation
-- Documentation generation for code
+- Redigir documentação
+- Melhorar a clareza ou a gramática
+- Reformatar conteúdo
+- Gerar resumos
+- Traduzir conteúdo
 
-However, the following rules strictly apply:
+No entanto:
 
-#### 3.3.1 Human Submission Requirement
+- Qualquer documento em que a IA tenha gerado **qualquer parte do conteúdo** tem de conter uma declaração clara no cabeçalho do documento que especifique:
+  - Que foram utilizadas ferramentas de IA
+  - Que ferramenta(s) de IA foram utilizadas
 
-- All pull requests (PRs), issues, and code submissions must be made by human contributors.
-- Fully automated AI agents may not submit PRs, bug fixes, or code changes.
-- All pull requests (PRs), issues, and code submissions must follow the Mojaloop community product engineering process requirements.
-- The only exception is officially supported automated tools already integrated into GitHub workflows (e.g., dependency update bots such as Dependabot).
+**Exemplo de declaração de divulgação:**
 
-Any automated agent submissions beyond approved GitHub-native tools will be **dismissed without review**.
+  _Este documento inclui conteúdo gerado com a assistência do [nome da ferramenta]. Todo o conteúdo foi revisto e validado pelo autor._
 
----
+A não divulgação de conteúdo gerado com assistência de IA pode resultar na rejeição ou na devolução do documento para correção.
 
-#### 3.3.2 Mandatory Human Review
-
-All AI-assisted code:
-
-- MUST be thoroughly reviewed by the human submitter.
-- MUST be understood in full by the submitter.
-- MUST meet Mojaloop coding standards and architectural principles.
-- MUST pass all automated tests and validation pipelines.
-
-Code that is clearly AI-generated and has not been properly reviewed, validated, and understood by the human author will not be accepted into the codebase.
-
-The human contributor submitting the PR retains full accountability for:
-
-- Correctness
-- Security
-- Licensing compliance
-- Architectural consistency
-- Long-term maintainability
-
-**Rationale:**
-Mojaloop operates in the financial services domain. The integrity, security, and correctness of code are non-negotiable.
+**Fundamentação:**
+A transparência mantém a confiança na autoria e permite aos leitores avaliar adequadamente a proveniência.
 
 ---
 
-## 4. Prohibited Uses
+### 3.3 Assistência de IA na criação de código e na depuração
 
-The following uses of AI are not permitted within Mojaloop community processes:
+As ferramentas de IA podem ser utilizadas para:
 
-- Unattended AI bots joining community calls.
-- Fully autonomous AI agents submitting PRs or issues.
-- Submitting AI-generated content without required disclosure (where applicable).
-- Delegating architectural or design decisions to AI tools.
-- Using AI tools to scrape, summarise, or redistribute restricted or confidential information without permission.
+- Geração de código
+- Sugestões de código
+- Assistência na refatorização
+- Apoio à depuração
+- Geração de testes
+- Geração de documentação do código
 
----
+No entanto, aplicam-se estritamente as regras seguintes:
 
-## 5. Enforcement
+#### 3.3.1 Requisito de submissão humana
 
-Maintainers and reviewers may:
+- Todos os pull requests (PR), issues e submissões de código têm de ser feitos por contribuidores humanos.
+- Os agentes de IA totalmente automatizados não podem submeter PR, correções de erros ou alterações de código.
+- Todos os pull requests (PR), issues e submissões de código têm de seguir os requisitos do processo de engenharia de produto da comunidade Mojaloop.
+- A única exceção são as ferramentas automatizadas com suporte oficial e já integradas nos fluxos de trabalho do GitHub (por exemplo, bots de atualização de dependências como o Dependabot).
 
-- Request disclosure statements be added.
-- Reject PRs that appear insufficiently reviewed.
-- Close automated agent submissions without comment.
-- Request clarification regarding AI involvement.
-
-Repeated or deliberate violations may be escalated in accordance with Mojaloop community governance procedures.
-
----
-
-## 6. Future Review
-
-AI capabilities evolve rapidly. This policy will be reviewed periodically by the Mojaloop Foundation and community maintainers to ensure it remains appropriate, practical, and aligned with community values.
+Quaisquer submissões de agentes automatizados para além das ferramentas nativas do GitHub aprovadas serão **rejeitadas sem revisão**.
 
 ---
 
-## 7. Summary
+#### 3.3.2 Revisão humana obrigatória
 
-AI tools are permitted within the Mojaloop community when used responsibly and transparently.
+Todo o código assistido por IA:
 
-- Humans must remain accountable.
-- AI must not overwhelm community processes.
-- Disclosure is required in documentation.
-- Code must always be reviewed and submitted by a human.
+- DEVE ser minuciosamente revisto pelo submetente humano.
+- DEVE ser compreendido na íntegra pelo submetente.
+- DEVE cumprir as normas de código e os princípios de arquitetura do Mojaloop.
+- DEVE passar todos os testes automatizados e pipelines de validação.
 
-The Mojaloop Foundation encourages thoughtful adoption of AI tools in ways that strengthen, not dilute, the quality, trust, and collaborative spirit of the Mojaloop ecosystem.
+O código que seja claramente gerado por IA e que não tenha sido devidamente revisto, validado e compreendido pelo autor humano não será aceite na base de código.
 
+O contribuidor humano que submete o PR mantém a responsabilidade total por:
+
+- Correção
+- Segurança
+- Conformidade com as licenças
+- Consistência da arquitetura
+- Manutenibilidade a longo prazo
+
+**Fundamentação:**
+O Mojaloop opera no domínio dos serviços financeiros. A integridade, a segurança e a correção do código não são negociáveis.
+
+---
+
+## 4. Utilizações proibidas
+
+As seguintes utilizações de IA não são permitidas nos processos da comunidade Mojaloop:
+
+- Bots de IA sem acompanhamento a entrar em chamadas da comunidade.
+- Agentes de IA totalmente autónomos a submeter PR ou issues.
+- Submeter conteúdo gerado por IA sem a divulgação exigida (quando aplicável).
+- Delegar decisões de arquitetura ou de design em ferramentas de IA.
+- Utilizar ferramentas de IA para recolher, resumir ou redistribuir informação restrita ou confidencial sem autorização.
+
+---
+
+## 5. Aplicação
+
+Os responsáveis pela manutenção e os revisores podem:
+
+- Pedir que sejam acrescentadas declarações de divulgação.
+- Rejeitar PR que aparentem não ter sido suficientemente revistos.
+- Fechar submissões de agentes automatizados sem comentário.
+- Pedir esclarecimentos sobre o envolvimento de IA.
+
+As violações repetidas ou deliberadas podem ser escaladas de acordo com os procedimentos de governação da comunidade Mojaloop.
+
+---
+
+## 6. Revisão futura
+
+As capacidades de IA evoluem rapidamente. Esta política será revista periodicamente pela Mojaloop Foundation e pelos responsáveis pela manutenção da comunidade, para garantir que se mantém adequada, prática e alinhada com os valores da comunidade.
+
+---
+
+## 7. Resumo
+
+As ferramentas de IA são permitidas na comunidade Mojaloop quando utilizadas de forma responsável e transparente.
+
+- Os humanos têm de se manter responsáveis.
+- A IA não pode sobrecarregar os processos da comunidade.
+- A divulgação é obrigatória na documentação.
+- O código tem de ser sempre revisto e submetido por um humano.
+
+A Mojaloop Foundation incentiva a adoção ponderada de ferramentas de IA de formas que reforcem, e não diluam, a qualidade, a confiança e o espírito colaborativo do ecossistema Mojaloop.

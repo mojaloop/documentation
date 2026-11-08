@@ -2,197 +2,197 @@
 i18n_source_sha: 1818851e2a2a719166706f01778ceaa41054d37b
 ---
 
-# Mojaloop Product Engineering Process
+# Processo de engenharia de produto do Mojaloop
 
-## Introduction
+## Introdução
 
-Mojaloop software is intended to form the backbone of nation scale inclusive instant payments schemes. These schemes are
-important pieces of regulated national financial infrastructure which facilitate the life critical daily activities of a
-great number of people, such as purchasing food and clean drinking water. Our adopters, their regulators and the people
-transacting through Mojaloop schemes demand and deserve an extremely high level of quality, security, reliability and
-resilience from our products.
+O software Mojaloop destina-se a constituir a espinha dorsal de schemes de pagamentos instantâneos inclusivos à escala nacional. Estes schemes são
+peças importantes de infraestrutura financeira nacional regulada que viabilizam atividades diárias vitais de
+um grande número de pessoas, como a compra de alimentos e de água potável. Os nossos adotantes, os respetivos reguladores e as pessoas
+que realizam transações através de schemes Mojaloop exigem e merecem dos nossos produtos um nível extremamente elevado de qualidade, segurança, fiabilidade e
+resiliência.
 
-In order to maintain these qualities and mitigate the many business and technical risks our adopters and their
-stakeholders face, the Mojaloop Foundation implements a structured product engineering process based on best
-demonstrated industry practices for regulated financial software which includes managed technical and process driven
-change control and traceability, technical design and code reviews, high thresholds for testing and multiple levels of
-quality assurance gates.
+De forma a manter estas qualidades e mitigar os muitos riscos de negócio e técnicos que os nossos adotantes e as respetivas
+partes interessadas enfrentam, a Mojaloop Foundation aplica um processo estruturado de engenharia de produto baseado nas melhores
+práticas comprovadas do setor para software financeiro regulado, que inclui controlo de alterações e rastreabilidade geridos tecnicamente e orientados
+por processos, revisões de design técnico e de código, limiares elevados de testes e vários níveis de
+barreiras de garantia de qualidade.
 
-Our process is intended to help our contributors identify and mitigate risks while enhancing our products, for the
-benefit of the entire Mojaloop community.
+O nosso processo destina-se a ajudar os nossos contribuidores a identificar e mitigar riscos enquanto melhoram os nossos produtos, em
+benefício de toda a comunidade Mojaloop.
 
-## Evolution of our process
+## Evolução do nosso processo
 
-Since 2017 when the Mojaloop project cut its first code, our process model has evolved to cope with the
-transition from a single engineering team to a number of community resourced workstreams, each focused on developing
-specific areas of a large product suite.
+Desde 2017, quando o projeto Mojaloop escreveu o seu primeiro código, o nosso modelo de processo evoluiu para dar resposta à
+transição de uma única equipa de engenharia para vários workstreams com recursos da comunidade, cada um centrado no desenvolvimento
+de áreas específicas de um grande conjunto de produtos.
 
-Our current model is based on the [Scaled Agile Framework](https://scaledagileframework.com/) which we use to facilitate
-a number of teams working as independently as possible to deliver a coordinated set of roadmap outcomes across our
-entire product space.
+O nosso modelo atual baseia-se no [Scaled Agile Framework](https://scaledagileframework.com/), que utilizamos para permitir que
+várias equipas trabalhem da forma mais independente possível para entregar um conjunto coordenado de resultados do roadmap em todo
+o nosso espaço de produto.
 
-Our model is a cycle of "[program increments](https://v5.scaledagileframework.com/program-increment/)", each lasting
-approximately four calendar months. At the end of each increment, workstreams present their accomplishments at a
-community meeting, new code is released and planning for the next increment begins.
+O nosso modelo é um ciclo de «[incrementos de programa](https://v5.scaledagileframework.com/program-increment/)», cada um com a duração de
+aproximadamente quatro meses de calendário. No final de cada incremento, os workstreams apresentam as suas realizações numa
+reunião da comunidade, é disponibilizado código novo e começa o planeamento do incremento seguinte.
 
-![Mojaloop Program Increments](../../../community/contributing/assets/mojaloop-product-engineering-process-overview.jpg)
+![Incrementos de programa do Mojaloop](../../../community/contributing/assets/mojaloop-product-engineering-process-overview.jpg)
 
-## Product Requirements Flow
+## Fluxo de requisitos de produto
 
-![Mojaloop Feature Flow](../../../community/contributing/assets/mojaloop-product-feature-flow.jpg)
+![Fluxo de funcionalidades do Mojaloop](../../../community/contributing/assets/mojaloop-product-feature-flow.jpg)
 
-Feature requests and new requirements come from a variety of sources, for example:
+Os pedidos de funcionalidades e os novos requisitos provêm de várias fontes, por exemplo:
 
-- Current Mojaloop adopters and Mojaloop scheme participants
-- Payment scheme operators wishing to benefit from Mojaloop technology
-- Government departments wishing to implement inclusive payment schemes in their countries
-- Financial inclusion experts
-- Mojaloop community members
+- Adotantes atuais do Mojaloop e participantes de schemes Mojaloop
+- Operadores de schemes de pagamento que pretendem beneficiar da tecnologia Mojaloop
+- Departamentos governamentais que pretendem implementar schemes de pagamento inclusivos nos seus países
+- Especialistas em inclusão financeira
+- Membros da comunidade Mojaloop
 
-These new requirements and feature requests are gathered and analysed by the Mojaloop product council. If sufficient
-demand and willingness to contribute is evident then these are fed into the Mojaloop Product Roadmap and allocated to an
-official Mojaloop workstream. If no appropriate workstream exists then a new one may be created and resourced by the
-community.
+Estes novos requisitos e pedidos de funcionalidades são recolhidos e analisados pelo Product Council do Mojaloop. Se existir procura
+suficiente e disponibilidade evidente para contribuir, estes são integrados no Roadmap de Produto do Mojaloop e atribuídos a um
+workstream oficial do Mojaloop. Se não existir um workstream adequado, pode ser criado um novo, com recursos da
+comunidade.
 
-Workstreams typically have a set of objectives defined at the beginning of each Mojaloop programme increment, but high
-priority feature requests may be inserted during an increment.
+Os workstreams têm normalmente um conjunto de objetivos definidos no início de cada incremento de programa do Mojaloop, mas podem ser inseridos pedidos de funcionalidades
+de alta prioridade durante um incremento.
 
-Workstreams deliver their output into a controlled process which periodically makes official releases of the
-Mojaloop software. The Mojaloop release process tends to align with program increments; major releases, which
-include new features, are typically made close to the end of an increment. Minor and patch releases are made more
-frequently and may include high priority features, bug fixes or security patches for example.
+Os workstreams entregam os seus resultados num processo controlado que disponibiliza periodicamente versões oficiais do
+software Mojaloop. O processo de disponibilização de versões do Mojaloop tende a alinhar-se com os incrementos de programa; as versões principais, que
+incluem novas funcionalidades, são normalmente disponibilizadas perto do final de um incremento. As versões secundárias e de correção são disponibilizadas com mais
+frequência e podem incluir, por exemplo, funcionalidades de alta prioridade, correções de erros ou correções de segurança.
 
-## Mojaloop Workstreams
+## Workstreams do Mojaloop
 
-Official workstreams are the "production lines" of the Mojaloop community software factory, this is where the bulk of
-product development work happens. Typically there are many workstreams running in parallel, each focused on specific
-areas or features of the platform.
+Os workstreams oficiais são as «linhas de produção» da fábrica de software da comunidade Mojaloop; é aqui que acontece a maior parte do
+trabalho de desenvolvimento de produto. Normalmente, existem muitos workstreams em curso em paralelo, cada um centrado em
+áreas ou funcionalidades específicas da plataforma.
 
-### Governance Model & Operating Requirements
+### Modelo de governação e requisitos de funcionamento
 
-Mojaloop workstreams have a clearly defined governance model and operating requirements to minimize risks to all
-stakeholders:
+Os workstreams do Mojaloop têm um modelo de governação e requisitos de funcionamento claramente definidos para minimizar os riscos para todas as
+partes interessadas:
 
-1. Workstreams must have a clear and concise name which reflects their purpose.
-2. Workstreams must have a named individual as leader at all times; in some circumstances the workstream lead position
-   may be shared by two individuals if neither has sufficient time to contribute.
-3. Workstreams must have a named individual as a liaison with the Mojaloop Design Authority. This may be the same
-   individual(s) as the workstream leader or a different nominated individual.
-4. Workstreams must publish and maintain a description which explains their purpose, objectives and scope for each
-   program increment on community central.
-5. Workstreams must have a minimum of two named, active contributors.
-6. Workstreams must operate a minimum of one online meeting per week.
-    1. Workstream meetings should be considered open for other community members to observe.
-    2. Workstream meetings should be recorded and recordings should be published publicly.
-7. Workstreams with more than two active contributors should operate a scrum style stand-up online meeting.
-    1. Stand-up meetings should be daily, unless the volume of work is low, in which case a less frequent cadence may
-       be acceptable.
-8. Workstreams must maintain a public github repository containing all related code, documentation and work items.
-9. Workstreams must adhere to all [Mojaloop design and code review processes](./design-review.md) before, during
-   and after work has been completed.
-10. Workstreams must obtain and use a specific hashtag on community central when making posts.
-11. Workstreams must be reviewed by the Mojaloop Product Council before commencement of each program increment.
-    1. Workstream objectives must be aligned with the Mojaloop product roadmap.
-    2. Workstream objectives must be aligned with the mission of the Mojaloop Foundation.
+1. Os workstreams devem ter um nome claro e conciso que reflita o seu propósito.
+2. Os workstreams devem ter, em permanência, uma pessoa nomeada como líder; em algumas circunstâncias, a posição de líder do workstream
+   pode ser partilhada por duas pessoas, se nenhuma delas tiver tempo suficiente para contribuir.
+3. Os workstreams devem ter uma pessoa nomeada como elemento de ligação com a Design Authority do Mojaloop. Pode ser a mesma
+   pessoa (ou pessoas) que lidera o workstream ou outra pessoa nomeada.
+4. Os workstreams devem publicar e manter, no Community Central, uma descrição que explique o seu propósito, objetivos e âmbito para cada
+   incremento de programa.
+5. Os workstreams devem ter um mínimo de dois contribuidores ativos nomeados.
+6. Os workstreams devem realizar um mínimo de uma reunião online por semana.
+    1. As reuniões dos workstreams deveriam ser consideradas abertas à observação por outros membros da comunidade.
+    2. As reuniões dos workstreams deveriam ser gravadas e as gravações deveriam ser publicadas publicamente.
+7. Os workstreams com mais de dois contribuidores ativos deveriam realizar uma reunião online de stand-up ao estilo scrum.
+    1. As reuniões de stand-up deveriam ser diárias, a menos que o volume de trabalho seja reduzido, caso em que pode
+       ser aceitável uma cadência menos frequente.
+8. Os workstreams devem manter um repositório GitHub público com todo o código, documentação e itens de trabalho relacionados.
+9. Os workstreams devem cumprir todos os [processos de revisão de design e de código do Mojaloop](./design-review.md) antes, durante
+   e depois da conclusão do trabalho.
+10. Os workstreams devem obter e utilizar uma hashtag específica no Community Central ao fazer publicações.
+11. Os workstreams devem ser revistos pelo Product Council do Mojaloop antes do início de cada incremento de programa.
+    1. Os objetivos do workstream devem estar alinhados com o roadmap de produto do Mojaloop.
+    2. Os objetivos do workstream devem estar alinhados com a missão da Mojaloop Foundation.
 
-### Workstream Leadership Criteria and Responsibilities
+### Critérios e responsabilidades da liderança dos workstreams
 
-The Mojaloop Foundation appoints leads who are typically volunteers from the community with a high level of relevant
-expertise or experience.
+A Mojaloop Foundation nomeia líderes que são normalmente voluntários da comunidade com um elevado nível de conhecimentos especializados
+ou de experiência relevantes.
 
-To qualify as a workstream (co)lead, individuals should meet the following criteria:
+Para se qualificarem como (co)líderes de workstream, as pessoas deveriam cumprir os seguintes critérios:
 
-1. Commitment and ability to fulfil all workstream lead responsibilities (see below).
-2. Demonstrable organizational ability.
-3. Demonstrable leadership ability.
-4. Demonstrable relevant technical ability.
-5. Familiarity with Mojaloop ecosystem.
-6. Commitment for the duration of the PI.
-7. Commitment to and adherence to the Mojaloop Code of conduct
+1. Compromisso e capacidade para cumprir todas as responsabilidades de líder de workstream (ver abaixo).
+2. Capacidade de organização demonstrável.
+3. Capacidade de liderança demonstrável.
+4. Capacidade técnica relevante demonstrável.
+5. Familiaridade com o ecossistema Mojaloop.
+6. Compromisso durante todo o PI.
+7. Compromisso com o Código de conduta do Mojaloop e respetivo cumprimento
 
-Workstream (co)leads must accept the following responsibilities:
+Os (co)líderes de workstream devem aceitar as seguintes responsabilidades:
 
-1. To be a primary point of contact for queries.
-2. To schedule, hold, record and publish recordings and minutes of workstream meetings.
-3. To facilitate liaison between workstream contributors, other workstreams and the rest of the community.
-4. To create, publish on community central and maintain a workstream team charter document.
-5. Report Progress to...
-    1. ...the community regularly on Community Central using assigned hashtag.
-    2. ...the Product Manager/Product Council.
-6. Ensure all work items adhere to all [Mojaloop design and code review processes](./design-review.md) before, during
-   and after work has completed.
-7. Ensure all work adheres to Mojaloop quality standards such as style, test coverage and documentation.
-8. Ensure all work is tracked in GitHub/Zenhub and timelines and progress are updated.
-9. Ensure all technical output is tested by the core team before integration into the official release process. For
-   non-technical workstreams output should be reviewed by the Mojaloop Foundation Product Director.
-10. Facilitate building new features and write code as necessary.
-11. Triage/review contributions, issues, and respond to users.
-12. File bug reports / fixes and resolve conflicts in the workstream.
-13. Proactively manage technical debt and improve existing code, while adhering to
-    all [Mojaloop design and code review processes](./design-review.md).
-14. Ensure documentation meets the required standards.
-15. Guide the workstream strategic direction in collaboration with the Mojaloop Foundation Product Director and Product
+1. Ser o principal ponto de contacto para questões.
+2. Agendar, realizar, gravar e publicar as gravações e as atas das reuniões do workstream.
+3. Facilitar a ligação entre os contribuidores do workstream, os outros workstreams e o resto da comunidade.
+4. Criar, publicar no Community Central e manter um documento de carta de equipa do workstream.
+5. Comunicar o progresso...
+    1. ...regularmente à comunidade, no Community Central, utilizando a hashtag atribuída.
+    2. ...ao Product Manager/Product Council.
+6. Garantir que todos os itens de trabalho cumprem todos os [processos de revisão de design e de código do Mojaloop](./design-review.md) antes, durante
+   e depois da conclusão do trabalho.
+7. Garantir que todo o trabalho cumpre as normas de qualidade do Mojaloop, como o estilo, a cobertura de testes e a documentação.
+8. Garantir que todo o trabalho é acompanhado no GitHub/Zenhub e que os prazos e o progresso são atualizados.
+9. Garantir que todos os resultados técnicos são testados pela equipa nuclear antes da integração no processo oficial de disponibilização de versões. Para
+   workstreams não técnicos, os resultados deveriam ser revistos pelo Product Director da Mojaloop Foundation.
+10. Facilitar a construção de novas funcionalidades e escrever código conforme necessário.
+11. Fazer a triagem/revisão das contribuições e das issues e responder aos utilizadores.
+12. Registar relatórios de erros / correções e resolver conflitos no workstream.
+13. Gerir proativamente a dívida técnica e melhorar o código existente, cumprindo
+    todos os [processos de revisão de design e de código do Mojaloop](./design-review.md).
+14. Garantir que a documentação cumpre as normas exigidas.
+15. Orientar a direção estratégica do workstream em colaboração com o Product Director da Mojaloop Foundation e com o Product
     Council.
-16. Define SMART objectives at the beginning of each PI.
+16. Definir objetivos SMART no início de cada PI.
 
-### Defining Work
+### Definir o trabalho
 
-Workstreams must define and record publicly, via github/zenhub issues, the work they plan to undertake and the
-progress they make during implementation:
+Os workstreams devem definir e registar publicamente, através de issues do github/zenhub, o trabalho que planeiam realizar e o
+progresso que fazem durante a implementação:
 
-1. Work items must be recorded in GitHub as project issues; use of zenhub is not mandatory but is highly encouraged.
-    1. Each workstream has its own GitHub project and zenhub workspace for managing work items.
-2. Work items, also known as "user stories", should be defined in
-   the “As a... I want to... So That...”
-   [behaviour driven development style](https://www.agilealliance.org/glossary/user-story-template/).
-3. Work items should include detailed acceptance criteria defined in the "given, when,
-   then" [behaviour driven development style](https://www.agilealliance.org/glossary/given-when-then/).
-4. Work items must be sized so the expected duration of any item or sub item does not exceed a single two week sprint.
-5. Work items must adhere to all [Mojaloop design and code review processes](./design-review.md) before, during and
-   after work has completed. Where design review is required, "spike" tickets should be used to track the design process
-   before work item tickets are created.
-    1. All required design documentation must be approved by the Mojaloop Design Authority before work commences.
+1. Os itens de trabalho devem ser registados no GitHub como issues do projeto; a utilização do zenhub não é obrigatória, mas é fortemente incentivada.
+    1. Cada workstream tem o seu próprio projeto GitHub e espaço de trabalho zenhub para gerir os itens de trabalho.
+2. Os itens de trabalho, também conhecidos como «user stories», deveriam ser definidos
+   no estilo «As a... I want to... So That...»
+   do [desenvolvimento orientado pelo comportamento](https://www.agilealliance.org/glossary/user-story-template/).
+3. Os itens de trabalho deveriam incluir critérios de aceitação detalhados, definidos no estilo «given, when,
+   then» do [desenvolvimento orientado pelo comportamento](https://www.agilealliance.org/glossary/given-when-then/).
+4. Os itens de trabalho devem ser dimensionados de forma a que a duração prevista de qualquer item ou subitem não exceda um único sprint de duas semanas.
+5. Os itens de trabalho devem cumprir todos os [processos de revisão de design e de código do Mojaloop](./design-review.md) antes, durante e
+   depois da conclusão do trabalho. Quando for necessária uma revisão de design, deveriam ser utilizados tickets «spike» para acompanhar o processo de design
+   antes de serem criados os tickets dos itens de trabalho.
+    1. Toda a documentação de design exigida deve ser aprovada pela Design Authority do Mojaloop antes do início do trabalho.
 
-A github/zenhub ticket template is available here: [github-work-item-template.docx](github-work-item-template.docx)
+Está disponível aqui um modelo de ticket para github/zenhub: [github-work-item-template.docx](github-work-item-template.docx)
 
-### Getting Work Done
+### Realizar o trabalho
 
-Mojaloop workstreams should follow a [scrum](https://www.scrum.org/resources/what-scrum-module)-like process model by
-default, running over a two-week sprint cadence. Given the stringent risk management requirements of our users
-regulatory environments and best demonstrated practice for financial software, our day-to-day process differs from some
-typical agile methodologies in that we implement mandatory oversight functions and stricter change control mechanisms,
-more typical of larger technical organisations building and operating critical infrastructure.
+Por predefinição, os workstreams do Mojaloop deveriam seguir um modelo de processo semelhante ao [scrum](https://www.scrum.org/resources/what-scrum-module),
+com uma cadência de sprints de duas semanas. Dados os exigentes requisitos de gestão do risco dos ambientes regulatórios dos nossos utilizadores
+e as melhores práticas comprovadas para software financeiro, o nosso processo diário difere de algumas
+metodologias ágeis típicas, na medida em que aplicamos funções de supervisão obrigatórias e mecanismos de controlo de alterações mais rigorosos,
+mais típicos de organizações técnicas de maior dimensão que constroem e operam infraestruturas críticas.
 
-Workstreams have flexibility to adjust working methods to suit their particular circumstances, within sensible
-boundaries appropriate for our mission and regulatory domain. The Mojaloop Foundation provides guidance to workstreams
-to ensure they remain within our required operating standards.
+Os workstreams têm flexibilidade para ajustar os métodos de trabalho às suas circunstâncias particulares, dentro de limites
+sensatos e adequados à nossa missão e ao nosso domínio regulatório. A Mojaloop Foundation fornece orientação aos workstreams
+para garantir que se mantêm dentro das normas de funcionamento exigidas.
 
-Workstreams should operate regular scheduled standup, backlog refinement, sprint planning, sprint review and
-retrospective activities.
+Os workstreams deveriam realizar regularmente as atividades agendadas de standup, refinamento do backlog, planeamento do sprint, revisão do sprint e
+retrospetiva.
 
-![Mojaloop Workstream Sprint Process](../../../community/contributing/assets/mojaloop-workstream-sprint-process.jpg)
+![Processo de sprint dos workstreams do Mojaloop](../../../community/contributing/assets/mojaloop-workstream-sprint-process.jpg)
 
-It is required that every workstream define and maintain a "team charter" document to clearly and unambiguously
-communicate agreed ways of working for all contributors.
+É obrigatório que cada workstream defina e mantenha um documento de «carta de equipa» para comunicar de forma clara e inequívoca
+as formas de trabalho acordadas a todos os contribuidores.
 
-A workstream team charter template is available for download
-here: [mojaloop-workstream-team-charter-template.pptx](../../../community/contributing/assets/mojaloop-workstream-team-charter-template.pptx)
+Está disponível para transferência um modelo de carta de equipa de workstream
+aqui: [mojaloop-workstream-team-charter-template.pptx](../../../community/contributing/assets/mojaloop-workstream-team-charter-template.pptx)
 
-### Getting Support
+### Obter apoio
 
-When things do not go to plan and a resolution cannot be found among workstream contributors, the Mojaloop Foundation
-provides support mechanisms. Please contact the Mojaloop Foundation Director of Community who will guide you to find a
-resolution.
+Quando as coisas não correm como planeado e não é possível encontrar uma solução entre os contribuidores do workstream, a Mojaloop Foundation
+disponibiliza mecanismos de apoio. Contacte o Director of Community da Mojaloop Foundation, que ajudará a encontrar uma
+solução.
 
-## Non-Official Workstreams and External Contributions
+## Workstreams não oficiais e contribuições externas
 
-When an appropriate existing workstream may not exist and support is not sufficient to warrant creation of a new
-official workstream, contributors may decide to work on features or changes externally to the community processes. In
-these circumstances
-our [external donation process](../standards/guide.md#adopting-open-source-contributions-into-mojaloop) must be followed
-before code, documentation or other artifacts can be adopted by the Mojaloop Foundation.
+Quando não existe um workstream adequado e o apoio não é suficiente para justificar a criação de um novo
+workstream oficial, os contribuidores podem decidir trabalhar em funcionalidades ou alterações fora dos processos da comunidade. Nestas
+circunstâncias,
+o nosso [processo de doação externa](../standards/guide.md#adocao-de-contribuicoes-de-codigo-aberto-no-mojaloop) deve ser seguido
+antes de o código, a documentação ou outros artefactos poderem ser adotados pela Mojaloop Foundation.
 
-Please note that all work done outside of official Mojaloop workstream processes is subject to
-our [external donation process](../standards/guide.md#adopting-open-source-contributions-into-mojaloop). This is to
-ensure an appropriate amount of rigorous review to ensure our standards are met before inclusion in any official
-Mojaloop release.
+Note-se que todo o trabalho realizado fora dos processos oficiais dos workstreams do Mojaloop está sujeito ao
+nosso [processo de doação externa](../standards/guide.md#adocao-de-contribuicoes-de-codigo-aberto-no-mojaloop). Isto destina-se a
+garantir um nível adequado de revisão rigorosa, de forma a assegurar que as nossas normas são cumpridas antes da inclusão em qualquer versão oficial
+do Mojaloop.

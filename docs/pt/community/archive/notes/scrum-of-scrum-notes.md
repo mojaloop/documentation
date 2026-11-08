@@ -2,157 +2,157 @@
 i18n_source_sha: e53175ac0db31e33d7ec44f51bade322f1569631
 ---
 
-# Meeting Notes from Weekly Scrum-of-scrum meetings
+# Notas das reuniões semanais de scrum-of-scrum
 
-## OSS Scrum-of-scrum call, Thu **May 7th** 2020
+## Chamada scrum-of-scrum OSS, qui., **7 de maio** de 2020
 
 1. Coil - Don:
-  a Performance: 'Big Gap' problem; changes to cs-stream; changed results; putting together a doc with changes for review; Joran's work on concurrent message processing on Kafka topics -> try to test it; seeing 40-50% throughput;
-  b LPS adapter: Working with Renjith (Applied Payments); putting together a lab / envt for partner teams to use it; Exploring collaboration with GSMA lab
+  a Desempenho: problema do «Big Gap»; alterações ao cs-stream; resultados alterados; a preparar um documento com as alterações para revisão; trabalho do Joran sobre processamento concorrente de mensagens em tópicos Kafka -> tentar testá-lo; a observar 40-50% de débito;
+  b Adaptador LPS: a trabalhar com Renjith (Applied Payments); a montar um laboratório / ambiente para as equipas parceiras o utilizarem; a explorar colaboração com o laboratório da GSMA
 2. Crosslake - Lewis:
-  a. Performance: Had report out with Confluent with Nakul, engagement wrapping up; Disseminating docs Nakul produced
-  b. PISP: Design discussions going on along with Implementation
-  c. Versioning: Figuring scope for ZDD deployments
-  d. Official launch related issues: DNS issues - worked on and were resolved
+  a. Desempenho: houve relatório com a Confluent com Nakul, o envolvimento está a terminar; a divulgar os documentos produzidos por Nakul
+  b. PISP: discussões de design em curso, a par da implementação
+  c. Versioning: a definir o âmbito para deployments ZDD
+  d. Questões relacionadas com o lançamento oficial: problemas de DNS - trabalhados e resolvidos
 3. ModusBox - Sam:
-  a. Performance: Moving / standardizing Perf changes from PI-9 into master (not all PoCs); Working on goals, strategy for PI10
-  b. Core-team: Bulk transfers - getting started by providing support in sdk-scheme-adapter
-  c. Maintenance (Bug Fixes):
-    i) Accents in names - Ongoing
-    ii) Mojaloop simulator on AWS deployments - almost done, working on QA scripts (on 'dev2' - second environment)
-  d. Testing toolkit: Currently available for testing - all resources in ML FSPIOP API Supported. Reports can be generated. Working on providing Command line options and more portability
-  e. CCB: Publishing v1.1 Spec this week - API Definition and corresponding Swagger (Open API)
+  a. Desempenho: a mover / normalizar as alterações de Perf do PI-9 para o master (nem todos os PoC); a trabalhar nos objetivos e na estratégia para o PI10
+  b. Equipa nuclear: transferências em lote - a começar, dando suporte no sdk-scheme-adapter
+  c. Manutenção (correções de erros):
+    i) Acentos nos nomes - em curso
+    ii) Simulador Mojaloop em deployments AWS - quase concluído, a trabalhar nos scripts de QA (no «dev2» - segundo ambiente)
+  d. Testing toolkit: atualmente disponível para testes - todos os recursos da ML FSPIOP API abrangidos. Podem ser gerados relatórios. A trabalhar na disponibilização de opções de linha de comandos e em mais portabilidade
+  e. CCB: publicação da especificação v1.1 esta semana - definição da API e Swagger correspondente (Open API)
 4. Virtual / Mojaloop Foundation - Megan:
-  a. Launch of Mojaloop Foundation
-  b. Paula H - Executive Director of the Mojaloop Foundation.
+  a. Lançamento da Mojaloop Foundation
+  b. Paula H - Diretora Executiva da Mojaloop Foundation.
 5. Mojaloop Foundation - Simeon:
-  a. Provide feedback on the Community Survey 
-  b. Hackathon possible in early June time-frame in collaboration with Google
-  c. Mojaloop Newsletter with interesting items such as ML FSPIOP v1.1 Spec, Helm v10.1.0 release, etc. to be launched next week.
+  a. Dar feedback sobre o inquérito à Comunidade 
+  b. Hackathon possível no início de junho, em colaboração com a Google
+  c. Newsletter do Mojaloop, com itens interessantes como a especificação ML FSPIOP v1.1, a versão Helm v10.1.0, etc., a lançar na próxima semana.
 
-## OSS Scrum-of-scrum call, Thu **April 16th** 2020
+## Chamada scrum-of-scrum OSS, qui., **16 de abril** de 2020
 
 1. Coil:
-  a. Don C: Perf - preliminary results - got some numbers - got individual handler numbers, to compare with individual handlers - focusing on DB - a third of time for one leg spent on perf
-  b. Don C: HSM: Renjith's team presented the demo scheduled for next week - event prep
+  a. Don C: Perf - resultados preliminares - obtivemos alguns números - obtivemos números por handler individual, para comparar com handlers individuais - foco na BD - um terço do tempo de uma perna gasto em perf
+  b. Don C: HSM: a equipa do Renjith apresentou a demonstração agendada para a próxima semana - preparação do evento
 2. Crosslake:
-  a. Lewis D: PISP - Sprint planning - iterating designs
-  b. Lewis D: Hackathons - Discussed a few concepts with Innocent K (HiPiPo)
-  c. Lewis D: Has access to GSMA lab - will play around
-  d. Lewis D: Versioning: working on deck for PI10
-  e. Kim W: Performance stream overall update - workshop with Confluent
-  f. Kim W: Performance stream update - Pedro putting together a proposal, presentation
+  a. Lewis D: PISP - planeamento do sprint - a iterar designs
+  b. Lewis D: Hackathons - discutiu alguns conceitos com Innocent K (HiPiPo)
+  c. Lewis D: tem acesso ao laboratório da GSMA - vai experimentar
+  d. Lewis D: Versioning: a trabalhar na apresentação para o PI10
+  e. Kim W: atualização global do fluxo de desempenho - workshop com a Confluent
+  f. Kim W: atualização do fluxo de desempenho - Pedro a preparar uma proposta, apresentação
 3. Mifos:
-  a. Ed C: Demo Prep for PI10 meetings
+  a. Ed C: preparação da demonstração para as reuniões do PI10
 4. Virtual:
-  a. Megan : Getting ready for the PI10 event and Logistics
+  a. Megan : a preparar o evento do PI10 e a logística
 5. DA:
-  a. Nico: Discussing PISP issue which Michael will be the owner of
-6. Core team:
-  a. Sam K: Performance: Preparing Metrics; Doing performance runs to baseline master branches after moving some enhancements to master
-  b. Sam K: Accents in names issue - implementation ongoing
-  f. Sam K: Settlements V2 implementation being done by OSS-TIPS team ongoing - QA done for current iteration
-  g. Sam K: Testing toolkit: Improving unit test coverage. Assertions added for various endpoints
-  i. Sam K: CCB: V1.1 of the ML FSPIOP API Definition - First draft done, Reviews in progress
-7. Mojaloop Community:
-  a. Community update by Simeon
+  a. Nico: a discutir a issue de PISP, cujo responsável será o Michael
+6. Equipa nuclear:
+  a. Sam K: Desempenho: a preparar métricas; a fazer execuções de desempenho para estabelecer a linha de base dos branches master, depois de mover algumas melhorias para o master
+  b. Sam K: questão dos acentos nos nomes - implementação em curso
+  f. Sam K: implementação de Settlements V2 pela equipa OSS-TIPS em curso - QA feito para a iteração atual
+  g. Sam K: Testing toolkit: a melhorar a cobertura de testes unitários. Acrescentadas asserções para vários endpoints
+  i. Sam K: CCB: v1.1 da definição da ML FSPIOP API - primeiro rascunho concluído, revisões em curso
+7. Comunidade Mojaloop:
+  a. Atualização da comunidade por Simeon
 
-## OSS Scrum-of-scrum call, Thu **April 9th** 2020
+## Chamada scrum-of-scrum OSS, qui., **9 de abril** de 2020
 
 1. Coil:
-  a. Don C: perf testing - Under utilization of resources - more tweaking to be done
-  b. Don C: HSM integration - demo prep
-  c. Don C: Legacy adapter - docs update - looking for feedback
+  a. Don C: testes de desempenho - subutilização de recursos - há mais ajustes a fazer
+  b. Don C: integração de HSM - preparação da demonstração
+  c. Don C: adaptador legado - atualização da documentação - à procura de feedback
 2. Crosslake:
-  a. Kim W: FRMS meeting earlier today - proposals made
-  b. Kim W: PI10 meetings update, registrations - questions
-  c. Lewis D: PISP: more planning - working on stories, items, but discussing designs on Oauth, Fido
-  d. Lewis D: Performance: discussion with Pedro about PoC for arch changes, for Event Sourcing, CQRS, etc
-  e. Lewis D: Code standards - updated
-  f. Lewis D: Code quality & Security stream: HSM usage, demo, Security in the OSS community
-  g. Lewis D: Container scans working - will work with Victor, early benchmarks
-  h. Lewis D: Finally - versioning update
+  a. Kim W: reunião de FRMS hoje mais cedo - propostas feitas
+  b. Kim W: atualização das reuniões do PI10, inscrições - questões
+  c. Lewis D: PISP: mais planeamento - a trabalhar em stories e itens, mas a discutir designs sobre Oauth, Fido
+  d. Lewis D: Desempenho: discussão com Pedro sobre o PoC para alterações de arquitetura, para Event Sourcing, CQRS, etc.
+  e. Lewis D: normas de código - atualizadas
+  f. Lewis D: fluxo de qualidade de código e segurança: utilização de HSM, demonstração, segurança na comunidade OSS
+  g. Lewis D: análises de contentores a funcionar - vai trabalhar com Victor, primeiros benchmarks
+  h. Lewis D: por fim - atualização sobre versioning
 3. Mifos:
-  a. Ed C: Work on Payment Hub, integrating with Kafka, ML transactions going through, using Elastic Search for back-office ops monitoring
-  b. Ed C: Demo Prep for PI10 meetings
-4. Core team:
-  a. Sam K: Performance: Drafting reports, Moving metrics, other enhancements to master branches
-  b. Sam K: Performance: Wrapping-up final set of tests; Phase4 roadmap and kickoff planning
-  c. Sam K: Community Support: Fixing bugs (few major discussion items fixed), providing clarifications regarding implementation decisions, etc.
-  d. Sam K: Merchant Payment Support - Provide tests and validate Merchant "Request to Pay" use case, standardization on-going
-  e. Sam K: Accents in names issue - implementation ongoing
-  f. Sam K: Settlements V2 implementation being done by OSS-TIPS team ongoing
-  g. Sam K: Testing toolkit: Assertions being added for API resources, JWS done, mTLS being added
-  h. Sam K: Testing toolkit: Usage guide in progress along with adding Golden path related tests
-  i. Sam K: CCB: V1.1 of the ML FSPIOP API Definition - First draft done, waiting for review
+  a. Ed C: trabalho no Payment Hub, integração com Kafka, transações ML a passar, utilização do Elastic Search para a monitorização das operações de back-office
+  b. Ed C: preparação da demonstração para as reuniões do PI10
+4. Equipa nuclear:
+  a. Sam K: Desempenho: a redigir relatórios, a mover métricas e outras melhorias para os branches master
+  b. Sam K: Desempenho: a concluir o conjunto final de testes; roadmap da Fase 4 e planeamento do arranque
+  c. Sam K: Apoio à comunidade: a corrigir erros (alguns itens de discussão importantes corrigidos), a prestar esclarecimentos sobre decisões de implementação, etc.
+  d. Sam K: Suporte a pagamentos a comerciantes - fornecer testes e validar o caso de utilização «Request to Pay» de comerciante, normalização em curso
+  e. Sam K: questão dos acentos nos nomes - implementação em curso
+  f. Sam K: implementação de Settlements V2 pela equipa OSS-TIPS em curso
+  g. Sam K: Testing toolkit: a acrescentar asserções para os recursos da API, JWS concluído, mTLS a ser acrescentado
+  h. Sam K: Testing toolkit: guia de utilização em curso, a par do acréscimo de testes relacionados com o Golden path
+  i. Sam K: CCB: v1.1 da definição da ML FSPIOP API - primeiro rascunho concluído, a aguardar revisão
 
-## OSS Scrum-of-scrum call, Thu **April 2nd** 2020
+## Chamada scrum-of-scrum OSS, qui., **2 de abril** de 2020
 
 1. Mifos:
-  a. Ed C: Team continuing work on Payment Hub EE, Focus on Operational UI , capabilities for DFSP backends, Error event handling framework
+  a. Ed C: a equipa continua o trabalho no Payment Hub EE, foco na UI operacional, capacidades para backends de DFSP, framework de tratamento de eventos de erro
 2. Coil:
-  a. Don C: Performance - setup done and got started - on GCP - getting high latency times - need to troubleshoot and will probably get support from other contributors
-  b. Don C: ATM - OTP - Encryption
+  a. Don C: Desempenho - configuração concluída e trabalho iniciado - no GCP - a obter tempos de latência elevados - é preciso diagnosticar e provavelmente haverá apoio de outros contribuidores
+  b. Don C: ATM - OTP - encriptação
 3. Crosslake:
-  a. Kim W: Agenda for PI10 drafted - email should good out soon
-  b. Kim W: Schedule for PI10: Tue - Fri; 11am - 4pm GMT - Remote / Virtual event
-  c. Lewis D: Perf meeting later today - architecture deep dive
-  d. Lewis D: Versioning - In progress
-  e. Lewis D: Code quality & Security - Overall Security architecture, HSM covered by Coil
-  f. Lewis D: Mojaloop in a Vagrant box - in progress
-4. Core team:
-  a. Miguel dB: Performance: Wrapping up Perf work - nearing 900 TPS end-to-end; Currently attempting to identify / understand a single unit that needs this perf
-  b. Sam K: Performance: Wrapping-up final set of tests; Phase4 roadmap and kickoff planning
-  c. Sam K: Community Support: Fixing bugs (few major discussion items fixed), providing clarifications regarding implementation decisions, etc.
-  d. Sam K: Merchant Payment Support - Standardization on-going - Fixing issues in /authorizations
-  e. Sam K: Accents in names issue - implementation ongoing
-  f. Sam K: Settlements V2 implementation being done by OSS-TIPS team ongoing
-  g. Sam K: Testing toolkit: Assertions being added for API resources, JWS in progress
-  h. Sam K: CCB: V1.1 of the ML FSPIOP API Definition - drafting in progress
+  a. Kim W: agenda do PI10 redigida - o e-mail deverá sair em breve
+  b. Kim W: calendário do PI10: ter. - sex.; 11h00 - 16h00 GMT - evento remoto / virtual
+  c. Lewis D: reunião de Perf hoje mais tarde - análise aprofundada da arquitetura
+  d. Lewis D: Versioning - em curso
+  e. Lewis D: Qualidade de código e segurança - arquitetura global de segurança, HSM coberto pela Coil
+  f. Lewis D: Mojaloop numa Vagrant box - em curso
+4. Equipa nuclear:
+  a. Miguel dB: Desempenho: a concluir o trabalho de Perf - perto de 900 TPS de ponta a ponta; atualmente a tentar identificar / compreender uma unidade única que precisa deste desempenho
+  b. Sam K: Desempenho: a concluir o conjunto final de testes; roadmap da Fase 4 e planeamento do arranque
+  c. Sam K: Apoio à comunidade: a corrigir erros (alguns itens de discussão importantes corrigidos), a prestar esclarecimentos sobre decisões de implementação, etc.
+  d. Sam K: Suporte a pagamentos a comerciantes - normalização em curso - a corrigir problemas em /authorizations
+  e. Sam K: questão dos acentos nos nomes - implementação em curso
+  f. Sam K: implementação de Settlements V2 pela equipa OSS-TIPS em curso
+  g. Sam K: Testing toolkit: a acrescentar asserções para os recursos da API, JWS em curso
+  h. Sam K: CCB: v1.1 da definição da ML FSPIOP API - redação em curso
 
-## OSS Scrum of scrum call Thu **March 26th** 2020
+## Chamada scrum of scrum OSS qui., **26 de março** de 2020
 
-1. DA: Nico - Versioning topic discussed by Lewis, Matt, Sam
+1. DA: Nico - tema do versioning discutido por Lewis, Matt, Sam
 2. Crosslake:
-  a. Kim W: Finalizing Agenda - Monday to Friday
-  b. Kim W: Reach out if you want to present / speak
-  c. Kim W: Preparing pre-reads
-  d. Kim W: Fraud & AML workshop: Justus to post summary and notes to GitHub after the workshops
-  e. Lewis D: Performance workshop / deep-dive possibly Monday
-  f. Lewis D: PISP Design discussions ongoing
-  g: Lewis D: Code quality and security stream: i. Docker container security recommendations. ii. GDPR Scope for Mojaloop
+  a. Kim W: a finalizar a agenda - de segunda a sexta-feira
+  b. Kim W: contacte se quiser apresentar / intervir
+  c. Kim W: a preparar as leituras prévias
+  d. Kim W: workshop de fraude e AML: Justus vai publicar o resumo e as notas no GitHub depois dos workshops
+  e. Lewis D: workshop / análise aprofundada de desempenho possivelmente na segunda-feira
+  f. Lewis D: discussões de design de PISP em curso
+  g: Lewis D: fluxo de qualidade de código e segurança: i. recomendações de segurança para contentores Docker. ii. âmbito do RGPD para o Mojaloop
 3. Mifos:
-  a. Ed C / Istvan M: Continue creating Lab
-  b. Ed C / Istvan M: Fineract , new instance of Payment Hub - good progress
-  c. Ed C / Istvan M: Working on operational monitoring of backend part (back-office debugging, monitoring, etc)
-4. Simeon O - Community Manager in attendance
-5. Core team:
-  a. Sam K: Performance: Finalized phase-3 work. Get to immediate goals for logical conclusion - still ongoing - Phase4 roadmap and kickoff
-  b. Sam K: Community Support: Fixing bugs, providing clarifications regarding implementation decisions, etc.
-  d. Sam K: Merchant Payment Support - Standardization on-going - Metrics being added, event framework added
-  e. Sam K: Accents in names issue - Discussing issue, designing solution
-  f. Sam K: Settlements V2 implementation being done by OSS-TIPS team ongoing
-  g. Sam K: Testing toolkit: Assertions being added for API resources, JWS in progress. Usage guide in progress
-  h. Sam K: CCB: V1.1 of the ML FSPIOP API Definition - drafting in progress
+  a. Ed C / Istvan M: continuar a criar o laboratório
+  b. Ed C / Istvan M: Fineract , nova instância do Payment Hub - bom progresso
+  c. Ed C / Istvan M: a trabalhar na monitorização operacional da parte de backend (depuração de back-office, monitorização, etc.)
+4. Simeon O - Community Manager presente
+5. Equipa nuclear:
+  a. Sam K: Desempenho: trabalho da fase 3 finalizado. Chegar aos objetivos imediatos para uma conclusão lógica - ainda em curso - roadmap e arranque da Fase 4
+  b. Sam K: Apoio à comunidade: a corrigir erros, a prestar esclarecimentos sobre decisões de implementação, etc.
+  d. Sam K: Suporte a pagamentos a comerciantes - normalização em curso - métricas a serem acrescentadas, framework de eventos acrescentada
+  e. Sam K: questão dos acentos nos nomes - a discutir a questão, a desenhar a solução
+  f. Sam K: implementação de Settlements V2 pela equipa OSS-TIPS em curso
+  g. Sam K: Testing toolkit: a acrescentar asserções para os recursos da API, JWS em curso. Guia de utilização em curso
+  h. Sam K: CCB: v1.1 da definição da ML FSPIOP API - redação em curso
 
-## OSS Scrum-of-scrum call, Thu **March 19th** 2020
+## Chamada scrum-of-scrum OSS, qui., **19 de março** de 2020
 
 1. Coil:
-  a. Don C: Looking at performance, network hops (avoid dup checks etc)
-  b. Adrian hB: Renjith & Matt working on translation ISO20022, (to JWEs, etc) - demo by the time we meet on how to use HSM
+  a. Don C: a analisar o desempenho, os saltos de rede (evitar verificações duplicadas, etc.)
+  b. Adrian hB: Renjith e Matt a trabalhar na tradução ISO20022, (para JWEs, etc.) - demonstração, quando nos reunirmos, sobre como utilizar o HSM
 2. Crosslake:
-  a. Kim W: Finishing action items from the Mid-PI Workshop, follow-up items
-  b. Kim W: April Community event is happening but will be a Virtual event. Kim has a planning event and will confirm details: Suggestions welcome
-  c. Lewis D: Performance - to include Don in other discussions
-  d. Lewis D: Code quality - GDPR requirements proposal
-  e: Lewis D: Versioning - initial draft submitted as a PR - will be presented to DA next week
+  a. Kim W: a terminar os itens de ação do workshop de meio de PI, itens de seguimento
+  b. Kim W: o evento da comunidade de abril vai realizar-se, mas será um evento virtual. Kim tem um evento de planeamento e confirmará os detalhes: sugestões são bem-vindas
+  c. Lewis D: Desempenho - incluir o Don noutras discussões
+  d. Lewis D: Qualidade de código - proposta de requisitos do RGPD
+  e: Lewis D: Versioning - rascunho inicial submetido como PR - será apresentado à DA na próxima semana
 3. Mifos:
-  a. Ed C, Istvan M: Payment Hub, envt in Azure, 
-  b. Ed C, Istvan M: Transactions now going through
-  c. Ed C, Istvan M: Next phase: to implement back office screens to see screens for business users
-  d. Ed C, Istvan M: Workshop with Google on PISP
-4. Core team:
-  a. Sam K: Perf - Combining prepare+position handler and fulfil+position handlers, characterization work ongoing
-  b. Sam K: Perf - Working on gaining an understanding of how 1 unit of Infrastructure looks like for a Mojaloop deployment
-  c. Sam K: Transaction requests service standardization: Added event framework, Adding metrics now
-  d. Sam K: Community Support: Fixing issues, upgrade issues, issue for allowing accents in names, etc,.
+  a. Ed C, Istvan M: Payment Hub, ambiente no Azure, 
+  b. Ed C, Istvan M: transações agora a passar
+  c. Ed C, Istvan M: fase seguinte: implementar os ecrãs de back office, para que os utilizadores de negócio os possam ver
+  d. Ed C, Istvan M: workshop com a Google sobre PISP
+4. Equipa nuclear:
+  a. Sam K: Perf - a combinar os handlers prepare+position e fulfil+position, trabalho de caracterização em curso
+  b. Sam K: Perf - a trabalhar na compreensão do que é 1 unidade de infraestrutura num deployment Mojaloop
+  c. Sam K: normalização do serviço de transaction requests: framework de eventos acrescentada, métricas a serem acrescentadas agora
+  d. Sam K: Apoio à comunidade: a corrigir problemas, problemas de atualização, questão da permissão de acentos nos nomes, etc,.

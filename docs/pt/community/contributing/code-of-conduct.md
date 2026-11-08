@@ -2,97 +2,97 @@
 i18n_source_sha: 641649471ec361def0ee9e9cef37e38421185749
 ---
 
-# Mojaloop Code of Conduct
+# Código de conduta do Mojaloop
 
 
-## Vision and Mission
+## Visão e missão
 
-Mojaloop is a portmanteau derived from the Swahili word "Moja" meaning "one" and the English word loop. Mojaloop's vision is to loop digital financial providers and customers together in one inclusive ecosystem.
+Mojaloop é uma palavra composta, derivada da palavra suaíli «Moja», que significa «um», e da palavra inglesa loop. A visão do Mojaloop é interligar os prestadores financeiros digitais e os clientes num único ecossistema inclusivo.
 
-The Mojaloop open source project mission is to increase financial inclusion by empowering organizations creating trusted and interoperable payments systems to enable digital financial services for all. We believe an economy that includes everyone, benefits everyone and we are building software that will accelerate full financial inclusion. Succeeding in our mission will require diverse opinions and contributions from people reflecting differing experiences and who come from culturally diverse backgrounds.
+A missão do projeto de código aberto Mojaloop é aumentar a inclusão financeira, capacitando as organizações que criam sistemas de pagamentos fiáveis e interoperáveis para disponibilizar serviços financeiros digitais a todos. Acreditamos que uma economia que inclui todos beneficia todos, e estamos a construir software que acelerará a inclusão financeira plena. Ter êxito na nossa missão exigirá opiniões e contributos diversos de pessoas que refletem experiências diferentes e que provêm de contextos culturalmente diversos.
 
-## Community Foundation and Values
+## Fundamentos e valores da comunidade
 
-Our goal is a strong and diverse community that welcomes new ideas in a complex field and fosters collaboration between groups and individuals with very different needs, interests, and skills.
+O nosso objetivo é uma comunidade forte e diversa que acolha novas ideias num domínio complexo e que promova a colaboração entre grupos e pessoas com necessidades, interesses e competências muito diferentes.
 
-We build a strong and diverse community by actively seeking participation from those who add value to it.
+Construímos uma comunidade forte e diversa procurando ativamente a participação de quem lhe acrescenta valor.
 
-We treat each other openly and respectfully, we evaluate contributions with fairness and equity, and we seek to create a project that includes everyone, regardless of age, body size, disability, ethnicity, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, religion, and orientation.
+Tratamo-nos uns aos outros com abertura e respeito, avaliamos as contribuições com justiça e equidade, e procuramos criar um projeto que inclua todos, independentemente da idade, do tamanho do corpo, da deficiência, da etnia, da identidade e expressão de género, do nível de experiência, da educação, do estatuto socioeconómico, da nacionalidade, da aparência pessoal, da raça, da religião e da orientação.
 
-*This code of conduct exists to ensure that diverse groups collaborate to mutual advantage and enjoyment.*
+*Este código de conduta existe para garantir que grupos diversos colaboram em benefício e satisfação mútuos.*
 
-The Code of Conduct governs how we behave in public or in private, virtually or in person. We expect it to be honoured by everyone who represents the project officially or informally, claims affiliation with the project, or participates directly.
+O Código de conduta rege a forma como nos comportamos em público ou em privado, virtualmente ou presencialmente. Esperamos que seja respeitado por todos os que representam o projeto oficial ou informalmente, que alegam afiliação ao projeto ou que nele participam diretamente.
 
-### We strive to:
+### Esforçamo-nos por:
 
--   **Be Considerate**\
-    Our work will be used by other people, and we in turn will depend on the work of others. Any decision we take will affect everyone involved in our ecosystem, and we should consider all relevant aspects when making decisions.
+-   **Ser atenciosos**\
+    O nosso trabalho será utilizado por outras pessoas e, por nossa vez, dependeremos do trabalho de outros. Qualquer decisão que tomemos afetará todos os envolvidos no nosso ecossistema, e deveríamos ter em conta todos os aspetos relevantes ao tomar decisões.
 
--   **Be Respectful**\
-    We work together to resolve conflict, assume good intentions, and do our best to act in an empathic fashion. We believe a community where people are respected and feel comfortable is a productive one.
+-   **Ser respeitosos**\
+    Trabalhamos em conjunto para resolver conflitos, presumimos boas intenções e fazemos o nosso melhor para agir de forma empática. Acreditamos que uma comunidade em que as pessoas são respeitadas e se sentem à vontade é uma comunidade produtiva.
 
--   **Be Accountable**\
-    We are accountable for our words and actions. We all can make mistakes; when we do, we take responsibility for them. If someone has been harmed or offended, we listen carefully and respectfully and work to right the wrong.
+-   **Ser responsáveis**\
+    Somos responsáveis pelas nossas palavras e ações. Todos podemos cometer erros; quando isso acontece, assumimos a responsabilidade por eles. Se alguém tiver sido prejudicado ou ofendido, ouvimos com atenção e respeito e trabalhamos para reparar o mal.
 
--   **Be Collaborative**\
-    What we produce is a complex whole made of many parts. Collaboration between teams that each have their own goal and vision is essential; for the whole to be more than the sum of its parts, each part must make an effort to understand the whole.\
-    Collaboration reduces redundancy and improves the quality of our work. Internally and externally, we celebrate good collaboration. Wherever possible, we work closely with upstream projects and others in the open-source software community to coordinate our efforts. We prefer to work transparently and involve interested parties as early as possible.
+-   **Ser colaborativos**\
+    O que produzimos é um todo complexo, feito de muitas partes. A colaboração entre equipas que têm, cada uma, o seu próprio objetivo e a sua própria visão é essencial; para que o todo seja mais do que a soma das partes, cada parte tem de se esforçar por compreender o todo.\
+    A colaboração reduz a redundância e melhora a qualidade do nosso trabalho. Interna e externamente, celebramos a boa colaboração. Sempre que possível, trabalhamos em estreita colaboração com os projetos a montante e com outros membros da comunidade de software de código aberto para coordenar os nossos esforços. Preferimos trabalhar com transparência e envolver as partes interessadas o mais cedo possível.
 
--   **Value Decisiveness, Clarity, and Consensus**\
-    Disagreements, social and technical, are normal, but we do not allow them to persist and fester leaving others uncertain of the agreed direction.\
-    We expect community members to resolve disagreements constructively. When they face obstacles in doing so, we escalate the matter to structures with designated leaders to arbitrate and provide clarity and direction.
+-   **Valorizar a determinação, a clareza e o consenso**\
+    As divergências, sociais e técnicas, são normais, mas não permitimos que persistam e se agravem, deixando outros na incerteza quanto à direção acordada.\
+    Esperamos que os membros da comunidade resolvam as divergências de forma construtiva. Quando enfrentam obstáculos para o fazer, escalamos a questão para estruturas com líderes designados que arbitram e dão clareza e orientação.
 
--   **Ask for help when unsure**\
-    Nobody is expected to be perfect in this community. Asking questions early avoids many problems later, so questions are encouraged, though they may be directed to the appropriate forum. Those who are asked should be responsive and helpful.
+-   **Pedir ajuda em caso de dúvida**\
+    Não se espera que ninguém seja perfeito nesta comunidade. Fazer perguntas cedo evita muitos problemas mais tarde, pelo que as perguntas são incentivadas, embora possam ser encaminhadas para o fórum adequado. Quem é questionado deveria ser recetivo e prestável.
 
--   **Step Down Considerately**\
-    When somebody leaves or disengages from the project, we ask that they do so in a way that minimises disruption to the project. They should tell people they are leaving and take the proper steps to ensure that others can pick up where they left off.
+-   **Sair com consideração**\
+    Quando alguém sai do projeto ou deixa de participar nele, pedimos que o faça de forma a minimizar a perturbação do projeto. Deveria informar as pessoas de que vai sair e tomar as medidas adequadas para garantir que outros podem continuar o trabalho a partir do ponto em que o deixou.
 
--   **Open Meritocracy**\
-We invite anybody, from any company or organization, to participate in any aspect of the project. Our community is open, and any responsibility can be carried by any contributor who demonstrates the required capacity and competence.
+-   **Meritocracia aberta**\
+Convidamos qualquer pessoa, de qualquer empresa ou organização, a participar em qualquer aspeto do projeto. A nossa comunidade é aberta, e qualquer responsabilidade pode ser assumida por qualquer contribuidor que demonstre a capacidade e a competência exigidas.
 
--   **Value Diversity and Inclusion**\
-This is a community that wants to make a real difference to people's lives across the globe; and, in particular, in developing societies and economies. We value our members, first of all, for themselves; and, second, for the help they can give each of us as we work together to transform the world. Each of us will strive never to allow any other considerations to weigh with us, either consciously or unconsciously. In particular, considerations of gender identity or expression, sexual orientation, religion, ethnicity, age, neurodiversity, disability status, language, and citizenship have no place in our collaboration and we will work to eradicate them where we find them: first of all, in ourselves; but after that, and with respect and affection, in those we work with.
+-   **Valorizar a diversidade e a inclusão**\
+Esta é uma comunidade que pretende fazer uma diferença real na vida das pessoas em todo o mundo; e, em particular, nas sociedades e economias em desenvolvimento. Valorizamos os nossos membros, antes de mais, por si próprios; e, em segundo lugar, pela ajuda que podem dar a cada um de nós enquanto trabalhamos em conjunto para transformar o mundo. Cada um de nós se esforçará por nunca permitir que quaisquer outras considerações pesem em nós, consciente ou inconscientemente. Em particular, as considerações de identidade ou expressão de género, orientação sexual, religião, etnia, idade, neurodiversidade, deficiência, língua e cidadania não têm lugar na nossa colaboração, e trabalharemos para as erradicar onde as encontrarmos: antes de mais, em nós próprios; mas, depois disso, e com respeito e afeto, naqueles com quem trabalhamos.
 
--   **Be Transparent**\
-We believe community members will have personal and professional interests in the development of the Mojaloop Open Source Software. These interests will, directly and indirectly, influence perceptions about the best direction of the community. Community members should make every reasonable effort to be transparent about their interests within the limits of confidentiality.  Community members who hold permanent or temporary governance roles should not use those roles in the advancement of personal or professional interests but should base their influence on the best interests of the success of the community.
+-   **Ser transparentes**\
+Acreditamos que os membros da comunidade terão interesses pessoais e profissionais no desenvolvimento do Mojaloop Open Source Software. Estes interesses influenciarão, direta e indiretamente, as perceções sobre a melhor direção para a comunidade. Os membros da comunidade deveriam envidar todos os esforços razoáveis para serem transparentes quanto aos seus interesses, dentro dos limites da confidencialidade.  Os membros da comunidade que desempenham funções de governação permanentes ou temporárias não deveriam utilizar essas funções para promover interesses pessoais ou profissionais, mas deveriam basear a sua influência no melhor interesse do sucesso da comunidade.
 
-This Code of Conduct is not exhaustive or complete. It is not a rulebook; it serves to distill our common understanding of a collaborative, shared environment, and goals. We expect it to be followed in spirit as much as in the letter.
+Este Código de conduta não é exaustivo nem completo. Não é um livro de regras; serve para condensar o nosso entendimento comum de um ambiente colaborativo e partilhado, e dos nossos objetivos. Esperamos que seja seguido tanto no espírito como na letra.
 
-### Our Standards
+### As nossas normas
 
-Examples of behavior that contributes to creating a positive environment include:
+Os exemplos de comportamentos que contribuem para criar um ambiente positivo incluem:
 
--   Using welcoming and inclusive language
+-   Utilizar linguagem acolhedora e inclusiva
 
--   Being respectful of differing viewpoints and experiences
+-   Respeitar pontos de vista e experiências diferentes
 
--   Gracefully accepting constructive criticism
+-   Aceitar com elegância a crítica construtiva
 
--   Focusing on what is best for the community
+-   Concentrar-se no que é melhor para a comunidade
 
--   Showing empathy towards other community members
+-   Mostrar empatia para com os outros membros da comunidade
 
-Examples of unacceptable behavior by participants include:
+Os exemplos de comportamentos inaceitáveis por parte dos participantes incluem:
 
--   The use of sexualized language or imagery and unwelcome sexual attention or advances
+-   A utilização de linguagem ou imagens sexualizadas e a atenção ou avanços sexuais indesejados
 
--   Trolling, insulting/derogatory comments, and personal or political attacks
+-   Trolling, comentários insultuosos/depreciativos e ataques pessoais ou políticos
 
--   Public or private harassment
+-   O assédio público ou privado
 
--   Publishing others' private information, such as a physical or electronic address, without explicit permission
+-   A publicação de informações privadas de outras pessoas, como um endereço físico ou eletrónico, sem autorização explícita
 
--   Other conduct which could reasonably be considered inappropriate in a professional setting
+-   Outras condutas que possam razoavelmente ser consideradas inadequadas num contexto profissional
 
-### Reporting and Resolution
+### Denúncia e resolução
 
-If you see someone violating the code of conduct, you are encouraged to address the behavior directly with those involved. Many issues can be resolved quickly and easily, and this gives people more control over the outcome of their dispute. If you are unable to resolve the matter for any reason, or if the behavior is threatening or harassing, report it. We are dedicated to providing an environment where participants feel welcome and safe.
+Quem vir alguém a violar o código de conduta é incentivado a abordar o comportamento diretamente com os envolvidos. Muitos problemas podem ser resolvidos de forma rápida e fácil, e isto dá às pessoas mais controlo sobre o desfecho do seu diferendo. Se não for possível resolver a questão por qualquer motivo, ou se o comportamento for ameaçador ou constituir assédio, denuncie-o. Estamos empenhados em proporcionar um ambiente em que os participantes se sintam bem-vindos e seguros.
 
-Reports should be directed to the Community Leadership Committee via an email sent to <reports@mojaloop.io>. This email goes to the Mojaloop Foundation Community Manager whose duty it is to receive and address reported violations of the code of conduct. They will then work with the Community Leadership Committee to address and resolve the report.
+As denúncias deveriam ser dirigidas ao Community Leadership Committee através de um e-mail enviado para <reports@mojaloop.io>. Este e-mail é recebido pelo Community Manager da Mojaloop Foundation, que tem o dever de receber e tratar as violações do código de conduta denunciadas. Este trabalhará depois com o Community Leadership Committee para tratar e resolver a denúncia.
 
-We will investigate every complaint, but you may not receive a direct response. Whether we respond to you directly or not, you will always be able to enquire after the status of a complaint by contacting a member of the Community Leadership Committee. We will use our discretion in determining when and how to follow up on reported incidents, which may range from not taking action to permanent expulsion from the community and foundation-sponsored spaces. We will notify the accused of the report and provide them an opportunity to discuss it before any action is taken. The identity of the reporter will be omitted from the details of the report supplied to the accused. In potentially harmful situations, such as ongoing harassment or threats to anyone's safety, we may take action without notice.
+Investigaremos todas as queixas, mas poderá não haver uma resposta direta. Quer respondamos diretamente ou não, será sempre possível obter informação sobre o estado de uma queixa contactando um membro do Community Leadership Committee. Utilizaremos o nosso critério para determinar quando e como dar seguimento aos incidentes denunciados, o que pode ir desde não tomar qualquer medida até à expulsão permanente da comunidade e dos espaços patrocinados pela fundação. Notificaremos o acusado da denúncia e dar-lhe-emos a oportunidade de a discutir antes de ser tomada qualquer medida. A identidade do denunciante será omitida dos detalhes da denúncia fornecidos ao acusado. Em situações potencialmente danosas, como assédio continuado ou ameaças à segurança de qualquer pessoa, poderemos agir sem aviso prévio.
 
-### Attribution
+### Atribuição
 
-This Code of Conduct is adapted from the Ubuntu Code of Conduct v2.0, available at <https://ubuntu.com/community/code-of-conduct>
+Este Código de conduta é adaptado do Ubuntu Code of Conduct v2.0, disponível em <https://ubuntu.com/community/code-of-conduct>

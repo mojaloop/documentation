@@ -2279,9 +2279,9 @@ module.exports = {
           collapsable: false,
           sidebarDepth: 2,
           children: [
-            ['contributing/contributors-guide', 'Bem-vindo à comunidade'],
+            ['contributing/contributors-guide', 'Boas-vindas à comunidade'],
             ['mojaloop-roadmap', 'Roadmap do produto'],
-            ['mojaloop-publications', 'Publicações da Mojaloop']
+            ['mojaloop-publications', 'Publicações do Mojaloop']
           ]
         },
         {
@@ -2291,14 +2291,14 @@ module.exports = {
           children: [
             ['contributing/contributors-guide', 'Guia do contribuidor'],
             ['contributing/product-engineering-process', 'Processo de engenharia de produto'],
-            ['contributing/design-review', 'Revisão técnica e de código'],
-            ['contributing/consequential-change-process', 'Processo de alterações com consequências'],
-            ['contributing/critical-change-process', 'Processo de alterações críticas'],
+            ['contributing/design-review', 'Revisão de design técnico e de código'],
+            ['contributing/consequential-change-process', 'Processo de alteração consequencial'],
+            ['contributing/critical-change-process', 'Processo de alteração crítica'],
             ['contributing/new-contributor-checklist', 'Lista de verificação para novos contribuidores'],
-            ['contributing/pr-guidance', 'Diretrizes para pull requests'],
+            ['contributing/pr-guidance', 'Orientações para pull requests'],
             ['contributing/code-of-conduct', 'Código de conduta'],
             ['contributing/signing-the-cla', 'Assinar o CLA'],
-            ['contributing/cvd', 'Divulgação de vulnerabilidades de segurança'],
+            ['contributing/cvd', 'Divulgar vulnerabilidades de segurança'],
           ]
         },
         {
@@ -2310,7 +2310,7 @@ module.exports = {
             ['standards/invariants', 'Invariantes do Mojaloop'],
             ['standards/versioning', 'Versionamento'],
             ['standards/creating-new-features', 'Criar novas funcionalidades'],
-            ['standards/triaging-bugs', 'Triagem de bugs'],
+            ['standards/triaging-bugs', 'Triagem de erros'],
             ['standards/ai_policy', 'Política de IA'],
           ]
         },
@@ -2329,11 +2329,10 @@ module.exports = {
         {
           title: 'Documentação',
           collapsable: false,
-          sidebarDepth: 2,
           children: [
             ['documentation/standards', 'Normas'],
             ['documentation/api-documentation', 'Documentação da API'],
-            ['documentation/style-guide', 'Guia de estilo']
+            ['documentation/style-guide', 'Guia de estilo'],
           ]
         },
         {
@@ -2347,12 +2346,12 @@ module.exports = {
               path: 'archive/notes/',
               children: [
                 ['archive/notes/ccb-notes', 'Notas do CCB'],
-                ['archive/notes/da-notes', 'Notas de reuniões'],
+                ['archive/notes/da-notes', 'Notas das reuniões'],
                 ['archive/notes/scrum-of-scrum-notes', 'Notas de scrum']
               ]
             },
             {
-              title: 'Arquivo de documentos de debate',
+              title: 'Arquivo de documentos de discussão',
               collapsable: true,
               path: 'archive/discussion-docs/',
               children: [
@@ -2361,7 +2360,7 @@ module.exports = {
                   collapsable: true,
                   children: [
                     ['archive/discussion-docs/performance-project', 'Projeto de desempenho'],
-                    ['archive/discussion-docs/code-improvement', 'Projeto de melhoria do código'],
+                    ['archive/discussion-docs/code-improvement', 'Projeto de melhoria de código'],
                     ['archive/discussion-docs/cross-border', 'Projeto transfronteiriço'],
                     ['archive/discussion-docs/psip-project', 'Projeto PSIP']
                   ]
@@ -2370,7 +2369,7 @@ module.exports = {
                   title: 'PI 9',
                   collapsable: true,
                   children: [
-                    ['archive/discussion-docs/versioning-draft-proposal', 'Proposta preliminar de versionamento'],
+                    ['archive/discussion-docs/versioning-draft-proposal', 'Proposta de rascunho de versionamento'],
                   ]
                 },
                 {
@@ -2387,7 +2386,7 @@ module.exports = {
                   title: 'PI 7',
                   collapsable: true,
                   children: [
-                    ['archive/discussion-docs/workbench', 'Workbench Workstream'],
+                    ['archive/discussion-docs/workbench', 'Workstream Workbench'],
                   ]
                 }
               ]

@@ -2,130 +2,130 @@
 i18n_source_sha: a50c7b2ef4951ed1b952a4b38f8713526284a763
 ---
 
-# AWS Tagging Guidelines + Policies
+# Orientações e políticas de tagging na AWS
 
-> **Note:** These guidelines are specific to the Mojaloop Community's AWS Environment for testing and validating Mojaloop installations, and are primarily for internal purposes. They may, however, be a useful reference to others wishing to implement similar tagging strategies in their own organizations.
+> **Nota:** Estas orientações são específicas do ambiente AWS da Comunidade Mojaloop para testar e validar instalações do Mojaloop e destinam-se sobretudo a fins internos. Podem, no entanto, ser uma referência útil para quem pretenda implementar estratégias de tagging semelhantes nas suas próprias organizações.
 
-To better manage and understand our AWS usage and spending, we are implementing the following tagging guidelines.
+Para gerir e compreender melhor a nossa utilização e os nossos gastos com a AWS, estamos a implementar as orientações de tagging seguintes.
 
-## Contents
-- [Proposed tags and their meanings](#proposed-tags-and-their-meanings)
-    - [mojaloop/cost_center](#mojaloopcost_center)
-    - [mojaloop/owner](#mojaloopowner)
-- [Manual Tagging](#manual-tagging)
-- [Automated Tagging](#automated-tagging)
-- [AWS Tagging Policies](#aws-tagging-policies)
-    - [Viewing Tag Reports + Compliance](#viewing-tag-reports--compliance)
-    - [Editing Tag Policies](#editing-tag-policies)
-    - [Attaching/Detaching Tag Policies](#attachingdetaching-tag-policies)
+## Conteúdo
+- [Tags propostas e os seus significados](#tags-propostas-e-os-seus-significados)
+    - [mojaloop/cost_center](#mojaloop-cost-center)
+    - [mojaloop/owner](#mojaloop-owner)
+- [Tagging manual](#tagging-manual)
+- [Tagging automatizado](#tagging-automatizado)
+- [Políticas de tagging da AWS](#politicas-de-tagging-da-aws)
+    - [Ver relatórios de tags e conformidade](#ver-relatorios-de-tags-e-conformidade)
+    - [Editar políticas de tags](#editar-politicas-de-tags)
+    - [Associar/desassociar políticas de tags](#associar-desassociar-politicas-de-tags)
 
-## Proposed tags and their meanings
+## Tags propostas e os seus significados
 
-We propose the following 2 tag _keys_:
+Propomos as 2 _chaves_ de tag seguintes:
 
 - `mojaloop/cost_center`
 - `mojaloop/owner`
 
 ### `mojaloop/cost_center`
 
-`mojaloop/cost_center` is a breakdown of different resources in AWS by the workstream or project that is incurring the associated costs.
+`mojaloop/cost_center` é uma decomposição dos diferentes recursos na AWS pelo workstream ou projeto que incorre nos custos associados.
 
-It loosely follows the format of `<account>-<purpose>[-subpurpose]`, where account is something like `oss`, `tips`, or `woccu`.
-> Note: It's likely that most of the resources will be under the `oss` "account", but I managed to find some older resources that fall under the `tips` and `woccu` categories. We also want to plan for future types of resources that might be launched in the future.
+Segue de forma aproximada o formato `<account>-<purpose>[-subpurpose]`, em que account é algo como `oss`, `tips` ou `woccu`.
+> Nota: é provável que a maioria dos recursos fique sob a «conta» `oss`, mas consegui encontrar alguns recursos mais antigos que se enquadram nas categorias `tips` e `woccu`. Queremos também planear para tipos de recursos que possam vir a ser lançados no futuro.
 
-Some potential values for `mojaloop/cost_center` are:
+Alguns valores possíveis para `mojaloop/cost_center` são:
 
-- `oss-qa`: Open source QA work, such as the existing dev1 and dev2 environments
-- `oss-perf`: Open source performance work, such as the ongoing performance workstream
-- `oss-perf-poc`: Performance/Architecture POC
+- `oss-qa`: trabalho de QA de código aberto, como os ambientes dev1 e dev2 existentes
+- `oss-perf`: trabalho de desempenho de código aberto, como o workstream de desempenho em curso
+- `oss-perf-poc`: POC de desempenho/arquitetura
 
-We also reserve some special values:
-- `unknown`: This resource was evaluated (perhaps manually, or perhaps by an automated tool), and no appropriate `cost_center` could be determined.
-  - This will allow us to easily filter for the `mojaloop/cost_center:unknown` tags and produce a report
-- `n/a`: This resource incurrs no cost, so we're not really worried about assigning a `cost_center` to it
-  - This can be useful for mass tagging resources that are hard to figure out where the belong, such as EC2 Security Groups
+Reservamos também alguns valores especiais:
+- `unknown`: este recurso foi avaliado (talvez manualmente, talvez por uma ferramenta automatizada) e não foi possível determinar um `cost_center` adequado.
+  - Isto permitirá filtrar facilmente as tags `mojaloop/cost_center:unknown` e produzir um relatório
+- `n/a`: este recurso não incorre em custos, pelo que não nos preocupa realmente atribuir-lhe um `cost_center`
+  - Isto pode ser útil para aplicar tags em massa a recursos cuja pertença é difícil de determinar, como os Security Groups do EC2
 
 ### `mojaloop/owner`
 
-`mojaloop/owner` is a person who is responsible for the managing and shutdown of a given resource.
+`mojaloop/owner` é a pessoa responsável pela gestão e pelo encerramento de um dado recurso.
 
-The goal of this tag is to prevent long running resources that everybody else thinks _someone else_ knows about, but we no longer need. By applying this tag, we will be able to have a list of _who to go to_ in order to ask questions about the resource.
+O objetivo desta tag é evitar recursos de longa duração que todos julgam que _mais alguém_ conhece, mas de que já não precisamos. Ao aplicar esta tag, passaremos a ter uma lista de _a quem recorrer_ para colocar questões sobre o recurso.
 
-The value can simply be a person's name, all lowercase:
+O valor pode ser simplesmente o nome de uma pessoa, todo em minúsculas:
 - `lewis`
 - `miguel`
 - etc.
 
-Once again, we will reserve the following values:
-- `unknown`: This resource was evaluated (perhaps manually, or perhaps by an automated tool), and no appropriate `cost_center` could be determined.
-  - This will allow us to easily filter for the `mojaloop/owner:unknown` tags and see what resources are 'orphaned'
+Mais uma vez, reservaremos os valores seguintes:
+- `unknown`: este recurso foi avaliado (talvez manualmente, talvez por uma ferramenta automatizada) e não foi possível determinar um `cost_center` adequado.
+  - Isto permitirá filtrar facilmente as tags `mojaloop/owner:unknown` e ver que recursos estão «órfãos»
 
 
-## Manual Tagging
+## Tagging manual
 
-We can use the "Tag Editor" in the AWS console to search for untagged resources.
+Podemos utilizar o «Tag Editor» na consola da AWS para procurar recursos sem tags.
 
-1. Log into the AWS Console
-2. Under Resource Groups, select "Tag Editor"
+1. Inicie sessão na consola da AWS
+2. Em Resource Groups, selecione «Tag Editor»
 ![](../../../../community/archive/discussion-docs/images/tagging_01.png)
-3. From the tag editor, select a Region (I typically use "All regions"), and Resource Type (I also typically use "All resource types")
-4. Now select "Search Resources", and wait for the resources to appear
+3. No editor de tags, selecione uma Region (normalmente, utilizo «All regions») e um Resource Type (normalmente, utilizo também «All resource types»)
+4. Agora selecione «Search Resources» e aguarde que os recursos apareçam
 
-You can also search by tags, or the absense of tags to see what resources have not been tagged yet.
+Também é possível pesquisar por tags, ou pela ausência de tags, para ver que recursos ainda não têm tags.
 ![](../../../../community/archive/discussion-docs/images/tagging_02.png)
 
-5. Once you have a list of the resources, you can select and edit tags for many resources at once!
-6. You can also export a `.csv` file of resources found in your search
+5. Assim que tiver a lista dos recursos, pode selecionar e editar as tags de muitos recursos de uma só vez!
+6. Também é possível exportar um ficheiro `.csv` dos recursos encontrados na pesquisa
 
 
-## Automated Tagging
+## Tagging automatizado
 
-We currently automate tagging on the following
+Atualmente, automatizamos o tagging no seguinte
 
-As we have a firmer grasp of our tagging guidelines, we need to introduce them into our tooling so that all of the grunt work of manual tagging.
+À medida que formos consolidando as nossas orientações de tagging, temos de as introduzir nas nossas ferramentas, para que todo o trabalho pesado do tagging manual.
 
-At the moment, this will look like introducing tags into:
-1. Rancher - which currently manages our Kubernetes clusters for both QA and Performance purposes
-2. IAC - The upcoming IAC code that will eventually be running our dev environments
-
-
-## AWS Tagging Policies
-
-As of August 3, 2020, we have started introducing [AWS Tagging Policies](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies.html) to better enforce tags and monitor our resources (especially with respect to costs).
+Neste momento, isto passará por introduzir tags em:
+1. Rancher - que gere atualmente os nossos clusters Kubernetes, tanto para QA como para desempenho
+2. IAC - o futuro código de IAC que acabará por executar os nossos ambientes de desenvolvimento
 
 
-### Viewing Tag Reports + Compliance
+## Políticas de tagging da AWS
 
-1. Log in to the AWS Console
-2. "Resource Groups" > "Tag Editor"
-3. On the left sidebar, select "Tag Policies"
+Desde 3 de agosto de 2020, começámos a introduzir [políticas de tagging da AWS](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies.html) para impor melhor as tags e monitorizar os nossos recursos (sobretudo no que toca a custos).
 
-From here you can see the tag policies "compliance report"
+
+### Ver relatórios de tags e conformidade
+
+1. Inicie sessão na consola da AWS
+2. «Resource Groups» > «Tag Editor»
+3. Na barra lateral esquerda, selecione «Tag Policies»
+
+A partir daqui, é possível ver o «compliance report» das políticas de tags
 
 ![](../../../../community/archive/discussion-docs/images/tagging_03.png)
 
 
-### Editing Tag Policies
+### Editar políticas de tags
 
-> Note: This may require special admin priviledges to access these pages
+> Nota: poderão ser necessários privilégios especiais de administrador para aceder a estas páginas
 
-1. Log in to the AWS Console
-2. Select "username@mojaloop" in the top right > "My Organization"
-3. Select "Policies" > "Tag Policies"
+1. Inicie sessão na consola da AWS
+2. Selecione «username@mojaloop» no canto superior direito > «My Organization»
+3. Selecione «Policies» > «Tag Policies»
 
 ![](../../../../community/archive/discussion-docs/images/tagging_04.png)
 
-4. From here, you can view the current tag policies
+4. A partir daqui, é possível ver as políticas de tags atuais
 
 ![](../../../../community/archive/discussion-docs/images/tagging_05.png)
 
-5. In the sidebar, you can click "View details" > "Edit policy" to edit the policy
+5. Na barra lateral, pode clicar em «View details» > «Edit policy» para editar a política
 
 
-### Attaching/Detaching Tag Policies
+### Associar/desassociar políticas de tags
 
-1. Go to the "My Organization" page
-2. Select the relevant account > "Tag policies" in the sidebar
-3. From here you can Attach + Detach tag policies
+1. Aceda à página «My Organization»
+2. Selecione a conta relevante > «Tag policies» na barra lateral
+3. A partir daqui, é possível associar e desassociar políticas de tags
 
 ![](../../../../community/archive/discussion-docs/images/tagging_06.png)

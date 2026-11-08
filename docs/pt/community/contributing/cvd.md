@@ -2,307 +2,306 @@
 i18n_source_sha: 5ba3111c9485c598b7cb0762998654ca3b0d506f
 ---
 
-# Disclosing and Receiving Information Regarding Security Vulnerabilities
+# Divulgação e receção de informação sobre vulnerabilidades de segurança
 
-The Mojaloop Foundation and community take the security of Mojaloop software very seriously and operate a number of
-processes intended to ensure Mojaloop is a secure platform for conducting business. Please see
-our [documentation on cybersecurity architecture](../tools/cybersecurity.md) for more information.
+A Mojaloop Foundation e a comunidade levam muito a sério a segurança do software Mojaloop e mantêm vários
+processos que se destinam a garantir que o Mojaloop é uma plataforma segura para a realização de negócios. Consulte
+a nossa [documentação sobre a arquitetura de cibersegurança](../tools/cybersecurity.md) para mais informação.
 
-The Mojaloop Foundation operates
-a ["Coordinated Vulnerability Disclosure"](https://github.com/ossf/oss-vulnerability-guide/blob/main/finder-guide.md#what-is-coordinated-vulnerability-disclosure)
-process which is a model whereby a discovered vulnerability or issue is disclosed publicly only after responsible and
-effected parties have been given sufficient time to patch or remedy the problem. By operating this model, the Mojaloop
-Foundation and community aim to minimise the potential impact of such issues on our adopters.
+A Mojaloop Foundation mantém
+um processo de [«Divulgação Coordenada de Vulnerabilidades»](https://github.com/ossf/oss-vulnerability-guide/blob/main/finder-guide.md#what-is-coordinated-vulnerability-disclosure),
+um modelo em que uma vulnerabilidade ou um problema descoberto só é divulgado publicamente depois de as partes responsáveis e
+afetadas terem tido tempo suficiente para corrigir ou remediar o problema. Ao manter este modelo, a Mojaloop
+Foundation e a comunidade procuram minimizar o potencial impacto destes problemas nos nossos adotantes.
 
-## Mojaloop Foundation Coordinated Vulnerability Disclosure Policy
+## Política de Divulgação Coordenada de Vulnerabilidades da Mojaloop Foundation
 
-The following sections define the requirements and expectations of various parties involved in the discovery and
-remediation of security vulnerabilities in the Mojaloop software. All members of the Mojaloop community are expected to
-comply with these policies regardless of which role they are playing in any particular scenario. Participation in the
-Mojaloop community implies acceptance of and compliance with these policies.
+As secções seguintes definem os requisitos e as expectativas das várias partes envolvidas na descoberta e na
+remediação de vulnerabilidades de segurança no software Mojaloop. Espera-se que todos os membros da comunidade Mojaloop
+cumpram estas políticas, independentemente do papel que desempenhem num dado cenário. A participação na
+comunidade Mojaloop implica a aceitação e o cumprimento destas políticas.
 
-### Terminology
+### Terminologia
 
-The following definitions apply within the Mojaloop Foundation Coordinated Vulnerability Disclosure Policy:
+As definições seguintes aplicam-se no âmbito da Política de Divulgação Coordenada de Vulnerabilidades da Mojaloop Foundation:
 
-#### Terms from RFC 2119
+#### Termos da RFC 2119
 
-The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and "
-OPTIONAL" in this document are to be interpreted as described in RFC 2119.
+Os termos «MUST», «MUST NOT», «REQUIRED», «SHALL», «SHALL NOT», «SHOULD», «SHOULD NOT», «RECOMMENDED», «MAY» e «OPTIONAL» neste documento devem ser interpretados conforme descrito na RFC 2119.
 
-#### Terms from ISO, CERT
+#### Termos da ISO e do CERT
 
-The terms "Researcher" or "Reporter" in this document are intended to be consistent with the terms "Finder" and/or "
-Reporter" as used in ISO/IEC 29147:2014(E) and the CERT® Guide to Coordinated Vulnerability Disclosure.
+Os termos «Investigador» ou «Notificador» neste documento pretendem ser consistentes com os termos «Finder» e/ou «Reporter»
+utilizados na ISO/IEC 29147:2014(E) e no CERT® Guide to Coordinated Vulnerability Disclosure.
 
-### Reporters Policy
+### Política para os Notificadores
 
-Reporters MUST adhere to the following guidelines.
+Os Notificadores DEVEM cumprir as orientações seguintes.
 
-#### General
+#### Geral
 
-* Reporters MUST comply with all applicable local and international laws in connection with security research activities
-  or other participation in this vulnerability disclosure program.
+* Os Notificadores DEVEM cumprir todas as leis locais e internacionais aplicáveis no âmbito das atividades de investigação de segurança
+  ou de outra participação neste programa de divulgação de vulnerabilidades.
 
-* Reporters SHOULD make a good faith effort to notify and work directly with the affected vendor(s) or service providers
-  prior to publicly disclosing vulnerability reports.
+* Os Notificadores DEVERIAM envidar um esforço de boa-fé para notificar e trabalhar diretamente com o(s) fornecedor(es) ou os prestadores de serviços afetados
+  antes de divulgarem publicamente os relatórios de vulnerabilidades.
 
-#### Scope of Authorized Testing
+#### Âmbito dos testes autorizados
 
-* Reporters MAY test The Mojaloop open-source software to detect a vulnerability for the sole purpose of providing The
-  Mojaloop Foundation information about that vulnerability.
+* Os Notificadores PODEM testar o software de código aberto Mojaloop para detetar uma vulnerabilidade com o único objetivo de fornecer à
+  Mojaloop Foundation informação sobre essa vulnerabilidade.
 
-* Reporters SHOULD only test against test accounts owned by the Reporter or with explicit permission from the account
-  holder.
+* Os Notificadores DEVERIAM testar apenas contas de teste que lhes pertençam ou com a autorização explícita do titular
+  da conta.
 
-* Reporters MUST avoid harm to the information systems and operations of The Mojaloop Foundation, its associates and
-  users of Mojaloop open-source software.
+* Os Notificadores DEVEM evitar danos aos sistemas de informação e às operações da Mojaloop Foundation, dos seus associados e dos
+  utilizadores do software de código aberto Mojaloop.
 
-* Reporters MUST make every effort to avoid privacy violations, degradation of user experience, disruption to production
-  systems, and destruction or manipulation of data.
+* Os Notificadores DEVEM envidar todos os esforços para evitar violações da privacidade, a degradação da experiência do utilizador, a perturbação de sistemas de
+  produção e a destruição ou manipulação de dados.
 
-* Reporters MUST stop testing once that testing has established that a vulnerability exists, or sensitive data has been
-  encountered. Sensitive data includes personally identifiable information, financial information (e.g., account
-  numbers), proprietary information or trade secrets.
+* Os Notificadores DEVEM parar os testes assim que estes tenham estabelecido que existe uma vulnerabilidade, ou que foram
+  encontrados dados sensíveis. Os dados sensíveis incluem informações de identificação pessoal, informações financeiras (por exemplo, números
+  de conta), informações proprietárias ou segredos comerciais.
 
-* Reporters MUST NOT test any software or services not expressly contained in The Mojaloop open-source software Github
-  repositories, including any connected services.
+* Os Notificadores NÃO DEVEM testar quaisquer software ou serviços que não estejam expressamente contidos nos repositórios GitHub do software de código aberto
+  Mojaloop, incluindo quaisquer serviços ligados.
 
-* Reporters MUST NOT exploit any vulnerability beyond the minimal amount of testing required to prove that the
-  vulnerability exists or to identify an indicator related to that vulnerability.
+* Os Notificadores NÃO DEVEM explorar qualquer vulnerabilidade para além da quantidade mínima de testes necessária para provar que a
+  vulnerabilidade existe ou para identificar um indicador relacionado com essa vulnerabilidade.
 
-* Reporters MUST NOT intentionally access the content of any communications, data, or information transiting or stored
-  on information systems belonging to The Mojaloop Foundation, its associates or users of Mojaloop open-source
-  software – except to the extent that the information is directly related to a vulnerability and the access is
-  necessary to prove that the vulnerability exists.
+* Os Notificadores NÃO DEVEM aceder intencionalmente ao conteúdo de quaisquer comunicações, dados ou informações em trânsito ou armazenados
+  em sistemas de informação pertencentes à Mojaloop Foundation, aos seus associados ou aos utilizadores do software de código aberto
+  Mojaloop – exceto na medida em que a informação esteja diretamente relacionada com uma vulnerabilidade e o acesso seja
+  necessário para provar que a vulnerabilidade existe.
 
-* Reporters MUST NOT exfiltrate any data under any circumstances.
+* Os Notificadores NÃO DEVEM exfiltrar quaisquer dados em circunstância alguma.
 
-* Reporters MUST NOT intentionally compromise the privacy or safety of The Mojaloop Foundation's personnel, customers,
-  the general public, users of the Mojaloop open-source software or any legitimate third parties.
+* Os Notificadores NÃO DEVEM comprometer intencionalmente a privacidade ou a segurança do pessoal, dos clientes da Mojaloop Foundation,
+  do público em geral, dos utilizadores do software de código aberto Mojaloop ou de quaisquer terceiros legítimos.
 
-* Reporters MUST NOT use any exploit to compromise, alter, or exfiltrate data
+* Os Notificadores NÃO DEVEM utilizar qualquer exploit para comprometer, alterar ou exfiltrar dados
 
-* Reporters SHOULD NOT establish command line access and/or persistence
+* Os Notificadores NÃO DEVERIAM estabelecer acesso por linha de comandos e/ou persistência
 
-* Reporters MUST NOT exploit any vulnerabilities found to pivot to other systems.
+* Os Notificadores NÃO DEVEM explorar as vulnerabilidades encontradas para passar para outros sistemas.
 
-* Reporters MUST NOT intentionally compromise the intellectual property or other commercial or financial interests of
-  any The Mojaloop Foundation's personnel or entities, customers, the general public, users of the Mojaloop open-source
-  software or any legitimate third parties.
+* Os Notificadores NÃO DEVEM comprometer intencionalmente a propriedade intelectual ou outros interesses comerciais ou financeiros de
+  qualquer pessoal ou entidade da Mojaloop Foundation, clientes, público em geral, utilizadores do software de código aberto Mojaloop
+  ou quaisquer terceiros legítimos.
 
-* Reporters MUST NOT cause a denial of any legitimate services in the course of their testing.
+* Os Notificadores NÃO DEVEM causar a negação de quaisquer serviços legítimos no decurso dos seus testes.
 
-* Reporters MUST NOT perform physical access testing (e.g. office access, open doors, tailgating, or other trespass).
+* Os Notificadores NÃO DEVEM realizar testes de acesso físico (por exemplo, acesso a escritórios, portas abertas, tailgating ou outras intrusões).
 
-* Reporters MUST NOT conduct social engineering in any form of The Mojaloop Foundation personnel its contractors,
-  associates, or user of the Mojaloop open-source software, their personnel, contractors or customers.
+* Os Notificadores NÃO DEVEM realizar engenharia social de qualquer forma sobre o pessoal da Mojaloop Foundation, os seus contratados,
+  associados ou utilizadores do software de código aberto Mojaloop, o seu pessoal, contratados ou clientes.
 
-* Reporters SHOULD contact The Mojaloop Foundation by email at [security@mojaloop.io](mailto:security@mojaloop.io) if at
-  any point you are uncertain of whether to proceed with testing.
+* Os Notificadores DEVERIAM contactar a Mojaloop Foundation por e-mail, através de [security@mojaloop.io](mailto:security@mojaloop.io), se em
+  qualquer momento tiverem dúvidas sobre se devem prosseguir com os testes.
 
-#### Coordination with The Mojaloop Foundation
+#### Coordenação com a Mojaloop Foundation
 
-* Reporters SHOULD submit vulnerability reports to The Mojaloop Foundation via secure (encrypted) email
-  to [security@mojaloop.io](mailto:security@mojaloop.io).
+* Os Notificadores DEVERIAM submeter os relatórios de vulnerabilidades à Mojaloop Foundation através de e-mail seguro (encriptado)
+  para [security@mojaloop.io](mailto:security@mojaloop.io).
 
-* Reporters SHOULD submit high quality reports.
+* Os Notificadores DEVERIAM submeter relatórios de elevada qualidade.
 
-* Reporters SHOULD include sufficient descriptive details to permit The Mojaloop Foundation and/or the affected
-  vendor(s) to accurately reproduce the vulnerable behavior.
+* Os Notificadores DEVERIAM incluir detalhes descritivos suficientes para permitir que a Mojaloop Foundation e/ou o(s) fornecedor(es)
+  afetado(s) reproduzam com exatidão o comportamento vulnerável.
 
-* Reporters SHOULD NOT report unanalyzed crash dumps or fuzzer output unless accompanied by a sufficiently detailed
-  explanation of how they represent a security vulnerability.
+* Os Notificadores NÃO DEVERIAM comunicar crash dumps ou resultados de fuzzers não analisados, a menos que acompanhados de uma
+  explicação suficientemente detalhada da forma como representam uma vulnerabilidade de segurança.
 
-* Reporters SHOULD report other vulnerabilities found incidental to their in-scope testing even if those vulnerabilities
-  would be otherwise considered out-of-scope. For example, while testing an in-scope system the reporter finds it to be
-  exposing data from out-of-scope system. These are still reportable vulnerabilities.
+* Os Notificadores DEVERIAM comunicar outras vulnerabilidades encontradas acessoriamente nos seus testes dentro do âmbito, mesmo que essas vulnerabilidades
+  fossem de outra forma consideradas fora do âmbito. Por exemplo, ao testar um sistema dentro do âmbito, o notificador constata que este
+  expõe dados de um sistema fora do âmbito. Estas continuam a ser vulnerabilidades passíveis de comunicação.
 
-* Reporters MUST keep confidential any information about vulnerabilities discovered for 90 days after you have notified
-  The Mojaloop Foundation. Notwithstanding, this expectation does not preclude Reporters from simultaneously
-  coordinating the vulnerability report with other affected parties (vendors, service providers, coordinators, etc.)
+* Os Notificadores DEVEM manter confidencial qualquer informação sobre as vulnerabilidades descobertas durante 90 dias após terem notificado
+  a Mojaloop Foundation. Não obstante, esta expectativa não impede os Notificadores de
+  coordenarem simultaneamente o relatório de vulnerabilidade com outras partes afetadas (fornecedores, prestadores de serviços, coordenadores, etc.)
 
-* Reporters MAY include a proof-of-concept exploit if available.
+* Os Notificadores PODEM incluir um exploit de prova de conceito, se disponível.
 
-* Reporters MAY request that their contact information be withheld from all affected vendor(s).
+* Os Notificadores PODEM pedir que os seus dados de contacto não sejam divulgados a nenhum dos fornecedores afetados.
 
-* Reporters MAY request not to be named in the acknowledgements of The Mojaloop Foundation's public disclosures.
+* Os Notificadores PODEM pedir para não serem nomeados nos agradecimentos das divulgações públicas da Mojaloop Foundation.
 
-* Reporters MUST NOT submit a high-volume of low-quality reports.
+* Os Notificadores NÃO DEVEM submeter um grande volume de relatórios de baixa qualidade.
 
-* Reporters MUST NOT require The Mojaloop Foundation to enter into a customer relationship, non-disclosure agreement
-  (NDA) or any other contractual or financial obligation as a condition of receiving or coordinating vulnerability
-  reports.
+* Os Notificadores NÃO DEVEM exigir que a Mojaloop Foundation estabeleça uma relação de cliente, um acordo de confidencialidade
+  (NDA) ou qualquer outra obrigação contratual ou financeira como condição para receber ou coordenar relatórios de
+  vulnerabilidades.
 
-* Reporters MUST NOT demand compensation in return for reporting vulnerability information reported outside of an
-  explicit bug bounty program.
+* Os Notificadores NÃO DEVEM exigir compensação em troca da comunicação de informação sobre vulnerabilidades comunicada fora de um
+  programa de bug bounty explícito.
 
-#### Coordination with vendors
+#### Coordenação com fornecedores
 
-* In the event that the Reporter finds a vulnerability in The Mojaloop Foundation open-source software consequent to a
-  vulnerability in a generally available product or service, the Reporter MAY report the vulnerability to the affected
-  vendor(s), service provider(s), or third party vulnerability coordination service(s) in order to enable the product or
-  service to be fixed.
+* Caso o Notificador encontre uma vulnerabilidade no software de código aberto da Mojaloop Foundation decorrente de uma
+  vulnerabilidade num produto ou serviço geralmente disponível, o Notificador PODE comunicar a vulnerabilidade ao(s)
+  fornecedor(es), prestador(es) de serviços ou serviço(s) de coordenação de vulnerabilidades de terceiros afetados, de forma a permitir que o produto ou
+  serviço seja corrigido.
 
-#### Coordination with others
+#### Coordenação com outros
 
-* Reporters MAY engage the services of a third party coordination service (e.g., CERT/CC, DHS CISA) to assist in
-  resolving any conflicts that cannot be resolved between the Reporter and The Mojaloop Foundation.
+* Os Notificadores PODEM recorrer aos serviços de um serviço de coordenação de terceiros (por exemplo, CERT/CC, DHS CISA) para ajudar a
+  resolver quaisquer conflitos que não possam ser resolvidos entre o Notificador e a Mojaloop Foundation.
 
-* Reporters SHOULD NOT disclose any details of any extant Mojaloop Foundation open-source software vulnerability, or any
-  indicators of vulnerability to any party not already aware at the time the report is submitted to The Mojaloop
+* Os Notificadores NÃO DEVERIAM divulgar quaisquer detalhes de qualquer vulnerabilidade existente do software de código aberto da Mojaloop Foundation, nem quaisquer
+  indicadores de vulnerabilidade, a qualquer parte que dela não tenha já conhecimento no momento em que o relatório é submetido à Mojaloop
   Foundation.
 
-#### Public disclosure
+#### Divulgação pública
 
-* Reporters MAY disclose to the public the prior existence of vulnerabilities already fixed by The Mojaloop Foundation,
-  including potentially details of the vulnerability, indicators of vulnerability, or the nature (but not content) of
-  information rendered available by the vulnerability.
+* Os Notificadores PODEM divulgar ao público a existência prévia de vulnerabilidades já corrigidas pela Mojaloop Foundation,
+  incluindo potencialmente detalhes da vulnerabilidade, indicadores de vulnerabilidade ou a natureza (mas não o conteúdo) da
+  informação tornada acessível pela vulnerabilidade.
 
-* Reporters choosing to disclose to the public SHOULD do so in consultation with The Mojaloop Foundation.
+* Os Notificadores que optem por divulgar ao público DEVERIAM fazê-lo em consulta com a Mojaloop Foundation.
 
-* Reporters MUST NOT disclose any incidental proprietary data revealed during testing or the content of information
-  rendered available by the vulnerability to any party not already aware at the time the report is submitted to
-  The Mojaloop Foundation.
+* Os Notificadores NÃO DEVEM divulgar quaisquer dados proprietários revelados acessoriamente durante os testes, nem o conteúdo da informação
+  tornada acessível pela vulnerabilidade, a qualquer parte que dela não tenha já conhecimento no momento em que o relatório é submetido à
+  Mojaloop Foundation.
 
-### Receivers Policy
+### Política para os Recetores
 
-The Mojaloop Foundation SHALL deal in good faith with Reporters who discover, test, and report vulnerabilities or
-indicators of vulnerabilities in accordance with these guidelines.
+A Mojaloop Foundation DEVE agir de boa-fé para com os Notificadores que descubram, testem e comuniquem vulnerabilidades ou
+indicadores de vulnerabilidades de acordo com estas orientações.
 
-#### General
+#### Geral
 
-* The Mojaloop Foundation MAY modify the terms of this policy or terminate the policy at any time.
+* A Mojaloop Foundation PODE modificar os termos desta política ou pôr termo à política em qualquer momento.
 
-* The Mojaloop Foundation SHALL use information reported to this program for defensive purposes only; to mitigate or
-  remediate vulnerabilities in the Mojaloop open-source software, Mojaloop Foundation networks, applications, the
-  applications of our vendors and those of users of Mojaloop open-source software.
+* A Mojaloop Foundation DEVE utilizar a informação comunicada a este programa apenas para fins defensivos: para mitigar ou
+  remediar vulnerabilidades no software de código aberto Mojaloop, nas redes e aplicações da Mojaloop Foundation, nas
+  aplicações dos nossos fornecedores e nas dos utilizadores do software de código aberto Mojaloop.
 
-#### Case handling
+#### Tratamento de casos
 
-* The Mojaloop Foundation MAY, at our discretion, decline to coordinate or publish a vulnerability report. This decision
-  is generally based on the scope and severity of the vulnerability and our ability to add value to the coordination and
-  disclosure process.
+* A Mojaloop Foundation PODE, ao seu critério, recusar coordenar ou publicar um relatório de vulnerabilidade. Esta decisão
+  baseia-se geralmente no âmbito e na gravidade da vulnerabilidade e na nossa capacidade de acrescentar valor ao processo de coordenação e
+  divulgação.
 
-* In the event that The Mojaloop Foundation declines to coordinate a vulnerability report, the Reporter MAY proceed to
-  coordinate with any other affected vendor(s). Additionally, the Reporter MAY proceed with public disclosure at their
-  discretion.
+* Caso a Mojaloop Foundation recuse coordenar um relatório de vulnerabilidade, o Notificador PODE avançar para a
+  coordenação com qualquer outro fornecedor afetado. Além disso, o Notificador PODE avançar com a divulgação pública ao seu
+  critério.
 
-* The Mojaloop Foundation SHALL investigate every reported vulnerability and strive to ensure that appropriate steps are
-  taken to mitigate risk and remediate reported vulnerabilities.
+* A Mojaloop Foundation DEVE investigar todas as vulnerabilidades comunicadas e esforçar-se por garantir que são tomadas as medidas
+  adequadas para mitigar o risco e remediar as vulnerabilidades comunicadas.
 
-* The Mojaloop Foundation SHALL, to the best of our ability, validate the existence of the vulnerability
+* A Mojaloop Foundation DEVE, na medida das suas possibilidades, validar a existência da vulnerabilidade
 
-* The Mojaloop Foundation SHALL determine an appropriate timeframe for mitigation development and deployment for
-  vulnerabilities reported in systems it controls.
+* A Mojaloop Foundation DEVE determinar um prazo adequado para o desenvolvimento e o deployment da mitigação das
+  vulnerabilidades comunicadas em sistemas que controla.
 
-#### Coordination with reporters
+#### Coordenação com os notificadores
 
-* The Mojaloop Foundation SHALL acknowledge receipt of vulnerability reports via email within 7 working days.
+* A Mojaloop Foundation DEVE acusar a receção dos relatórios de vulnerabilidades por e-mail no prazo de 7 dias úteis.
 
-* The Mojaloop Foundation MAY contact the Reporter for further information.
+* A Mojaloop Foundation PODE contactar o Notificador para obter mais informação.
 
-* The Mojaloop Foundation SHALL inform the Reporter of the results of our validation, as appropriate, and accordingly
-  provide status updates as remediation of the vulnerability is underway.
+* A Mojaloop Foundation DEVE informar o Notificador dos resultados da nossa validação, conforme adequado, e, em conformidade,
+  fornecer atualizações do estado à medida que decorre a remediação da vulnerabilidade.
 
-* The Mojaloop Foundation SHALL include credit to the reporter in any published vulnerability report unless otherwise
-  requested by the reporter.
+* A Mojaloop Foundation DEVE incluir o crédito ao notificador em qualquer relatório de vulnerabilidade publicado, salvo pedido
+  em contrário do notificador.
 
-* In the event that The Mojaloop Foundation chooses to publicly disclose the reported vulnerability, The Mojaloop
-  Foundation SHALL recognize your contribution to improving our security if you are the first to report a unique
-  vulnerability, and your report triggers a code or configuration change.
+* Caso a Mojaloop Foundation opte por divulgar publicamente a vulnerabilidade comunicada, a Mojaloop
+  Foundation DEVE reconhecer o contributo do notificador para a melhoria da nossa segurança, se este for o primeiro a comunicar uma vulnerabilidade
+  única e se o relatório der origem a uma alteração de código ou de configuração.
 
-* The Mojaloop Foundation MAY forward the name and contact information of the Reporter to any affected vendors unless
-  otherwise requested by the reporter.
+* A Mojaloop Foundation PODE reencaminhar o nome e os dados de contacto do Notificador para quaisquer fornecedores afetados, salvo
+  pedido em contrário do notificador.
 
-* The Mojaloop Foundation SHALL forward the name and contact information of the reporter to the affected vendors unless
-  otherwise requested by the reporter.
+* A Mojaloop Foundation DEVE reencaminhar o nome e os dados de contacto do notificador para os fornecedores afetados, salvo
+  pedido em contrário do notificador.
 
-* The Mojaloop Foundation SHALL advise the reporter of significant changes in the status of any vulnerability he or she
-  reported to the extent possible without revealing information provided to us in confidence.
+* A Mojaloop Foundation DEVE informar o notificador das alterações significativas do estado de qualquer vulnerabilidade que este tenha
+  comunicado, na medida do possível sem revelar informação que nos tenha sido fornecida em confidência.
 
-* The Mojaloop Foundation MAY adjust its publication timeframe to accommodate reporter constraints if that timing is
-  otherwise compatible with this policy. In most cases such an adjustment would be expected to represent a delay rather
-  than an acceleration of the publication schedule. Examples include delaying publication to coincide with conference
-  presentations.
+* A Mojaloop Foundation PODE ajustar o seu prazo de publicação para acomodar as restrições do notificador, se esse calendário for
+  de outra forma compatível com esta política. Na maioria dos casos, seria de esperar que esse ajuste representasse um atraso, e não
+  uma antecipação, do calendário de publicação. Os exemplos incluem atrasar a publicação para coincidir com apresentações em
+  conferências.
 
-* The Mojaloop Foundation SHALL NOT require Reporters to enter into a customer relationship, non-disclosure agreement
-  (NDA) or any other contractual or financial obligation as a condition of receiving or coordinating vulnerability
-  reports.
+* A Mojaloop Foundation NÃO DEVE exigir que os Notificadores estabeleçam uma relação de cliente, um acordo de confidencialidade
+  (NDA) ou qualquer outra obrigação contratual ou financeira como condição para receber ou coordenar relatórios de
+  vulnerabilidades.
 
-#### Coordination with vendors
+#### Coordenação com fornecedores
 
-* In the event that The Mojaloop Foundation determines the reported vulnerability is consequent to a vulnerability in a
-  generally available product or service, The Mojaloop Foundation MAY report the vulnerability to the affected
-  vendor(s), service provider(s), or third party vulnerability coordination service(s) in order to enable the product or
-  service to be fixed.
+* Caso a Mojaloop Foundation determine que a vulnerabilidade comunicada decorre de uma vulnerabilidade num
+  produto ou serviço geralmente disponível, a Mojaloop Foundation PODE comunicar a vulnerabilidade ao(s)
+  fornecedor(es), prestador(es) de serviços ou serviço(s) de coordenação de vulnerabilidades de terceiros afetados, de forma a permitir que o produto ou
+  serviço seja corrigido.
 
-* The Mojaloop Foundation SHALL make a good faith effort to inform vendors of reported vulnerabilities prior to public
-  disclosure.
+* A Mojaloop Foundation DEVE envidar um esforço de boa-fé para informar os fornecedores das vulnerabilidades comunicadas antes da divulgação
+  pública.
 
-* The Mojaloop Foundation SHALL forward vulnerability reports to the affected vendor(s) as soon as practical after we
-  receive the report.
+* A Mojaloop Foundation DEVE reencaminhar os relatórios de vulnerabilidades para o(s) fornecedor(es) afetado(s) logo que possível após
+  recebermos o relatório.
 
-* The Mojaloop Foundation SHALL apprise any affected vendors of our publication plans and negotiate alternate
-  publication schedules with the affected vendors when required.
+* A Mojaloop Foundation DEVE informar quaisquer fornecedores afetados dos nossos planos de publicação e negociar calendários de publicação
+  alternativos com os fornecedores afetados, quando necessário.
 
-* The Mojaloop Foundation SHALL provide the vendor the opportunity to include a vendor statement within our public
-  disclosure document.
+* A Mojaloop Foundation DEVE dar ao fornecedor a oportunidade de incluir uma declaração do fornecedor no nosso documento de
+  divulgação pública.
 
-* The Mojaloop Foundation SHALL NOT withhold vendor-supplied information simply because it disagrees with our assessment
-  of the problem.
+* A Mojaloop Foundation NÃO DEVE reter informação fornecida pelo fornecedor simplesmente porque este discorda da nossa avaliação
+  do problema.
 
-* The Mojaloop Foundation SHALL notify affected vendors of any public disclosure plans.
+* A Mojaloop Foundation DEVE notificar os fornecedores afetados de quaisquer planos de divulgação pública.
 
-* The Mojaloop Foundation SHALL NOT reveal information provided in confidence by any vendor.
+* A Mojaloop Foundation NÃO DEVE revelar informação fornecida em confidência por qualquer fornecedor.
 
-* The Mojaloop Foundation SHALL act in accordance with the expectations of Reporters set forth in this policy when
-  acting as a Reporter to other organizations (vendors, coordinators, etc.).
+* A Mojaloop Foundation DEVE agir de acordo com as expectativas relativas aos Notificadores definidas nesta política quando
+  atuar como Notificador perante outras organizações (fornecedores, coordenadores, etc.).
 
-#### Coordination with others
+#### Coordenação com outros
 
-* The Mojaloop Foundation MAY engage the services of a third party coordination service (e.g., CERT/CC, DHS CISA) to
-  assist in resolving any conflicts that cannot be resolved between the Reporter and The Mojaloop Foundation.
+* A Mojaloop Foundation PODE recorrer aos serviços de um serviço de coordenação de terceiros (por exemplo, CERT/CC, DHS CISA) para
+  ajudar a resolver quaisquer conflitos que não possam ser resolvidos entre o Notificador e a Mojaloop Foundation.
 
-* The Mojaloop Foundation MAY, at our discretion, provide reported vulnerability information to anyone who can
-  contribute to the solution and with whom we have a trusted relationship, including vendors (often including vendors
-  whose products are not vulnerable), service providers, community experts, sponsors, and sites that are part of a
-  national critical infrastructure, if we believe those sites to be at risk.
+* A Mojaloop Foundation PODE, ao seu critério, fornecer informação sobre vulnerabilidades comunicadas a qualquer pessoa que possa
+  contribuir para a solução e com quem tenhamos uma relação de confiança, incluindo fornecedores (muitas vezes incluindo fornecedores
+  cujos produtos não são vulneráveis), prestadores de serviços, especialistas da comunidade, patrocinadores e locais que fazem parte de uma
+  infraestrutura crítica nacional, se considerarmos que esses locais estão em risco.
 
-#### Public disclosure
+#### Divulgação pública
 
-* The Mojaloop Foundation SHALL determine the type and schedule of our public disclosure of the vulnerability.
+* A Mojaloop Foundation DEVE determinar o tipo e o calendário da nossa divulgação pública da vulnerabilidade.
 
-* The Mojaloop Foundation MAY disclose reported vulnerabilities to the public 7 days days after the initial
-  report, regardless of the existence or availability of patches or workarounds from affected vendors.
+* A Mojaloop Foundation PODE divulgar ao público as vulnerabilidades comunicadas 7 dias dias após o relatório
+  inicial, independentemente da existência ou disponibilidade de correções ou soluções alternativas dos fornecedores afetados.
 
-* The Mojaloop Foundation MAY disclose vulnerabilities to the public earlier or later than 7 days due to extenuating
-  circumstances, including but not limited to active exploitation, threats of an especially serious (or trivial) nature,
-  or situations that require changes to an established standard.
+* A Mojaloop Foundation PODE divulgar vulnerabilidades ao público antes ou depois dos 7 dias devido a circunstâncias
+  atenuantes, incluindo, entre outras, a exploração ativa, ameaças de natureza especialmente grave (ou trivial)
+  ou situações que exijam alterações a uma norma estabelecida.
 
-* The Mojaloop Foundation MAY consult with the Reporter and any affected vendor(s) to determine the appropriate public
-  disclosure timing and details.
+* A Mojaloop Foundation PODE consultar o Notificador e qualquer fornecedor afetado para determinar o calendário e os detalhes adequados da
+  divulgação pública.
 
-* The Mojaloop Foundation SHALL balance the need of the public to be informed of security vulnerabilities with vendors'
-  and users of Mojaloop open-source software need for time to respond effectively.
+* A Mojaloop Foundation DEVE equilibrar a necessidade de o público ser informado sobre vulnerabilidades de segurança com a necessidade de
+  tempo dos fornecedores e dos utilizadores do software de código aberto Mojaloop para responder de forma eficaz.
 
-* The Mojaloop Foundation's final determination of a publication schedule SHALL be based on the best interests of the
-  community overall.
+* A determinação final da Mojaloop Foundation sobre um calendário de publicação DEVE basear-se no melhor interesse da
+  comunidade em geral.
 
-* The Mojaloop Foundation SHALL publish public disclosures via one or more of email, slack, and/or the Mojaloop
-  Community Central website.
+* A Mojaloop Foundation DEVE publicar as divulgações públicas através de um ou mais dos seguintes meios: e-mail, Slack e/ou o sítio web
+  Mojaloop Community Central.
 
-* The Mojaloop Foundation MAY disclose to the public the prior existence of vulnerabilities already fixed by The
-  Mojaloop Foundation, including potentially details of the vulnerability, indicators of vulnerability, or the nature (
-  but not content) of information rendered available by the vulnerability.
+* A Mojaloop Foundation PODE divulgar ao público a existência prévia de vulnerabilidades já corrigidas pela
+  Mojaloop Foundation, incluindo potencialmente detalhes da vulnerabilidade, indicadores de vulnerabilidade ou a natureza (
+  mas não o conteúdo) da informação tornada acessível pela vulnerabilidade.
 
-* The Mojaloop Foundation SHALL make our disclosure determinations based on relevant factors such as but not limited to:
-  whether the vulnerability has already been publicly disclosed, the severity of the vulnerability, potential impact to
-  critical infrastructure, possible threat to public health and safety, immediate mitigations available, vendor
-  responsiveness and feasibility for creating an upgrade or patch, and vendor estimate of time required for customers to
-  obtain, test, and apply the patch. Active exploitation, threats of an especially serious nature, or situations that
-  require changes to an established standard may result in earlier or later disclosure.
+* A Mojaloop Foundation DEVE tomar as suas decisões de divulgação com base em fatores relevantes como, entre outros:
+  se a vulnerabilidade já foi divulgada publicamente, a gravidade da vulnerabilidade, o potencial impacto em
+  infraestruturas críticas, a possível ameaça à saúde e à segurança públicas, as mitigações imediatas disponíveis, a capacidade de resposta do fornecedor
+  e a viabilidade de criar uma atualização ou correção, e a estimativa do fornecedor do tempo necessário para os clientes
+  obterem, testarem e aplicarem a correção. A exploração ativa, as ameaças de natureza especialmente grave ou as situações que
+  exijam alterações a uma norma estabelecida podem resultar numa divulgação mais precoce ou mais tardia.
 
-* The Mojaloop Foundation MAY disclose product vulnerabilities 30 days after the initial contact is made, regardless of
-  the existence or availability of patches or workarounds from affected vendors in cases where a product is affected and
-  the vendor is unresponsive, or fails to establish a reasonable timeframe for remediation.
+* A Mojaloop Foundation PODE divulgar vulnerabilidades de produtos 30 dias após o contacto inicial, independentemente da
+  existência ou disponibilidade de correções ou soluções alternativas dos fornecedores afetados, nos casos em que um produto é afetado e
+  o fornecedor não responde ou não estabelece um prazo razoável para a remediação.
