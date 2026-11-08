@@ -1,5 +1,5 @@
 ---
-i18n_source_sha: d0b25a50ce19d01062712caeefa6c5dca6bc342e
+i18n_source_sha: 61283e07dfe856d2a7013dffa6e65df400e16ddd
 ---
 
 # Pipelines de CI/CD
@@ -32,7 +32,7 @@ para que o código possa ser integrado.
 | test-coverage   | Corre os testes unitários e verifica se a cobertura do código está acima do limite especificado. | Normalmente é 90% |
 | test-unit       | Corre os testes unitários. Falha se algum teste unitário falhar. | |
 | vulnerability-check | Corre a ferramenta `npm audit` para procurar vulnerabilidades nas dependências | O `npm audit` está cheio de falsos positivos, ou de problemas de segurança que não se aplicam ao nosso código. Usamos o `npm-audit-resolver` para nos dar flexibilidade quanto às vulnerabilidades que podem ser ignoradas, por exemplo `devDependencies` |
-| audit-licenses | Corre o `license-scanner-tool` do mojaloop e falha se alguma licença encontrada não corresponder a uma allowlist especificada no `license-scanner-tool` | [repositório license-scanner-tool](https://github.com/mojaloop/license-scanner-tool) |
+| license-scan | Gera um SBOM CycloneDX das dependências do projeto e valida-o com o `license-scanner-tool` do mojaloop, falhando se a licença de alguma dependência não constar da allowlist. Não analisa as imagens docker do mojaloop que distribuímos  | [repositório license-scanner-tool](https://github.com/mojaloop/license-scanner-tool) |
 
 
 ### Fluxo de master e release:
@@ -47,7 +47,7 @@ Este pipeline de CI/CD corre no branch master/main:
 | test-coverage   | Ver acima | |
 | test-unit       | Ver acima | |
 | vulnerability-check | Ver acima | |
-| audit-licenses | Ver acima | |
+| license-scan | Ver acima | |
 | release | Corre um release que cria uma tag git e faz push da tag git | |
 | github-release | Adiciona os metadados do release (por exemplo, o changelog) ao github, envia um alerta de slack para #announcements | |
 
@@ -67,7 +67,7 @@ artefacto que é publicado no `npm`.
 | test-coverage   | Ver acima | |
 | test-unit       | Ver acima | |
 | vulnerability-check | Ver acima | |
-| audit-licenses | Ver acima | |
+| license-scan | Ver acima | |
 | publish | Publica a versão mais recente da biblioteca com base na tag git | |
 
 
@@ -89,7 +89,7 @@ para que o código possa ser integrado.
 | test-unit           | Corre os testes unitários. Falha se algum teste unitário falhar. | |
 | test-integration    | Corre os testes de integração. Normalmente construindo uma imagem docker localmente | |
 | vulnerability-check | Corre a ferramenta `npm audit` para procurar vulnerabilidades nas dependências | O `npm audit` está cheio de falsos positivos, ou de problemas de segurança que não se aplicam ao nosso código. Usamos o `npm-audit-resolver` para nos dar flexibilidade quanto às vulnerabilidades que podem ser ignoradas, por exemplo `devDependencies` |
-| audit-licenses | Corre o `license-scanner-tool` do mojaloop e falha se alguma licença encontrada não corresponder a uma allowlist especificada no `license-scanner-tool` | [repositório license-scanner-tool](https://github.com/mojaloop/license-scanner-tool) |
+| license-scan | Gera um SBOM CycloneDX das dependências do projeto e valida-o com o `license-scanner-tool` do mojaloop, falhando se a licença de alguma dependência não constar da allowlist | [repositório license-scanner-tool](https://github.com/mojaloop/license-scanner-tool) |
 
 
 ### Fluxo de master e release:
@@ -105,7 +105,7 @@ Este pipeline de CI/CD corre no branch master/main:
 | test-unit       | Ver acima | |
 | test-integration | Ver acima | |
 | vulnerability-check | Ver acima | |
-| audit-licenses | Ver acima | |
+| license-scan | Ver acima | |
 | release | Corre um release que cria uma tag git e faz push da tag git | |
 | github-release | Adiciona os metadados do release (por exemplo, o changelog) ao github, envia um alerta de slack para #announcements | |
 
@@ -124,7 +124,7 @@ e são feitas análises adicionais à imagem docker antes de a imagem ser enviad
 | test-coverage       | Ver acima | |
 | test-unit           | Ver acima | |
 | vulnerability-check | Ver acima | |
-| audit-licenses      | Ver acima | |
+| license-scan        | Ver acima | |
 | build               | Constrói a imagem docker | |
 | image-scan          | Corre o `anchore/analyze_local_image` para analisar a imagem | Consulte o CircleCI Orb [anchore-engine](https://circleci.com/developer/orbs/orb/anchore/anchore-engine) para mais informação. |
 | license-scan        | Corre o `license-scanner-tool` do mojaloop sobre as licenças contidas na imagem docker | |
