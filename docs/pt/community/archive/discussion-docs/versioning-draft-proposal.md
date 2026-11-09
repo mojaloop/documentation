@@ -8,33 +8,33 @@ Approved/Rejected Date: N/A
 i18n_source_sha: 33e36e14342549f829658be7246d6b01bbb5b7c6
 ---
 
-# Mojaloop Versioning, A Proposal
+# Versionamento do Mojaloop, uma proposta
 
-_Note: This document is a living draft of a proposal for versioning within Mojaloop. Once the proposal is ready, it will be submitted to the CCB for approval._
+_Nota: este documento é um rascunho vivo de uma proposta de versionamento no Mojaloop. Assim que a proposta estiver pronta, será submetida ao CCB para aprovação._
 
-## Overview
+## Visão geral
 
-The aim is to produce a proposal that keeps the versioning Scheme simple to use and clear regarding compatibility issues. However, it needs to include all the details needed for a Mojaloop ecosystem as well.
+O objetivo é produzir uma proposta que mantenha o scheme de versionamento simples de utilizar e claro quanto às questões de compatibilidade. No entanto, tem de incluir também todos os detalhes necessários a um ecossistema Mojaloop.
 
-Goal:
-Propose a standard for a new 'Mojaloop Version', which embodies:
-1. Helm: Individual Service Versions, Monitoring Component Versions
-2. API Versions: FSPIOP API, Hub Operations / Admin API, Settlement API
-3. Internal Schema Versions: Database Schema and Internal Messaging Versions
+Objetivo:
+Propor uma norma para uma nova «versão do Mojaloop», que incorpore:
+1. Helm: versões dos serviços individuais, versões dos componentes de monitorização
+2. Versões das APIs: FSPIOP API, Hub Operations / Admin API, Settlement API
+3. Versões dos esquemas internos: esquema da base de dados e versões das mensagens internas
 
-## Versioning Strategies/Background (Literature Review)
+## Estratégias/contexto de versionamento (revisão da literatura)
 
-How do current systems handle versioning? Give a brief overview of the current space.
-* Most best practices follow semantic versioning for APIs, this will be covered more in [#1198](https://github.com/mojaloop/project/issues/1198)
+Como é que os sistemas atuais tratam o versionamento? Dar uma breve visão geral do panorama atual.
+* A maioria das boas práticas segue o versionamento semântico para as APIs; isto será tratado mais aprofundadamente em [#1198](https://github.com/mojaloop/project/issues/1198)
 
-### Demonstrates zero-downtime deployment approaches with Kubernetes [5]
+### Demonstra abordagens de deployment sem indisponibilidade com Kubernetes [5]
 
-Key observations:
-* in order to support rollbacks, the services must be both forward and backwards compatible.
-consecutive app versions must be schema compatible
-* 'Never deploy any breaking schema changes', separate into multiple deployments instead
+Observações principais:
+* para permitir rollbacks, os serviços têm de ser compatíveis para a frente e para trás.
+versões consecutivas da aplicação têm de ser compatíveis ao nível do esquema
+* «Nunca fazer o deployment de alterações incompatíveis ao esquema»; separá-las em vários deployments
 
-For example, start with a PERSON table:
+Por exemplo, começar com uma tabela PERSON:
 ```
 PK  ID
     NAME
@@ -44,7 +44,7 @@ PK  ID
     COUNTRY
 ```
 
-And we want to break this down (normalize) into 2 tables, PERSON and ADDRESS:
+E queremos decompô-la (normalizá-la) em 2 tabelas, PERSON e ADDRESS:
 
 ```
 #person
@@ -60,223 +60,222 @@ FK  PERSON_ID
     COUNTRY
 ```
 
-If this change were made in one migration, 2 different versions of our application won't be compatible. Instead, the schema changes must be broken down:
-1. Create ADDRESS table
-    * App use the PERSON table data as previously
-    * Trigger a copy of data to the ADDRESS table
-2. The ADDRESS now becomes the 'source of truth'
-    * App now uses the ADDRESS table data
-    * Trigger a copy of new added to address to the PERSON table
-3. Stop copying data
-4. Remove extra columns from PERSON table
+Se esta alteração fosse feita numa única migração, 2 versões diferentes da nossa aplicação não seriam compatíveis. Em vez disso, as alterações ao esquema têm de ser decompostas:
+1. Criar a tabela ADDRESS
+    * A aplicação utiliza os dados da tabela PERSON como anteriormente
+    * Desencadear uma cópia dos dados para a tabela ADDRESS
+2. A ADDRESS passa agora a ser a «fonte da verdade»
+    * A aplicação utiliza agora os dados da tabela ADDRESS
+    * Desencadear uma cópia dos novos dados acrescentados a address para a tabela PERSON
+3. Parar de copiar dados
+4. Remover as colunas extra da tabela PERSON
 
-This means for any one change of the database schema, multiple application versions will need to be created, and multiple deployments must be made in succession for this change to be made.
-* [5] also notes how simple Kubernetes makes deploying such a change
-        * rolling upgrade deployments
-        * Tip: make sure your health endpoint waits for the migrations to finish!
-* Q: so how do we make big changes that touch both the database schema and the API?
-        * this seems really hard, and would need a lot of coordination
-        * If we don't design it correctly, it could mean that a single schema change could require all DFSPs to be on board
-             * This is why I think the API version and Service version should be unrelated. We should be able to
-              deploy a new version of a service (which runs a migration), and supports an old API version
+Isto significa que, para qualquer alteração ao esquema da base de dados, terão de ser criadas várias versões da aplicação, e terão de ser feitos vários deployments em sucessão para que essa alteração seja concretizada.
+* [5] nota também como o Kubernetes torna simples o deployment de uma alteração destas
+        * deployments de atualização progressiva
+        * Sugestão: certifique-se de que o seu endpoint de saúde espera que as migrações terminem!
+* P: então, como fazemos grandes alterações que tocam tanto no esquema da base de dados como na API?
+        * isto parece realmente difícil e exigiria muita coordenação
+        * Se não o desenharmos corretamente, pode significar que uma única alteração ao esquema exija que todos os DFSPs embarquem
+             * É por isso que penso que a versão da API e a versão do serviço deveriam ser independentes. Deveríamos conseguir
+              fazer o deployment de uma nova versão de um serviço (que executa uma migração) e ser compatível com uma versão antiga da API
 
 
-### Using a schema registry for Kafka Messages [6]
+### Utilizar um registo de esquemas para as mensagens Kafka [6]
 
-* [6] suggests some approaches, such as using a schema registry for kafka messages, such as [Apache Avro](https://docs.confluent.io/current/schema-registry/index.html)
-* This adds a certain level of 'strictness' to the messages we produce, and will help enforce versioning
-* Adds a separate 'schema registry' component, which ensures messages conform to a given schema. This doesn't really
- help enforce versioning, and leaves the work up to us still, but does give more guarantees about the message formats.
+* [6] sugere algumas abordagens, como utilizar um registo de esquemas para as mensagens kafka, tal como o [Apache Avro](https://docs.confluent.io/current/schema-registry/index.html)
+* Isto acrescenta um certo nível de «rigor» às mensagens que produzimos e ajudará a impor o versionamento
+* Acrescenta um componente separado, o «registo de esquemas», que garante que as mensagens estão em conformidade com um dado esquema. Isto não
+ ajuda propriamente a impor o versionamento e deixa o trabalho ainda do nosso lado, mas dá mais garantias quanto aos formatos das mensagens.
 
-### Backwards and Forwards Compatibility [3], [4]
+### Compatibilidade para trás e para a frente [3], [4]
 
-* "The Robustness principle states that you should be “liberal in what you accept and conservative in what you send
-”. In terms of APIs this implies a certain tolerance in consuming services." [3]
-* Backwards Compatibility vs Backwards Incompatibility [4]:
-    * Generally, additions are considered backwards compatible
-    * Removing or changing names is backwards incompatible
-    * It's more something to assess on a case-by-case basis, but [Google's API Design Doc](https://cloud.google.com/apis/design/compatibility) helps lay out the cases.
+* «O princípio da robustez afirma que se deve ser “liberal naquilo que se aceita e conservador naquilo que se envia
+”. Em termos de APIs, isto implica uma certa tolerância nos serviços consumidores.» [3]
+* Compatibilidade para trás face a incompatibilidade para trás [4]:
+    * Em geral, as adições são consideradas compatíveis para trás
+    * Remover ou alterar nomes é incompatível para trás
+    * É antes algo a avaliar caso a caso, mas o [documento de design de APIs da Google](https://cloud.google.com/apis/design/compatibility) ajuda a enunciar os casos.
 
-## Mojaloop Ecosystem
-When discussing versioning we need to be clear that we are versioning interfaces for various parties.
+## Ecossistema Mojaloop
+Ao discutir versionamento, temos de ser claros quanto ao facto de estarmos a versionar interfaces para várias partes.
 
-# Proposal
-The following section will outline the versioning proposal.
+# Proposta
+A secção seguinte apresenta a proposta de versionamento.
 
-## A “Mojaloop Version”
-A Mojaloop Version **x.y**.z can be defined that can encompass the versions of all the three APIs included (detailed below).
-In the version **x.y**.z, ‘x’ indicates the Major version and ‘y’ a minor version, similar to the Mojaloop FSPIOP API versioning standards; ‘z’ represents the ‘hotfix’ version or a version released with the same major, minor version x.y but to keep things simple, there is a need to bundle all the components included in the Mojaloop ecosystem indicating what all items are included there.
+## Uma «versão do Mojaloop»
+Pode definir-se uma versão do Mojaloop **x.y**.z que abranja as versões de todas as três APIs incluídas (detalhadas abaixo).
+Na versão **x.y**.z, «x» indica a versão Major e «y» uma versão minor, à semelhança das normas de versionamento da Mojaloop FSPIOP API; «z» representa a versão «hotfix» ou uma versão disponibilizada com a mesma versão major e minor x.y mas, para manter as coisas simples, é necessário agrupar todos os componentes incluídos no ecossistema Mojaloop, indicando que itens aí estão incluídos.
 
-In effect we may say Mojaloop version **x.y** includes
+Na prática, podemos dizer que a versão **x.y** do Mojaloop inclui
 1. Mojaloop FSPIOP API
-    * Maintained by the CCB (Change Control Board)
-    * Uses x.y format
-    * Currently version v1.0, v1.1 and v2.0 are in the pipeline
+    * Mantida pelo CCB (Change Control Board)
+    * Utiliza o formato x.y
+    * Atualmente, estão em preparação as versões v1.0, v1.1 e v2.0
 2. Settlement API
-    * Maintained by the CCB
-    * To use x.y format
-    * Currently version v1.1 and v2.0 is in the pipeline
+    * Mantida pelo CCB
+    * A utilizar o formato x.y
+    * Atualmente, estão em preparação as versões v1.1 e v2.0
 3. Admin / Operations API
-    * Maintained by the CCB
-    * To use x.y format
-    * Can use version v1.0
+    * Mantida pelo CCB
+    * A utilizar o formato x.y
+    * Pode utilizar a versão v1.0
 4. Helm
-    * Maintained by the Design Authority
-    * Uses x.y.z format
-    * PI (Program Increment) + Sprint based versioning.
-    > *Note:* _PI + Sprint based versioning_ make sense in the context of the current Mojaloop Program Increments, but will need to be revised at a later date.
-    * Bundles compatible versions of individual services together
-5. Internal Schemas
-    * Maintained by the Design Authority
-    * DB Schema x.y
-    * Internal messaging Schema (Kafka) x.y
+    * Mantido pela Design Authority
+    * Utiliza o formato x.y.z
+    * Versionamento baseado no PI (Program Increment) + Sprint.
+    > *Nota:* o _versionamento baseado em PI + Sprint_ faz sentido no contexto dos atuais Program Increments do Mojaloop, mas terá de ser revisto mais tarde.
+    * Agrupa versões compatíveis dos serviços individuais
+5. Esquemas internos
+    * Mantidos pela Design Authority
+    * Esquema da BD x.y
+    * Esquema de mensagens internas (Kafka) x.y
 
 | **Mojaloop** | x.y | | |
 |---|---|---|---
-|   | Owner/Maintainer | Format | Meaning |
+|   | Proprietário/responsável pela manutenção | Formato | Significado |
 | **APIs** | | | |
 | - FSPIOP API | CCB | *x.y* | Major.Minor |
 | - Settlement API | CCB | *x.y* | Major.Minor |
 | - Admin/Operations API | CCB | *x.y* | Major.Minor |
-| Helm | Design Authority  | *x.y.z* | PI.Sprint.Increment |
-| **Internal Schemas** | | | |
-| - DB Schema | Design Authority | *x.y* | Major.Minor |
-| - Internal Messaging | Design Authority | *x.y* | Major.Minor |
+| Helm | Design Authority  | *x.y.z* | PI.Sprint.Incremento |
+| **Esquemas internos** | | | |
+| - Esquema da BD | Design Authority | *x.y* | Major.Minor |
+| - Mensagens internas | Design Authority | *x.y* | Major.Minor |
 
 
 
-For example: Mojaloop 1.0 includes
+Por exemplo: o Mojaloop 1.0 inclui
 1. APIs
     * FSPIOP API v1.0
     * Settlements API v1.1
     * Admin API v1.0
 2. Helm v9.1.0
-    * Individual services' versions
-    * Monitoring components versions
-3. Internal Schemas
-    * DB Schema v1.0
-    * Internal messaging version v1.0
+    * Versões dos serviços individuais
+    * Versões dos componentes de monitorização
+3. Esquemas internos
+    * Esquema da BD v1.0
+    * Versão das mensagens internas v1.0
 
 | **Mojaloop** | v1.0 | | |
 |---|---|---|---
-|   | Owner/Maintainer | Version |
+|   | Proprietário/responsável pela manutenção | Versão |
 | **APIs** | | | |
 | - FSPIOP API | CCB | *1.0* |
 | - Settlement API | CCB | *1.1* |
 | - Admin/Operations API | CCB | *1.0* |
 | Helm | Design Authority  | *9.1.0* |
-| **Internal Schemas** | | | |
-| - DB Schema | Design Authority | *1.0* |
-| - Internal Messaging | Design Authority  | *1.0* |
+| **Esquemas internos** | | | |
+| - Esquema da BD | Design Authority | *1.0* |
+| - Mensagens internas | Design Authority  | *1.0* |
 
-### Advantages
+### Vantagens
 
-1. The advantage of this strategy is primarily simplicity. A given version say - Mojaloop v1.0 can just be used in
- discussions which then refers to specific versions of the three APIs - FSPIOP, Settlements, Admin APIs, along with the Helm version that is a bundle of the individual services which are compatible with each other and can be deployed together. 
-Along with these, the Schema versions for the DB and Internal messaging to communicate whether any changes have been made to these or not since the previously released version.
-2. The other advantage, obviously, is that it caters for everyone who may be interested in differing levels of details
-, whether high level or detailed. Because of the nature of the major and minor versions, it should be easy for Users and adopters to understand compatibility issues as well.
+1. A vantagem desta estratégia é, sobretudo, a simplicidade. Uma dada versão, por exemplo, o Mojaloop v1.0, pode ser simplesmente utilizada
+ nas discussões, referindo-se depois a versões específicas das três APIs - FSPIOP, Settlements e Admin -, a par da versão do Helm, que é um conjunto dos serviços individuais compatíveis entre si e cujo deployment pode ser feito em conjunto. 
+Juntamente com estas, as versões dos esquemas da BD e das mensagens internas comunicam se foram ou não feitas alterações a estes desde a versão anteriormente disponibilizada.
+2. A outra vantagem, obviamente, é que serve todos os que possam estar interessados em diferentes níveis de detalhe
+, seja de alto nível ou detalhado. Pela natureza das versões major e minor, deverá ser fácil para os utilizadores e os adotantes compreenderem também as questões de compatibilidade.
 
-### Compatibility
-As described in [section 3.3 of the API Definition v1.0](https://github.com/mojaloop/mojaloop-specification/blob/master/documents/API%20Definition%20v1.0.md#33-api-versioning), whether or not a version is backwards compatible is
- indicated by the **Major** version. All versions with the same major version must be compatible while those having different major versions, will most likely not be compatible.
+### Compatibilidade
+Conforme descrito na [secção 3.3 da API Definition v1.0](https://github.com/mojaloop/mojaloop-specification/blob/master/documents/API%20Definition%20v1.0.md#33-api-versioning), o facto de uma versão ser ou não compatível para trás é
+ indicado pela versão **Major**. Todas as versões com a mesma versão major têm de ser compatíveis, ao passo que as que têm versões major diferentes provavelmente não serão compatíveis.
 
-_Important Note: Hub operators will likely need to support multiple versions of the FSPIOP API at the same time, in order to cater for different participants as they can't all be expected to upgrade at the same time._
+_Nota importante: os operadores de hub precisarão provavelmente de ser compatíveis com várias versões da FSPIOP API em simultâneo, de forma a servir diferentes participantes, uma vez que não se pode esperar que todos atualizem ao mesmo tempo._
 
-## Breaking down the “Mojaloop Version”
-This section aims to break down the above proposed mojaloop version into its constituent parts, and provide support for the above proposed versioning strategy
+## Decompor a «versão do Mojaloop»
+Esta secção procura decompor a versão do mojaloop proposta acima nas suas partes constituintes e fundamentar a estratégia de versionamento proposta acima
 
 ### APIs
 
-The [Mojaloop Spec](https://github.com/mojaloop/mojaloop-specification/blob/master/documents/API%20Definition%20v1.0.md#33-api-versioning) already outlines many of the decisions made around versioning APIs.
+A [especificação do Mojaloop](https://github.com/mojaloop/mojaloop-specification/blob/master/documents/API%20Definition%20v1.0.md#33-api-versioning) já enuncia muitas das decisões tomadas quanto ao versionamento das APIs.
 
-In terms of common best practices, there are many approaches for requesting different versions, including adding in a
- version in the url, but let's not worry about this because the spec already lays this out for us, using the HTML vendor extension: [3.3.4.1 Http Accept Header](https://github.com/mojaloop/mojaloop-specification/blob/master/documents/API%20Definition%20v1.0.md#3341-http-accept-header)
+Em termos de boas práticas comuns, existem muitas abordagens para pedir versões diferentes, incluindo acrescentar uma
+ versão no url, mas não nos preocupemos com isto, porque a especificação já o define por nós, utilizando a extensão de fornecedor de HTML: [3.3.4.1 Http Accept Header](https://github.com/mojaloop/mojaloop-specification/blob/master/documents/API%20Definition%20v1.0.md#3341-http-accept-header)
 
-As for version negotiation, the spec also states that in the event of an unsupported version being requested by a
- client, a HTTP status 406 can be returned, along with an error message which describes the supported versions. [3.3.4.3 Non-Acceptable Version Requested by Client](https://github.com/mojaloop/mojaloop-specification/blob/master/documents/API%20Definition%20v1.0.md#3343-non-acceptable-version-requested-by-client)
+Quanto à negociação de versões, a especificação afirma também que, caso um cliente peça uma versão não suportada,
+ pode ser devolvido um estado HTTP 406, juntamente com uma mensagem de erro que descreve as versões permitidas. [3.3.4.3 Non-Acceptable Version Requested by Client](https://github.com/mojaloop/mojaloop-specification/blob/master/documents/API%20Definition%20v1.0.md#3343-non-acceptable-version-requested-by-client)
 
-Another best practice around versioning is specifying to what level clients may request specific apis.
-* In a development environment, many APIs will allow specificity up to the BUGFIX version, i.e. vX.X.X
-* In production however, this is limited to Major versions only, e.g. v1, v2
-* e.g. The Google API Platform supports only major versions, not minor and patch versions
-* Given the new features that may become available with v1.1 of the Mojaloop API, we might want to allow participants
- to specify MAJOR and MINOR versions, i.e. vX.X. This practice should be avoided however, since minor versions should be backwards compatible
+Outra boa prática de versionamento é especificar até que nível os clientes podem pedir apis específicas.
+* Num ambiente de desenvolvimento, muitas APIs permitem especificidade até à versão BUGFIX, ou seja, vX.X.X
+* Em produção, no entanto, isto está limitado apenas às versões major, por exemplo, v1, v2
+* Por exemplo, a plataforma de APIs da Google admite apenas versões major, e não versões minor e de patch
+* Dadas as novas funcionalidades que podem vir a estar disponíveis com a v1.1 da API Mojaloop, podemos querer permitir que os participantes
+ especifiquem as versões MAJOR e MINOR, ou seja, vX.X. Esta prática deveria, no entanto, ser evitada, uma vez que as versões minor deveriam ser compatíveis para trás
 
-Participants using the same MAJOR version of the API should be able to interact. Participants on different MAJOR
-versions are not able to interact. For example, a participant on API v1.1 can send transfers to another participant on v1.0, but not to a different participant on v2.0.
+Os participantes que utilizam a mesma versão MAJOR da API deveriam conseguir interagir. Os participantes em versões MAJOR
+diferentes não conseguem interagir. Por exemplo, um participante na API v1.1 pode enviar transferências a outro participante na v1.0, mas não a um participante diferente na v2.0.
 
 ### Helm
-This section deals with how Mojaloop services interact within a given deployment. Here, we attempt to propose questions such as "should an instance of central-ledger:v10.0.1 be able to talk to ml-api-adapter:v10.1.0? How about ml-api-adapter:v11.0.0?"? or "how do we make sure both central-ledger:v10.0.1 and central-ledger:v10.1.0 talk to the database at the same time?"
+Esta secção trata da forma como os serviços Mojaloop interagem dentro de um dado deployment. Aqui, procuramos colocar questões como «deveria uma instância de central-ledger:v10.0.1 conseguir falar com ml-api-adapter:v10.1.0? E com ml-api-adapter:v11.0.0?» ou «como garantimos que tanto central-ledger:v10.0.1 como central-ledger:v10.1.0 falam com a base de dados ao mesmo tempo?»
 
-There are two places where this happens:
-1. Where services interact with saved state - MySQL Percona Databases
-2. Where services interact with each other - Apache Kakfa and (some) internal APIs
+Há dois sítios onde isto acontece:
+1. Onde os serviços interagem com o estado guardado - bases de dados MySQL Percona
+2. Onde os serviços interagem entre si - Apache Kakfa e (algumas) APIs internas
 
-This implies we need to version:
-* the database schema
-* messages within Apache kafka
-    * need to make sure the right services can appropriately read the right messages. E.g. Can mojaloop/ml-api-adapter:v10
-.1.0 publish messages to kafka that mojaloop/central-ledger:v10.0.1 can understand?
-    * Q: If we decide to make breaking changes to the message format, how can we ensure that messages in the kafka streams
- don't get picked up by the wrong services?
+Isto implica que precisamos de versionar:
+* o esquema da base de dados
+* as mensagens dentro do Apache kafka
+    * é preciso garantir que os serviços certos conseguem ler adequadamente as mensagens certas. Por exemplo, pode o mojaloop/ml-api-adapter:v10
+.1.0 publicar no kafka mensagens que o mojaloop/central-ledger:v10.0.1 consiga compreender?
+    * P: se decidirmos fazer alterações incompatíveis ao formato das mensagens, como podemos garantir que as mensagens nos streams do kafka
+ não são recolhidas pelos serviços errados?
 
-### Internal Schemas
+### Esquemas internos
 
-#### Database
+#### Base de dados
 
-todo: anything to be said here?
+a fazer: há algo a dizer aqui?
 
-#### Kafka/Messaging
-Currently, we use the lime protocol for our kafka message formats: https://limeprotocol.org/
+#### Kafka/mensagens
+Atualmente, utilizamos o protocolo lime para os formatos das nossas mensagens kafka: https://limeprotocol.org/
 
-Also refer to the mojaloop/central-services-stream readme for more information about the message format.
+Consulte também o readme do mojaloop/central-services-stream para mais informação sobre o formato das mensagens.
 
-The lime protocol provides for a type, field, which supports MIME type declarations. So we could potentially handle messages in a manner similar to the API above (e.g. application/vnd.specific+json). Versioning messages in this manner means that consumers reading these messages would need to be backwards and forwards compatible (consecutive message versions must be schema compatible).
-* Q. does it make sense to put the version in the Kafka topic?
-    * One example, ml-api-adapter publishes messages to the prepare topic
-    * If we add versioning to this, ml-api-adapter:v10.0.0 publishes messages to a prepare_v10.0 topic, and a new instance
-     of the ml-api-adapter:v10.1.0 will publish to the prepare_v10.1 topic.
-    * subscribers can subscribe to whichever prepare topic they want, or both, depending on their own tolerance to such
-      messages
-    * This may have some serious performance side effects
-* Another potential option would be to allow for a message 'adapter' in the deployment. Say the ml-api-adapter:v10.1.0 is producing messages to a prepare_v10.1 topic, and there is no corresponding central-ledger in the deployment to read such messages, we could have an adapter, which subscribes to prepare_v10.1, reformats them to be backwards compatible, and publishes them to prepare_v10.0 in the old format.
+O protocolo lime prevê um campo type, que permite declarações de tipo MIME. Assim, poderíamos potencialmente tratar as mensagens de forma semelhante à da API acima (por exemplo, application/vnd.specific+json). Versionar mensagens desta forma significa que os consumidores que as leem teriam de ser compatíveis para trás e para a frente (versões consecutivas das mensagens têm de ser compatíveis ao nível do esquema).
+* P. faz sentido colocar a versão no tópico Kafka?
+    * Um exemplo: o ml-api-adapter publica mensagens no tópico prepare
+    * Se acrescentarmos versionamento a isto, o ml-api-adapter:v10.0.0 publica mensagens num tópico prepare_v10.0, e uma nova instância
+     do ml-api-adapter:v10.1.0 publicará no tópico prepare_v10.1.
+    * os subscritores podem subscrever o tópico prepare que quiserem, ou ambos, consoante a sua própria tolerância a essas
+      mensagens
+    * Isto pode ter alguns efeitos secundários sérios no desempenho
+* Outra opção possível seria prever um «adaptador» de mensagens no deployment. Digamos que o ml-api-adapter:v10.1.0 está a produzir mensagens para um tópico prepare_v10.1 e que não existe no deployment um central-ledger correspondente que leia essas mensagens; poderíamos ter um adaptador que subscreve prepare_v10.1, as reformata para serem compatíveis para trás e as publica em prepare_v10.0, no formato antigo.
 
-Such an approach would allow for incremental schema changes to the messaging format as services are gradually upgraded.
+Uma abordagem destas permitiria alterações incrementais do esquema ao formato das mensagens, à medida que os serviços fossem sendo gradualmente atualizados.
 
-All in all, I didn't see too much about this subject, so we'll likely need to return later down the line.
+Em suma, não encontrei muito sobre este assunto, pelo que provavelmente teremos de voltar a ele mais adiante.
 
-## Version Negotiation
-todo: @sam Discuss how to deal with version negotiation strategy
+## Negociação de versões
+a fazer: @sam discutir como lidar com a estratégia de negociação de versões
 
-## Long Term Support
-todo: Discuss how long term support fits into the versioning proposal. I don’t think we want to get into too much detail, but more outline what it might look like
+## Suporte de longo prazo
+a fazer: discutir como o suporte de longo prazo se enquadra na proposta de versionamento. Não me parece que queiramos entrar em demasiado detalhe, mas antes esboçar como poderá ser
 
-Mention current (lack of) lts support, current PI cadence
+Mencionar a (falta de) suporte lts atual, a cadência de PI atual
 
-## Appendix A: Definitions
+## Anexo A: definições
 
-* **service**: Mojaloop follows a microservices oriented approach, where a large application is broken down into smaller
- micro services. In this instance, Service refers to a containerized application running as part of a Mojaloop deployment. At the moment, this takes the form of a Docker container running inside of a Kubernetes cluster. e.g. mojaloop/central-ledger is the central-ledger service
-* **service version**: The version of the given service. This currently doesn't follow semantic versioning, but may in the
- future e.g. mojaloop/central-ledger:v10.0.1. The current approach is described in more detail in the [standards
- /Versioning doc](https://github.com/mojaloop/documentation/blob/master/contributors-guide/standards/versioning.md).
-* **helm**: Helm is an application package manager that runs on top of Kubernetes. It may also be referred to as the
- "deployment". A single helm deployment runs many different services, and MAY run multiple versions of the same service simultaneously. We also refer to the deployment as it's repo, mojaloop/helm interchangeably.
-* **helm version**: A helm version is the version of the packaged helm charts, e.g.mojaloop/helm:v1.1.0
-* **interface**: An interface is the protocol by which a Mojaloop switch interacts with the outside world. This includes
- interactions with Participants (DFSPs) who transfer funds through the switch, hub operators running a Mojaloop switch, and admins performing administrative functions.
-* **api**: Application Programming Interface - in most cases referring to the FSPIOP-API a.k.a. Open API for FSP
- Interoperability defined [here](https://github.com/mojaloop/mojaloop-specification).
-* **api version**: The Version of the FSPIOP-API, e.g. FSPIOP-API v1. For the purposes of this document, it refers to the
- contract between a Mojaloop Switch and Participants (DFSPs) who implement the FSPIOP-API
+* **serviço**: o Mojaloop segue uma abordagem orientada a microsserviços, em que uma aplicação grande é decomposta em micro
+ serviços mais pequenos. Neste caso, serviço refere-se a uma aplicação em contentor executada como parte de um deployment Mojaloop. De momento, assume a forma de um contentor Docker em execução dentro de um cluster Kubernetes. Por exemplo, mojaloop/central-ledger é o serviço central-ledger
+* **versão do serviço**: a versão do serviço em causa. Atualmente, não segue o versionamento semântico, mas poderá vir a segui-lo no
+ futuro, por exemplo, mojaloop/central-ledger:v10.0.1. A abordagem atual é descrita mais detalhadamente no [documento standards
+ /Versioning](https://github.com/mojaloop/documentation/blob/master/contributors-guide/standards/versioning.md).
+* **helm**: o Helm é um gestor de pacotes de aplicações que corre sobre o Kubernetes. Pode também ser referido como o
+ «deployment». Um único deployment de helm executa muitos serviços diferentes e PODE executar várias versões do mesmo serviço em simultâneo. Referimo-nos também ao deployment pelo seu repositório, mojaloop/helm, indistintamente.
+* **versão do helm**: uma versão do helm é a versão dos helm charts empacotados, por exemplo, mojaloop/helm:v1.1.0
+* **interface**: uma interface é o protocolo pelo qual um switch Mojaloop interage com o mundo exterior. Isto inclui
+ as interações com os participantes (DFSP) que transferem fundos através do switch, os operadores de hub que executam um switch Mojaloop e os administradores que desempenham funções administrativas.
+* **api**: Application Programming Interface - na maioria dos casos, refere-se à FSPIOP-API, também conhecida como Open API for FSP
+ Interoperability, definida [aqui](https://github.com/mojaloop/mojaloop-specification).
+* **versão da api**: a versão da FSPIOP-API, por exemplo, FSPIOP-API v1. Para efeitos deste documento, refere-se ao
+ contrato entre um switch Mojaloop e os participantes (DFSP) que implementam a FSPIOP-API
 
-## References
+## Referências
 
-[1] LTS versioning within nodejs. This is a great example of an LTS strategy, and how to clearly communicate such a strategy.
-[2] Semantic Versioning Reference
+[1] Versionamento LTS no nodejs. Este é um excelente exemplo de uma estratégia de LTS e de como comunicar claramente uma estratégia dessas.
+[2] Referência de versionamento semântico
 [3] https://www.ben-morris.com/rest-apis-dont-need-a-versioning-strategy-they-need-a-change-strategy/
 [4] https://cloud.google.com/apis/design/compatibility
 [5] Nicolas Frankel - Zero-downtime deployment with Kubernetes, Spring Boot and Flyway
 [6] Stackoverflow - Kafka Topic Message Versioning
-

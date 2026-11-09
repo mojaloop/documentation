@@ -66,11 +66,11 @@ Deve usar-se um conjunto de parâmetros de query padrão para as coleções, par
 
 #### Verbos
 
-Os objetos singulares devem suportar GET para leitura, PUT para substituição completa \(ou criação, quando a chave primária é especificada pelo cliente e é persistente, por exemplo o PAN de um cartão de pagamento\), e DELETE para eliminação.
+Os objetos singulares devem permitir GET para leitura, PUT para substituição completa \(ou criação, quando a chave primária é especificada pelo cliente e é persistente, por exemplo o PAN de um cartão de pagamento\), e DELETE para eliminação.
 
 As coleções devem suportar GET para ler de volta a totalidade ou parte de uma coleção, e POST para adicionar um novo objeto à coleção.
 
-Os objetos singulares podem suportar POST como forma de alterar o seu estado de maneiras especificadas. Fazer POST de um documento JSON para o URI de um objeto singular pode permitir que valores de campos selecionados sejam atualizados ou acionar uma mudança de estado ou uma ação sem substituir o objeto completo.
+Os objetos singulares podem permitir POST como forma de alterar o seu estado de maneiras especificadas. Fazer POST de um documento JSON para o URI de um objeto singular pode permitir que valores de campos selecionados sejam atualizados ou acionar uma mudança de estado ou uma ação sem substituir o objeto completo.
 
 O GET tem de ser implementado de forma _nulipotente_ — isto é, o GET nunca causa efeitos secundários e nunca modifica o estado do sistema visível ao cliente \(a não ser, por exemplo, registar eventos ou atualizar a instrumentação\).
 
@@ -94,7 +94,7 @@ Use os códigos de retorno HTTP de forma consistente e de acordo com as suas def
 
 #### Formato de erro legível por máquina
 
-A API deve fornecer um resultado de erro legível por máquina num formato JSON bem definido. {TBD se usar um envelope de resposta e como formatar erros, falhas e envelopes de sucesso. O desenho RESTful baseia-se em cabeçalhos para transportar os erros definidos pelo protocolo; a informação de debug pode também ser transportada em cabeçalhos. Devemos ser claros sobre a razão pela qual usamos um envelope e como isto suporta a comunicação normal de produção entre cliente e servidor.
+A API deve fornecer um resultado de erro legível por máquina num formato JSON bem definido. {TBD se usar um envelope de resposta e como formatar erros, falhas e envelopes de sucesso. O desenho RESTful baseia-se em cabeçalhos para transportar os erros definidos pelo protocolo; a informação de debug pode também ser transportada em cabeçalhos. Devemos ser claros sobre a razão pela qual usamos um envelope e como isto sustenta a comunicação normal de produção entre cliente e servidor.
 
 #### Versionamento
 
@@ -106,7 +106,7 @@ O número completo da versão da API é especificado no cabeçalho de resposta \
 
 Embora um contrato de versão de API seja influenciado pelos níveis Maior, menor _e_ de patch, apenas o número da versão Maior é um elemento de ligação da API em produção — isto é, um cliente de produção não pode pedir uma versão menor ou um nível de patch específicos, e um servidor de produção não aceitará um pedido de URI que especifique estes elementos adicionais.
 
-No entanto, em ambientes de pré-produção, antecipa-se que alguma combinação de sufixos de versão menor, patch, pré-lançamento e metadados seja suportada nos pedidos dos clientes \(conforme definido em _semver_ \[3\]\) e _possa_ ser expressa em URIs de _pré-produção_, para auxiliar em cenários de desenvolvimento e integração.
+No entanto, em ambientes de pré-produção, antecipa-se que alguma combinação de sufixos de versão menor, patch, pré-lançamento e metadados seja permitida nos pedidos dos clientes \(conforme definido em _semver_ \[3\]\) e _possa_ ser expressa em URIs de _pré-produção_, para auxiliar em cenários de desenvolvimento e integração.
 
 ### Podemos ter de dar um descanso ao REST
 

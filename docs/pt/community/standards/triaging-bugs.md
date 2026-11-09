@@ -2,25 +2,25 @@
 i18n_source_sha: 44bb91484905b26b5179bd9c0c9b9690d77890f1
 ---
 
-# Triaging Mojaloop OSS bugs
+# Triagem de erros do Mojaloop OSS
 
-### Raising a bug / issue
+### Comunicar um erro / uma issue
 
-If there is a bug or issue in general an issue is logged as a bug or feature request on the [project](https://github.com/mojaloop/project/issues/new/choose) repository and in some cases linked to an issue logged on the repository for that specific component.
+Quando existe um erro ou um problema em geral, é registada uma issue como erro ou pedido de funcionalidade no repositório [project](https://github.com/mojaloop/project/issues/new/choose) e, nalguns casos, ligada a uma issue registada no repositório desse componente específico.
 
-There is a bug [template](https://github.com/mojaloop/project/issues/new?assignees=&labels=bug&template=bug_report.md&title=) that can be used and encourages use of details such as versions, expected results and other details, which help with triage and reproducing the issue.
+Existe um [modelo](https://github.com/mojaloop/project/issues/new?assignees=&labels=bug&template=bug_report.md&title=) de erro que pode ser utilizado e que incentiva a indicação de detalhes como versões, resultados esperados e outros detalhes, que ajudam na triagem e na reprodução do problema.
 
-### Once a bug is logged
+### Depois de um erro ser registado
 
-1. Typically, the bug is initially triaged in the [#ml-oss-bug-triage](https://mojaloop.slack.com/messages/CMCVBHPUH) public channel on Mojaloop Slack
-2. For Security and other sensitive issues, the bug is triaged on a private channel with current contributors, before information is made public at an appropriate time. Details for security issues are covered here: https://docs.mojaloop.io/community/contributing/cvd.html
-3. During bug triage, priority and severity are assigned to the bug after majority consensus and consultation with reporter(s)
-4. Based on the priority and severity the bug is taken up by the Core team or other contributors based on a collaborative effort.
-5. Once it is taken up, conversation and updates happen on GitHub issue and slack channel.
+1. Normalmente, o erro é inicialmente triado no canal público [#ml-oss-bug-triage](https://mojaloop.slack.com/messages/CMCVBHPUH) do Slack do Mojaloop
+2. No caso de problemas de segurança e de outros problemas sensíveis, o erro é triado num canal privado com os contribuidores atuais, antes de a informação ser tornada pública no momento adequado. Os detalhes sobre os problemas de segurança são abordados aqui: [Divulgação e receção de informação sobre vulnerabilidades de segurança](../contributing/cvd.md)
+3. Durante a triagem de erros, a prioridade e a gravidade são atribuídas ao erro após consenso da maioria e consulta ao(s) notificador(es)
+4. Com base na prioridade e na gravidade, o erro é assumido pela equipa nuclear ou por outros contribuidores, num esforço colaborativo.
+5. Depois de assumido, a conversa e as atualizações decorrem na issue do GitHub e no canal do Slack.
 
-### Triage
+### Triagem
 
-1. The discussion regarding the issue is open to the public for normal bugs / issues
-2. Based on the discussions, a final call on the priority and severity of the issue is made by the Core team in consultation with the reporter(s).
-3. The list and the process will be updated as it evolves.
-4. Mojaloop bug triage slack channel #[ml-oss-bug-triage](https://mojaloop.slack.com/archives/CMCVBHPUH)
+1. A discussão sobre o problema é aberta ao público no caso de erros / problemas normais
+2. Com base nas discussões, a decisão final sobre a prioridade e a gravidade do problema é tomada pela equipa nuclear, em consulta com o(s) notificador(es).
+3. A lista e o processo serão atualizados à medida que forem evoluindo.
+4. Canal do Slack de triagem de erros do Mojaloop #[ml-oss-bug-triage](https://mojaloop.slack.com/archives/CMCVBHPUH)

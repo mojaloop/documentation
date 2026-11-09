@@ -2,41 +2,41 @@
 i18n_source_sha: 119e51501d2e712e5fa478abe4513fa81724cd20
 ---
 
-# Mojaloop Decimal Type; Based on XML Schema Decimal Type
+# Tipo decimal do Mojaloop; baseado no tipo decimal do XML Schema
 
-## Decimal value type
+## Tipo de valor decimal
 
- Definition: decimal represents a subset of the real numbers, which can be represented by decimal numerals. The value space of decimal is the set of numbers that can be obtained by multiplying an integer by a non-positive power of ten, i.e., expressible as _i_ × 10<sup>-n</sup> where _i_ and _n_ are integers and _n_ ≥ 0. Precision is not reflected in this value space; the number 2.0 is not distinct from the number 2.00. The order relation on decimal is the order relation on real numbers, restricted to this subset.
- Req: All Level One processors must support decimal numbers with a minimum of 18 decimal digits. However, Level One processors may conform to a scheme-defined limit on the maximum number of decimal digits they are prepared to support, which must be 18 or more digits, in which case that scheme-defined maximum number must be clearly documented.
+ Definição: decimal representa um subconjunto dos números reais, que pode ser representado por numerais decimais. O espaço de valores de decimal é o conjunto dos números que podem ser obtidos multiplicando um inteiro por uma potência não positiva de dez, ou seja, exprimíveis como _i_ × 10<sup>-n</sup>, em que _i_ e _n_ são inteiros e _n_ ≥ 0. A precisão não se reflete neste espaço de valores; o número 2.0 não é distinto do número 2.00. A relação de ordem em decimal é a relação de ordem dos números reais, restringida a este subconjunto.
+ Req.: todos os processadores Level One têm de ser compatíveis com números decimais com um mínimo de 18 dígitos decimais. No entanto, os processadores Level One podem cumprir um limite definido pelo scheme quanto ao número máximo de dígitos decimais que estão preparados para admitir, o qual tem de ser de 18 ou mais dígitos, caso em que esse número máximo definido pelo scheme tem de estar claramente documentado.
 
-## Lexical representation
+## Representação lexical
 
-decimal has a lexical representation consisting of a finite-length sequence of decimal digits (#x30 – #x39) separated by a period as a decimal indicator. An optional leading sign is allowed. If the sign is omitted, "+" is assumed. Leading and trailing zeroes are optional. If the fractional part is zero, the period and following zero(es) can be omitted. For example: -1.23, 12678967.543233, +100000.00, 210., 452
+decimal tem uma representação lexical que consiste numa sequência de comprimento finito de dígitos decimais (#x30 – #x39), separados por um ponto como indicador decimal. É permitido um sinal inicial opcional. Se o sinal for omitido, assume-se «+». Os zeros iniciais e finais são opcionais. Se a parte fracionária for zero, o ponto e o(s) zero(s) seguinte(s) podem ser omitidos. Por exemplo: -1.23, 12678967.543233, +100000.00, 210., 452
 
-## Canonical representation
+## Representação canónica
 
- The canonical representation for decimal is defined by prohibiting certain options from the Lexical representation (§3.2.3.1). Specifically, the preceding optional "+" sign is prohibited. The decimal point is required. Leading and trailing zeroes are prohibited subject to the following: there must be at least one digit, which may be a zero, to the right and to the left of the decimal point.
+ A representação canónica de decimal é definida proibindo determinadas opções da representação lexical (§3.2.3.1). Especificamente, o sinal «+» inicial opcional é proibido. O ponto decimal é obrigatório. Os zeros iniciais e finais são proibidos, sujeitos ao seguinte: tem de existir pelo menos um dígito, que pode ser um zero, à direita e à esquerda do ponto decimal.
 
- This canonical form conforms to XML Decimal lexical representation, so it would be accepted by any XML schema conforming system.
+ Esta forma canónica está em conformidade com a representação lexical de Decimal do XML, pelo que seria aceite por qualquer sistema em conformidade com o XML schema.
 
- What others write in canonical form, we can read as a lexical representation; what we write in canonical form, others can read as a lexical representation. But we reject exponential formats on reading and we won’t write exponential form. We can directly compare the canonical string representations of two values for equality.
+ O que os outros escrevem em forma canónica, podemos ler como representação lexical; o que escrevemos em forma canónica, os outros podem ler como representação lexical. Mas rejeitamos formatos exponenciais na leitura e não escrevemos em forma exponencial. Podemos comparar diretamente, quanto à igualdade, as representações canónicas em string de dois valores.
 
- When exchanging messages, a lexical form that shows implied precision using trailing zeros is preferred to pure canonical form if it improves clarity. E.g. We might write “5.00” instead of “5.0” where the unit of exchange is commonly specified precise to two decimal places, as in USD, EUR, or GBP. This lexical representation option is permitted within valid lexical forms of both XML decimal and Mojaloop decimal.
+ Na troca de mensagens, prefere-se uma forma lexical que mostre a precisão implícita através de zeros finais à forma canónica pura, se isso melhorar a clareza. Por exemplo, podemos escrever «5.00» em vez de «5.0» quando a unidade de troca é habitualmente especificada com precisão de duas casas decimais, como em USD, EUR ou GBP. Esta opção de representação lexical é permitida dentro das formas lexicais válidas tanto do decimal do XML como do decimal do Mojaloop.
 
-## Validators
+## Validadores
 
- Decimal Lexical Validator (what our message receivers accept):
+ Validador lexical de decimal (o que os nossos recetores de mensagens aceitam):
 
 ```^[-+]?(([0-9]+[.]?[0-9]*)|([.]?[0-9]+))$```
 
-Decimal Canonical Validator (the form we store and compare; this pattern could be used to assert canonical form in generated messages):
+Validador canónico de decimal (a forma que armazenamos e comparamos; este padrão pode ser utilizado para afirmar a forma canónica nas mensagens geradas):
 
 ```^([0]|([-]?[1-9][0-9]*))[.]([0]|([0-9]*[1-9]))$```
 
-## Translating Between External and Internal Forms
+## Traduzir entre formas externas e internas
 
- When converting from lexical or canonical form to a binary internal representation, the value space of the internal representation must be large enough to hold the scheme-specific range of decimal values, with a significand defined as the signed integer range –10<sup>_m_–1</sup>..10<sup>_m_–1</sup>, and a non-positive integer exponent in the range –_m_..0, where _m_ is the maximum number of decimal digits, at least 18, and as defined by the specific Level One scheme.
+ Ao converter da forma lexical ou canónica para uma representação interna binária, o espaço de valores da representação interna tem de ser suficientemente grande para conter o intervalo de valores decimais específico do scheme, com um significando definido como o intervalo de inteiros com sinal –10<sup>_m_–1</sup>..10<sup>_m_–1</sup>, e um expoente inteiro não positivo no intervalo –_m_..0, em que _m_ é o número máximo de dígitos decimais, pelo menos 18, e conforme definido pelo scheme Level One específico.
 
-An implementation must not translate between decimal external representations and any floating-point binary internal representation. And all calculations on internal representations of decimal values must produce results as if they were performed in decimal long hand on the external representation.
+Uma implementação não deve traduzir entre representações externas de decimal e qualquer representação interna binária de vírgula flutuante. E todos os cálculos sobre representações internas de valores decimais têm de produzir resultados como se tivessem sido efetuados em decimal, à mão, sobre a representação externa.
 
-It should be noted that the value space of a signed 64-bit binary integer is sufficiently large to encode a signed 18-digit decimal significand and the value space of a signed 6-bit binary integer is sufficiently large to encode its required non-positive base-ten exponent.
+Note-se que o espaço de valores de um inteiro binário com sinal de 64 bits é suficientemente grande para codificar um significando decimal com sinal de 18 dígitos, e que o espaço de valores de um inteiro binário com sinal de 6 bits é suficientemente grande para codificar o expoente de base dez não positivo exigido.

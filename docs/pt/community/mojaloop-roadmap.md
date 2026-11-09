@@ -40,7 +40,7 @@ Todos os pilares têm os seus próprios workstreams. Para o PI 23, foram adotado
 * Next Generation Settlement
     * A ligação a outros sistemas de pagamentos e a realização de transações transfronteiriças aumentam a complexidade dos processos de liquidação necessários a um switch, e este workstream está a atualizar o motor de liquidação do Mojaloop para proporcionar a flexibilidade necessária.
 * Foreign Exchange
-    * Este workstream está a melhorar o Hub Mojaloop para suportar transações multimoeda, através da integração com um FX Provider (FXP) externo. A versão inicial suportará um modelo (o emissor converte) e um FXP; versões futuras suportarão múltiplos modelos, múltiplos FXPs e a utilização de uma moeda de reserva como intermediária.
+    * Este workstream está a melhorar o Hub Mojaloop para permitir transações multimoeda, através da integração com um FX Provider (FXP) externo. A versão inicial permitirá um modelo (o remetente converte) e um FXP; versões futuras permitirão múltiplos modelos, múltiplos FXPs e a utilização de uma moeda de reserva como intermediária.
 * MOSIP Integration
     * Para melhor apoiar os pagamentos sociais e os programas nacionais de pagamentos, este workstream está a desenvolver uma solução que permitirá encaminhar pagamentos para uma identidade digital MOSIP, em vez de, por exemplo, um número de telemóvel. Este workstream trabalha também no sentido de uma maior integração com outros projetos open source de DPG, incluindo Mifos, PHEE e OpenG2P, no apoio à utilização de IDs MOSIP para gerar listas de pagamentos destinadas à entrega em massa de pagamentos sociais.
 ## Produto de Qualidade

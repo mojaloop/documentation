@@ -2,16 +2,16 @@
 i18n_source_sha: 5c5d51d7983c17bbb688d143cf9057a083d05f58
 ---
 
-# Cross Border Discussion Day 1
+# Discussão sobre transfronteiriços, dia 1
 
->**Links**
->- [Day 2 Notes](./cross_border_day_2.md)
->- [Relevant Issue on DA Board](https://github.com/mojaloop/design-authority/issues/32)
->- [Mojaloop Spec Pull Request](https://github.com/mojaloop/mojaloop-specification/pull/22)
+>**Ligações**
+>- [Notas do dia 2](./cross_border_day_2.md)
+>- [Issue relevante no quadro da DA](https://github.com/mojaloop/design-authority/issues/32)
+>- [Pull request da especificação do Mojaloop](https://github.com/mojaloop/mojaloop-specification/pull/22)
 
-## Attendees:
+## Participantes:
 
-In person
+Presencialmente
 - Lewis, Crosslake
 - Adrian, Coil
 - Nico, MB
@@ -30,245 +30,237 @@ In person
 - James Bush, MB
 - Warren, MB
 - Judit, MB
-- Bart-Jan and Bruno from GSMA  - Day #2
+- Bart-Jan e Bruno, da GSMA  - dia #2
 
-Phone
+Por telefone
 - Kim Walters, Crosslake
 - Istvan Molnar, DPC
 - Innocent Ephraim, MB
 
-## Session 1
+## Sessão 1
 
-**Goal: Update the API definitions**
+**Objetivo: atualizar as definições da API**
 
-- Privacy:
-  - Can I send USD? _yes/no_
-  - What can I send? _list of currencies_
+- Privacidade:
+  - Posso enviar USD? _sim/não_
+  - O que posso enviar? _lista de moedas_
 
-Business agreements: there are  a few ways this can happen
-- Global scheme, made up of scheme to scheme agreements
-- bilateral scheme agreements
-- scheme to scheme
-- region
+Acordos de negócio: há algumas formas de isto acontecer
+- Scheme global, composto por acordos entre schemes
+- acordos bilaterais de scheme
+- de scheme para scheme
+- região
 
 
-Definitions:
-- Gateway FSP: An FSP that 'bridges' across 2 networks
-e.g. Mowali
-  - 2 logical networks (USD,XOF?)
-  - a single mojaloop network
+Definições:
+- Gateway FSP: um FSP que faz a «ponte» entre 2 redes,
+por exemplo, o Mowali
+  - 2 redes lógicas (USD, XOF?)
+  - uma única rede mojaloop
 
 - Cross Network Provider (CNP)
-  - FXP, same thing?
+  - FXP, a mesma coisa?
 
 Michael:
-- there is a reason for that assumption
-- other legal implications here...
+- há uma razão para esse pressuposto
+- outras implicações legais aqui...
 
-- single entity, legally in 2 different jurisdictions
-  - a close analogy of a scheme without jurisdiction
+- entidade única, legalmente em 2 jurisdições diferentes
+  - uma analogia próxima de um scheme sem jurisdição
 
-- participant: 
-  - has a tx account that can be debited or credited
-  - bank, fxp etc.
+- participante: 
+  - tem uma conta de tx que pode ser debitada ou creditada
+  - banco, fxp, etc.
 
->Q: Can we have a participant that doesn't settle? Or would this be covered by CNP that is a party
->e.g. Visa, doesn't always settle in a given market, but holds an account
+>P: Podemos ter um participante que não liquida? Ou isso seria coberto por um CNP que é uma parte
+>por exemplo, a Visa nem sempre liquida num dado mercado, mas detém uma conta
 
-- Resident vs. Non-resident
-  - reporting requirements are different
+- Residente face a não residente
+  - os requisitos de reporte são diferentes
 
-- what are the technical requirements for reporters?
+- quais são os requisitos técnicos para quem reporta?
 
-- settlement
-  - not too worried about it at this stage (our focus is on the API changes)
-  - we assume that settlement is possible, but need to narrow scope witht the api first
+- liquidação
+  - não muito preocupante nesta fase (o nosso foco está nas alterações à API)
+  - assumimos que a liquidação é possível, mas é preciso primeiro estreitar o âmbito com a api
 
-- Not only mojaloop
-  - need to allow for non-mojaloop -> mojaloop transfers and vice versa (both inbound and outbound)
-  - must still be interoperable
-
-
-- who provides routing?
-  - switch?
-  - ALS?
-  - CNP?
+- Não apenas mojaloop
+  - é preciso permitir transferências de não mojaloop -> mojaloop e vice-versa (tanto de entrada como de saída)
+  - tem de continuar a ser interoperável
 
 
->*Follow Up:* Need a formal definition of FXP and CNP roles, along with requirements and responsibilities
+- quem fornece o encaminhamento?
+  - o switch?
+  - o ALS?
+  - o CNP?
 
 
-At a scheme level
-  - should the sceheme maintain a list of other schemes it allows its FSPs to connect with?
-  - or should the CNP take care of this?
-
-- not scheme -> scheme, but part of the onboarding CNP process
-- but the scheme can/should still maintain rules
-
-- how will quoting work? Should an FSP send multiple quotes, one addressed to each CNP? Or should the switch have some rules engine that helps it determine who to send quotes to?
-
-James: We want to be flexible. Can see instances where we would want both to happen, so we shouldn't assume too much at this stage.
-
-Simplest option: The switch talks to the ALS, determines a transfer is not in our network, and then finds a list of CNPs
-
-CNP + FXP -> essentially the same thing
-- they are *Roles*, and a DFSP can assume more than 1 role
-- fxps can also exist in more than 1 zone (e.g. Mowali case)
-  - single network fxp is just an fxp,
-  - multi-network fxp is likely also a CNP
+>*Seguimento:* é necessária uma definição formal das funções de FXP e de CNP, juntamente com os requisitos e as responsabilidades
 
 
-## Session 2 
+Ao nível do scheme
+  - deveria o scheme manter uma lista dos outros schemes a que permite que os seus FSPs se liguem?
+  - ou deveria o CNP tratar disto?
 
-- debate about single or multiple lookups
-  - we should never return "empty result"
+- não de scheme -> scheme, mas como parte do processo de onboarding do CNP
+- mas o scheme pode/deveria continuar a manter regras
 
-- are wallets addressable by MSISDN?
-  - only 1 account at the moment
-  - but this is internal to the switch
-  - the oracle's job is to convert MSIDN -> Mojaloop Address
+- como funcionará a cotação? Deveria um FSP enviar várias cotações, uma dirigida a cada CNP? Ou deveria o switch ter algum motor de regras que o ajude a determinar a quem enviar as cotações?
 
-- in the future: MSISDN + accounts will be less related
-  - this topic is adjacently related to addressing
+James: queremos ser flexíveis. Vejo casos em que quereríamos que ambas as coisas acontecessem, pelo que não deveríamos assumir demasiado nesta fase.
 
-- 'going outisde' mojaloop with addressing will be a little tricky
-- Standardize addressing?
-  - not something we want to do
+Opção mais simples: o switch fala com o ALS, determina que uma transferência não está na nossa rede e encontra depois uma lista de CNP
 
-Ram: There are existing tools (no need to reinvent the wheel), outside the mojaloop scheme
+CNP + FXP -> essencialmente a mesma coisa
+- são *funções*, e um DFSP pode assumir mais do que 1 função
+- os fxp também podem existir em mais do que uma zona (por exemplo, o caso do Mowali)
+  - um fxp de rede única é apenas um fxp,
+  - um fxp multirrede é provavelmente também um CNP
 
-- sending to unknown currency
-  - currently: 1 routing table answer
-  - future: multiple answers
 
-- privacy:
-  - no real need for hard rules at the moment (at least not at the API level, rules come along with schemes)
-  - we do need a method for mediating information that one switch requires from another (and rejecting quotes should these prerequesites not be met)
+## Sessão 2 
 
----
-- Domestic vs. Cross border: USer has/needs different information
-  - e.g. do we only want to support discovery in domestic case?
----
+- debate sobre consultas únicas ou múltiplas
+  - nunca deveríamos devolver «resultado vazio»
 
-Adrian: A lot of this stuff is business rule and scheme specific
-- maintains competitive space
-- How much information is in the:
-  - lookup?
-  - Quote?
+- as carteiras são endereçáveis por MSISDN?
+  - de momento, apenas 1 conta
+  - mas isto é interno ao switch
+  - a função do oracle é converter MSIDN -> endereço Mojaloop
+
+- no futuro: MSISDN + contas estarão menos relacionados
+  - este tema está adjacentemente relacionado com o endereçamento
+
+- «sair para fora» do mojaloop com o endereçamento será um pouco complicado
+- Normalizar o endereçamento?
+  - não é algo que queiramos fazer
+
+Ram: existem ferramentas já disponíveis (não é preciso reinventar a roda), fora do scheme mojaloop
+
+- enviar para uma moeda desconhecida
+  - atualmente: 1 resposta da tabela de encaminhamento
+  - no futuro: várias respostas
+
+- privacidade:
+  - não há verdadeira necessidade de regras rígidas neste momento (pelo menos, não ao nível da API; as regras vêm com os schemes)
+  - precisamos de um método para mediar a informação que um switch exige de outro (e para rejeitar cotações caso esses pré-requisitos não sejam cumpridos)
 
 ---
-- Proposal: Address lookup -> Returns multiple responses?
-- MSISDN -> ID, not an address. Someone, not an account
-
-- there should be only 1 response from the ALS
-- Michael disagrees
-
-- need to separate out *addressing* from *routing*
-
-- we need to think about the downstream affects this will have on testing
-  - need to find a clear way to test these lookups
-
-
-For example, airtel UPI issue (where existing MSIDSNs were replaced when they grandfathered in their mobile customers to become mobile money customers)
-  - we need to avoid a situation like that
-
+- Doméstico face a transfronteiriço: o utilizador tem/precisa de informação diferente
+  - por exemplo, queremos permitir a descoberta apenas no caso doméstico?
 ---
 
-Bring it back to first (L1P) principles 
-- transfers should clear immediately
-- no such thing as a future
+Adrian: muito disto é específico das regras de negócio e do scheme
+- mantém o espaço concorrencial
+- Quanta informação está:
+  - na consulta?
+  - na cotação?
 
-- For domestic: we can guarantee delivery, but cross-border is much harder
-- need to maintain transparency requirement on CNPs
-  - this comes down to business rules
+---
+- Proposta: a consulta de endereços -> devolve várias respostas?
+- MSISDN -> ID, não um endereço. Alguém, não uma conta
 
-- Reversible tx's or rules abour downstream issues
-  - ILP takes care of *most* of this for us
+- deveria haver apenas 1 resposta do ALS
+- Michael discorda
 
-- in TIPS case: 1 ID maps to 1 account
-- as always, there needs to be a compromise between privacy and features (and that's ok!)
+- é preciso separar o *endereçamento* do *encaminhamento*
+
+- temos de pensar nos efeitos a jusante que isto terá nos testes
+  - é preciso encontrar uma forma clara de testar estas consultas
+
+
+Por exemplo, a questão do UPI da airtel (em que os MSIDSN existentes foram substituídos quando os clientes móveis transitaram para clientes de dinheiro móvel)
+  - temos de evitar uma situação dessas
 
 ---
 
-At the end of a quote:
+Voltar aos primeiros princípios (L1P) 
+- as transferências deveriam ser compensadas imediatamente
+- não existe tal coisa como um futuro
+
+- No caso doméstico: conseguimos garantir a entrega, mas o transfronteiriço é muito mais difícil
+- é preciso manter o requisito de transparência sobre os CNP
+  - isto resume-se às regras de negócio
+
+- Tx reversíveis ou regras sobre problemas a jusante
+  - o ILP trata da *maior parte* disto por nós
+
+- no caso do TIPS: 1 ID corresponde a 1 conta
+- como sempre, tem de haver um compromisso entre privacidade e funcionalidades (e não há problema nisso!)
+
+---
+
+No final de uma cotação:
 - ValueDate
-- how much will be received
-- what are the fees? (broken down, by step and currency)
+- quanto será recebido
+- quais são as comissões? (decompostas, por passo e por moeda)
 
 ---
 
-How do we support protocols that don't support quotes (this is a question for moja to non-moja systems)
+Como suportamos protocolos que não permitem cotações (esta é uma questão para sistemas moja para não moja)
 
-Risk: CNP: they hold the risk in this type of transaction
+Risco: CNP: é ele que detém o risco neste tipo de transação
 
-CNP as a participant?
- - holds an account with a participant
- - direct vs indirect approach
- - this doesn't affect the technical requirements (so out of scope for this discussion)
+O CNP como participante?
+ - detém uma conta junto de um participante
+ - abordagem direta face a indireta
+ - isto não afeta os requisitos técnicos (por isso, fora do âmbito desta discussão)
 
 
 ---
 
-- fixed send and receive:
-  - What direction does data need to be appended to the quote? It depends on if it is fixed receive vs fixed send
+- valor fixo a enviar e a receber:
+  - Em que direção é que os dados têm de ser acrescentados à cotação? Depende de ser valor fixo a receber ou valor fixo a enviar
 
-- Either: `A send 20 USD to B` OR `B receives 1000 PHP`
+- Ou: `A envia 20 USD a B` OU `B recebe 1000 PHP`
 
-- translating fees back for user: FXP __must__ apply the same rate for fees as the principal transfer
+- traduzir as comissões de volta para o utilizador: o FXP __tem de__ aplicar a mesma taxa às comissões que aplica à transferência principal
 
-- From L1P Perspective: __the goal is transparency__
+- Da perspetiva do L1P: __o objetivo é a transparência__
 
-- how about quotes outside of Mojaloop?
-  - CNP should take care of this - it is the last bastion of Mojaloopyness
+- e quanto às cotações fora do Mojaloop?
+  - o CNP deveria tratar disto - é o último bastião de «mojaloopice»
 
 ---
 
-- Participant Object
-  - Attached to the Quotes, one entry per hop?
-  - So multi-hop quotes hold _n_ participant objects, where _n_ = number of hops + 1
+- Objeto Participant
+  - Associado às cotações, uma entrada por salto?
+  - Assim, as cotações multissalto contêm _n_ objetos participant, em que _n_ = número de saltos + 1
 
-As part of this we need:
-- interoperable bits of data (common defs)
-- scheme for encryption
-- a place to put the data (in the quotes object)
+No âmbito disto, precisamos de:
+- partes de dados interoperáveis (definições comuns)
+- scheme para a encriptação
+- um sítio onde colocar os dados (no objeto quotes)
 
-Should we worry about encryption for now?
-- perhaps not, but still should allow for it in the API
+Devemos preocupar-nos com a encriptação por agora?
+- talvez não, mas deveríamos continuar a prevê-la na API
 
-Encryption adds extra integration challenge
-- what is the need to get data in the clear?
-  - from a techincal perspective: just use a blank encryption key
+A encriptação acrescenta um desafio adicional de integração
+- qual é a necessidade de obter os dados em claro?
+  - de uma perspetiva técnica: basta utilizar uma chave de encriptação em branco
 
-Do we need to encrypt to ensure the switch(es) can't see the data?
-  - perhaps not at this stage
-
-
->### Decision:
->- No encryption for now
->- in outbound quote request: have a list of data requirements
->- for inbound quote request: participants fill out those requirements
->- if requirements are not met: abort the quote
->- Don't hardcode the data requirements, we should use existing standards
+Precisamos de encriptar para garantir que o(s) switch(es) não conseguem ver os dados?
+  - talvez não nesta fase
 
 
-- we need to specify whether or not fields _have_ been verified
-  - ties in with tiered KYC processes
+>### Decisão:
+>- Sem encriptação por agora
+>- no pedido de cotação de saída: ter uma lista de requisitos de dados
+>- no pedido de cotação de entrada: os participantes preenchem esses requisitos
+>- se os requisitos não forem cumpridos: abortar a cotação
+>- Não codificar os requisitos de dados de forma fixa, deveríamos utilizar normas existentes
 
-- need a common dictionary of data that can/should be requested
+
+- é preciso especificar se os campos _foram_ ou não verificados
+  - articula-se com os processos de KYC por escalões
+
+- é necessário um dicionário comum dos dados que podem/deveriam ser pedidos
 
 
-## Boards:
+## Quadros:
 
-_board 1: Fixed send flows_
+_quadro 1: fluxos de valor fixo a enviar_
 ![board_1](../../../../community/archive/discussion-docs/images/cb_board_1.jpg)
 
-_board 2: Fixed receive flows_
+_quadro 2: fluxos de valor fixo a receber_
 ![board_2](../../../../community/archive/discussion-docs/images/cb_board_2.jpg)
-
-
-
-
-
-
-
-

@@ -2,42 +2,42 @@
 i18n_source_sha: 035d61b2307785d4129863069cfab714e69addec
 ---
 
-# Standards
+# Normas
 
-> *Note:* These standards are by no means set in stone, and as a community, we always want to be iterating and improving Mojaloop. If you want to propose a change to these standards, or suggest further improvements, please reach out to the Design Authority Channel on the Mojaloop Slack (#design-authority)
+> *Nota:* Estas normas não são, de forma alguma, imutáveis e, enquanto comunidade, queremos estar sempre a iterar e a melhorar o Mojaloop. Para propor uma alteração a estas normas, ou sugerir novas melhorias, contacte o canal da Design Authority no Slack do Mojaloop (#design-authority)
 
-## Mojaloop Invariants
+## Invariantes do Mojaloop
 
-Mojaloop has some [invariants](./invariants.md) that are important to understand and adhere to when contributing to the codebase.
+O Mojaloop tem algumas [invariantes](./invariants.md) que é importante compreender e cumprir ao contribuir para a base de código.
 
-These invariants are derived from [The Level One Principles](https://www.leveloneproject.org/wp-content/uploads/2020/07/L1P_Guide_2019_Final.pdf) and other business requirements as decided upon by the Mojaloop Technical Governance Board, API Change Control Board, Design Authority and Product Council. They are intended to ensure the platform retains certain characteristics important for national infrastructure grade operation.
+Estas invariantes derivam dos [Princípios do Level One](https://www.leveloneproject.org/wp-content/uploads/2020/07/L1P_Guide_2019_Final.pdf) e de outros requisitos de negócio decididos pelo Technical Governance Board do Mojaloop, pelo API Change Control Board, pela Design Authority e pelo Product Council. Destinam-se a garantir que a plataforma mantém determinadas características importantes para um funcionamento de nível de infraestrutura nacional.
 
-Please ensure you are familiar with the invariants before contributing to the codebase.
+Certifique-se de que conhece as invariantes antes de contribuir para a base de código.
 
-## Runtime Environment
+## Ambiente de execução
 
-The following runtime standards apply to Mojaloop.
+As seguintes normas de execução aplicam-se ao Mojaloop.
 
-### Micro-services & Libraries
+### Microsserviços e bibliotecas
 
 1. Javascript
 
-    NodeJS is the standard Runtime for all Mojaloop services and components for the execution of Javascript source-code files.
+    O NodeJS é o ambiente de execução padrão de todos os serviços e componentes do Mojaloop para a execução de ficheiros de código-fonte Javascript.
 
-    Our goal is to ensure that all NodeJS based services run against the latest `Active LTS` (*Long Time Support*) version of NodeJS following the official [NodeJS Release Cycle](https://nodejs.org/en/about/releases/).
+    O nosso objetivo é garantir que todos os serviços baseados em NodeJS são executados com a versão `Active LTS` (*Long Time Support*) mais recente do NodeJS, seguindo o [ciclo oficial de versões do NodeJS](https://nodejs.org/en/about/releases/).
 
-2. Container (Docker) Operating System (*OS*)
+2. Sistema operativo do contentor (Docker) (*OS*)
 
-    Mojaloop's Micro-services are built on top of the `node:<NODE_ACTIVE_LTS_VERSION>-alpine` base image, where `NODE_ACTIVE_LTS_VERSION` is the current NodeJS LTS following the official [NodeJS Release Cycle](https://nodejs.org/en/about/releases/). Refer to [DockerHub](https://hub.docker.com/_/node?tab=tags&page=1&name=alpine) for a full list of official NodeJS Alpine Docker images.
+    Os microsserviços do Mojaloop são construídos sobre a imagem base `node:<NODE_ACTIVE_LTS_VERSION>-alpine`, em que `NODE_ACTIVE_LTS_VERSION` é a LTS atual do NodeJS, seguindo o [ciclo oficial de versões do NodeJS](https://nodejs.org/en/about/releases/). Consulte o [DockerHub](https://hub.docker.com/_/node?tab=tags&page=1&name=alpine) para uma lista completa das imagens Docker oficiais do NodeJS Alpine.
 
-    > NOTE: When specifying the `NODE_ACTIVE_LTS_VERSION`, use the full semantic version such as `<MAJOR>-<MINOR>-<PATCH>`.
+    > NOTA: Ao especificar a `NODE_ACTIVE_LTS_VERSION`, utilize a versão semântica completa, como `<MAJOR>-<MINOR>-<PATCH>`.
     >
-    > `node:16.15.0-alpine ` <-- This is OK
+    > `node:16.15.0-alpine ` <-- Isto está OK
     >
-    > `lts-alpine3.16` <-- This is NOT OK
+    > `lts-alpine3.16` <-- Isto NÃO está OK
     >
 
-    1. Standard **Javascript** `Dockerfile` example:
+    1. Exemplo padrão de `Dockerfile` para **Javascript**:
 
         ```docker
         FROM node:<NODE_ACTIVE_LTS_VERSION>-alpine as builder
@@ -77,7 +77,7 @@ The following runtime standards apply to Mojaloop.
         CMD ["npm", "run", "start"]
         ```
 
-    2. Standard **Typescript** `Dockerfile` example:
+    2. Exemplo padrão de `Dockerfile` para **Typescript**:
 
         ```docker
         FROM node:<NODE_ACTIVE_LTS_VERSION>-alpine as builder
@@ -124,43 +124,43 @@ The following runtime standards apply to Mojaloop.
         CMD ["npm", "run", "start"]
         ```
 
-### CI (*Continuous Integration*) Pipelines
+### Pipelines de CI (*Continuous Integration*)
 
-Mojaloop's CI Jobs are executed against the current Ubuntu LTS version following the official [Ubuntu Release Cycle](https://ubuntu.com/about/release-cycle).
+Os jobs de CI do Mojaloop são executados com a versão LTS atual do Ubuntu, seguindo o [ciclo oficial de versões do Ubuntu](https://ubuntu.com/about/release-cycle).
 
 ### Kubernetes
 
-Mojaloop's Helm Charts ([mojaloop/helm](https://github.com/mojaloop/helm) [mojaloop/charts](https://github.com/mojaloop/charts)) are deployed and verified against the current Kubernetes LTS version following the official [Kubernetes Release Cycle](https://kubernetes.io/releases/).
+O deployment dos Helm Charts do Mojaloop ([mojaloop/helm](https://github.com/mojaloop/helm) [mojaloop/charts](https://github.com/mojaloop/charts)) é feito e verificado com a versão LTS atual do Kubernetes, seguindo o [ciclo oficial de versões do Kubernetes](https://kubernetes.io/releases/).
 
-## Style Guide
+## Guia de estilo
 
-The Mojaloop Community provides a set of guidelines for the style of code we write. These standards help ensure that the Mojaloop codebase remains high quality, maintainable and consistent.
+A Comunidade Mojaloop disponibiliza um conjunto de orientações para o estilo do código que escrevemos. Estas normas ajudam a garantir que a base de código do Mojaloop se mantém de elevada qualidade, manutenível e consistente.
 
-These style guides are chosen because they can be easily enforced and checked using popular tools with minimal customization. While we recognise that developers will have personal preferences that may conflict with these guidelines we favour consistency over [bike-shedding](https://en.wikipedia.org/wiki/Law_of_triviality) these rules.
+Estes guias de estilo foram escolhidos porque podem ser facilmente aplicados e verificados com ferramentas populares, com personalização mínima. Embora reconheçamos que os programadores terão preferências pessoais que podem entrar em conflito com estas orientações, preferimos a consistência a [discussões triviais](https://en.wikipedia.org/wiki/Law_of_triviality) sobre estas regras.
 
-The goal of these guides is to ensure an easy developer workflow and reduce code commits that contain changes for the sake of style over content. By reducing the noise in diffs we make the job of reviewers easier.
+O objetivo destes guias é garantir um fluxo de trabalho fácil para os programadores e reduzir os commits de código que contêm alterações de estilo em detrimento do conteúdo. Ao reduzir o ruído nos diffs, facilitamos o trabalho dos revisores.
 
-## Code Style
+## Estilo de código
 
-### Naming Conventions
+### Convenções de nomenclatura
 
-To avoid confusion and guarantee cross-language interpolation, follow these rules regarding naming conventions:
+Para evitar confusão e garantir a interpolação entre linguagens, siga estas regras quanto às convenções de nomenclatura:
 
-- Do not use abbreviations or contractions as parts of identifier names. For example, use `SettlementWindow` instead of `SetWin`.
-- Do not use acronyms that are not generally accepted in the computing field.
-- Where appropriate, use well-known acronyms to replace lengthy phrase names. For example, use `UI` for `User Interface`.
-- Use Pascal case or camel case for names more than two characters long depending on context (e.g. class names vs variable names). For example, use `SettlementWindow` (Class) or `settlementWindow` (Variable).
-- You should capitalize abbreviations that consist of only two characters, such as `ID` instead of `Id` when isolated. For example, use `/transfer/{{ID}}` instead of `/transfer/{{Id}}` when representing `ID` as a URI parameter.
-- Avoid abbreviations in identifiers or parameter names. If you must use abbreviations, use camel case for abbreviations that consist of more than two characters, even if this contradicts the standard abbreviation of the word.
-- Use screaming (capitalized) Snake case for Enumerations. For example, use `RECORD_FUNDS_OUT_PREPARE_RESERVE`.
+- Não utilize abreviaturas nem contrações como partes dos nomes dos identificadores. Por exemplo, utilize `SettlementWindow` em vez de `SetWin`.
+- Não utilize acrónimos que não sejam geralmente aceites no domínio da informática.
+- Quando for adequado, utilize acrónimos bem conhecidos para substituir nomes longos. Por exemplo, utilize `UI` para `User Interface`.
+- Utilize Pascal case ou camel case para nomes com mais de dois caracteres, consoante o contexto (por exemplo, nomes de classes face a nomes de variáveis). Por exemplo, utilize `SettlementWindow` (Classe) ou `settlementWindow` (Variável).
+- Deveria escrever em maiúsculas as abreviaturas que consistem em apenas dois caracteres, como `ID` em vez de `Id` quando isoladas. Por exemplo, utilize `/transfer/{{ID}}` em vez de `/transfer/{{Id}}` ao representar `ID` como parâmetro de URI.
+- Evite abreviaturas nos identificadores ou nos nomes dos parâmetros. Se tiver de utilizar abreviaturas, utilize camel case para as abreviaturas que consistem em mais de dois caracteres, mesmo que isso contrarie a abreviatura padrão da palavra.
+- Utilize Snake case em maiúsculas (screaming) para as enumerações. Por exemplo, utilize `RECORD_FUNDS_OUT_PREPARE_RESERVE`.
 
-Ref: [Microsoft - Design Guidelines for Class Library Developers](https://docs.microsoft.com/en-us/previous-versions/dotnet/netframework-1.1/141e06ef(v=vs.71)?redirectedfrom=MSDN)
+Ref.: [Microsoft - Design Guidelines for Class Library Developers](https://docs.microsoft.com/en-us/previous-versions/dotnet/netframework-1.1/141e06ef(v=vs.71)?redirectedfrom=MSDN)
 
 ### Javascript
 
-Mojaloop uses the Javascript code style dictated by [StandardJS](https://standardjs.com/). For a full set of rules, refer to the [Standard Rules](https://standardjs.com/rules.html), but as a brief set of highlights:
+O Mojaloop utiliza o estilo de código Javascript ditado pelo [StandardJS](https://standardjs.com/). Para o conjunto completo de regras, consulte as [regras do Standard](https://standardjs.com/rules.html), mas, como breve conjunto de destaques:
 
-- Use *2 spaces* for indentation
+- Utilize *2 espaços* para a indentação
 
 ```js
 function helloWorld (name) {
@@ -168,7 +168,7 @@ function helloWorld (name) {
 }
 ```
 
-- Use *single quotes* for strings except to avoid escaping.
+- Utilize *plicas* para as strings, exceto para evitar escapes.
 
 ```js
 console.log('hello there')    // ✓ ok
@@ -176,7 +176,7 @@ console.log("hello there")    // ✗ avoid
 console.log(`hello there`)    // ✗ avoid
 ```
 
-- No semicolons. (see: 1, 2, 3)
+- Sem ponto e vírgula. (ver: 1, 2, 3)
 
 ```js
 window.alert('hi')   // ✓ ok
@@ -185,21 +185,21 @@ window.alert('hi');  // ✗ avoid
 
 ### Typescript
 
-> *Note: Standard and Typescript*
+> *Nota: Standard e Typescript*
 >
-> As we start to introduce more Typescript into the codebase, Standard becomes less useful, and can even be detrimental
-> to our development workflow if we try to run standard across the Javascript compiled from Typescript.
-> We need to evaluate other options for Standard in Typescript, such as a combination of Prettier + ESLint.
+> À medida que começamos a introduzir mais Typescript na base de código, o Standard torna-se menos útil e pode até ser prejudicial
+> para o nosso fluxo de trabalho de desenvolvimento se tentarmos executar o standard sobre o Javascript compilado a partir de Typescript.
+> Precisamos de avaliar outras opções para o Standard em Typescript, como uma combinação de Prettier + ESLint.
 
-Refer to the [template-typescript-public](https://github.com/mojaloop/template-typescript-public) for the standard typescript configuration.
+Consulte o [template-typescript-public](https://github.com/mojaloop/template-typescript-public) para a configuração padrão de typescript.
 
 ### YAML
 
-While YAML deserializers can vary from one to another, we follow the following rules when writing YAML:
-> Credit: these examples were taken from the [flathub style guide](https://github.com/flathub/flathub/wiki/YAML-Style-Guide)
+Embora os desserializadores de YAML possam variar entre si, seguimos as regras seguintes ao escrever YAML:
+> Crédito: estes exemplos foram retirados do [guia de estilo do flathub](https://github.com/flathub/flathub/wiki/YAML-Style-Guide)
 
-- 2 space indents
-- Always indent child elements
+- Indentações de 2 espaços
+- Indentar sempre os elementos filhos
 
 ```yaml
 # GOOD:
@@ -215,7 +215,7 @@ modules:
   - type: bar
 ```
 
-- Do not align values
+- Não alinhar os valores
 
 ```yaml
 # BAD:
@@ -228,17 +228,17 @@ modules:
 
 ### sh + bash
 
-- The Shebang should respect the user's local environment:
+- O Shebang deveria respeitar o ambiente local do utilizador:
 
 ```bash
 #!/usr/bin/env bash
 ```
 
-This ensures that the script will match the `bash` that is defined in the user's environment, instead of hardcoding to a specific bash at `/usr/bin/bash`.
+Isto garante que o script corresponderá ao `bash` definido no ambiente do utilizador, em vez de ficar fixo num bash específico em `/usr/bin/bash`.
 
-- When referring to other files, don't use relative paths:
+- Ao referir outros ficheiros, não utilize caminhos relativos:
 
-This is because your script will likely break if somebody runs it from a different directory from where the script is located
+Isto acontece porque o script provavelmente deixará de funcionar se alguém o executar a partir de um diretório diferente daquele onde o script se encontra
 
 ```bash
 # BAD:
@@ -249,22 +249,22 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cat ${DIR}/../Dockerfile | wc -l
 ```
 
-For other recommended bash conventions, refer to this blog post: [Best Practices for Writing Shell Scripts](https://kvz.io/bash-best-practices.html)
+Para outras convenções recomendadas de bash, consulte esta publicação de blogue: [Best Practices for Writing Shell Scripts](https://kvz.io/bash-best-practices.html)
 
-## Documentation
+## Documentação
 
-- Documentation should be written in Markdown format.
-- Hand drawn diagrams should use an editable SVG format (example - architecture / component / block / state transition diagrams) exported from [diagrams.net](https://app.diagrams.net)
-  > NOTE: Please ensure that you have imbedded the editable diagram when exporting the SVG from [diagrams.net](https://app.diagrams.net)!
-- Sequence diagrams should use PlantUML
-- All discussion documents should be placed in /community/archive/discussion-docs.
-- The use of Google Docs and other private tools is not advised for community wide collaboration
+- A documentação deveria ser escrita em formato Markdown.
+- Os diagramas desenhados à mão deveriam utilizar um formato SVG editável (exemplo - diagramas de arquitetura / componentes / blocos / transição de estados) exportado a partir do [diagrams.net](https://app.diagrams.net)
+  > NOTA: Certifique-se de que incorporou o diagrama editável ao exportar o SVG a partir do [diagrams.net](https://app.diagrams.net)!
+- Os diagramas de sequência deveriam utilizar PlantUML
+- Todos os documentos de discussão deveriam ser colocados em /community/archive/discussion-docs.
+- A utilização do Google Docs e de outras ferramentas privadas não é aconselhada para a colaboração em toda a comunidade
 
-## Directory Structure
+## Estrutura de diretórios
 
-Along with guidelines for coding styles, the Mojaloop Community recommends the following directory structure. This ensures that developers can easily switch from one project to another, and also ensures that our tools and configs (such as `.circleci/config.yml` and `Dockerfile`s) can be ported easily from one project to another with minor changes.
+Além das orientações para os estilos de código, a Comunidade Mojaloop recomenda a seguinte estrutura de diretórios. Isto garante que os programadores podem mudar facilmente de um projeto para outro e garante também que as nossas ferramentas e configurações (como o `.circleci/config.yml` e os `Dockerfile`) podem ser portadas facilmente de um projeto para outro com pequenas alterações.
 
-The directory structure guide requires:
+O guia da estrutura de diretórios exige:
 
 ```bash
 ├── README.md          # README containing general information about components such as pre-requisites, testing, etc.
@@ -278,28 +278,28 @@ The directory structure guide requires:
 ├── .npmignore         # Optional - NPM ignore file for publishing libraries.
 ├── .gitignore         # Github ignore file.
 ├── src                # Directory containing project source files.
-│   ├── index.<js/ts>    # Main entry point for component.
-│   ├── <filename>.<js/ts> # Source file format.
-│   └── ...            # Other source files and sub-directories
+│   ├── index.<js/ts>    # Main entry point for component.
+│   ├── <filename>.<js/ts> # Source file format.
+│   └── ...            # Other source files and sub-directories
 ├── dist               # Directory containing compiled javascript files (see tsconfig below).
 ├── test               # Directory for tests, containing at least:
-│   ├── unit           # Unit tests, matching the directory structure in `./src`.
-│   │   ├── <filename>.test.<js/ts> # Tests file format.
-│   │   └── ...        # Other test files and sub-directories
-│   ├── integration    # Integration tests, matching the directory structure in `./src`.
-│   ├── functional     # Functional tests, matching the directory structure in `./src`.
-│   └── util           # Generic testing scripts and NodeJS helpers.
+│   ├── unit           # Unit tests, matching the directory structure in `./src`.
+│   │   ├── <filename>.test.<js/ts> # Tests file format.
+│   │   └── ...        # Other test files and sub-directories
+│   ├── integration    # Integration tests, matching the directory structure in `./src`.
+│   ├── functional     # Functional tests, matching the directory structure in `./src`.
+│   └── util           # Generic testing scripts and NodeJS helpers.
 └── config
     └── default.json   # Default config file.
 ```
 
-## Config Files
+## Ficheiros de configuração
 
-The following Config files help to enforce the code styles outlined above:
+Os ficheiros de configuração seguintes ajudam a aplicar os estilos de código descritos acima:
 
 ### EditorConfig
 
-> EditorConfig is supported out of the box in many IDEs and Text editors. For more information, refer to the [EditorConfig guide](https://editorconfig.org/).
+> O EditorConfig é suportado de origem em muitos IDE e editores de texto. Para mais informação, consulte o [guia do EditorConfig](https://editorconfig.org/).
 
 `.editorconfig`
 
@@ -320,7 +320,7 @@ indent_size = 2
 trim_trailing_whitespace = false
 ```
 
-### NYC (code coverage tool)
+### NYC (ferramenta de cobertura de código)
 
 `.nycrc.yml`
 
@@ -431,23 +431,23 @@ module.exports = {
 };
 ```
 
-For a more detailed list of the recommended typescript configuration, including `package.json`, `jest.config.js` and more, refer to the [Typescript Template Project](https://github.com/mojaloop/template-typescript-public).
+Para uma lista mais detalhada da configuração de typescript recomendada, incluindo `package.json`, `jest.config.js` e mais, consulte o [Typescript Template Project](https://github.com/mojaloop/template-typescript-public).
 
-## Dependency Management
+## Gestão de dependências
 
-### Dependency Upgrades
+### Atualizações de dependências
 
-It is important to ensure that the latest Dependencies are used to mitigate security issues.
+É importante garantir que são utilizadas as dependências mais recentes, de forma a mitigar problemas de segurança.
 
 #### NodeJS
 
-NodeJS projects should install [npm-check-updates](https://www.npmjs.com/package/npm-check-updates) using the following command:
+Os projetos NodeJS deveriam instalar o [npm-check-updates](https://www.npmjs.com/package/npm-check-updates) utilizando o comando seguinte:
 
 ```bash
 npm install -D npm-check-updates
 ```
 
-And add the following scripts to `package.json`:
+E acrescentar os seguintes scripts ao `package.json`:
 
 ```json
 "scripts": {
@@ -456,19 +456,19 @@ And add the following scripts to `package.json`:
 }
 ```
 
-Run the following script to check for any dependencies that need upgrading:
+Execute o script seguinte para verificar se existem dependências que precisam de ser atualizadas:
 
 ```bash
 npm run dep:check
 ```
 
-If required, one can execute the following command to install the latest dependencies:
+Se necessário, é possível executar o comando seguinte para instalar as dependências mais recentes:
 
 ```bash
 npm run dep:update && npm i
 ```
 
-If a dependency cannot be upgraded for a valid reason, then `.ncurc.yaml` file should added to the project root with said dependency added to the `reject` list with an appropriate `comment` as follows:
+Se uma dependência não puder ser atualizada por um motivo válido, deveria ser acrescentado um ficheiro `.ncurc.yaml` à raiz do projeto, com a referida dependência adicionada à lista `reject` e com um `comment` adequado, da seguinte forma:
 
 ```yaml
 ## Add a TODO comment indicating the reason for each rejected dependency upgrade added to this list, and what should be done to resolve it (i.e. handle it through a story, etc).
@@ -478,37 +478,37 @@ reject: [
 ]
 ```
 
-The following approaches are utilized to enforce that dependencies are kept up-to-date:
+São utilizadas as abordagens seguintes para assegurar que as dependências são mantidas atualizadas:
 
-##### Git Pre-Commit Hook
+##### Git pre-commit hook
 
-This will ensure that a validation check will occur on a Developer's local machine when making any Git Commits.
+Isto garante que é feita uma verificação de validação na máquina local do programador ao fazer quaisquer commits de Git.
 
-The `dep:check` should be added as a git commit pre-hook using [Husky](https://www.npmjs.com/package/husky) as follows:
+O `dep:check` deveria ser adicionado como pre-hook de commit de git, utilizando o [Husky](https://www.npmjs.com/package/husky), da seguinte forma:
 
 ```bash
 npx husky add .husky/pre-commit "npm run dep:check"
 ```
 
-> Note: It is possible to circumvent this by using `-n` parameter when committing using `git commit -nm <message>`. A CI (*Continuous Integration*) `test-dependencies` Validation Check (*see next section*) is thus required to ensure enforcement.
+> Nota: É possível contornar isto utilizando o parâmetro `-n` ao fazer o commit com `git commit -nm <message>`. É, por isso, necessária uma verificação de validação `test-dependencies` de CI (*Continuous Integration*) (*ver a secção seguinte*) para assegurar o cumprimento.
 
-##### Automated CI Validations
+##### Validações automatizadas de CI
 
-This will ensure that a validation check occur during reviews and releases, and also ensure that Git Pre-Commit Hook are not circumvented.
+Isto garante que é feita uma verificação de validação durante as revisões e as disponibilizações de versões e garante também que o git pre-commit hook não é contornado.
 
-CI Configs (i.e. `.circleci/config.yml`)  must contain a `test-dependencies` Validation Check CI Job (i.e. `npm run dep:check`) for all Pull-Request, merges to Main branch, and Tagged Releases.
+As configurações de CI (ou seja, o `.circleci/config.yml`)  têm de conter um job de CI de verificação de validação `test-dependencies` (ou seja, `npm run dep:check`) para todos os Pull-Request, merges para o branch Main e versões com tag.
 
-### Dependency Auditing
+### Auditoria de dependências
 
 #### NodeJS
 
-NodeJS projects should install [audit-ci](https://www.npmjs.com/package/audit-ci) using the following command:
+Os projetos NodeJS deveriam instalar o [audit-ci](https://www.npmjs.com/package/audit-ci) utilizando o comando seguinte:
 
 ```bash
 npm install -D audit-ci
 ```
 
-And add the following scripts to `package.json`:
+E acrescentar os seguintes scripts ao `package.json`:
 
 ```json
 "scripts": {
@@ -516,26 +516,26 @@ And add the following scripts to `package.json`:
 }
 ```
 
-Run the following script to check for any dependencies that need upgrading:
+Execute o script seguinte para verificar se existem dependências que precisam de ser atualizadas:
 
 ```bash
 npm run audit:check
 ```
 
-If required, one can execute [npm audit](https://docs.npmjs.com/cli/v8/commands/npm-audit) to apply any known available fixes:
+Se necessário, é possível executar o [npm audit](https://docs.npmjs.com/cli/v8/commands/npm-audit) para aplicar quaisquer correções conhecidas disponíveis:
 
 ```bash
 npm audit fix --package-lock-only
 ```
 
 >
-> NOTES
+> NOTAS
 >
-> 1. Ensure to commit any fixes applied by the above command to the `package-lock.json`.
-> 2. Ensure that all tests pass after applying any fixes as they may result in a dependency version change which could introduce breaking changes.
+> 1. Certifique-se de que faz commit ao `package-lock.json` de quaisquer correções aplicadas pelo comando acima.
+> 2. Certifique-se de que todos os testes passam depois de aplicar quaisquer correções, pois podem resultar numa alteração de versão de uma dependência que poderia introduzir alterações incompatíveis.
 >
 
-If there is no fix, then `audit-ci.jsonc` file should added to the project root with said `vulnerability advisories ID` added to the `allowlist` with an appropriate `comment` as follows:
+Se não existir correção, deveria ser acrescentado um ficheiro `audit-ci.jsonc` à raiz do projeto, com o referido `vulnerability advisories ID` adicionado à `allowlist` e com um `comment` adequado, da seguinte forma:
 
 ```json
 {
@@ -550,108 +550,108 @@ If there is no fix, then `audit-ci.jsonc` file should added to the project root 
 }
 ```
 
-##### Git Pre-Commit Hook
+##### Git pre-commit hook
 
-This will ensure that a vulnerability checks will occur on a Developer's local machine when making any Git Commits.
+Isto garante que são feitas verificações de vulnerabilidades na máquina local do programador ao fazer quaisquer commits de Git.
 
-The `audit:check` should be added as a git commit pre-hook using [Husky](https://www.npmjs.com/package/husky) as follows:
+O `audit:check` deveria ser adicionado como pre-hook de commit de git, utilizando o [Husky](https://www.npmjs.com/package/husky), da seguinte forma:
 
 ```bash
 npx husky add .husky/pre-commit "npm run audit:check"
 ```
 
-> Note: It is possible to circumvent this by using `-n` parameter when committing using `git commit -nm <message>`. A CI (*Continuous Integration*) `vulnerability-check` vulnerability Check (*see next section*) is thus required to ensure enforcement.
+> Nota: É possível contornar isto utilizando o parâmetro `-n` ao fazer o commit com `git commit -nm <message>`. É, por isso, necessária uma verificação de vulnerabilidades `vulnerability-check` de CI (*Continuous Integration*) (*ver a secção seguinte*) para assegurar o cumprimento.
 
-##### Automated CI Validations
+##### Validações automatizadas de CI
 
-This will ensure that auditing checks occur during reviews and releases, and also ensure that Git Pre-Commit Hook are not circumvented.
+Isto garante que são feitas verificações de auditoria durante as revisões e as disponibilizações de versões e garante também que o git pre-commit hook não é contornado.
 
-CI Configs (i.e. `.circleci/config.yml`)  must contain a `vulnerability-check` vulnerability Check CI Job (i.e. `npm run dep:check`) for all Pull-Request, merges to Main branch, and Tagged Releases.
+As configurações de CI (ou seja, o `.circleci/config.yml`)  têm de conter um job de CI de verificação de vulnerabilidades `vulnerability-check` (ou seja, `npm run dep:check`) para todos os Pull-Request, merges para o branch Main e versões com tag.
 
-## Design + Implementation Guidelines
+## Orientações de design e implementação
 
-These guidelines are meant as recommendations for writing code in the Mojaloop community (or code that will be adopted into the community). If you are writing code that you wish to donate code to the community, we ask that you follow these guidelines as much as possible to aid with the consistency and maintainability of the codebase. Donations that adhere to these guidelines will be adopted more easily and swiftly.
+Estas orientações são recomendações para escrever código na comunidade Mojaloop (ou código que será adotado pela comunidade). Quem escreve código que pretende doar à comunidade deve seguir estas orientações tanto quanto possível, para ajudar na consistência e na manutenibilidade da base de código. As doações que cumprem estas orientações serão adotadas mais fácil e rapidamente.
 
-For more information, refer to the FAQ [below](#faqs).
+Para mais informação, consulte as FAQ [abaixo](#faqs).
 
-## Tools + Frameworks
+## Ferramentas e frameworks
 
-In the Mojaloop OSS Community, we prefer the following tools and frameworks:
+Na Comunidade OSS do Mojaloop, preferimos as seguintes ferramentas e frameworks:
 
-- **Web Server:** [`HapiJS`](https://github.com/hapijs/hapi)
-- **Web UI Framework:** [`ReactJS`](https://reactjs.org/)
-- **Runtime Configuration:** [`convict`](https://www.npmjs.com/package/convict), with [`rc`](https://www.npmjs.com/package/rc) for legacy. (both for env variables and config files)
-- **Package Management:** `npm`
-- **Logging:** [`@mojaloop/central-services-logger`](https://github.com/mojaloop/central-services-logger#readme) library, built on top of Winston
-- **Containers and Orchestration:** [`docker`](https://www.docker.com/) and [`kubernetes`](https://kubernetes.io/)
-- **Unit Testing:** For existing tests, [`Tape`](https://github.com/substack/tape), but we are currently moving over to [`Jest`](https://jestjs.io/) for new codebases.
-- **Test Coverage:** [`nyc`](https://github.com/istanbuljs/nyc)
+- **Servidor web:** [`HapiJS`](https://github.com/hapijs/hapi)
+- **Framework de UI web:** [`ReactJS`](https://reactjs.org/)
+- **Configuração de execução:** [`convict`](https://www.npmjs.com/package/convict), com [`rc`](https://www.npmjs.com/package/rc) para o legado. (tanto para variáveis de ambiente como para ficheiros de configuração)
+- **Gestão de pacotes:** `npm`
+- **Registo de eventos:** biblioteca [`@mojaloop/central-services-logger`](https://github.com/mojaloop/central-services-logger#readme), construída sobre o Winston
+- **Contentores e orquestração:** [`docker`](https://www.docker.com/) e [`kubernetes`](https://kubernetes.io/)
+- **Testes unitários:** para os testes existentes, [`Tape`](https://github.com/substack/tape), mas estamos atualmente a passar para [`Jest`](https://jestjs.io/) nas bases de código novas.
+- **Cobertura de testes:** [`nyc`](https://github.com/istanbuljs/nyc)
 - **CI:** [`CircleCI`](https://circleci.com/)
 
-By using these tools and frameworks, we maintain a high level of consistency and maintainability across the codebase, which keeps our developers productive and happy. While we don't mandate that donated codebases use these same tools and frameworks, we would like to stress that adoptions that use different tools could create an undue maintenance burden on the Community.
+Ao utilizar estas ferramentas e frameworks, mantemos um elevado nível de consistência e de manutenibilidade em toda a base de código, o que mantém os nossos programadores produtivos e satisfeitos. Embora não imponhamos que as bases de código doadas utilizem estas mesmas ferramentas e frameworks, gostaríamos de sublinhar que as adoções que utilizam ferramentas diferentes podem criar uma carga de manutenção indevida para a Comunidade.
 
-## Adopting Open Source Contributions into Mojaloop
+## Adoção de contribuições de código aberto no Mojaloop
 
-This section provides guidelines regarding the adoption of a contribution to the Mojaloop Open Source repositories. Adoption is the process where we as the community work with a contributor to bring a contribution into alignment with our standards and guidelines to be a part of the Mojaloop OSS Codebase.
+Esta secção fornece orientações sobre a adoção de uma contribuição nos repositórios Mojaloop Open Source. A adoção é o processo em que nós, enquanto comunidade, trabalhamos com um contribuidor para alinhar uma contribuição com as nossas normas e orientações, de modo a que faça parte da base de código OSS do Mojaloop.
 
->*Note:* Code Contributions are evaluated on a **case-by-case** basis. Contributions that don't align to these guidelines will need to go through the incubation phase as described below. Other misalignments to these standards (for example, framework choices) may be added to a roadmap for further improvement and OSS Standardization in the future.
+>*Nota:* As contribuições de código são avaliadas **caso a caso**. As contribuições que não estejam alinhadas com estas orientações terão de passar pela fase de incubação descrita abaixo. Outros desalinhamentos face a estas normas (por exemplo, escolhas de frameworks) podem ser acrescentados a um roadmap para melhoria e normalização OSS futuras.
 
-### Step 0: Prerequisites
+### Passo 0: Pré-requisitos
 
-Before a contribution is to be considered for adoption, it:
+Antes de uma contribuição ser considerada para adoção, esta:
 
-1. Should be in-line with the [Level One Project Principles](https://leveloneproject.org/).
-1. Should adhere to the above Style and Design + Implementation Guides.
-1. Should contain documentation to get started: the more, the better.
-1. Contain tests with a high level of coverage. At a minimum, a contribution should contain unit tests, but a test suite with unit, integration and functional tests is preferred. Refer to the [contributors guide](./tools-and-technologies/automated-testing) for more information.
+1. Deveria estar em linha com os [Princípios do Level One Project](https://leveloneproject.org/).
+1. Deveria cumprir os guias de estilo e de design e implementação acima.
+1. Deveria conter documentação para começar: quanto mais, melhor.
+1. Conter testes com um elevado nível de cobertura. No mínimo, uma contribuição deveria conter testes unitários, mas é preferível um conjunto de testes com testes unitários, de integração e funcionais. Consulte o [guia de contribuidores](./tools-and-technologies/automated-testing) para mais informação.
 
-### Step 1: Incubation
+### Passo 1: Incubação
 
-1. Create a private repo within the Mojaloop GitHub organization for the adopted code.
-1. Have a sub-team of the DA take a look to make sure its portable \(to OSS\) - aligns with L1P principles, etc, and ensure design is in line with standards.
-1. Check Licensing of the contribution and any new dependencies it requires, and add the standard Mojaloop License with attribution to donor/contributors.
-1. Assess the current state of the codebase, including documentation, tests, code quality, and address any shortfalls.
-1. Assess Performance impact.
-1. Create action items \(stories\) to update naming, remove/sanitize any items that are not generic
-1. Inspect and discuss any framework and tooling choices.
+1. Criar um repositório privado na organização Mojaloop do GitHub para o código adotado.
+1. Ter uma subequipa da DA a analisá-lo para garantir que é portável \(para OSS\) - que está alinhado com os princípios L1P, etc., e garantir que o design está em linha com as normas.
+1. Verificar o licenciamento da contribuição e de quaisquer novas dependências de que necessite, e acrescentar a licença padrão do Mojaloop com atribuição ao doador/contribuidores.
+1. Avaliar o estado atual da base de código, incluindo documentação, testes e qualidade do código, e resolver quaisquer lacunas.
+1. Avaliar o impacto no desempenho.
+1. Criar itens de ação \(stories\) para atualizar a nomenclatura e remover/sanear quaisquer itens que não sejam genéricos
+1. Inspecionar e discutir quaisquer escolhas de frameworks e de ferramentas.
 
-- If a decision is made to make any changes, add them to the roadmap.
+- Se for tomada a decisão de fazer quaisquer alterações, acrescentá-las ao roadmap.
 
-### Step 2: Public Adoption
+### Passo 2: Adoção pública
 
-1. Make the project public on Mojaloop GitHub.
-1. Announce on the slack [`#announcements`](https://mojaloop.slack.com/archives/CG3MAJZ5J) channel.
-1. Enable CI/CD Pipelines and publish any relevant artifacts, such as Docker Images or npm modules.
-1. Review and recommend a module or course for the Mojaloop Training Program if needed and relevant for this contribution.
+1. Tornar o projeto público no GitHub do Mojaloop.
+1. Anunciar no canal [`#announcements`](https://mojaloop.slack.com/archives/CG3MAJZ5J) do slack.
+1. Ativar os pipelines de CI/CD e publicar quaisquer artefactos relevantes, como imagens Docker ou módulos npm.
+1. Rever e recomendar um módulo ou curso para o Programa de Formação do Mojaloop, se for necessário e relevante para esta contribuição.
 
-## Versioning
+## Versionamento
 
-Review the information on [versioning](./versioning.md) for Mojaloop.
+Consulte a informação sobre [versionamento](./versioning.md) do Mojaloop.
 
-## Creating new Features
+## Criar novas funcionalidades
 
-Process for creating new [features and branches](./creating-new-features.md) in Mojaloop.
+Processo de criação de novas [funcionalidades e branches](./creating-new-features.md) no Mojaloop.
 
-## Pull Request Process
+## Processo de pull request
 
-It's a good idea to ask about major changes on [Slack](https://mojaloop.slack.com). Submit pull requests which include both the change and the reason for the change. Feel free to use GitHub's "Draft Pull Request" feature to open up your changes for comments and review from the community.
+É boa ideia perguntar sobre alterações importantes no [Slack](https://mojaloop.slack.com). Submeta pull requests que incluam tanto a alteração como a razão da alteração. Esteja à vontade para utilizar a funcionalidade «Draft Pull Request» do GitHub para abrir as suas alterações a comentários e a revisão por parte da comunidade.
 
-Pull requests will be denied if they violate the [Level One Principles](https://leveloneproject.org/wp-content/uploads/2016/03/L1P_Level-One-Principles-and-Perspective.pdf).
+Os pull requests serão recusados se violarem os [Princípios do Level One](https://leveloneproject.org/wp-content/uploads/2016/03/L1P_Level-One-Principles-and-Perspective.pdf).
 
-## Code of conduct
+## Código de conduta
 
-We use the [Mojaloop Foundation Code of Conduct](https://github.com/mojaloop/mojaloop/blob/master/CODE_OF_CONDUCT.md)
+Utilizamos o [Código de Conduta da Mojaloop Foundation](https://github.com/mojaloop/mojaloop/blob/master/CODE_OF_CONDUCT.md)
 
-## Licensing
+## Licenciamento
 
-See [License](https://github.com/mojaloop/mojaloop/blob/master/contribute/License.md) policy.
+Consulte a política de [licenciamento](https://github.com/mojaloop/mojaloop/blob/master/contribute/License.md).
 
 ## FAQs
 
-**1. What if I want to contribute code, but it doesn't align with the code style and framework/tool recommendations in this guide?**
+**1. E se eu quiser contribuir com código, mas este não estiver alinhado com o estilo de código e com as recomendações de frameworks/ferramentas deste guia?**
 
-  Contributions are accepted on a *case by case* basis. If your contribution is not yet ready to be fully adopted, we can go through the incubation phase described above, where the code is refactored with our help and brought into alignment with the code and documentation requirements.
+  As contribuições são aceites *caso a caso*. Se a contribuição ainda não estiver pronta para ser plenamente adotada, podemos passar pela fase de incubação descrita acima, em que o código é refatorizado com a nossa ajuda e alinhado com os requisitos de código e de documentação.
 
-**2. These standards are outdated, and a newer, cooler tool (or framework, method or language) has come along that will solve problem *x* for us. How can I update the standards?**
+**2. Estas normas estão desatualizadas e surgiu uma ferramenta (ou framework, método ou linguagem) mais recente e mais interessante que resolverá o problema *x* para nós. Como posso atualizar as normas?**
 
-  Writing high quality, functional code is a moving target, and we always want to be on the lookout for new tools that will improve the Mojaloop OSS codebase. So please talk to us in the design authority slack channel (`#design-authority`) if you have a recommendation.
+  Escrever código funcional e de elevada qualidade é um alvo em movimento, e queremos estar sempre atentos a novas ferramentas que melhorem a base de código OSS do Mojaloop. Por isso, fale connosco no canal da design authority no slack (`#design-authority`) se tiver uma recomendação.

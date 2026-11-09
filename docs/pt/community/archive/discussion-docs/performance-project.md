@@ -2,178 +2,178 @@
 i18n_source_sha: 58f3ee075258a90e4935acfcf0fdaa86260d85d7
 ---
 
-# Performance Workstream
+# Workstream de desempenho
 
-Wednesday, March 11, 2020
+Quarta-feira, 11 de março de 2020
 
-## Performance Goals:
+## Objetivos de desempenho:
 
-- Current HW system achieving stable 1k TPS, peak 5k and proven horizontal scalability
-  1. More instances = more performance in almost linear fashion.
-  1. Validate the minimum infrastructure to do 1K TPS (fin TPS)
-  1. Determine the entry level configuration and cost (AWS and on-premise)
+- Sistema de HW atual a atingir 1k TPS de forma estável, pico de 5k e escalabilidade horizontal comprovada
+  1. Mais instâncias = mais desempenho, de forma quase linear.
+  1. Validar a infraestrutura mínima para fazer 1K TPS (TPS fin)
+  1. Determinar a configuração e o custo de nível de entrada (AWS e infraestrutura própria)
 
-## POCs:
+## POC:
 
-Test the impact or a direct replace of the mysql DB with an shared memory network service like redis (using redlock alg if locks are required)
+Testar o impacto ou a substituição direta da BD mysql por um serviço de rede de memória partilhada, como o redis (utilizando o algoritmo redlock, se forem necessários locks)
 
-Test a different method of sharing state, using a light version of event-driven with some CQRS
+Testar um método diferente de partilha de estado, utilizando uma versão leve de event-driven com algum CQRS
 
-## Resources:
+## Recursos:
 
-- Slack Channel: `#perf-engineering`
-- [Mid-PI performance presentation](https://github.com/mojaloop/documentation-artifacts/tree/master/presentations/March2020-PI9-MidPI-Review)
-- [Setting up the monitoring components](https://github.com/mojaloop/helm/tree/master/monitoring)
+- Canal do Slack: `#perf-engineering`
+- [Apresentação de desempenho de meio de PI](https://github.com/mojaloop/documentation-artifacts/tree/master/presentations/March2020-PI9-MidPI-Review)
+- [Configurar os componentes de monitorização](https://github.com/mojaloop/helm/tree/master/monitoring)
  
-## Action/Follow-up Items:
+## Itens de ação/seguimento:
 
-- What Kafka metrics (client & server side) should we be reviewing? - Confluent to assist
-- Explore Locking and position settlement - Sybrin to assist
-  1. Review RedLock - pessimistic locking vs automatic locking
-  2. Remove the shared DB in the middle (automatic locking on Redis)
+- Que métricas de Kafka (do lado do cliente e do servidor) deveríamos estar a rever? - Confluent a apoiar
+- Explorar os locks e a liquidação de posições - Sybrin a apoiar
+  1. Rever o RedLock - locking pessimista face a locking automático
+  2. Remover a BD partilhada pelo meio (locking automático no Redis)
 
-- Combine prepare/position handler w/ distributed DB
-- Review node.js client and how it impacts kafka, configuration of Node and ultimate Kafka client - Nakul
-- Turn back on tracing to see how latency and applications are behaving
-- Ensure the call counts have been rationalized (at a deeper level)
-- Validate the processing times on the handlers and we are hitting the cache  
-- Async patterns in Node
-  1. Missing someone who is excellent on mysql and percona
-  2. Are we leveraging this correctly
+- Combinar o handler de prepare/position com uma BD distribuída
+- Rever o cliente node.js e a forma como afeta o kafka, a configuração do Node e o cliente Kafka final - Nakul
+- Voltar a ligar o tracing para ver como se comportam a latência e as aplicações
+- Garantir que as contagens de chamadas foram racionalizadas (a um nível mais profundo)
+- Validar os tempos de processamento nos handlers e se estamos a atingir a cache  
+- Padrões assíncronos no Node
+  1. Falta alguém que seja excelente em mysql e percona
+  2. Estaremos a tirar partido disto corretamente
         
-- What cache layer are we using (in memory)
-- Review the event modeling implementation - identify the domain events
+- Que camada de cache estamos a utilizar (em memória)
+- Rever a implementação da modelação de eventos - identificar os eventos de domínio
 - Node.js/kubernetes - 
-- Focus on application issues not as much as arch issues
-- How we are doing async technology - review this (Node.JS - larger issue) threaded models need to be optimize - Nakul
+- Focar nos problemas da aplicação, não tanto nos problemas de arquitetura
+- Como estamos a fazer a tecnologia assíncrona - rever isto (Node.JS - questão mais ampla), os modelos com threads precisam de ser otimizados - Nakul
  
-## Meeting Notes/Details
+## Notas/detalhes da reunião
 
-### History
+### Historial
 
-1. Technology has been put in place, hoped the design solves an enterprise problem
+1. A tecnologia foi implementada, esperava-se que o design resolvesse um problema empresarial
         
-2. Community effort did not prioritize on making the slices of the system enterprise grade or cheap to run
+2. O esforço da comunidade não deu prioridade a tornar as fatias do sistema de nível empresarial ou baratas de operar
         
-3. OSS technology choices
+3. Escolhas de tecnologia OSS
 
-### Goals
+### Objetivos
 
-1. Optimize current system
-2. Make it cheaper to run
-3. Make it scalable to 5K TPS  
-4. Ensure value added services can effectively and securely access transaction data 
+1. Otimizar o sistema atual
+2. Torná-lo mais barato de operar
+3. Torná-lo escalável até 5K TPS  
+4. Garantir que os serviços de valor acrescentado conseguem aceder aos dados das transações de forma eficaz e segura 
 
-### Testing Constraints
+### Restrições dos testes
 
-1. Only done the golden transfer - transfer leg    
-2. Flow of transfer
-3. Simulators (legacy and advance) - using the legacy one for continuity 
-4. Disabled the timeout handler
-5. 8 DFSP (participant organizations) w/ more DFSPs we would be able to scale
+1. Só foi feita a transferência golden - a perna da transferência    
+2. Fluxo da transferência
+3. Simuladores (legado e avançado) - a utilizar o legado por continuidade 
+4. Handler de tempo limite desativado
+5. 8 DFSP (organizações participantes) - com mais DFSP conseguiríamos escalar
 
-### Process
+### Processo
 
-1. Jmeter initiates payer request    
-2. Legacy simulator Receives fulfill notify callback
-3. Legacy simulator Handles Payee processing, initiatives Fulfillment Callback
-4. Record in the positions table for each DFSP
-    - a. Partial algorithm where the locking is done to reserve the funds, do calculations and do the final commits
-    - b. Position handler is Processing one record at a time
+1. O Jmeter inicia o pedido do pagador    
+2. O simulador legado recebe o callback de notificação de fulfill
+3. O simulador legado trata do processamento do beneficiário, inicia o callback de execução
+4. Registo na tabela de posições de cada DFSP
+    - a. Algoritmo parcial em que o lock é feito para reservar os fundos, fazer os cálculos e fazer os commits finais
+    - b. O handler de posições processa um registo de cada vez
 
-5. Future algorithm would do a bulk 
+5. O algoritmo futuro faria um processamento em lote 
         
-- One transfer is handled by one position handler
-    - Transfers are all pre-funded
+- Uma transferência é tratada por um handler de posições
+    - As transferências são todas pré-financiadas
 
-1. Reduced settlement costs     
-2. Can control how fast DFSPs respond to the fulfill request (complete the transfers committed first before handling new requests)
-- System need to timeout transfers that go longer then 30 seconds
-  - Any redesign of the DBs 
-  - Test Cases
+1. Custos de liquidação reduzidos     
+2. É possível controlar a rapidez com que os DFSPs respondem ao pedido de fulfill (concluir primeiro as transferências confirmadas antes de tratar novos pedidos)
+- O sistema precisa de terminar por tempo limite as transferências que demorem mais de 30 segundos
+  - Qualquer redesenho das BD 
+  - Casos de teste
 
-- Financial transaction
-  - End-to-end
-  - Prepare-only
-  - Fulfil only
+- Transação financeira
+  - Ponta a ponta
+  - Apenas prepare
+  - Apenas fulfil
 
-- Individual Mojaloop Characterization
-  - Services & Handlers
-  - Streaming Arch & Libraries
-  - Database
-  - What changed: 150 to 300 TPS?
+- Caracterização individual do Mojaloop
+  - Serviços e handlers
+  - Arquitetura e bibliotecas de streaming
+  - Base de dados
+  - O que mudou: 150 para 300 TPS?
 
-- How we process the messages
-- Position handler (run in mixed mode, random 
-  - Latency Measurement
+- Como processamos as mensagens
+- Handler de posições (executar em modo misto, aleatório 
+  - Medição da latência
 
-1. 5 sec for DB to process, X sec for Kafka to process
-2. How to measure this?
+1. 5 s para a BD processar, X s para o Kafka processar
+2. Como medir isto?
 
-### Targets 
+### Metas 
 
-1. High enough the system has to function well
-2. Crank the system up to add scale (x DFSPs addition) 
-3. Suspicious cases for investigations
-4. Observing contentions around the DB
-5. Shared DB, 600MS w/ out any errors
-  - Contention is fully on the DB
-  - Bottleneck is the DB (distribute systems so they run independently 
+1. Suficientemente elevadas para que o sistema tenha de funcionar bem
+2. Aumentar o sistema para acrescentar escala (adição de x DFSP) 
+3. Casos suspeitos para investigação
+4. Observar as contenções em torno da BD
+5. BD partilhada, 600 MS sem quaisquer erros
+  - A contenção está totalmente na BD
+  - O estrangulamento é a BD (distribuir os sistemas para que corram de forma independente 
 
 
 
-- 16 databases run end to end 
+- 16 bases de dados executadas de ponta a ponta 
 - GSMA - 500 TPS
-- What is the optimal design?
+- Qual é o design ótimo?
 
-### Contentions 
+### Contenções 
 
-1. System handler contention 
-    - Where the system can be scaled
-1. If there are arch changes that we need to make we can explore this
-    - Consistency for each DFSP
-    - Threading of info flows - open question
+1. Contenção do handler do sistema 
+    - Onde o sistema pode ser escalado
+1. Se houver alterações de arquitetura que tenhamos de fazer, podemos explorá-las
+    - Consistência para cada DFSP
+    - Threading dos fluxos de informação - questão em aberto
 
-1. Sku'ed results of single DB for all DFSPs     
-1. Challenge is where get to with additional HW 
-    - What are the limits of the application design
-1. Financial transfers (in and out of the system)
-    - Audit systems
-    - Settlement activity 
-    - Grouped into DB solves some issues
-    - Confluent feedback
+1. Resultados enviesados de uma única BD para todos os DFSPs     
+1. O desafio é saber até onde se chega com HW adicional 
+    - Quais são os limites do design da aplicação
+1. Transferências financeiras (para dentro e para fora do sistema)
+    - Sistemas de auditoria
+    - Atividade de liquidação 
+    - Agrupar na BD resolve alguns problemas
+    - Feedback da Confluent
 
-1. Shared DB issues, multiple DBs
+1. Problemas de BD partilhada, várias BD
         
-1. Application design level issues
+1. Problemas ao nível do design da aplicação
         
-1. Seen situations where we ran a bunch of simulators/sandboxes
-    - Need to rely on tracers and scans once this gets in productions
-    - Miguel states we disable tracing for now
+1. Vimos situações em que executámos um conjunto de simuladores/sandboxes
+    - É preciso recorrer a tracers e análises assim que isto entrar em produção
+    - Miguel afirma que desativamos o tracing por agora
  
-### Known Issues
+### Problemas conhecidos
 
-1. Load CPU resources on boxes (node waiting around) - reoptimize code
-2. Processing times increase over time
+1. Carga de recursos de CPU nas máquinas (node à espera) - reotimizar o código
+2. Os tempos de processamento aumentam ao longo do tempo
 
-## Optimization
- 1. Distributed monolithic - PRISM - getting rid of redundant reads
- 2. Combine the handlers - Prepare+Position & Fulfil+Position
+## Otimização
+ 1. Monolítico distribuído - PRISM - eliminar as leituras redundantes
+ 2. Combinar os handlers - Prepare+Position e Fulfil+Position
 
-### What are we trying to fix?
-  1. Can we scale the system?    
-  2. What does this cost to do this? (scale unit cost) 
-  3. Need to understand  - how to do this from a small and large scale
-  3. Optimized the resources
-  4. 2.5 sprints
-  5. Need to scale horizontal 
-  6. Add audit and repeatability - 
+### O que estamos a tentar corrigir?
+  1. Conseguimos escalar o sistema?    
+  2. Quanto custa fazê-lo? (custo por unidade de escala) 
+  3. É preciso perceber  - como fazer isto em pequena e em grande escala
+  3. Recursos otimizados
+  4. 2,5 sprints
+  5. É preciso escalar horizontalmente 
+  6. Acrescentar auditoria e repetibilidade - 
 
-### Attendees:
+### Participantes:
 
-- Don, Joran (newly hired perf expert) - Coil
+- Don, Joran (perito de desempenho recém-contratado) - Coil
 - Sam, Miguel, Roman, Valentine, Warren, Bryan, Rajiv - ModusBox
 - Pedro - Crosslake
 - Rhys, Nakul Mishra - Confluent
 - Miller - Gates Foundation
-- In-person: Lewis (CL), Rob (MB), Roland (Sybrin), Greg (Sybrin), Megan (V), Simeon (V), Kim (CL)
+- Presencialmente: Lewis (CL), Rob (MB), Roland (Sybrin), Greg (Sybrin), Megan (V), Simeon (V), Kim (CL)

@@ -2,81 +2,80 @@
 i18n_source_sha: e2ea9a95cf6c62978d0525610038845a43e853df
 ---
 
-# Critical Change Process
+# Processo de alteração crítica
 
-_**In Mojaloop, the "critical change process" is similar to the "consequential change process" but with additional
-oversight and a formal sign-off requirement, given the high risk nature of such changes in our operating environment.**_
+_**No Mojaloop, o «processo de alteração crítica» é semelhante ao «processo de alteração consequencial», mas com supervisão
+adicional e um requisito de aprovação formal, dado o elevado risco deste tipo de alterações no nosso ambiente de funcionamento.**_
 
-For changes which are covered by the [critical change definition](./design-review.md#critical-changes) the
-following process must be followed:
+Para as alterações abrangidas pela [definição de alteração crítica](./design-review.md#alteracoes-criticas), deve ser
+seguido o processo seguinte:
 
-1. Propose a product change to the Mojaloop Product Council:
-    1. Create a 'Product Change Proposal' in the GitHub 'product-council' project
-       repository [here](https://github.com/mojaloop/product-council-project/issues).
-        1. Complete the template as thoroughly as possible to ensure a quick turnaround.
-    2. Send a message on the [#product-council](https://mojaloop.slack.com/archives/C01FF8AQUAK) slack channel asking
-       for a review of your proposal.
-    3. The Product Council will discuss your proposal with you in order to understand where it fits within the Mojaloop
-       product roadmap.
-2. Propose code changes to the Mojaloop Design Authority:
-    1. Create a 'Critical Change Proposal' issue in the GitHub 'design-authority-project'
-       repository [here](https://github.com/mojaloop/design-authority-project/issues).
-        1. Complete the template as thoroughly as possible to ensure a quick turnaround.
-    2. Send a message on the [#design-authority](https://mojaloop.slack.com/archives/CARJFMH3Q) slack channel asking for
-       a review of your proposal.
-    3. The design authority will assign two or more members to work with you on your proposal.
-3. Take part in a design review:
-    1. Your assigned design authority members will guide you through an iterative design review process.
-    2. Once the design review process is complete your assigned design authority members will formally sign-off your
-       design for implementation to begin
-    3. Once your design has been formally signed-off, you may proceed with your change.
-4. Implement and review your code changes:
-    1. Create and work on github/zenhub work items in
-       your [workstream process](./product-engineering-process.md#mojaloop-workstreams) as necessary. Be sure to
-       reference the product council ticket and critical change proposal ticket in your item descriptions to enable
-       future traceability.
-    2. When you are ready to make pull requests on one or more code repositories, contact your assigned design authority
-       members and ask them to begin the code review phase.
-    3. Be ready to respond to questions and make adjustments during this stage.
-    4. Once your assigned design authority members approve your pull request(s) your feature is ready for including in
-       the official Mojaloop release process.
-    5. Your assigned design authority members will formally record their approving review of your pull request(s).
-    6. Any changes to the design made during implementation must be recorded on the proposal ticket.
+1. Proponha uma alteração de produto ao Product Council do Mojaloop:
+    1. Crie uma 'Product Change Proposal' no repositório do projeto 'product-council'
+       do GitHub, [aqui](https://github.com/mojaloop/product-council-project/issues).
+        1. Preencha o modelo da forma mais completa possível para garantir uma resposta rápida.
+    2. Envie uma mensagem no canal [#product-council](https://mojaloop.slack.com/archives/C01FF8AQUAK) do Slack a pedir
+       uma revisão da proposta.
+    3. O Product Council discutirá a proposta com o proponente para perceber onde se enquadra no roadmap de produto
+       do Mojaloop.
+2. Proponha alterações de código à Design Authority do Mojaloop:
+    1. Crie uma issue 'Critical Change Proposal' no repositório 'design-authority-project'
+       do GitHub, [aqui](https://github.com/mojaloop/design-authority-project/issues).
+        1. Preencha o modelo da forma mais completa possível para garantir uma resposta rápida.
+    2. Envie uma mensagem no canal [#design-authority](https://mojaloop.slack.com/archives/CARJFMH3Q) do Slack a pedir
+       uma revisão da proposta.
+    3. A Design Authority atribuirá dois ou mais membros para trabalhar com o proponente na proposta.
+3. Participe numa revisão de design:
+    1. Os membros da Design Authority atribuídos orientarão o proponente ao longo de um processo iterativo de revisão de design.
+    2. Concluído o processo de revisão de design, os membros da Design Authority atribuídos aprovarão formalmente o
+       design para que a implementação possa começar
+    3. Depois de o design ter sido formalmente aprovado, é possível avançar com a alteração.
+4. Implemente e reveja as alterações de código:
+    1. Crie e trabalhe em itens de trabalho do github/zenhub no
+       [processo do workstream](./product-engineering-process.md#workstreams-do-mojaloop) conforme necessário. Não deixe de
+       referenciar o ticket do Product Council e o ticket da proposta de alteração crítica nas descrições dos itens, para permitir
+       a rastreabilidade futura.
+    2. Quando estiver tudo pronto para fazer pull requests num ou mais repositórios de código, contacte os membros da Design Authority
+       atribuídos e peça-lhes que iniciem a fase de revisão de código.
+    3. Prepare-se para responder a perguntas e fazer ajustes durante esta fase.
+    4. Assim que os membros da Design Authority atribuídos aprovarem os pull requests, a funcionalidade está pronta para ser incluída
+       no processo oficial de disponibilização de versões do Mojaloop.
+    5. Os membros da Design Authority atribuídos registarão formalmente a sua revisão de aprovação dos pull requests.
+    6. Quaisquer alterações ao design feitas durante a implementação devem ser registadas no ticket da proposta.
 
-![Critical Change Process](../../../community/contributing/assets/critical-change-process.jpg)
+![Processo de alteração crítica](../../../community/contributing/assets/critical-change-process.jpg)
 
-## What to expect during the design review process
+## O que esperar durante o processo de revisão de design
 
-_The Mojaloop Design Authority has responsibility for ensuring risks are identified and mitigated appropriately and that
-our established standards for tools, patterns and practices are upheld. Your assigned design authority member(s) are
-there to help you achieve the best possible outcome for yourself and the entire Mojaloop community._
+_A Design Authority do Mojaloop tem a responsabilidade de garantir que os riscos são identificados e mitigados de forma adequada e que
+as nossas normas estabelecidas para ferramentas, padrões e práticas são respeitadas. Os membros da Design Authority atribuídos
+existem para ajudar a alcançar o melhor resultado possível para o proponente e para toda a comunidade Mojaloop._
 
-Your assigned design authority members will help you identify and mitigate any risks your change may introduce as well
-as discussing how your design aligns with established tools, patterns and practices.
+Os membros da Design Authority atribuídos ajudarão a identificar e mitigar quaisquer riscos que a alteração possa introduzir, bem
+como a discutir a forma como o design se alinha com as ferramentas, os padrões e as práticas estabelecidos.
 
-1. You will be asked to talk through the reason(s) for your proposed change and to explain what you wish to achieve and
-   how you intend to achieve it.
-    1. You should be able to refer to an existing Mojaloop Product Council GitHub ticket showing that you have discussed
-       your work with them and they are happy for the change to be made. Note that the Product Council has a
-       responsibility to maintain a coherent roadmap for our technology and will guide you on the most appropriate way
-       to achieve your business objectives within the Mojaloop context. The Product Council may consult the Design
-       Authority as part of this process.
-    2. You should be able to explain how your change will be implemented, which existing components will be affected,
-       how they need to change and your designs for any new components. You should present, as a minimum:
-        1. UML sequence diagrams showing each significant component involved in your usecase(s) and how they interact to
-           achieve your desired outcome(s). You should make sure to include error cases as well as "normal" expected
-           behaviours.
-        2. Full details of any third-party components you will use as part of your implementation.
-        3. Full details of any changes to existing components highlighting the differences between current behaviours
-           and your desired changed and/or new behaviours.
-    3. Your assigned Design Authority members will likely ask lots of questions in order to fully understand your
-       proposal and its context.
-2. Your assigned design authority members will help you identify any other potentially impacted contributors, teams or
-   stakeholders to bring them in to the review process. This is done to ensure up and downstream behaviours are not
-   adversely affected and also, to take into account any upcoming changes in other areas of the system. Mojaloop is a
-   large system and it is often helpful to bring in experts from other areas to assist.
-3. The primary goal of your assigned Design Authority members is to identify and mitigate risks that you may not have
-   spotted.
-    1. Your assigned design authority members may make suggestions to mitigate risk from your design and may ask you
-       to make specific changes to bring your proposal in line with any established Mojaloop constraints.
-
+1. Será pedido ao proponente que exponha as razões da alteração proposta e que explique o que pretende alcançar e
+   como pretende alcançá-lo.
+    1. O proponente deveria poder referir um ticket GitHub existente do Product Council do Mojaloop que mostre que discutiu
+       o trabalho com este e que o Product Council concorda com a alteração. Note-se que o Product Council tem a
+       responsabilidade de manter um roadmap coerente para a nossa tecnologia e orientará o proponente sobre a forma mais adequada
+       de alcançar os seus objetivos de negócio no contexto do Mojaloop. O Product Council pode consultar a Design
+       Authority no âmbito deste processo.
+    2. O proponente deveria poder explicar como a alteração será implementada, que componentes existentes serão afetados,
+       como têm de mudar e o seu design para quaisquer componentes novos. Deveria apresentar, no mínimo:
+        1. Diagramas de sequência UML que mostrem cada componente significativo envolvido no(s) caso(s) de utilização e a forma como interagem para
+           alcançar o(s) resultado(s) pretendido(s). Deveria certificar-se de que inclui os casos de erro, bem como os comportamentos esperados
+           «normais».
+        2. Todos os detalhes de quaisquer componentes de terceiros que utilizará na implementação.
+        3. Todos os detalhes de quaisquer alterações aos componentes existentes, destacando as diferenças entre os comportamentos atuais
+           e os comportamentos alterados e/ou novos pretendidos.
+    3. Os membros da Design Authority atribuídos farão provavelmente muitas perguntas para compreender plenamente a
+       proposta e o seu contexto.
+2. Os membros da Design Authority atribuídos ajudarão a identificar quaisquer outros contribuidores, equipas ou
+   partes interessadas potencialmente afetados, para os envolver no processo de revisão. Isto é feito para garantir que os comportamentos a montante e a jusante não
+   são afetados negativamente e também para ter em conta quaisquer alterações futuras noutras áreas do sistema. O Mojaloop é um
+   sistema grande e é frequentemente útil envolver especialistas de outras áreas para ajudar.
+3. O objetivo principal dos membros da Design Authority atribuídos é identificar e mitigar riscos que o proponente possa não ter
+   detetado.
+    1. Os membros da Design Authority atribuídos podem fazer sugestões para mitigar o risco do design e podem pedir
+       alterações específicas para alinhar a proposta com quaisquer restrições estabelecidas do Mojaloop.

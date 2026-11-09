@@ -2,43 +2,43 @@
 i18n_source_sha: 1e447aa02780818cd02decf1a0079084554ee033
 ---
 
-# Pull Request Guidelines
+# Orientações para pull requests
 
-> **Applies to:** All contributors submitting pull requests to repositories under the [Mojaloop GitHub organisation](https://github.com/mojaloop).
-> These guidelines complement the [Contributors' Guide](contributors-guide.md), the [AI Policy](../standards/ai_policy.md), and the [Product Engineering Process](product-engineering-process.md).
+> **Aplica-se a:** Todos os contribuidores que submetem pull requests a repositórios da [organização Mojaloop no GitHub](https://github.com/mojaloop).
+> Estas orientações complementam o [Guia de contribuidores](contributors-guide.md), a [Política de IA](../standards/ai_policy.md) e o [Processo de engenharia de produto](product-engineering-process.md).
 
-**AI Disclosure** This document includes content generated with assistance from Claude Sonnet 4.6. All content has been reviewed and validated by the author.
+**Divulgação de IA** Este documento inclui conteúdo gerado com a assistência do Claude Sonnet 4.6. Todo o conteúdo foi revisto e validado pelo autor.
 
 
 ---
 
-## 1. Before You Open a PR
+## 1. Antes de abrir um PR
 
-### 1.1 Start With a GitHub Issue
+### 1.1 Começar com uma issue do GitHub
 
-Every PR must be linked to a GitHub Issue. Do not open a PR without one.
+Todos os PR devem estar ligados a uma issue do GitHub. Não abra um PR sem uma issue.
 
-- If a relevant issue does not exist, **create it first** and allow time for triage or discussion before beginning implementation — especially for non-trivial changes.
-- Issues are the primary space for design discussion, scoping decisions, and alignment with maintainers. Use them.
+- Se não existir uma issue relevante, **crie-a primeiro** e dê tempo para a triagem ou a discussão antes de começar a implementação — especialmente no caso de alterações não triviais.
+- As issues são o espaço principal para a discussão do design, as decisões de âmbito e o alinhamento com os responsáveis pela manutenção. Utilize-as.
 
 
-### 1.2 Discuss Consequential or Critical Changes First
+### 1.2 Discutir primeiro as alterações consequenciais ou críticas
 
-If your change touches shared interfaces, settlement or clearing logic, core APIs, or security-sensitive code, review the [Consequential Change Process](https://docs.mojaloop.io/community/contributing/consequential-change-process.html) and [Critical Change Process](https://docs.mojaloop.io/community/contributing/critical-change-process.html) **before writing any code**. Raising a large architectural change as a surprise PR will result in it being returned for prior discussion.
+Se a alteração incidir sobre interfaces partilhadas, lógica de liquidação ou de compensação, APIs nucleares ou código sensível do ponto de vista da segurança, consulte o [Processo de alteração consequencial](consequential-change-process.md) e o [Processo de alteração crítica](critical-change-process.md) **antes de escrever qualquer código**. Uma grande alteração de arquitetura apresentada de surpresa num PR será devolvida para discussão prévia.
 
 ---
 
-## 2 Pull Request Titles
+## 2 Títulos dos pull requests
 
-Mojaloop uses [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) to help our automated tooling manage releases and deployments. Your Pull Request title **must** conform to the conventional commits specification to pass the CI/CD checks in CircleCI.
+O Mojaloop utiliza [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) para ajudar as nossas ferramentas automatizadas a gerir as versões e os deployments. O título do pull request **tem de** estar em conformidade com a especificação Conventional Commits para passar as verificações de CI/CD no CircleCI.
 
-By adopting Conventional Commits + Semantic Versioning we can automatically release a new version for a given component and increment the `MAJOR`, `MINOR` and `BUGFIX` versions based soley on the PR titles, and auto generate rich changelogs. (See [this example](https://github.com/mojaloop/thirdparty-scheme-adapter/releases/tag/v11.20.0) of an auto generated changelog)
+Ao adotar Conventional Commits + Semantic Versioning, podemos disponibilizar automaticamente uma nova versão de um dado componente e incrementar as versões `MAJOR`, `MINOR` e `BUGFIX` com base unicamente nos títulos dos PR, e gerar automaticamente changelogs detalhados. (Consulte [este exemplo](https://github.com/mojaloop/thirdparty-scheme-adapter/releases/tag/v11.20.0) de um changelog gerado automaticamente)
 
-> **Note**:
-> When merging (and squashing) a PR, GitHub uses the *title* of the PR for the git commit message. This means that to specify a breaking change, you must use the `!` format:
-> "If included in the type/scope prefix, breaking changes MUST be indicated by a ! immediately before the :. If ! is used, BREAKING CHANGE: MAY be omitted from the footer section, and the commit description SHALL be used to describe the breaking change."
+> **Nota**:
+> Ao fazer o merge (e o squash) de um PR, o GitHub utiliza o *título* do PR para a mensagem do commit git. Isto significa que, para indicar uma alteração incompatível, tem de ser utilizado o formato `!`:
+> «Se incluídas no prefixo type/scope, as alterações incompatíveis DEVEM ser indicadas por um ! imediatamente antes dos :. Se for utilizado !, BREAKING CHANGE: PODE ser omitido da secção de rodapé, e a descrição do commit DEVE ser utilizada para descrever a alteração incompatível.»
 
-#### Examples of good PR titles
+#### Exemplos de bons títulos de PR
 
 - feat(api): add ability to handle `PUT /thirdpartyRequests/trasactions/{ID}` endpoint
 - fix: update outdated node modules
@@ -47,83 +47,83 @@ By adopting Conventional Commits + Semantic Versioning we can automatically rele
 
 ---
 
-## 3. Keep PRs Small and Focused
+## 3. Manter os PR pequenos e focados
 
-This is the single most important thing you can do to help reviewers and maintainers.
+Esta é a coisa mais importante que é possível fazer para ajudar os revisores e os responsáveis pela manutenção.
 
-### 3.1 One PR, One Purpose
+### 3.1 Um PR, um propósito
 
-A pull request should do exactly one thing: fix one bug, implement one feature, or address one concern. Mixed-purpose PRs are hard to review, hard to revert if something goes wrong, and create ambiguous commit history.
+Um pull request deveria fazer exatamente uma coisa: corrigir um erro, implementar uma funcionalidade ou tratar uma questão. Os PR com vários propósitos são difíceis de rever, difíceis de reverter se algo correr mal e criam um histórico de commits ambíguo.
 
-**Do not combine:**
-- A bug fix and a refactor
-- A feature and unrelated test clean-up
-- Dependency updates and functional changes
-- Whitespace changes with functional changes
+**Não combine:**
+- Uma correção de erro e uma refatorização
+- Uma funcionalidade e uma limpeza de testes não relacionada
+- Atualizações de dependências e alterações funcionais
+- Alterações de espaços em branco com alterações funcionais
 
-If you find yourself writing "and also..." in the PR description, that is a signal to split the PR.
+Se der por si a escrever «e também...» na descrição do PR, isso é um sinal para dividir o PR.
 
-Note that changes to lots of whitespace e.g. reindenting, can obscure the purpose of an underlying change. Separate large whitespace changes into their own PRs to ease the review process.
+Note-se que alterações a muitos espaços em branco, por exemplo, uma nova indentação, podem ocultar o propósito de uma alteração subjacente. Separe as grandes alterações de espaços em branco em PR próprios para facilitar o processo de revisão.
 
-### 3.2 Target an Appropriate Diff Size
+### 3.2 Visar uma dimensão de diff adequada
 
-There is no hard line-count limit, but as a practical guide:
+Não existe um limite rígido de número de linhas, mas, como orientação prática:
 
-| Diff size | Expectation |
+| Dimensão do diff | Expectativa |
 |---|---|
-| < 200 lines | Ideal. Can be reviewed quickly and thoroughly. |
-| 200 – 500 lines | Acceptable for well-scoped changes with good context. |
-| 500 – 1000 lines | Requires strong justification. Consider splitting. |
-| > 1000 lines | Will likely be returned and asked to be broken up unless the change is inherently atomic (e.g. a generated file, a large rename). |
+| < 200 linhas | Ideal. Pode ser revisto de forma rápida e minuciosa. |
+| 200 – 500 linhas | Aceitável para alterações bem delimitadas e com bom contexto. |
+| 500 – 1000 linhas | Exige uma justificação sólida. Pondere dividir. |
+| > 1000 linhas | Será provavelmente devolvido com um pedido de divisão, a menos que a alteração seja inerentemente atómica (por exemplo, um ficheiro gerado, uma grande mudança de nomes). |
 
-When a large change is genuinely atomic — such as a schema migration, a code generation output, or a bulk rename — add a note explaining why it cannot be split.
+Quando uma grande alteração é genuinamente atómica — como uma migração de esquema, o resultado de uma geração de código ou uma mudança de nomes em massa —, adicione uma nota a explicar por que razão não pode ser dividida.
 
-### 3.3 Separate Refactoring From Functional Changes
+### 3.3 Separar a refatorização das alterações funcionais
 
-If you need to refactor code before making a functional change, raise the refactor as its own PR first. Mixing refactoring and behaviour changes makes it difficult to verify that no regressions have been introduced.
+Se for necessário refatorizar código antes de fazer uma alteração funcional, apresente primeiro a refatorização num PR próprio. Misturar refatorização e alterações de comportamento torna difícil verificar que não foram introduzidas regressões.
 
-### 3.4 Keep Commits Clean
+### 3.4 Manter os commits limpos
 
-Squash or reorganise your commits before opening the PR so that each commit represents a logical, self-contained step. Avoid commits like `fix typo`, `wip`, or `try again`. A clean commit history helps reviewers and makes `git bisect` useful.
-
----
-
-## 4. Writing a Good PR Description
-
-A well-written description is not optional — it is part of your contribution. Reviewers should not have to reverse-engineer your intent from the diff.
-
-Your PR description must include:
-
-### 4.1 What and Why
-
-Explain **what** the change does and **why** it is needed. Link to the relevant GitHub Issue. Do not simply restate the issue title — add the context a reviewer needs to evaluate your implementation choices.
-
-### 4.2 How to Test
-
-Describe how the reviewer can verify the change works correctly. Include:
-- Steps to reproduce the issue (for bug fixes)
-- How to exercise the new behaviour (for features)
-- Pointers to the relevant automated tests
-
-If a change cannot be automatically tested, explain why and describe the manual verification you performed.
-
-### 4.3 Breaking Changes
-
-If your PR introduces any breaking change — to an API, a configuration interface, a database schema, or a shared contract — call this out **explicitly and prominently** at the top of the description. Breaking changes require additional review and may need to follow the [Consequential Change Process](https://docs.mojaloop.io/community/contributing/consequential-change-process.html).
-
-### 4.4 AI Assistance Disclosure (see Section 4)
-
-If AI tools were used in producing any part of the PR — code, tests, or PR description — this must be disclosed in the PR description. See Section 4 for the required format.
+Faça o squash ou reorganize os commits antes de abrir o PR, para que cada commit represente um passo lógico e autónomo. Evite commits como `fix typo`, `wip` ou `try again`. Um histórico de commits limpo ajuda os revisores e torna o `git bisect` útil.
 
 ---
 
-## 5. AI Assistance: Attribution and Accountability
+## 4. Escrever uma boa descrição do PR
 
-The [Mojaloop AI Policy](https://docs.mojaloop.io/community/standards/ai_policy.html) applies to all PR contributions. The following rules distil that policy into concrete PR requirements.
+Uma descrição bem escrita não é opcional — faz parte da contribuição. Os revisores não deveriam ter de deduzir a intenção a partir do diff.
 
-### 5.1 Disclosure Is Mandatory
+A descrição do PR tem de incluir:
 
-If any AI tool (including but not limited to GitHub Copilot, ChatGPT, Claude, Gemini, Cursor, or similar) assisted in producing **any part of your PR** — including code, tests, commit messages, or the PR description itself — you must include the following disclosure block in your PR description:
+### 4.1 O quê e porquê
+
+Explique **o que** a alteração faz e **porque** é necessária. Inclua a ligação para a issue do GitHub relevante. Não se limite a repetir o título da issue — acrescente o contexto de que um revisor precisa para avaliar as escolhas de implementação.
+
+### 4.2 Como testar
+
+Descreva como o revisor pode verificar que a alteração funciona corretamente. Inclua:
+- Passos para reproduzir o problema (no caso de correções de erros)
+- Como exercitar o novo comportamento (no caso de funcionalidades)
+- Indicações dos testes automatizados relevantes
+
+Se uma alteração não puder ser testada automaticamente, explique porquê e descreva a verificação manual realizada.
+
+### 4.3 Alterações incompatíveis
+
+Se o PR introduzir qualquer alteração incompatível — a uma API, a uma interface de configuração, a um esquema de base de dados ou a um contrato partilhado —, assinale-a **de forma explícita e destacada** no início da descrição. As alterações incompatíveis exigem revisão adicional e podem ter de seguir o [Processo de alteração consequencial](consequential-change-process.md).
+
+### 4.4 Divulgação da assistência de IA (ver a secção 4)
+
+Se tiverem sido utilizadas ferramentas de IA na produção de qualquer parte do PR — código, testes ou descrição do PR —, isso tem de ser divulgado na descrição do PR. Consulte a secção 4 para o formato exigido.
+
+---
+
+## 5. Assistência de IA: atribuição e responsabilização
+
+A [Política de IA do Mojaloop](../standards/ai_policy.md) aplica-se a todas as contribuições através de PR. As regras seguintes condensam essa política em requisitos concretos para os PR.
+
+### 5.1 A divulgação é obrigatória
+
+Se qualquer ferramenta de IA (incluindo, entre outras, GitHub Copilot, ChatGPT, Claude, Gemini, Cursor ou semelhantes) tiver ajudado a produzir **qualquer parte do PR** — incluindo código, testes, mensagens de commit ou a própria descrição do PR —, tem de ser incluído o seguinte bloco de divulgação na descrição do PR:
 
 ```
 **AI Assistance Disclosure**
@@ -133,13 +133,13 @@ Scope: [brief description of what was AI-assisted, e.g. "unit test scaffolding",
 All AI-generated content has been reviewed, understood, and validated by the author.
 ```
 
-All code files in the Mojaloop GitHub org must include a license and contributors header. Ensure any files you change have your name and current email address in the list. If you have used AI you should include details of the tools used alongside your name and email thus:
+Todos os ficheiros de código na organização GitHub do Mojaloop têm de incluir um cabeçalho de licença e de contribuidores. Certifique-se de que todos os ficheiros alterados têm o seu nome e endereço de e-mail atual na lista. Se tiver utilizado IA, deveria incluir os detalhes das ferramentas utilizadas junto ao seu nome e e-mail, assim:
 
 ```
  - {your name} <{your email}> [Assisted by {model name} {model version}] 
 ```
 
-e.g.
+por exemplo:
 ```
 /*****
  License
@@ -171,69 +171,69 @@ e.g.
  ******/
 ```
 
-Omitting this disclosure when AI was used is a violation of the AI Policy and will result in the PR being returned.
+Omitir esta divulgação quando foi utilizada IA constitui uma violação da Política de IA e resultará na devolução do PR.
 
-### 5.2 You Are Fully Accountable for All Submitted Code
+### 5.2 Responsabilidade total por todo o código submetido
 
-Disclosure is not a waiver of responsibility. Whether or not AI assistance was used, the human author of the PR is fully accountable for:
+A divulgação não dispensa a responsabilidade. Quer tenha ou não sido utilizada assistência de IA, o autor humano do PR é totalmente responsável por:
 
-- The **correctness** of the logic
-- The **security** of the implementation
-- **Architectural consistency** with Mojaloop standards
-- **Licensing compliance** — you must not submit AI-generated code derived from impermissibly licensed training data
-- **Long-term maintainability** of what you have introduced
+- A **correção** da lógica
+- A **segurança** da implementação
+- A **consistência da arquitetura** com as normas do Mojaloop
+- A **conformidade com as licenças** — não é permitido submeter código gerado por IA derivado de dados de treino com licenças não admissíveis
+- A **manutenibilidade a longo prazo** do que foi introduzido
 
-"The AI wrote it" is not an acceptable response to a review comment. If you cannot explain and defend every part of your PR, it is not ready to submit.
+«Foi a IA que o escreveu» não é uma resposta aceitável a um comentário de revisão. Se não for possível explicar e defender todas as partes do PR, este não está pronto para ser submetido.
 
-### 5.3 AI Must Not Substitute for Human Judgment
+### 5.3 A IA não pode substituir o juízo humano
 
-AI tools may not be used to make or delegate architectural or design decisions. Where an AI tool proposes an approach that deviates from established Mojaloop patterns or invariants, the human contributor is responsible for recognising this and correcting it before submission.
+As ferramentas de IA não podem ser utilizadas para tomar ou delegar decisões de arquitetura ou de design. Quando uma ferramenta de IA propõe uma abordagem que se afasta dos padrões ou das invariantes estabelecidos do Mojaloop, o contribuidor humano é responsável por o reconhecer e por o corrigir antes da submissão.
 
-### 5.4 Automated Agent Submissions Are Prohibited
+### 5.4 As submissões por agentes automatizados são proibidas
 
-PRs may not be submitted by fully autonomous AI agents. All PRs must be opened by a human contributor. The only exception is officially sanctioned GitHub-native automation already integrated into Mojaloop workflows (e.g. Dependabot, Snyk, Mojaloop Foundation Automated tooling for maintenance). Automated agent submissions will be dismissed without review.
-
----
-
-## 6. Code Quality Checklist
-
-Before marking a PR ready for review, confirm the following:
-
-- The PR is linked to a GitHub Issue with a closing keyword
-- The PR does exactly one thing; unrelated changes have been removed or split out
-- All automated tests pass locally
-- New behaviour is covered by tests
-- No new linting errors or warnings have been introduced
-- Dependency changes are justified and minimal
-- Any breaking changes are clearly flagged
-- The PR description explains what, why, and how to test
-- AI assistance disclosure is included if applicable (see Section 5.1)
-- You have read, understood, and can defend every line of the diff
+Os PR não podem ser submetidos por agentes de IA totalmente autónomos. Todos os PR têm de ser abertos por um contribuidor humano. A única exceção é a automação nativa do GitHub oficialmente autorizada e já integrada nos fluxos de trabalho do Mojaloop (por exemplo, Dependabot, Snyk, ferramentas automatizadas da Mojaloop Foundation para manutenção). As submissões por agentes automatizados serão rejeitadas sem revisão.
 
 ---
 
-## 7. Reviewer Expectations
+## 6. Lista de verificação da qualidade do código
 
-Reviewers are volunteers giving their time. Help them help you.
+Antes de marcar um PR como pronto para revisão, confirme o seguinte:
 
-- **Respond promptly** to review comments. If you need time, say so.
-- **Do not push unrelated changes** to a PR that is already under review without flagging them.
-- **Do not rebase or force-push** a PR that has active review comments — it disrupts the reviewer's context. Coordinate first.
-- If a reviewer asks you to split a PR, do so. This is not a criticism; it is how Mojaloop maintains a reviewable and bisectable history.
-- A PR with no activity for **30 days** may be closed by a maintainer. It can be reopened when you are ready to continue.
-
----
-
-## 8. Draft PRs
-
-Use GitHub's **Draft PR** feature for work in progress. This signals to maintainers and reviewers that feedback on overall direction is welcome but a full review is not yet requested. Convert to "Ready for Review" only when all checklist items above are satisfied.
-
----
-
-## 9. Hotfixes and Urgent Changes
-
-For critical security fixes or production-breaking bugs, follow the [Critical Change Process](https://docs.mojaloop.io/community/contributing/critical-change-process.html). Even under time pressure, the AI disclosure requirement and the code quality checklist still apply. A fast review is not a licence to skip them.
+- O PR está ligado a uma issue do GitHub com uma palavra-chave de fecho
+- O PR faz exatamente uma coisa; as alterações não relacionadas foram removidas ou separadas
+- Todos os testes automatizados passam localmente
+- O novo comportamento está coberto por testes
+- Não foram introduzidos novos erros ou avisos de linting
+- As alterações de dependências são justificadas e mínimas
+- Quaisquer alterações incompatíveis estão claramente assinaladas
+- A descrição do PR explica o quê, porquê e como testar
+- A divulgação da assistência de IA está incluída, se aplicável (ver a secção 5.1)
+- Leu, compreendeu e é capaz de defender cada linha do diff
 
 ---
 
-*For questions about these guidelines, post in the relevant workstream Slack channel or open a GitHub Issue against the [documentation repository](https://github.com/mojaloop/documentation).*
+## 7. Expectativas dos revisores
+
+Os revisores são voluntários que dedicam o seu tempo. Ajude-os a ajudar.
+
+- **Responda prontamente** aos comentários de revisão. Se precisar de tempo, diga-o.
+- **Não faça push de alterações não relacionadas** para um PR que já está em revisão sem as assinalar.
+- **Não faça rebase nem force-push** de um PR com comentários de revisão ativos — isso perturba o contexto do revisor. Coordene primeiro.
+- Se um revisor pedir que um PR seja dividido, divida-o. Isto não é uma crítica; é assim que o Mojaloop mantém um histórico revisível e compatível com bisect.
+- Um PR sem atividade durante **30 dias** pode ser fechado por um responsável pela manutenção. Pode ser reaberto quando estiver tudo pronto para continuar.
+
+---
+
+## 8. PR em rascunho
+
+Utilize a funcionalidade **Draft PR** do GitHub para trabalho em curso. Isto indica aos responsáveis pela manutenção e aos revisores que são bem-vindos comentários sobre a orientação geral, mas que ainda não é pedida uma revisão completa. Converta para «Ready for Review» apenas quando todos os itens da lista de verificação acima estiverem cumpridos.
+
+---
+
+## 9. Hotfixes e alterações urgentes
+
+No caso de correções de segurança críticas ou de erros que afetam a produção, siga o [Processo de alteração crítica](critical-change-process.md). Mesmo sob pressão de tempo, o requisito de divulgação de IA e a lista de verificação da qualidade do código continuam a aplicar-se. Uma revisão rápida não é uma licença para os ignorar.
+
+---
+
+*Para questões sobre estas orientações, publique no canal do Slack do workstream relevante ou abra uma issue do GitHub no [repositório da documentação](https://github.com/mojaloop/documentation).*

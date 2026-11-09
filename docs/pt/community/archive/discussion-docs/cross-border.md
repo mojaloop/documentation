@@ -2,390 +2,390 @@
 i18n_source_sha: 4deec6f8db992d12849b2c63b4a9ed53d2661c47
 ---
 
-**Cross-border Workstream Meeting**
+**Reunião do workstream de transfronteiriços**
 
-March 10th & 11th (London/remote)
+10 e 11 de março (Londres/remoto)
 
-**Next Steps for PI:**
+**Passos seguintes para o PI:**
 
-•  Proposal for how the CNP query and host oracle services and global goals  - Adrian, Michael 
+•  Proposta sobre a forma como o CNP consulta e aloja os serviços de oracle e os objetivos globais  - Adrian, Michael 
 
-•  Compound identifiers, ways in which this is captured in the system or expressed in apis - open
+•  Identificadores compostos, formas como isto é captado no sistema ou expresso nas apis - em aberto
 
-•  What information is captured in the data model or the extension list - Michael
+•  Que informação é captada no modelo de dados ou na lista de extensões - Michael
 
-•  Follow-up w/ SWIFT to discuss requirements - Matt 
+•  Seguimento com a SWIFT para discutir os requisitos - Matt 
 
-**Open Items:**
+**Itens em aberto:**
 
-•  Finalize CNP Requirements
+•  Finalizar os requisitos do CNP
 
-•  Has to aggregate information and put them together into a single request & they will need to sign separately
+•  Tem de agregar a informação e juntá-la num único pedido, e terão de assinar separadamente
 
-•  Finalize FXP has to manage FX rates, the settlements and what expires when
+•  Finalizar que o FXP tem de gerir as taxas de câmbio, as liquidações e o que expira quando
 
-•  CNPs can extend this and determine additional scheme rules
+•  Os CNP podem alargar isto e determinar regras de scheme adicionais
 
-•  FXP handles rounding errors
+•  O FXP trata dos erros de arredondamento
 
-•  FXP Guarantee a given rate
+•  O FXP garante uma dada taxa
 
-•  How do you get non-Mojaloop folks in the schema?
+•  Como se integram no schema os intervenientes não Mojaloop?
 
-•  How do we integrate Mojaloop and some Mojaloop scheme to provide a full PVT payments - working group with Michael, Adrian, Sybrin, others as needed
+•  Como integramos o Mojaloop e algum scheme Mojaloop para fornecer pagamentos PVT completos - grupo de trabalho com Michael, Adrian, Sybrin e outros, conforme necessário
 
-•  How do we manage requests for regulatory reasons
+•  Como gerimos os pedidos por razões regulatórias
 
-•  Investigate identifier mappings (Map pathfinder accounts/mobile accounts to DFSP unique IDs)
+•  Investigar os mapeamentos de identificadores (mapear contas pathfinder/contas móveis para IDs únicos de DFSP)
 
-•  Investigate Certification (Hash and PKKI)
+•  Investigar a certificação (Hash e PKKI)
 
 
-Detailed Meeting Notes:
-Day #1:
-	- Quote response
+Notas detalhadas da reunião:
+Dia #1:
+	- Resposta de cotação
 	
-		○ How do we code the SLA into the response
+		○ Como codificamos o SLA na resposta
 	
-		○ Ask a 2nd CNP to route
+		○ Pedir a um 2.º CNP que encaminhe
 		
-		○ In the API - need to package up how to get it there
+		○ Na API - é preciso empacotar a forma de lá chegar
 		
-		○ As a CMP in Mowali if I return a quote response the scheme has implications 
+		○ Enquanto CMP no Mowali, se eu devolver uma resposta de cotação, o scheme tem implicações 
 		
-		○ Follow the whole route from payer to payee 
+		○ Seguir todo o percurso do pagador ao beneficiário 
 		
-		○ Limiting the participation of CNP - they need to be the last hop
+		○ Limitar a participação do CNP - têm de ser o último salto
 		
-			§ How to define the requirements of a CNP?
+			§ Como definir os requisitos de um CNP?
 	
-	- Message format
+	- Formato das mensagens
 	
-		○ Http syntax
+		○ Sintaxe http
 		
-		○ Started from the mojaloop scheme 
+		○ Partiu-se do scheme mojaloop 
 		
-			§ Move towards the CNP should manage the conversion
+			§ Evoluir para que o CNP faça a gestão da conversão
 		
-		○ SWIFT version
+		○ Versão SWIFT
 		
-		○ Security - TLS
+		○ Segurança - TLS
 		
-		○ Header/content encrypted in JWS
+		○ Cabeçalho/conteúdo encriptados em JWS
 	
-	- Retail system
+	- Sistema de retalho
 	
-		○ Off network - remit to someone hub
+		○ Fora da rede - remeter para o hub de alguém
 	
-	- Data Model
+	- Modelo de dados
 	
-		○ Structure: Ways in which we added new information, different routes, etc.
+		○ Estrutura: formas como acrescentámos nova informação, rotas diferentes, etc.
 		
-		○ Privacy: Visibility and Security  - only accessible to the people that can see it
+		○ Privacidade: visibilidade e segurança  - apenas acessível às pessoas que a podem ver
 		
-		○ Content of the data model 
+		○ Conteúdo do modelo de dados 
 	
-	- Transfer is done through the switch (movement of money)
+	- A transferência é feita através do switch (movimento de dinheiro)
 	
-		○ In mowali - the amounts are expressed but the rate is important because it impacts settlements 
+		○ No mowali - os montantes são expressos, mas a taxa é importante, porque afeta as liquidações 
 	
-		§ Data flow - we add the rate when we send the quote back
+		§ Fluxo de dados - acrescentamos a taxa quando devolvemos a cotação
 		
-		§ Added in the extension list - should it be part of the standard?
+		§ Acrescentada na lista de extensões - deveria fazer parte da norma?
 	
-		§ Send and receive amount (differ currency) 
+		§ Montante enviado e recebido (moeda diferente) 
 	
-	- Data element
+	- Elemento de dados
 		
-		○ Fee for each participant
+		○ Comissão de cada participante
 		
-		○ Payer DFSP adds it up 
+		○ O DFSP pagador soma-as 
 		
-		○ Fee element for the transaction 
+		○ Elemento de comissão da transação 
 	
-	- Proposal
+	- Proposta
 
-		○ Account lookup service
+		○ Serviço de account lookup
 	
-			§ List of local FSP
+			§ Lista de FSP locais
 		
-		○ Switch - need to maintain state and lookup requests
+		○ Switch - precisa de manter o estado e os pedidos de consulta
 	
-			§ Should look like a domestic transfer to the sender
+			§ Para o remetente, deveria parecer uma transferência doméstica
 			
-			§ Collect the information and send it back -
+			§ Recolher a informação e devolvê-la -
 		
-		○ CNP - making assumptions to meet requirements
+		○ CNP - a fazer pressupostos para cumprir os requisitos
 		
-			§ Do you need to see the route
+			§ É preciso ver a rota
 			
-			§ Collecting different information downstream
+			§ A recolher informação diferente a jusante
 			
-			§ Sending FSPs needs to know who is the receiver
+			§ Os FSPs remetentes precisam de saber quem é o recetor
 			
-		○ CNP has to aggregate information and put them together into a single request & they will need to sign separately 
+		○ O CNP tem de agregar a informação e juntá-la num único pedido, e terão de assinar separadamente 
 			
-			§ Condition and fulfillment is part of a PKI structure
+			§ A condição e a execução fazem parte de uma estrutura PKI
 			
-			§ If there is more than one CNP - there needs to ensure the DFSP payee has to be certain the DFSP payer - connections
+			§ Se houver mais do que um CNP - é preciso garantir que o DFSP beneficiário tem de ter a certeza do DFSP pagador - ligações
 			
-			§ CNP needs to know everything, regulatory reporting - 
+			§ O CNP precisa de saber tudo, reporte regulatório - 
 			 
-		○ Do we need to duplicate the structure in a Cross-network transfer?
+		○ Precisamos de duplicar a estrutura numa transferência entre redes?
 			
-			§ Trying to prevent a rouge partner from joining
+			§ A tentar impedir a adesão de um parceiro malicioso
 			
-			§ Trust the CNP to meet their SLAs
+			§ Confiar em que o CNP cumpre os seus SLAs
 		
-		○ Mojaloop to another scheme - we don’t have control
+		○ Do Mojaloop para outro scheme - não temos controlo
 		
-			§ Require they confirm receipt 
+			§ Exigir que confirmem a receção 
 			
-			§ How can I tell 
+			§ Como posso saber 
 			
-			§ How can I tell the person at the end got the money 
+			§ Como posso saber se a pessoa no fim recebeu o dinheiro 
 		
-		○ External signing authority to confirm the money was received
+		○ Autoridade de assinatura externa para confirmar que o dinheiro foi recebido
 		
-			§ If your scheme wants to participate in x-border then all the participants need to get signed
+			§ Se o seu scheme quiser participar em transfronteiriços, então todos os participantes têm de ser assinados
 			
-			§ Public key -  need to join a mojaloop network have to issue public keys
+			§ Chave pública -  para aderir a uma rede mojaloop é preciso emitir chaves públicas
 			
-			§ Central certificate issuing authority 
+			§ Autoridade central de emissão de certificados 
 			
-			§ Need a PKI structure in place 
+			§ É preciso ter uma estrutura de PKI implementada 
 		
-		○ How do you get non-Mojaloop folks in the schema?
+		○ Como se integram no schema os intervenientes não Mojaloop?
 		
-			§ How do we integrate Mojaloop and some Mojaloop scheme to provide a full PVT payments - working group with Michael, Adrian, Sybrin, others as needed
+			§ Como integramos o Mojaloop e algum scheme Mojaloop para fornecer pagamentos PVT completos - grupo de trabalho com Michael, Adrian, Sybrin e outros, conforme necessário
 			
-			§ Identify the participants  -  FSP, DFSP - all have signed
+			§ Identificar os participantes  -  FSP, DFSP - todos assinaram
 			
-			§ Parties - end users (Bob/Alice)
+			§ Partes - utilizadores finais (Bob/Alice)
 			
-			§ Single transaction (with multiple transfers)
+			§ Transação única (com várias transferências)
 			
-			§ No one commits their funds to everyone is satisfied 
+			§ Ninguém compromete os seus fundos até que todos estejam satisfeitos 
 			
-			§ How to extend mojaloop and non-mojaloop scheme 
+			§ Como alargar o scheme mojaloop e não mojaloop 
 		
-		○ Certification 
+		○ Certificação 
 		
-			§ Hash and PKKI
+			§ Hash e PKKI
 		
-			§ Gold and silver network
+			§ Rede gold e silver
 	
-			§ New partner - live on the network 
+			§ Novo parceiro - em produção na rede 
 			
-			§ Scheme decides requirement on the network 
+			§ O scheme decide os requisitos na rede 
 			
-			§ Self-signing cert 
+			§ Certificado autoassinado 
 		
-		○ Liquidity 
+		○ Liquidez 
 		
-			§ FXP does position mgmt
+			§ O FXP faz a gestão de posições
 			
-			§ What requirements do we put on a FXP
+			§ Que requisitos impomos a um FXP
 			
-			§ Mobile money has less flexibility 
+			§ O dinheiro móvel tem menos flexibilidade 
 			
-			§ Rules that happened across schemes 
+			§ Regras que se aplicavam entre schemes 
 		
-		○ FXP has to manage the settlements, what expires when, etc..
+		○ O FXP tem de gerir as liquidações, o que expira quando, etc.
 		
-			§ FXP has to manage the shortage of quote validity 
+			§ O FXP tem de gerir a escassez de validade das cotações 
 			
-			§ Allow FXP to reject the requests
+			§ Permitir que o FXP rejeite os pedidos
 	
-		○ How do we manage requests for regulatory reasons
+		○ Como gerimos os pedidos por razões regulatórias
 		
-			§ There is a dictionary 
+			§ Existe um dicionário 
 			
-				□ Is the a requirement to share KYC?
+				□ Existe o requisito de partilhar KYC?
 			
-				□ You can ask for many things - up to the participant 
+				□ Podem pedir-se muitas coisas - cabe ao participante 
 				
-				□ Need to agree on the baseline scheme
+				□ É preciso acordar o scheme de base
 
-**Day #2:**
+**Dia #2:**
 
-	- Switch data
+	- Dados do switch
 	
-		○ Account numbers
+		○ Números de conta
 		
-		○ Blacklist, white list (oversight and blocking)
+		○ Blacklist, white list (supervisão e bloqueio)
 		
-		○ Keeping it simple
+		○ Manter simples
 		
 		○ Hub 
 		
-		○ Side service for folks that can do this
+		○ Serviço paralelo para quem o consiga fazer
 		
-			§ Mobile data capture
+			§ Captura de dados móveis
 			
 			§ Side car
 			
-			§ Digital process 
+			§ Processo digital 
 			
-			§ Value added services for the hub (managed service)
+			§ Serviços de valor acrescentado para o hub (serviço gerido)
 	
-	- Switch - need to maintain state and lookup requests
+	- Switch - precisa de manter o estado e os pedidos de consulta
 	
-	- CNP can be an ordinary DFSP
+	- O CNP pode ser um DFSP comum
 	
-		○ All DFSP supports all the use cases
+		○ Todos os DFSPs suportam todos os casos de utilização
 		
-		○ Full participants (might just provide a CNP or FXP service)
+		○ Participantes plenos (podem apenas prestar um serviço de CNP ou de FXP)
 	
-	- FXP definition and requirements
+	- Definição e requisitos do FXP
 	
-		○ FXP - require rates/fees as part of the Quoting service - need standard industry rate
+		○ FXP - exigir taxas/comissões como parte do serviço de cotação - é necessária uma taxa padrão da indústria
 		
-			§ CNPs can extend this and determine additional scheme rules
+			§ Os CNP podem alargar isto e determinar regras de scheme adicionais
 		
-		○ FXP handles rounding errors 
+		○ O FXP trata dos erros de arredondamento 
 		
-		○ Guarantee a given rate
+		○ Garantir uma dada taxa
 		
-		○ Manage settlement across schemas
+		○ Gerir a liquidação entre schemas
 		
-		○ FX rates
+		○ Taxas de câmbio
 		
-		○ Should allow people that just do FX
+		○ Deveria permitir quem faz apenas câmbio
 		
-		○ Edge cases for failure
+		○ Casos-limite de falha
 		
-			§ Details in the error messages to find the errors
+			§ Detalhes nas mensagens de erro para encontrar os erros
 		
-		○ FXP needs to point back the right information 
+		○ O FXP precisa de devolver a informação certa 
 		
-			§ How messages passed work
+			§ Como funciona a passagem de mensagens
 			
-			§ Edge cases - share what is done too date
+			§ Casos-limite - partilhar o que foi feito até à data
 			
-			§ Jo owns got a working API - identified 
+			§ Jo tem uma API a funcionar - identificado 
 			
-			§ Changed the quote (intercepted the quote) -- 
+			§ Alterou a cotação (intercetou a cotação) -- 
 			
-			§ KYC extension list - extended the quote for this
+			§ Lista de extensões de KYC - alargou-se a cotação para isto
 			
-			§ Rates are in the extended list (are the list)
+			§ As taxas estão na lista alargada (são a lista)
 			
-			§ Where the FXP is applied ?
+			§ Onde é aplicado o FXP ?
 			
-			§ What do we do with fees downstream
+			§ O que fazemos com as comissões a jusante
 			
-				□  (payee DFSP takes place of the aggregation)
+				□  (o DFSP beneficiário assume a agregação)
 	
-	- How to manage identifier resolution 
+	- Como gerir a resolução de identificadores 
 	
-		○ 2 types of Identifiers
+		○ 2 tipos de identificadores
 		
-			§ Global ones (pass to CNP) - to get a response
+			§ Globais (passar ao CNP) - para obter uma resposta
 			
-			§ Local ones - expect the user to provide
+			§ Locais - espera-se que o utilizador os forneça
 		
-		○ Mojaloop we use identifiers as proxy 
+		○ No Mojaloop, utilizamos identificadores como proxy 
 		
-		○ Merchant numbers might be specific to a scheme 
+		○ Os números de comerciante podem ser específicos de um scheme 
 		
-		○ Multiple identifiers for a single account
+		○ Vários identificadores para uma única conta
 		
-		○ How do we uniquely identify the account?
+		○ Como identificamos a conta de forma única?
 		
-		○ Rely on CNP (restrict each identifiers in this scheme)
+		○ Depender do CNP (restringir cada identificador neste scheme)
 		
-		○ What sort of structures in place
+		○ Que tipo de estruturas existem
 		
-		○ Passport identification - place holders
+		○ Identificação por passaporte - marcadores de posição
 		
-		○ Map pathfinder accounts/mobile accounts to DFSP unique IDs
+		○ Mapear contas pathfinder/contas móveis para IDs únicos de DFSP
 		
-			§ Service - primary account is X
+			§ Serviço - a conta principal é X
 			
-			§ Each country has a service they provide
+			§ Cada país tem um serviço que disponibiliza
 			
-			§ Each CNP understands the address scheme
+			§ Cada CNP compreende o scheme de endereçamento
 			
-			§ Global one - need to know which ways to use 
+			§ Global - é preciso saber que vias utilizar 
 		
-		○ Sends a get parties to the switch 
+		○ Envia um get parties ao switch 
 		
-			§ ALS never heard of them
+			§ O ALS nunca ouviu falar deles
 			
-			§ 2 ways 
+			§ 2 vias 
 			
-				□ Global way (path finder and conversion to BIC)
+				□ Via global (path finder e conversão para BIC)
 	- CNP
 
-		○ Not hosting anything
+		○ Não aloja nada
 	
-		○ Route through the CNP - ask others
+		○ Encaminhar através do CNP - perguntar a outros
 		
-		○ Constructing the alternative routes 
+		○ Construir as rotas alternativas 
 	
-	- Global registry does not exist
+	- Não existe um registo global
 	
-		○ Ultimate beneficiary 
+		○ Beneficiário último 
 		
-		○ Established communication
+		○ Comunicação estabelecida
 		
-		○ Challenge will we able to have 2 DFSPs share direct communication and will be a stretch? 
+		○ O desafio será conseguirmos ter 2 DFSP a partilhar comunicação direta, e isso será difícil? 
 	
-	- Switch has schemes
+	- O switch tem schemes
 	
-		○ A Hub operator following Scheme Rules may allow names of FSPs as decided by those Rules
+		○ Um operador de hub que siga as regras do scheme pode permitir nomes de FSP conforme decidido por essas regras
 		
-		○ The technology or the Admin API itself doesn’t restrict the names (apart from restrictions on length, type or characters, etc)
+		○ A tecnologia ou a própria Admin API não restringe os nomes (para além das restrições de comprimento, tipo ou carateres, etc.)
 		
-		○ BGP: Border Gateway Protocol 
+		○ BGP: Border Gateway Protocol 
 	
-	- Query each CNP and then come up with optimizations, matrix that provides global route - goal would be not to query the CNP directly
+	- Consultar cada CNP e chegar depois a otimizações, uma matriz que forneça a rota global - o objetivo seria não consultar diretamente o CNP
 
-• How to connect with Mojaloop?
+• Como ligar-se ao Mojaloop?
 	
-	- Any financial service can connect to Mowali
+	- Qualquer serviço financeiro se pode ligar ao Mowali
 	
-	- Scheme rules, technical
+	- Regras de scheme, técnicas
 	
-	- Regulatory 
+	- Regulatórias 
 
-	- How do I assign stuff? - no one knows the steps
+	- Como atribuo as coisas? - ninguém conhece os passos
 	
-	- Mojaloop API - understand this.  
+	- API Mojaloop - compreender isto.  
 	
-	- 2 instances Mojaloop instances - TIPs and Mowali 
+	- 2 instâncias, instâncias Mojaloop - TIPs e Mowali 
 	
-		○ WOCCU, Asia, US - applied for instance
+		○ WOCCU, Ásia, EUA - candidataram-se a uma instância
 		
-		○ Still pushing the boundries 
+		○ Ainda a alargar as fronteiras 
 	
-	- What dos an integration look like
+	- Como é uma integração
 	
-		○ Need sandbox, simulators 
+		○ São precisos sandbox, simuladores 
 		
-		○ Standard approach
+		○ Abordagem padrão
 
-• Instance payment service
+• Serviço de pagamentos instantâneos
 
-	- Get the flows flowing in a timely manner
+	- Pôr os fluxos a correr atempadamente
 	
-	- Need real-time ledgers; what happens if they are offline?
+	- São precisos razões gerais em tempo real; o que acontece se estiverem offline?
 	
-	- Exception for off network (banks take advantage of float) 
+	- Exceção para fora da rede (os bancos tiram partido do float) 
 
-• Discovery process (sending FSP)
+• Processo de descoberta (FSP remetente)
 
-	- Switch determines if they need to contact a FXP
+	- O switch determina se é preciso contactar um FXP
 	
-	- What currency the receiving account can receive in 
+	- Em que moeda a conta recetora pode receber 
 	
-	- Multiple lookups
+	- Consultas múltiplas
 	
-	- Data model - set of accounts, w/ one currency at a DFSP
+	- Modelo de dados - conjunto de contas, com uma moeda num DFSP
 
 
-Attendees:
+Participantes:
 	
 	- Mike, Patricia - Thume
 	

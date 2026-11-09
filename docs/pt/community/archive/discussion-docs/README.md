@@ -2,30 +2,29 @@
 i18n_source_sha: 67fffae5f8e92d27e5766d390c9dab815ad5866b
 ---
 
-# Discussion Documents (Archive)
+# Documentos de discussão (arquivo)
 
 ## PI 10
-- [Performance Project](../../../../community/archive/discussion-docs/Mojaloop%20Performance%202020.pdf)
-- [Code Improvement Project](./code-improvement.md)
-- [Cross Border Project](./cross-border.md)
-- [PSIP Project](./pisp.md)
+- [Projeto de desempenho](./Mojaloop%20Performance%202020.pdf)
+- [Projeto de melhoria de código](./code-improvement.md)
+- [Projeto de transfronteiriços](./cross-border.md)
+- [Projeto PSIP](./pisp.md)
 
 ## PI 9
 
-- [Versioning Draft Proposal](./versioning-draft-proposal.md)
-- [Code Improvement Project](./code-improvement.md)
-- [Performance Project](./performance.md)
-- [Cross Border Project](./crossborder.md)
-- [PSIP Project](./pisp.md)
+- [Proposta de rascunho de versionamento](./versioning-draft-proposal.md)
+- [Projeto de melhoria de código](./code-improvement.md)
+- [Projeto de desempenho](./performance.md)
+- [Projeto de transfronteiriços](./crossborder.md)
+- [Projeto PSIP](./pisp.md)
 
 ## PI 8
 
-- [Cross Border Meeting Notes Day 1](./cross-border-day-1.md)
-- [Cross Border Meeting Notes Day 2](./cross-border-day-2.md)
-- [ISO integration Overivew](./iso-integration.md)
-- [Mojaoop Decimal Type; Based on XML Schema Decimal Type](./mojaloop-decimal.md)
+- [Notas da reunião sobre transfronteiriços, dia 1](./cross-border-day-1.md)
+- [Notas da reunião sobre transfronteiriços, dia 2](./cross-border-day-2.md)
+- [Visão geral da integração ISO](./iso-integration.md)
+- [Tipo decimal do Mojaloop; baseado no tipo decimal do XML Schema](./mojaloop-decimal.md)
 
 ## PI 7
 
-- [Workbench Workstream](./workbench.md)
-
+- [Workstream Workbench](./workbench.md)

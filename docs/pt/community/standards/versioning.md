@@ -2,129 +2,129 @@
 i18n_source_sha: b82657f378a3afbb8cd01d874334c601df511874
 ---
 
-# Versioning
+# Versionamento
 
-## Versioning of releases made for core Switch services
+## Versionamento das versões dos serviços nucleares do Switch
 
-This document provides guidelines regarding the versioning strategy used for the releases of Mojaloop Open Source repositories corresponding to the Switch services.
+Este documento fornece orientações sobre a estratégia de versionamento utilizada nas versões dos repositórios Mojaloop Open Source correspondentes aos serviços do Switch.
 
-### Versioning Strategy
-
-
-#### Standard for PI-11 and beyond
-1. Starting PI-11 (27th July, 2020) the Versioning guidance is to move to a versioning system that is closely aligned with Semantic versioning by removing the PI/Sprint dependency. So starting 11.x.x, the proposal is to move to pure [SemVer](https://semver.org/).
-2. At a high-level, we will still follow the vX.Y.Z format, but X represents ‘Major’ version, Y represents ‘Minor’ version and Z represents ‘patch’ version. Minor fixes, patches affect increments to ‘Z’, whereas non-breaking functionality changes affect changes to ‘Y; breaking changes affect the ‘X’ version.
-3. Along with these, suffixes such as “-snapshot”, “-patch”, “-hotfix” are used as relevant and on need basis (supported by CI config).
-4. So starting with 11.0.0 (primarily for Helm, but for individual services as well) for PI-11, the proposal is to move to pure [SemVer](https://semver.org/).
-5. This implies that for any new release of a package/service below X=11 (for existing repositories and not new ones) will first be baselined to v11.0.0 and from then on follow standard SemVer guidelines as discussed above. For new projects or repositories, versioning can start from v1.0.0 (after they reach release status)
+### Estratégia de versionamento
 
 
-#### Versioning Strategy used until PI-10
-1. The Mojaloop (up to PI-10) versioning system is inspired by the [Semantic Versioning](https://semver.org/) numbering system for releases.
-2. However, this is customized to depict the timelines of the Mojaloop project, based on the Program Increment \(PI\) and Sprint numbers
-3. For example, the release number v5.1.0 implies that this release was the first one made during a Sprint 5.1, where Sprint5.1 is the first Sprint in PI-5. So for a version vX.Y.Z, X.Y is the Sprint number where X is the PI number and Z represents the number of release for this specific repository. Example v4.4.4 implies that the current release is the fourth of four releases made in Sprint 4.4 \(of PI-4\)
+#### Norma para o PI-11 e seguintes
+1. A partir do PI-11 (27 de julho de 2020), a orientação de versionamento é passar para um sistema de versionamento estreitamente alinhado com o versionamento semântico, eliminando a dependência do PI/Sprint. Assim, a partir da 11.x.x, a proposta é passar para [SemVer](https://semver.org/) puro.
+2. A um nível geral, continuaremos a seguir o formato vX.Y.Z, mas X representa a versão «Major», Y representa a versão «Minor» e Z representa a versão «patch». As correções menores e os patches afetam os incrementos de «Z», ao passo que as alterações de funcionalidade compatíveis afetam as alterações de «Y»; as alterações incompatíveis afetam a versão «X».
+3. Além destes, são utilizados sufixos como «-snapshot», «-patch», «-hotfix», conforme relevante e consoante a necessidade (permitidos pela configuração de CI).
+4. Assim, a partir da 11.0.0 (principalmente para o Helm, mas também para os serviços individuais) para o PI-11, a proposta é passar para [SemVer](https://semver.org/) puro.
+5. Isto implica que qualquer nova versão de um pacote/serviço abaixo de X=11 (para repositórios existentes e não para novos) será primeiro nivelada para a v11.0.0 e, a partir daí, seguirá as orientações SemVer padrão discutidas acima. Para projetos ou repositórios novos, o versionamento pode começar na v1.0.0 (depois de atingirem o estado de versão publicada)
+
+
+#### Estratégia de versionamento utilizada até ao PI-10
+1. O sistema de versionamento do Mojaloop (até ao PI-10) inspira-se no sistema de numeração [Versionamento Semântico](https://semver.org/) para as versões.
+2. No entanto, este é personalizado para refletir os prazos do projeto Mojaloop, com base nos números do Program Increment \(PI\) e do Sprint
+3. Por exemplo, o número de versão v5.1.0 implica que esta versão foi a primeira feita durante um Sprint 5.1, em que o Sprint 5.1 é o primeiro Sprint do PI-5. Assim, para uma versão vX.Y.Z, X.Y é o número do Sprint, em que X é o número do PI, e Z representa o número da versão para este repositório específico. O exemplo v4.4.4 implica que a versão atual é a quarta de quatro versões feitas no Sprint 4.4 \(do PI-4\)
 
 
 
-### Current Version
+### Versão atual
 
-The current version information for Mojaloop can be found [here](../../deployment-guide/releases.md).
+A informação sobre a versão atual do Mojaloop pode ser consultada [aqui](../../deployment-guide/releases.md).
 
-### Sprint schedule for PI-13
+### Calendário de sprints do PI-13
 
-Below is the Sprint schedule for Program Increment 13 which ends with the PI-14 Community event in April 2021.
+Abaixo está o calendário de sprints do Program Increment 13, que termina com o evento da Comunidade do PI-14, em abril de 2021.
 
-|Phase/Milestone|Start|End|Weeks|Notes|
+|Fase/Marco|Início|Fim|Semanas|Notas|
 |---|---|---|---|---|
-|**Phase-5 Kick-off On-site**|1/25/2021|1/29/2021|5 days| Virtual Zoom Webinars|
-|**Sprint 13.1**|02/01/2021|02/14/2021|2 weeks | |
-|**Sprint 13.2**|02/15/2021|02/28/2021|2 weeks | |
-|**Sprint 13.3**|03/01/2021|03/14/2021|2 weeks | |
-|**Sprint 13.4**|03/15/2021|03/28/2021|2 weeks | |
-|**Sprint 13.5**|03/29/2021|04/11/2021|2 weeks | |
-|**Sprint 13.6**|04/12/2021|04/25/2021|2 weeks | |
-|**Phase-5 PI-14**|04/26/2021|04/30/2021|5 days| Virtual meetings |
+|**Arranque presencial da Fase 5**|25/01/2021|29/01/2021|5 dias| Webinars virtuais no Zoom|
+|**Sprint 13.1**|01/02/2021|14/02/2021|2 semanas | |
+|**Sprint 13.2**|15/02/2021|28/02/2021|2 semanas | |
+|**Sprint 13.3**|01/03/2021|14/03/2021|2 semanas | |
+|**Sprint 13.4**|15/03/2021|28/03/2021|2 semanas | |
+|**Sprint 13.5**|29/03/2021|11/04/2021|2 semanas | |
+|**Sprint 13.6**|12/04/2021|25/04/2021|2 semanas | |
+|**Fase 5 PI-14**|26/04/2021|30/04/2021|5 dias| Reuniões virtuais |
 
-### Sprint schedule for PI-12
+### Calendário de sprints do PI-12
 
-Below is the Sprint schedule for Program Increment 12 which ends with the PI-13 Community event in January 2021.
+Abaixo está o calendário de sprints do Program Increment 12, que termina com o evento da Comunidade do PI-13, em janeiro de 2021.
 
-|Phase/Milestone|Start|End|Weeks|Notes|
+|Fase/Marco|Início|Fim|Semanas|Notas|
 |---|---|---|---|---|
-|**Phase-4 Kick-off On-site**|1/28/2020|1/30/2020|3 days| Johannesburg|
-|**Phase-4 PI-10 Virtual**|4/21/2020|4/24/2020|4 days| Virtual Zoom Webinars|
-|**Phase-4 PI-11 Virtual**|7/21/2020|7/24/2020|4 days| Virtual Zoom Webinars|
-|**Phase-4 PI-12 Virtual**|10/19/2020|10/23/2020|5 days| Virtual Zoom Webinars|
-|**Sprint 12.1**|10/26/2020|11/15/2020|3 weeks | |
-|**Sprint 12.2**|11/16/2020|11/29/2020|2 weeks | |
-|**Sprint 12.3**|11/30/2020|12/13/2020|2 weeks | |
-|**Sprint 12.4**|12/14/2020|12/27/2020|2 weeks | |
-|**Sprint 12.5**|12/28/2020|01/10/2021|2 weeks | |
-|**Sprint 12.6**|01/11/2021|01/24/2021|2 weeks | |
-|**Phase-5 Kick-off / PI-13**|01/25/2021|01/29/2021|5 days| TBD |
+|**Arranque presencial da Fase 4**|28/01/2020|30/01/2020|3 dias| Joanesburgo|
+|**Fase 4 PI-10 virtual**|21/04/2020|24/04/2020|4 dias| Webinars virtuais no Zoom|
+|**Fase 4 PI-11 virtual**|21/07/2020|24/07/2020|4 dias| Webinars virtuais no Zoom|
+|**Fase 4 PI-12 virtual**|19/10/2020|23/10/2020|5 dias| Webinars virtuais no Zoom|
+|**Sprint 12.1**|26/10/2020|15/11/2020|3 semanas | |
+|**Sprint 12.2**|16/11/2020|29/11/2020|2 semanas | |
+|**Sprint 12.3**|30/11/2020|13/12/2020|2 semanas | |
+|**Sprint 12.4**|14/12/2020|27/12/2020|2 semanas | |
+|**Sprint 12.5**|28/12/2020|10/01/2021|2 semanas | |
+|**Sprint 12.6**|11/01/2021|24/01/2021|2 semanas | |
+|**Arranque da Fase 5 / PI-13**|25/01/2021|29/01/2021|5 dias| A definir |
 
-### Previous Sprint Schedules:
+### Calendários de sprints anteriores:
 
-### Sprint schedule for PI-11
+### Calendário de sprints do PI-11
 
-Below is the Sprint schedule for Program Increment 11 which ends with the PI 12 Event.
+Abaixo está o calendário de sprints do Program Increment 11, que termina com o evento do PI 12.
 
-|Phase/Milestone|Start|End|Weeks|Notes|
+|Fase/Marco|Início|Fim|Semanas|Notas|
 |---|---|---|---|---|
-|**Phase-4 Kick-off On-site**|1/28/2020|1/30/2020|3 days| Johannesburg|
-|**Phase-4 PI-10 Virtual**|4/21/2020|4/24/2020|4 days| Virtual Zoom Webinars |
-|**Phase-4 PI-11 Virtual**|7/21/2020|7/24/2020|4 days| Virtual Zoom Webinars |
-|**Sprint 11.1**|7/27/2020|8/9/2020|2 weeks| |
-|**Sprint 11.2**|8/10/2020|8/23/2020|2 weeks| |
-|**Sprint 11.3**|8/24/2020|9/6/2020|2 weeks| |
-|**Sprint 11.4**|9/7/2020|9/20/2020|2 weeks| |
-|**Sprint 11.5**|9/21/2020|10/4/2020|2 weeks| |
-|**Sprint 11.6**|10/5/2020|10/18/2020|2 weeks | |
-|**Phase-4 PI-12**|10/20/2020|10/23/2020|4 days| TBD |
+|**Arranque presencial da Fase 4**|28/01/2020|30/01/2020|3 dias| Joanesburgo|
+|**Fase 4 PI-10 virtual**|21/04/2020|24/04/2020|4 dias| Webinars virtuais no Zoom |
+|**Fase 4 PI-11 virtual**|21/07/2020|24/07/2020|4 dias| Webinars virtuais no Zoom |
+|**Sprint 11.1**|27/07/2020|09/08/2020|2 semanas| |
+|**Sprint 11.2**|10/08/2020|23/08/2020|2 semanas| |
+|**Sprint 11.3**|24/08/2020|06/09/2020|2 semanas| |
+|**Sprint 11.4**|07/09/2020|20/09/2020|2 semanas| |
+|**Sprint 11.5**|21/09/2020|04/10/2020|2 semanas| |
+|**Sprint 11.6**|05/10/2020|18/10/2020|2 semanas | |
+|**Fase 4 PI-12**|20/10/2020|23/10/2020|4 dias| A definir |
 
-#### Sprint schedule for PI-10
+#### Calendário de sprints do PI-10
 
-Below is the Sprint schedule for Program Increment 10 which ends with the PI 11 Event. Please use this as guidance during the versioning and release processes.
+Abaixo está o calendário de sprints do Program Increment 10, que termina com o evento do PI 11. Utilize-o como orientação durante os processos de versionamento e de disponibilização de versões.
 
-|Phase/Milestone|Start|End|Weeks|Notes|
+|Fase/Marco|Início|Fim|Semanas|Notas|
 |---|---|---|---|---|
-|**Phase-3 PI6 On-site**|4/16/2019|4/18/2019|3 days| Johannesburg|
-|**Phase-3 PI7 On-site**|6/25/2019|6/27/2019|3 days| Arusha|
-|**Phase-3 PI8 On-site**|9/10/2019|9/12/2019|3 days| Abidjan|
-|**Phase-4 Kick-off On-site**|1/28/2020|1/30/2020|3 days| Johannesburg|
-|**Phase-4 PI 10 Virtual**|4/21/2020|4/24/2020|5 days| Virtual Zoom Webinars |
-|**Sprint 10.1**|4/27/2020|5/10/2020|2 weeks| |
-|**Sprint 10.2**|5/11/2020|5/24/2020|2 weeks| |
-|**Sprint 10.3**|5/25/2020|6/7/2020|2 weeks| |
-|**Sprint 10.4**|6/8/2020|6/21/2020|2 weeks| |
-|**Sprint 10.5**|6/22/2020|7/5/2020|2 weeks| |
-|**Sprint 10.6**|7/6/2020|7/19/2020|2 weeks | |
-|**Phase-4 PI 11 On-Site**|7/21/2020|7/23/2020|3 days| Kenya (Tentative) |
+|**Fase 3 PI6 presencial**|16/04/2019|18/04/2019|3 dias| Joanesburgo|
+|**Fase 3 PI7 presencial**|25/06/2019|27/06/2019|3 dias| Arusha|
+|**Fase 3 PI8 presencial**|10/09/2019|12/09/2019|3 dias| Abidjan|
+|**Arranque presencial da Fase 4**|28/01/2020|30/01/2020|3 dias| Joanesburgo|
+|**Fase 4 PI 10 virtual**|21/04/2020|24/04/2020|5 dias| Webinars virtuais no Zoom |
+|**Sprint 10.1**|27/04/2020|10/05/2020|2 semanas| |
+|**Sprint 10.2**|11/05/2020|24/05/2020|2 semanas| |
+|**Sprint 10.3**|25/05/2020|07/06/2020|2 semanas| |
+|**Sprint 10.4**|08/06/2020|21/06/2020|2 semanas| |
+|**Sprint 10.5**|22/06/2020|05/07/2020|2 semanas| |
+|**Sprint 10.6**|06/07/2020|19/07/2020|2 semanas | |
+|**Fase 4 PI 11 presencial**|21/07/2020|23/07/2020|3 dias| Quénia (provisório) |
 
 #### PI-9
-|Phase/Milestone|Start|End|Weeks|Notes|
+|Fase/Marco|Início|Fim|Semanas|Notas|
 |---|---|---|---|---|
-|**Sprint 9.1**|2/3/2020|2/16/2020|2 weeks| |
-|**Sprint 9.2**|2/17/2020|3/1/2020|2 weeks| |
-|**Sprint 9.3**|3/2/2020|3/15/2020|2 weeks| |
-|**Sprint 9.4**|3/16/2020|3/29/2020|2 weeks| |
-|**Sprint 9.5**|3/30/2020|4/12/2020|2 weeks| |
-|**Sprint 9.6**|4/13/2020|4/19/2020|1 week | |
-|**Phase-4 PI 10 Virtual**|4/21/2020|4/23/2020|5 days| Virtual Zoom Webinars |
+|**Sprint 9.1**|03/02/2020|16/02/2020|2 semanas| |
+|**Sprint 9.2**|17/02/2020|01/03/2020|2 semanas| |
+|**Sprint 9.3**|02/03/2020|15/03/2020|2 semanas| |
+|**Sprint 9.4**|16/03/2020|29/03/2020|2 semanas| |
+|**Sprint 9.5**|30/03/2020|12/04/2020|2 semanas| |
+|**Sprint 9.6**|13/04/2020|19/04/2020|1 semana | |
+|**Fase 4 PI 10 virtual**|21/04/2020|23/04/2020|5 dias| Webinars virtuais no Zoom |
 
 #### PI-8
-|Phase/Milestone|Start|End|Weeks|Notes|
+|Fase/Marco|Início|Fim|Semanas|Notas|
 |---|---|---|---|---|
-|**Sprint 8.1**|9/16/2019|9/29/2019|2 weeks| |
-|**Sprint 8.2**|9/30/2019|10/13/2019|2 weeks| |
-|**Sprint 8.3**|10/14/2019|10/27/2019|2 weeks| |
-|**Sprint 8.4**|10/28/2019|11/10/2019|2 weeks| |
-|**Sprint 8.5**|11/11/2019|11/24/2019|2 weeks| |
-|**Sprint 8.6**|11/25/2019|12/8/2019|2 weeks| |
-|**Sprint 8.7**|12/9/2019|1/5/2020|4 weeks| Christmas Break|
-|**Sprint 8.8**|1/6/2020|1/26/2020|3 weeks| 1 week prep|
-|**Phase-4 Kick-off On-site**|1/28/2020|1/30/2020|3 days| Johannesburg|
+|**Sprint 8.1**|16/09/2019|29/09/2019|2 semanas| |
+|**Sprint 8.2**|30/09/2019|13/10/2019|2 semanas| |
+|**Sprint 8.3**|14/10/2019|27/10/2019|2 semanas| |
+|**Sprint 8.4**|28/10/2019|10/11/2019|2 semanas| |
+|**Sprint 8.5**|11/11/2019|24/11/2019|2 semanas| |
+|**Sprint 8.6**|25/11/2019|08/12/2019|2 semanas| |
+|**Sprint 8.7**|09/12/2019|05/01/2020|4 semanas| Pausa de Natal|
+|**Sprint 8.8**|06/01/2020|26/01/2020|3 semanas| 1 semana de preparação|
+|**Arranque presencial da Fase 4**|28/01/2020|30/01/2020|3 dias| Joanesburgo|
 
-### Notes
+### Notas
 
-1. A new release for **helm** repo is made based on the feature and configuration changes made to core services and requirements from thhe Community.
+1. É feita uma nova versão do repositório **helm** com base nas alterações de funcionalidades e de configuração feitas aos serviços nucleares e nos requisitos da Comunidade.
