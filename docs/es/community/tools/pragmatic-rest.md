@@ -2,9 +2,9 @@
 i18n_source_sha: bb7db5ef33650b91e40009b9769b355891fa1abf
 ---
 
-# Pragmatic REST
+# REST Pragmático
 
-## Pragmatic REST para el proyecto Mojaloop
+## REST Pragmático para el proyecto Mojaloop
 
 Con la aparición de la estrategia de API como herramienta de escalado para los negocios de servicios de Internet, el foco de la tecnología de interconexión se ha desplazado. Partiendo de los principios que permitieron que la Web se formara y escalara, REST \(Representational State Transfer\) se ha convertido en la preferencia de diseño para las API de servicios de Internet. Pero, aunque los principios REST, propuestos en la tesis de Roy Fielding que los definió, tienen valor académico como base de investigación, un diseño REST puro no es hoy práctico para la mayoría de las aplicaciones. Abogamos por una especie de Pragmatic REST, un patrón de diseño que adopta los componentes beneficiosos del diseño RESTful sin exigir una adhesión estricta a la pureza académica.
 
@@ -52,9 +52,9 @@ Los nombres de campo en JSON y SQL también deberían seguir esta convención, y
 
 También deberíamos evitar el uso de "$" salvo que lo exija una biblioteca \(p. ej. JQuery\). IBM JCL ha fallecido; que descanse en paz. Hay mejores herramientas de control de ámbito para separar espacios de nombres que introducir símbolos no romanos.
 
-Deberíamos evitar "-" \(guion\) en los nombres de segmentos de ruta y de parámetros de consulta, ya que no se corresponde con nombres de variables, ni con identificadores de nombres de campo de SQL o JSON.
+Deberíamos evitar "-" \(guion\) en los nombres de segmentos de ruta y de parámetros de consulta, ya que no se traduce correctamente con nombres de variables, ni con identificadores de nombres de campo de SQL o JSON.
 
-Los caracteres de guion bajo deben escaparse en el código markdown anteponiendo a cada uno un carácter "\".
+Los caracteres de guión bajo deben escaparse en el código markdown anteponiendo a cada uno un carácter "\".
 
 Se ha señalado que snake\_case es algo más fácil de leer que camelCase en los nombres de variables, pero en realidad no mejora la legibilidad de los URI, ya que interfiere visualmente con los delimitadores de ruta y de segmento de consulta, lo que dificulta analizarlos visualmente. Y cuando los URI se subrayan en una presentación, los guiones bajos se vuelven ilegibles.
 
@@ -76,13 +76,13 @@ GET debe implementarse de manera _nulipotente_, es decir, GET nunca causa efecto
 
 PUT y DELETE deben implementarse de manera _idempotente_, es decir, los cambios se aplican de forma coherente a los datos del sistema de un modo que depende únicamente del estado del recurso y de las entradas, y de nada más. La acción no tiene ningún efecto adicional si se ejecuta más de una vez con los mismos parámetros de entrada y no depende del orden de otras operaciones sobre una colección que la contenga ni sobre otros recursos que estén en la colección. Por ejemplo, eliminar un recurso de una colección puede considerarse una operación idempotente sobre la colección. Usar PUT para reemplazar \(o crear\) por completo un recurso identificado de forma única cuando el cliente conoce plenamente el URI también es idempotente. Esto implica que el sistema puede reordenar operaciones para mejorar la eficiencia, y que el cliente no necesita saber si un recurso existe antes de intentar reemplazarlo.
 
-POST y PATCH3 no son operaciones idempotentes. POST se usa para crear recursos nuevos cuando el identificador del recurso lo asigna el servidor o cuando el URI de destino implica un único recurso interno identificado \(p. ej. POST /transfers, pero PUT /transfers/:id/fulfillment\).
+POST y PATCH3 no son operaciones idempotentes. POST se usa para crear recursos nuevos cuando el identificador del recurso lo asigna el servidor o cuando el URI de destino implica un único recurso interno identificado \(p. ej. POST /transfers, frente a PUT /transfers/:id/fulfillment\).
 
 #### Formato de datos
 
 Preferimos los formatos de datos relacionados con [JSON](http://json.org/)4 frente a XML. En algunos casos, los formatos de datos serán binarios o XML, según definan estándares preexistentes, y se especificarán con precisión. Los formatos binarios deberían tener una sintaxis formal para evitar traducciones de representación ambiguas \(p. ej. traducciones de conjuntos de caracteres, representaciones big-endian o little-endian de valores numéricos, etc.\).
 
-Los valores de fecha y hora que se usen en las API deberían cumplir el estándar ISO 8601, perfilado además por la nota del w3c sobre formatos de fecha y hora.5 Esta nota del w3c debería llevar a reducir la complejidad y el margen de error de los componentes de comunicación que deben intercambiar fechas y horas tangibles. Habrá casos en los que usemos un formato de fecha u hora no ISO por exigencia de un estándar externo, p. ej. las fechas de caducidad de ISO 7813.
+Los valores de fecha y hora que se usen en las API deberían cumplir el estándar ISO 8601, perfilado además por la [Nota del w3c sobre formatos de fecha y hora](http://www.w3.org/TR/1998/NOTE-datetime-19980827)5. Esta nota del w3c debería llevar a reducir la complejidad y el margen de error de los componentes de comunicación que deben intercambiar fechas y horas tangibles. Habrá casos en los que usemos un formato de fecha u hora no ISO por exigencia de un estándar externo, p. ej. las fechas de caducidad de ISO 7813.
 
 Los formatos XML estándar existentes deberían tener un esquema XSD para el subconjunto aceptable del perfil que se use dentro del proyecto. Para formatos de datos especialmente complejos, podemos usar un traductor de perfiles de formato común para pasar de nuestro subconjunto del formato estándar en el proyecto al formato de transmisión que usa un protocolo estandarizado \(p. ej.\). Esto limitará el acoplamiento a formatos complejos de una manera más mantenible.
 
@@ -92,13 +92,13 @@ Cuando especifiquemos la acción PATCH para un recurso, usaremos un formato de d
 
 Use los códigos de retorno de HTTP de forma coherente y conforme a sus definiciones estándar. Los códigos estándar están definidos en el RFC 2616.7
 
-#### Formato de error legible por máquina
+#### Formato de error legible de máquina
 
 La API debería proporcionar un resultado de error legible por máquina en un formato JSON bien definido. {Pendiente de determinar si usar un sobre de respuesta y cómo dar formato a los errores, los fallos y los sobres de éxito. El diseño RESTful se apoya en las cabeceras para transportar los errores definidos por el protocolo, y la información de depuración también se puede transportar en las cabeceras. Deberíamos tener claro por qué usamos un sobre y cómo esto respalda la comunicación normal de producción entre cliente y servidor.
 
 #### Versionado
 
-Los URI de la API deberían incluir un identificador de versión con el formato v_M_ como elemento inicial de la ruta \(donde _"M"_ es el componente Mayor del número de versión de varias partes\). La API y su elemento identificador de versión deben ajustarse a la especificación 2.0 de [versionado semántico](http://semver.org/)8 para el versionado de la API.
+Los URI de la API deberían incluir un identificador de versión con el formato v_M_ como elemento inicial de la ruta \(donde _"M"_ es el componente Mayor del número de versión multi-parte\). La API y su elemento identificador de versión deben ajustarse a la especificación 2.0 de [versionado semántico](http://semver.org/)8 para el versionado de la API.
 
 Un cliente debe especificar el número de versión Mayor en cada solicitud. No es posible que un cliente exprese un requisito de una versión menor concreta.
 
