@@ -16,7 +16,7 @@ helm install ingress-nginx ingress-nginx --version="3.33.0" --repo https://kuber
 
 ### 1.2. Nginx-Ingress Controller support for Mojaloop Helm release v12.x
 
-If you are installing Mojaloop v12.x with an Nginx-Ingress controller version newer than `v0.22.0`, ensure you create a custom [Mojaloop v12.0.0 values config](https://github.com/jaloop/helm/blob/v12.0.0/mojaloop/values.yaml) with the following changes prior to stall:**
+If you are installing Mojaloop v12.x with an Nginx-Ingress controller version newer than `v0.22.0`, ensure you create a custom [Mojaloop v12.0.0 values config](https://github.com/mojaloop/helm/blob/v12.0.0/mojaloop/values.yaml) with the following changes prior to stall:**
 
 ```YAML
 ## **LOOK FOR THIS LINE IN mojaloop/values.yaml CONFIG FILE**

@@ -5,7 +5,7 @@ Pour vous aider à bien démarrer avec Mojaloop, choisissez l’option ci-dessou
 <!-- 1. [Mojaloop Overview](./demos/mojaloop-overview.md) -->
 1. [Foire aux questions](./faqs)
 2. [Licence](./license.md)
-3. [Consulter les API Mojaloop](/api/)
+3. [Consulter les API Mojaloop](/fr/technical/api/)
 4. [Suivre un programme de formation](https://mojaloop.io/mojaloop-training-program/)
 5. [Contribuer à Mojaloop](/community/)
 6. [Installer Mojaloop](./installation/installing-mojaloop.md)
