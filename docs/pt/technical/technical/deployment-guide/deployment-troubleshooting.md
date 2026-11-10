@@ -1,5 +1,5 @@
 ---
-i18n_source_sha: 80b6bd732ba2a78eda9d5f71e5cca707b855e1de
+i18n_source_sha: 0929fb7d0297b146c9fce43bcc10e45e506670e9
 ---
 
 # Resolução de problemas de deployment
@@ -20,7 +20,7 @@ helm install ingress-nginx ingress-nginx --version="3.33.0" --repo https://kuber
 
 ### 1.2. Suporte ao Nginx-Ingress Controller para a release MojaloopHelm, v12.x
 
-Se estiver a instalar o Mojaloop v12.x com uma versão do controlador Nginx-Ingress superior à `v0.22.0`, certifique-se de que cria uma configuração personalizada [Mojaloop v12.0.0 valores](https://github.com/jaloop/helm/blob/v12.0.0/mojaloop/values.yaml) com as seguintes alterações antes da instalação:**
+Se estiver a instalar o Mojaloop v12.x com uma versão do controlador Nginx-Ingress superior à `v0.22.0`, certifique-se de que cria uma configuração personalizada [Mojaloop v12.0.0 valores](https://github.com/mojaloop/helm/blob/v12.0.0/mojaloop/values.yaml) com as seguintes alterações antes da instalação:**
 
 ```YAML
 ## **LOOK FOR THIS LINE IN mojaloop/values.yaml CONFIG FILE**
