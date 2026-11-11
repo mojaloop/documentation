@@ -143,7 +143,7 @@ _Dès qu’un FSP payeur envoie une transaction financière à un FSP bénéfici
 
 Cependant, *les remboursements* sont un cas d’utilisation supporté par l’API.
 
-### 26. Erreur lors de l'installation de microk8s : "MountVolume.SetUp failed" ?
+### 26. Erreur lors de l'installation de Kubernetes : "MountVolume.SetUp failed" ?
 
 Cela semblerait être un problème d’espace, bien que plus de 100GiB de stockage EBS aient été alloués.
 Le problème s’est résolu de lui-même après 45 minutes. L’implémentation initiale du projet mojaloop peut prendre du temps à se stabiliser.

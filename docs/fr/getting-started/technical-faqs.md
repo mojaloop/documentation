@@ -148,7 +148,7 @@ _Aussitôt qu’un PSP payeur envoie une transaction financière à un PSP bén�
 
 Cependant, *les remboursements* sont un cas d’usage supporté par l’API.
 
-## 26. Erreur "MountVolume.SetUp failed" lors de l’installation de microk8s ?
+## 26. Erreur "MountVolume.SetUp failed" lors de l’installation de Kubernetes ?
 
 Ce message peut apparaître en cas de problème d’espace disque, même si plus de 100Go d’espace EBS ont été alloués.  
 Le problème s’est résolu de lui-même après 45 minutes. La mise en place initiale du projet mojaloop peut mettre un certain temps à se stabiliser.
