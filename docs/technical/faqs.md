@@ -145,7 +145,7 @@ _As soon as a Payer FSP sends a financial transaction to a Payee FSP (that is, u
 
 However, *Refunds* is a use case supported by the API.
 
-### 26. ffg. error with microk8s installation "MountVolume.SetUp failed"?
+### 26. error during Kubernetes installation: "MountVolume.SetUp failed"?
 
 Would appear if it is a space issue, but more the 100GiB of EBS storage was allocated.
 The issue resolved itself after 45 minutes. Initial implementation of the mojaloop project can take a while to stabilize.
