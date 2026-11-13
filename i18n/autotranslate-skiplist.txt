@@ -1,0 +1,18 @@
+# English source pages the DeepL pipeline must never draft. One glob per line, matched
+# against the English path. Named "skiplist" because .gitignore has a blanket `*ignore*`.
+
+# Generated API reference: produced from the specs, not hand-written.
+docs/technical/api/**
+
+# Licence and policy text. Translate only with explicit sign-off, never as a machine draft.
+docs/community/standards/ai_policy.md
+**/license.md
+**/LICENSE.md
+
+# The translation rules themselves: contributors work from the English text, and a drifting
+# machine translation of the rules is worse than no translation.
+translationguidelines.md
+docs/community/documentation/translationguidelines.md
+
+# VuePress theme boilerplate that shipped with the starter and is not Mojaloop content.
+docs/community/faqs.md
