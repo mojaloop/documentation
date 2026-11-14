@@ -121,6 +121,26 @@ test("--audit treats a page stamped with git's hash as current when the working 
   assert.deepEqual(report.findings, []);
 });
 
+test("the stamp ignores line endings, even when the repository itself stores CRLF", (t) => {
+  // autocrlf off, like the Linux CI: the CRLF page goes into the repository as CRLF.
+  const repo = createRepo(t);
+  repo.write("docs/crlf.md", "# Guide\r\n\r\nSome text.\r\n");
+  repo.write("docs/lf.md", "# Guide\n\nSome text.\n");
+  repo.write("docs/fr/crlf.md", "# Guide\n");
+  repo.write("docs/fr/lf.md", "# Guide\n");
+  repo.commit("initial");
+
+  repo.run("--stamp");
+  assert.equal(stampOf(repo, "docs/fr/crlf.md"), stampOf(repo, "docs/fr/lf.md"));
+
+  // Converting the source to LF changes no word, so it must not make the translation stale.
+  repo.write("docs/crlf.md", "# Guide\n\nSome text.\n");
+  repo.commit("normalize line endings");
+  const { report } = repo.report("--audit");
+
+  assert.deepEqual(report.findings, []);
+});
+
 test("a stale page frozen in the baseline is known debt in diff mode too", (t) => {
   const repo = createRepo(t);
   repo.write("docs/guide.md", "# Guide\n\nVersion one.\n");
@@ -200,6 +220,39 @@ test("--explain shows the source lines that changed since the page was translate
 
   assert.match(stdout, /^-Version one\.$/m);
   assert.match(stdout, /^\+Version two\.$/m);
+  assert.equal(code, 0);
+});
+
+test("--explain finds the translated version of a source the repository stores with CRLF", (t) => {
+  const repo = createRepo(t);
+  repo.write("docs/guide.md", "# Guide\r\n\r\nVersion one.\r\n");
+  repo.write("docs/fr/guide.md", "# Guide\n");
+  repo.commit("initial");
+  repo.run("--stamp");
+  repo.write("docs/guide.md", "# Guide\r\n\r\nVersion two.\r\n");
+  repo.commit("source moves on");
+
+  const { code, stdout } = repo.run("--explain", "docs/fr/guide.md");
+
+  assert.match(stdout, /^-Version one\.\r?$/m);
+  assert.match(stdout, /^\+Version two\.\r?$/m);
+  assert.equal(code, 0);
+});
+
+test("--explain leaves out the lines where only the line ending changed", (t) => {
+  const repo = createRepo(t);
+  repo.write("docs/guide.md", "# Guide\r\n\r\nVersion one.\r\n");
+  repo.write("docs/fr/guide.md", "# Guide\n");
+  repo.commit("initial");
+  repo.run("--stamp");
+  repo.write("docs/guide.md", "# Guide\n\nVersion two.\n");
+  repo.commit("source moves on and switches to LF");
+
+  const { code, stdout } = repo.run("--explain", "docs/fr/guide.md");
+
+  assert.match(stdout, /^-Version one\.\r?$/m);
+  assert.match(stdout, /^\+Version two\.$/m);
+  assert.doesNotMatch(stdout, /^[-+]# Guide/m);
   assert.equal(code, 0);
 });
 
