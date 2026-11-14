@@ -1,3 +1,7 @@
+---
+i18n_source_sha: ad1dff78324334083e27b3fbf1c6473b9d6d1550
+---
+
 # Contexte du RBAC
 
 Un individu qui a besoin d'accéder aux différents portails de gestion du Hub Mojaloop peut être enregistré et un &quot;compte&quot; généré, qui peut être utilisé pour accéder à divers aspects d'une instance opérationnelle d'un Hub Mojaloop et pour fournir une base d'audit de cet accès en liant les activités à l'enregistrement original. Aux fins de ce document, un &quot;compte&quot; est une identité numérique, un moyen d'authentifier (lier) la personne revendiquant cette identité à l'enregistrement original, et un ensemble d'attributs, qui incluront - entre autres - un ensemble de droits d'accès, ou des droits qui sont activés par la possession de ces attributs.

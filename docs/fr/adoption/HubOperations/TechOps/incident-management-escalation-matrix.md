@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 2c600508eabe2480bed0e3497ee2335950d464bb
+---
+
 # Annexe A : Matrice d'escalade de la gestion des incidents
 
 Cette section fournit des informations sur les rôles clés à contacter lorsqu'un incident survient.

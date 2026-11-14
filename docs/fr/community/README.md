@@ -1,3 +1,7 @@
+---
+i18n_source_sha: daf52b3ed71aa9dd62c1aba177769beed2292c07
+---
+
 # Bienvenue dans la communauté Mojaloop
 
 ## Comment puis-je commencer ?

@@ -1,5 +1,6 @@
 ---
 sidebarTitle: "PUT /transfers/{ID}"
+i18n_source_sha: af096fbc0d66c56d2ba65236f47b096c5f25f627
 ---
 
 ## 7.15 PUT /transfers/{ID}

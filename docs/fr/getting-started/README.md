@@ -1,3 +1,7 @@
+---
+i18n_source_sha: f634e67dff27a9d78667da95c16db6660e65b925
+---
+
 # Votre première action
 
 Pour vous aider à bien démarrer avec Mojaloop, choisissez l’option ci-dessous qui correspond le mieux à vos besoins :

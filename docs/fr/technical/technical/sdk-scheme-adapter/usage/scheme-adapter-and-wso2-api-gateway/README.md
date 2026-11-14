@@ -1,3 +1,7 @@
+---
+i18n_source_sha: f780e85bc88b8789742071e4ce1edf4ab84e8d1e
+---
+
 # SDK Scheme Adapter et passerelle API WSO2
 
 Guide pour tester le *scheme adapter* contre une passerelle WSO2 publique avec TLS et authentification par jeton *bearer*.

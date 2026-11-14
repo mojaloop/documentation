@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 04674b55a82be5636cef58b0b5e43cfa6f98f1b0
+---
+
 # FAQ techniques
 
 Ce document contient certaines des questions techniques fréquemment posées par la communauté.

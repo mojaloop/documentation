@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 4503991da1c09789524a4d7a6008d6519068daec
+---
+
 # BC Comptes et Soldes
 
 Le BC Comptes et Soldes agit comme le « grand livre central » du système. Il interagit principalement avec le BC Règlements, le BC Cycle de Vie des Participants et les BCs Transferts. Il s’agit d’un sous-système dirigé, ce qui signifie qu’il constitue une dépendance pour les BCs qui l’utilisent comme « registre financier » pour la comptabilité.

@@ -1,3 +1,7 @@
+---
+i18n_source_sha: f7ee9a0df1fcfe68240221521596016fc1a8fa8b
+---
+
 # Guide des stratégies de mise à niveau
 
 Ce document fournit des instructions pour mettre à niveau des installations Mojaloop existantes. Il part du principe que Mojaloop est déjà installé avec Helm, mais ces stratégies s’appliquent de façon générale.

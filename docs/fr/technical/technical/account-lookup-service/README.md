@@ -1,6 +1,7 @@
 ---
 version: 1.1
 sidebarTitle: Aperçu
+i18n_source_sha: f46a7b1936f942b0da6bb4ee1210da89228ca840
 ---
 
 # Service de recherche de compte - Account Lookup Service

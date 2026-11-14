@@ -1,3 +1,7 @@
+---
+i18n_source_sha: e2a9f33230f5f4eccf3135ea811acff38a180ec9
+---
+
 # Introduction – Guide des opérations techniques
 
 Le Hub Mojaloop exploite un certain nombre d'environnements qui nécessitent une gestion et une maintenance quotidiennes. Les procédures standard décrites dans ce document présentent les processus opérationnels qui permettent à l'opérateur du Hub de gérer tous les aspects d'un service en production.

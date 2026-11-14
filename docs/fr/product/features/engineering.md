@@ -1,5 +1,6 @@
 ---
 sidebarTitle: Principes d’ingénierie
+i18n_source_sha: e02c0f17d67c3cb620682aee6d6bb832f0b87f24
 ---
 
 # Principes d’ingénierie

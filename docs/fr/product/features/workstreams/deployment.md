@@ -1,5 +1,6 @@
 ---
 sidebarTitle: Workstream déploiement
+i18n_source_sha: 3be7eea402e4963d326deffcd1a2c61ab06b3280
 ---
 
 # Workstream Outils de déploiement

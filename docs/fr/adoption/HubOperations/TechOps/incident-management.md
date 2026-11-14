@@ -1,3 +1,7 @@
+---
+i18n_source_sha: be5e7bb5035dcd6ac98616e31f63b232b67253d5
+---
+
 # Gestion des incidents
 
 L'objectif principal de la gestion des incidents est de restaurer le fonctionnement normal du service aussi rapidement que possible et de minimiser l'impact sur les opérations métier, garantissant ainsi que les meilleurs niveaux possibles de qualité et de disponibilité de service sont maintenus. Le « fonctionnement normal du service » est défini ici comme le fonctionnement du service dans le cadre des [accords de niveau de service (SLA)](service-level-agreements.md).

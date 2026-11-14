@@ -1,3 +1,7 @@
+---
+i18n_source_sha: b8c49a9dfb310c3275ee6f9dcc840c40a6d988a3
+---
+
 ## Réunions du CCB : Vue d'ensemble
 
 Le Comité de Contrôle des Changements (CCB) se réunit toutes les deux semaines.

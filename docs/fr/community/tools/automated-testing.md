@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 39651c0add4b6b0813aabfa290d0d3ff6da8df06
+---
+
 # Tests QA et de régression dans Mojaloop
 Vue d’ensemble du cadre de tests mis en place dans Mojaloop
 

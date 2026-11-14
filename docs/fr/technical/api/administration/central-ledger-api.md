@@ -1,5 +1,6 @@
 ---
 showToc: true
+i18n_source_sha: 0b63b5d7f99f406c90103912c5b0d710b447b483
 ---
 # API du Central Ledger
 

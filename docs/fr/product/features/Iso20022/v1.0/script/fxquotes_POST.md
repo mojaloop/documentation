@@ -1,5 +1,6 @@
 ---
 sidebarTitle: POST /fxQuotes
+i18n_source_sha: 678514b71d2f77189cedd96dc85a6a232b516ef2
 ---
 
 ## 7.4 POST /fxQuotes/

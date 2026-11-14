@@ -1,6 +1,7 @@
 ---
 showToc: true
 footerCopyright: Attribution-NoDerivatives 4.0 International (CC BY-ND 4.0) | Ericsson, Huawei, Mahindra-Comviva, Telepin, et la Fondation Bill & Melinda Gates
+i18n_source_sha: 915a0dba6daebdf9661ba748cbd88c648f747816
 ---
 # Règles de liaison JSON (JSON Binding Rules)
 

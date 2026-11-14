@@ -1,5 +1,6 @@
 ---
 sidebarTitle: Matrice des participants
+i18n_source_sha: 981709f264a68e0ad110a1554e035b5f1d17d2b2
 ---
 
 # Matrice des fonctionnalités par participant

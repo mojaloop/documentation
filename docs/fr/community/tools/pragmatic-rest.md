@@ -1,3 +1,7 @@
+---
+i18n_source_sha: bb7db5ef33650b91e40009b9769b355891fa1abf
+---
+
 # REST pragmatique
 
 ## REST pragmatique pour le projet Mojaloop

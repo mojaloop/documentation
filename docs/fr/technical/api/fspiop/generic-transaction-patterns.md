@@ -1,5 +1,6 @@
 ---
 footerCopyright: Attribution-NoDerivatives 4.0 International (CC BY-ND 4.0) | Ericsson, Huawei, Mahindra-Comviva, Telepin, and the Bill & Melinda Gates Foundation
+i18n_source_sha: 8e0828344682048c15c5ef8aa31970c52490d1de
 ---
 # Modèles de Transactions Génériques
 

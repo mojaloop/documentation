@@ -1,5 +1,6 @@
 ---
 sidebarTitle: Évolution Mojaloop
+i18n_source_sha: 01ae615200d52cf62961a082533f303fe110bdb7
 ---
 
 # Workstream Évolution Mojaloop

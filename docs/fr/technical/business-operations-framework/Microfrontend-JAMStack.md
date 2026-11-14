@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 666f21f27cad5ef3d3fe214ebf7bf74877a2f165
+---
+
 # Micro-frontend - conception JAMStack
 ## Vue d'ensemble
 L'objectif de la conception micro-frontend - JAMStack est de créer un framework qui :

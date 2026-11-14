@@ -1,5 +1,6 @@
 ---
 sidebarTitle: "PUT /fxTransfers/{ID}"
+i18n_source_sha: 782654982c620c9217159993f994d388182e6a05
 ---
 
 ## 7.11 PUT /fxTransfers/{ID}

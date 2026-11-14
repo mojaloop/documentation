@@ -1,5 +1,6 @@
 ---
 sidebarTitle: Invariants
+i18n_source_sha: ddc0945d1f59a79b7231108cedcaab1c1cbdfeb4
 ---
 
 # Invariants

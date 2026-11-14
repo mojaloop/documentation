@@ -1,5 +1,6 @@
 ---
 sidebarTitle: Introduction Mojaloop
+i18n_source_sha: efec417afa57d59229e24ab0fd55e0d5acb9f358
 ---
 
 # Introduction à Mojaloop 

@@ -1,3 +1,7 @@
+---
+i18n_source_sha: b2c5c062d8610ee5bac0a4dbf7d988853e27ec86
+---
+
 # BC Third Party API
 
 Le Third Party API BC a été implémenté dans le cadre de l’architecture de référence Mojaloop 2.0 afin de permettre aux opérateurs PISP tiers (généralement des applications) d’interagir avec la plateforme. Veuillez noter que, sauf indication contraire, toutes les références aux BC concernent les différents composants ou Bounded Contexts (BCs) de Mojaloop.

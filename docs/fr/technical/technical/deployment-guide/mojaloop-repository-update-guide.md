@@ -1,3 +1,7 @@
+---
+i18n_source_sha: d4aa81c5d30e3863a304694786f1951c2ac5d986
+---
+
 # Séquence de mise à jour des dépôts NodeJS Mojaloop
 
 Ce document indique l’ordre dans lequel les dépôts NodeJS Mojaloop doivent être mis à jour lors de la publication de nouvelles fonctionnalités et/ou de la maintenance de Mojaloop. Il est important de respecter cet ordre pour s'assurer que chaque service d'une publication Mojaloop utilise la bonne dépendance du dépôt Mojaloop. Ce document est à jour pour Mojaloop RC v17 ; il doit être mis à jour au fil de l'évolution de Mojaloop (ajout des nouveaux composants et retrait des composants supprimés).

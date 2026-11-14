@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 0fa1c4b4aa0baee8cfd305e336c8150ac8004326
+---
+
 # Modèles de données
 
 API Tierce Partie

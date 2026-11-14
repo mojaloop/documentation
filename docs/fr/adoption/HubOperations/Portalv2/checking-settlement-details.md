@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 39dc18f9478ede02902170447c5174321dda45e8
+---
+
 # Vérification des détails du règlement
 
 La page **Settlement > Settlements** vous permet de consulter certains détails des règlements, tels que :

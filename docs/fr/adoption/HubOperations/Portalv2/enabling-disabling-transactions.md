@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 73bd59d639e11be27df39c218ab6d383f50b1a5d
+---
+
 # Désactivation et réactivation des transactions pour un DFSP
 
 Dans certains cas, il peut être nécessaire de rendre un DFSP inactif temporairement ou définitivement. Un exemple de scénario est lorsque vous observez un comportement hautement suspect et que la cause réelle nécessite une investigation, le risque de perte d'argent étant trop élevé.

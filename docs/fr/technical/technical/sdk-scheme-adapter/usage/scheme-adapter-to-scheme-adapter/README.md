@@ -1,3 +1,7 @@
+---
+i18n_source_sha: b345958586d80898bb6667895659a812b2e387b4
+---
+
 # Test Scheme Adapter vers Scheme Adapter
 
 Documentation pour les DFSP qui souhaitent tester un transfert d’un *scheme adapter* vers un autre, en s’appuyant sur le *mock backend* et les services du simulateur Mojaloop.

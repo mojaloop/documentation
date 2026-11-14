@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 0a05cd1e1e555e3a1844f11c7545bf3c14c9921c
+---
+
 # API Tierce Partie
 
 L’API Tierce Partie est une API destinée aux acteurs qui ne détiennent pas de fonds afin de leur permettre d’interagir via un hub Mojaloop centralisé.

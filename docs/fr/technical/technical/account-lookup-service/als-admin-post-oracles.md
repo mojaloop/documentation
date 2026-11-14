@@ -1,3 +1,7 @@
+---
+i18n_source_sha: c78539207addd49b110cf9375fd8f82074d5fa1c
+---
+
 # POST Oracles
 
 Conception de la création d’un oracle (administration ALS).

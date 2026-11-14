@@ -1,5 +1,6 @@
 ---
 sidebarTitle: Inter-schéma
+i18n_source_sha: 17be33f5936f1ca442d054d5b7ad100d3c037c93
 ---
 
 # Inter-schéma (*Interscheme*)

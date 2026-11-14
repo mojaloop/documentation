@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 4deec6f8db992d12849b2c63b4a9ed53d2661c47
+---
+
 **Réunion du fil transfrontalier**
 
 10 et 11 mars (Londres / à distance)

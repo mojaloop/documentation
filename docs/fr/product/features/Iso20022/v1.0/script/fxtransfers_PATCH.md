@@ -1,5 +1,6 @@
 ---
 sidebarTitle: "PATCH /fxTransfers/{ID}"
+i18n_source_sha: 84574f8b190589a6b85bd8adec00a55c95b3c3ba
 ---
 
 ## 7.13 PATCH /fxTransfers/{ID}

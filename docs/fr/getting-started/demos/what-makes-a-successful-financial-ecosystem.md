@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 45c0b43fca57c1a9c3855ef3f44df04ab6927dc6
+---
+
 # Qu’est-ce qui fait le succès d’un écosystème financier ?
 
 <iframe 

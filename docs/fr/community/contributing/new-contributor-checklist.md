@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 1b6158f33c910124eac37ca2bf119d3ade137c6e
+---
+
 # Checklist nouveau contributeur
 
 Ce guide résume les étapes pour démarrer en tant que contributeur Mojaloop. Elles n’ont pas besoin d’être effectuées en une seule fois ; à la fin de cette checklist, vous devriez avoir acquis une bonne connaissance de Mojaloop et être prêt à contribuer à la communauté.

@@ -1,5 +1,6 @@
 ---
 sidebarTitle: Métadonnées
+i18n_source_sha: e056ce135f57c8fd2f1d93ebb3e0129328aa1efd
 ---
 
 # Métadonnées

@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 8a174d79e8022471238ef29e303588faa249378e
+---
+
 # Modèle de directive opérationnelle de la plateforme
 
 - Version : 2.0 

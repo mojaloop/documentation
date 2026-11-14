@@ -1,6 +1,7 @@
 ---
 sidebarTitle: Versions Mojaloop
 title: Versions Mojaloop
+i18n_source_sha: 6e245e4789ec9e0dcbdf12dde58f37881477ab60
 ---
 
 # Processus de publication Mojaloop

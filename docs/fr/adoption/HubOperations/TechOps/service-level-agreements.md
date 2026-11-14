@@ -1,3 +1,7 @@
+---
+i18n_source_sha: c07bd71d1a8e6361c283782dbff542667f48dc3a
+---
+
 # Annexe B : Accords de niveau de service
 
 Les délais indiqués dans le tableau suivant sont des exemples de temps de réponse cibles pour le traitement des incidents. Ils peuvent servir de point de départ pour que l'opérateur du Hub définisse ses propres délais.

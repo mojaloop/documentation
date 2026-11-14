@@ -1,3 +1,7 @@
+---
+i18n_source_sha: a9479883a349e13977baadf4dbab7afa9bb5decb
+---
+
 # GET — Devis par ID
 
 Conception de la récupération d’un devis groupé par un FSP.

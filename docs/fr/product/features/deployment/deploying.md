@@ -1,5 +1,6 @@
 ---
 sidebarTitle: Déployer Mojaloop
+i18n_source_sha: 3321269124b6cf8318d29488bbeae727d493cf45
 ---
 
 # Déploiement de Mojaloop

@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 7e45a52f21d78bfc6c6233abd7e8b2a73b007a10
+---
+
 # Déploiement Mojaloop
 
 Ce document s’adresse à un public disposant de solides connaissances techniques et souhaitant mettre en place un environnement pour le développement, les tests et la contribution au projet Mojaloop.

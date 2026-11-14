@@ -1,3 +1,7 @@
+---
+i18n_source_sha: cad24cb6381593838750ca4a8df12f743e2da410
+---
+
 # Vue d'ensemble technique de Mojaloop
 
 ## Services Mojaloop
