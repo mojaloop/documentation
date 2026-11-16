@@ -5,7 +5,7 @@ sidebarTitle: Aperçu
 
 # Service de recherche de compte - Account Lookup Service
 
-L'**Account Lookup Service** (**ALS**) ou **Service de recherche de compte** — *(voir la section `6.2.1.2`)* de la [spécification Mojaloop {{ $page.frontmatter.version }}](/api) — mets en œuvre les cas d’usage suivants :
+L'**Account Lookup Service** (**ALS**) ou **Service de recherche de compte** — *(voir la section `6.2.1.2`)* de la [spécification Mojaloop {{ $page.frontmatter.version }}](/fr/technical/api/) — mets en œuvre les cas d’usage suivants :
 
 * Recherche de participant (*Participant Look-up*)
 * Recherche de entité (*Party Look-up*)

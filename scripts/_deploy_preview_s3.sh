@@ -75,13 +75,38 @@ else
   TARGET_PATH=""
 fi
 
-# upload built files to s3 
+# upload built files to s3
 if [ -n "$TARGET_PATH" ]; then
   aws s3 sync ${DIR}/../build s3://${BUCKET_NAME}/${TARGET_PATH} \
     --acl public-read
 else
+  # `--delete` below makes a bad build destructive rather than merely useless, so
+  # refuse to sync anything that doesn't look like a complete site. `set -e` only
+  # catches a build that *fails*, not one that succeeds and produces nothing.
+  for required in index.html 404.html legacy; do
+    if [ ! -e "${DIR}/../build/${required}" ]; then
+      echo "build/${required} is missing - refusing to sync" >&2
+      exit 1
+    fi
+  done
+  FILE_COUNT=$(find ${DIR}/../build -type f | wc -l)
+  if [ "${FILE_COUNT}" -lt 1000 ]; then
+    echo "only ${FILE_COUNT} files in build/ - refusing to sync" >&2
+    exit 1
+  fi
+
+  # --delete removes objects that are no longer part of the build, i.e. pages left
+  # behind by past restructures. Without it the bucket accumulates stale copies of
+  # the site forever, which is how /api/ and /technical/<service>/ stayed live for
+  # two years after they moved.
+  #
+  # --exclude "pr/*" is MANDATORY. PR previews live in this same bucket under
+  # pr/<number>/ and are NOT part of build/, so an unfiltered --delete destroys
+  # every open preview on each master deploy.
   aws s3 sync ${DIR}/../build s3://${BUCKET_NAME} \
-    --acl public-read
+    --acl public-read \
+    --delete \
+    --exclude "pr/*"
 fi
 
 if [ "$IS_PR" = "true" ] && [ -n "$PR_NUMBER" ]; then

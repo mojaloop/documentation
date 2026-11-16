@@ -5,7 +5,7 @@ To help get you started with Mojaloop, select which of the options below best su
 <!-- 1. [Mojaloop Overview](./demos/mojaloop-overview.md) -->
 1. [Frequently Asked Questions](./faqs)
 2. [License](./license.md)
-3. [Review Mojaloop APIs](/api/)
+3. [Review Mojaloop APIs](/technical/api/)
 4. [Take a training program](https://mojaloop.io/mojaloop-training-program/)
 5. [Contribute to Mojaloop](/community/)
 6. [Install Mojaloop](./installation/installing-mojaloop.md)
