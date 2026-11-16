@@ -10,7 +10,7 @@ i18n_source_sha: 4deec6f8db992d12849b2c63b4a9ed53d2661c47
 
 •  Propuesta sobre cómo el CNP consulta y aloja los servicios de oracle y los objetivos globales  - Adrian, Michael 
 
-•  Identificadores compuestos, formas en que esto se recoge en el sistema o se expresa en las api - abierto
+•  Identificadores compuestos, formas en que esto se recoge en el sistema o se expresa en las API's - abierto
 
 •  Qué información se recoge en el modelo de datos o en la lista de extensiones - Michael
 
@@ -24,7 +24,7 @@ i18n_source_sha: 4deec6f8db992d12849b2c63b4a9ed53d2661c47
 
 •  Finalizar que el FXP tiene que gestionar los tipos de cambio, las liquidaciones y qué expira cuándo
 
-•  Los CNP pueden ampliar esto y determinar reglas adicionales del esquema de pagos
+•  Los CNP pueden ampliar esto y determinar reglas adicionales del esquema
 
 •  El FXP gestiona los errores de redondeo
 
@@ -32,13 +32,13 @@ i18n_source_sha: 4deec6f8db992d12849b2c63b4a9ed53d2661c47
 
 •  ¿Cómo se incorpora al esquema a quienes no son de Mojaloop?
 
-•  Cómo integramos Mojaloop y algún esquema de pagos de Mojaloop para ofrecer pagos PVT completos: grupo de trabajo con Michael, Adrian, Sybrin y otros según haga falta
+•  Cómo integramos Mojaloop y algún esquema de Mojaloop para ofrecer pagos PVT completos: grupo de trabajo con Michael, Adrian, Sybrin y otros según haga falta
 
 •  Cómo gestionamos las solicitudes por motivos regulatorios
 
 •  Investigar las correspondencias de identificadores (mapear las cuentas de pathfinder y las cuentas móviles a los ID únicos de los DFSP)
 
-•  Investigar la certificación (hash y PKKI)
+•  Investigar la certificación (Hash y PKKI)
 
 
 Notas detalladas de la reunión:
@@ -47,11 +47,11 @@ Día #1:
 	
 		○ Cómo codificamos el SLA en la respuesta
 	
-		○ Pedir a un 2.º CNP que enrute
+		○ Pedir a un 2º. CNP que enrute
 		
 		○ En la API, hay que empaquetar cómo llevarlo hasta allí
 		
-		○ Como CMP en Mowali, si devuelvo una respuesta de cotización, el esquema de pagos tiene implicaciones 
+		○ Como CMP en Mowali, si devuelvo una respuesta de cotización, el esquema tiene implicaciones 
 		
 		○ Seguir toda la ruta del pagador al beneficiario 
 		
@@ -63,7 +63,7 @@ Día #1:
 	
 		○ Sintaxis http
 		
-		○ Se partió del esquema de pagos de Mojaloop 
+		○ Se partió del esquema de Mojaloop 
 		
 			§ Avanzar hacia que el CNP gestione la conversión
 		
@@ -81,13 +81,13 @@ Día #1:
 	
 		○ Estructura: formas en que agregamos información nueva, rutas distintas, etc.
 		
-		○ Privacidad: visibilidad y seguridad, accesible solo a quienes pueden verlo
+		○ Privacidad: visibilidad y seguridad, accesible sólo a quienes pueden verlo
 		
 		○ Contenido del modelo de datos 
 	
 	- La transferencia se hace a través del switch (movimiento de dinero)
 	
-		○ En mowali se expresan los montos, pero la tasa es importante porque afecta a las liquidaciones 
+		○ En Mowali los montos son expresados, pero la tasa es importante porque afecta a las liquidaciones 
 	
 		§ Flujo de datos: agregamos la tasa cuando devolvemos la cotización
 		
@@ -125,7 +125,7 @@ Día #1:
 			
 		○ El CNP tiene que agregar la información y reunirla en una única solicitud, y tendrán que firmar por separado 
 			
-			§ La condición y el fulfilment forman parte de una estructura de PKI
+			§ La condición (condition) y el valor de cumplimiento (fulfilment) forman parte de una estructura de PKI
 			
 			§ Si hay más de un CNP, hay que asegurar que el DFSP beneficiario tenga certeza sobre el DFSP pagador: conexiones
 			
@@ -137,7 +137,7 @@ Día #1:
 			
 			§ Confiar en que el CNP cumpla sus SLA
 		
-		○ De Mojaloop a otro esquema de pagos: no tenemos control
+		○ De Mojaloop a otro esquema: no tenemos control
 		
 			§ Exigir que confirmen la recepción 
 			
@@ -147,7 +147,7 @@ Día #1:
 		
 		○ Autoridad de firma externa para confirmar que se recibió el dinero
 		
-			§ Si su esquema de pagos quiere participar en lo transfronterizo, entonces todos los participantes tienen que estar firmados
+			§ Si su esquema quiere participar en lo transfronterizo, entonces todos los participantes tienen que estar firmados
 			
 			§ Clave pública: para unirse a una red de Mojaloop hay que emitir claves públicas
 			
@@ -157,7 +157,7 @@ Día #1:
 		
 		○ ¿Cómo se incorpora al esquema a quienes no son de Mojaloop?
 		
-			§ Cómo integramos Mojaloop y algún esquema de pagos de Mojaloop para ofrecer pagos PVT completos: grupo de trabajo con Michael, Adrian, Sybrin y otros según haga falta
+			§ Cómo integramos Mojaloop y algún esquema de Mojaloop para ofrecer pagos PVT completos: grupo de trabajo con Michael, Adrian, Sybrin y otros según haga falta
 			
 			§ Identificar a los participantes: FSP, DFSP, todos han firmado
 			
@@ -167,7 +167,7 @@ Día #1:
 			
 			§ Nadie compromete sus fondos hasta que todos estén satisfechos 
 			
-			§ Cómo ampliar el esquema de pagos de Mojaloop y el que no es de Mojaloop 
+			§ Cómo ampliar el esquema de Mojaloop y el que no es de Mojaloop 
 		
 		○ Certificación 
 		
@@ -177,7 +177,7 @@ Día #1:
 	
 			§ Socio nuevo: en producción en la red 
 			
-			§ El esquema de pagos decide los requisitos de la red 
+			§ El esquema decide los requisitos de la red 
 			
 			§ Certificado autofirmado 
 		
@@ -189,9 +189,9 @@ Día #1:
 			
 			§ El dinero móvil tiene menos flexibilidad 
 			
-			§ Reglas que se dieron entre esquemas de pagos 
+			§ Reglas que se dieron entre esquemas 
 		
-		○ El FXP tiene que gestionar las liquidaciones, qué expira cuándo, etc.
+		○ El FXP tiene que gestionar las liquidaciones, qué expira, cuándo, etc.
 		
 			§ El FXP tiene que gestionar la escasa validez de la cotización 
 			
@@ -205,7 +205,7 @@ Día #1:
 			
 				□ Se pueden pedir muchas cosas: depende del participante 
 				
-				□ Hay que acordar el esquema de pagos de referencia
+				□ Hay que acordar el esquema de referencia
 
 **Día #2:**
 
@@ -223,7 +223,7 @@ Día #1:
 		
 			§ Captura de datos móviles
 			
-			§ Side car
+			§ Sidecar
 			
 			§ Proceso digital 
 			
@@ -239,9 +239,9 @@ Día #1:
 	
 	- Definición y requisitos del FXP
 	
-		○ FXP: exigir tasas y tarifas como parte del servicio de cotización, hace falta una tasa estándar del sector
+		○ FXP: exigir tasas y tarifas como parte del servicio de cotización, hace falta una tasa estándar de la industria
 		
-			§ Los CNP pueden ampliar esto y determinar reglas adicionales del esquema de pagos
+			§ Los CNP pueden ampliar esto y determinar reglas adicionales del esquema
 		
 		○ El FXP gestiona los errores de redondeo 
 		
@@ -287,13 +287,13 @@ Día #1:
 		
 		○ En Mojaloop usamos los identificadores como proxy 
 		
-		○ Los números de comercio pueden ser específicos de un esquema de pagos 
+		○ Los números de comercio pueden ser específicos de un esquema 
 		
 		○ Varios identificadores para una única cuenta
 		
 		○ ¿Cómo identificamos la cuenta de forma única?
 		
-		○ Apoyarse en el CNP (restringir cada identificador en este esquema de pagos)
+		○ Confiar en el CNP (restringir cada identificador en este esquema)
 		
 		○ Qué tipo de estructuras hay implantadas
 		
@@ -330,11 +330,11 @@ Día #1:
 		
 		○ Comunicación establecida
 		
-		○ El reto es si podremos hacer que 2 DFSP compartan comunicación directa, ¿y será mucho pedir? 
+		○ El reto es si podremos hacer que 2 DFSP compartan comunicación directa, ¿o será mucho pedir? 
 	
-	- El Switch tiene esquemas de pagos
+	- El Switch tiene esquemas
 	
-		○ Un operador del Hub que siga las reglas del esquema de pagos puede permitir nombres de FSP según decidan esas reglas
+		○ Un operador del Hub que siga las reglas del esquema de pagos puede permitir nombres de FSP según decidan aquellas reglas
 		
 		○ La tecnología o la propia Admin API no restringen los nombres (más allá de las restricciones de longitud, tipo o caracteres, etc.)
 		
@@ -346,7 +346,7 @@ Día #1:
 	
 	- Cualquier servicio financiero puede conectarse a Mowali
 	
-	- Reglas del esquema de pagos, técnicas
+	- Reglas del esquema, técnicas
 	
 	- Regulatorias 
 
@@ -370,9 +370,9 @@ Día #1:
 
 	- Conseguir que los flujos fluyan de forma puntual
 	
-	- Hacen falta libros mayores en tiempo real; ¿qué pasa si están fuera de línea?
+	- Hacen falta libros contables en tiempo real; ¿qué pasa si están fuera de línea?
 	
-	- Excepción para fuera de red (los bancos aprovechan el flotante) 
+	- Excepción para operación fuera de red (los bancos aprovechan el flotante) 
 
 • Proceso de descubrimiento (FSP emisor)
 
