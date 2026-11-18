@@ -1,5 +1,5 @@
 ---
-i18n_source_sha: afb76ba6884d13bab87c8252355a81d4a503da1e
+i18n_source_sha: a9b25f765251a8d98191e86463f703fc84c3918e
 ---
 
 # Foire Aux Questions

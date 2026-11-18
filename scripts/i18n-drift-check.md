@@ -416,7 +416,7 @@ VuePress config, or the script change.
 
 | Event | What runs | Result |
 | --- | --- | --- |
-| Pull request | the check, over the commits of the pull request | one bot comment with the report, updated on each push |
+| Pull request | the script's tests, then the check, over the commits of the pull request | one bot comment with the report, updated on each push |
 | Push to `master` | the check, over the pushed commits | if there is new drift, one running issue labelled `i18n`, `translation-needed` and `locale:<language>`: created on the first drift, then each later push with drift adds its report to it as a comment, until someone closes it |
 
 This workflow runs on GitHub Actions, next to the repository's CircleCI pipeline
@@ -427,7 +427,9 @@ the file: read the contents, write pull-request comments, and write issues.
 Both jobs compare commits (`--head`), never `--working-tree`: on GitHub there is no work in
 progress, and the report must describe exactly what is being merged.
 
-Neither job fails the build today. See [blocking pull requests](#i-maintain-the-repository).
+Translation drift never fails a job today. See
+[blocking pull requests](#i-maintain-the-repository). The pull-request job does fail when
+the script's own tests fail, so a change that breaks the script is caught before it merges.
 
 ## Try it yourself
 

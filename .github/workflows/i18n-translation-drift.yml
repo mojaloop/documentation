@@ -6,6 +6,7 @@ on:
       - "docs/**/*.md"
       - "docs/.vuepress/config.js"
       - "scripts/i18n-drift-check.mjs"
+      - "scripts/i18n-drift-check.test.mjs"
   push:
     branches:
       - master
@@ -28,6 +29,9 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
+      - name: Run the drift check tests
+        run: node --test scripts/i18n-drift-check.test.mjs
 
       - name: Generate i18n drift report
         run: |
