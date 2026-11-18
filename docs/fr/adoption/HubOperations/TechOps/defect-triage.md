@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 4ee0332a0ff97b0f0a36de2efe885b9eb3a5b736
+---
+
 # Triage des défauts
 
 L'objectif du processus de triage des défauts est de garantir que tous les bogues identifiés dans l'environnement de production de l'opérateur du Hub sont capturés, évalués et soumis à une équipe de support Mojaloop, une équipe dédiée à l'exécution des services de support pour les opérations techniques d'un Hub Mojaloop. Cette équipe peut être internalisée ou externalisée (ou même partiellement internalisée et partiellement externalisée), selon le niveau d'expertise ou de capacité au sein de l'organisation d'hébergement du schéma. S'il est décidé d'externaliser cette fonction, il existe des organisations au sein de la communauté Mojaloop qui fournissent différents niveaux de support en tant que service. (Pour plus d'informations et des recommandations, contactez la Fondation Mojaloop.)

@@ -1,3 +1,7 @@
+---
+i18n_source_sha: a9b25f765251a8d98191e86463f703fc84c3918e
+---
+
 # Foire Aux Questions
 
 Ce document contient certaines des questions techniques fréquemment posées par la communauté.

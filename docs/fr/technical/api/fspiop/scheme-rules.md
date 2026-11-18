@@ -1,5 +1,6 @@
 ---
 footerCopyright: Attribution-NoDerivatives 4.0 International (CC BY-ND 4.0) | Ericsson, Huawei, Mahindra-Comviva, Telepin, et la Fondation Bill & Melinda Gates
+i18n_source_sha: 7c1639b48893e0a2cf8791e094d9da5897045a43
 ---
 # Règles du système
 

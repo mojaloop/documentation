@@ -1,5 +1,6 @@
 ---
 sidebarTitle: Interconnexion de schémas
+i18n_source_sha: dd32fd6957650bcd3e27eedf260ffde2d3cefc21
 ---
 
 # Interconnexion de schémas de paiement

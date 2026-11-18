@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 87ab50b71ef4a7165b8c9485e19ba8d1a62ba54f
+---
+
 # Créer de nouvelles fonctionnalités
 
 ## Fork

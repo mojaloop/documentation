@@ -1,5 +1,6 @@
 ---
 sidebarTitle: "PUT /transfers/{ID}/error"
+i18n_source_sha: 459cb3cddb7e1f2ce9a8688963e8d7d798831d63
 ---
 
 ## 7.16 PUT /transfers/{ID}/error

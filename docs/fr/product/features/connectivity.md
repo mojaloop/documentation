@@ -1,5 +1,6 @@
 ---
 sidebarTitle: Onboarding des DFSP
+i18n_source_sha: 703fe3a76e6a3791e97df6799329fa7208f33ae5
 ---
 
 # Intégration des DFSP (onboarding)

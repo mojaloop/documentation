@@ -1,6 +1,7 @@
 ---
 sidebarTitle: Vue d'ensemble PI3
 title: Vue d'ensemble PI3
+i18n_source_sha: a3cb1b68663aba4d23decb2491bac62baef91724
 ---
 
 # Composants hérités du Hub Mojaloop — PI3

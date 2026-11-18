@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 9697a75310f7f10d41f49340bc193c2d8d79b834
+---
+
 # Aperçu de l’Architecture de Référence Mojaloop
 
 ## Espace Problème (_Identification des problèmes et cartographie_)

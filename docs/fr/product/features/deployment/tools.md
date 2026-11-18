@@ -1,5 +1,6 @@
 ---
 sidebarTitle: Outils de déploiement
+i18n_source_sha: ed3f77c3e6fa30a69c1eb15f891b0ef998781420
 ---
 
 # Outils de déploiement Mojaloop

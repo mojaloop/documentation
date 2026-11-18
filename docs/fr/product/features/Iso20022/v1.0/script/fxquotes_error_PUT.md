@@ -1,5 +1,6 @@
 ---
 sidebarTitle: "PUT /fxQuotes/{ID}/error"
+i18n_source_sha: e1c8da1250bb5a530bb25f276dfbb115b2838ca9
 ---
 
 

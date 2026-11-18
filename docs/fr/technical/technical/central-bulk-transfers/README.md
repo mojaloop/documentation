@@ -1,3 +1,7 @@
+---
+i18n_source_sha: c1d0b3d54570bbce490894e80257984c225f37e8
+---
+
 # Conception des transferts groupés
 
 Le scénario des transferts groupés est décrit dans le document *API Definition* pour la ressource `/bulkTransfers`. Pour plus de détails (voir la section 6.10), conformément à la [spécification Mojaloop](https://github.com/mojaloop/mojaloop-specification/blob/master/API%20Definition%20v1.0.pdf).

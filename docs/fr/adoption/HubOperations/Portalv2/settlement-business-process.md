@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 31103b46ea3b4894f034556d3802822749a5bedc
+---
+
 # Processus de règlement
 
 Il est important de définir un processus métier autour de la gestion des règlements. Le processus de haut niveau suivant sert d'exemple que vous pouvez personnaliser en fonction des besoins spécifiques de votre organisation.

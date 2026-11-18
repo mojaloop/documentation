@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 36adeecc54ff532fd45dc4f70948198110d67be2
+---
+
 # Opérations de transferts groupés Mojaloop
 
 Processus opérationnels au cœur du traitement des transferts groupés :

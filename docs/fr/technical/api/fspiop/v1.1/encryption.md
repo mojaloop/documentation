@@ -1,5 +1,6 @@
 ---
 footerCopyright: Attribution-NoDerivatives 4.0 International (CC BY-ND 4.0) | Ericsson, Huawei, Mahindra-Comviva, Telepin, et la Bill & Melinda Gates Foundation
+i18n_source_sha: 714e27fdea6855f04ded984d78000f92320637d0
 ---
 # Chiffrement
 

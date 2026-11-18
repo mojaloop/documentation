@@ -1,3 +1,7 @@
+---
+i18n_source_sha: f2794989294b23d3c9936fbb08481560d5d27e92
+---
+
 # Liste des Interfaces Communes
 
 La Liste des Interfaces Communes recense l’ensemble des interfaces communes utilisées actuellement dans l’Architecture de Référence Mojaloop 2.0. Les interfaces communes sont partagées par plusieurs Bounded Contexts, d’où leur nom.
