@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 63416fc0eb173f6f0d091736a33d102d9377addc
+---
+
 # BC Gestion du Cycle de Vie des Participants
 
 Le Contexte Borné Gestion du Cycle de Vie des Participants (Participant Lifecycle Management) traite de tout ce qui concerne la gestion d’un Participant dans l’environnement Mojaloop. Lorsqu’on définit ce Contexte Borné, certains concepts clés doivent être identifiés clairement.

@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 80b6bd732ba2a78eda9d5f71e5cca707b855e1de
+---
+
 # Dépannage du déploiement
 
 ## 1. Problèmes connus
@@ -84,11 +88,11 @@ Cette erreur s'affiche lors d'une tentative d'accès à un endpoint (ex. central
 
 3. Remarque: le déploiement de Mojaloop via Helm peut prendre quelques minutes au premier démarrage selon les ressources disponibles et les spécifications du système. Attendez-vous à ce que cela prenne entr 2 et 10 minutes.
   
-### 2.3. MicroK8s — problèmes de connectivité
+### 2.3. Problèmes de connectivité réseau des pods
 
 #### 2.3.1 Description
 
-Mes pods n'atteignent pas Internet ni les autres pods (alors que ma machine hôte MicroK8s y arrive).
+Mes pods n'atteignent pas Internet ni les autres pods (alors que ma machine hôte Kubernetes y arrive).
 
 Exemple : les journaux Central-Ledger indiquent une erreur de transport du broker, par exemple :
 
@@ -115,11 +119,14 @@ Ou, avec ufw :
 sudo ufw default allow routed
 ```
 
-La commande d’inspection MicroK8s permet de vérifier la configuration du pare-feu :
+Pour vérifier la configuration actuelle du pare-feu sur l’hôte :
 
 ```bash
-microk8s.inspect
+sudo iptables -S FORWARD
+sudo ufw status verbose
 ```
+
+Votre distribution Kubernetes peut aussi fournir son propre outil de diagnostic (par exemple `k3s check-config` pour K3s).
 
 ## 3. Problèmes d’Ingress
 

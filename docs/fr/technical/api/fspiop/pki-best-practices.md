@@ -1,5 +1,6 @@
 ---
 footerCopyright: Attribution-NoDerivatives 4.0 International (CC BY-ND 4.0) | Ericsson, Huawei, Mahindra-Comviva, Telepin, et la Fondation Bill & Melinda Gates
+i18n_source_sha: 8fcd2eac9e42dbec76bc5e35cce9577d4e5a823a
 ---
 
 # Bonnes pratiques d’infrastructure à clé publique (PKI)

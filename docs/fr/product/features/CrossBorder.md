@@ -1,5 +1,6 @@
 ---
 sidebarTitle: Transactions transfrontalières
+i18n_source_sha: c54b43a0eaa7865a3969790e4c781ba5ac786394
 ---
 
 # Transactions transfrontalières

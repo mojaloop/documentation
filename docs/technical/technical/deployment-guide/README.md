@@ -105,7 +105,6 @@ If you are installing Kubernetes yourself, then we recommend using one of the fo
 
 - [k3s](https://docs.k3s.io/installation) - Flexible lightweight Kubernetes distribution that can be used for almost anything, spanning from local to Production grade environments.
 - [Minikube](https://minikube.sigs.k8s.io/docs/start) - Simple platform agnostic single-node Kubernetes distribution that is useful for local or development environments.
-- [Microk8s](https://microk8s.io/docs/install-alternatives) - Simple platform Kubernetes distribution that is useful for local or development environments.
 - [Docker Desktop](https://docs.docker.com/desktop/kubernetes/) - Simple platform Kubernetes distribution that is useful for local or development environments (ensure you install applicable version that includes your target Kubernetes version by examining the [Docker Desktop release-notes](https://docs.docker.com/desktop/release-notes)).
 
 We do not specify a specific distribution of Kubernetes to be used, but rather any distribution of Kubernetes running on a [Cloud Native Computing Foundation (CNCF)](https://www.cncf.io/certification/software-conformance) certified distribution or managed solution (e.g. Azure, AWS, GCP) should be selected when testing new Mojaloop Releases.
@@ -139,19 +138,15 @@ Insure you install a supported `Ingress Controller` version that matches your ta
 
    The official Kubernetes Web UI Admin interface.
 
-   Visit the following link for installation instructions (not needed if **MicroK8s** is installed): [Web UI (Dashboard) Installation Instructions](https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/).
+   Visit the following link for installation instructions (not needed if your Kubernetes distribution provides a dashboard add-on): [Web UI (Dashboard) Installation Instructions](https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/).
 
-   **IMPORTANT:** Ensure (not needed if **MicroK8s** is installed) you configure RBAC roles and create an associated service account, refer to the following example on how to create a sample user for testing purposes only: [Creating sample user](https://github.com/kubernetes/dashboard/blob/master/docs/user/access-control/creating-sample-user.md).
+   **IMPORTANT:** Ensure (not needed if you use your distribution's dashboard add-on) you configure RBAC roles and create an associated service account, refer to the following example on how to create a sample user for testing purposes only: [Creating sample user](https://github.com/kubernetes/dashboard/blob/master/docs/user/access-control/creating-sample-user.md).
 
-   If you have installed MicroK8s, **enable the MicroK8s** dashboard:
+   If your Kubernetes distribution provides a dashboard add-on, you can enable it instead. For example, with Minikube:
 
    ```bash
-   microk8s.enable dashboard
+   minikube dashboard
    ```
-
-   Refer to the following link for more information: [Add-on: dashboard](https://microk8s.io/docs/addon-dashboard).
-
-   **Remember** to prefix all **kubectl** commands with **MicroK8s** if you opted not to create an alias.
 
 2. k8sLens
 

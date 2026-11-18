@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 1d4e3fe8eaa088d62f80e208d30ddd9507840775
+---
+
 # Choix clés du schéma
 
 - Version : 5.0 

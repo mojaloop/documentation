@@ -1,3 +1,7 @@
+---
+i18n_source_sha: b82657f378a3afbb8cd01d874334c601df511874
+---
+
 # Versionnement
 
 ## Versionnement des releases des services cœur du Switch

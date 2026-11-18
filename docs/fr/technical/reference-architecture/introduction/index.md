@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 004ac437cd409d43f929159447e5c04fb7f1a859
+---
+
 # Introduction
 
 ## Qu'est-ce qu'une Architecture de Référence ?

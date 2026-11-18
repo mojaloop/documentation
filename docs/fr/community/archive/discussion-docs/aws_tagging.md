@@ -1,3 +1,7 @@
+---
+i18n_source_sha: a50c7b2ef4951ed1b952a4b38f8713526284a763
+---
+
 # Lignes directrices et politiques d’étiquetage AWS
 
 > **Note :** Ces lignes directrices concernent l’environnement AWS de la communauté Mojaloop pour les tests et la validation des installations Mojaloop ; elles sont surtout internes. Elles peuvent toutefois servir de référence pour des stratégies d’étiquetage similaires dans d’autres organisations.

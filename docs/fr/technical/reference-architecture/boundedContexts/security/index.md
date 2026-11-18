@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 68642b23fc4cc09a86395b261ad23e44f575b5c2
+---
+
 # BC Security
 
 ## Vue d'ensemble

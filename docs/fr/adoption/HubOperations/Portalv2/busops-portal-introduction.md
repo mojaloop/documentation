@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 01159a2a0b3f611e54b491e2a1a9b4aa063848de
+---
+
 # Introduction – Guide du Finance Portal v2
 
 Ce guide est destiné à l'Opérateur d'un Hub Mojaloop et fournit des informations sur le Finance Portal, qui facilite la gestion quotidienne des processus liés au règlement.

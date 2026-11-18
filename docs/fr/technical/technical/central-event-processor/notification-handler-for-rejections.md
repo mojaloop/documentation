@@ -1,3 +1,7 @@
+---
+i18n_source_sha: e41bd68ea1beae253500aed549ada44d2d1e9b36
+---
+
 # Gestionnaire de notifications pour les rejets
 
 Diagramme de conception de séquence pour le processus du gestionnaire de notifications en cas de rejet.

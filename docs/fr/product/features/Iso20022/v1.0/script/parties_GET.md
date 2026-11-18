@@ -1,5 +1,6 @@
 ---
 sidebarTitle: "GET /parties"
+i18n_source_sha: 32017ee06a2879406712df2bda449613b5ce56f8
 ---
 
 ## 7.1 GET /parties/{type}/{partyIdentifier}[/{subId}]

@@ -1,3 +1,7 @@
+---
+i18n_source_sha: b7814a1a11b92f5e86b94d211eee57bcfe914665
+---
+
 # Intégration des systèmes *core banking* à Mojaloop — modèles
 
 L’intégration d’un système *core banking* dans un flux de transaction temps réel de type *push* peut poser des difficultés, en grande partie selon les API d’intégration fournies par l’éditeur. Ce document décrit à quoi devrait ressembler une intégration idéale, certaines limitations typiques des API éditeurs, les modèles de flux utilisés pour pallier ces limitations, et les risques associés.

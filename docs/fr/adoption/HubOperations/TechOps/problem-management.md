@@ -1,3 +1,7 @@
+---
+i18n_source_sha: a5c10e25064761bdb94a754010cc994065a5ac3c
+---
+
 # Gestion des problèmes
 
 L'objectif global de la gestion des problèmes est d'identifier la cause première des incidents (incidents de sévérité 1 ou incidents survenus plus d'une fois) ou les causes potentielles des incidents, puis de mettre en œuvre immédiatement des actions pour améliorer ou corriger la situation.

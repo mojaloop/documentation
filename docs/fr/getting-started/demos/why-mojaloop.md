@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 5230c5e03b8e30f84e930ffb9d4094842e3f9115
+---
+
 # Pourquoi Mojaloop ?
 
 <iframe 

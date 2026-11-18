@@ -1,5 +1,6 @@
 ---
 sidebarTitle: Préparation production
+i18n_source_sha: 5b9db651ef1d8b1ca134e89f6f65e04fac97a8e3
 ---
 
 # Évaluation technique de préparation à la production

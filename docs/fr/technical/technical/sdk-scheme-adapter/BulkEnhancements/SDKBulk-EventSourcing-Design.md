@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 4df1345f9fb598813c3948484477bb6231fd8e22
+---
+
 # Prise en charge des transferts groupés par le SDK — conception DDD et *event sourcing*
 
 ## Vue d’ensemble de la conception

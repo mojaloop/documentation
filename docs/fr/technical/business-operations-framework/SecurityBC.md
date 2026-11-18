@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 79d55947987e9ed5ca15bfbf2077c6e8b5327617
+---
+
 # Implémentation de l'API opérationnelle RBAC
 
 ## Introduction à l'implémentation de l'API opérationnelle RBAC

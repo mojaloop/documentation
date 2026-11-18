@@ -416,7 +416,7 @@ VuePress config, or the script change.
 
 | Event | What runs | Result |
 | --- | --- | --- |
-| Pull request | the check, over the commits of the pull request | one bot comment with the report, updated on each push |
+| Pull request | the script's tests, then the check, over the commits of the pull request | one bot comment with the report, updated on each push |
 | Push to `master` | the check, over the pushed commits | if there is new drift, one running issue labelled `i18n`, `translation-needed` and `locale:<language>`: created on the first drift, then each later push with drift adds its report to it as a comment, until someone closes it |
 
 This workflow runs on GitHub Actions, next to the repository's CircleCI pipeline
@@ -427,7 +427,9 @@ the file: read the contents, write pull-request comments, and write issues.
 Both jobs compare commits (`--head`), never `--working-tree`: on GitHub there is no work in
 progress, and the report must describe exactly what is being merged.
 
-Neither job fails the build today. See [blocking pull requests](#i-maintain-the-repository).
+Translation drift never fails a job today. See
+[blocking pull requests](#i-maintain-the-repository). The pull-request job does fail when
+the script's own tests fail, so a change that breaks the script is caught before it merges.
 
 ## Try it yourself
 
@@ -556,6 +558,9 @@ stale.
 | 18 | Same start; then the English page is deleted and the deletion is *not* committed | check with `--working-tree` | The translation is reported `orphaned` |
 | 19 | Same as 16 | check with `--head HEAD` | No finding: without `--working-tree`, uncommitted work stays out, which is what CI relies on |
 | 20 | Same start | check with both `--head` and `--working-tree` | Clear error naming both options; exit code 1 |
+| 21 | Repository that does not convert line endings (like the Linux CI); the same English text committed once with CRLF and once with LF, each with an unstamped translation; then the CRLF page is converted to LF and committed | `--stamp`, then `--audit` | Both translations get the same stamp; after the conversion the audit has no finding at all |
+| 22 | Same kind of repository; English page committed with CRLF, translation stamped; then the English text changes from "Version one." to "Version two." | `--explain` | Output contains `-Version one.` and `+Version two.`; exit code 0 |
+| 23 | Same as 22, but the new English version is also saved with LF | `--explain` | Output contains `-Version one.` and `+Version two.`, and not the lines where only the line ending changed; exit code 0 |
 
 Tests 1 to 4 each reproduce a bug that existed (see [design notes](#design-notes)). Tests 5
 to 7 make sure the safeguard from test 4 did not break normal stamping.
@@ -600,7 +605,15 @@ until it is declared in the config. Harmless for the script.
 
 **`--explain` says the recorded version was not found.** The stamp was written by hand or
 comes from a version of the English page that was never committed. Re-translate against the
-current page and re-stamp.
+current page and re-stamp. One more case: the English page is stored with CRLF line endings
+and was renamed or moved since the translation. The search for the stamped version only
+covers the history of the page's current path.
+
+**A translation of a page stored with CRLF is `stale`, yet the English text did not
+change.** It was stamped on Linux or macOS before the stamp ignored line endings, so it
+records a hash that still counts the CRLF. Check that the translation is current, then
+re-stamp it with `npm run i18n:stamp -- <page>`. `git ls-files --eol docs` shows which pages
+are stored with CRLF (`i/crlf` or `i/mixed`).
 
 **A page became `stale` right after stamping.** It was stamped while the English page had
 uncommitted changes, and those changes were then discarded. Re-stamp it.
@@ -614,12 +627,17 @@ better: a squash or a rebase rewrites them, and the whole French translation lan
 squashed commit, so every page shared a date. Nothing done inside the translated file can
 change the hash of the English file.
 
-**Why the hash comes from git.** The script asks `git hash-object` rather than hashing the
-bytes on disk. With `core.autocrlf`, a Windows checkout holds CRLF line endings where the
-repository stores LF, so hashing raw bytes gives a different answer on a translator's
-Windows machine than in CI on Linux, and every page stamped on Windows would be reported
-stale. `git hash-object` applies the same line-ending rules as `git add`. All files are
-hashed in one git call.
+**Why the hash ignores line endings.** The stamp is the git blob hash of the English page
+with every CRLF read as LF. With `core.autocrlf`, a Windows checkout holds CRLF line endings
+where the repository stores LF, and a few English pages are stored with CRLF in the
+repository itself. Hashing the bytes as they are, or asking `git hash-object` (which
+converts or not depending on each machine's git configuration), gives a different answer on
+a translator's Windows machine than in CI on Linux, and a page stamped on one would be
+reported stale on the other. Reading every line ending as LF gives one answer everywhere,
+and converting a page from CRLF to LF does not make its translations stale. For a page
+stored with LF, which is nearly all of them, the stamp is exactly what `git hash-object`
+prints. For a page stored with CRLF it is not: check those with `npm run i18n:explain`,
+which searches the page's history for the version the stamp describes.
 
 **Why git is called without a shell.** On Windows, `cmd.exe` removes the `^` of
 `<ref>^{commit}`, so no base branch could ever be resolved and the check mode failed on

@@ -1,3 +1,7 @@
+---
+i18n_source_sha: ec9b2201207a90fd2d712dfaa95296830cea56f7
+---
+
 # Pour aller plus loin
 
 ## Ressources de l’équipe

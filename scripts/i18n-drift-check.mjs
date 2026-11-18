@@ -41,7 +41,7 @@
  * HOW "UP TO DATE" IS DECIDED - read this first, it is the heart of the script.
  *
  * Every translated page carries a HASH of the English page it was made from, stored in its
- * front matter as `i18n_source_sha`. The hash is git's own blob hash of the source file.
+ * front matter as `i18n_source_sha`. The hash is the git blob hash of the source file, line endings read as LF.
  *
  *     docs/fr/technical/guide.md
  *     ---
@@ -90,6 +90,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import process from "node:process";
+import { createHash } from "node:crypto";
 import { createRequire } from "node:module";
 import { execFileSync } from "node:child_process";
 
@@ -293,25 +294,55 @@ function readWorkingTreeChanges(baseRef) {
 }
 
 /**
- * THE HASH. Git's own blob hash of each file, asked from git itself - what
+ * THE HASH. The git blob hash of each file's text with every CRLF read as LF.
+ *
+ * For a page the repository stores with LF - nearly all of them - this is exactly what
  * `git hash-object <file>` prints, so anyone can verify a stamp by hand.
  *
- * It has to come from git rather than from hashing the bytes on disk: with `core.autocrlf`
- * a Windows checkout holds CRLF where the repository stores LF, and hashing the raw bytes
- * gives a different answer on a translator's machine than in CI. Every page stamped on
- * Windows would then report as stale on Linux. `hash-object` applies the same line-ending
- * rules as `git add`, so the hash is the one git stores, on every platform.
+ * Line endings are left out on purpose. With `core.autocrlf` a Windows checkout holds CRLF
+ * where the repository stores LF, and a few pages are stored with CRLF in the repository
+ * itself. Hashing the bytes as they are, or asking `git hash-object` (which converts or not
+ * depending on each machine's configuration), gives a translator on Windows a different
+ * answer than the Linux CI, and a page stamped on one reports as stale on the other.
+ * Normalising here gives one answer everywhere, and converting a page's line endings does
+ * not make its translations stale.
  *
- * One subprocess for the whole list (`--stdin-paths`), not one per page.
- *
- * Any change to the source file - one character, one newline - produces a different hash.
- * That is the property the whole check rests on.
+ * Any change to the text of the source file - one character, one added line - produces a
+ * different hash. That is the property the whole check rests on.
  */
 function gitBlobShas(filePaths) {
-  if (filePaths.length === 0) return new Map();
+  return new Map(filePaths.map((filePath) => [filePath, lineEndingNeutralSha(fs.readFileSync(filePath))]));
+}
 
-  const hashes = runGit(["hash-object", "--stdin-paths"], `${filePaths.join("\n")}\n`).split("\n");
-  return new Map(filePaths.map((filePath, index) => [filePath, hashes[index].trim()]));
+function lineEndingNeutralSha(bytes) {
+  // latin1 maps bytes to characters one to one, so only the CRLF pairs change.
+  const content = Buffer.from(bytes.toString("latin1").replace(/\r\n/g, "\n"), "latin1");
+  return createHash("sha1").update(`blob ${content.length}\0`).update(content).digest("hex");
+}
+
+/**
+ * Finds the version of a source page that a stamp describes, as a git blob name.
+ *
+ * For a version stored with LF the stamp IS the blob name. For one stored with CRLF it is
+ * not (the stamp leaves line endings out), so the page's history is searched for the
+ * version whose line-ending-neutral hash equals the stamp. Returns null when there is none.
+ */
+function findStampedBlob(stamp, sourcePath) {
+  try {
+    runGit(["cat-file", "-e", `${stamp}^{blob}`]);
+    return stamp;
+  } catch {
+    // Not a blob name: fall through to the history of the page.
+  }
+
+  const history = runGit(["log", "--format=", "--raw", "--no-abbrev", "--", sourcePath]);
+  const blobs = new Set(history.split("\n").map((line) => line.split(/\s+/)[3]));
+  for (const blob of blobs) {
+    if (!/^[0-9a-f]{40,}$/.test(blob ?? "") || /^0+$/.test(blob)) continue;
+    const bytes = execFileSync("git", ["cat-file", "blob", blob], { maxBuffer: 64 * 1024 * 1024 });
+    if (lineEndingNeutralSha(bytes) === stamp) return blob;
+  }
+  return null;
 }
 
 /**
@@ -925,8 +956,8 @@ function stampTranslations({ allLocales, reportedLocales, repoRoot, only, force 
  * Shows a translator WHAT to carry across: the diff of the English page between the version
  * the translation was made from and the version that exists now.
  *
- * Costs nothing extra to support - the stamp is a git blob hash, so the old English text is
- * still in the repository under that very name, and git can diff it against today's file.
+ * Costs little to support - the stamp names the old English text, which is still in the
+ * repository (see findStampedBlob), and git can diff it against today's file.
  */
 function explainTranslation({ target, allLocales, repoRoot }) {
   const localizedPath = normalizePath(target);
@@ -956,9 +987,8 @@ function explainTranslation({ target, allLocales, repoRoot }) {
     return `${localizedPath} is up to date with ${sourcePath} (${currentSha.slice(0, 7)}).\n`;
   }
 
-  try {
-    runGit(["cat-file", "-e", `${stamp}^{blob}`]);
-  } catch {
+  const stampedBlob = findStampedBlob(stamp, sourcePath);
+  if (!stampedBlob) {
     fail(
       `${localizedPath} records source version ${stamp.slice(0, 7)}, which was not found in this ` +
         "repository. The stamp may have been typed by hand, or the clone may be shallow."
@@ -969,7 +999,7 @@ function explainTranslation({ target, allLocales, repoRoot }) {
     `${sourcePath} changed since ${localizedPath} was translated ` +
     `(${stamp.slice(0, 7)} -> ${currentSha.slice(0, 7)}).\n` +
     `Carry these changes across, then run: npm run i18n:stamp -- ${localizedPath}\n\n` +
-    `${runGit(["diff", "--no-color", stamp, sourcePath])}\n`
+    `${runGit(["diff", "--no-color", "--ignore-cr-at-eol", stampedBlob, sourcePath])}\n`
   );
 }
 
