@@ -1,0 +1,948 @@
+diff --git a/docs/pt/technical/business-operations-framework/Microfrontend-JAMStack.md b/docs/pt/technical/business-operations-framework/Microfrontend-JAMStack.md
+index 5ba8919d..23af83c7 100644
+--- a/docs/pt/technical/business-operations-framework/Microfrontend-JAMStack.md
++++ b/docs/pt/technical/business-operations-framework/Microfrontend-JAMStack.md
+@@ -2,7 +2,7 @@
+ i18n_source_sha: 666f21f27cad5ef3d3fe214ebf7bf74877a2f165
+ ---
+ 
+-# Micro-frontend - Concepção do JAMStack
++# Micro-frontend - Conceção do JAMStack
+ ## Visão geral
+ O objetivo do design de micro-frontend - JAMStack consiste em criar um framework que:
+ 
+diff --git a/docs/pt/technical/business-operations-framework/ReportingBC.md b/docs/pt/technical/business-operations-framework/ReportingBC.md
+index e9b6f60d..f7da8f40 100644
+--- a/docs/pt/technical/business-operations-framework/ReportingBC.md
++++ b/docs/pt/technical/business-operations-framework/ReportingBC.md
+@@ -11,31 +11,31 @@ Um dos objetivos deste projeto da workstream consiste em proporcionar a capacida
+ 
+ Aqui está o projeto arquitetónico global.
+ 
+-![Architecture overview diagram of reporting bounded context](../../.vuepress/public/Reporting-&-Auditing-Overview.png)
++![Architecture overview diagram of reporting bounded context](../../.vuepress/public/Reporting-&-Auditing-Overview.png)
+ 
+-Na versão Mojaloop, todos os serviços principais já estão a enviar eventos para a versão Kafka num tópico (denominado «topic-event»).
++Na versão Mojaloop, todos os serviços principais já estão a enviar eventos para a versão Kafka num tópico (denominado «topic-event»).
+ 
+ Existem duas bases de dados fundamentais para a elaboração de relatórios:
+ 1. **Base de dados de relatórios** 
+ A base de dados de relatórios é uma base de dados relacional que mantém um registo do estado mais recente dos Mojaloop objetos e os disponibiliza através de uma interface de consulta eficiente. \
+ \
+-Na implementação deste esforço da workstream, será utilizada uma réplica dedicada da base de dados do livro-razão geral central para a elaboração de relatórios. Isto não se enquadra totalmente no modelo arquitetónico, uma vez que uma base de dados pertencente ao contexto delimitado de relatórios não deve ter dependências externas. Uma réplica da base de dados do livro-razão geral central depende do esquema do livro-razão geral central e, por conseguinte, apresenta uma dependência externa. 
++Na implementação deste esforço da workstream, será utilizada uma réplica dedicada da base de dados do Central Ledger para a elaboração de relatórios. Isto não se enquadra totalmente no modelo arquitetónico, uma vez que uma base de dados pertencente ao contexto delimitado de relatórios não deve ter dependências externas. Uma réplica da base de dados do Central Ledger depende do esquema do Central Ledger e, por conseguinte, apresenta uma dependência externa. 
+ ::: aviso Dívida Técnica
+ Isto deve ser reconhecido como **dívida técnica** que deverá ser liquidada à medida que a arquitetura de referência for sendo construída. 
+ :::
+ Existem duas abordagens que podem ser adotadas para liquidar esta dívida técnica:
+   - Alterar a chamada à réplica para uma função de **sincronização de dados unidirecional**, o que desacoplaria os esquemas das duas bases de dados.
+-  - Recriar uma **base de dados relacional** com um novo design, que seja atualizada com base nos tópicos «Kafka» subscritos.
++  - Recriar uma **base de dados relacional** com um novo design, que seja atualizada com base nos tópicos «Kafka» subscritos.
+ 
+ A melhor abordagem dependerá do estado da versão atual Mojaloop no momento em que esta dívida for liquidada. \
+ \
+ 2. **Base de dados de eventos** 
+-A base de dados de eventos constitui um registo dos detalhes dos eventos, podendo proporcionar uma visão mais pormenorizada do que ocorreu. 
++A base de dados de eventos constitui um registo dos detalhes dos eventos, podendo proporcionar uma visão mais pormenorizada do que ocorreu. 
+ 
+ **Limitações do trabalho relativo ao «event store» nesta workstream**
+-Este projeto será implementado na versão atual Mojaloop. 
++Este projeto será implementado na versão atual Mojaloop. 
+ 
+-Atualmente, apenas os dados necessários para permitir o rastreio de ponta a ponta de uma transferência serão recolhidos e disponibilizados através do relatório API. É possível alargar facilmente esta oferta, ampliando o processador de eventos para processar mensagens de novos casos de uso e armazená-las na base de dados MongoDB, e, em seguida, configurar a consulta genérica de recursos GraphQL de modo a consultar os novos armazenamentos de dados de forma adequada.
++Atualmente, apenas os dados necessários para permitir o rastreio de ponta a ponta de uma transferência serão recolhidos e disponibilizados através do relatório API. É possível alargar facilmente esta oferta, ampliando o processador de eventos para processar mensagens de novos casos de uso e armazená-las na base de dados MongoDB, e, em seguida, configurar a consulta genérica de recursos GraphQL de modo a consultar os novos armazenamentos de dados de forma adequada.
+ 
+ ## Alinhamento com a arquitetura de referência
+ 
+@@ -44,32 +44,32 @@ Embora o contexto delimitado se refira à elaboração de relatórios e à audit
+ (Não existe uma separação total, uma vez que o atual projeto utiliza uma réplica da base de dados como base de dados de relatórios. A dívida técnica e os próximos passos para resolver esta situação estão descritos acima.)
+ 
+ 
+-É importante ter em conta a forma como este contexto delimitado irá evoluir à medida que for sendo implementada uma parte cada vez maior do projeto da arquitetura de referência.
++É importante ter em conta a forma como este contexto delimitado irá evoluir à medida que for sendo implementada uma parte cada vez maior do projeto da arquitetura de referência.
+ 
+-Os contextos delimitados deixarão — durante a implementação da arquitetura de referência — de armazenar dados nas bases de dados da razão geral.
++Os contextos delimitados deixarão — durante a implementação da arquitetura de referência — de armazenar dados nas bases de dados do Central Ledger.
+ 
+ Existem três abordagens que podem ser adotadas para dar resposta a esta alteração. A forma como a arquitetura de referência for construída determinará qual é a melhor abordagem:
+ 1. Modificar a funcionalidade de sincronização para dar resposta ao novo armazenamento de dados do contexto delimitado.
+ 2. Alargar o processador de eventos de mensagens para capturar a informação necessária na base de dados de relatórios.
+-3. Chamar as APIs do contexto delimitado recentemente definidas, para recuperar os dados necessários.
++3. Chamar as APIs do contexto delimitado recentemente definidas, para recuperar os dados necessários.
+ 
+ ## Casos de uso para permitir o rastreio de uma transferência
+ 
+ 
+-A fim de acompanhar eficazmente uma transferência de ponta a ponta, foram definidos quatro casos de uso.
++A fim de acompanhar eficazmente uma transferência de ponta a ponta, foram definidos quatro casos de uso.
+ 
+ ### Caso de uso 1: Visualização do painel de controlo
+ 
+ 
+ **Na qualidade de** Especialista em Operações Empresariais de Operador do Hub,
+ **pretendo** um resumo num painel de controlo de alto nível das transferências que passam pelo hub, obtido a partir de um intervalo de data e hora, 
+-**para que** possa monitorizar de forma proativa o estado do ecossistema.
++**para que** possa monitorizar de forma proativa o estado do ecossistema.
+ 
+ :::::: col-wrapper
+ 
+ | Dados devolvidos |
+ 
+-| --- |
++| --- |
+ | Número de transferências |
+ 
+ | Valor total da transferência por moeda |
+@@ -84,7 +84,7 @@ A fim de acompanhar eficazmente uma transferência de ponta a ponta, foram defin
+ 
+ | Montante da transferência por moeda por beneficiário DFSP |
+ 
+-:::::::::
++:::::::::
+ 
+ ### Caso de uso 2: Visualização da lista de transferências
+ 
+@@ -92,7 +92,7 @@ A fim de acompanhar eficazmente uma transferência de ponta a ponta, foram defin
+ **Na qualidade de** Especialista em Operações Empresariais de Operador do Hub,
+ **pretendo** visualizar uma lista de transferências que possa ser filtrada com base num ou mais dos seguintes critérios: 
+ - Sempre obrigatório (deve ser indicado em todas as chamadas)
+-   - Intervalo de data e hora
++   - Intervalo de data e hora
+ 
+ - Filtros opcionais 
+ 
+@@ -124,13 +124,13 @@ A fim de acompanhar eficazmente uma transferência de ponta a ponta, foram defin
+    - Pesquisar uma expressão nas mensagens
+ 
+ 
+-**Para que** eu possa monitorizar de forma proativa o estado do ecossistema, através de uma visão mais detalhada dos dados de transferência que circulam pelo hub.
++**Para que** eu possa monitorizar de forma proativa o estado do ecossistema, através de uma visão mais detalhada dos dados de transferência que circulam pelo hub.
+ 
+ :::::: col-wrapper
+ 
+ | Dados devolvidos | |
+ 
+-| --- | --- |
++| --- | --- |
+ | ID da transferência | O identificador único da transferência |
+ 
+ | Estado da transferência | Indica se a transferência foi bem-sucedida, se está pendente ou se ocorreu um erro |
+@@ -157,14 +157,14 @@ A fim de acompanhar eficazmente uma transferência de ponta a ponta, foram defin
+ 
+ | Data de envio | A data e a hora em que a transferência foi iniciada. |
+ 
+-:::::::::
++:::::::::
+ 
+ ### Caso de uso 3: Visualização dos detalhes da transferência
+ 
+ 
+ **Na qualidade de** Especialista em Operações Empresariais de Operadores do Hub, 
+ **pretendo** rastrear uma transferência específica a partir do seu ID de transferência,
+-**para que** possa identificar:
++**para que** possa identificar:
+ 
+ - O calendário e a situação atual da transferência
+ 
+@@ -179,7 +179,7 @@ A fim de acompanhar eficazmente uma transferência de ponta a ponta, foram defin
+ 
+ | Dados devolvidos | |
+ 
+-| --- | --- |
++| --- | --- |
+ | ID da transferência | O identificador único da transferência |
+ 
+ | Estado da transferência | Indica se a transferência foi bem-sucedida, se está pendente ou se ocorreu um erro |
+@@ -208,20 +208,20 @@ A fim de acompanhar eficazmente uma transferência de ponta a ponta, foram defin
+ 
+ | Data de envio | A data e a hora em que a transferência foi iniciada |
+ 
+-:::::::::
++:::::::::
+ 
+ ### Caso de uso 4: Visualização da mensagem de transferência
+ 
+ 
+ **Na qualidade de** Especialista em Operações Empresariais de Operador do Hub, 
+ **pretendo** consultar as mensagens detalhadas relativas ao ID dessa transferência,
+-**para que** possa investigar qualquer problema inesperado associado a essa transferência.
++**para que** possa investigar qualquer problema inesperado associado a essa transferência.
+ 
+ :::::: col-wrapper
+ 
+ | Dados devolvidos | |
+ 
+-| --- | --- |
++| --- | --- |
+ | ID de transferência do scheme | |
+ 
+ | TransferID | |
+@@ -244,13 +244,13 @@ A fim de acompanhar eficazmente uma transferência de ponta a ponta, foram defin
+ 
+ | Mensagem(s) de erro | |
+ 
+-:::::::::
++:::::::::
+ 
+ ## Fluxo de trabalho empresarial
+ 
+ Apresentamos aqui um fluxo de trabalho empresarial que descreve a forma como os casos de uso são acionados.
+ 
+-![Business workFlow](../../.vuepress/public/BusinessFlowView.png)
++![Business workFlow](../../.vuepress/public/BusinessFlowView.png)
+ 
+ ## Ferramentas selecionadas
+ 
+@@ -275,7 +275,7 @@ A implementação do GraphQL API foi adicionada pelas seguintes razões:
+    - Maior facilidade para combinar dados de diferentes fontes num único recurso
+    - A implementação da solução de relatórios existente resultava em instruções SQL muito complexas, cuja criação e manutenção exigiam conhecimentos especializados. A divisão dos dados num recurso mais natural e na subsequente instrução SQL simplifica tanto a instrução SQL como a utilização desse recurso.
+    - Na equipa, contávamos com um especialista em GraphQL que conhecia as melhores bibliotecas e ferramentas a utilizar.
+-   - Foi criada uma implementação genérica para que não fossem necessários conhecimentos específicos de GraphQL para alargar a funcionalidade. 
++   - Foi criada uma implementação genérica para que não fossem necessários conhecimentos específicos de GraphQL para alargar a funcionalidade. 
+ 
+ **Vantagens adicionais da utilização do GraphQL**
+    - Recursos reutilizáveis/permissões RBAC associadas entre relatórios
+@@ -284,15 +284,15 @@ A implementação do GraphQL API foi adicionada pelas seguintes razões:
+    - Não é necessário recorrer a recuperações aninhadas
+    - Não é necessário recorrer a múltiplas recuperações
+    - Não é necessário utilizar a versão API. A versão API permite naturalmente a compatibilidade retroativa entre versões. 
+-   - Autodocumentação API
++   - Autodocumentação API
+ 
+ **Introdução de uma nova tecnologia**
+-A introdução de uma nova tecnologia na comunidade acarreta, de facto, alguns riscos e a necessidade de aprender e manter essa nova tecnologia. Foi feita uma tentativa para reduzir o impacto desta situação através da implementação do API, utilizando uma abordagem genérica ou baseada em modelos, minimizando assim os conhecimentos de GraphQL necessários para a implementação. Além disso, foi fornecido um exemplo de consulta GraphQL.
++A introdução de uma nova tecnologia na comunidade acarreta, de facto, alguns riscos e a necessidade de aprender e manter essa nova tecnologia. Foi feita uma tentativa para reduzir o impacto desta situação através da implementação do API, utilizando uma abordagem genérica ou baseada em modelos, minimizando assim os conhecimentos de GraphQL necessários para a implementação. Além disso, foi fornecido um exemplo de consulta GraphQL.
+ 
+-A atual implementação do GraphQL é fácil de utilizar para os programadores.
++A atual implementação do GraphQL é fácil de utilizar para os programadores.
+ 
+ **Implementação de relatórios REST**
+-Existe uma REST implementação de relatórios API que foi doada à Mojaloop comunidade. É possível implementar esta funcionalidade em paralelo com a implementação GraphQL API, caso tal se revele necessário.
++Existe uma REST implementação de relatórios API que foi doada à Mojaloop comunidade. É possível implementar esta funcionalidade em paralelo com a implementação GraphQL API, caso tal se revele necessário.
+ 
+ ### GraphQL API — explicação sobre a implementação de recursos genéricos
+ 
+@@ -311,35 +311,35 @@ No cerne da implementação deste contexto delimitado encontra-se uma implementa
+ ### Exemplos de consultas GraphQL
+ 
+ 
+-**Consultar as transferências filtradas por um pagador específico DFSP**
+-```GraphQL
+-query GetTransfers {
+-  transfers(filter: {
+-    payer: "payerfsp"
+-  }) {
+-    transferId
+-    createdAt
+-    payee {
+-      name
+-    }
+-  }
+-}
+-```
+-
+-**Consultar um resumo das transferências**
+-```GraphQL
+-query TransferSumary2021Q1 {
+-  transferSummary(
+-    filter: {
+-        currency: "USD"
+-        startDate: "2021-01-01"
+-        endDate: "2021-03-31"
+-    }) {
+-        count
+-        payer
+-  }
+-}
+-```
++**Consultar as transferências filtradas por um pagador específico DFSP**
++```GraphQL
++query GetTransfers {
++  transfers(filter: {
++    payer: "payerfsp"
++  }) {
++    transferId
++    createdAt
++    payee {
++      name
++    }
++  }
++}
++```
++
++**Consultar um resumo das transferências**
++```GraphQL
++query TransferSumary2021Q1 {
++  transferSummary(
++    filter: {
++        currency: "USD"
++        startDate: "2021-01-01"
++        endDate: "2021-03-31"
++    }) {
++        count
++        payer
++  }
++}
++```
+ 
+ 
+ ## Criação do repositório de dados de eventos
+@@ -347,47 +347,47 @@ query TransferSumary2021Q1 {
+ O objetivo do repositório de dados de eventos é proporcionar um armazenamento persistente de eventos de interesse que possam ser facilmente e eficientemente localizados e consultados para a elaboração de relatórios.
+ 
+ 
+-Para alcançar este objetivo com o mínimo de alterações na estrutura da mensagem original, decidiu-se processar a mensagem em categorias e armazenar essas categorias como metadados adicionais no interior da mensagem, os quais podem ser consultados posteriormente. As mensagens que não se enquadram nessas categorias não são armazenadas e, por conseguinte, são filtradas.
+-
+-Eis um exemplo dos metadados que são adicionados à mensagem «JSON»:
+-
+-```json{7-12}
+-{
+-    "event": {
+-        "id" : {},
+-        "content" : {},
+-        "type" : {},
+-        "metadata" : {}
+-    },
+-    "metadata" : {
+-        "reporting" : {
+-            "transactionId" : "...",
+-            "quoteId": "...",
+-            "eventType" : "Quote"
+-        }
+-    }
+-}
+-```
++Para alcançar este objetivo com o mínimo de alterações na estrutura da mensagem original, decidiu-se processar a mensagem em categorias e armazenar essas categorias como metadados adicionais no interior da mensagem, os quais podem ser consultados posteriormente. As mensagens que não se enquadram nessas categorias não são armazenadas e, por conseguinte, são filtradas.
++
++Eis um exemplo dos metadados que são adicionados à mensagem «JSON»:
++
++```json{7-12}
++{
++    "event": {
++        "id" : {},
++        "content" : {},
++        "type" : {},
++        "metadata" : {}
++    },
++    "metadata" : {
++        "reporting" : {
++            "transactionId" : "...",
++            "quoteId": "...",
++            "eventType" : "Quote"
++        }
++    }
++}
++```
+ Em que «`"eventType"`» pode ser um dos seguintes:
+ :::::: col-wrapper
+ ::: col-third
+-:::
++:::
+ 
+ ::: col-third
+ 
+ | tipo de evento    |
+ 
+-| ------- |
++| ------- |
+ |Citação |
+ 
+ |Transferência |
+ 
+ |Liquidação    |
+ 
+-:::
+-:::::::::
++:::
++:::::::::
+ 
+-O processador de fluxo de eventos irá subscrever o tópico `'topic-event'` do Kafka. Esta fila de mensagens contém todas as mensagens de eventos. Por conseguinte, é necessário um grau significativo de filtragem.
++O processador de fluxo de eventos irá subscrever o tópico `'topic-event'` do Kafka. Esta fila de mensagens contém todas as mensagens de eventos. Por conseguinte, é necessário um grau significativo de filtragem.
+ 
+ :::dica NOTA
+ 
+@@ -395,7 +395,7 @@ O código que proporciona esta funcionalidade foi estruturado de forma a que est
+ 
+ As mensagens subscritas e classificadas são representadas em ficheiros «const», pelo que podem ser facilmente adicionadas ou alteradas sem que seja necessário um conhecimento aprofundado do código.
+ 
+-:::
++:::
+ 
+ ### Armazenamento exclusivo de mensagens de «auditoria»
+ 
+@@ -409,17 +409,17 @@ Apenas Kafka mensagens do tipo `'audit'` serão consideradas para gravação, ou
+ | ---- |
+ | audit |
+ :::
+-:::::::::
++:::::::::
+ 
+ ## Mensagens de «transferência» que se encontram armazenadas
+ 
+-**ml-api-adapter**
++**ml-api-adapter**
+ 
+ :::::: col-wrapper
+ 
+ | metadata.trace.service |
+ 
+-| ---- |
++| ---- |
+ | ml_transfer_prepare |
+ 
+ | ml_transfer_fulfil |
+@@ -430,18 +430,18 @@ Apenas Kafka mensagens do tipo `'audit'` serão consideradas para gravação, ou
+ 
+ | ml_notification_event |
+ 
+-:::::::::
++:::::::::
+ 
+ ## Mensagens «citando» que estão armazenadas
+ 
+-**quoting-service**
++**quoting-service**
+ :::::: col-wrapper
+ 
+ ::: col-third
+ 
+ | metadata.trace.service |
+ 
+-| ---- |
++| ---- |
+ | qs_quote_handleQuoteRequest |
+ 
+ | qs_quote_forwardQuoteRequest |
+@@ -460,13 +460,13 @@ Apenas Kafka mensagens do tipo `'audit'` serão consideradas para gravação, ou
+ 
+ | qs_quote_sendErrorCallback |
+ 
+-:::
++:::
+ 
+ ::: col-third
+ 
+ | metadata.trace.service |
+ 
+-| ---- |
++| ---- |
+ | qs_bulkquote_forwardBulkQuoteRequest |
+ 
+ | qs_quote_forwardBulkQuoteUpdate |
+@@ -477,13 +477,13 @@ Apenas Kafka mensagens do tipo `'audit'` serão consideradas para gravação, ou
+ 
+ | qs_bulkQuote_sendErrorCallback |
+ 
+-:::
++:::
+ 
+ ::: col-third
+ 
+ | metadata.trace.service |
+ 
+-| ---- |
++| ---- |
+ | QuotesErrorByIDPut |
+ 
+ | QuotesByIdGet |
+@@ -500,31 +500,31 @@ Apenas Kafka mensagens do tipo `'audit'` serão consideradas para gravação, ou
+ 
+ | BulkQuotesPost |
+ 
+-:::
+-:::::::::
++:::
++:::::::::
+ 
+ ## Mensagens de «liquidação» que se encontram armazenadas
+ 
+-**central-settlement**
++**central-settlement**
+ :::::: col-wrapper
+ 
+ ::: col-third
+ 
+ | metadata.trace.service |
+ 
+-| ---- |
++| ---- |
+ | cs_process_transfer_settlement_window |
+ 
+ | cs_close_settlement_window |
+ 
+-| ... |
+-:::
++| ... |
++:::
+ 
+ ::: col-third
+ 
+ | metadata.trace.service |
+ 
+-| ---- |
++| ---- |
+ | getSettlementWindowsByParams |
+ 
+ | getSettlementWindowById |
+@@ -537,9 +537,9 @@ Apenas Kafka mensagens do tipo `'audit'` serão consideradas para gravação, ou
+ 
+ | fecharJanelaDeLiquidação |
+ 
+-| ... |
+-:::
+-:::::::::
++| ... |
++:::
++:::::::::
+ 
+ ## Mensagens que, neste momento, continuam sem classificação e são filtradas 
+ 
+@@ -551,7 +551,7 @@ Apenas Kafka mensagens do tipo `'audit'` serão consideradas para gravação, ou
+ 
+ | metadata.trace.service |
+ 
+-| ---- | 
++| ---- | 
+ | ParticipantsErrorByIDPut |
+ 
+ | ParticipantesPorID |
+@@ -590,13 +590,13 @@ Apenas Kafka mensagens do tipo `'audit'` serão consideradas para gravação, ou
+ 
+ | Erro de Partes por SubIdType e IDPut |
+ 
+-:::
++:::
+ 
+ ::: col-third
+ 
+ | metadata.trace.service |
+ 
+-| ---- |
++| ---- |
+ | OraclesGet |
+ 
+ | OraclesPost |
+@@ -605,20 +605,20 @@ Apenas Kafka mensagens do tipo `'audit'` serão consideradas para gravação, ou
+ 
+ | OraclesByIdDelete |
+ 
+-:::
++:::
+ 
+ ::: col-third
+ 
+ | metadata.trace.service |
+ 
+-| ---- |
++| ---- |
+ | participantes da publicação |
+ 
+ | getPartiesByTypeAndID |
+ 
+-| ... |
+-:::
+-:::::::::
++| ... |
++:::
++:::::::::
+ 
+ **transaction-requests-service (não consta no PI — incluído a título de referência)**
+ :::::: col-wrapper
+@@ -632,20 +632,20 @@ Apenas Kafka mensagens do tipo `'audit'` serão consideradas para gravação, ou
+ | AuthorizationsIDResponse |
+ | AuthorizationsIDPutResponse |
+ | AuthorizationsErrorByID |
+-:::
++:::
+ 
+ ::: col-third
+ 
+ | metadata.trace.service |
+ 
+-| ----- |
++| ----- |
+ | forwardAuthorizationMessage |
+ 
+ | erro de autorização de reencaminhamento |
+ 
+-| ... |
+-:::
+-:::::::::
++| ... |
++:::
++:::::::::
+ 
+ ### Ferramentas úteis
+ 
+@@ -656,19 +656,19 @@ O software [«kowl»](https://github.com/cloudhut/kowl), da cloudhut, é uma fer
+ 
+ 
+ O ficheiro de valores personalizados para o deployment do OSS encontra-se neste [repository](https://github.com/mojaloop/deploy-config/tree/deploy/PI15.2/mojaloop/kowl-kafka-ui).
+-(Trata-se de um repositório privado; poderá ser necessária autorização para aceder a esta ligação.)
+-
+-**Passos para a instalação**
+-```
+-helm repo add cloudhut https://raw.githubusercontent.com/cloudhut/charts/master/archives
+-helm repo update
+-helm install kowl cloudhut/kowl -f values-moja2-kowl-values.yaml
+-```
++(Trata-se de um repositório privado; poderá ser necessária autorização para aceder a esta ligação.)
++
++**Passos para a instalação**
++```
++helm repo add cloudhut https://raw.githubusercontent.com/cloudhut/charts/master/archives
++helm repo update
++helm install kowl cloudhut/kowl -f values-moja2-kowl-values.yaml
++```
+ **Interface de utilizador web**
+-Abra o ficheiro URL, cuja configuração se encontra na secção `ingress` do ficheiro `values`.
++Abra o ficheiro URL, cuja configuração se encontra na secção `ingress` do ficheiro `values`.
+ 
+ **Personalização adicional**
+-Para obter informações sobre como adicionar mais personalizações, consulte a [configuração de referência](https://github.com/cloudhut/kowl/blob/master/docs/config/kowl.yaml)] fornecida pela cloudhut.
++Para obter informações sobre como adicionar mais personalizações, consulte a [configuração de referência](https://github.com/cloudhut/kowl/blob/master/docs/config/kowl.yaml)] fornecida pela cloudhut.
+ 
+ #### Percurso ideal do TTK
+ 
+@@ -678,32 +678,32 @@ Os casos de teste do «golden path» do TTK foram concebidos para explorar todos
+ ## Serviço de processamento de eventos
+ 
+ 
+-O serviço de processamento de eventos é responsável por subscrever Kafka tópicos e filtrar os eventos por tipo de evento. O tipo de evento divide-se, por sua vez, em várias partes, dependendo do serviço a partir do qual os eventos foram produzidos. Os eventos filtrados serão então processados em função do contexto da estrutura do evento, e serão criados metadados de relatório.
+-
+-Exemplo:
+-
+-```json
+-{
+-    "event": {
+-        "id" : {},
+-        "content" : {},
+-        "type" : {},
+-        "metadata" : {}
+-    },
+-    "metadata" : {
+-        "reporting" : {
+-            "transactionId" : "...",
+-            "quoteId": "...",
+-            "eventType" : "Quote"
+-        }
+-    }
+-}
+-```
+-
+-| tipo de evento	| Origem do evento |
+-| ------- | ------- |
+-| Citação | quoting-service |
+-| Transferência | ml-api-adapter |
+-| Liquidação	| central-settlement |
+-
+-O serviço de processamento de eventos subscreve o fluxo de eventos «Kafka» para criar um repositório relacionado com a transferência de eventos, que pode ser consultado através do fluxo operacional «API». Isto está em conformidade com a arquitetura de referência.
++O serviço de processamento de eventos é responsável por subscrever Kafka tópicos e filtrar os eventos por tipo de evento. O tipo de evento divide-se, por sua vez, em várias partes, dependendo do serviço a partir do qual os eventos foram produzidos. Os eventos filtrados serão então processados em função do contexto da estrutura do evento, e serão criados metadados de relatório.
++
++Exemplo:
++
++```json
++{
++    "event": {
++        "id" : {},
++        "content" : {},
++        "type" : {},
++        "metadata" : {}
++    },
++    "metadata" : {
++        "reporting" : {
++            "transactionId" : "...",
++            "quoteId": "...",
++            "eventType" : "Quote"
++        }
++    }
++}
++```
++
++| tipo de evento	| Origem do evento |
++| ------- | ------- |
++| Citação | quoting-service |
++| Transferência | ml-api-adapter |
++| Liquidação	| central-settlement |
++
++O serviço de processamento de eventos subscreve o fluxo de eventos «Kafka» para criar um repositório relacionado com a transferência de eventos, que pode ser consultado através do fluxo operacional «API». Isto está em conformidade com a arquitetura de referência.
+diff --git a/docs/pt/technical/faqs.md b/docs/pt/technical/faqs.md
+index 9f2e28ec..66a99751 100644
+--- a/docs/pt/technical/faqs.md
++++ b/docs/pt/technical/faqs.md
+@@ -8,7 +8,7 @@ Este documento contém algumas das perguntas técnicas mais frequentes da comuni
+ 
+ ## 1. O que é que é permitido?
+ 
+-Atualmente, os componentes do livro-razão geral são permitidos pela equipa. Os componentes «DFSP» estão desatualizados e, por isso, a instalação do ambiente de ponta a ponta e da configuração integral apresenta dificuldades.
++Atualmente, os componentes do Central Ledger são permitidos pela equipa. Os componentes «DFSP» estão desatualizados e, por isso, a instalação do ambiente de ponta a ponta e da configuração integral apresenta dificuldades.
+ 
+ ### 2. É possível estabelecer uma ligação direta ao Pathfinder num ambiente de desenvolvimento?
+ 
+diff --git a/docs/pt/technical/reference-architecture/boundedContexts/accountsAndBalances/index.md b/docs/pt/technical/reference-architecture/boundedContexts/accountsAndBalances/index.md
+index 7cda318b..ae307e0a 100644
+--- a/docs/pt/technical/reference-architecture/boundedContexts/accountsAndBalances/index.md
++++ b/docs/pt/technical/reference-architecture/boundedContexts/accountsAndBalances/index.md
+@@ -105,7 +105,7 @@ Inserção de lançamentos contabilísticos a partir do [BC](../settlements/inde
+ 
+ - Conta
+   - accountId
+-  - tipo de conta do livro-razão
++  - tipo de conta da razão geral
+   - ledgerAccountState
+   - limite de débito
+   - limite de crédito
+diff --git a/docs/pt/technical/reference-architecture/boundedContexts/logging/index.md b/docs/pt/technical/reference-architecture/boundedContexts/logging/index.md
+index 2b6a7baa..96fe9083 100644
+--- a/docs/pt/technical/reference-architecture/boundedContexts/logging/index.md
++++ b/docs/pt/technical/reference-architecture/boundedContexts/logging/index.md
+@@ -4,7 +4,7 @@ i18n_source_sha: 1b529688ce8e8fa5579b9c407a0c68f9c133d580
+ 
+ # Exploração florestal na Colúmbia Britânica
+ 
+-O Contexto Delimitado de Registo é utilizado para armazenar informações técnicas que auxiliem na depuração, na deteção de avarias e na resolução de problemas. Os registos são obtidos a partir de qualquer outro Contexto Delimitado [^1] e armazenados para fins de consulta e elaboração de relatórios. A informação de registo é armazenada como «aspectos técnicos» e, caso ocorra qualquer perda de dados, não deverá haver outra consequência além da perda da capacidade técnica de compreender o comportamento do sistema. Todas as atividades do sistema são registadas e armazenadas de forma persistente, a fim de permitir que o Contexto Delimitado de Auditoria [^2] efetue consultas aos dados de registo.
++O Contexto Delimitado de Registo é utilizado para armazenar informações técnicas que auxiliem na depuração, na deteção de avarias e na resolução de problemas. Os registos são obtidos a partir de qualquer outro Contexto Delimitado [^1] e armazenados para fins de consulta e elaboração de relatórios. A informação de registo é armazenada como «aspetos técnicos» e, caso ocorra qualquer perda de dados, não deverá haver outra consequência além da perda da capacidade técnica de compreender o comportamento do sistema. Todas as atividades do sistema são registadas e armazenadas de forma persistente, a fim de permitir que o Contexto Delimitado de Auditoria [^2] efetue consultas aos dados de registo.
+ 
+ Os Contextos Delimitados devem publicar os eventos num formato definido e utilizando qualquer mecanismo disponível no Contexto Delimitado de Registo. A estrutura possui, implicitamente, uma camada de abstração integrada no evento destinado ao Contexto Delimitado de Registo, que, por sua vez, é então utilizada para persistir os dados de registo.
+ 
+diff --git a/docs/pt/technical/reference-architecture/boundedContexts/participantLifecycleManagement/index.md b/docs/pt/technical/reference-architecture/boundedContexts/participantLifecycleManagement/index.md
+index 2215858f..7bf3e60e 100644
+--- a/docs/pt/technical/reference-architecture/boundedContexts/participantLifecycleManagement/index.md
++++ b/docs/pt/technical/reference-architecture/boundedContexts/participantLifecycleManagement/index.md
+@@ -175,7 +175,7 @@ O fluxo de trabalho proporcionado por esta UC permite que o BC recorra a um proc
+     -   estado
+     -   Contas[]
+         -   ID da conta
+-        -   tipo de conta do livro-razão
++        -   tipo de conta da razão geral
+         -   moeda da conta
+         -   isActive
+         -   warningThreshold
+diff --git a/docs/pt/technical/technical/account-lookup-service/README.md b/docs/pt/technical/technical/account-lookup-service/README.md
+index 7d3c9b22..fb87f588 100644
+--- a/docs/pt/technical/technical/account-lookup-service/README.md
++++ b/docs/pt/technical/technical/account-lookup-service/README.md
+@@ -41,7 +41,7 @@ A configuração de encaminhamento basear-se-á no seguinte:
+ O ALS Oracle, a ser implementado como um **Serviço** ou um **Adaptador** (a semântica depende da utilização — Mediação = Adaptador, Serviço = Implementação), irá fornecer um componente de registo de pesquisa com funcionalidades semelhantes às dos recursos `/participants`, Mojaloop e API. No entanto, baseia-se vagamente na especificação MLAPI, uma vez que a sua interface implementa um padrão de sincronização que reduz os requisitos de correlação/persistência do padrão de callback assíncrono implementado diretamente pela especificação MLAPI. Isto proporcionará a todos os Serviços/Adaptadores do ALS Oracle uma interface padrão que será mediada pelo ALS com base na sua configuração de encaminhamento.  
+ Este componente (ou os sistemas de back-end) será também responsável pela persistência e preenchimento automático dos dados do participante.
+ 
+-## 2. Concepção da pesquisa de participantes
++## 2. Conceção da pesquisa de participantes
+ 
+ ### 2.1. Visão geral da arquitetura
+ ![Architecture Flow Account-Lookup for Participants](./assets/diagrams/architecture/arch-flow-account-lookup-participants.svg)
+@@ -66,7 +66,7 @@ _Nota: O caso de uso «Pesquisa de Participante» aplica-se igualmente a um caso
+ 
+ - [Diagrama de sequência para os participantes do DEL](als-del-participants.md)
+ 
+-## 3. Concepção da Pesquisa de Participantes
++## 3. Conceção da Pesquisa de Participantes
+ 
+ ### 3.1. Visão geral da arquitetura
+ ![Architecture Flow Account-Lookup for Parties](./assets/diagrams/architecture/arch-flow-account-lookup-parties.svg)
+@@ -77,7 +77,7 @@ _Nota: O caso de uso «Pesquisa de Participante» aplica-se igualmente a um caso
+ 
+ - [Diagrama de sequência para GET Parties](als-get-parties.md)
+ 
+-## 4. Concepção da área de administração do ALS
++## 4. Conceção da área de administração do ALS
+ 
+ ### 4.1. Visão geral da arquitetura
+ ![Architecture Flow Account-Lookup for Admin Get Oracles](./assets/diagrams/architecture/arch-flow-account-lookup-admin.svg)
+@@ -120,7 +120,7 @@ _Nota: O caso de uso «Pesquisa de Participante» aplica-se igualmente a um caso
+ * [Serviço de Pesquisa de Contas DBeaver ERD](./assets/entities/AccountLookupDB-schema-DBeaver.erd)
+ * [Serviço de Pesquisa de Contas MySQL Exportação do Workbench](./assets/entities/AccountLookup-ddl-MySQLWorkbench.sql)]
+ 
+-## 6. Concepção do ALS Oracle
++## 6. Conceção do ALS Oracle
+ 
+ A conceção detalhada do Oracle não faz parte do âmbito deste documento. A conceção e a implementação do Oracle são específicas para cada um dos requisitos do Oracle.
+ 
+diff --git a/docs/pt/technical/technical/account-lookup-service/als-get-participants.md b/docs/pt/technical/technical/account-lookup-service/als-get-participants.md
+index d43bfe1b..d7b3d18c 100644
+--- a/docs/pt/technical/technical/account-lookup-service/als-get-participants.md
++++ b/docs/pt/technical/technical/account-lookup-service/als-get-participants.md
+@@ -4,7 +4,7 @@ i18n_source_sha: d3986bfaa71480c995ffb339f60af1805198fc55
+ 
+ # Participantes do GET
+ 
+-Concepção para a pesquisa de um participante por um DFSP.
++Conceção para a pesquisa de um participante por um DFSP.
+ 
+ ## Diagrama de sequência
+ 
+diff --git a/docs/pt/technical/technical/central-bulk-transfers/README.md b/docs/pt/technical/technical/central-bulk-transfers/README.md
+index 13b530e4..d33d1a5a 100644
+--- a/docs/pt/technical/technical/central-bulk-transfers/README.md
++++ b/docs/pt/technical/technical/central-bulk-transfers/README.md
+@@ -2,7 +2,7 @@
+ i18n_source_sha: c1d0b3d54570bbce490894e80257984c225f37e8
+ ---
+ 
+-# Concepção de transferências em massa
++# Conceção de transferências em massa
+ 
+ O cenário «Transferências em massa» é descrito no documento de definição API relativo ao recurso /bulkTransfers. Para mais pormenores, _(consulte a secção `6.10`)_, de acordo com a [Mojaloop Specification](https://github.com/mojaloop/mojaloop-specification/blob/master/API%20Definition%20v1.0.pdf)
+ 
+diff --git a/docs/pt/technical/technical/central-ledger/README.md b/docs/pt/technical/technical/central-ledger/README.md
+index c1ba068f..c05610f3 100644
+--- a/docs/pt/technical/technical/central-ledger/README.md
++++ b/docs/pt/technical/technical/central-ledger/README.md
+@@ -2,15 +2,15 @@
+ i18n_source_sha: 103a61da42c413d100a62b89d79b1bd6080d4da3
+ ---
+ 
+-# Serviços de Razão Geral Centralizada
++# Serviços do Central Ledger
+ 
+-A razão geral central consiste numa série de serviços que facilitam a compensação e a liquidação de transferências entre os DFSP, incluindo as seguintes funções:
++O Central Ledger consiste numa série de serviços que facilitam a compensação e a liquidação de transferências entre os DFSP, incluindo as seguintes funções:
+ 
+ * Intermediação de mensagens em tempo real para a compensação de fundos
+ * Manutenção de posições líquidas para uma liquidação líquida diferida
+ * Atribuição de comissões ao nível do esquema e de comissões de transferência externa
+ 
+-## 1. Concepção do processo da razão geral central
++## 1. Conceção do processo do Central Ledger
+ 
+ ### 1.1 Visão geral da arquitetura
+ 
+@@ -47,10 +47,10 @@ Resumo das tabelas específicas do processo de transferência;
+ 
+ As tabelas restantes no ERD abaixo são tabelas de referência (azuis) ou específicas da liquidação (vermelhas) e estão incluídas como dependências diretas ou indiretas, a fim de ilustrar a relação entre as entidades específicas da transferência e as tabelas de transferência.
+ 
+-A definição do esquema da base de dados do **Livro-razão central** [Definição do esquema da base de dados do Livro-razão central](./assets/database/central-ledger-ddl-MySQLWorkbench.sql).
++A definição do esquema da base de dados do **Central Ledger** [Definição do esquema da base de dados do Central Ledger](./assets/database/central-ledger-ddl-MySQLWorkbench.sql).
+ 
+ ![Central-Ledger Database Diagram](./assets/database/central-ledger-schema.png)
+ 
+ ## 4. Especificação API
+ 
+-Consulte o **Livro-razão geral API** na secção [API Specifications](../../api/README.md#central-ledger-api)].
++Consulte o **Central Ledger API** na secção [API Specifications](../../api/README.md#central-ledger-api).
+diff --git a/docs/pt/technical/technical/deployment-guide/Production_Infrastructure_Guide.md b/docs/pt/technical/technical/deployment-guide/Production_Infrastructure_Guide.md
+index e81eb771..bd7f3b7e 100644
+--- a/docs/pt/technical/technical/deployment-guide/Production_Infrastructure_Guide.md
++++ b/docs/pt/technical/technical/deployment-guide/Production_Infrastructure_Guide.md
+@@ -102,11 +102,11 @@ As fontes de alimentação duplas são económicas de especificar na fase de aqu
+ 
+ Esta única decisão determina, em grande medida, o seu RPO, o seu RTO e parte da sua latência.
+ 
+-| Topologia | Sobrevive | RPO | RTO | Aspectos a ter em conta |
++| Topologia | Sobrevive | RPO | RTO | Aspetos a ter em conta |
+ |---|---|---|---|---|
+ | Um local, três domínios de falha (racks / zonas de alimentação) | Perda de um nó, rack, switch ou fonte de alimentação | 0 (transferências confirmadas) | Sem interrupção; breve paragem parcial (de alguns segundos a cerca de 1 minuto) | A perda total do local constitui uma interrupção do serviço |
+ | Dois locais: principal + recuperação de desastres assíncrona | Perda do site, com failover manual | Segundos de atraso na replicação | Minutos a horas (uma decisão humana) | As transferências em curso necessitam de reconciliação |
+-| Três locais: dois ativos + testemunha de quórum | Perda do site, automaticamente | 0 (transferências confirmadas) | De alguns segundos a cerca de 1 minuto (detecção de falhas no site) | Requer uma baixa latência entre locais (RTT de alguns ms); cada commit contribui para isso |
++| Três locais: dois ativos + testemunha de quórum | Perda do site, automaticamente | 0 (transferências confirmadas) | De alguns segundos a cerca de 1 minuto (deteção de falhas no site) | Requer uma baixa latência entre locais (RTT de alguns ms); cada commit contribui para isso |
+ 
+ **Um site com três domínios de falha** (racks diferentes, zonas de alimentação diferentes) resiste à perda de um nó, de um rack, de um switch ou de uma fonte de alimentação. O RPO é zero para transferências confirmadas. Não há interrupção de serviço, apenas uma breve paragem de alguns segundos a cerca de um minuto para o tráfego que se encontrava no nó em falha. Isso inclui a base de dados, uma vez que o projeto de produção recomendado utiliza um Percona XtraDB Cluster de três nós ([Secção 6](#6-high-availability-rpo-and-rto)). A perda de todo o site constitui uma interrupção de serviço.
+ 
+@@ -412,7 +412,7 @@ Uma pergunta frequente: com três réplicas de tudo, replicação em Kafka e um
+   - o cluster da base de dados mantiver o quórum.
+ 
+ **RTO: uma breve paragem.** O tempo de recuperação é um caso à parte, porque qualquer mecanismo de failover tem, em primeiro lugar, de detetar a falha.
+-- **Detecção de nós:** por predefinição, o Kubernetes demora cerca de 40 a 50 segundos a marcar um nó como «NotReady» e a retirar os seus pods de serviço.
++- **Deteção de nós:** por predefinição, o Kubernetes demora cerca de 40 a 50 segundos a marcar um nó como «NotReady» e a retirar os seus pods de serviço.
+ - **Reequilíbrio do consumidor:** Kafka pod de consumidor nesse nó contém partições que permanecem por consumir até que o grupo se reequilibre, o que demora cerca de 45 segundos por predefinição.
+ - **Efeito:** não há interrupção do serviço, mas a parte das transferências que passa pelo nó em falha fica em espera durante cerca de um minuto, e algumas atingem os tempos limite dos clientes. É isso que o nível DFSP experimenta.
+ 
+diff --git a/docs/pt/technical/technical/deployment-guide/deployment-troubleshooting.md b/docs/pt/technical/technical/deployment-guide/deployment-troubleshooting.md
+index 407f1123..1b41cdb5 100644
+--- a/docs/pt/technical/technical/deployment-guide/deployment-troubleshooting.md
++++ b/docs/pt/technical/technical/deployment-guide/deployment-troubleshooting.md
+@@ -94,7 +94,7 @@ Certifique-se de que está a deployar o Mojaloop Helm charts v10.x ou versões a
+ 
+ Os meus pods não conseguem aceder à Internet nem comunicar entre si (mas o meu computador anfitrião do MicroK8s consegue).
+ 
+-Um exemplo disso é o facto de os registos da razão geral indicarem que existe um erro no transporte do Broker, conforme se pode ver no exemplo seguinte:
++Um exemplo disso é o facto de os registos do Central Ledger indicarem que existe um erro no transporte do Broker, conforme se pode ver no exemplo seguinte:
+ 
+ ```log
+ 2019-11-05T12:28:10.470Z - info: Server running at: 
+diff --git a/docs/pt/technical/technical/overview/README.md b/docs/pt/technical/technical/overview/README.md
+index 27e2d9c2..76bc5e1d 100644
+--- a/docs/pt/technical/technical/overview/README.md
++++ b/docs/pt/technical/technical/overview/README.md
+@@ -15,7 +15,7 @@ _Nota: A codificação por cores indica a relação entre o armazenamento de dad
+ Estes consistem em:
+ 
+ * Os **Mojaloop API Adapters** (**ML-API-Adapter**) fornecem o conjunto padrão de interfaces que um DFSP pode implementar para se ligar ao sistema para a realização de transferências. Um DFSP que pretenda ligar-se pode adaptar o nosso código de exemplo ou implementar as interfaces padrão no seu próprio software. O objetivo é que seja o mais simples possível para um «DFSP» ligar-se à rede interoperável.
+-* Os **Serviços Centrais** (**CS**) fornecem o conjunto de componentes necessários para transferir fundos de um DFSP para outro através dos Adaptadores Mojaloop API. Este processo é semelhante à forma como os fundos circulam através de um banco central ou de uma câmara de compensação nos países desenvolvidos. Os Serviços Centrais contêm a lógica central da razão geral do Livro-razão para transferir fundos, mas serão também alargados de modo a proporcionar a gestão de fraudes e a garantir o cumprimento das regras do scheme.
++* Os **Serviços Centrais** (**CS**) fornecem o conjunto de componentes necessários para transferir fundos de um DFSP para outro através dos Adaptadores Mojaloop API. Este processo é semelhante à forma como os fundos circulam através de um banco central ou de uma câmara de compensação nos países desenvolvidos. Os Serviços Centrais contêm a lógica central do Central Ledger para transferir fundos, mas serão também alargados de modo a proporcionar a gestão de fraudes e a garantir o cumprimento das regras do scheme.
+ * O **Serviço de Pesquisa de Contas** (**ALS**) disponibiliza um mecanismo para resolver informações de encaminhamento FSP através do Participante API ou para coordenar um pedido de uma Parte com base numa pesquisa interna de Participantes. A pesquisa interna de participantes é gerida por vários adaptadores ou serviços Oracle padrão. Um exemplo de adaptador/serviço Oracle seria a pesquisa de informações sobre participantes no Pathfinder ou num Registo de Comerciantes. Estes adaptadores ou serviços Oracle podem ser facilmente adicionados, dependendo dos requisitos do esquema.
+ * O **Serviço de Cotação** (**QA**) fornece a cotação, que é o processo que determina quaisquer taxas e comissões necessárias para a realização de uma transação financeira entre dois Prestadores de Serviços Financeiros (FSP). É sempre iniciado pelo Pagador FSP para o Beneficiário FSP, o que significa que a cotação segue o mesmo percurso que uma transação financeira.
+ * O **Simulador** (**SIM**) simula várias funções DFSP, da seguinte forma:
+diff --git a/docs/pt/technical/technical/quoting-service/qs-get-bulk-quotes.md b/docs/pt/technical/technical/quoting-service/qs-get-bulk-quotes.md
+index 5b033499..21a2d375 100644
+--- a/docs/pt/technical/technical/quoting-service/qs-get-bulk-quotes.md
++++ b/docs/pt/technical/technical/quoting-service/qs-get-bulk-quotes.md
+@@ -4,7 +4,7 @@ i18n_source_sha: a9479883a349e13977baadf4dbab7afa9bb5decb
+ 
+ # Obter cotação por ID
+ 
+-Concepção para a recuperação de uma cotação em massa por um FSP.
++Conceção para a recuperação de uma cotação em massa por um FSP.
+ 
+ ## Diagrama de sequência
+ 
+diff --git a/docs/pt/technical/technical/quoting-service/qs-get-quotes.md b/docs/pt/technical/technical/quoting-service/qs-get-quotes.md
+index d9e7793d..e01b1f41 100644
+--- a/docs/pt/technical/technical/quoting-service/qs-get-quotes.md
++++ b/docs/pt/technical/technical/quoting-service/qs-get-quotes.md
+@@ -4,7 +4,7 @@ i18n_source_sha: b9295912fed0bfc778c0d510e05d621ecea911b0
+ 
+ # Obter cotação por ID
+ 
+-Concepção para a consulta de uma cotação por um número FSP.
++Conceção para a consulta de uma cotação por um número FSP.
+ 
+ ## Diagrama de sequência
+ 
+diff --git a/docs/pt/technical/technical/quoting-service/qs-post-bulk-quotes.md b/docs/pt/technical/technical/quoting-service/qs-post-bulk-quotes.md
+index 3ec70d61..6436cf6b 100644
+--- a/docs/pt/technical/technical/quoting-service/qs-post-bulk-quotes.md
++++ b/docs/pt/technical/technical/quoting-service/qs-post-bulk-quotes.md
+@@ -4,7 +4,7 @@ i18n_source_sha: bcaafa5fbcf9fc10a481c9aea1317eb300ed6a31
+ 
+ # Citação do POST
+ 
+-Concepção de uma cotação em massa por um FSP.
++Conceção de uma cotação em massa por um FSP.
+ 
+ ## Diagrama de sequência
+ 
+diff --git a/docs/pt/technical/technical/sdk-scheme-adapter/usage/scheme-adapter-and-wso2-api-gateway/README.md b/docs/pt/technical/technical/sdk-scheme-adapter/usage/scheme-adapter-and-wso2-api-gateway/README.md
+index d163d3eb..d3c471db 100644
+--- a/docs/pt/technical/technical/sdk-scheme-adapter/usage/scheme-adapter-and-wso2-api-gateway/README.md
++++ b/docs/pt/technical/technical/sdk-scheme-adapter/usage/scheme-adapter-and-wso2-api-gateway/README.md
+@@ -19,7 +19,7 @@ Esta documentação destina-se a testar o adaptador de esquema num gateway WSO2
+ 
+ * Inicie sessão na sua loja WSO2 e aceda à secção «Aplicações» no menu. Crie uma nova aplicação e chaves de acesso, caso ainda não as tenha.
+ * Em seguida, aceda ao menu «APIs»; deverá encontrar as seguintes aplicações. Subscreva estas duas APIs, selecionando a sua aplicação e o nível de serviço na página principal de cada uma delas (API).
+-  * Administração da Razão Geral Central API — Iremos utilizar este endpoint para criar um novo FSP e configurar os endpoints para esse FSP. (Por favor, contacte a sua equipa de infraestrutura para obter os endpoints HTTPS adequados; a equipa terá de os provisionar no hub)
++  * Central Ledger Admin API — Iremos utilizar este endpoint para criar um novo FSP e configurar os endpoints para esse FSP. (Por favor, contacte a sua equipa de infraestrutura para obter os endpoints HTTPS adequados; a equipa terá de os provisionar no hub)
+   * FSPIOP API - Este é o número principal API para consulta de contas, cotações e transferências
+ * Pode experimentar efetuar algumas solicitações à API no separador «API Console», selecionando o token de acesso gerado.
+ * Por favor, anote os URLs «API» relativos às duas APIs e ao token de acesso.
+diff --git a/docs/pt/technical/technical/security/dependency-vulnerability-management.md b/docs/pt/technical/technical/security/dependency-vulnerability-management.md
+index b1062ce5..a2e52554 100644
+--- a/docs/pt/technical/technical/security/dependency-vulnerability-management.md
++++ b/docs/pt/technical/technical/security/dependency-vulnerability-management.md
+@@ -242,14 +242,14 @@ Podem surgir vulnerabilidades através de:
+ 4. Componentes de infraestrutura
+ 5. Código personalizado
+ 
+-## Detecção e Avaliação
++## Deteção e Avaliação
+ 
+ ### Ferramentas de deteção de vulnerabilidades
+ 
+ O Mojaloop utiliza várias ferramentas para detetar vulnerabilidades:
+ 
+ 1. ** GitHub Alertas do Dependabot **
+-   - Detecção automática de vulnerabilidades em GitHub repositórios
++   - Deteção automática de vulnerabilidades em GitHub repositórios
+    - Fornece informações detalhadas sobre as versões afetadas e as correções disponíveis
+    - Disponível no separador «Segurança» de GitHub repositórios
+    - **Recursos analisados**: Dependências da aplicação NodeJS declaradas em package.json ficheiros em GitHub repositórios
