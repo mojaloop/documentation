@@ -6,12 +6,12 @@ i18n_source_sha: fbbbfd799d1bcd697a01b4c4e4de89bed4d9acd4
 
 >**Enlaces**
 >- [Notas del día 1](./cross_border_day_1.md)
->- [Problema relacionado en el tablero de la DA](https://github.com/mojaloop/design-authority/issues/32)
+>- [Asunto relevante en el tablero DA](https://github.com/mojaloop/design-authority/issues/32)
 >- [Pull request de la especificación de Mojaloop](https://github.com/mojaloop/mojaloop-specification/pull/22)
 
 ## Próximos pasos:
 
-- Actualizadas las API de la propuesta
+- Actualizadas las APIs propuestas
 - Presentar el cambio consolidado al CCB por escrito
 - Un par de semanas para reunir los cambios (Michael/Adrian se repartirán el trabajo)
 - Llamada del CCB a mediados de noviembre
@@ -41,31 +41,31 @@ Preguntas sin responder:
   - Tenemos que establecer reglas para filtrar rutas
     - difícil de hacer: p. ej., ¿poner un switch en lista negra? o expresar una preferencia por ciertas rutas
 
-- ¿cómo descubrirá el DFSP emisor las reglas del esquema de pagos de un receptor?
+- ¿cómo descubrirá el DFSP emisor las reglas del esquema de un receptor?
 - ¿necesita el DFSP emisor 'conocer' el switch final? ¿O le basta con 'conocer' el siguiente?
 
 ---
 
 Chocando con supuestos de ML y de fuera de ML
 - ¿significa esto que el CNP tiene que hacer más trabajo al conectar con algo que no es ML?
-  - p. ej., ¿conocer el esquema de pagos o el switch resultante?
+  - p. ej., ¿conocer el esquema o el switch resultante?
     - ¿por qué? Gestión de fallos
     - según la decisión de ayer: ¿debería hacer el CNP este trabajo?
 
 - Aprender la lección de SWIFT:
-  - el banco no sabe adónde va el dinero
+  - el banco no sabe a dónde va el dinero
   - ¿podemos evitar esto en ML?
 
 ---
 
 CNP: el objetivo es 'comportarse como' un miembro normal de la red
-  - Esto minimiza las responsabilidades que asume el esquema de pagos
+  - Esto minimiza las responsabilidades que asume el esquema
 
 ¿Cuándo se considera completada la TX?
   - Puede haber casos en los que el esquema de pagos la considere terminada, pero técnicamente no esté terminada de extremo a extremo
 
 ¿Cómo tratamos el deterioro del servicio?
-  - Reglas del esquema de pagos
+  - Reglas del esquema
 
 ---
 
@@ -80,7 +80,7 @@ Volviendo a las cotizaciones:
 Direccionamiento:
 - Hace falta una dirección única a nivel global
   - Permitir un espacio de direcciones para los DFSP y para personas/cuentas únicas
-- el esquema de pagos dice "esto no está en mi espacio"
+- el esquema dice "esto no está en mi espacio"
 - el CNP averigua las rutas para llegar a ese espacio
 
 ---
@@ -113,7 +113,7 @@ valueDate
 
 - condición:
   - objeto existente vinculado criptográficamente al objeto tx
-    - pero en el caso de varios saltos, no solo conocemos esto
+    - pero en el caso de multisaltos, no solo conocemos esto
     - la recepción fija lo complica más (que es lo que los datos de eco esperan resolver)
 
   - Queremos **solo 1 condición para todos los saltos**

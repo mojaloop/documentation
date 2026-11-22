@@ -6,7 +6,7 @@ i18n_source_sha: 5c5d51d7983c17bbb688d143cf9057a083d05f58
 
 >**Enlaces**
 >- [Notas del día 2](./cross_border_day_2.md)
->- [Problema relacionado en el tablero de la DA](https://github.com/mojaloop/design-authority/issues/32)
+>- [Asunto relevante en el tablero DA](https://github.com/mojaloop/design-authority/issues/32)
 >- [Pull request de la especificación de Mojaloop](https://github.com/mojaloop/mojaloop-specification/pull/22)
 
 ## Asistentes:
@@ -46,14 +46,14 @@ Por teléfono
   - ¿Qué puedo enviar? _lista de monedas_
 
 Acuerdos comerciales: hay varias formas de que esto ocurra
-- Esquema de pagos global, compuesto por acuerdos entre esquemas de pagos
-- acuerdos bilaterales entre esquemas de pagos
-- de esquema de pagos a esquema de pagos
+- Esquema global, compuesto por acuerdos entre esquemas
+- acuerdos bilaterales entre esquemas
+- de esquema a esquema
 - región
 
 
 Definiciones:
-- FSP pasarela: un FSP que hace de 'puente' entre 2 redes,
+- FSP pasarela: un FSP que hace de 'puente' entre 2 redes
 p. ej. Mowali
   - 2 redes lógicas (¿USD, XOF?)
   - una única red de Mojaloop
@@ -72,13 +72,13 @@ Michael:
   - tiene una cuenta de tx que se puede debitar o acreditar
   - banco, fxp, etc.
 
->P: ¿Podemos tener un participante que no liquide? ¿O esto lo cubriría un CNP que sea una parte?
+>P: ¿Podemos tener un participante que no liquide? ¿O esto lo cubriría un CNP que sea un participante?
 >P. ej. Visa no siempre liquida en un mercado dado, pero mantiene una cuenta
 
 - Residente frente a no residente
   - los requisitos de reporte son distintos
 
-- ¿cuáles son los requisitos técnicos para los reportantes?
+- ¿cuáles son los requisitos técnicos para las entidades que reportan información?
 
 - liquidación
   - no nos preocupa demasiado en esta fase (nos centramos en los cambios de la API)
@@ -98,18 +98,18 @@ Michael:
 >*Seguimiento:* hace falta una definición formal de los roles de FXP y CNP, junto con los requisitos y las responsabilidades
 
 
-A nivel del esquema de pagos
-  - ¿debería el esquema de pagos mantener una lista de los demás esquemas de pagos a los que permite conectarse a sus FSP?
+A nivel del esquema
+  - ¿debería el esquema mantener una lista de los demás esquemas a los que permite conectarse a sus FSP?
   - ¿o debería encargarse de esto el CNP?
 
 - no de esquema de pagos a esquema de pagos, sino como parte del proceso de incorporación del CNP
-- pero el esquema de pagos puede y debería seguir manteniendo reglas
+- pero el esquema puede y debería seguir manteniendo reglas
 
 - ¿cómo funcionará la cotización? ¿Debería un FSP enviar varias cotizaciones, una dirigida a cada CNP? ¿O debería el switch tener algún motor de reglas que le ayude a determinar a quién enviar las cotizaciones?
 
 James: queremos ser flexibles. Se ven casos en los que querríamos que ocurrieran las dos cosas, así que no deberíamos asumir demasiado en esta fase.
 
-Opción más simple: el switch habla con el ALS, determina que una transferencia no está en nuestra red y después encuentra una lista de CNP
+Opción más simple: el switch habla con el ALS, determina que una transferencia no está en nuestra red y después encuentra una lista de CNPs
 
 CNP y FXP -> esencialmente lo mismo
 - son *roles*, y un DFSP puede asumir más de 1 rol
@@ -120,13 +120,13 @@ CNP y FXP -> esencialmente lo mismo
 
 ## Sesión 2 
 
-- debate sobre una búsqueda única o varias
+- debate sobre una búsqueda única o múltiple
   - nunca deberíamos devolver un "resultado vacío"
 
 - ¿son las billeteras direccionables por MSISDN?
   - de momento solo 1 cuenta
   - pero esto es interno al switch
-  - la tarea del oracle es convertir MSIDN -> dirección de Mojaloop
+  - la trabajo de oracle es convertir MSIDN -> dirección de Mojaloop
 
 - en el futuro: el MSISDN y las cuentas estarán menos relacionados
   - este tema está relacionado de forma adyacente con el direccionamiento
@@ -142,7 +142,7 @@ Ram: hay herramientas existentes (no hace falta reinventar la rueda), fuera del 
   - en el futuro: varias respuestas
 
 - privacidad:
-  - de momento no hace falta realmente reglas estrictas (al menos no a nivel de la API, las reglas vienen con los esquemas de pagos)
+  - de momento no hace falta realmente reglas estrictas (al menos no a nivel de la API, las reglas vienen con los esquemas)
   - sí necesitamos un método para mediar la información que un switch requiere de otro (y rechazar cotizaciones si no se cumplen esos requisitos previos)
 
 ---
@@ -150,14 +150,14 @@ Ram: hay herramientas existentes (no hace falta reinventar la rueda), fuera del 
   - p. ej. ¿queremos admitir el descubrimiento solo en el caso nacional?
 ---
 
-Adrian: mucho de esto es reglas de negocio y específico del esquema de pagos
+Adrian: mucho de esto es reglas de negocio y específico del esquema
 - mantiene el espacio competitivo
 - Cuánta información hay en:
   - ¿la búsqueda?
   - ¿la cotización?
 
 ---
-- Propuesta: la búsqueda de direcciones -> ¿devuelve varias respuestas?
+- Propuesta: la búsqueda de direcciones -> ¿devuelve múltiples respuestas?
 - MSISDN -> ID, no una dirección. Alguien, no una cuenta
 
 - debería haber solo 1 respuesta del ALS
@@ -225,7 +225,7 @@ Riesgo: CNP: son quienes asumen el riesgo en este tipo de transacción
 
 - Objeto Participant
   - ¿Adjunto a las cotizaciones, una entrada por salto?
-  - Así, las cotizaciones de varios saltos contienen _n_ objetos Participant, donde _n_ = número de saltos + 1
+  - Así, las cotizaciones multisaltos contienen _n_ objetos Participant, donde _n_ = número de saltos + 1
 
 Como parte de esto necesitamos:
 - fragmentos de datos interoperables (definiciones comunes)
@@ -248,13 +248,13 @@ El cifrado agrega un reto de integración adicional
 >- en la solicitud de cotización saliente: llevar una lista de requisitos de datos
 >- en la solicitud de cotización entrante: los participantes cumplimentan esos requisitos
 >- si no se cumplen los requisitos: abortar la cotización
->- No codificar de forma rígida los requisitos de datos, deberíamos usar los estándares existentes
+>- No codificar de forma rígida (no hardcode) los requisitos de datos, deberíamos usar los estándares existentes
 
 
 - tenemos que especificar si los campos _han_ sido verificados o no
   - enlaza con los procesos de KYC por niveles
 
-- hace falta un diccionario común de datos que se pueden o se deberían solicitar
+- hace falta un diccionario común de datos que pueden o debería ser solicitado
 
 
 ## Tableros:
