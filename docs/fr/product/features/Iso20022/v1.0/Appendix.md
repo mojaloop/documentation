@@ -1,5 +1,6 @@
 ---
 sidebarTitle: Annexe ISO 20022
+i18n_source_sha: 7e0c862cdeeed0e0dac130e5a64b24492f9e198c
 ---
 
 # 8. Annexe A : codes de type d’identifiant de paiement

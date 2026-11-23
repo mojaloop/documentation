@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 062d8fb211effb9f62bcd222b27b619364d1637b
+---
+
 # Intégration technique des DFSP
 
 À un niveau élevé, l'onboarding à un Hub Mojaloop nécessite qu'un DFSP concentre ses efforts sur les jalons majeurs suivants :

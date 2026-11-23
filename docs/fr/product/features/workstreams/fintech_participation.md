@@ -1,5 +1,6 @@
 ---
 sidebarTitle: Participation fintech
+i18n_source_sha: b670bf5dbd8c75a681675ee217041bbcd95ae5e8
 ---
 
 # Workstream Outils de participation pour les fintechs

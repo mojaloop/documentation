@@ -1,5 +1,6 @@
 ---
 sidebarTitle: Cas d’usage
+i18n_source_sha: b074d5ad27030b6ee1a87ae5461033a69f4a7f9e
 ---
 
 # Cas d’usage

@@ -1,3 +1,7 @@
+---
+i18n_source_sha: aaa189fa29ce5a3010a5cad1d2425f0d9c2b6651
+---
+
 # Documentation des API
 
 Toutes les API devraient être documentées en RAML ou Swagger, voir [Architecture-Documentation-Guidelines](Architecture-Documentation-Guidelines.md).

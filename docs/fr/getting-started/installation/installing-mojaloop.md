@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 3aaa4011be8e920411806948353ef5d1ce0fafde
+---
+
 # Installer Mojaloop
 
 Mojaloop est packagé et publié sous forme d’un ensemble de [charts Helm](https://github.com/mojaloop/helm), avec différentes options de déploiement et de personnalisation.  

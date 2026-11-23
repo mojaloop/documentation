@@ -1,5 +1,6 @@
 ---
 sidebarTitle: "PATCH /transfers/{ID}"
+i18n_source_sha: d72267e16e402699ac34aa1e0e51c7e6ed8fcaf9
 ---
 
 ## 7.17 PATCH /transfers/{ID}

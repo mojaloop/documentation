@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 5afab4b632a3a9f5be446be80fd8b2122d201399
+---
+
 # FAQ générales
 
 Ce document rassemble certaines des questions les plus fréquemment posées par la communauté.

@@ -1,3 +1,7 @@
+---
+i18n_source_sha: dbceb12eab343b53e427f0314f65ef57d80b19d1
+---
+
 # Implémentation du contexte délimité de reporting
 L'un des objectifs de ce projet de groupe de travail est de fournir la capacité de tracer un transfert de bout en bout. Afin de répondre à cet objectif, une partie du contexte délimité de reporting (BC) doit être construite en accord avec l'architecture de référence.
 

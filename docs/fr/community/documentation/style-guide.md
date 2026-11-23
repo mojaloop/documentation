@@ -1,3 +1,7 @@
+---
+i18n_source_sha: d9f8aed1ca297efbccca84dad6d8a16211e29e7b
+---
+
 # Guide de style de la documentation
 
 Dans la plupart des cas, Mojaloop suit la dernière édition de l’Associated Press Stylebook. Les lignes directrices suivantes sont spécifiques à la fondation, mises à jour et légèrement modifiées.

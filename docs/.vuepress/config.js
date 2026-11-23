@@ -203,6 +203,7 @@ module.exports = {
             ['contributing/critical-change-process', 'Critical Change Process'],
             ['contributing/new-contributor-checklist', 'New Contributor Checklist'],
             ['contributing/pr-guidance', 'Pull Request Guidance'],
+            ['contributing/triaging-bugs', 'Triaging Bugs'],
             ['contributing/code-of-conduct', 'Code of Conduct'],
             ['contributing/signing-the-cla', 'Signing the CLA'],
             ['contributing/cvd', 'Disclosing Security Vulnerabilities'],
@@ -217,7 +218,6 @@ module.exports = {
             ['standards/invariants', 'Mojaloop Invariants'],
             ['standards/versioning', 'Versioning'],
             ['standards/creating-new-features', 'Creating New Features'],
-            ['standards/triaging-bugs', 'Triaging Bugs'],
             ['standards/ai_policy', "AI Policy"],
           ]
         },
@@ -334,6 +334,19 @@ module.exports = {
                 'technical/overview/components-PI6',
                 'technical/overview/components-PI5',
                 'technical/overview/components-PI3'
+              ]
+            },
+            {
+              title: "Transfer Journey",
+              collapsable: true,
+              sidebarDepth: 2,
+              children: [
+                ['technical/transfer-journey/', 'Overview'],
+                ['technical/transfer-journey/discovery', 'Phase 1 · Discovery'],
+                ['technical/transfer-journey/quote', 'Phase 2 · Quote'],
+                ['technical/transfer-journey/transfer-prepare', 'Phase 3 · Transfer Prepare'],
+                ['technical/transfer-journey/transfer-fulfil', 'Phase 3 · Fulfil and Commit'],
+                ['technical/transfer-journey/reference', 'Reference']
               ]
             },
             {
@@ -2169,6 +2182,7 @@ module.exports = {
             ['contributing/critical-change-process', 'Processus de changement critique'],
             ['contributing/new-contributor-checklist', 'Liste de contrôle du nouveau contributeur'],
             ['contributing/pr-guidance', 'Directives pour les pull requests'],
+            ['contributing/triaging-bugs', 'Tri des bogues'],
             ['contributing/code-of-conduct', 'Code de conduite'],
             ['contributing/signing-the-cla', 'Signature de la CLA'],
             ['contributing/cvd', 'Divulgation des vulnérabilités de sécurité'],
@@ -2183,7 +2197,6 @@ module.exports = {
             ['standards/invariants', 'Invariants Mojaloop'],
             ['standards/versioning', 'Gestion des versions'],
             ['standards/creating-new-features', 'Création de nouvelles fonctionnalités'],
-            ['standards/triaging-bugs', 'Tri des bogues'],
             ['standards/ai_policy', 'Politique sur l’usage responsable de l’IA'],
           ]
         },

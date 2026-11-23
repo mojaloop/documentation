@@ -16,7 +16,7 @@ helm install ingress-nginx ingress-nginx --version="3.33.0" --repo https://kuber
 
 ### 1.2. Nginx-Ingress Controller support for Mojaloop Helm release v12.x
 
-If you are installing Mojaloop v12.x with an Nginx-Ingress controller version newer than `v0.22.0`, ensure you create a custom [Mojaloop v12.0.0 values config](https://github.com/jaloop/helm/blob/v12.0.0/mojaloop/values.yaml) with the following changes prior to stall:**
+If you are installing Mojaloop v12.x with an Nginx-Ingress controller version newer than `v0.22.0`, ensure you create a custom [Mojaloop v12.0.0 values config](https://github.com/mojaloop/helm/blob/v12.0.0/mojaloop/values.yaml) with the following changes prior to stall:**
 
 ```YAML
 ## **LOOK FOR THIS LINE IN mojaloop/values.yaml CONFIG FILE**
@@ -84,11 +84,11 @@ The following error is displayed when attempting to access an end-point (e.g. ce
 
 3. Note that the Mojaloop deployment via Helm can take a few minutes to initially startup depending on the system's available resources and specification. Expect this to take anything between 2-10 minutes.
   
-### 2.3. MicroK8s - Connectivity Issues
+### 2.3. Pod Network Connectivity Issues
 
 #### 2.3.1 Description
 
-My pods can’t reach the internet or each other (but my MicroK8s host machine can).
+My pods can’t reach the internet or each other (but my Kubernetes host machine can).
 
 An example of this is that the Central-Ledger logs indicate that there is an error with the Broker transport as per the following example:
 
@@ -115,11 +115,14 @@ or, if using ufw:
 sudo ufw default allow routed
 ```
 
-The MicroK8s inspect command can be used to check the firewall configuration:
+To check the current firewall configuration on the host:
 
 ```bash
-microk8s.inspect
+sudo iptables -S FORWARD
+sudo ufw status verbose
 ```
+
+Your Kubernetes distribution may also provide its own diagnostic tool (for example, `k3s check-config` for K3s).
 
 ## 3. Ingress issues
 

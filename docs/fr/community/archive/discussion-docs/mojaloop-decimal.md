@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 119e51501d2e712e5fa478abe4513fa81724cd20
+---
+
 # Type décimal Mojaloop (basé sur le type décimal XML Schema)
 
 ## Type de valeur décimal

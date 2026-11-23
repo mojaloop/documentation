@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 2e574a4c4d128e68b16e507f2684ffedd2732724
+---
+
 # Grands livres dans le Hub
 
 ## Gestion du risque

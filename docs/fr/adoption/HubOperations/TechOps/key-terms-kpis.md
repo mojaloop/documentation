@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 7fc61af6083263963716177e919e083bd686aef4
+---
+
 # Glossaire
 
 Cette section sert de glossaire des termes des opérations techniques et fournit des définitions :

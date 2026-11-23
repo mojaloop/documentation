@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 65a7f20bf7f6d561cfcbd0a37a7cb5cacc6c879e
+---
+
 # LICENCE
 
 Copyright © 2020-2024 Mojaloop Foundation

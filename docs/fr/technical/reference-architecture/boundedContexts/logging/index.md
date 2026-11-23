@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 1b529688ce8e8fa5579b9c407a0c68f9c133d580
+---
+
 # BC Journalisation (Logging)
 
 Le Contexte Borné Logging (Logging BC) est utilisé pour stocker des informations techniques afin de faciliter le débogage, la recherche de pannes et la résolution des problèmes. Les journaux (logs) sont récupérés depuis n'importe quel autre Contexte Borné [^1] et stockés afin de pouvoir être interrogés ou utilisés pour des rapports. Les informations de journalisation sont considérées comme des « données techniques » ; toute éventuelle perte de ces informations ne devrait avoir pour conséquence que la perte de capacité technique à comprendre le comportement du système. Toutes les activités système sont journalisées et conservées, afin de permettre au Contexte Borné d’Audit [^2] d’effectuer des requêtes sur ces données de log.

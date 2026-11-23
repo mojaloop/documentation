@@ -1,3 +1,7 @@
+---
+i18n_source_sha: febc571b9abbef844e2397cc494e5278c5509438
+---
+
 # Comment travailler avec Mojaloop ?
 
 <iframe 

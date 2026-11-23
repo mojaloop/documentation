@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 2b46f3c015a064970eade7f1477e866f6824262a
+---
+
 # Modèles de transaction - Transfert
 
 API Tiers de Mojaloop
