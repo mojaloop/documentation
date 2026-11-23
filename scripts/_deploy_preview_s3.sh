@@ -41,6 +41,18 @@ export VUEPRESS_PR_NUMBER="${PR_NUMBER}"
 npm run build
 mv ${DIR}/../docs/.vuepress/dist ${DIR}/../build
 
+# Copy assets from nested directories to build output
+echo "Copying assets from nested directories..."
+find ${DIR}/../docs -name "assets" -type d | while read asset_dir; do
+  # Get the relative path from docs directory
+  rel_path=$(echo "$asset_dir" | sed "s|${DIR}/../docs/||")
+  # Create the target directory in build output
+  target_dir="${DIR}/../build/${rel_path}"
+  mkdir -p "$target_dir"
+  # Copy all files from the asset directory
+  cp -r "$asset_dir"/* "$target_dir/" 2>/dev/null || true
+done
+
 
 # build legacy docs - will be removed once all docs are migrated to v2.0
 # Removing from here! multiple node versions in CI/CD are really hard!
@@ -63,13 +75,38 @@ else
   TARGET_PATH=""
 fi
 
-# upload built files to s3 
+# upload built files to s3
 if [ -n "$TARGET_PATH" ]; then
   aws s3 sync ${DIR}/../build s3://${BUCKET_NAME}/${TARGET_PATH} \
     --acl public-read
 else
+  # `--delete` below makes a bad build destructive rather than merely useless, so
+  # refuse to sync anything that doesn't look like a complete site. `set -e` only
+  # catches a build that *fails*, not one that succeeds and produces nothing.
+  for required in index.html 404.html legacy; do
+    if [ ! -e "${DIR}/../build/${required}" ]; then
+      echo "build/${required} is missing - refusing to sync" >&2
+      exit 1
+    fi
+  done
+  FILE_COUNT=$(find ${DIR}/../build -type f | wc -l)
+  if [ "${FILE_COUNT}" -lt 1000 ]; then
+    echo "only ${FILE_COUNT} files in build/ - refusing to sync" >&2
+    exit 1
+  fi
+
+  # --delete removes objects that are no longer part of the build, i.e. pages left
+  # behind by past restructures. Without it the bucket accumulates stale copies of
+  # the site forever, which is how /api/ and /technical/<service>/ stayed live for
+  # two years after they moved.
+  #
+  # --exclude "pr/*" is MANDATORY. PR previews live in this same bucket under
+  # pr/<number>/ and are NOT part of build/, so an unfiltered --delete destroys
+  # every open preview on each master deploy.
   aws s3 sync ${DIR}/../build s3://${BUCKET_NAME} \
-    --acl public-read
+    --acl public-read \
+    --delete \
+    --exclude "pr/*"
 fi
 
 if [ "$IS_PR" = "true" ] && [ -n "$PR_NUMBER" ]; then

@@ -2,7 +2,7 @@
 
 Publications are stored in the [Documentation Artifacts Github repository](https://github.com/mojaloop/documentation-artifacts).
 
-See below listing of current published publications.
+See below the listing of current publications.
 
 ## OSS Community Convenings Sessions (Presentations and Notes)
 
@@ -14,5 +14,5 @@ See below listing of current published publications.
 
 ## Mojaloop Standard Publications
 
-- [Moajoop Decimal Type; Based on XML Schema Decimal Type](./discussions/decimal.md)
+- [Mojaloop Decimal Type; Based on XML Schema Decimal Type](./discussions/decimal.md)
 - [Mojaloop API Specification](https://github.com/mojaloop/mojaloop-specification/blob/master/API%20Definition%20v1.0.pdf)

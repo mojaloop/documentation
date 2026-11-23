@@ -32,7 +32,7 @@ async function main() {
 
   const rawPumlContents = fs.readFileSync(inputPath)
   const encoded = plantumlEncoder.encode(rawPumlContents.toString())
-  const url = path.join(rendererBaseUrl, 'svg', encoded)
+  const url = `${rendererBaseUrl}/svg/${encoded}`
   let result
   try {
     result = await got.get(url)

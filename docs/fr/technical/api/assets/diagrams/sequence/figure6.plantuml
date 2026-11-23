@@ -1,0 +1,77 @@
+/'*****
+License
+--------------
+Copyright © 2017 Bill & Melinda Gates Foundation
+The Mojaloop files are made available by the Bill & Melinda Gates Foundation under the Apache License, Version 2.0 (the "License") and you may not use these files except in compliance with the License. You may obtain a copy of the License at
+http://www.apache.org/licenses/LICENSE-2.0
+Unless required by applicable law or agreed to in writing, the Mojaloop files are distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+Contributors
+--------------
+This is the official list of the Mojaloop project contributors for this file.
+Names of the original copyright holders (individuals or organizations)
+should be listed with a '*' in the first column. People who have
+contributed from an organization can be listed under the organization
+that actually holds the copyright for their contributions (see the
+Gates Foundation organization for an example). Those individuals should have
+their names indented and be marked with a '-'. Email address can be added
+optionally within square brackets <email>.
+* Gates Foundation
+
+- Name Surname <name.surname@gatesfoundation.com>
+--------------
+******'/
+
+@startuml
+' declaring skinparam
+skinparam sequenceMessageAlign center
+skinparam shadowing false
+skinparam defaultFontName Verdana
+skinparam monochrome true
+skinparam SequenceLifeLineBackgroundColor WhiteSmoke
+skinparam SequenceLifeLineBorderColor Black
+skinparam ParticipantFontStyle Bold
+skinparam ParticipantFontSize 20
+skinparam ParticipantBackgroundColor WhiteSmoke
+skinparam ArrowColor Black
+
+hide footbox
+
+' declare title
+' title Example scenario where FSPIOP-Destination is unknown by FSP
+
+' Actor Keys:
+' participant - FSP, Peer FSP, Optional Switch and Account Lookup
+
+' declare actors
+participant "\nFSP" as FSP
+participant "Optional\nSwitch" as Switch
+participant "Account\nLookup" as ALS
+participant "Peer\nFSP" as PEERFSP
+
+' start flow
+FSP ->> Switch: **GET /parties/msisdn/123456789**\n(**FSPIOP-Source=**FSP)
+activate FSP
+activate Switch
+FSP <<-- Switch: **HTTP 202** (Accepted)
+Switch ->> ALS: **GET /participants/msisdn/123456789**\n(**FSPIOP-Source=**Switch,\n**FSPIOP-Destination=**Account Lookup)
+activate ALS
+Switch <<-- ALS: **HTTP 202** (Accepted)
+ALS -> ALS: Replace **FSPIOP-Source**\nwith **FSPIOP-Destination**\nand vice versa for\nrouting of callback
+Switch <<- ALS: **PUT /participants/msisdn/123456789**\n(**FSPIOP-Source=**Account Lookup,\n**FSPIOP-Destination=**Switch)
+Switch -->> ALS: **HTTP 200** (OK)
+deactivate ALS
+Switch -> Switch: Set **FSPIOP-Destination**\nin original messages according\nto results of **PUT /participants**
+Switch ->> PEERFSP: **GET /parties/msisdn/123456789**\n(**FSPIOP-Source=**FSP, **FSPIOP-Destination=**Peer FSP)
+activate PEERFSP
+Switch <<-- PEERFSP: **HTTP 202** (Accepted)
+PEERFSP -> PEERFSP: Optionally validate message\nsignature using stored certificate\nfor FSP in **FSPIOP-Source**
+PEERFSP -> PEERFSP: Replace **FSPIOP-Source**\nwith **FSPIOP-Destination** and\nvice versa for routing of callback
+Switch <<- PEERFSP: **PUT /parties/msisdn/123456789**\n(**FSPIOP-Source=**Peer FSP, **FSPIOP-Destination=**FSP)
+Switch -->> PEERFSP: **HTTP 200** (OK)
+deactivate PEERFSP
+Switch -> Switch: Route messages according\nto **FSPIOP-Destination**
+FSP <<- Switch: **PUT /parties/msisdn/123456789**\n(**FSPIOP-Source=**Peer FSP,\n**FSPIOP-Destination=**FSP)
+FSP -->> Switch: **HTTP 200** (OK)
+deactivate Switch
+deactivate FSP
+@enduml

@@ -24,6 +24,7 @@ The following conventions are used in this document to identify the specified ty
 |Version|Date|Change Description|
 |---|---|---|
 |**1.0**|2018-03-13|Initial version|
+|**2.0**|2026-04-08|Second version published to match FSPIOP v2.0 document set|
 
 ## Introduction
 
@@ -408,7 +409,9 @@ This section describes the application layer protection.
 
 The _JSON Web Signature_ (JWS) standard is used for providing end-to-end integrity and non-repudiation; that is, to guarantee that the sender is who it claims to be, and that the message was not tampered with.
 
-The use of JWS is mandatory and certificates should be used. For more information, see _API Signature_.
+The use of JWS is mandatory and certificates must be used. For more information, see _API Signature_.
+
+JWS's core purpose includes non-repudiation i.e., proving who signed a message. A bare symmetric key (HMAC) can prove a message wasn't tampered with, but can't prove which party signed it since both sides share the same key. Only an asymmetric certificate tied to a CA-verified identity achieves true non-repudiation. The entire PKI model - where each platform trusts a shared CA only works if JWS signatures are certificate-backed. Without it, a platform could generate any key pair and claim any identity. Certificates anchor identity to the CA's vetting process.
 
 ### JSON Web Encryption
 

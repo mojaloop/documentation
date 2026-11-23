@@ -4,7 +4,7 @@ This diagram gives an overview of the SDK design.
 
 ![Design Overview](../assets/overview-drawio.png)
 
-An http 202 response when posting a asynchronous request means that the the SDK has accepted the request, and that the request will be processed and a response provided. Because of the potential long delay's involved in processing large numbers of bulk payments in an asynchronous way. A new design approach in the SDK was necessary to meet the 202 response expectations.
+An http 202 response when posting an asynchronous request means that the SDK has accepted the request, and that the request will be processed and a response provided. Because of the potential long delays involved in processing large numbers of bulk payments in an asynchronous way, a new design approach in the SDK was necessary to meet the 202 response expectations.
 
 ## DDD and Event sourcing design
 An event sourcing and domain driven was chosen, as this solves all requirements of reliability and scalability while takeing advantage of the lib's and tools that have been built for the Mojaloop vNext architecture.

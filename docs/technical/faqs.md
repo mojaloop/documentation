@@ -12,7 +12,7 @@ For the local and test environment, we recommend interfacing with the 'mock-path
 
 Access the https://github.com/mojaloop/mock-pathfinder repository to download and install mock-pathfinder. Run command npm install in mock-pathfinder directory to install dependencies after this update Database_URI in mock-pathfinder/src/lib/config.js.
 
-### 3. Should i register DFSP via url http://central-directory/commands/register or i need to update configuration in default.json?
+### 3. Should I register DFSP via url http://central-directory/commands/register or I need to update configuration in default.json?
 
 You should register using the API provided, using postman or curl. Client is using LevelOne code. Needs to implement the current Mojaloop release with the current Postman scripts.
 
@@ -20,7 +20,7 @@ You should register using the API provided, using postman or curl. Client is usi
 
 - More background related to the question:
 
-  When I tired to get logs of the container centralledger-handler-admin-transfer, I get the following error:
+  When I tried to get logs of the container centralledger-handler-admin-transfer, I get the following error:
   Error from server (BadRequest): container "centralledger-handler-admin-transfer" in pod "pi3-centralledger-handler-admin-transfer-6787b6dc8d-x68q9" is waiting to start: PodInitializing
   And the status of the pod pi3-kafka-0 is still on CrashLoopBackOff.
   I am using a vps on ubuntu 16.04 with RAM 12GB, 2vCores, 2.4GHz, Rom 50GB at OVH for the deployment.
@@ -110,7 +110,7 @@ Mojaloop is an open source software and specification.
 
 The Specification is pretty standard and has good security standards. But these need to be implemented by the adopters and deployers. Along with this, the security measures need to be coupled with other Operational and Deployment based security measures. Moreover, the coming few months will focus on security perspective for the Open Source community.
 
-### 19. What are the benefit(s) from using mojaloop as interoperabilty platform?
+### 19. What are the benefit(s) from using mojaloop as interoperability platform?
 
 Benefits: Right now for example, an Airtel mobile money user can transfer to another Airtel mobile money user only. With this, he/she can transfer to any Financial service provider such as another mobile money provider or any other bank account or Merchant that is connected to the Hub, irrespective of their implementation. They just need to be connected to the same Switch. Also, this is designed for feature phones so everyone can use it.
 
@@ -145,7 +145,7 @@ _As soon as a Payer FSP sends a financial transaction to a Payee FSP (that is, u
 
 However, *Refunds* is a use case supported by the API.
 
-### 26. ffg. error with microk8s installation "MountVolume.SetUp failed"?
+### 26. error during Kubernetes installation: "MountVolume.SetUp failed"?
 
 Would appear if it is a space issue, but more the 100GiB of EBS storage was allocated.
 The issue resolved itself after 45 minutes. Initial implementation of the mojaloop project can take a while to stabilize.

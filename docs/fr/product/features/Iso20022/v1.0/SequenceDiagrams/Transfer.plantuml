@@ -1,0 +1,88 @@
+@startuml
+
+Title Transfert — flux de messages ISO 20022
+participant PayerDFSP as "DFSP payeur"
+participant Mojaloop as "Mojaloop"
+participant PayeeDFSP as "DFSP bénéficiaire"
+
+autonumber
+
+PayerDFSP -> Mojaloop: POST /transfers
+note left
+**pacs.008.001.13**
+**D'une institution financière à une autre** 
+**Transfert de crédit client**
+{
+"GrpHdr":{
+    "MsgId":"01JBVM1D2MR6D4WBWWYY3ZHGMM",
+    "CreDtTm":"2024-11-04T12:57:45.812Z",
+    "NbOfTxs":"1",
+    "SttlmInf":{"SttlmMtd":"CLRG"},
+    "PmtInstrXpryDtTm":"2024-11-04T12:58:45.810Z"},
+"CdtTrfTxInf":{
+    "PmtId":{"TxId":"01JBVM13SQYP507JB1DYBZVCMF"},
+    "ChrgBr":"CRED",
+    "Cdtr":{"Id":{"PrvtId":{"Othr":{"SchmeNm":{"Prtry":"MSISDN"},
+                                    "Id":"16665551002"}}}},
+    "Dbtr":{"Id":{"PrvtId":{"Othr":{"SchmeNm":{"Prtry":"MSISDN"},
+                                    "Id":"16135551001"}}},
+            "Name":"Joe Blogs"},
+    "CdtrAgt":{"FinInstnId":{"Othr":{"Id":"payee-dfsp"}}},
+    "DbtrAgt":{"FinInstnId":{"Othr":{"Id":"payer-dfsp"}}},
+    "IntrBkSttlmAmt":{"Ccy":"MWK",
+            "ActiveCurrencyAndAmount":"1080"},
+    "VrfctnOfTerms":{"IlpV4PrepPacket":"DIICzQAAAAAAAaX..."}}
+}    
+end note
+Mojaloop -> PayeeDFSP: POST  /transfers
+PayeeDFSP -> PayeeDFSP: Vérifier si le bénéficiaire peut recevoir le paiement.  
+alt si le bénéficiaire peut recevoir le paiement
+PayeeDFSP -> Mojaloop: PUT /transfers/{ID}
+note right
+**pacs.002.001.15**
+**D'une institution financière à une autre** 
+**Rapport d'état de paiement**
+{
+"GrpHdr":{
+    "MsgId":"01JBVM1E2CRWFZFPN7W4AZJ976",
+    "CreDtTm":"2024-11-04T12:57:46.828Z"},
+"TxInfAndSts":{
+    "ExctnConf":"-rL3liKeLrsNy7GHJaKgAzeDL_8IVnvER5zUlP1YAoc",
+    "PrcgDt":{"DtTm":"2024-11-04T12:57:46.812Z"},
+    "TxSts":"COMM"}
+}
+end note
+Mojaloop -> PayerDFSP: PUT/transfers/{ID}
+
+else
+
+Mojaloop -> PayerDFSP: PUT/transfers/{ID}/error 
+note right
+**pacs.002.001.15**
+**D'une institution financière à une autre** 
+**Rapport d'état de paiement**
+{
+"GrpHdr": {
+    "MsgId":"01JBVM1CGC5A18XQVYYRF68FD1",
+    "CreDtTm":"2024-11-04T12:57:45.228Z"},
+"TxInfAndSts":{"StsRsnInf":{"Rsn": {"Prtry":"ErrorCode"}}}
+}
+end note
+end
+
+Mojaloop->Mojaloop: Si le transfert échoue, expire \n ou est réservé — message PUT /transfers.
+
+Mojaloop->PayeeDFSP: PATCH /transfers/{ID}
+note left
+**pacs.002.001.15**
+**D'une institution financière à une autre**
+**Rapport d'état de paiement**
+{
+"GrpHdr":{
+    "MsgId":"01JBVM1E2CRWFZFPN7W4AZJ976",
+    "CreDtTm":"2024-11-04T12:57:46.828Z"},
+"TxInfAndSts":{"PrcgDt":{"DtTm":"2024-11-04T12:57:46.812Z"},
+        "TxSts":"COMM"}}"   
+}
+end note
+@enduml

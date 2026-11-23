@@ -1,0 +1,70 @@
+@startuml
+
+skinparam TitleFontColor #819FF7
+skinparam TitleFontSize 23
+
+title Cycle de vie d'un test de régression\n(Serveur de test autonome sur EC2)
+
+skinparam backgroundColor #353B42
+skinparam activity {
+  StartColor #40FF00
+  EndColor #FF0000
+  BackgroundColor #2E9AFE
+  BorderColor #A9D0F5
+  LineColor #AAAAAA
+}
+
+skinparam Arrow{
+    Color #BFA350
+    FontSize 10
+    FontColor #6CBF50
+}
+
+start
+
+:Le test est déclenché;
+note right: Cela peut être un déclenchement manuel, \nun minuteur de planification ou \nune action externe telle qu'une Pull Request \nà partir du système de gestion de code source
+
+if (Valider les paramètres d'exécution comme attendu ?) then (oui)
+  :Préparer l'environnement pour l'exécution requise;
+  note left: Définir l'horodatage\nPostmanCollection à exécuter\nListe des destinataires e-mail\nVariables d'environnement\nHorodatage d'exécution\nNom du fichier de sortie
+else (non)
+  -[#red]->
+  :Arrêter l'exécution avec une note indiquant des paramètres d'exécution incorrects;
+  -[#red]->
+  stop
+endif
+
+:Créer le conteneur Docker du simulateur;
+:Créer le conteneur Docker du test de régression;
+note left: Ce conteneur contient node\nNewman\nServeur SMTP e-mail
+
+while (Plus de requêtes Postman à exécuter ?)  is (Oui)
+  :Exécuter le script pré-requête;
+  note right: Configurer les variables nécessaires pour\npréparer la requête à venir
+  :Exécuter la requête Postman;
+  :Exécuter le test;
+  :Enregistrer les résultats;
+  note right: Inspecter la réponse\nen fonction des variables définies précédemment lors de\nl'exécution pour déterminer si les résultats attendus sont obtenus
+  if (Échec du test d'assertion ?) then (oui)
+    if (Paramètre d'exécution demandant 'Arrêter à la première erreur' ?) then (oui)
+      -[#red]->
+      (A)
+      detach
+    else (non)
+    endif
+  else (non)
+  endif
+endwhile (Non)
+
+(A)
+:Détruire le conteneur Docker du simulateur;
+:Finaliser le rapport;
+:Préparer les notifications;
+:Joindre les rapports;
+:Envoyer les notifications;
+note right: La pièce jointe (rapport généré)\nest envoyée en pièce jointe\naux différents canaux de notification.
+:Détruire le conteneur Docker du test de régression;
+stop
+
+@enduml

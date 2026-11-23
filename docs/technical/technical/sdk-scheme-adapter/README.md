@@ -6,7 +6,7 @@ The API between the scheme adapter and the DFSP backend is synchronous HTTP whil
 The SDK-Scheme-Adapter is supported by the Mojaloop Community, and is regarded as a reference for the best practice method for a DFSP to connect to a Mojaloop API. More commonly the SDK-Scheme-Adapter is used and deployed directly into the solution. Below is a summary of the different ways in which this can be done.
 
 ## SDK Adoption Models
-Depending on the Scheme Rules, there are four common modes in which DFSPs interact with the central Mojaloop Hub. This summary highlights the role that the SDK-Scheme-Adpater plays in each of the modes and provides a brief overview of each mode and highlights how the DFSPs benefit.
+Depending on the Scheme Rules, there are four common modes in which DFSPs interact with the central Mojaloop Hub. This summary highlights the role that the SDK-Scheme-Adapter plays in each of the modes and provides a brief overview of each mode and highlights how the DFSPs benefit.
 
 ### 1. DFSP using third party solution e.g. Payment Manager that makes use of the SDK Scheme Adapter 
 
@@ -20,7 +20,7 @@ Payment Manager an open sourced* tool is an example of this. Payment manager pro
 - As the SDK-Scheme-Adapter is maintained by the community, this tool provides an upgrade path for using new Mojaloop API versions.
 - Standardised solution for rapid onboarding
 - Core Connector developed jointly with System Integrators or Banking Software Vendors
-- Payment Manager UX has supporting Bussiness Operations and Security Onboarding and Maintenance automation
+- Payment Manager UX has supporting Business Operations and Security Onboarding and Maintenance automation
 
 :::tip Open Source Components
 These are all Apache License v2.0. This was especially chosen as it would not violate many organizations' policies. Apache License v2.0 has no “copy-left” constraints, so adopters can customize elements, such as core connectors without having to share those private details back to the community.  
@@ -39,7 +39,7 @@ In this case the DFSP chooses to develop a custom Core Connector between their b
 - Mojaloop Community Support
 - Operated by DFSPs Technical Operations
 
-### 3. DFPS Own built Mojaloop Connection Solution
+### 3. DFSP Own built Mojaloop Connection Solution
 
 There is no standard Connection used and the DFSP chooses to develop their own connection to the Mojaloop Hub.
 

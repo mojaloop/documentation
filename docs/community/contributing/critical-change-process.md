@@ -32,7 +32,7 @@ following process must be followed:
        reference the product council ticket and critical change proposal ticket in your item descriptions to enable
        future traceability.
     2. When you are ready to make pull requests on one or more code repositories, contact your assigned design authority
-       members and ask them ro begin the code review phase.
+       members and ask them to begin the code review phase.
     3. Be ready to respond to questions and make adjustments during this stage.
     4. Once your assigned design authority members approve your pull request(s) your feature is ready for including in
        the official Mojaloop release process.

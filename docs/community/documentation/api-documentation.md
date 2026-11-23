@@ -26,4 +26,4 @@ Instead of the word "project," use a specific noun such as component, microservi
 * Use ordered-list tagging for procedure steps. For example:
 * Step 1
 * Step 2
-* Step 2
+* Step 3

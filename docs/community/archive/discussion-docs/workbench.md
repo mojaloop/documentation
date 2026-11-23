@@ -45,7 +45,7 @@ ___Goal:__ This discussion document aims to lay out the case and align the commu
 
 ## 3. Assumptions
 
->_Some of these may go without saying, but it's noting them here anyway._
+>_Some of these may go without saying, but it's worth noting them here anyway._
 
 - 1\. The Gates Foundation wants to encourage adoption for Mojaloop at all levels (not just switches)
 - 2\. We don't need a lab environment to serve the needs of a Switch deployment or implementing DFSP - these needs will be met elsewhere
@@ -228,7 +228,7 @@ In general, we reached a consensus around the following:
   - 2.1 If they think Mojaloop is a viable option for a future product, what type of time and resource investment will they put into it?
   - 2.2 What are their alternatives? (This will be a case-by-case thing)
 
-- 3\. Is a certain amount of technical gatekeeping a good or bad thing? (This is a more philisophical question)
+- 3\. Is a certain amount of technical gatekeeping a good or bad thing? (This is a more philosophical question)
   - 3.1 If we don't make it too easy to get up and running, we make sure that only interested and determined parties are using mojaloop, which self-selects for a better community (kinda)
   - 3.2 But this locks out a lot of people who aren't up to scratch with kubernetes, docker etc. but may still have a good deal of experience with financial services etc.
 

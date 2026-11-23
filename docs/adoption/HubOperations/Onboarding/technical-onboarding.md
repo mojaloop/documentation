@@ -135,6 +135,8 @@ The MCM Client is incorporated into Payment Manager, whereas the MCM Server is w
 
 To understand what connecting a DFSP to a Mojaloop environment entails in detail, it is important to take a closer look at the security requirements of Mojaloop.
 
+This section describes the protocols that protect communication between DFSPs and the Mojaloop Hub. For guidance on evaluating the hardware and host environment within the DFSP domain, see [Security architecture guidance for DFSP infrastructure](../../../product/features/dfsp-infrastructure-security.md).
+
 Mojaloop requires the following security measures to be implemented in order to protect the data exchanged between DFSPs:
 
 * **Transport Layer Security** is a secure mechanism for exchanging a shared symmetric key over a network between two anonymous peers, with identity verification (that is, trusted certificates). It provides confidentiality (no one has read the content) and integrity (no one has changed the content). Mojaloop requires two-way TLS mutual authentication using X.509 certificates for securing bi-directional connections. DFSPs and the Mojaloop Hub authenticate each other to ensure that both parties involved in the communication are trusted. Both parties share their public certificates with each other and then verification/validation is performed based on that. 

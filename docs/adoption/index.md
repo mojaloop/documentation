@@ -37,6 +37,6 @@ The [Settlement Management Guide](./huboperations/settlement/settlement-manageme
 
 The [Guide to Finance Portal v2](./huboperations/portalv2/busops-portal-introduction.md) is aimed at the Operator of a Mojaloop Hub and provides information about the Finance Portal, which facilitates the management of settlement-related processes on a daily basis.
 
-The [Roled-Based Access Control](./huboperations/rbac/Role-based-access-control.md) document discusses the security mechanism employed to control access to various aspects of an operational instance of a Mojaloop Hub. 
+The [Role-Based Access Control](./huboperations/rbac/Role-based-access-control.md) document discusses the security mechanism employed to control access to various aspects of an operational instance of a Mojaloop Hub. 
 
 The [Onboarding Guide for the Hub Operator](./huboperations/onboarding/onboarding-introduction.md) is aimed at the Operator of a Mojaloop Hub and provides information about the DFSP onboarding process. It provides a high-level overview of the onboarding journey that DFSPs take, acting as a checklist of onboarding activities.

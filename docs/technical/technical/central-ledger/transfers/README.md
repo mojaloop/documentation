@@ -1,6 +1,6 @@
 # Mojaloop Transfer operations
 
-Operational processes that is the core of the transfer operational process;
+Operational processes that are the core of the transfer operational process;
 
 - Prepare process
 - Fulfil process
