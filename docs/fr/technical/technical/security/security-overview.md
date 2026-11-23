@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 9971c0d3a643dd23223f32a73aa2a09d3348981a
+---
+
 
 <h1>Processus de Gestion des Vulnérabilités Mojaloop</h1>
 

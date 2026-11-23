@@ -1,5 +1,6 @@
 ---
 sidebarTitle: Change de devises
+i18n_source_sha: 3e6b007b5728008428b79cf053f2b95658743417
 ---
 
 # Change étranger – conversion de devises

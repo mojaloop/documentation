@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 71ac45b7706943cfb4a10cfe6598477e516804f8
+---
+
 # Utilisation de Vue dans le Markdown
 
 ## Restrictions d'accès à l'API du navigateur

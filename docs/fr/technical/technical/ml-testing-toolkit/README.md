@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 0260e22a207b0d89faf2dec0dce86dbd1e17deeb
+---
+
 # Mojaloop Testing Toolkit
 
 Le **Mojaloop Testing Toolkit** a été conçu pour aider les schémas Mojaloop à monter en charge en simplifiant l’intégration des DFSP. Les schémas peuvent y publier des règles et des tests ; les DFSP s’en servent pour l’auto-test (voire l’auto-certification). Cela garantit que les DFSP sont pleinement prêts à se connecter au schéma et permet un embarquement rapide et fluide pour les Hubs Mojaloop, augmentant ainsi leur capacité à monter en charge.

@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 3d18e7facf97f1fad8e5dcde561d15545deeb4bc
+---
+
 # Composants hérités du Hub Mojaloop — PI8
 
 Le schéma de composants suivant présente la décomposition des services Mojaloop et leur architecture microservices pour PI8 :

@@ -1,5 +1,6 @@
 ---
 sidebarTitle: Qualité et sécurité
+i18n_source_sha: 7c0da623e3ba054c23a410e838425fb168fe0dc7
 ---
 
 # Workstream Qualité et sécurité de plateforme (PQS)

@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 2cd4d7d8b9961b5df89cf2980725ec4de3a82690
+---
+
 # Modèle de glossaire standard
 
 - Version : 1.0 

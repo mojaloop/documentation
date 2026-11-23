@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 5f28f7fe3d95103b9df364da49686ccdab781f2d
+---
+
 # Concepts de base
 
 Cette section regroupe les concepts et éléments clés du processus de gestion des règlements.

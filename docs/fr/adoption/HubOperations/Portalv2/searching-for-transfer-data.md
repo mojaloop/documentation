@@ -1,3 +1,7 @@
+---
+i18n_source_sha: bdd6cb294656c02aaf1226ad236c325512db2d27
+---
+
 # Recherche de données de transfert
 
 Le Finance Portal fournit une page de recherche de transferts, qui vous permet de trouver des données de transfert en fonction des identifiants DFSP, des identifiants d'utilisateur final ou des identifiants de transfert. Cela est utile lors de la résolution de problèmes.

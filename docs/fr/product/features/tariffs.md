@@ -1,5 +1,6 @@
 ---
 sidebarTitle: Frais et tarifs
+i18n_source_sha: eada27727ca443b76d2f80b93145b06af7d51071
 ---
 
 # Frais et tarifs

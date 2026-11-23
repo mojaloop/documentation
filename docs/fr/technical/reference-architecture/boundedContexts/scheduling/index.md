@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 6b7ff1edb41b1d62119501804c61b158d3ab34f3
+---
+
 # BC Scheduling
 
 De nombreux processus et événements dans les différents BCs de la plateforme Mojaloop Switch nécessitent une fonctionnalité permettant de déclencher des actions à des moments précis ou selon un calendrier défini. Afin de prendre en charge ce besoin de manière centralisée et d’éviter d’implémenter cette fonctionnalité dans chaque BC, un seul BC dédié à la planification sera introduit et mis en œuvre sur la plateforme Switch.

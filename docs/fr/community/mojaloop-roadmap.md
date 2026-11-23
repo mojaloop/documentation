@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 1abbfb2438eb43ed71458d266c545449b50b7402
+---
+
 # La feuille de route Mojaloop
 
 

@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 3bfcee97335d904c16a36c534aa482cdb61b3d7c
+---
+
 # Diagramme de séquence — POST Participants (batch)
 
 Conception de la création de participants par un DFSP via une requête groupée.

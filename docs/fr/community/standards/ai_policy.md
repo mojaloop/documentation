@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 344575b0687e2c3430fe66f41a44360892a0415f
+---
+
 # Politique relative à l’usage responsable d’outils d’intelligence artificielle (IA) par les membres de la communauté
 
 - Version : 1.0

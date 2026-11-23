@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 0838ce654f8a33e655da672dd548080afc6c0817
+---
+
 # Surveillance des détails financiers des DFSP
 
 La page **DFSP Financial Positions** vous permet de surveiller les détails financiers des DFSP tels que le solde, la [Position](settlement-basic-concepts#position) actuelle, le [Net Debit Cap](settlement-basic-concepts#liquidity-management-net-debit-cap), le pourcentage de NDC utilisé.

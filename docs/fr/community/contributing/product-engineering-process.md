@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 1818851e2a2a719166706f01778ceaa41054d37b
+---
+
 # Processus d’ingénierie produit Mojaloop
 
 ## Introduction

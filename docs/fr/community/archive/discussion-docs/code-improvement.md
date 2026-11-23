@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 2cc9a2ff672fa3c89d8247d07ee24239d1c363bc
+---
+
 # Projet d’amélioration du code (Code_Improvement)
 
 ## Aperçu

@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 46eca6c75ac5168baf76737396290c1336456165
+---
+
 # Vue d’ensemble des scénarios d’usage testés du SDK
 
 Un *scheme adapter* est un service qui fait l’interface entre un *switch* conforme à l’API Mojaloop et une plateforme backend DFSP qui n’implémente pas nativement l’API Mojaloop.

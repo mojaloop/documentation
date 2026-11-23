@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 4bc36afa15ada1951c9849306a2759852c5f0881
+---
+
 # BC Notifications et Alertes
 
 Le BC Notifications et Alertes agit comme le moteur de notification de la plateforme Mojaloop. Il fournit des capacités complémentaires pour les callbacks FSPIOP fiables en veillant à ce que des rapports de livraison soient disponibles, à des fins d’actions de compensation et d’audit. De même, ces capacités peuvent être utilisées pour envoyer des alertes de manière fiable à des sous-systèmes internes ou à des consommateurs externes.

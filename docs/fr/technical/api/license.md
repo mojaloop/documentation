@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 4bf2f2526af88b029a1cd9228f3b6ce026d4e9b3
+---
+
 # LICENSE
 
 This API specification is made available by **Ericsson**, **Huawei**, **Mahindra-Comviva**, **Telepin**, and the **Bill & Melinda Gates Foundation** under a **Creative Commons Attribution-NoDerivatives 4.0 International** License. In order to help maintain the integrity of the text of this document that reflects the underlying charitable goals of this project, we are circulating under a CC-BY license that prohibits the creation of derivative works based on this document.  We ask that you do not create or distribute derivatives of this documentation.
