@@ -1,3 +1,7 @@
+---
+i18n_source_sha: d85b0ebc6a34c8f5ed02f1f905c054ff71573b6c
+---
+
 # Mise en œuvre opérationnelle du règlement
 
 ## Introduction

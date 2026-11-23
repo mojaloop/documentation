@@ -1,3 +1,7 @@
+---
+i18n_source_sha: bcd3d0afcfed509dacbb7b7221dba1a342c882dd
+---
+
 # Triage des anomalies Mojaloop OSS
 
 ### Signaler un bug / un ticket

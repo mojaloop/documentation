@@ -1,5 +1,6 @@
 ---
 sidebarTitle: Gestion des risques
+i18n_source_sha: 4d6dd0c60462a48862cfe11aab548447967648e3
 ---
 
 # Gestion des risques

@@ -2,6 +2,10 @@
 
 The document is intended for an audience with a stable technical knowledge that would like to setup an environment for development, testing and contributing to the Mojaloop project.
 
+## Infrastructure
+
+For information regarding on-premises infrastructure requirements for operating Mojaloop in production, please see our [Production Infrastructure Guide](Production_Infrastructure_Guide.md).
+
 ## Deployment and Setup
 
 - [Mojaloop Deployment](#mojaloop-deployment)
@@ -101,7 +105,6 @@ If you are installing Kubernetes yourself, then we recommend using one of the fo
 
 - [k3s](https://docs.k3s.io/installation) - Flexible lightweight Kubernetes distribution that can be used for almost anything, spanning from local to Production grade environments.
 - [Minikube](https://minikube.sigs.k8s.io/docs/start) - Simple platform agnostic single-node Kubernetes distribution that is useful for local or development environments.
-- [Microk8s](https://microk8s.io/docs/install-alternatives) - Simple platform Kubernetes distribution that is useful for local or development environments.
 - [Docker Desktop](https://docs.docker.com/desktop/kubernetes/) - Simple platform Kubernetes distribution that is useful for local or development environments (ensure you install applicable version that includes your target Kubernetes version by examining the [Docker Desktop release-notes](https://docs.docker.com/desktop/release-notes)).
 
 We do not specify a specific distribution of Kubernetes to be used, but rather any distribution of Kubernetes running on a [Cloud Native Computing Foundation (CNCF)](https://www.cncf.io/certification/software-conformance) certified distribution or managed solution (e.g. Azure, AWS, GCP) should be selected when testing new Mojaloop Releases.
@@ -135,19 +138,15 @@ Insure you install a supported `Ingress Controller` version that matches your ta
 
    The official Kubernetes Web UI Admin interface.
 
-   Visit the following link for installation instructions (not needed if **MicroK8s** is installed): [Web UI (Dashboard) Installation Instructions](https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/).
+   Visit the following link for installation instructions (not needed if your Kubernetes distribution provides a dashboard add-on): [Web UI (Dashboard) Installation Instructions](https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/).
 
-   **IMPORTANT:** Ensure (not needed if **MicroK8s** is installed) you configure RBAC roles and create an associated service account, refer to the following example on how to create a sample user for testing purposes only: [Creating sample user](https://github.com/kubernetes/dashboard/blob/master/docs/user/access-control/creating-sample-user.md).
+   **IMPORTANT:** Ensure (not needed if you use your distribution's dashboard add-on) you configure RBAC roles and create an associated service account, refer to the following example on how to create a sample user for testing purposes only: [Creating sample user](https://github.com/kubernetes/dashboard/blob/master/docs/user/access-control/creating-sample-user.md).
 
-   If you have installed MicroK8s, **enable the MicroK8s** dashboard:
+   If your Kubernetes distribution provides a dashboard add-on, you can enable it instead. For example, with Minikube:
 
    ```bash
-   microk8s.enable dashboard
+   minikube dashboard
    ```
-
-   Refer to the following link for more information: [Add-on: dashboard](https://microk8s.io/docs/addon-dashboard).
-
-   **Remember** to prefix all **kubectl** commands with **MicroK8s** if you opted not to create an alias.
 
 2. k8sLens
 
@@ -157,7 +156,7 @@ Insure you install a supported `Ingress Controller` version that matches your ta
 
 ### 4. Helm
 
-Please review [Mojaloop Helm Chart](../repositories/helm.md) to understand the relationships between the deployed Mojaloop helm charts.
+Please review [Mojaloop Helm Chart](https://docs.mojaloop.io/legacy/repositories/helm.html) to understand the relationships between the deployed Mojaloop helm charts.
 
 Refer to the official documentation on how to install the latest version of Helm: <https://helm.sh/docs/intro/install/>.
 
@@ -273,7 +272,7 @@ Further reading can be found [here](https://github.com/mojaloop/helm/blob/master
 
 #### 5.4. Testing Mojaloop
 
-The [Mojaloop Testing Toolkit](../../documentation/mojaloop-technical-overview/ml-testing-toolkit/README.md) (**TTK**) is used for testing deployments, and has been integrated into Helm utilizing its CLI to easily test any Mojaloop deployment.
+The [Mojaloop Testing Toolkit](../ml-testing-toolkit/README.md) (**TTK**) is used for testing deployments, and has been integrated into Helm utilizing its CLI to easily test any Mojaloop deployment.
 
 1. Validating Mojaloop using Helm
 
@@ -287,7 +286,7 @@ The [Mojaloop Testing Toolkit](../../documentation/mojaloop-technical-overview/m
    helm -n demo test moja --logs
    ```
 
-   This will automatically execute the following [test cases](https://github.com/mojaloop/testing-toolkit-test-cases) using the [Mojaloop Testing Toolkit](../../documentation/mojaloop-technical-overview/ml-testing-toolkit/README.md) (**TTK**) CLI:
+   This will automatically execute the following [test cases](https://github.com/mojaloop/testing-toolkit-test-cases) using the [Mojaloop Testing Toolkit](../ml-testing-toolkit/README.md) (**TTK**) CLI:
 
    - [TTK Hub setup and Simulator Provisioning Collection](https://github.com/mojaloop/testing-toolkit-test-cases/tree/master/collections/hub/provisioning).
 
@@ -340,11 +339,11 @@ The [Mojaloop Testing Toolkit](../../documentation/mojaloop-technical-overview/m
 
    One is able to manually load and execute the Testing Toolkit Collections using the UI which allows one to visually inspect the requests, responses and assertions in more detail. This is a great way to learn more about Mojaloop.
 
-   Refer to the [Mojaloop Testing Toolkit Documentation](../../documentation/mojaloop-technical-overview/ml-testing-toolkit/README.md) for more information and guides.
+   Refer to the [Mojaloop Testing Toolkit Documentation](../ml-testing-toolkit/README.md) for more information and guides.
 
 #### 5.5. Testing Mojaloop with Postman
 
-[Postman](https://www.postman.com/downloads) can be used as an alternative to the [Mojaloop Testing Toolkit](../../documentation/mojaloop-technical-overview/ml-testing-toolkit/README.md). Refer to the [Automated Testing Guide](../contributors-guide/tools-and-technologies/automated-testing.md) for more information.
+[Postman](https://www.postman.com/downloads) can be used as an alternative to the [Mojaloop Testing Toolkit](../ml-testing-toolkit/README.md). Refer to the [Automated Testing Guide](https://docs.mojaloop.io/community/tools/automated-testing.html) for more information.
 
 The available [Mojaloop Postman Collections](https://github.com/mojaloop/postman) are similar to the [Mojaloop Testing Toolkit's Test Cases](https://github.com/mojaloop/testing-toolkit-test-cases)'s as follows:
 

@@ -1,5 +1,6 @@
 ---
 sidebarTitle: Contrats HTLC
+i18n_source_sha: 10f23c90409d3f9083f2527c42e17e530af9a426
 ---
 
 # Contrats à secret et délai (*Hashed Timelock Contracts*)

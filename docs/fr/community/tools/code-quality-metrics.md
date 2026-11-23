@@ -1,3 +1,7 @@
+---
+i18n_source_sha: f155be68fd20e2fa92f620355a58ce20c92aefbf
+---
+
 # Métriques de qualité du code
 
 ## Métriques de qualité fonctionnelle

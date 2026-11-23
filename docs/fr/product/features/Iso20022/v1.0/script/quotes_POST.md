@@ -1,5 +1,6 @@
 ---
 sidebarTitle: POST /quotes
+i18n_source_sha: 6cf8c9c88b45ef1d7df23bc7480425d229c9657b
 ---
 
 ## 7.7 POST /quotes

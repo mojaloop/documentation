@@ -1,3 +1,7 @@
+---
+i18n_source_sha: f330347b51c11a4b0a5890158cdb872ad43e7a52
+---
+
 # BC Devis/Accords
 
 Le Contexte Borné de Devis et Accords fournit aux Participants des devis pour effectuer des transferts, et enregistre les réponses d’acceptation ou de rejet des participants.

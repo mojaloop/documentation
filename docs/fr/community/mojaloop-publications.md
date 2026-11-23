@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 6b892bdac9b7a76e762ec2f471ceb25d37a02ed5
+---
+
 # Publications
 
 Les publications sont stockées dans le [dépôt Github Documentation Artifacts](https://github.com/mojaloop/documentation-artifacts).

@@ -1,5 +1,6 @@
 ---
 sidebarTitle: Workstream performance
+i18n_source_sha: c0c57e0819c2f1ced7a62df01c1f372935884bce
 ---
 
 # Workstream Optimisation des performances

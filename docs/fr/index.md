@@ -13,6 +13,7 @@ tagline: Ceci est la documentation officielle du projet Mojaloop
 #   details: See inside the different components, and deploy Mojaloop for yourself!
 # - title: Product
 #   details: Mojaloop product features, requirements and roadmap
+i18n_source_sha: 29dda5cd4367996474e73b7a2f774f751c45aa54
 ---
 
 </br>

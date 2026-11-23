@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 77d71d79d7246c1e4e8ead753d3fc7937d829939
+---
+
 # Comment modifier le fichier central-ledger-schema-DBeaver.erd
 
 Guide de base pour consulter ou mettre à jour le fichier `central-ledger-schema-DBeaver.erd`.

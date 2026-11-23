@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 45b2203f86b11b55c62e60735121ddff82401ef0
+---
+
 # Service Central Event Processor
 
 Le service **Central Event Processor** (**CEP**) permet de surveiller un ensemble de règles métier ou de motifs prédéfinis ou configurés.

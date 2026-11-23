@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 641649471ec361def0ee9e9cef37e38421185749
+---
+
 # Code de conduite Mojaloop
 
 

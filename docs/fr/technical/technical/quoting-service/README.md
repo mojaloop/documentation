@@ -2,6 +2,7 @@
 version: 1.1
 sidebarTitle: Service de devis
 title: Service de devis
+i18n_source_sha: 82d89526e232f48b143414b63f43383e3e1a3a98
 ---
 
 # Vue d’ensemble du service de devis

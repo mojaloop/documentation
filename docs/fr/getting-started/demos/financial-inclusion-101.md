@@ -1,3 +1,7 @@
+---
+i18n_source_sha: feaab07f2a445ed54b3aef21881d9d7ea2696425
+---
+
 # Inclusion financière 101
 
 <iframe 

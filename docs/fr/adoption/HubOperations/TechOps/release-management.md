@@ -1,3 +1,7 @@
+---
+i18n_source_sha: 380fed1f262ad13e1081427774bb1e81243c5ffe
+---
+
 # Gestion des versions
 
 La gestion des versions gère les processus de gestion, de planification, de programmation et de contrôle d'une modification logicielle à travers le déploiement et les tests dans divers environnements.

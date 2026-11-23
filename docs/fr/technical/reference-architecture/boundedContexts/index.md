@@ -1,3 +1,7 @@
+---
+i18n_source_sha: e04fd4a32043325f3b66ff7bbbd33eb13e765bc0
+---
+
 # Contexte Borné
 
 Dans cette section, nous examinons en détail chacun des Contextes Bornés identifiés, en indiquant leur objectif (description), les sous-domaines couverts, les cas d’utilisation que chaque Contexte Borné traite, ainsi que des remarques de conclusion le cas échéant.

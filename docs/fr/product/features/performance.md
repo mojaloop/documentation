@@ -1,5 +1,6 @@
 ---
 sidebarTitle: Performance
+i18n_source_sha: b9b1326d203cfee7c4f6e7562e5aeaa64d2e113f
 ---
 
 # Performance
