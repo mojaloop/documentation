@@ -1,0 +1,64 @@
+/'*****
+ License
+ --------------
+ Copyright © 2017 Bill & Melinda Gates Foundation
+ The Mojaloop files are made available by the Bill & Melinda Gates Foundation under the Apache License, Version 2.0 (the "License") and you may not use these files except in compliance with the License. You may obtain a copy of the License at
+ http://www.apache.org/licenses/LICENSE-2.0
+ Unless required by applicable law or agreed to in writing, the Mojaloop files are distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+ Contributors
+ --------------
+ This is the official list of the Mojaloop project contributors for this file.
+ Names of the original copyright holders (individuals or organizations)
+ should be listed with a '*' in the first column. People who have
+ contributed from an organization can be listed under the organization
+ that actually holds the copyright for their contributions (see the
+ Gates Foundation organization for an example). Those individuals should have
+ their names indented and be marked with a '-'. Email address can be added
+ optionally within square brackets <email>.
+ * Gates Foundation
+ - Name Surname <name.surname@gatesfoundation.com>
+
+ * Sam Kummary <sam@modusbox.com>
+ --------------
+ ******'/
+
+
+@startuml
+Title Service des demandes de transaction — Autorisations
+participant "FSP payeur"
+participant "Commutateur\ntransaction-requests-service" as Switch
+participant "FSP bénéficiaire"
+
+autonumber
+"FSP bénéficiaire" --\ "FSP bénéficiaire": Recherche, demande de transaction,\ntraitement non illustré ici
+note over "FSP bénéficiaire", Switch: Le FSP bénéficiaire génère une demande de transaction vers le FSP payeur
+"FSP payeur" --> "FSP payeur": Offre de change, génération d'OTP,\nnotification utilisateur (non illustré)
+"FSP payeur" -\ Switch: GET /authorizations/{TransactionRequestID}
+Switch --/ "FSP payeur": 202 Accepted
+
+alt la demande d'autorisation est valide
+    
+    Switch -> Switch: Valider GET /authorizations/{TransactionRequestID} (validation interne)
+    Switch -> Switch: Récupérer les endpoints du FSP bénéficiaire
+    note over Switch, "FSP bénéficiaire": Le commutateur transmet GET /authorizations au FSP bénéficiaire
+    Switch -\ "FSP bénéficiaire": GET /authorizations/{TransactionRequestID}
+    "FSP bénéficiaire" --/ Switch: 202 Accepted
+    "FSP bénéficiaire" -> "FSP bénéficiaire": Traiter la demande d'autorisation\n(le payeur approuve ou rejette la transaction\nvia l'OTP)
+    
+    note over Switch, "FSP bénéficiaire": Le FSP bénéficiaire répond avec PUT /authorizations/{TransactionRequestID}
+    "FSP bénéficiaire" -\ Switch: PUT /authorizations/{TransactionRequestID}
+    Switch --/ "FSP bénéficiaire": 200 Ok
+
+    note over "FSP payeur", Switch: Le commutateur transmet PUT /authorizations/{TransactionRequestID} au FSP payeur
+    Switch -> Switch: Récupérer les endpoints du FSP payeur
+    Switch -\ "FSP payeur": PUT /authorizations/{TransactionRequestID}
+    "FSP payeur" --/ Switch: 200 Ok
+        
+
+else la demande d'autorisation est invalide
+    note over "FSP payeur", Switch: Le commutateur renvoie un rappel d'erreur au FSP payeur
+    Switch -\ "FSP payeur": PUT /authorizations/{TransactionRequestID}/error
+    "FSP payeur" --/ Switch: 200 OK
+    "FSP payeur" --> "FSP payeur": Valider l'OTP envoyé par le FSP bénéficiaire
+end
+@enduml

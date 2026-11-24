@@ -39,15 +39,42 @@ body
   min-width 0
 
 .navbar
-  position fixed
-  z-index 20
-  top 0
-  left 0
-  right 0
-  height $navbarHeight
-  background-color $white
-  box-sizing border-box
-  border-bottom 1px solid $borderColor
+  position: fixed
+  z-index: 20
+  top: 0
+  left: 0
+  right: 0
+  height: var(--navbar-total-height)
+  background-color: $white
+  box-sizing: border-box
+  border-bottom: 1px solid $borderColor
+  display: flex
+  flex-direction: column
+  padding-top: 0
+  padding-bottom: 0
+  padding-left: $navbar-horizontal-padding
+  padding-right: $navbar-horizontal-padding
+
+.banner-content {
+  height: var(--navbar-banner-height)
+  min-height: var(--navbar-banner-height)
+  width: 100%
+  display: block
+  box-sizing: border-box
+  padding: 0
+  position: static
+}
+
+.navbar-content {
+  height: var(--navbar-height)
+  min-height: var(--navbar-height)
+  padding: 0 $navbar-horizontal-padding
+  display: flex
+  align-items: center
+  justify-content: space-between
+  width: 100%
+  box-sizing: border-box
+}
 
 .sidebar-mask
   position fixed
@@ -62,8 +89,8 @@ body
   font-size 15px
   background-color $white
   position sticky
-  top $navbarHeight
-  height "calc(100vh - %s)" % $navbarHeight
+  top: var(--navbar-total-height)
+  height: calc(100vh - var(--navbar-total-height))
   flex 0 0 auto
   width $sidebarWidth
   box-sizing border-box
@@ -74,8 +101,8 @@ body
 .content-sidebar-wrapper
   background-color $white
   position sticky
-  top $navbarHeight
-  height "calc(100vh - %s)" % $navbarHeight
+  top: var(--navbar-total-height)
+  height: calc(100vh - var(--navbar-total-height))
   width $contentSidebarWidth
   align-self: flex-start;
   flex 0 0 auto
@@ -84,10 +111,10 @@ body
 
 .content:not(.custom)
   @extend $wrapper
-  padding-top 6rem + $navbarBannerHeight
+  padding-top: var(--navbar-total-height)
 
   @media (min-width: $MQMobile)
-    padding-top 7rem + $navbarBannerHeight
+    padding-top: var(--navbar-total-height)
 
   > *:first-child
     margin-top 0
@@ -223,3 +250,17 @@ caption
       display none
 
 @require 'mobile.styl'
+
+// Adjust sidebar and content top offset for banner + navbar
+:root {
+  --navbar-banner-height: 2.5rem;
+  --navbar-height: 4rem;
+  --navbar-total-height: calc(var(--navbar-banner-height) + var(--navbar-height));
+}
+
+.content:not(.custom) {
+  padding-top: var(--navbar-total-height);
+  @media (min-width: $MQMobile) {
+    padding-top: calc(7rem + var(--navbar-banner-height));
+  }
+}

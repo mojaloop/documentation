@@ -20,7 +20,7 @@ This document contains some of the most frequently asked questions from the comm
       - [8. How can I contribute to Mojaloop?](#8-how-can-i-contribute-to-mojaloop)
       - [9. What is supported?](#9-what-is-supported)
       - [10. Can we connect directly to Pathfinder in a development environment?](#10-can-we-connect-directly-to-pathfinder-in-a-development-environment)
-      - [11. Should i register DFSP via url http://central-directory/commands/register or i need to update configuration in default.json?](#11-should-i-register-dfsp-via-urlhttpcentral-directorycommandsregisteror-i-need-to-update-configuration-in-defaultjson)
+      - [11. Should I register DFSP via url http://central-directory/commands/register or i need to update configuration in default.json?](#11-should-i-register-dfsp-via-urlhttpcentral-directorycommandsregisteror-i-need-to-update-configuration-in-defaultjson)
       - [12. Status of the pod pi3-kafka-0 is still on CrashLoopBackOff?](#12-status-of-the-pod-pi3-kafka-0-is-still-on-crashloopbackoff)
       - [13. Why am I getting an error when we try to create new DFSP using Admin?](#13-why-am-i-getting-an-error-when-we-try-to-create-new-dfsp-using-admin)
       - [14. Using Mojaloop to do payment using crypto-currency?](#14-using-mojaloop-to-do-payment-using-crypto-currency)
@@ -38,7 +38,7 @@ This document contains some of the most frequently asked questions from the comm
       - [26. Can we use mojaloop as open-source mobile wallet software or mojaloop does interoperability only?](#26-can-we-use-mojaloop-as-open-source-mobile-wallet-software-or-mojaloop-does-interoperability-only)
       - [27. Describe companies that helps to deploy & support for mojaloop?](#27-describe-companies-that-helps-to-deploy--support-for-mojaloop)
       - [28. Can you say something about mojaloop & security?](#28-can-you-say-something-about-mojaloop--security)
-      - [29. What are the benefit(s) from using mojaloop as interoperabilty platform?](#29-what-are-the-benefits-from-using-mojaloop-as-interoperabilty-platform)
+      - [29. What are the benefit(s) from using mojaloop as interoperability platform?](#29-what-are-the-benefits-from-using-mojaloop-as-interoperability-platform)
       - [30. What are the main challenges that companies face using mojaloop?](#30-what-are-the-main-challenges-that-companies-face-using-mojaloop)
       - [31. Is forensic logging/audit in mojaloop , is it related with securing the inter-operability platform?](#31-is-forensic-loggingaudit-in-mojaloop--is-it-related-with-securing-the-inter-operability-platform)
       - [32. How do the financial service providers connect with mojaloop?](#32-how-do-the-financial-service-providers-connect-with-mojaloop)
@@ -100,7 +100,7 @@ For the local and test environment, we recommend interfacing with the 'mock-path
 
 Access the https://github.com/mojaloop/mock-pathfinder repository to download and install mock-pathfinder. Run command npm install in mock-pathfinder directory to install dependencies after this update Database_URI in mock-pathfinder/src/lib/config.js.
 
-#### 11. Should i register DFSP via url http://central-directory/commands/register or i need to update configuration in default.json?
+#### 11. Should I register DFSP via url http://central-directory/commands/register or i need to update configuration in default.json?
 
 You should register using the API provided, using postman or curl. Client is using LevelOne code. Needs to implement the current Mojaloop release with the current Postman scripts.
 
@@ -108,7 +108,7 @@ You should register using the API provided, using postman or curl. Client is usi
 
 - More background related to the question:
 
-  When I tired to get logs of the container centralledger-handler-admin-transfer, I get the following error:
+  When I tried to get logs of the container centralledger-handler-admin-transfer, I get the following error:
   Error from server (BadRequest): container "centralledger-handler-admin-transfer" in pod "pi3-centralledger-handler-admin-transfer-6787b6dc8d-x68q9" is waiting to start: PodInitializing
   And the status of the pod pi3-kafka-0 is still on CrashLoopBackOff.
   I am using a vps on ubuntu 16.04 with RAM 12GB, 2vCores, 2.4GHz, Rom 50GB at OVH for the deployment.
@@ -209,7 +209,7 @@ Mojaloop is an open source software and specification.
 
 The Specification is pretty standard and has good security standards. But these need to be implemented by the adopters and deployers. Along with this, the security measures need to be coupled with other Operational and Deployment based security measures. Moreover, the coming few months will focus on security perspective for the Open Source community.
 
-#### 29. What are the benefit(s) from using mojaloop as interoperabilty platform?
+#### 29. What are the benefit(s) from using mojaloop as interoperability platform?
 
 Benefits: Right now for example, an Airtel mobile money user can transfer to another Airtel mobile money user only. With this, he/she can transfer to any Financial service provider such as another mobile money provider or any other bank account or Merchant that is connected to the Hub, irrespective of their implementation. They just need to be connected to the same Switch. Also, this is designed for feature phones so everyone can use it.
 

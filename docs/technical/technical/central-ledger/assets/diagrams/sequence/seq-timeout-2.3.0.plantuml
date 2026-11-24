@@ -1,0 +1,107 @@
+/'*****
+ License
+ --------------
+ Copyright © 2017 Bill & Melinda Gates Foundation
+ The Mojaloop files are made available by the Bill & Melinda Gates Foundation under the Apache License, Version 2.0 (the "License") and you may not use these files except in compliance with the License. You may obtain a copy of the License at
+ http://www.apache.org/licenses/LICENSE-2.0
+ Unless required by applicable law or agreed to in writing, the Mojaloop files are distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+ Contributors
+ --------------
+ This is the official list of the Mojaloop project contributors for this file.
+ Names of the original copyright holders (individuals or organizations)
+ should be listed with a '*' in the first column. People who have
+ contributed from an organization can be listed under the organization
+ that actually holds the copyright for their contributions (see the
+ Gates Foundation organization for an example). Those individuals should have
+ their names indented and be marked with a '-'. Email address can be added
+ optionally within square brackets <email>.
+ * Gates Foundation
+ - Name Surname <name.surname@gatesfoundation.com>
+
+ * ModusBox
+ - Georgi Georgiev <georgi.georgiev@modusbox.com>
+ --------------
+ ******'/   
+
+@startuml
+' declate title
+title 2.3.0. Transfer Timeout
+
+autonumber
+
+' Actor Keys:
+'   boundary - APIs/Interfaces, etc
+'   collections - Kafka Topics
+'   control - Kafka Consumers
+'   entity - Database Access Objects
+'   database - Database Persistance Store
+
+' declare actors
+actor "DFSP1\nPayer" as DFSP1
+actor "DFSP2\nPayee" as DFSP2
+boundary "ML API\nAdapter" as MLAPI
+control "Notification\nHandler" as NOTIFY_HANDLER
+control  "Timeout Prepare\nHandler" as TIMEOUT_PREP_HANDLER
+collections "topic-\ntransfer-timeout" as TOPIC_TRANSFER_TIMEOUT
+control "Timeout\nHandler" as TIMEOUT_HANDLER
+collections "topic-\ntransfer-position" as TOPIC_TRANSFER_POSITION
+control "Position\nHandler" as POS_HANDLER
+collections "topic-notification" as TOPIC_NOTIFICATIONS
+
+box "Financial Service Providers" #lightgray
+	participant DFSP1
+	participant DFSP2
+end box
+
+box "ML API Adapter Service" #lightblue
+	participant MLAPI
+	participant NOTIFY_HANDLER
+end box
+
+box "Central Service" #lightyellow
+    participant TIMEOUT_PREP_HANDLER
+    participant TOPIC_TRANSFER_TIMEOUT
+    participant TIMEOUT_HANDLER
+    participant TOPIC_TRANSFER_POSITION
+    participant POS_HANDLER
+    participant TOPIC_NOTIFICATIONS
+end box
+
+' start flow
+activate TIMEOUT_PREP_HANDLER
+activate NOTIFY_HANDLER
+activate TIMEOUT_HANDLER
+activate POS_HANDLER
+group Transfer Expiry
+    |||
+    ref over TIMEOUT_PREP_HANDLER, TOPIC_TRANSFER_TIMEOUT:  Timeout Processing Handler Consume\n
+    TIMEOUT_PREP_HANDLER -> TOPIC_TRANSFER_TIMEOUT: Produce message
+    |||
+    TOPIC_TRANSFER_TIMEOUT <- TIMEOUT_HANDLER: Consume message
+    ref over TOPIC_TRANSFER_TIMEOUT, TIMEOUT_HANDLER:  Timeout Processing Handler Consume\n
+    alt transferStateId == 'RECEIVED_PREPARE'
+        TIMEOUT_HANDLER -> TOPIC_NOTIFICATIONS: Produce message
+    else transferStateId == 'RESERVED'
+        TIMEOUT_HANDLER -> TOPIC_TRANSFER_POSITION: Produce message
+        TOPIC_TRANSFER_POSITION <- POS_HANDLER: Consume message
+        ref over TOPIC_TRANSFER_POSITION, TOPIC_NOTIFICATIONS:  Position Hander Consume (Timeout)\n
+        POS_HANDLER -> TOPIC_NOTIFICATIONS: Produce message
+    end
+    opt action IN ['timeout-received', 'timeout-reserved']
+        |||
+        TOPIC_NOTIFICATIONS <- NOTIFY_HANDLER: Consume message
+        ref over DFSP1, TOPIC_NOTIFICATIONS : Send notification to Participant (Payer)\n
+        NOTIFY_HANDLER -> DFSP1: Send callback notification
+    end
+    |||
+    TOPIC_NOTIFICATIONS <- NOTIFY_HANDLER: Consume message
+    opt action == 'timeout-reserved'
+        |||
+        ref over DFSP2, TOPIC_NOTIFICATIONS : Send notification to Participant (Payee)\n
+        NOTIFY_HANDLER -> DFSP2: Send callback notification
+    end
+end
+deactivate POS_HANDLER
+deactivate TIMEOUT_HANDLER
+deactivate NOTIFY_HANDLER
+@enduml

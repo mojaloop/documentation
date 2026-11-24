@@ -5,14 +5,13 @@ For Mojaloop to maintain its open source nature and compatibility with the [Moja
 ## Mojaloop License Scanner
 
 We have a suite of tools bundled under the [license-scanner](https://github.com/mojaloop/license-scanner) project on the Mojaloop Github account. The license-scanner allows us to:
+
 - Perform a license scan across one to many Mojaloop github repositories 
 - Integrate with FossaCLI to run mass license audits across the entire codebase
 - Run inside of a CI process
 - Run a license scan against a pre-built docker image
 
-
 For more information, refer to the [readme](https://github.com/mojaloop/license-scanner) in the license-scanner repository.
-
 
 ## Blocking and Allowing Licenses
 

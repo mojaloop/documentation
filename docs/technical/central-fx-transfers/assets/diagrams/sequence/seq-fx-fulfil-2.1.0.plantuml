@@ -1,0 +1,174 @@
+/'
+ License
+ --------------
+ Copyright © 2020 Mojaloop Foundation
+ The Mojaloop files are made available by the Mojaloop Foundation under the Apache License, Version 2.0
+ (the "License") and you may not use these files except in compliance with the [License](http://www.apache.org/licenses/LICENSE-2.0). 
+ You may obtain a copy of the License at [http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)
+ Unless required by applicable law or agreed to in writing, the Mojaloop files are distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the [License](http://www.apache.org/licenses/LICENSE-2.0).
+ 
+ Contributors
+ --------------
+ This is the official list of the Mojaloop project contributors for this file.
+ Names of the original copyright holders (individuals or organizations)
+ should be listed with a '*' in the first column. People who have
+ contributed from an organization can be listed under the organization
+ that actually holds the copyright for their contributions (see the
+ Gates Foundation organization for an example). Those individuals should have
+ their names indented and be marked with a '-'. Email address can be added
+ optionally within square brackets <email>.
+ * Gates Foundation
+ - Name Surname <name.surname@gatesfoundation.com>
+
+ * Steven Oderayi <steven.oderayi@infitx.com>
+ --------------
+ '/
+
+
+@startuml fx-fulfil-request
+' declate title
+title 2.1.0. FXP sends an Fulfil Success FX Conversion Request
+
+autonumber
+
+' declare actors
+actor "DFSP1\nPayer" as DFSP1
+control "FXP1\nFXP" as FXP1
+boundary "ML API Adapter" as MLAPI
+control "ML API Notification Event Handler" as NOTIFY_HANDLER
+boundary "Central Service API" as CSAPI
+collections "topic-transfer-fulfil" as TOPIC_FULFIL
+control "Fulfil Event Handler" as FULF_HANDLER
+collections "topic-\nsettlement-model" as TOPIC_SETMODEL
+control "Settlement Model\nHandler" as SETMODEL_HANDLER
+collections "topic-\ntransfer-position" as TOPIC_TRANSFER_POSITION
+control "Position Handler" as POS_HANDLER
+collections "topic-\nnotification" as TOPIC_NOTIFICATIONS
+
+box "Financial Service Providers" #lightGray
+	participant DFSP1
+	participant FXP1
+end box
+
+box "ML API Adapter Service" #LightBlue
+	participant MLAPI
+	participant NOTIFY_HANDLER
+end box
+
+box "Central Service" #LightYellow
+    participant CSAPI
+	participant TOPIC_FULFIL
+    participant FULF_HANDLER
+    participant TOPIC_SETMODEL
+    participant SETMODEL_HANDLER
+    participant TOPIC_TRANSFER_POSITION
+    participant POS_HANDLER
+    participant TOPIC_NOTIFICATIONS
+end box
+
+' start flow
+activate NOTIFY_HANDLER
+activate FULF_HANDLER
+activate SETMODEL_HANDLER
+activate POS_HANDLER
+group FXP1 sends a fulfil success FX conversion request
+    FXP1 <-> FXP1: Retrieve fulfilment string generated during\nthe FX quoting process or regenerate it using\n**Local secret** and **ILP Packet** as inputs
+    note right of FXP1 #yellow
+        Headers - transferHeaders: {
+            Content-Length: <Content-Length>,
+            Content-Type: <Content-Type>,
+            Date: <Date>,
+            X-Forwarded-For: <X-Forwarded-For>,
+            FSPIOP-Source: <FSPIOP-Source>,
+            FSPIOP-Destination: <FSPIOP-Destination>,
+            FSPIOP-Encryption: <FSPIOP-Encryption>,
+            FSPIOP-Signature: <FSPIOP-Signature>,
+            FSPIOP-URI: <FSPIOP-URI>,
+            FSPIOP-HTTP-Method: <FSPIOP-HTTP-Method>
+        }
+
+        Payload - transferMessage:
+        {
+            "conversionState": "<transferState>"
+            "fulfilment": <IlpFulfilment>,
+            "completedTimestamp": <DateTime>,
+            "extensionList": {
+                "extension": [
+                    {
+                        "key": <string>,
+                        "value": <string>
+                    }
+                ]
+            }
+        }
+    end note
+    FXP1 ->> MLAPI: PUT - /fxTransfers/<ID>
+    activate MLAPI
+    MLAPI -> MLAPI: Schema validation\n
+    break Schema validation failed
+        MLAPI -->> FXP1: Respond HTTP - 400 (Bad Request)
+    end
+    MLAPI -> MLAPI: Validate incoming request \n(e.g transfer has not timed out, completedTimestamp is not in the future)\n<color #FF0000><b>Error codes:</b> 2001, 3100</color>
+    note right of MLAPI #yellow
+        Message:
+        {
+            id: <ID>,
+            from: <transferHeaders.FSPIOP-Source>,
+            to: <transferHeaders.FSPIOP-Destination>,
+            type: application/json,
+            content: {
+                headers: <transferHeaders>,
+                payload: <transferMessage>
+            },
+            metadata: {
+                event: {
+                    id: <uuid>,
+                    type: fulfil,
+                    action: fx_commit,
+                    createdAt: <timestamp>,
+                    state: {
+                        status: "success",
+                        code: 0
+                    }
+                }
+            }
+        }
+    end note
+    MLAPI -> TOPIC_FULFIL: Route & Publish Fulfil event for Payee\n<color #FF0000><b>Error code:</b> 2001</color>
+    activate TOPIC_FULFIL
+    TOPIC_FULFIL <-> TOPIC_FULFIL: Ensure event is replicated as configured (ACKS=all)\n<color #FF0000><b>Error code:</b> 2001</color>
+    TOPIC_FULFIL --> MLAPI: Respond replication acknowledgements have been received
+    deactivate TOPIC_FULFIL
+    MLAPI -->> FXP1: Respond HTTP - 200 (OK)
+    deactivate MLAPI
+    TOPIC_FULFIL <- FULF_HANDLER: Consume message
+    ref over TOPIC_FULFIL, TOPIC_TRANSFER_POSITION: Fulfil Handler Consume (Success) {[[https://github.com/mojaloop/documentation/tree/master/mojaloop-technical-overview/central-ledger/assets/diagrams/sequence/seq-fulfil-2.1.1.svg 2.1.1]]} \n
+    FULF_HANDLER -> TOPIC_SETMODEL: Produce message
+    FULF_HANDLER -> TOPIC_TRANSFER_POSITION: Produce message
+    |||
+    TOPIC_SETMODEL <- SETMODEL_HANDLER: Consume message
+    ref over TOPIC_SETMODEL, SETMODEL_HANDLER:  Settlement Model Handler Consume (Success)\n
+    |||
+    TOPIC_TRANSFER_POSITION <- POS_HANDLER: Consume message
+    ref over TOPIC_TRANSFER_POSITION, TOPIC_NOTIFICATIONS:  Position Handler Consume (Success)\n
+    POS_HANDLER -> TOPIC_NOTIFICATIONS: Produce message
+    |||
+    TOPIC_NOTIFICATIONS <- NOTIFY_HANDLER: Consume message
+    opt action == 'fx_commit'
+        |||
+        ref over DFSP1, TOPIC_NOTIFICATIONS: Send notification to Participant (Payer)\n
+        NOTIFY_HANDLER -> DFSP1: Send callback notification
+    end
+    |||
+    TOPIC_NOTIFICATIONS <- NOTIFY_HANDLER: Consume message
+    opt action == 'fx_commit'
+        |||
+        ref over FXP1, TOPIC_NOTIFICATIONS: Send notification to Participant (FXP)\n
+        NOTIFY_HANDLER -> FXP1: Send callback notification
+    end
+    |||
+end
+deactivate POS_HANDLER
+deactivate FULF_HANDLER
+deactivate NOTIFY_HANDLER
+@enduml

@@ -18,9 +18,12 @@ The document is intended for an audience with a stable technical knowledge that 
       - [5.2. Verifying Ingress Rules](#52-verifying-ingress-rules)
       - [5.3. Testing Mojaloop](#53-testing-mojaloop)
       - [5.4. Testing Mojaloop with Postman](#54-testing-mojaloop-with-postman)
-    - [6. Overlay Services (3PPI) Support](#overlay-services)
-      - [6.1 Configuring a deployment for Third Party API support](#configuring-a-deployment)
-      - [6.2 Validating and Testing the Third Party API](#validating-and-testing)
+    - [<a id='overlay-services'></a>6. Overlay Services/3PPI](#6-overlay-services3ppi)
+      - [<a id='configuring-a-deployment'></a>6.1 Configuring a deployment for Third Party API support](#61-configuring-a-deployment-for-third-party-api-support)
+      - [<a id='validating-and-testing'></a>6.2 Validating and Testing the Third Party API](#62-validating-and-testing-the-third-party-api)
+        - [6.2.1 Deploying the Simulators](#621-deploying-the-simulators)
+        - [6.2.2 Provisioning the Environment](#622-provisioning-the-environment)
+        - [6.2.3 Run the Third Party API Test Collection](#623-run-the-third-party-api-test-collection)
 ### 1. Pre-requisites
 
 Versions numbers below are hard requirements, not just recommendations (more recent versions are known not to work).
@@ -29,10 +32,20 @@ A list of the pre-requisite tool set required for the deployment of Mojaloop:
 
 - **Kubernetes** An open-source system for automating deployment, scaling, and management of containerized applications. Find out more about [Kubernetes](https://kubernetes.io).
   - Recommended Versions:
-   <br>&nbsp;&nbsp;&nbsp;&nbsp;**Mojaloop Helm Chart release v13.x** supports **Kubernetes v1.13 - v1.20**.
-   <br>&nbsp;&nbsp;&nbsp;&nbsp;**Mojaloop Helm Chart release v12.x** supports **Kubernetes v1.13 - v1.20**.
-   <br>&nbsp;&nbsp;&nbsp;&nbsp;**Mojaloop Helm Chart release v11.x** supports **Kubernetes v1.13 - v1.17**.
-   <br>&nbsp;&nbsp;&nbsp;&nbsp;**Mojaloop Helm Chart release v10.x** supports **Kubernetes v1.13 - v1.15**, it will fail on Kubernetes v1.16+ onwards due deprecated APIs ([ref: Helm Issue #219](https://github.com/mojaloop/helm/issues/219)).
+    >
+    > **Mojaloop Helm Chart release v14.1.x** supports **Kubernetes v1.20 - v1.24**.
+    >
+    > **Mojaloop Helm Chart release v14.0.x** supports **Kubernetes v1.20 - v1.21**.
+    >
+    > **Mojaloop Helm Chart release v13.x** supports **Kubernetes v1.13 - v1.21**.
+    >
+    > **Mojaloop Helm Chart release v12.x** supports **Kubernetes v1.13 - v1.20**.
+    >
+    > **Mojaloop Helm Chart release v11.x** supports **Kubernetes v1.13 - v1.17**.
+    >
+    > **Mojaloop Helm Chart release v10.x** supports **Kubernetes v1.13 - v1.15**, it will fail on Kubernetes v1.16+ onwards due deprecated APIs ([ref: Helm Issue #219](https://github.com/mojaloop/helm/issues/219)).
+    >
+
   - kubectl - Kubernetes CLI for Kubernetes Management is required. Find out more about [kubectl](https://kubernetes.io/docs/reference/kubectl/overview/):
     - [Install-kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/),
   - microk8s - MicroK8s installs a barebones upstream Kubernetes for a single node deployment generally used for local development. We recommend this installation on Linux (ubuntu) OS. Find out more about [microk8s](https://microk8s.io/) and [microk8s documents](https://microk8s.io/docs/):
@@ -110,7 +123,7 @@ Refer to the following documentation to install the Nginx-Ingress Controller use
 If you are using helm, this can be done as follows:
 
 ```bash
-$ helm install ingress-nginx ingress-nginx/ingress-nginx --version="3.33.0"
+helm install ingress-nginx ingress-nginx --version="3.33.0" --repo https://kubernetes.github.io/ingress-nginx
 ```
 
 > **NOTE: If you are installing Mojaloop v12.x with an Nginx-Ingress controller version newer than v0.22.0, ensure you create a custom [Mojaloop values config](https://github.com/mojaloop/helm/blob/v12.0.0/mojaloop/values.yaml) with the following changes prior to install:**
@@ -245,7 +258,7 @@ Refer to the [Helm v2 to v3 Migration Guide](./helm-legacy-migration.md) if you 
 
    The below required config is applicable to Helm release >= versions 6.2.2 for Mojaloop API Services;
 
-   ```text
+   ```
     # Mojaloop Demo
     127.0.0.1   ml-api-adapter.local central-ledger.local account-lookup-service.local account-lookup-service-admin.local quoting-service.local central-settlement-service.local transaction-request-service.local central-settlement.local bulk-api-adapter.local moja-simulator.local sim-payerfsp.local sim-payeefsp.local sim-testfsp1.local sim-testfsp2.local sim-testfsp3.local sim-testfsp4.local mojaloop-simulators.local finance-portal.local operator-settlement.local settlement-management.local testing-toolkit.local testing-toolkit-specapi.local
    ```
@@ -294,7 +307,7 @@ The [Mojaloop Testing Toolkit](../../documentation/mojaloop-technical-overview/m
 
    Example of the finally summary being displayed from the Golden Path test collection log output:
 
-   ```text
+   ```
     Test Suite:GP Tests
     Environment:Development
     ┌───────────────────────────────────────────────────┐

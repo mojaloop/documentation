@@ -1,0 +1,198 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="1641px" preserveAspectRatio="none" style="width:993px;height:1641px;background:#FFFFFF;" version="1.1" viewBox="0 0 993 1641" width="993px" zoomAndPan="magnify">
+  <title>Retrieve Bulk Quote Information</title>
+  <defs/>
+  <g>
+    <text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="256.7305" x="369.323" y="27.9951">Retrieve Bulk Quote Information</text>
+    <rect fill="none" height="1192.5313" style="stroke:#000000;stroke-width:1.5;" width="977.3765" x="9" y="380.2188"/>
+    <rect fill="none" height="902.5313" style="stroke:#000000;stroke-width:1.5;" width="805.5371" x="19" y="539.8828"/>
+    <rect fill="none" height="465.6016" style="stroke:#000000;stroke-width:1.5;" width="785.5371" x="29" y="737.9453"/>
+    <rect fill="none" height="218.7344" style="stroke:#000000;stroke-width:1.5;" width="765.8901" x="39" y="804.2109"/>
+    <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="177" x2="177" y1="89.8906" y2="1589.75"/>
+    <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="402.353" x2="402.353" y1="89.8906" y2="1589.75"/>
+    <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="751.5249" x2="751.5249" y1="89.8906" y2="1589.75"/>
+    <rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="83.5078" x="136" y="58.5938"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="69.5078" x="143" y="78.5889">Payer FSP</text>
+    <rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="83.5078" x="136" y="1588.75"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="69.5078" x="143" y="1608.7451">Payer FSP</text>
+    <rect fill="#E2E2F0" height="46.5938" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="136.7119" x="334.353" y="42.2969"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="46.2861" x="379.5659" y="62.292">Switch</text>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="122.7119" x="341.353" y="78.5889">[Quoting Service]</text>
+    <rect fill="#E2E2F0" height="46.5938" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="136.7119" x="334.353" y="1588.75"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="46.2861" x="379.5659" y="1608.7451">Switch</text>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="122.7119" x="341.353" y="1625.042">[Quoting Service]</text>
+    <rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="86.3652" x="708.5249" y="58.5938"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="72.3652" x="715.5249" y="78.5889">Payee FSP</text>
+    <rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="86.3652" x="708.5249" y="1588.75"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="72.3652" x="715.5249" y="1608.7451">Payee FSP</text>
+    <path d="M182,104.8906 L182,144.8906 L531,144.8906 L531,114.8906 L521,104.8906 L182,104.8906 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M521,104.8906 L521,114.8906 L531,114.8906 L521,104.8906 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="324.0859" x="188" y="121.9575">Payer FSP sends request to get bulk quote details</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="180.3623" x="188" y="137.0903">to Payee FSP via the Switch</text>
+    <polygon fill="#181818" points="390.709,167.2891,400.709,171.2891,390.709,171.2891" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="177.7539" x2="401.709" y1="171.2891" y2="171.2891"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="184.7539" y="166.2231">1</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="143.4316" x="197.7993" y="166.2231">GET /bulkQuotes/{ID}</text>
+    <path d="M407,184.2891 L407,254.2891 L654,254.2891 L654,194.2891 L644,184.2891 L407,184.2891 " fill="#AAAAAA" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M644,184.2891 L644,194.2891 L654,194.2891 L644,184.2891 " fill="#AAAAAA" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="159.269" x="413" y="201.356">Validate request against</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="206.7495" x="413" y="216.4888">Mojaloop interface specification</text>
+    <text fill="#FF0000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="166.5625" x="413" y="231.6216">Error code: 300x, 310x</text>
+    <text fill="#FF0000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="226.0146" x="413" y="246.7544">HTTP error response code: 4xx</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="402.709" x2="444.709" y1="280.9531" y2="280.9531"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="444.709" x2="444.709" y1="280.9531" y2="293.9531"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="403.709" x2="444.709" y1="293.9531" y2="293.9531"/>
+    <polygon fill="#181818" points="413.709,289.9531,403.709,293.9531,413.709,297.9531,409.709,293.9531" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="409.709" y="275.8872">2</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="120.4023" x="422.7544" y="275.8872">Schema validation</text>
+    <polygon fill="#181818" points="188.7539,323.0859,178.7539,323.0859,188.7539,327.0859" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="177.7539" x2="401.709" y1="323.0859" y2="323.0859"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="194.7539" y="318.02">3</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="89.7305" x="207.7993" y="318.02">202 Accepted</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="402.709" x2="444.709" y1="352.2188" y2="352.2188"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="444.709" x2="444.709" y1="352.2188" y2="365.2188"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="403.709" x2="444.709" y1="365.2188" y2="365.2188"/>
+    <polygon fill="#181818" points="413.709,361.2188,403.709,365.2188,413.709,369.2188,409.709,365.2188" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="409.709" y="347.1528">4</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="290.0942" x="422.7544" y="347.1528">Retrieve bulk quotes endpoint for Payee FSP</text>
+    <path d="M9,380.2188 L73.4429,380.2188 L73.4429,387.3516 L63.4429,397.3516 L9,397.3516 L9,380.2188 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="1192.5313" style="stroke:#000000;stroke-width:1.5;" width="977.3765" x="9" y="380.2188"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="19.4429" x="24" y="393.2856">alt</text>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="234.459" x="88.4429" y="392.4292">[Payee FSP quotes endpoint is found]</text>
+    <path d="M407,402.3516 L407,427.3516 L815,427.3516 L815,412.3516 L805,402.3516 L407,402.3516 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M805,402.3516 L805,412.3516 L815,412.3516 L805,402.3516 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="387.3975" x="413" y="419.4185">Switch forwards request to Payee FSP (pass-through mode)</text>
+    <polygon fill="#181818" points="739.7075,449.6172,749.7075,453.6172,739.7075,453.6172" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="402.709" x2="750.7075" y1="453.6172" y2="453.6172"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="409.709" y="448.5513">5</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="143.4316" x="422.7544" y="448.5513">GET /bulkQuotes/{ID}</text>
+    <polygon fill="#181818" points="413.709,482.75,403.709,482.75,413.709,486.75" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="402.709" x2="750.7075" y1="482.75" y2="482.75"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="419.709" y="477.6841">6</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="89.7305" x="432.7544" y="477.6841">202 Accepted</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="751.7075" x2="793.7075" y1="511.8828" y2="511.8828"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="793.7075" x2="793.7075" y1="511.8828" y2="524.8828"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="752.7075" x2="793.7075" y1="524.8828" y2="524.8828"/>
+    <polygon fill="#181818" points="762.7075,520.8828,752.7075,524.8828,762.7075,528.8828,758.7075,524.8828" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="758.7075" y="506.8169">7</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="202.6235" x="771.7529" y="506.8169">Payee FSP retireves bulk quote</text>
+    <path d="M19,539.8828 L83.4429,539.8828 L83.4429,547.0156 L73.4429,557.0156 L19,557.0156 L19,539.8828 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="902.5313" style="stroke:#000000;stroke-width:1.5;" width="805.5371" x="19" y="539.8828"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="19.4429" x="34" y="552.9497">alt</text>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="248.2842" x="98.4429" y="552.0933">[Payee FSP successfully retieves quote]</text>
+    <path d="M482,562.0156 L482,587.0156 L746,587.0156 L746,572.0156 L736,562.0156 L482,562.0156 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M736,562.0156 L736,572.0156 L746,572.0156 L736,562.0156 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="243.604" x="488" y="579.0825">Payee FSP responds to quote request</text>
+    <polygon fill="#181818" points="413.709,609.2813,403.709,613.2813,413.709,613.2813" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="402.709" x2="750.7075" y1="613.2813" y2="613.2813"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="419.709" y="608.2153">8</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="112.8867" x="432.7544" y="608.2153">PUT /quotes/{ID}</text>
+    <path d="M407,626.2813 L407,696.2813 L654,696.2813 L654,636.2813 L644,626.2813 L407,626.2813 " fill="#AAAAAA" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M644,626.2813 L644,636.2813 L654,636.2813 L644,626.2813 " fill="#AAAAAA" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="159.269" x="413" y="643.3481">Validate request against</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="206.7495" x="413" y="658.481">Mojaloop interface specification</text>
+    <text fill="#FF0000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="166.5625" x="413" y="673.6138">Error code: 300x, 310x</text>
+    <text fill="#FF0000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="226.0146" x="413" y="688.7466">HTTP error response code: 4xx</text>
+    <polygon fill="#181818" points="739.7075,722.9453,749.7075,722.9453,739.7075,726.9453" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="402.709" x2="750.7075" y1="722.9453" y2="722.9453"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="409.709" y="717.8794">9</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="46.7061" x="422.7544" y="717.8794">200 Ok</text>
+    <path d="M29,737.9453 L93.4429,737.9453 L93.4429,745.0781 L83.4429,755.0781 L29,755.0781 L29,737.9453 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="465.6016" style="stroke:#000000;stroke-width:1.5;" width="785.5371" x="29" y="737.9453"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="19.4429" x="44" y="751.0122">alt</text>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="102.6523" x="108.4429" y="750.1558">[Response is ok]</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="402.709" x2="444.709" y1="776.2109" y2="776.2109"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="444.709" x2="444.709" y1="776.2109" y2="789.2109"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="403.709" x2="444.709" y1="789.2109" y2="789.2109"/>
+    <polygon fill="#181818" points="413.709,785.2109,403.709,789.2109,413.709,793.2109,409.709,789.2109" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="409.709" y="771.145">10</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="312.9077" x="431.7998" y="771.145">Retrieve bulk quotes endpoint for the Payer FSP</text>
+    <path d="M39,804.2109 L103.4429,804.2109 L103.4429,811.3438 L93.4429,821.3438 L39,821.3438 L39,804.2109 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="218.7344" style="stroke:#000000;stroke-width:1.5;" width="765.8901" x="39" y="804.2109"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="19.4429" x="54" y="817.2778">alt</text>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="238.6323" x="118.4429" y="816.4214">[Bulk Quotes callback endpoint found]</text>
+    <path d="M49,826.3438 L49,851.3438 L396,851.3438 L396,836.3438 L386,826.3438 L49,826.3438 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M386,826.3438 L386,836.3438 L396,836.3438 L386,826.3438 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="326.7139" x="55" y="843.4106">Switch forwards bulk quote response to Payer FSP</text>
+    <polygon fill="#181818" points="188.7539,873.6094,178.7539,877.6094,188.7539,877.6094" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="177.7539" x2="401.709" y1="877.6094" y2="877.6094"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="194.7539" y="872.5435">11</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="142.4985" x="216.8447" y="872.5435">PUT /bulkQuotes/{ID}</text>
+    <polygon fill="#181818" points="390.709,906.7422,400.709,906.7422,390.709,910.7422" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="177.7539" x2="401.709" y1="906.7422" y2="906.7422"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="184.7539" y="901.6763">12</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="46.7061" x="206.8447" y="901.6763">200 Ok</text>
+    <line style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="39" x2="804.8901" y1="915.7422" y2="915.7422"/>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="263.1084" x="44" y="925.9526">[Bulk Quotes callback endpoint not found]</text>
+    <path d="M407,934.5469 L407,959.5469 L646,959.5469 L646,944.5469 L636,934.5469 L407,934.5469 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M636,934.5469 L636,944.5469 L646,944.5469 L636,934.5469 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="218.7783" x="413" y="951.6138">Switch returns error to Payee FSP</text>
+    <polygon fill="#181818" points="739.7075,981.8125,749.7075,985.8125,739.7075,985.8125" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="402.709" x2="750.7075" y1="985.8125" y2="985.8125"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="409.709" y="980.7466">13</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="178.8643" x="431.7998" y="980.7466">PUT /bulkQuotes/{ID}/error</text>
+    <polygon fill="#181818" points="413.709,1014.9453,403.709,1014.9453,413.709,1018.9453" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="402.709" x2="750.7075" y1="1014.9453" y2="1014.9453"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="419.709" y="1009.8794">14</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="46.7061" x="441.7998" y="1009.8794">200 Ok</text>
+    <line style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="29" x2="814.5371" y1="1030.9453" y2="1030.9453"/>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="129.3896" x="34" y="1041.1558">[Response is invalid]</text>
+    <path d="M407,1049.75 L407,1074.75 L646,1074.75 L646,1059.75 L636,1049.75 L407,1049.75 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M636,1049.75 L636,1059.75 L646,1059.75 L636,1049.75 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="218.7783" x="413" y="1066.8169">Switch returns error to Payee FSP</text>
+    <polygon fill="#181818" points="739.7075,1097.0156,749.7075,1101.0156,739.7075,1101.0156" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="402.709" x2="750.7075" y1="1101.0156" y2="1101.0156"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="409.709" y="1095.9497">15</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="178.8643" x="431.7998" y="1095.9497">PUT /bulkQuotes/{ID}/error</text>
+    <polygon fill="#181818" points="413.709,1130.1484,403.709,1130.1484,413.709,1134.1484" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="402.709" x2="750.7075" y1="1130.1484" y2="1130.1484"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="419.709" y="1125.0825">16</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="46.7061" x="441.7998" y="1125.0825">200 Ok</text>
+    <path d="M349,1143.1484 L349,1198.1484 L804,1198.1484 L804,1153.1484 L794,1143.1484 L349,1143.1484 " fill="#EC7063" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M794,1143.1484 L794,1153.1484 L804,1153.1484 L794,1143.1484 " fill="#EC7063" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="131.3647" x="481.6526" y="1160.2153">Note that under this</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="149.1763" x="481.6526" y="1175.3481">scenario the Payer FSP</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="181.2319" x="481.6526" y="1190.481">may not receive a response</text>
+    <line style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="19" x2="824.5371" y1="1211.5469" y2="1211.5469"/>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="138.4883" x="24" y="1221.7573">[bulkQuote not found]</text>
+    <path d="M506,1230.3516 L506,1270.3516 L745,1270.3516 L745,1240.3516 L735,1230.3516 L506,1230.3516 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M735,1230.3516 L735,1240.3516 L745,1240.3516 L735,1230.3516 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="218.7783" x="512" y="1247.4185">Payee FSP returns error to Switch</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="4.1323" x="512" y="1262.5513"> </text>
+    <text fill="#FF0000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="122.2368" x="516.1323" y="1262.5513">Error code: 3205</text>
+    <polygon fill="#181818" points="413.709,1292.75,403.709,1296.75,413.709,1296.75" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="402.709" x2="750.7075" y1="1296.75" y2="1296.75"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="419.709" y="1291.6841">17</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="178.8643" x="441.7998" y="1291.6841">PUT /bulkQuotes/{ID}/error</text>
+    <polygon fill="#181818" points="739.7075,1325.8828,749.7075,1325.8828,739.7075,1329.8828" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="402.709" x2="750.7075" y1="1325.8828" y2="1325.8828"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="409.709" y="1320.8169">18</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="47.7026" x="431.7998" y="1320.8169">200 OK</text>
+    <path d="M160,1338.8828 L160,1378.8828 L397,1378.8828 L397,1348.8828 L387,1338.8828 L160,1338.8828 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M387,1338.8828 L387,1348.8828 L397,1348.8828 L387,1338.8828 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="216.125" x="166" y="1355.9497">Switch returns error to Payer FSP</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="4.1323" x="166" y="1371.0825"> </text>
+    <text fill="#FF0000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="122.2368" x="170.1323" y="1371.0825">Error code: 3205</text>
+    <polygon fill="#181818" points="188.7539,1401.2813,178.7539,1405.2813,188.7539,1405.2813" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="177.7539" x2="401.709" y1="1405.2813" y2="1405.2813"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="194.7539" y="1400.2153">19</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="178.8643" x="216.8447" y="1400.2153">PUT /bulkQuotes/{ID}/error</text>
+    <polygon fill="#181818" points="390.709,1434.4141,400.709,1434.4141,390.709,1438.4141" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="177.7539" x2="401.709" y1="1434.4141" y2="1434.4141"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="184.7539" y="1429.3481">20</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="47.7026" x="206.8447" y="1429.3481">200 OK</text>
+    <line style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="9" x2="986.3765" y1="1450.4141" y2="1450.4141"/>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="290.0659" x="14" y="1460.6245">[Payee FSP Bulk quotes endpoint is not found]</text>
+    <path d="M160,1469.2188 L160,1509.2188 L397,1509.2188 L397,1479.2188 L387,1469.2188 L160,1469.2188 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M387,1469.2188 L387,1479.2188 L397,1479.2188 L387,1469.2188 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="216.125" x="166" y="1486.2856">Switch returns error to Payer FSP</text>
+    <text fill="#FF0000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="122.2368" x="166" y="1501.4185">Error code: 3201</text>
+    <polygon fill="#181818" points="188.7539,1531.6172,178.7539,1535.6172,188.7539,1535.6172" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="177.7539" x2="401.709" y1="1535.6172" y2="1535.6172"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="194.7539" y="1530.5513">21</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="174.4844" x="216.8447" y="1530.5513">PUT /bulkQuotes/{ID}error</text>
+    <polygon fill="#181818" points="390.709,1564.75,400.709,1564.75,390.709,1568.75" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="177.7539" x2="401.709" y1="1564.75" y2="1564.75"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="184.7539" y="1559.6841">22</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="47.7026" x="206.8447" y="1559.6841">200 OK</text>
+  </g>
+</svg>

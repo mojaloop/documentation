@@ -1,0 +1,108 @@
+/'*****
+ License
+ --------------
+ Copyright © 2017 Bill & Melinda Gates Foundation
+ The Mojaloop files are made available by the Bill & Melinda Gates Foundation under the Apache License, Version 2.0 (the "License") and you may not use these files except in compliance with the License. You may obtain a copy of the License at
+ http://www.apache.org/licenses/LICENSE-2.0
+ Unless required by applicable law or agreed to in writing, the Mojaloop files are distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+ Contributors
+ --------------
+ This is the official list of the Mojaloop project contributors for this file.
+ Names of the original copyright holders (individuals or organizations)
+ should be listed with a '*' in the first column. People who have
+ contributed from an organization can be listed under the organization
+ that actually holds the copyright for their contributions (see the
+ Gates Foundation organization for an example). Those individuals should have
+ their names indented and be marked with a '-'. Email address can be added
+ optionally within square brackets <email>.
+ * Gates Foundation
+ - Name Surname <name.surname@gatesfoundation.com>
+
+ * Georgi Georgiev <georgi.georgiev@modusbox.com>
+ * Miguel de Barros <miguel.debarros@modusbox.com>
+ --------------
+ ******'/
+
+@startuml
+' declate title
+title 1.1.4.b. Envoyer une notification au participant (payeur/bénéficiaire) (messages groupés)
+
+autonumber
+
+' Actor Keys:
+'   boundary - APIs/Interfaces, etc
+'   collections - Kafka Topics
+'   control - Kafka Consumers
+'   entity - Database Access Objects
+'   database - Database Persistance Store
+
+' declare actors
+actor "DFSP(n)\nParticipant" as DFSP
+control "Gestionnaire d'événements de notification ML API" as NOTIFY_HANDLER
+boundary "API du service central" as CSAPI
+collections "Rubrique de notification" as TOPIC_NOTIFICATIONS
+collections "Rubrique d'événements" as TOPIC_EVENTS
+entity "Notification DAO" as NOTIFY_DAO
+database "Stockage central" as DB
+
+box "Fournisseur de services financiers" #lightGray
+	participant DFSP
+end box
+
+box "Service adaptateur ML API" #LightBlue
+	participant NOTIFY_HANDLER
+end box
+
+box "Service central" #LightYellow
+participant TOPIC_NOTIFICATIONS
+    participant CSAPI
+    participant TOPIC_EVENTS
+    participant EVENT_DAO
+    participant NOTIFY_DAO
+    participant DB
+end box
+
+' start flow
+activate NOTIFY_HANDLER
+group Envoyer une notification au participant
+    note over DFSP #LightSalmon
+        Ce flux n'a pas été implémenté
+    end note
+
+    TOPIC_NOTIFICATIONS <- NOTIFY_HANDLER: <color #FF0000>**Consommer le lot de messages d'événement de notifications pour le participant**</color>
+    activate TOPIC_NOTIFICATIONS
+    deactivate TOPIC_NOTIFICATIONS
+    loop for each message in batch
+        group Persister les informations d'événement
+            NOTIFY_HANDLER -> CSAPI: Demande de persister les informations d'événement — POST — /events
+            activate CSAPI
+            CSAPI -> TOPIC_EVENTS: Publier les informations d'événement
+            activate TOPIC_EVENTS
+            |||
+            ref over TOPIC_EVENTS :  Consommation du gestionnaire d'événements\n
+            |||
+            TOPIC_EVENTS --> CSAPI: Renvoyer le succès
+            deactivate TOPIC_EVENTS
+            CSAPI --> NOTIFY_HANDLER: Renvoyer le succès
+            deactivate CSAPI
+        end
+        NOTIFY_HANDLER -> CSAPI: Demander les détails de notifications du participant - GET - /notifications/DFPS(n)
+        activate CSAPI
+        CSAPI -> NOTIFY_DAO: Récupérer les détails de notifications du participant
+        activate NOTIFY_DAO
+        NOTIFY_DAO -> DB: Récupérer les détails de notifications du participant
+        activate DB
+        hnote over DB #lightyellow
+            transferPosition
+        end note
+        DB --> NOTIFY_DAO: Détails de notifications récupérés pour le participant
+        'deactivate DB
+        NOTIFY_DAO --> CSAPI: Renvoyer les détails de notifications du participant
+        deactivate NOTIFY_DAO
+        CSAPI --> NOTIFY_HANDLER: Renvoyer les détails de notifications du participant
+        deactivate CSAPI
+        NOTIFY_HANDLER --> DFSP: Rappel avec résultat de préparation au participant sur l'URL spécifiée - PUT - /<dfsp-host>>/transfers
+    end
+end
+deactivate NOTIFY_HANDLER
+@enduml

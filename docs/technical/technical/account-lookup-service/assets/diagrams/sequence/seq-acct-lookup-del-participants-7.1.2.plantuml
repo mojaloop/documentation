@@ -1,0 +1,213 @@
+/'*****
+ License
+ --------------
+ Copyright © 2017 Bill & Melinda Gates Foundation
+ The Mojaloop files are made available by the Bill & Melinda Gates Foundation under the Apache License, Version 2.0 (the "License") and you may not use these files except in compliance with the License. You may obtain a copy of the License at
+ http://www.apache.org/licenses/LICENSE-2.0
+ Unless required by applicable law or agreed to in writing, the Mojaloop files are distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+ Contributors
+ --------------
+ This is the official list of the Mojaloop project contributors for this file.
+ Names of the original copyright holders (individuals or organizations)
+ should be listed with a '*' in the first column. People who have
+ contributed from an organization can be listed under the organization
+ that actually holds the copyright for their contributions (see the
+ Gates Foundation organization for an example). Those individuals should have
+ their names indented and be marked with a '-'. Email address can be added
+ optionally within square brackets <email>.
+ * Gates Foundation
+ - Name Surname <name.surname@gatesfoundation.com>
+
+ * Georgi Georgiev <georgi.georgiev@modusbox.com>
+ * Rajiv Mothilal <rajiv.mothilal@modusbox.com>
+ --------------
+ ******'/
+
+
+@startuml
+' declare title
+title 7.1.2. Delete Participant Details
+
+autonumber
+' Actor Keys:
+' boundary - APIs/Interfaces, etc
+' entity - Database Access Objects
+' database - Database Persistence Store
+
+' declare actors
+actor "Payer FSP" as PAYER_FSP
+actor "Payee FSP" as PAYEE_FSP
+boundary "Account Lookup\nService (ALS)" as ALS_API
+control "ALS Participant\nHandler" as ALS_PARTICIPANT_HANDLER
+entity "ALS CentralService\nEndpoint DAO" as ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO
+entity "ALS CentralService\nParticipant DAO" as ALS_CENTRALSERVICE_PARTICIPANT_DAO
+'entity "ALS Participant Oracle DAO" as ALS_PARTICIPANT_ORACLE_DAO
+entity "ALS Parties\nFSP DAO" as ALS_PARTIES_FSP_DAO
+entity "ALS Participant Endpoint\nOracle DAO" as ALS_PARTICIPANT_ORACLE_DAO
+database "ALS Database" as ALS_DB
+boundary "Oracle Service API" as ORACLE_API
+boundary "Central Service API" as CENTRALSERVICE_API
+
+box "Financial Service Provider" #LightGrey
+participant PAYER_FSP
+end box
+
+box "Account Lookup Service" #LightYellow
+participant ALS_API
+participant ALS_PARTICIPANT_HANDLER
+participant ALS_PARTICIPANT_ORACLE_DAO
+participant ALS_DB
+participant ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO
+participant ALS_CENTRALSERVICE_PARTICIPANT_DAO
+participant ALS_PARTIES_FSP_DAO
+end box
+
+box "Central Services" #LightGreen
+participant CENTRALSERVICE_API
+end box
+
+box "ALS Oracle Service/Adapter" #LightBlue
+participant ORACLE_API
+end box
+
+box "Financial Service Provider" #LightGrey
+participant PAYEE_FSP
+end box
+
+' START OF FLOW
+
+group Get Party Details
+    PAYER_FSP ->> ALS_API: Request to delete Participant details\nDEL - /participants/{TYPE}/{ID}?currency={CURRENCY}\n<color #388724><b>Response code:</b> 202</color>\n<color #red><b>Error code:</b> 200x, 300x, 310x, 320x</color>
+    activate ALS_API
+    note left ALS_API #lightgray
+        Validate request against
+        Mojaloop Interface Specification.
+        <color #red><b>Error code:</b> 300x, 310x</color>
+    end note
+
+    ALS_API -> ALS_PARTICIPANT_HANDLER: Request to delete Participant details
+
+    alt oracleEndpoint match found & parties information retrieved
+        activate ALS_PARTICIPANT_HANDLER
+        '********************* Retrieve Oracle Routing Information - START ************************
+        ALS_PARTICIPANT_HANDLER <-> ALS_DB: Get Oracle Routing Config\n<color #red><b>Error code:</b> 200x, 310x, 320x</color>
+        ref over ALS_PARTICIPANT_HANDLER, ALS_DB
+            GET Participants - [[https://docs.mojaloop.live/mojaloop-technical-overview/account-lookup-service/als-get-participants.html Get Oracle Routing Config Sequence]]
+            |||
+        end ref
+        '********************* Retrieve Oracle Routing Information - END ************************
+        |||
+        '********************* Retrieve Switch Routing Information - START ************************
+'        ALS_PARTICIPANT_HANDLER <-> ALS_DB: Get Switch Routing Config\n<color #red><b>Error code:</b> 200x, 310x, 320x</color>
+'        ref over ALS_PARTICIPANT_HANDLER, ALS_DB
+'            GET Participants - [[https://docs.mojaloop.live/mojaloop-technical-overview/account-lookup-service/als-get-participants.html Get Switch Routing Config Sequence]]
+'            |||
+'        end ref
+        '********************* Retrieve Switch Routing Information - END ************************
+
+        |||
+
+        '********************* Validate FSPIOP-Source Participant - START ************************
+        group Validate FSPIOP-Source Participant
+            ALS_PARTICIPANT_HANDLER -> ALS_CENTRALSERVICE_PARTICIPANT_DAO: Request FSPIOP-Source participant information\n<color #red><b>Error code:</b> 200x</color>
+            activate ALS_CENTRALSERVICE_PARTICIPANT_DAO
+
+            ALS_CENTRALSERVICE_PARTICIPANT_DAO -> CENTRALSERVICE_API: GET - /participants/{FSPIOP-Source}\n<color #red><b>Error code:</b> 200x, 310x, 320x</color>
+            activate CENTRALSERVICE_API
+            CENTRALSERVICE_API --> ALS_CENTRALSERVICE_PARTICIPANT_DAO: Return FSPIOP-Source participant information
+            deactivate CENTRALSERVICE_API
+
+            ALS_CENTRALSERVICE_PARTICIPANT_DAO --> ALS_PARTICIPANT_HANDLER: Return FSPIOP-Source participant information
+
+            deactivate ALS_CENTRALSERVICE_PARTICIPANT_DAO
+
+            ALS_PARTICIPANT_HANDLER -> ALS_PARTICIPANT_HANDLER: Validate FSPIOP-Source participant\n<color #red><b>Error code:</b> 320x</color>
+            ALS_PARTICIPANT_HANDLER -> ALS_PARTICIPANT_HANDLER: Validate that PARTICIPANT.fspId == FSPIOP-Source\n<color #FF0000><b>Error code:</b> 3100</color>
+        end group
+        '********************* Validate Participant - END ************************
+
+        |||
+
+        '********************* Request Oracle Participant Information - START ************************
+
+        ALS_PARTICIPANT_HANDLER <-> ORACLE_API: Get Participant Information for PayerFSP\n<color #red><b>Error code:</b> 200x, 310x, 320x</color>
+        ref over ALS_PARTICIPANT_HANDLER, ORACLE_API
+            GET Participants - [[https://docs.mojaloop.live/mojaloop-technical-overview/account-lookup-service/als-get-participants.html Request Participant Information from Oracle Sequence]]
+            |||
+        end ref
+
+        '********************* Request Oracle Participant Information - END ************************
+
+        |||
+
+        '********************* Validate Participant Ownership - START ************************
+        ' Reference section 6.2.2.4 - Note: The ALS should verify that it is the Party’s current FSP that is deleting the FSP information. Is this adequate?
+        group Validate Participant Ownership
+            ALS_PARTICIPANT_HANDLER -> ALS_PARTICIPANT_HANDLER: Validate that PARTICIPANT.fspId matches Participant Information retrieved from Oracle.\n<color #red><b>Error code:</b> 3100</color>
+        end group
+        '********************* Validate Participant - END ************************
+
+        |||
+
+        '********************* Delete Oracle Participant Information - START ************************
+
+        ALS_PARTICIPANT_HANDLER -> ALS_PARTICIPANT_ORACLE_DAO: Request to delete Participant's FSP details DEL - /participants/{TYPE}/{ID}?currency={CURRENCY}\n<color #red><b>Error code:</b> 200x, 310x, 320x</color>
+        activate ALS_PARTICIPANT_ORACLE_DAO
+        ALS_PARTICIPANT_ORACLE_DAO -> ORACLE_API: Request to delete Participant's FSP details DEL - /participants/{TYPE}/{ID}?currency={CURRENCY}\n<color #388724><b>Response code:</b> 200</color> \n<color #red><b>Error code:</b> 200x, 310x, 320x</color>
+        activate ORACLE_API
+        ORACLE_API --> ALS_PARTICIPANT_ORACLE_DAO: Return result
+        deactivate ORACLE_API
+        ALS_PARTICIPANT_ORACLE_DAO --> ALS_PARTICIPANT_HANDLER: Return result
+        deactivate ALS_PARTICIPANT_ORACLE_DAO
+
+        '********************* Delete Oracle Participant Information - END ************************
+        |||
+
+        '********************* Get PayerFSP Participant End-point Information - START ************************
+
+        ALS_PARTICIPANT_HANDLER -> ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO: Retrieve the PayerFSP Participant Callback Endpoint\n<color #red><b>Error code:</b> 200x</color>
+        activate ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO
+        ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO -> CENTRALSERVICE_API: Retrieve the PayerFSP Participant Callback Endpoint\nGET - /participants/{FSPIOP-Source}/endpoints\n<color #red><b>Error code:</b> 200x, 310x, 320x</color>
+        activate CENTRALSERVICE_API
+        CENTRALSERVICE_API --> ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO: List of PayerFSP Participant Callback Endpoints
+        deactivate CENTRALSERVICE_API
+        ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO --> ALS_PARTICIPANT_HANDLER: List of PayerFSP Participant Callback Endpoints
+        deactivate ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO
+
+        ALS_PARTICIPANT_HANDLER -> ALS_PARTICIPANT_HANDLER: Match PayerFSP Participant Callback Endpoints for\nFSPIOP_CALLBACK_URL_PARTICIPANT_PUT
+
+        '********************* Get PayerFSP Participant End-point Information - END ************************
+
+        ALS_PARTICIPANT_HANDLER --> ALS_API: Return delete request result
+        ALS_API ->> PAYER_FSP: Callback indiciating success:\nPUT - /participants/{TYPE}/{ID}?currency={CURRENCY}
+
+    else Validation failure or Oracle was unable process delete request
+
+        '********************* Get PayerFSP Participant End-point Information - START ************************
+
+        ALS_PARTICIPANT_HANDLER -> ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO: Retrieve the PayerFSP Participant Callback Endpoint\n<color #red><b>Error code:</b> 200x, 310x, 320x</color>
+        activate ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO
+        ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO -> CENTRALSERVICE_API: Retrieve the PayerFSP Participant Callback Endpoint\nGET - /participants/{FSPIOP-Source}/endpoints\n<color #388724><b>Response code:</b> 200</color>\n<color #red><b>Error code:</b> 200x, 310x, 320x</color>
+        activate CENTRALSERVICE_API
+        CENTRALSERVICE_API --> ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO: List of PayerFSP Participant Callback Endpoints
+        deactivate CENTRALSERVICE_API
+        ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO --> ALS_PARTICIPANT_HANDLER: List of PayerFSP Participant Callback Endpoints
+        deactivate ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO
+
+        ALS_PARTICIPANT_HANDLER -> ALS_PARTICIPANT_HANDLER: Match PayerFSP Participant Callback Endpoints for\nFSPIOP_CALLBACK_URL_PARTICIPANT_PUT_ERROR
+
+        '********************* Get PayerFSP Participant End-point Information - END ************************
+
+        ALS_PARTICIPANT_HANDLER --> ALS_API: Handle error\n<color #red><b>Error code:</b> 200x, 310x, 320x</color>
+        ALS_API ->> PAYER_FSP: Callback: PUT - /participants/{TYPE}/{ID}/error
+
+    else Empty list of switchEndpoint results returned
+        ALS_PARTICIPANT_HANDLER -> ALS_PARTICIPANT_HANDLER: Handle error\n<color #red><b>Error code:</b> 200x</color>
+        hnote right ALS_PARTICIPANT_HANDLER #red
+            <color #white>Error Handling Framework</color>
+        end note
+    end alt
+
+    deactivate ALS_PARTICIPANT_HANDLER
+end
+@enduml

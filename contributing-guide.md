@@ -8,7 +8,7 @@ The first step in contributing to the Mojaloop documentation repository is to go
 
 
 ## Setting up locally
-Refer to the [README](./README#building-and-testing-locally) for guide on how to setup the documentation site locally.
+Refer to the [README](./README.md#building-and-testing-locally) for guide on how to setup the documentation site locally.
 
 
 ## Adding Content
@@ -47,7 +47,7 @@ As much as is possible, the following should be adhered to when creating headers
 Once you have created content that you are ready, the following steps should be followed to create a new PR:
 - Run the `./verify-links` script to ensure that there are no broken links on your page. See [Verifying Page Links](#verifying-page-links) section for more details.
 - Check for any typographical errors
-- Created a pull request using `mojaloop-docs-2.0` as the base branch
+- Create a pull request using `master` as the base branch
 
 
 

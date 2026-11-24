@@ -1,0 +1,170 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="1352px" preserveAspectRatio="none" style="width:861px;height:1352px;background:#FFFFFF;" version="1.1" viewBox="0 0 861 1352" width="861px" zoomAndPan="magnify">
+  <title>Transaction Requests Service - Query</title>
+  <defs/>
+  <g>
+    <text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="297.042" x="283.0762" y="27.9951">Transaction Requests Service - Query</text>
+    <rect fill="none" height="1026.6641" style="stroke:#000000;stroke-width:1.5;" width="845.1943" x="9" y="257.5547"/>
+    <rect fill="none" height="709.6641" style="stroke:#000000;stroke-width:1.5;" width="824.1943" x="20" y="459.3516"/>
+    <rect fill="none" height="326.2656" style="stroke:#000000;stroke-width:1.5;" width="804.1943" x="30" y="634.1484"/>
+    <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="112" x2="112" y1="89.8906" y2="1301.2188"/>
+    <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="397.3052" x2="397.3052" y1="89.8906" y2="1301.2188"/>
+    <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="752.1343" x2="752.1343" y1="89.8906" y2="1301.2188"/>
+    <rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="83.5078" x="71" y="58.5938"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="69.5078" x="78" y="78.5889">Payer FSP</text>
+    <rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="83.5078" x="71" y="1300.2188"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="69.5078" x="78" y="1320.2139">Payer FSP</text>
+    <rect fill="#E2E2F0" height="46.5938" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="214.1563" x="290.3052" y="42.2969"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="46.2861" x="374.2402" y="62.292">Switch</text>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="200.1563" x="297.3052" y="78.5889">transaction-requests-service</text>
+    <rect fill="#E2E2F0" height="46.5938" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="214.1563" x="290.3052" y="1300.2188"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="46.2861" x="374.2402" y="1320.2139">Switch</text>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="200.1563" x="297.3052" y="1336.5107">transaction-requests-service</text>
+    <rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="86.3652" x="709.1343" y="58.5938"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="72.3652" x="716.1343" y="78.5889">Payee FSP</text>
+    <rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="86.3652" x="709.1343" y="1300.2188"/>
+    <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="72.3652" x="716.1343" y="1320.2139">Payee FSP</text>
+    <path d="M324,104.8906 L324,144.8906 L824,144.8906 L824,114.8906 L814,104.8906 L324,104.8906 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M814,104.8906 L814,114.8906 L824,114.8906 L814,104.8906 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="473.5415" x="332.8264" y="121.9575">Payee FSP requests the status of a transaction-request at the Payer FSP.</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="379.3804" x="332.8264" y="137.0903">ID here is the ID of prevoiusly created transaction-request</text>
+    <polygon fill="#181818" points="408.3833,167.2891,398.3833,171.2891,408.3833,171.2891" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="397.3833" x2="751.3169" y1="171.2891" y2="171.2891"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="414.3833" y="166.2231">1</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="203.106" x="427.4287" y="166.2231">GET /transactionRequests/{ID}</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="397.3833" x2="439.3833" y1="200.4219" y2="200.4219"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="439.3833" x2="439.3833" y1="200.4219" y2="213.4219"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="398.3833" x2="439.3833" y1="213.4219" y2="213.4219"/>
+    <polygon fill="#181818" points="408.3833,209.4219,398.3833,213.4219,408.3833,217.4219,404.3833,213.4219" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="404.3833" y="195.356">2</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="260.6348" x="417.4287" y="195.356">Validate GET /transactionRequests/{ID}</text>
+    <polygon fill="#181818" points="740.3169,242.5547,750.3169,242.5547,740.3169,246.5547" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="397.3833" x2="751.3169" y1="242.5547" y2="242.5547"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="404.3833" y="237.4888">3</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="89.7305" x="417.4287" y="237.4888">202 Accepted</text>
+    <path d="M9,257.5547 L73.4429,257.5547 L73.4429,264.6875 L63.4429,274.6875 L9,274.6875 L9,257.5547 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="1026.6641" style="stroke:#000000;stroke-width:1.5;" width="845.1943" x="9" y="257.5547"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="19.4429" x="24" y="270.6216">alt</text>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="220.897" x="88.4429" y="269.7651">[transaction-request query is valid]</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="397.3833" x2="439.3833" y1="295.8203" y2="295.8203"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="439.3833" x2="439.3833" y1="295.8203" y2="308.8203"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="398.3833" x2="439.3833" y1="308.8203" y2="308.8203"/>
+    <polygon fill="#181818" points="408.3833,304.8203,398.3833,308.8203,408.3833,312.8203,404.3833,308.8203" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="404.3833" y="290.7544">4</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="316.1895" x="417.4287" y="290.7544">Retrieve corresponding end-points for Payer FSP</text>
+    <path d="M19,321.8203 L19,346.8203 L490,346.8203 L490,331.8203 L480,321.8203 L19,321.8203 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M480,321.8203 L480,331.8203 L490,331.8203 L480,321.8203 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="450.8867" x="25" y="338.8872">Switch forwards GET /transactionRequests/{ID} request to Payer FSP</text>
+    <polygon fill="#181818" points="123.7539,369.0859,113.7539,373.0859,123.7539,373.0859" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="112.7539" x2="396.3833" y1="373.0859" y2="373.0859"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="129.7539" y="368.02">5</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="203.106" x="142.7993" y="368.02">GET /transactionRequests/{ID}</text>
+    <polygon fill="#181818" points="385.3833,402.2188,395.3833,402.2188,385.3833,406.2188" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="112.7539" x2="396.3833" y1="402.2188" y2="402.2188"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="119.7539" y="397.1528">6</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="89.7305" x="132.7993" y="397.1528">202 Accepted</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="112.7539" x2="154.7539" y1="431.3516" y2="431.3516"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="154.7539" x2="154.7539" y1="431.3516" y2="444.3516"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="113.7539" x2="154.7539" y1="444.3516" y2="444.3516"/>
+    <polygon fill="#181818" points="123.7539,440.3516,113.7539,444.3516,123.7539,448.3516,119.7539,444.3516" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="119.7539" y="426.2856">7</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="186.7354" x="132.7993" y="426.2856">Retrieve transaction-request</text>
+    <path d="M20,459.3516 L84.4429,459.3516 L84.4429,466.4844 L74.4429,476.4844 L20,476.4844 L20,459.3516 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="709.6641" style="stroke:#000000;stroke-width:1.5;" width="824.1943" x="20" y="459.3516"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="19.4429" x="35" y="472.4185">alt</text>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="338.959" x="99.4429" y="471.562">[Payer FSP successfully retrieves transaction-request]</text>
+    <path d="M40,481.4844 L40,521.4844 L468,521.4844 L468,491.4844 L458,481.4844 L40,481.4844 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M458,481.4844 L458,491.4844 L468,491.4844 L458,481.4844 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="185.4404" x="119.9624" y="498.5513">Payer FSP responds with the</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="259.5366" x="119.9624" y="513.6841">PUT /transactionRequests/{ID} callback</text>
+    <polygon fill="#181818" points="385.3833,543.8828,395.3833,547.8828,385.3833,547.8828" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="112.7539" x2="396.3833" y1="547.8828" y2="547.8828"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="119.7539" y="542.8169">8</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="202.1729" x="132.7993" y="542.8169">PUT /transactionRequests/{ID}</text>
+    <polygon fill="#181818" points="123.7539,577.0156,113.7539,577.0156,123.7539,581.0156" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="112.7539" x2="396.3833" y1="577.0156" y2="577.0156"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9.0454" x="129.7539" y="571.9497">9</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="46.7061" x="142.7993" y="571.9497">200 Ok</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="397.3833" x2="439.3833" y1="606.1484" y2="606.1484"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="439.3833" x2="439.3833" y1="606.1484" y2="619.1484"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="398.3833" x2="439.3833" y1="619.1484" y2="619.1484"/>
+    <polygon fill="#181818" points="408.3833,615.1484,398.3833,619.1484,408.3833,623.1484,404.3833,619.1484" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="404.3833" y="601.0825">10</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="259.7017" x="426.4741" y="601.0825">Validate PUT /transactionRequests/{ID}</text>
+    <path d="M30,634.1484 L94.4429,634.1484 L94.4429,641.2813 L84.4429,651.2813 L30,651.2813 L30,634.1484 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/>
+    <rect fill="none" height="326.2656" style="stroke:#000000;stroke-width:1.5;" width="804.1943" x="30" y="634.1484"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="19.4429" x="45" y="647.2153">alt</text>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="99.6069" x="109.4429" y="646.3589">[response is ok]</text>
+    <path d="M324,656.2813 L324,681.2813 L824,681.2813 L824,666.2813 L814,656.2813 L324,656.2813 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M814,656.2813 L814,666.2813 L824,666.2813 L814,656.2813 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="387.8926" x="375.6509" y="673.3481">Switch forwards transaction-request response to Payee FSP</text>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="397.3833" x2="439.3833" y1="707.5469" y2="707.5469"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="439.3833" x2="439.3833" y1="707.5469" y2="720.5469"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="398.3833" x2="439.3833" y1="720.5469" y2="720.5469"/>
+    <polygon fill="#181818" points="408.3833,716.5469,398.3833,720.5469,408.3833,724.5469,404.3833,720.5469" style="stroke:#181818;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="404.3833" y="702.481">11</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="318.8428" x="426.4741" y="702.481">Retrieve corresponding end-points for Payee FSP</text>
+    <polygon fill="#181818" points="740.3169,745.6797,750.3169,749.6797,740.3169,749.6797" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="397.3833" x2="751.3169" y1="749.6797" y2="749.6797"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="404.3833" y="744.6138">12</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="202.1729" x="426.4741" y="744.6138">PUT /transactionRequests/{ID}</text>
+    <polygon fill="#181818" points="408.3833,778.8125,398.3833,778.8125,408.3833,782.8125" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="397.3833" x2="751.3169" y1="778.8125" y2="778.8125"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="414.3833" y="773.7466">13</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="46.7061" x="436.4741" y="773.7466">200 Ok</text>
+    <line style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="30" x2="834.1943" y1="787.8125" y2="787.8125"/>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="112.1968" x="35" y="798.0229">[response invalid]</text>
+    <path d="M40,806.6172 L40,831.6172 L468,831.6172 L468,816.6172 L458,806.6172 L40,806.6172 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M458,806.6172 L458,816.6172 L468,816.6172 L458,806.6172 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="216.125" x="141.6682" y="823.6841">Switch returns error to Payer FSP</text>
+    <polygon fill="#181818" points="123.7539,853.8828,113.7539,857.8828,123.7539,857.8828" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="112.7539" x2="396.3833" y1="857.8828" y2="857.8828"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="129.7539" y="852.8169">14</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="238.5386" x="151.8447" y="852.8169">PUT /transactionRequests/{ID}/error</text>
+    <polygon fill="#181818" points="385.3833,887.0156,395.3833,887.0156,385.3833,891.0156" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="112.7539" x2="396.3833" y1="887.0156" y2="887.0156"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="119.7539" y="881.9497">15</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="46.7061" x="141.8447" y="881.9497">200 Ok</text>
+    <path d="M40,900.0156 L40,955.0156 L468,955.0156 L468,910.0156 L458,900.0156 L40,900.0156 " fill="#EC7063" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M458,900.0156 L458,910.0156 L468,910.0156 L458,900.0156 " fill="#EC7063" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="131.3647" x="159.1147" y="917.0825">Note that under this</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="151.8296" x="159.1147" y="932.2153">scenario the Payee FSP</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="181.2319" x="159.1147" y="947.3481">may not receive a response</text>
+    <line style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="20" x2="844.1943" y1="968.4141" y2="968.4141"/>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="354.4707" x="25" y="978.6245">[Payer FSP is unable to retrieve the transaction-request]</text>
+    <path d="M40,987.2188 L40,1012.2188 L468,1012.2188 L468,997.2188 L458,987.2188 L40,987.2188 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M458,987.2188 L458,997.2188 L468,997.2188 L458,987.2188 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="216.125" x="141.6682" y="1004.2856">Payer FSP returns error to Switch</text>
+    <polygon fill="#181818" points="385.3833,1034.4844,395.3833,1038.4844,385.3833,1038.4844" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="112.7539" x2="396.3833" y1="1038.4844" y2="1038.4844"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="119.7539" y="1033.4185">16</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="238.5386" x="141.8447" y="1033.4185">PUT /transactionRequests/{ID}/error</text>
+    <polygon fill="#181818" points="123.7539,1067.6172,113.7539,1067.6172,123.7539,1071.6172" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="112.7539" x2="396.3833" y1="1067.6172" y2="1067.6172"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="129.7539" y="1062.5513">17</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="47.7026" x="151.8447" y="1062.5513">200 OK</text>
+    <path d="M324,1080.6172 L324,1105.6172 L824,1105.6172 L824,1090.6172 L814,1080.6172 L324,1080.6172 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M814,1080.6172 L814,1090.6172 L824,1090.6172 L814,1080.6172 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="218.7783" x="460.208" y="1097.6841">Switch returns error to Payee FSP</text>
+    <polygon fill="#181818" points="740.3169,1127.8828,750.3169,1131.8828,740.3169,1131.8828" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="397.3833" x2="751.3169" y1="1131.8828" y2="1131.8828"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="404.3833" y="1126.8169">18</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="238.5386" x="426.4741" y="1126.8169">PUT /transactionRequests/{ID}/error</text>
+    <polygon fill="#181818" points="408.3833,1161.0156,398.3833,1161.0156,408.3833,1165.0156" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="397.3833" x2="751.3169" y1="1161.0156" y2="1161.0156"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="414.3833" y="1155.9497">19</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="47.7026" x="436.4741" y="1155.9497">200 OK</text>
+    <line style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="9" x2="854.1943" y1="1177.0156" y2="1177.0156"/>
+    <text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="192.9082" x="14" y="1187.2261">[transaction-request is invalid]</text>
+    <path d="M324,1195.8203 L324,1220.8203 L824,1220.8203 L824,1205.8203 L814,1195.8203 L324,1195.8203 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M814,1195.8203 L814,1205.8203 L824,1205.8203 L814,1195.8203 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="218.7783" x="460.208" y="1212.8872">Switch returns error to Payee FSP</text>
+    <polygon fill="#181818" points="740.3169,1243.0859,750.3169,1247.0859,740.3169,1247.0859" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;" x1="397.3833" x2="751.3169" y1="1247.0859" y2="1247.0859"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="404.3833" y="1242.02">20</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="238.5386" x="426.4741" y="1242.02">PUT /transactionRequests/{ID}/error</text>
+    <polygon fill="#181818" points="408.3833,1276.2188,398.3833,1276.2188,408.3833,1280.2188" style="stroke:#181818;stroke-width:1.0;"/>
+    <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="397.3833" x2="751.3169" y1="1276.2188" y2="1276.2188"/>
+    <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="18.0908" x="414.3833" y="1271.1528">21</text>
+    <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="47.7026" x="436.4741" y="1271.1528">200 OK</text>
+  </g>
+</svg>

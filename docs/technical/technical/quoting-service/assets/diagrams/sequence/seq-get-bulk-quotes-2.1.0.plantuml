@@ -1,0 +1,92 @@
+/'*****
+ License
+ --------------
+ Copyright © 2017 Bill & Melinda Gates Foundation
+ The Mojaloop files are made available by the Bill & Melinda Gates Foundation under the Apache License, Version 2.0 (the "License") and you may not use these files except in compliance with the License. You may obtain a copy of the License at
+ http://www.apache.org/licenses/LICENSE-2.0
+ Unless required by applicable law or agreed to in writing, the Mojaloop files are distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+ Contributors
+ --------------
+ This is the official list of the Mojaloop project contributors for this file.
+ Names of the original copyright holders (individuals or organizations)
+ should be listed with a '*' in the first column. People who have
+ contributed from an organization can be listed under the organization
+ that actually holds the copyright for their contributions (see the
+ Gates Foundation organization for an example). Those individuals should have
+ their names indented and be marked with a '-'. Email address can be added
+ optionally within square brackets <email>.
+ * Gates Foundation
+ - Name Surname <name.surname@gatesfoundation.com>
+
+ * Sam Kummary <sam@modusbox.com>
+ --------------
+******'/
+ 
+@startuml
+Title Retrieve Bulk Quote Information
+participant "Payer FSP" as PayerFSP
+participant "Switch\n[Quoting Service]" as Switch
+participant "Payee FSP" as PayeeFSP
+
+autonumber
+note right of PayerFSP: Payer FSP sends request to get bulk quote details \nto Payee FSP via the Switch
+PayerFSP -\ Switch: GET /bulkQuotes/{ID}
+note right of Switch #aaa
+    Validate request against 
+    Mojaloop interface specification
+    **<color #red>Error code: 300x, 310x</color>**
+    **<color #red>HTTP error response code: 4xx</color>**
+end note
+Switch -> Switch: Schema validation
+PayerFSP \-- Switch: 202 Accepted
+Switch -> Switch: Retrieve bulk quotes endpoint for Payee FSP
+alt Payee FSP quotes endpoint is found
+    note right of Switch: Switch forwards request to Payee FSP (pass-through mode)
+    Switch -\ PayeeFSP: GET /bulkQuotes/{ID}
+    PayeeFSP --/ Switch: 202 Accepted
+    PayeeFSP -> PayeeFSP: Payee FSP retireves bulk quote
+    alt Payee FSP successfully retieves quote
+        note left of PayeeFSP: Payee FSP responds to quote request
+        PayeeFSP -\ Switch: PUT /quotes/{ID}
+        note right of Switch #aaa
+            Validate request against 
+            Mojaloop interface specification
+            **<color #red>Error code: 300x, 310x</color>**
+            **<color #red>HTTP error response code: 4xx</color>**
+        end note
+        Switch --/ PayeeFSP: 200 Ok
+        alt Response is ok
+            Switch -> Switch: Retrieve bulk quotes endpoint for the Payer FSP
+            alt Bulk Quotes callback endpoint found
+                note left of Switch: Switch forwards bulk quote response to Payer FSP
+                Switch -\ PayerFSP: PUT /bulkQuotes/{ID}
+                PayerFSP --/ Switch: 200 Ok    
+            else Bulk Quotes callback endpoint not found
+                note right of Switch: Switch returns error to Payee FSP
+                Switch -\ PayeeFSP: PUT /bulkQuotes/{ID}/error
+                PayeeFSP --/ Switch : 200 Ok
+            end
+        else Response is invalid
+            note right of Switch: Switch returns error to Payee FSP
+            Switch -\ PayeeFSP: PUT /bulkQuotes/{ID}/error
+            PayeeFSP --/ Switch : 200 Ok
+            note over Switch, PayeeFSP #ec7063: Note that under this\nscenario the Payer FSP\nmay not receive a response
+        end
+
+    else bulkQuote not found
+        note left of PayeeFSP: Payee FSP returns error to Switch\n <color #red>**Error code: 3205**</color>
+        PayeeFSP -\ Switch: PUT /bulkQuotes/{ID}/error
+        Switch --/ PayeeFSP: 200 OK
+        note left of Switch: Switch returns error to Payer FSP\n <color #red>**Error code: 3205**</color>
+        Switch -\ PayerFSP: PUT /bulkQuotes/{ID}/error
+        PayerFSP --/ Switch: 200 OK
+    end
+else Payee FSP Bulk quotes endpoint is not found
+    note left of Switch
+        Switch returns error to Payer FSP
+        **<color #red>Error code: 3201</color>**
+    end note
+    PayerFSP /- Switch: PUT /bulkQuotes/{ID}error
+    PayerFSP --/ Switch: 200 OK
+end
+@enduml

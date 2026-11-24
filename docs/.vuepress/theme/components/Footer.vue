@@ -25,6 +25,11 @@ export default {
       return this.copyright || this.logo || themeConfig.footerSitemap
     },
     copyright () {
+      // use frontmatter if it exists
+      if (this.$page.frontmatter && this.$page.frontmatter.footerCopyright) {
+        return this.$page.frontmatter.footerCopyright
+      }
+
       const { themeConfig } = this.$site
       return themeConfig && themeConfig.footerCopyright
     },
@@ -55,7 +60,6 @@ export default {
 .footer
   background $secondary-dk
   padding-bottom 2rem
-  padding-top 2rem
   >.sitemap
     display flex
     justify-content space-around

@@ -10,7 +10,7 @@ sources. The magic of git hooks means that no extra work is required by you
 after creating or editing a `.puml` file
 
 Behind the scenes, this hook spins up a docker container to run the PUML server
-and calls `./scripts/_render_svg.js` for each file that has changed. We use the
+and calls `./scripts/_render_svg.mjs` for each file that has changed. We use the
 docker version instead of the public puml server to (1) get around rate limits, and
 (2) ensure deterministic SVG output that is git diffable.
 

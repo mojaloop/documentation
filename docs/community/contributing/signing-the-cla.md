@@ -34,7 +34,7 @@ Section 3 of the [Mojaloop CLA](https://github.com/mojaloop/mojaloop/blob/master
 The CLA Tool is easy to install, any GitHub admin can link it with the Mojaloop organization.
 
 1. Create a new GitHub Gist and enter in the text of the CLA in a new file.
-> Since Github doesn't allow Gists to be owned my organizations, [our gist](https://gist.github.com/mojaloopci/9b7133e1ac153a097ae4ff893add8974) is owned by the 'mojaloopci' user.
+> Since Github doesn't allow Gists to be owned by organizations, [our gist](https://gist.github.com/mojaloopci/9b7133e1ac153a097ae4ff893add8974) is owned by the 'mojaloopci' user.
 
 2. Go to [CLA Assistant](https://cla-assistant.io/) and click "Sign in with GitHub"
 <img src="../assets/cla/admin_sign_in.png" width=700 />

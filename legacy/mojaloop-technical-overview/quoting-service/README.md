@@ -5,5 +5,4 @@ _Note: In addition to individual quotes, the quoting service supports bulk quote
 
 ## Sequence Diagram
 
-{% uml src="mojaloop-technical-overview/quoting-service/assets/diagrams/sequence/seq-quotes-1.0.0.plantuml" %}
-{% enduml %}
+![seq-quotes-1.0.0.svg](./assets/diagrams/sequence/seq-quotes-1.0.0.svg)

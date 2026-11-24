@@ -248,7 +248,7 @@ The transformation rules for an instance of `BinaryString` data type are as foll
 
 An example value for `BinaryString` type is
 
-```text
+```
 AYIBgQAAAAAAAASwNGxldmVsb25lLmRmc3AxLm1lci45T2RTOF81MDdqUUZERmZlakgyOVc4bXFmNEpLMHlGTFGCAUBQU0svMS4wCk5vbmNlOiB1SXlweUYzY3pYSXBFdzVVc05TYWh3CkVuY3J5cHRpb246IG5vbmUKUGF5bWVudC1JZDogMTMyMzZhM2ItOGZhOC00MTYzLTg0NDctNGMzZWQzZGE5OGE3CgpDb250ZW50LUxlbmd0aDogMTM1CkNvbnRlbnQtVHlwZTogYXBwbGljYXRpb24vanNvbgpTZW5kZXItSWRlbnRpZmllcjogOTI4MDYzOTEKCiJ7XCJmZWVcIjowLFwidHJhbnNmZXJDb2RlXCI6XCJpbnZvaWNlXCIsXCJkZWJpdE5hbWVcIjpcImFsaWNlIGNvb3BlclwiLFwiY3JlZGl0TmFtZVwiOlwibWVyIGNoYW50XCIsXCJkZWJpdElkZW50aWZpZXJcIjpcIjkyODA2MzkxXCJ9Ig
 ```
 
@@ -316,7 +316,7 @@ The section on [BinaryString32 Type IlpCondition](#binarystring32-type-ilpcondit
 
 An example value for `BinaryString32` type is:
 
-```text
+```
 AYIBgQAAAAAAAASwNGxldmVsb25lLmRmc3AxLm1lci45T2RTOF81MDdqUUZERmZlakgyOVc4bXFmNEpLMHlGTFGCAUBQU0svMS4wCk5vbmNlOiB1SXlweUYzY3pYSXBFdzVVc05TYWh3CkVuY3J5cHRpb246IG5vbmUKUGF5bWVudC1JZDogMTMyMzZhM2ItOGZhOC00MTYzLTg0NDctNGMzZWQzZGE5OGE3CgpDb250ZW50LUxlbmd0aDogMTM1CkNvbnRlbnQtVHlwZTogYXBwbGljYXRpb24vanNvbgpTZW5kZXItSWRlbnRpZmllcjogOTI4MDYzOTEKCiJ7XCJmZWVcIjowLFwidHJhbnNmZXJDb2RlXCI6XCJpbnZvaWNlXCIsXCJkZWJpdE5hbWVcIjpcImFsaWNlIGNvb3BlclwiLFwiY3JlZGl0TmFtZVwiOlwibWVyIGNoYW50XCIsXCJkZWJpdElkZW50aWZpZXJcIjpcIjkyODA2MzkxXCJ9IgA
 ```
 
@@ -397,7 +397,7 @@ This section provides the JSON Schema definition for the data type `Enum`. These
 
 ##### Listing 7
 
-```text
+```
 AuthenticationType, AuthorizationResponse, BulkTransferState, Currency, PartyIdentifier, PartyIdType, PartySubIdOrType , PersonalIdentifierType, TransactionInitiator, TransactionInitiatorType, TransactionRequestState, TransactionScenario, TransactionState, TransferState.
 ```
 
@@ -831,7 +831,7 @@ This section provides the JSON Schema definition for the data type `String`. [Li
 
 ##### Listing 20
 
-```text
+```
 AuthenticationValue, ExtensionKey, ExtensionValue, FspId, Note, PartyName, QRCODE, RefundReason, TransactionSubScenario.
 ```
 
@@ -1110,7 +1110,7 @@ The examples for complex type from the API appear in [Listing 28](#listing-28). 
 
 ##### Listing 28
 
-```text
+```
 ErrorInformation, Extension, ExtensionList, GeoCode, IndividualQuote, IndividualQuoteResult, IndividualTransfer, IndividualTransferResult, Money, Party, PartyComplexName, PartyIdInfo, PartyPersonalInfo, PartyResult, Refund, Transaction, TransactionType.
 ```
 
@@ -1201,7 +1201,7 @@ Other complex type examples from the API used in Requests or Responses can be fo
 
 ##### Listing 31
 
-```text
+```
 BulkQuotesPostRequest, BulkQuotesIDPutResponse, BulkTransfersPostRequest, BulkTransfersIDPutResponse, ErrorInformationObject, ErrorInformationResponse, ParticipantsTypeIDSubIDPostRequest, ParticipantsTypeIDPutResponse, ParticipantsIDPutResponse, ParticipantsPostRequest, QuotesPostRequest, QuotesIDPutResponse, TransactionRequestsIDPutResponse, TransactionsIDPutResponse, TransfersPostRequest, TransactionRequestsPostRequest, TransfersIDPutResponse.
 ```
 

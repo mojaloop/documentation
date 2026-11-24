@@ -1,0 +1,112 @@
+@startuml FXAPI_Payer_Receive_Discovery
+
+!$simplified = false
+!$shortCutSingleFXP = false
+!$hideSwitchDetail = false
+!$senderName = "Keeya"
+!$receiverName = "Yaro"
+!$payerCurrency = "BWP"
+!$payeeCurrency = "TZS"
+!$payerFSPID = "PayerFSP"
+!$payeeFSPID = "PayeeFSP"
+!$payerMSISDN = "267876..."
+!$payeeMSISDN = "255123..."
+!$payeeReceiveAmount = "50000"
+!$payeeFee = "4000"
+!$targetAmount = "54000"
+!$fxpChargesSource = "33"
+!$fxpChargesTarget = "6000"
+!$fxpSourceAmount = "330"
+!$fxpTargetAmount = "54000"
+!$totalChargesSourceCurrency = "55"
+
+
+title Découverte — conversion de devises avec type de montant RÉCEPTION
+actor "$senderName" as A1
+box "DFSP payeur" #LightBlue  
+  participant "CBS payeur" as PayerCBS
+  participant "Connecteur Mojaloop\npayeur" as D1
+end box
+
+participant "Commutateur Mojaloop" as S1
+
+box "Service de découverte" #LightYellow
+  participant "Oracle ALS" as ALS
+end box
+
+'box "Fournisseur de change"  
+'  participant "Connecteur\nFXP" as FXP
+'  participant "API FX backend" as FXPBackend
+'end box
+
+box "DFSP bénéficiaire" #LightBlue   
+  participant "Connecteur Mojaloop\nbénéficiaire" as D2
+  participant "CBS bénéficiaire" as PayeeCBS
+end box
+
+'actor "$receiverName" as A2
+autonumber
+
+A1->PayerCBS:Je voudrais payer $receiverName\n$payeeReceiveAmount $payeeCurrency pour \nson dernier livre, s'il vous plaît
+PayerCBS->D1: Lancer le paiement marchand
+activate D1
+D1->>S1:Je veux envoyer vers le MSISDN $payeeMSISDN\n**GET /parties/MSISDN/$payeeMSISDN**
+activate S1
+!if ($simplified != true)
+S1-->>D1:202 — Je vous recontacte
+!endif
+deactivate D1
+S1->ALS:À qui appartient le MSISDN $payeeMSISDN ?
+activate ALS
+ALS-->S1:C'est $payeeFSPID
+deactivate ALS
+S1->>D2:Le MSISDN $payeeMSISDN vous appartient-il ?
+activate D2
+!if ($simplified != true)
+D2-->>S1:202 — Je vous recontacte
+!endif
+deactivate S1
+D2->D2: Vérifier le statut de liste de sanctions \net déclencher une actualisation
+D2->PayeeCBS: Vérifier le compte et obtenir\nle type de devise
+!if ($simplified != true)
+PayeeCBS-->D2: Résultat
+!endif
+D2->>S1:Oui, c'est $receiverName. Il peut recevoir en $payeeCurrency,\n et je peux convertir depuis $payerCurrency\n**PUT /parties/MSISDN/$payeeMSISDN**
+!if ($simplified != true)
+note right
+    **PUT /parties**
+    {
+    "party": {
+      "partyIdInfo": {
+        "partyIdType": "MSISDN",
+        "partyIdentifier": "$payeeMSISDN"},
+      "name": "$receiverName",
+      "supportedCurrencies":["$payeeCurrency"]}
+    }
+end note
+!else
+note over D2
+    Informations bénéficiaire avec données KYC chiffrées
+end note
+!endif
+activate S1
+!if ($simplified != true)
+S1-->>D2:200 — OK
+!endif
+deactivate D2
+S1->>D1:Oui, c'est $receiverName. Il peut recevoir en $payeeCurrency\n**PUT /parties/MSISDN/$payeeMSISDN**
+activate D1
+!if ($simplified != true)
+D1-->>S1:200 — OK
+!endif
+deactivate S1
+
+D1->D1: Je devrai effectuer une conversion de devises.
+note left
+Je dois calculer 
+de combien de devise j'ai besoin. 
+Je vais trouver un fournisseur 
+de conversion de devises avant de commencer.
+end note
+
+@enduml

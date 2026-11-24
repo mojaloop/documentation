@@ -1,0 +1,234 @@
+/'*****
+License
+--------------
+Copyright © 2017 Bill & Melinda Gates Foundation
+The Mojaloop files are made available by the Bill & Melinda Gates Foundation under the Apache License, Version 2.0 (the "License") and you may not use these files except in compliance with the License. You may obtain a copy of the License at
+http://www.apache.org/licenses/LICENSE-2.0
+Unless required by applicable law or agreed to in writing, the Mojaloop files are distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+Contributors
+--------------
+This is the official list of the Mojaloop project contributors for this file.
+Names of the original copyright holders (individuals or organizations)
+should be listed with a '*' in the first column. People who have
+contributed from an organization can be listed under the organization
+that actually holds the copyright for their contributions (see the
+Gates Foundation organization for an example). Those individuals should have
+their names indented and be marked with a '-'. Email address can be added
+optionally within square brackets <email>.
+* Gates Foundation
+
+- Name Surname <name.surname@gatesfoundation.com>
+--------------
+******'/
+
+@startuml
+
+' define actor image
+sprite $actor [25x48/16] {
+  0000000000010000000000000
+  0000000006CAC910000000000
+  0000000095101292000000000
+  0000000651000119000000000
+  0000000B10000018400000000
+  0000001A10000016600000000
+  0000000B10000017510000000
+  000000083100001A210000000
+  0000000191000176110000000
+  000000003A866A61100000000
+  0000000000466211100000000
+  0003333333334443333310000
+  0088888888888888888892000
+  0821111111111111111118200
+  8311111111111111111111A00
+  A111111111111111111111A20
+  A111111111111111111111A20
+  A111111111111111111111A20
+  A111111111111111111111A20
+  A111111111111111111111A20
+  A111111111111111111111A20
+  A111111111111111111111A20
+  A111111111111111111111A20
+  A111551111111111138111A20
+  A111661111111111139111A20
+  A211661111111111139111A20
+  A211661111111111139111A20
+  A211661111161111139111A20
+  A2116611111A2111139111A20
+  A2116611111A2111139111A20
+  A2116611111A2111139111A20
+  A7669611111A211113A666B20
+  36669611111A211113A666610
+  00016611111A2111139111110
+  00006611111A2111139100000
+  00006611111A2111139100000
+  00006611111A2111139100000
+  00006611111A2111139100000
+  00006611111A2111139100000
+  00006611111A2111139100000
+  00006611111A2111139100000
+  00006611111A2111139100000
+  00006611111A2111139100000
+  00006611111A2111139100000
+  00006966666B7666679100000
+  0000266666666666664100000
+  0000000111111111111100000
+  0000000000000000000000000
+}
+
+' declaring skinparam
+skinparam sequenceMessageAlign center
+skinparam shadowing false
+skinparam defaultFontName Verdana
+skinparam monochrome true
+skinparam SequenceLifeLineBackgroundColor WhiteSmoke
+skinparam SequenceLifeLineBorderColor Black
+skinparam ActorFontStyle Bold
+skinparam ActorFontSize 20
+skinparam ParticipantFontStyle Bold
+skinparam ParticipantFontSize 20
+skinparam ParticipantBackgroundColor WhiteSmoke
+skinparam ArrowColor Black
+
+skinparam actor {
+  Bordercolor none
+  Backgroundcolor none
+  shadowing false
+}
+
+skinparam participant {
+  shadowing true
+}
+
+hide footbox
+
+' declare title
+' title Payee Initiated Transaction
+
+' Actor Keys:
+' participant - FSP(Payer/Payee), Switch and Account Lookup
+' actor - Payer/Payee(s)
+
+' declare actors
+actor "<$actor>\nPayer" as Payer
+participant "Payer\nFSP" as PayerFSP
+participant "Optional\nSwitch" as Switch
+participant "Account\nLookup" as ALS
+participant "Payee\nFSP" as PayeeFSP
+actor "<$actor>\nPayee" as Payee
+
+' start flow
+autonumber 1 1 "<b>[0]"
+PayeeFSP <- Payee: I would like\nto receive\n100 USD from\n+123456789
+activate PayeeFSP
+PayeeFSP <- PayeeFSP: Payer not\nwithin Payee\nFSP system
+autonumber stop
+ALS <<- PayeeFSP: **Lookup Participant Information**\n(MSISDN 123456789)
+activate ALS
+autonumber resume
+ALS -> ALS: Lookup which FSP MSISDN\n+123456789 belongs to
+ALS ->> PayeeFSP: **Returns Participant Information**\n(FSP ID)
+deactivate ALS
+deactivate PayeeFSP
+Switch <<- PayeeFSP: **Perform Transaction Request**\n(Payee information, transaction details)
+activate PayeeFSP
+activate Switch
+PayerFSP <<- Switch: **Perform Transaction Request**\n(Payee information,\ntransaction details)
+deactivate Switch
+activate PayerFSP
+PayerFSP -> PayerFSP: Perform optional validation
+PayerFSP ->> Switch: **Return Transaction**\n**Request Information**\n(Received status)
+activate Switch
+deactivate PayerFSP
+Switch ->> PayeeFSP: **Return Transaction Request Information**\n(Received status)
+deactivate PayeeFSP
+deactivate Switch
+activate PayerFSP
+PayerFSP -> PayerFSP: Rate Payer FSP quote\n(depending on fee model)
+autonumber stop
+PayerFSP ->> Switch: **Calculate Quote**\n(Transaction detail)
+activate Switch
+autonumber resume
+Switch ->> PayeeFSP: **Calculate Quote**\n(Transaction details)
+activate PayeeFSP
+PayeeFSP -> PayeeFSP: Rate Payee FSP\nfees/commission,\ngenerate condition
+group #OldLace Optional
+  hnote left of PayeeFSP #OldLace
+  Confirm quote
+  end hnote
+  PayeeFSP -> Payee: Here is the\nquote and\nPayer name
+  autonumber stop
+  PayeeFSP <- Payee: I confirm
+end
+autonumber resume
+Switch <<- PayeeFSP: **Return Quote Information**\n(Payee FSP fee/commission,condition)
+deactivate PayeeFSP
+PayerFSP <<- Switch: **Return Quote Information**\n(Payee FSP\nfee/commission,condition)
+deactivate Switch
+PayerFSP -> PayerFSP: Rate Payer FSP quote\n(depending on the fee model)
+Payer <- PayerFSP: Will you approve\ntransaction\nrequest for\n100 USD(plusfees)\nto Payee?
+deactivate PayerFSP
+Alt #OldLace Alternatives
+  hnote over of Payer #OldLace
+    User rejects 
+    transaction request
+  end hnote
+  Payer -> PayerFSP: I reject the\ntransaction request
+  activate PayerFSP
+  PayerFSP ->> Switch: **Return Transaction**\n**Request Information**\n(Rejected state)
+  deactivate PayerFSP
+  activate Switch
+  Switch ->> PayeeFSP: **Return Transaction Request Information**\n(Rejected state)
+  deactivate Switch
+  activate PayeeFSP
+  PayeeFSP -> Payee: Transaction failed\ndue to user\nrejection
+  deactivate PayeeFSP
+  autonumber stop
+else
+  hnote over of Payer #OldLace
+    User rejects 
+    transaction request
+  end hnote
+  Payer -> PayerFSP: I approve the\ntransaction request
+  activate PayerFSP
+  autonumber resume
+  PayerFSP -> PayerFSP: Reserve transfer from Payer\naccount to Switch account
+  autonumber stop
+  PayerFSP ->> Switch: **Perform Transfer**\n(Transfer ID, condition, ILP packet\nincluding transaction ID)
+  activate Switch
+  autonumber resume
+  Switch -> Switch: Reserve transfer\nfrom Payer\nFSP to Payee FSP
+  autonumber stop
+  Switch ->> PayeeFSP: **Perform Transfer**\n(Transfer ID, condition, ILP packet\nincluding transaction ID)
+  activate PayeeFSP
+  autonumber resume
+  PayeeFSP -> PayeeFSP: Perform transfer\nfrom Switch account\nto Payee account,\ngenerate fulfilment
+  PayeeFSP -> Payee: Transaction\nnotification
+  autonumber stop
+  Switch <<- PayeeFSP: **Retrun Transfer Information**\n(Fulfilment)
+  deactivate PayeeFSP
+  autonumber resume
+  Switch -> Switch: Commit transfer\nfrom Payer FSP\nto Payee FSP
+  autonumber stop
+  PayerFSP <<- Switch: **Return Transfer Information**\n(Fulfilment)
+  deactivate Switch
+  autonumber resume
+  PayerFSP -> PayerFSP: Commit transfer from Payer\naccount to Payee FSP account
+  group #LightGrey Optional
+    hnote over PayerFSP #LightGrey
+      Get transaction data
+    end hnote
+    PayerFSP ->> Switch: **Retrieve Transaction Information**\n(Transaction ID)
+    activate Switch
+    Switch ->> PayeeFSP: **Retrieve Transaction Information**\n(Transaction ID)
+    activate PayeeFSP
+    PayeeFSP -> PayeeFSP: Looksup transaction\ninformation
+    Switch <<- PayeeFSP: **Return Transaction Information**\n(Transaction detail)
+    deactivate PayeeFSP
+    PayerFSP <<- Switch: **Return Transaction Information**\n(Transaction detail)
+    deactivate Switch
+  end
+  Payer <- PayerFSP: Transaction\nnotification
+  deactivate PayerFSP
+end
+autonumber stop
+@enduml

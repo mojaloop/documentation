@@ -1,68 +1,75 @@
 # Mojaloop Roadmap
 
-### Functional Epics
+The roadmap is built around the concept of three pillars, which are:
 
-* API Gateway: Provide role, policy-based access, security, abstraction, throttling & control, identity management
-* Settlements V2: Complete settlements process to handle failures and reconciliation positions
-* PISP: Payment Initiation Service Provider enhancements
-* LPS Adapter Enhancements and future Use Cases (ATM, POS)
-* Event Logging Framework: Support operational reporting and auditing of processing
-* Error Handling Framework: Consistent reporting in line with specification and support operational auditing
-* Endpoints for P2P, Merchant: Provide endpoints to support P2P and Merchant payments
-* Fraud & Risk Management System: Provide support for a fraud and risk management system
-* Forensic Logging: Support forensic logging to support auditing and reporting
-* Reporting API: Provide an API for reporting
+1. Make it easier to deploy Mojaloop
+2. Make sure deployments have every opportunity to make themselves profitable
+3. Connect to other payments services in the ecosystem
 
+These three pillars are underpinned by a fourth workstream, that of continuous development of a quality
+product.
+* Make Adoption Easier
+* Achieve Scale
+* Connect to Other Systems
+* Quality Product
 
-### Operational Epics
+## Make Adoption Easier
+(Promote a better understanding of Mojaloop)
+* Develop “Mojaloop Journey” – a manual to take adopters from concept to live service
+* Better portals for both Hub and Payment Manager
+    * Develop Configuration support
+    * Showcase extensions using Biz Ops Framework
+        * Bootcamp
+* Easier Deployment
+  * Make IaC more accessible
+    * Pre-configs for different deployment types
+  * On-Prem
+  * Azure
+* Better Showcase
+* Capitalise on MiniLoop
+  * Demos etc as part of deployment
+  * Testing support (Quality Product)
+* Fintech sandbox 
+* Integration with FRMS, demonstrate with a live deployment (PoC)
 
-* Versioning Standards
-* Operational Moniitoring and Event Dashboards
-* Mojaloop Sandbox and Toolkits
-* DevOps: Provide flexibility, dynamism in deployments, improve monitoring and reliability mechanisms
-* Rules Engine: Provide a framework to enforce, implement Business, Scheme rules
+## Achieve Scale
+Drive scale through:
+* Merchant Payments
+  * QR-based Push
+  * Merchant acquiring
+    * Mobile wallets, MFIs
+* PISP
+  * MRTP
+  * Bill Payments
+    * Aggregators
+  * Salaries etc
+    * Support for bulk through PISP interface
+* Bulk
+  * Partially complete – needs completing for older CBS
 
-### Non-Functional Epics
+## Connect to Other Systems
+* Cross-Border
+  * Next Generation Settlement (part of TigerBeetle, vNext, “Quality Product”)
+  * Integrated Forex services & API
+  * Payments addressing solutions for international transactions
+* Integrations into emerging DPG ecosystem
+  * Payments addressing using MOSIP national ID
+  * Integration with MOSIP, Mifos, OpenG2P
+    * Oracle/ALS development
+  * Opportunity for thought leadership on the integration of DPGs
+* Working within international ecosystems
+* Wholesale CBDC
+* Compatibility with Interledger developments
+* Development of an Interledger Cross Network Provider (CNP)
 
-* Security & Threat Modeling: Address security vulnerabilities, issues and provide a report on status of the System's security so that they can be addressed
-* Documentation: Update documentation to support adoption by community, for labs, deployment by various partners
-* API-Led Design: Refactor central services so that schema validation, paths can be addressed thoroughly \(automatically\) and decrease maintenance, development effort \(for those services don't already follow this\)
-* API-led connectivity is a methodical way to connect data to applications through reusable and purposeful APIs.
+## Maintain and Develop the Ecosystem
+Continuous:
+* Ongoing maintenance
+* Adopt MiniLoop for testing etc
 
-### Central Services
+In order to support the scale we want to achieve under Pillar 2:
+* Continue the development of vNext, work towards a migration
+* Adoption of TigerBeetle for vNext
 
-* Directory Interoperability
-* Multi-currency and schemes
-* Enforcing Currency configurations
-* Fees: UI for configuring fees
-* Increase performance 
-* Fraud Scores and Reasons
-* Role management
-* DSP Management
-* Stopping/Pausing a DFSP
-* boarding protocol
-
-### DFSP/Account Management
-
-* Agent Network
-* NFCC identity merchant
-* Persistent merchant ID
-* Onboarding protocol
-* Change password
-* Password requirements
-* Hold/Restart account
-
-### Security
-
-* Central certificate service
-* Implement fee quote transfer service in the center
-* Prevent user guessing from rogue DFSPs
-* Preferred authorizations
-
-### CI/CD & Testing
-
-* Implement auto deployment to test environment
-* Automatically run acceptance tests in test environment as part of build/deploy
-* Automate bulk import tests
-* Forensic log test
-* Account management test
+In order to support the interconnections we want to achieve under Pillar 3:
+* Accelerate TigerBeetle, vNext for agile deployment of next gen settlement engine

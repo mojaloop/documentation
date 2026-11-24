@@ -82,7 +82,7 @@ This means for any one change of the database schema, multiple application versi
 
 ### Using a schema registry for Kafka Messages [6]
 
-* [6] suggests some approaches, such as using a schema registry for kafka messages, such as [Apache Arvo](https://docs.confluent.io/current/schema-registry/index.html)
+* [6] suggests some approaches, such as using a schema registry for kafka messages, such as [Apache Avro](https://docs.confluent.io/current/schema-registry/index.html)
 * This adds a certain level of 'strictness' to the messages we produce, and will help enforce versioning
 * Adds a separate 'schema registry' component, which ensures messages conform to a given schema. This doesn't really
  help enforce versioning, and leaves the work up to us still, but does give more guarantees about the message formats.
@@ -196,7 +196,7 @@ As for version negotiation, the spec also states that in the event of an unsuppo
  client, a HTTP status 406 can be returned, along with an error message which describes the supported versions. [3.3.4.3 Non-Acceptable Version Requested by Client](https://github.com/mojaloop/mojaloop-specification/blob/master/documents/API%20Definition%20v1.0.md#3343-non-acceptable-version-requested-by-client)
 
 Another best practice around versioning is specifying to what level clients may request specific apis.
-* In a development environment, many APIs will allow specificy up to the BUGFIX version, i.e. vX.X.X
+* In a development environment, many APIs will allow specificity up to the BUGFIX version, i.e. vX.X.X
 * In production however, this is limited to Major versions only, e.g. v1, v2
 * e.g. The Google API Platform supports only major versions, not minor and patch versions
 * Given the new features that may become available with v1.1 of the Mojaloop API, we might want to allow participants
@@ -218,7 +218,7 @@ This implies we need to version:
     * need to make sure the right services can appropriately read the right messages. E.g. Can mojaloop/ml-api-adapter:v10
 .1.0 publish messages to kafka that mojaloop/central-ledger:v10.0.1 can understand?
     * Q: If we decide to make breaking changes to the message format, how can we ensure that messages in the kafka streams
- don't get picked up by the wong services?
+ don't get picked up by the wrong services?
 
 ### Internal Schemas
 
@@ -231,7 +231,7 @@ Currently, we use the lime protocol for our kafka message formats: https://limep
 
 Also refer to the mojaloop/central-services-stream readme for more information about the message format.
 
-The lime protocol provides for a type, field, which supports MIME type declarations. So we could potentially handle messages in a manner similar to the API above (e.g. application/vnd.specific+json). Versioning messages in this manner means that consumers reading these messages would need to be backwards and fowards compatible (consecutive message versions must be schema compatible).
+The lime protocol provides for a type, field, which supports MIME type declarations. So we could potentially handle messages in a manner similar to the API above (e.g. application/vnd.specific+json). Versioning messages in this manner means that consumers reading these messages would need to be backwards and forwards compatible (consecutive message versions must be schema compatible).
 * Q. does it make sense to put the version in the Kafka topic?
     * One example, ml-api-adapter publishes messages to the prepare topic
     * If we add versioning to this, ml-api-adapter:v10.0.0 publishes messages to a prepare_v10.0 topic, and a new instance

@@ -1,0 +1,65 @@
+@startuml
+
+' declaring skinparam
+skinparam shadowing false
+skinparam defaultFontName Verdana
+skinparam monochrome true
+skinparam SequenceLifeLineBackgroundColor WhiteSmoke
+skinparam SequenceLifeLineBorderColor Black
+skinparam ParticipantFontStyle Bold
+skinparam ParticipantFontSize 20
+skinparam ParticipantBackgroundColor WhiteSmoke
+skinparam ArrowColor Black
+
+hide footbox
+
+title Liaison PISP : Authentification (Web)
+
+participant "PISP" as PISP
+
+box "Mojaloop"
+    participant Switch
+end box
+
+participant "DFSP" as DFSP
+
+autonumber 1 "<b>WEB-AUTH-#</b>"
+
+...
+
+note over PISP, DFSP
+  Ici, l'utilisateur suit le processus d'authentification Web auprès de son DFSP.
+  Il en résulte une redirection vers le PISP avec un paramètre d'URL particulier contenant un secret fourni par le DFSP.
+end note
+
+...
+
+autonumber 1 "<b>AUTH-#</b>"
+
+PISP -> Switch ++: ""PATCH /consentRequests/11111111-0000-0000-0000-000000000000""\n\
+    ""  FSIOP-Source: pispa""\n\
+    ""  FSIOP-Destination: dfspa""\n\
+""  {""\n\
+    ""  authToken: "<SECRET>" ""\n\
+    ""}""
+Switch --> PISP: ""202 Accepted""
+deactivate PISP
+
+Switch -> DFSP ++: ""PATCH /consentRequests/11111111-0000-0000-0000-000000000000""\n\
+    ""  FSIOP-Source: pispa""\n\
+    ""  FSIOP-Destination: dfspa""\n\
+""  {""\n\
+    ""  authToken: "<SECRET>" ""\n\
+    ""}""
+DFSP --> Switch: ""202 Accepted""
+deactivate Switch
+
+DFSP -> DFSP: Vérification que le jeton d'authentification est correct.
+
+note over PISP, DFSP
+  À ce stade, le DFSP considère que l'utilisateur est son client et que l'utilisateur fait confiance au PISP. Le DFSP peut donc poursuivre en accordant le consentement.
+
+  Note : le DFSP ne « répond » jamais directement à la demande de consentement. Il créera plutôt une ressource Consent lors de la phase d'octroi.
+end note
+
+@enduml

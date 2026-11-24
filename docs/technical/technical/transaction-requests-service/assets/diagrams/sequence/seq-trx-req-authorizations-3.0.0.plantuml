@@ -1,0 +1,64 @@
+/'*****
+ License
+ --------------
+ Copyright © 2017 Bill & Melinda Gates Foundation
+ The Mojaloop files are made available by the Bill & Melinda Gates Foundation under the Apache License, Version 2.0 (the "License") and you may not use these files except in compliance with the License. You may obtain a copy of the License at
+ http://www.apache.org/licenses/LICENSE-2.0
+ Unless required by applicable law or agreed to in writing, the Mojaloop files are distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+ Contributors
+ --------------
+ This is the official list of the Mojaloop project contributors for this file.
+ Names of the original copyright holders (individuals or organizations)
+ should be listed with a '*' in the first column. People who have
+ contributed from an organization can be listed under the organization
+ that actually holds the copyright for their contributions (see the
+ Gates Foundation organization for an example). Those individuals should have
+ their names indented and be marked with a '-'. Email address can be added
+ optionally within square brackets <email>.
+ * Gates Foundation
+ - Name Surname <name.surname@gatesfoundation.com>
+
+ * Sam Kummary <sam@modusbox.com>
+ --------------
+ ******'/
+
+
+@startuml
+Title Transaction Requests Service - Authorizations
+participant "Payer FSP"
+participant "Switch\ntransaction-requests-service" as Switch
+participant "Payee FSP"
+
+autonumber
+"Payee FSP" --\ "Payee FSP": Lookup, Transaction request,\nprocessing not shown here
+note over "Payee FSP", Switch: Payee FSP generates a transaction-request to the Payer FSP
+"Payer FSP" --> "Payer FSP": Do quote, generate OTP\nnotify user (not shown here)
+"Payer FSP" -\ Switch: GET /authorizations/{TransactionRequestID}
+Switch --/ "Payer FSP": 202 Accepted
+
+alt authorization request is valid
+    
+    Switch -> Switch: Validate GET /authorizations/{TransactionRequestID} (internal validation)
+    Switch -> Switch: Retrieve corresponding end-points for Payee FSP
+    note over Switch, "Payee FSP": Switch forwards GET /authorizations request to Payee FSP
+    Switch -\ "Payee FSP": GET /authorizations/{TransactionRequestID}
+    "Payee FSP" --/ Switch: 202 Accepted
+    "Payee FSP" -> "Payee FSP": Process authorization request\n(Payer approves/rejects transaction\nusing OTP)
+    
+    note over Switch, "Payee FSP": Payee FSP responds with PUT /authorizations//{TransactionRequestID}
+    "Payee FSP" -\ Switch: PUT /authorizations//{TransactionRequestID}
+    Switch --/ "Payee FSP": 200 Ok
+
+    note over "Payer FSP", Switch: Switch forwards PUT /authorizations//{TransactionRequestID} to Payer FSP
+    Switch -> Switch: Retrieve corresponding end-points for Payer FSP
+    Switch -\ "Payer FSP": PUT /authorizations//{TransactionRequestID}
+    "Payer FSP" --/ Switch: 200 Ok
+        
+
+else authorization request is invalid
+    note over "Payer FSP", Switch: Switch returns error callback to Payer FSP
+    Switch -\ "Payer FSP": PUT /authorizations/{TransactionRequestID}/error
+    "Payer FSP" --/ Switch: 200 OK
+    "Payer FSP" --> "Payer FSP": Validate OTP sent by Payee FSP
+end
+@enduml

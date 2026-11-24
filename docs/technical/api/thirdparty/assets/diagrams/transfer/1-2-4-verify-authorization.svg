@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="1092px" preserveAspectRatio="none" style="width:1159px;height:1092px;background:#FFFFFF;" version="1.1" viewBox="0 0 1159 1092" width="1159px" zoomAndPan="magnify">
+  <title>Transfer: 1.2.4 Verify Authorization</title>
+  <defs/>
+  <g>
+    <text fill="#000000" font-family="Verdana" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="281.4766" x="438.6357" y="27.9951">Transfer: 1.2.4 Verify Authorization</text>
+    <rect fill="#DDDDDD" height="1036.5391" style="stroke:#181818;stroke-width:0.5;" width="477.0688" x="1" y="43.2969"/>
+    <text fill="#000000" font-family="Verdana" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="66.7202" x="206.1743" y="55.3638">Mojaloop</text>
+    <rect fill="#DDDDDD" height="1036.5391" style="stroke:#181818;stroke-width:0.5;" width="104.9004" x="718.7163" y="43.2969"/>
+    <text fill="#000000" font-family="Verdana" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="53.1489" x="744.592" y="55.3638">DFSP A</text>
+    <line style="stroke:#000000;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="49" x2="49" y1="123.9922" y2="1085.8359"/>
+    <line style="stroke:#000000;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="394.1079" x2="394.1079" y1="123.9922" y2="1085.8359"/>
+    <line style="stroke:#000000;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="770.7163" x2="770.7163" y1="123.9922" y2="1085.8359"/>
+    <rect fill="#F5F5F5" height="37.2813" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="89.3906" x="5" y="85.7109"/>
+    <text fill="#000000" font-family="Verdana" font-size="20" font-weight="bold" lengthAdjust="spacing" textLength="75.3906" x="12" y="111.2754">Switch</text>
+    <rect fill="#F5F5F5" height="37.2813" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="158.9609" x="315.1079" y="85.7109"/>
+    <text fill="#000000" font-family="Verdana" font-size="20" font-weight="bold" lengthAdjust="spacing" textLength="144.9609" x="322.1079" y="111.2754">Auth-Service</text>
+    <rect fill="#F5F5F5" height="60.5625" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="96.9004" x="722.7163" y="62.4297"/>
+    <text fill="#000000" font-family="Verdana" font-size="20" font-weight="bold" lengthAdjust="spacing" textLength="81.7676" x="730.2827" y="87.9941">DFSP A</text>
+    <text fill="#000000" font-family="Verdana" font-size="20" font-weight="bold" lengthAdjust="spacing" textLength="82.9004" x="729.7163" y="111.2754">(Payer)</text>
+    <line style="stroke:#000000;stroke-width:1.0;" x1="771.1665" x2="813.1665" y1="170.2578" y2="170.2578"/>
+    <line style="stroke:#000000;stroke-width:1.0;" x1="813.1665" x2="813.1665" y1="170.2578" y2="183.2578"/>
+    <line style="stroke:#000000;stroke-width:1.0;" x1="772.1665" x2="813.1665" y1="183.2578" y2="183.2578"/>
+    <polygon fill="#000000" points="782.1665,179.2578,772.1665,183.2578,782.1665,187.2578,778.1665,183.2578" style="stroke:#000000;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="103.8159" x="778.1665" y="150.0591">Generate a new</text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="164.3599" x="886.1147" y="150.0591">verificationRequestId</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="98.1411" x="1050.4746" y="150.0591">, and associate</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="65.8887" x="815.113" y="165.1919">it with the</text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="234.7998" x="885.134" y="165.1919">thirdpartyTransactionRequestId</text>
+    <rect fill="#D3D3D3" height="310" style="stroke:#181818;stroke-width:0.5;" width="474" x="291" y="196.2578"/>
+    <text fill="#000000" font-family="monospace" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="297.4131" x="295" y="212.3247">POST /thirdpartyRequests/verifications</text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="156.5332" x="295" y="227.4575">FSPIOP-Source: dfspa</text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="250.4531" x="295" y="242.5903">FSPIOP-Destination: central-auth</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.271" x="295" y="257.7231">{</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="458.3262" x="303.2646" y="272.856">&quot;verificationRequestId&quot;: &quot;44444444-0000-0000-0000-000000000000&quot;,</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="79.4028" x="303.2646" y="287.9888">&quot;challenge&quot;:</text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="367.853" x="386.7998" y="287.9888">&lt;base64 encoded binary - the encoded challenge&gt;</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="4.1323" x="754.6528" y="287.9888">,</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="124.9092" x="303.2646" y="303.1216">&quot;consentId&quot;: &quot;123&quot;,</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="194.4097" x="303.2646" y="318.2544">&quot;signedPayloadType&quot;: &quot;FIDO&quot;,</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="89.8447" x="303.2646" y="333.3872">&quot;fidoValue&quot;: {</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="85.7441" x="311.5293" y="348.52">&quot;id&quot;: &quot;string&quot;,</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="265.3765" x="311.5293" y="363.6528">&quot;rawId&quot;: &quot;string - base64 encoded utf-8&quot;,</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="88.0737" x="311.5293" y="378.7856">&quot;response&quot;: {</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="348.3848" x="319.7939" y="393.9185">&quot;authenticatorData&quot;: &quot;string - base64 encoded utf-8&quot;,</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="328.1357" x="319.7939" y="409.0513">&quot;clientDataJSON&quot;: &quot;string - base64 encoded utf-8&quot;,</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="290.8687" x="319.7939" y="424.1841">&quot;signature&quot;: &quot;string - base64 encoded utf-8&quot;,</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="303.5449" x="319.7939" y="439.3169">&quot;userHandle&quot;: &quot;string - base64 encoded utf-8&quot;,</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="12.4033" x="311.5293" y="454.4497">},</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="128.4956" x="311.5293" y="469.5825">&quot;type&quot;: &quot;public-key&quot;</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.271" x="303.2646" y="484.7153">}</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.271" x="295" y="499.8481">}</text>
+    <polygon fill="#000000" points="60.6953,529.0469,50.6953,533.0469,60.6953,537.0469,56.6953,533.0469" style="stroke:#000000;stroke-width:1.0;"/>
+    <line style="stroke:#000000;stroke-width:1.0;" x1="54.6953" x2="770.1665" y1="533.0469" y2="533.0469"/>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="297.4131" x="261.7244" y="527.981">POST /thirdpartyRequests/verifications</text>
+    <polygon fill="#000000" points="759.1665,558.1797,769.1665,562.1797,759.1665,566.1797,763.1665,562.1797" style="stroke:#000000;stroke-width:1.0;"/>
+    <line style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="49.6953" x2="765.1665" y1="562.1797" y2="562.1797"/>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="93.9199" x="363.4709" y="557.1138">202 Accepted</text>
+    <polygon fill="#000000" points="382.5884,587.3125,392.5884,591.3125,382.5884,595.3125,386.5884,591.3125" style="stroke:#000000;stroke-width:1.0;"/>
+    <line style="stroke:#000000;stroke-width:1.0;" x1="49.6953" x2="388.5884" y1="591.3125" y2="591.3125"/>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="297.4131" x="73.4353" y="586.2466">POST /thirdpartyRequests/verifications</text>
+    <polygon fill="#000000" points="60.6953,616.4453,50.6953,620.4453,60.6953,624.4453,56.6953,620.4453" style="stroke:#000000;stroke-width:1.0;"/>
+    <line style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="54.6953" x2="393.5884" y1="620.4453" y2="620.4453"/>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="93.9199" x="175.1819" y="615.3794">202 Accepted</text>
+    <line style="stroke:#000000;stroke-width:1.0;" x1="394.5884" x2="436.5884" y1="649.5781" y2="649.5781"/>
+    <line style="stroke:#000000;stroke-width:1.0;" x1="436.5884" x2="436.5884" y1="649.5781" y2="662.5781"/>
+    <line style="stroke:#000000;stroke-width:1.0;" x1="395.5884" x2="436.5884" y1="662.5781" y2="662.5781"/>
+    <polygon fill="#000000" points="405.5884,658.5781,395.5884,662.5781,405.5884,666.5781,401.5884,662.5781" style="stroke:#000000;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="261.9678" x="401.5884" y="644.5122">Lookup this consent based on consentId</text>
+    <line style="stroke:#000000;stroke-width:1.0;" x1="394.5884" x2="436.5884" y1="691.7109" y2="691.7109"/>
+    <line style="stroke:#000000;stroke-width:1.0;" x1="436.5884" x2="436.5884" y1="691.7109" y2="704.7109"/>
+    <line style="stroke:#000000;stroke-width:1.0;" x1="395.5884" x2="436.5884" y1="704.7109" y2="704.7109"/>
+    <polygon fill="#000000" points="405.5884,700.7109,395.5884,704.7109,405.5884,708.7109,401.5884,704.7109" style="stroke:#000000;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="362.5781" x="401.5884" y="686.645">Ensure the accountAddress matches what is in Consent</text>
+    <line style="stroke:#000000;stroke-width:1.0;" x1="394.5884" x2="436.5884" y1="748.9766" y2="748.9766"/>
+    <line style="stroke:#000000;stroke-width:1.0;" x1="436.5884" x2="436.5884" y1="748.9766" y2="761.9766"/>
+    <line style="stroke:#000000;stroke-width:1.0;" x1="395.5884" x2="436.5884" y1="761.9766" y2="761.9766"/>
+    <polygon fill="#000000" points="405.5884,757.9766,395.5884,761.9766,405.5884,765.9766,401.5884,761.9766" style="stroke:#000000;stroke-width:1.0;"/>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="253.9063" x="407.4346" y="728.7778">Check that the signed bytes match the</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="269.731" x="401.5884" y="743.9106">publickey we have stored for the consent</text>
+    <rect fill="#D3D3D3" height="98" style="stroke:#181818;stroke-width:0.5;" width="587" x="399" y="774.9766"/>
+    <text fill="#000000" font-family="monospace" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="579.1729" x="403" y="791.0435">PUT /thirdpartyRequests/verifications/44444444-0000-0000-0000-000000000000</text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="211.3198" x="403" y="806.1763">FSPIOP-Source: central-auth</text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="195.6665" x="403" y="821.3091">FSPIOP-Destination: dfspa</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.271" x="403" y="836.4419">{</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="249.4629" x="411.2646" y="851.5747">&quot;authenticationResponse&quot;: &quot;VERIFIED&quot;</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="8.271" x="403" y="866.7075">}</text>
+    <polygon fill="#000000" points="60.6953,911.0391,50.6953,915.0391,60.6953,919.0391,56.6953,915.0391" style="stroke:#000000;stroke-width:1.0;"/>
+    <line style="stroke:#000000;stroke-width:1.0;" x1="54.6953" x2="393.5884" y1="915.0391" y2="915.0391"/>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="289.5864" x="77.3486" y="894.8403">PUT /thirdpartyRequests/verifications</text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="289.5864" x="93.002" y="909.9731">/44444444-0000-0000-0000-000000000000</text>
+    <polygon fill="#000000" points="382.5884,940.1719,392.5884,944.1719,382.5884,948.1719,386.5884,944.1719" style="stroke:#000000;stroke-width:1.0;"/>
+    <line style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="49.6953" x2="388.5884" y1="944.1719" y2="944.1719"/>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="46.96" x="198.6619" y="939.106">200 OK</text>
+    <polygon fill="#000000" points="759.1665,984.4375,769.1665,988.4375,759.1665,992.4375,763.1665,988.4375" style="stroke:#000000;stroke-width:1.0;"/>
+    <line style="stroke:#000000;stroke-width:1.0;" x1="49.6953" x2="765.1665" y1="988.4375" y2="988.4375"/>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="289.5864" x="265.6377" y="968.2388">PUT /thirdpartyRequests/verifications</text>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="289.5864" x="281.291" y="983.3716">/44444444-0000-0000-0000-000000000000</text>
+    <polygon fill="#000000" points="60.6953,1013.5703,50.6953,1017.5703,60.6953,1021.5703,56.6953,1017.5703" style="stroke:#000000;stroke-width:1.0;"/>
+    <line style="stroke:#000000;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="54.6953" x2="770.1665" y1="1017.5703" y2="1017.5703"/>
+    <text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="46.96" x="386.9509" y="1012.5044">200 OK</text>
+    <path d="M580,1030.5703 L580,1070.5703 L960,1070.5703 L960,1040.5703 L950,1030.5703 L580,1030.5703 " fill="#FAFAFA" style="stroke:#181818;stroke-width:0.5;"/>
+    <path d="M950,1030.5703 L950,1040.5703 L960,1040.5703 L950,1030.5703 " fill="#FAFAFA" style="stroke:#181818;stroke-width:0.5;"/>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="359.855" x="586" y="1047.6372">DFSPA now knows that the user signed this transaction</text>
+    <text fill="#000000" font-family="Verdana" font-size="13" lengthAdjust="spacing" textLength="275.7295" x="586" y="1062.77">and can go ahead and initiate the transfer</text>
+  </g>
+</svg>

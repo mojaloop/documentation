@@ -1,0 +1,215 @@
+/'*****
+ License
+ --------------
+ Copyright © 2017 Bill & Melinda Gates Foundation
+ The Mojaloop files are made available by the Bill & Melinda Gates Foundation under the Apache License, Version 2.0 (the "License") and you may not use these files except in compliance with the License. You may obtain a copy of the License at
+ http://www.apache.org/licenses/LICENSE-2.0
+ Unless required by applicable law or agreed to in writing, the Mojaloop files are distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+ Contributors
+ --------------
+ This is the official list of the Mojaloop project contributors for this file.
+ Names of the original copyright holders (individuals or organizations)
+ should be listed with a '*' in the first column. People who have
+ contributed from an organization can be listed under the organization
+ that actually holds the copyright for their contributions (see the
+ Gates Foundation organization for an example). Those individuals should have
+ their names indented and be marked with a '-'. Email address can be added
+ optionally within square brackets <email>.
+ * Gates Foundation
+ - Name Surname <name.surname@gatesfoundation.com>
+
+ * Georgi Georgiev <georgi.georgiev@modusbox.com>
+ * Rajiv Mothilal <rajiv.mothilal@modusbox.com>
+ --------------
+ ******'/
+
+
+@startuml
+' déclaration du titre
+title 7.2.0. Obtenir les Détails d'une Partie
+
+autonumber
+' Clés des Acteurs :
+' boundary - APIs/Interfaces, etc
+' entity - Objets d'Accès à la Base de Données
+' database - Stockage Persitant des Bases de Données
+
+' déclaration des acteurs
+actor "Payer FSP" as PAYER_FSP
+actor "Payee FSP" as PAYEE_FSP
+boundary "Service de Recherche de\nCompte (ALS)" as ALS_API
+control "Gestionnaire de\nParticipant ALS" as ALS_PARTICIPANT_HANDLER
+entity "ALS CentralService\nEndpoint DAO" as ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO
+entity "ALS CentralService\nParticipant DAO" as ALS_CENTRALSERVICE_PARTICIPANT_DAO
+'entity "ALS Participant Oracle DAO" as ALS_PARTICIPANT_ORACLE_DAO
+entity "ALS Parties\nFSP DAO" as ALS_PARTIES_FSP_DAO
+database "Base de Données ALS" as ALS_DB
+boundary "API Service Oracle" as ORACLE_API
+boundary "API Service Central" as CENTRALSERVICE_API
+
+box "Fournisseur de Services Financiers" #LightGrey
+participant PAYER_FSP
+end box
+
+box "Service de Recherche de Compte" #LightYellow
+participant ALS_API
+participant ALS_PARTICIPANT_HANDLER
+participant ALS_DB
+participant ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO
+participant ALS_CENTRALSERVICE_PARTICIPANT_DAO
+participant ALS_PARTIES_FSP_DAO
+end box
+
+box "Services Centraux" #LightGreen
+participant CENTRALSERVICE_API
+end box
+
+box "Service/Adaptateur Oracle ALS" #LightBlue
+participant ORACLE_API
+end box
+
+box "Fournisseur de Services Financiers" #LightGrey
+participant PAYEE_FSP
+end box
+
+' DÉBUT DU FLUX
+
+group Obtenir les Détails d'une Partie
+    PAYER_FSP ->> ALS_API: Requête pour obtenir les détails FSP des parties\nGET - /parties/{TYPE}/{ID}?currency={CURRENCY}\n<color #388724><b>Code réponse :</b> 202</color>\n<color #red><b>Code erreur :</b> 200x, 300x, 310x, 320x</color>
+    activate ALS_API
+    note left ALS_API #lightgray
+        Valider la requête selon
+        la Spécification d'Interface Mojaloop.
+        <color #red><b>Code erreur :</b> 300x, 310x</color>
+    end note
+
+    ALS_API -> ALS_PARTICIPANT_HANDLER: Requête pour obtenir les détails FSP des parties
+
+    alt correspondance oracleEndpoint trouvée & informations sur les parties récupérées
+        activate ALS_PARTICIPANT_HANDLER
+        '********************* Récupération Infos de Routage Oracle - DÉBUT ************************
+        ALS_PARTICIPANT_HANDLER <-> ALS_DB: Obtenir la configuration de routage Oracle\n<color #red><b>Code erreur :</b> 200x, 310x, 320x</color>
+        ref over ALS_PARTICIPANT_HANDLER, ALS_DB
+            OBTENIR Participants - [[https://docs.mojaloop.live/mojaloop-technical-overview/account-lookup-service/als-get-participants.html Get Oracle Routing Config Sequence]]
+            |||
+        end ref
+        '********************* Récupération Infos de Routage Oracle - FIN ************************
+        |||
+        '********************* Récupération Infos de Routage Switch - DÉBUT ************************
+'        ALS_PARTICIPANT_HANDLER <-> ALS_DB: Obtenir configuration de routage du Switch\n<color #red><b>Code erreur :</b> 200x, 310x, 320x</color>
+'        ref over ALS_PARTICIPANT_HANDLER, ALS_DB
+'            OBTENIR Participants - [[https://docs.mojaloop.live/mojaloop-technical-overview/account-lookup-service/als-get-participants.html Get Switch Routing Config Sequence]]
+'            |||
+'        end ref
+        '********************* Récupération Infos de Routage Switch - FIN ************************
+        |||
+        group Valider le Participant FSPIOP-Source
+            ALS_PARTICIPANT_HANDLER -> ALS_CENTRALSERVICE_PARTICIPANT_DAO: Requête d'information participant FSPIOP-Source\n<color #red><b>Code erreur :</b> 200x</color>
+            activate ALS_CENTRALSERVICE_PARTICIPANT_DAO
+
+            ALS_CENTRALSERVICE_PARTICIPANT_DAO -> CENTRALSERVICE_API: GET - /participants/{FSPIOP-Source}\n<color #red><b>Code erreur :</b> 200x, 310x, 320x</color>
+            activate CENTRALSERVICE_API
+            CENTRALSERVICE_API --> ALS_CENTRALSERVICE_PARTICIPANT_DAO: Retourner les informations du participant FSPIOP-Source
+            deactivate CENTRALSERVICE_API
+
+            ALS_CENTRALSERVICE_PARTICIPANT_DAO --> ALS_PARTICIPANT_HANDLER: Retourner les informations du participant FSPIOP-Source
+
+            deactivate ALS_CENTRALSERVICE_PARTICIPANT_DAO
+
+            ALS_PARTICIPANT_HANDLER -> ALS_PARTICIPANT_HANDLER: Valider le participant FSPIOP-Source\n<color #red><b>Code erreur :</b> 320x</color>
+        end group
+        |||
+
+        '********************* Requête Infos Participant Oracle - DÉBUT ************************
+
+        ALS_PARTICIPANT_HANDLER <-> ORACLE_API: Obtenir les informations du Participant pour PayeeFSP\n<color #red><b>Code erreur :</b> 200x, 310x, 320x</color>
+        ref over ALS_PARTICIPANT_HANDLER, ORACLE_API
+            OBTENIR Participants - [[https://docs.mojaloop.live/mojaloop-technical-overview/account-lookup-service/als-get-participants.html Request Participant Information from Oracle Sequence]]
+            |||
+        end ref
+
+        '********************* Requête Infos Participant Oracle - FIN ************************
+        |||
+        '********************* Requête Infos Parties - DÉBUT ************************
+
+        ALS_PARTICIPANT_HANDLER -> ALS_PARTIES_FSP_DAO: Requêter les informations des Parties depuis FSP.\n<color #red><b>Code erreur :</b> 200x</color>
+
+        activate ALS_PARTIES_FSP_DAO
+        ALS_PARTIES_FSP_DAO ->> PAYEE_FSP: Rappel des Parties vers la Destination:\nGET - /parties/{TYPE}/{ID}?currency={CURRENCY}\n<color #388724><b>Code réponse :</b> 202</color>\n<color #red><b>Code erreur :</b> 200x, 310x, 320x</color>
+        deactivate ALS_PARTIES_FSP_DAO
+        activate PAYEE_FSP
+
+        PAYEE_FSP ->> ALS_API: Rappel avec les informations du Participant:\nPUT - /parties/{TYPE}/{ID}?currency={CURRENCY}\n<color #red><b>Code erreur :</b> 200x, 300x, 310x, 320x</color>
+        deactivate PAYEE_FSP
+
+        ALS_API -> ALS_API: Valider la requête selon\nla Spécification d'Interface Mojaloop\n<color #red><b>Code erreur :</b> 300x, 310x</color>
+        ALS_API -> ALS_PARTICIPANT_HANDLER: Traiter les informations de rappel du Participant pour PUT
+
+        '********************* Requête Infos Parties - FIN ************************
+
+        '********************* Récupérer l'information d'End-point du Participant PayerFSP - DÉBUT ************************
+
+        ALS_PARTICIPANT_HANDLER -> ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO: Récupérer l'End-point de rappel du Participant PayerFSP\n<color #red><b>Code erreur :</b> 200x</color>
+        activate ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO
+        ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO -> CENTRALSERVICE_API: Récupérer l'End-point de rappel du Participant PayerFSP\nGET - /participants/{FSPIOP-Source}/endpoints\n<color #red><b>Code erreur :</b> 200x, 310x, 320x</color>
+        activate CENTRALSERVICE_API
+        CENTRALSERVICE_API --> ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO: Liste des end-points de rappel du participant PayerFSP
+        deactivate CENTRALSERVICE_API
+        ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO --> ALS_PARTICIPANT_HANDLER: Liste des end-points de rappel du participant PayerFSP
+        deactivate ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO
+
+        ALS_PARTICIPANT_HANDLER -> ALS_PARTICIPANT_HANDLER: Associer les End-points de rappel du Participant PayerFSP pour\nFSPIOP_CALLBACK_URL_PARTIES_PUT
+
+        '********************* Récupérer l'information d'End-point du Participant PayerFSP - FIN ************************
+
+        ALS_PARTICIPANT_HANDLER --> ALS_API: Retourner les informations du Participant à PayerFSP
+        ALS_API ->> PAYER_FSP: Callback avec infos Parties :\nPUT - /parties/{TYPE}/{ID}?currency={CURRENCY}
+
+    else Liste d'end-points vide renvoyée pour la config (PayeeFSP ou Oracle) ou erreur pour PayerFSP
+
+        '********************* Récupérer l'information d'End-point du Participant PayerFSP - DÉBUT ************************
+
+        ALS_PARTICIPANT_HANDLER -> ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO: Récupérer l'End-point de rappel du Participant PayerFSP\n<color #red><b>Code erreur :</b> 200x, 310x, 320x</color>
+        activate ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO
+        ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO -> CENTRALSERVICE_API: Récupérer l'End-point de rappel du Participant PayerFSP\nGET - /participants/{FSPIOP-Source}/endpoints\n<color #388724><b>Code réponse :</b> 200</color>\n<color #red><b>Code erreur :</b> 200x, 310x, 320x</color>
+        activate CENTRALSERVICE_API
+        CENTRALSERVICE_API --> ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO: Liste des end-points de rappel du participant PayerFSP
+        deactivate CENTRALSERVICE_API
+        ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO --> ALS_PARTICIPANT_HANDLER: Liste des end-points de rappel du participant PayerFSP
+        deactivate ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO
+
+        ALS_PARTICIPANT_HANDLER -> ALS_PARTICIPANT_HANDLER: Associer les end-points de rappel du Participant PayerFSP pour\nFSPIOP_CALLBACK_URL_PARTIES_PUT_ERROR
+
+        '********************* Récupérer l'information d'End-point du Participant PayerFSP - FIN ************************
+
+        ALS_PARTICIPANT_HANDLER --> ALS_API: Gérer l'erreur\n<color #red><b>Code erreur :</b> 200x, 310x, 320x</color>
+        ALS_API ->> PAYER_FSP: Callback : PUT - /participants/{TYPE}/{ID}/error
+    else Liste d'end-points vide renvoyée pour la config PayerFSP ou erreur pour PayeeFSP
+
+        '********************* Récupérer l'information d'End-point du Participant PayeeFSP - DÉBUT ************************
+
+        ALS_PARTICIPANT_HANDLER -> ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO: Récupérer l'End-point de rappel du Participant PayeeFSP\n<color #red><b>Code erreur :</b> 200x, 310x, 320x</color>
+        activate ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO
+        ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO -> CENTRALSERVICE_API: Récupérer l'End-point de rappel du Participant PayeeFSP\nGET - /participants/{FSPIOP-Source}/endpoints\n<color #388724><b>Code réponse :</b> 200</color>\n<color #red><b>Code erreur :</b> 200x, 310x, 320x</color>
+        activate CENTRALSERVICE_API
+        CENTRALSERVICE_API --> ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO: Liste des end-points de rappel du participant PayeeFSP
+        deactivate CENTRALSERVICE_API
+        ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO --> ALS_PARTICIPANT_HANDLER: Liste des end-points de rappel du participant PayeeFSP
+        deactivate ALS_CENTRALSERVICE_ENDPOINT_CONFIG_DAO
+
+        ALS_PARTICIPANT_HANDLER -> ALS_PARTICIPANT_HANDLER: Associer les end-points de rappel du participant PayeeFSP pour\nFSPIOP_CALLBACK_URL_PARTIES_PUT_ERROR
+
+        '********************* Récupérer l'information d'End-point du Participant PayerFSP - FIN ************************
+
+        ALS_PARTICIPANT_HANDLER --> ALS_API: Gérer l'erreur\n<color #red><b>Code erreur :</b> 200x, 310x, 320x</color>
+        ALS_API ->> PAYEE_FSP: Callback : PUT - /participants/{TYPE}/{ID}/error
+    else Liste de résultats switchEndpoint vide renvoyée
+        ALS_PARTICIPANT_HANDLER -> ALS_PARTICIPANT_HANDLER: Gérer l'erreur\n<color #red><b>Code erreur :</b> 200x</color>
+        hnote right ALS_PARTICIPANT_HANDLER #red
+            <color #white>Cadre de Gestion des Erreurs</color>
+        end note
+    end alt
+
+    deactivate ALS_PARTICIPANT_HANDLER
+end
+@enduml
