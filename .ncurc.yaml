@@ -1,3 +1,8 @@
 ## Add a TODO comment indicating the reason for each rejected dependency upgrade added to this list, and what should be done to resolve it (i.e. handle it through a story, etc).
 reject: [
+  # TODO: markdownlint-cli 0.50.0 is a "major version zero" bump, so rule behaviour may
+  # change across every page under docs/**. `npm run lint` already reports thousands of
+  # findings (docs/technical/** alone is ~6k), so a rule change here is not reviewable as
+  # a drive-by. Bump it in its own PR that shows the before/after lint delta.
+  markdownlint-cli,
 ]

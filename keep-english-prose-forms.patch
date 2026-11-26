@@ -1,0 +1,33 @@
+diff --git a/i18n/glossary/keep-english.txt b/i18n/glossary/keep-english.txt
+index 10d2b62e..84cc18d6 100644
+--- a/i18n/glossary/keep-english.txt
++++ b/i18n/glossary/keep-english.txt
+@@ -76,3 +76,28 @@ YAML
+ HTTP
+ HTTPS
+ REST
++
++# --- Prose forms of the hyphenated service names above -------------------------------------
++# The masker matches whole words, so `central-ledger` does NOT protect "Central Ledger" as it is
++# written in running text. Both es and pt translated these before these lines existed ("Razão
++# Geral Centralizada", "Serviços de Razão Geral Centralizada"), which A.4 forbids. Matching is
++# case sensitive, so every casing that actually occurs in docs/technical/ is listed.
++Central Ledger
++SDK Scheme Adapter
++Auth Service
++Mojaloop Simulator
++central ledger
++Account Lookup Service
++SDK scheme adapter
++mojaloop simulator
++Central Event Processor
++Finance Portal
++Quoting Service
++Auth service
++Account Lookup service
++Central Settlement
++Central ledger
++SDK Scheme adapter
++Transaction Requests Service
++auth service
++quoting service
