@@ -1175,6 +1175,12 @@ module.exports = {
                   path: 'business-operations-framework/SettlementBC'
                 }
               ]
+            },
+            {
+              title: 'Mojaloop Connection Manager (MCM)',
+              children: [
+                'business-operations-framework/MCMGuideforHubOperator',
+              ]
             }
           ]
         }
