@@ -1,0 +1,916 @@
+<svg xmlns="http://www.w3.org/2000/svg" height="3574" preserveAspectRatio="none" style="width:1262px;height:3574px" width="1262">
+  <defs>
+    <filter height="300%" id="a" width="300%" x="-1" y="-1">
+      <feGaussianBlur result="blurOut" stdDeviation="2"/>
+      <feColorMatrix in="blurOut" result="blurOut2" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/>
+      <feOffset dx="4" dy="4" in="blurOut2" result="blurOut3"/>
+      <feBlend in="SourceGraphic" in2="blurOut3"/>
+    </filter>
+  </defs>
+  <text font-family="sans-serif" font-size="18" lengthAdjust="spacingAndGlyphs" textLength="750" x="254" y="28.708">
+    6.2.3. Get Settlement By Settlement, Participant and Account (getSettlementBySPA)
+  </text>
+  <path fill="#FFB6C1" stroke="#a80036" d="M72 40.953h114v3527.648H72z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="89" x="84.5" y="53.02">
+    Central HUB
+  </text>
+  <path fill="#90EE90" stroke="#a80036" d="M311.5 40.953h506v3527.648h-506z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="139" x="495" y="53.02">
+    Settlement Service
+  </text>
+  <path fill="#FFFFE0" stroke="#a80036" d="M871 40.953h125v3527.648H871z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="119" x="874" y="53.02">
+    Central Services
+  </text>
+  <path fill="#FFF" filter="url(#a)" stroke="#a80036" d="M124 153.383h10v3296.922h-10zM391 153.383h10v3296.922h-10zM750 450.242h10v181.93h-10zM750 769.969h10v197.063h-10zM750 1104.828h10v166.797h-10zM750 1409.422h10v166.797h-10zM750 1735.016h10v581.383h-10zM750 2360.664h10v369.523h-10zM928.5 479.375h10v30h-10zM928.5 799.102h10v30h-10zM928.5 1133.961h10v30h-10zM928.5 1438.555h10v30h-10zM928.5 1764.148h10v531.117h-10zM928.5 2389.797h10v319.258h-10z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M10 160.383h1238v3304.922H10z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M66 184.516h420.5v122.797H66z"/>
+  <path fill="#FFF" d="M66 245.914h420.5v61.398H66z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M285.5 716.57H1135v951.047H285.5z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M295.5 1051.43H1108v609.188H295.5z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M305.5 1356.023H1098v297.594H305.5zM20 1681.617h1218v1776.688H20z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M672 1779.148h522v509.117H672z"/>
+  <path fill="#FFF" d="M672 2011.008h522v277.258H672z"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#000" stroke-width="2" d="M638 2404.797h590v297.258H638z"/>
+  <path fill="#FFF" d="M638 2560.992h590v141.063H638zM20 3260.438h1218v197.867H20z"/>
+  <path stroke="#a80036" stroke-dasharray="5,5" d="M129 143.383v3338.922M395.5 143.383v3338.922M754.5 143.383v3338.922M933.5 143.383v3338.922"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="100" x="76" y="140.081">
+    Hub Employee
+  </text>
+  <circle cx="129" cy="70.086" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="8"/>
+  <path d="M129 78.086v27m-13-19h26m-13 19l-13 15m13-15l13 15" fill="none" filter="url(#a)" stroke="#a80036" stroke-width="2"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="100" x="76" y="3494.3">
+    Hub Employee
+  </text>
+  <circle cx="129" cy="3507.602" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="8"/>
+  <path d="M129 3515.602v27m-13-19h26m-13 19l-13 15m13-15l13 15" fill="none" filter="url(#a)" stroke="#a80036" stroke-width="2"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="155" x="315.5" y="140.081">
+    Settlement Service API
+  </text>
+  <path d="M375.5 99.086v24m0-12h17" fill="none" filter="url(#a)" stroke="#a80036" stroke-width="2"/>
+  <circle cx="404.5" cy="111.086" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="155" x="315.5" y="3494.3">
+    Settlement Service API
+  </text>
+  <path d="M375.5 3501.602v24m0-12h17" fill="none" filter="url(#a)" stroke="#a80036" stroke-width="2"/>
+  <circle cx="404.5" cy="3513.602" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="111" x="696.5" y="140.081">
+    Settlement DAO
+  </text>
+  <circle cx="755" cy="111.086" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path stroke="#a80036" stroke-width="2" d="M743 125.086h24"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="111" x="696.5" y="3494.3">
+    Settlement DAO
+  </text>
+  <circle cx="755" cy="3513.602" fill="#FEFECE" filter="url(#a)" stroke="#a80036" stroke-width="2" r="12"/>
+  <path stroke="#a80036" stroke-width="2" d="M743 3527.602h24"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="90" x="885.5" y="140.081">
+    Central Store
+  </text>
+  <path d="M915.5 91.086c0-10 18-10 18-10s18 0 18 10v26c0 10-18 10-18 10s-18 0-18-10v-26" fill="#FEFECE" filter="url(#a)" stroke="#000" stroke-width="1.5"/>
+  <path d="M915.5 91.086c0 10 18 10 18 10s18 0 18-10" fill="none" stroke="#000" stroke-width="1.5"/>
+  <text font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="90" x="885.5" y="3494.3">
+    Central Store
+  </text>
+  <path d="M915.5 3507.602c0-10 18-10 18-10s18 0 18 10v26c0 10-18 10-18 10s-18 0-18-10v-26" fill="#FEFECE" filter="url(#a)" stroke="#000" stroke-width="1.5"/>
+  <path d="M915.5 3507.602c0 10 18 10 18 10s18 0 18-10" fill="none" stroke="#000" stroke-width="1.5"/>
+  <path fill="#FFF" filter="url(#a)" stroke="#a80036" d="M124 153.383h10v3296.922h-10zM391 153.383h10v3296.922h-10zM750 450.242h10v181.93h-10zM750 769.969h10v197.063h-10zM750 1104.828h10v166.797h-10zM750 1409.422h10v166.797h-10zM750 1735.016h10v581.383h-10zM750 2360.664h10v369.523h-10zM928.5 479.375h10v30h-10zM928.5 799.102h10v30h-10zM928.5 1133.961h10v30h-10zM928.5 1438.555h10v30h-10zM928.5 1764.148h10v531.117h-10zM928.5 2389.797h10v319.258h-10z"/>
+  <path d="M10 160.383h454v7l-10 10H10v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M10 160.383h1238v3304.922H10z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="409" x="25" y="173.45">
+    Get Settlement By Settlement, Participant and Account
+  </text>
+  <path d="M66 184.516h64v7l-10 10H66v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M66 184.516h420.5v122.797H66z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19" x="81" y="197.583">
+    alt
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M379 233.914l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M134 237.914h251"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="141" y="225.282">
+    1
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="224" x="154" y="217.715">
+    GET - /settlements/{settlementId}/
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="174" x="154" y="232.848">
+    participants/{participantId}
+  </text>
+  <path stroke="#000" stroke-dasharray="2,2" d="M66 246.914h420.5"/>
+  <path fill="#A80036" stroke="#a80036" d="M379 295.313l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M134 299.313h251"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="141" y="279.114">
+    2
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="224" x="154" y="263.981">
+    GET - /settlements/{settlementId}/
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="178" x="154" y="279.114">
+    participants/{participantId}/
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="140" x="154" y="294.247">
+    accounts/{accountId}
+  </text>
+  <path d="M406 319.313v85h371v-75l-10-10H406" fill="#D3D3D3" filter="url(#a)" stroke="#a80036"/>
+  <path d="M767 319.313v10h10l-10-10" fill="#D3D3D3" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="178" x="412" y="336.379">
+    let settlementFound = false
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="259" x="412" y="351.512">
+    let participantFoundInSettlement = false
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="234" x="412" y="366.645">
+    let accountProvided = accountId &gt; 0
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="350" x="412" y="381.778">
+    let participantAndAccountMatched = !accountProvided
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="323" x="412" y="396.911">
+    let accountFoundInSettlement = !accountProvided
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M738 446.242l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M401 450.242h343"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="408" y="437.61">
+    3
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="163" x="421" y="430.043">
+    Request settlement state
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="82" x="421" y="445.176">
+    Error code:
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="32" x="507" y="445.176">
+    2001
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M916.5 475.375l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M760 479.375h162.5"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="767" y="474.309">
+    4
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="126" x="780" y="474.309">
+    Retrieve settlement
+  </text>
+  <path fill="#FFFFE0" filter="url(#a)" stroke="#a80036" d="M704 522.375h459l10 41-10 42H704l-10-42 10-41z"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="455" x="706" y="538.442">
+    SELECT s.settlementId, ssc.settlementStateId, s.reason, s.createdDate
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="36" x="706" y="553.575">
+    FROM
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="80" x="746" y="553.575">
+    settlement
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="7" x="830" y="553.575">
+    s
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="26" x="706" y="568.707">
+    JOIN
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="175" x="736" y="568.707">
+    settlementStateChange
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="21" x="915" y="568.707">
+    ssc
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="385" x="706" y="583.84">
+    ON ssc.settlementStateChangeId = s.currentStateChangeId
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="187" x="706" y="598.973">
+    WHERE s.settlementId = {id}
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M412 628.172l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M406 632.172h348"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="418" y="627.106">
+    5
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="42" x="431" y="627.106">
+    Return
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="80" x="477" y="627.106">
+    settlement
+  </text>
+  <path d="M406 645.172v55h209v-45l-10-10H406" fill="#D3D3D3" filter="url(#a)" stroke="#a80036"/>
+  <path d="M605 645.172v10h10l-10-10" fill="#D3D3D3" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="188" x="412" y="662.239">
+    if (settlement.settlementId) {
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="126" x="428" y="677.372">
+    settlementFound
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="41" x="558" y="677.372">
+    = true
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="412" y="692.504">
+    }
+  </text>
+  <path d="M285.5 716.57h70v7l-10 10h-60v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M285.5 716.57H1135v951.047H285.5z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="25" x="300.5" y="729.637">
+    opt
+  </text>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="119" x="370.5" y="728.781">
+    [settlementFound]
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M738 765.969l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M401 769.969h343"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="408" y="757.336">
+    6
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="111" x="421" y="749.77">
+    Check participant
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="82" x="421" y="764.903">
+    Error code:
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="32" x="507" y="764.903">
+    2001
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M916.5 795.102l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M760 799.102h162.5"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="767" y="794.036">
+    7
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="80" x="780" y="794.036">
+    Check exists
+  </text>
+  <path fill="#FFFFE0" filter="url(#a)" stroke="#a80036" d="M751 842.102h364l10 49-10 49H751l-10-49 10-49z"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="258" x="753" y="858.168">
+    SELECT settlementParticipantCurrencyId
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="36" x="753" y="873.301">
+    FROM
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="226" x="793" y="873.301">
+    settlementParticipantCurrency
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="22" x="1023" y="873.301">
+    spc
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="26" x="753" y="888.434">
+    JOIN
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="146" x="783" y="888.434">
+    participantCurrency
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="15" x="933" y="888.434">
+    pc
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="360" x="753" y="903.567">
+    ON pc.participantCurrencyId = spc.participantCurrencyId
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="202" x="753" y="918.7">
+    WHERE spc.settlementId = {id}
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="245" x="753" y="933.832">
+    AND pc.participantId = {participantId}
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M412 963.031l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M406 967.031h348"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="418" y="961.965">
+    8
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="42" x="431" y="961.965">
+    Return
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="266" x="477" y="961.965">
+    settlementParticipantCurrencyIdList
+  </text>
+  <path d="M406 980.031v55h353v-45l-10-10H406" fill="#D3D3D3" filter="url(#a)" stroke="#a80036"/>
+  <path d="M749 980.031v10h10l-10-10" fill="#D3D3D3" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="332" x="412" y="997.098">
+    if (settlementParticipantCurrencyIdList.length &gt; 0) {
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="221" x="428" y="1012.231">
+    participantFoundInSettlement
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="41" x="653" y="1012.231">
+    = true
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="412" y="1027.364">
+    }
+  </text>
+  <path d="M295.5 1051.43h70v7l-10 10h-60v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M295.5 1051.43H1108v609.188H295.5z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="25" x="310.5" y="1064.497">
+    opt
+  </text>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="337" x="380.5" y="1063.64">
+    [participantFoundInSettlement &amp;&amp; accountProvided]
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M738 1100.828l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M401 1104.828h343"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="9" x="408" y="1092.196">
+    9
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="111" x="421" y="1084.629">
+    Check participant
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="82" x="421" y="1099.762">
+    Error code:
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="32" x="507" y="1099.762">
+    2001
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M916.5 1129.96l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M760 1133.961h162.5"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="767" y="1128.895">
+    10
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="80" x="789" y="1128.895">
+    Check exists
+  </text>
+  <path fill="#FFFFE0" filter="url(#a)" stroke="#a80036" d="M790 1176.96h286l10 34-10 34H790l-10-34 10-34z"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="188" x="792" y="1193.028">
+    SELECT participantCurrencyId
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="26" x="792" y="1208.161">
+    JOIN
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="146" x="822" y="1208.161">
+    participantCurrency
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="282" x="792" y="1223.293">
+    WHERE participantCurrencyId = {accountId}
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="226" x="792" y="1238.426">
+    AND participantId = {participantId}
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M412 1267.625l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M406 1271.625h348"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="418" y="1266.559">
+    11
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="42" x="440" y="1266.559">
+    Return
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="58" x="486" y="1266.559">
+    account
+  </text>
+  <path d="M406 1284.625v55h315v-45l-10-10H406" fill="#D3D3D3" filter="url(#a)" stroke="#a80036"/>
+  <path d="M711 1284.625v10h10l-10-10" fill="#D3D3D3" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="84" x="412" y="1301.692">
+    if (account) {
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="233" x="428" y="1316.825">
+    participantAndAccountMatched
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="41" x="665" y="1316.825">
+    = true
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="412" y="1331.957">
+    }
+  </text>
+  <path d="M305.5 1356.023h70v7l-10 10h-60v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M305.5 1356.023H1098v297.594H305.5z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="25" x="320.5" y="1369.09">
+    opt
+  </text>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="210" x="390.5" y="1368.234">
+    [participantAndAccountMatched]
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M738 1405.422l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M401 1409.422h343"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="408" y="1396.79">
+    12
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="183" x="430" y="1389.223">
+    Check account in settlement
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="82" x="430" y="1404.356">
+    Error code:
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="32" x="516" y="1404.356">
+    2001
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M916.5 1434.555l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M760 1438.555h162.5"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="767" y="1433.489">
+    13
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="80" x="789" y="1433.489">
+    Check exists
+  </text>
+  <path fill="#FFFFE0" filter="url(#a)" stroke="#a80036" d="M789 1481.555h289l10 34-10 34H789l-10-34 10-34z"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="258" x="791" y="1497.622">
+    SELECT settlementParticipantCurrencyId
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="36" x="791" y="1512.754">
+    FROM
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="226" x="831" y="1512.754">
+    settlementParticipantCurrency
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="202" x="791" y="1527.887">
+    WHERE spc.settlementId = {id}
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="285" x="791" y="1543.02">
+    AND pc.participantCurrencyId = {accountId}
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M412 1572.219l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M406 1576.219h348"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="418" y="1571.153">
+    14
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="42" x="440" y="1571.153">
+    Return
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="240" x="486" y="1571.153">
+    settlementParticipantCurrencyId
+  </text>
+  <path d="M406 1589.219v55h280v-45l-10-10H406" fill="#D3D3D3" filter="url(#a)" stroke="#a80036"/>
+  <path d="M676 1589.219v10h10l-10-10" fill="#D3D3D3" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="239" x="412" y="1606.286">
+    if (settlementParticipantCurrencyId) {
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="198" x="428" y="1621.418">
+    accountFoundInSettlement
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="41" x="630" y="1621.418">
+    = true
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="412" y="1636.551">
+    }
+  </text>
+  <path d="M20 1681.617h64v7l-10 10H20v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M20 1681.617h1218v1776.688H20z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19" x="35" y="1694.684">
+    alt
+  </text>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="768" x="99" y="1693.828">
+    [settlementFound &amp;&amp; participantFoundInSettlement &amp;&amp; participantAndAccountMatched &amp;&amp; accountFoundInSettlement]
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M738 1731.016l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M401 1735.016h343"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="408" y="1722.383">
+    15
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="182" x="430" y="1714.817">
+    Request settlement windows
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="82" x="430" y="1729.95">
+    Error code:
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="32" x="516" y="1729.95">
+    2001
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M916.5 1760.148l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M760 1764.148h162.5"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="767" y="1759.082">
+    16
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="108" x="789" y="1759.082">
+    Retrieve windows
+  </text>
+  <path d="M672 1779.148h64v7l-10 10h-54v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M672 1779.148h522v509.117H672z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19" x="687" y="1792.215">
+    alt
+  </text>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="117" x="751" y="1791.359">
+    [accountProvided]
+  </text>
+  <path fill="#FFFFE0" filter="url(#a)" stroke="#a80036" d="M692 1801.281h482l10 102-10 102H692l-10-102 10-102z"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="48" x="694" y="1817.348">
+    SELECT
+  </text>
+  <text fill="#00A" font-family="sans-serif" font-size="13" font-style="italic" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="65" x="746" y="1817.348">
+    DISTINCT
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="357" x="815" y="1817.348">
+    sw.settlementWindowId, swsc.settlementWindowStateId,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="398" x="710" y="1832.481">
+    swsc.reason, sw.createdDate, swsc.createdDate changedDate
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="36" x="694" y="1847.614">
+    FROM
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="219" x="734" y="1847.614">
+    settlementSettlementWindow
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="23" x="957" y="1847.614">
+    ssw
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="26" x="694" y="1862.747">
+    JOIN
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="138" x="724" y="1862.747">
+    settlementWindow
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="16" x="866" y="1862.747">
+    sw
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="346" x="694" y="1877.879">
+    ON sw.settlementWindowId = ssw.settlementWindowId
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="26" x="694" y="1893.012">
+    JOIN
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="233" x="724" y="1893.012">
+    settlementWindowStateChange
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="30" x="961" y="1893.012">
+    swsc
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="450" x="694" y="1908.145">
+    ON swsc.settlementWindowStateChangeId = sw.currentStateChangeId
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="26" x="694" y="1923.278">
+    JOIN
+  </text>
+  <text fill="#00A" font-family="sans-serif" font-size="13" font-style="italic" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="196" x="724" y="1923.278">
+    settlementWindowContent
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="23" x="924" y="1923.278">
+    swc
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="346" x="694" y="1938.411">
+    ON swc.settlementWindowId = sw.settlementWindowId
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="26" x="694" y="1953.543">
+    JOIN
+  </text>
+  <text fill="#00A" font-family="sans-serif" font-size="13" font-style="italic" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="288" x="724" y="1953.543">
+    settlementWindowContentAggregation
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="31" x="1016" y="1953.543">
+    swca
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="463" x="694" y="1968.676">
+    ON swca.settlementWindowContentId = swc.settlementWindowContentId
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="219" x="694" y="1983.809">
+    AND swca.participantCurrencyId =
+  </text>
+  <text fill="#00A" font-family="sans-serif" font-size="13" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="78" x="917" y="1983.809">
+    {accountId}
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="203" x="694" y="1998.942">
+    WHERE ssw.settlementId = {id}
+  </text>
+  <path stroke="#000" stroke-dasharray="2,2" d="M672 2012.008h522"/>
+  <path fill="#FFFFE0" filter="url(#a)" stroke="#a80036" d="M696 2018.008h475l10 132-10 133H696l-10-133 10-132z"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="471" x="698" y="2034.075">
+    SELECT DISTINCT sw.settlementWindowId, swsc.settlementWindowStateId,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="398" x="714" y="2049.207">
+    swsc.reason, sw.createdDate, swsc.createdDate changedDate
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="36" x="698" y="2064.34">
+    FROM
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="219" x="738" y="2064.34">
+    settlementSettlementWindow
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="23" x="961" y="2064.34">
+    ssw
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="26" x="698" y="2079.473">
+    JOIN
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="138" x="728" y="2079.473">
+    settlementWindow
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="16" x="870" y="2079.473">
+    sw
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="346" x="698" y="2094.606">
+    ON sw.settlementWindowId = ssw.settlementWindowId
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="26" x="698" y="2109.739">
+    JOIN
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="233" x="728" y="2109.739">
+    settlementWindowStateChange
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="30" x="965" y="2109.739">
+    swsc
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="450" x="698" y="2124.872">
+    ON swsc.settlementWindowStateChangeId = sw.currentStateChangeId
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="26" x="698" y="2140.004">
+    JOIN
+  </text>
+  <text fill="#00A" font-family="sans-serif" font-size="13" font-style="italic" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="196" x="728" y="2140.004">
+    settlementWindowContent
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="23" x="928" y="2140.004">
+    swc
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="346" x="698" y="2155.137">
+    ON swc.settlementWindowId = sw.settlementWindowId
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="26" x="698" y="2170.27">
+    JOIN
+  </text>
+  <text fill="#00A" font-family="sans-serif" font-size="13" font-style="italic" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="288" x="728" y="2170.27">
+    settlementWindowContentAggregation
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="31" x="1020" y="2170.27">
+    swca
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="463" x="698" y="2185.403">
+    ON swca.settlementWindowContentId = swc.settlementWindowContentId
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="226" x="698" y="2200.536">
+    AND swca.participantCurrencyId IN(
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="188" x="714" y="2215.669">
+    SELECT participantCurrencyId
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="165" x="714" y="2230.801">
+    FROM participantCurrency
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="143" x="714" y="2245.934">
+    WHERE participantId =
+  </text>
+  <text fill="#00A" font-family="sans-serif" font-size="13" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="95" x="861" y="2245.934">
+    {participantId}
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="5" x="698" y="2261.067">
+    )
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="203" x="698" y="2276.2">
+    WHERE ssw.settlementId = {id}
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M412 2312.398l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M406 2316.398h348"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="418" y="2311.332">
+    17
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="42" x="440" y="2311.332">
+    Return
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="64" x="486" y="2311.332">
+    windows
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M738 2356.664l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M401 2360.664h343"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="408" y="2348.032">
+    18
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="188" x="430" y="2340.465">
+    Request settlement accounts
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="82" x="430" y="2355.598">
+    Error code:
+  </text>
+  <text fill="red" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="32" x="516" y="2355.598">
+    2001
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M916.5 2385.797l10 4-10 4 4-4z"/>
+  <path stroke="#a80036" d="M760 2389.797h162.5"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="767" y="2384.731">
+    19
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="114" x="789" y="2384.731">
+    Retrieve accounts
+  </text>
+  <path d="M638 2404.797h64v7l-10 10h-54v-17" fill="#EEE" stroke="#000"/>
+  <path fill="none" stroke="#000" stroke-width="2" d="M638 2404.797h590v297.258H638z"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19" x="653" y="2417.864">
+    alt
+  </text>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="117" x="717" y="2417.007">
+    [accountProvided]
+  </text>
+  <path fill="#FFFFE0" filter="url(#a)" stroke="#a80036" d="M661 2426.93h544l10 64-10 65H661l-10-65 10-64z"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="488" x="663" y="2442.997">
+    SELECT pc.participantId, spc.participantCurrencyId, spcsc.settlementStateId,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="283" x="679" y="2458.129">
+    spcsc.reason, spc.netAmount, pc.currencyId
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="36" x="663" y="2473.262">
+    FROM
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="226" x="703" y="2473.262">
+    settlementParticipantCurrency
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="22" x="933" y="2473.262">
+    spc
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="26" x="663" y="2488.395">
+    JOIN
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="321" x="693" y="2488.395">
+    settlementParticipantCurrencyStateChange
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="36" x="1018" y="2488.395">
+    spcsc
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="540" x="663" y="2503.528">
+    ON spcsc.settlementParticipantCurrencyStateChangeId = spc.currentStateChangeId
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="26" x="663" y="2518.661">
+    JOIN
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="146" x="693" y="2518.661">
+    participantCurrency
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="15" x="843" y="2518.661">
+    pc
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="360" x="663" y="2533.794">
+    ON pc.participantCurrencyId = spc.participantCurrencyId
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="522" x="663" y="2548.926">
+    WHERE spc.settlementParticipantCurrencyId = {settlementParticipantCurrencyId}
+  </text>
+  <path stroke="#000" stroke-dasharray="2,2" d="M638 2561.992h590"/>
+  <path fill="#FFFFE0" filter="url(#a)" stroke="#a80036" d="M658 2567.992h550l10 64-10 65H658l-10-65 10-64z"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="488" x="660" y="2584.059">
+    SELECT pc.participantId, spc.participantCurrencyId, spcsc.settlementStateId,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="283" x="676" y="2599.192">
+    spcsc.reason, spc.netAmount, pc.currencyId
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="36" x="660" y="2614.325">
+    FROM
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="226" x="700" y="2614.325">
+    settlementParticipantCurrency
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="22" x="930" y="2614.325">
+    spc
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="26" x="660" y="2629.457">
+    JOIN
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="321" x="690" y="2629.457">
+    settlementParticipantCurrencyStateChange
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="36" x="1015" y="2629.457">
+    spcsc
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="540" x="660" y="2644.59">
+    ON spcsc.settlementParticipantCurrencyStateChangeId = spc.currentStateChangeId
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="26" x="660" y="2659.723">
+    JOIN
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="146" x="690" y="2659.723">
+    participantCurrency
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="15" x="840" y="2659.723">
+    pc
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="360" x="660" y="2674.856">
+    ON pc.participantCurrencyId = spc.participantCurrencyId
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="546" x="660" y="2689.989">
+    WHERE spc.settlementParticipantCurrencyId IN {settlementParticipantCurrencyIdList}
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M412 2726.188l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M406 2730.188h348"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="418" y="2725.122">
+    20
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="42" x="440" y="2725.122">
+    Return
+  </text>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="66" x="486" y="2725.122">
+    accounts
+  </text>
+  <path d="M30 2743.188v479h352v-469l-10-10H30" fill="#FF0" filter="url(#a)" stroke="#a80036"/>
+  <path d="M372 2743.188v10h10l-10-10" fill="#FF0" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="36" y="2760.254">
+    {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="188" x="52" y="2775.387">
+    &quot;id&quot;: settlement.settlementId,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="245" x="52" y="2790.52">
+    &quot;state&quot;: settlement.settlementStateId,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="147" x="52" y="2805.653">
+    &quot;settlementWindows&quot;: [
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="5" x="68" y="2820.786">
+    [
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="84" y="2835.919">
+    {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="210" x="100" y="2851.051">
+    &quot;id&quot;: window.settlementWindowId,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="159" x="100" y="2866.184">
+    &quot;reason&quot;: window.reason,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="267" x="100" y="2881.317">
+    &quot;state&quot;: window.settlementWindowStateId,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="231" x="100" y="2896.45">
+    &quot;createdDate&quot;: window.createdDate,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="239" x="100" y="2911.582">
+    &quot;changedDate&quot;: window.changedDate
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="84" y="2926.715">
+    }
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="5" x="68" y="2941.848">
+    ]
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="9" x="52" y="2956.981">
+    ],
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="98" x="52" y="2972.114">
+    &quot;participants&quot;: [
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="68" y="2987.247">
+    {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="167" x="84" y="3002.379">
+    &quot;id&quot;: account.participantId,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="81" x="84" y="3017.512">
+    &quot;accounts&quot;: [
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="100" y="3032.645">
+    {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="224" x="116" y="3047.778">
+    &quot;id&quot;: account.participantCurrencyId,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="165" x="116" y="3062.911">
+    &quot;reason&quot;: account.reason,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="226" x="116" y="3078.044">
+    &quot;state&quot;: account.settlementStateId,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="170" x="116" y="3093.176">
+    &quot;netSettlementAmount&quot;: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="199" x="132" y="3108.309">
+    &quot;amount&quot;: account.netAmount,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="194" x="132" y="3123.442">
+    &quot;currency&quot;: account.currencyId
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="116" y="3138.575">
+    }
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="100" y="3153.707">
+    }
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="5" x="84" y="3168.84">
+    ]
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="68" y="3183.973">
+    }
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="5" x="52" y="3199.106">
+    ]
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="36" y="3214.239">
+    }
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M145 3248.438l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M139 3252.438h251"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="151" y="3247.372">
+    21
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="160" x="173" y="3247.372">
+    Respond HTTP - 200 (OK)
+  </text>
+  <path stroke="#000" stroke-dasharray="2,2" d="M20 3261.438h1218"/>
+  <text font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="752" x="25" y="3271.648">
+    [!settlementFound || !participantFoundInSettlement || !participantAndAccountMatched || !accountFoundInSettlement]
+  </text>
+  <path d="M406 3280.242v25h271v-15l-10-10H406" fill="#D3D3D3" filter="url(#a)" stroke="#a80036"/>
+  <path d="M667 3280.242v10h10l-10-10" fill="#D3D3D3" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="250" x="412" y="3297.309">
+    Log ERROR event (based on the failure)
+  </text>
+  <path d="M53 3319.375v100h329v-90l-10-10H53" fill="#FF0" filter="url(#a)" stroke="#a80036"/>
+  <path d="M372 3319.375v10h10l-10-10" fill="#FF0" stroke="#a80036"/>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="59" y="3336.442">
+    {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="120" x="75" y="3351.575">
+    errorInformation: {
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="153" x="91" y="3366.707">
+    &quot;errorCode&quot;: &lt;integer&gt;,
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="276" x="91" y="3381.84">
+    &quot;errorDescription&quot;: &quot;Client error description&quot;
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="75" y="3396.973">
+    }
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="59" y="3412.106">
+    }
+  </text>
+  <path fill="#A80036" stroke="#a80036" d="M140 3446.305l-10 4 10 4-4-4z"/>
+  <path stroke="#a80036" stroke-dasharray="2,2" d="M134 3450.305h261"/>
+  <text font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="18" x="146" y="3445.239">
+    22
+  </text>
+  <text font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="211" x="168" y="3445.239">
+    Respond HTTP - 4xx (Client error)
+  </text>
+</svg>
